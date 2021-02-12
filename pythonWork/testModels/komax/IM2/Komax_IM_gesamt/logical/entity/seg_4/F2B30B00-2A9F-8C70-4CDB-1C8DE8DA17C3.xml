@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="F2B30B00-2A9F-8C70-4CDB-1C8DE8DA17C3" name="Richtpreisangebot">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-17 15:39:34 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>6A7B9487-A0A0-AE9F-2264-E3D4BACA51DA</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Richtpreisangebot"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="**Indicative price offer"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Richtpreis" id="DBE74C7A-1C50-7095-DC90-7B04ECC1759D">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-17 15:39:34 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Richtpreis"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Indicative price"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Richt-Lieferzeit" id="7D32C551-E415-A7CE-7AB7-43E5E5B95DDE">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-25 07:28:24 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Richt-Lieferzeit"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Indicative Delivery time"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kundenbewertung positiv (ja/nein)" id="A2848537-447F-9356-BC0A-CCB893DE1DBD">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-17 16:33:40 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kundenbewertung positiv (ja/nein)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Customer rating positive (yes/no)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

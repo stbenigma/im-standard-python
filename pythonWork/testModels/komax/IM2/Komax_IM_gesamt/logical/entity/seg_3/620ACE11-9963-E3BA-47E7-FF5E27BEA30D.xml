@@ -1,0 +1,174 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="620ACE11-9963-E3BA-47E7-FF5E27BEA30D" name="Maschinenstandort">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:38:35 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Maschinenstandort"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="Machine location"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Arbeitsplatz" id="1C068BD6-3596-2C4B-8F5F-2824D49E6E97">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:39:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Arbeitsplatz"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Workplace"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gebäude" id="C74F5193-FF72-4BCA-1F7A-A4893096E3FA">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:39:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gebäude"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Building"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Halle" id="2D15E6FF-CB92-7110-3705-56AC23D195A0">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:39:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Halle"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Room"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Stockwerk" id="5A23A323-DFD8-9236-637F-818184D6E313">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:39:08 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Stockwerk"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Floor"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tor" id="F4DAC700-652E-C2D0-030D-776099FAE044">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:39:14 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Tor"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Gate"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

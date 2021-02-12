@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_689" directorySegmentName="seg_4" id="6E551163-E40B-AD52-65F8-1ED125980CBE">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-13 08:10:22 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verlangt</nameOnSource>
+<nameOnTarget>verlangt in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>A20E10E5-B717-8774-5142-7D301AF21CB3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F738A16E-8782-F097-8500-F1FEA43A6766</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verlangt"/>
+<property name="DE_RELA_TEXT_TO" value="verlangt in"/>
+<property name="EN_RELA_TEXT_FROM" value="**demanded"/>
+<property name="EN_RELA_TEXT_TO" value="**requested in"/>
+</propertyMap>
+</Relation>

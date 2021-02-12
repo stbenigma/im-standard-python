@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_175" directorySegmentName="seg_1" id="B1A67FEA-8695-8CF9-6662-4FD355DDBB91">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 13:13:25 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>enthält</nameOnSource>
+<nameOnTarget>steht an</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>620ACE11-9963-E3BA-47E7-FF5E27BEA30D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>BFCF7210-8C4F-1ABD-24A4-A409DC009A60</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="enthält"/>
+<property name="DE_RELA_TEXT_TO" value="steht an"/>
+<property name="EN_RELA_TEXT_FROM" value="**contains"/>
+<property name="EN_RELA_TEXT_TO" value="**is pending"/>
+</propertyMap>
+</Relation>

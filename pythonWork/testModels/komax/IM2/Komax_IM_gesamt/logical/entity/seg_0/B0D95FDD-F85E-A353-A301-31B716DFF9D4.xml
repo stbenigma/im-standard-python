@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B0D95FDD-F85E-A353-A301-31B716DFF9D4" name="Hersteller">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:10:26 UTC</createdTime>
+<comment><![CDATA[Firma, die Produkte oder Komponenten herstellt oder veredelt (galvanisieren)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Firma, die Produkte oder Komponenten herstellt oder veredelt (galvanisieren)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Company that manufactures or refines (galvanizes) products or components
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>7C57C407-0F6D-EBD6-71A6-B151AAAAA670</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Firma, die Produkte oder Komponenten herstellt oder veredelt (galvanisieren)"/>
+<property name="DE_ENTI_NAME" value="Hersteller"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Firma, die Produkte oder Komponenten herstellt oder veredelt (galvanisieren)"/>
+<property name="EN_ENTI_NAME" value="**Manufacturer"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Herstellverfahren" id="EF7C1E3A-624B-4FB8-390C-AFB0A0BBCA1B">
+<createdBy>toz</createdBy>
+<createdTime>2018-08-28 14:22:28 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Herstellverfahren"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Manufacturing technique"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_10" directorySegmentName="seg_0" id="5567F6A3-E7FC-2461-AD06-FDB5C5882097">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 10:05:47 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>assembliert von</nameOnSource>
+<nameOnTarget>assembliert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>AC5F8BAF-142B-E0F3-0C29-CBCD3F3EB347</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>430AE99F-1B0F-7111-46EA-D1CE3EAC504B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="assembliert von"/>
+<property name="DE_RELA_TEXT_TO" value="assembliert"/>
+<property name="EN_RELA_TEXT_FROM" value="assembled by"/>
+<property name="EN_RELA_TEXT_TO" value="assembled"/>
+</propertyMap>
+</Relation>

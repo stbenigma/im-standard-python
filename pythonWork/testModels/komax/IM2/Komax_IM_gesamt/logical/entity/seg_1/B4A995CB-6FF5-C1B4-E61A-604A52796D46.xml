@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="B4A995CB-6FF5-C1B4-E61A-604A52796D46" name="Verkaufsvereinbarung">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 08:32:29 UTC</createdTime>
+<comment><![CDATA[Möglicher Rabatt :
+Kickback auf Terminvolumen
+
+9.12.19: Bei KA: Die kumulierte Rabattierung bei KeyAccount Agreements kann Einfluss auf die Kommission nehmen. Je nach dem wie der Rabattsplit zwischen HQ und Vertretung definiert ist, fällt die Kommission höher oder tiefer aus. 
+
+17.12.19: Vertragsart als Attribut hinzufügen. Diskussion. Eventuell Attribut hinzufügen GPA (J/N)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Möglicher Rabatt :
+Kickback auf Terminvolumen
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Possible discount :
+Kickback to appointment volume
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Purchase Agreement</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Möglicher Rabatt : Kickback auf Terminvolumen"/>
+<property name="DE_ENTI_NAME" value="Verkaufsvereinbarung"/>
+<property name="DE_ENTI_SYNONYM" value="Purchase Agreement"/>
+<property name="EN_ENTI_COMMENT" value="Möglicher Rabatt : Kickback auf Terminvolumen"/>
+<property name="EN_ENTI_NAME" value="**Sales agreement"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Purchase Agreement"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Gültig ab" id="89640445-B1BE-DF24-F27F-8842E7DFBDAD">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 09:30:11 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig bis" id="0791F051-D651-57B1-1A6D-6A0BA4EECDBC">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:59:18 UTC</createdTime>
+<comment><![CDATA[immer vereinbart?]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+immer vereinbart?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**always agreed?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="immer vereinbart?"/>
+<property name="DE_ATTR_NAME" value="Gültig bis"/>
+<property name="EN_ATTR_COMMENT" value="immer vereinbart?"/>
+<property name="EN_ATTR_NAME" value="Valid until"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

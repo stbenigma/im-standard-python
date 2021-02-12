@@ -1,0 +1,148 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="B7A08873-2092-EF52-AA0B-28DE7EC540DF" name="Produktmaximalausprägung">
+<createdBy>toz</createdBy>
+<createdTime>2019-07-30 10:06:13 UTC</createdTime>
+<comment><![CDATA[30.07.19:
+150% Produkt ist das Produkt wie es aus der Entwicklung kommt, mit allen Optionen und Varianten auf der Stückliste. Keine Regeln angewendet bzgl welche Optionen und Varianten gleichzeitig möglich sind. ]]></comment>
+<notes><![CDATA[12.8.19: Name Attribut abgeändert von 150% Produkt in  Produktmaximalausprägung (R. Fuchs, M. Lustenberger, toz)[DE_ENTI_COMMENT[
+30.07.19:
+150% Produkt ist das Produkt wie es aus der Entwicklung kommt, mit allen Optionen und Varianten auf der Stückliste. Keine Regeln angewendet bzgl welche Optionen und Varianten gleichzeitig möglich sind. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**30.07.19:
+150% product is the product as it comes out of development, with all options and variants on the parts list. No rules applied regarding which options and variants are possible at the same time
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>4A58CEEE-CEAE-E516-0BB5-EAE7D1AE7912</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="30.07.19: 150% Produkt ist das Produkt wie es aus der Entwicklung kommt, mit allen Optionen und Varianten auf der Stückliste. Keine Regeln angewendet bzgl welche Optionen und Varianten gleichzeitig möglich sind. "/>
+<property name="DE_ENTI_NAME" value="Produktmaximalausprägung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="30.07.19: 150% Produkt ist das Produkt wie es aus der Entwicklung kommt, mit allen Optionen und Varianten auf der Stückliste. Keine Regeln angewendet bzgl welche Optionen und Varianten gleichzeitig möglich sind. "/>
+<property name="EN_ENTI_NAME" value="**Maximum product specification"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikelnummer" id="403594CC-FD43-DEE4-7312-D2526886F582">
+<createdBy>toz</createdBy>
+<createdTime>2019-07-30 10:09:42 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Artikelnummer"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Item number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SAP_S4-AttrName" value="Material"/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bezeichnung (L)" id="A98A7597-E157-6BC7-B8CA-A756A4AE989B">
+<createdBy>toz</createdBy>
+<createdTime>2019-07-30 10:09:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung (L)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation (L)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SAP_S4-AttrName" value=""/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Vertriebstext (L)" id="1DBDA316-DAC1-3935-D1F2-8887C769A858">
+<createdBy>toz</createdBy>
+<createdTime>2019-07-30 10:10:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Vertriebstext (L)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Sales text (L)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ETK-relevant Flag" id="FC82CBB6-3A30-DE1F-FA09-00BABB76DC60">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-28 08:59:08 UTC</createdTime>
+<commentInRDBMS><![CDATA[28.11.19: ETK = "Ersatzteilkatalog", der Flag ist ein Stücklistenattribut und wird gesetzt, weil tlw. bei Maschinen z.B. 1 Ritzel an einen Motor direkt verbaut ist und tlw. nicht; man will damit auch know-how Schutz betreiben, um nicht alles offenzulegen in ET-Katalog
+(Bsp. D. Nufer: meist verkauftes Teil Komax = Kugellager für Richteinheit)
+]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="ETK-relevant Flag"/>
+<property name="EN_ATTR_NAME" value="*DE* ETK-relevant Flag"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

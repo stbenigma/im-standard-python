@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_73" directorySegmentName="seg_0" id="C5686243-3ADC-80A0-DA9E-FA0A3C6ABDBF">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 13:00:39 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>führt zu</nameOnSource>
+<nameOnTarget>bezieht sich auf</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>985BBA2A-7541-CA5B-0EED-DCFE67DF84EC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9EF28CA8-0C50-BE49-F07B-4EA08E954308</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt zu"/>
+<property name="DE_RELA_TEXT_TO" value="bezieht sich auf"/>
+<property name="EN_RELA_TEXT_FROM" value="**leads to"/>
+<property name="EN_RELA_TEXT_TO" value="**refers to"/>
+</propertyMap>
+</Relation>

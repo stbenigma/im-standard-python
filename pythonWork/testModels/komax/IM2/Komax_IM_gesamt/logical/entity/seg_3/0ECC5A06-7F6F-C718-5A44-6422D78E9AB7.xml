@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="0ECC5A06-7F6F-C718-5A44-6422D78E9AB7" name="Sendung">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-19 07:48:39 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Sendung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="Shipment"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Sendungsart" id="05158125-C728-123B-A939-700717B9EDE4">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-19 07:49:38 UTC</createdTime>
+<comment><![CDATA[Wöchentlich, individuell, Express]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wöchentlich, individuell, Express
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Weekly, Individual, Express
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Wöchentlich, individuell, Express"/>
+<property name="DE_ATTR_NAME" value="Sendungsart"/>
+<property name="EN_ATTR_COMMENT" value="Wöchentlich, individuell, Express"/>
+<property name="EN_ATTR_NAME" value="Shipment type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Versandart" id="9B9B24C6-7234-308A-9CCD-03F786889786">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-19 07:49:38 UTC</createdTime>
+<comment><![CDATA[Schiff, Flugzeug, Strasse, Schiene]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Schiff, Flugzeug, Strasse, Schiene
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Ship, airplane, road, rail
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Schiff, Flugzeug, Strasse, Schiene"/>
+<property name="DE_ATTR_NAME" value="Versandart"/>
+<property name="EN_ATTR_COMMENT" value="Schiff, Flugzeug, Strasse, Schiene"/>
+<property name="EN_ATTR_NAME" value="Shipping method"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Versanddatum" id="9BA498FE-8C1E-3CA9-D026-EA72634FA7BE">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-19 07:49:38 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Versanddatum"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Shipping date"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_610" directorySegmentName="seg_5" id="5599A26A-651C-7438-DE76-E08792451F14">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-11 13:45:44 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gelöst über</nameOnSource>
+<nameOnTarget>bedient</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>532A31B9-5641-B480-58AB-B52B422A5A00</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E2953F53-0BC7-A775-D2FA-D70443B0789E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gelöst über"/>
+<property name="DE_RELA_TEXT_TO" value="bedient"/>
+<property name="EN_RELA_TEXT_FROM" value="**solved via"/>
+<property name="EN_RELA_TEXT_TO" value="**attended"/>
+</propertyMap>
+</Relation>

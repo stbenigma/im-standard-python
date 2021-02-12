@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_209" directorySegmentName="seg_1" id="BA547C0C-23CF-F2E7-DE0A-8EEB5F6C07DF">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 08:26:14 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>5295FC6C-9BCA-B481-105E-7E479D3DCA07</arc>
+<identifying>false</identifying>
+<nameOnSource>berechnet</nameOnSource>
+<nameOnTarget>berechnet durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E1EB4CD4-0A01-9923-4E44-A4A3C66A8EA7</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>98A4EBA5-C60D-0045-FF22-6492503175F0</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="berechnet"/>
+<property name="DE_RELA_TEXT_TO" value="berechnet durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**invoiced"/>
+<property name="EN_RELA_TEXT_TO" value="**calculated by"/>
+</propertyMap>
+</Relation>

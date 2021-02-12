@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_79" directorySegmentName="seg_0" id="F65ACF23-1089-EDD2-4DED-C98B0D409D6B">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 13:11:06 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<sourcePk>F9D54735-3805-9237-0068-A65146F2D949</sourcePk>
+<arc>F91178C8-E1E9-0CA8-ED8C-905AFC473302</arc>
+<identifying>false</identifying>
+<nameOnSource>angeliefert als</nameOnSource>
+<nameOnTarget>versendet als</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0E666CB3-92C7-90A2-478F-1917755CEBDA</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>AF608DF9-FC8D-A8A7-7B94-AAD6C143FBD8</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="angeliefert als"/>
+<property name="DE_RELA_TEXT_TO" value="versendet als"/>
+<property name="EN_RELA_TEXT_FROM" value="**delivered as"/>
+<property name="EN_RELA_TEXT_TO" value="**shipped as"/>
+</propertyMap>
+</Relation>

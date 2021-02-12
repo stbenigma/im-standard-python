@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_142" directorySegmentName="seg_1" id="85D07896-44F9-E94F-6967-B3B6A8379379">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-01 11:53:18 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>geliefert in</nameOnSource>
+<nameOnTarget>enthält</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>0E666CB3-92C7-90A2-478F-1917755CEBDA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4358203B-048D-3BC8-4622-D0249ECEADCD</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="geliefert in"/>
+<property name="DE_RELA_TEXT_TO" value="enthält"/>
+<property name="EN_RELA_TEXT_FROM" value="**delivered in"/>
+<property name="EN_RELA_TEXT_TO" value="contains"/>
+</propertyMap>
+</Relation>

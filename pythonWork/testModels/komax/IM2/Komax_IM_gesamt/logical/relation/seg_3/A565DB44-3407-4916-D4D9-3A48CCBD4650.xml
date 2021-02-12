@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_356" directorySegmentName="seg_3" id="A565DB44-3407-4916-D4D9-3A48CCBD4650">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-06-07 11:33:35 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<sourcePk>F9D54735-3805-9237-0068-A65146F2D949</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>meldet</nameOnSource>
+<nameOnTarget>gemeldet von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>0E666CB3-92C7-90A2-478F-1917755CEBDA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>14425660-C76A-C369-7F53-4A12D43F6F63</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="meldet"/>
+<property name="DE_RELA_TEXT_TO" value="gemeldet von"/>
+<property name="EN_RELA_TEXT_FROM" value="**reports"/>
+<property name="EN_RELA_TEXT_TO" value="**reported by"/>
+</propertyMap>
+</Relation>

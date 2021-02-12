@@ -1,0 +1,184 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="BA43955B-9C37-EE6D-2AB4-F877853904E7" name="Sonderpreis">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:56:33 UTC</createdTime>
+<comment><![CDATA[Währung für den Nettopreis wird immer vom jeweilig abgeänderten Preis übernommen.
+
+18.10.19: Nettopreis hauptsächlich für Pakete relevant, für den Rest versucht Komax dies abzuschaffen
+
+Für Transferpreislisten und Geografische Preislisten relevant?]]></comment>
+<notes><![CDATA[Überschreibt nur den Preis, restliche Attribute werden beibehalten.[DE_ENTI_COMMENT[
+Währung für den Nettopreis wird immer vom jeweilig abgeänderten Preis übernommen.
+
+18.10.19: Hauptsächlich für Pakete relevant, für den Rest versucht Komax dies abzuschaffen
+
+Für Transferpreislisten und Geografische Preislisten relevant?
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Currency for the net price will always be taken from the respective modified price.
+
+18.10.19: Mainly relevant to packages, for the rest Komax tries to do away with this
+
+Relevant for transfer price lists and geographical price lists?
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Währung für den Nettopreis wird immer vom jeweilig abgeänderten Preis übernommen.  18.10.19: Hauptsächlich für Pakete relevant, für den Rest versucht Komax dies abzuschaffen  Für Transferpreislisten und Geografische Preislisten relevant?"/>
+<property name="DE_ENTI_NAME" value="Sonderpreis"/>
+<property name="EN_ENTI_COMMENT" value="Währung für den Nettopreis wird immer vom jeweilig abgeänderten Preis übernommen.  18.10.19: Hauptsächlich für Pakete relevant, für den Rest versucht Komax dies abzuschaffen  Für Transferpreislisten und Geografische Preislisten relevant?"/>
+<property name="EN_ENTI_NAME" value="Special price"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nettopreis" id="FF00BDA6-E55B-BB25-17BA-83A474375F36">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:56:33 UTC</createdTime>
+<comment><![CDATA[Ist ein systembedingtes Vehikel. Wenn ein Preis ein "Nettopreis" ist, kann kein Rabatt mehr direkt darauf angewandt werden. ]]></comment>
+<commentInRDBMS><![CDATA[9.12.19: Nettopreise gibt es auch noch. Ist aber in Diskussion, das abzuschaffen und mit Rabatten zu lösen, weil besser zu handhaben. Muss im Moment drinbleiben, weil es den noch gibt. Ist eigentlich eine 
+Pakete als Lösung um diesen Rabatt geben zu können mittels Sonderpreisen. Es gibt einen Sonderpreis, intransparent, damit nicht sichtbar ist, wo Rabatt drauf ist. 
+]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ist ein systembedingtes Vehikel. Wenn ein Preis ein "Nettopreis" ist, kann kein Rabatt mehr direkt darauf angewandt werden. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**It's a systemic vehicle. If a price is a "net price", no discount can be applied directly to it
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Ist ein systembedingtes Vehikel. Wenn ein Preis ein &quot;Nettopreis&quot; ist, kann kein Rabatt mehr direkt darauf angewandt werden. "/>
+<property name="DE_ATTR_NAME" value="Nettopreis"/>
+<property name="EN_ATTR_COMMENT" value="Ist ein systembedingtes Vehikel. Wenn ein Preis ein &quot;Nettopreis&quot; ist, kann kein Rabatt mehr direkt darauf angewandt werden. "/>
+<property name="EN_ATTR_NAME" value="Net price"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Periode" id="19F117A5-8013-952C-B8AD-157809BA3C0E">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:56:33 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Periode"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Period"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bestellart" id="8C6F48EF-589F-5C1B-F7EC-BA21D3FEEEAD">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:56:33 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bestellart"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Order type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Staffelung" id="4E22F7E8-EBDF-0097-DD36-71902048B542">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:56:33 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Staffelung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Graduation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Währung" id="EE02F08E-7364-41CB-B761-01481C58D28C">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-12-09 10:10:42 UTC</createdTime>
+<commentInRDBMS><![CDATA[9.12.19: Währung von Sonderpreis überschreibt GKP Währung]]></commentInRDBMS>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Promotion" id="A2189314-8345-4D36-93D5-0501B4D14343">
+<createdBy>toz</createdBy>
+<createdTime>2019-12-10 13:35:02 UTC</createdTime>
+<commentInRDBMS><![CDATA[Promotion Discount: Sales Kampagne. Kann auf Einzelartikel oder Pakete sein. Intercompany und auch gegen Kunden. Kommt von PM aus oder lokal. Gibt eine Freigabe von PM oder sogar weiter oben. Beispiel anschauen. ]]></commentInRDBMS>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

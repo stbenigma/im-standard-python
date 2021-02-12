@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_368" directorySegmentName="seg_0" id="D9D4E6DB-B593-95BD-4B75-F2B673D6C246">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 13:54:37 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>definiert</nameOnSource>
+<nameOnTarget>ist von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>3EC72A81-F288-077C-C465-0A9DFB1ADFD8</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>24A6C3CB-B91A-E2C9-F787-86542E72B0D5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="definiert"/>
+<property name="DE_RELA_TEXT_TO" value="ist von"/>
+<property name="EN_RELA_TEXT_FROM" value="**defined"/>
+<property name="EN_RELA_TEXT_TO" value="**is from"/>
+</propertyMap>
+</Relation>

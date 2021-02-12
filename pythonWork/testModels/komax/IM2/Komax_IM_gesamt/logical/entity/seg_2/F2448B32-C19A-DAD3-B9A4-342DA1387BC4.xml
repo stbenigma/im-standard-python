@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F2448B32-C19A-DAD3-B9A4-342DA1387BC4" name="Embargo">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-23 14:11:20 UTC</createdTime>
+<comment><![CDATA[Embargo: In der SChweiz vom SECO "Sanktionsmassnahmen" genannt
+
+Embargo ist nicht von Zoll bestimmt und geprüft, sondern auf politischer Ebene entstanden und versucht durchzusetzen. 
+Falls Zoll das Embargo prüft, wird es zu einer Gütersanktionsliste und somit zu einem Handelshemmnis. 
+
+Embargo wird immer gegen ein Land ausgesprochen, nicht gegen juristische Personen oder Einheiten]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Embargo: In der SChweiz vom SECO "Sanktionsmassnahmen" genannt
+
+Embargo ist nicht von Zoll bestimmt und geprüft, sondern auf politischer Ebene entstanden und versucht durchzusetzen. 
+Falls Zoll das Embargo prüft, wird es zu einer Gütersanktionsliste und somit zu einem Handelshemmnis. 
+
+Embargo wird immer gegen ein Land ausgesprochen, nicht gegen juristische Personen oder Einheiten
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Embargo: In the SChweiz of SECO called "sanction measures
+
+The embargo was not imposed and checked by customs, but was created and is being enforced at the political level
+If customs checks the embargo, it becomes a goods sanction list and thus a trade barrier
+
+Embargo is always imposed against a country, not against legal persons or entities
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Embargo: In der SChweiz vom SECO &quot;Sanktionsmassnahmen&quot; genannt  Embargo ist nicht von Zoll bestimmt und geprüft, sondern auf politischer Ebene entstanden und versucht durchzusetzen.  Falls Zoll das Embargo prüft, wird es zu einer Gütersanktionsliste und somit zu einem Handelshemmnis.   Embargo wird immer gegen ein Land ausgesprochen, nicht gegen juristische Personen oder Einheiten"/>
+<property name="DE_ENTI_NAME" value="Embargo"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Embargo: In der SChweiz vom SECO &quot;Sanktionsmassnahmen&quot; genannt  Embargo ist nicht von Zoll bestimmt und geprüft, sondern auf politischer Ebene entstanden und versucht durchzusetzen.  Falls Zoll das Embargo prüft, wird es zu einer Gütersanktionsliste und somit zu einem Handelshemmnis.   Embargo wird immer gegen ein Land ausgesprochen, nicht gegen juristische Personen oder Einheiten"/>
+<property name="EN_ENTI_NAME" value="Embargo"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Aussteller" id="C4E90A21-95F7-1EAC-48F0-5C32D258615D">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 09:13:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Aussteller"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Issuer"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Teilembargo (ja/nein)" id="CD27DBEC-AE5D-2C55-1847-4338BE6E0949">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-21 16:59:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Teilembargo (ja/nein)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Partial embargo (yes/no)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,217 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="83CECA19-6EA8-1DE6-C0D0-B11469AE1864" name="Verkaufkomponente Version">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 11:16:22 UTC</createdTime>
+<comment><![CDATA[Version einer Komponente mit einer Veränderung seiner Eigenschaften.
+Beispiel: 
+ein Teil ändert das Material von Aluminium mach Stahl
+eine Baugruppe ändert ihre Bestückungsliste
+
+Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe.
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Version einer Komponente mit einer Veränderung seiner Eigenschaften.
+Beispiel: 
+ein Teil ändert das Material von Aluminium mach Stahl
+eine Baugruppe ändert ihre Bestückungsliste
+
+Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe.
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Version of a component with a change in its properties.
+Example
+one part changes the material from aluminum to make steel
+an assembly changes its assembly list
+
+Changing the version of a part of an assembly does not necessarily lead to a new version of the assembly.
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Version einer Komponente mit einer Veränderung seiner Eigenschaften. Beispiel:  ein Teil ändert das Material von Aluminium mach Stahl eine Baugruppe ändert ihre Bestückungsliste  Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe. "/>
+<property name="DE_ENTI_NAME" value="Verkaufkomponente Version"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Version einer Komponente mit einer Veränderung seiner Eigenschaften. Beispiel:  ein Teil ändert das Material von Aluminium mach Stahl eine Baugruppe ändert ihre Bestückungsliste  Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe. "/>
+<property name="EN_ENTI_NAME" value="**Sales component Version"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Index" id="523B4845-2F46-B056-29DE-DA85596FB864">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 11:32:28 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Index"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Index"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="gültig ab" id="21944425-B688-6D4C-3509-CB7FC5E7F595">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:02:29 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Ersatzteil [J/N]" id="152E523A-915C-CEBA-E50E-1C2E07B7FE50">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 11:20:01 UTC</createdTime>
+<comment><![CDATA[Zeit an ob Teil  im Feld ersetzt werden kann]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Zeit an ob Teil  im Feld ersetzt werden kann
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Time on whether part in field can be replaced
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Zeit an ob Teil  im Feld ersetzt werden kann"/>
+<property name="DE_ATTR_NAME" value="ist Ersatzteil [J/N]"/>
+<property name="EN_ATTR_COMMENT" value="Zeit an ob Teil  im Feld ersetzt werden kann"/>
+<property name="EN_ATTR_NAME" value="is spare part [Y/N]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Verschleissteil [J/N]" id="DC4CDF8D-79B9-AD63-1FFA-43E79EBAE755">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 11:20:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="ist Verschleissteil [J/N]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="is wear part [Y/N]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Normteil [J/N]" id="896DC98E-7259-8B59-EC54-9E06481EC6BE">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 11:20:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="ist Normteil [J/N]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="is standard part [Y/N]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gefahrengut" id="96E5ADAC-C5A3-B82C-7914-117601FC3566">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-01 09:22:56 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gefahrengut"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Dangerous goods"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,198 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5F400527-9756-5CB1-03B0-55F3547F8894" name="Konfigurationsmodell">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:13:44 UTC</createdTime>
+<comment><![CDATA[Verkaufbare Einheit mit fertig konfigurierter Stückliste.
+Die Variante ist eine Auswahl aus den möglichen Konfigurationskombinationen des Modells.
+Vordefinierte Varianten erhalten einen Namen als Bezeichnung
+Durch den Konfigurator zusammengestellt Varianten erhalten eine Nummer als Bezeichnung.
+
+Zu jedem Modell gibt es immer genau eine Defaultvariante.
+
+
+-  Naming von "Produktkonfiguration" auf "Konfigurationsmodell" verändert (Input 14.2.19 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+
+Attribut " ist Default [J/N]" rausgenommen und Artikelnummer als Schlüsselattribut hinzugefügt (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Verkaufbare Einheit mit fertig konfigurierter Stückliste.
+Die Variante ist eine Auswahl aus den möglichen Konfigurationskombinationen des Modells.
+Vordefinierte Varianten erhalten einen Namen als Bezeichnung
+Durch den Konfigurator zusammengestellt Varianten erhalten eine Nummer als Bezeichnung.
+
+Zu jedem Modell gibt es immer genau eine Defaultvariante.
+
+
+-  Naming von "Produktkonfiguration" auf "Konfigurationsmodell" verändert (Input 14.2.19 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+
+Attribut " ist Default [J/N]" rausgenommen und Artikelnummer als Schlüsselattribut hinzugefügt (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Sellable unit with fully configured parts list.
+The variant is a selection from the possible configuration combinations of the model.
+Predefined variants are given a name as a description
+Variants compiled by the configurator are given a number as a designation.
+
+There is always exactly one default variant for each model.
+
+
+-  Naming changed from "Product configuration" to "Configuration model" (Input 14.2.19 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+
+Attribute " is default [Y/N]" removed and article number added as key attribute (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Verkaufbare Einheit mit fertig konfigurierter Stückliste. Die Variante ist eine Auswahl aus den möglichen Konfigurationskombinationen des Modells. Vordefinierte Varianten erhalten einen Namen als Bezeichnung Durch den Konfigurator zusammengestellt Varianten erhalten eine Nummer als Bezeichnung.  Zu jedem Modell gibt es immer genau eine Defaultvariante.   -  Naming von &quot;Produktkonfiguration&quot; auf &quot;Konfigurationsmodell&quot; verändert (Input 14.2.19 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)  Attribut &quot; ist Default [J/N]&quot; rausgenommen und Artikelnummer als Schlüsselattribut hinzugefügt (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini) "/>
+<property name="DE_ENTI_NAME" value="Konfigurationsmodell"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Verkaufbare Einheit mit fertig konfigurierter Stückliste. Die Variante ist eine Auswahl aus den möglichen Konfigurationskombinationen des Modells. Vordefinierte Varianten erhalten einen Namen als Bezeichnung Durch den Konfigurator zusammengestellt Varianten erhalten eine Nummer als Bezeichnung.  Zu jedem Modell gibt es immer genau eine Defaultvariante.   -  Naming von &quot;Produktkonfiguration&quot; auf &quot;Konfigurationsmodell&quot; verändert (Input 14.2.19 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)  Attribut &quot; ist Default [J/N]&quot; rausgenommen und Artikelnummer als Schlüsselattribut hinzugefügt (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini) "/>
+<property name="EN_ENTI_NAME" value="**Configuration model"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikelnummer" id="2BB32A4A-1F97-63E5-412C-AE9B994BF2A7">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:28:33 UTC</createdTime>
+<generatorID>EF843FB4-7856-DF47-ACC6-55B8E34BB57D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<referedAttribute>79E17DD2-FFCE-34DA-CB64-1A954E86367A</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Artikelnummer"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Item number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bezeichnung" id="315ECDDF-410D-FA02-4F2C-179F56BE13D0">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 13:26:06 UTC</createdTime>
+<comment><![CDATA[Name oder Nummer der Variante]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name oder Nummer der Variante
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Name or number of the variant
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Name oder Nummer der Variante"/>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
+<property name="EN_ATTR_COMMENT" value="Name oder Nummer der Variante"/>
+<property name="EN_ATTR_NAME" value="Designation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig (ja/nein)" id="EE862787-0F1F-62E5-D0DC-939726DC9EA7">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-25 15:56:25 UTC</createdTime>
+<comment><![CDATA[AX = "Version", bei genehmigt gibt es einen Haken (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+AX = "Version", bei genehmigt gibt es einen Haken (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**AX = "Version", if approved there is a tick (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="AX = &quot;Version&quot;, bei genehmigt gibt es einen Haken (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)"/>
+<property name="DE_ATTR_NAME" value="Gültig (ja/nein)"/>
+<property name="EN_ATTR_COMMENT" value="AX = &quot;Version&quot;, bei genehmigt gibt es einen Haken (Input 22.2.149 O.Heisel, S. Hofer, S. Ruggiero, M. Braunschweiler, C. Ghislini)"/>
+<property name="EN_ATTR_NAME" value="Valid (yes/no)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Konfigurierbar (J/N)" id="B513A090-CDD5-8F0B-2495-25589E68EAC2">
+<createdBy>toz</createdBy>
+<createdTime>2019-03-29 09:44:55 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Konfigurierbar (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Configurable (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0DD29355-18B7-8572-EFF2-1214F8731AD8" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-15 12:42:30 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>EF843FB4-7856-DF47-ACC6-55B8E34BB57D</newElementsIDs>
+<usedAttributes>
+<attributeRef>2BB32A4A-1F97-63E5-412C-AE9B994BF2A7</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

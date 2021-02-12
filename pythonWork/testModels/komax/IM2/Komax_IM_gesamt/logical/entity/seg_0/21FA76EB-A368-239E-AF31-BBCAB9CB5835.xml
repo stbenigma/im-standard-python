@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="21FA76EB-A368-239E-AF31-BBCAB9CB5835" name="Produktgruppe">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:40:02 UTC</createdTime>
+<comment><![CDATA[Das Kürzel der Produktgruppe entspricht der finanziellen Sachmerkmalstufe 1 (2 Stellen); im AX als "Artikelgruppe"  definiert
+
+
+Vollautomatisch
+Teilautomatisiert
+Alpha Series
+Gamma Series
+Rotations-stripper
+
+
+Verwendet für 
+Marketing (channels, externe Struktur, Suchkriterium)
+Finanz
+Service]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Das Kürzel der Produktgruppe entspricht der finanziellen Sachmerkmalstufe 1 (2 Stellen); im AX als "Artikelgruppe"  definiert
+
+
+Vollautomatisch
+Teilautomatisiert
+Alpha Series
+Gamma Series
+Rotations-stripper
+
+
+Verwendet für 
+Marketing (channels, externe Struktur, Suchkriterium)
+Finanz
+Service
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**The abbreviation of the product group corresponds to the financial characteristic level 1 (2 digits); defined in the AX as "article group
+
+
+Fully automatic
+Semi-automated
+Alpha Series
+Gamma series
+Rotation stripper
+
+
+Used for
+Marketing (channels, external structure, search criteria)
+Finance
+Service
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Das Kürzel der Produktgruppe entspricht der finanziellen Sachmerkmalstufe 1 (2 Stellen); im AX als &quot;Artikelgruppe&quot;  definiert   Vollautomatisch Teilautomatisiert Alpha Series Gamma Series Rotations-stripper   Verwendet für  Marketing (channels, externe Struktur, Suchkriterium) Finanz Service"/>
+<property name="DE_ENTI_NAME" value="Produktgruppe"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Das Kürzel der Produktgruppe entspricht der finanziellen Sachmerkmalstufe 1 (2 Stellen); im AX als &quot;Artikelgruppe&quot;  definiert   Vollautomatisch Teilautomatisiert Alpha Series Gamma Series Rotations-stripper   Verwendet für  Marketing (channels, externe Struktur, Suchkriterium) Finanz Service"/>
+<property name="EN_ENTI_NAME" value="Product Group"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung [L]" id="6C833648-75C6-5339-1E26-9EA89CAE436B">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:46:27 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation [L]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kuerzel" id="631B4B1C-9E3A-461C-735E-81ABA1234F6C">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:46:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kuerzel"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Abbreviation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

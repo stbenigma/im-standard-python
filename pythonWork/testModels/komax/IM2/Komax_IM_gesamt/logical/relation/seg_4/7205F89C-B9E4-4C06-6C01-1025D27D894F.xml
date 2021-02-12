@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_496" directorySegmentName="seg_4" id="7205F89C-B9E4-4C06-6C01-1025D27D894F">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-03 12:15:49 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>vereinbart in</nameOnSource>
+<nameOnTarget>legt fest</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>CAB3DEBC-1D32-844C-B731-2DCA715751B1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E311951B-CA1B-7609-05B6-1616448B51F8</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="vereinbart in"/>
+<property name="DE_RELA_TEXT_TO" value="legt fest"/>
+<property name="EN_RELA_TEXT_FROM" value="**agreed in"/>
+<property name="EN_RELA_TEXT_TO" value="**stipulates"/>
+</propertyMap>
+</Relation>

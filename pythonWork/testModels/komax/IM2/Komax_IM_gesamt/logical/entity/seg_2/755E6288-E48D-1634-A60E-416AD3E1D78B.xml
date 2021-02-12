@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="755E6288-E48D-1634-A60E-416AD3E1D78B" name="Einkaufkomponente Version">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 14:29:36 UTC</createdTime>
+<comment><![CDATA[Version einer Komponente mit einer Veränderung seiner Eigenschaften.
+Beispiel: 
+ein Teil ändert das Material von Aluminium mach Stahl
+eine Baugruppe ändert ihre Bestückungsliste
+
+Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe.
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Version einer Komponente mit einer Veränderung seiner Eigenschaften.
+Beispiel: 
+ein Teil ändert das Material von Aluminium mach Stahl
+eine Baugruppe ändert ihre Bestückungsliste
+
+Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe.
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Version of a component with a change in its properties.
+Example
+one part changes the material from aluminum to make steel
+an assembly changes its assembly list
+
+Changing the version of a part of an assembly does not necessarily lead to a new version of the assembly.
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>buy component version??</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Version einer Komponente mit einer Veränderung seiner Eigenschaften. Beispiel:  ein Teil ändert das Material von Aluminium mach Stahl eine Baugruppe ändert ihre Bestückungsliste  Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe. "/>
+<property name="DE_ENTI_NAME" value="Einkaufkomponente Version"/>
+<property name="DE_ENTI_SYNONYM" value="buy component version"/>
+<property name="EN_ENTI_COMMENT" value="Version einer Komponente mit einer Veränderung seiner Eigenschaften. Beispiel:  ein Teil ändert das Material von Aluminium mach Stahl eine Baugruppe ändert ihre Bestückungsliste  Die Änderung der Version eines Teils einer Baugruppe führt nicht zwingend zu einer neuen Version der Baugruppe. "/>
+<property name="EN_ENTI_NAME" value="**Purchasing Component Version"/>
+<property name="EN_ENTI_SYNONYM" value="**buy component version"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Index" id="998EAC19-A9B8-8B2F-0BBE-B6E1070FF922">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 14:29:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Index"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Index"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="gültig ab" id="752D5AF7-1E6A-8063-71D8-337DDC1FDF2F">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 14:29:36 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

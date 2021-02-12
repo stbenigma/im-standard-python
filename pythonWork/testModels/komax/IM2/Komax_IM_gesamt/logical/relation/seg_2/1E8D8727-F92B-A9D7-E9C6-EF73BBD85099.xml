@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_301" directorySegmentName="seg_2" id="1E8D8727-F92B-A9D7-E9C6-EF73BBD85099">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 12:53:18 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<arc>E19D75A6-65BF-63FA-41A7-E3F6C39238C6</arc>
+<identifying>false</identifying>
+<nameOnSource>betroffen von</nameOnSource>
+<nameOnTarget>betrifft</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E5BBC80F-6CFA-DA76-0AC8-23C341BE109A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A0545BE6-80EF-3AF6-14D0-0959123B42E3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betroffen von"/>
+<property name="DE_RELA_TEXT_TO" value="betrifft"/>
+<property name="EN_RELA_TEXT_FROM" value="**affected by"/>
+<property name="EN_RELA_TEXT_TO" value="**pertains"/>
+</propertyMap>
+</Relation>

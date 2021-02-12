@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="E7C93114-E8B3-B8A8-32DC-EC768BE522BB" name="Entwicklungsprozessschritt">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 11:23:16 UTC</createdTime>
+<comment><![CDATA[Teil eines Prozesses, mit definiertem Anfang und Ende (normalerweise Meilensteine).
+
+Die Schrittnummern zeigen  je Fachdisziplin die Abfolge von Schritten an, .]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Teil eines Prozesses, mit definiertem Anfang und Ende (normalerweise Meilensteine).
+
+Die Schrittnummern zeigen  je Fachdisziplin die Abfolge von Schritten an, .
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Part of a process, with defined start and end (usually milestones).
+
+The step numbers indicate the sequence of steps per discipline, .
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Teil eines Prozesses, mit definiertem Anfang und Ende (normalerweise Meilensteine).  Die Schrittnummern zeigen  je Fachdisziplin die Abfolge von Schritten an, ."/>
+<property name="DE_ENTI_NAME" value="Entwicklungsprozessschritt"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Teil eines Prozesses, mit definiertem Anfang und Ende (normalerweise Meilensteine).  Die Schrittnummern zeigen  je Fachdisziplin die Abfolge von Schritten an, ."/>
+<property name="EN_ENTI_NAME" value="Development process step"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nr" id="13234779-DD47-123C-5A60-6CA34B98B9FA">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 11:23:16 UTC</createdTime>
+<comment><![CDATA[Reihenfolge des Schritts]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Reihenfolge des Schritts
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Sequence of the step
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Reihenfolge des Schritts"/>
+<property name="DE_ATTR_NAME" value="Nr"/>
+<property name="EN_ATTR_COMMENT" value="Reihenfolge des Schritts"/>
+<property name="EN_ATTR_NAME" value="No"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fachdisziplin" id="1101F019-8A98-2A73-C4F0-9807BD891549">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 11:23:49 UTC</createdTime>
+<comment><![CDATA[Disziplin die den Schritt durchführt (IT, Mechanik, Elektro,...)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Disziplin die den Schritt durchführt (IT, Mechanik, Elektro,...)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Discipline that performs the step (IT, mechanics, electrical,...)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Disziplin die den Schritt durchführt (IT, Mechanik, Elektro,...)"/>
+<property name="DE_ATTR_NAME" value="Fachdisziplin"/>
+<property name="EN_ATTR_COMMENT" value="Disziplin die den Schritt durchführt (IT, Mechanik, Elektro,...)"/>
+<property name="EN_ATTR_NAME" value="**Specialist discipline"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

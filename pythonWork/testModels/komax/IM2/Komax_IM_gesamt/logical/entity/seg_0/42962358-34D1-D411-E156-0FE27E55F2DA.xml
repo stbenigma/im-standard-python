@@ -1,0 +1,535 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="42962358-34D1-D411-E156-0FE27E55F2DA" name="Komponente ALT">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:59:54 UTC</createdTime>
+<comment><![CDATA[Eine Geräte Komponente kann z.B. ein Gerüst sein.
+Oder ein Tisch 70cm, Tisch 80cm Tisch 90cm
+
+Falls eine Komponenten mehrere Ursprungsländer hat, wird im Exportdokument normalerweise "Drittland" angegeben.
+Heute gelöst als Verknüpfung Lieferant - Komponente - Land, was aber nicht alle Fälle sauber abdeckt. Es fehlt eine Chargenverwaltung.
+
+Verwendungsarten
+Finanziell: Serie, Applikation...
+Produktion : i(nformativ), s(chüttgut), j(it)
+
+Für JIT- Teile wird ein Verwendungsort (Lieferort) hinterlegt, da JIT-Teile nicht gelagert werden.
+ACHTUNG: Gleiche Teile in mehreren Werken könnten unterschiedliche Verwendungsorte haben (Heute nur in CH aktuell).
+
+18.2.19: Entitätsname "Verkauf Kompnente"  abgewandelt in "Artikel"
+
+
+Diskussion 23.07.19
+Der Name "Komponente" ist immer noch nicht akzeptiert. Unbedingt noch klären, wie diese Entität heisst. In neuer Ansicht umfasst diese Entität als Supertyp folgende Entitäten: 150% Produkt (im Moment Produkttyp), Baugruppe (im Moment EntBaugruppe) und Einzelartikel.
+
+EntModul wurde als Entität gestrichen. Ist noch zu verifizieren. 
+
+
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine Geräte Komponente kann z.B. ein Gerüst sein.
+Oder ein Tisch 70cm, Tisch 80cm Tisch 90cm
+
+Falls eine Komponenten mehrere Ursprungsländer hat, wird im Exportdokument normalerweise "Drittland" angegeben.
+Heute gelöst als Verknüpfung Lieferant - Komponente - Land, was aber nicht alle Fälle sauber abdeckt. Es fehlt eine Chargenverwaltung.
+
+Verwendungsarten
+Finanziell: Serie, Applikation...
+Produktion : i(nformativ), s(chüttgut), j(it)
+
+Für JIT- Teile wird ein Verwendungsort (Lieferort) hinterlegt, da JIT-Teile nicht gelagert werden.
+ACHTUNG: Gleiche Teile in mehreren Werken könnten unterschiedliche Verwendungsorte haben (Heute nur in CH aktuell).
+
+18.2.19: Entitätsname "Verkauf Kompnente"  abgewandelt in "Artikel"
+
+
+Diskussion 23.07.19
+Der Name "Komponente" ist immer noch nicht akzeptiert. Unbedingt noch klären, wie diese Entität heisst. In neuer Ansicht umfasst diese Entität als Supertyp folgende Entitäten: 150% Produkt (im Moment Produkttyp), Baugruppe (im Moment EntBaugruppe) und Einzelartikel.
+
+EntModul wurde als Entität gestrichen. Ist noch zu verifizieren. 
+
+
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**A device component can be a scaffold, for example.
+Or a table 70cm, table 80cm table 90cm
+
+If a component has more than one country of origin, the export document will normally indicate "third country".
+Today solved as a link supplier - component - country, which, however, does not cover all cases cleanly. Batch management is missing.
+
+Types of use
+Financial: Series, Application...
+Production : i(formative), s(bulk material), j(it)
+
+A usage location (delivery location) is stored for JIT parts, since JIT parts are not stored.
+ATTENTION: The same parts in several plants could have different places of use (currently only in CH).
+
+18.2.19: Entity name "Sale Kompnente" changed to "Article"
+
+
+Discussion 23.07.19
+The name "Component" is still not accepted. It is absolutely necessary to clarify the name of this entity. In a new view, this entity includes as supertype the following entities: 150% product (currently product type), assembly (currently disassembly) and single article.
+
+EntModule was deleted as entity. Still to be verified
+
+
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>component</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Eine Geräte Komponente kann z.B. ein Gerüst sein. Oder ein Tisch 70cm, Tisch 80cm Tisch 90cm  Falls eine Komponenten mehrere Ursprungsländer hat, wird im Exportdokument normalerweise &quot;Drittland&quot; angegeben. Heute gelöst als Verknüpfung Lieferant - Komponente - Land, was aber nicht alle Fälle sauber abdeckt. Es fehlt eine Chargenverwaltung.  Verwendungsarten Finanziell: Serie, Applikation... Produktion : i(nformativ), s(chüttgut), j(it)  Für JIT- Teile wird ein Verwendungsort (Lieferort) hinterlegt, da JIT-Teile nicht gelagert werden. ACHTUNG: Gleiche Teile in mehreren Werken könnten unterschiedliche Verwendungsorte haben (Heute nur in CH aktuell).  18.2.19: Entitätsname &quot;Verkauf Kompnente&quot;  abgewandelt in &quot;Artikel&quot;   Diskussion 23.07.19 Der Name &quot;Komponente&quot; ist immer noch nicht akzeptiert. Unbedingt noch klären, wie diese Entität heisst. In neuer Ansicht umfasst diese Entität als Supertyp folgende Entitäten: 150% Produkt (im Moment Produkttyp), Baugruppe (im Moment EntBaugruppe) und Einzelartikel.  EntModul wurde als Entität gestrichen. Ist noch zu verifizieren.    "/>
+<property name="DE_ENTI_NAME" value="Komponente ALT"/>
+<property name="DE_ENTI_SYNONYM" value="component"/>
+<property name="EN_ENTI_COMMENT" value="Eine Geräte Komponente kann z.B. ein Gerüst sein. Oder ein Tisch 70cm, Tisch 80cm Tisch 90cm  Falls eine Komponenten mehrere Ursprungsländer hat, wird im Exportdokument normalerweise &quot;Drittland&quot; angegeben. Heute gelöst als Verknüpfung Lieferant - Komponente - Land, was aber nicht alle Fälle sauber abdeckt. Es fehlt eine Chargenverwaltung.  Verwendungsarten Finanziell: Serie, Applikation... Produktion : i(nformativ), s(chüttgut), j(it)  Für JIT- Teile wird ein Verwendungsort (Lieferort) hinterlegt, da JIT-Teile nicht gelagert werden. ACHTUNG: Gleiche Teile in mehreren Werken könnten unterschiedliche Verwendungsorte haben (Heute nur in CH aktuell).  18.2.19: Entitätsname &quot;Verkauf Kompnente&quot;  abgewandelt in &quot;Artikel&quot;   Diskussion 23.07.19 Der Name &quot;Komponente&quot; ist immer noch nicht akzeptiert. Unbedingt noch klären, wie diese Entität heisst. In neuer Ansicht umfasst diese Entität als Supertyp folgende Entitäten: 150% Produkt (im Moment Produkttyp), Baugruppe (im Moment EntBaugruppe) und Einzelartikel.  EntModul wurde als Entität gestrichen. Ist noch zu verifizieren.    "/>
+<property name="EN_ENTI_NAME" value="**Component ALT"/>
+<property name="EN_ENTI_SYNONYM" value="**component"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikel-Nr" id="B0DB494F-A36C-D1F8-CB82-06861CCCF494">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 16:10:11 UTC</createdTime>
+<comment><![CDATA[wird geregelt über KOMAX UUID]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+wird geregelt über KOMAX UUID
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**is regulated via KOMAX UUID
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="wird geregelt über KOMAX UUID"/>
+<property name="DE_ATTR_NAME" value="Artikel-Nr"/>
+<property name="EN_ATTR_COMMENT" value="wird geregelt über KOMAX UUID"/>
+<property name="EN_ATTR_NAME" value="**Item no"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Source ID" id="01985099-3D23-F94C-9EF6-05CFD58865E0">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-06-13 07:52:44 UTC</createdTime>
+<comment><![CDATA[Wird als Attribut auf der Referenz zu Source System abgelegt
+
+Source ID: Eindeutiger Kenner der Source Systeme (Mapping Tabelle)
+Source System als eigen Objekttyp anlegen und be Material"referenzieren"
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wird als Attribut auf der Referenz zu Source System abgelegt
+
+Source ID: Eindeutiger Kenner der Source Systeme (Mapping Tabelle)
+Source System als eigen Objekttyp anlegen und be Material"referenzieren"
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Stored as an attribute on the reference to Source System
+
+Source ID: Unique identifier of the source systems (mapping table)
+Create Source System as own object type and "reference" material
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Wird als Attribut auf der Referenz zu Source System abgelegt  Source ID: Eindeutiger Kenner der Source Systeme (Mapping Tabelle) Source System als eigen Objekttyp anlegen und be Material&quot;referenzieren&quot; "/>
+<property name="DE_ATTR_NAME" value="Source ID"/>
+<property name="EN_ATTR_COMMENT" value="Wird als Attribut auf der Referenz zu Source System abgelegt  Source ID: Eindeutiger Kenner der Source Systeme (Mapping Tabelle) Source System als eigen Objekttyp anlegen und be Material&quot;referenzieren&quot; "/>
+<property name="EN_ATTR_NAME" value="Source ID"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Artikelindex" id="F4A864FD-B5BE-BEA2-CFA6-622297A7425A">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-20 16:09:19 UTC</createdTime>
+<comment><![CDATA[Input MDM-meeting vom 19.2.19
+
+11.6.19 Sicht IM-Modell Kerngruppe: In Zukunft Pflichtattribut (leer = schlecht, lieber "00") falls PDM System existiert/an MDM angehängt
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Input MDM-meeting vom 19.2.19
+
+11.6.19 Sicht IM-Modell Kerngruppe: In Zukunft Pflichtattribut (leer = schlecht, lieber "00") falls PDM System existiert/an MDM angehängt
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Input MDM-meeting from 19.2.19
+
+11.6.19 View IM model core group: In future mandatory attribute (empty = bad, better "00") if PDM system exists/attached to MDM
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Input MDM-meeting vom 19.2.19  11.6.19 Sicht IM-Modell Kerngruppe: In Zukunft Pflichtattribut (leer = schlecht, lieber &quot;00&quot;) falls PDM System existiert/an MDM angehängt "/>
+<property name="DE_ATTR_NAME" value="Artikelindex"/>
+<property name="EN_ATTR_COMMENT" value="Input MDM-meeting vom 19.2.19  11.6.19 Sicht IM-Modell Kerngruppe: In Zukunft Pflichtattribut (leer = schlecht, lieber &quot;00&quot;) falls PDM System existiert/an MDM angehängt "/>
+<property name="EN_ATTR_NAME" value="**Article index"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Artikelstatus" id="75DECFA8-67E3-E0B8-A14F-588E33747B7B">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-06-13 07:55:01 UTC</createdTime>
+<comment><![CDATA[11.6.19 LOV = in work, in change, released, blocked, temporary blocked
+
+ 11.6.19:to be checked in detail (Jan Meier); JP muss wohl "händisch" auf released setzen
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+11.6.19 LOV = in work, in change, released, blocked, temporary blocked
+
+ 11.6.19:to be checked in detail (Jan Meier); JP muss wohl "händisch" auf released setzen
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**11.6.19 LOV = in work, in change, released, blocked, temporary blocked
+
+ 11.6.19:to be checked in detail (Jan Meier); JP must probably set "manually" to released
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="Item status"/>
+<property name="DE_ATTR_COMMENT" value="11.6.19 LOV = in work, in change, released, blocked, temporary blocked   11.6.19:to be checked in detail (Jan Meier); JP muss wohl &quot;händisch&quot; auf released setzen "/>
+<property name="DE_ATTR_NAME" value="Artikelstatus"/>
+<property name="EN_ATTR_COMMENT" value="11.6.19 LOV = in work, in change, released, blocked, temporary blocked   11.6.19:to be checked in detail (Jan Meier); JP muss wohl &quot;händisch&quot; auf released setzen "/>
+<property name="EN_ATTR_NAME" value="**Article status"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Austauschartikel (J/N)" id="EA9E3175-52CD-477E-6DFF-BABC466AB166">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 14:53:11 UTC</createdTime>
+<comment><![CDATA[Repartierte, ausgetauschte Komponenten, 
+Occasionsartikel]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Repartierte, ausgetauschte Komponenten, 
+Occasionsartikel
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Repaired, replaced components,
+Second-hand articles
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Repartierte, ausgetauschte Komponenten,  Occasionsartikel"/>
+<property name="DE_ATTR_NAME" value="Austauschartikel (J/N)"/>
+<property name="EN_ATTR_COMMENT" value="Repartierte, ausgetauschte Komponenten,  Occasionsartikel"/>
+<property name="EN_ATTR_NAME" value="**Exchange article (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Produktlebenszyklus" id="58B77E5B-9FAF-8B27-952A-2A959964D55B">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-01 11:37:49 UTC</createdTime>
+<comment><![CDATA[11.6.19: umbenannt von Lebenszyklus-Status in" Produktlebenszyklus"
+
+11.6.19 LOV = Development, Beta Series, Pre-Series, Series, Run-out, Cancelled, Application
+
+
+11.6.19: to be checked in detail to align all CoCs with the same LOV; i.e. Solutions: Development, In Sourcing, In work, FAT passed, ...
+
+=> 12.6.19: M. von Ah confirms LOV as of above.
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+11.6.19: umbenannt von Lebenszyklus-Status in" Produktlebenszyklus"
+
+11.6.19 LOV = Development, Beta Series, Pre-Series, Series, Run-out, Cancelled, Application
+
+
+11.6.19: to be checked in detail to align all CoCs with the same LOV; i.e. Solutions: Development, In Sourcing, In work, FAT passed, ...
+
+=> 12.6.19: M. von Ah confirms LOV as of above.
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**11.6.19: renamed from Life Cycle Status to "Product Life Cycle
+
+11.6.19 LOV = Development, Beta Series, Pre-Series, Series, Run-out, Cancelled, Application
+
+
+11.6.19: to be checked in detail to align all CoCs with the same LOV; i.e. Solutions: Development, In Sourcing, In work, FAT passed, ...
+
+=> 12.6.19: M. from Ah confirms LOV as of above.
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="11.6.19: umbenannt von Lebenszyklus-Status in&quot; Produktlebenszyklus&quot;  11.6.19 LOV = Development, Beta Series, Pre-Series, Series, Run-out, Cancelled, Application   11.6.19: to be checked in detail to align all CoCs with the same LOV; i.e. Solutions: Development, In Sourcing, In work, FAT passed, ...  =&gt; 12.6.19: M. von Ah confirms LOV as of above. "/>
+<property name="DE_ATTR_NAME" value="Produktlebenszyklus"/>
+<property name="EN_ATTR_COMMENT" value="11.6.19: umbenannt von Lebenszyklus-Status in&quot; Produktlebenszyklus&quot;  11.6.19 LOV = Development, Beta Series, Pre-Series, Series, Run-out, Cancelled, Application   11.6.19: to be checked in detail to align all CoCs with the same LOV; i.e. Solutions: Development, In Sourcing, In work, FAT passed, ...  =&gt; 12.6.19: M. von Ah confirms LOV as of above. "/>
+<property name="EN_ATTR_NAME" value="Product lifecycle"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Serial Number Control" id="4FC942E3-BD64-6012-C30B-6D80315CC305">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-06-13 07:57:48 UTC</createdTime>
+<comment><![CDATA[11.6.19: steuert ob Artikel in Seriennummerntabelle erscheint, LOV = acitve yes or no
+
+11.6.19: ist das Item seriennummerngeführt? Flag wid gesetzt beim Produktbetreuer bei KX AG auf Input von ?PM??
+
+11.6.19: Name "Serial Number Control" sit SAP R3-Sprache
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+11.6.19: steuert ob Artikel in Seriennummerntabelle erscheint, LOV = acitve yes or no
+
+11.6.19: ist das Item seriennummerngeführt? Flag wid gesetzt beim Produktbetreuer bei KX AG auf Input von ?PM??
+
+11.6.19: Name "Serial Number Control" sit SAP R3-Sprache
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**11.6.19: controls if article appears in serial number table, LOV = acitve yes or no
+
+11.6.19: is the item serialized? Flag wid set at the product supervisor at KX AG on input from ?PM?
+
+11.6.19: Name "Serial Number Control" sit SAP R3 Language
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="11.6.19: steuert ob Artikel in Seriennummerntabelle erscheint, LOV = acitve yes or no  11.6.19: ist das Item seriennummerngeführt? Flag wid gesetzt beim Produktbetreuer bei KX AG auf Input von ?PM??  11.6.19: Name &quot;Serial Number Control&quot; sit SAP R3-Sprache "/>
+<property name="DE_ATTR_NAME" value="Serial Number Control"/>
+<property name="EN_ATTR_COMMENT" value="11.6.19: steuert ob Artikel in Seriennummerntabelle erscheint, LOV = acitve yes or no  11.6.19: ist das Item seriennummerngeführt? Flag wid gesetzt beim Produktbetreuer bei KX AG auf Input von ?PM??  11.6.19: Name &quot;Serial Number Control&quot; sit SAP R3-Sprache "/>
+<property name="EN_ATTR_NAME" value="**Serial number control"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zolltarifnummer global" id="7DFEFD1E-78D6-CEFA-F1FD-6993F51C5068">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-06-13 08:00:20 UTC</createdTime>
+<comment><![CDATA[Zolltarifnummer global (erste 6 Stellen), HS Code
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Zolltarifnummer global (erste 6 Stellen), HS Code
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Global customs tariff number (first 6 digits), HS Code
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Zolltarifnummer global (erste 6 Stellen), HS Code "/>
+<property name="DE_ATTR_NAME" value="Zolltarifnummer global"/>
+<property name="EN_ATTR_COMMENT" value="Zolltarifnummer global (erste 6 Stellen), HS Code "/>
+<property name="EN_ATTR_NAME" value="Global customs tariff number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zolltarifnummer lokal" id="B3DA0EF4-CBB8-D558-A44F-31D404923D2A">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-06-13 08:00:51 UTC</createdTime>
+<comment><![CDATA[Zolltarifnummer global (erste 6 Stellen) ergänzt ab Stelle 7
+
+1x pro Land → Ausgabe aber zusammengesetzt Global + lokal, sind in allen Ländern unterschiedlich
+]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Zolltarifnummer global (erste 6 Stellen) ergänzt ab Stelle 7
+
+1x pro Land → Ausgabe aber zusammengesetzt Global + lokal, sind in allen Ländern unterschiedlich
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Global customs tariff number (first 6 digits) added as of digit 7
+
+1x per country → Edition but composed Global + local, are different in all countries
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Zolltarifnummer global (erste 6 Stellen) ergänzt ab Stelle 7  1x pro Land → Ausgabe aber zusammengesetzt Global + lokal, sind in allen Ländern unterschiedlich "/>
+<property name="DE_ATTR_NAME" value="Zolltarifnummer lokal"/>
+<property name="EN_ATTR_COMMENT" value="Zolltarifnummer global (erste 6 Stellen) ergänzt ab Stelle 7  1x pro Land → Ausgabe aber zusammengesetzt Global + lokal, sind in allen Ländern unterschiedlich "/>
+<property name="EN_ATTR_NAME" value="Customs tariff number local"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verwendungsart Produktion" id="32E04F5D-FBF3-BD6A-92C5-F3B0DF76E3FF">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 16:10:11 UTC</createdTime>
+<comment><![CDATA[S(chüttgut), I(nformation), J(it)
+
+Eventuell umbenennen Bewirtschaftungsart. (290519)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+S(chüttgut), I(nformation), J(it)
+
+Eventuell umbenennen Bewirtschaftungsart. (290519)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**S(bulk material), I(nformation), J(it)
+
+Possibly rename management type. (290519)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="S(chüttgut), I(nformation), J(it)  Eventuell umbenennen Bewirtschaftungsart. (290519)"/>
+<property name="DE_ATTR_NAME" value="Verwendungsart Produktion"/>
+<property name="EN_ATTR_COMMENT" value="S(chüttgut), I(nformation), J(it)  Eventuell umbenennen Bewirtschaftungsart. (290519)"/>
+<property name="EN_ATTR_NAME" value="**Type of use Production"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verwendungsart Verkauf" id="A2DA514F-B177-65B0-3C29-AA9B930B3B09">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 16:10:11 UTC</createdTime>
+<comment><![CDATA[Ersatzteil, Verschleissteil, Normteil, Dokumentation, Produkt, Verpackung, Formular, Serviceteil, Software, Softwaremedium]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ersatzteil, Verschleissteil, Normteil, Dokumentation, Produkt, Verpackung, Formular, Serviceteil, Software, Softwaremedium
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Spare part, Wear part, Standard part, Documentation, Product, Packaging, Form, Service part, Software, Software medium
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Ersatzteil, Verschleissteil, Normteil, Dokumentation, Produkt, Verpackung, Formular, Serviceteil, Software, Softwaremedium"/>
+<property name="DE_ATTR_NAME" value="Verwendungsart Verkauf"/>
+<property name="EN_ATTR_COMMENT" value="Ersatzteil, Verschleissteil, Normteil, Dokumentation, Produkt, Verpackung, Formular, Serviceteil, Software, Softwaremedium"/>
+<property name="EN_ATTR_NAME" value="**Usage type sales"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="max. Wiederbeschaffungszeit" id="CF77CA3F-7D94-2068-72A1-CFD0D20F9933">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 16:10:11 UTC</createdTime>
+<comment><![CDATA[teilweise berechnet, Lieferfrist]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+teilweise berechnet, Lieferfrist
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**partly calculated, delivery period
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="teilweise berechnet, Lieferfrist"/>
+<property name="DE_ATTR_NAME" value="max. Wiederbeschaffungszeit"/>
+<property name="EN_ATTR_COMMENT" value="teilweise berechnet, Lieferfrist"/>
+<property name="EN_ATTR_NAME" value="**max. replenishment lead time"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

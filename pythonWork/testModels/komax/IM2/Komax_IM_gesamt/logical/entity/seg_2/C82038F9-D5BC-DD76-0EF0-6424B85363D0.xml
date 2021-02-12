@@ -1,0 +1,169 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="C82038F9-D5BC-DD76-0EF0-6424B85363D0" name="Sanktionsliste">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-23 14:17:11 UTC</createdTime>
+<comment><![CDATA[21.2.19 Besprechung mit Nicole Suter: Sanktionsliste sind verschiedene Listen, welche bei uns über Tool "TIA-S-Check" bei der Komax AG im Einsatz ist
+
+3.5.19: https://de.wikipedia.org/wiki/Sanktionsliste
+Liste der Sanktionslisten. Ein Eintrag in dieser Entität ist eine bestimmte Sanktionsliste. Über Verbindungen sind dann die spezifischen Einträge in einer bestimmten Sanktionsliste abgedeckt. 
+
+Neben Personen, Gruppen, Organisationen werden auch bestimmte Wirtschaftsgüter (Waren) in verschiedenen offiziellen Listen geführt. Grund hierfür kann zum einen die Exportbeschränkung (Exportkontrolle) sein, wie es u. a. bei den sog. Dual-Use-Gütern der Fall ist, die sowohl für zivile als auch für militärische Zwecke verwendet werden können. Listen mit Wirtschaftsgütern, die der Exportkontrolle unterliegen (z. B. Anhang I der EG-Dual-Use-Verordnung), werden allerdings im allgemeinen Sprachgebrauch bezeichnet. Der Begriff “Sanktionsliste” wird vielmehr für Güterlisten verwendet, die Waren auflisten, die mit Strafzöllen belegt sind.[5]
+
+
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+21.2.19 Besprechung mit Nicole Suter: Sanktionsliste sind verschiedene Listen, welche bei uns über Tool "TIA-S-Check" bei der Komax AG im Einsatz ist
+
+3.5.19: https://de.wikipedia.org/wiki/Sanktionsliste
+Liste der Sanktionslisten. Ein Eintrag in dieser Entität ist eine bestimmte Sanktionsliste. Über Verbindungen sind dann die spezifischen Einträge in einer bestimmten Sanktionsliste abgedeckt. 
+
+Neben Personen, Gruppen, Organisationen werden auch bestimmte Wirtschaftsgüter (Waren) in verschiedenen offiziellen Listen geführt. Grund hierfür kann zum einen die Exportbeschränkung (Exportkontrolle) sein, wie es u. a. bei den sog. Dual-Use-Gütern der Fall ist, die sowohl für zivile als auch für militärische Zwecke verwendet werden können. Listen mit Wirtschaftsgütern, die der Exportkontrolle unterliegen (z. B. Anhang I der EG-Dual-Use-Verordnung), werden allerdings im allgemeinen Sprachgebrauch bezeichnet. Der Begriff “Sanktionsliste” wird vielmehr für Güterlisten verwendet, die Waren auflisten, die mit Strafzöllen belegt sind.[5]
+
+
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**21.2.19 Discussion with Nicole Suter: Sanctions lists are various lists used by Komax AG via the "TIA-S-Check" tool
+
+3.5.19: https://de.wikipedia.org/wiki/Sanktionsliste
+List of sanctions lists. An entry in this entity is a specific sanctions list. Connections then cover the specific entries in a particular sanctions list
+
+In addition to persons, groups and organisations, certain assets (goods) are also listed in various official lists. One reason for this may be the export restriction (export control), as is the case with so-called dual-use goods, which can be used for both civilian and military purposes. However, lists of assets subject to export controls (e.g. Annex I of the EC Dual-Use Regulation) are commonly referred to as lists. The term "sanctions list" is rather used for lists of goods that list goods subject to punitive customs duties.[5]
+
+
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="21.2.19 Besprechung mit Nicole Suter: Sanktionsliste sind verschiedene Listen, welche bei uns über Tool &quot;TIA-S-Check&quot; bei der Komax AG im Einsatz ist  3.5.19: https://de.wikipedia.org/wiki/Sanktionsliste Liste der Sanktionslisten. Ein Eintrag in dieser Entität ist eine bestimmte Sanktionsliste. Über Verbindungen sind dann die spezifischen Einträge in einer bestimmten Sanktionsliste abgedeckt.   Neben Personen, Gruppen, Organisationen werden auch bestimmte Wirtschaftsgüter (Waren) in verschiedenen offiziellen Listen geführt. Grund hierfür kann zum einen die Exportbeschränkung (Exportkontrolle) sein, wie es u. a. bei den sog. Dual-Use-Gütern der Fall ist, die sowohl für zivile als auch für militärische Zwecke verwendet werden können. Listen mit Wirtschaftsgütern, die der Exportkontrolle unterliegen (z. B. Anhang I der EG-Dual-Use-Verordnung), werden allerdings im allgemeinen Sprachgebrauch bezeichnet. Der Begriff “Sanktionsliste” wird vielmehr für Güterlisten verwendet, die Waren auflisten, die mit Strafzöllen belegt sind.[5]   "/>
+<property name="DE_ENTI_NAME" value="Sanktionsliste"/>
+<property name="DE_ENTI_SYNONYM" value="Sanction list"/>
+<property name="EN_ENTI_COMMENT" value="21.2.19 Besprechung mit Nicole Suter: Sanktionsliste sind verschiedene Listen, welche bei uns über Tool &quot;TIA-S-Check&quot; bei der Komax AG im Einsatz ist  3.5.19: https://de.wikipedia.org/wiki/Sanktionsliste Liste der Sanktionslisten. Ein Eintrag in dieser Entität ist eine bestimmte Sanktionsliste. Über Verbindungen sind dann die spezifischen Einträge in einer bestimmten Sanktionsliste abgedeckt.   Neben Personen, Gruppen, Organisationen werden auch bestimmte Wirtschaftsgüter (Waren) in verschiedenen offiziellen Listen geführt. Grund hierfür kann zum einen die Exportbeschränkung (Exportkontrolle) sein, wie es u. a. bei den sog. Dual-Use-Gütern der Fall ist, die sowohl für zivile als auch für militärische Zwecke verwendet werden können. Listen mit Wirtschaftsgütern, die der Exportkontrolle unterliegen (z. B. Anhang I der EG-Dual-Use-Verordnung), werden allerdings im allgemeinen Sprachgebrauch bezeichnet. Der Begriff “Sanktionsliste” wird vielmehr für Güterlisten verwendet, die Waren auflisten, die mit Strafzöllen belegt sind.[5]   "/>
+<property name="EN_ENTI_NAME" value="Sanction list"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Aussteller" id="E39C6F9C-F4BE-26F2-05FA-12636A449965">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-02 13:57:54 UTC</createdTime>
+<comment><![CDATA[Einheit, welche die Sanktionsliste ausgestellt hat. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Einheit, welche die Sanktionsliste ausgestellt hat. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Unit that issued the sanctions list
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Einheit, welche die Sanktionsliste ausgestellt hat. "/>
+<property name="DE_ATTR_NAME" value="Aussteller"/>
+<property name="EN_ATTR_COMMENT" value="Einheit, welche die Sanktionsliste ausgestellt hat. "/>
+<property name="EN_ATTR_NAME" value="Issuer"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bezeichnung" id="2EDD1331-46C2-4FA6-BED7-E07C75AB4423">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 08:50:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="2DD61B63-A3B5-CA9B-69BA-90476DEB6282">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-02 13:56:28 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültigkeitsperiode"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Validity period"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Lokale Sanktionslisten" id="A6A09A30-BD2B-5A98-5095-84E702D12EBC">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-21 16:17:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Lokale Sanktionslisten"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Local Sanction Lists"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

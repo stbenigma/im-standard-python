@@ -1,0 +1,237 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="4EF90197-1188-0C46-B353-C30E77CD70C3" name="Artikel Handelsinformation">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 07:54:59 UTC</createdTime>
+<comment><![CDATA[Informationen zu handelbaren Artikeln für Zoll, Regulatorien, Gesetze, usw. 
+
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Informationen zu handelbaren Artikeln für Zoll, Regulatorien, Gesetze, usw. 
+
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Information on tradable articles for customs, regulations, laws, etc
+
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Informationen zu handelbaren Artikeln für Zoll, Regulatorien, Gesetze, usw.   "/>
+<property name="DE_ENTI_NAME" value="Artikel Handelsinformation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Informationen zu handelbaren Artikeln für Zoll, Regulatorien, Gesetze, usw.   "/>
+<property name="EN_ENTI_NAME" value="**Article commercial information"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="EKN/ECCN" id="ECE4A3E9-15C3-D3E8-9BD6-43F17090D0FC">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 07:56:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="EKN/ECCN"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="ECCN"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Konfliktmineralien (J/N)" id="A9753F23-3B12-8A49-707A-154DFF20679F">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 07:56:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Konfliktmineralien (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Conflict minerals (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="RoHS (J/N)" id="E03D23BB-9182-B1C6-1C09-F7ECA7262B41">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 07:56:49 UTC</createdTime>
+<comment><![CDATA[Restrictions of Hazardous Substances]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Restrictions of Hazardous Substances
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Restrictions of Hazardous Substances
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Restrictions of Hazardous Substances"/>
+<property name="DE_ATTR_NAME" value="RoHS (J/N)"/>
+<property name="EN_ATTR_COMMENT" value="Restrictions of Hazardous Substances"/>
+<property name="EN_ATTR_NAME" value="RoHS (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gefahrengut (J/N)" id="991D335C-B868-EB9D-32A5-97E0B64CEAF5">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 07:56:49 UTC</createdTime>
+<comment><![CDATA[Was ist der Unterschied zwischen RoHS und Gefahrengut?]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Was ist der Unterschied zwischen RoHS und Gefahrengut?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**What is the difference between RoHS and dangerous goods?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Was ist der Unterschied zwischen RoHS und Gefahrengut?"/>
+<property name="DE_ATTR_NAME" value="Gefahrengut (J/N)"/>
+<property name="EN_ATTR_COMMENT" value="Was ist der Unterschied zwischen RoHS und Gefahrengut?"/>
+<property name="EN_ATTR_NAME" value="Dangerous goods (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="REACH" id="F80D23F4-CACA-E82E-F3E6-400B0395F0B5">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-13 07:11:28 UTC</createdTime>
+<comment><![CDATA[Chemikalien Verordnung]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Chemikalien Verordnung
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Chemicals Ordinance
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Chemikalien Verordnung"/>
+<property name="DE_ATTR_NAME" value="REACH"/>
+<property name="EN_ATTR_COMMENT" value="Chemikalien Verordnung"/>
+<property name="EN_ATTR_NAME" value="REACH"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Präferenzielle Herkunft (J/N)" id="E20ACF0A-CE5E-C6F2-EAE2-9D69EFE92D78">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-13 07:16:14 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Präferenzielle Herkunft (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Preferential origin (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="VeVa-Code" id="8D5884C7-40D5-8020-ABA6-FB9E9F1BAE9C">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-13 07:56:44 UTC</createdTime>
+<comment><![CDATA[Klassifizierung zur Entsorgung von Sonderabfällen. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Klassifizierung zur Entsorgung von Sonderabfällen. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Classification for the disposal of hazardous waste
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Klassifizierung zur Entsorgung von Sonderabfällen. "/>
+<property name="DE_ATTR_NAME" value="VeVa-Code"/>
+<property name="EN_ATTR_COMMENT" value="Klassifizierung zur Entsorgung von Sonderabfällen. "/>
+<property name="EN_ATTR_NAME" value="VeVa code"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

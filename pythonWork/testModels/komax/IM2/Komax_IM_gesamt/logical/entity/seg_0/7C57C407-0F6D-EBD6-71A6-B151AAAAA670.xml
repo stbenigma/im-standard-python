@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7C57C407-0F6D-EBD6-71A6-B151AAAAA670" name="Lieferant">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:10:29 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>BB7064A0-50FC-FD4A-DB6A-FA7E6FA46DBD</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Lieferant"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="Supplier"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="intern-extern " id="07A11983-2593-65F4-8771-E4FE0C678620">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:11:03 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="intern-extern "/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="internal-external"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Strategische Lieferantenklassifizierung" id="88477082-4613-CA41-6FCE-3984D618F79D">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-06-25 12:02:18 UTC</createdTime>
+<comment><![CDATA[Wichtigkeit eines Lieferanten für Komax. 
+Lieferantenklassifizierungspyramide / Supplier Pyramid (momentan ABC Rating)
+
+25.6.19: Attribut war vorher direkt unter "Accountrolle", neu nur noch unter Lieferant]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wichtigkeit eines Lieferanten für Komax. 
+Lieferantenklassifizierungspyramide / Supplier Pyramid (momentan ABC Rating)
+
+25.6.19: Attribut war vorher direkt unter "Accountrolle", neu nur noch unter Lieferant
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Importance of a supplier for Komax
+Supplier Classification Pyramid / Supplier Pyramid (currently ABC Rating)
+
+25.6.19: Attribute was previously directly under "Account Control", now only under Supplier
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Wichtigkeit eines Lieferanten für Komax.  Lieferantenklassifizierungspyramide / Supplier Pyramid (momentan ABC Rating)  25.6.19: Attribut war vorher direkt unter &quot;Accountrolle&quot;, neu nur noch unter Lieferant"/>
+<property name="DE_ATTR_NAME" value="Strategische Lieferantenklassifizierung"/>
+<property name="EN_ATTR_COMMENT" value="Wichtigkeit eines Lieferanten für Komax.  Lieferantenklassifizierungspyramide / Supplier Pyramid (momentan ABC Rating)  25.6.19: Attribut war vorher direkt unter &quot;Accountrolle&quot;, neu nur noch unter Lieferant"/>
+<property name="EN_ATTR_NAME" value="Strategic supplier classification"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

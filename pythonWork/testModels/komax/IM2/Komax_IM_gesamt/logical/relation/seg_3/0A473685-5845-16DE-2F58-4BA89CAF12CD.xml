@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_423" directorySegmentName="seg_3" id="0A473685-5845-16DE-2F58-4BA89CAF12CD">
+<createdBy>toz</createdBy>
+<createdTime>2018-08-28 05:58:52 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>erstellt</nameOnSource>
+<nameOnTarget>wird erstellt durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B87A8403-28BE-AA28-D0F9-4867BFF6A14F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>532A31B9-5641-B480-58AB-B52B422A5A00</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erstellt"/>
+<property name="DE_RELA_TEXT_TO" value="wird erstellt durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**created"/>
+<property name="EN_RELA_TEXT_TO" value="**is created by"/>
+</propertyMap>
+</Relation>

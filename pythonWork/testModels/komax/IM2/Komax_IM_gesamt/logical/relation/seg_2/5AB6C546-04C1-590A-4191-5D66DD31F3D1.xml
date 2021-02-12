@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_290" directorySegmentName="seg_2" id="5AB6C546-04C1-590A-4191-5D66DD31F3D1">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 12:25:10 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>erbringt</nameOnSource>
+<nameOnTarget>leistbar von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>559EF8CE-EFA0-591F-65FF-025E91A7EA5B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D65539CE-6DCB-0E04-5FCE-D8064D7BDEAE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erbringt"/>
+<property name="DE_RELA_TEXT_TO" value="leistbar von"/>
+<property name="EN_RELA_TEXT_FROM" value="**yields"/>
+<property name="EN_RELA_TEXT_TO" value="**affordable from"/>
+</propertyMap>
+</Relation>

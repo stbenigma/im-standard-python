@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="F4AC7AB2-10B1-65B2-C985-BDCC62C41477" name="Kundenmaterial">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 12:56:17 UTC</createdTime>
+<comment><![CDATA[Dokumente, Verbauteile  und Muster die als Beilage zu einem Lastenheft vom Kunden geliefert werden.
+
+
+Beispiel:
+ Stecker, Kabel, Technische Zeichnung  oder Datenblatt etc.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Dokumente, Verbauteile  und Muster die als Beilage zu einem Lastenheft vom Kunden geliefert werden.
+
+
+Beispiel:
+ Stecker, Kabel, Technische Zeichnung  oder Datenblatt etc.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Documents, components and samples supplied by the customer as a supplement to a specification.
+
+
+Example:
+ Connector, cable, technical drawing or data sheet etc.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Dokumente, Verbauteile  und Muster die als Beilage zu einem Lastenheft vom Kunden geliefert werden.   Beispiel:  Stecker, Kabel, Technische Zeichnung  oder Datenblatt etc."/>
+<property name="DE_ENTI_NAME" value="Kundenmaterial"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Dokumente, Verbauteile  und Muster die als Beilage zu einem Lastenheft vom Kunden geliefert werden.   Beispiel:  Stecker, Kabel, Technische Zeichnung  oder Datenblatt etc."/>
+<property name="EN_ENTI_NAME" value="Customer material"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Kabeltyp" id="3243813F-5668-2A94-61DC-0F91CC95EFCD">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-17 15:58:09 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kabeltyp"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Cable type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kontaktteiltyp" id="093BD038-B917-9582-7D0E-789EE5C1CD8F">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-17 15:58:15 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kontaktteiltyp"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Contact part type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

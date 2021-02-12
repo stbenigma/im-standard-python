@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_166" directorySegmentName="seg_1" id="A2181EFC-5C6A-391E-0B3B-8E5D8016C633">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 12:38:59 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>beschäftigt</nameOnSource>
+<nameOnTarget>arbeitet in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>430AE99F-1B0F-7111-46EA-D1CE3EAC504B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>B4D7241F-5288-4B44-78F9-E27E4BB41F15</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschäftigt"/>
+<property name="DE_RELA_TEXT_TO" value="arbeitet in"/>
+<property name="EN_RELA_TEXT_FROM" value="**preoccupied"/>
+<property name="EN_RELA_TEXT_TO" value="**works in"/>
+</propertyMap>
+</Relation>

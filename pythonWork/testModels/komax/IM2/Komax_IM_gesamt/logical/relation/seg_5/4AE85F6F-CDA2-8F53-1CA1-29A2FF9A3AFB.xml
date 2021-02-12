@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_596" directorySegmentName="seg_5" id="4AE85F6F-CDA2-8F53-1CA1-29A2FF9A3AFB">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-11 09:53:14 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>führt zu</nameOnSource>
+<nameOnTarget>bildet</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4B68BF35-70F8-A70F-7FA7-E4D196B453E6</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>76FFBE11-7084-0164-8462-CAA6406BD609</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt zu"/>
+<property name="DE_RELA_TEXT_TO" value="bildet"/>
+<property name="EN_RELA_TEXT_FROM" value="**leads to"/>
+<property name="EN_RELA_TEXT_TO" value="**educates"/>
+</propertyMap>
+</Relation>

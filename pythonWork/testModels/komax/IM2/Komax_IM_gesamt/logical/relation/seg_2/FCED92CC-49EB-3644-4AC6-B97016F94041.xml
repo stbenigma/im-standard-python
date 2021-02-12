@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_673" directorySegmentName="seg_2" id="FCED92CC-49EB-3644-4AC6-B97016F94041">
+<createdBy>toz</createdBy>
+<createdTime>2019-03-29 16:09:37 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>betrifft</nameOnSource>
+<nameOnTarget>bearbeitet in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>7869DEF8-00F7-1B7A-1509-F5CCFEDC90A0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>42962358-34D1-D411-E156-0FE27E55F2DA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betrifft"/>
+<property name="DE_RELA_TEXT_TO" value="bearbeitet in"/>
+<property name="EN_RELA_TEXT_FROM" value="**pertains"/>
+<property name="EN_RELA_TEXT_TO" value="**edited in"/>
+</propertyMap>
+</Relation>

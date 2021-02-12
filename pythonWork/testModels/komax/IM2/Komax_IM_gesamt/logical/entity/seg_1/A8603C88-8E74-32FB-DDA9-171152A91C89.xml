@@ -1,0 +1,162 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A8603C88-8E74-32FB-DDA9-171152A91C89" name="Global List Price  (GLP)">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 07:28:20 UTC</createdTime>
+<comment><![CDATA[Ein Verkaufsprodukt kann einem Zeitpunkt nur einen globalen Basispreis.
+
+18.10.19: Veränderung Name der Entität: Globale Preisliste (GLP) => in englischen Begriff
+
+
+23.10.19 (toz, stb, ama): diese Liste wird fix weggeschrieben, daher wird diese Liste Linie pro Linie aus den Produkteinzelpreisen erzeugt und daher benötigt es auch die Entität Produkteinzelpreise]]></comment>
+<notes><![CDATA[Name 
+Gültig ab 
+Gültig bis[DE_ENTI_COMMENT[
+Ein Verkaufsprodukt kann einem Zeitpunkt nur einen globalen Basispreis.
+
+18.10.19: Veränderung Name der Entität: Globale Preisliste (GLP) => in englischen Begriff
+
+
+23.10.19 (toz, stb, ama): diese Liste wird fix weggeschrieben, daher wird diese Liste Linie pro Linie aus den Produkteinzelpreisen erzeugt und daher benötigt es auch die Entität Produkteinzelpreise
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**A sales product can only have one time a global base price.
+
+18.10.19: Change Name of the entity: Global Price List (GLP) => in English term
+
+
+23.10.19 (toz, stb, ama): this list is written away fixed, therefore this list line per line is generated from the product unit prices and therefore it also needs the entity product unit prices
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>GLP</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Ein Verkaufsprodukt kann einem Zeitpunkt nur einen globalen Basispreis.  18.10.19: Veränderung Name der Entität: Globale Preisliste (GLP) =&gt; in englischen Begriff   23.10.19 (toz, stb, ama): diese Liste wird fix weggeschrieben, daher wird diese Liste Linie pro Linie aus den Produkteinzelpreisen erzeugt und daher benötigt es auch die Entität Produkteinzelpreise"/>
+<property name="DE_ENTI_NAME" value="Global List Price  (GLP)"/>
+<property name="DE_ENTI_SYNONYM" value="GLP"/>
+<property name="EN_ENTI_COMMENT" value="Ein Verkaufsprodukt kann einem Zeitpunkt nur einen globalen Basispreis.  18.10.19: Veränderung Name der Entität: Globale Preisliste (GLP) =&gt; in englischen Begriff   23.10.19 (toz, stb, ama): diese Liste wird fix weggeschrieben, daher wird diese Liste Linie pro Linie aus den Produkteinzelpreisen erzeugt und daher benötigt es auch die Entität Produkteinzelpreise"/>
+<property name="EN_ENTI_NAME" value="Global List Price (GLP)"/>
+<property name="EN_ENTI_SYNONYM" value="**GLP"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="78DD5F95-BFFB-3B3F-2B11-2EFB5B5A3745">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 11:51:57 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig ab" id="FA7FB4C3-FFC4-123B-E6B7-B9B1AB370AA4">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 11:53:10 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig bis" id="B8F4512D-2BBB-EF60-6550-B53E96E02E08">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:52:20 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig bis"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid until"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Standort" id="8C52F125-502B-461A-17E2-561CE853765E">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:52:33 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Standort"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Location"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

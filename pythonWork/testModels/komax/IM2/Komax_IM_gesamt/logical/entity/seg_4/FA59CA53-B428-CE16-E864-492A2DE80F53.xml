@@ -1,0 +1,150 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="FA59CA53-B428-CE16-E864-492A2DE80F53" name="Umrechnungskurs">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 13:50:46 UTC</createdTime>
+<comment><![CDATA[Von Finanzabteilung festgelegter Umrechnungskurs ab einem bestimmten Zeitpunkt.]]></comment>
+<notes><![CDATA[Faktor
+Gültig ab
+Gültig bis (muss erfasst werden können, ob wirklich bei jedem gemacht, nicht sicher. Für Fabian Pflicht überall! Sonst Zuordnung nicht)
+
+
+Pro Preisliste welcher Umrechnungskurs gilt.  Hoheit je nach Preis wo anders. Wird an Preisliste gekoppelt, dann nutzen klar. [DE_ENTI_COMMENT[
+Von Finanzabteilung festgelegter Umrechnungskurs ab einem bestimmten Zeitpunkt.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Exchange rate determined by the finance department from a certain point in time.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Von Finanzabteilung festgelegter Umrechnungskurs ab einem bestimmten Zeitpunkt."/>
+<property name="DE_ENTI_NAME" value="Umrechnungskurs"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Von Finanzabteilung festgelegter Umrechnungskurs ab einem bestimmten Zeitpunkt."/>
+<property name="EN_ENTI_NAME" value="**Conversion rate"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Kurs" id="39C03348-E7B7-0FD1-BB78-9AF394B8E429">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 13:50:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kurs"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Price"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig ab" id="66F152C3-B858-DE9E-6215-0ECA35D82A6F">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 13:50:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Closing Kurs" id="B96F79F6-0C68-5F11-F548-BDA17B3C6EF0">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 13:50:48 UTC</createdTime>
+<comment><![CDATA[Für Abrechnung]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Für Abrechnung
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**For billing
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Für Abrechnung"/>
+<property name="DE_ATTR_NAME" value="Closing Kurs"/>
+<property name="EN_ATTR_COMMENT" value="Für Abrechnung"/>
+<property name="EN_ATTR_NAME" value="**Closing price"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Monatsdurchschnittskurs" id="38979340-28C6-E940-3EDC-461D47DF4A35">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 13:50:48 UTC</createdTime>
+<comment><![CDATA[Für laufende Transaktionen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Für laufende Transaktionen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**For current transactions
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Für laufende Transaktionen"/>
+<property name="DE_ATTR_NAME" value="Monatsdurchschnittskurs"/>
+<property name="EN_ATTR_COMMENT" value="Für laufende Transaktionen"/>
+<property name="EN_ATTR_NAME" value="**Monthly average rate"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

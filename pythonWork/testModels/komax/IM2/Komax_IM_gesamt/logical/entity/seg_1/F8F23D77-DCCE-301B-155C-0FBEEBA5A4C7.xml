@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F8F23D77-DCCE-301B-155C-0FBEEBA5A4C7" name="Subregion">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 11:08:45 UTC</createdTime>
+<comment><![CDATA[Nordamerika, Südamerika
+Eastern Europe, Western Europe
+Ozeanien
+...
+
+=> ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&A. Skocic]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Nordamerika, Südamerika
+Eastern Europe, Western Europe
+Ozeanien
+...
+
+=> ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&A. Skocic
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**North America, South America
+Eastern Europe, Western Europe
+Oceania
+...
+
+=> is defined on the basis of purchased geodata / 14.2.19 INput Mi Braunschweiler&A. Skocic
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>6018D2F4-3A17-7A2C-B062-2EE7FABEFC86</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Nordamerika, Südamerika Eastern Europe, Western Europe Ozeanien ...  =&gt; ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&amp;A. Skocic"/>
+<property name="DE_ENTI_NAME" value="Subregion"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Nordamerika, Südamerika Eastern Europe, Western Europe Ozeanien ...  =&gt; ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 Input Mi Braunschweiler&amp;A. Skocic  28.10.19:  Es existieren  Business Subregion und Finance Subregion mit unterwschiedlichen LOV (auf Basis Referenztabelle); DAten in Mini-Data Warehouse abgelegt (M. Braunschweiler)"/>
+<property name="EN_ENTI_NAME" value="Subregion"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

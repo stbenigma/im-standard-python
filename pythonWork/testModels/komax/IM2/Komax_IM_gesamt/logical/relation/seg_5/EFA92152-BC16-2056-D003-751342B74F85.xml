@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_635" directorySegmentName="seg_5" id="EFA92152-BC16-2056-D003-751342B74F85">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-22 12:26:08 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>betreut</nameOnSource>
+<nameOnTarget>betreut von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F931F4A8-588F-F307-DE6A-B9983DC09455</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>8A8B0367-8471-52C1-6696-E6C021BCAB39</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="betreut"/>
+<property name="DE_RELA_TEXT_TO" value="betreut von"/>
+<property name="EN_RELA_TEXT_FROM" value="**supervised"/>
+<property name="EN_RELA_TEXT_TO" value="**supervised by"/>
+</propertyMap>
+</Relation>

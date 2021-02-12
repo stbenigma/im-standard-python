@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_765" directorySegmentName="seg_6" id="7735F25D-A47E-0A2A-AE3E-A19E68D36CEE">
+<createdBy>toz</createdBy>
+<createdTime>2019-07-25 09:03:39 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<targetPk>94E7F75F-12C6-555E-CE32-A495EBB3413E</targetPk>
+<arc>B3254E37-C77A-D5FD-04C3-1E0E76295903</arc>
+<identifying>false</identifying>
+<nameOnSource>ist</nameOnSource>
+<nameOnTarget>bildet</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>F2B76B7A-6A8C-7D52-26DA-79B27F93CD88</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>28EC4906-EB30-CBC6-9357-A64F00D43C70</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ist"/>
+<property name="DE_RELA_TEXT_TO" value="bildet"/>
+<property name="EN_RELA_TEXT_FROM" value="**is"/>
+<property name="EN_RELA_TEXT_TO" value="**educates"/>
+</propertyMap>
+</Relation>

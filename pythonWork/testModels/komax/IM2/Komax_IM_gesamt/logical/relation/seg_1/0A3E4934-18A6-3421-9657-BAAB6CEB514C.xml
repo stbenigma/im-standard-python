@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_162" directorySegmentName="seg_1" id="0A3E4934-18A6-3421-9657-BAAB6CEB514C">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 12:23:41 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verfügt über</nameOnSource>
+<nameOnTarget>lokalisiert</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7C445FB9-EFCF-B1CD-B638-3606A9951129</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D204ECE3-59FD-AE2D-A2A4-AF2B415449FC</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verfügt über"/>
+<property name="DE_RELA_TEXT_TO" value="lokalisiert"/>
+<property name="EN_RELA_TEXT_FROM" value="**has"/>
+<property name="EN_RELA_TEXT_TO" value="**localised"/>
+</propertyMap>
+</Relation>

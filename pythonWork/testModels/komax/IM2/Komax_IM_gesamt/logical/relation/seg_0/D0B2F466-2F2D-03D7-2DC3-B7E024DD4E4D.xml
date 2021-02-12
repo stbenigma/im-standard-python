@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_27" directorySegmentName="seg_0" id="D0B2F466-2F2D-03D7-2DC3-B7E024DD4E4D">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-15 12:51:17 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>enthalten in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>FD7EA667-127F-764C-B978-AB2FF2D9D1FF</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FD7EA667-127F-764C-B978-AB2FF2D9D1FF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="enthalten in"/>
+<property name="EN_RELA_TEXT_FROM" value="**consists of"/>
+<property name="EN_RELA_TEXT_TO" value="**contained in"/>
+</propertyMap>
+</Relation>

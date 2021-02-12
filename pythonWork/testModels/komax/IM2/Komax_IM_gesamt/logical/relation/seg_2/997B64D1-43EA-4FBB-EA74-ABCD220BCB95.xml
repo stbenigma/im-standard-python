@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_299" directorySegmentName="seg_2" id="997B64D1-43EA-4FBB-EA74-ABCD220BCB95">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 12:50:02 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verantwortlich für</nameOnSource>
+<nameOnTarget>verantwortet von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>559EF8CE-EFA0-591F-65FF-025E91A7EA5B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A0545BE6-80EF-3AF6-14D0-0959123B42E3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortlich für"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortet von"/>
+<property name="EN_RELA_TEXT_FROM" value="**responsible for"/>
+<property name="EN_RELA_TEXT_TO" value="**answered for by"/>
+</propertyMap>
+</Relation>

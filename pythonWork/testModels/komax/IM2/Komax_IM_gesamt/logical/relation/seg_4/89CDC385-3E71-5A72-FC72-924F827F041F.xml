@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_514" directorySegmentName="seg_4" id="89CDC385-3E71-5A72-FC72-924F827F041F">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-04 12:10:43 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>realisierbar über</nameOnSource>
+<nameOnTarget>ist</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B5749CC0-29BA-588E-7FCC-1C29A9286053</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>776411F8-A6D4-1CA2-AF75-73DBA3E485EF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="realisierbar über"/>
+<property name="DE_RELA_TEXT_TO" value="ist"/>
+<property name="EN_RELA_TEXT_FROM" value="**feasible via"/>
+<property name="EN_RELA_TEXT_TO" value="is"/>
+</propertyMap>
+</Relation>

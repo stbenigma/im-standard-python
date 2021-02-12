@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_25" directorySegmentName="seg_0" id="727A4AA7-06F9-73AC-EFFC-4E15A7503FFE">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-15 12:48:28 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<sourcePk>94E7F75F-12C6-555E-CE32-A495EBB3413E</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>trägt bei zu</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>FD7EA667-127F-764C-B978-AB2FF2D9D1FF</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>AE3A3A0D-1B20-3CF0-E488-4A9CE97E454B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="trägt bei zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**consists of"/>
+<property name="EN_RELA_TEXT_TO" value="**contributes to"/>
+</propertyMap>
+</Relation>

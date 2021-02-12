@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_334" directorySegmentName="seg_3" id="9B86A845-971A-4398-297A-96EFF150EE17">
+<createdBy>toz</createdBy>
+<createdTime>2018-06-04 14:55:58 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>belastet</nameOnSource>
+<nameOnTarget>belastet mit</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>D7CBE883-D851-9F9B-7A2F-EA38279FC9E5</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>CDB7FF8D-6432-7674-DD61-0717B6DAE2CF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="belastet"/>
+<property name="DE_RELA_TEXT_TO" value="belastet mit"/>
+<property name="EN_RELA_TEXT_FROM" value="**encumbered"/>
+<property name="EN_RELA_TEXT_TO" value="**burdened with"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_189" directorySegmentName="seg_0" id="6FD73211-2749-2E5F-89D5-46CCC1D13FE9">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-14 09:10:31 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>kombinierbar über</nameOnSource>
+<nameOnTarget>kombiniert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>42962358-34D1-D411-E156-0FE27E55F2DA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5E956FCA-9368-3F43-E0E3-D941011FDA05</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="kombinierbar über"/>
+<property name="DE_RELA_TEXT_TO" value="kombiniert"/>
+<property name="EN_RELA_TEXT_FROM" value="**can be combined via"/>
+<property name="EN_RELA_TEXT_TO" value="**combined"/>
+</propertyMap>
+</Relation>

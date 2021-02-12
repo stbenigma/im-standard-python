@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="37771BD2-CED0-E7CE-EA34-48F277C6BAE8" name="Produktkategorie">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:42:28 UTC</createdTime>
+<comment><![CDATA[
+Beispiele:
+Wire Stripper
+Crimp to Crimp
+Twister
+
+
+22.2.19 Sergio Seeholzer. Verbindung zu Fibu-Konto über AX Feld "Artikelgruppe" ("Produktkategorie leitet das Fibu-Erlöskonto ab")]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+Beispiele:
+Wire Stripper
+Crimp to Crimp
+Twister
+
+
+22.2.19 Sergio Seeholzer. Verbindung zu Fibu-Konto über AX Feld "Artikelgruppe" ("Produktkategorie leitet das Fibu-Erlöskonto ab")
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+Examples:
+Wire Stripper
+Crimp to Crimp
+Twister
+
+
+22.2.19 Sergio Seeholzer. Connection to Fibu account via AX field "Article group" ("Product category derives Fibu revenue account")
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=" Beispiele: Wire Stripper Crimp to Crimp Twister   22.2.19 Sergio Seeholzer. Verbindung zu Fibu-Konto über AX Feld &quot;Artikelgruppe&quot; (&quot;Produktkategorie leitet das Fibu-Erlöskonto ab&quot;)"/>
+<property name="DE_ENTI_NAME" value="Produktkategorie"/>
+<property name="DE_ENTI_SYNONYM" value="product category"/>
+<property name="EN_ENTI_COMMENT" value=" Beispiele: Wire Stripper Crimp to Crimp Twister   22.2.19 Sergio Seeholzer. Verbindung zu Fibu-Konto über AX Feld &quot;Artikelgruppe&quot; (&quot;Produktkategorie leitet das Fibu-Erlöskonto ab&quot;)"/>
+<property name="EN_ENTI_NAME" value="Product Category"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung [L]" id="FE4A1CEC-41F2-3845-D24C-C2579BCC5599">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:47:15 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation [L]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kuerzel" id="626FFC11-665A-0C3A-BF04-20F9F0A21560">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:47:15 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kuerzel"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Abbreviation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

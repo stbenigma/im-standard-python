@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_743" directorySegmentName="seg_2" id="946AE50A-17E7-D4E2-9C5C-F4A08ECA9C9D">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 08:24:54 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<sourcePk>94E7F75F-12C6-555E-CE32-A495EBB3413E</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>klassifizert durch</nameOnSource>
+<nameOnTarget>klassifiziert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>4A58CEEE-CEAE-E516-0BB5-EAE7D1AE7912</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>6D9B405D-374F-F1CE-EC83-2E884DDE47A9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="klassifizert durch"/>
+<property name="DE_RELA_TEXT_TO" value="klassifiziert"/>
+<property name="EN_RELA_TEXT_FROM" value="classified by"/>
+<property name="EN_RELA_TEXT_TO" value="classifies"/>
+</propertyMap>
+</Relation>

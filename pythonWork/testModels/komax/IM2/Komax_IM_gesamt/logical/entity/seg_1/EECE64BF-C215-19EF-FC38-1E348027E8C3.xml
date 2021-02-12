@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="EECE64BF-C215-19EF-FC38-1E348027E8C3" name="Ursprungslandsanteil">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-02 12:48:41 UTC</createdTime>
+<comment><![CDATA[Wertmässiger Anteil, mit welchem ein Artikel/Komponente aus einem Land stammt. 
+
+Aus diesen Angaben wird der präferenzielle / nicht präferenzielle Ursprung bestimmt. (unterschiedliche Grenzwerte)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Wertmässiger Anteil, mit welchem ein Artikel/Komponente aus einem Land stammt. 
+
+Aus diesen Angaben wird der präferenzielle / nicht präferenzielle Ursprung bestimmt. (unterschiedliche Grenzwerte)
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**The proportion of the value with which an item/component originates from a country
+
+From this information, the preferential / non-preferential origin is determined. (different limit values)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Wertmässiger Anteil, mit welchem ein Artikel/Komponente aus einem Land stammt.   Aus diesen Angaben wird der präferenzielle / nicht präferenzielle Ursprung bestimmt. (unterschiedliche Grenzwerte)"/>
+<property name="DE_ENTI_NAME" value="Ursprungslandsanteil"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Wertmässiger Anteil, mit welchem ein Artikel/Komponente aus einem Land stammt.   Aus diesen Angaben wird der präferenzielle / nicht präferenzielle Ursprung bestimmt. (unterschiedliche Grenzwerte)"/>
+<property name="EN_ENTI_NAME" value="**Origin rate"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Prozensatz" id="5C565C56-D787-BC68-C999-B241B86E0C4A">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-02 13:05:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Prozensatz"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Percentage"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

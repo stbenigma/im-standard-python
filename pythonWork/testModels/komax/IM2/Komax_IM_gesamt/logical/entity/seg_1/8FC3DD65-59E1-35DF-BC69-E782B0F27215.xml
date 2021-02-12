@@ -1,0 +1,210 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="8FC3DD65-59E1-35DF-BC69-E782B0F27215" name="Verkaufspreisliste">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:21:41 UTC</createdTime>
+<comment><![CDATA[18.10.2019: Vorschlag, dass die Verkaufspreisliste als Superentität gestrichen werden soll. Für Modellierungszweck mal so umgesetzt. Eventuell später wieder zusammenführen, wenn man sieht, dass die Zusammenführung Sinn macht. 
+Eventuell Transferpreislisten separat und Geografische + GKP in Kundenpreislisten zusammenfassen.]]></comment>
+<notes><![CDATA[Name 
+gültig ab 
+gültig bis
+Umrechnungskurs
+
+
+Umrechnung auf GKP oder schon auf GLP wenn verschieden Währungen auf Key Account?
+[DE_ENTI_COMMENT[
+18.10.2019: Vorschlag, dass die Verkaufspreisliste als Superentität gestrichen werden soll. Für Modellierungszweck mal so umgesetzt. Eventuell später wieder zusammenführen, wenn man sieht, dass die Zusammenführung Sinn macht. 
+Eventuell Transferpreislisten separat und Geografische + GKP in Kundenpreislisten zusammenfassen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**18.10.2019: Proposal to delete the sales price list as a super entity. For the purpose of modelling it has been implemented in this way. Possibly reunite later when you see that the reunification makes sense
+Possibly transfer price lists separately and geographical + GKP in customer price lists summarize.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Purchase Price List</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="18.10.2019: Vorschlag, dass die Verkaufspreisliste als Superentität gestrichen werden soll. Für Modellierungszweck mal so umgesetzt. Eventuell später wieder zusammenführen, wenn man sieht, dass die Zusammenführung Sinn macht.  Eventuell Transferpreislisten separat und Geografische + GKP in Kundenpreislisten zusammenfassen."/>
+<property name="DE_ENTI_NAME" value="Verkaufspreisliste"/>
+<property name="DE_ENTI_SYNONYM" value="Purchase Price List"/>
+<property name="EN_ENTI_COMMENT" value="18.10.2019: Vorschlag, dass die Verkaufspreisliste als Superentität gestrichen werden soll. Für Modellierungszweck mal so umgesetzt. Eventuell später wieder zusammenführen, wenn man sieht, dass die Zusammenführung Sinn macht.  Eventuell Transferpreislisten separat und Geografische + GKP in Kundenpreislisten zusammenfassen."/>
+<property name="EN_ENTI_NAME" value="**Sales price list"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Purchase Price List"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="DD2F06BB-AB4C-6C3E-FB05-B0142383167B">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:21:41 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig ab" id="7E959CEC-5BFE-EDAD-C2A4-4379B9432550">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:21:41 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig bis" id="DA0275F6-D0A3-1DC3-386D-97993FFD475C">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:54:36 UTC</createdTime>
+<comment><![CDATA[Wird vom System automatisch erstellt, wenn von der Liste eine neue Version erstellt wird mit neuem gültig ab Datum.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wird vom System automatisch erstellt, wenn von der Liste eine neue Version erstellt wird mit neuem gültig ab Datum.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Automatically created by the system when a new version is created from the list with new valid from date.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Wird vom System automatisch erstellt, wenn von der Liste eine neue Version erstellt wird mit neuem gültig ab Datum."/>
+<property name="DE_ATTR_NAME" value="Gültig bis"/>
+<property name="EN_ATTR_COMMENT" value="Wird vom System automatisch erstellt, wenn von der Liste eine neue Version erstellt wird mit neuem gültig ab Datum."/>
+<property name="EN_ATTR_NAME" value="Valid until"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Mindestpreis" id="BBDE626F-95F2-3DF4-D7D5-A986942905FF">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:55:19 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Mindestpreis"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*Minimum price"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Wechselkurstyp" id="C42C8B17-8480-CFFF-AB97-7DEB43786FEC">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:55:33 UTC</createdTime>
+<comment><![CDATA[Enthält verschieden Wechselkurse]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Enthält verschieden Wechselkurse
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Includes different exchange rates
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Enthält verschieden Wechselkurse"/>
+<property name="DE_ATTR_NAME" value="Wechselkurstyp"/>
+<property name="EN_ATTR_COMMENT" value="Enthält verschieden Wechselkurse"/>
+<property name="EN_ATTR_NAME" value="Exchange rate type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Komax Direct (J/N)" id="80FB300A-7B3E-AF7B-5944-F7AE6C98492B">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:55:55 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Komax Direct (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Komax Direct (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

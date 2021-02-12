@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_161" directorySegmentName="seg_1" id="BE8F7D2D-D7FD-D786-B047-75C34AFC47C3">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 11:47:46 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<arc>DF790842-644E-928A-156F-0BD456DC019A</arc>
+<identifying>false</identifying>
+<nameOnSource>verwendet</nameOnSource>
+<nameOnTarget>verwendet für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>BB7064A0-50FC-FD4A-DB6A-FA7E6FA46DBD</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>ED87BE0E-080C-FD1D-25FE-1CA2CBC3BECC</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verwendet"/>
+<property name="DE_RELA_TEXT_TO" value="verwendet für"/>
+<property name="EN_RELA_TEXT_FROM" value="**utilised"/>
+<property name="EN_RELA_TEXT_TO" value="**used for"/>
+</propertyMap>
+</Relation>

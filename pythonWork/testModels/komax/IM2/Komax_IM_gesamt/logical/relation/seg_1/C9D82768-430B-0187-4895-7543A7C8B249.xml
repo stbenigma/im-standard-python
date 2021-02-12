@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_121" directorySegmentName="seg_1" id="C9D82768-430B-0187-4895-7543A7C8B249">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 12:33:17 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>eingesetzt für</nameOnSource>
+<nameOnTarget>benötigt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>603D3D1B-5B19-35D8-BFBF-8268B87F1BFD</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4B68BF35-70F8-A70F-7FA7-E4D196B453E6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="eingesetzt für"/>
+<property name="DE_RELA_TEXT_TO" value="benötigt"/>
+<property name="EN_RELA_TEXT_FROM" value="**used for"/>
+<property name="EN_RELA_TEXT_TO" value="**needed"/>
+</propertyMap>
+</Relation>

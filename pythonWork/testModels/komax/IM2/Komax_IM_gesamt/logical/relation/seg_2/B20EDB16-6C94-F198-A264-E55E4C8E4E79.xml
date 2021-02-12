@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_618" directorySegmentName="seg_2" id="B20EDB16-6C94-F198-A264-E55E4C8E4E79">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-24 08:48:48 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>charakterisiert</nameOnSource>
+<nameOnTarget>ist von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DBBEE8BE-DBA4-D1CE-07F9-EDE1ADC488B0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E896EDC5-2E49-C0CD-BF30-B9721E0BB82D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="charakterisiert"/>
+<property name="DE_RELA_TEXT_TO" value="ist von"/>
+<property name="EN_RELA_TEXT_FROM" value="**characterized"/>
+<property name="EN_RELA_TEXT_TO" value="**is from"/>
+</propertyMap>
+</Relation>

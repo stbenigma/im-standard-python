@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F3C55822-75BE-ABC0-13F4-E8C78862CD0C" name="Master Global List Price (GLP CHF)">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 11:54:39 UTC</createdTime>
+<comment><![CDATA[18.10.19: Veränderung Name Globale Basispreisliste (GLP CHF) , zukünftig sollte es "Master GLP (CHF)" heissen
+Ist die Basis für alle Preislisten abgesehen von PPP. 
+
+23.10.10: "Globale Basispreisliste (GLP CHF)" Name der Entität umgewandelt in Master GLP]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+18.10.19: Veränderung Name Globale Basispreisliste (GLP CHF) , zukünftig sollte es "Master GLP (CHF)" heissen
+Ist die Basis für alle Preislisten abgesehen von PPP. 
+
+23.10.10: "Globale Basispreisliste (GLP CHF)" Name der Entität umgewandelt in Master GLP
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**18.10.19: Change of name Global Base Price List (GLP CHF) , in future it should be called "Master GLP (CHF)
+Is the basis for all price lists except PPP
+
+23.10.10: "Global Base Price List (GLP CHF)" Name of entity converted to Master GLP
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Master GLP (CHF)</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="18.10.19: Veränderung Name Globale Basispreisliste (GLP CHF) , zukünftig sollte es &quot;Master GLP (CHF)&quot; heissen Ist die Basis für alle Preislisten abgesehen von PPP.   23.10.10: &quot;Globale Basispreisliste (GLP CHF)&quot; Name der Entität umgewandelt in Master GLP"/>
+<property name="DE_ENTI_NAME" value="Master Global List Price (GLP CHF)"/>
+<property name="DE_ENTI_SYNONYM" value="Master GLP (CHF)"/>
+<property name="EN_ENTI_COMMENT" value="18.10.19: Veränderung Name Globale Basispreisliste (GLP CHF) , zukünftig sollte es &quot;Master GLP (CHF)&quot; heissen Ist die Basis für alle Preislisten abgesehen von PPP.   23.10.10: &quot;Globale Basispreisliste (GLP CHF)&quot; Name der Entität umgewandelt in Master GLP"/>
+<property name="EN_ENTI_NAME" value="Master Global List Price (GLP CHF)"/>
+<property name="EN_ENTI_SYNONYM" value="**Master GLP (CHF)"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="A85E7BFB-71FD-7C70-692A-592C355BA0D0">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 14:40:26 UTC</createdTime>
+<commentInRDBMS><![CDATA[nur 1 Name = GLP CHF]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig ab" id="5EB89A71-EDEC-7437-A151-0DD9B4F700FC">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 14:41:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid from"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig bis" id="0FA70FD9-D5B7-431F-84F5-50989F116F20">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-10-23 14:41:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig bis"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid until"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="13030EE2-880A-26FF-EE74-6998D78C4724" name="Basissystem">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-04 13:41:57 UTC</createdTime>
+<comment><![CDATA[Baugruppe, Einheit, die für ein Prüfsystem als Basis notwendig ist.
+
+Als Datensammlung für einen montierten Tisch wird eine Tischmappe geführt. Teils Seriennummer-Tracking nur in Tischmappe vorhanden.
+
+
+Bsp: Tischsystem, Visionssystem, Schraubersystem]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Baugruppe, Einheit, die für ein Prüfsystem als Basis notwendig ist.
+
+Als Datensammlung für einen montierten Tisch wird eine Tischmappe geführt. Teils Seriennummer-Tracking nur in Tischmappe vorhanden.
+
+
+Bsp: Tischsystem, Visionssystem, Schraubersystem
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Assembly, unit that is required as the basis for a test system.
+
+A table folder is kept as a data collection for an assembled table. Part serial number tracking only available in table folder.
+
+
+Example: table system, vision system, screwdriver system
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Baugruppe, Einheit, die für ein Prüfsystem als Basis notwendig ist.  Als Datensammlung für einen montierten Tisch wird eine Tischmappe geführt. Teils Seriennummer-Tracking nur in Tischmappe vorhanden.   Bsp: Tischsystem, Visionssystem, Schraubersystem"/>
+<property name="DE_ENTI_NAME" value="Basissystem"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Baugruppe, Einheit, die für ein Prüfsystem als Basis notwendig ist.  Als Datensammlung für einen montierten Tisch wird eine Tischmappe geführt. Teils Seriennummer-Tracking nur in Tischmappe vorhanden.   Bsp: Tischsystem, Visionssystem, Schraubersystem"/>
+<property name="EN_ENTI_NAME" value="**Basic system"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

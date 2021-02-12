@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_286" directorySegmentName="seg_2" id="332E3A3B-8774-F124-4EA1-FCCD54FAF5E6">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 12:20:16 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>schliesst ein</nameOnSource>
+<nameOnTarget>vereinbart in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>FEE8AE14-8EB9-D61E-F940-803D1B683EF3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D65539CE-6DCB-0E04-5FCE-D8064D7BDEAE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="schliesst ein"/>
+<property name="DE_RELA_TEXT_TO" value="vereinbart in"/>
+<property name="EN_RELA_TEXT_FROM" value="**includes"/>
+<property name="EN_RELA_TEXT_TO" value="agreed in"/>
+</propertyMap>
+</Relation>

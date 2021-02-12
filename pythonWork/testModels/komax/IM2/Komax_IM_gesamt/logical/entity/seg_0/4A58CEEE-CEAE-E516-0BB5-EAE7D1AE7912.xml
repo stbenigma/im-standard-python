@@ -1,0 +1,555 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4A58CEEE-CEAE-E516-0BB5-EAE7D1AE7912" name="Artikel">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:30:42 UTC</createdTime>
+<comment><![CDATA[ALT: Komponente, Teil, Baugruppe, Einzelteil , Ersatzteil,
+
+
+Diskussion 26.07.19:
+
+Neue Superentität, ähnlich Komponente, wird die Komponente ersetzen. Aufgrund der vielen Verbindungen der Komponente nich diese als Superentität verwendet. 
+
+
+28.11.19: Entscheid Renaming von Komponente auf Artikel (= item auf English); Konsequenz = auch tlw. eingraviert auf Komponenten zu verwenden]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+ALT: Komponente, Teil, Baugruppe, Einzelteil , Ersatzteil,
+
+
+Diskussion 26.07.19:
+
+Neue Superentität, ähnlich Komponente, wird die Komponente ersetzen. Aufgrund der vielen Verbindungen der Komponente nich diese als Superentität verwendet. 
+
+
+28.11.19: Entscheid Renaming von Komponente auf Artikel (= item auf English); Konsequenz = auch tlw. eingraviert auf Komponenten zu verwenden
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**ALT: Component, part, assembly, single part, spare part,
+
+
+Discussion 26.07.19:
+
+New super entity, similar to component, will replace the component. Due to the many compounds of the component, this is not used as a super entity
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Artikel</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="ALT: Komponente, Teil, Baugruppe, Einzelteil , Ersatzteil,   Diskussion 26.07.19:  Neue Superentität, ähnlich Komponente, wird die Komponente ersetzen. Aufgrund der vielen Verbindungen der Komponente nich diese als Superentität verwendet. "/>
+<property name="DE_ENTI_NAME" value="Artikel"/>
+<property name="DE_ENTI_SYNONYM" value="Artikel"/>
+<property name="EN_ENTI_COMMENT" value="ALT: Komponente, Teil, Baugruppe, Einzelteil , Ersatzteil,   Diskussion 26.07.19:  Neue Superentität, ähnlich Komponente, wird die Komponente ersetzen. Aufgrund der vielen Verbindungen der Komponente nich diese als Superentität verwendet. "/>
+<property name="EN_ENTI_NAME" value="*Item"/>
+<property name="EN_ENTI_SYNONYM" value="**Articles"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikelnummer" id="6081D827-D612-E4C3-1422-B9EF0F427D14">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:32:05 UTC</createdTime>
+<comment><![CDATA[KOMAX UUID]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+KOMAX UUID
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**KOMAX UUID
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="CRM-AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="KOMAX UUID"/>
+<property name="DE_ATTR_NAME" value="Artikelnummer"/>
+<property name="EN_ATTR_COMMENT" value="KOMAX UUID"/>
+<property name="EN_ATTR_NAME" value="**Item number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SAP_S4-AttrName" value="Materialnummer"/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Inaktiv (J/N)" id="6785D441-D785-CF52-ADBC-A5E7A4FCFF8C">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 09:48:04 UTC</createdTime>
+<comment><![CDATA[true/false ehemals "archiviert"
+Testing (Status 99)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+true/false ehemals "archiviert"
+Testing (Status 99)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**true/false formerly "archived"
+Testing (status 99)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="true/false ehemals &quot;archiviert&quot; Testing (Status 99)"/>
+<property name="DE_ATTR_NAME" value="Inaktiv (J/N)"/>
+<property name="EN_ATTR_COMMENT" value="true/false ehemals &quot;archiviert&quot; Testing (Status 99)"/>
+<property name="EN_ATTR_NAME" value="Inactive (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SAP_S4-AttrName" value=""/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Konfigurationstechnologie" id="72033E7C-B3BE-F093-D239-E2FEFFE0C553">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 09:48:52 UTC</createdTime>
+<comment><![CDATA[Variantenartikel oder normaler Artikel. wenn Variante, dann "einschränkungsbasierte Konfiguration)]]></comment>
+<commentInRDBMS><![CDATA[28.11.19: Konfigurierte Baugruppe oder eine Standardstückliste mit immer gleichen Artikeln]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Variantenartikel oder normaler Artikel. wenn Variante, dann "einschränkungsbasierte Konfiguration)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Variant article or normal article. If variant, then "restriction-based configuration".)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Variantenartikel oder normaler Artikel. wenn Variante, dann &quot;einschränkungsbasierte Konfiguration)"/>
+<property name="DE_ATTR_NAME" value="Konfigurationstechnologie"/>
+<property name="EN_ATTR_COMMENT" value="Variantenartikel oder normaler Artikel. wenn Variante, dann &quot;einschränkungsbasierte Konfiguration)"/>
+<property name="EN_ATTR_NAME" value="**Configuration technology"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Rückverfolgungsgruppe" id="BA403CE8-9DE6-B822-0095-42F86544D4A5">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 09:49:13 UTC</createdTime>
+<comment><![CDATA[steuert ob Artikel in Seriennummerntabelle erscheint]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+steuert ob Artikel in Seriennummerntabelle erscheint
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**controls whether items appear in serial number table
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="steuert ob Artikel in Seriennummerntabelle erscheint"/>
+<property name="DE_ATTR_NAME" value="Rückverfolgungsgruppe"/>
+<property name="EN_ATTR_COMMENT" value="steuert ob Artikel in Seriennummerntabelle erscheint"/>
+<property name="EN_ATTR_NAME" value="**Traceability group"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verwendungsart Verkauf" id="68A4934A-4877-0CFE-1B8B-8EF1621135A8">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 10:06:37 UTC</createdTime>
+<comment><![CDATA[Verkaufsfreigabe und Klassifikation
+Synonym = Usage Sales]]></comment>
+<commentInRDBMS><![CDATA[28.11.19: Auf Artikelebene Aussage über verkaufbar oder nicht; Ausprägungen/LOV = spare part, ware part, norm part, Documentation, Service, etc.]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Verkaufsfreigabe und Klassifikation
+Synonym = Usage Sales
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Sales Release and Classification
+Synonym = Usage Sales
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Verkaufsfreigabe und Klassifikation Synonym = Usage Sales"/>
+<property name="DE_ATTR_NAME" value="Verwendungsart Verkauf"/>
+<property name="EN_ATTR_COMMENT" value="Verkaufsfreigabe und Klassifikation Synonym = Usage Sales"/>
+<property name="EN_ATTR_NAME" value="Usage type sales"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Package Artikel (j/n)" id="0789AD25-A56D-BB96-8740-2F208D0F067D">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 10:07:28 UTC</createdTime>
+<comment><![CDATA[true/false ist Package oder nicht]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+true/false ist Package oder nicht
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**true/false is package or not
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="true/false ist Package oder nicht"/>
+<property name="DE_ATTR_NAME" value="Package Artikel (j/n)"/>
+<property name="EN_ATTR_COMMENT" value="true/false ist Package oder nicht"/>
+<property name="EN_ATTR_NAME" value="**Package Article (y/n)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Ip-relevant (j/n)" id="FD0B27F6-FC65-BC2C-2B4C-9A2F772365A2">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-08-12 15:28:29 UTC</createdTime>
+<comment><![CDATA[12.8.19: eingefügt Diskussion mit R. Fuchs, M. Lustenberger  (dies soll auf dem Artikel angezogen werden, damit wir i.e. von Lieferanten überlassen IP-relevante Daten nicht rausgeben, oder auch eigene Daten)]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+12.8.19: eingefügt Diskussion mit R. Fuchs, M. Lustenberger  (dies soll auf dem Artikel angezogen werden, damit wir i.e. von Lieferanten überlassen IP-relevante Daten nicht rausgeben, oder auch eigene Daten)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**12.8.19: inserted discussion with R. Fuchs, M. Lustenberger (this should be noted on the article so that we i.e. from suppliers do not disclose IP-relevant data, or even own data)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="12.8.19: eingefügt Diskussion mit R. Fuchs, M. Lustenberger  (dies soll auf dem Artikel angezogen werden, damit wir i.e. von Lieferanten überlassen IP-relevante Daten nicht rausgeben, oder auch eigene Daten)"/>
+<property name="DE_ATTR_NAME" value="Ip-relevant (j/n)"/>
+<property name="EN_ATTR_COMMENT" value="12.8.19: eingefügt Diskussion mit R. Fuchs, M. Lustenberger  (dies soll auf dem Artikel angezogen werden, damit wir i.e. von Lieferanten überlassen IP-relevante Daten nicht rausgeben, oder auch eigene Daten)"/>
+<property name="EN_ATTR_NAME" value="IP-relevant (y/n)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Marketingeinführungsdatum" id="8273804B-1027-8E2F-8D56-196F171B28BC">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 09:46:01 UTC</createdTime>
+<commentInRDBMS><![CDATA[29.11.19: Attribut ist direkt im Artikel geführt gem. Absprache mit A. Loosli]]></commentInRDBMS>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Marketingeinführungsdatum"/>
+<property name="EN_ATTR_NAME" value="*DE* Marketingeinführungsdatum"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Abkündigungsdatum" id="4AE68E91-04FB-BC2B-5E29-33173CA99337">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 09:47:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Abkündigungsdatum"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Discontinuation date"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Annulationsdatum" id="8F966407-8FF8-9864-6B97-72DB29B9A72A">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 09:47:51 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Annulationsdatum"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Cancellation date"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Produktmanager" id="2F9B086E-9FF9-AEFC-F109-9B117EDDACAE">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 09:47:51 UTC</createdTime>
+<comment><![CDATA[Über Verbindung zu Komax Person "verantwortet" lösen?]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Über Verbindung zu Komax Person "verantwortet" lösen?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Solution "answered for" via connection to Komax person?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Über Verbindung zu Komax Person &quot;verantwortet&quot; lösen?"/>
+<property name="DE_ATTR_NAME" value="Produktmanager"/>
+<property name="EN_ATTR_COMMENT" value="Über Verbindung zu Komax Person &quot;verantwortet&quot; lösen?"/>
+<property name="EN_ATTR_NAME" value="Product Manager"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Index" id="71B2BA06-56FE-C701-7807-496C22AA8899">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 10:13:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Index"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Index"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="gültig ab" id="64EC9163-14F1-5EB1-0733-B39C96D7B7D5">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 10:13:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Ersatzteil [J/N]" id="A488A4EA-47E1-A9F3-7B4A-495E25DA46B1">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 10:13:12 UTC</createdTime>
+<comment><![CDATA[Zeit an ob Teil  im Feld ersetzt werden kann]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Zeit an ob Teil  im Feld ersetzt werden kann
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Time on whether part in field can be replaced
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Zeit an ob Teil  im Feld ersetzt werden kann"/>
+<property name="DE_ATTR_NAME" value="ist Ersatzteil [J/N]"/>
+<property name="EN_ATTR_COMMENT" value="Zeit an ob Teil  im Feld ersetzt werden kann"/>
+<property name="EN_ATTR_NAME" value="is spare part [Y/N]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Verschleissteil [J/N]" id="664ED316-E739-FD57-1AC9-468927EC19BD">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 10:13:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="ist Verschleissteil [J/N]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="is wear part [Y/N]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="ist Normteil [J/N]" id="FC356E2A-D15B-426D-93D3-C0A9B816A568">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 10:13:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="ist Normteil [J/N]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="is standard part [Y/N]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gefahrengut" id="C5E64930-780E-86D9-09C3-0178D2D84287">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-11-29 10:13:12 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gefahrengut"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Dangerous goods"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="94E7F75F-12C6-555E-CE32-A495EBB3413E" name="Artikel PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:32:21 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6081D827-D612-E4C3-1422-B9EF0F427D14</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

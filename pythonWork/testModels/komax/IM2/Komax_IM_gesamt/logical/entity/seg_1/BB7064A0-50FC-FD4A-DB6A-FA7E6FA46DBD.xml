@@ -1,0 +1,526 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="BB7064A0-50FC-FD4A-DB6A-FA7E6FA46DBD" name="Business Partner">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 07:07:23 UTC</createdTime>
+<comment><![CDATA["Bearbeitet von"-Beziehung muss immer ein Komax Account sein
+
+16.7.19: Business Partner als Nachfolge von Begriff "Vertriebsteilnehmer; zu diskutieren = Accountrolle ebenfalls ersetzen, da Account im Finance andere Terminologie]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+"Bearbeitet von"-Beziehung muss immer ein Komax Account sein
+
+16.7.19: Business Partner als Nachfolge von Begriff "Vertriebsteilnehmer; zu diskutieren = Accountrolle ebenfalls ersetzen, da Account im Finance andere Terminologie
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**"Edited by" relationship must always be a Komax account
+
+16.7.19: Business partner as successor of term "sales participant; to discuss = account control also replace, because account in finance other terminology
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="&quot;Bearbeitet von&quot;-Beziehung muss immer ein Komax Account sein  16.7.19: Business Partner als Nachfolge von Begriff &quot;Vertriebsteilnehmer; zu diskutieren = Accountrolle ebenfalls ersetzen, da Account im Finance andere Terminologie"/>
+<property name="DE_ENTI_NAME" value="Business Partner"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="&quot;Bearbeitet von&quot;-Beziehung muss immer ein Komax Account sein  16.7.19: Business Partner als Nachfolge von Begriff &quot;Vertriebsteilnehmer; zu diskutieren = Accountrolle ebenfalls ersetzen, da Account im Finance andere Terminologie"/>
+<property name="EN_ENTI_NAME" value="Business Partner"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Account ID" id="87F74AC4-7D1A-AB2F-983F-E8895BFED0BF">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:33:05 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Account ID"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Account ID"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Rechtlicher Name" id="84E971DF-6545-AACE-5A18-9C0F1C0D779C">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:33:22 UTC</createdTime>
+<comment><![CDATA[Der Name ist wie im Handelsregister eingetragen aufzuführen.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Der Name ist wie im Handelsregister eingetragen aufzuführen.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**The name must be entered as entered in the commercial register.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<synonym>Legal name</synonym>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<preferredAbbreviation>Name</preferredAbbreviation>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Der Name ist wie im Handelsregister eingetragen aufzuführen."/>
+<property name="DE_ATTR_NAME" value="Rechtlicher Name"/>
+<property name="EN_ATTR_COMMENT" value="Der Name ist wie im Handelsregister eingetragen aufzuführen."/>
+<property name="EN_ATTR_NAME" value="Legal Name"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Region" id="AC494A7F-B089-6AD2-DB08-576B7B752449">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:33:34 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Region"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Region"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Subregion" id="D30DE2B8-33ED-CFBE-47BF-241A12C96898">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:33:48 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Subregion"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Subregion"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gebiet" id="987AE8A4-5475-3F7B-9C15-E185259B2C0B">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:34:42 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gebiet"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Territory"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Landesteil" id="B8307031-0479-C3BC-FE4D-BB1E9C2694AA">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:34:12 UTC</createdTime>
+<comment><![CDATA[Nur wenn das Land noch in Landesteile unterteilt ist.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Nur wenn das Land noch in Landesteile unterteilt ist.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Only if the country is still divided into parts.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Nur wenn das Land noch in Landesteile unterteilt ist."/>
+<property name="DE_ATTR_NAME" value="Landesteil"/>
+<property name="EN_ATTR_COMMENT" value="Nur wenn das Land noch in Landesteile unterteilt ist."/>
+<property name="EN_ATTR_NAME" value="Country region"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Land" id="0931B5DE-1560-7491-CE94-6F218AABE8F3">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:33:54 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Land"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Country"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Telefon" id="AB2B9B89-AB7D-2D63-7296-F7CCEA12FB71">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:34:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Telefon"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Phone"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Email" id="98FAC4E2-B379-935E-FD68-4B21914B3AB8">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:35:37 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Email"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Email"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fax" id="EBEAECE2-553E-AC55-BF27-BE9CA5210B05">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:35:01 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Fax"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Fax"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Website" id="95B732D7-4D2D-5BF0-C870-8BB7F82ED206">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:35:47 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Website"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Website"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Accountlevel" id="B90168C7-D1BF-C18B-4524-12A3FD289191">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:42:05 UTC</createdTime>
+<comment><![CDATA[Hierarchie der Accounts. Bsp: Trade Organization (Key Account), Party, Customer/Debitor (System MS CRM = Debtor), Prospect]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Hierarchie der Accounts. Bsp: Trade Organization (Key Account), Party, Customer/Debitor (System MS CRM = Debtor), Prospect
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Hierarchy of accounts. Example Trade Organization (Key Account), Party, Customer/Debitor (System MS CRM = Debtor), Prospect
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Hierarchie der Accounts. Bsp: Trade Organization (Key Account), Party, Customer/Debitor (System MS CRM = Debtor), Prospect"/>
+<property name="DE_ATTR_NAME" value="Accountlevel"/>
+<property name="EN_ATTR_COMMENT" value="Hierarchie der Accounts. Bsp: Trade Organization (Key Account), Party, Customer/Debitor (System MS CRM = Debtor), Prospect"/>
+<property name="EN_ATTR_NAME" value="Account level"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Klassifikationsgruppe" id="15029D21-FFF9-02F2-5FFB-771D44E524DC">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:36:01 UTC</createdTime>
+<comment><![CDATA[Classification Group, Bsp: Key Account, Headquarters, Agent,...
+Entspricht weitgehen den Subtypen der Accountrolle.
+
+08.05.19: Kann vermutlich gelöscht werden, weil über Subtypen abgedeckt. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Classification Group, Bsp: Key Account, Headquarters, Agent,...
+Entspricht weitgehen den Subtypen der Accountrolle.
+
+08.05.19: Kann vermutlich gelöscht werden, weil über Subtypen abgedeckt. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Classification Group, e.g. Key Account, Headquarters, Agent,...
+Corresponds largely to the subtypes of the account control.
+
+08.05.19: Can probably be deleted because it is covered by subtypes
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Classification Group, Bsp: Key Account, Headquarters, Agent,... Entspricht weitgehen den Subtypen der Accountrolle.  08.05.19: Kann vermutlich gelöscht werden, weil über Subtypen abgedeckt. "/>
+<property name="DE_ATTR_NAME" value="Klassifikationsgruppe"/>
+<property name="EN_ATTR_COMMENT" value="Classification Group, Bsp: Key Account, Headquarters, Agent,... Entspricht weitgehen den Subtypen der Accountrolle.  08.05.19: Kann vermutlich gelöscht werden, weil über Subtypen abgedeckt. "/>
+<property name="EN_ATTR_NAME" value="Classification Group"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verantwortung" id="ADAA6A10-0462-64E6-1CF7-ACE42D305A06">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:43:43 UTC</createdTime>
+<comment><![CDATA[Responsible; zuständiger Point of Sales. Verkäufer welcher die Daten zu pflegen hat. Kundenkontakt. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Responsible; zuständiger Point of Sales. Verkäufer welcher die Daten zu pflegen hat. Kundenkontakt. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Responsible; responsible point of sales. Seller who has to maintain the data. Customer contact
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Responsible; zuständiger Point of Sales. Verkäufer welcher die Daten zu pflegen hat. Kundenkontakt. "/>
+<property name="DE_ATTR_NAME" value="Verantwortung"/>
+<property name="EN_ATTR_COMMENT" value="Responsible; zuständiger Point of Sales. Verkäufer welcher die Daten zu pflegen hat. Kundenkontakt. "/>
+<property name="EN_ATTR_NAME" value="Accountability"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Owner" id="778C4E9C-5329-A080-78ED-587336A71FAB">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:42:49 UTC</createdTime>
+<comment><![CDATA[Auf Land geschlüsselt. Owner aus Land X kann nur Accounts aus Land X sehen. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Auf Land geschlüsselt. Owner aus Land X kann nur Accounts aus Land X sehen. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Classified by land. Owner from country X can only see accounts from country X
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Auf Land geschlüsselt. Owner aus Land X kann nur Accounts aus Land X sehen. "/>
+<property name="DE_ATTR_NAME" value="Owner"/>
+<property name="EN_ATTR_COMMENT" value="Auf Land geschlüsselt. Owner aus Land X kann nur Accounts aus Land X sehen. "/>
+<property name="EN_ATTR_NAME" value="Owner"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Status" id="16D926BE-91E3-4BAE-4EA8-A036135D9AEB">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:44:26 UTC</createdTime>
+<comment><![CDATA[Bsp: active]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Bsp: active
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Example: active
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Bsp: active"/>
+<property name="DE_ATTR_NAME" value="Status"/>
+<property name="EN_ATTR_COMMENT" value="Bsp: active"/>
+<property name="EN_ATTR_NAME" value="Status"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verantwortliche Organisation" id="E93E688F-91B7-C9CF-22AE-D49CC2C9DEFA">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 06:44:50 UTC</createdTime>
+<comment><![CDATA[Responsible Organization; wichtig um Vertriebsnetzwerk abbilden/verstehen zu können. Bsp: Komax AG (mit Name, ID, Classification)
+
+Genau im Modell abbilden mit Verbindungen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Responsible Organization; wichtig um Vertriebsnetzwerk abbilden/verstehen zu können. Bsp: Komax AG (mit Name, ID, Classification)
+
+Genau im Modell abbilden mit Verbindungen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Responsible Organization; important to map/understand sales network. Example: Komax AG (with name, ID, classification)
+
+Modeling Exactly in the Model with Connections
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Responsible Organization; wichtig um Vertriebsnetzwerk abbilden/verstehen zu können. Bsp: Komax AG (mit Name, ID, Classification)  Genau im Modell abbilden mit Verbindungen"/>
+<property name="DE_ATTR_NAME" value="Verantwortliche Organisation"/>
+<property name="EN_ATTR_COMMENT" value="Responsible Organization; wichtig um Vertriebsnetzwerk abbilden/verstehen zu können. Bsp: Komax AG (mit Name, ID, Classification)  Genau im Modell abbilden mit Verbindungen"/>
+<property name="EN_ATTR_NAME" value="Responsible organization"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

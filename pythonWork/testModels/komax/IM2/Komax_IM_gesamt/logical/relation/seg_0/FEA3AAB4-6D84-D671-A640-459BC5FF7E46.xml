@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_509" directorySegmentName="seg_0" id="FEA3AAB4-6D84-D671-A640-459BC5FF7E46">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-04 12:00:02 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>entspricht</nameOnSource>
+<nameOnTarget>entspricht</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>DB18D03B-5696-84AA-8958-EF0306415329</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>B5749CC0-29BA-588E-7FCC-1C29A9286053</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="entspricht"/>
+<property name="DE_RELA_TEXT_TO" value="entspricht"/>
+<property name="EN_RELA_TEXT_FROM" value="**corresponds"/>
+<property name="EN_RELA_TEXT_TO" value="**corresponds"/>
+</propertyMap>
+</Relation>

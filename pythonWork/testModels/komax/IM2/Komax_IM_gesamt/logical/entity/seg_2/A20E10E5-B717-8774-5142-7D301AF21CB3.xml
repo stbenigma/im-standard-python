@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="A20E10E5-B717-8774-5142-7D301AF21CB3" name="Handelsvorschrift">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-23 14:02:09 UTC</createdTime>
+<comment><![CDATA[Handelshemmnis als Überbegriff für Typen von Bewilligungen, Zertifikate, Sanktionen... 
+
+Art der Bewilligung die für bestimmte Produkte gefordert wird.
+Beispiel Dual Use: Militär, Civil, CE Dokument, NZE, US Re Export Recht
+
+
+Bewilligungen können von Zollinformationen abhängig sein, müssen aber nicht. 
+
+abhängig: Sanktion, CE (Sicherheitszertifizierung) 
+nicht abhängig: Dual Use, Konfliktmineralien, Reach (Chemikalien Verordnung)
+Gebühren, Bewilligungen, Meldepflicht, Nicht positionsbezogene Regeln, Abfälle (Recycling), Kontingente, Cites (Artenschutz): Unterschiedliche Arten von Handelshemmnisse
+
+
+13.05.19: Namensänderung von Handelshemmnis zu Handelsvorschrift
+
+Güterbezogene Sanktionslisten werden auch als Handelshemmnisse bezeichnet. (Exportbeschränkungen) Vom Zoll ausgegebene Strafzoll oder Verbotslisten.
+
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Handelshemmnis als Überbegriff für Typen von Bewilligungen, Zertifikate, Sanktionen... 
+
+Art der Bewilligung die für bestimmte Produkte gefordert wird.
+Beispiel Dual Use: Militär, Civil, CE Dokument, NZE, US Re Export Recht
+
+
+Bewilligungen können von Zollinformationen abhängig sein, müssen aber nicht. 
+
+abhängig: Sanktion, CE (Sicherheitszertifizierung) 
+nicht abhängig: Dual Use, Konfliktmineralien, Reach (Chemikalien Verordnung)
+Gebühren, Bewilligungen, Meldepflicht, Nicht positionsbezogene Regeln, Abfälle (Recycling), Kontingente, Cites (Artenschutz): Unterschiedliche Arten von Handelshemmnisse
+
+
+13.05.19: Namensänderung von Handelshemmnis zu Handelsvorschrift
+
+Güterbezogene Sanktionslisten werden auch als Handelshemmnisse bezeichnet. (Exportbeschränkungen) Vom Zoll ausgegebene Strafzoll oder Verbotslisten.
+
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Trade barrier as an umbrella term for types of permits, certificates, sanctions..
+
+Type of authorisation required for certain products.
+Example Dual Use: Military, Civil, CE Document, NZE, US Re Export Law
+
+
+Authorisations may or may not depend on customs information
+
+dependent: Sanction, CE (safety certification)
+not dependent: Dual use, conflict minerals, Reach (chemicals ordinance)
+Fees, permits, reporting requirements, non-item rules, waste (recycling), quotas, Cites (species protection): Different types of trade barriers
+
+
+13.05.19: Change of name from trade barrier to trade regulation
+
+Goods related sanction lists are also referred to as trade barriers. (Export restrictions) Customs duty or prohibition lists issued by customs.
+
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Handelshemmnis als Überbegriff für Typen von Bewilligungen, Zertifikate, Sanktionen...   Art der Bewilligung die für bestimmte Produkte gefordert wird. Beispiel Dual Use: Militär, Civil, CE Dokument, NZE, US Re Export Recht   Bewilligungen können von Zollinformationen abhängig sein, müssen aber nicht.   abhängig: Sanktion, CE (Sicherheitszertifizierung)  nicht abhängig: Dual Use, Konfliktmineralien, Reach (Chemikalien Verordnung) Gebühren, Bewilligungen, Meldepflicht, Nicht positionsbezogene Regeln, Abfälle (Recycling), Kontingente, Cites (Artenschutz): Unterschiedliche Arten von Handelshemmnisse   13.05.19: Namensänderung von Handelshemmnis zu Handelsvorschrift  Güterbezogene Sanktionslisten werden auch als Handelshemmnisse bezeichnet. (Exportbeschränkungen) Vom Zoll ausgegebene Strafzoll oder Verbotslisten.  "/>
+<property name="DE_ENTI_NAME" value="Handelsvorschrift"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Handelshemmnis als Überbegriff für Typen von Bewilligungen, Zertifikate, Sanktionen...   Art der Bewilligung die für bestimmte Produkte gefordert wird. Beispiel Dual Use: Militär, Civil, CE Dokument, NZE, US Re Export Recht   Bewilligungen können von Zollinformationen abhängig sein, müssen aber nicht.   abhängig: Sanktion, CE (Sicherheitszertifizierung)  nicht abhängig: Dual Use, Konfliktmineralien, Reach (Chemikalien Verordnung) Gebühren, Bewilligungen, Meldepflicht, Nicht positionsbezogene Regeln, Abfälle (Recycling), Kontingente, Cites (Artenschutz): Unterschiedliche Arten von Handelshemmnisse   13.05.19: Namensänderung von Handelshemmnis zu Handelsvorschrift  Güterbezogene Sanktionslisten werden auch als Handelshemmnisse bezeichnet. (Exportbeschränkungen) Vom Zoll ausgegebene Strafzoll oder Verbotslisten.  "/>
+<property name="EN_ENTI_NAME" value="Trade rule"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Beschreibung" id="6DBDB08F-07A8-E451-E80B-FB6F21FCE696">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-02 12:25:14 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Description"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

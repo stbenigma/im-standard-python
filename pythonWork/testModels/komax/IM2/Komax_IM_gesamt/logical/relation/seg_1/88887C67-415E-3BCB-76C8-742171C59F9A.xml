@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_559" directorySegmentName="seg_1" id="88887C67-415E-3BCB-76C8-742171C59F9A">
+<createdBy>toz</createdBy>
+<createdTime>2018-09-07 08:19:22 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>erreicht von??</nameOnSource>
+<nameOnTarget>verfügt über</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E60ECE48-3715-DD48-1138-C5CBE7CD008A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>40167319-1E73-943A-135D-1082B2062C5E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erreicht von??"/>
+<property name="DE_RELA_TEXT_TO" value="verfügt über"/>
+<property name="EN_RELA_TEXT_FROM" value="**achieved by?"/>
+<property name="EN_RELA_TEXT_TO" value="**has"/>
+</propertyMap>
+</Relation>

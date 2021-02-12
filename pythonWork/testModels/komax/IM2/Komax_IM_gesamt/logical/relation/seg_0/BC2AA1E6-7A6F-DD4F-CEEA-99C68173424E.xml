@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_6" directorySegmentName="seg_0" id="BC2AA1E6-7A6F-DD4F-CEEA-99C68173424E">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 09:40:19 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>enthält</nameOnSource>
+<nameOnTarget>zugeteilt zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>EE86DCD5-567F-EE5C-AA1E-6D8109D08E86</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C42BFB82-EE26-1912-CF8B-D46157E901CB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="enthält"/>
+<property name="DE_RELA_TEXT_TO" value="zugeteilt zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**contains"/>
+<property name="EN_RELA_TEXT_TO" value="**allotted to"/>
+</propertyMap>
+</Relation>

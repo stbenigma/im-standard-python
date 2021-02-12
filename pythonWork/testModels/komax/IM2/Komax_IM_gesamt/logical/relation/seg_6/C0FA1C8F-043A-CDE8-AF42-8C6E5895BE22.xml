@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_729" directorySegmentName="seg_6" id="C0FA1C8F-043A-CDE8-AF42-8C6E5895BE22">
+<createdBy>toz</createdBy>
+<createdTime>2019-06-28 13:10:39 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>führt aus</nameOnSource>
+<nameOnTarget>ausführbar mit</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>37771BD2-CED0-E7CE-EA34-48F277C6BAE8</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>7116F9DF-3C2C-27A5-DC67-1E44E4296BE4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt aus"/>
+<property name="DE_RELA_TEXT_TO" value="ausführbar mit"/>
+<property name="EN_RELA_TEXT_FROM" value="**executes"/>
+<property name="EN_RELA_TEXT_TO" value="**executable with"/>
+</propertyMap>
+</Relation>

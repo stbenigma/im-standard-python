@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_285" directorySegmentName="seg_2" id="50032FDC-9AB3-F157-90C1-491EBF281F78">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 12:19:37 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>hat</nameOnSource>
+<nameOnTarget>abgeschlossen mit</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C2200CC5-6BF9-C0BB-46BB-0DA2882FC6B4</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FEE8AE14-8EB9-D61E-F940-803D1B683EF3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="hat"/>
+<property name="DE_RELA_TEXT_TO" value="abgeschlossen mit"/>
+<property name="EN_RELA_TEXT_FROM" value="**has"/>
+<property name="EN_RELA_TEXT_TO" value="**completed with"/>
+</propertyMap>
+</Relation>

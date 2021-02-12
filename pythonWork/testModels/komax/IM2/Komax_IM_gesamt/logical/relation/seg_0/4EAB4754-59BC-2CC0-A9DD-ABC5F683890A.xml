@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_69" directorySegmentName="seg_0" id="4EAB4754-59BC-2CC0-A9DD-ABC5F683890A">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:52:03 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>entwickelt mit</nameOnSource>
+<nameOnTarget>entwickelt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>A017A17E-FBAC-DC4A-5DF8-D624D8A4E971</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5C223B23-A118-8C6B-778F-F6B9B34DC6D8</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="entwickelt mit"/>
+<property name="DE_RELA_TEXT_TO" value="entwickelt"/>
+<property name="EN_RELA_TEXT_FROM" value="**developed with"/>
+<property name="EN_RELA_TEXT_TO" value="**evolved"/>
+</propertyMap>
+</Relation>

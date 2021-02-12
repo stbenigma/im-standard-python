@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_38" directorySegmentName="seg_0" id="2E24CB44-8223-E6B8-0311-0B24F9DC4D48">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-15 13:30:10 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>ersetzt</nameOnSource>
+<nameOnTarget>ersetzt durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>42962358-34D1-D411-E156-0FE27E55F2DA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>42962358-34D1-D411-E156-0FE27E55F2DA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ersetzt"/>
+<property name="DE_RELA_TEXT_TO" value="ersetzt durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**refunded"/>
+<property name="EN_RELA_TEXT_TO" value="**replaced by"/>
+</propertyMap>
+</Relation>

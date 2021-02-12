@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1AB5EEDA-4D4C-8BA5-1F38-138242EC4263" name="Lieferant Rechnung">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 13:12:52 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value=""/>
+<property name="DE_ENTI_NAME" value="Lieferant Rechnung"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value=""/>
+<property name="EN_ENTI_NAME" value="**Supplier Invoice"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Ursprungsnachweis" id="E90BC34E-F875-0844-1A59-71DC14B75103">
+<createdBy>toz</createdBy>
+<createdTime>2018-08-28 14:26:25 UTC</createdTime>
+<comment><![CDATA[Muss auf Rechnung erwähnt sein, damit Ursprungsland bestätigt ist. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Muss auf Rechnung erwähnt sein, damit Ursprungsland bestätigt ist. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Must be mentioned on invoice for country of origin to be confirmed
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Muss auf Rechnung erwähnt sein, damit Ursprungsland bestätigt ist. "/>
+<property name="DE_ATTR_NAME" value="Ursprungsnachweis"/>
+<property name="EN_ATTR_COMMENT" value="Muss auf Rechnung erwähnt sein, damit Ursprungsland bestätigt ist. "/>
+<property name="EN_ATTR_NAME" value="*Country of origin"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

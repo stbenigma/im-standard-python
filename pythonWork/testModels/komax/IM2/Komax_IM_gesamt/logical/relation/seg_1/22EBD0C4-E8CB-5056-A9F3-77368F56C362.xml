@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_173" directorySegmentName="seg_1" id="22EBD0C4-E8CB-5056-A9F3-77368F56C362">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 13:07:16 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bewirtschaftet</nameOnSource>
+<nameOnTarget>bewirtschaftet von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>C2200CC5-6BF9-C0BB-46BB-0DA2882FC6B4</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6018D2F4-3A17-7A2C-B062-2EE7FABEFC86</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bewirtschaftet"/>
+<property name="DE_RELA_TEXT_TO" value="bewirtschaftet von"/>
+<property name="EN_RELA_TEXT_FROM" value="**farmed"/>
+<property name="EN_RELA_TEXT_TO" value="**farmed by"/>
+</propertyMap>
+</Relation>

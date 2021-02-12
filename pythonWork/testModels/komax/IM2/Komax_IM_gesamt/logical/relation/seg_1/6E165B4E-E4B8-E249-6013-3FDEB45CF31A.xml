@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_785" directorySegmentName="seg_1" id="6E165B4E-E4B8-E249-6013-3FDEB45CF31A">
+<createdBy>toz</createdBy>
+<createdTime>2019-12-10 08:20:37 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>führt zu</nameOnSource>
+<nameOnTarget>abgeleitet aus</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F3C55822-75BE-ABC0-13F4-E8C78862CD0C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DAB4A86D-FF4F-6742-53CF-2B87FEAC5495</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

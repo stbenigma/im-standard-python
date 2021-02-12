@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_123" directorySegmentName="seg_1" id="37F88A09-29BB-A452-0C33-31339F92DFD0">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 12:39:06 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bestimmt durch</nameOnSource>
+<nameOnTarget>bestimmt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>6AA729F7-FCC6-EECB-0809-A971F811DCCA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>71E73D76-C243-B653-0962-D7DC3B0E1B9D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bestimmt durch"/>
+<property name="DE_RELA_TEXT_TO" value="bestimmt"/>
+<property name="EN_RELA_TEXT_FROM" value="**determined by"/>
+<property name="EN_RELA_TEXT_TO" value="**definite"/>
+</propertyMap>
+</Relation>

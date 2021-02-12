@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_169" directorySegmentName="seg_1" id="0131AB21-2D11-999D-57C5-1F65AEE19435">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 12:44:34 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>DF790842-644E-928A-156F-0BD456DC019A</arc>
+<identifying>false</identifying>
+<nameOnSource>gillt für</nameOnSource>
+<nameOnTarget>hat</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>ED87BE0E-080C-FD1D-25FE-1CA2CBC3BECC</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>40167319-1E73-943A-135D-1082B2062C5E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gillt für"/>
+<property name="DE_RELA_TEXT_TO" value="hat"/>
+<property name="EN_RELA_TEXT_FROM" value="**applies to"/>
+<property name="EN_RELA_TEXT_TO" value="**has"/>
+</propertyMap>
+</Relation>

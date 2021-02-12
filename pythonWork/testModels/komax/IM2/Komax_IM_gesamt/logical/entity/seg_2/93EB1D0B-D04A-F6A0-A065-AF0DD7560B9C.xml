@@ -1,0 +1,155 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="93EB1D0B-D04A-F6A0-A065-AF0DD7560B9C" name="Zollinformation">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-23 13:55:33 UTC</createdTime>
+<comment><![CDATA[Zollansatz = Gewichtszoll oder Wertzoll
+
+Informationen, welche der Zolltarifposition angehängt sind und relevant für die Ansatzbestimmung. ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Zollansatz = Gewichtszoll oder Wertzoll
+
+Informationen, welche der Zolltarifposition angehängt sind und relevant für die Ansatzbestimmung. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Rate of duty = Weight duty or ad valorem duty
+
+Information attached to the tariff item and relevant to the determination of the charge
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Zollansatz = Gewichtszoll oder Wertzoll  Informationen, welche der Zolltarifposition angehängt sind und relevant für die Ansatzbestimmung. "/>
+<property name="DE_ENTI_NAME" value="Zollinformation"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Zollansatz = Gewichtszoll oder Wertzoll  Informationen, welche der Zolltarifposition angehängt sind und relevant für die Ansatzbestimmung. "/>
+<property name="EN_ENTI_NAME" value="Customs information"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Zollansatz" id="BB89E875-1A0C-91AC-39F8-117400355D27">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-23 13:55:51 UTC</createdTime>
+<comment><![CDATA[Gewichtszoll oder Wertzoll]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Gewichtszoll oder Wertzoll
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Weight duty or ad valorem duty
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Gewichtszoll oder Wertzoll"/>
+<property name="DE_ATTR_NAME" value="Zollansatz"/>
+<property name="EN_ATTR_COMMENT" value="Gewichtszoll oder Wertzoll"/>
+<property name="EN_ATTR_NAME" value="**Rate of duty"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültigkeitsperiode" id="6A44DDD5-1FAA-DB83-5DDB-02D9A3690B89">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-02 11:56:13 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültigkeitsperiode"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Validity period"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Eigenmasse Typ" id="C6890562-9BD9-34F0-9250-9AE984618B9A">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 08:13:26 UTC</createdTime>
+<comment><![CDATA[Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**What kind of information must still be recorded in the declaration?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. "/>
+<property name="DE_ATTR_NAME" value="Eigenmasse Typ"/>
+<property name="EN_ATTR_COMMENT" value="Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. "/>
+<property name="EN_ATTR_NAME" value="*Weight Type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Zusatzmenge Typ" id="0686BFE5-F280-468C-6C0C-383431527FD8">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 08:14:32 UTC</createdTime>
+<comment><![CDATA[Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**What kind of information must still be recorded in the declaration?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. "/>
+<property name="DE_ATTR_NAME" value="Zusatzmenge Typ"/>
+<property name="EN_ATTR_COMMENT" value="Welche Art von Angaben müssen bei der Deklaration noch erfasst werden. "/>
+<property name="EN_ATTR_NAME" value="**Additional quantity Type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_247" directorySegmentName="seg_2" id="E33C1A89-492F-03C2-0F86-7ACA86E3D74F">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 09:26:19 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<arc>EC36506C-E227-9DF3-FDC4-D4A4F3453B28</arc>
+<identifying>false</identifying>
+<nameOnSource>bestellt in</nameOnSource>
+<nameOnTarget>enthält</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>93CE786E-E823-3F99-9338-0CA3CE563C71</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>01F3B6D3-0515-11D5-AE7E-21E043ADC238</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bestellt in"/>
+<property name="DE_RELA_TEXT_TO" value="enthält"/>
+<property name="EN_RELA_TEXT_FROM" value="**ordered in"/>
+<property name="EN_RELA_TEXT_TO" value="contains"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_547" directorySegmentName="seg_4" id="88DF4337-30BD-38BA-AD18-8AC183DB373A">
+<createdBy>toz</createdBy>
+<createdTime>2018-09-05 13:27:06 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>34280657-D251-1BAC-9618-A88C56E7A950</arc>
+<identifying>false</identifying>
+<nameOnSource>ist</nameOnSource>
+<nameOnTarget>beschaffbar als</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>F4CA1E5B-7A61-5209-08BC-4A20E86A3309</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>6726960C-4D47-934B-E47E-82515F0444E7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ist"/>
+<property name="DE_RELA_TEXT_TO" value="beschaffbar als"/>
+<property name="EN_RELA_TEXT_FROM" value="is"/>
+<property name="EN_RELA_TEXT_TO" value="*available as"/>
+</propertyMap>
+</Relation>

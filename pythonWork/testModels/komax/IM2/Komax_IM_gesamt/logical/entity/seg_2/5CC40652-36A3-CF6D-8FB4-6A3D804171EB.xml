@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="5CC40652-36A3-CF6D-8FB4-6A3D804171EB" name="Kostenträger">
+<createdBy>toz</createdBy>
+<createdTime>2018-06-04 13:50:04 UTC</createdTime>
+<comment><![CDATA[Notizen 04.06.18: Für betriebliche Buchhaltung. Im Reporting verwendet. Sammelt / konsolidiert alle Kosten die anfallen.
+Direkte Kosten, beschreibt für was die Kosten anfallen. 
+Kostenträger haben Hierarchie. Je nach Verwendung ändert sich Kostenträger. Überschreibt Sachmerkmal gesteuerter Kostenträger.
+Zuteilung Kostenträger bei Fixierung Stückliste.
+
+
+
+
+Unterschiedliche Arten für Projekt, Produkmanagement, Unterhalt, zu klären
+Kostenträger Art relevant für Rechnungslegung. Wird unterschiedlich aktiviert.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Notizen 04.06.18: Für betriebliche Buchhaltung. Im Reporting verwendet. Sammelt / konsolidiert alle Kosten die anfallen.
+Direkte Kosten, beschreibt für was die Kosten anfallen. 
+Kostenträger haben Hierarchie. Je nach Verwendung ändert sich Kostenträger. Überschreibt Sachmerkmal gesteuerter Kostenträger.
+Zuteilung Kostenträger bei Fixierung Stückliste.
+
+
+
+
+Unterschiedliche Arten für Projekt, Produkmanagement, Unterhalt, zu klären
+Kostenträger Art relevant für Rechnungslegung. Wird unterschiedlich aktiviert.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Notes 04.06.18: For operational accounting. Used in reporting. Collects / consolidates all costs incurred.
+Direct costs, describes what the costs are for
+Cost objects have a hierarchy. Cost objects change depending on how they are used. Overwrites the characteristics of controlled cost objects.
+Allocation of cost objects in BOM fixing.
+
+
+
+
+Different types for project, product management, maintenance, to clarify
+Cost object type relevant for accounting. Activated differently.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>9C5DA5FB-3A53-0C4C-C27B-787ABBD0F54B</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Cost object</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Notizen 04.06.18: Für betriebliche Buchhaltung. Im Reporting verwendet. Sammelt / konsolidiert alle Kosten die anfallen. Direkte Kosten, beschreibt für was die Kosten anfallen.  Kostenträger haben Hierarchie. Je nach Verwendung ändert sich Kostenträger. Überschreibt Sachmerkmal gesteuerter Kostenträger. Zuteilung Kostenträger bei Fixierung Stückliste.     Unterschiedliche Arten für Projekt, Produkmanagement, Unterhalt, zu klären Kostenträger Art relevant für Rechnungslegung. Wird unterschiedlich aktiviert."/>
+<property name="DE_ENTI_NAME" value="Kostenträger"/>
+<property name="DE_ENTI_SYNONYM" value="Cost object"/>
+<property name="EN_ENTI_COMMENT" value="Notizen 04.06.18: Für betriebliche Buchhaltung. Im Reporting verwendet. Sammelt / konsolidiert alle Kosten die anfallen. Direkte Kosten, beschreibt für was die Kosten anfallen.  Kostenträger haben Hierarchie. Je nach Verwendung ändert sich Kostenträger. Überschreibt Sachmerkmal gesteuerter Kostenträger. Zuteilung Kostenträger bei Fixierung Stückliste.     Unterschiedliche Arten für Projekt, Produkmanagement, Unterhalt, zu klären Kostenträger Art relevant für Rechnungslegung. Wird unterschiedlich aktiviert."/>
+<property name="EN_ENTI_NAME" value="Cost object"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Cost object"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nummer" id="131F37A1-EFB8-AFFD-36D4-DF24494BF2F3">
+<createdBy>toz</createdBy>
+<createdTime>2018-06-04 13:50:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Nummer"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bezeichnung" id="94AA2EB7-3B10-E9CB-1D67-4724DEF817CE">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 08:10:30 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

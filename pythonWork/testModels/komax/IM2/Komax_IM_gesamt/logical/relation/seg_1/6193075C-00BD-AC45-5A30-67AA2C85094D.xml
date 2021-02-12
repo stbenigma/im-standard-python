@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_242" directorySegmentName="seg_1" id="6193075C-00BD-AC45-5A30-67AA2C85094D">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 09:15:30 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verursacht</nameOnSource>
+<nameOnTarget>ist für</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5F9F0A5C-012D-7212-9A96-B266394944E3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5D1C949C-05DB-C244-7C1C-1ED7A4849C1B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verursacht"/>
+<property name="DE_RELA_TEXT_TO" value="ist für"/>
+<property name="EN_RELA_TEXT_FROM" value="**induced"/>
+<property name="EN_RELA_TEXT_TO" value="**is for"/>
+</propertyMap>
+</Relation>

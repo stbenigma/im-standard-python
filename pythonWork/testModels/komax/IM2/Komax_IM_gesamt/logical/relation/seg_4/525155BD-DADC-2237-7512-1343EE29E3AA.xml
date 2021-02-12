@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_6v1" directorySegmentName="seg_4" id="525155BD-DADC-2237-7512-1343EE29E3AA">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 10:17:57 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>geführt von [T]</nameOnSource>
+<nameOnTarget>führt [T]</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5CBE5D96-2F45-2757-E01F-838A7DC62369</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DF191A94-B03B-DFEF-C2F7-9833942CAEE6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="geführt von [T]"/>
+<property name="DE_RELA_TEXT_TO" value="führt [T]"/>
+<property name="EN_RELA_TEXT_FROM" value="**led by [T]"/>
+<property name="EN_RELA_TEXT_TO" value="**leads [T]"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="ist Stv (J/N)" id="B43D4010-AB6F-D7B0-63CE-740B1296CB04">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 10:23:06 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</attribute>
+</attributes>
+</Relation>

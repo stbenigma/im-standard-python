@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="40167319-1E73-943A-135D-1082B2062C5E" name="Personenrolle">
+<createdBy>toz</createdBy>
+<createdTime>2018-06-04 14:31:32 UTC</createdTime>
+<comment><![CDATA[27.05.19:
+Korrekter Name: Account-Person-Rolle
+Die Rolle, welche eine Person für einen Account wahrnimmt.
+
+Account-Person-Rolle, mögliche Attribute:
+Gültig ab
+Gültig bis
+Verknüpfung zu Komax Fachbereich
+Kompetenz Level
+Vorgesetzter
+...
+
+
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+27.05.19:
+Korrekter Name: Account-Person-Rolle
+Die Rolle, welche eine Person für einen Account wahrnimmt.
+
+Account-Person-Rolle, mögliche Attribute:
+Gültig ab
+Gültig bis
+Verknüpfung zu Komax Fachbereich
+Kompetenz Level
+Vorgesetzter
+...
+
+
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**27.05.19:
+Correct Name: Account Person Role
+The role that a person performs for an account.
+
+Account person role, possible attributes:
+Valid from
+Valid until
+Link to Komax department
+Competence Level
+Supervisor
+...
+
+
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="27.05.19: Korrekter Name: Account-Person-Rolle Die Rolle, welche eine Person für einen Account wahrnimmt.  Account-Person-Rolle, mögliche Attribute: Gültig ab Gültig bis Verknüpfung zu Komax Fachbereich Kompetenz Level Vorgesetzter ...   "/>
+<property name="DE_ENTI_NAME" value="Personenrolle"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="27.05.19: Korrekter Name: Account-Person-Rolle Die Rolle, welche eine Person für einen Account wahrnimmt.  Account-Person-Rolle, mögliche Attribute: Gültig ab Gültig bis Verknüpfung zu Komax Fachbereich Kompetenz Level Vorgesetzter ...   "/>
+<property name="EN_ENTI_NAME" value="Person role"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Typ" id="B6C5449C-ED0C-23B8-465B-A021631346AB">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-29 07:37:26 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Typ"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

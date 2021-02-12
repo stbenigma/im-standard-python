@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_353" directorySegmentName="seg_3" id="081E8A93-A100-726D-01DF-F432014B02EF">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-08 14:41:55 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>läuft in</nameOnSource>
+<nameOnTarget>bestückt mit</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>FBC3C3EF-BD66-BDE8-C4F5-A33E0F762965</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>02BAA61C-E5C4-8E48-085E-C51DA4774854</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="läuft in"/>
+<property name="DE_RELA_TEXT_TO" value="bestückt mit"/>
+<property name="EN_RELA_TEXT_FROM" value="**runs in"/>
+<property name="EN_RELA_TEXT_TO" value="**equipped with"/>
+</propertyMap>
+</Relation>

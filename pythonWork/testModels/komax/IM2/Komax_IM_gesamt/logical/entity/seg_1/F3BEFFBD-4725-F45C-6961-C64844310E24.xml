@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="F3BEFFBD-4725-F45C-6961-C64844310E24" name="Regional List Price (RLP)">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 12:12:32 UTC</createdTime>
+<comment><![CDATA[18.10.2019: Ist noch nicht implementiert. Idee: RLP soll von KomaxGlobal als Steuergrösse verwendet werden können, um den lokalen Einheiten als Basis für ihre LLP Berechnung zu dienen. Heute sehr wenig Einfluss auf LLP --> Wildwuchs. RLP ist eigentlich ein Workaround, weil LLP nicht steuerbar ist. 
+]]></comment>
+<notes><![CDATA[Region[DE_ENTI_COMMENT[
+18.10.2019: Ist noch nicht implementiert. Idee: RLP soll von KomaxGlobal als Steuergrösse verwendet werden können, um den lokalen Einheiten als Basis für ihre LLP Berechnung zu dienen. Heute sehr wenig Einfluss auf LLP --> Wildwuchs. RLP ist eigentlich ein Workaround, weil LLP nicht steuerbar ist. 
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**18.10.2019: Not yet implemented. Idea: KomaxGlobal should be able to use RLP as a control variable to serve local units as a basis for their LLP calculations. Today very little influence on LLP --> wild growth. RLP is actually a workaround because LLP is not controllable
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>DAB4A86D-FF4F-6742-53CF-2B87FEAC5495</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>RLP</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="18.10.2019: Ist noch nicht implementiert. Idee: RLP soll von KomaxGlobal als Steuergrösse verwendet werden können, um den lokalen Einheiten als Basis für ihre LLP Berechnung zu dienen. Heute sehr wenig Einfluss auf LLP --&gt; Wildwuchs. RLP ist eigentlich ein Workaround, weil LLP nicht steuerbar ist.  "/>
+<property name="DE_ENTI_NAME" value="Regional List Price (RLP)"/>
+<property name="DE_ENTI_SYNONYM" value="RLP"/>
+<property name="EN_ENTI_COMMENT" value="18.10.2019: Ist noch nicht implementiert. Idee: RLP soll von KomaxGlobal als Steuergrösse verwendet werden können, um den lokalen Einheiten als Basis für ihre LLP Berechnung zu dienen. Heute sehr wenig Einfluss auf LLP --&gt; Wildwuchs. RLP ist eigentlich ein Workaround, weil LLP nicht steuerbar ist.  "/>
+<property name="EN_ENTI_NAME" value="Regional List Price (RLP)"/>
+<property name="EN_ENTI_SYNONYM" value="**RLP"/>
+</propertyMap>
+</Entity>

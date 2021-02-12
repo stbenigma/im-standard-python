@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A8339C47-2475-DBAD-D82F-EF8339E7983E" name="Baugruppe (ALT)">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:46:10 UTC</createdTime>
+<comment><![CDATA[Besteht aus mehreren  Teilen (Baugruppen oder Einzelteile).
+Ist per se keine Mehrnutzen aus Kunden- oder Marketingsicht.
+Diese Aufteilung in Subteile ist für komax in irgend einem Prozess relevant (Fertigung, Garantier, Ersatzteilt...)
+
+Sie besteht zwingend aus mindstens einem Teil und/oder einer anderen Baugruppes
+
+Testing:
+Dummy Baugruppe, ist eine Baugruppe, die aber nicht zusammengebaut werden soll. Es ist aber wichtig. Stücklistenstrukturelement. CAD Baugruppe / Phantom Baugruppe / Strukturbaugruppe
+
+Basic Unit / Subunit ist eine Strukturierung für Vorfertigung und Modularisierung.
+
+
+Beispiel Testing:
+CT-45
+
+
+30.07.19: Neue Produktview enthält eine Baugruppe, deshalb diese auf "ALT" umgetauft. ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Besteht aus mehreren  Teilen (Baugruppen oder Einzelteile).
+Ist per se keine Mehrnutzen aus Kunden- oder Marketingsicht.
+Diese Aufteilung in Subteile ist für komax in irgend einem Prozess relevant (Fertigung, Garantier, Ersatzteilt...)
+
+Sie besteht zwingend aus mindstens einem Teil und/oder einer anderen Baugruppes
+
+Testing:
+Dummy Baugruppe, ist eine Baugruppe, die aber nicht zusammengebaut werden soll. Es ist aber wichtig. Stücklistenstrukturelement. CAD Baugruppe / Phantom Baugruppe / Strukturbaugruppe
+
+Basic Unit / Subunit ist eine Strukturierung für Vorfertigung und Modularisierung.
+
+
+Beispiel Testing:
+CT-45
+
+
+30.07.19: Neue Produktview enthält eine Baugruppe, deshalb diese auf "ALT" umgetauft. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Consists of several parts (assemblies or individual parts).
+Is per se no added value from the customer or marketing point of view.
+This division into sub-parts is relevant for komax in any process (production, warranty, spare parts, etc.)
+
+It must consist of at least one part and/or one other assembly
+
+Testing:
+Phantom assembly is an assembly that is not to be assembled. But it's important. BOM structural element. CAD assembly / phantom assembly / structural assembly
+
+Basic Unit / Subunit is a structuring for prefabrication and modularization.
+
+
+Example Testing:
+CT-45
+
+
+30.07.19: New product view contains an assembly, therefore it is renamed to "ALT"
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>05BDFF9D-255F-A674-3106-44244E8DF610</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Besteht aus mehreren  Teilen (Baugruppen oder Einzelteile). Ist per se keine Mehrnutzen aus Kunden- oder Marketingsicht. Diese Aufteilung in Subteile ist für komax in irgend einem Prozess relevant (Fertigung, Garantier, Ersatzteilt...)  Sie besteht zwingend aus mindstens einem Teil und/oder einer anderen Baugruppes  Testing: Dummy Baugruppe, ist eine Baugruppe, die aber nicht zusammengebaut werden soll. Es ist aber wichtig. Stücklistenstrukturelement. CAD Baugruppe / Phantom Baugruppe / Strukturbaugruppe  Basic Unit / Subunit ist eine Strukturierung für Vorfertigung und Modularisierung.   Beispiel Testing: CT-45   30.07.19: Neue Produktview enthält eine Baugruppe, deshalb diese auf &quot;ALT&quot; umgetauft. "/>
+<property name="DE_ENTI_NAME" value="Baugruppe (ALT)"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Besteht aus mehreren  Teilen (Baugruppen oder Einzelteile). Ist per se keine Mehrnutzen aus Kunden- oder Marketingsicht. Diese Aufteilung in Subteile ist für komax in irgend einem Prozess relevant (Fertigung, Garantier, Ersatzteilt...)  Sie besteht zwingend aus mindstens einem Teil und/oder einer anderen Baugruppes  Testing: Dummy Baugruppe, ist eine Baugruppe, die aber nicht zusammengebaut werden soll. Es ist aber wichtig. Stücklistenstrukturelement. CAD Baugruppe / Phantom Baugruppe / Strukturbaugruppe  Basic Unit / Subunit ist eine Strukturierung für Vorfertigung und Modularisierung.   Beispiel Testing: CT-45   30.07.19: Neue Produktview enthält eine Baugruppe, deshalb diese auf &quot;ALT&quot; umgetauft. "/>
+<property name="EN_ENTI_NAME" value="**Assembly (ALT)"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+</Entity>

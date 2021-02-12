@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_282" directorySegmentName="seg_2" id="31EFD08E-89A0-1E16-9A48-3EA1A647B465">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 12:04:05 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>instanziiert</nameOnSource>
+<nameOnTarget>versandt als</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>0E666CB3-92C7-90A2-478F-1917755CEBDA</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>4A6AD2A0-5D92-2748-B88D-ECEEF5CE1EE2</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="instanziiert"/>
+<property name="DE_RELA_TEXT_TO" value="versandt als"/>
+<property name="EN_RELA_TEXT_FROM" value="**instantiated"/>
+<property name="EN_RELA_TEXT_TO" value="**shipped as"/>
+</propertyMap>
+</Relation>

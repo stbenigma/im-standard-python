@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_382" directorySegmentName="seg_3" id="12027947-3098-BF3C-98F8-100EFF314FB9">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 16:45:16 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>lieferbar als</nameOnSource>
+<nameOnTarget>einsetzbar als</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>83CECA19-6EA8-1DE6-C0D0-B11469AE1864</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>755E6288-E48D-1634-A60E-416AD3E1D78B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="lieferbar als"/>
+<property name="DE_RELA_TEXT_TO" value="einsetzbar als"/>
+<property name="EN_RELA_TEXT_FROM" value="**available as"/>
+<property name="EN_RELA_TEXT_TO" value="**applicable as"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="default Version (J/N)" id="B2DE78F7-AD42-7B6F-3057-F26F565DCFB6">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 16:52:07 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</attribute>
+</attributes>
+</Relation>

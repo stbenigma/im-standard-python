@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_345" directorySegmentName="seg_3" id="2552C3EE-06E7-2C4C-C490-7ACF98E91AAD">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-06-05 12:40:42 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>wirkt mit in</nameOnSource>
+<nameOnTarget>betrifft</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>40167319-1E73-943A-135D-1082B2062C5E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9E5B7550-38AF-2890-5F20-D39878038577</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="wirkt mit in"/>
+<property name="DE_RELA_TEXT_TO" value="betrifft"/>
+<property name="EN_RELA_TEXT_FROM" value="**participates in"/>
+<property name="EN_RELA_TEXT_TO" value="**pertains"/>
+</propertyMap>
+</Relation>

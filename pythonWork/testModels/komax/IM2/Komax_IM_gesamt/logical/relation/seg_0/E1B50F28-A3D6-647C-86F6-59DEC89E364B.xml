@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_59" directorySegmentName="seg_0" id="E1B50F28-A3D6-647C-86F6-59DEC89E364B">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:24:40 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bezieht</nameOnSource>
+<nameOnTarget>übergeben an</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>B0D95FDD-F85E-A353-A301-31B716DFF9D4</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A017A17E-FBAC-DC4A-5DF8-D624D8A4E971</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bezieht"/>
+<property name="DE_RELA_TEXT_TO" value="übergeben an"/>
+<property name="EN_RELA_TEXT_FROM" value="**obtained"/>
+<property name="EN_RELA_TEXT_TO" value="**surrendered to"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_1" directorySegmentName="seg_0" id="11AB8C4B-06D0-5596-E44B-CC891B33055F">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:16:32 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<sourcePk>3EBF4A9D-F4B1-2263-DD40-77B9DD7F8259</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>verfügbar als</nameOnSource>
+<nameOnTarget>abgeleitet aus</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>AC5F8BAF-142B-E0F3-0C29-CBCD3F3EB347</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FD7EA667-127F-764C-B978-AB2FF2D9D1FF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verfügbar als"/>
+<property name="DE_RELA_TEXT_TO" value="abgeleitet aus"/>
+<property name="EN_RELA_TEXT_FROM" value="available as"/>
+<property name="EN_RELA_TEXT_TO" value="derived from"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_113" directorySegmentName="seg_1" id="63E1AD22-4584-342D-ADF8-A43C368EF01C">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 12:01:29 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gruppiert</nameOnSource>
+<nameOnTarget>zugewiesen zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>21FA76EB-A368-239E-AF31-BBCAB9CB5835</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C42BFB82-EE26-1912-CF8B-D46157E901CB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gruppiert"/>
+<property name="DE_RELA_TEXT_TO" value="zugewiesen zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**grouped"/>
+<property name="EN_RELA_TEXT_TO" value="assigned to"/>
+</propertyMap>
+</Relation>

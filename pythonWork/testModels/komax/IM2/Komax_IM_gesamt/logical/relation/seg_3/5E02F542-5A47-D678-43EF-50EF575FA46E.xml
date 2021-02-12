@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_341" directorySegmentName="seg_3" id="5E02F542-5A47-D678-43EF-50EF575FA46E">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-06-05 11:45:39 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>führt</nameOnSource>
+<nameOnTarget>geführt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C2200CC5-6BF9-C0BB-46BB-0DA2882FC6B4</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C2200CC5-6BF9-C0BB-46BB-0DA2882FC6B4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt"/>
+<property name="DE_RELA_TEXT_TO" value="geführt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**leads"/>
+<property name="EN_RELA_TEXT_TO" value="**led by"/>
+</propertyMap>
+</Relation>

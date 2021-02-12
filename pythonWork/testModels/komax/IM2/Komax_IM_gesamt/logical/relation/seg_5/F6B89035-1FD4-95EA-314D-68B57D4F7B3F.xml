@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_636" directorySegmentName="seg_5" id="F6B89035-1FD4-95EA-314D-68B57D4F7B3F">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-13 16:04:24 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>erzeugt</nameOnSource>
+<nameOnTarget>entstanden aus</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5F149A71-EF2A-6393-83C9-C29F2A01F827</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>860AF27A-26BB-ED52-286F-486A4A070DE1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="erzeugt"/>
+<property name="DE_RELA_TEXT_TO" value="entstanden aus"/>
+<property name="EN_RELA_TEXT_FROM" value="**generated"/>
+<property name="EN_RELA_TEXT_TO" value="**developed from"/>
+</propertyMap>
+</Relation>

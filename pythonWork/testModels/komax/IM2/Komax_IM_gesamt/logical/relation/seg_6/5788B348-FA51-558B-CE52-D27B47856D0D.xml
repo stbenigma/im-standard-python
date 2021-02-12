@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_777" directorySegmentName="seg_6" id="5788B348-FA51-558B-CE52-D27B47856D0D">
+<createdBy>toz</createdBy>
+<createdTime>2019-10-22 08:41:35 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>verantwortlich für</nameOnSource>
+<nameOnTarget>verantwortet durch</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>60CD638F-B15D-F4C6-917A-B52B8430C6E9</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>59F7C803-EE0E-5435-CCA0-40137D02DE88</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="verantwortlich für"/>
+<property name="DE_RELA_TEXT_TO" value="verantwortet durch"/>
+<property name="EN_RELA_TEXT_FROM" value="**responsible for"/>
+<property name="EN_RELA_TEXT_TO" value="**answered for by"/>
+</propertyMap>
+</Relation>

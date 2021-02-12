@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_152" directorySegmentName="seg_1" id="8D4466D7-641C-4521-F424-0AC5BC1A47B1">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 11:13:49 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>9B78C6DE-D3EE-35BB-4FD9-E264E41E1B15</arc>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>ist in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A978FDCC-FB08-117A-1DFF-76732B429944</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2C78673F-0791-99D7-1A08-4214B55FF0BB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="ist in"/>
+<property name="EN_RELA_TEXT_FROM" value="**consists of"/>
+<property name="EN_RELA_TEXT_TO" value="**is in"/>
+</propertyMap>
+</Relation>

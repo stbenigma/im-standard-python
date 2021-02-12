@@ -1,0 +1,277 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="AC5F8BAF-142B-E0F3-0C29-CBCD3F3EB347" name="Produkttyp (alt)">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:24:21 UTC</createdTime>
+<comment><![CDATA[Eigenständige  Anlage für einen definierten Verarbeitungsprozess
+
+Ein Produkt ist definiert durch zwingende Basis-Komponenten, die seine Funktion entscheidend mitbestimmen
+
+Beispiele:
+   Alpha 530  Crimp to Crimp Kabelverarbeitungsmaschine; sowie Packages ist auch ein Produkt
+   S1440 Prozessmodul Tüllenmodul (nicht eigenständig lauffähig, aber verkaufbar)
+   Alpha 488S 4m
+   Alpha 488S 7m  =>   Alpha 488S alleine nur aus finanzieller Sicht relevant!
+
+
+23.05.19: Produkttyp ist im Wording der Entwicklung die 150% Maschine, welche mittels Anwendung der technischen und marketing Regelen zur Produkttyp Variante gemacht wird. 
+
+Die Artikelnummer wird auf Stufe Produkttyp zugewiesen. Anhand der Artikelnummer wird der Buchungssplit vorgenommen, um den Preis einer Maschine auf die Gruppen/Kategorien der einzelnen Baugruppen/Einzelteile aufteilen zu können. 
+
+
+Diskussion 23.07.19
+Produkttyp wird nicht mehr benötigt als 4. Hierarchiestufe. Die 4. Stufe kann direkt das 150% Produkt sein. ]]></comment>
+<notes><![CDATA[15.03.19: Konfigurationsmodell als nächste Stufe nach Produkttyp aufgelöst. Das Konfigurationsmodell ist nur ein Modell eines konfigurierbaren Produkttyps. Nicht für jeden Produkttyp gibt es eine Konfigurationsmodell. Unkonfigurierbarer Produkttyp möglich, direkt zu versendbarem Artikel. [DE_ENTI_COMMENT[
+Eigenständige  Anlage für einen definierten Verarbeitungsprozess
+
+Ein Produkt ist definiert durch zwingende Basis-Komponenten, die seine Funktion entscheidend mitbestimmen
+
+Beispiele:
+   Alpha 530  Crimp to Crimp Kabelverarbeitungsmaschine; sowie Packages ist auch ein Produkt
+   S1440 Prozessmodul Tüllenmodul (nicht eigenständig lauffähig, aber verkaufbar)
+   Alpha 488S 4m
+   Alpha 488S 7m  =>   Alpha 488S alleine nur aus finanzieller Sicht relevant!
+
+
+23.05.19: Produkttyp ist im Wording der Entwicklung die 150% Maschine, welche mittels Anwendung der technischen und marketing Regelen zur Produkttyp Variante gemacht wird. 
+
+Die Artikelnummer wird auf Stufe Produkttyp zugewiesen. Anhand der Artikelnummer wird der Buchungssplit vorgenommen, um den Preis einer Maschine auf die Gruppen/Kategorien der einzelnen Baugruppen/Einzelteile aufteilen zu können. 
+
+
+Diskussion 23.07.19
+Produkttyp wird nicht mehr benötigt als 4. Hierarchiestufe. Die 4. Stufe kann direkt das 150% Produkt sein. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Independent plant for a defined processing process
+
+A product is defined by mandatory basic components that have a decisive influence on its function
+
+Examples:
+   Alpha 530 Crimp to Crimp wire processing machine; as well as Packages is also a product of
+   S1440 Process module seal module (not independently executable, but saleable)
+   Alpha 488S 4m
+   Alpha 488S 7m => Alpha 488S only relevant from a financial point of view!
+
+
+23.05.19: Product type in the wording of the development is the 150% machine, which is made the product type variant by applying the technical and marketing rules
+
+The item number is assigned at product type level. The posting split is carried out on the basis of the article number in order to be able to distribute the price of a machine among the groups/categories of the individual assemblys/individual parts
+
+
+Discussion 23.07.19
+Product type is not required more than 4. hierarchy level. The 4th stage can directly be the 150% product
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>product type</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Eigenständige  Anlage für einen definierten Verarbeitungsprozess  Ein Produkt ist definiert durch zwingende Basis-Komponenten, die seine Funktion entscheidend mitbestimmen  Beispiele:    Alpha 530  Crimp to Crimp Kabelverarbeitungsmaschine; sowie Packages ist auch ein Produkt    S1440 Prozessmodul Tüllenmodul (nicht eigenständig lauffähig, aber verkaufbar)    Alpha 488S 4m    Alpha 488S 7m  =&gt;   Alpha 488S alleine nur aus finanzieller Sicht relevant!   23.05.19: Produkttyp ist im Wording der Entwicklung die 150% Maschine, welche mittels Anwendung der technischen und marketing Regelen zur Produkttyp Variante gemacht wird.   Die Artikelnummer wird auf Stufe Produkttyp zugewiesen. Anhand der Artikelnummer wird der Buchungssplit vorgenommen, um den Preis einer Maschine auf die Gruppen/Kategorien der einzelnen Baugruppen/Einzelteile aufteilen zu können.    Diskussion 23.07.19 Produkttyp wird nicht mehr benötigt als 4. Hierarchiestufe. Die 4. Stufe kann direkt das 150% Produkt sein. "/>
+<property name="DE_ENTI_NAME" value="Produkttyp (alt)"/>
+<property name="DE_ENTI_SYNONYM" value="product type"/>
+<property name="EN_ENTI_COMMENT" value="Eigenständige  Anlage für einen definierten Verarbeitungsprozess  Ein Produkt ist definiert durch zwingende Basis-Komponenten, die seine Funktion entscheidend mitbestimmen  Beispiele:    Alpha 530  Crimp to Crimp Kabelverarbeitungsmaschine; sowie Packages ist auch ein Produkt    S1440 Prozessmodul Tüllenmodul (nicht eigenständig lauffähig, aber verkaufbar)    Alpha 488S 4m    Alpha 488S 7m  =&gt;   Alpha 488S alleine nur aus finanzieller Sicht relevant!   23.05.19: Produkttyp ist im Wording der Entwicklung die 150% Maschine, welche mittels Anwendung der technischen und marketing Regelen zur Produkttyp Variante gemacht wird.   Die Artikelnummer wird auf Stufe Produkttyp zugewiesen. Anhand der Artikelnummer wird der Buchungssplit vorgenommen, um den Preis einer Maschine auf die Gruppen/Kategorien der einzelnen Baugruppen/Einzelteile aufteilen zu können.    Diskussion 23.07.19 Produkttyp wird nicht mehr benötigt als 4. Hierarchiestufe. Die 4. Stufe kann direkt das 150% Produkt sein. "/>
+<property name="EN_ENTI_NAME" value="Product type (old)"/>
+<property name="EN_ENTI_SYNONYM" value="**product type"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikelnummer" id="79E17DD2-FFCE-34DA-CB64-1A954E86367A">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:24:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Artikelnummer"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Item number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kuerzel" id="3A753093-2572-D9F1-65E7-3EC3CE4D497F">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-22 11:56:03 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Kuerzel"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Abbreviation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Bezeichnung [L]" id="79A2289D-A494-E5C2-174C-FD2FD8C8F5AB">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:24:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung [L]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation [L]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Vertriebstext [L] ??" id="AC70997F-0046-8982-8BA9-6FF12D9AD751">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:24:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Vertriebstext [L] ??"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Sales text [L] ??"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verwendungszweck Verkauf" id="51B709A3-7427-ED36-4525-8C6FF32A9BD7">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:26:24 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Verwendungszweck Verkauf"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Intended use Sale"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Konfigurierbar (J/N)" id="9FBCD90B-4A57-970B-8376-831B4EA5AD54">
+<createdBy>toz</createdBy>
+<createdTime>2019-03-29 16:05:53 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Konfigurierbar (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Configurable (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3EBF4A9D-F4B1-2263-DD40-77B9DD7F8259" name="Produkttyp PK">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-18 14:25:52 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>79E17DD2-FFCE-34DA-CB64-1A954E86367A</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="25019C33-7A97-26EE-54AA-C74D2E2292AA" name="Artikelnummer">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-28 09:41:34 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<newElementsIDs>79E17DD2-FFCE-34DA-CB64-1A954E86367A</newElementsIDs>
+<usedAttributes>
+<attributeRef>79E17DD2-FFCE-34DA-CB64-1A954E86367A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_236" directorySegmentName="seg_2" id="98C929ED-B430-4B2F-6C37-C458B29E4E6C">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:57:48 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>7E77083F-7950-D90B-9F85-AE57FB657D26</arc>
+<identifying>false</identifying>
+<nameOnSource>unterschieden in</nameOnSource>
+<nameOnTarget>verändert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8744E3EB-6902-EB11-A3B0-7A0705E26E56</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>BA43955B-9C37-EE6D-2AB4-F877853904E7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="unterschieden in"/>
+<property name="DE_RELA_TEXT_TO" value="verändert"/>
+<property name="EN_RELA_TEXT_FROM" value="**distinguished in"/>
+<property name="EN_RELA_TEXT_TO" value="changes"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_241" directorySegmentName="seg_1" id="976FC444-D9D9-863E-5F65-13642FBB0BF3">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 07:29:43 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>angwendet für</nameOnSource>
+<nameOnTarget>zugeteilt zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>754E16D7-0865-1ABA-C71F-62F119A5D2DB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>93CE786E-E823-3F99-9338-0CA3CE563C71</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="angwendet für"/>
+<property name="DE_RELA_TEXT_TO" value="zugeteilt zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**applied to"/>
+<property name="EN_RELA_TEXT_TO" value="**allotted to"/>
+</propertyMap>
+</Relation>

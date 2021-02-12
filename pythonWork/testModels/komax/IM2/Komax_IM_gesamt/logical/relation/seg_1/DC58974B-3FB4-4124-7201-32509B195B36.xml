@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_139" directorySegmentName="seg_1" id="DC58974B-3FB4-4124-7201-32509B195B36">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-01 11:50:17 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>bestellt durch</nameOnSource>
+<nameOnTarget>enthält</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4A6AD2A0-5D92-2748-B88D-ECEEF5CE1EE2</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>01F3B6D3-0515-11D5-AE7E-21E043ADC238</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="bestellt durch"/>
+<property name="DE_RELA_TEXT_TO" value="enthält"/>
+<property name="EN_RELA_TEXT_FROM" value="**ordered by"/>
+<property name="EN_RELA_TEXT_TO" value="contains"/>
+</propertyMap>
+</Relation>

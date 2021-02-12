@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_771" directorySegmentName="seg_6" id="53A13389-B7BB-EC83-F65F-309178656165">
+<createdBy>toz</createdBy>
+<createdTime>2019-10-22 08:02:11 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>22F2E20D-F81A-CD35-C607-13A162D03991</arc>
+<identifying>false</identifying>
+<nameOnSource>festgelegt für</nameOnSource>
+<nameOnTarget>betroffen von</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>6299FC95-AFA2-965F-CFE0-A26267B9BCC3</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>C16EB51F-81AD-71D1-A0CC-2510B0DF171D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="festgelegt für"/>
+<property name="DE_RELA_TEXT_TO" value="betroffen von"/>
+<property name="EN_RELA_TEXT_FROM" value="**specified for"/>
+<property name="EN_RELA_TEXT_TO" value="**affected by"/>
+</propertyMap>
+</Relation>

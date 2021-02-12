@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FD7EA667-127F-764C-B978-AB2FF2D9D1FF" name="Produktmodell">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:13:08 UTC</createdTime>
+<comment><![CDATA[Ein Modell zu einem Produkt, in dem die alle möglichen Konfigurationskombinationen (Zusammenfassung aus Komponenten und anderen Produkt Modellen) die für dieses Produkt existieren definiert sind.
+
+Beispiel Alpha 488s 
+ 4m 
+ 7m 
+ 10m mit jeweils unterschiedlicher Anzahl von Bauteilen die die Länge ausmachen.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Ein Modell zu einem Produkt, in dem die alle möglichen Konfigurationskombinationen (Zusammenfassung aus Komponenten und anderen Produkt Modellen) die für dieses Produkt existieren definiert sind.
+
+Beispiel Alpha 488s 
+ 4m 
+ 7m 
+ 10m mit jeweils unterschiedlicher Anzahl von Bauteilen die die Länge ausmachen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**A model for a product in which all possible configuration combinations (combination of components and other product models) that exist for this product are defined.
+
+Example Alpha 488s
+ 4m
+ 7m
+ 10m, each with a different number of components that make up the length.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Ein Modell zu einem Produkt, in dem die alle möglichen Konfigurationskombinationen (Zusammenfassung aus Komponenten und anderen Produkt Modellen) die für dieses Produkt existieren definiert sind.  Beispiel Alpha 488s   4m   7m   10m mit jeweils unterschiedlicher Anzahl von Bauteilen die die Länge ausmachen."/>
+<property name="DE_ENTI_NAME" value="Produktmodell"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Ein Modell zu einem Produkt, in dem die alle möglichen Konfigurationskombinationen (Zusammenfassung aus Komponenten und anderen Produkt Modellen) die für dieses Produkt existieren definiert sind.  Beispiel Alpha 488s   4m   7m   10m mit jeweils unterschiedlicher Anzahl von Bauteilen die die Länge ausmachen."/>
+<property name="EN_ENTI_NAME" value="**Product model"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Artikel-Nr" id="984E199A-E4B2-FDE1-E0E0-2C622625FC9B">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 12:42:50 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Artikel-Nr"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Item no"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Artikelnummer" id="CBD8FD06-5227-F7B0-2B08-5934A74572C3">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-24 07:25:29 UTC</createdTime>
+<generatorID>11AB8C4B-06D0-5596-E44B-CC891B33055F</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<referedAttribute>79E17DD2-FFCE-34DA-CB64-1A954E86367A</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Artikelnummer"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Item number"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Modellbezeichnung" id="371D195E-0D8B-CE24-4C94-25F51D50C5DC">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-07 08:14:46 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Modellbezeichnung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Model designation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

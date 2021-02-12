@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_159" directorySegmentName="seg_1" id="0F3FB77A-8638-7EA2-387F-A17D0D2A8A3E">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 11:44:00 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>ist in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A978FDCC-FB08-117A-1DFF-76732B429944</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9DBBD927-62CB-A062-C964-6A3AA0BD0719</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="ist in"/>
+<property name="EN_RELA_TEXT_FROM" value="**consists of"/>
+<property name="EN_RELA_TEXT_TO" value="**is in"/>
+</propertyMap>
+</Relation>

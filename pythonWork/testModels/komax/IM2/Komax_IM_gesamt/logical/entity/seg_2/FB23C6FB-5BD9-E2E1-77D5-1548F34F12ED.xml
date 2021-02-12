@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="FB23C6FB-5BD9-E2E1-77D5-1548F34F12ED" name="Kommission">
+<createdBy>toz</createdBy>
+<createdTime>2018-08-27 11:00:29 UTC</createdTime>
+<comment><![CDATA[Standard = Differenz GLP zu GPP
+
+Individuell bis auf Artikelgruppenebene.
+
+
+9.12.19: Provision geändert durch Kommission
+Kommission wird bei KA anders gerechnet als bei nicht KA. 
+KA: Kommission ist abhängig vom Rabattsplit. Ein Teil des gesprochenen Rabatts wird zentral übernommen, ein Teil von der Vertretung. Je nach Rabattsplit fällt die Kommission höher oder tiefer aus. 
+Bsp: GPP 80, GLP 100. Rabatt 20. --> GKP 80. Wenn jetzt der ganze Rabatt von Vertretung übernommen würde, könnte keine Kommission mehr gesprochen werden. Deshalb übernimmt HQ z.B. 50% vom Rabatt. --> Transferpreis sinkt auf 70 und Vertretung erhält Komission von 10 (Differenze Transferpreis - GKP)
+
+nicht KA: Kommission entsprich Prozentsatz auf Endpreis, normalerweise 10%. 
+
+Grundgedanke von Komission: Besteht aus 3 Teilen: 1. Verkaufsbemühungen, 2. Installation, 3. Aftersales. ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Standard = Differenz GLP zu GPP
+
+Individuell bis auf Artikelgruppenebene.
+
+Service.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Standard = Difference GLP to GPP
+
+Individually down to article group level.
+
+Service.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Commission</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Standard = Differenz GLP zu GPP  Individuell bis auf Artikelgruppenebene.  Service."/>
+<property name="DE_ENTI_NAME" value="Provision"/>
+<property name="EN_ENTI_COMMENT" value="Standard = Differenz GLP zu GPP  Individuell bis auf Artikelgruppenebene.  Service."/>
+<property name="EN_ENTI_NAME" value="Commission"/>
+<property name="EN_ENTI_SYNONYM" value="Commission"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Typ" id="51A08EF6-4109-FB5C-E09B-7A38ABD40B9D">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 10:11:49 UTC</createdTime>
+<comment><![CDATA[Standard, Service, Individuell]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Standard, Service, Individuell
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Standard, Service, Individual
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Standard, Service, Individuell"/>
+<property name="DE_ATTR_NAME" value="Typ"/>
+<property name="EN_ATTR_COMMENT" value="Standard, Service, Individuell"/>
+<property name="EN_ATTR_NAME" value="Type"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Staffelung" id="D4AC6B69-5DF9-2FAC-B637-2F5C3D60E01A">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-12-09 10:46:37 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

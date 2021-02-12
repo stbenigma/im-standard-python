@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_364" directorySegmentName="seg_3" id="617F4063-67D7-82CD-6F9F-609DA1F5FFF7">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-23 11:27:42 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>aufgeteilt in</nameOnSource>
+<nameOnTarget>trägt bei zu</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DE37B957-E86A-ECF6-FE3B-2D7581C30C11</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E7C93114-E8B3-B8A8-32DC-EC768BE522BB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="aufgeteilt in"/>
+<property name="DE_RELA_TEXT_TO" value="trägt bei zu"/>
+<property name="EN_RELA_TEXT_FROM" value="**broken down into"/>
+<property name="EN_RELA_TEXT_TO" value="**contributes to"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_531" directorySegmentName="seg_4" id="F2D99291-F7EE-70A6-FE7F-B9C4707330E4">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-04 14:38:58 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gruppiert</nameOnSource>
+<nameOnTarget>gruppiert in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E5BE9776-9991-9C85-87E1-9F5C1DF6E90A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>25822AB2-CB33-891C-E7E3-E78956BE530A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gruppiert"/>
+<property name="DE_RELA_TEXT_TO" value="gruppiert in"/>
+<property name="EN_RELA_TEXT_FROM" value="**grouped"/>
+<property name="EN_RELA_TEXT_TO" value="grouped in"/>
+</propertyMap>
+</Relation>

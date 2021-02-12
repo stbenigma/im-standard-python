@@ -1,0 +1,156 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="98A4EBA5-C60D-0045-FF22-6492503175F0" name="Produkteinzelpreis">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:47:38 UTC</createdTime>
+<comment><![CDATA[18.10.19: Produktpreis in Produkteinzelpreis umbenannt. Der Produkteinzelpreis wird vom PM festgelegt oder über die Automatische Preisberechnung. 
+
+Der PM gibt dem Produkt eine "Schemanummer" (systemgetriebener Name). Anhand dieser Nummer ist definiert, ob der PM den Preis selber festlegt oder ob die automatische Preisberechnung angewandt wird. 
+
+Was ist der Unterschied vom Produkteinzelpreis und dem Master GLP CHF?]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+18.10.19: Produktpreis in Produkteinzelpreis umbenannt. Der Produkteinzelpreis wird vom PM festgelegt oder über die Automatische Preisberechnung. 
+
+Der PM gibt dem Produkt eine "Schemanummer" (systemgetriebener Name). Anhand dieser Nummer ist definiert, ob der PM den Preis selber festlegt oder ob die automatische Preisberechnung angewandt wird. 
+
+Was ist der Unterschied vom Produkteinzelpreis und dem Master GLP CHF?
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**18.10.19: Product price renamed product unit price. The product unit price is determined by PM or via automatic price calculation
+
+The PM gives the product a "schema number" (system-driven name). This number defines whether PM determines the price itself or whether automatic price calculation is used
+
+What is the difference between the unit product price and the Master GLP CHF?
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="18.10.19: Produktpreis in Produkteinzelpreis umbenannt. Der Produkteinzelpreis wird vom PM festgelegt oder über die Automatische Preisberechnung.   Der PM gibt dem Produkt eine &quot;Schemanummer&quot; (systemgetriebener Name). Anhand dieser Nummer ist definiert, ob der PM den Preis selber festlegt oder ob die automatische Preisberechnung angewandt wird.   Was ist der Unterschied vom Produkteinzelpreis und dem Master GLP CHF?"/>
+<property name="DE_ENTI_NAME" value="Produkteinzelpreis"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="18.10.19: Produktpreis in Produkteinzelpreis umbenannt. Der Produkteinzelpreis wird vom PM festgelegt oder über die Automatische Preisberechnung.   Der PM gibt dem Produkt eine &quot;Schemanummer&quot; (systemgetriebener Name). Anhand dieser Nummer ist definiert, ob der PM den Preis selber festlegt oder ob die automatische Preisberechnung angewandt wird.   Was ist der Unterschied vom Produkteinzelpreis und dem Master GLP CHF?"/>
+<property name="EN_ENTI_NAME" value="**Product unit price"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Preis" id="B220E8CD-185E-D1EB-9BB0-85E3686C4543">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:47:49 UTC</createdTime>
+<comment><![CDATA[In CHF]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+In CHF
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**In CHF
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="In CHF"/>
+<property name="DE_ATTR_NAME" value="Preis"/>
+<property name="EN_ATTR_COMMENT" value="In CHF"/>
+<property name="EN_ATTR_NAME" value="Price"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig ab" id="D5B2949D-F963-A37E-DA64-D979F4DFDCA2">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:47:55 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig ab"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid from"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Gültig bis" id="43BB9400-49DD-1A38-BBB1-389006660F38">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 08:02:45 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Gültig bis"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Valid until"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Preisschema" id="295B4201-3E19-5911-0875-1BCA0E99B03C">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 08:02:09 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Preisschema"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Price scheme"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

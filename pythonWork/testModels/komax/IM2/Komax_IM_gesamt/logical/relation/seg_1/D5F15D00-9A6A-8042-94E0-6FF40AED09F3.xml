@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_192" directorySegmentName="seg_1" id="D5F15D00-9A6A-8042-94E0-6FF40AED09F3">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-15 12:47:15 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>löst aus</nameOnSource>
+<nameOnTarget>ausgelöst von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>24F8B657-E530-5B2B-BA5C-3111FFF06E43</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5D1C949C-05DB-C244-7C1C-1ED7A4849C1B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="löst aus"/>
+<property name="DE_RELA_TEXT_TO" value="ausgelöst von"/>
+<property name="EN_RELA_TEXT_FROM" value="**triggers"/>
+<property name="EN_RELA_TEXT_TO" value="**triggered by"/>
+</propertyMap>
+</Relation>

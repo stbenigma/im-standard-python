@@ -1,0 +1,127 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="3F6DC486-9D70-4250-7D6C-12E2DE9E94F4" name="Agent">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 08:20:21 UTC</createdTime>
+<comment><![CDATA[17.04.19: Konsens
+Agent kann entweder nur vermitteln/verkaufen, kann aber auch service machen oder Lager haben. Egal was er macht, ist immer Agent. Zuständig für einen Teil eines Landes. 
+Folglich wurden die Entitäten Händler und Dienstleister gelöscht. Sind alles Agenten mit unterschiedlichen Ausprägungen. ]]></comment>
+<notes><![CDATA[3.7.19: gem. D. Nufer => alte Bezichnungen waren National Distributor, Regional Agent[DE_ENTI_COMMENT[
+17.04.19: Konsens
+Agent kann entweder nur vermitteln/verkaufen, kann aber auch service machen oder Lager haben. Egal was er macht, ist immer Agent. Zuständig für einen Teil eines Landes. 
+Folglich wurden die Entitäten Händler und Dienstleister gelöscht. Sind alles Agenten mit unterschiedlichen Ausprägungen. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**17.04.19: Consensus
+Agent can either only mediate/sell, but can also do service or have stock. No matter what he does, he's always an agent. Responsible for part of a country
+Consequently, the entities dealers and service providers were deleted. They're all agents with different characteristics
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>BB7064A0-50FC-FD4A-DB6A-FA7E6FA46DBD</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="17.04.19: Konsens Agent kann entweder nur vermitteln/verkaufen, kann aber auch service machen oder Lager haben. Egal was er macht, ist immer Agent. Zuständig für einen Teil eines Landes.  Folglich wurden die Entitäten Händler und Dienstleister gelöscht. Sind alles Agenten mit unterschiedlichen Ausprägungen. "/>
+<property name="DE_ENTI_NAME" value="Agent"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="17.04.19: Konsens Agent kann entweder nur vermitteln/verkaufen, kann aber auch service machen oder Lager haben. Egal was er macht, ist immer Agent. Zuständig für einen Teil eines Landes.  Folglich wurden die Entitäten Händler und Dienstleister gelöscht. Sind alles Agenten mit unterschiedlichen Ausprägungen. "/>
+<property name="EN_ENTI_NAME" value="Agent"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Lager (J/N)" id="4B2D46D0-6C06-E143-59A5-DEB67BBC529A">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-19 13:09:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Lager (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Warehouse (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Service (J/N)" id="1B8D8D38-0EE5-14F9-B302-A29B1BBAADFA">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-19 13:09:39 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Service (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Service (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Verkauf (J/N)" id="9F1DD2CB-B04E-E4C6-3697-4D01AA3CABDF">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-19 13:09:57 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Verkauf (J/N)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Sales (Y/N)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

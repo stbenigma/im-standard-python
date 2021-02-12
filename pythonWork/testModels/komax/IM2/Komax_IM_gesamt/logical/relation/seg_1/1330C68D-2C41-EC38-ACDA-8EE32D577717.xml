@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_191" directorySegmentName="seg_1" id="1330C68D-2C41-EC38-ACDA-8EE32D577717">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-15 12:30:29 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>führt</nameOnSource>
+<nameOnTarget>geführt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>559EF8CE-EFA0-591F-65FF-025E91A7EA5B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>23296D2E-6FF7-4734-6D11-D7212CF84BC3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="führt"/>
+<property name="DE_RELA_TEXT_TO" value="geführt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**leads"/>
+<property name="EN_RELA_TEXT_TO" value="**led by"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="Sales Channel Typ" id="132736E1-2103-0090-1275-423ED8CEC898">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-06-05 13:29:08 UTC</createdTime>
+<comment><![CDATA[Global, Region, Local, Subsidary, National Distr., Distributor]]></comment>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</attribute>
+</attributes>
+</Relation>

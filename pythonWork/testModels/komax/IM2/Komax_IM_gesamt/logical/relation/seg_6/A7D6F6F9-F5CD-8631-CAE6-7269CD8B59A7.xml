@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_732" directorySegmentName="seg_6" id="A7D6F6F9-F5CD-8631-CAE6-7269CD8B59A7">
+<createdBy>toz</createdBy>
+<createdTime>2019-06-28 13:17:11 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>besteht aus</nameOnSource>
+<nameOnTarget>bildet</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>28EC4906-EB30-CBC6-9357-A64F00D43C70</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4A8C6EA2-7168-362C-3D3C-5C9D52E5A193</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="besteht aus"/>
+<property name="DE_RELA_TEXT_TO" value="bildet"/>
+<property name="EN_RELA_TEXT_FROM" value="**consists of"/>
+<property name="EN_RELA_TEXT_TO" value="**educates"/>
+</propertyMap>
+</Relation>

@@ -1,0 +1,197 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F0FCA938-3709-F893-D96C-2B71E5BF68B8" name="Knowledge Base">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 13:01:52 UTC</createdTime>
+<comment><![CDATA[Sammlung von Hinweisen zur Lösung von Problemen.
+Mit Zugriffsrberechtigungen (ändern, lesen)
+
+FAQ, Tipps & Tricks]]></comment>
+<notes><![CDATA[Wenn Service Fall abgeschlossen, wird von Service Desk evaluiert, ob relevant für Knowledge base. 
+Wenn ja, dann Case zusammendampfen und Knowledge Artikel erfassen. 
+
+
+Attribute
+ID 
+Ref Case 
+Title
+Subject
+Error Category
+
+Rest aus Service Case genommen. 
+
+[DE_ENTI_COMMENT[
+Sammlung von Hinweisen zur Lösung von Problemen.
+Mit Zugriffsrberechtigungen (ändern, lesen)
+
+FAQ, Tipps & Tricks
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Collection of hints for solving problems.
+With access rights (change, read)
+
+FAQ, Tips & Tricks
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Sammlung von Hinweisen zur Lösung von Problemen. Mit Zugriffsrberechtigungen (ändern, lesen)  FAQ, Tipps &amp; Tricks"/>
+<property name="DE_ENTI_NAME" value="Knowledge Base"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Sammlung von Hinweisen zur Lösung von Problemen. Mit Zugriffsrberechtigungen (ändern, lesen)  FAQ, Tipps &amp; Tricks"/>
+<property name="EN_ENTI_NAME" value="Knowledge base"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="74894DFA-2E9D-532E-6566-EA5EF8DCF382">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:29:02 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="ID"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="ID"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Referenz Fall" id="66EC9E0D-7F69-1893-9477-03A77D0FECEB">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:29:15 UTC</createdTime>
+<comment><![CDATA[Reference Case]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Reference Case
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Reference case
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Reference Case"/>
+<property name="DE_ATTR_NAME" value="Referenz Fall"/>
+<property name="EN_ATTR_COMMENT" value="Reference Case"/>
+<property name="EN_ATTR_NAME" value="**Reference Case"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Titel" id="F94220B2-2584-C6F3-30BA-723F4BF86497">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:29:41 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Titel"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Title"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kurzbeschrieb" id="DFC4AB69-FC26-D185-0655-9FFAA9BF5423">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:29:55 UTC</createdTime>
+<comment><![CDATA[Subject]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Subject
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Subject
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Subject"/>
+<property name="DE_ATTR_NAME" value="Kurzbeschrieb"/>
+<property name="EN_ATTR_COMMENT" value="Subject"/>
+<property name="EN_ATTR_NAME" value="**Brief description"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Fehlerkategorie" id="FB15B174-4BC1-4E9F-C59F-519E1804F825">
+<createdBy>toz</createdBy>
+<createdTime>2018-10-22 07:30:05 UTC</createdTime>
+<comment><![CDATA[Error Category]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Error Category
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**Error category
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Error Category"/>
+<property name="DE_ATTR_NAME" value="Fehlerkategorie"/>
+<property name="EN_ATTR_COMMENT" value="Error Category"/>
+<property name="EN_ATTR_NAME" value="Error Category"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

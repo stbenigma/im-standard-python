@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_227" directorySegmentName="seg_2" id="456C0082-41DC-7D53-E88F-8DF3131B00D1">
+<createdBy>toz</createdBy>
+<createdTime>2018-05-16 13:00:23 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>vereinbart</nameOnSource>
+<nameOnTarget>vereinbart in</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B4A995CB-6FF5-C1B4-E61A-604A52796D46</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>8744E3EB-6902-EB11-A3B0-7A0705E26E56</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="vereinbart"/>
+<property name="DE_RELA_TEXT_TO" value="vereinbart in"/>
+<property name="EN_RELA_TEXT_FROM" value="agreed"/>
+<property name="EN_RELA_TEXT_TO" value="agreed in"/>
+</propertyMap>
+</Relation>

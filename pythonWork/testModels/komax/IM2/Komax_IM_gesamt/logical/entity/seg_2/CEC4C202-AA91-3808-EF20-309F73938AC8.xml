@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="CEC4C202-AA91-3808-EF20-309F73938AC8" name="Lizenz">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 13:11:34 UTC</createdTime>
+<comment><![CDATA[Für einen Kunden bzw. 1 Produkt ausgestellte Lizenz.
+Kunde kann Lizenzen wechseln/übertragen
+Virtuelle Lizenzen, physische Linzenzen, floating Lizenzen]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Für einen Kunden bzw. 1 Produkt ausgestellte Lizenz.
+Kunde kann Lizenzen wechseln/übertragen
+Virtuelle Lizenzen, physische Linzenzen, floating Lizenzen
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**License issued for one customer or 1 product.
+Customer can change/transfer licenses
+Virtual licenses, physical licenses, floating licenses
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Für einen Kunden bzw. 1 Produkt ausgestellte Lizenz. Kunde kann Lizenzen wechseln/übertragen Virtuelle Lizenzen, physische Linzenzen, floating Lizenzen"/>
+<property name="DE_ENTI_NAME" value="Lizenz"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Für einen Kunden bzw. 1 Produkt ausgestellte Lizenz. Kunde kann Lizenzen wechseln/übertragen Virtuelle Lizenzen, physische Linzenzen, floating Lizenzen"/>
+<property name="EN_ENTI_NAME" value="License"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Schlüssel" id="9A012D47-2D40-7C81-E63A-8B79DF04AC85">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 13:11:59 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Schlüssel"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Key"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

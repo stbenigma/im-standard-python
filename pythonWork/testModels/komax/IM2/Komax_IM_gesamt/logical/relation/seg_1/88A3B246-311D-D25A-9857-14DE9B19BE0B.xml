@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_194" directorySegmentName="seg_1" id="88A3B246-311D-D25A-9857-14DE9B19BE0B">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-15 12:55:06 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>beinflusst von</nameOnSource>
+<nameOnTarget>beinflusst (??)</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>23296D2E-6FF7-4734-6D11-D7212CF84BC3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>046FF61D-7F70-C867-DBF4-CAB049CA5E6C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beinflusst von"/>
+<property name="DE_RELA_TEXT_TO" value="beinflusst (??)"/>
+<property name="EN_RELA_TEXT_FROM" value="**influenced by"/>
+<property name="EN_RELA_TEXT_TO" value="**influenced (??)"/>
+</propertyMap>
+</Relation>

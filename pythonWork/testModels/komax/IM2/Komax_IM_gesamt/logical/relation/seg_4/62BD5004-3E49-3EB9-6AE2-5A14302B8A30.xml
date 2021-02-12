@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_499" directorySegmentName="seg_4" id="62BD5004-3E49-3EB9-6AE2-5A14302B8A30">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-03 12:20:27 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>reichte ein</nameOnSource>
+<nameOnTarget>eingereicht von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D5BFCA5D-F703-5B42-1C3A-7323C3745653</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2D81CD5B-0EEA-7480-AD51-B662CFEB7F44</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="reichte ein"/>
+<property name="DE_RELA_TEXT_TO" value="eingereicht von"/>
+<property name="EN_RELA_TEXT_FROM" value="**submitted"/>
+<property name="EN_RELA_TEXT_TO" value="**submitted by"/>
+</propertyMap>
+</Relation>

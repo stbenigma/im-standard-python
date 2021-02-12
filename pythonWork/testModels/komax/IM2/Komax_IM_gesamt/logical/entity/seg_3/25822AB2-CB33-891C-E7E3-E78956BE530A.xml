@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="25822AB2-CB33-891C-E7E3-E78956BE530A" name="Prüfling">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-04 11:39:36 UTC</createdTime>
+<comment><![CDATA[Teil, das von einem Prüfsystem überprüft werden soll.
+Wird vom Kunden geliefert.
+
+Beispiel:
+Stecker xyz]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Teil, das von einem Prüfsystem überprüft werden soll.
+Wird vom Kunden geliefert.
+
+Beispiel:
+Stecker xyz
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Part that is to be checked by a test system.
+Supplied by the customer.
+
+Example:
+Plug xyz
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Stecker</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Teil, das von einem Prüfsystem überprüft werden soll. Wird vom Kunden geliefert.  Beispiel: Stecker xyz"/>
+<property name="DE_ENTI_NAME" value="Prüfling"/>
+<property name="DE_ENTI_SYNONYM" value="Stecker"/>
+<property name="EN_ENTI_COMMENT" value="Teil, das von einem Prüfsystem überprüft werden soll. Wird vom Kunden geliefert.  Beispiel: Stecker xyz"/>
+<property name="EN_ENTI_NAME" value="Sample"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* Stecker"/>
+</propertyMap>
+</Entity>

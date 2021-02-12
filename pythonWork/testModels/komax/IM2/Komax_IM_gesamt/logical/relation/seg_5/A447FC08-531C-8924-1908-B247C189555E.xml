@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_594" directorySegmentName="seg_5" id="A447FC08-531C-8924-1908-B247C189555E">
+<createdBy>stb</createdBy>
+<createdTime>2018-09-11 09:49:35 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>beschrieben in [T]</nameOnSource>
+<nameOnTarget>beschreibt </nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A017A17E-FBAC-DC4A-5DF8-D624D8A4E971</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>CE814DF4-B9E1-F0FE-6838-F7E394F9F32D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschrieben in [T]"/>
+<property name="DE_RELA_TEXT_TO" value="beschreibt "/>
+<property name="EN_RELA_TEXT_FROM" value="**described in [T]"/>
+<property name="EN_RELA_TEXT_TO" value="**delineates"/>
+</propertyMap>
+</Relation>

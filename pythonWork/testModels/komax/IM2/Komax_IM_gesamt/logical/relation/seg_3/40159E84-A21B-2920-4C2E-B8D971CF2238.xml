@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_350" directorySegmentName="seg_3" id="40159E84-A21B-2920-4C2E-B8D971CF2238">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-08 14:21:23 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>stellt her</nameOnSource>
+<nameOnTarget>hergestellt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D0292C46-9050-CB4C-407C-DCFC74CC5DB1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>3DA346A0-F19B-41CB-8284-B7ED56331185</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="stellt her"/>
+<property name="DE_RELA_TEXT_TO" value="hergestellt von"/>
+<property name="EN_RELA_TEXT_FROM" value="**manufactures"/>
+<property name="EN_RELA_TEXT_TO" value="**made by"/>
+</propertyMap>
+</Relation>

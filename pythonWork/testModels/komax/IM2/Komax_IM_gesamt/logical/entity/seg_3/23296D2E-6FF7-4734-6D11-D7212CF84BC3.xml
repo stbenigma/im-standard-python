@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="23296D2E-6FF7-4734-6D11-D7212CF84BC3" name="Kompetenzzentrum">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 10:17:57 UTC</createdTime>
+<comment><![CDATA[12.09.2018: Aufteiltung von Komax in Sparten, d.h. Bereiche, deren Finanzzahlen separat konsolidiert werden und die unterschiedliche Prozesse haben oder Kundensegmente betreuen. Ein Endprodukt kann immer einem Kompetenzzentrum zugeordnet werden. Organisatorisch alles je nach Kompetenzzentrum aufgeteilt. Produkt und Kunden sind auch dem Kompetenzzentrum angehängt.
+
+Beispiele:
+Wire Processing
+Solutions
+Testing]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+12.09.2018: Aufteiltung von Komax in Sparten, d.h. Bereiche, deren Finanzzahlen separat konsolidiert werden und die unterschiedliche Prozesse haben oder Kundensegmente betreuen. Ein Endprodukt kann immer einem Kompetenzzentrum zugeordnet werden. Organisatorisch alles je nach Kompetenzzentrum aufgeteilt. Produkt und Kunden sind auch dem Kompetenzzentrum angehängt.
+
+Beispiele:
+Wire Processing
+Solutions
+Testing
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**12.09.2018: Division of Komax into divisions, i.e. areas whose financial figures are consolidated separately and which have different processes or manage customer segments. An end product can always be assigned to a competence centre. Organizationally, everything is divided according to the competence center. Product and customers are also attached to the competence center.
+
+Examples:
+Wire processing
+Solutions
+Testing
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>5CBE5D96-2F45-2757-E01F-838A7DC62369</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>CoC, Center of Competence </synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="12.09.2018: Aufteiltung von Komax in Sparten, d.h. Bereiche, deren Finanzzahlen separat konsolidiert werden und die unterschiedliche Prozesse haben oder Kundensegmente betreuen. Ein Endprodukt kann immer einem Kompetenzzentrum zugeordnet werden. Organisatorisch alles je nach Kompetenzzentrum aufgeteilt. Produkt und Kunden sind auch dem Kompetenzzentrum angehängt.  Beispiele: Wire Processing Solutions Testing"/>
+<property name="DE_ENTI_NAME" value="Kompetenzzentrum"/>
+<property name="DE_ENTI_SYNONYM" value="CoC, Center of Competence "/>
+<property name="EN_ENTI_COMMENT" value="12.09.2018: Aufteiltung von Komax in Sparten, d.h. Bereiche, deren Finanzzahlen separat konsolidiert werden und die unterschiedliche Prozesse haben oder Kundensegmente betreuen. Ein Endprodukt kann immer einem Kompetenzzentrum zugeordnet werden. Organisatorisch alles je nach Kompetenzzentrum aufgeteilt. Produkt und Kunden sind auch dem Kompetenzzentrum angehängt.  Beispiele: Wire Processing Solutions Testing"/>
+<property name="EN_ENTI_NAME" value="Competence center"/>
+<property name="EN_ENTI_SYNONYM" value="**CoC, Center of Competence"/>
+</propertyMap>
+</Entity>

@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_690" directorySegmentName="seg_5" id="4489FBD0-544F-3D6B-D48E-F3523C478BCF">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-13 08:10:56 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>beschreibt</nameOnSource>
+<nameOnTarget>ist von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F738A16E-8782-F097-8500-F1FEA43A6766</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>388AB520-69E7-55E2-9381-6D53970B0067</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="beschreibt"/>
+<property name="DE_RELA_TEXT_TO" value="ist von"/>
+<property name="EN_RELA_TEXT_FROM" value="**delineates"/>
+<property name="EN_RELA_TEXT_TO" value="**is from"/>
+</propertyMap>
+</Relation>

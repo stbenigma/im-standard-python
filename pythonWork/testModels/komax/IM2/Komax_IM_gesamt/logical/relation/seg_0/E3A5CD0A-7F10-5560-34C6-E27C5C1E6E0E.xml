@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_87" directorySegmentName="seg_0" id="E3A5CD0A-7F10-5560-34C6-E27C5C1E6E0E">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 13:43:28 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>gelagert in</nameOnSource>
+<nameOnTarget>lagert</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>755E6288-E48D-1634-A60E-416AD3E1D78B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>BA45C360-F29A-4C2F-939F-23D918756840</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="gelagert in"/>
+<property name="DE_RELA_TEXT_TO" value="lagert"/>
+<property name="EN_RELA_TEXT_FROM" value="**stored in"/>
+<property name="EN_RELA_TEXT_TO" value="**stored"/>
+</propertyMap>
+</Relation>

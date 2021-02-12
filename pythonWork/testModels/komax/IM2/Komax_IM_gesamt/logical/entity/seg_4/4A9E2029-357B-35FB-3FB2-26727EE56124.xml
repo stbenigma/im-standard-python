@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="4A9E2029-357B-35FB-3FB2-26727EE56124" name="Projektpflichtenheft">
+<createdBy>stb</createdBy>
+<createdTime>2018-11-13 13:44:16 UTC</createdTime>
+<comment><![CDATA[11.2018: Sammlung von konkretisierten Anforderungen (aus Lastenheft, falls vorhanden) mit einem Lösungsvorschlag (Maschine-Typ, Modul etc.)
+
+11.2018 Vermutung:
+Ein Pflichtenheft kann vor definitiver Abstimmung mit dem Kunden begonnen werden für z.B. Teile von denen wir wissen, dass sie wahrscheinlich
+in dieser Art kommen werden.
+
+17.7.19: Entitätsnamen "Kundenpflichtenheft" abgewandelt in Projektpflichtenheft, da am Pflichtenheft nicht nur der Kunde, sondern auch Komax (SLE) mitarbeiten kann; Möglichkeiten sind von das Pflichtenheft kann 100% vom Kunden vorgegeben sein oder 100% von Komax  erstellt werden
+
+]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+11.2018: Sammlung von konkretisierten Anforderungen (aus Lastenheft, falls vorhanden) mit einem Lösungsvorschlag (Maschine-Typ, Modul etc.)
+
+11.2018 Vermutung:
+Ein Pflichtenheft kann vor definitiver Abstimmung mit dem Kunden begonnen werden für z.B. Teile von denen wir wissen, dass sie wahrscheinlich
+in dieser Art kommen werden.
+
+17.7.19: Entitätsnamen "Kundenpflichtenheft" abgewandelt in Projektpflichtenheft, da am Pflichtenheft nicht nur der Kunde, sondern auch Komax (SLE) mitarbeiten kann; Möglichkeiten sind von das Pflichtenheft kann 100% vom Kunden vorgegeben sein oder 100% von Komax  erstellt werden
+
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**11.2018: Collection of concrete requirements (from specifications, if available) with a proposed solution (machine type, module, etc.)
+
+11.2018 Assumption:
+A requirement specification can be started before final agreement with the customer for e.g. parts of which we know that they are probably
+will come like this.
+
+17.7.19: Entity name "customer requirement specification" changed to project requirement specification, since not only the customer but also Komax (SLE) can work on the requirement specification; options are 100% given by the customer or 100% created by Komax
+
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="11.2018: Sammlung von konkretisierten Anforderungen (aus Lastenheft, falls vorhanden) mit einem Lösungsvorschlag (Maschine-Typ, Modul etc.)  11.2018 Vermutung: Ein Pflichtenheft kann vor definitiver Abstimmung mit dem Kunden begonnen werden für z.B. Teile von denen wir wissen, dass sie wahrscheinlich in dieser Art kommen werden.  17.7.19: Entitätsnamen &quot;Kundenpflichtenheft&quot; abgewandelt in Projektpflichtenheft, da am Pflichtenheft nicht nur der Kunde, sondern auch Komax (SLE) mitarbeiten kann; Möglichkeiten sind von das Pflichtenheft kann 100% vom Kunden vorgegeben sein oder 100% von Komax  erstellt werden  "/>
+<property name="DE_ENTI_NAME" value="Projektpflichtenheft"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="11.2018: Sammlung von konkretisierten Anforderungen (aus Lastenheft, falls vorhanden) mit einem Lösungsvorschlag (Maschine-Typ, Modul etc.)  11.2018 Vermutung: Ein Pflichtenheft kann vor definitiver Abstimmung mit dem Kunden begonnen werden für z.B. Teile von denen wir wissen, dass sie wahrscheinlich in dieser Art kommen werden.  17.7.19: Entitätsnamen &quot;Kundenpflichtenheft&quot; abgewandelt in Projektpflichtenheft, da am Pflichtenheft nicht nur der Kunde, sondern auch Komax (SLE) mitarbeiten kann; Möglichkeiten sind von das Pflichtenheft kann 100% vom Kunden vorgegeben sein oder 100% von Komax  erstellt werden  "/>
+<property name="EN_ENTI_NAME" value="**Project specification"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Beschreibung" id="3880E2B8-6280-7006-4C69-C21B7361106A">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-07-17 16:31:06 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Description"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

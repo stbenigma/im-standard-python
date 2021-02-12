@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_32" directorySegmentName="seg_0" id="8B9366F3-7B66-4CC9-0986-D955AD2A08D0">
+<createdBy>stb</createdBy>
+<createdTime>2018-03-15 13:04:52 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>charakterisiert</nameOnSource>
+<nameOnTarget>ist von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>440ED209-39D9-0EEF-3D7E-FC552376B96F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>42962358-34D1-D411-E156-0FE27E55F2DA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="charakterisiert"/>
+<property name="DE_RELA_TEXT_TO" value="ist von"/>
+<property name="EN_RELA_TEXT_FROM" value="**characterized"/>
+<property name="EN_RELA_TEXT_TO" value="**is from"/>
+</propertyMap>
+</Relation>

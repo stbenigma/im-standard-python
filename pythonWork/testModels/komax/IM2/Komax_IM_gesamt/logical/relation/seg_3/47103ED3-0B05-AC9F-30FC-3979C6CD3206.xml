@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_417" directorySegmentName="seg_3" id="47103ED3-0B05-AC9F-30FC-3979C6CD3206">
+<createdBy>toz</createdBy>
+<createdTime>2018-08-28 05:41:51 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>wickelt ab</nameOnSource>
+<nameOnTarget>betrifft</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>2E883BE9-F98E-F045-468D-9353D74B1C5B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E1AEE6A6-41EF-7108-BCD5-40EE61F730F9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="wickelt ab"/>
+<property name="DE_RELA_TEXT_TO" value="betrifft"/>
+<property name="EN_RELA_TEXT_FROM" value="**unwinds"/>
+<property name="EN_RELA_TEXT_TO" value="**pertains"/>
+</propertyMap>
+</Relation>

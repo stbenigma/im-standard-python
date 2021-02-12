@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="04C42A0F-FA77-E490-8A8A-C17586C3DB8E" name="Unternehmenskette">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-23 13:19:20 UTC</createdTime>
+<comment><![CDATA[Gruppierung von Accounts, die nach selbst wählbaren Kriterien zusammengefasst sind.  
+
+Diskussion 17.04.19: Accountgruppe wird genutzt damit die Strukturen der einzelnen Account abgebildet und gruppiert werden können (auch wenn nicht juristisch nicht zusammenhängen)
+
+Bsp: Boeing, Yasaki, Aptiv...
+
+08.05.19: Im MDM equivalent zu Company Chain?!
+
+Rabatt / Pricing über AccountGruppe
+
+Account Grupp in Unternehmenskette umbenennen, im MDM geeinigt. ]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Gruppierung von Accounts, die nach selbst wählbaren Kriterien zusammengefasst sind.  
+
+Diskussion 17.04.19: Accountgruppe wird genutzt damit die Strukturen der einzelnen Account abgebildet und gruppiert werden können (auch wenn nicht juristisch nicht zusammenhängen)
+
+Bsp: Boeing, Yasaki, Aptiv...
+
+08.05.19: Im MDM equivalent zu Company Chain?!
+
+Rabatt / Pricing über AccountGruppe
+
+Account Grupp in Unternehmenskette umbenennen, im MDM geeinigt. 
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Grouping of accounts that are grouped according to user-defined criteria.  
+
+Discussion 17.04.19: Account group is used so that the structures of the individual accounts can be displayed and grouped (even if not legally connected)
+
+Example: Boeing, Yasaki, Aptiv...
+
+08.05.19: In MDM equivalent to Company Chain?!
+
+Discount / Pricing via AccountGroup
+
+Rename account group into company chain, agreed in MDM
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Accountgruppe</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Gruppierung von Accounts, die nach selbst wählbaren Kriterien zusammengefasst sind.    Diskussion 17.04.19: Accountgruppe wird genutzt damit die Strukturen der einzelnen Account abgebildet und gruppiert werden können (auch wenn nicht juristisch nicht zusammenhängen)  Bsp: Boeing, Yasaki, Aptiv...  08.05.19: Im MDM equivalent zu Company Chain?!  Rabatt / Pricing über AccountGruppe  Account Grupp in Unternehmenskette umbenennen, im MDM geeinigt. "/>
+<property name="DE_ENTI_NAME" value="Unternehmenskette"/>
+<property name="DE_ENTI_SYNONYM" value="Accountgruppe"/>
+<property name="EN_ENTI_COMMENT" value="Gruppierung von Accounts, die nach selbst wählbaren Kriterien zusammengefasst sind.    Diskussion 17.04.19: Accountgruppe wird genutzt damit die Strukturen der einzelnen Account abgebildet und gruppiert werden können (auch wenn nicht juristisch nicht zusammenhängen)  Bsp: Boeing, Yasaki, Aptiv...  08.05.19: Im MDM equivalent zu Company Chain?!  Rabatt / Pricing über AccountGruppe  Account Grupp in Unternehmenskette umbenennen, im MDM geeinigt. "/>
+<property name="EN_ENTI_NAME" value="**Enterprise chain"/>
+<property name="EN_ENTI_SYNONYM" value="**Account group"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="C84D0437-6983-12E0-6319-5512B9DAEF8C">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-23 13:20:20 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="CompanyChainID"/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="MDM-AttrName" value="Account to Company Chains"/>
+<property name="MDM-StepID" value="ref_Account2CompanyChains"/>
+<property name="SF-AttrName" value="(Parent)Account.Account Name"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

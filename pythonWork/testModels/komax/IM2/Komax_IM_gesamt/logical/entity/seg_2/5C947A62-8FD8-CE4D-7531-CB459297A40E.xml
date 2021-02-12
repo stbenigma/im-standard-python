@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="5C947A62-8FD8-CE4D-7531-CB459297A40E" name="MwST">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-23 14:28:54 UTC</createdTime>
+<comment><![CDATA[Normal, Beherbergung oder Reduzierter Satz]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Normal, Beherbergung oder Reduzierter Satz
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Normal, Accommodation or Reduced Set
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>VAT</synonym>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Normal, Beherbergung oder Reduzierter Satz"/>
+<property name="DE_ENTI_NAME" value="MwST"/>
+<property name="DE_ENTI_SYNONYM" value="VAT"/>
+<property name="EN_ENTI_COMMENT" value="Normal, Beherbergung oder Reduzierter Satz"/>
+<property name="EN_ENTI_NAME" value="VAT"/>
+<property name="EN_ENTI_SYNONYM" value="*DE* VAT"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Bezeichnung" id="5D50B771-FF91-12C0-50BF-1AA64D377563">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 11:29:32 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Bezeichnung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Designation"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Satz [T]" id="58A05837-1154-A747-CFC9-FD3FD5F77CDA">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-24 07:46:17 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Satz [T]"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="*Set [T]"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

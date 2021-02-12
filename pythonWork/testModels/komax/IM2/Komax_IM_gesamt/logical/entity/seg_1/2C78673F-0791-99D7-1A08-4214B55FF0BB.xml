@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="2C78673F-0791-99D7-1A08-4214B55FF0BB" name="Landesteil">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-05-02 11:12:13 UTC</createdTime>
+<comment><![CDATA[Kanton, Bundesland, Bundesstaat
+
+
+=> ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&A. Skocic]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Kanton, Bundesland, Bundesstaat
+
+
+=> ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&A. Skocic
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**Canton, State, State
+
+
+=> is defined on the basis of purchased geodata / 14.2.19 INput Mi Braunschweiler&A. Skocic
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>6018D2F4-3A17-7A2C-B062-2EE7FABEFC86</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="Kanton, Bundesland, Bundesstaat   =&gt; ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&amp;A. Skocic"/>
+<property name="DE_ENTI_NAME" value="Landesteil"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="Kanton, Bundesland, Bundesstaat   =&gt; ist auf Basis von eingekauften Geodaten definiert. / 14.2.19 INput Mi Braunschweiler&amp;A. Skocic"/>
+<property name="EN_ENTI_NAME" value="**Part of the country"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Adminlevel" id="C289BF59-3AEA-7DB4-ED7E-F30948C1C8EB">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-24 07:48:16 UTC</createdTime>
+<comment><![CDATA[A1-A4]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+A1-A4
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**A1-A4
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="A1-A4"/>
+<property name="DE_ATTR_NAME" value="Adminlevel"/>
+<property name="EN_ATTR_COMMENT" value="A1-A4"/>
+<property name="EN_ATTR_NAME" value="**Admin level"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

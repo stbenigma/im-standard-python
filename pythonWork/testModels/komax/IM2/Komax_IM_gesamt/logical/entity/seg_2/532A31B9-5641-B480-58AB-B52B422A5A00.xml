@@ -1,0 +1,184 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="532A31B9-5641-B480-58AB-B52B422A5A00" name="Festpreisangebot">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-24 13:19:10 UTC</createdTime>
+<comment><![CDATA[
+
+Ergänzung Solution Grafenau:
+Angebotstypen: Schätz-, Richt- und Definitives Angebot]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+
+Ergänzung Solution Grafenau:
+Angebotstypen: Schätz-, Richt- und Definitives Angebot
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+**
+
+Supplement Solution Grafenau:
+Types of offers: Estimated, indicative and definitive offer
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>6A7B9487-A0A0-AE9F-2264-E3D4BACA51DA</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_COMMENT" value="  Ergänzung Solution Grafenau: Angebotstypen: Schätz-, Richt- und Definitives Angebot"/>
+<property name="DE_ENTI_NAME" value="Festpreisangebot"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_COMMENT" value="  Ergänzung Solution Grafenau: Angebotstypen: Schätz-, Richt- und Definitives Angebot"/>
+<property name="EN_ENTI_NAME" value="**Fixed price offer"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Finanz Status" id="3119A3BE-1F6A-8C8C-D4B9-FD0EE1E56986">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 10:12:25 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Finanz Status"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Financial Status"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Technik Status" id="E34A0CF2-D2E7-9E81-F7D1-93D9915CB923">
+<createdBy>stb</createdBy>
+<createdTime>2018-08-30 10:12:54 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Technik Status"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Technology Status"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Incoterms" id="D9B5F7B0-90A3-9AE7-4BF3-D175D1DEE018">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-15 15:35:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Incoterms"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Incoterms"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Teilauftrag (ja/nein)" id="6437C97C-868F-CD20-893F-646800CEEEF4">
+<createdBy>ch1011185</createdBy>
+<createdTime>2019-02-15 15:35:33 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Teilauftrag (ja/nein)"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="**Partial order (yes/no)"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+<Attribute name="Preisgültigkeitsdatum" id="347FD892-336D-0E83-E08A-5E4B14AD4775">
+<createdBy>toz</createdBy>
+<createdTime>2019-04-19 13:27:05 UTC</createdTime>
+<comment><![CDATA[Aus Diskussion mit M. Hurschler. Für saubere Nachvollziehbarkeit im Verkaufsprozess zwingend notwendig. ]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Aus Diskussion mit M. Hurschler. Für saubere Nachvollziehbarkeit im Verkaufsprozess zwingend notwendig. 
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+**From discussion with Mr. Hurschler. For clean traceability in the sales process absolutely necessary
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="AX-AttrName" value="."/>
+<property name="DE_ATTR_COMMENT" value="Aus Diskussion mit M. Hurschler. Für saubere Nachvollziehbarkeit im Verkaufsprozess zwingend notwendig. "/>
+<property name="DE_ATTR_NAME" value="Preisgültigkeitsdatum"/>
+<property name="EN_ATTR_COMMENT" value="Aus Diskussion mit M. Hurschler. Für saubere Nachvollziehbarkeit im Verkaufsprozess zwingend notwendig. "/>
+<property name="EN_ATTR_NAME" value="Price validity date"/>
+<property name="MDM-AttrName" value="."/>
+<property name="MDM-StepID" value="."/>
+<property name="SF-AttrName" value="."/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

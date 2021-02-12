@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_66" directorySegmentName="seg_0" id="D5466560-FEF2-2141-6A4A-EC7ACF9CD127">
+<createdBy>stb</createdBy>
+<createdTime>2018-04-23 12:49:25 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>8A993BC4-2FD5-43A3-8DFD-2EC42CDF3C51</arc>
+<identifying>false</identifying>
+<nameOnSource>untersteht</nameOnSource>
+<nameOnTarget>getroffen mit</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7C57C407-0F6D-EBD6-71A6-B151AAAAA670</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>45EDF276-9A74-AE4A-0DA7-0CAC0231861E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="untersteht"/>
+<property name="DE_RELA_TEXT_TO" value="getroffen mit"/>
+<property name="EN_RELA_TEXT_FROM" value="**is subordinate to"/>
+<property name="EN_RELA_TEXT_TO" value="**stricken with"/>
+</propertyMap>
+</Relation>

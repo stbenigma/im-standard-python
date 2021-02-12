@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_702" directorySegmentName="seg_5" id="F62E6AC2-ECA5-FF08-EEF8-45E8D5AA41C4">
+<createdBy>toz</createdBy>
+<createdTime>2019-05-03 07:59:17 UTC</createdTime>
+<ownerDesignName>Komax_IM_gesamt</ownerDesignName>
+<engineerTo>
+<item key="EE8A2DC9-6D2A-8C1A-4406-571380303BB0" value="true"/>
+</engineerTo>
+<arc>AFC92EA9-4082-01A0-15B0-2961E4C0F648</arc>
+<identifying>false</identifying>
+<nameOnSource>ergänzt um</nameOnSource>
+<nameOnTarget>ergänzt</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>93CE786E-E823-3F99-9338-0CA3CE563C71</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>4EF90197-1188-0C46-B353-C30E77CD70C3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="ergänzt um"/>
+<property name="DE_RELA_TEXT_TO" value="ergänzt"/>
+<property name="EN_RELA_TEXT_FROM" value="**supplemented by"/>
+<property name="EN_RELA_TEXT_TO" value="**supplemented"/>
+</propertyMap>
+</Relation>
