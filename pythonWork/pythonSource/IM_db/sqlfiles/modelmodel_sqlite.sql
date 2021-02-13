@@ -121,6 +121,7 @@ create table EXTERNAL_REFS
 	EXTR_MODE_ID integer not null
 		references MODELELEMENT
 			on delete cascade,
+	EXTR_LAST_UPDATE VARCHAR(30) NOT NULL,
 	constraint EXTR_UK
 		unique (EXTR_SOURCE_NAME, EXTR_MODE_ID),
 	constraint EXTR_UK_ID

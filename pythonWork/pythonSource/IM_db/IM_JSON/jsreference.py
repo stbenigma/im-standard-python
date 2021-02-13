@@ -5,11 +5,11 @@ from mystring import nvl
 
 def inssourceref(pmodel,pmodeid, psources):
     """   "sourceref": {
-        "ODM": "80D2A6F4-56D6-88E4-2E84-676699D4EBF2"
+        "ODM": ["80D2A6F4-56D6-88E4-2E84-676699D4EBF2","2021-02-13 15:23:41.412333"]
     },"""
     if psources is None: return
-    for src, srcid in psources.items():
-        extr = Externalref(pmodeid=pmodeid, psrcname=src, psrcid=srcid)
+    for src, entry in psources.items():
+        extr = Externalref(pmodeid=pmodeid, psrcname=src, psrcid=entry[0],plastupd=entry[1])
         try:
             extr.insert()
         except Exception as err:

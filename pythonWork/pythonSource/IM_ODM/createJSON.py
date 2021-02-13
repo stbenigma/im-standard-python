@@ -2,6 +2,7 @@
 import json
 from IM_DB import dbConnect, parameters, logmessages
 from IM_JSON import sql2json,jsonfilename,JSModel
+import os
 
 
 def getJSONfile(pfilename):
@@ -52,8 +53,8 @@ def json2xml(json_obj, line_padding=""):
 
 def main(param1):
     if param1 is None:
-        filepath ='./sqlfiles/'
-        filename = 'emptyModel'
+        filepath =os.path.dirname(__file__)+'/../IM_db/sqlfiles/'
+        filename = 'modelmodel-empty'
         createemptyJSON(pfilepath=filepath,pfilename=filename)
         print ("empty JSON file {} created"
                                     .format(filepath + jsonfilename(filename) ))

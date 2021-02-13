@@ -99,10 +99,30 @@ def main(pjsonin, pdbout):
               .format(pjsonin, "in-memory" if pdbout is None else pdbout))
 
     #Test output
-    if False:
+    if True:
         controljson = JSModel(pmodel=sql2json(pmodelname=jsmodel.jsmodel['model']['name'],pdbname=dbConnect.getDBname()))
         controljson.printmodel(pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
         print ('/Users/stb/Downloads/checkjson.json created')
+
+        del controljson.jsmodel['_imprint_']
+        del jsmodel.jsmodel['_imprint_']
+        del controljson.jsmodel['diagrams']
+        del jsmodel.jsmodel['diagrams']
+        for t in transferprocs.keys():
+            if not t in jsmodel.jsmodel: continue
+            for id,enti in jsmodel.jsmodel[t].items():
+                c = controljson.jsmodel[t][id]
+                if enti != c:
+                    print (enti)
+                    print (c)
+
+
+        if controljson.jsmodel == jsmodel.jsmodel:
+            print("==== input file {} identical to generated file {} ===="
+                .format(pjsonin,'/Users/stb/Downloads/checkjson.json'))
+        else:
+            print("==== input file {} differs from generated file {} ===="
+                .format(pjsonin,'/Users/stb/Downloads/checkjson.json'))
 
     dbConnect.closeDB()
 # main

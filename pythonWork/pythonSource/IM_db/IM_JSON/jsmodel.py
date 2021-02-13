@@ -57,7 +57,7 @@ def sql2json(pmodelname, pdbname, pemptymodel=False):
     modelhash = make_hash(jsmodel)
     jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:"
         , "created": str(datetime.today())
-        ,"Modelversion" : dbConnect.getversion()
+        ,"Modelversion" : "" if pemptymodel else dbConnect.getversion()
         , "hashvalue": modelhash
         ,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}

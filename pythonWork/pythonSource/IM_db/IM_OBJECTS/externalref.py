@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
 from IM_DB import  dbDML
+from datetime import datetime
 
 class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
@@ -8,30 +9,13 @@ class Externalref(Baseobject):
     _columnlist:list = []
 
 
-    def __init__(self,psrcname=None,psrcid=None,pmodeid=None):
+    def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
         if (len(Externalref._columnlist) == 0): Externalref._columnlist = Baseobject.gettablecolumns(Externalref._tablename)
         super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix)
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid
         self.extr_mode_id = pmodeid
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Externalref._tablename
-                                ,psql="""
-CREATE TABLE EXTERNAL_REFS
-    (
-     EXTR_ID INTEGER NOT NULL primary key autoincrement,
-     EXTR_SOURCE_NAME VARCHAR (60) NOT NULL ,
-     EXTR_SOURCE_ID VARCHAR (100) NOT NULL ,
-     EXTR_MODE_ID integer NOT NULL
-    ,CONSTRAINT EXTR_UK UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_MODE_ID ASC)
-     ,CONSTRAINT EXTR_UK_ID UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_SOURCE_ID ASC)
-    ,CONSTRAINT EXTR_MODE_FK FOREIGN KEY(     EXTR_MODE_ID) 
-        REFERENCES MODELELEMENT(     MODE_ID )
-        ON DELETE CASCADE
-    )
-""")
+        self.extr_last_update = plastupd or datetime.today()
 
     @staticmethod
     def getsources():
@@ -42,7 +26,7 @@ CREATE TABLE EXTERNAL_REFS
     def getsrcinfo(pmodeid):
         extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid)
                                     ,porderby="extr_source_name,extr_source_id")
-        list = {e.extr_source_name : e.extr_source_id for e in extrs}
+        list = {e.extr_source_name : [e.extr_source_id,e.extr_last_update] for e in extrs}
         return list
     # getsrcsinfo
 
@@ -81,7 +65,7 @@ CREATE TABLE EXTERNAL_REFS
         Baseobject.delete(Externalref._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="extr_id"):
         return Baseobject.select(pclass=Externalref
                                  , pwhere=pwhere, porderby=porderby)
 

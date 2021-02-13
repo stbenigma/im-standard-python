@@ -171,7 +171,7 @@ def colureflist(plist:dict=None):
 def sourceref(pvalues:dict=None):
     """ None = emptymodel"""
     if pvalues is None:
-        return {"ODM": ''}
+        return {"ODM": ["",""]}
     else:
         return pvalues
 
