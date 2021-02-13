@@ -158,7 +158,6 @@ class Baseobject:
             self = data[0]
         # fi
         return self
-
     # getbyuk
 
     def prefix(self):

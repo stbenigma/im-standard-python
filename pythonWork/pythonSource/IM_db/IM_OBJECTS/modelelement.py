@@ -233,29 +233,11 @@ class ModelelementProperty(Baseobject):
         self.metp_optional = Boolean.FALSE
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=ModelelementProperty._tablename
-                               , psql="""
-CREATE TABLE MODELEMTYPE_PROPERTIES
-    (
-     METP_ID INTEGER NOT NULL primary key autoincrement,
-     METP_MELT_ID integer NOT NULL ,
-     METP_UDPR_ID integer NOT NULL ,
-     METP_OPTIONAL VARCHAR (5) NOT NULL CHECK ( METP_OPTIONAL IN ('FALSE', 'TRUE') )
-    ,CONSTRAINT METP_UN UNIQUE (METP_MELT_ID ASC, METP_UDPR_ID ASC)
-    ,CONSTRAINT METP_MELT_FK FOREIGN KEY    (     METP_MELT_ID)
-		REFERENCES MODELELEM_TYPE    (     MELT_ID )
-    ,CONSTRAINT METP_UDPR_FK FOREIGN KEY    (     METP_UDPR_ID)
-		REFERENCES USER_DEFINED_PROPERTIES    (     UDPR_ID )
-    )
-""")
-
-    @staticmethod
     def delete():
         Baseobject.delete(ModelelementProperty._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="metp_id"):
         return Baseobject.select(pclass=ModelelementProperty, pwhere=pwhere, porderby=porderby)
 
 #ModelelementProperty

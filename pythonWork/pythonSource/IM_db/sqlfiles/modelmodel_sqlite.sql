@@ -1046,7 +1046,6 @@ CREATE VIEW SUPERENTI AS
           join rel on rela_superenti_id = superentity.ENTI_ID
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
 
---drop view dbversion;
-create view dbversion as select '1.0' as version, datetime() as installedtime;
+create view dbversion as select '1.1' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

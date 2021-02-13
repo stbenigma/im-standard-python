@@ -66,7 +66,7 @@ class Arc(Baseobject):
         Baseobject.delete(Arc._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="arcs_id"):
         arcs = Baseobject.select(pclass=Arc
                                  , pwhere=pwhere, porderby=porderby)
         return arcs
@@ -152,7 +152,7 @@ class Relation(MultilangBaseobject):
         Baseobject.delete(Relation._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="rela_name"):
         rela = Baseobject.select(pclass=Relation
                                  , pwhere=pwhere, porderby=porderby)
         return rela

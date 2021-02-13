@@ -28,32 +28,12 @@ class Datatype(Baseobject):
         self.daty_uc = 'fillDB'
         self.daty_dc = date.today()
 
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Datatype._tablename
-                                ,psql="""
-	CREATE TABLE DATATYPES 
-	    (
-	     DATY_ID INTEGER NOT NULL primary key , 
-	     DATY_NAME VARCHAR (60) NOT NULL , 
-	     DATY_BASETYPE VARCHAR (60) NOT NULL 
-	        CONSTRAINT DATY_BASETYPE_CK CHECK ( DATY_BASETYPE IN ('BINARY', 'NUMERIC', 'STRING', 'DATETIME') ) , 
-	     DATY_UC VARCHAR (30) , 
-	     DATY_DC VARCHAR (30) NOT NULL , 
-	     DATY_UM VARCHAR (30) NULL , 
-	     DATY_DM VARCHAR (30) NULL 
-		 ,CONSTRAINT DATY_MODE_FK FOREIGN KEY (DATY_ID) 
-			REFERENCES MODELELEMENT (MODE_ID ) 
-			ON DELETE CASCADE 
-		)""")
-
     @staticmethod
     def delete():
         Baseobject.delete(Datatype._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="daty_id"):
         return Baseobject.select(pclass=Datatype
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod

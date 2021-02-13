@@ -1810,4 +1810,37 @@ ALTER TABLE UDP_VALUES
     ON UPDATE NO ACTION 
 GO
 
+CREATE VIEW SUPERENTI AS
+        with rel as (select rela_type
+               , case
+                     when RELA_MANDATORY_TO_FROM = 'TRUE' then RELA_ENTI_ID_FROM
+                     else RELA_ENTI_ID_TO end as rela_superenti_id
+               , case
+                     when RELA_MANDATORY_FROM_TO = 'TRUE' then RELA_ENTI_ID_FROM
+                     else RELA_ENTI_ID_TO end as rela_subenti_id
+                 from relations
+                where rela_type = 'ISAR'
+                )
+    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
+        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
+          from ENTITIES superentity
+            join ARCS on ARCS_ENTI_ID = superentity.enti_id
+            join relations
+                  on  ((rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
+                   or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID))
+                     and RELA_TYPE =  'ISAS'
+           left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
+                or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
+    union all
+        select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
+        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
+          from ENTITIES superentity
+          join rel on rela_superenti_id = superentity.ENTI_ID
+        join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id
+GO
+		
+create view  dbversion as select '1.1' as version, current_timestamp as installedtime
+GO
+	
+
 

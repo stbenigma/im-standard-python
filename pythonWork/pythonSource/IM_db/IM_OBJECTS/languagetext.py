@@ -182,7 +182,8 @@ CREATE TABLE LANG_TEXTS
                 end text
         from languages
         left join lgtx as lgtx on lgtx.lgtx_lang_id = lang_id
-        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang_lang_id""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
+        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang_lang_id
+        order by lang_iso_code2""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
         data = dbDML.select(lsql)
         retval = {d[0]:d[1] for d in data}
         return retval

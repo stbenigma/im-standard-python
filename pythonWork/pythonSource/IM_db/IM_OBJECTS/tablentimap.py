@@ -60,7 +60,7 @@ class TablEntiMap(Baseobject):
                                                     from tabl_enti_maps
                                                     where tema_tabl_id = {}
                                                     )""".format(ptablid)
-                             ,porderby="enti_id")
+                             )
 
     @staticmethod
     def tablelist(pentiid=None):

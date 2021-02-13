@@ -40,7 +40,8 @@ CREATE TABLE EXTERNAL_REFS
 
     @staticmethod
     def getsrcinfo(pmodeid):
-        extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid),porderby="extr_source_name")
+        extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid)
+                                    ,porderby="extr_source_name,extr_source_id")
         list = {e.extr_source_name : e.extr_source_id for e in extrs}
         return list
     # getsrcsinfo

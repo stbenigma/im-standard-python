@@ -14,22 +14,6 @@ class Storageformat(Baseobject):
         self.stfo_uc = 'fillDB'
         self.stfo_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Storageformat._tablename
-                                ,psql="""
-CREATE TABLE STORAGE_FORMATS
-    (
-     STFO_ID INTEGER NOT NULL primary key autoincrement,
-     STFO_NAME VARCHAR (60) NOT NULL ,
-     STFO_DESCR VARCHAR (4000) NULL ,
-     STFO_UC VARCHAR (30) NOT NULL ,
-     STFO_DC VARCHAR (30) NOT NULL ,
-     STFO_UM VARCHAR (30) NULL ,
-     STFO_DM VARCHAR (30) NULL
-    ,CONSTRAINT STFO_UN UNIQUE (STFO_NAME ASC)
-    )""")
-
     def getname(self,plang=None):
         return self.stfo_name
 
@@ -41,7 +25,7 @@ CREATE TABLE STORAGE_FORMATS
         Baseobject.delete(Storageformat._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="stfo_id"):
         return Baseobject.select(pclass=Storageformat
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
@@ -74,28 +58,11 @@ class PhysicalUnit(Baseobject):
 
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=PhysicalUnit._tablename
-                                ,psql="""
-CREATE TABLE PHYSICAL_UNIT
-    (
-     PHYU_ID INTEGER NOT NULL primary key autoincrement,
-     PHYU_SI_UNIT VARCHAR (10)  ,
-     PHYU_NAME VARCHAR (60) NOT NULL ,
-     PHYU_DESCR VARCHAR (4000) NULL ,
-     PHYU_UC VARCHAR (30) NOT NULL ,
-     PHYU_DC VARCHAR (30) NOT NULL ,
-     PHYU_UM VARCHAR (30) NULL ,
-     PHYU_DM VARCHAR (30) NULL
-     ,CONSTRAINT PHYU_UK_NAME UNIQUE (PHYU_NAME ASC)
- )""")
-
-    @staticmethod
     def delete():
         Baseobject.delete(PhysicalUnit._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="phyu_name"):
         return Baseobject.select(pclass=PhysicalUnit
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod

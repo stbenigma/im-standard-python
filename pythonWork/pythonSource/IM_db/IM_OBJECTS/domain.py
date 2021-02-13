@@ -148,7 +148,7 @@ class Domain(MultilangBaseobject):
         return transl[pdatybasetype]
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="doma_name"):
         wrtbs = Baseobject.select(pclass=Domain
                                   , pwhere=pwhere, porderby=porderby)
         return wrtbs
@@ -264,32 +264,6 @@ class DomaingroupMember(Baseobject):
                          , psrcname=psrcname
                          )
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=DomaingroupMember._tablename
-                               , psql="""
-CREATE TABLE DOMAINGROUP_MEMBERS
-    (
-     DGRM_ID INTEGER NOT NULL primary key autoincrement,
-     DGRM_NAME VARCHAR (4000) NOT NULL ,
-     DGRM_DESCR VARCHAR (4000) NULL ,
-     DGRM_IS_MANDATORY VARCHAR (5) NOT NULL CHECK ( DGRM_IS_MANDATORY IN ('FALSE', 'TRUE') ) ,
-     DGRM_DOMA_ID_GROUP integer NOT NULL  ,
-     DGRM_DOMA_ID_MEMBER integer NOT NULL ,
-     DGRM_UC VARCHAR (30) NOT NULL ,
-     DGRM_DC VARCHAR (30) NOT NULL ,
-     DGRM_UM VARCHAR (30) NULL ,
-     DGRM_DM VARCHAR (30) NULL
-    ,CONSTRAINT DGRM_DOMA_UK UNIQUE (DGRM_DOMA_ID_GROUP ASC, DGRM_NAME ASC)
-    ,CONSTRAINT DGRM_DOMA_FK_GROUP FOREIGN KEY    (     DGRM_DOMA_ID_GROUP)
-		REFERENCES DOMAINS    (     DOMA_ID )
-    ,CONSTRAINT DGRM_DOMA_FK_MEMBER FOREIGN KEY(     DGRM_DOMA_ID_MEMBER)
-		REFERENCES DOMAINS    (     DOMA_ID )
-    ,CONSTRAINT DGRM_MODE_FK FOREIGN KEY    (     DGRM_ID)
-		REFERENCES MODELELEMENT    (     MODE_ID )
-    ON DELETE CASCADE
-)
-    """);
 
     def getname(self,plang=None):
         return self.dgrm_name
@@ -301,7 +275,7 @@ CREATE TABLE DOMAINGROUP_MEMBERS
         Baseobject.delete(DomaingroupMember._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="dgrm_name"):
         return Baseobject.select(pclass=DomaingroupMember
                                  , pwhere=pwhere, porderby=porderby)
 
@@ -323,29 +297,6 @@ class DefaultValue(Baseobject):
     def __init__(self):
         if (len(DefaultValue._columnlist) == 0): DefaultValue._columnlist = Baseobject.gettablecolumns(DefaultValue._tablename)
         super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix)
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=DefaultValue._tablename
-                               , psql="""
-CREATE TABLE DEFAULT_VALUES
-    (
-     DEVA_ID INTEGER NOT NULL primary key autoincrement,
-     DEVA_DOMA_ID integer NOT NULL ,
-     DEVA_VALUE VARCHAR (100) NOT NULL ,
-     DEVA_SORT_ORDER NUMERIC (3) NULL ,
-     DEVA_DISPL VARCHAR (4000) NULL ,
-     DEVA_DESCR VARCHAR (4000) NULL ,
-     DEVA_UC VARCHAR(30) NULL  ,
-     DEVA_DC VARCHAR (30) NOT NULL ,
-     DEVA_UM VARCHAR (30) NULL ,
-     DEVA_DM VARCHAR (30) NULL
-    ,CONSTRAINT DEVA_UK UNIQUE (DEVA_DOMA_ID ASC, DEVA_VALUE ASC)
-    ,CONSTRAINT DEVA_DOMA_FK FOREIGN KEY    (     DEVA_DOMA_ID)
-		REFERENCES DOMAINS    (     DOMA_ID )
-    ON DELETE CASCADE
-)
-    """)
 
     @staticmethod
     def delete():

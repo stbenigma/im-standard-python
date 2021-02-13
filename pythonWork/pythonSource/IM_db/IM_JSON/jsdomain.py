@@ -155,8 +155,7 @@ def domain2js(pdoma):
                                      ,None if pdoma.doma_bin_stfo_id is None else Storageformat().getbyid(pdoma.doma_bin_stfo_id).stfo_name
                                         ,jsguid(Modelelemtype.STFO,pdoma.doma_bin_stfo_id)
                                      ,domelements(domaingroupmembers(pdoma.doma_id))
-                                        ,domvalues(DefaultValue.select(pwhere="deva_doma_id = {}".format(pdoma.doma_id),
-                                                             porderby="deva_sort_order")
+                                        ,domvalues(DefaultValue.select(pwhere="deva_doma_id = {}".format(pdoma.doma_id))
                                                    )
                                      ,reflist([jsguid(Modelelemtype.ATTR, a.attr_id)
                                                 for a in Attribute.select(pwhere="attr_doma_id = {}".format(pdoma.doma_id))])

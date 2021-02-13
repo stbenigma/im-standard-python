@@ -14,12 +14,8 @@ LOGFILEPATH:str = 'logfilepath'
 VERSIONFILEPATH:str=os.path.dirname(os.path.abspath(__file__))+"/../../versions.json"
 with open(VERSIONFILEPATH, 'r') as handle:
     versions = json.load(handle)
-def modelmodelversion():
-    return versions['MODELMODELVERSION']
-def htmlgenerateversion():
-    return versions['HTMLGENERATEVERSION']
-def odmfillversion():
-    return versions['ODMFILLVERSION']
+def toolversion():
+    return versions['TOOLVERSION']
 
 SQLITE:str = 'sqlite'
 SQLSERVER:str = 'sql-server'

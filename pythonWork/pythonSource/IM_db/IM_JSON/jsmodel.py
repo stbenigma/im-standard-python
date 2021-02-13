@@ -2,7 +2,7 @@ from datetime import datetime
 
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
-from IM_DB import parameters
+from IM_DB import parameters,dbConnect
 
 
 def lastupd():
@@ -57,7 +57,7 @@ def sql2json(pmodelname, pdbname, pemptymodel=False):
     modelhash = make_hash(jsmodel)
     jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:"
         , "created": str(datetime.today())
-        ,"Modelversion" : parameters.modelmodelversion()
+        ,"Modelversion" : dbConnect.getversion()
         , "hashvalue": modelhash
         ,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}

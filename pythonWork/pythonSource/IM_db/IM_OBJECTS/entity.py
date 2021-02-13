@@ -99,7 +99,8 @@ CREATE TABLE ENTITIES
         return Entity().getbyid(pid).enti_category_guid
 
     def getparents(self):
-        parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
+        parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})"
+                                .format(self.getid()))
         return [] if parents is None else parents
     #getparent
 
@@ -115,7 +116,7 @@ CREATE TABLE ENTITIES
                                       from SUPERENTI 
                                       where superenti_id = {} 
                                       and rela_type like '{}')""".format(self.getid(),relatype)
-                                , porderby= 'enti_name')
+                                )
         return []  if children is None else children
     #getchildren
 

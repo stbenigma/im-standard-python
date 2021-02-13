@@ -4,8 +4,8 @@
 
 import sqlite3
 
-
 myDbConn: sqlite3.Connection = None
+dbversion = {}
 
 def createDB(p_filepath):
     """ erstellt eine Datenbank im Pfad mit diesem Namen """
@@ -13,11 +13,11 @@ def createDB(p_filepath):
 
 def openDB(p_filepath,fks='OFF'):
     """ öffnet die DB pfad/Name """
-    global myDbConn
+    global myDbConn,dbversion
     try:
         myDbConn = sqlite3.connect(p_filepath)
+        dbversion = readversion(myDbConn)
     except Exception as exp:
-        return
         raise exp
     myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
 
@@ -31,3 +31,18 @@ def getDBname():
     curr_table = cursor.fetchall()
     return curr_table[0][2]
 
+def readversion(pconn):
+    cursor = pconn.cursor()
+    try:
+        cursor.execute("select * from dbversion")
+        curr_table = cursor.fetchall()
+    except:
+        curr_table = [[None, None]]
+    # try
+    return {"version": curr_table[0][0]
+        , "installdate": curr_table[0][1]
+            }
+
+def getversion():
+    global dbversion
+    return dbversion["version"]
