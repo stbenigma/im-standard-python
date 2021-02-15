@@ -39,7 +39,7 @@ def printcolmapping(pcol):
     attrlist = []
     for anker,attr in attrs.items():
         if attr['entity'] is None:
-            attrlist.append([anker, "{}.{}".format(getelement(attr['relation2js'])['name']
+            attrlist.append([anker, "{}.{}".format(getelement(attr['relation'])['name']
                                         ,attr['name'][lang])])
         else :
             attrlist.append([anker, "{}.{}".format(getelement(attr['entity'])['name'][lang]

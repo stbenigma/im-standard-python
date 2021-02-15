@@ -208,10 +208,12 @@ def diagrams2js(pemptymodel,pmodelname):
                                                                     from melt_diats
                                                                     where melt_shortname != '{}'
                                                                     and medi_diat_id = {})"""
-                                                          .format(Modelelemtype.RELA, d.diag_diat_id))
+                                                          .format(Modelelemtype.RELA, d.diag_diat_id)
+                                                          ,porderby="melt_id")
                            }
             ,{jsguid(Modelelemtype.RELA, rr.relr_mode_id): relarep2js(rr)
-                                for rr in Relationrep.select(pwhere="relr_diag_id = {}".format(d.diag_id))
+                                for rr in Relationrep.select(pwhere="relr_diag_id = {}".format(d.diag_id)
+                                                             ,porderby="relr_id")
                                 }
             ,{jsguid(Modelelemtype.ARCS, ar.arcs_id): defarcs(parc=ar,pdiagid=d.diag_id)
                                         for ar in Arc.getdiagarcs(pdiagid=d.diag_id)
@@ -298,67 +300,71 @@ def defarcs(parc,pdiagid):
     for idx in range(len(circles)):
         circles[idx].append(poswinkel(poswinkel(poswinkel(circles[idx][3]) - circles[((idx-1) if idx > 0 else len(circles) - 1)][3])))
 
-    """deduce shortest path, starting with every point in acr as starting point"""
-    shortestangle=99999
+    """deduce shortest path, starting with every point in arc as starting point"""
+    shortestangle = 99999
     for idx in range(len(circles)):
-        angle = sum([circles[i][5] for i in range(len(circles))])-circles[idx][5]
-        shortestangle = min(shortestangle,angle)
+        angle = sum([circles[i][5] for i in range(len(circles))]) - circles[idx][5]
+        shortestangle = min(shortestangle, angle)
         circles[idx].append(angle)
     """switch to beginning with shortest path"""
     while circles[0][6] != shortestangle:
-        rotate = lambda l: l if len(l)== 0 else l[1:]+l[:1]
+        rotate = lambda l: l if len(l) == 0 else l[1:] + l[:1]
         circles = rotate(circles)
-    arc['circles'] = [(c[0],c[1]) for c in circles]
-    xfactor = {'right':[0,-1],'upper':[-1,1],'left':[0,1],'lower':[1,-1]}
-    yfactor = {'right':[-1,-1],'upper':[0,-1],'left':[1,1],'lower':[0,1]}
-    currentside = None
-    arcline = []
-    arcpoint =lambda x,y,s :{'x':x,'y':y,'side':s}
-    prevside =lambda s:'lower' if s=='left' else 'left' if s =='upper'\
-                                else 'upper' if s == 'right' else 'left'
-    nextside =lambda s:'lower' if s=='right' else 'right' if s =='upper'\
-                                else 'upper' if s == 'left' else 'left'
-    for idx,c in enumerate(circles):
-        if currentside is None:
-            """1. arc point """
-            currentside = c[4]
-            lastx = c[0] + (PREDISTANCE * xfactor[currentside][0])
-            lasty = c[1] + (PREDISTANCE * yfactor[currentside][0])
-            arcline.append(arcpoint(lastx,lasty,currentside))
-        else:
-            #same side is skipped
-            while (currentside != c[4]):
-                """new side meaning corner point(s)"""
-                """line from current point to the other axis of new point"""
-                if currentside == 'left':
-                    newx = lastx
-                    newy = entistarty - PONTDISTANCE
-                elif currentside == 'upper':
-                    newx = entistartx + entiwidth + PONTDISTANCE
-                    newy = lasty
-                elif currentside == 'right':
-                    newx = lastx
-                    newy = entistarty + entiheight + PONTDISTANCE
-                else:
-                    newx = entistartx - PONTDISTANCE
-                    newy = lasty
-                #fi
-                arcline.append(arcpoint(newx,newy,currentside))
-                currentside = nextside(currentside)
-                lastx,lasty = newx,newy
+    arc['circles'] = [(c[0], c[1]) for c in circles]
 
-        #fi
-        if idx == len(circles) - 1:
-            currentside = c[4]
-            """lasat point of Arc 
-               Linie vom aktuellen arc-Ende bis zum Punkt + vorhalt der letzten Beziehung"""
-            arcline.append(arcpoint(round(c[0] + (PREDISTANCE * -xfactor[currentside][0]), 1)
-                                          ,round(c[1] + (PREDISTANCE * -yfactor[currentside][0]), 1)
-                                          ,currentside))
+    if False:
+        """lines of arcs are not yet rendered. Circles are ok. draw your line yourself, if you need to"""
+        xfactor = {'right':[0,-1],'upper':[-1,1],'left':[0,1],'lower':[1,-1]}
+        yfactor = {'right':[-1,-1],'upper':[0,-1],'left':[1,1],'lower':[0,1]}
+        currentside = None
+        arcline = []
+        arcpoint =lambda x,y,s :{'x':x,'y':y,'side':s}
+        prevside =lambda s:'lower' if s=='left' else 'left' if s =='upper'\
+                                    else 'upper' if s == 'right' else 'left'
+        nextside =lambda s:'lower' if s=='right' else 'right' if s =='upper'\
+                                    else 'upper' if s == 'left' else 'left'
+        for idx,c in enumerate(circles):
+            if currentside is None:
+                """1. arc point """
+                currentside = c[4]
+                lastx = c[0] + (PREDISTANCE * xfactor[currentside][0])
+                lasty = c[1] + (PREDISTANCE * yfactor[currentside][0])
+                arcline.append(arcpoint(lastx,lasty,currentside))
+            else:
+                #same side is skipped
+                while (currentside != c[4]):
+                    """new side meaning corner point(s)"""
+                    """line from current point to the other axis of new point"""
+                    if currentside == 'left':
+                        newx = lastx
+                        newy = entistarty - PONTDISTANCE
+                    elif currentside == 'upper':
+                        newx = entistartx + entiwidth + PONTDISTANCE
+                        newy = lasty
+                    elif currentside == 'right':
+                        newx = lastx
+                        newy = entistarty + entiheight + PONTDISTANCE
+                    else:
+                        newx = entistartx - PONTDISTANCE
+                        newy = lasty
+                    #fi
+                    arcline.append(arcpoint(newx,newy,currentside))
+                    currentside = nextside(currentside)
+                    lastx,lasty = newx,newy
 
-        #fi
-    #for
-    arc['line'] = arcline
+            #fi
+            if idx == len(circles) - 1:
+                currentside = c[4]
+                """lasat point of Arc 
+                   Linie vom aktuellen arc-Ende bis zum Punkt + vorhalt der letzten Beziehung"""
+                arcline.append(arcpoint(round(c[0] + (PREDISTANCE * -xfactor[currentside][0]), 1)
+                                              ,round(c[1] + (PREDISTANCE * -yfactor[currentside][0]), 1)
+                                              ,currentside))
+
+            #fi
+        #for
+        arc['line'] = arcline
+    # fi code not yet used
     return arc
 #defarcs
 

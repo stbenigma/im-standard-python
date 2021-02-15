@@ -6,7 +6,7 @@ from IM_OBJECTS import Modelelemtype
 
 """creates a unique ID as reference in the json file
    <telemtype><elemid> """
-jsguid = lambda mtype, id: None if id is None else mtype + id if type(id)==str else str(id)
+jsguid = lambda mtype, id: None if id is None else mtype + (id if type(id)==str else str(id))
 
 """returns the id part of a jsguid by removing the 4 leading characters (type) from a jsguid"""
 jsguid2id = lambda guid: None if guid is None else int(guid[4:])

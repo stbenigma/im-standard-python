@@ -39,22 +39,22 @@ def relation2js(prela):
                                                     where kele_rela_id = {})""".format(prela.rela_id))]
         retval = fillmodel(pmodel=model
                            , pentries=[prela.rela_name, prela.rela_type
-                                       ,[jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from)
+                                       ,relaend2js(prelaend= [jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from)
                                         ,None if prela.rela_arcs_id_from is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_from)
                                         ,multilangtext(prela.rela_assoc_from_to_L)
                                         ,prela.rela_maptype_from_to
                                         ,Boolean.str2bool(prela.rela_hist_from_to)
                                         ,Boolean.str2bool(prela.rela_mandatory_from_to)
                                         ,prela.to_cardstr()
-                                         ]
-                                       ,[ jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to)
+                                         ])
+                                       ,relaend2js(prelaend=[ jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to)
                                           ,None if prela.rela_arcs_id_to is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_to)
                                           ,multilangtext(prela.rela_assoc_to_from_L)
                                           ,prela.rela_maptype_to_from
                                           ,Boolean.str2bool(prela.rela_hist_to_from)
                                           ,Boolean.str2bool(prela.rela_mandatory_to_from)
                                           ,prela.from_cardstr()
-                                        ]
+                                        ])
                                         ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys])
                                       , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                        ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm

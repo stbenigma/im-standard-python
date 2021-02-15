@@ -475,9 +475,6 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         if (type == 'Relation'):
             relaguid = findField(c, "oid")
             rela = Relation().getbyODMref(psrcid=relaguid)
-            if rela is None:
-                print ("DEBUG transferdiaconnect: {}".format( relaguid))
-                continue
             linewidth = findText(c, 'lineWidth')
             sourcelabel = c.find('sourceLabel/labelBounds')
             sttex = findField(sourcelabel, 'x')
@@ -573,8 +570,6 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         # fi
 # transferdiaconnect
 
-# transferdiaconnect
-
 def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 
@@ -599,7 +594,8 @@ def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
     try:
         listdir = os.listdir(pdirec)
     except Exception as ex:
-        if pmandatoryfile: logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
+        if pmandatoryfile:
+            logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
         return
     # try
     for el in listdir:
