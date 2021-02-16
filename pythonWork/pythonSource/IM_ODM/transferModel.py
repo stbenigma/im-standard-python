@@ -1514,6 +1514,7 @@ def do1contact(fileName):
     global contacts,emails,phones
     tree = et.parse(fileName)
     root = tree.getroot()
+    phone,mail = "",""
 
     ems = root.findall("emails/email")
     for em in ems:
