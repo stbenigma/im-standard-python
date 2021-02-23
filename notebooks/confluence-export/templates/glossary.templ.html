@@ -1,5 +1,4 @@
 <!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
-{% set entity = item %}
 <ac:layout>
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
@@ -8,7 +7,7 @@
       <h2>Synonyms</h2>
       <p>{% for syno in entity['synonyms'] %}{{ syno[util.language] }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
       <p>
-
+      Technical key: {{key}}
       </p>
     </ac:layout-cell>
     <ac:layout-cell>
@@ -25,9 +24,9 @@
         <th>Type</th>
         <th><br /></th>
         <th><br /></th></tr>
-        {% for attribute in entity['attributes+'] %}
+        {% for attribute in entity['attributes'] %}
         <tr>
-          <td><p><ac:link><ri:page ri:content-title="{{ util.page_title(attribute) }}" /><![CDATA[{{ util.page_title(attribute) }}]]></ac:link></p></td>
+          <td><p><ac:link><ri:page ri:content-title="{{util.page_title(attribute)}}" /><![CDATA[{{ util.page_title(attribute) }}]]></ac:link></p></td>
           <td></td>
           <td><br/></td>
           <td><br/></td>
@@ -57,7 +56,7 @@
             <th>Kardinalität</th>
             <th>Verbundene Entität</th>
           </tr>
-          {% for relation in entity['relations+'] %}
+          {% for relation in entity['relations'] %}
           {% set other_end = util.relation_other(key, relation) %}
           <tr>
             <td>{{data['relations'][relation]['type']}}</td>
@@ -97,13 +96,11 @@
         </tr>
         {% for diagram in entity['diagrams'] %}
         <tr>
-          <td>{{diagram}}</td>
+          <td>{{ diagram }}</td>
+          <!-- td><p><ac:link><ri:page ri:content-title="{{ util.translate( diagram['name'] ) }}" /><![CDATA[{{ diagram }}]]></ac:link></p></td -->
         </tr>
         {% endfor %}
       </tbody></table>
     </ac:layout-cell>
-  </ac:layout-section>
-  <ac:layout-section ac:type="single">
-    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
   </ac:layout-section>
 </ac:layout>

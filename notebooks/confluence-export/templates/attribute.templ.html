@@ -1,46 +1,52 @@
 <!-- this is the Confluence page content template for IM:Attribute to be rendered using jinja2 -->
 {% set attribute = item %}
 <ac:layout>
-  {% include 'header.tmpl.html' %}
+  {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <p>{{ util.translate(attribute['descr']) }}</p>
+      <p>{{util.translate(attribute['descr'])}}</p>
       <table class="relative-table" style="width: 100%;">
-      <tbody>
-        <tr>
-          <th>Eigenschaft</th>
-          <th>Wert</th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>Technischer Schlüssel</td>
-          <td>{{ key }}</td>
-          <td><br/></td>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <td>Type</td>
-          <td>{{ attribute['type'] }}</td>
-          <td><br/></td>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <td>Basistyp</td>
-          <td>{{ attribute['basedatatype'] }}</td>
-          <td><br/></td>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <td>Entität</td>
-          <td>{% if attribute['entity'] %}<ac:link><ri:page ri:content-title="{{util.page_title(attribute['entity'])}}" /><![CDATA[{{util.page_title(attribute['entity'])}}]]></ac:link>{% endif %}</td>
-          <td><br/></td>
-          <td><br/></td>
-        </tr>
-      </tbody></table>
+        <tbody>
+          <tr>
+            <th>Type</th>
+            <td>{{attribute['basedatatype+']}}</td>
+          </tr>
+          <tr>
+            <th>Basistyp</th>
+            <td>{{attribute['type+']}}</td>
+          </tr>
+          <tr>
+            <th>Entität</th>
+            <td>{% if attribute['entity'] %}<ac:link><ri:page ri:content-title="{{util.page_title(attribute['entity'])}}" /><![CDATA[{{util.page_title(attribute['entity'])}}]]></ac:link>{% endif %}</td>
+          </tr>
+          <tr>
+            <th>Mandatory</th>
+            <td>{{attribute['mandatory']}}</td>
+          </tr>
+        </tbody>
+      </table>
     </ac:layout-cell>
     <ac:layout-cell>
-      <img src="https://res.cloudinary.com/fyayc-test/image/private/s--KlNhpTF1--/c_thumb,w_200,g_face/v1/icon_library_bosch/f-icon_object_0765_spare-part.png" align="right"/>
+      <img width="50ox" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--peFQjF9M--/v1612650920/fyayc_icon_library/svg/Business%20Organisation/f-icon_organisation_0773_characteristic.svg" />
     </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Diagrams</h1>
+      <table class="relative-table" style="width: 100%;">
+        <tbody>
+        <tr>
+          <th>Diagram</th>
+        </tr>
+        {% for diagram in attribute['diagrams'] %}
+        <tr>
+          <td>{{diagram}}</td>
+        </tr>
+        {% endfor %}
+        </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
   </ac:layout-section>
 </ac:layout>

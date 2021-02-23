@@ -1,0 +1,62 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set domain = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{ util.translate(domain['name']) }}</h1>
+      <p>{{ util.translate(domain['descr']) }}</p>
+      <p>{{ util.translate(domain['displdatatype+']) }}</p>
+      <p>{{ domain['datatypestr+'] }}</p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img width="50px" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--PFqzktAa--/v1612653876/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0551_temperature.svg"/>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Used by Attributes</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>Entity</th>
+          <th>Attribute</th>
+        </tr>
+        {% for attribute_key in domain['usedinattrs+'] %}
+        {% set attribute = data['attributes'][attribute_key] %}
+        <tr>
+          <td><ac:link><ri:page ri:content-title="{{util.page_title(attribute['entity'])}}" />
+            <![CDATA[{{util.page_title(attribute['entity'])}}]]></ac:link></td>
+          <td><ac:link><ri:page ri:content-title="{{util.page_title(attribute_key)}}" />
+              <![CDATA[{{util.page_title(attribute_key)}}]]></ac:link></td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Used by Columns</h1>
+      <table class="relative-table" style="width: 100%;">
+        <tbody>
+        <tr>
+          <th>Table</th>
+          <th>Column</th>
+        </tr>
+        {% for column_key in domain['usedincols+'] %}
+        {% set column = data['columns'][column_key] %}
+        <tr>
+          <td><ac:link><ri:page ri:content-title="{{util.page_title(column['table-id'])}}" />
+            <![CDATA[{{ util.page_title(column['table-id']) }}]]></ac:link></td>
+          <td><ac:link><ri:page ri:content-title="{{util.page_title(column_key)}}" />
+            <![CDATA[{{util.page_title(column_key)}}]]></ac:link></td>
+        </tr>
+        {% endfor %}
+        </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>

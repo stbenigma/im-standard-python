@@ -1,0 +1,88 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set table = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{table['name']}}</h1>
+      <p>
+        <table>
+          <colgroup>
+            <col style="width: 30%;"/>
+            <col style="width: 70%;"/>
+          </colgroup>
+          <tr>
+            <th>Interface Name</th>
+            <td>{{table['interface-name+']}}</td>
+          </tr>
+          <tr>
+            <th>System</th>
+            <td>
+              <ac:link><ri:page ri:content-title="{{util.page_title(table['interface-id+'])}}" /><![CDATA[{{util.page_title(table['interface-id+'])}}]]></ac:link>
+            </td>
+          </tr>
+        </table>
+      </p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img width="50px" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--jJgyLO6---/v1612637370/bosch_icon_library/svg/Objects/f-icon_object_0110_excel-list.svg" />
+    </ac:layout-cell>
+  </ac:layout-section>
+  {% if 'DM_SAP' in table['interface-name+']: %}
+  {% set child_title = util.page_title(key) + ' SAP Dokumentation' %}
+  {% set child = util.stub(child_title, util.page_for_key(key)['pageid']) %}
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <p>
+        <ac:structured-macro ac:macro-id="315d5e59-c232-4f16-a6e4-e2fe90f52dac" ac:name="include" ac:schema-version="1">
+          <ac:parameter ac:name="">
+            <ac:link>
+              <ri:page ri:content-title="{{child_title}}"/>
+            </ac:link>
+          </ac:parameter>
+        </ac:structured-macro>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+  {% endif %}
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Spalten</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Type ID</th>
+          <th>Domain</th>
+        </tr>
+        {% for column_key in table['columns+'] %}
+        {% set column = data['columns'][column_key] %}
+        <tr>
+          <td>{{column['name']}}</td>
+          <td>{{column['datatype']}}</td>
+          <td>{{column['datatypeid+']}}</td>
+          <td>
+            {% if column.get('domain') %}
+            <ac:link><ri:page ri:content-title="{{util.page_title(column['domain'])}}" />
+              <![CDATA[{{util.page_title(column['domain'])}}]]></ac:link>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Dokumente</h1>
+      <ul>{% for document in table['refindocuments+'] %}
+        <li><ac:link><ri:page ri:content-title="{{util.page_title(document)}}" /><![CDATA[{{util.page_title(document)}}]]></ac:link></li>
+        {% endfor %}</ul>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>

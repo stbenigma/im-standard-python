@@ -1,0 +1,50 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set system = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{system['name']}}</h1>
+      <p>{{util.translate(system['descr'])}}</p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img width="50px" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--idYwpp8T--/v1612639397/bosch_icon_library/svg/Tangible%20Objects/f-icon_object_0148_jenga.svg"/>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Tables</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th># Columns</th>
+          <th></th>
+          <th>Linked Entities</th>
+        </tr>
+        {% for table_key in system['tables+'] %}
+        {% set table = data['tables'][table_key] %}
+        <tr>
+          <td><ac:link><ri:page ri:content-title="{{util.page_title(table_key)}}" /><![CDATA[{{util.page_title(table_key)}}]]></ac:link></td>
+          <td>{{table['columns+'] | length}}</td>
+          <td></td>
+          <td>
+            <ul>
+              {% for entity_key in table['entitiesmapped'] %}
+              {% set entity = data['entities'][entity_key] %}
+              <li>
+                <ac:link><ri:page ri:content-title="{{util.page_title(entity_key)}}" /><![CDATA[{{util.page_title(entity_key)}}]]></ac:link>
+              </li>
+              {% endfor %}
+              </ul>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>

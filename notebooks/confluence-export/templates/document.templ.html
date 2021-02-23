@@ -1,0 +1,43 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set document = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{ document['name'] }}</h1>
+      <table>
+        <colgroup>
+          <col style="width: 30%;"/>
+          <col style="width: 70%;"/>
+        </colgroup>
+        <tr>
+          <th>Link</th>
+          <td><a href="{{document['reference']}}">Dokument</a></td>
+        </tr>
+        <tr>
+          <th>Format</th>
+          <td>{{document['format+']}}</td>
+        </tr>
+        <tr>
+          <th>Reference Count</th>
+          <td>{{document['referencecnt+']}}</td>
+        </tr>
+        <tr>
+          <th>Parent</th>
+          <td>
+            {% if document['parent'] %}
+            <ac:link><ri:page ri:content-title="{{util.page_title(document['parent'])}}" /><![CDATA[{{util.page_title(document['parent'])}}]]></ac:link>
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img width="50px" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--StFCHv-B--/v1612638844/bosch_icon_library/svg/Services/f-icon_service_0422_digital-document.svg"/>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>
