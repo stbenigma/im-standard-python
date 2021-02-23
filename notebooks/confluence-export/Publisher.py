@@ -107,7 +107,7 @@ class Publisher:
     def register_page_id(self, key: str, page_id: str):
         page = self.content_map.get(key)
         if not page:
-            self.log.warning('New element {} '.format(key))
+            self.log.debug('New element {} '.format(key))
             page = {}
             self.content_map[key] = page
         else:
@@ -122,7 +122,7 @@ class Publisher:
         """
         return self.content_map.get(key)
 
-    def stub(self, title: str, parent_page_id):
+    def stub(self, title: str, parent_page_id, content='stub', labels=[]):
         """Create a stub page to obtain the page id for the title"""
         if self.confluence.page_exists(self.space_key, title):
             page_id = self.confluence.get_page_id(self.space_key, title)
@@ -134,12 +134,20 @@ class Publisher:
             if current_parent != parent_page_id:
                 self.log.warning('Moving page from {} to {}'.format(current_parent, parent_page_id))
                 self.confluence.move_page(self.space_key, page_id, target_id=parent_page_id)
-            return {'id': page_id, 'current': content}
 
+            self.set_page_labels(page_id, labels)
+            return {'id': page_id, 'current': content}
+        
         create_result = self.confluence.create_page(self.space_key, title=title, parent_id=parent_page_id,
-                                                    body='generated stub')
+                                                    body=content)
+        self.set_page_labels(create_result['id'], labels)
         create_result['current'] = None
         return create_result
+
+    def set_page_labels(self, page_id, labels: list):
+        """Add labels to a page"""
+        for label in labels:
+            self.confluence.set_page_label(page_id, label)
 
     def update_page(self, key: str, body: str, minor_edit=True, version_comment=''):
         meta = self.page_for_key(key)

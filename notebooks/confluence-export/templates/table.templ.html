@@ -1,4 +1,4 @@
-<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+<!-- this is the Confluence page content template for IM:table to be rendered using jinja2 -->
 {% set table = item %}
 <ac:layout>
   {% include 'header.templ.html' %}
@@ -25,14 +25,31 @@
       </p>
     </ac:layout-cell>
     <ac:layout-cell>
+      <p>
       <img width="50px" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--jJgyLO6---/v1612637370/bosch_icon_library/svg/Objects/f-icon_object_0110_excel-list.svg" />
+      </p>
+      <p>
+        <ac:structured-macro ac:macro-id="737597dc-3c50-496b-8631-43e6b435b74a" ac:name="toc" ac:schema-version="1"/>
+      </p>
     </ac:layout-cell>
   </ac:layout-section>
   {% if 'DM_SAP' in table['interface-name+']: %}
   {% set child_title = util.page_title(key) + ' SAP Dokumentation' %}
-  {% set child = util.stub(child_title, util.page_for_key(key)['pageid']) %}
+  {% macro content() -%}
+    {% include 'sap-template.templ.html' %}
+  {%- endmacro %}
+  {% set content = content() %}
+  {% set child = util.stub(child_title, util.page_for_key(key)['pageid'], content=content, labels=['SAP', 'manual', 'templated']) %}
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
+      <p>
+        <ac:structured-macro ac:macro-id="eb891189-be96-4a41-9d8a-328a335a125c" ac:name="tip" ac:schema-version="1">
+          <ac:parameter ac:name="title">Hinweis</ac:parameter>
+          <ac:rich-text-body>Dies ist die manuell erstellte Dokumentation.
+            <br/>Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.
+          </ac:rich-text-body>
+        </ac:structured-macro>
+      </p>
       <p>
         <ac:structured-macro ac:macro-id="315d5e59-c232-4f16-a6e4-e2fe90f52dac" ac:name="include" ac:schema-version="1">
           <ac:parameter ac:name="">
@@ -42,6 +59,7 @@
           </ac:parameter>
         </ac:structured-macro>
       </p>
+      <hr/>
     </ac:layout-cell>
   </ac:layout-section>
   {% endif %}
