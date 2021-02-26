@@ -32,6 +32,34 @@
   </ac:layout-section>
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
+      <h1>Spalten</h1>
+      <p>Das Attribut ist mit folgenden Spalten verknüpft:</p>
+      <table class="relative-table" style="width: 100%;">
+        <tbody>
+        <tr>
+          <th>System</th>
+          <th>Tabelle</th>
+          <th>Spalte</th>
+        </tr>
+        {% for other_key in util.attribute_lineage(key) %}
+        {% set other = data['columns'][other_key] %}
+        <tr>
+          <td>
+            <ac:link><ri:page ri:content-title="{{util.page_title(other['interface-id+'])}}" /><![CDATA[{{util.page_title(other['interface-id+'])}}]]></ac:link>
+          </td>
+          <td>
+            <ac:link><ri:page ri:content-title="{{util.page_title(other['table-id'])}}" /><![CDATA[{{util.page_title(other['table-id'])}}]]></ac:link>
+          </td>
+          <td>
+            <ac:link><ri:page ri:content-title="{{util.page_title(other_key)}}" /><![CDATA[{{util.page_title(other_key)}}]]></ac:link>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
       <h1>Diagrams</h1>
       <table class="relative-table" style="width: 100%;">
         <tbody>

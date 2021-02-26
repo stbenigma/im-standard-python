@@ -1,6 +1,7 @@
 from xml.sax.saxutils import escape
 from datetime import datetime
 from requests.exceptions import HTTPError
+from functools import reduce
 import logging
 
 
@@ -137,7 +138,7 @@ class Publisher:
             current_parent = None
             ancestors = current['ancestors']
             if len(ancestors) > 0:
-                current_parent = content['ancestors'][-1]['id']
+                current_parent = ancestors[-1]['id']
             if current_parent != parent_page_id:
                 self.log.warning(
                     'Moving page {title} from {source} to {destination}'.format(title=title, source=current_parent,
@@ -184,3 +185,28 @@ class Publisher:
             return relation['to-from']
         else:
             return relation['from-to']
+
+    def column_lineage(self, column_key:str):
+        """Collects columns that are mapped with the column provided via the IM"""
+        column = self.json_data['columns'][column_key]
+        result = []
+        for attribute_key in column['attributes-mapped']:
+            attribute = self.json_data['attributes'][attribute_key]
+            columns_mapped = attribute['columnsmapped+']
+            all_columns = map(lambda entry: columns_mapped[entry], columns_mapped)
+            cols = reduce(lambda e, l: e + l, list(all_columns), [])
+            result.extend(cols)
+        try:
+            result.remove(column_key)
+        except ValueError:
+            # fine if it is not in the list
+            pass
+        return result
+
+    def attribute_lineage(self, attribute_key:str):
+        """Collects columns that are mapped to the provided attribute"""
+        attribute = self.json_data['attributes'][attribute_key]
+        columns_mapped = attribute['columnsmapped+']
+        all_columns = map(lambda entry: columns_mapped[entry], columns_mapped)
+        cols = reduce(lambda e, l: e + l, list(all_columns), [])
+        return cols
