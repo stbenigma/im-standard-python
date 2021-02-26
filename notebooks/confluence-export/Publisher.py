@@ -1,5 +1,6 @@
 from xml.sax.saxutils import escape
 from datetime import datetime
+from requests.exceptions import HTTPError
 import logging
 
 
@@ -36,7 +37,7 @@ class Publisher:
             self.log.debug('No translation for "{}" in language {}'.format(field, language))
             return field
 
-        self.log.warning('No text for field "{}"'.format(field))
+        self.log.debug('No text for field "{}"'.format(field))
         return ''
 
     def page_title(self, key: str):
@@ -56,12 +57,12 @@ class Publisher:
 
         for child in remainder:
             result.append(child)
-            children = self.sort_topics({ child: topics[child] })
+            children = self.sort_topics({child: topics[child]})
             result.append(children)
 
         return result
 
-    def collect_recursive(self, node, parent = None):
+    def collect_recursive(self, node, parent=None):
         """Collect config nodes in a linked tree"""
         content = node.get('content')
         topics_dict = {}
@@ -77,6 +78,9 @@ class Publisher:
                     topics_dict.update(self.collect_recursive(sub_node, sub_node))
 
         return topics_dict
+
+    def confluence_stem(self, page_title: str):
+        return page_title.lower()
 
     def scan_current_content(self):
         """Scan current content below page-root and fills the content_map accordingly"""
@@ -94,13 +98,16 @@ class Publisher:
                 if topic == 'tables':
                     title_safe = '{} - {}'.format(title_safe, self.content_map[entry['interface-id+']]['title'])
 
-                is_taken = self.page_name_map.get(title_safe)
+                if topic == 'columns':
+                    title_safe = '{} - {}'.format(title_safe, entry['table-name+'])
+
+                is_taken = self.page_name_map.get(self.confluence_stem(title_safe))
                 if is_taken:
                     title_safe = title_safe + ' [' + key + ']'
                     self.log.warning(
                         'Extending title to {} to ensure uniqueness for {} {}'.format(title_safe, topic, key))
                 self.content_map[key] = {'title': title_safe, 'data': entry, 'topic': topic}
-                self.page_name_map[title_safe] = key
+                self.page_name_map[self.confluence_stem(title_safe)] = key
 
         return self.content_map
 
@@ -126,18 +133,20 @@ class Publisher:
         """Create a stub page to obtain the page id for the title"""
         if self.confluence.page_exists(self.space_key, title):
             page_id = self.confluence.get_page_id(self.space_key, title)
-            content = self.confluence.get_page_by_id(page_id, expand='ancestors,version,history')
+            current = self.confluence.get_page_by_id(page_id, expand='body.storage,ancestors,version,history')
             current_parent = None
-            ancestors = content['ancestors']
+            ancestors = current['ancestors']
             if len(ancestors) > 0:
                 current_parent = content['ancestors'][-1]['id']
             if current_parent != parent_page_id:
-                self.log.warning('Moving page from {} to {}'.format(current_parent, parent_page_id))
+                self.log.warning(
+                    'Moving page {title} from {source} to {destination}'.format(title=title, source=current_parent,
+                                                                                destination=parent_page_id))
                 self.confluence.move_page(self.space_key, page_id, target_id=parent_page_id)
 
             self.set_page_labels(page_id, labels)
-            return {'id': page_id, 'current': content}
-        
+            return {'id': page_id, 'current': current}
+
         create_result = self.confluence.create_page(self.space_key, title=title, parent_id=parent_page_id,
                                                     body=content)
         self.set_page_labels(create_result['id'], labels)
@@ -151,8 +160,14 @@ class Publisher:
 
     def update_page(self, key: str, body: str, minor_edit=True, version_comment=''):
         meta = self.page_for_key(key)
-        self.confluence.update_page(meta['pageid'], meta['title'], body, minor_edit=minor_edit,
-                                    version_comment=version_comment)
+        try:
+            self.confluence.update_page(meta['pageid'], meta['title'], body, minor_edit=minor_edit,
+                                        version_comment=version_comment)
+        except HTTPError as error:
+            self.log.error('Cannot update page "{page_title}" {page_id}. {response}',
+                           page_title=meta['title'], page_id=meta['pageid'],
+                           response=error.response.content.decode('utf-8'))
+            raise error
 
     def relation_self(self, entity_key: str, relation_key: str):
         """Returns the local end of the relation_key attached to enitity_key"""

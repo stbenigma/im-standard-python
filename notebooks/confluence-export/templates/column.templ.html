@@ -1,0 +1,126 @@
+<!-- this is the Confluence page content template for IM:Column to be rendered using jinja2 -->
+{% set column = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <p>{{util.translate(column['descr'])}}</p>
+      <table class="relative-table" style="width: 100%;">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <td>{{column['name']}}</td>
+          </tr>
+          <tr>
+            <th>Tabelle</th>
+            <td><ac:link><ri:page ri:content-title="{{util.page_title(column['table-id'])}}" /><![CDATA[{{util.page_title(column['table-id'])}}]]></ac:link></td>
+          </tr>
+          <tr>
+            <th>Datentyp</th>
+            <td>{{column['datatype']}}</td>
+          </tr>
+          <tr>
+            <th>Basistyp</th>
+            <td>{{column['basedatatype+']}}</td>
+          </tr>
+          <tr>
+            <th>Typ</th>
+            <td>{{column['datatypeid+']}}</td>
+          </tr>
+          <tr>
+            <th>Format</th>
+            <td>{{column['format']}}</td>
+          </tr>
+          <tr>
+            <th>Domäne</th>
+            <td>
+              {% if column['domain'] %}
+              <ac:link><ri:page ri:content-title="{{util.page_title(column['domain'])}}" /><![CDATA[{{util.page_title(column['domain'])}}]]></ac:link>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>Spalten ID</th>
+            <td>{{column['interface_col_id']}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271859/fyayc_icon_library/svg/Business%20Organisation/f-icon_organisation_0773_characteristic.svg" />
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  {% if config.get('manual-documentation') %}
+  {% set child_title = util.page_title(key) + config['manual-documentation'].get('title-postfix', ' - Dokumentation') %}
+  {% macro content() -%}
+    {% include config['manual-documentation']['template'] %}
+  {%- endmacro %}
+  {% set content = content() %}
+  {% set child = util.stub(child_title, util.page_for_key(key)['pageid'], content=content, labels=config['manual-documentation'].get('labels', [])) %}
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <p>
+        <ac:structured-macro ac:macro-id="eb891189-be96-4a41-9d8a-328a335a125c" ac:name="tip" ac:schema-version="1">
+          <ac:parameter ac:name="title">Hinweis</ac:parameter>
+          <ac:rich-text-body>Der folgende Abschnitt bis zur Trennlinie enthält die manuell gepflegte Dokumentation. Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.</ac:rich-text-body>
+        </ac:structured-macro>
+      </p>
+      <p>
+        <ac:structured-macro ac:macro-id="315d5e59-c232-4f16-a6e4-e2fe90f52dac" ac:name="include" ac:schema-version="1">
+          <ac:parameter ac:name="">
+            <ac:link>
+              <ri:page ri:content-title="{{child_title}}"/>
+            </ac:link>
+          </ac:parameter>
+        </ac:structured-macro>
+      </p>
+      <hr/>
+    </ac:layout-cell>
+  </ac:layout-section>
+  {% endif %}
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>IM Attribute</h1>
+      <p>
+      Attribute des Informationsmodells, die mit dieser Tabellenspalte verbunden sind:
+      <table class="relative-table" style="width: 100%;">
+        <tbody>
+        <tr>
+          <th>Attribut</th>
+        </tr>
+        {% for attribute_key in column['attributes-mapped'] %}
+        <tr>
+          <td>
+            <ac:link><ri:page ri:content-title="{{util.page_title(attribute_key)}}" /><![CDATA[{{util.page_title(attribute_key)}}]]></ac:link>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody></table>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>Referenziert in folgenden Dokumenten</h1>
+      <table class="relative-table" style="width: 100%;">
+        <tbody>
+        <tr>
+          <th>Dokument</th>
+        </tr>
+        {% for document in column['refindocuments+'] %}
+        <tr>
+          <td>
+            <ac:link><ri:page ri:content-title="{{util.page_title(document)}}" /><![CDATA[{{util.page_title(document)}}]]></ac:link>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>

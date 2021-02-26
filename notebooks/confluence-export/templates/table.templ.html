@@ -26,28 +26,26 @@
     </ac:layout-cell>
     <ac:layout-cell>
       <p>
-      <img width="50px" align="right" src="https://res.cloudinary.com/fyayc-test/image/private/s--jJgyLO6---/v1612637370/bosch_icon_library/svg/Objects/f-icon_object_0110_excel-list.svg" />
+        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271016/fyayc_icon_library/svg/Objects/f-icon_object_0110_excel-list.svg" />
       </p>
       <p>
         <ac:structured-macro ac:macro-id="737597dc-3c50-496b-8631-43e6b435b74a" ac:name="toc" ac:schema-version="1"/>
       </p>
     </ac:layout-cell>
   </ac:layout-section>
-  {% if 'DM_SAP' in table['interface-name+']: %}
-  {% set child_title = util.page_title(key) + ' SAP Dokumentation' %}
+  {% if config.get('manual-documentation') %}
+  {% set child_title = util.page_title(key) + config['manual-documentation'].get('title-postfix', ' - Dokumentation') %}
   {% macro content() -%}
-    {% include 'sap-template.templ.html' %}
+    {% include config['manual-documentation']['template'] %}
   {%- endmacro %}
   {% set content = content() %}
-  {% set child = util.stub(child_title, util.page_for_key(key)['pageid'], content=content, labels=['SAP', 'manual', 'templated']) %}
+  {% set child = util.stub(child_title, util.page_for_key(key)['pageid'], content=content, labels=config['manual-documentation'].get('labels', [])) %}
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <p>
         <ac:structured-macro ac:macro-id="eb891189-be96-4a41-9d8a-328a335a125c" ac:name="tip" ac:schema-version="1">
           <ac:parameter ac:name="title">Hinweis</ac:parameter>
-          <ac:rich-text-body>Dies ist die manuell erstellte Dokumentation.
-            <br/>Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.
-          </ac:rich-text-body>
+          <ac:rich-text-body>Der folgende Abschnitt bis zur Trennlinie enthält die manuell gepflegte Dokumentation. Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.</ac:rich-text-body>
         </ac:structured-macro>
       </p>
       <p>
