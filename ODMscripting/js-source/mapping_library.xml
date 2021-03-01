@@ -814,14 +814,16 @@
 							return m2jretval
 						}
 
+						// replace " by ', enclose string between "" if it contains lf
 						function escapeexcelchars(s){
 							var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
 							if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 							return retval
 						}
+						
+						// print a line (list of entries) as a lf-separated list enclosed between ""
+						// if there is a " in the string, replace it
 						function printline(fw, line) {
-			//				for (zi = 0; zi < line.length; zi++) {
-			//					field = line[zi]
 							forEach(line,
 								function print1ine(field,idx){
 									if (idx > 0) {
@@ -844,6 +846,7 @@
 							fw.write(EXCELLINEEND)
 						}
 
+						//print entries as possible list of entries
 						function printlines(fw, entry) {
 							for (ie = 0; ie < entry.length; ie++) {
 								line = entry[ie]
@@ -852,6 +855,7 @@
 							}
 						}
 
+						// output jsonstructure in allMapping iin csv-format
 						function json2csv(fw, allMapping) {
 							fw.write(EXCELBOM)
 							for (key in allMapping) {
@@ -876,6 +880,7 @@
 							}
 						}
 
+						// gather globals for all needed elements
 						function gatherModel() {
 							g_logicalModel = model.getDesign().getLogicalDesign();
 							g_entitySet = g_logicalModel.getEntitySet()
@@ -884,12 +889,15 @@
 							g_rmodels = model.getDesign().getRelationalDesigns().toArray();
 						}
 
+						// all data is collected in allmapping
+						// print it to json or transform it into csv
 						function printjson(fw, format, allmapping) {
 							switch (format) {
 								case FORMATJSON:
 									fw.write(JSON.stringify(allmapping, null, 2)); // spacing level = 2)
 									break;
 								case FORMATCSV:
+									// transform json structure into csv and print it
 									json2csv(fw, allmapping)
 									break;
 								default:
@@ -897,9 +905,15 @@
 							}
 						}
 
+						// print matrix of Entities/Attributes to tables or tables/columns
+						// format-> CSV or JSON
+						// fw -> open file
+						// nurX -> True: only existence in table (X), False: with columnnames
 						function printMatrix(fw, nurX, format) {
+							// Read complete model into globals
 							gatherModel()
 
+							//read all mappings of all models into
 							getAllMappings(g_rmodels)
 
 							if (nurX) {
@@ -907,7 +921,6 @@
 									"header": ['entity', 'attr']
 								}
 								for (ih = 0; ih < g_rmodels.length; ih++) {
-									//throw new Error("\nrmodel: " + g_rmodels[ih].getName() + '|'+g_rmodels[ih] + "\n");
 									allmapping["header"].push(g_rmodels[ih].getName())
 								}
 							} else {
@@ -944,11 +957,13 @@
 						function printDevCVS(fw, format,relModel) {
 							// lies alle Mappings des gewählten Modells
 							mymodelname = relModel.getName()
+							// prepare jsonstructure for Header and data
 							allmapping = {
 								"model": [mymodelname,'','','','','','','', 'Information Model',''],
 								"header": ['tableName', 'columnName','ID','datatype','mand.','def. value','descr','rules','entity','attribute'],
 								"attrlist": gatherDevCols(relModel)
 							}
+							
 							// Add all relational models except myself to the header
 							for (ih = 0; ih < g_rmodels.length; ih++) {
 								if (g_rmodels[ih].getName() != mymodelname) {
@@ -958,15 +973,18 @@
 								}
 							}
 				
+							// add all other models into the allmapping-structure and print it
 							printjson(fw, format, allmapping)
 						}
 
+						//choose outputfilepath. Default = pfilename
 						function chooseoutputfilename(pfilename, pformat) {
 							fileName = chooseFile(g_exportDirec, pfilename +
 								((pformat == FORMATJSON) ?'.js' : ((pformat == FORMATCSV) ?'.csv' :'txt')))
 							return fileName
 						}
 
+						// ask and return the output format (CSV / JSON)
 						function outputformat() {
 							var formatauswahl = [FORMATJSON, FORMATCSV]
 							with(javaclasses) {
@@ -980,6 +998,9 @@
 							return antwort
 						}
 
+						//print mapping for one relmodel to the IM
+						// tables/columuns to entities/attributes
+						// This csv will be imported later to set mappings
 						function print1Mapping() {
 							gatherModel()
 							var relModel = chooseModel();
@@ -1000,28 +1021,41 @@
 							message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
 						}
 
+						//Print developpers mapping for one relmodel
+						//some information about every column
+						// followed by informationmodel Entitiy/Attribute
+						// followed by (indirect via IM) mapping to other systems tables/columns
 						function printDevMapping() {
 							gatherModel()
+							// select 1 relmodel
 							var relModel = chooseModel();
 							if (relModel == null) return;
 	
+							//select the output format (CSV,JSON)
 							format = outputformat()
 							if (format == null) {
 								return null
 							}
+							//define and open file
 							filename = chooseoutputfilename(relModel.getName()+'_dev', format)
 							if (filename == null) {
 								return
 							} else {
 								fw = createFile(filename)
 							}
+							// read all mappings for all relmodels
 							getAllMappings(g_rmodels)
+							//print developers excel for the chosen relmodel
 							printDevCVS(fw, format,relModel)
 							fw.close();
 							message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
 						}
 
 
+						// Print matrix of Entities/Attributes to Tables or tables/columns of all relational systems
+						// Mappings are read within the printMatrix
+						// nurX -> only X for existence in table
+						// not nurX -> print name of attributes
 						function printAllMapping(nurX) {
 							format = outputformat()
 							if (format == null) {
@@ -1039,10 +1073,14 @@
 							message("Mapping file " + fileName + " created.");
 						}
 
+						// Print matrix of Entities/Attributes to Tables of all relational systems
+						// print only existence (X) 
 						function printXMapping() {
 							printAllMapping(true)
 						}
-
+						
+						// Print matrix of Entities/Attributes to Tables/Columns of all relational systems
+						// print names of mapping (can be multiline)
 						function printNameMapping() {
 							printAllMapping(false)
 						}
