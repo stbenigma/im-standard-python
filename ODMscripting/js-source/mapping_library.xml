@@ -4,7 +4,7 @@
 	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping,printDevMapping" >
 		<script>
 			<![CDATA[
-			var CODEVERSION = "3.0";
+			var CODEVERSION = "3.1";
 						var FORMATJSON = "JSON";
 						var FORMATCSV = "CSV"
 						var g_tabanz = 0;
@@ -40,12 +40,31 @@
 						var g_containerMappings = {}
 						var g_attrMappings = {}
 
+						//ClassCollectionLoad
+						var javaclasses = new JavaImporter(
+							javax.swing.JOptionPane,
+							javax.swing.JFileChooser,
+							java.io.File,
+							java.io.FileWriter,
+							java.nio.file.Paths,
+							java.nio.file.Files,
+							java.nio.charset.StandardCharsets
+							)
+						//var Gui = new JavaImporter(java.awt, javax.swing);
+						//with (Gui) {
+						//    var awtframe = new Frame("AWT Frame");
+						//    var jframe = new JFrame("Swing JFrame");
+						//};
+
 						var PLAINMESSAGE = 1;
 						var ERRORMESSAGE = 0;
 						var WARNINGMESSAGE = 2;
 						var QUESTIONMESSAGE = 3;
 						function fullmessage(msg, type) {
-							Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
+							//Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
+							with(javaclasses) {
+								JOptionPane.showMessageDialog(null, msg, 'ODM-Translation', type);
+							}
 						}
 
 						function error(msg) {
@@ -280,9 +299,9 @@
 						}
 
 						function importFile(fpath) {
-							var Paths = Java.type('java.nio.file.Paths');
-							var Files = Java.type('java.nio.file.Files');
-							var lines = Files.readAllLines(Paths.get(fpath), Java.type('java.nio.charset.StandardCharsets').UTF_8);
+							with (javaclasses) {
+								var lines = Files.readAllLines(Paths.get(fpath), StandardCharsets.UTF_8);
+							}
 							for (lnoif = 0; lnoif < lines.length; lnoif++) {
 								line = lines[lnoif]
 								values = line.split(";");
@@ -314,14 +333,17 @@
 
 						function importMapping() {
 							//Create a file chooser
-							var Filebrowse = Java.type("javax.swing.JFileChooser");
-							f = new Filebrowse(g_importDirec);
-							returnVal = f.showOpenDialog(null);
-							if (returnVal == Filebrowse.APPROVE_OPTION) {
-								imppath = f.getSelectedFile();
-								//message(imppath);
-							} else {
-								return
+							with(javaclasses) {	
+								//var Filebrowse = Java.type("javax.swing.JFileChooser");
+								//f = new JFileChooser.Filebrowse(g_importDirec);
+								f = new JFileChooser(g_importDirec);
+								returnVal = f.showOpenDialog(null);
+								if (returnVal == JFileChooser.APPROVE_OPTION) {
+									imppath = f.getSelectedFile();
+									//message(imppath);
+								} else {
+									return
+								}
 							}
 							g_tabanz = 0
 							g_colanz = 0
@@ -344,12 +366,14 @@
 								antwort = g_rmodels[0]
 							} else {
 								rmodel = g_rmodels[0]
-								antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
-									"Choose relational model",
-									"choose model",
-									QUESTIONMESSAGE,
-									null,
-									g_rmodels, rmodel);
+								with(javaclasses) {
+									antwort = JOptionPane.showInputDialog(null,
+										"Choose relational model",
+										"choose model",
+										QUESTIONMESSAGE,
+										null,
+										g_rmodels, rmodel);
+								}
 							}
 							return antwort
 						}
@@ -494,7 +518,7 @@
 									//linemessage(1,attrlist.length,tab.getName(),col.getName())
 						
 									//start with the entry for the current model table/column
-									var mycolentry = [tab.getName(),col.getName()
+									var mycolentry = [tab.getName(),col.getName(),colProperty(relModel, tab.getName(), col.getName(), EXTIDPROPNAME)
 													,col.getDatatypeText(),booltoX(col.isMandatory()),col.getDefaultValue()
 													,col.getComment(),col.getNotes()
 													]
@@ -574,22 +598,23 @@
 						function chooseFile(direc, fileName) {
 							//Create a file chooser
 							//message("direc= "+direc)
-							var Filebrowse = Java.type("javax.swing.JFileChooser");
-							var File = Java.type("java.io.File");
-							f = new Filebrowse(direc);
-							f.setSelectedFile(new File(fileName));
-							returnVal = f.showSaveDialog(null);
-							if (returnVal == Filebrowse.APPROVE_OPTION) {
-								return f.getSelectedFile();
-							} else {
-								return null
+							with(javaclasses) {	
+								f = new JFileChooser(direc);
+								f.setSelectedFile(new File(fileName));
+								returnVal = f.showOpenDialog(null);
+								if (returnVal == JFileChooser.APPROVE_OPTION) {
+									return f.getSelectedFile();
+								} else {
+									return null
+								}
 							}
 						}
 
 						function createFile(fileName) {
 							//Create a file chooser
-							var FileWriter = Java.type('java.io.FileWriter')
-							fw = new FileWriter(fileName);
+							with (javaclasses) {
+								fw = new FileWriter(fileName);
+							}
 							return fw
 						}
 
@@ -601,9 +626,9 @@
 						}
 
 						function colProperty(pcurmodel, tabname, colname, propName) {
-							table = pcurmodel.getTableSet().getByName(tabName);
+							table = pcurmodel.getTableSet().getByName(tabname);
 							if (table == null) return ""
-							column = table.getElementByName(colName);
+							column = table.getElementByName(colname);
 							extID = column.getProperty(propName)
 							return ((extID == null) || (extID == ".")) ? "" : extID
 						}
@@ -920,8 +945,8 @@
 							// lies alle Mappings des gewählten Modells
 							mymodelname = relModel.getName()
 							allmapping = {
-								"model": [mymodelname,'','','','','','', 'Information Model',''],
-								"header": ['tableName', 'columnName','datatype','mand.','def. value','descr','rules','entity','attribute'],
+								"model": [mymodelname,'','','','','','','', 'Information Model',''],
+								"header": ['tableName', 'columnName','ID','datatype','mand.','def. value','descr','rules','entity','attribute'],
 								"attrlist": gatherDevCols(relModel)
 							}
 							// Add all relational models except myself to the header
@@ -944,12 +969,14 @@
 
 						function outputformat() {
 							var formatauswahl = [FORMATJSON, FORMATCSV]
-							antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
-								"Output format",
-								"choose output format",
-								QUESTIONMESSAGE,
-								null,
-								formatauswahl, FORMATCSV);
+							with(javaclasses) {
+								antwort = JOptionPane.showInputDialog(null,
+									"Output format",
+									"choose output format",
+									QUESTIONMESSAGE,
+									null,
+									formatauswahl, FORMATCSV);
+							}
 							return antwort
 						}
 
