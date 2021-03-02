@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- File contains Custom Libraries Scripts -->
 <custom_libraries>
-	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping,printDevMapping" >
+	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="mappinglib" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping,printDevMapping" >
 		<script>
 			<![CDATA[
 			var CODEVERSION = "3.1";
@@ -26,6 +26,12 @@
 						var EXCELMULTILINESEP = String.fromCharCode(10)
 						var EXCELLINEEND = String.fromCharCode(10)
 						var EXCELBOM = "\ufeff" //String.fromCharCode(0xef,0xbb,0xbf)
+						var svlogger = model.getAppView() // messages to LOG
+						function logMessage(){
+							args = Array.prototype.slice.call(arguments,0);
+							svlogger.logMessage(args.join(', '))
+						}
+						
 
 						// Types for mapping element
 						ENTITYPE = 0
@@ -203,12 +209,16 @@
 							return null
 						}
 
-						function getAttrMap(attrID, modName) {
+						// For the given Attribute, read the column mapping  in the modName
+						function getAttrMap(attrID, relmodName) {
 							attrmaps = []
 							for (key in g_attrMappings) {
 								//message(colID+'|'+cmap[icolmap].getRelID())
 								if ((attrID == g_attrMappings[key].logID) &&
-									(modName == g_attrMappings[key].modelName)) attrmaps.push(g_attrMappings[key])
+									(relmodName == g_attrMappings[key].modelName)
+									) {
+										attrmaps.push(g_attrMappings[key])
+									}
 							}
 							return attrmaps
 						}
@@ -503,57 +513,77 @@
 							return b ? 'X' : ''
 						}
 			
+						//get all info and mappings for developpers output into an attributelist
 						function gatherDevCols(relModel) {
-							var attrids
+							//attrlist is a list of columns to be outputted as a line of ; seaparated fields in the final csv
+							//it has to contain as many entries, as the headers in allmapping in the calling function
+							var attrlist = []
+							
 							//print all tables and columns for 1 relational model
 							var tables = relModel.getTableSet().toArray();
-							var attrlist = []
-							for (itpc = 0; itpc < tables.length; itpc++) {
+							//for every table in this relmodel
+							for (var itpc = 0; itpc < tables.length; itpc++) {
 								var tab = tables[itpc]
 
+								//for all columns in the current table
 								var cols = tab.getElementsCollection().toArray()
-								for (icpcm = 0; icpcm < cols.length; icpcm++) {
+								for (var icpcm = 0; icpcm < cols.length; icpcm++) {
 									var col = cols[icpcm]
+									
 									var colkey = tab + '.' + col
-									//linemessage(1,attrlist.length,tab.getName(),col.getName())
 						
 									//start with the entry for the current model table/column
 									var mycolentry = [tab.getName(),col.getName(),colProperty(relModel, tab.getName(), col.getName(), EXTIDPROPNAME)
 													,col.getDatatypeText(),booltoX(col.isMandatory()),col.getDefaultValue()
 													,col.getComment(),col.getNotes()
 													]
-									//add the Logical model mapping in the format [['enti',...],['attr',...]]
+													
+									//add the Logical model mapping in the format ['enti\nenti\nenti','attr\nattr\nattr']
 									var colattrs = getcolattrmap(col)										
-									mycolentry = mycolentry.concat(colattrs[0],colattrs[1])
+									mycolentry.push(colattrs[0],colattrs[1])
+									
 									//linemessage(2,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
 
 									var attrids = colattrs[2]
-									// alle Modelle ausser dem aktuellen 
+									// alle relationalen Modelle ausser dem aktuellen 
 									var restrmodels = []
 									var emptycols = []
+									var allindirectcols = {}
 									for (r = 0; r < g_rmodels.length; r ++){
 										if (g_rmodels[r] != relModel.getName()) {
 											restrmodels.push(g_rmodels[r])
 											emptycols.push([],[],[])
+											allindirectcols[g_rmodels[r].getName()] = [[],[],[]] 
 										}
 									} 
-									//linemessage('gatherDevCols',restrmodels.length,attrids.length,col.getName(),tab.getName())
-						
+									
 									if (attrids.length == 0) {
 										mycolentry = mycolentry.concat(emptycols)
 									} else {
+										// for all attributes mapped to the current column,
+										// get all columns mapped to them
 										for (i = 0; i < attrids.length; i ++){
-											// add to the line all mappings from all attributes to all columns in the other models
+											// add to the line all mappings from the attribute to all columns in the other models
 											var attrid = attrids[i]
 											if (attrid != null) {
-												//linemessage(colattrs[0][i],colattrs[1][i],attrids[i])
-												mycolentry = mycolentry.concat(attrElements(restrmodels, attrid, false))
+												attrelements = modelAttrElements(restrmodels, attrid)
+												// {modelname : [[tabname,],[colname,],[id,]]}
+												//logMessage('===== attrelements',JSON.stringify(attrelements,undefined,2))
+												for (modelName in attrelements){
+													//logMessage('=== ' , modelName, '===',JSON.stringify(attrelements[modelName][0],undefined,2),JSON.stringify(attrelements[modelName][1],undefined,2),JSON.stringify(attrelements[modelName][2],undefined,2))
+													allindirectcols[modelName][0] = allindirectcols[modelName][0].concat(attrelements[modelName][0])
+													allindirectcols[modelName][1] = allindirectcols[modelName][1].concat(attrelements[modelName][1])
+													allindirectcols[modelName][2] = allindirectcols[modelName][2].concat(attrelements[modelName][2])
+												}
 											}
-											//linemessage(3,attrlist.length,tab.getName(),col.getName(),attrid,mycolentry.length)
 										}
+										//logMessage(JSON.stringify(allindirectcols,undefined,2))
+										for (modelName in allindirectcols){
+											mycolentry = mycolentry.concat(allindirectcols[modelName])
+										}	
+										//logMessage(JSON.stringify(mycolentry,undefined,2))
 									}
 									attrlist.push(mycolentry)
-									//linemessage(5,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
 								}
 							}
 							return attrlist
@@ -694,6 +724,8 @@
 							var acol = g_curmodel.getTableSet().getByName(atab).getElementByID(a.relID)
 							var btab = g_containerMappings[b.parentID].tableName
 							var bcol = g_curmodel.getTableSet().getByName(btab).getElementByID(b.relID)
+							if (a.modelName < b.modelName) {return -1 }
+							if (a.modelName > b.modelName) {return 1 }
 							if (atab < btab) {return -1 }
 							if (atab > btab) {return 1}
 							return (acol < bcol) ? -1 : (acol > bcol) ? 1 : 0
@@ -707,13 +739,10 @@
 							var colIDs = []
 							for (irmpm = 0; irmpm < rmodels.length; irmpm++) {
 								g_curmodel = rmodels[irmpm]
-								//linemessage('attrElements 1',rmodels.length,attrID,g_curmodel.getName())
+								
 								var attrmaps = getAttrMap(attrID, g_curmodel.getName())
-									//		if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
-									//			message(g_curmodel.getName()+':'+attrID+':'+attrmaps.length)
-									//		}
-								//linemessage('attrElements 2',attrmaps.length,g_curmodel.getName())
 								if (attrmaps.length > 0) {
+									// NICHT NOETIG attrmaps.sort(sortattrmaps)
 									if (nurX) {
 										attrlist = [
 											['X']
@@ -723,27 +752,19 @@
 										tabNames = []
 										colNames = []
 										colIDs = []
-										//SORT
 										var attrmaplist = []
 										for (var key in attrmaps) {
 										    attrmaplist.push( attrmaps[key] );
-										}
-										attrmaplist.sort(sortattrmaps);
+										}											
+											
 										for (var amidx=0;amidx<attrmaplist.length;amidx++) {
 											var attrmap = attrmaplist[amidx]
-											//linemessage('attrElements 3',attrmap.parentID,attrmap.relID,g_curmodel.getName())
-										//SORT
-										//for (key in attrmaps) {
-										//attrmap = attrmaps[key]
 											tabName = g_containerMappings[attrmap.parentID].tableName
 											colName = g_curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
 											tabNames.push(tabName.getName())
 											colNames.push(colName.getName())
 											colIDs.push(colProperty(g_curmodel, tabName, colName, EXTIDPROPNAME))
 										}
-										//				if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
-										//					message('tabName1='+tabNames+'\ncolNames='+colNames+'\ncolIDs='+colIDs)
-										//				}
 
 										//tabNames = tabNames.slice(0, -1)
 										//colNames = colNames.slice(0, -1)
@@ -764,6 +785,51 @@
 							return aeretval
 						}
 
+						function modelAttrElements(rmodels, attrID) {
+							var aeretval = {}
+							var attrlist = []
+							var tabNames = []
+							var colNames = []
+							var colIDs = []
+							for (irmpm = 0; irmpm < rmodels.length; irmpm++) {
+								g_curmodel = rmodels[irmpm]
+								
+								var attrmaps = getAttrMap(attrID, g_curmodel.getName())
+								if (attrmaps.length > 0) {
+									// NICHT NOETIG attrmaps.sort(sortattrmaps)
+									attrlist = [],
+									tabNames = []
+									colNames = []
+									colIDs = []
+									var attrmaplist = []
+									for (var key in attrmaps) {
+									    attrmaplist.push( attrmaps[key] );
+									}											
+										
+									for (var amidx=0;amidx<attrmaplist.length;amidx++) {
+										var attrmap = attrmaplist[amidx]
+										tabName = g_containerMappings[attrmap.parentID].tableName
+										colName = g_curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
+										tabNames.push(tabName.getName())
+										colNames.push(colName.getName())
+										colIDs.push(colProperty(g_curmodel, tabName, colName, EXTIDPROPNAME))
+									}
+
+									//tabNames = tabNames.slice(0, -1)
+									//colNames = colNames.slice(0, -1)
+									//colIDs = colIDs.slice(0, -1)
+									attrlist = [tabNames, colNames, colIDs]
+								} else {
+									attrlist = [
+										[],
+										[],
+										[]
+									]
+								}
+								aeretval[g_curmodel.getName()] = attrlist
+							}
+							return aeretval
+						}
 
 						function logicalElement(rmodels, logElem, nurX) {
 							var leretval = []
@@ -802,7 +868,6 @@
 							return leretval
 						}
 
-						//	function printElementGroup(rmodels, group, nurX) {
 						function mappings2json(rmodels, group, nurX) {
 							m2jretval = []
 							if (group != null) {
@@ -810,7 +875,6 @@
 									m2jretval = m2jretval.concat(logicalElement(rmodels, group[ig], nurX))
 								}
 							}
-							//message('mappings2json= '+retval)
 							return m2jretval
 						}
 
@@ -954,6 +1018,8 @@
 							printjson(fw, format, allmapping)
 						}
 
+						//prints a developpers CVS for one relmodel
+						// starting with information about the tables/columns continuing with mapping to IM and other relmodels.
 						function printDevCVS(fw, format,relModel) {
 							// lies alle Mappings des gewählten Modells
 							mymodelname = relModel.getName()
