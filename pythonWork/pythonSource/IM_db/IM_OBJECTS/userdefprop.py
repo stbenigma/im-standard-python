@@ -18,25 +18,6 @@ class Userdefprop(Baseobject):
         self.udpr_uc = 'SYS'
         self.udpr_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Userdefprop._tablename
-                               , psql=
-        """CREATE TABLE USER_DEFINED_PROPERTIES
-    (
-     UDPR_ID INTEGER NOT NULL primary key autoincrement ,
-     UDPR_THEME VARCHAR (60) NOT NULL ,
-     UDPR_GROUP VARCHAR (60) NULL ,
-     UDPR_NAME VARCHAR (60) NOT NULL ,
-     UDPR_DESCR VARCHAR (4000) NULL ,
-     UDPR_UC VARCHAR (30) NOT NULL ,
-     UDPR_DC VARCHAR (30) NOT NULL ,
-     UDPR_UM VARCHAR (30) NULL ,
-     UDPR_DM VARCHAR (30) NULL
-    ,CONSTRAINT UDPR_UN UNIQUE (UDPR_THEME,UDPR_NAME ASC)
-    )
-    """)
-
     def getname(self,plang=None):
         return self.udpr_name
     def getdescr(self,plang=None):
@@ -46,8 +27,8 @@ class Userdefprop(Baseobject):
         return "{} ({})".format(self.getname(plang=plang),self.udpr_group)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Userdefprop._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -142,28 +123,6 @@ class Userdefpropvalue(Baseobject):
         self.udpv_udpr_id = pudprid
         self.udpv_uc = 'SYS'
         self.udpv_dc = date.today()
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Userdefpropvalue._tablename
-                               , psql="""CREATE TABLE UDP_VALUES
-    (
-     UDPV_ID INTEGER NOT NULL primary key autoincrement,
-     UDPV_VALUE VARCHAR (4000) NULL ,
-     UDPV_MODE_ID integer NOT NULL ,
-     UDPV_UDPR_ID integer NOT NULL ,
-     UDPV_UC VARCHAR (30) NOT NULL ,
-     UDPV_DC VARCHAR (30) NOT NULL ,
-     UDPV_UM VARCHAR (30) NULL ,
-     UDPV_DM VARCHAR (30) NULL
-    ,CONSTRAINT UDPV_UN UNIQUE (UDPV_MODE_ID ASC, UDPV_UDPR_ID ASC)
-    ,CONSTRAINT UDPV_MODE_FK FOREIGN KEY    (     UDPV_MODE_ID)
-		REFERENCES MODELELEMENT    (     MODE_ID )
-    ON DELETE CASCADE
-    ,CONSTRAINT UDPV_UDPR_FK FOREIGN KEY    (     UDPV_UDPR_ID)
-		REFERENCES USER_DEFINED_PROPERTIES    (     UDPR_ID )
-    )"""
-    )
 
     @staticmethod
     def removeemptyUDP(pempties):

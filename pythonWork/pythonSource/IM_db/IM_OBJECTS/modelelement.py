@@ -1,6 +1,6 @@
 from datetime import date
 from .baseobject import Baseobject, Boolean
-import dbDML
+from IM_DB import dbDML
 
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'
@@ -218,6 +218,16 @@ class Modelelement(Baseobject):
                           ,pudpthema)
         dbDML.exec(lsql)
         return
+
+    @staticmethod
+    def upddisplelements(pmodeid,pminzl,pmaxzl,pdevstat):
+        #******* to be replaced by update() in baseobject ******
+        lsql = """update modelelement
+                    set mode_min_zoom_level = {}
+                    ,mode_max_zoom_level = {}
+                    ,mode_dev_status = '{}' 
+                    where mode_id = {}""".format(pminzl,pmaxzl,pdevstat,pmodeid)
+        dbDML.exec(lsql)
 
 # modelelement
 

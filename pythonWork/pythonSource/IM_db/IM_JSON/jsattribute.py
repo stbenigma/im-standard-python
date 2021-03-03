@@ -41,7 +41,8 @@ def attr2js(pattr):
             , 'translated', 'encrypted'
             , 'tooltip', 'descr'
             , 'uc', 'dc', 'um', 'dm'
-            , 'sourceref', 'keys+'
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        , 'sourceref', 'keys+'
              #, 'businessrules'
             , 'refindocuments+'
             , 'refbyorgunits+', 'userdefprops'
@@ -57,7 +58,7 @@ def attr2js(pattr):
                                     ,'',''
                                     ,'',''
                                     , multilangtext(), multilangtext()
-                                     ,'','','',''
+                                     ,'','','','',0,4,'DEV'
                                      , sourceref(), reflist()
                                      #, businessrules2js()
                                       , reflist()
@@ -79,6 +80,7 @@ def attr2js(pattr):
             , multilangtext(pattr.attr_tooltip_L)
             , multilangtext(pattr.attr_descr_L)
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
+            , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getdevstatus()
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
             #, businessrules2js(pburuid=pattr.attr_id)
                 , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
@@ -159,11 +161,16 @@ def attributes2sql(pmodel: JSModel):
         attr.attr_dc = jelem['dc']
         attr.attr_um = jelem['um']
         attr.attr_dm = jelem['dm']
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
         try:
             attrid = attr.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
             continue
+
+        Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
         inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
         inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])

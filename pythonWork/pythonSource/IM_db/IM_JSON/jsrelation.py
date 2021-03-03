@@ -24,13 +24,14 @@ def relation2js(prela):
         , 'from-to', 'to-from'
         , 'isinkeys+', 'sourceref'
         , 'uc', 'dc', 'um', 'dm'
-             ]
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+              ]
     if prela is None:
         retval = fillmodel(pmodel=model
                            , pentries=['', ''
                                     , relaend2js(), relaend2js()
                                        , reflist(), sourceref()
-                                     , '', '', '', ''
+                                     , '', '', '', '',0,4,'DEV'
                                        ]
                            )
     else:
@@ -58,6 +59,8 @@ def relation2js(prela):
                                         ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys])
                                       , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                        ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm
+                                    , prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getdevstatus()
+
                                        ]
                            )
     # fi
@@ -95,11 +98,15 @@ def relations2sql(pmodel: JSModel):
         rela.rela_dc = jelem['dc']
         rela.rela_um = jelem['um']
         rela.rela_dm = jelem['dm']
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
         try:
             relaid = rela.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=rela.tostring())
             continue
+        Modelelement.upddisplelements(pmodeid=relaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inslgtx(pmodel=pmodel,pmodeid=rela.rela_id,pattr=Languagetext.RELA_TEXT_TO,ptexts=jelem['to-from']['assoc'])
         inslgtx(pmodel=pmodel,pmodeid=rela.rela_id,pattr=Languagetext.RELA_TEXT_FROM,ptexts=jelem['from-to']['assoc'])
         inssourceref(pmodel=pmodel,pmodeid=relaid, psources=jelem["sourceref"])

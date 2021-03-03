@@ -12,7 +12,6 @@ from mystring import nvl
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
-
 class Color:
     def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
         self.backgcolor = backgcolor
