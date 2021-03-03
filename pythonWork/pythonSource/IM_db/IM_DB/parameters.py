@@ -53,6 +53,7 @@ parameter = {'dbtype': SQLITE
             , 'odmorgunitdirec': 'businessinfo/party/'
             , 'odmudptranslfilename': 'translation'
             , 'odmudpmappingfilename': 'datamapping'
+            , 'odmudpelemdisplfilename': 'elementdisplay'
             , 'odmmappingdirec': 'mapping/'
             , 'odmudpfileextension':'.udposdm'
             , 'odmvcsdirec' : 'gitHub/'
@@ -228,6 +229,12 @@ def odmUDPTranslFileName(newval=None):
         return parameter['odmudptranslfilename']
     else:
         parameter['odmudptranslfilename'] = newval
+
+def odmUDPElemdisplFileName(newval=None):
+    if newval is None:
+        return parameter['odmudpelemdisplfilename']
+    else:
+        parameter['odmudpelemdisplfilename'] = newval
 
 def odmmappingdirec(newval=None):
     if newval is None:

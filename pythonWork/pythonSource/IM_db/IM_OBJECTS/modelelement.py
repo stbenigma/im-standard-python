@@ -1,5 +1,6 @@
 from datetime import date
 from .baseobject import Baseobject, Boolean
+import dbDML
 
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'
@@ -22,6 +23,11 @@ class Modelelemtype(Baseobject):
     STFO: str = 'STFO'
     UDPR: str = 'UDPR'
 
+    """Mapping of mode attributes to udp-names  in ODM"""
+    ODMattrmapping = {'mode_min_zoom_level': 'minzoomlevel'
+                    ,'mode_max_zoom_level': 'maxzoomlevel'
+                    ,'mode_dev_status': 'dev_status'}
+
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
     _columnlist = []
@@ -33,31 +39,12 @@ class Modelelemtype(Baseobject):
         self.melt_name = pname
         self.melt_uc = 'SYS'
         self.melt_dc = date.today()
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Modelelemtype._tablename
-                               , psql="""
-CREATE TABLE MODELELEM_TYPE
-    (
-     MELT_ID INTEGER NOT NULL primary key autoincrement,
-     MELT_SHORTNAME VARCHAR (4) NOT NULL CHECK 
-            ( MELT_SHORTNAME IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                                , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
-                                ,'DGRM','DIAG') ) ,
-     MELT_NAME VARCHAR (60) NOT NULL ,
-     MELT_UC VARCHAR(30) NULL  ,
-     MELT_DC VARCHAR (30) NOT NULL ,
-     MELT_UM VARCHAR (30) NULL ,
-     MELT_DM VARCHAR (30) NULL
-    ,CONSTRAINT MELT_UN UNIQUE (MELT_SHORTNAME ASC)
-    ,CONSTRAINT MELT_UN2 UNIQUE (MELT_NAME ASC)
-) 
-""")
+        return
 
     @staticmethod
     def delete():
         Baseobject.delete(Modelelemtype._tablename)
+        return
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -110,8 +97,8 @@ CREATE TABLE MODELELEM_TYPE
             , "Arcs": Modelelemtype.ARCS
             , "FKIndexAssociation": ""
                  }
-        return trans[type]
-    # type2melt
+        if type in trans: return trans[type]
+        else: return ""
 
 # Modelelemtype
 
@@ -132,21 +119,6 @@ class Modelelement(Baseobject):
         self.mode_id = pid
         if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
     # __init__
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Modelelement._tablename
-                               , psql="""
-CREATE TABLE MODELELEMENT
-    (
-     MODE_ID INTEGER NOT NULL primary key autoincrement ,
-     MODE_TYPE VARCHAR (4) NOT NULL CHECK ( MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM','DIAG') ) ,
-     MODE_MELT_ID integer NOT NULL
-     ,CONSTRAINT MODE_MELT_FK FOREIGN KEY     (     MODE_MELT_ID)
-        REFERENCES MODELELEM_TYPE(     MELT_ID )
-)
-""")
 
     @staticmethod
     def delete(pwhere=''):
@@ -218,6 +190,35 @@ CREATE TABLE MODELELEMENT
     @staticmethod
     def select(pwhere=None, porderby=None):
         return Baseobject.select(pclass=Modelelement, pwhere=pwhere, porderby=porderby)
+
+    @staticmethod
+    def insertudpelems(pudpthema):
+        """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_dev_status) aus Elementdisplay
+            in die Modelelement Feolder
+        """
+        subselect = lambda pcolname : """(select UDPV_VALUE
+                         from UDP_VALUES
+                         join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
+                    where lower(udpr_theme) = lower('{}')
+                    and  lower(udpr_name) = lower('{}')
+                     and udpv_mode_id = mode_id
+                        )""".format(pudpthema,pcolname)
+
+        lsql = """update MODELELEMENT set MODE_MIN_ZOOM_LEVEL = {}
+                , MODE_MAX_ZOOM_LEVEL = {}
+                ,MODE_DEV_STATUS =    {}
+                where mode_melt_id in (select metp_melt_id
+                                        from MODELEMTYPE_PROPERTIES
+                                        join user_defined_properties on udpr_id = metp_udpr_id
+                                        where lower(udpr_theme) = lower('{}')
+                                        )
+                """.format(subselect(Modelelemtype.ODMattrmapping['mode_min_zoom_level'])
+                          ,subselect(Modelelemtype.ODMattrmapping['mode_max_zoom_level'])
+                          ,subselect(Modelelemtype.ODMattrmapping['mode_dev_status'])
+                          ,pudpthema)
+        dbDML.exec(lsql)
+        return
+
 # modelelement
 
 class ModelelementProperty(Baseobject):

@@ -1396,7 +1396,12 @@ def filllanguages():
     # fill all elements in default language
     Languagetext.filldefaulttext(dbParam.dbDefaultLangID)
     Language.deleteunused()
-# filllanguages
+    return
+
+def fillelementdisplays():
+    Modelelement.insertudpelems(pudpthema=parameters.odmUDPElemdisplFileName())
+    return
+
 
 def transferproject():
     proj = et.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
@@ -1565,4 +1570,5 @@ def transferODMModel():
     BusinessRule.setburuelements()
     removeemptyudp()
     filllanguages()
+    fillelementdisplays()
 # end transferODMModel
