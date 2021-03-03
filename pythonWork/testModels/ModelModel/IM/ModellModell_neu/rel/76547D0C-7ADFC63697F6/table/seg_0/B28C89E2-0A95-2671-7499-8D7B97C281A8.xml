@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B28C89E2-0A95-2671-7499-8D7B97C281A8" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="KEY_ELEMENTS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B28C89E2-0A95-2671-7499-8D7B97C281A8" name="KEY_ELEMENTS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>KEY_ELEMENTS</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="KELE_ID" id="EADB2CAD-0252-8703-83D3-0082D59F5636">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -26,6 +29,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="KELE_KEYS_ID" id="7FDF4104-1E70-6217-0BD9-218069548B46">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -42,6 +48,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="KELE_ATTR_ID" id="ABE011B9-C198-4D96-6EE0-7CB958DCB576">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -58,6 +67,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="5CDB18FF-FB19-6090-0888-BFE8B7956A40" referredColumn="6ED20ED0-78C1-ACD9-4E8B-7770D2E655E4"/>
 </associations>
@@ -77,6 +89,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="0FFB55B3-F9A5-9F92-5517-2919AD512A6E" referredColumn="AD15119C-6601-8B26-9534-E6EC2BF98821"/>
 </associations>
@@ -96,6 +111,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="KELE_DC" id="FB8D78A6-97C5-FBDD-AD97-24FED51826B9">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -112,6 +130,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="KELE_UM" id="5FDBDCF5-1FBC-11E3-89C1-6723E467CE09">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -129,6 +150,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="KELE_DM" id="2BF0F3C1-B0B0-F7A2-35E7-9A0EC47C5642">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -146,6 +170,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

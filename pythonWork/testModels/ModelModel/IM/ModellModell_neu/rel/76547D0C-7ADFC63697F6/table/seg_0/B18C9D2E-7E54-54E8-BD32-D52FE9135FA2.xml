@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B18C9D2E-7E54-54E8-BD32-D52FE9135FA2" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="projects">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B18C9D2E-7E54-54E8-BD32-D52FE9135FA2" name="projects">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>projects</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="proj_id" id="1469C3A9-AE79-7AB5-B610-C088599024CF">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -24,6 +27,9 @@
 <dataTypeSize>4</dataTypeSize>
 <ownDataTypeParameters>4,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="proj_name" id="6B9B52FD-2369-35C0-587A-B3B022A8E790">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -40,6 +46,9 @@
 <dataTypeSize>60</dataTypeSize>
 <ownDataTypeParameters>60,60,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="proj_curr_lang" id="FC69C255-E30C-010A-6AB2-E39D0A67694F">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -57,6 +66,9 @@
 <dataTypeSize>2</dataTypeSize>
 <ownDataTypeParameters>2,2,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="proj_uc" id="A50BCA9F-BF67-2445-1A52-A44B9B44E435">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -73,6 +85,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="proj_dc" id="5E50C81D-636E-8A21-09CB-8CB990200FB1">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -89,6 +104,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="proj_um" id="A8D5EE46-3385-D079-3550-EFA761430A13">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -106,6 +124,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="proj_dm" id="25E7A776-335A-B3AE-C4DA-F537ABDDB79E">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -123,6 +144,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

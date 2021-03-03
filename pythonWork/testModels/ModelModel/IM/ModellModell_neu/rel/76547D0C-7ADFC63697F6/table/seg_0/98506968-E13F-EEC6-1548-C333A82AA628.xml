@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="98506968-E13F-EEC6-1548-C333A82AA628" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="DEFAULT_VALUES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="98506968-E13F-EEC6-1548-C333A82AA628" name="DEFAULT_VALUES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>DEFAULT_VALUES</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="DEVA_ID" id="D2EE7A4A-6EB5-F5AA-C938-544D7F761880">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -26,6 +29,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_DOMA_ID" id="EB2C5353-895F-C386-959C-27CA7F57C642">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -42,6 +48,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="413B72CD-8059-158F-BCD2-8A9A72AC7ACD" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
 </associations>
@@ -61,6 +70,9 @@
 <dataTypeSize>100</dataTypeSize>
 <ownDataTypeParameters>100,100,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_SORT_ORDER" id="37B41ADE-4B33-CAC9-F2AF-EA3FFAAB890D">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -78,6 +90,9 @@
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,3,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_DISPL" id="7398A0BA-280F-B922-A5EF-766493E0DC96">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -95,6 +110,9 @@
 <dataTypeSize>max</dataTypeSize>
 <ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_DESCR" id="2DA8E574-114C-2C4A-B1A2-BE575163E2E3">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -112,6 +130,9 @@
 <dataTypeSize>max</dataTypeSize>
 <ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_UC" id="888DA718-E640-C8FF-197A-E4284D17F169">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -128,6 +149,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_DC" id="5AF49EF3-C2A2-CC60-59CB-2B3C92AB64F1">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -144,6 +168,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_UM" id="3B22BF6E-CBCD-8C84-29BD-07CE9C8D0D9A">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -161,6 +188,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DEVA_DM" id="7072FB37-80E6-CF87-7C33-11B2A3C21B2A">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -178,6 +208,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

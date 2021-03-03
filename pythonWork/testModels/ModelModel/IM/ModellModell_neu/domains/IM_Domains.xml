@@ -113,6 +113,22 @@
 <valueDef value="TEXT" description="Formatierter Text"/>
 </listOfValues>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Entwicklungs-Status" id="24FB953F-D6BE-0C10-F459-B7B964B563C2">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:33:48 UTC</createdTime>
+<comment><![CDATA[Development / Relaease Status of an element  ]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<synonym>Development Status</synonym>
+<listOfValues>
+<valueDef value="DEV" description="Development"/>
+<valueDef value="REL" description="Released"/>
+<valueDef value="TEST" description="in Test / QA"/>
+</listOfValues>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Linientyp" id="30B34D60-5229-19CC-A3D5-584257D800BD">
 <createdBy>stb</createdBy>
 <createdTime>2019-08-07 14:18:33 UTC</createdTime>
@@ -675,6 +691,23 @@
 <dataTypeScale>0</dataTypeScale>
 <fileName>IM_Domains</fileName>
 <logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zoom-Level" id="F8587786-FB94-6E95-F103-E64497B8F02A">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:32:09 UTC</createdTime>
+<comment><![CDATA[Zoom-Stufe (Absraktionslevel) in der ein Element angezeigt wird.]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4</endValue>
+</rangeDef>
+</listOfRanges>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Anzeigeformat" id="F8923415-2F34-2023-2112-9B16A52B1FD6">
 <createdBy>stb</createdBy>

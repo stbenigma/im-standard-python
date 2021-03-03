@@ -12,8 +12,9 @@ Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc
 ]DE_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="false"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
 <item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
@@ -33,6 +34,7 @@ Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Externe Referenz"/>
 <property name="EN_ENTI_NAME" value="External Reference"/>
+<property name="dev_status" value="REL"/>
 <property name="maxzoollevel" value="5"/>
 <property name="maxzoomlevel" value="5"/>
 <property name="minzoomlevel" value="0"/>
@@ -52,11 +54,12 @@ Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
 ]DE_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="false"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -67,6 +70,7 @@ Name der externen Quelle (Beispiele:, ODM, CaseTalk,...)
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Quellenname"/>
 <property name="EN_ATTR_NAME" value="Source Name"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
 <property name="maxzoomlevel" value="5"/>
 <property name="minzoomlevel" value="0"/>
@@ -85,11 +89,12 @@ ID in der externen Quelle
 ]DE_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="false"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -100,6 +105,7 @@ ID in der externen Quelle
 <propertyMap>
 <property name="DE_ATTR_NAME" value="QuellID"/>
 <property name="EN_ATTR_NAME" value="Source ID"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
 <property name="maxzoomlevel" value="5"/>
 <property name="minzoomlevel" value="0"/>
@@ -110,11 +116,12 @@ ID in der externen Quelle
 <createdTime>2021-01-19 07:14:57 UTC</createdTime>
 <comment><![CDATA[Wann wurde dieser Eintrag von dieser Quelle zurletzt geändert.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="false"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -124,6 +131,7 @@ ID in der externen Quelle
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Änderungs Zpkt"/>
 <property name="EN_ATTR_NAME" value="last update "/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -134,11 +142,12 @@ ID in der externen Quelle
 <createdTime>2021-01-19 07:18:14 UTC</createdTime>
 <comment><![CDATA[Gibt an, ob dieses Modellelement in dieser Quelle gelöscht werden soll bei nächsten sync.]]></comment>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="false"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -148,6 +157,7 @@ ID in der externen Quelle
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Lösch Hinweis"/>
 <property name="EN_ATTR_NAME" value="Delete flag"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -160,11 +170,12 @@ ID in der externen Quelle
 <createdTime>2020-08-08 16:41:54 UTC</createdTime>
 <generatorID>40325232-3AD7-C4D6-A1C0-96CD22537579</generatorID>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="false"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <newElementsIDs>AF8EAF2B-54AB-6FEC-4BAE-AC864FF81931,98122D5B-C0E6-DB4E-D459-034B9AB1B41A</newElementsIDs>

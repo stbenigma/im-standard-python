@@ -3,52 +3,15 @@
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:04 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
 <database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
 <filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
 <schema>1</schema>
-<columnProxies>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_DC" id="33D15735-6A52-A872-A37C-EFD9BBA05509">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_ID" id="3491759E-55B2-4C35-1592-A280DC8CC277">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_UC" id="42309E40-DFB6-1816-18C4-683BF6C203EA">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_DM" id="528DBFB4-29E0-C9A0-19C1-E9D1402198D1">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_DESCR" id="A0871D37-8D17-1048-CBD0-AF87823D8CF0">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_NAME" id="A224732A-1871-635C-BB02-C8ACEAD66A14">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="INTF_UM" id="DBDD7748-0933-D814-E4AD-034FE1C6A3F6">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-</columnProxies>
 <foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="INTERFACES_MODELELEMENT_FK" id="2D19AF8F-8634-5EC6-47C2-79B3FB0E7561">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="INFT_MODE_FK" id="C65ADC3A-A007-FA9F-3893-2F711DE763D6">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:15 UTC</createdTime>
@@ -56,13 +19,16 @@
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="INTF_PK" id="FB39FC94-6E32-4328-56D1-B929275D80D1">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="INTERFACES_PK" id="BDC5FE2C-3E9A-AAD5-E706-D2F4A558BB2A">
 <createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <clustered>true</clustered>
-<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
-<recomputeStatistics>NO</recomputeStatistics>
+</PrimaryKey>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="INTERFACES_INTF_ID_UN" id="FB39FC94-6E32-4328-56D1-B929275D80D1">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>

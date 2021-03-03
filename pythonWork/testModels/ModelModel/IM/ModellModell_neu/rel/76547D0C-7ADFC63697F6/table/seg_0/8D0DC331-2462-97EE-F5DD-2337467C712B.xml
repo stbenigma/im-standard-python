@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8D0DC331-2462-97EE-F5DD-2337467C712B" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="DIAGRAMS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8D0DC331-2462-97EE-F5DD-2337467C712B" name="DIAGRAMS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>DIAGRAMS</sourceObjName>
@@ -8,7 +8,181 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODELELEMENT_MODELELEMENT_ID" id="5D4DD8B0-8E71-CBBD-CF4D-9ABF076A7F47">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="ED7C8ADE-D8D7-8E4E-5C9E-EB466B8C8B0E" referredColumn="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB"/>
+</associations>
+</Column>
+<Column name="Name_[L]" id="4097BE45-7E5D-ECD9-E4A1-464E89AB2D07">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>49509F7F-1C52-6A13-93E0-246E01806DF9</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Autor/in" id="C5181A28-0EA5-BD7B-A43F-59E6A83EFBEF">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>F99AB186-C1FE-6579-AF37-79AB199D771B</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Erstellzpkt" id="F4AAFFC1-47BE-63C0-AF81-F23EAD5955C3">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>A5B14297-16BB-FCE5-7D6B-1E1C7DE0C819</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Letzt_Änderung_Zpkt" id="8545F80B-E3C5-66E0-A996-705743781C49">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>B737057D-5B09-D065-49F8-0BEA03EE3C49</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Legendposition" id="A1293D43-8AF6-295D-52DB-CE7FE3A19059">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DIAGRAMS</sourceObjSchema>
+<sourceObjName>DIAG_LEGENDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Name" id="7D62962C-516F-F80A-5A58-937379C5C72A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DIAGRAMS</sourceObjSchema>
+<sourceObjName>DIAG_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+Name of a business unit
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Name eines Geschäftsbereichs
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DIAGRAMS_ID" id="B645C658-B154-35A3-6624-EDAB8200CB3A">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
 <Column name="DIAG_ID" id="318F2015-2253-2379-D177-62ADF3187976">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>DIAGRAMS</sourceObjSchema>
@@ -24,25 +198,12 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="A04FD7C4-A397-E599-299E-AFC087D7EFE9" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
-</Column>
-<Column name="DIAG_NAME" id="7D62962C-516F-F80A-5A58-937379C5C72A">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>DIAGRAMS</sourceObjSchema>
-<sourceObjName>DIAG_NAME</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:00 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>60</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>60</dataTypeSize>
-<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="DIAG_DIAT_ID" id="9D92AB19-D355-E54A-D3F7-779B69829E4C">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -59,43 +220,35 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="82D762B7-4768-AD26-94E3-DBDE14EF00E2" referredColumn="3F37DC29-DA7A-AD4F-2D94-7A6832142FB9"/>
 </associations>
 </Column>
-<Column name="DIAG_LEGENDX" id="A1293D43-8AF6-295D-52DB-CE7FE3A19059">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>DIAGRAMS</sourceObjSchema>
-<sourceObjName>DIAG_LEGENDX</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:00 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>8</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<ownDataTypeParameters>5,8,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="DIAG_LEGENDY" id="DD5203D0-4E93-F2F7-26D7-D34C6FCD5BE6">
+<Column name="Legendposition1" id="DD5203D0-4E93-F2F7-26D7-D34C6FCD5BE6">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>DIAGRAMS</sourceObjSchema>
 <sourceObjName>DIAG_LEGENDY</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>8</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<ownDataTypeParameters>5,8,0</ownDataTypeParameters>
+<use>3</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAG_UC" id="8846A995-EA1A-5D9E-5616-92748352FDE1">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -112,6 +265,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAG_DC" id="11459CC5-7376-F2C0-A012-4D387013F521">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -128,6 +284,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAG_UM" id="D0D2754A-6B74-0FE1-B814-C867298E3BA1">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -145,6 +304,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAG_DM" id="B4DA130E-FC0D-82DE-7D62-71FE1134A00D">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -162,18 +324,30 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="AC1C56EA-89E3-87AE-D082-6AA2D234243D" name="DIAG_PK">
+<ind_PK_UK id="8406DE08-EA97-EBE9-7899-4724CE8019B6" name="DIAGRAMS_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5D4DD8B0-8E71-CBBD-CF4D-9ABF076A7F47"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AC1C56EA-89E3-87AE-D082-6AA2D234243D" name="DIAGRAMS_DIAG_ID_UN">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>DIAG_PK</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:00 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="318F2015-2253-2379-D177-62ADF3187976"/>
@@ -190,6 +364,26 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="7D62962C-516F-F80A-5A58-937379C5C72A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CA7F7841-22DD-F7C1-AC70-0501176AB748" name="DIAGRAMS_Name_[L]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>91043236-A2D9-78FD-89D3-90E2F34AC804</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4097BE45-7E5D-ECD9-E4A1-464E89AB2D07"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2D6263C5-0F11-E1F0-25BD-33652D84D7A0" name="DIAGRAMS_DIAGRAMS_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B645C658-B154-35A3-6624-EDAB8200CB3A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="6B7143EF-F9DB-1E57-9CE3-872901F853CB" name="DIAG_DIAT_FK">
@@ -210,6 +404,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="318F2015-2253-2379-D177-62ADF3187976"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9AEDD708-62CF-A412-D74A-432CFB8DA1DD" name="DIAGRAMS_MODELELEMENT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<generatorID>990B8800-A2D5-65D8-4CA4-B514F9BD92B0</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D4DD8B0-8E71-CBBD-CF4D-9ABF076A7F47"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B2D00C84-4FB1-AF81-A223-4C0B96EEBA54" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="ATTRIBUTES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B2D00C84-4FB1-AF81-A223-4C0B96EEBA54" name="ATTRIBUTES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>ATTRIBUTES</sourceObjName>
@@ -8,7 +8,331 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODELELEMENT_MODELELEMENT_ID" id="ECF544BA-7F14-80DB-22E5-698939C8DCDE">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="F29D02CC-E107-5236-5EB3-A6BD6B7D0516" referredColumn="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB"/>
+</associations>
+</Column>
+<Column name="Attributname" id="4938768B-EE4D-A507-6C3D-590EDD88EDF8">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_TECH_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name, der etwas über die Rolle, Verwendung der Eigenschaft in der Entität aussagt. Häufig = Domänenname
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name that says something about the role, use of the property in the entity. Frequently = domain name
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Anzeigename_[L]" id="58099094-F985-162C-D43C-EAAC3ADF3008">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_DISPL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Entity short name for use from heading, in references
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Anzeigereihenfolge" id="65D3192B-81A8-B734-2D6F-45E748C7948E">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_DISPL_SEQ</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Riehenfolge der Anzeige auf Diagrammen, in Reports. Leer-> Attribut kommt nach Name sortiert an den Schluss einer Liste
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display sequence on diagrams, in reports. Empty-> attribute is sorted by name at the end of a list
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>39B01BA7-C3D2-D42E-5518-83CB3845A63D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Beschreibung_[L]" id="0831E793-3D7D-5609-5863-E2B10D5AAB6A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Tooltip_[L]" id="31F5F7AE-B816-1EEE-73DD-17F51B36FB47">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_TOOLTIP</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzeige in Masken für die Erläuterung der Nutzung, Bearbeitung, Verwendung des Attributwertes
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display in masks to explain the use, editing, and usage of the attribute value
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ist_Pflichtattribut" id="CF23C2E8-F683-023E-6FF3-DD2FFF97EEA6">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_IS_MANDATORY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld muss einen Wert enthalten.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Das Feld muss einen Wert enthalten.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> The field must contain a value.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ist_Deskriptorfeld" id="29D28418-2B2E-B41F-C956-F5EEDE915EDA">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_IS_DESCRIPTIVE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Das Attribut charakterisiert die Entität und ist wichtig für ihr Verständnis
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+The attribute characterizes the entity and is important for its understanding
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ist_Wiederholattribut" id="B4C57CE6-F035-B3B8-14CD-2322C90CE77E">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_IS_REPEATED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld kann mehere Werte enthalten. 
+NEIN -> Feld enthält maximal einen Wert.
+Kann  über Extratabelle gelöst werden.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Das Feld kann mehere Werte enthalten. 
+NEIN -> Feld enthält maximal einen Wert.
+Kann  über Extratabelle gelöst werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> The field can contain several values.  NO -> Field contains a maximum of one value. Can be solved via extra table.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ist_sprachabhängig" id="6B8A9E3F-CCA2-0A74-D03F-8C4F123F2B7F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_IS_TRANSLATED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
+Über Extratabelle die mit Sprachen verknüpft ist lösen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Der Feldwert kann in mehreren Sprachen vorkommen.
+Über Extratabelle die mit Sprachen verknüpft ist lösen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> The field value can occur in several languages. Solve via extra table linked with languages
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ist_historisiert" id="3A6C4CEE-097E-5BAA-D4AE-82C7753057FA">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_IS_HISTORICISED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
+Über Extratabelle verknüpft ist lösen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Der Feldwert kann über die Zeit ändern, Die Historie muss im System verwaltet werden. Zu einem Zeitpunkt kann nur 1 Wert gültig sein.
+Über Extratabelle verknüpft ist lösen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> The field value can change over time. The history must be managed in the system. Only 1 value can be valid at a time. Solve is linked via extra table
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ist_verschlüsselt" id="9008A792-E192-D56F-0B5A-97A4428C3D2C">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
+<sourceObjName>ATTR_IS_ENCRYPTED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:57 UTC</createdTime>
+<comment><![CDATA[JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
+NEIN -> Feld wird nicht verschlüsselt]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+JA -> Das Feld muss in Speicherung und Transport verschlüsselt werden
+NEIN -> Feld wird nicht verschlüsselt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+YES -> The field must be encrypted in storage and transport NO -> Field is not encrypted
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ATTRIBUTES_ID" id="9F85B1EC-DBE8-2B27-7A9E-88A4E33B450B">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
 <Column name="ATTR_ID" id="6ED20ED0-78C1-ACD9-4E8B-7770D2E655E4">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>ATTRIBUTES</sourceObjSchema>
@@ -24,6 +348,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="D1DE9F9C-D2FF-6473-F841-1883A93ABA4B" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -44,6 +371,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="EA703A87-D86F-D784-E25C-B62220CF8769" referredColumn="0F98F311-59A2-BE87-6FC4-2C0F85E511C5"/>
 </associations>
@@ -64,6 +394,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="EE901480-859F-E751-8D4C-37975D05DC46" referredColumn="AD15119C-6601-8B26-9534-E6EC2BF98821"/>
 </associations>
@@ -83,213 +416,12 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="B5E69273-8D78-AB1E-9716-78CAF0F195AF" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
 </associations>
-</Column>
-<Column name="ATTR_TECH_NAME" id="4938768B-EE4D-A507-6C3D-590EDD88EDF8">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_TECH_NAME</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>60</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>60</dataTypeSize>
-<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_DISPL_NAME" id="58099094-F985-162C-D43C-EAAC3ADF3008">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_DISPL_NAME</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>4000</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>4000</dataTypeSize>
-<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_DISPL_SEQ" id="65D3192B-81A8-B734-2D6F-45E748C7948E">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_DISPL_SEQ</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_TOOLTIP" id="31F5F7AE-B816-1EEE-73DD-17F51B36FB47">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_TOOLTIP</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT028</logicalDatatype>
-<dataTypePrecision>-1</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>max</dataTypeSize>
-<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_DESCR" id="0831E793-3D7D-5609-5863-E2B10D5AAB6A">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_DESCR</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT028</logicalDatatype>
-<dataTypePrecision>-1</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>max</dataTypeSize>
-<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_IS_DESCRIPTIVE" id="29D28418-2B2E-B41F-C956-F5EEDE915EDA">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_IS_DESCRIPTIVE</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK__ATTRIBUTE__ATTR___05A3D694</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<checkConstraint>
-<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_DESCRIPTIVE]=&apos;TRUE&apos; OR [ATTR_IS_DESCRIPTIVE]=&apos;FALSE&apos;"/>
-</checkConstraint>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_IS_MANDATORY" id="CF23C2E8-F683-023E-6FF3-DD2FFF97EEA6">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_IS_MANDATORY</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK__ATTRIBUTE__ATTR___0697FACD</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<checkConstraint>
-<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_MANDATORY]=&apos;TRUE&apos; OR [ATTR_IS_MANDATORY]=&apos;FALSE&apos;"/>
-</checkConstraint>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_IS_HISTORICISED" id="3A6C4CEE-097E-5BAA-D4AE-82C7753057FA">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_IS_HISTORICISED</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK__ATTRIBUTE__ATTR___078C1F06</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<checkConstraint>
-<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_HISTORICISED]=&apos;TRUE&apos; OR [ATTR_IS_HISTORICISED]=&apos;FALSE&apos;"/>
-</checkConstraint>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_IS_REPEATED" id="B4C57CE6-F035-B3B8-14CD-2322C90CE77E">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_IS_REPEATED</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK__ATTRIBUTE__ATTR___0880433F</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<checkConstraint>
-<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_REPEATED]=&apos;TRUE&apos; OR [ATTR_IS_REPEATED]=&apos;FALSE&apos;"/>
-</checkConstraint>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_IS_TRANSLATED" id="6B8A9E3F-CCA2-0A74-D03F-8C4F123F2B7F">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_IS_TRANSLATED</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK__ATTRIBUTE__ATTR___09746778</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<checkConstraint>
-<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_TRANSLATED]=&apos;TRUE&apos; OR [ATTR_IS_TRANSLATED]=&apos;FALSE&apos;"/>
-</checkConstraint>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ATTR_IS_ENCRYPTED" id="9008A792-E192-D56F-0B5A-97A4428C3D2C">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ATTRIBUTES</sourceObjSchema>
-<sourceObjName>ATTR_IS_ENCRYPTED</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:57 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<constraintName>CK__ATTRIBUTE__ATTR___0A688BB1</constraintName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<checkConstraint>
-<implementationDef dbType="SQL Server 2012" definition="[ATTR_IS_ENCRYPTED]=&apos;TRUE&apos; OR [ATTR_IS_ENCRYPTED]=&apos;FALSE&apos;"/>
-</checkConstraint>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ATTR_UC" id="BD3D1042-245E-72BF-6368-932B8577C0ED">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -306,6 +438,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ATTR_DC" id="B11F68A2-3FC6-17AD-E49B-F5C6D5885CB0">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -322,6 +457,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ATTR_UM" id="EB7A36CD-D450-2E8D-AF60-68571C97A24F">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -339,6 +477,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ATTR_DM" id="24AD5C06-F111-E681-1917-8FEDDE7C382A">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -356,18 +497,30 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="4CF2D636-9AA2-F9E4-8C8E-C3496A559F37" name="ATTR_PK">
+<ind_PK_UK id="381D71D4-49CB-F70C-99EE-B8FA8E9D20BF" name="ATTRIBUTES_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="ECF544BA-7F14-80DB-22E5-698939C8DCDE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4CF2D636-9AA2-F9E4-8C8E-C3496A559F37" name="ATTRIBUTES_ATTR_ID_UN">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>ATTR_PK</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:57 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="6ED20ED0-78C1-ACD9-4E8B-7770D2E655E4"/>
@@ -401,6 +554,26 @@
 <colUsage columnID="58099094-F985-162C-D43C-EAAC3ADF3008"/>
 <colUsage columnID="10423F0E-0E70-F822-9766-91809402B6F0"/>
 <colUsage columnID="E4F764F5-6B16-2F3A-30B9-36B76403DC8C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9EE5D5D2-FCC3-15D2-66EA-3E8477ADE438" name="ATTRIBUTES_Attributname_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>D2B46163-1C70-5D7C-B106-C0D4A2089635</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4938768B-EE4D-A507-6C3D-590EDD88EDF8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B1EC17E9-F2FB-B13B-4733-022D1BF04444" name="ATTRIBUTES_ATTRIBUTES_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="9F85B1EC-DBE8-2B27-7A9E-88A4E33B450B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="EA07E4D1-DC5F-A45B-FE0A-9C6512802898" name="ATTR_DOMA_FK">
@@ -441,6 +614,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="10423F0E-0E70-F822-9766-91809402B6F0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A76A153B-4BD1-53D1-4F48-7F2DD8F0FFD0" name="ATTRIBUTES_MODELELEMENT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<generatorID>94EA549C-5CAA-1E2C-E537-BF62CA43D3AD</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ECF544BA-7F14-80DB-22E5-698939C8DCDE"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

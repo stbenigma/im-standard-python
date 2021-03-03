@@ -48,8 +48,8 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -69,6 +69,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <property name="DE_ENTI_NAME" value="Beziehung"/>
 <property name="EN_ENTI_COMMENT" value="*DE* Verbindung zweier Entitäten mit Assoziationstext, Optionalität und Abbildungstyp  Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Optionalität und Abbildungstyp hergeleitet werden 0-1 Optional  - 1 1-1 Pflicht - 1 0-many Optional - many 1-many Pflicht - many"/>
 <property name="EN_ENTI_NAME" value="Relation"/>
+<property name="dev_status" value="REL"/>
 <property name="maxzoollevel" value="5"/>
 <property name="maxzoomlevel" value="5"/>
 <property name="minzoomlevel" value="0"/>
@@ -88,8 +89,8 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -99,6 +100,7 @@ Die in anderen Darstellungsarten gebräuchlichen Beziehungen können aus  Option
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -120,8 +122,8 @@ What connects the von-Entity with the zu-Entity?
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -135,8 +137,9 @@ What connects the von-Entity with the zu-Entity?
 <property name="DE_ATTR_NAME" value="Assoziation von-zu [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Was verbindet die von-Entität mit der zu-Entität"/>
 <property name="EN_ATTR_NAME" value="Association from - to [L]"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="1"/>
+<property name="maxzoomlevel" value="2"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -156,8 +159,8 @@ zu entity must have at least 1 connection to the von entity
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -170,8 +173,9 @@ zu entity must have at least 1 connection to the von entity
 <property name="DE_ATTR_NAME" value="ist Pflichtbeziehung (von-zu)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* zu-Entität muss mind. 1 eine Verbindung zur von-Entität haben"/>
 <property name="EN_ATTR_NAME" value="is mandatory relationship (from-to)"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="1"/>
+<property name="maxzoomlevel" value="2"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -189,8 +193,8 @@ zu entity must have at least 1 connection to the von entity
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -200,8 +204,9 @@ zu entity must have at least 1 connection to the von entity
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kardinalität (von-zu)"/>
 <property name="EN_ATTR_NAME" value="Cardinality (from-to)"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="1"/>
+<property name="maxzoomlevel" value="2"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -223,8 +228,8 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -237,6 +242,7 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <property name="DE_ATTR_NAME" value="ist historisiert (von-zu)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
 <property name="EN_ATTR_NAME" value="is historicized (from-to)"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -258,8 +264,8 @@ What connects the zu-Entity with the von-Entity?
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -273,8 +279,9 @@ What connects the zu-Entity with the von-Entity?
 <property name="DE_ATTR_NAME" value="Assoziation zu-von [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Was verbindet die zu-Entität mit der von-Entität"/>
 <property name="EN_ATTR_NAME" value="Association to -of [L]"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="1"/>
+<property name="maxzoomlevel" value="2"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -294,8 +301,8 @@ from entity must have at least 1 connection to the to entity
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -308,8 +315,9 @@ from entity must have at least 1 connection to the to entity
 <property name="DE_ATTR_NAME" value="ist Pflichtbeziehung (zu-von)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* von-Entität muss mind. 1 eine Verbindung zur zu-Entität haben"/>
 <property name="EN_ATTR_NAME" value="is mandatory relationship (to-from)"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="1"/>
+<property name="maxzoomlevel" value="2"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -327,8 +335,8 @@ from entity must have at least 1 connection to the to entity
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <use>0</use>
@@ -338,8 +346,9 @@ from entity must have at least 1 connection to the to entity
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Kardinalität (zu-von)"/>
 <property name="EN_ATTR_NAME" value="Cardinality (to-from)"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="1"/>
+<property name="maxzoomlevel" value="2"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -361,8 +370,8 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -375,6 +384,7 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <property name="DE_ATTR_NAME" value="ist historisiert (zu-von)"/>
 <property name="EN_ATTR_COMMENT" value="*DE* JA -&gt; Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Beziehung gelten. System muss Historie der Änderungen führen. Über Extratabelle zu lösen."/>
 <property name="EN_ATTR_NAME" value="is historicized (to-from)"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -389,8 +399,8 @@ JA -> Beziehung kann über die Zeit ändern. Zu einem Zeitpunkt kann nur 1 Bezie
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <newElementsIDs>DC165AED-1B6F-9175-5AFC-DBF4746B44C1</newElementsIDs>

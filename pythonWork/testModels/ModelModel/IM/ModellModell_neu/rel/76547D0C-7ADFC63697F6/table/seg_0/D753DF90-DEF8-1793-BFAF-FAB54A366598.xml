@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D753DF90-DEF8-1793-BFAF-FAB54A366598" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="ORGANISATIONALUNITS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D753DF90-DEF8-1793-BFAF-FAB54A366598" name="ORGANISATIONALUNITS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>ORGANISATIONALUNITS</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="ORGU_ID" id="6754652D-D2F4-77B5-22DD-27172D049C72">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -24,6 +27,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="C090BA77-8C72-B82B-1F93-9989D3AFC8B1" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -43,6 +49,9 @@
 <dataTypeSize>60</dataTypeSize>
 <ownDataTypeParameters>60,60,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_DESCR" id="6721AFFA-4FDB-BAB9-93A4-D96DE708C8E1">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -60,6 +69,9 @@
 <dataTypeSize>4000</dataTypeSize>
 <ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_MAIL" id="FBFCA35E-C36E-367A-A176-C39384A7599C">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -77,6 +89,9 @@
 <dataTypeSize>200</dataTypeSize>
 <ownDataTypeParameters>200,200,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_TELEFON" id="71D738FA-A188-B37E-ABB1-C422200D07EE">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -94,6 +109,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_ADDRESS" id="A4AF07C7-D2F0-18B9-778A-5C8517B94360">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -111,6 +129,9 @@
 <dataTypeSize>4000</dataTypeSize>
 <ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_ORGU_ID" id="562FCEF8-BDF7-3A1A-B346-987198ED5831">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -128,6 +149,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="E33170D5-F5C9-EF99-ADBC-1AA1B3A3FCF1" referredColumn="6754652D-D2F4-77B5-22DD-27172D049C72"/>
 </associations>
@@ -147,6 +171,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_DC" id="8EA59F4E-2E9E-0662-8C5D-F499521DA72A">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -163,6 +190,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_UM" id="895AF464-4B90-DA03-011A-DE4DCBEEEC09">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -180,6 +210,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ORGU_DM" id="885EFAE5-9A13-2A99-4C56-1A9DEE73B5ED">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -197,6 +230,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

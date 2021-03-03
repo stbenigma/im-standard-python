@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3FC7B528-C13C-5DE0-4A8B-3BD50F99B3E2" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="UDP_VALUES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3FC7B528-C13C-5DE0-4A8B-3BD50F99B3E2" name="UDP_VALUES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>UDP_VALUES</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="UDPV_ID" id="CFF14CA4-2FBF-5E6A-26D8-827BF1B25A1C">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -26,6 +29,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="UDPV_VALUE" id="ED416275-2516-6B96-CAB2-CB6D1DAB3435">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -43,6 +49,9 @@
 <dataTypeSize>max</dataTypeSize>
 <ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="UDPV_MODE_ID" id="0EB527C2-A62B-E875-93D3-9FE5188EEE44">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -59,6 +68,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="76FCCA1F-6528-1DC1-B163-9994C89DF0E9" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -78,6 +90,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="381137FB-0E06-B830-F41A-27FE0E885923" referredColumn="B1040B14-69E0-458B-6B71-878CD3F86C25"/>
 </associations>
@@ -97,6 +112,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="UDPV_DC" id="E9BEC8DC-FF57-9CB0-FF50-66EA844781F7">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -113,6 +131,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="UDPV_UM" id="B551CB50-5250-816C-A8B3-0E860521C10D">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -130,6 +151,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="UDPV_DM" id="C83DAD8A-8EAE-6777-C085-380584BE0B84">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -147,6 +171,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
