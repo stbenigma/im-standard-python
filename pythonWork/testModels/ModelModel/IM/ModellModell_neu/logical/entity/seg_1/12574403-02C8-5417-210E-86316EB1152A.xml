@@ -29,13 +29,10 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value=""/>
 <property name="DE_ENTI_NAME" value="Dokument"/>
-<property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Document"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -69,7 +66,7 @@
 <property name="EN_ATTR_NAME" value="Name"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -105,7 +102,7 @@ Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers'
 <property name="EN_ATTR_NAME" value="Size"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -140,7 +137,7 @@ Beispiele: 'csv', 'doc', 'docx', 'gif', 'html', 'jpeg', 'json', 'key', 'numbers'
 <property name="EN_ATTR_NAME" value="Content"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -176,7 +173,7 @@ Reference to a file system or a web page.
 <property name="EN_ATTR_NAME" value="*external reference"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

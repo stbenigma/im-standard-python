@@ -30,13 +30,10 @@ Can record numerical values
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Kann Zahlenwerte aufnehmen "/>
 <property name="DE_ENTI_NAME" value="Numerischer Wertebereich"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Kann Zahlenwerte aufnehmen "/>
 <property name="EN_ENTI_NAME" value="Numeric value range"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -72,7 +69,7 @@ Number of digits before the decimal point
 <property name="EN_ATTR_NAME" value="*Digits before decimal point#"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -109,7 +106,7 @@ Number of digits after the decimal point
 <property name="EN_ATTR_NAME" value="Decimal places#"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -146,7 +143,7 @@ Minimum value for a numeric field. Empty -> as small as the system allows
 <property name="EN_ATTR_NAME" value="Min value"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -183,7 +180,7 @@ Maximum value for a numeric field. Empty -> as big as the system allows
 <property name="EN_ATTR_NAME" value="Max value"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -221,7 +218,7 @@ A value that indicates the unit to which a numeric value is rounded for storage.
 <property name="EN_ATTR_NAME" value="Rounding unit"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

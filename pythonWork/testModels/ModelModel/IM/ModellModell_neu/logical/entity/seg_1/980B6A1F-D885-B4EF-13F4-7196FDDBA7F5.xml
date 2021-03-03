@@ -39,11 +39,12 @@ enterprize data warehouse
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
 <item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
@@ -59,15 +60,12 @@ enterprize data warehouse
 <synonym>database system</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.  Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.  Beispiele: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse"/>
 <property name="DE_ENTI_NAME" value="Datenbanksystem"/>
 <property name="DE_ENTI_SYNONYM" value="database system"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.  Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.  Beispiele: MDM-DB ERP-DB Oracle-DB mongo-db for documentstorage file-system excel for commonly used data access elastic search graph db enterprize data warehouse"/>
 <property name="EN_ENTI_NAME" value="Database system"/>
 <property name="EN_ENTI_SYNONYM" value="database system"/>
 <property name="dev_status" value="DEV"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Entity>

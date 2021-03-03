@@ -31,13 +31,10 @@ Value range (domain) for a user-defined text attribute
 <shortName>TXDE</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Wertebereich (Domäne) für ein Freitextattribut"/>
 <property name="DE_ENTI_NAME" value="Textlicher Wertebereich"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Wertebereich (Domäne) für ein Freitextattribut"/>
 <property name="EN_ENTI_NAME" value="Text value range"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -73,7 +70,7 @@ Maximum length of text in letters (CHAR)
 <property name="EN_ATTR_NAME" value="Max length"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -110,7 +107,7 @@ Restrictive rule for the permitted characters of a text.
 <property name="EN_ATTR_NAME" value="Value rule"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

@@ -39,14 +39,10 @@ External -> Value used in an interface / system
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="Beispiele" value="M / W / TRUE / FALSE / GESCHLOSSEN / OFFEN"/>
-<property name="DE_ENTI_COMMENT" value="Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="DE_ENTI_NAME" value="Vorgabewert"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Wert, der für eine Aufzählungs-Werteliste ein gültiger Wert ist. Das Attribut &quot;Wert&quot; ist der physikalische (sprachunabhängige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt. "/>
 <property name="EN_ENTI_NAME" value="Allowed value"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -82,7 +78,7 @@ A value that an attribute can assume.
 <property name="EN_ATTR_NAME" value="Value"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -118,7 +114,7 @@ Textual representation of a value in several languages possible.
 <property name="EN_ATTR_NAME" value="Display text [L]"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -155,7 +151,7 @@ Number by which the values in a display are sorted in ascending order. Empty -> 
 <property name="EN_ATTR_NAME" value="Sort order"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -192,7 +188,7 @@ Long text / description of a value in several languages possible.
 <property name="EN_ATTR_NAME" value="Description [L]"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

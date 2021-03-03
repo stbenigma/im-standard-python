@@ -42,15 +42,12 @@ Beispiele:
 <shortName>PERSONA</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld: Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.  Beispiele:  Harry Hartmann  Lily AmHerd  Martin Muster"/>
 <property name="DE_ENTI_NAME" value="Persona"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_COMMENT" value="*DE* Archetyp einer Person mit einem bestimmten Verhalten in einem bestimmten Umfeld: Bei Firmen ist die Persona z.B. ein Einkäufer, ein Broker, ein Händler  oder ein Managementmitglied.  Beispiele:  Harry Hartmann  Lily AmHerd  Martin Muster"/>
 <property name="EN_ENTI_NAME" value="Persona"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 <property name="dev_status" value="DEV"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -81,7 +78,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="Name"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -112,7 +109,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="Age"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -143,7 +140,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value=" Marital status"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -174,7 +171,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="Professional group"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -205,7 +202,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="Language"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -236,7 +233,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="Religion"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -267,7 +264,7 @@ Beispiele:
 <property name="EN_ATTR_NAME" value="Housing situation"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

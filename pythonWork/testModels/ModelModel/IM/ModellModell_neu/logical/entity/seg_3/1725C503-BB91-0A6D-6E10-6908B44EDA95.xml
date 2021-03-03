@@ -42,16 +42,12 @@ Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsa
 <synonym>Domäne</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="Beispiele" value="Netto-Gewicht  / Beleuchtungsmodell  / Geo-Koordinate / internationale Telefon-Nr"/>
-<property name="DE_ENTI_COMMENT" value="Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
 <property name="DE_ENTI_NAME" value="Wertebereich"/>
 <property name="DE_ENTI_SYNONYM" value="Domäne"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Beschreibung des Wertebereichs eines (oder mehrerer) Attributs/e.  Die Typen Numerisch, Text, Zeitpunkt oder Aufzählung sind konzeptionell zu verstehen. Die echten Datentypen und ggf. Formate (für Zahlen und Zeitpunkte) für die Speicherung werden in der Implementierung festgelegt. Wertegruppen sind Attributgruppen, d.h. mehrere Attribute, die mehrfach gemeinsam vorkommen  werden für eine einfachere Handhabung unter einem neuen Namen zusammengefasst. Beispiel Telefon-Nr bestehend auf Landesvorwahl und Rufnummer. "/>
 <property name="EN_ENTI_NAME" value="Domain"/>
 <property name="EN_ENTI_SYNONYM" value="Domain"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">

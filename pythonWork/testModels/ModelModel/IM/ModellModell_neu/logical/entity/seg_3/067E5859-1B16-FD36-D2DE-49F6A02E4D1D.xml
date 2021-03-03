@@ -31,13 +31,10 @@ Text interpreted in language that is marked as text language.
 <shortName>SPTX</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Text interpretiert in Sprache, die als Textstprachen markiert ist."/>
 <property name="DE_ENTI_NAME" value="Sprachtext"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Text interpretiert in Sprache, die als Textstprachen markiert ist."/>
 <property name="EN_ENTI_NAME" value="Speech text"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -73,7 +70,7 @@ Text can be interpreted in the language, obeys the rules of the language text va
 <property name="EN_ATTR_NAME" value="Text"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -109,7 +106,7 @@ Name of the attribute in the model element for which the text makes a statement
 <property name="EN_ATTR_NAME" value="Attribute Name"/>
 <property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

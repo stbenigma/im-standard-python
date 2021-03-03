@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="33578819-A019-F6B0-D93F-C27663654E1F" name="dbversion">
+<createdBy>stb</createdBy>
+<createdTime>2021-02-13 12:58:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>view_1</ordsAlias>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[SELECT
+    '1.1'         AS version,
+    datetime()    AS installedtime
+FROM]]></userDefinedSQL>
+</TableView>

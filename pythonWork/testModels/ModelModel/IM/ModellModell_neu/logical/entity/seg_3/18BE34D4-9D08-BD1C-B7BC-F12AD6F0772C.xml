@@ -30,15 +30,12 @@ Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert s
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.  "/>
 <property name="DE_ENTI_NAME" value="Server Hardware"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_COMMENT" value="*DE* Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.  "/>
 <property name="EN_ENTI_NAME" value="Server Hardware"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
 <property name="dev_status" value="DEV"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -74,7 +71,7 @@ Is this a physical machine or a virtual one in use?
 <property name="EN_ATTR_NAME" value="Virtual (Y/N)"/>
 <property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

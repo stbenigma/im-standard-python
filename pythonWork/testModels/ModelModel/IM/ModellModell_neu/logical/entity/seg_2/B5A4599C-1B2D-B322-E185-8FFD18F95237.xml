@@ -34,13 +34,10 @@ An M:N relationship between two entities.  It can (as possible in ODM) have attr
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Eine M:NBeziehung  zwischen 2 Entitäten.  Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern."/>
 <property name="DE_ENTI_NAME" value="many2many Beziehung"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Eine M:NBeziehung  zwischen 2 Entitäten.  Sie kann (wie im ODM möglich) Attribute haben, die im physisischen Modell in die Zwischenentität wandern."/>
 <property name="EN_ENTI_NAME" value="many2many Relationship"/>
 <property name="dev_status" value="REL"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Entity>
