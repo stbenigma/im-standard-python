@@ -8,6 +8,7 @@ from IM_DB import dbConnect, parameters, logmessages
 def filldbmain(pinmemory=False):
     if not pinmemory:
         dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
+        from IM_OBJECTS import Userdefprop
         transferModel.loeschmodell()
         dbConnect.myDbConn.close()
         #print("filldbmain Constraints sollten auf ON stehen")

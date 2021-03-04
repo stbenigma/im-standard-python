@@ -32,6 +32,7 @@ def main(pdirec, plang,pforceoverwrite = False):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
     jsmodel = JSModel(pmodel=sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath()))
     printHTML.setWebDirec(p_webdirec=None)
+
     listWebdoku.listwebmain(plang=Languagetext.reportLang(),pmodel=jsmodel)
     jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.odmModelName())
     dbConnect.closeDB()

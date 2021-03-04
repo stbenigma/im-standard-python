@@ -15,9 +15,16 @@ class Languagetext(Baseobject):
     DOMA_DESCR:str= 'DOMA_DESCR'
     RELA_TEXT_FROM:str='RELA_TEXT_FROM'
     RELA_TEXT_TO:str='RELA_TEXT_TO'
-    SYNO_NAME:str='SYNO_NAME'
+    ENTI_SYNONYM:str= 'ENTI_SYNONYM'
     BURU_NAME:str='BURU_NAME'
     BURU_ERRORMSG:str='BURU_ERRORMSG'
+    ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
+                         , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
+                        , ENTI_SYNONYM
+                        , RELA_TEXT_TO, RELA_TEXT_FROM
+                        , DOMA_NAME, DOMA_DESCR
+                        , BURU_NAME, BURU_ERRORMSG
+                           ]
 
     __greportLang:str = None
 
@@ -29,38 +36,6 @@ class Languagetext(Baseobject):
     def __init__(self):
         if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(Languagetext._tablename)
         super().__init__(tablename=Languagetext._tablename, prefix=Languagetext._prefix)
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Languagetext._tablename
-                               , psql="""
-CREATE TABLE LANG_TEXTS
-    (
-     LGTX_ID INTEGER NOT NULL primary key autoincrement ,
-     LGTX_ATTRNAME VARCHAR (60) NOT NULL ,
-     LGTX_TEXT VARCHAR (4000) NULL ,
-     LGTX_LANG_ID integer NOT NULL ,
-     LGTX_MODE_ID integer NOT NULL ,
-     LGTX_UC VARCHAR(30) NULL  ,
-     LGTX_DC VARCHAR (30) NOT NULL ,
-     LGTX_UM VARCHAR (30) NULL ,
-     LGTX_DM VARCHAR (30) NULL
-    ,CONSTRAINT LGTX_UK UNIQUE (LGTX_LANG_ID ASC, LGTX_MODE_ID ASC, LGTX_ATTRNAME ASC)
-	,CONSTRAINT LGTX_LANG_FK FOREIGN KEY    (     LGTX_LANG_ID)
-    	REFERENCES LANGUAGES    (     LANG_ID )
-    ,CONSTRAINT LGTX_MODE_FK FOREIGN KEY    (     LGTX_MODE_ID)
-		REFERENCES MODELELEMENT    (     MODE_ID )    ON DELETE CASCADE
-)"""
-                            )
-
-        dbDDL.dropView("LANGATTR");
-        dbDDL.createTable("""
-                    create view langattr as
-        	        select lgtx_text,lang_id,lang_iso_code2,lgtx_mode_id,lgtx_attrname
-        	          from lang_texts 
-        	          join languages on lang_id = lgtx_lang_id
-        	          """);
-    #createtable
 
     @staticmethod
     def delete():
@@ -79,6 +54,7 @@ CREATE TABLE LANG_TEXTS
     def filldefaulttext(plang):
         """füllt sämtliche übersetzten Elemente in die lang_texts der Defaultsprache ein.
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
+           Synonyms have been handled beforehand (they are in a comma-separated list...)
         """
         dbDML.exec("""insert into lang_texts 
                     (lgtx_attrname,  lgtx_text
@@ -96,10 +72,6 @@ CREATE TABLE LANG_TEXTS
                    select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
                         ,enti_id,enti_uc,enti_dc
                     from entities                     
-                    union all
-                   select 'ENTI_SYNONYM' attrname, syno_name text 
-                        ,syno_id,syno_uc,syno_dc
-                    from synonyms
                     union all
                    select 'ATTR_COMMENT' attrname, attr_descr text 
                         ,attr_id,attr_uc,attr_dc
@@ -159,7 +131,7 @@ CREATE TABLE LANG_TEXTS
         dbDML.exec(lsql)
 
         lsql = """insert  into lang_texts (lgtx_attrname, lgtx_text, lgtx_lang_id, lgtx_mode_id, lgtx_uc, lgtx_dc)
-            select 'SYNO_NAME' attrname,syno_name,lang_id,syno_id,syno_uc,syno_dc
+            select 'ENTI_SYNONYM' attrname,syno_name,lang_id,syno_id,syno_uc,syno_dc
             from synonyms
         cross join languages 
         where lang_is_base_lang = 'TRUE'"""

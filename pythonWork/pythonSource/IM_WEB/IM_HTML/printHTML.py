@@ -968,11 +968,13 @@ def printcontententi():
     deflang = Language.getdefaultlang().lang_iso_code2
     printcontentstart('entities')
     infoheaders = (Languagetext.transl('Synonyme'), Languagetext.transl('Superentitäten')
-                   , Languagetext.transl('Subentitäten'), Languagetext.transl('Rollen'), Languagetext.transl('auf Diagramm(en)')
+                   , Languagetext.transl('Subentitäten'), Languagetext.transl('Rollen')
+                   ,'Zoom levels','Dev. Status'
+                   , Languagetext.transl('auf Diagramm(en)')
                    , Languagetext.transl('geändert'))
 
     for enti in sorted([{'anker':key,'element': value}
-                     for key,value in model.jsmodel['entities'].items()]
+                     for key,value in model.getelement('entities').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = enti['element']
         lbc = str(newbarcounter())
@@ -990,6 +992,7 @@ def printcontententi():
         diagstr = ', '.join(href(ref="{}-{}".format(d, enti['anker'])
                                     , anz=getelement(d)['name']) for d in elem['diagrams+'])
         infovalues = (parameters.nvl(synostr), parentstr, subtypestr,rolesstr
+                      ,'{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']),Modelelement.longdevstatus(elem['devstatus'])
                       , diagstr, parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc']))
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
         printattrlist(penti=elem)
@@ -1007,7 +1010,8 @@ def printcontentattr():
     infoheaders = (
         Languagetext.transl('Technischer Name'), Languagetext.transl('Wertebereich'), Languagetext.transl('Datentyp'),
         Languagetext.transl('Tooltip')
-        , Languagetext.transl('geändert'))
+        , 'Zoom levels', 'Dev. Status'
+    , Languagetext.transl('geändert'))
     flagheaders = (
         Languagetext.transl('Pflichtattribut'), Languagetext.transl('Schlüssel'), Languagetext.transl('Deskriptor'),
         Languagetext.transl('übersetzt')
@@ -1015,7 +1019,7 @@ def printcontentattr():
     lang = Languagetext.reportLang()
 
     for attr in sorted([{'anker':key,'element': value}
-                     for key,value in model.jsmodel['attributes'].items()]
+                     for key,value in model.getelement('attributes').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = attr['element']
         printcontentstart('attributes')
@@ -1039,7 +1043,9 @@ def printcontentattr():
         domainref =  domainname if  domain['origin'] == Domain.DERIVED\
                      else href(ref=elem['domain'], anz=domainname)
         infovalues = (parameters.nvl(elem['techname'], ''), domainref, domain['displdatatype+'][lang]
-                      , parameters.nvl(elem['tooltip'][lang]), re.sub(r'^, $', '', parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc'])))
+                      , parameters.nvl(elem['tooltip'][lang])
+                      , '{} - {}'.format(elem['minzoomlevel'], elem['maxzoomlevel']),Modelelement.longdevstatus(elem['devstatus'])
+                      , re.sub(r'^, $', '', parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc'])))
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         flagvalues = (bool2icon(elem['mandatory']), bool2icon(len(elem['keys+'])>0), bool2icon(elem['descriptive'])
@@ -1411,7 +1417,7 @@ def attname2element(pattrname):
         return Languagetext.transl('Name')
     elif pattrname in ['ENTI_COMMENT', 'ATTR_COMMENT']:
         return Languagetext.transl('Beschreibung')
-    elif pattrname in ['SYNO_NAME']:
+    elif pattrname in ['ENTI_SYNONYM']:
         return Languagetext.transl('Synonym')
     else:
         return pattrname

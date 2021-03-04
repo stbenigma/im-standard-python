@@ -1486,7 +1486,21 @@ def transferorgunits():
 
 
 def removeemptyudp():
+    """remove all UDP's which are empty (containing '.' or '' or null as value"""
     Userdefpropvalue.removeemptyUDP(('.',''))
+
+def removefixedudp():
+    """remove all UDP's which are pa rt of our model"""
+    modeludps = [(parameters.odmUDPElemdisplFileName(), val) for val in Modelelement.ODMattrmapping.values()]
+    for lang in Language.select():
+        for name in Languagetext.ODMtranslAttributes:
+            modeludps.append(
+                (parameters.odmUDPTranslFileName(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
+        #for
+    #for
+
+    Userdefprop.removemodelUDP(modeludps)
+    return
 
 emails = {}
 def do1email(fileName):
@@ -1570,4 +1584,5 @@ def transferODMModel():
     removeemptyudp()
     filllanguages()
     fillelementdisplays()
+    removefixedudp()
 # end transferODMModel

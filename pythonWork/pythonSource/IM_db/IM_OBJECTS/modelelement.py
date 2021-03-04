@@ -23,11 +23,6 @@ class Modelelemtype(Baseobject):
     STFO: str = 'STFO'
     UDPR: str = 'UDPR'
 
-    """Mapping of mode attributes to udp-names  in ODM"""
-    ODMattrmapping = {'mode_min_zoom_level': 'minzoomlevel'
-                    ,'mode_max_zoom_level': 'maxzoomlevel'
-                    ,'mode_dev_status': 'dev_status'}
-
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
     _columnlist = []
@@ -120,6 +115,23 @@ class Modelelement(Baseobject):
         if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
     # __init__
 
+    """Mapping of mode attributes to udp-names  in ODM"""
+    ODMattrmapping = {'mode_min_zoom_level': 'minzoomlevel'
+                    ,'mode_max_zoom_level': 'maxzoomlevel'
+                    ,'mode_dev_status': 'dev_status'
+                    ,'attr_is_descriptive': 'isdescriptive'}
+
+
+
+    @staticmethod
+    def longdevstatus(pdbvalue):
+        longstati = {'DEV':'Development'
+                     ,'TEST': 'Test'
+                     ,'REL': 'Released'}
+        if pdbvalue in longstati: return longstati[pdbvalue]
+        return None
+
+
     @staticmethod
     def delete(pwhere=''):
         Baseobject.delete(Modelelement._tablename)
@@ -194,7 +206,7 @@ class Modelelement(Baseobject):
     @staticmethod
     def insertudpelems(pudpthema):
         """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_dev_status) aus Elementdisplay
-            in die Modelelement Feolder
+            in die Modelelement Felder
         """
         subselect = lambda pcolname : """(select UDPV_VALUE
                          from UDP_VALUES
@@ -212,16 +224,28 @@ class Modelelement(Baseobject):
                                         join user_defined_properties on udpr_id = metp_udpr_id
                                         where lower(udpr_theme) = lower('{}')
                                         )
-                """.format(subselect(Modelelemtype.ODMattrmapping['mode_min_zoom_level'])
-                          ,subselect(Modelelemtype.ODMattrmapping['mode_max_zoom_level'])
-                          ,subselect(Modelelemtype.ODMattrmapping['mode_dev_status'])
+                """.format(subselect(Modelelement.ODMattrmapping['mode_min_zoom_level'])
+                          ,subselect(Modelelement.ODMattrmapping['mode_max_zoom_level'])
+                          ,subselect(Modelelement.ODMattrmapping['mode_dev_status'])
                           ,pudpthema)
+        dbDML.exec(lsql)
+        #update the attributes "descriptive" UDP
+        lsql = """with udpval as (select UDPV_VALUE,udpv_mode_id
+                         from UDP_VALUES
+                         join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
+                    where lower(udpr_name) = lower('isdescriptive')
+                        )
+                update ATTRIBUTES set ATTR_IS_DESCRIPTIVE
+                    = case when (select udpv_value from udpval where udpv_mode_id =attr_id) is Null then 'FALSE'
+                    else  (select udpv_value from udpval where udpv_mode_id =attr_id) end
+                """.format(pudpthema, Modelelement.ODMattrmapping['attr_is_descriptive'])
         dbDML.exec(lsql)
         return
 
     @staticmethod
     def upddisplelements(pmodeid,pminzl,pmaxzl,pdevstat):
         #******* to be replaced by update() in baseobject ******
+        #currently used in js2sql
         lsql = """update modelelement
                     set mode_min_zoom_level = {}
                     ,mode_max_zoom_level = {}

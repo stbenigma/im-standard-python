@@ -74,39 +74,25 @@ class Userdefprop(Baseobject):
                                                     ,'%' if pmeltname is None else pmeltname)
                                 ,porderby="udpr_theme,udpr_group,udpr_name"
                                 )
-        # if pgroup is None:
-        #     lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-        #                        from modelelem_type
-        #                        join modelemtype_properties on metp_melt_id = melt_id
-        #                        join user_defined_properties on udpr_id = metp_udpr_id
-        #                        where melt_shortname = '{}'
-        #                     group by udpr_theme,udpr_group
-        #                     order by udpr_theme,udpr_group""".format(pmeltname)
-        # elif pgroup == '*':
-        #     lsql = """select  udpr_theme,'*'gr,group_concat(udpr_name,',') attrs
-        #                        from modelelem_type
-        #                        join modelemtype_properties on metp_melt_id = melt_id
-        #                        join user_defined_properties on udpr_id = metp_udpr_id
-        #                        where melt_shortname = '{}'
-        #                        and udpr_theme = {}
-        #                     group by udpr_theme
-        #                     order by udpr_theme""".format(pmeltname
-        #                                                   , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme))
-        # else:
-        #     lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-        #                from modelelem_type
-        #                join modelemtype_properties on metp_melt_id = melt_id
-        #                join user_defined_properties on udpr_id = metp_udpr_id
-        #                where melt_shortname = '{}'
-        #                and udpr_theme = {}
-        #                and udpr_group = '{}'
-        #             group by udpr_theme,udpr_group
-        #             order by udpr_theme,udpr_group""".format(pmeltname
-        #                                                      , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme)
-        #                                                      , pgroup)
-        # data = dbDML.select(lsql)
-        # return data
-    # udpnames
+
+    @staticmethod
+    def removemodelUDP(modeludps):
+        """remove all UDP's which are used as model elements (translation, elementdisplay etc.
+            modelupds= [(udpr_theme : udpr_name),]"""
+        # lsql= """delete from USER_DEFINED_PROPERTIES
+        #             where lower(UDPR_THEME) = lower(?) and lower(udpr_name) = lower(?)"""
+        # dbDML.execmany(psql=lsql,recs=modeludps)
+
+        lsql= """delete from USER_DEFINED_PROPERTIES 
+                    where (lower(UDPR_THEME),lower(udpr_name)) = (lower(?) ,lower(?))"""
+        try:
+            dbDML.execmany(psql=lsql,recs=modeludps)
+        except Exception as e:
+            print(lsql)
+            print (modeludps)
+            print (e)
+        return
+
 # Userdefprop
 
 
@@ -129,7 +115,7 @@ class Userdefpropvalue(Baseobject):
         emptylist = ','.join("'{}'".format(e) for e in pempties)
         Userdefpropvalue.delete(pwhere="udpv_value is null or udpv_value  in ({})".format(emptylist)
                    )
-    # removeemptydup
+        return
 
     @staticmethod
     def delete(pwhere=None):

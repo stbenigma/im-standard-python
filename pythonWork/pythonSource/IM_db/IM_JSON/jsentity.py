@@ -136,7 +136,7 @@ def entities2sql(pmodel: JSModel):
             except Exception as err:
                 pmodel.markerror(pmsg=err, pelemstr=jsyno)
                 continue
-            inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.SYNO_NAME, ptexts=jsyno)
+            inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
 
     # for

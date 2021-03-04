@@ -337,9 +337,11 @@ create table MODELEMTYPE_PROPERTIES
 	METP_ID INTEGER not null
 		primary key autoincrement,
 	METP_MELT_ID integer not null
-		references MODELELEM_TYPE (MELT_ID),
+		references MODELELEM_TYPE (MELT_ID)
+            on delete cascade,
 	METP_UDPR_ID integer not null
-		references USER_DEFINED_PROPERTIES (UDPR_ID),
+		references USER_DEFINED_PROPERTIES (UDPR_ID)
+            on delete cascade,
 	METP_OPTIONAL VARCHAR(5) not null,
 	constraint METP_UN
 		unique (METP_MELT_ID, METP_UDPR_ID),
@@ -355,7 +357,8 @@ create table UDP_VALUES
 		references MODELELEMENT (mode_id)
 			on delete cascade,
 	UDPV_UDPR_ID integer not null
-		references USER_DEFINED_PROPERTIES (UDPR_ID),
+		references USER_DEFINED_PROPERTIES (UDPR_ID)
+            on delete cascade,
 	UDPV_UC VARCHAR(30) not null,
 	UDPV_DC VARCHAR(30) not null,
 	UDPV_UM VARCHAR(30),
