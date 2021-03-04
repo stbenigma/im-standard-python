@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="37C4E51A-C325-056A-E510-B8AA5473966E" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="ELEMENTREPS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="37C4E51A-C325-056A-E510-B8AA5473966E" name="ELEMENTREPS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>ELEMENTREPS</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="ELER_ID" id="7064153E-3FC2-21FE-49B9-35B19B48D9BE">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -24,6 +27,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_MODE_ID" id="6DE9EB93-2892-5066-22F5-517E332368AB">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -40,6 +46,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="B992E4E4-C96A-A1E5-66D4-ABD271F887FA" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -59,6 +68,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="01F71C86-53E7-E6C9-C2D8-BC41E93EE565" referredColumn="318F2015-2253-2379-D177-62ADF3187976"/>
 </associations>
@@ -80,6 +92,9 @@
 <defaultValue>(0)</defaultValue>
 <ownDataTypeParameters>5,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_POSITION_X" id="0222E938-E3A7-1418-712F-2CECEDD473A2">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -98,6 +113,9 @@
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_POSITION_Y" id="5A7C7ADD-AB77-F043-BD0B-A87E4455294A">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -116,6 +134,9 @@
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_WITDH" id="DC6B3FE3-9B1E-D2FA-E12A-9E552A6D8D75">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -133,6 +154,9 @@
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_HEIGHT" id="54893B35-092E-8152-4663-B46EF8327ADC">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -150,6 +174,9 @@
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_OPACITY" id="A8211C25-DF1A-0359-782B-5F0CB7E3F3D0">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -173,6 +200,9 @@
 <defaultValue>(100)</defaultValue>
 <ownDataTypeParameters>5,3,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_COLOR" id="6CE1D8D8-E293-BB07-8496-C5A2EF9320B8">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -195,6 +225,9 @@
 <defaultValue>&apos;000000&apos;</defaultValue>
 <ownDataTypeParameters>6,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_MARGINWIDTH" id="B25400C2-D783-E58C-E45A-8A108D6E58D6">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -215,6 +248,9 @@
 <defaultValue>(1)</defaultValue>
 <ownDataTypeParameters>5,3,1</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_MARGINOPACITY" id="E2B7055C-1C3E-C427-28C2-4E28CBAB6888">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -238,6 +274,9 @@
 <defaultValue>(100)</defaultValue>
 <ownDataTypeParameters>5,3,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_MARGINCOLOR" id="B01CE910-9A07-795C-EDE9-AAB03417433B">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -261,6 +300,9 @@
 <defaultValue>&apos;000000&apos;</defaultValue>
 <ownDataTypeParameters>6,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_FONTSIZE" id="4BE09280-7E02-2DFA-BD5F-74B60AD358FD">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -283,6 +325,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,3,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_FONTCOLOR" id="935993B6-34E4-6241-C845-D42CB036E91E">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -306,6 +351,9 @@
 <defaultValue>&apos;000000&apos;</defaultValue>
 <ownDataTypeParameters>6,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_UC" id="2D661030-C2F9-069A-60FD-A351ABA61C02">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -322,6 +370,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_DC" id="301675BD-CCBA-1348-D519-33C44B3981D6">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -338,6 +389,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_UM" id="94E432B6-30FE-78FF-29C0-6DB506B82086">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -355,6 +409,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ELER_DM" id="A9C7E391-0D90-4D00-1D9C-97FC9178FF2D">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -372,6 +429,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

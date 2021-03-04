@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BD1116B8-D8F6-D5B5-CA5D-5BC540499937" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="LINESEGMENTS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BD1116B8-D8F6-D5B5-CA5D-5BC540499937" name="LINESEGMENTS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>LINESEGMENTS</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="LISE_ID" id="18F91C72-3611-EBE7-74F9-279AB40C4DAB">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -24,6 +27,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_SEQ" id="B625A7E4-4D44-4860-8F90-FDDDE82ACC53">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -40,6 +46,9 @@
 <dataTypeSize>5</dataTypeSize>
 <ownDataTypeParameters>5,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_RELR_ID" id="7AB3835D-578D-0B7F-23A9-56CF9753AF3F">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -56,6 +65,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="0006C5E1-45BB-3706-F54F-B8A72503D365" referredColumn="EEC8C0A9-B9C8-A32B-B6EA-54711DEFE35F"/>
 </associations>
@@ -79,6 +91,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_Y" id="CD3167F5-6C00-0618-5592-9262A8EFC781">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -99,6 +114,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_LINETYPE" id="CF5A2BC2-023B-418E-1B60-B8ADF4510A7F">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -122,6 +140,9 @@
 <defaultValue>&apos;SOLID&apos;</defaultValue>
 <ownDataTypeParameters>6,6,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_ANGEL" id="5BECF5F2-4A51-6EB3-B7C2-5688D6235E95">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -139,6 +160,9 @@
 <dataTypeSize>4</dataTypeSize>
 <ownDataTypeParameters>4,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_UC" id="AF683FB9-DB6B-BAAB-94A0-19D0B31E98DF">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -155,6 +179,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_DC" id="D8A37178-1E59-0EAB-67F5-71F2FAC52376">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -171,6 +198,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_UM" id="EA736FD0-C67B-7506-FE71-A8ADD06FE63C">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -188,6 +218,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LISE_DM" id="575467D4-6067-299A-2321-202C25C2FADA">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -205,6 +238,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

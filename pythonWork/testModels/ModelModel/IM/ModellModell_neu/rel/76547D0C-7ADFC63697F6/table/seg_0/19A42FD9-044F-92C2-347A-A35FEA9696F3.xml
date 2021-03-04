@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="19A42FD9-044F-92C2-347A-A35FEA9696F3" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="COLUMNS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="19A42FD9-044F-92C2-347A-A35FEA9696F3" name="COLUMNS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>COLUMNS</sourceObjName>
@@ -8,7 +8,57 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODELELEMENT_MODELELEMENT_ID" id="5BA999AA-E601-55A0-FD74-EA67AFBD3695">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="F70ED980-C14E-1290-F99B-3A1F7A978493" referredColumn="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB"/>
+</associations>
+</Column>
+<Column name="Modellelement_Modellelement_ID" id="CD23F844-9D8E-F6A0-1F90-A454775FCC2A">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="COLUMNS_ID" id="5D5DEE53-AAC8-BE2E-8B2C-70CEC33A6F21">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
 <Column name="COLU_ID" id="A172B6CD-6EC8-BD59-5619-495B8B676F25">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>COLUMNS</sourceObjSchema>
@@ -22,8 +72,11 @@
 <dataTypePrecision>10</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <dataTypeSize>9</dataTypeSize>
-<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<ownDataTypeParameters>,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="54EE4AE5-8CFA-2DD7-5675-9468274A63AE" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -34,15 +87,24 @@
 <sourceObjName>COLU_COLUMN_NAME</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<generatorID>999B70CA-BCF5-C825-8366-9D78800EA196</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>60</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>60</dataTypeSize>
-<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_MANDATORY" id="2F0DD193-A99E-3BAE-832B-EECB2255AB31">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -50,15 +112,24 @@
 <sourceObjName>COLU_MANDATORY</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
+<generatorID>77DC6B22-7748-FF66-B8F9-B67AB8FD2242</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+Constant value to be used if no source or transformation exists.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
+]DE_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_FORMAT" id="B5966ECC-B3FD-CCC7-1D81-28FF8A538A87">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -66,16 +137,26 @@
 <sourceObjName>COLU_FORMAT</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<comment><![CDATA[Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes]]></comment>
+<generatorID>EF7D27A0-950E-6CA1-DBF2-2B2745F1683A</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Textliche Formatierung eines numerischen oder Zeitpunkt-Wertes
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Text formatting of a numeric or time value
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>200</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>200</dataTypeSize>
-<ownDataTypeParameters>200,200,0</ownDataTypeParameters>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_DESCR" id="43B6A8F5-454D-C635-9C19-B5CAF51D0D82">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -83,16 +164,25 @@
 <sourceObjName>COLU_DESCR</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<comment><![CDATA[Beschreibung des Attributes im Fremdsystem]]></comment>
+<generatorID>BB93EAC3-E9F7-F7B8-0535-D829F9BA6BE4</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Beschreibung des Attributes im Fremdsystem
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Description of the attribute in the external system
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>4000</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>4000</dataTypeSize>
-<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_EXT_SYSTEM_ID" id="5F07B4F3-4E3C-71EA-ACD3-FD2BC70BB7B8">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -111,6 +201,9 @@
 <dataTypeSize>100</dataTypeSize>
 <ownDataTypeParameters>100,100,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_TYPE_STRING" id="B6DA17F1-9C1B-140F-AD79-5F1C2BBC84AC">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -118,16 +211,25 @@
 <sourceObjName>COLU_TYPE_STRING</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<comment><![CDATA[Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)]]></comment>
+<generatorID>B7EE146C-4F67-DE0E-BB81-6E7C156A8FDB</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Technischer Datentyp im Fremdsystem (z.B. String(20), NUMERIC(20,4), integer,date,  etc.)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Technical data type in external system (e.g. string(20), NUMERIC(20,4), integer,date, etc.)
+]EN_ATTR_COMMENT]
+]]></notes>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>100</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>100</dataTypeSize>
-<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_TABL_ID" id="2549D71A-D2FB-6A00-A414-51B7B53DA524">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -144,6 +246,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="9D111FD2-BFCB-D596-6EA3-B4D2BCA5EB1D" referredColumn="66B10E65-5485-7D22-391E-A2BA4C2A4106"/>
 </associations>
@@ -163,6 +268,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="534E8229-D571-ACB8-9FD1-E5E3E33AE74E" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
 </associations>
@@ -182,6 +290,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_DC" id="8916DB68-33AD-2220-2919-79E2391C292D">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -198,6 +309,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_UM" id="20F7F14F-EB4A-F29C-BFFB-356F18DF776C">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -215,6 +329,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="COLU_DM" id="7752971D-0F5B-12A3-BC13-3A1ECA753F31">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -232,18 +349,97 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Fremdsystem-ID" id="3471DBD2-C71C-35C2-A48A-81B11A39C8E9">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<commentInRDBMS><![CDATA[ID / Code der Attributbdefinition in einer Standardsoftware]]></commentInRDBMS>
+<generatorID>87F91583-A693-53B0-CCB0-9B8A6DE89CF2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Vorgabewert" id="5A52588F-669B-65FC-C317-C740818D19AC">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<comment><![CDATA[Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.]]></comment>
+<generatorID>06E1FF63-76EF-1166-CDF3-7F411F2FBF82</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+Constant value to be used if no source or transformation exists.
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Konstanter Wert der zu verwenden ist, falls keine Quelle oder keine Transformation exisitert.
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Geschäftsregel" id="D1584F4C-B487-BA53-5A23-B4B4373C2A89">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<comment><![CDATA[Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung]]></comment>
+<generatorID>638B0E9B-0C02-1293-49B7-EBE2C59731DF</generatorID>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+Description of quality inspections / business rules for the incoming inspection
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Beschreibung von Qualitätsprüfungen / Business rules für die Eingangsprüfung
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="6025C7CA-AE58-F459-9942-86C054754876" name="COLU_PK">
+<ind_PK_UK id="846A2937-06C1-F3F3-CE8E-E72AD81383B3" name="COLUMNS_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5BA999AA-E601-55A0-FD74-EA67AFBD3695"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6025C7CA-AE58-F459-9942-86C054754876" name="COLUMNS_COLU_ID_UN">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>COLU_PK</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:59 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="A172B6CD-6EC8-BD59-5619-495B8B676F25"/>
@@ -260,6 +456,24 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="2549D71A-D2FB-6A00-A414-51B7B53DA524"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="15C2E0AD-976C-3739-6AA2-4E04E426B9C6" name="COLUMNS_COLUMNS_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5D5DEE53-AAC8-BE2E-8B2C-70CEC33A6F21"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DAF28131-7843-B480-1001-47268B0FCFE9" name="COLUMNS_Modellelement_Modellelement_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CD23F844-9D8E-F6A0-1F90-A454775FCC2A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="E8472FCB-D3D2-7061-1771-06E37CBE6DE5" name="COLU_DOMA_FK">
@@ -290,6 +504,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="A172B6CD-6EC8-BD59-5619-495B8B676F25"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F234D113-6569-A2B9-1718-87AB6ACDC30E" name="COLUMNS_MODELELEMENT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>22AA5CAA-BA1C-532C-806B-37BE25F18FBF</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BA999AA-E601-55A0-FD74-EA67AFBD3695"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

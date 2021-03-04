@@ -26,6 +26,7 @@ def entities2js(pemptymodel):
         , 'exptuple#', 'prefix'
         , 'subtypellevel+'
         , 'uc', 'dc', 'um', 'dm'
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         , 'synonyms', 'sourceref'
         , 'supertypes+','roles+'
         , 'subtypes+', 'attributes+'
@@ -41,6 +42,7 @@ def entities2js(pemptymodel):
                                        ,'',''
                                        ,''
                                        ,'','','',''
+                                        ,0,4,'DEV'
                                        ,synonyms(None),sourceref(None)
                                        ,reflist(None),reflist(None)
                                        ,reflist(None),reflist(None)
@@ -59,6 +61,7 @@ def entities2js(pemptymodel):
                     , e.enti_exp_tuplecnt,e.enti_prefix
                     , e.getsubtypelevel()
                     , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
+                    , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
                     , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_L for s in e.getsynonyms()})
                          ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
                     ,  reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
@@ -102,12 +105,16 @@ def entities2sql(pmodel: JSModel):
         enti.enti_dc = jelem['dc']
         enti.enti_um = jelem['um']
         enti.enti_dm = jelem['dm']
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
         try:
             entiid = enti.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
             continue
 
+        Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
         inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
         inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
@@ -129,7 +136,7 @@ def entities2sql(pmodel: JSModel):
             except Exception as err:
                 pmodel.markerror(pmsg=err, pelemstr=jsyno)
                 continue
-            inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.SYNO_NAME, ptexts=jsyno)
+            inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
 
     # for

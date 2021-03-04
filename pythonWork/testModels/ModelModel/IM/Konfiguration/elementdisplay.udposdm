@@ -2,12 +2,12 @@
 <udp_library>
 	<udp_groups>
 		<group name="zoomlevel" id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" />
+		<group name="devlevel" id="3B8B1A0F-E04A-B3AC-18EE-B43F1EC1A761" />
 	</udp_groups>
 	<properties>
 		<property name="minzoomlevel" dispalay_name="Minimal Zoom Level" type="Number" group_id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" default_value="0">
 		<description>
-			<![CDATA[Minimum zoom level  (closest to reality) in which element is displayed
-]]>
+			<![CDATA[Minimum zoom level  (closest to reality) in which element is displayed]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
@@ -15,10 +15,9 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="maxzoomlevel" dispalay_name="Maximum Zoom Level" type="Number" group_id="" default_value="5">
+		<property name="maxzoomlevel" dispalay_name="Maximum Zoom Level" type="Number" group_id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" default_value="4">
 		<description>
-			<![CDATA[Maximum zoom level (Overvie, Entry-Point) in which element is displayed
-]]>
+			<![CDATA[Maximum zoom level (Overvie, Entry-Point) in which element is displayed]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
@@ -26,14 +25,34 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="isdescriptive" dispalay_name="Descriptive Attribute" type="Text" group_id="" default_value="">
+		<property name="isdescriptive" dispalay_name="Descriptive Attribute" type="Text" group_id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" default_value="">
 		<description>
-			<![CDATA[TRUE -&gt; Attribute helps to understand Entity
-FALSE -&gt; Attribute is not important for understanding]]>
+			<![CDATA[TRUE -&amp;amp;amp;gt; Attribute helps to understand Entity
+FALSE -&amp;amp;amp;gt; Attribute is not important for understanding]]>
 		</description>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
 			</objects>
+		</property>
+		<property name="dev_status" dispalay_name="" type="List" group_id="3B8B1A0F-E04A-B3AC-18EE-B43F1EC1A761" default_value="TEST">
+		<description>
+			<![CDATA[DEV:  Development phase
+TEST: in test or QA process
+REL: released]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.TableView" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="TEST" default="false"/>
+				<item value="DEV" default="true"/>
+				<item value="REL" default="false"/>
+			</list_of_values>
 		</property>
 	</properties>
 </udp_library>

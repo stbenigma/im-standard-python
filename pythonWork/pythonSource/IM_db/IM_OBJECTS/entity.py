@@ -219,12 +219,12 @@ class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'
     _prefix: str = 'syno'
     _columnlist: list = []
-##    _multilangcols: list = {'syno_name': 'SYNO_NAME'}
+##    _multilangcols: list = {'syno_name': 'ENTI_SYNONYM'}
 
     def __init__(self,pname=None,pentiid=None):
         if (len(Synonym._columnlist) == 0): Synonym._columnlist = Baseobject.gettablecolumns(Synonym._tablename)
         super().__init__(tablename=Synonym._tablename, prefix=Synonym._prefix
-                         ,multilangcols = {'syno_name': Languagetext.SYNO_NAME}
+                         ,multilangcols = {'syno_name': Languagetext.ENTI_SYNONYM}
                          ,pmodelemtype=Modelelemtype.SYNO)
         self.syno_name = pname
         self.syno_enti_id = pentiid
@@ -238,7 +238,7 @@ class Synonym(MultilangBaseobject):
 CREATE TABLE SYNONYMS
     (
      SYNO_ID INTEGER NOT NULL primary key,
-     SYNO_NAME VARCHAR (60) NOT NULL ,
+     ENTI_SYNONYM VARCHAR (60) NOT NULL ,
      SYNO_ENTI_ID integer NOT NULL ,
      SYNO_UC VARCHAR(30) NULL  ,
      SYNO_DC VARCHAR (30) NOT NULL ,
@@ -288,7 +288,7 @@ CREATE TABLE SYNONYMS
                     except:
                         continue
                     lgtx=Languagetext()
-                    lgtx.lgtx_attrname='SYNO_NAME'
+                    lgtx.lgtx_attrname=Languagetext.ENTI_SYNONYM
                     lgtx.lgtx_text=synotransl
                     lgtx.lgtx_lang_id=langid
                     lgtx.lgtx_mode_id=syno.syno_id

@@ -1,5 +1,5 @@
 
-from IM_OBJECTS import Externalref, Document, Modelelemtype, OragnisationalUnit, Storageformat,ModelelementProperty,Userdefprop,ModelelemOrgu,ModelelemDocu,Userdefpropvalue
+from IM_OBJECTS import Externalref, Document, Modelelement, Modelelemtype, OragnisationalUnit, Storageformat,ModelelementProperty,Userdefprop,ModelelemOrgu,ModelelemDocu,Userdefpropvalue
 from IM_JSON import *
 from mystring import nvl
 
@@ -16,7 +16,6 @@ def inssourceref(pmodel,pmodeid, psources):
             pmodel.markerror(pmsg=err, pelemstr=extr.tostring())
     # for
     return
-
 
 def udps2js(pemptymodel):
     model = ['theme','group'

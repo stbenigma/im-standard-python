@@ -1,82 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="BUSINESSRULE_ELEMENT" directorySegmentName="seg_0" id="ED417D08-5B18-44EF-E91B-A0C4297C3A6F">
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="BUSINESSRULE_ELEMENTS" directorySegmentName="seg_0" id="ED417D08-5B18-44EF-E91B-A0C4297C3A6F">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:40:58 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
 <database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
 <filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
 <schema>1</schema>
-<columnProxies>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_DC" id="021E71E9-4799-3221-43EB-9F9B6A464AB3">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_DM" id="03FD01DA-0821-EBA8-258F-4393FF44EC22">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_TABL_ID" id="091C0BB0-13A8-9A69-7304-B02A981CA7C5">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_ID" id="310A13B9-6910-1BCF-B63A-CEA6FDB4645B">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_UM" id="4F7C8349-EA24-EFF1-3D59-13A3A9397801">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_UC" id="54DA5ED2-F5B9-145D-CA55-C6CF787C9AAE">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_ENTI_ID" id="76529199-B101-5248-6268-8DC5449231BA">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_ATTR_ID" id="99D5CB70-139D-A3D0-567E-8581BA578004">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_WRITEABLE" id="A52E7C29-D27C-2711-9FC8-D4D9C2C46090">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_BURU_ID" id="AC75D859-5DAF-E5F1-1B14-0D9DE73968F5">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_COLU_ID1" id="C08E8D02-E8A6-AFD9-0BB9-1A00061764AB">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_RELA_ID" id="CB0B8B58-8191-53A3-3E74-6E311A822405">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="BURE_DEVA_ID" id="D8F4B4E3-7A66-2434-C4B7-B72680060833">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:40:58 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-</columnProxies>
 <foreignKeys>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="BURE_ENTI_FK" id="047EF57F-0620-3EAE-77DF-D5FE4D700049">
 <createdBy>stb</createdBy>
@@ -111,6 +40,11 @@
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="BURE_ATTR_FK" id="9EBED2E8-3238-4D77-D806-E5D4B9C32BE3">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="BURU_MODE_FK" id="C607C2AB-91E2-AB9A-203B-35DE1B3CA676">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:48:46 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 </ForeignKey>
 </foreignKeys>

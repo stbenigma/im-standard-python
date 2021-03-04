@@ -3,29 +3,9 @@
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:07 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<schemaObject>833E4DE4-2E61-95B8-D681-1740D7FACB7C</schemaObject>
 <database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
 <filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
 <schema>1</schema>
-<columnProxies>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="MODE_MELT_ID" id="4FDEE9D6-E395-2712-A577-B7CB1ED40778">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:07 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="MODE_TYPE" id="5E5601E6-1E3F-3D41-9AE0-F305B767DF10">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:07 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<collation>SQL_Latin1_General_CP1_CI_AS</collation>
-</ColumnProxy>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="MODE_ID" id="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE">
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:07 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<asIdentity>true</asIdentity>
-</ColumnProxy>
-</columnProxies>
 <foreignKeys>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="MODE_MELT_FK" id="665B1351-FF48-5059-D731-C85B5EC8E8C0">
 <createdBy>stb</createdBy>
@@ -34,13 +14,16 @@
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="MODE_PK" id="51E6FDA0-D6E1-B245-684E-64A9B6CE71CB">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="MODELELEMENT_MODE_ID_UN" id="51E6FDA0-D6E1-B245-684E-64A9B6CE71CB">
 <createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:07 UTC</createdTime>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</PrimaryKey>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="MODELELEMENT_PK" id="6D574B17-46AD-AB44-E892-0D4EA4741C37">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <clustered>true</clustered>
-<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
-<recomputeStatistics>NO</recomputeStatistics>
 </PrimaryKey>
 </primaryKeys>
 </TableProxySqlServerv2k5>

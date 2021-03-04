@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="42AA027E-D953-A409-2D11-F4BFDC9105C8" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="MODE_DOCU">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="42AA027E-D953-A409-2D11-F4BFDC9105C8" name="MODE_DOCU">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>MODE_DOCU</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="MODO_ID" id="80AE92C0-1D95-8B56-90BE-7536655C2074">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -24,6 +27,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="MODO_MODE_ID" id="5AF6241E-0989-3647-5570-83B90829F223">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -40,6 +46,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="5BC7195D-11F9-8894-CAD3-0D4BEEBD3971" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -59,6 +68,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="A70E297E-82DA-A525-BD76-76A13F267A6B" referredColumn="C912AEB0-40F6-95A5-62A2-4440B9DD7BAD"/>
 </associations>

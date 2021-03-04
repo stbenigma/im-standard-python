@@ -39,14 +39,10 @@ Ungültige Werte haben den Transformationsstatus ="verarbeitet", eine Verarbeitu
 <shortName>AWTF</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Historie der verarbeiteten Transformationen. Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema. Sobald ein Wert den Status &apos;verarbeitet&quot; hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden. Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus =&quot;verarbeitet&quot; und Transformation gültig = &apos;J&apos; . Ungültige Werte haben den Transformationsstatus =&quot;verarbeitet&quot;, eine Verarbeitungsart, Transformation gültig = &quot;N&quot;  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde)."/>
 <property name="DE_ENTI_NAME" value="Attributwerttransformation"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_COMMENT" value="*DE* Historie der verarbeiteten Transformationen. Werte werden geladen, je nach Richtung der Transformation aus dem Fremdsystem oder aus dem konzeptionellen Schema. Sobald ein Wert den Status &apos;verarbeitet&quot; hat muss Verarbeitungsart und Transformationszeitpunkt gesetzt sein. Erst dann darf er weiter verwendet werden. Gültige verarbeitete Werte haben einen Transformationszeitpunkt, eine Verarbeitungsart, den Transformationsstatus =&quot;verarbeitet&quot; und Transformation gültig = &apos;J&apos; . Ungültige Werte haben den Transformationsstatus =&quot;verarbeitet&quot;, eine Verarbeitungsart, Transformation gültig = &quot;N&quot;  und zusätzlich eine Feherbeschreibung (Fehler-Nr, -Beschrieb, oder (Name der) Regel die verletzt wurde)."/>
 <property name="EN_ENTI_NAME" value="Attribute value transformation"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -66,8 +62,8 @@ Time (in as small a time unit as possible) at which the value to be transformed 
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -80,8 +76,9 @@ Time (in as small a time unit as possible) at which the value to be transformed 
 <property name="DE_ATTR_NAME" value="Ladezeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem der zu transformierende Wert geladen wurde."/>
 <property name="EN_ATTR_NAME" value="Loading time"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -101,8 +98,8 @@ Value(s) from the source system that were used for the transformation.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -116,8 +113,9 @@ Value(s) from the source system that were used for the transformation.
 <property name="DE_ATTR_NAME" value="Quellsystemwert [N]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Wert(e) aus dem Quellsystem, die für die Transformation verwendet wurden."/>
 <property name="EN_ATTR_NAME" value="Source system value [N]"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -137,8 +135,8 @@ Value for the target system, result of the transformation
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -152,8 +150,9 @@ Value for the target system, result of the transformation
 <property name="DE_ATTR_NAME" value="Zielwert"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Wert für das Zielsystem, Ergebnis der Transformation"/>
 <property name="EN_ATTR_NAME" value="Target value"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -173,8 +172,8 @@ Time (in as small a time unit as possible) at which the transformation was perfo
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -188,8 +187,9 @@ Time (in as small a time unit as possible) at which the transformation was perfo
 <property name="DE_ATTR_NAME" value="Transformationszeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Zeitpunkt (in möglichst kleiner Zeiteinheit) zu dem die Transformation durchgeführt wurde. Leer-&gt; die Transformation wurde noch nicht durchgeführt."/>
 <property name="EN_ATTR_NAME" value="Time of transformation"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -209,8 +209,8 @@ Status of the transformation (loaded, processed)
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -223,8 +223,9 @@ Status of the transformation (loaded, processed)
 <property name="DE_ATTR_NAME" value="Transformationsstatus"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Status der Transformation (geladen, verarbeitet)"/>
 <property name="EN_ATTR_NAME" value="Transformation status"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -244,8 +245,8 @@ Type of execution of a transformation (manual, automatic)
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -259,8 +260,9 @@ Type of execution of a transformation (manual, automatic)
 <property name="DE_ATTR_NAME" value="Verarbeitungsart"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Art der Durchführung einer Transformation (manuell, automatisch)"/>
 <property name="EN_ATTR_NAME" value="Processing type"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -280,8 +282,8 @@ Specifies whether the transformed value is valid
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -294,8 +296,9 @@ Specifies whether the transformed value is valid
 <property name="DE_ATTR_NAME" value="ist Transformation gültig"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Angabe, ob der transformierte Wert gültig ist. "/>
 <property name="EN_ATTR_NAME" value="transformation is valid"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -315,8 +318,8 @@ Error description, if the value could not be translated. If transformation is va
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -330,8 +333,9 @@ Error description, if the value could not be translated. If transformation is va
 <property name="DE_ATTR_NAME" value="Transformationsfehler"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Fehlerbeschrieb, falls der Wert nicht übersetzt werden konnte. Falls Transformation gültig = FALSE und Transformationsstatus = verarbeitet, muss ein Fehlerbeschrieb vorliegen."/>
 <property name="EN_ATTR_NAME" value="Transformation error"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -344,8 +348,8 @@ Error description, if the value could not be translated. If transformation is va
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

@@ -22,8 +22,8 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
@@ -38,14 +38,12 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value=" Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="DE_ENTI_NAME" value="Schnittstellentabelle"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_COMMENT" value="*DE*  Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.  Datentyp, Format und Constraints können in div. Sprachen und Dialekten geführ werden   SQL (mit dialekt)   Jason   XML "/>
 <property name="EN_ENTI_NAME" value="*Interface attribute"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -64,8 +62,8 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -78,8 +76,9 @@ Attribut in einem System, das mit anderen Systemen ausgetauscht werden soll.
 <property name="DE_ATTR_NAME" value="Tabellenname"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Table name"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -99,8 +98,8 @@ Description of the attribute in the external system
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -111,8 +110,9 @@ Description of the attribute in the external system
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Beschreibung des Attributes im Fremdsystem"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -133,8 +133,8 @@ Type of triggering of transformation (mutation, period, manual)
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -148,8 +148,9 @@ Type of triggering of transformation (mutation, period, manual)
 <property name="DE_ATTR_NAME" value="Auslöseart"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
 <property name="EN_ATTR_NAME" value="Trigger type"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -169,8 +170,8 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -184,8 +185,9 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 <property name="DE_ATTR_NAME" value="Auslöseperiodizität"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
 <property name="EN_ATTR_NAME" value="Trigger frequency"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

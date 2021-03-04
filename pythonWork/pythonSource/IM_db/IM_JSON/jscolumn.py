@@ -15,10 +15,8 @@ def columns2js(pemptymodel):
         ,'domain'
         ,'descr'
        ,'interface_col_id'
-        ,'uc' 
-        ,'dc'
-        ,'um'
-        , 'dm'
+        ,'uc'         ,'dc'        ,'um'        , 'dm'
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         , 'attributes-mapped'
         , 'userdefprops'
             , 'sourceref'
@@ -26,7 +24,10 @@ def columns2js(pemptymodel):
             ,'refbyorgunits+'
     ]
     if pemptymodel:
-        retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]+[reflist(),userdefprops(), sourceref(),reflist(),reflist()])}
+        retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]
+                                                                        +[0,4,'DEV',reflist(),userdefprops()
+                                                                        , sourceref(),reflist(),reflist()
+                                                                          ])}
     else:
         retval = {jsguid(Modelelemtype.COLU,c.colu_id) : fillmodel(pmodel=model,pentries=[
         c.colu_column_name
@@ -42,11 +43,9 @@ def columns2js(pemptymodel):
         ,jsguid(Modelelemtype.DOMA,c.colu_doma_id)
         ,c.colu_descr
        ,c.colu_ext_system_id
-        , c.colu_uc
-        , c.colu_dc
-        , c.colu_um
-        ,  c.colu_dm
-        ,  reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in
+        , c.colu_uc, c.colu_dc, c.colu_um,  c.colu_dm
+            , c.getminzoomlevel(), c.getmaxzoomlevel(), c.getdevstatus()
+            ,  reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in
                                 ColAttrMap.getattrlist(pcoluid=c.colu_id)])
         ,  udpv2js(pmodeid=c.colu_id,pmodelemtype=Modelelemtype.COLU)
             ,  Externalref.getsrcinfo(pmodeid=c.colu_id)
@@ -74,12 +73,16 @@ def columns2sql(pmodel:JSModel):
         colu.colu_dc = jelem['dc']
         colu.colu_um = jelem['um']
         colu.colu_dm = jelem['dm']
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
         try:
             colu.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=colu.tostring())
             continue
 
+        Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     #for
     return

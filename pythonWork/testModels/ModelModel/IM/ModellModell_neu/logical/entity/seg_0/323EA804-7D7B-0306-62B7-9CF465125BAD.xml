@@ -42,14 +42,12 @@ App-Administrator
 <synonym>Supporter</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="Firma oder Organisation die ein Sysstem betreuen (korrgieren, unterstützen, ausbauen, supporten). Typischerweise Applikationsadministratoren  Beispiele: interner IT-Support Helpdesk App-Administrator"/>
 <property name="DE_ENTI_NAME" value="Betreuer"/>
 <property name="DE_ENTI_SYNONYM" value="Supporter"/>
-<property name="EN_ENTI_COMMENT" value="*DE* Firma oder Organisation die ein Sysstem betreuen (korrgieren, unterstützen, ausbauen, supporten). Typischerweise Applikationsadministratoren  Beispiele: interner IT-Support Helpdesk App-Administrator"/>
 <property name="EN_ENTI_NAME" value="Chaperon"/>
 <property name="EN_ENTI_SYNONYM" value="Supporters"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -68,8 +66,8 @@ App-Administrator
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <referedAttribute>1FC34A8C-E592-091D-9966-53649013D0B4</referedAttribute>
@@ -81,8 +79,9 @@ App-Administrator
 <propertyMap>
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

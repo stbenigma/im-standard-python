@@ -55,12 +55,10 @@ Person IsA
 <shortName>IsA Beziehungv1</shortName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value="1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>
 <property name="DE_ENTI_NAME" value="IsA Rollenbeziehung"/>
-<property name="EN_ENTI_COMMENT" value="*DE* 1:1 Beziehung, einen Subtyp definiert. exklusive  IsA Subtypen (monohierarchisch, optional von Vater zu Kind) können als Subtypen in der Entität gezeichnet werden.   Eine IsA Beziehung beginnt immer bei Subtyp (von Kind zu Vater). Diese Beziehung (Kind zu Vater) kann nicht optional sein."/>
 <property name="EN_ENTI_NAME" value="IsA Role Relationship"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="REL"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Entity>

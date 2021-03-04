@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DECCDF45-04DC-FD4F-B653-9F7C818F4721" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="INTERFACES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DECCDF45-04DC-FD4F-B653-9F7C818F4721" name="INTERFACES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>INTERFACES</sourceObjName>
@@ -8,7 +8,224 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODELELEMENT_MODELELEMENT_ID" id="A5DD2C94-D926-1EEF-88F4-0931434BAEC2">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="BF98A367-E4FA-A215-A215-EB2EFD593597" referredColumn="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB"/>
+</associations>
+</Column>
+<Column name="Name" id="A224732A-1871-635C-BB02-C8ACEAD66A14">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>INTERFACES</sourceObjSchema>
+<sourceObjName>INTF_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Beschreibung" id="A0871D37-8D17-1048-CBD0-AF87823D8CF0">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>INTERFACES</sourceObjSchema>
+<sourceObjName>INTF_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Manuell" id="48458E75-5876-A999-7892-C89441E266CE">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Daten werden manuell übertragen (copy-paste, filetransfer)]]></comment>
+<generatorID>5EED317B-58E0-5B79-1FB5-775FD01F3B5D</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden manuell übertragen (copy-paste, filetransfer)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred manually (copy-paste, file transfer)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Synchron" id="247212A7-9E79-30C2-9943-D20AF684B907">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.]]></comment>
+<generatorID>B7FB77F4-F497-DDF8-E33A-276CA5490582</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Daten werden sofort übertragen oder in Paketen die irgendwann übertragen werden.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Data is transferred immediately or in packets that are eventually transferred.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Bidirektional" id="DB490435-77E7-F4D0-5363-666823CE8370">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Nein bedeutet Daten gehen nur von "von" zu "nach"]]></comment>
+<generatorID>F88D2EED-F617-7E62-F84F-436C9046226F</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Nein bedeutet Daten gehen nur von "von" zu "nach"
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+No means data only goes from "from" to "to"
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Auslöseperiodizität" id="05F2E03A-ED80-2F36-AB8C-110679836F18">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<commentInRDBMS><![CDATA[Periodizität mit der die Schnittstelle bedient/abgeholt wird. Standardvorgabe für alle Attribute einer Schnittstelle.]]></commentInRDBMS>
+<generatorID>AAE0C88E-61B4-8C0E-5688-0E2712B872D0</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Scalable" id="6CDBFA19-C3DD-3128-8ACF-3ED9E9C3670C">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>1810A85D-3BCB-DE72-DDE8-29DFEA402959</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="überwacht_(J/N)" id="872AD5FE-3E5E-DCFE-1DA7-2A0E8B70CAC2">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>8342F23C-6D40-1E38-AF3B-BD7D62E461E2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="INTERFACES_ID" id="B2877924-B3F2-E6A5-328B-526A2104AA04">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
 <Column name="INTF_ID" id="3491759E-55B2-4C35-1592-A280DC8CC277">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>INTERFACES</sourceObjSchema>
@@ -24,41 +241,12 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="FDC7DD62-E7A0-7339-600B-ABF8ED39059D" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
-</Column>
-<Column name="INTF_NAME" id="A224732A-1871-635C-BB02-C8ACEAD66A14">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>INTERFACES</sourceObjSchema>
-<sourceObjName>INTF_NAME</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>60</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>60</dataTypeSize>
-<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="INTF_DESCR" id="A0871D37-8D17-1048-CBD0-AF87823D8CF0">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>INTERFACES</sourceObjSchema>
-<sourceObjName>INTF_DESCR</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:04 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>4000</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>4000</dataTypeSize>
-<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="INTF_UC" id="42309E40-DFB6-1816-18C4-683BF6C203EA">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -75,6 +263,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="INTF_DC" id="33D15735-6A52-A872-A37C-EFD9BBA05509">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -91,6 +282,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="INTF_UM" id="DBDD7748-0933-D814-E4AD-034FE1C6A3F6">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -108,6 +302,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="INTF_DM" id="528DBFB4-29E0-C9A0-19C1-E9D1402198D1">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -125,18 +322,30 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="FB39FC94-6E32-4328-56D1-B929275D80D1" name="INTF_PK">
+<ind_PK_UK id="BDC5FE2C-3E9A-AAD5-E706-D2F4A558BB2A" name="INTERFACES_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A5DD2C94-D926-1EEF-88F4-0931434BAEC2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FB39FC94-6E32-4328-56D1-B929275D80D1" name="INTERFACES_INTF_ID_UN">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>INTF_PK</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:04 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="3491759E-55B2-4C35-1592-A280DC8CC277"/>
@@ -155,6 +364,15 @@
 <colUsage columnID="A224732A-1871-635C-BB02-C8ACEAD66A14"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="8C40EDF0-0F47-3D9C-CE80-C3E97F2BCC4B" name="INTERFACES_INTERFACES_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B2877924-B3F2-E6A5-328B-526A2104AA04"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="C65ADC3A-A007-FA9F-3893-2F711DE763D6" name="INFT_MODE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:15 UTC</createdTime>
@@ -163,6 +381,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="3491759E-55B2-4C35-1592-A280DC8CC277"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2D19AF8F-8634-5EC6-47C2-79B3FB0E7561" name="INTERFACES_MODELELEMENT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<generatorID>A2E98F7D-AB83-D113-F94A-89876ECA57B5</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5DD2C94-D926-1EEF-88F4-0931434BAEC2"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

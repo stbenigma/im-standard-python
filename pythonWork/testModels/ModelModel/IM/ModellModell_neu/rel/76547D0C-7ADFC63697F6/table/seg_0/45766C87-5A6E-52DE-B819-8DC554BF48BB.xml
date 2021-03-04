@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45766C87-5A6E-52DE-B819-8DC554BF48BB" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="ENTITIES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45766C87-5A6E-52DE-B819-8DC554BF48BB" name="ENTITIES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>ENTITIES</sourceObjName>
@@ -8,7 +8,222 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODELELEMENT_MODELELEMENT_ID" id="458BC8EA-9F82-6159-FC1F-22E69731F3D9">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="88519EC6-9AE0-EF48-0619-E1313CE208A2" referredColumn="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB"/>
+</associations>
+</Column>
+<Column name="Entitätname_[L]" id="39FA04AA-F362-8C57-E033-27E9CBACEE26">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ENTITIES</sourceObjSchema>
+<sourceObjName>ENTI_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Synonym_[LN]" id="62FC7062-7CE3-EE68-D264-78D167B048AE">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Name, der für diese Entität auch verwendet wird]]></comment>
+<generatorID>A95649D8-C7D7-F752-DF78-460367ECD340</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name, der für diese Entität auch verwendet wird
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name that is also used for this entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Beschreibung_[L]" id="E7D94748-3706-CDFD-9242-E9ADA70EF641">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ENTITIES</sourceObjSchema>
+<sourceObjName>ENTI_DESCR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<comment><![CDATA[Bedeutung, Nutzen, Nutzung der Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Bedeutung, Nutzen, Nutzung der Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Meaning, Benefits, Use of the Entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Kurzname_[L]" id="272E256E-FAD7-8374-182F-7A6D4128CE61">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ENTITIES</sourceObjSchema>
+<sourceObjName>ENTI_SHORT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+*Entity short name for use from heading, in references
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Präfixname" id="433EC13A-01AC-F51D-81CC-8C327F1BF59A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ENTITIES</sourceObjSchema>
+<sourceObjName>ENTI_PREFIX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<comment><![CDATA[Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Abbreviated name (3-5 characters, usually capital letters) that can be used as a prefix for implementation names.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="Tooltip_[L]" id="5A7DD10C-99A3-4C76-2875-587D524AA33C">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ENTITIES</sourceObjSchema>
+<sourceObjName>ENTI_TOOLTIP</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<comment><![CDATA[Anzeige der Bedeutung für Bediener auf einer Maske.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzeige der Bedeutung für Bediener auf einer Maske.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display of the meaning for the operator on a mask.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="erwartete_Tupelanzahl" id="63E599BC-6FFD-3D88-39CC-436379444C7E">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ENTITIES</sourceObjSchema>
+<sourceObjName>ENTI_EXP_TUPLE#</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<comment><![CDATA[Grössenordnung der Tupelanzahl in dieser Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Grössenordnung der Tupelanzahl in dieser Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Order of magnitude of the number of tuples in this entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ENTITIES_ID" id="AE76FC4A-6834-4BE4-AEDB-D75F399CA339">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
 <Column name="ENTI_ID" id="0F98F311-59A2-BE87-6FC4-2C0F85E511C5">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>ENTITIES</sourceObjSchema>
@@ -24,110 +239,12 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="C5414341-6112-0C59-53DA-5A40E826659B" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
-</Column>
-<Column name="ENTI_NAME" id="39FA04AA-F362-8C57-E033-27E9CBACEE26">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ENTITIES</sourceObjSchema>
-<sourceObjName>ENTI_NAME</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>60</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>60</dataTypeSize>
-<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_SHORT_NAME" id="272E256E-FAD7-8374-182F-7A6D4128CE61">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ENTITIES</sourceObjSchema>
-<sourceObjName>ENTI_SHORT_NAME</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>15</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>15</dataTypeSize>
-<ownDataTypeParameters>15,15,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_PREFIX" id="433EC13A-01AC-F51D-81CC-8C327F1BF59A">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ENTITIES</sourceObjSchema>
-<sourceObjName>ENTI_PREFIX</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>5</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>5</dataTypeSize>
-<ownDataTypeParameters>5,5,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_TOOLTIP" id="5A7DD10C-99A3-4C76-2875-587D524AA33C">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ENTITIES</sourceObjSchema>
-<sourceObjName>ENTI_TOOLTIP</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>4000</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>4000</dataTypeSize>
-<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_DESCR" id="E7D94748-3706-CDFD-9242-E9ADA70EF641">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ENTITIES</sourceObjSchema>
-<sourceObjName>ENTI_DESCR</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>4000</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>4000</dataTypeSize>
-<ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="ENTI_EXP_TUPLE#" id="63E599BC-6FFD-3D88-39CC-436379444C7E">
-<sourceConnName>sqlserver-modelmodel</sourceConnName>
-<sourceObjSchema>ENTITIES</sourceObjSchema>
-<sourceObjName>ENTI_EXP_TUPLE#</sourceObjName>
-<createdBy>stb</createdBy>
-<createdTime>2021-01-14 16:41:03 UTC</createdTime>
-<ownerDesignName>ModellModell_neu</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypePrecision>500</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<dataTypeSize>500</dataTypeSize>
-<ownDataTypeParameters>500,500,0</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ENTI_UC" id="5DDF7EFB-49FD-E388-22A0-7E17131A61B7">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -144,6 +261,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ENTI_DC" id="2A223382-3EE9-5782-1F40-9E160D0A6B25">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -160,6 +280,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ENTI_UM" id="B47437BC-8B8C-238D-F103-B7B5FD76C06D">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -177,6 +300,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="ENTI_DM" id="80308924-2F5C-C32A-20A1-BA56A6DF4B4F">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -194,18 +320,49 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ENTI_SUBTYPE" id="5AB4965E-0C86-D600-F09C-C15A5518896A">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CH_INH_ENTI</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4</dataTypeSize>
+<listOfValues>
+<valueDef value="ENTI" description="entity Entität"/>
+</listOfValues>
+<ownDataTypeParameters>4,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="92B279B9-B3CA-24DE-19D6-2D114A3D38D7" name="ENTI_PK">
+<ind_PK_UK id="D001CCE5-EA41-CE67-5BC8-D653435CDA86" name="ENTITIES_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="458BC8EA-9F82-6159-FC1F-22E69731F3D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92B279B9-B3CA-24DE-19D6-2D114A3D38D7" name="ENTITIES_ENTI_ID_UN">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>ENTI_PK</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:03 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="0F98F311-59A2-BE87-6FC4-2C0F85E511C5"/>
@@ -224,6 +381,26 @@
 <colUsage columnID="39FA04AA-F362-8C57-E033-27E9CBACEE26"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="C23B0CAB-CE68-A51A-FBBD-B964CD57567A" name="ENTITIES_Entitätname_[L]_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<generatorID>0DCB8532-B1E4-BF67-1F61-05895B0E758E</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="39FA04AA-F362-8C57-E033-27E9CBACEE26"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="13404EFF-D080-8028-FFC0-A23D5E2BCC0A" name="ENTITIES_ENTITIES_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="AE76FC4A-6834-4BE4-AEDB-D75F399CA339"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="C6B5CF56-5AE4-ED63-B67D-80754EFAAF0B" name="ENTI_MODE_FK">
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:15 UTC</createdTime>
@@ -232,6 +409,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="0F98F311-59A2-BE87-6FC4-2C0F85E511C5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F2136C0F-165D-05B6-A530-6D9D4C7762EF" name="ENTITIES_MODELELEMENT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<generatorID>6EF73CC3-7DEE-5554-9C0D-2B6F8BE8F61F</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="458BC8EA-9F82-6159-FC1F-22E69731F3D9"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

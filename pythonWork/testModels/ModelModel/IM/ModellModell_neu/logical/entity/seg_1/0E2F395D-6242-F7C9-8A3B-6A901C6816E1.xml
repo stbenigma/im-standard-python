@@ -17,7 +17,6 @@
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
-<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -28,14 +27,10 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value=""/>
 <property name="DE_ENTI_NAME" value="Einheitumrechnung"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_COMMENT" value=""/>
 <property name="EN_ENTI_NAME" value="Unit conversion"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -54,8 +49,8 @@
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -70,16 +65,30 @@
 <property name="DE_ATTR_NAME" value="Faktor"/>
 <property name="EN_ATTR_COMMENT" value=""/>
 <property name="EN_ATTR_NAME" value="Factor"/>
+<property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="6D8B3BF4-6B9B-85C8-B435-3A60FDA7B353" name="Einheitumrechnung PK">
+<identifier id="DBE99696-22E9-AB42-E040-0B1B44A7468F" name="Einheitumrechnung PK">
 <createdBy>stb</createdBy>
-<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<createdTime>2021-03-03 13:28:49 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<pk>true</pk>
+</identifier>
+<identifier id="1151A66A-0449-F0A3-AD18-2FFAAA029CDA" name="Einheitumrechnung PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-03 13:28:49 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>

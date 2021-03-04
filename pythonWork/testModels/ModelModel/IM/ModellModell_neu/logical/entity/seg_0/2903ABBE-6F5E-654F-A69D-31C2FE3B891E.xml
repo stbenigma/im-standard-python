@@ -35,14 +35,10 @@ Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Att
 <discriminatorColumnName>AWTF_INOUT</discriminatorColumnName>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value=" Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.  Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.  Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.     "/>
 <property name="DE_ENTI_NAME" value="Attributtransformation"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_COMMENT" value="*DE*  Eine Attributtransformation transformiert 1-viele Ausgangsattribute in einen Attributwert.  Transformationen von externen Systemen zum konsolidierten Modell befüllen ein Attribut und verwenden min. 1 Systemattribut.  Transformationen vom Modell zu externen Systemen befüllen ein Systemattribut und verwenden min. 1 Attribut.     "/>
 <property name="EN_ENTI_NAME" value="Attribute transformation"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -62,8 +58,8 @@ Distinguishing characteristic of several rules for an attribute
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -76,8 +72,9 @@ Distinguishing characteristic of several rules for an attribute
 <property name="DE_ATTR_NAME" value="Laufnr"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Unterscheidungsmerkmal mehrerer Regeln für ein Attribut"/>
 <property name="EN_ATTR_NAME" value="Runnr"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -98,8 +95,8 @@ Formula that converts 1-n source attributes into a target attribute.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -113,8 +110,9 @@ Formula that converts 1-n source attributes into a target attribute.
 <property name="DE_ATTR_NAME" value="Transformationformel"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Formel, die 1-n Ausgangsattribute in ein Zielattribut umwandelt."/>
 <property name="EN_ATTR_NAME" value="Transformation formula"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -135,8 +133,8 @@ Type of triggering of transformation (mutation, period, manual)
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -150,8 +148,9 @@ Type of triggering of transformation (mutation, period, manual)
 <property name="DE_ATTR_NAME" value="Auslöseart"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Art der Auslösung der Transformation (Mutation, Periode, Manuell)"/>
 <property name="EN_ATTR_NAME" value="Trigger type"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -171,8 +170,8 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -186,8 +185,9 @@ Daily, every 2 minutes or similar. Mandatory if the trigger type is Time.
 <property name="DE_ATTR_NAME" value="Auslöseperiodizität"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Täglich, alle 2 Minuten o.ä. Obligatorisch, falls die Auslöseart Zeitpunkt ist."/>
 <property name="EN_ATTR_NAME" value="Trigger frequency"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

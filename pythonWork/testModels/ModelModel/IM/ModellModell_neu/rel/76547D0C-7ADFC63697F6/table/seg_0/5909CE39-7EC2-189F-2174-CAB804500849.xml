@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5909CE39-7EC2-189F-2174-CAB804500849" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="LANGUAGES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5909CE39-7EC2-189F-2174-CAB804500849" name="LANGUAGES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>LANGUAGES</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="LANG_ID" id="5B3E8681-5F8B-2F57-2E16-6A30728A985B">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -26,6 +29,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_ISO_NAME" id="1CC469F0-9F80-BD60-6908-E52DD56A6E0B">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -43,6 +49,9 @@
 <dataTypeSize>60</dataTypeSize>
 <ownDataTypeParameters>60,60,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_ISO_CODE2" id="99BD623B-10EA-8E33-1E86-0F3A9D08537B">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -63,6 +72,9 @@
 </checkConstraint>
 <ownDataTypeParameters>2,2,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_ISO_CODE3" id="4016B45D-5D21-CAD1-F994-556ACA32EA25">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -83,6 +95,9 @@
 </checkConstraint>
 <ownDataTypeParameters>3,3,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_IS_TEXT_LANG" id="A68EA21E-1D10-C723-69EC-12E96B7D3A64">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -103,6 +118,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,5,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_IS_BASE_LANG" id="422B57D0-1224-2247-03DB-AC0E9B5FE2D3">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -123,6 +141,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,5,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_LANG_ID" id="DB266AB9-97D7-EBA0-1BAE-0E397AF9DA27">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -140,6 +161,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="7A9BE64A-EAD1-6098-1E40-00E8F9E57FB7" referredColumn="5B3E8681-5F8B-2F57-2E16-6A30728A985B"/>
 </associations>
@@ -159,6 +183,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_DC" id="83F321C9-9AAF-AD3F-7707-F89F9E9645BB">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -175,6 +202,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_UM" id="EE0DF4DA-AB78-AB6E-DBD5-3204ADE51B69">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -192,6 +222,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="LANG_DM" id="F5AD1A37-FAD9-BDCB-6D1A-4FAAEF0F8818">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -209,6 +242,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

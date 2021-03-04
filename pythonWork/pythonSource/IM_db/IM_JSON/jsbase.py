@@ -55,6 +55,30 @@ class JSModel:
         self._warnings = []
         self._modellanguage = None
         self.languages = {}  # langid:iso2
+        self._statusfilter = (None,'DEV','TEST','REL')
+
+    def getelement(self,pelem,pfiltered=True):
+        """returns list of top level Elements filtered by statusfilter"""
+        elemkey = JSModel.elemtype2label(pelemtype=pelem)
+        if elemkey is None:
+            """ not found, check wether pelem is already a key"""
+            if pelem in self.jsmodel:
+                elemkey = pelem
+            else:
+                return None
+            #fi
+        #fi
+        assert (elemkey in self.jsmodel),"key {} not found in json-model".format(elemkey)
+        """get all elements, if filtered make sure it is a) not a dict, b) has no devstatus or c) its devstatus is in my statusfilter"""
+        elems = {key : value for key,value in self.jsmodel[elemkey].items()
+                   if (not pfiltered or type(value) != dict or 'devstatus' not in value or value['devstatus'] in self.statusfilter) }
+        return elems
+
+    def setstatusfilter(self,pfilter):
+        self.statusfilter = pfilter
+
+    def getstatusfilter(self,pfilter):
+        return self.statusfilter
 
     @staticmethod
     def readfromfile(pfilename):

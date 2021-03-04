@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BFC2A3C9-D62E-8705-C449-0345FD10974C" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="DIAGRAMTYPES">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BFC2A3C9-D62E-8705-C449-0345FD10974C" name="DIAGRAMTYPES">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>DIAGRAMTYPES</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="DIAT_ID" id="3F37DC29-DA7A-AD4F-2D94-7A6832142FB9">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -26,6 +29,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAT_NAME" id="612104A3-1C1C-B5CC-18B7-65B670EBDCB4">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -42,6 +48,9 @@
 <dataTypeSize>100</dataTypeSize>
 <ownDataTypeParameters>100,100,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAT_UC" id="47DDF6D2-B430-4653-C7A3-86A828E07C25">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -58,6 +67,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAT_DC" id="BA3019E1-2E75-B0B2-7B0B-863A6F110D37">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -74,6 +86,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAT_UM" id="B39D1B09-9953-A12D-6350-1523F834138C">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -91,6 +106,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DIAT_DM" id="2E68E827-17EA-7FEA-D3EF-985D0A3A1702">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -108,6 +126,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

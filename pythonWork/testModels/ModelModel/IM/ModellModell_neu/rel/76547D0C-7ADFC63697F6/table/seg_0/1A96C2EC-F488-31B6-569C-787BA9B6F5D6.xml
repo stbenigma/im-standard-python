@@ -1,14 +1,34 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1A96C2EC-F488-31B6-569C-787BA9B6F5D6" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="MODELELEMENT">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1A96C2EC-F488-31B6-569C-787BA9B6F5D6" name="MODELELEMENT">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>MODELELEMENT</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:07 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODELELEMENT_ID" id="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
 <Column name="MODE_ID" id="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>MODELELEMENT</sourceObjSchema>
@@ -24,8 +44,10 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementColumn>true</autoIncrementColumn>
-<identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="MODE_TYPE" id="5E5601E6-1E3F-3D41-9AE0-F305B767DF10">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -46,6 +68,9 @@
 </checkConstraint>
 <ownDataTypeParameters>4,4,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="MODE_MELT_ID" id="4FDEE9D6-E395-2712-A577-B7CB1ED40778">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -62,21 +87,112 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="91CA2EBC-E42F-BCCB-01C9-EE2097CE1CE9" referredColumn="4EFA2A12-A583-2406-C563-FFACE13B09F0"/>
 </associations>
 </Column>
+<Column name="MODE_MIN_ZOOM_LEVEL" id="8D64D786-79CF-0163-6534-F4DA98E35993">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Tiefstes / am meisten detailliertes, minimales zoom-level, auf dem dieses Element angezeigt wird.]]></comment>
+<generatorID>5C4272A8-7198-067F-DD04-CF0397FC7E5E</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Tiefstes / am meisten detailliertes, minimales zoom-level, auf dem dieses Element angezeigt wird.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Deepest / most detailed, minimum zoom level at which this element is displayed.
+]EN_ENTI_COMMENT]]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F8587786-FB94-6E95-F103-E64497B8F02A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="TEST"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MODE_MAX_ZOOM_LEVEL" id="93D81DBA-D4EC-A15B-2921-2742875DBEEA">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Oberstes,  am wenigsten detailliertes, maximales zoom-level, auf dem dieses Element angezeigt wird.]]></comment>
+<generatorID>CBE32B15-C11F-2CAE-9766-3FF1CE79A833</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Oberstes, am wenigsten detailliertes, maximales zoom-level, auf dem dieses Element angezeigt wird.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Top, least detailed, maximum zoom level at which this element is displayed.
+]EN_ENTI_COMMENT]]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F8587786-FB94-6E95-F103-E64497B8F02A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="TEST"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MODE_DEV_STATUS" id="3502F42C-E9BA-9924-4F9A-C225F4AA51D5">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<comment><![CDATA[Status der Enwticklung eines Elements. Steuert die Kommunikation an unterschiedliches Publikum]]></comment>
+<generatorID>7533ED73-8320-12C1-1DDD-A4AA58435E3F</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Status der Enwticklung eines Elements. Steuert die Kommunikation an unterschiedliches Publikum
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Status of the development of an element. Controls the communication to different audience
+]EN_ENTI_COMMENT]]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>24FB953F-D6BE-0C10-F459-B7B964B563C2</domain>
+<defaultValue>DEV</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="TEST"/>
+</propertyMap>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="51E6FDA0-D6E1-B245-684E-64A9B6CE71CB" name="MODE_PK">
+<ind_PK_UK id="6D574B17-46AD-AB44-E892-0D4EA4741C37" name="MODELELEMENT_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5BC2876C-F7FA-4EA2-D35F-5ECF4F139CAB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="51E6FDA0-D6E1-B245-684E-64A9B6CE71CB" name="MODELELEMENT_MODE_ID_UN">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>MODE_PK</sourceObjName>
 <createdBy>stb</createdBy>
 <createdTime>2021-01-14 16:41:07 UTC</createdTime>
 <ownerDesignName>ModellModell_neu</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>

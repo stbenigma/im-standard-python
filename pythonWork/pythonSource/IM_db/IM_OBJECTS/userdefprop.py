@@ -18,25 +18,6 @@ class Userdefprop(Baseobject):
         self.udpr_uc = 'SYS'
         self.udpr_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Userdefprop._tablename
-                               , psql=
-        """CREATE TABLE USER_DEFINED_PROPERTIES
-    (
-     UDPR_ID INTEGER NOT NULL primary key autoincrement ,
-     UDPR_THEME VARCHAR (60) NOT NULL ,
-     UDPR_GROUP VARCHAR (60) NULL ,
-     UDPR_NAME VARCHAR (60) NOT NULL ,
-     UDPR_DESCR VARCHAR (4000) NULL ,
-     UDPR_UC VARCHAR (30) NOT NULL ,
-     UDPR_DC VARCHAR (30) NOT NULL ,
-     UDPR_UM VARCHAR (30) NULL ,
-     UDPR_DM VARCHAR (30) NULL
-    ,CONSTRAINT UDPR_UN UNIQUE (UDPR_THEME,UDPR_NAME ASC)
-    )
-    """)
-
     def getname(self,plang=None):
         return self.udpr_name
     def getdescr(self,plang=None):
@@ -46,8 +27,8 @@ class Userdefprop(Baseobject):
         return "{} ({})".format(self.getname(plang=plang),self.udpr_group)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Userdefprop._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -93,39 +74,25 @@ class Userdefprop(Baseobject):
                                                     ,'%' if pmeltname is None else pmeltname)
                                 ,porderby="udpr_theme,udpr_group,udpr_name"
                                 )
-        # if pgroup is None:
-        #     lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-        #                        from modelelem_type
-        #                        join modelemtype_properties on metp_melt_id = melt_id
-        #                        join user_defined_properties on udpr_id = metp_udpr_id
-        #                        where melt_shortname = '{}'
-        #                     group by udpr_theme,udpr_group
-        #                     order by udpr_theme,udpr_group""".format(pmeltname)
-        # elif pgroup == '*':
-        #     lsql = """select  udpr_theme,'*'gr,group_concat(udpr_name,',') attrs
-        #                        from modelelem_type
-        #                        join modelemtype_properties on metp_melt_id = melt_id
-        #                        join user_defined_properties on udpr_id = metp_udpr_id
-        #                        where melt_shortname = '{}'
-        #                        and udpr_theme = {}
-        #                     group by udpr_theme
-        #                     order by udpr_theme""".format(pmeltname
-        #                                                   , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme))
-        # else:
-        #     lsql = """select  udpr_theme,udpr_group,group_concat(udpr_name,',') attrs
-        #                from modelelem_type
-        #                join modelemtype_properties on metp_melt_id = melt_id
-        #                join user_defined_properties on udpr_id = metp_udpr_id
-        #                where melt_shortname = '{}'
-        #                and udpr_theme = {}
-        #                and udpr_group = '{}'
-        #             group by udpr_theme,udpr_group
-        #             order by udpr_theme,udpr_group""".format(pmeltname
-        #                                                      , 'udpr_theme' if ptheme is None else "'{}'".format(ptheme)
-        #                                                      , pgroup)
-        # data = dbDML.select(lsql)
-        # return data
-    # udpnames
+
+    @staticmethod
+    def removemodelUDP(modeludps):
+        """remove all UDP's which are used as model elements (translation, elementdisplay etc.
+            modelupds= [(udpr_theme : udpr_name),]"""
+        # lsql= """delete from USER_DEFINED_PROPERTIES
+        #             where lower(UDPR_THEME) = lower(?) and lower(udpr_name) = lower(?)"""
+        # dbDML.execmany(psql=lsql,recs=modeludps)
+
+        lsql= """delete from USER_DEFINED_PROPERTIES 
+                    where (lower(UDPR_THEME),lower(udpr_name)) = (lower(?) ,lower(?))"""
+        try:
+            dbDML.execmany(psql=lsql,recs=modeludps)
+        except Exception as e:
+            print(lsql)
+            print (modeludps)
+            print (e)
+        return
+
 # Userdefprop
 
 
@@ -144,33 +111,11 @@ class Userdefpropvalue(Baseobject):
         self.udpv_dc = date.today()
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Userdefpropvalue._tablename
-                               , psql="""CREATE TABLE UDP_VALUES
-    (
-     UDPV_ID INTEGER NOT NULL primary key autoincrement,
-     UDPV_VALUE VARCHAR (4000) NULL ,
-     UDPV_MODE_ID integer NOT NULL ,
-     UDPV_UDPR_ID integer NOT NULL ,
-     UDPV_UC VARCHAR (30) NOT NULL ,
-     UDPV_DC VARCHAR (30) NOT NULL ,
-     UDPV_UM VARCHAR (30) NULL ,
-     UDPV_DM VARCHAR (30) NULL
-    ,CONSTRAINT UDPV_UN UNIQUE (UDPV_MODE_ID ASC, UDPV_UDPR_ID ASC)
-    ,CONSTRAINT UDPV_MODE_FK FOREIGN KEY    (     UDPV_MODE_ID)
-		REFERENCES MODELELEMENT    (     MODE_ID )
-    ON DELETE CASCADE
-    ,CONSTRAINT UDPV_UDPR_FK FOREIGN KEY    (     UDPV_UDPR_ID)
-		REFERENCES USER_DEFINED_PROPERTIES    (     UDPR_ID )
-    )"""
-    )
-
-    @staticmethod
     def removeemptyUDP(pempties):
         emptylist = ','.join("'{}'".format(e) for e in pempties)
         Userdefpropvalue.delete(pwhere="udpv_value is null or udpv_value  in ({})".format(emptylist)
                    )
-    # removeemptydup
+        return
 
     @staticmethod
     def delete(pwhere=None):

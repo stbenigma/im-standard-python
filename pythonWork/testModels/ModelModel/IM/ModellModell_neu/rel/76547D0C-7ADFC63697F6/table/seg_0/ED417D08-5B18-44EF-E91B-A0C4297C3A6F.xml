@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ED417D08-5B18-44EF-E91B-A0C4297C3A6F" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="BUSINESSRULE_ELEMENTS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ED417D08-5B18-44EF-E91B-A0C4297C3A6F" name="BUSINESSRULE_ELEMENTS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>BUSINESSRULE_ELEMENT</sourceObjName>
@@ -10,6 +10,9 @@
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="BURE_ID" id="310A13B9-6910-1BCF-B63A-CEA6FDB4645B">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -26,6 +29,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="0B061170-121A-3449-918C-26B419F9CCEE" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -43,6 +49,9 @@
 <dataTypePrecision>10</dataTypePrecision>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="845AC628-CAA4-32E2-0368-6BB106C70816" referredColumn="BAA91504-79D6-8DBD-1171-42EDADCDB433"/>
 </associations>
@@ -66,6 +75,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,5,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="BURE_ATTR_ID" id="99D5CB70-139D-A3D0-567E-8581BA578004">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -83,6 +95,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="68AEAE1A-7608-64FB-CD3D-8B98A35D913A" referredColumn="6ED20ED0-78C1-ACD9-4E8B-7770D2E655E4"/>
 </associations>
@@ -103,6 +118,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="4BC24563-6608-C5CE-E3F3-E870484583E3" referredColumn="0F98F311-59A2-BE87-6FC4-2C0F85E511C5"/>
 </associations>
@@ -123,6 +141,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="3E4A48FA-141B-3999-5EEA-32A8E8DEA381" referredColumn="AD15119C-6601-8B26-9534-E6EC2BF98821"/>
 </associations>
@@ -143,6 +164,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="779E8DE8-5C5E-7862-C319-0E1C43D44A9A" referredColumn="D2EE7A4A-6EB5-F5AA-C938-544D7F761880"/>
 </associations>
@@ -163,6 +187,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="F3A37A05-9A5F-1B8A-8AFF-C0F7DD35D634" referredColumn="66B10E65-5485-7D22-391E-A2BA4C2A4106"/>
 </associations>
@@ -183,6 +210,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="93C99F6A-1209-ABA8-8354-A03B59E41ADF" referredColumn="A172B6CD-6EC8-BD59-5619-495B8B676F25"/>
 </associations>
@@ -202,6 +232,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="BURE_DC" id="021E71E9-4799-3221-43EB-9F9B6A464AB3">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -218,6 +251,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="BURE_UM" id="4F7C8349-EA24-EFF1-3D59-13A3A9397801">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -235,6 +271,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="BURE_DM" id="03FD01DA-0821-EBA8-258F-4393FF44EC22">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -252,6 +291,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

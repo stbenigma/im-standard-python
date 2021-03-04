@@ -72,18 +72,18 @@
       <jdbc-url>jdbc:sqlite:testscript.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="crmTest.db" uuid="28f8c49b-1396-402a-bb2c-4c9426e7413f">
+    <data-source source="LOCAL" name="ModellModell_neu.db" uuid="19dbac50-2c9d-4d04-aa95-a5dbca477d3e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../testModels/ModelModel/DB/ModellModell_neu.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="crmTest.db" uuid="b02d66ab-7e77-47a5-a482-a44132a93171">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../testModels/crmTest/DB/crmTest.db</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="ModellModell_neu.db" uuid="da076fa0-0bb5-43bf-aa7c-eecfd49e3074">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../fyyccim-im/ModellModell/DB/ModellModell_neu.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

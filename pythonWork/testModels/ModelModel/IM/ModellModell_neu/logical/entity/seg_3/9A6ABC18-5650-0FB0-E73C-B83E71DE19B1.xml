@@ -14,8 +14,8 @@ Value range for time attributes (granularity decides about level (sec, min, h, d
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
@@ -30,12 +30,10 @@ Value range for time attributes (granularity decides about level (sec, min, h, d
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="DE_ENTI_COMMENT" value=" "/>
 <property name="DE_ENTI_NAME" value="Zeitpunkt Wertebereich"/>
-<property name="EN_ENTI_COMMENT" value="*DE*  "/>
 <property name="EN_ENTI_NAME" value="Time Value range"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="REL"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -55,8 +53,8 @@ earliest time in this attribute. Empty -> there is no lower limit
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -70,8 +68,9 @@ earliest time in this attribute. Empty -> there is no lower limit
 <property name="DE_ATTR_NAME" value="Min Zeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* frühestes Zeitpunkt in diesem Attribut. Leer -&gt; es gibt keine Untergrenze"/>
 <property name="EN_ATTR_NAME" value="Min Time"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -91,8 +90,8 @@ latest time in this attribute. Empty -> there is no upper limit
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -106,8 +105,9 @@ latest time in this attribute. Empty -> there is no upper limit
 <property name="DE_ATTR_NAME" value="Max Zeitpunkt"/>
 <property name="EN_ATTR_COMMENT" value="*DE* spätester Zeitpunkt in diesem Attribut. Leer -&gt; es gibt keine Obergrenze"/>
 <property name="EN_ATTR_NAME" value="Max Time"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
@@ -127,8 +127,8 @@ To which unit is the date rounded (day, minute, month, year)?
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -141,8 +141,9 @@ To which unit is the date rounded (day, minute, month, year)?
 <property name="DE_ATTR_NAME" value="Granularität"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)"/>
 <property name="EN_ATTR_NAME" value="Granularity"/>
+<property name="dev_status" value="REL"/>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>

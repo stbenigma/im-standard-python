@@ -86,7 +86,7 @@ def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
     try:
         idxlist = sorted([{'anker':key,'name': value['name'][plang]}
-                     for key,value in printHTML.model.jsmodel['entities'].items()]
+                     for key,value in printHTML.model.getelement('entities').items()]
                      ,key=lambda val:val['name'])
     except:
         idxlist=[]
@@ -101,7 +101,7 @@ def printlistofcontent(plang):
                                                 if value['entity'] is not None
                                         else printHTML.model.getbyid(value['relation'])['name'])
                        }
-                     for key,value in printHTML.model.jsmodel['attributes'].items()]
+                     for key,value in printHTML.model.getelement('attributes').items()]
                      ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
 
@@ -199,10 +199,11 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
     printHTML.closefile ();
 #printhtmlsysfile
 
-def listwebmain(pmodel:JSModel,plang):
+def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     dbParam.liesdefaultlang()
     printHTML.createlib()
     printHTML.copyimages()
+    pmodel.setstatusfilter(pfilter)
     if (plang is None):
         langs = project.projektlangs().split(',')
         if (len(langs) == 0):
@@ -214,7 +215,7 @@ def listwebmain(pmodel:JSModel,plang):
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    schnlist = pmodel.jsmodel['systems']
+    schnlist = pmodel.getelement(Modelelemtype.INTF)
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
     printHTML.model = pmodel
@@ -260,7 +261,8 @@ def main(pdirec, plang):
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     deflang = Language.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
-    listwebmain(pmodel=JSModel(sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath())), plang=plang)
+    model = JSModel(sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath()))
+    listwebmain(pmodel=model, plang=plang)
 
     dbConnect.myDbConn.close()
 

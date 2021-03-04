@@ -163,6 +163,23 @@ class Baseobject:
     def prefix(self):
         return self._prefix
 
+    def _getmode(self):
+        if self.__modelemtype is None: return None
+        mode = Modelelement().getbyid(self.getid())
+        return mode
+
+    def getminzoomlevel(self):
+        mode = self._getmode()
+        return None if mode is None else mode.mode_min_zoom_level
+
+    def getmaxzoomlevel(self):
+        mode = self._getmode()
+        return None if mode is None else mode.mode_max_zoom_level
+
+    def getdevstatus(self):
+        mode = self._getmode()
+        return None if mode is None else mode.mode_dev_status
+
     @staticmethod
     def createtable(ptablename, psql):
         dbDDL.createTable(psql)

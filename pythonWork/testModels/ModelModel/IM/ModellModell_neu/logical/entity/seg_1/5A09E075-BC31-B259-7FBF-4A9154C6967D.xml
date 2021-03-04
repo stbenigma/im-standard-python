@@ -84,13 +84,12 @@ Customer Services
 <synonym>Hoheitsbereich, Geschäftsfeld, Aufgabenbereich, Geschäftsbereich</synonym>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="Beispiele" value="Geschäftsbereich Automobil /  Human Ressources "/>
 <property name="DE_ENTI_NAME" value="Geschäftaufgabe"/>
 <property name="DE_ENTI_SYNONYM" value="Hoheitsbereich, Geschäftsfeld, Aufgabenbereich, Geschäftsbereich"/>
 <property name="EN_ENTI_NAME" value="Business division"/>
 <property name="EN_ENTI_SYNONYM" value="Area of sovereignty, business field, area of responsibility, business area"/>
-<property name="maxzoollevel" value="5"/>
-<property name="maxzoomlevel" value="5"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -110,8 +109,8 @@ Business division name
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -124,6 +123,7 @@ Business division name
 <property name="DE_ATTR_NAME" value="Name"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name eines Geschäftsbereichs"/>
 <property name="EN_ATTR_NAME" value="Name"/>
+<property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="TRUE"/>
 <property name="maxzoomlevel" value="1"/>
 <property name="minzoomlevel" value="0"/>
@@ -145,8 +145,8 @@ Significance, delimitation of the business area
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -160,6 +160,7 @@ Significance, delimitation of the business area
 <property name="DE_ATTR_NAME" value="Beschreibung"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Abgrenzung des Geschäftsbereichs"/>
 <property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -181,8 +182,8 @@ Name of the entity normally used in communication.
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
@@ -195,6 +196,7 @@ Name of the entity normally used in communication.
 <property name="DE_ATTR_NAME" value="AnzName [L]"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
 <property name="EN_ATTR_NAME" value="*Name [L]"/>
+<property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="FALSE"/>
 <property name="maxzoomlevel" value="0"/>
 <property name="minzoomlevel" value="0"/>
@@ -216,8 +218,8 @@ Application area (ERP, PIM, FiBu etc.)
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
@@ -231,6 +233,7 @@ Application area (ERP, PIM, FiBu etc.)
 <property name="DE_ATTR_NAME" value="Zweck"/>
 <property name="EN_ATTR_COMMENT" value="*DE* Anwendungsgebiet (ERP, PIM, FiBu etc.)"/>
 <property name="EN_ATTR_NAME" value="Purpose"/>
+<property name="dev_status" value="DEV"/>
 <property name="isdescriptive" value="TRUE"/>
 <property name="maxzoomlevel" value="1"/>
 <property name="minzoomlevel" value="0"/>
@@ -245,8 +248,8 @@ Application area (ERP, PIM, FiBu etc.)
 <engineerTo>
 <item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
 <item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
-<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
 <item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
 </engineerTo>
 <pk>true</pk>

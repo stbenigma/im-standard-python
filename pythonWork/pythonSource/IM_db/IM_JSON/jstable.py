@@ -6,13 +6,14 @@ def tables2js(pemptymodel):
                 ,'interface-id+','prefix'
                ,'descr'
                 , 'uc', 'dc', 'um', 'dm'
-                 ,'columns+', 'userdefprops'
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        ,'columns+', 'userdefprops'
                 ,'entitiesmapped', 'sourceref'
                , 'refindocuments+', 'refbyorgunits+'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(9)]
-                                                   + [reflist(), userdefprops()
+                                                   + [0,4,'DEV',reflist(), userdefprops()
                                                        , reflist(), sourceref()
                                                        , reflist(), reflist()])}
     else: 
@@ -22,6 +23,7 @@ def tables2js(pemptymodel):
                    ,jsguid(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid())
                    ,t.tabl_prefix,t.tabl_descr
                 , t.tabl_uc, t.tabl_dc, t.tabl_um, t.tabl_dm
+                , t.getminzoomlevel(),t.getmaxzoomlevel(),t.getdevstatus()
                  ,[jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
                 , udpv2js(pmodeid=t.tabl_id,pmodelemtype=Modelelemtype.TABL)
                     , [jsguid(Modelelemtype.ENTI, e.enti_id) for e in
@@ -48,12 +50,16 @@ def tables2sql(pmodel:JSModel):
         tabl.tabl_dc = jelem['dc']
         tabl.tabl_um = jelem['um']
         tabl.tabl_dm = jelem['dm']
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
         try:
             tabl.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=tabl.tostring())
             continue
 
+        Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     return
 

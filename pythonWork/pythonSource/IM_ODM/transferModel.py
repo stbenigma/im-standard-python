@@ -12,7 +12,6 @@ from mystring import nvl
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
-
 class Color:
     def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
         self.backgcolor = backgcolor
@@ -1396,7 +1395,12 @@ def filllanguages():
     # fill all elements in default language
     Languagetext.filldefaulttext(dbParam.dbDefaultLangID)
     Language.deleteunused()
-# filllanguages
+    return
+
+def fillelementdisplays():
+    Modelelement.insertudpelems(pudpthema=parameters.odmUDPElemdisplFileName())
+    return
+
 
 def transferproject():
     proj = et.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
@@ -1482,7 +1486,21 @@ def transferorgunits():
 
 
 def removeemptyudp():
+    """remove all UDP's which are empty (containing '.' or '' or null as value"""
     Userdefpropvalue.removeemptyUDP(('.',''))
+
+def removefixedudp():
+    """remove all UDP's which are pa rt of our model"""
+    modeludps = [(parameters.odmUDPElemdisplFileName(), val) for val in Modelelement.ODMattrmapping.values()]
+    for lang in Language.select():
+        for name in Languagetext.ODMtranslAttributes:
+            modeludps.append(
+                (parameters.odmUDPTranslFileName(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
+        #for
+    #for
+
+    Userdefprop.removemodelUDP(modeludps)
+    return
 
 emails = {}
 def do1email(fileName):
@@ -1565,4 +1583,6 @@ def transferODMModel():
     BusinessRule.setburuelements()
     removeemptyudp()
     filllanguages()
+    fillelementdisplays()
+    removefixedudp()
 # end transferODMModel

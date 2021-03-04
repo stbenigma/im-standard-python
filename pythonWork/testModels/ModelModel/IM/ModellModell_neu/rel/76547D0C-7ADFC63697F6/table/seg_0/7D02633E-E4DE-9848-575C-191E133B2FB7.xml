@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D02633E-E4DE-9848-575C-191E133B2FB7" schemaObject="833E4DE4-2E61-95B8-D681-1740D7FACB7C" name="DOMAINGROUP_MEMBERS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D02633E-E4DE-9848-575C-191E133B2FB7" name="DOMAINGROUP_MEMBERS">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
 <sourceObjSchema>dbo</sourceObjSchema>
 <sourceObjName>DOMAINGROUP_MEMBERS</sourceObjName>
@@ -8,6 +8,9 @@
 <ownerDesignName>ModellModell_neu</ownerDesignName>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="DGRM_ID" id="0780DC06-27D2-2BB2-3176-AAFF2EAE47EA">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -24,6 +27,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="76D5F9CB-8D3E-E5E4-74BD-6AF4D52B4A39" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
 </associations>
@@ -43,6 +49,9 @@
 <dataTypeSize>60</dataTypeSize>
 <ownDataTypeParameters>60,60,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DGRM_DESCR" id="18E6A144-A109-162F-E744-14A6D772FECA">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -60,6 +69,9 @@
 <dataTypeSize>4000</dataTypeSize>
 <ownDataTypeParameters>4000,4000,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DGRM_IS_MANDATORY" id="C6FBFE8C-30C3-26E2-5ACC-B496C001F1FF">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -80,6 +92,9 @@
 </checkConstraint>
 <ownDataTypeParameters>5,5,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DGRM_DOMA_ID_GROUP" id="DEEE60E0-1FE3-1338-B4FC-5610C2C29918">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -98,6 +113,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <identityColumn>true</identityColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="127E2D12-8819-A0E6-0760-45DAF1A61A40" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
 </associations>
@@ -117,6 +135,9 @@
 <dataTypeSize>9</dataTypeSize>
 <ownDataTypeParameters>9,10,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 <associations>
 <colAssociation fkAssociation="B35A8E4F-A3CA-0741-2BD7-79F0B8C34CF1" referredColumn="1E5AF82A-E320-4109-07BC-155F78733238"/>
 </associations>
@@ -136,6 +157,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DGRM_DC" id="C2BCB247-9CCE-E414-CFFD-FEC19276C16F">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -152,6 +176,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DGRM_UM" id="54C7952B-75DD-9883-E7F4-7BC7889C2ED2">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -169,6 +196,9 @@
 <dataTypeSize>30</dataTypeSize>
 <ownDataTypeParameters>30,30,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 <Column name="DGRM_DM" id="2C1FBEFF-257C-C8A1-BF0C-7ED9D5C12005">
 <sourceConnName>sqlserver-modelmodel</sourceConnName>
@@ -186,6 +216,9 @@
 <dataTypeSize>8</dataTypeSize>
 <ownDataTypeParameters>8,23,3</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
