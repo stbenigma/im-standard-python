@@ -7224,790 +7224,454 @@ sv.setDirty(true);]]>
 			}]]>
 		</script>
 	</scr>
-	<scr id="44681E48-E007-E0B8-C34D-4639E2790590" name="abstractlayer_hidelevels" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="positionelements" purpose="transformation" >
+	<scr id="44681E48-E007-E0B8-C34D-4639E2790590" name="abstractionlevel" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="showhideelements" purpose="transformation" >
 		<script>
 			<![CDATA[// Autoren: aro, stb
-// Functions (hidelevels, createnewview & positionelements) for abstraction-level display in subviews.
-var CODEVERSION = '0.1';
-var gLogNote = "LOG";
-var gParams={};
+// Functions (showhideelements) for abstraction-level display in subviews.
 
-var logInitialized = false;
+//InitVars
+var CODEVERSION = '0.2'
+var PLAINMESSAGE = 1
+var ERRORMESSAGE = 0
+var WARNINGMESSAGE = 2
+var QUESTIONMESSAGE = 3
 
-// HideColor
-var hideColor = new java.awt.Color(255, 128, 128, 255);
-
-// message
-var PLAINMESSAGE = 1;
-var ERRORMESSAGE = 0;
-var WARNINGMESSAGE = 2;
-var QUESTIONMESSAGE = 3;
-
-//ClassCollectionLoad
-var XMLCollection = new JavaImporter(
-    javax.xml.parsers.DocumentBuilderFactory,
-    javax.xml.parsers.DocumentBuilder,
-    javax.xml.transform.TransformerFactory,
-    javax.xml.transform.dom.DOMSource,
-    javax.xml.transform.stream.StreamResult,
-    org.w3c.dom.Document,
-    org.w3c.dom.NodeList,
-    org.w3c.dom.Node,
-    org.w3c.dom.Element,
-    java.io.File);
-
+//Spec
+var minZoomLevel = 0
+var maxZoomLevel = 5
 
 //HelperFunctions start
 function fullmessage(msg,type) {
-    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type);
+    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type)
 }
 
 function promptmessage(msg,type) {
-    retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type);
-    return retval;
+    retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type)
+    return retval
+}
+
+function confirmmessage(msg,type) {
+    retval = Java.type("javax.swing.JOptionPane").showConfirmDialog(null, msg,'ODM-Confirmbox', type)
+    if (retval == 0) {
+        return true
+    }else{
+        return false
+    }
 }
 
 function error(msg) {
-    fullmessage(msg,ERRORMESSAGE);
+    fullmessage(msg,ERRORMESSAGE)
 }
 
 function message(msg) {
-    fullmessage(msg,PLAINMESSAGE);
+    fullmessage(msg,PLAINMESSAGE)
 }
 
-function prompt(qst){
-    retval = promptmessage(qst,QUESTIONMESSAGE);
-    return retval;
+function prompt(msg){
+    retval = promptmessage(msg,QUESTIONMESSAGE)
+    return retval
+}
+
+function confirm(msg){
+    retval = confirmmessage(msg,0)
+    return retval
 }
 
 function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+    return !isNaN(parseFloat(n)) && isFinite(n)
 }
 
-function getsubview(checkpart){
-    svlist = model.getDesign().getLogicalDesign().getListOfSubviews() ;
-    retval = null;
+function getMinMax(checkObj){
+    minzl = checkObj.getProperty("minzoomlevel")  
+    maxzl = checkObj.getProperty("maxzoomlevel")
+    if (!(isNumeric(minzl))){
+        minzl = minZoomLevel
+    }
+    if (!(isNumeric(maxzl))){
+        maxzl = maxZoomLevel
+    }    
+}
+
+function getsubview(thissv){
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    var retval = null
     for (var vv=0;vv<svlist.length;vv++){
-        sv = svlist[vv];
-        if (sv.isCurrentDPV()) {
-            if (checkpart == "ID") {
-                retval = sv.getDPVId();
-            }else{
-                retval = sv;
-            }          
+        var checksv = svlist[vv]
+        if (((thissv == null) && (checksv.isCurrentDPV())) || (thissv == checksv)) {
+            var retval = checksv
         }
     }
-    return retval;
+    return retval
 }
 
-function getzoomlevel(sv){
-    retval = sv.getComment().replace("zoomlevel=","");
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
+function getcommentvalue(srcobj,srcvalue){      
+    var retval = null
+    var commentlines = []
+    var commentlines = srcobj.getComment().split("\n")
+    for (var vv=0;vv<commentlines.length;vv++){
+        if (commentlines[vv].contains(srcvalue+"=")){
+            var retval = commentlines[vv].replace(srcvalue+"=","")
+        }
     }
-    return retval;
+    if (retval == null) {
+        error("No "+srcvalue+" definition in view "+srcobj+" found!")
+    }
+    return retval
 }
 
 function getzoomlevelprompt(){
-    retval = prompt('Specify desired zoomlevel');
+    retval = prompt('Choose desired zoomlevel');
     if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
+        message("No zoomlevel detected\nDefault zoomlevel: "+minZoomLevel);
+        retval = minZoomLevel;
     }
     return retval;
 }
 //HelperFunctions end
 
-//HideLevelFunctions start
-function hideshowattributes(sv,zlevel){
-    dentities = sv.getTVShapes()   
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                attrs = entity.getAttributes().toArray();
-                for (var ia=0;ia<attrs.length;ia++) {
-                    attr = attrs[ia]
-                    maxzl = attr.getProperty("maxzoomlevel")
-                    minzl = attr.getProperty("minzoomlevel")
-                    if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                        message("Remove-Attr: "+attr+"\nattrID:"+attr.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                        /*
-                        COLORCHANGE -> nicht auf einzelne Attribute möglich!
-                        */
-                    }
-                }
-            }
-        }
+function dev_createsubview(){
+    //InitPart begin
+    logger = model.getAppView()
+    sv = getsubview(null)
+    if (sv == null){
+        return
     }
-}
-
-function hideshowrelationships(sv,zlevel){
-    drelations = sv.getTVConnectors()
-    for (var vv=0;vv<drelations.length;vv++){
-        relations = model.getRelationSet().toArray();
-        drelation = drelations[vv]
-        for (var ir=0;ir<relations.length;ir++) {
-            relation = relations[ir]
-            if (drelation == relation.getName()){
-                maxzl = relation.getProperty("maxzoomlevel")
-                minzl = relation.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){       
-                    message("Remove-Relation: "+relation+"\nrelaID:"+relation.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                    tv = relation.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setBackgroundColor(hideColor)                 
-                }
-            }
-        }
-    }
-}
-
-function hideentities(sv, zlevel){
-    dentities = sv.getTVShapes()  
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (var ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                maxzl = entity.getProperty("maxzoomlevel")
-                minzl = entity.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                    message("Remove-Entity: "+entity+"\nentityID:"+entity.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)    
-                    tv = entity.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setUseCustomFormat(true)
-                    tv.setBackgroundColor(hideColor)
-                }
-            }
-        }
-    }
-}
-
-function hidelevels(){
-    sv = getsubview()
-    zlevel = getzoomlevel(sv)
-    if (zlevel != 0){
-        hideshowattributes(sv,zlevel)
-        hideshowrelationships(sv,zlevel)
-        hideentities(sv, zlevel)
-    }   
-} 
-//HideLevelFunctions end
-
-//GenearteSubViewFunctions start
-function createnewview(){
-    zlevel = getzoomlevelprompt()
+    newzlevel = getzoomlevelprompt()
+    sventities = sv.getTVShapes()
     var list = []
-    mainView = model.getMainView()
-    entities = model.getEntitySet().toArray()
-    for (var e = 0; e < entities.length; e++){
-        entity = entities[e]
-        /*
-        Check if element must be copied 
-        IF (COPY_ALLOWED) {
-        */
-            tv0 = entity.getFirstViewForDPV(mainView)
-            if (tv0.getCellView() == null) {
-                error("ERROR: Open MainView once!")
-                return;
-            }else{
+
+    logger.logMessage("\n")
+
+    for (var ie=0;ie<sventities.length;ie++){
+        sventity = sventities[ie]
+        entity = model.getEntitySet().getByName(sventity)
+        if (entity != null) {
+            getMinMax(entity)
+            if (!((newzlevel > maxzl) || (newzlevel < minzl))){
+                tv0 = entity.getFirstViewForDPV(sv)
                 cell0 = tv0.getCellView().getCell()
                 list.push(cell0)    
             }
-        /*
         }
-        */
     }
-    mainView.getWorkSpace().setSelectionCells(list)
-    mainView.createSubViewFromSelected()
-}
+    sv.getWorkSpace().setSelectionCells(list)
+    sv.createSubViewFromSelected()
 
-
-function positionelements(){
-    with (XMLCollection) {
-        /*
-        PathToSVFiles Manuell DEV!
-        = Pfad zur "Grundmodell-View"
-        */
-        PathToSVFiles = "C:/Develop/FYAYC/fyyccim-tools/ODMscripting/IM/fyayc_dev_base/logical/subviews/" 
-        message("PathToSVFiles Manuell DEV!\n"+PathToSVFiles)
-        //
-        MasterFilePath = PathToSVFiles+getsubview("ID")+".xml"
-        SourceXmlFile = new File(PathToSVFiles+"F9B32D80-2BAB-119D-49CF-82E87AEFBD35.xml");
-        TargetXmlFile = new File(MasterFilePath);
-
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dBuilder = dbFactory.newDocumentBuilder();
-        sourcedoc = dBuilder.parse(SourceXmlFile);
-        targetdoc = dBuilder.parse(TargetXmlFile);
-
-        sourcedoc.getDocumentElement().normalize();
-        nListS = sourcedoc.getElementsByTagName("OView");     
-        targetdoc.getDocumentElement().normalize();
-        nListT = targetdoc.getElementsByTagName("OView");   
-
-        //bounds
-        for (var temp = 0; temp < nListS.getLength(); temp++) {    
-            nNodeS = nListS.item(temp);                  
-            if (nNodeS.getNodeType() == Node.ELEMENT_NODE) {  
-                eElementS = nNodeS;
-                nSubListS = eElementS.getElementsByTagName("bounds");
-                for (var temp2 = 0; temp2 < nSubListS.getLength(); temp2++) {   
-                    nNodeS2 = nSubListS.item(temp2);
-                    for (var temp3 = 0; temp3 < nListT.getLength(); temp3++) {    
-                        nNodeT = nListT.item(temp3);                  
-                        if ((nNodeT.getNodeType() == Node.ELEMENT_NODE) &&  (nNodeS.getAttribute("oid") == nNodeT.getAttribute("oid"))) {
-                            eElementT = nNodeT
-                            nSubListT = eElementT.getElementsByTagName("bounds")
-                            for (var temp4 = 0; temp4 < nSubListS.getLength(); temp4++) {   
-                                nNodeT2 = nSubListT.item(temp4);
-                                nNodeT2.setAttribute("x",nNodeS2.getAttribute("x"))
-                                nNodeT2.setAttribute("y",nNodeS2.getAttribute("y"))
-                                nNodeT2.setAttribute("height",nNodeS2.getAttribute("height"))
-                                nNodeT2.setAttribute("width",nNodeS2.getAttribute("width"))
-                            }
-                        }
-                    }
-                }              
-            }
-        }
-        transformerFactory = TransformerFactory.newInstance();
-        transformer = transformerFactory.newTransformer();
-        source = new DOMSource(targetdoc);
-        result = new StreamResult(new File(MasterFilePath));
-        transformer.transform(source, result);
-    }
-    message("Restart ODM or reload design!");
-}
-//GenearteSubViewFunctions end]]>
-		</script>
-	</scr>
-	<scr id="D735A5D6-BA48-059F-E367-11D39F6703AD" name="abstractlayer_createnewview" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="positionelements" purpose="transformation" >
-		<script>
-			<![CDATA[// Autoren: aro, stb
-// Functions (hidelevels, createnewview & positionelements) for abstraction-level display in subviews.
-var CODEVERSION = '0.1';
-var gLogNote = "LOG";
-var gParams={};
-
-var logInitialized = false;
-
-// HideColor
-var hideColor = new java.awt.Color(255, 128, 128, 255);
-
-// message
-var PLAINMESSAGE = 1;
-var ERRORMESSAGE = 0;
-var WARNINGMESSAGE = 2;
-var QUESTIONMESSAGE = 3;
-
-//ClassCollectionLoad
-var XMLCollection = new JavaImporter(
-    javax.xml.parsers.DocumentBuilderFactory,
-    javax.xml.parsers.DocumentBuilder,
-    javax.xml.transform.TransformerFactory,
-    javax.xml.transform.dom.DOMSource,
-    javax.xml.transform.stream.StreamResult,
-    org.w3c.dom.Document,
-    org.w3c.dom.NodeList,
-    org.w3c.dom.Node,
-    org.w3c.dom.Element,
-    java.io.File);
-
-
-//HelperFunctions start
-function fullmessage(msg,type) {
-    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type);
-}
-
-function promptmessage(msg,type) {
-    retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type);
-    return retval;
-}
-
-function error(msg) {
-    fullmessage(msg,ERRORMESSAGE);
-}
-
-function message(msg) {
-    fullmessage(msg,PLAINMESSAGE);
-}
-
-function prompt(qst){
-    retval = promptmessage(qst,QUESTIONMESSAGE);
-    return retval;
-}
-
-function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function getsubview(checkpart){
-    svlist = model.getDesign().getLogicalDesign().getListOfSubviews() ;
-    retval = null;
+    svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
     for (var vv=0;vv<svlist.length;vv++){
-        sv = svlist[vv];
-        if (sv.isCurrentDPV()) {
-            if (checkpart == "ID") {
-                retval = sv.getDPVId();
-            }else{
-                retval = sv;
-            }          
+        thissv = svlist[vv];
+        if (thissv.isCurrentDPV()) {
+            thissv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
         }
     }
-    return retval;
+
 }
 
-function getzoomlevel(sv){
-    retval = sv.getComment().replace("zoomlevel=","");
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
-    }
-    return retval;
-}
+function dev_initzoomlevel(){
+    //InitPart begin
+    logger = model.getAppView()
+    logger.logMessage("\n")
 
-function getzoomlevelprompt(){
-    retval = prompt('Specify desired zoomlevel');
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
-    }
-    return retval;
-}
-//HelperFunctions end
+    overwrite = confirm("Overwrite existing definitions?")
 
-//HideLevelFunctions start
-function hideshowattributes(sv,zlevel){
-    dentities = sv.getTVShapes()   
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                attrs = entity.getAttributes().toArray();
-                for (var ia=0;ia<attrs.length;ia++) {
-                    attr = attrs[ia]
-                    maxzl = attr.getProperty("maxzoomlevel")
-                    minzl = attr.getProperty("minzoomlevel")
-                    if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                        message("Remove-Attr: "+attr+"\nattrID:"+attr.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                        /*
-                        COLORCHANGE -> nicht auf einzelne Attribute möglich!
-                        */
-                    }
-                }
-            }
-        }
-    }
-}
-
-function hideshowrelationships(sv,zlevel){
-    drelations = sv.getTVConnectors()
-    for (var vv=0;vv<drelations.length;vv++){
-        relations = model.getRelationSet().toArray();
-        drelation = drelations[vv]
-        for (var ir=0;ir<relations.length;ir++) {
-            relation = relations[ir]
-            if (drelation == relation.getName()){
-                maxzl = relation.getProperty("maxzoomlevel")
-                minzl = relation.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){       
-                    message("Remove-Relation: "+relation+"\nrelaID:"+relation.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                    tv = relation.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setBackgroundColor(hideColor)                 
-                }
-            }
-        }
-    }
-}
-
-function hideentities(sv, zlevel){
-    dentities = sv.getTVShapes()  
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (var ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                maxzl = entity.getProperty("maxzoomlevel")
-                minzl = entity.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                    message("Remove-Entity: "+entity+"\nentityID:"+entity.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)    
-                    tv = entity.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setUseCustomFormat(true)
-                    tv.setBackgroundColor(hideColor)
-                }
-            }
-        }
-    }
-}
-
-function hidelevels(){
-    sv = getsubview()
-    zlevel = getzoomlevel(sv)
-    if (zlevel != 0){
-        hideshowattributes(sv,zlevel)
-        hideshowrelationships(sv,zlevel)
-        hideentities(sv, zlevel)
-    }   
-} 
-//HideLevelFunctions end
-
-//GenearteSubViewFunctions start
-function createnewview(){
-    zlevel = getzoomlevelprompt()
-    var list = []
-    mainView = model.getMainView()
     entities = model.getEntitySet().toArray()
-    for (var e = 0; e < entities.length; e++){
-        entity = entities[e]
-        maxzl = entity.getProperty("maxzoomlevel")
-        minzl = entity.getProperty("minzoomlevel")     
-        if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-            //error("Remove?"+entity.getName())
+    relations = model.getRelationSet().toArray()
+
+    for (var ie=0;ie<entities.length;ie++){
+        entity = entities[ie]
+        if (overwrite){
+            entity.setProperty("minzoomlevel",minZoomLevel)
+            entity.setProperty("maxzoomlevel",maxZoomLevel)
         }else{
-            tv0 = entity.getFirstViewForDPV(mainView)
-            if (tv0.getCellView() == null) {
-                error("ERROR: Open MainView once!")
-                return;
+            minzl = entity.getProperty("minzoomlevel")  
+            maxzl = entity.getProperty("maxzoomlevel")
+            if (!(isNumeric(minzl))){
+                entity.setProperty("minzoomlevel",minZoomLevel)
+            }
+            if (!(isNumeric(maxzl))){
+                entity.setProperty("maxzoomlevel",maxZoomLevel)
+            }
+        }
+        attrs = entity.getAttributes().toArray()
+        for (var ia=0;ia<attrs.length;ia++) {
+            attr = attrs[ia]
+            if (overwrite){
+                attr.setProperty("minzoomlevel",minZoomLevel)
+                attr.setProperty("maxzoomlevel",maxZoomLevel)
             }else{
-                cell0 = tv0.getCellView().getCell()
-                list.push(cell0)    
+                minzl = attr.getProperty("minzoomlevel")  
+                maxzl = attr.getProperty("maxzoomlevel")
+                if (!(isNumeric(minzl))){
+                    attr.setProperty("minzoomlevel",minZoomLevel)
+                }
+                if (!(isNumeric(maxzl))){
+                    attr.setProperty("maxzoomlevel",maxZoomLevel)
+                }
+            }
+
+        }
+    }
+    for (var ir=0;ir<relations.length;ir++){
+        relation = relations[ir]
+        if (overwrite){
+            relation.setProperty("minzoomlevel",minZoomLevel)
+            relation.setProperty("maxzoomlevel",maxZoomLevel)
+        }else{
+            minzl = relation.getProperty("minzoomlevel")  
+            maxzl = relation.getProperty("maxzoomlevel")
+            if (!(isNumeric(minzl))){
+                relation.setProperty("minzoomlevel",minZoomLevel)
+            }
+            if (!(isNumeric(maxzl))){
+                relation.setProperty("maxzoomlevel",maxZoomLevel)
             }
         }
     }
-    mainView.getWorkSpace().setSelectionCells(list)
-    mainView.createSubViewFromSelected()
 }
 
-
-function positionelements(){
-    with (XMLCollection) {
-        /*
-        PathToSVFiles Manuell DEV!
-        = Pfad zur "Grundmodell-View"
-        */
-        PathToSVFiles = "C:/Develop/FYAYC/fyyccim-tools/ODMscripting/IM/fyayc_dev_base/logical/subviews/" 
-        message("PathToSVFiles Manuell DEV!\n"+PathToSVFiles)
-        //
-        MasterFilePath = PathToSVFiles+getsubview("ID")+".xml"
-        SourceXmlFile = new File(PathToSVFiles+"F9B32D80-2BAB-119D-49CF-82E87AEFBD35.xml");
-        TargetXmlFile = new File(MasterFilePath);
-
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dBuilder = dbFactory.newDocumentBuilder();
-        sourcedoc = dBuilder.parse(SourceXmlFile);
-        targetdoc = dBuilder.parse(TargetXmlFile);
-
-        sourcedoc.getDocumentElement().normalize();
-        nListS = sourcedoc.getElementsByTagName("OView");     
-        targetdoc.getDocumentElement().normalize();
-        nListT = targetdoc.getElementsByTagName("OView");   
-
-        //bounds
-        for (var temp = 0; temp < nListS.getLength(); temp++) {    
-            nNodeS = nListS.item(temp);                  
-            if (nNodeS.getNodeType() == Node.ELEMENT_NODE) {  
-                eElementS = nNodeS;
-                nSubListS = eElementS.getElementsByTagName("bounds");
-                for (var temp2 = 0; temp2 < nSubListS.getLength(); temp2++) {   
-                    nNodeS2 = nSubListS.item(temp2);
-                    for (var temp3 = 0; temp3 < nListT.getLength(); temp3++) {    
-                        nNodeT = nListT.item(temp3);                  
-                        if ((nNodeT.getNodeType() == Node.ELEMENT_NODE) &&  (nNodeS.getAttribute("oid") == nNodeT.getAttribute("oid"))) {
-                            eElementT = nNodeT
-                            nSubListT = eElementT.getElementsByTagName("bounds")
-                            for (var temp4 = 0; temp4 < nSubListS.getLength(); temp4++) {   
-                                nNodeT2 = nSubListT.item(temp4);
-                                nNodeT2.setAttribute("x",nNodeS2.getAttribute("x"))
-                                nNodeT2.setAttribute("y",nNodeS2.getAttribute("y"))
-                                nNodeT2.setAttribute("height",nNodeS2.getAttribute("height"))
-                                nNodeT2.setAttribute("width",nNodeS2.getAttribute("width"))
-                            }
-                        }
-                    }
-                }              
-            }
-        }
-        transformerFactory = TransformerFactory.newInstance();
-        transformer = transformerFactory.newTransformer();
-        source = new DOMSource(targetdoc);
-        result = new StreamResult(new File(MasterFilePath));
-        transformer.transform(source, result);
+function showhideelements(){
+    //InitPart begin
+    logger = model.getAppView()
+    sv = getsubview(null)  
+    svzlevel = getcommentvalue(sv,"zoomlevel")
+    svpview = getcommentvalue(sv,"parentview")  
+    if ((svzlevel == null) || (svpview == null)){
+        return
     }
-    message("Restart ODM or reload design!");
-}
-//GenearteSubViewFunctions end]]>
-		</script>
-	</scr>
-	<scr id="A3696B4C-BE28-C9D3-4CE1-4920805405EB" name="abstractlayer_positionelements" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="positionelements" purpose="transformation" >
-		<script>
-			<![CDATA[// Autoren: aro, stb
-// Functions (hidelevels, createnewview & positionelements) for abstraction-level display in subviews.
-var CODEVERSION = '0.1';
-var gLogNote = "LOG";
-var gParams={};
-
-var logInitialized = false;
-
-// HideColor
-var hideColor = new java.awt.Color(255, 128, 128, 255);
-
-// message
-var PLAINMESSAGE = 1;
-var ERRORMESSAGE = 0;
-var WARNINGMESSAGE = 2;
-var QUESTIONMESSAGE = 3;
-
-//ClassCollectionLoad
-var XMLCollection = new JavaImporter(
-    javax.xml.parsers.DocumentBuilderFactory,
-    javax.xml.parsers.DocumentBuilder,
-    javax.xml.transform.TransformerFactory,
-    javax.xml.transform.dom.DOMSource,
-    javax.xml.transform.stream.StreamResult,
-    org.w3c.dom.Document,
-    org.w3c.dom.NodeList,
-    org.w3c.dom.Node,
-    org.w3c.dom.Element,
-    java.io.File);
-
-
-//HelperFunctions start
-function fullmessage(msg,type) {
-    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type);
-}
-
-function promptmessage(msg,type) {
-    retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type);
-    return retval;
-}
-
-function error(msg) {
-    fullmessage(msg,ERRORMESSAGE);
-}
-
-function message(msg) {
-    fullmessage(msg,PLAINMESSAGE);
-}
-
-function prompt(qst){
-    retval = promptmessage(qst,QUESTIONMESSAGE);
-    return retval;
-}
-
-function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function getsubview(checkpart){
-    svlist = model.getDesign().getLogicalDesign().getListOfSubviews() ;
-    retval = null;
-    for (var vv=0;vv<svlist.length;vv++){
-        sv = svlist[vv];
-        if (sv.isCurrentDPV()) {
-            if (checkpart == "ID") {
-                retval = sv.getDPVId();
-            }else{
-                retval = sv;
-            }          
-        }
+    pv = getsubview(svpview)
+    pvzlevel = getcommentvalue(pv,"zoomlevel")
+    if (pvzlevel == null) {
+        return
     }
-    return retval;
-}
 
-function getzoomlevel(sv){
-    retval = sv.getComment().replace("zoomlevel=","");
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
-    }
-    return retval;
-}
+    entities = model.getEntitySet().toArray()
+    sventities = sv.getTVShapes()
+    svrelations = sv.getTVConnectors()
 
-function getzoomlevelprompt(){
-    retval = prompt('Specify desired zoomlevel');
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
-    }
-    return retval;
-}
-//HelperFunctions end
+    relations = model.getRelationSet().toArray()
+    pventities = pv.getTVShapes()
+    pvrelations = pv.getTVConnectors()    
+    
+    logger.logMessage("\n")
+    //InitPart end
 
-//HideLevelFunctions start
-function hideshowattributes(sv,zlevel){
-    dentities = sv.getTVShapes()   
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                attrs = entity.getAttributes().toArray();
+    //ZoomlevelCheck Entity begin
+    logPrefix = "ZoomlevelCheck > Entity"
+    logger.logMessage(logPrefix)
+    showElements = []
+    hideElements = []
+    showAttributes = []
+    hideAttributes = []    
+    for (var ie = 0; ie < entities.length; ie++){
+        entity = entities[ie]
+        isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            sventity = sventities[ie2]
+            if (entity.getName() == sventity){
+                isOnSV = true               
+                attrs = entity.getAttributes().toArray()
                 for (var ia=0;ia<attrs.length;ia++) {
                     attr = attrs[ia]
-                    maxzl = attr.getProperty("maxzoomlevel")
-                    minzl = attr.getProperty("minzoomlevel")
-                    if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                        message("Remove-Attr: "+attr+"\nattrID:"+attr.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                        /*
-                        COLORCHANGE -> nicht auf einzelne Attribute möglich!
-                        */
+                    getMinMax(attr)
+                    isOnSVEntity = true
+                    hiddenElements = sventity.getHiddenElements()
+                    for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                        hiddenElement = hiddenElements[ia2]
+                        if (attr == hiddenElement){
+                            isOnSVEntity = false
+                        }
                     }
-                }
+                    if ((svzlevel > maxzl) || (svzlevel < minzl)) {
+                        if (isOnSVEntity) {
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)    
+                        }
+                    }else{
+                        if (!(isOnSVEntity)){
+                            showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                        }
+                    }
+                }                             
+            }
+        }
+        getMinMax(entity)
+        if ((svzlevel > maxzl) || (svzlevel < minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+entity)    
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+entity)    
             }
         }
     }
-}
+    for (var i=0;i<showElements.length;i++){
+        logger.logMessage(showElements[i])
+    }
+    for (var i=0;i<hideElements.length;i++){
+        logger.logMessage(hideElements[i])
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        logger.logMessage(hideAttributes[i])
+    }
+    //ZoomlevelCheck Entity end
 
-function hideshowrelationships(sv,zlevel){
-    drelations = sv.getTVConnectors()
-    for (var vv=0;vv<drelations.length;vv++){
-        relations = model.getRelationSet().toArray();
-        drelation = drelations[vv]
-        for (var ir=0;ir<relations.length;ir++) {
-            relation = relations[ir]
-            if (drelation == relation.getName()){
-                maxzl = relation.getProperty("maxzoomlevel")
-                minzl = relation.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){       
-                    message("Remove-Relation: "+relation+"\nrelaID:"+relation.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                    tv = relation.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setBackgroundColor(hideColor)                 
-                }
+    //ZoomlevelCheck Relation begin
+    logPrefix = "ZoomlevelCheck > Relation"
+    logger.logMessage(logPrefix)
+    showElements = []
+    hideElements = []
+    for (var ir = 0; ir < relations.length; ir++){
+        relation = relations[ir]
+        isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            svrelation = svrelations[ir2]
+            if (relation.getName() == svrelation){
+                isOnSV = true
             }
         }
-    }
-}
-
-function hideentities(sv, zlevel){
-    dentities = sv.getTVShapes()  
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (var ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                maxzl = entity.getProperty("maxzoomlevel")
-                minzl = entity.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                    message("Remove-Entity: "+entity+"\nentityID:"+entity.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)    
-                    tv = entity.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setUseCustomFormat(true)
-                    tv.setBackgroundColor(hideColor)
-                }
+        getMinMax(relation)
+        if ((svzlevel > maxzl) || (svzlevel < minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+relation)    
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+relation)    
             }
         }
-    }
-}
-
-function hidelevels(){
-    sv = getsubview()
-    zlevel = getzoomlevel(sv)
-    if (zlevel != 0){
-        hideshowattributes(sv,zlevel)
-        hideshowrelationships(sv,zlevel)
-        hideentities(sv, zlevel)
     }   
-} 
-//HideLevelFunctions end
+    for (var is=0;is<showElements.length;is++){
+        logger.logMessage(showElements[is])
+    }
+    for (var ih=0;ih<hideElements.length;ih++){
+        logger.logMessage(hideElements[ih])
+    }
+    //ZoomlevelCheck Relation end
 
-//GenearteSubViewFunctions start
-function createnewview(){
-    zlevel = getzoomlevelprompt()
-    var list = []
-    mainView = model.getMainView()
-    entities = model.getEntitySet().toArray()
-    for (var e = 0; e < entities.length; e++){
-        entity = entities[e]
-        maxzl = entity.getProperty("maxzoomlevel")
-        minzl = entity.getProperty("minzoomlevel")
-        
-        if (!(((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl))){
-            tv0 = entity.getFirstViewForDPV(mainView)
-            if (tv0.getCellView() == null) {
-                error("ERROR: Open MainView once!")
-                return;
-            }else{
-                cell0 = tv0.getCellView().getCell()
-                list.push(cell0)    
+    //ParentViewCompare Entity begin
+    logPrefix = "ParentViewCompare > Entity"
+    logger.logMessage(logPrefix)
+    showAttributes = []
+    hideAttributes = []
+    for (var ie = 0; ie < pventities.length; ie++){
+        pventity = pventities[ie]
+        entity = model.getEntitySet().getByName(pventity)
+        var thissventity = null
+        isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            sventity = sventities[ie2]
+            if (pventity.toString() == sventity.toString()){
+                isOnSV = true
+                var thissventity = sventity
             }
         }
-    }
-    mainView.getWorkSpace().setSelectionCells(list)
-    mainView.createSubViewFromSelected()
-}
-
-
-function positionelements(){
-    with (XMLCollection) {
-        /*
-        PathToSVFiles Manuell DEV!
-        = Pfad zur "Grundmodell-View"
-        */
-        PathToSVFiles = "C:/Develop/FYAYC/fyyccim-tools/ODMscripting/IM/fyayc_dev_base/logical/subviews/" 
-        message("PathToSVFiles Manuell DEV!\n"+PathToSVFiles)
-        //
-        MasterFilePath = PathToSVFiles+getsubview("ID")+".xml"
-        SourceXmlFile = new File(PathToSVFiles+"F9B32D80-2BAB-119D-49CF-82E87AEFBD35.xml");
-        TargetXmlFile = new File(MasterFilePath);
-
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dBuilder = dbFactory.newDocumentBuilder();
-        sourcedoc = dBuilder.parse(SourceXmlFile);
-        targetdoc = dBuilder.parse(TargetXmlFile);
-
-        sourcedoc.getDocumentElement().normalize();
-        nListS = sourcedoc.getElementsByTagName("OView");     
-        targetdoc.getDocumentElement().normalize();
-        nListT = targetdoc.getElementsByTagName("OView");   
-
-        //bounds
-        for (var temp = 0; temp < nListS.getLength(); temp++) {    
-            nNodeS = nListS.item(temp);                  
-            if (nNodeS.getNodeType() == Node.ELEMENT_NODE) {  
-                eElementS = nNodeS;
-                nSubListS = eElementS.getElementsByTagName("bounds");
-                for (var temp2 = 0; temp2 < nSubListS.getLength(); temp2++) {   
-                    nNodeS2 = nSubListS.item(temp2);
-                    for (var temp3 = 0; temp3 < nListT.getLength(); temp3++) {    
-                        nNodeT = nListT.item(temp3);                  
-                        if ((nNodeT.getNodeType() == Node.ELEMENT_NODE) &&  (nNodeS.getAttribute("oid") == nNodeT.getAttribute("oid"))) {
-                            eElementT = nNodeT
-                            nSubListT = eElementT.getElementsByTagName("bounds")
-                            for (var temp4 = 0; temp4 < nSubListS.getLength(); temp4++) {   
-                                nNodeT2 = nSubListT.item(temp4);
-                                nNodeT2.setAttribute("x",nNodeS2.getAttribute("x"))
-                                nNodeT2.setAttribute("y",nNodeS2.getAttribute("y"))
-                                nNodeT2.setAttribute("height",nNodeS2.getAttribute("height"))
-                                nNodeT2.setAttribute("width",nNodeS2.getAttribute("width"))
+        if (!(isOnSV)){            
+            if (entity != null){
+                getMinMax(entity)
+                if ((pvzlevel > maxzl) || (pvzlevel < minzl)){
+                    logger.logMessage(logPrefix+" > SHOW: "+entity)
+                }
+            }
+        }else{
+            pvhiddenElements = pventity.getHiddenElements()
+            svhiddenElements = thissventity.getHiddenElements()
+            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                pvhiddenElement = pvhiddenElements[ih]
+                getMinMax(pvhiddenElement)
+                if (!((pvzlevel > maxzl) || (pvzlevel < minzl))) {
+                    for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                        if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                            isOnSV = false
+                        }
+                    }
+                    if (isOnSV){
+                        hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                    } 
+                }
+            }
+            if (entity != null){
+                attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    attr = attrs[ia]
+                    getMinMax(attr)
+                    isOnPV = true
+                    if ((pvzlevel > maxzl) || (pvzlevel < minzl)) {
+                        for (var ih=0;ih<pvhiddenElements.length;ih++){
+                            if (pvhiddenElements[ih] == attr){
+                                isOnPV = false
+                            }
+                        }
+                        if (isOnPV){
+                            isOnSV = true
+                            for (var ih=0;ih<svhiddenElements.length;ih++){
+                                if (svhiddenElements[ih] == attr){
+                                    isOnSV = false
+                                }
+                            }
+                            if (!(isOnSV)){
+                                showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
                             }
                         }
                     }
-                }              
+                }        
             }
         }
-        transformerFactory = TransformerFactory.newInstance();
-        transformer = transformerFactory.newTransformer();
-        source = new DOMSource(targetdoc);
-        result = new StreamResult(new File(MasterFilePath));
-        transformer.transform(source, result);
     }
-    message("Restart ODM or reload design!");
-}
-//GenearteSubViewFunctions end]]>
+    for (var ie = 0; ie < sventities.length; ie++){
+        sventity = sventities[ie]
+        isOnPV = false
+        for (var ie2=0;ie2<pventities.length;ie2++){
+            pventity = pventities[ie2]
+            if (pventity.toString() == sventity.toString()){
+                isOnPV = true
+            }
+        }
+        if (!(isOnPV)){
+            logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+        }
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        logger.logMessage(hideAttributes[i])
+    }
+    //ParentViewCompare Entity end
+
+    //ParentViewCompare Relation begin
+    logPrefix = "ParentViewCompare > Relation"
+    logger.logMessage(logPrefix)
+    for (var ir = 0; ir < pvrelations.length; ir++){
+        pvrelation = pvrelations[ir]
+        isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            svrelation = svrelations[ir2]
+            if (pvrelation.toString() == svrelation.toString()){
+                isOnSV = true
+            }
+        }
+        if (!(isOnSV)){
+            logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+        }
+    }
+    for (var ir = 0; ir < svrelations.length; ir++){
+        svrelation = svrelations[ir]
+        isOnPV = false
+        for (var ir2=0;ir2<pvrelations.length;ir2++){
+            pvrelation = pvrelations[ir2]
+            if (pvrelation.toString() == svrelation.toString()){
+                isOnPV = true
+            }
+        }
+        if (!(isOnPV)){
+            logger.logMessage(logPrefix+" > HIDE: "+svrelation)    
+        }
+    }
+    //ParentViewCompare Relation end   
+} ]]>
 		</script>
 	</scr>
 
@@ -9653,266 +9317,454 @@ ddlStatementsList.add(new java.lang.String(ddl));
 				}]]>
 		</script>
 	</lib>
-	<lib id="01549B4A-FBAA-A168-A09B-CFDA99211B5F" name="abstractionlevel" engine="Oracle Nashorn" methods="hidelevels,createnewview,positionelements" >
+	<lib id="01549B4A-FBAA-A168-A09B-CFDA99211B5F" name="abstractionlevel" engine="Oracle Nashorn" methods="showhideelements,dev_createsubview,dev_initzoomlevel" >
 		<script>
 			<![CDATA[// Autoren: aro, stb
-// Functions (hidelevels, createnewview & positionelements) for abstraction-level display in subviews.
-var CODEVERSION = '0.1';
-var gLogNote = "LOG";
-var gParams={};
+// Functions (showhideelements) for abstraction-level display in subviews.
 
-var logInitialized = false;
+//InitVars
+var CODEVERSION = '0.2'
+var PLAINMESSAGE = 1
+var ERRORMESSAGE = 0
+var WARNINGMESSAGE = 2
+var QUESTIONMESSAGE = 3
 
-// HideColor
-var hideColor = new java.awt.Color(255, 128, 128, 255);
-
-// message
-var PLAINMESSAGE = 1;
-var ERRORMESSAGE = 0;
-var WARNINGMESSAGE = 2;
-var QUESTIONMESSAGE = 3;
-
-//ClassCollectionLoad
-var XMLCollection = new JavaImporter(
-    javax.xml.parsers.DocumentBuilderFactory,
-    javax.xml.parsers.DocumentBuilder,
-    javax.xml.transform.TransformerFactory,
-    javax.xml.transform.dom.DOMSource,
-    javax.xml.transform.stream.StreamResult,
-    org.w3c.dom.Document,
-    org.w3c.dom.NodeList,
-    org.w3c.dom.Node,
-    org.w3c.dom.Element,
-    java.io.File);
-
+//Spec
+var minZoomLevel = 0
+var maxZoomLevel = 5
 
 //HelperFunctions start
 function fullmessage(msg,type) {
-    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type);
+    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type)
 }
 
 function promptmessage(msg,type) {
-    retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type);
-    return retval;
+    retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type)
+    return retval
+}
+
+function confirmmessage(msg,type) {
+    retval = Java.type("javax.swing.JOptionPane").showConfirmDialog(null, msg,'ODM-Confirmbox', type)
+    if (retval == 0) {
+        return true
+    }else{
+        return false
+    }
 }
 
 function error(msg) {
-    fullmessage(msg,ERRORMESSAGE);
+    fullmessage(msg,ERRORMESSAGE)
 }
 
 function message(msg) {
-    fullmessage(msg,PLAINMESSAGE);
+    fullmessage(msg,PLAINMESSAGE)
 }
 
-function prompt(qst){
-    retval = promptmessage(qst,QUESTIONMESSAGE);
-    return retval;
+function prompt(msg){
+    retval = promptmessage(msg,QUESTIONMESSAGE)
+    return retval
+}
+
+function confirm(msg){
+    retval = confirmmessage(msg,0)
+    return retval
 }
 
 function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+    return !isNaN(parseFloat(n)) && isFinite(n)
 }
 
-function getsubview(checkpart){
-    svlist = model.getDesign().getLogicalDesign().getListOfSubviews() ;
-    retval = null;
+function getMinMax(checkObj){
+    minzl = checkObj.getProperty("minzoomlevel")  
+    maxzl = checkObj.getProperty("maxzoomlevel")
+    if (!(isNumeric(minzl))){
+        minzl = minZoomLevel
+    }
+    if (!(isNumeric(maxzl))){
+        maxzl = maxZoomLevel
+    }    
+}
+
+function getsubview(thissv){
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    var retval = null
     for (var vv=0;vv<svlist.length;vv++){
-        sv = svlist[vv];
-        if (sv.isCurrentDPV()) {
-            if (checkpart == "ID") {
-                retval = sv.getDPVId();
-            }else{
-                retval = sv;
-            }          
+        var checksv = svlist[vv]
+        if (((thissv == null) && (checksv.isCurrentDPV())) || (thissv == checksv)) {
+            var retval = checksv
         }
     }
-    return retval;
+    return retval
 }
 
-function getzoomlevel(sv){
-    retval = sv.getComment().replace("zoomlevel=","");
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
+function getcommentvalue(srcobj,srcvalue){      
+    var retval = null
+    var commentlines = []
+    var commentlines = srcobj.getComment().split("\n")
+    for (var vv=0;vv<commentlines.length;vv++){
+        if (commentlines[vv].contains(srcvalue+"=")){
+            var retval = commentlines[vv].replace(srcvalue+"=","")
+        }
     }
-    return retval;
+    if (retval == null) {
+        error("No "+srcvalue+" definition in view "+srcobj+" found!")
+    }
+    return retval
 }
 
 function getzoomlevelprompt(){
-    retval = prompt('Specify desired zoomlevel');
+    retval = prompt('Choose desired zoomlevel');
     if (!(isNumeric(retval))) {
-        message("No zoomlevel detection\nDefault zoomlevel: 0");
-        retval = 0;
+        message("No zoomlevel detected\nDefault zoomlevel: "+minZoomLevel);
+        retval = minZoomLevel;
     }
     return retval;
 }
 //HelperFunctions end
 
-//HideLevelFunctions start
-function hideshowattributes(sv,zlevel){
-    dentities = sv.getTVShapes()   
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                attrs = entity.getAttributes().toArray();
-                for (var ia=0;ia<attrs.length;ia++) {
-                    attr = attrs[ia]
-                    maxzl = attr.getProperty("maxzoomlevel")
-                    minzl = attr.getProperty("minzoomlevel")
-                    if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                        //message("#DEV#: Remove-Attr: "+attr+"\nattrID:"+attr.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                        /*
-                        COLORCHANGE -> nicht auf einzelne Attribute möglich!
-                        */
-                    }
-                }
-            }
-        }
+function dev_createsubview(){
+    //InitPart begin
+    logger = model.getAppView()
+    sv = getsubview(null)
+    if (sv == null){
+        return
     }
-}
-
-function hideshowrelationships(sv,zlevel){
-    drelations = sv.getTVConnectors()
-    for (var vv=0;vv<drelations.length;vv++){
-        relations = model.getRelationSet().toArray();
-        drelation = drelations[vv]
-        for (var ir=0;ir<relations.length;ir++) {
-            relation = relations[ir]
-            if (drelation == relation.getName()){
-                maxzl = relation.getProperty("maxzoomlevel")
-                minzl = relation.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){       
-                    //message("#DEV#: Remove-Relation: "+relation+"\nrelaID:"+relation.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)
-                    tv = relation.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setBackgroundColor(hideColor)                 
-                }
-            }
-        }
-    }
-}
-
-function hideentities(sv, zlevel){
-    dentities = sv.getTVShapes()  
-    for (var vv=0;vv<dentities.length;vv++){
-        dentity = dentities[vv]
-        entities = model.getEntitySet().toArray()
-        for (var ie=0;ie<entities.length;ie++) {
-            entity = entities[ie]
-            if (dentity == entity.getName()){
-                maxzl = entity.getProperty("maxzoomlevel")
-                minzl = entity.getProperty("minzoomlevel")
-                if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-                    //message("#DEV#: Remove-Entity: "+entity+"\nentityID:"+entity.getObjectID()+"\nMin:"+minzl+"\nMax:"+maxzl+"\nzlevel:"+zlevel)    
-                    tv = entity.getFirstViewForDPV(sv)
-                    tv.setUseDefaultColor(false)
-                    tv.setUseCustomFormat(true)
-                    tv.setBackgroundColor(hideColor)
-                }
-            }
-        }
-    }
-}
-
-function hidelevels(){
-    sv = getsubview()
-    zlevel = getzoomlevel(sv)
-    if (zlevel != 0){
-        hideshowattributes(sv,zlevel)
-        hideshowrelationships(sv,zlevel)
-        hideentities(sv, zlevel)
-    }   
-} 
-//HideLevelFunctions end
-
-//GenearteSubViewFunctions start
-function createnewview(){
-    zlevel = getzoomlevelprompt()
+    newzlevel = getzoomlevelprompt()
+    sventities = sv.getTVShapes()
     var list = []
-    mainView = model.getMainView()
-    entities = model.getEntitySet().toArray()
-    for (var e = 0; e < entities.length; e++){
-        entity = entities[e]
-        maxzl = entity.getProperty("maxzoomlevel")
-        minzl = entity.getProperty("minzoomlevel")     
-        if (((zlevel > maxzl) || (zlevel < minzl)) && isNumeric(maxzl) && isNumeric(minzl)){
-            //error("Remove?"+entity.getName())
-        }else{
-            tv0 = entity.getFirstViewForDPV(mainView)
-            if (tv0.getCellView() == null) {
-                error("ERROR: Open MainView once!")
-                return;
-            }else{
+
+    logger.logMessage("\n")
+
+    for (var ie=0;ie<sventities.length;ie++){
+        sventity = sventities[ie]
+        entity = model.getEntitySet().getByName(sventity)
+        if (entity != null) {
+            getMinMax(entity)
+            if (!((newzlevel > maxzl) || (newzlevel < minzl))){
+                tv0 = entity.getFirstViewForDPV(sv)
                 cell0 = tv0.getCellView().getCell()
                 list.push(cell0)    
             }
         }
     }
-    mainView.getWorkSpace().setSelectionCells(list)
-    mainView.createSubViewFromSelected()
+    sv.getWorkSpace().setSelectionCells(list)
+    sv.createSubViewFromSelected()
+
+    svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    for (var vv=0;vv<svlist.length;vv++){
+        thissv = svlist[vv];
+        if (thissv.isCurrentDPV()) {
+            thissv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+        }
+    }
+
 }
 
+function dev_initzoomlevel(){
+    //InitPart begin
+    logger = model.getAppView()
+    logger.logMessage("\n")
 
-function positionelements(){
-    with (XMLCollection) {
-        /*
-        PathToSVFiles Manuell DEV!
-        = Pfad zur "Grundmodell-View"
-        */
-        PathToSVFiles = "C:/Develop/FYAYC/fyyccim-tools/ODMscripting/IM/fyayc_dev_base/logical/subviews/" 
-        message("#DEV#: PathToSVFiles Manuell!\n"+PathToSVFiles)
-        //
-        MasterFilePath = PathToSVFiles+getsubview("ID")+".xml"
-        SourceXmlFile = new File(PathToSVFiles+"F9B32D80-2BAB-119D-49CF-82E87AEFBD35.xml");
-        TargetXmlFile = new File(MasterFilePath);
+    overwrite = confirm("Overwrite existing definitions?")
 
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dBuilder = dbFactory.newDocumentBuilder();
-        sourcedoc = dBuilder.parse(SourceXmlFile);
-        targetdoc = dBuilder.parse(TargetXmlFile);
+    entities = model.getEntitySet().toArray()
+    relations = model.getRelationSet().toArray()
 
-        sourcedoc.getDocumentElement().normalize();
-        nListS = sourcedoc.getElementsByTagName("OView");     
-        targetdoc.getDocumentElement().normalize();
-        nListT = targetdoc.getElementsByTagName("OView");   
+    for (var ie=0;ie<entities.length;ie++){
+        entity = entities[ie]
+        if (overwrite){
+            entity.setProperty("minzoomlevel",minZoomLevel)
+            entity.setProperty("maxzoomlevel",maxZoomLevel)
+        }else{
+            minzl = entity.getProperty("minzoomlevel")  
+            maxzl = entity.getProperty("maxzoomlevel")
+            if (!(isNumeric(minzl))){
+                entity.setProperty("minzoomlevel",minZoomLevel)
+            }
+            if (!(isNumeric(maxzl))){
+                entity.setProperty("maxzoomlevel",maxZoomLevel)
+            }
+        }
+        attrs = entity.getAttributes().toArray()
+        for (var ia=0;ia<attrs.length;ia++) {
+            attr = attrs[ia]
+            if (overwrite){
+                attr.setProperty("minzoomlevel",minZoomLevel)
+                attr.setProperty("maxzoomlevel",maxZoomLevel)
+            }else{
+                minzl = attr.getProperty("minzoomlevel")  
+                maxzl = attr.getProperty("maxzoomlevel")
+                if (!(isNumeric(minzl))){
+                    attr.setProperty("minzoomlevel",minZoomLevel)
+                }
+                if (!(isNumeric(maxzl))){
+                    attr.setProperty("maxzoomlevel",maxZoomLevel)
+                }
+            }
 
-        //bounds
-        for (var temp = 0; temp < nListS.getLength(); temp++) {    
-            nNodeS = nListS.item(temp);                  
-            if (nNodeS.getNodeType() == Node.ELEMENT_NODE) {  
-                eElementS = nNodeS;
-                nSubListS = eElementS.getElementsByTagName("bounds");
-                for (var temp2 = 0; temp2 < nSubListS.getLength(); temp2++) {   
-                    nNodeS2 = nSubListS.item(temp2);
-                    for (var temp3 = 0; temp3 < nListT.getLength(); temp3++) {    
-                        nNodeT = nListT.item(temp3);                  
-                        if ((nNodeT.getNodeType() == Node.ELEMENT_NODE) &&  (nNodeS.getAttribute("oid") == nNodeT.getAttribute("oid"))) {
-                            eElementT = nNodeT
-                            nSubListT = eElementT.getElementsByTagName("bounds")
-                            for (var temp4 = 0; temp4 < nSubListS.getLength(); temp4++) {   
-                                nNodeT2 = nSubListT.item(temp4);
-                                nNodeT2.setAttribute("x",nNodeS2.getAttribute("x"))
-                                nNodeT2.setAttribute("y",nNodeS2.getAttribute("y"))
-                                nNodeT2.setAttribute("height",nNodeS2.getAttribute("height"))
-                                nNodeT2.setAttribute("width",nNodeS2.getAttribute("width"))
+        }
+    }
+    for (var ir=0;ir<relations.length;ir++){
+        relation = relations[ir]
+        if (overwrite){
+            relation.setProperty("minzoomlevel",minZoomLevel)
+            relation.setProperty("maxzoomlevel",maxZoomLevel)
+        }else{
+            minzl = relation.getProperty("minzoomlevel")  
+            maxzl = relation.getProperty("maxzoomlevel")
+            if (!(isNumeric(minzl))){
+                relation.setProperty("minzoomlevel",minZoomLevel)
+            }
+            if (!(isNumeric(maxzl))){
+                relation.setProperty("maxzoomlevel",maxZoomLevel)
+            }
+        }
+    }
+}
+
+function showhideelements(){
+    //InitPart begin
+    logger = model.getAppView()
+    sv = getsubview(null)  
+    svzlevel = getcommentvalue(sv,"zoomlevel")
+    svpview = getcommentvalue(sv,"parentview")  
+    if ((svzlevel == null) || (svpview == null)){
+        return
+    }
+    pv = getsubview(svpview)
+    pvzlevel = getcommentvalue(pv,"zoomlevel")
+    if (pvzlevel == null) {
+        return
+    }
+
+    entities = model.getEntitySet().toArray()
+    sventities = sv.getTVShapes()
+    svrelations = sv.getTVConnectors()
+
+    relations = model.getRelationSet().toArray()
+    pventities = pv.getTVShapes()
+    pvrelations = pv.getTVConnectors()    
+    
+    logger.logMessage("\n")
+    //InitPart end
+
+    //ZoomlevelCheck Entity begin
+    logPrefix = "ZoomlevelCheck > Entity"
+    logger.logMessage(logPrefix)
+    showElements = []
+    hideElements = []
+    showAttributes = []
+    hideAttributes = []    
+    for (var ie = 0; ie < entities.length; ie++){
+        entity = entities[ie]
+        isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            sventity = sventities[ie2]
+            if (entity.getName() == sventity){
+                isOnSV = true               
+                attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    attr = attrs[ia]
+                    getMinMax(attr)
+                    isOnSVEntity = true
+                    hiddenElements = sventity.getHiddenElements()
+                    for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                        hiddenElement = hiddenElements[ia2]
+                        if (attr == hiddenElement){
+                            isOnSVEntity = false
+                        }
+                    }
+                    if ((svzlevel > maxzl) || (svzlevel < minzl)) {
+                        if (isOnSVEntity) {
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)    
+                        }
+                    }else{
+                        if (!(isOnSVEntity)){
+                            showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                        }
+                    }
+                }                             
+            }
+        }
+        getMinMax(entity)
+        if ((svzlevel > maxzl) || (svzlevel < minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+entity)    
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+entity)    
+            }
+        }
+    }
+    for (var i=0;i<showElements.length;i++){
+        logger.logMessage(showElements[i])
+    }
+    for (var i=0;i<hideElements.length;i++){
+        logger.logMessage(hideElements[i])
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        logger.logMessage(hideAttributes[i])
+    }
+    //ZoomlevelCheck Entity end
+
+    //ZoomlevelCheck Relation begin
+    logPrefix = "ZoomlevelCheck > Relation"
+    logger.logMessage(logPrefix)
+    showElements = []
+    hideElements = []
+    for (var ir = 0; ir < relations.length; ir++){
+        relation = relations[ir]
+        isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            svrelation = svrelations[ir2]
+            if (relation.getName() == svrelation){
+                isOnSV = true
+            }
+        }
+        getMinMax(relation)
+        if ((svzlevel > maxzl) || (svzlevel < minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+relation)    
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+relation)    
+            }
+        }
+    }   
+    for (var is=0;is<showElements.length;is++){
+        logger.logMessage(showElements[is])
+    }
+    for (var ih=0;ih<hideElements.length;ih++){
+        logger.logMessage(hideElements[ih])
+    }
+    //ZoomlevelCheck Relation end
+
+    //ParentViewCompare Entity begin
+    logPrefix = "ParentViewCompare > Entity"
+    logger.logMessage(logPrefix)
+    showAttributes = []
+    hideAttributes = []
+    for (var ie = 0; ie < pventities.length; ie++){
+        pventity = pventities[ie]
+        entity = model.getEntitySet().getByName(pventity)
+        var thissventity = null
+        isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            sventity = sventities[ie2]
+            if (pventity.toString() == sventity.toString()){
+                isOnSV = true
+                var thissventity = sventity
+            }
+        }
+        if (!(isOnSV)){            
+            if (entity != null){
+                getMinMax(entity)
+                if ((pvzlevel > maxzl) || (pvzlevel < minzl)){
+                    logger.logMessage(logPrefix+" > SHOW: "+entity)
+                }
+            }
+        }else{
+            pvhiddenElements = pventity.getHiddenElements()
+            svhiddenElements = thissventity.getHiddenElements()
+            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                pvhiddenElement = pvhiddenElements[ih]
+                getMinMax(pvhiddenElement)
+                if (!((pvzlevel > maxzl) || (pvzlevel < minzl))) {
+                    for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                        if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                            isOnSV = false
+                        }
+                    }
+                    if (isOnSV){
+                        hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                    } 
+                }
+            }
+            if (entity != null){
+                attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    attr = attrs[ia]
+                    getMinMax(attr)
+                    isOnPV = true
+                    if ((pvzlevel > maxzl) || (pvzlevel < minzl)) {
+                        for (var ih=0;ih<pvhiddenElements.length;ih++){
+                            if (pvhiddenElements[ih] == attr){
+                                isOnPV = false
+                            }
+                        }
+                        if (isOnPV){
+                            isOnSV = true
+                            for (var ih=0;ih<svhiddenElements.length;ih++){
+                                if (svhiddenElements[ih] == attr){
+                                    isOnSV = false
+                                }
+                            }
+                            if (!(isOnSV)){
+                                showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
                             }
                         }
                     }
-                }              
+                }        
             }
         }
-        transformerFactory = TransformerFactory.newInstance();
-        transformer = transformerFactory.newTransformer();
-        source = new DOMSource(targetdoc);
-        result = new StreamResult(new File(MasterFilePath));
-        transformer.transform(source, result);
     }
-    message("Restart ODM or reload design!");
-}
-//GenearteSubViewFunctions end]]>
+    for (var ie = 0; ie < sventities.length; ie++){
+        sventity = sventities[ie]
+        isOnPV = false
+        for (var ie2=0;ie2<pventities.length;ie2++){
+            pventity = pventities[ie2]
+            if (pventity.toString() == sventity.toString()){
+                isOnPV = true
+            }
+        }
+        if (!(isOnPV)){
+            logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+        }
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        logger.logMessage(hideAttributes[i])
+    }
+    //ParentViewCompare Entity end
+
+    //ParentViewCompare Relation begin
+    logPrefix = "ParentViewCompare > Relation"
+    logger.logMessage(logPrefix)
+    for (var ir = 0; ir < pvrelations.length; ir++){
+        pvrelation = pvrelations[ir]
+        isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            svrelation = svrelations[ir2]
+            if (pvrelation.toString() == svrelation.toString()){
+                isOnSV = true
+            }
+        }
+        if (!(isOnSV)){
+            logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+        }
+    }
+    for (var ir = 0; ir < svrelations.length; ir++){
+        svrelation = svrelations[ir]
+        isOnPV = false
+        for (var ir2=0;ir2<pvrelations.length;ir2++){
+            pvrelation = pvrelations[ir2]
+            if (pvrelation.toString() == svrelation.toString()){
+                isOnPV = true
+            }
+        }
+        if (!(isOnPV)){
+            logger.logMessage(logPrefix+" > HIDE: "+svrelation)    
+        }
+    }
+    //ParentViewCompare Relation end   
+} ]]>
 		</script>
 	</lib>
 
