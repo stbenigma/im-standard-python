@@ -1,7 +1,7 @@
 from datetime import date
 
 from IM_JSON import JSModel, fillmodel
-from IM_OBJECTS import Languagetext, Language, Boolean
+from IM_OBJECTS import Languagetext, Language, Boolean,Project
 
 
 def langs2js(pemptymodel):
@@ -79,6 +79,10 @@ def langs2sql(pmodel: JSModel):
             continue
         pmodel.languages[langid] = iso2
     # for
+
+    """update proj_languages field with all languages found"""
+    Project.updlanguages(pmodel.languages.values())
+
     try:
         Language.setallreplacementlang()
     except Exception as err:

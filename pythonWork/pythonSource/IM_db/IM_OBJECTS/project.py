@@ -1,4 +1,5 @@
 from .baseobject import Baseobject
+from IM_DB import dbDML
 
 class Project(Baseobject):
     LOGICALTYPE = "logical"
@@ -19,6 +20,14 @@ class Project(Baseobject):
     def select(pwhere=None,porderby=None):
         return Baseobject.select(pclass=Project
                                  ,pwhere=pwhere,porderby=porderby)
+
+    @staticmethod
+    def updlanguages(piso2list):
+        langs = ','.join(upper(iso2) for iso2 in piso2list)
+        """as we have only one project, do it for all"""
+        lsql = """update projects set proj_languages = '{}'""".format(langs)
+        dbDML.exec(lsql)
+
 #Project
 
 def projektlangs():

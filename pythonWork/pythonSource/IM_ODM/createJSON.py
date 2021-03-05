@@ -1,8 +1,9 @@
 # -*- coding: latin-1 -*-
+import os,sys
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 import json
 from IM_DB import dbConnect, parameters, logmessages
 from IM_JSON import sql2json,jsonfilename,JSModel
-import os
 
 
 def getJSONfile(pfilename):

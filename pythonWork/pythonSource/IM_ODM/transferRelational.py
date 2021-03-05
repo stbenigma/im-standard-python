@@ -249,6 +249,7 @@ def do1mapping(pfilename):
             logmessages.writelog('Mapping funktioniert nicht. ({}) :   '.format(element)
                                      + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
                                      + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                                     + '    file: {}'.format(pfilename)
                                      )
 
         #try
