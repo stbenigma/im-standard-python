@@ -133,8 +133,8 @@ class Modelelement(Baseobject):
 
 
     @staticmethod
-    def delete(pwhere=''):
-        Baseobject.delete(Modelelement._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(Modelelement._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

@@ -105,6 +105,8 @@ class Baseobject:
                 try:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
+                    if self.__modelemtype is not None:
+                        Modelelement.delete(pwhere="mode_id = {}".format(locid))
                 except:
                     print ("Loggin-Error in Baseobject.insert():")
                     print(str(e))
