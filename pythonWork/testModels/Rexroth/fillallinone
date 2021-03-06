@@ -1,4 +1,5 @@
 #!/bin/bash
 CURRDIR=$(dirname "$0")
 SOURCEPATH=$CURRDIR/../../pythonSource
-python $SOURCEPATH/IM_WEB/webfillallin1.py $CURRDIR en FORCE
+python $SOURCEPATH/IM_WEB/webfillallin1.py $CURRDIR all FORCE
+

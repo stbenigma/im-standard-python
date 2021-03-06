@@ -96,13 +96,13 @@ def printlistofcontent(plang):
                                             , plist= idxlist)
 
     idxlist = sorted([{'anker':key
-                      ,'name': "{} ({})".format(value['name'][plang]
-                                        ,printHTML.model.getbyid(value['entity'])['name'][plang]
-                                                if value['entity'] is not None
-                                        else printHTML.model.getbyid(value['relation'])['name'])
-                       }
-                     for key,value in printHTML.model.getelement('attributes').items()]
-                     ,key=lambda val:val['name'])
+                  ,'name': "{} ({})".format(value['name'][plang]
+                                    ,printHTML.model.getbyid(value['entity'])['name'][plang]
+                                            if value['entity'] is not None
+                                    else printHTML.model.getbyid(value['relation'])['name'])
+                   }
+                 for key,value in printHTML.model.getelement('attributes').items()]
+                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
 
 #    origindomains = {key:value for key,value in printHTML.model.jsmodel['domains'].items() if value['origin'] == Domain.DOMAIN}
@@ -204,14 +204,19 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     printHTML.createlib()
     printHTML.copyimages()
     pmodel.setstatusfilter(pfilter)
-    if (plang is None):
-        langs = project.projektlangs().split(',')
-        if (len(langs) == 0):
-            Languagetext.reportLang(parameters.dbDefaultLang())
-            langs = [Languagetext.reportLang()]
+    defaultlang = pmodel.jsmodel["model"]["language"]
+    langs = pmodel.jsmodel["languages"].keys()
+    if (plang is None or (plang.lower() == 'all')):
+        #all languages, with default from db
+        parameters.dbDefaultLang(defaultlang)
     else:
-        Languagetext.reportLang(plang.lower())
-        langs = [Languagetext.reportLang()]
+        #only one language chosen
+        if plang in langs:
+            #chosen language is default language (for references from system-files)
+            parameters.dbDefaultLang(plang.lower())
+        else:
+            print ("******* '{}' is invalid language for model '{}'. Valid languages are '{}'".format(plang,pmodel.jsmodel["model"]["name"],','.join(langs)))
+            return
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
@@ -241,9 +246,10 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     Languagetext.reportLang(Languagetext.EN)
     lang = Languagetext.EN
     for anker,element in schnlist.items():
+        langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
         printhtmlsysfile(pfirma="foryouandyourcustomers"
-                      ,pfilename= printHTML.htmlfilelist[anker]
+                      ,pfilename= langfilename
                       , ptitel= parameters.odmModelName() + ' - {}'.format(element['name'])
                       , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
                       , plogofilename=parameters.logoFileName()
