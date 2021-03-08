@@ -39,7 +39,7 @@ def tables2js(pemptymodel):
     return retval
 
 def tables2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['tables'].items():
+    for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.TABL).items():
         tabl = Table()
         tabl.tabl_name = jelem['name']
         tabl.tabl_id = jsguid2id(jid)
@@ -80,7 +80,7 @@ def instablemapping(pmodel, ptablid=None,prelaid=None, pentities=None):
 
 """transfer references and subtypes"""
 def tablrefs2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['tables'].items():
+    for jid,jelem in pmodel.getelements(Modelelemtype.TABL).items():
         instablemapping(pmodel=pmodel, ptablid=jsguid2id(jid), pentities=jelem['entitiesmapped'])
         updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return

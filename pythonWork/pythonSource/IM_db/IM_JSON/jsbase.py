@@ -44,6 +44,8 @@ class JSModel:
       ,Modelelemtype.PHYU: 'physicalunits'
       ,Modelelemtype.STFO: 'storageformats'
       , Modelelemtype.UDPR: 'userdefprops'
+      ,'LANG': 'languages'
+    , 'PROJ': 'model'
     }
 
     def __init__(self,pmodel={}):
@@ -90,6 +92,28 @@ class JSModel:
     def elemtype2label(pelemtype):
         try:
             return JSModel._elemtype2label[pelemtype]
+        except:
+            return None
+
+    @staticmethod
+    def label2elemtype(plabel):
+        try:
+            lab = {val:key for key,val in JSModel._elemtype2label.items()}
+            return lab[plabel]
+        except:
+            return plabel
+
+    """return the dict of an elementtype"""
+    def getelements(self,pelemtype):
+        try:
+            """Non-modelelementtypes in JS are treated differently"""
+            if pelemtype in ('LANG'):
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
+            elif pelemtype in ('PROJ'):
+                """Proj has one single entry without any id in js"""
+                return {None: self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]}
+            else:
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
         except:
             return None
 

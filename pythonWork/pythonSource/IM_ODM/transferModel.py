@@ -12,6 +12,7 @@ from mystring import nvl
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
+
 class Color:
     def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
         self.backgcolor = backgcolor
@@ -1034,6 +1035,7 @@ def do1Entity(fileName):
             break
         except Exception as e:
             logmessages.writelog("in Entity {}: {} ".format(entiguid, enti.enti_name))
+            logmessages.writelog(e.__str__())
             logmessages.writelog(e.__str__())
             #Entities can have duplicate names (merging in github)
             if re.match(r"UNIQUE constraint failed: ENTITIES.ENTI_NAME",e.__str__()):

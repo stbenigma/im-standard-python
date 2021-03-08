@@ -77,7 +77,7 @@ def relations2js(pemptymodel):
 
 
 def relations2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.jsmodel['relations'].items():
+    for jid, jelem in pmodel.getelements(pelemtype=Modelelemtype.RELA).items():
         rela = Relation()
         rela.rela_id = jsguid2id(jid)
         rela.rela_name = jelem['name']
@@ -146,7 +146,7 @@ def arcs2js(pemptymodel):
 
 
 def arcs2sql(pmodel):
-    for jid, jelem in pmodel.jsmodel['arcs'].items():
+    for jid, jelem in pmodel.getelements(Modelelemtype.ARCS).items():
         arc = Arc()
         arc.arcs_id = jsguid2id(jid)
         arc.arcs_name = jelem['name']

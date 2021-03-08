@@ -28,17 +28,22 @@ def physicalunits2js(pemptymodel):
     # fi
     return retval
 
+def js2phyu(pkey,pelem):
+    phyu:PhysicalUnit = PhysicalUnit()
+    phyu.phyu_id = jsguid2id(pkey)
+    phyu.phyu_si_unit = pelem['si-unit']
+    phyu.phyu_descr = pelem['descr']
+    phyu.phyu_name = pelem['name']
+    phyu.phyu_uc = pelem['uc']
+    phyu.phyu_dc = pelem['dc']
+    phyu.phyu_um = pelem['um']
+    phyu.phyu_dm = pelem['dm']
+    return phyu
+
+
 def physicalunits2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['physicalunits'].items():
-        phyu = PhysicalUnit()
-        phyu.phyu_id = jsguid2id(jid)
-        phyu.phyu_si_unit = jelem['si-unit']
-        phyu.phyu_descr = jelem['descr']
-        phyu.phyu_name = jelem['name']
-        phyu.phyu_uc = jelem['uc']
-        phyu.phyu_dc = jelem['dc']
-        phyu.phyu_um = jelem['um']
-        phyu.phyu_dm = jelem['dm']
+        phyu = js2phyu(pkey=jid,pelem=jelem)
         try:
             phyu.insert()
         except Exception as err:
@@ -79,16 +84,20 @@ def storageformats2js(pemptymodel):
     # fi
     return retval
 
+def js2stfo(pkey,pelem):
+    stfo:Storageformat = Storageformat()
+    stfo.stfo_id = jsguid2id(pkey)
+    stfo.stfo_name = pelem['name']
+    stfo.stfo_descr = pelem['descr']
+    stfo.stfo_uc = pelem['uc']
+    stfo.stfo_dc = pelem['dc']
+    stfo.stfo_um = pelem['um']
+    stfo.stfo_dm = pelem['dm']
+    return stfo
+
 def storageformats2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['storageformats'].items():
-        stfo = Storageformat()
-        stfo.stfo_id = jsguid2id(jid)
-        stfo.stfo_name = jelem['name']
-        stfo.stfo_descr = jelem['descr']
-        stfo.stfo_uc = jelem['uc']
-        stfo.stfo_dc = jelem['dc']
-        stfo.stfo_um = jelem['um']
-        stfo.stfo_dm = jelem['dm']
+        stfo = js2stfo(pkey=jid,pelem=jelem)
         try:
             stfo.insert()
         except Exception as err:
@@ -125,14 +134,19 @@ def datatypes2js(pemptymodel):
     # fi
     return retval
 
+def js2daty(pkey,pelem,psrcname=None,psrcid=None):
+    daty:Datatype = Datatype(pname=pelem['name'],pbasetype=pelem['basetype'],psrcname=psrcname,pscrid=psrcid)
+    daty.daty_id = jsguid2id(pkey)
+    daty.daty_uc = pelem['uc']
+    daty.daty_dc = pelem['dc']
+    daty.daty_um = pelem['um']
+    daty.daty_dm = pelem['dm']
+    return daty
+
+
 def datatypes2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['datatypes'].items():
-        daty= Datatype(pname=jelem['name'],pbasetype=jelem['basetype'])
-        daty.daty_id = jsguid2id(jid)
-        daty.daty_uc = jelem['uc']
-        daty.daty_dc = jelem['dc']
-        daty.daty_um = jelem['um']
-        daty.daty_dm = jelem['dm']
+    for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DATY).items():
+        daty = js2daty(pkey=jid,pelem=jelem)
         try:
             daty.insert()
         except Exception as err:

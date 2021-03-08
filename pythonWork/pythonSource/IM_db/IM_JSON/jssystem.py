@@ -32,8 +32,8 @@ def systems2js(pemptymodel):
     # fi
     return retval
 
-def systems2sql(pmodel):
-    for jid,jelem in pmodel.jsmodel['systems'].items():
+def systems2sql(pmodel:JSModel):
+    for jid,jelem in pmodel.getelements(Modelelemtype.INTF).items():
         intf = Interface()
         intf.intf_id = jsguid2id(jid)
         intf.intf_name = jelem['name']

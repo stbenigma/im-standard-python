@@ -181,7 +181,7 @@ def attributes2sql(pmodel: JSModel):
 
 
 def attrrefs2sql(pmodel):
-    for jid, jelem in pmodel.jsmodel['attributes'].items():
+    for jid, jelem in pmodel.getelements(Modelelemtype.ATTR).items():
         updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
 
@@ -263,7 +263,7 @@ def inskeyelements(pmodel: JSModel, pkey: Key, pkeles):
 
 
 def keys2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.jsmodel['keys'].items():
+    for jid, jelem in pmodel.getelements(Modelelemtype.KEYS).items():
         key = Key()
         key.keys_id = jsguid2id(jid)
         key.keys_name = jelem['name']
