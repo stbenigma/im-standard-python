@@ -7224,21 +7224,22 @@ sv.setDirty(true);]]>
 			}]]>
 		</script>
 	</scr>
-	<scr id="44681E48-E007-E0B8-C34D-4639E2790590" name="abstractionlevel" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="showhideelements" purpose="transformation" >
+	<scr id="44681E48-E007-E0B8-C34D-4639E2790590" name="abstractionlevel" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="createsubview" purpose="transformation" >
 		<script>
 			<![CDATA[// Autoren: aro, stb
 // Functions (showhideelements) for abstraction-level display in subviews.
 
 //InitVars
 var CODEVERSION = '0.2'
+var minZoomLevel = 0
+var maxZoomLevel = 5
+
 var PLAINMESSAGE = 1
 var ERRORMESSAGE = 0
 var WARNINGMESSAGE = 2
 var QUESTIONMESSAGE = 3
 
-//Spec
-var minZoomLevel = 0
-var maxZoomLevel = 5
+var logger = model.getAppView()
 
 //HelperFunctions start
 function fullmessage(msg,type) {
@@ -7284,13 +7285,60 @@ function isNumeric(n) {
 function getMinMax(checkObj){
     minzl = checkObj.getProperty("minzoomlevel")  
     maxzl = checkObj.getProperty("maxzoomlevel")
-    if (!(isNumeric(minzl))){
+    if ((!(isNumeric(minzl))) || (minzl < minZoomLevel)){
         minzl = minZoomLevel
+        logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\"")
     }
-    if (!(isNumeric(maxzl))){
+    if ((!(isNumeric(maxzl))) || (maxzl > maxZoomLevel)){
         maxzl = maxZoomLevel
+        logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\"")
     }    
 }
+
+function setMinMaxEntity(checkObj,overwrite){
+    thisminzl = checkObj.getProperty("minzoomlevel")  
+    thismaxzl = checkObj.getProperty("maxzoomlevel")  
+
+    newminzl = minZoomLevel
+    newmaxzl = maxZoomLevel
+
+    thisattrs = checkObj.getAttributes().toArray()
+    thisrelations = checkObj.getRelations().toArray()
+    hasrelation = false
+    if ((thisattrs.length == 0) && (!(hasrelation))){
+        newmaxzl = 1        
+    }
+
+    logger.logMessage("setMinMax ("+newminzl+"/"+newmaxzl+") to element \""+checkObj+"\"")
+    for (var vv=0;vv<thisrelations.length;vv++){
+        thisrelation = thisrelations[vv]
+        logger.logMessage(thisrelation)
+    }    
+    /*
+    if ((!(isNumeric(minzl))) || (minzl < minZoomLevel)){
+        minzl = minZoomLevel
+        logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\"")
+    }
+    if ((!(isNumeric(maxzl))) || (maxzl > maxZoomLevel)){
+        maxzl = maxZoomLevel
+        logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\"")
+    }   */ 
+}
+
+function setMinMaxAttr(checkObj,overwrite){
+    newminzl = checkObj.getProperty("minzoomlevel")  
+    newmaxzl = checkObj.getProperty("maxzoomlevel")
+    /*
+    if ((!(isNumeric(minzl))) || (minzl < minZoomLevel)){
+        minzl = minZoomLevel
+        logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\"")
+    }
+    if ((!(isNumeric(maxzl))) || (maxzl > maxZoomLevel)){
+        maxzl = maxZoomLevel
+        logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\"")
+    }    */
+}
+
 
 function getsubview(thissv){
     var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
@@ -7320,27 +7368,36 @@ function getcommentvalue(srcobj,srcvalue){
 }
 
 function getzoomlevelprompt(){
-    retval = prompt('Choose desired zoomlevel');
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detected\nDefault zoomlevel: "+minZoomLevel);
-        retval = minZoomLevel;
+    retval = prompt('Choose desired zoomlevel')
+    if ((!(isNumeric(retval))) || (retval > maxZoomLevel) || (retval < minZoomLevel)) {
+        error("No correct zoomlevel entered")
+        retval = null
     }
-    return retval;
+    return retval
+}
+function calcAttrMinZL(attrObj){
+    test = attrObj.getProperty("isdescriptive")  
+    logger.logMessage("DEV1:"+test)
+    return minZoomLevel
+}
+
+function calcAttrMaxZL(attrObj){
+    test = attrObj.getProperty("isdescriptive")  
+    logger.logMessage("DEV2:"+test)
+    return maxZoomLevel
 }
 //HelperFunctions end
 
-function dev_createsubview(){
+function createsubview(){
     //InitPart begin
-    logger = model.getAppView()
     sv = getsubview(null)
-    if (sv == null){
+    newzlevel = getzoomlevelprompt()
+    if ((sv == null) || (newzlevel == null)){
         return
     }
-    newzlevel = getzoomlevelprompt()
     sventities = sv.getTVShapes()
     var list = []
-
-    logger.logMessage("\n")
+    //InitPart end
 
     for (var ie=0;ie<sventities.length;ie++){
         sventity = sventities[ie]
@@ -7359,31 +7416,60 @@ function dev_createsubview(){
 
     svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
     for (var vv=0;vv<svlist.length;vv++){
-        thissv = svlist[vv];
-        if (thissv.isCurrentDPV()) {
-            thissv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+        newsv = svlist[vv]
+        if (newsv.isCurrentDPV()) {
+            newsv.setName(sv+"_ZL"+newzlevel+"_")
+            newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+            newsventities = newsv.getTVShapes()
+            for (var ie=0;ie<newsventities.length;ie++){
+                newsventity = newsventities[ie]
+                newentity = model.getEntitySet().getByName(newsventity)
+                if (newentity != null) {
+                    if (newentity.getName() == newsventity){          
+                        attrs = newentity.getAttributes().toArray()
+                        for (var ia=0;ia<attrs.length;ia++) {
+                            attr = attrs[ia]
+                            getMinMax(attr)
+                            hiddenElements = newsventity.getHiddenElements()
+                            isOnSVEntity = true
+                            for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                                hiddenElement = hiddenElements[ia2]
+                                if (attr == hiddenElement){
+                                    isOnSVEntity = false
+                                }
+                            }
+                            if (((newzlevel > maxzl) || (newzlevel < minzl)) && (isOnSVEntity)){
+                                if (!(newsventity.isHideElementsInCurrentOnly())){
+                                    newsventity.setHideElementsInCurrentOnly(true)
+                                }
+                                hiddenElements.add(attr)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
+    showhideelements()
 }
 
 function dev_initzoomlevel(){
     //InitPart begin
-    logger = model.getAppView()
-    logger.logMessage("\n")
-
-    overwrite = confirm("Overwrite existing definitions?")
+    allowoverwrite = confirm("Overwrite existing definitions?")
 
     entities = model.getEntitySet().toArray()
     relations = model.getRelationSet().toArray()
+    //InitPart end
 
     for (var ie=0;ie<entities.length;ie++){
         entity = entities[ie]
-        if (overwrite){
+        setMinMaxEntity(entity,allowoverwrite)
+/*
+        if (allowoverwrite){
             entity.setProperty("minzoomlevel",minZoomLevel)
             entity.setProperty("maxzoomlevel",maxZoomLevel)
         }else{
-            minzl = entity.getProperty("minzoomlevel")  
+            minzl = entity.getProperty("minzoomlevel")
             maxzl = entity.getProperty("maxzoomlevel")
             if (!(isNumeric(minzl))){
                 entity.setProperty("minzoomlevel",minZoomLevel)
@@ -7391,10 +7477,13 @@ function dev_initzoomlevel(){
             if (!(isNumeric(maxzl))){
                 entity.setProperty("maxzoomlevel",maxZoomLevel)
             }
-        }
+        }*/
         attrs = entity.getAttributes().toArray()
         for (var ia=0;ia<attrs.length;ia++) {
             attr = attrs[ia]
+            /*
+            newMinZoomLevel = calcAttrMinZL(attr)
+            newMaxZoomLevel = calcAttrMaxZL(attr)
             if (overwrite){
                 attr.setProperty("minzoomlevel",minZoomLevel)
                 attr.setProperty("maxzoomlevel",maxZoomLevel)
@@ -7402,17 +7491,18 @@ function dev_initzoomlevel(){
                 minzl = attr.getProperty("minzoomlevel")  
                 maxzl = attr.getProperty("maxzoomlevel")
                 if (!(isNumeric(minzl))){
-                    attr.setProperty("minzoomlevel",minZoomLevel)
+                    attr.setProperty("minzoomlevel",newMinZoomLevel)
                 }
                 if (!(isNumeric(maxzl))){
-                    attr.setProperty("maxzoomlevel",maxZoomLevel)
+                    attr.setProperty("maxzoomlevel",newMaxZoomLevel)
                 }
             }
-
+            */
         }
     }
     for (var ir=0;ir<relations.length;ir++){
         relation = relations[ir]
+        /*
         if (overwrite){
             relation.setProperty("minzoomlevel",minZoomLevel)
             relation.setProperty("maxzoomlevel",maxZoomLevel)
@@ -7425,13 +7515,13 @@ function dev_initzoomlevel(){
             if (!(isNumeric(maxzl))){
                 relation.setProperty("maxzoomlevel",maxZoomLevel)
             }
-        }
+        }**/
     }
 }
 
 function showhideelements(){
-    //InitPart begin
-    logger = model.getAppView()
+    //InitPart begin 
+    logger.logMessage("\n")
     sv = getsubview(null)  
     svzlevel = getcommentvalue(sv,"zoomlevel")
     svpview = getcommentvalue(sv,"parentview")  
@@ -7447,12 +7537,9 @@ function showhideelements(){
     entities = model.getEntitySet().toArray()
     sventities = sv.getTVShapes()
     svrelations = sv.getTVConnectors()
-
     relations = model.getRelationSet().toArray()
     pventities = pv.getTVShapes()
     pvrelations = pv.getTVConnectors()    
-    
-    logger.logMessage("\n")
     //InitPart end
 
     //ZoomlevelCheck Entity begin
@@ -7654,7 +7741,13 @@ function showhideelements(){
             }
         }
         if (!(isOnSV)){
-            logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+            relation = model.getRelationSet().getByName(pvrelation)
+            if (relation != null){
+                getMinMax(relation)
+                if ((pvzlevel > maxzl) || (pvzlevel < minzl)){
+                    logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+                }
+            }
         }
     }
     for (var ir = 0; ir < svrelations.length; ir++){
@@ -9317,21 +9410,22 @@ ddlStatementsList.add(new java.lang.String(ddl));
 				}]]>
 		</script>
 	</lib>
-	<lib id="01549B4A-FBAA-A168-A09B-CFDA99211B5F" name="abstractionlevel" engine="Oracle Nashorn" methods="showhideelements,dev_createsubview,dev_initzoomlevel" >
+	<lib id="01549B4A-FBAA-A168-A09B-CFDA99211B5F" name="abstractionlevel" engine="Oracle Nashorn" methods="showhideelements,createsubview,dev_initzoomlevel" >
 		<script>
 			<![CDATA[// Autoren: aro, stb
 // Functions (showhideelements) for abstraction-level display in subviews.
 
 //InitVars
 var CODEVERSION = '0.2'
+var minZoomLevel = 0
+var maxZoomLevel = 5
+
 var PLAINMESSAGE = 1
 var ERRORMESSAGE = 0
 var WARNINGMESSAGE = 2
 var QUESTIONMESSAGE = 3
 
-//Spec
-var minZoomLevel = 0
-var maxZoomLevel = 5
+var logger = model.getAppView()
 
 //HelperFunctions start
 function fullmessage(msg,type) {
@@ -9377,13 +9471,60 @@ function isNumeric(n) {
 function getMinMax(checkObj){
     minzl = checkObj.getProperty("minzoomlevel")  
     maxzl = checkObj.getProperty("maxzoomlevel")
-    if (!(isNumeric(minzl))){
+    if ((!(isNumeric(minzl))) || (minzl < minZoomLevel)){
         minzl = minZoomLevel
+        logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\"")
     }
-    if (!(isNumeric(maxzl))){
+    if ((!(isNumeric(maxzl))) || (maxzl > maxZoomLevel)){
         maxzl = maxZoomLevel
+        logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\"")
     }    
 }
+
+function setMinMaxEntity(checkObj,overwrite){
+    thisminzl = checkObj.getProperty("minzoomlevel")  
+    thismaxzl = checkObj.getProperty("maxzoomlevel")  
+
+    newminzl = minZoomLevel
+    newmaxzl = maxZoomLevel
+
+    thisattrs = checkObj.getAttributes().toArray()
+    thisrelations = checkObj.getRelations().toArray()
+    hasrelation = false
+    if ((thisattrs.length == 0) && (!(hasrelation))){
+        newmaxzl = 1        
+    }
+
+    logger.logMessage("setMinMax ("+newminzl+"/"+newmaxzl+") to element \""+checkObj+"\"")
+    for (var vv=0;vv<thisrelations.length;vv++){
+        thisrelation = thisrelations[vv]
+        logger.logMessage(thisrelation)
+    }    
+    /*
+    if ((!(isNumeric(minzl))) || (minzl < minZoomLevel)){
+        minzl = minZoomLevel
+        logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\"")
+    }
+    if ((!(isNumeric(maxzl))) || (maxzl > maxZoomLevel)){
+        maxzl = maxZoomLevel
+        logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\"")
+    }   */ 
+}
+
+function setMinMaxAttr(checkObj,overwrite){
+    newminzl = checkObj.getProperty("minzoomlevel")  
+    newmaxzl = checkObj.getProperty("maxzoomlevel")
+    /*
+    if ((!(isNumeric(minzl))) || (minzl < minZoomLevel)){
+        minzl = minZoomLevel
+        logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\"")
+    }
+    if ((!(isNumeric(maxzl))) || (maxzl > maxZoomLevel)){
+        maxzl = maxZoomLevel
+        logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\"")
+    }    */
+}
+
 
 function getsubview(thissv){
     var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
@@ -9413,27 +9554,36 @@ function getcommentvalue(srcobj,srcvalue){
 }
 
 function getzoomlevelprompt(){
-    retval = prompt('Choose desired zoomlevel');
-    if (!(isNumeric(retval))) {
-        message("No zoomlevel detected\nDefault zoomlevel: "+minZoomLevel);
-        retval = minZoomLevel;
+    retval = prompt('Choose desired zoomlevel')
+    if ((!(isNumeric(retval))) || (retval > maxZoomLevel) || (retval < minZoomLevel)) {
+        error("No correct zoomlevel entered")
+        retval = null
     }
-    return retval;
+    return retval
+}
+function calcAttrMinZL(attrObj){
+    test = attrObj.getProperty("isdescriptive")  
+    logger.logMessage("DEV1:"+test)
+    return minZoomLevel
+}
+
+function calcAttrMaxZL(attrObj){
+    test = attrObj.getProperty("isdescriptive")  
+    logger.logMessage("DEV2:"+test)
+    return maxZoomLevel
 }
 //HelperFunctions end
 
-function dev_createsubview(){
+function createsubview(){
     //InitPart begin
-    logger = model.getAppView()
     sv = getsubview(null)
-    if (sv == null){
+    newzlevel = getzoomlevelprompt()
+    if ((sv == null) || (newzlevel == null)){
         return
     }
-    newzlevel = getzoomlevelprompt()
     sventities = sv.getTVShapes()
     var list = []
-
-    logger.logMessage("\n")
+    //InitPart end
 
     for (var ie=0;ie<sventities.length;ie++){
         sventity = sventities[ie]
@@ -9452,31 +9602,60 @@ function dev_createsubview(){
 
     svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
     for (var vv=0;vv<svlist.length;vv++){
-        thissv = svlist[vv];
-        if (thissv.isCurrentDPV()) {
-            thissv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+        newsv = svlist[vv]
+        if (newsv.isCurrentDPV()) {
+            newsv.setName(sv+"_ZL"+newzlevel+"_")
+            newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+            newsventities = newsv.getTVShapes()
+            for (var ie=0;ie<newsventities.length;ie++){
+                newsventity = newsventities[ie]
+                newentity = model.getEntitySet().getByName(newsventity)
+                if (newentity != null) {
+                    if (newentity.getName() == newsventity){          
+                        attrs = newentity.getAttributes().toArray()
+                        for (var ia=0;ia<attrs.length;ia++) {
+                            attr = attrs[ia]
+                            getMinMax(attr)
+                            hiddenElements = newsventity.getHiddenElements()
+                            isOnSVEntity = true
+                            for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                                hiddenElement = hiddenElements[ia2]
+                                if (attr == hiddenElement){
+                                    isOnSVEntity = false
+                                }
+                            }
+                            if (((newzlevel > maxzl) || (newzlevel < minzl)) && (isOnSVEntity)){
+                                if (!(newsventity.isHideElementsInCurrentOnly())){
+                                    newsventity.setHideElementsInCurrentOnly(true)
+                                }
+                                hiddenElements.add(attr)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
+    showhideelements()
 }
 
 function dev_initzoomlevel(){
     //InitPart begin
-    logger = model.getAppView()
-    logger.logMessage("\n")
-
-    overwrite = confirm("Overwrite existing definitions?")
+    allowoverwrite = confirm("Overwrite existing definitions?")
 
     entities = model.getEntitySet().toArray()
     relations = model.getRelationSet().toArray()
+    //InitPart end
 
     for (var ie=0;ie<entities.length;ie++){
         entity = entities[ie]
-        if (overwrite){
+        setMinMaxEntity(entity,allowoverwrite)
+/*
+        if (allowoverwrite){
             entity.setProperty("minzoomlevel",minZoomLevel)
             entity.setProperty("maxzoomlevel",maxZoomLevel)
         }else{
-            minzl = entity.getProperty("minzoomlevel")  
+            minzl = entity.getProperty("minzoomlevel")
             maxzl = entity.getProperty("maxzoomlevel")
             if (!(isNumeric(minzl))){
                 entity.setProperty("minzoomlevel",minZoomLevel)
@@ -9484,10 +9663,13 @@ function dev_initzoomlevel(){
             if (!(isNumeric(maxzl))){
                 entity.setProperty("maxzoomlevel",maxZoomLevel)
             }
-        }
+        }*/
         attrs = entity.getAttributes().toArray()
         for (var ia=0;ia<attrs.length;ia++) {
             attr = attrs[ia]
+            /*
+            newMinZoomLevel = calcAttrMinZL(attr)
+            newMaxZoomLevel = calcAttrMaxZL(attr)
             if (overwrite){
                 attr.setProperty("minzoomlevel",minZoomLevel)
                 attr.setProperty("maxzoomlevel",maxZoomLevel)
@@ -9495,17 +9677,18 @@ function dev_initzoomlevel(){
                 minzl = attr.getProperty("minzoomlevel")  
                 maxzl = attr.getProperty("maxzoomlevel")
                 if (!(isNumeric(minzl))){
-                    attr.setProperty("minzoomlevel",minZoomLevel)
+                    attr.setProperty("minzoomlevel",newMinZoomLevel)
                 }
                 if (!(isNumeric(maxzl))){
-                    attr.setProperty("maxzoomlevel",maxZoomLevel)
+                    attr.setProperty("maxzoomlevel",newMaxZoomLevel)
                 }
             }
-
+            */
         }
     }
     for (var ir=0;ir<relations.length;ir++){
         relation = relations[ir]
+        /*
         if (overwrite){
             relation.setProperty("minzoomlevel",minZoomLevel)
             relation.setProperty("maxzoomlevel",maxZoomLevel)
@@ -9518,13 +9701,13 @@ function dev_initzoomlevel(){
             if (!(isNumeric(maxzl))){
                 relation.setProperty("maxzoomlevel",maxZoomLevel)
             }
-        }
+        }**/
     }
 }
 
 function showhideelements(){
-    //InitPart begin
-    logger = model.getAppView()
+    //InitPart begin 
+    logger.logMessage("\n")
     sv = getsubview(null)  
     svzlevel = getcommentvalue(sv,"zoomlevel")
     svpview = getcommentvalue(sv,"parentview")  
@@ -9540,12 +9723,9 @@ function showhideelements(){
     entities = model.getEntitySet().toArray()
     sventities = sv.getTVShapes()
     svrelations = sv.getTVConnectors()
-
     relations = model.getRelationSet().toArray()
     pventities = pv.getTVShapes()
     pvrelations = pv.getTVConnectors()    
-    
-    logger.logMessage("\n")
     //InitPart end
 
     //ZoomlevelCheck Entity begin
@@ -9747,7 +9927,13 @@ function showhideelements(){
             }
         }
         if (!(isOnSV)){
-            logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+            relation = model.getRelationSet().getByName(pvrelation)
+            if (relation != null){
+                getMinMax(relation)
+                if ((pvzlevel > maxzl) || (pvzlevel < minzl)){
+                    logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+                }
+            }
         }
     }
     for (var ir = 0; ir < svrelations.length; ir++){
