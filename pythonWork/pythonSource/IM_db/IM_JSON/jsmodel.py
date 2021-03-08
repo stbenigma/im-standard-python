@@ -75,7 +75,7 @@ def proj2js(pemptymodel: bool):
             proj = projs[0]
             entries = [proj.proj_name, Project.LOGICALTYPE
                 , '' if proj.proj_curr_lang is None else proj.proj_curr_lang.lower()
-                , '' if proj.proj_languages is None else proj.proj_languages.lower(), proj.proj_uc, proj.proj_dc, proj.proj_um, proj.proj_dm]
+                , proj.proj_uc, proj.proj_dc, proj.proj_um, proj.proj_dm]
         #fi
     #fi
     return fillmodel(pmodel=model, pentries=entries)

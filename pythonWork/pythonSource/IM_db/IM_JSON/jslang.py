@@ -48,6 +48,15 @@ def inslgtx(pmodel, pmodeid, pattr, ptexts):
 
 # inslgtx
 
+def js2lang(pkey, pelem):
+    lang = Language()
+    lang.lang_iso_code2 = pkey
+    lang.lang_iso_code3 = pelem['iso3']
+    lang.lang_iso_name = pelem['name']
+    lang.lang_is_base_lang = Boolean.bool2str(pelem['modellanguage'])
+    lang.lang_is_text_lang = Boolean.FALSE
+    return lang
+
 def langs2sql(pmodel: JSModel):
     """   "languages": {
       "de": {
