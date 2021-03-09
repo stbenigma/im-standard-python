@@ -67,6 +67,7 @@ parameter = {'dbtype': SQLITE
             , 'odmfkdirec': 'foreignkey/'
             , LOGFILEDIREC: None
             , LOGFILEPATH: None
+            , 'iconmasterdocumentname': "ENTITY-ICONS"
 }
 def nvl(p_val1,p_val2=''):
     return p_val1 if p_val1 is not None else p_val2
@@ -311,6 +312,13 @@ def sqlfilename(newval=None):
     else:
         parameter['sqlfilename'] = newval
     return
+def iconmasterdocumentname(newval=None):
+    if newval is None:
+        return parameter['iconmasterdocumentname']
+    else:
+        parameter['iconmasterdocumentname'] = newval
+    return
+
 def sqlfilepath():
     return sqlpath()+sqlfilename()+".sql"
 
