@@ -32,20 +32,23 @@ class Boolean:
 
 # Boolean
 
+"""translates None into NULL, string into 'string' """
+dbval = lambda val : 'NULL' if val is None else str(val) if type(val)==int else  "'{}'".format(Boolean.bool2str(val) if type(val)==bool else val)
 class Baseobject:
     defaultCreator:str= "sys"
     def fullcolname(self, col):
         return self._prefix+'_'+col
 
-    def setucdcval(self,pcol,pval):
-        col = self.fullcolname(pcol)
-        if col in self._columnlist: #only for elements wit uc,dc,um,dm
-            if self.colvalue(col) is None: self.setcolvalue(col,pval)
-
     def colvalue(self,pcolname):
         return self.__dict__[pcolname] if pcolname in self.__dict__ else None
-    def setcolvalue(self,pcolname,value):
-        self.__dict__[pcolname] = value
+    def setcolvalue(self, pcolname, pvalue):
+        self.__dict__[pcolname] = pvalue
+
+    def setdefaultval(self, pcolname, pvalue):
+        col = self.fullcolname(pcolname)
+        if col in self._columnlist:
+            if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
+
 
 
     def __init__(self, tablename, prefix, idcolname=None
@@ -59,8 +62,24 @@ class Baseobject:
         self.__emptyclass()
     def __emptyclass(self):
         for col in self._columnlist:
-            self.setcolvalue(col,None)
+            self.setcolvalue(pcolname=col,pvalue=None)
     # emptyclass
+
+    def _semanticcols(self):
+        """Return list of columns without standard management columns"""
+        return list(set(self._columnlist).difference((self.fullcolname(n) for n in ['id', 'uc', 'um', 'dc', 'dm'])))
+
+    def semanticequal(self,pbrother):
+        """ true, if all semantic elements are equal. Managing attributes (id, uc,dc etc.) are excluded"""
+        for sc in self._semanticcols():
+            if self.colvalue(sc) != pbrother.colvalue(sc):
+                return False
+        return True
+
+    def semanticcopy(self,pbrother):
+        """ copies  all semantic elements. Managing attributes (id, uc,dc etc.) are excluded"""
+        for sc in self._semanticcols():
+            self.setcolvalue(pcolname=sc,pvalue=pbrother.colvalue(sc))
 
     def getname(self,plang=None):
         """if object has name, it must be overwritten"""
@@ -81,11 +100,11 @@ class Baseobject:
         return self.colvalue(self._idcolname)
 
     def setid(self, pid):
-        self.setcolvalue(self._idcolname,pid)
+        self.setcolvalue(pcolname=self._idcolname,pvalue=pid)
 
     def insert(self, pdoerrhdlng=True):
-        self.setucdcval(pcol='dc',pval=datetime.today())
-        self.setucdcval(pcol='uc',pval=Baseobject.defaultCreator)
+        self.setdefaultval(pcolname='dc', pvalue=datetime.today())
+        self.setdefaultval(pcolname='uc', pvalue=Baseobject.defaultCreator)
         """wird erst bei  update gemacht        
         if self.colvalue(self.fullcolname('dm')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dm')), datetime.today())
         if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreator)
@@ -120,6 +139,35 @@ class Baseobject:
                 pdoerrhdlng=pdoerrhdlng)
         return self.getid()
 
+    def updatedb(self, pdoerrhdlng=True):
+        now = datetime.today()
+        self.setcolvalue(pcolname='dm',pvalue=now)
+        self.setdefaultval(pcolname='um', pvalue=Baseobject.defaultCreator)
+
+        updcollist = self._columnlist.copy()
+        updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
+        lsql = """update {} """.format(self._tablename, Baseobject.columnsliststring(updcollist))
+        lsql += """\nset {}""".format('\n,'.join("""{} = {}""".format(col,dbval(self.colvalue(pcolname=col))) for col in updcollist))
+        lsql += """\nwhere {} = {}""".format(self._idcolname,dbval(self.getid()))
+        #print (lsql)
+        try:
+            id = dbDML.exec(lsql)
+        except sqlite3.Error as e:
+            if pdoerrhdlng:
+                try:
+                    logmessages.writelog(str(e))
+                    logmessages.writelog(self.tostring())
+                except:
+                    print ("Loggin-Error in Baseobject.insert():")
+                    print(str(e))
+                    print (lsql)
+                    print (self.totuple())
+            # if
+            raise e
+        # try
+        return
+
+
     def gettablecolumns(ptablename):
         sql = "PRAGMA table_info({})".format(ptablename)
         try:
@@ -149,10 +197,12 @@ class Baseobject:
 
     # getbyid
 
-    def getbyuk(self, pcolname, pukvalue):
-        data = self.select(pwhere="{}='{}'".format(pcolname, pukvalue))
+    def getbyuk(self, **colvalpairs):
+        """{colname:colvalue,}"""
+        wherecond = dbDML.valuepairs2sqlexpr(**colvalpairs)
+        data = self.select(pwhere=wherecond)
         if (len(data) > 1):
-            raise Exception('{}: nonunique {}={}'.format(self._tablename, pcolname, pukvalue))
+            raise Exception('{}: nonunique {}'.format(self._tablename, wherecond))
         elif (len(data) == 0):
             # self.__emptyclass()
             return None
@@ -161,6 +211,33 @@ class Baseobject:
         # fi
         return self
     # getbyuk
+
+    def getbyanyuk(self):
+        """return a new object selected with the uk-values of self.
+            if there is no uk return None
+            if there are several uk's
+                try each one
+                if a uk-select returns more than 1 row
+                    error too many rows
+                if the number of different rows returned from all uk's lookup
+                    = 0 return None
+                    = 1 return this row
+                    > raise error (different rows found)
+                    """
+        uklist = dbDDL.getuklist(ptablename=self._tablename)
+        if len(uklist) == 0: return None
+        foundrows = []
+        """uklist = [[colname,],]"""
+        for uk in uklist:
+            row = self.getbyuk(**{colname:self.colvalue(colname) for colname in uk})
+            if row is not None: foundrows.append(row)
+        #for
+        #make a list of  all id's of the found elements
+        idset = set([r.getid() for r in foundrows])
+        if len(idset)== 0: return None
+        if len(idset) == 1: return foundrows[0]
+        raise Exception("different rows found for different uk's of table {}, id={}".format(self._tablename,self.getid()))
+        return
 
     def prefix(self):
         return self._prefix
@@ -263,7 +340,7 @@ class MultilangBaseobject(Baseobject):
     def getsprachvals(self):
         for col in self._multilangcols:
             spt = Languagetext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
-            self.setcolvalue(col + '_L', spt)
+            self.setcolvalue(pcolname=col + '_L', pvalue=spt)
         # for
 
     # getsprachvals

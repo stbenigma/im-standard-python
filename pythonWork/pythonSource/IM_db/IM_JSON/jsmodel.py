@@ -86,8 +86,7 @@ def js2proj(pkey, pelem):
     proj = Project()
     proj.proj_name = pelem["name"]
     proj.proj_type = pelem["type"]
-    proj.proj_curr_lang = pelem["modellanguage"]
-    proj.proj_languages = pelem["languages+"]
+    proj.proj_curr_lang = pelem["language"]
     proj.proj_uc = pelem["uc"]
     proj.proj_dc = pelem["dc"]
     proj.proj_um = pelem["um"]
@@ -95,10 +94,13 @@ def js2proj(pkey, pelem):
     return proj
 
 
-def proj2sql(pmodel):
-    elem = pmodel.jsmodel['model']
+def proj2sql(presult:mergedbs.Mergeresult, podmjson:JSModel, pdbjson:JSModel):
+    elem = podmjson.jsmodel['model']
     try:
-        proj = js2proj(pkey=None,pelem=elem)
-        proj.insert()
+        """insert if nonexistent, otherwise don't touch"""
+        projs = Project.select()
+        if len(projs)== 0:
+            proj = js2proj(pkey=None,pelem=elem)
+            proj.insert()
     except Exception as err:
-        pmodel.markerror(pmsg=err, pelemstr=elem)
+        presult.errors.append("""*** DB-Error {}\{}""".format(err, pelem)

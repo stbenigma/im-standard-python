@@ -1,6 +1,6 @@
 from datetime import date
 
-from IM_JSON import JSModel, fillmodel
+from IM_JSON import JSModel, fillmodel,mergedbs
 from IM_OBJECTS import Languagetext, Language, Boolean,Project
 
 
@@ -57,7 +57,8 @@ def js2lang(pkey, pelem):
     lang.lang_is_text_lang = Boolean.FALSE
     return lang
 
-def langs2sql(pmodel: JSModel):
+def langs2sql(presult:mergedbs.Mergeresult, podmjson:JSModel, pdbjson:JSModel):
+    assert dbConnect.isopenDB()
     """   "languages": {
       "de": {
          "name": "Deutsch",
@@ -65,33 +66,31 @@ def langs2sql(pmodel: JSModel):
          "modellanguage": true,
          "replacementlang": null
       }"""
-    for iso2, jlang in pmodel.jsmodel['languages'].items():
+    for iso2, jlang in podmjson.getelements('languages').items():
         lang = js2lang(pkey=iso2,pelem=jlang)
-        if jlang['modellanguage']:
-            if pmodel.modellanguage() is not None:
-                pmodel.markerror(pmsg="more than one model language defined", pelemstr=pelem)
-            else:
-                pmodel.setmodellanguage(lang.lang_iso_code2)
-            # fi
-        # fi
 
         try:
             langid = lang.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=lang.tostring())
             continue
-        pmodel.languages[langid] = iso2
     # for
 
+    try:
+        deflang =  Language.getdefaultlang()
+        if deflang is None: presult.errors.append("""*** No modellanguage defined"""")
+        pdbjson.setmodellanguage(deflang.lang_iso_code2)
+    except:
+        presult.errors.append("""*** more then one default modellanguage defined"""")
+
     """update proj_languages field with all languages found"""
-    Project.updlanguages(pmodel.languages.values())
+    Project.updlanguages([langs.lang_iso_code2 for langs in Language.select()])
 
     try:
         Language.setallreplacementlang()
     except Exception as err:
-        pmodel.markerror(pmsg=err, pelemstr=pelem)
+        presult.errors.append("""*** DB-Error {}\{}""".format(err, pelem)
 
-    if pmodel.modellanguage() is None:
-        pmodel.markerror(pmsg="No model language defined", pelemstr=None)
-    # print([l.tostring() for l in Language.select()])
+    return
+
 # langs2sql

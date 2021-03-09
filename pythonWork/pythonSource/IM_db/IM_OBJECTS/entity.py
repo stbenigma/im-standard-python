@@ -27,29 +27,7 @@ class Entity(MultilangBaseobject):
         self._schluessel = None
         self._attributes = None
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Entity._tablename
-                               , psql="""
-CREATE TABLE ENTITIES
-    (
-     ENTI_ID integer NOT NULL  primary key,
-     ENTI_NAME VARCHAR (60) NOT NULL ,
-     ENTI_SHORT_NAME VARCHAR (15) NULL ,
-     ENTI_PREFIX VARCHAR (5) NULL ,
-     ENTI_TOOLTIP VARCHAR (4000) NULL ,
-     ENTI_DESCR VARCHAR (4000) NULL ,
-     ENTI_EXP_TUPLECNT VARCHAR (500) NULL ,
-     ENTI_UC VARCHAR(30) NULL  ,
-     ENTI_DC VARCHAR (30) NOT NULL ,
-     ENTI_UM VARCHAR (30) NULL ,
-     ENTI_DM VARCHAR (30) NULL
-    ,CONSTRAINT ENTI_NAME_UK UNIQUE (ENTI_NAME ASC)
-    ,CONSTRAINT ENTI_MODE_FK FOREIGN KEY    (     ENTI_ID)
-		REFERENCES MODELELEMENT    (     MODE_ID )
-    ON DELETE CASCADE
-    )"""
-    )
+
 
     @staticmethod
     def createviews():
@@ -231,27 +209,6 @@ class Synonym(MultilangBaseobject):
         self.syno_uc = 'SYS'
         self.syno_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Synonym._tablename
-                               , psql="""
-CREATE TABLE SYNONYMS
-    (
-     SYNO_ID INTEGER NOT NULL primary key,
-     ENTI_SYNONYM VARCHAR (60) NOT NULL ,
-     SYNO_ENTI_ID integer NOT NULL ,
-     SYNO_UC VARCHAR(30) NULL  ,
-     SYNO_DC VARCHAR (30) NOT NULL ,
-     SYNO_UM VARCHAR (30) NULL ,
-     SYNO_DM VARCHAR (30) NULL
-     ,CONSTRAINT SYNO_ENTI_FK FOREIGN KEY     (     SYNO_ENTI_ID)
-		 REFERENCES ENTITIES     (     ENTI_ID )
-		 ON DELETE CASCADE
-     ,CONSTRAINT SYNO_MODE_FK FOREIGN KEY     (     SYNO_ID)
-		 REFERENCES MODELELEMENT     (     MODE_ID )
-		 ON DELETE CASCADE
-    )
-        """)
 
     def getname(self,plang=None):
         retval = self._getsprachval(colname='syno_name',plang=plang)

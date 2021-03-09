@@ -121,7 +121,6 @@ def js2docu(pkey,pelem,psrcname=None,psrcid=None):
     docu.docu_id = jsguid2id(pkey)
     docu.docu_name = pelem['name']
     docu.docu_reference = pelem['reference']
-    parentid = jsguid2id(pelem['parent'])
     docu.docu_content = pelem['content']
     docu.docu_stfo_id = jsguid2id(pelem['formatid'])
     return docu
@@ -135,6 +134,8 @@ def documents2sql(pmodel):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=docu.tostring())
             continue
+
+        parents.append(jsguid2id(pelem['parent']))
         inssourceref(pmodel=pmodel, pmodeid=docuid, psources=jelem["sourceref"])
     #for
     Document.updparentpairs(pparents=parents)

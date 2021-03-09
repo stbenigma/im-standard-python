@@ -32,6 +32,7 @@ class Language(Baseobject):
         lDefLangs = Language.select(pwhere="""lang_is_base_lang = 'TRUE'""")
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
+        if (len(deflangs) > 1): raise Exception("More than one model-Language defined")
         return lDefLangs[0]
     #getdefaultlang
 

@@ -91,29 +91,33 @@ def entities2js(pemptymodel):
   prints out all error and ends with exception if there was an error"""
 
 
+def js2enti(pkey,pelem):
+    enti = Entity()
+    enti.enti_id = jsguid2id(pkey)
+    enti.enti_name = pelem['name'][pmodel.modellanguage()]
+    enti.enti_short_name = pelem['shortname']
+    enti.enti_prefix = pelem['prefix']
+    enti.enti_tooltip = pelem['tooltip'][pmodel.modellanguage()]
+    enti.enti_descr = pelem['descr'][pmodel.modellanguage()]
+    enti.enti_exp_tuplecnt = pelem['exptuple#']
+    enti.enti_uc = pelem['uc']
+    enti.enti_dc = pelem['dc']
+    enti.enti_um = pelem['um']
+    enti.enti_dm = pelem['dm']
+    return enti
+
 def entities2sql(pmodel: JSModel):
     for jid, jelem in pmodel.jsmodel['entities'].items():
-        enti = Entity()
-        enti.enti_id = jsguid2id(jid)
-        enti.enti_name = jelem['name'][pmodel.modellanguage()]
-        enti.enti_short_name = jelem['shortname']
-        enti.enti_prefix = jelem['prefix']
-        enti.enti_tooltip = jelem['tooltip'][pmodel.modellanguage()]
-        enti.enti_descr = jelem['descr'][pmodel.modellanguage()]
-        enti.enti_exp_tuplecnt = jelem['exptuple#']
-        enti.enti_uc = jelem['uc']
-        enti.enti_dc = jelem['dc']
-        enti.enti_um = jelem['um']
-        enti.enti_dm = jelem['dm']
-        minzoomlevel = jelem['minzoomlevel']
-        maxzoomlevel = jelem['maxzoomlevel']
-        devstatus = jelem['devstatus']
+        enti = js2enti(pkey=jsjid,pelem=jelem)
         try:
             entiid = enti.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
             continue
 
+        minzoomlevel = pelem['minzoomlevel']
+        maxzoomlevel = pelem['maxzoomlevel']
+        devstatus = pelem['devstatus']
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
         inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
@@ -140,8 +144,6 @@ def entities2sql(pmodel: JSModel):
         # for
 
     # for
-
-
 # entities2sql
 
 """transfer references and subtypes"""

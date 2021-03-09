@@ -126,10 +126,13 @@ class JSModel:
 
     def checked(self):
         return self._checked
+
     def setchecked(self,pvalue):
         self._checked = pvalue
+
     def modellanguage(self):
         return self._modellanguage
+
     def setmodellanguage(self,pvalue):
         self._modellanguage = pvalue
 
