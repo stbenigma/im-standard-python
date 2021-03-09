@@ -1,6 +1,9 @@
 # -*- coding: latin-1 -*-
-from IM_ODM import transferModel
-from IM_DB import dbConnect, parameters, logmessages
+from IM_ODM import transferModel,mergedbs
+from IM_DB import logmessages,dbErstelleTables
+import IM_db,IM_OBJECTS
+from IM_JSON import *
+
 
 
 # Main Programm
@@ -44,25 +47,25 @@ def buildid2uktranslate():
 
 
 
-def filldbmain2(callarg):
+def filldbmain2(callarg,createnewdb=False):
     memoryfilepath = ":memory:"
     dbConnect.openDB(p_filepath=memoryfilepath,fks='ON');
     dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
     transferModel.insertBaseData()
     transferModel.transferODMModel();
-    odmjson = createJSON.jsonfromdb()
-    id2uktranslate = buildid2uktranslate()
+    odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+    #id2uktranslate = buildid2uktranslate()
     dbConnect.closeDB()
 
 
-    if True:
+    if createnewdb:
         IM_db.createDB(par1=callarg,pforcecreate=True)
 
     dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
-    transferModel.insertBaseData()
-    json2sql.fillsql(pmodel=odmjson)
-    #dbjson = createJSON.jsonfromdb()
-    #mergedbs.mergeodm2db(podmjson=odmjson,pdbjson=dbjson)
+    if createnewdb:
+        transferModel.insertBaseData()
+    dbjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+    mergedbs.mergeodm2db(podmjson=odmjson, pdbjson=dbjson)
     dbConnect.closeDB()
 
 def main(p_param1):
@@ -71,7 +74,8 @@ def main(p_param1):
     logmessages.initlog('fillDB')
 
     try:
-        filldbmain()
+        #filldbmain()
+        filldbmain2(callarg=p_param1,createnewdb=True)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata"
                                  .format(parameters.dbFilePath(),

@@ -70,15 +70,15 @@ def attr2js(pattr):
         doma = Domain().getbyid(pattr.attr_doma_id)
 
         retval = fillmodel(pmodel=model
-                           ,pentries=[ pattr.attr_tech_name,multilangtext( pattr.attr_displ_name_L)
+                           ,pentries=[ pattr.attr_tech_name,multilangtext( pattr.attr_displ_name_l)
             ,  pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id)
             ,  jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),  None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
             ,  doma.doma_type,  None if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP) else domaingroupmembers(pdomaid=pattr.attr_doma_id)
             , Boolean.str2bool(pattr.attr_is_descriptive),Boolean.str2bool(pattr.attr_is_mandatory)
             , Boolean.str2bool(pattr.attr_is_historicised), Boolean.str2bool(pattr.attr_is_repeated)
             , Boolean.str2bool(pattr.attr_is_translated),  Boolean.str2bool(pattr.attr_is_encrypted)
-            , multilangtext(pattr.attr_tooltip_L)
-            , multilangtext(pattr.attr_descr_L)
+            , multilangtext(pattr.attr_tooltip_l)
+            , multilangtext(pattr.attr_descr_l)
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
             , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getdevstatus()
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]

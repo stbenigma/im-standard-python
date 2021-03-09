@@ -1,8 +1,7 @@
 from datetime import date
-
-from IM_JSON import JSModel, fillmodel,mergedbs
+from IM_JSON import *
 from IM_OBJECTS import Languagetext, Language, Boolean,Project
-
+from IM_DB import dbConnect
 
 def langs2js(pemptymodel):
     model = ['name', 'iso3', 'modellanguage', 'replacementlang']
@@ -57,7 +56,7 @@ def js2lang(pkey, pelem):
     lang.lang_is_text_lang = Boolean.FALSE
     return lang
 
-def langs2sql(presult:mergedbs.Mergeresult, podmjson:JSModel, pdbjson:JSModel):
+def langs2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
     assert dbConnect.isopenDB()
     """   "languages": {
       "de": {
@@ -66,30 +65,41 @@ def langs2sql(presult:mergedbs.Mergeresult, podmjson:JSModel, pdbjson:JSModel):
          "modellanguage": true,
          "replacementlang": null
       }"""
-    for iso2, jlang in podmjson.getelements('languages').items():
-        lang = js2lang(pkey=iso2,pelem=jlang)
-
-        try:
-            langid = lang.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=lang.tostring())
-            continue
-    # for
+    fromodm2db(presult=presult,podmjson=podmjson,pdbjson=pdbjson,pelemtype='LANG',pjs2obj=js2lang,pwithextsrcref=pwithextsrcref)
+    # for iso2, jlang in podmjson.getelements('LANG').items():
+    #     lang = js2lang(pkey=iso2,pelem=jlang)
+    #     try:
+    #         langid = lang.insert()
+    #     except Exception as err:
+    #         presult.markdberror(perr=err, pelem=lang.tostring())
+    #         continue
+    # # for
 
     try:
         deflang =  Language.getdefaultlang()
-        if deflang is None: presult.errors.append("""*** No modellanguage defined"""")
+        if deflang is None: presult.errors.append("""*** No modellanguage defined""")
         pdbjson.setmodellanguage(deflang.lang_iso_code2)
     except:
-        presult.errors.append("""*** more then one default modellanguage defined"""")
+        presult.errors.append("""*** more then one default modellanguage defined""")
 
     """update proj_languages field with all languages found"""
-    Project.updlanguages([langs.lang_iso_code2 for langs in Language.select()])
+    for iso2, jlang in podmjson.getelements('LANG').items():
+        newlang:Language = Language().getbyuk(lang_iso_code2=iso2)
+        if newlang is not None:
+            replacementiso2 = jlang["replacementlang"]
+            if replacementiso2 is None:
+                replacmentid = None
+            else:
+                replacmentid = Language().getbyuk(lang_iso_code2 = replacementiso2).getid()
+            #fi
+            if newlang.lang_lang_id != replacmentid:
+                newlang.updatedb()
+        # for
 
     try:
         Language.setallreplacementlang()
     except Exception as err:
-        presult.errors.append("""*** DB-Error {}\{}""".format(err, pelem)
+        presult.markdberror(perr=err, pelem=pelem)
 
     return
 

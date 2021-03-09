@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
 from IM_DB import parameters,dbConnect
@@ -94,7 +93,7 @@ def js2proj(pkey, pelem):
     return proj
 
 
-def proj2sql(presult:mergedbs.Mergeresult, podmjson:JSModel, pdbjson:JSModel):
+def proj2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
     elem = podmjson.jsmodel['model']
     try:
         """insert if nonexistent, otherwise don't touch"""
@@ -103,4 +102,6 @@ def proj2sql(presult:mergedbs.Mergeresult, podmjson:JSModel, pdbjson:JSModel):
             proj = js2proj(pkey=None,pelem=elem)
             proj.insert()
     except Exception as err:
-        presult.errors.append("""*** DB-Error {}\{}""".format(err, pelem)
+        presult.errors.append("""*** DB-Error {}\{}""".format(err, pelem))
+
+    return

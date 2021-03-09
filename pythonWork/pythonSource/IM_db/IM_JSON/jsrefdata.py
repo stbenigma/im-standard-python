@@ -41,15 +41,16 @@ def js2phyu(pkey,pelem):
     return phyu
 
 
-def physicalunits2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['physicalunits'].items():
-        phyu = js2phyu(pkey=jid,pelem=jelem)
-        try:
-            phyu.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=phyu.tostring())
-            continue
-    # for
+def physicalunits2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
+    fromodm2db(presult=presult,podmjson=podmjson,pdbjson=pdbjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
+    # for jid,jelem in pmodel.jsmodel['physicalunits'].items():
+    #     phyu = js2phyu(pkey=jid,pelem=jelem)
+    #     try:
+    #         phyu.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=phyu.tostring())
+    #         continue
+    # # for
     return
 
 """transfer references and subtypes"""
@@ -144,16 +145,17 @@ def js2daty(pkey,pelem,psrcname=None,psrcid=None):
     return daty
 
 
-def datatypes2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DATY).items():
-        daty = js2daty(pkey=jid,pelem=jelem)
-        try:
-            daty.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=daty.tostring())
-            continue        
-        inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
-    #for
+def datatypes2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
+    fromodm2db(presult=presult,podmjson=podmjson,pdbjson=pdbjson,pelemtype=Modelelemtype.DATY,pjs2obj=js2daty,pwithextsrcref=pwithextsrcref)
+    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DATY).items():
+    #     daty = js2daty(pkey=jid,pelem=jelem)
+    #     try:
+    #         daty.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=daty.tostring())
+    #         continue
+    #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+    # #for
     return
 
 """transfer references and subtypes"""

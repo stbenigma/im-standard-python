@@ -56,13 +56,13 @@ def entities2js(pemptymodel):
     else:
         entis = {jsguid(Modelelemtype.ENTI, e.enti_id):
                      fillmodel(pmodel=model,
-                            pentries=[multilangtext(ptext=e.enti_name_L), nvl(e.enti_short_name)
-                    , multilangtext(e.enti_descr_L),multilangtext(e.enti_tooltip_L)
+                            pentries=[multilangtext(ptext=e.enti_name_l), nvl(e.enti_short_name)
+                    , multilangtext(e.enti_descr_l),multilangtext(e.enti_tooltip_l)
                     , e.enti_exp_tuplecnt,e.enti_prefix
                     , e.getsubtypelevel()
                     , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
                     , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
-                    , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_L for s in e.getsynonyms()})
+                    , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in e.getsynonyms()})
                          ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
                     ,  reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
                          ,reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)])

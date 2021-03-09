@@ -135,7 +135,7 @@ def domain2js(pdoma):
                            )
     else:
         retval = fillmodel(pmodel=model
-                           ,pentries=[multilangtext(pdoma.doma_name_L),multilangtext(pdoma.doma_descr_L)
+                           ,pentries=[multilangtext(pdoma.doma_name_l),multilangtext(pdoma.doma_descr_l)
                                      , pdoma.doma_origin,jsguid(Modelelemtype.INTF, pdoma.doma_intf_id)
                                     ,None if pdoma.doma_intf_id is None else Interface().getbyid(pdoma.doma_intf_id).getname()
                                         ,None if pdoma.doma_daty_id is None else Datatype().getbyid(pdoma.doma_daty_id).daty_name

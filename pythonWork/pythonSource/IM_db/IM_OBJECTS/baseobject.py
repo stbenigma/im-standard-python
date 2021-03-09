@@ -40,12 +40,12 @@ class Baseobject:
         return self._prefix+'_'+col
 
     def colvalue(self,pcolname):
-        return self.__dict__[pcolname] if pcolname in self.__dict__ else None
+        return self.__dict__[pcolname.lower()] if pcolname.lower() in self.__dict__ else None
     def setcolvalue(self, pcolname, pvalue):
-        self.__dict__[pcolname] = pvalue
+        self.__dict__[pcolname.lower()] = pvalue
 
     def setdefaultval(self, pcolname, pvalue):
-        col = self.fullcolname(pcolname)
+        col = self.fullcolname(pcolname.lower())
         if col in self._columnlist:
             if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
 
@@ -283,6 +283,14 @@ class Baseobject:
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")
 
+    def translatefks(self):
+        print ("translatefks für {}".format(self._tablename))
+
+    def getukvaluepairs(self):
+        uklist = dbDDL.getuklist(ptablename=self._tablename)
+        return [dbDML.valuepairs2sqlexpr(**{colname:self.colvalue(colname) for colname in uk}) for uk in uklist]
+
+
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):
         if (len(pclass._columnlist) == 0): pclass._columnlist = Baseobject.gettablecolumns(pclass._tablename)
@@ -340,14 +348,14 @@ class MultilangBaseobject(Baseobject):
     def getsprachvals(self):
         for col in self._multilangcols:
             spt = Languagetext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
-            self.setcolvalue(pcolname=col + '_L', pvalue=spt)
+            self.setcolvalue(pcolname=col + '_l', pvalue=spt)
         # for
 
     # getsprachvals
 
     def _getsprachval(self, colname, plang = None):
         try:
-            retval = self.colvalue(colname + '_L')[plang]
+            retval = self.colvalue(colname + '_l')[plang]
         except:
             # keine sprache oder keinen Namen für Language
             retval = self.colvalue(colname)
