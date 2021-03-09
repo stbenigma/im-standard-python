@@ -361,7 +361,7 @@ def printelements(pdiag, pdiaganker,plang):
                                                , eler['element']
                                                , pdiaganker + '-' + eler['element']
                                                , hex2rbg(eler['fontcolor'])
-                                               , 12  #vorläufig mal fix verdrahtet e[9], font size
+                                               , 11  #vorläufig mal fix verdrahtet e[9], font size
                                                , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))))
 
         printHTML.fhtml.write(entiende)

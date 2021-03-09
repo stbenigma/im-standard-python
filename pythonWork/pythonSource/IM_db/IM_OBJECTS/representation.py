@@ -18,45 +18,7 @@ class Elementrep(Baseobject):
         eler_uc = 'system'
         eler_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Elementrep._tablename
-                               , psql="""
-CREATE TABLE elementreps(
-	  eler_id               integer primary key autoincrement,
-      eler_mode_id          integer NOT NULL,
-      eler_diag_id          integer NOT NULL,
-      eler_index            NUMBER(4) DEFAULT 0 NOT NULL,
-      eler_position_x       integer NULL,
-      eler_position_y       integer NULL,
-      eler_width           integer NOT NULL,
-      eler_height            integer NOT NULL,
-      eler_opacity        integer NULL
-          CHECK(eler_opacity BETWEEN 0 AND 100),
-      eler_color            varchar(6)  NOT NULL
-          CHECK(length(eler_color)= 6),
-      eler_marginwidth       integer NULL,
-      eler_marginopacity    integer NULL
-          CHECK(eler_marginopacity BETWEEN 0 AND 100),
-      eler_margincolor        varchar(6)  NULL
-          CHECK(length(eler_margincolor)= 6),
-      eler_fontsize   integer NULL
-          CHECK(eler_fontsize BETWEEN 1 AND 999),
-      eler_fontcolor     varchar(6) NULL
-          CHECK(length(eler_fontcolor)= 6),
-      eler_uc           varchar(30) NOT NULL,
-      eler_dc               varchar(30) NOT NULL,
-      eler_um               varchar(30) ,
-      eler_dm               varchar(30),
-  	CONSTRAINT eler_un UNIQUE(eler_diag_id,eler_mode_id,eler_index),
-    CONSTRAINT eler_diag_fk FOREIGN KEY(eler_diag_id)
-          REFERENCES diagrams(diag_id)
-              ON DELETE CASCADE,
-  	CONSTRAINT eler_mode_fk FOREIGN KEY(eler_mode_id)
-          REFERENCES MODELELEMENT(mode_id)
-              ON DELETE CASCADE
-)
-        """)
+
 
     """what is displayed on bottom (0) and what in higer positions"""
     def displorder(self):

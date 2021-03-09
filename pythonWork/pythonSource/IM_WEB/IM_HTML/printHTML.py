@@ -953,6 +953,12 @@ def entidiag(pwebenti):
     return diagstring
 # entidiag
 
+def hasiconfiles():
+    global model
+    iconmaster = [key for key,val in model.getelements(pelemtype=Modelelemtype.DOCU).items()
+                            if val["name"]== parameters.iconmasterdocumentname()]
+    return len(iconmaster) == 1
+
 def iconfilename(pfilename):
     lfilename = re.sub(r'[^a-zäöüñéàè_-]+', '', pfilename.lower())
     fullfilename = "{}/{}.{}".format('image',lfilename,'png').lower()
