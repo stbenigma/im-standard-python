@@ -59,7 +59,7 @@ class Datatype(Baseobject):
 
     @staticmethod
     def getbyname(pname):
-        return Datatype().getbyuk(pcolname='daty_name', pukvalue=pname)
+        return Datatype().getbyuk(daty_name=pname)
     # getbyname
 
     @staticmethod

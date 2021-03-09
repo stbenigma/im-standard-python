@@ -135,7 +135,7 @@ def execmany(psql, recs):
 
 def valuepairs2sqlexpr(**colvalues):
     """input: {colname:colvalue,}
-       return "(col-name is NULL or col-name = value)" and concatenated for every colname/-value pair
+       return "(col-name is NULL or col-name = value)" (depending on colvalue) and concatenated for every colname/-value pair
        if value is not of integer type, enclose it with '' """
     sqlstring = lambda val: "'{}'".format(val) if type(val) != int else str(val)
     comp = lambda col, val: "{} is null".format(col) if val is None else "{} = {}".format(col, sqlstring(val))

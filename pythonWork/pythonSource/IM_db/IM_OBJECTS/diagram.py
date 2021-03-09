@@ -71,7 +71,7 @@ class Diagram(Baseobject):
 
     @staticmethod
     def getbyname(pname):
-        return Diagram().getbyuk(pcolname='diag_name', pukvalue=pname)
+        return Diagram().getbyuk(diag_name=pname)
     # getbyname
 
 #Diagram
@@ -120,7 +120,7 @@ CREATE TABLE diagramtypes(
 
     @staticmethod
     def getbyname(pname):
-        return Diagramtype().getbyuk(pcolname='diat_name', pukvalue=pname)
+        return Diagramtype().getbyuk(diat_name=pname)
     # getbyname
 #Diagramtype
 

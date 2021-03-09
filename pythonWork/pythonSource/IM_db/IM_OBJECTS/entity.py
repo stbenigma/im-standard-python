@@ -278,7 +278,7 @@ CREATE TABLE SYNONYMS
            If order or number is not the same, ignore it"""
         for udpr in Userdefprop.select(pwhere="udpr_name like '___ENTI_SYNONYM'"):
             langiso2 = udpr.udpr_name[0:2].lower()
-            langid=Language().getbyuk(pcolname='lang_iso_code2', pukvalue=langiso2).getid()
+            langid=Language().getbyuk(lang_iso_code2=langiso2).getid()
             if langid == Language.liesdeflangid(): continue
             for udpv in Userdefpropvalue.select(pwhere="udpv_udpr_id = {}".format(udpr.udpr_id)):
                 langsynos = udpv.udpv_value.split(',')

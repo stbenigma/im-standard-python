@@ -161,7 +161,7 @@ class Domain(MultilangBaseobject):
 
     @staticmethod
     def getbyname(pname: str):
-        return Domain().getbyuk(pcolname='doma_name', pukvalue=pname)
+        return Domain().getbyuk(doma_name=pname)
 
     @staticmethod
     def getunknown():
@@ -242,7 +242,7 @@ class Domain(MultilangBaseobject):
         intf2id = {}
         for filename in interfaces:
             if filename is None: continue
-            intf = Interface().getbyuk(pcolname='intf_name',pukvalue=interfacename(filename))
+            intf = Interface().getbyuk(intf_name=interfacename(filename))
             intfid = None if intf is None else intf.intf_id
             intf2id[filename] = intfid
         #for

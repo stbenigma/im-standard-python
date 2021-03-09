@@ -30,12 +30,12 @@ class Storageformat(Baseobject):
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def getbyname(pname):
-        return Storageformat().getbyuk(pcolname='stfo_name', pukvalue=pname)
+        return Storageformat().getbyuk(stfo_name=pname)
     # getbyname
 
     @staticmethod
     def getorcreate(pname):
-        stfo =  Storageformat().getbyuk(pcolname='stfo_name', pukvalue=pname)
+        stfo =  Storageformat().getbyuk(stfo_name=pname)
         if stfo is None:
             stfo = Storageformat(pname=pname)
             stfo.insert()
@@ -67,12 +67,12 @@ class PhysicalUnit(Baseobject):
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def getbyname(pname):
-        return PhysicalUnit().getbyuk(pcolname='phyu_name', pukvalue=pname)
+        return PhysicalUnit().getbyuk(phyu_name=pname)
     # getbyname
 
     @staticmethod
     def getorcreate(pname):
-        phyu =  PhysicalUnit().getbyuk(pcolname='phyu_name', pukvalue=pname)
+        phyu =  PhysicalUnit().getbyuk(phyu_name=pname)
         if phyu is None:
             phyu = PhysicalUnit()
             phyu.phyu_name = pname

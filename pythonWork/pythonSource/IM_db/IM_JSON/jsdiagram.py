@@ -240,7 +240,7 @@ def diagrams2sql(pmodel: JSModel):
         diag.diag_um = jelem['um']
         diag.diag_dm = jelem['dm']
         try:
-            diag.diag_diat_id = Diagramtype().getbyuk(pcolname='diat_name', pukvalue=jelem['type']).diat_id
+            diag.diag_diat_id = Diagramtype().getbyuk(diat_name=jelem['type']).diat_id
             diag.insert()
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=jelem)

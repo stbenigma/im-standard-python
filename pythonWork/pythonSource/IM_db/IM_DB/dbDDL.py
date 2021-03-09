@@ -70,6 +70,7 @@ def getsoleukcolname(ptablename):
         return None
 
 def getuklist(ptablename):
+    """List of all uk (list of columns) for this table  [[colname,],]"""
     cursor = dbConnect.myDbConn.cursor()
     cursor.execute("PRAGMA index_list('{}')".format(ptablename))
     indices = cursor.fetchall()
@@ -77,7 +78,6 @@ def getuklist(ptablename):
         index_info [seqno,cid,colname]
         foreign_key_list [id,seq,table,from,to,on_update (NO_ACTION),on_delete(CASCADE),match]
         """
-    """List of all uk (list of columns) for this table  [[colname,],]"""
     retval = []
     for i in indices:
         if i[2] == 1 and i[3] == 'u':
@@ -91,11 +91,12 @@ def getuklist(ptablename):
     return retval
 
 def getfklist(ptablename):
+    """return {colname:(fktable,fkcolname)}"""
     cursor = dbConnect.myDbConn.cursor()
     cursor.execute("PRAGMA foreign_key_list('{}')".format(ptablename))
     fks = cursor.fetchall()
     """foreign_key_list [id,seq,table,from,to,on_update (NO_ACTION),on_delete(CASCADE),match]
-       return {colname:(fktable,fkcolname)}"""
+       """
     retval = {fk[3]: (fk[2], fk[4]) for fk in fks}
     cursor.close()
     return retval
