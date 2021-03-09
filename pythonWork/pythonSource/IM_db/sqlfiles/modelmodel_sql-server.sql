@@ -665,8 +665,6 @@ ALTER TABLE ORGANISATIONALUNITS ADD CONSTRAINT ORGU_PK PRIMARY KEY CLUSTERED (OR
 GO
 ALTER TABLE ORGANISATIONALUNITS ADD CONSTRAINT ORGU_NAME_UN UNIQUE NONCLUSTERED (ORGU_NAME ASC)
 GO
-ALTER TABLE ORGANISATIONALUNITS ADD CONSTRAINT ORGU_EMAIL_UN UNIQUE NONCLUSTERED (ORGU_MAIL ASC)
-GO
 
 CREATE TABLE PHYSICAL_UNIT
     (
@@ -1832,5 +1830,5 @@ CREATE VIEW SUPERENTI AS
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id
 GO
 		
-create view  dbversion as select '1.1' as version, current_timestamp as installedtime
+create view  dbversion as select '1.3' as version, current_timestamp as installedtime
 GO
