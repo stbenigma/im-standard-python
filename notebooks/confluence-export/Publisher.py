@@ -2,6 +2,7 @@ from xml.sax.saxutils import escape
 from datetime import datetime
 from requests.exceptions import HTTPError
 from functools import reduce
+import markupsafe
 import logging
 
 
@@ -45,7 +46,8 @@ class Publisher:
         """Returns the page title of an element. This will be used to reference elements"""
         page = self.content_map[key]
         if not page.get('title'):
-            self.log.error('No title for key {}'.format(key))
+            self.log.warning('No title for key {}'.format(key))
+            return None
         return page['title']
 
     def order_topic_tree(self, topics: dict):
@@ -162,8 +164,8 @@ class Publisher:
     def update_page(self, key: str, body: str, minor_edit=True, version_comment=''):
         meta = self.page_for_key(key)
         try:
-            self.confluence.update_page(meta['pageid'], meta['title'], body, minor_edit=minor_edit,
-                                        version_comment=version_comment)
+            return self.confluence.update_page(meta['pageid'], meta['title'], body, minor_edit=minor_edit,
+                                               version_comment=version_comment)
         except HTTPError as error:
             self.log.error('Cannot update page "{page_title}" {page_id}. {response}',
                            page_title=meta['title'], page_id=meta['pageid'],
@@ -186,7 +188,7 @@ class Publisher:
         else:
             return relation['from-to']
 
-    def column_lineage(self, column_key:str):
+    def column_lineage(self, column_key: str):
         """Collects columns that are mapped with the column provided via the IM"""
         column = self.json_data['columns'][column_key]
         result = []
@@ -203,10 +205,47 @@ class Publisher:
             pass
         return result
 
-    def attribute_lineage(self, attribute_key:str):
+    def attribute_lineage(self, attribute_key: str):
         """Collects columns that are mapped to the provided attribute"""
         attribute = self.json_data['attributes'][attribute_key]
         columns_mapped = attribute['columnsmapped+']
         all_columns = map(lambda entry: columns_mapped[entry], columns_mapped)
         cols = reduce(lambda e, l: e + l, list(all_columns), [])
         return cols
+
+    def soft_link(self, key: str, item_class: str = None, title: str = None):
+        """Returns a link to the element denoted by key"""
+        if not key:
+            return ''
+
+        page = self.content_map[key]
+        if page:
+            if page.get('title') and not page.get('filtered'):
+                page_title = self.page_title(key)
+                title_text = title if title else page_title
+                return markupsafe.Markup(
+                    '<ac:link><ri:page ri:content-title="{reference}" /><![CDATA[{title_text}]]></ac:link>'.format(
+                        reference=page_title, title_text=title_text)
+                )
+
+        just_name = title if title else key
+        if item_class:
+            just_name = self.translate(self.json_data[item_class][key].get('name'))
+        return just_name
+
+    def domain_link(self, key: str):
+        return self.soft_link(key, 'domains')
+
+    def entity_link(self, key: str):
+        return self.soft_link(key, 'entities')
+
+    def attribute_link(self, key: str):
+        return self.soft_link(key, 'attributes')
+
+    def entity_icon(self, entity: object):
+        return markupsafe.Markup(
+            '<img width="50px" align="right" ' +
+            'src="' +
+            'https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614270727/fyayc_icon_library/svg/ChannelOverview/f-icon_channeloverview_0099_product.svg' +
+            '" />'
+        )

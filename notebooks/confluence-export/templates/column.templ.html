@@ -13,7 +13,7 @@
           </tr>
           <tr>
             <th>Tabelle</th>
-            <td><ac:link><ri:page ri:content-title="{{util.page_title(column['table-id'])}}" /><![CDATA[{{util.page_title(column['table-id'])}}]]></ac:link></td>
+            <td>{{ util.soft_link(column.get('table-id')) }}</td>
           </tr>
           <tr>
             <th>Datentyp</th>
@@ -34,14 +34,14 @@
           <tr>
             <th>Domäne</th>
             <td>
-              {% if column['domain'] %}
-              <ac:link><ri:page ri:content-title="{{util.page_title(column['domain'])}}" /><![CDATA[{{util.page_title(column['domain'])}}]]></ac:link>
+              {% if column.get('domain') %}
+              {{ util.domain_link(column.get('domain')) }}
               {% endif %}
             </td>
           </tr>
           <tr>
             <th>Spalten ID</th>
-            <td>{{column['interface_col_id']}}</td>
+            <td>{{ column['interface_col_id'] }}</td>
           </tr>
         </tbody>
       </table>
@@ -63,7 +63,7 @@
       <p>
         <ac:structured-macro ac:macro-id="eb891189-be96-4a41-9d8a-328a335a125c" ac:name="tip" ac:schema-version="1">
           <ac:parameter ac:name="title">Hinweis</ac:parameter>
-          <ac:rich-text-body>Der folgende Abschnitt bis zur Trennlinie enthält die manuell gepflegte Dokumentation. Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.</ac:rich-text-body>
+          <ac:rich-text-body>Der folgende Abschnitt bis zur Trennlinie enthält die manuelle Dokumentation. Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.</ac:rich-text-body>
         </ac:structured-macro>
       </p>
       <p>

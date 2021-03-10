@@ -4,6 +4,7 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
+      <h1>IM Entität {{ util.translate(entity['name']) }}</h1>
       <p>{{ util.translate(entity['descr']) }}</p>
       <h2>Synonyms</h2>
       <p>{% for syno in entity['synonyms'] %}{{ syno[util.language] }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
@@ -12,7 +13,7 @@
       </p>
     </ac:layout-cell>
     <ac:layout-cell>
-      <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614270727/fyayc_icon_library/svg/ChannelOverview/f-icon_channeloverview_0099_product.svg" />
+      {{ util.entity_icon(entity) }}
     </ac:layout-cell>
   </ac:layout-section>
   <ac:layout-section ac:type="single">
@@ -21,13 +22,14 @@
       <table class="relative-table" style="width: 100%;">
       <tbody>
         <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th><br /></th>
-        <th><br /></th></tr>
-        {% for attribute in entity['attributes+'] %}
+          <th>Name</th>
+          <th>Type</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for attribute_key in entity['attributes+'] %}
         <tr>
-          <td><p><ac:link><ri:page ri:content-title="{{ util.page_title(attribute) }}" /><![CDATA[{{ util.page_title(attribute) }}]]></ac:link></p></td>
+          <td>{{ util.attribute_link(attribute_key) }}</td>
           <td></td>
           <td><br/></td>
           <td><br/></td>

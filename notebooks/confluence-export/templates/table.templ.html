@@ -4,7 +4,7 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>{{table['name']}}</h1>
+      <h1>Tabelle {{table['name']}}</h1>
       <p>
         <table>
           <colgroup>
@@ -80,8 +80,7 @@
           <td>{{column['datatypeid+']}}</td>
           <td>
             {% if column.get('domain') %}
-            <ac:link><ri:page ri:content-title="{{util.page_title(column['domain'])}}" />
-              <![CDATA[{{util.page_title(column['domain'])}}]]></ac:link>
+            {{ util.domain_link(column['domain']) }}
             {% endif %}
           </td>
         </tr>
