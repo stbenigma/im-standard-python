@@ -7,55 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../TestCaseTalk/DB/TestCaseTalk.db</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="EZV_Stammdaten.db" uuid="68791d99-d6e1-4793-a553-713aa5ea2957">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../EZV/DB/EZV_Stammdaten.db</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="fyayc_dev_mapping.db" uuid="0b63fba0-ce62-43ff-9ec1-85e00f2db589">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../modelexports/DB/fyayc_dev_mapping.db</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="belimo_crm.db" uuid="86baf126-31aa-4047-9c63-180ea2e952bd">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../BELIINF/DB/belimo_crm.db</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="LEISTER_IM.db" uuid="5a5b8656-7352-4159-ac1b-3fdcf57a34cb">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../LEISTER/DB/LEISTER_IM.db</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="Komax_IM_gesamt.db" uuid="e6589e7c-bcbf-4cbc-a24d-dd7b5f4edf66">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../KOMADSC/DB/Komax_IM_gesamt.db</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="@localhost" uuid="28982c5c-88e9-4452-8ae0-70e36c9a4888">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://localhost</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="eatestmodel@fyac-im-test.database.windows.net" uuid="e06bed7e-e6a0-4da0-b529-3f484240525e">
-      <driver-ref>azure.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=eatestmodel</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="modelmodel@fyac-im-test.database.windows.net" uuid="bbe79d5b-8404-41e1-80c7-5f018087522a">
-      <driver-ref>azure.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=modelmodel</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="postgres@34.65.164.219" uuid="3cce99a8-203b-4408-bf10-913223fa0c1b">
@@ -72,18 +28,18 @@
       <jdbc-url>jdbc:sqlite:testscript.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ModellModell_neu.db" uuid="19dbac50-2c9d-4d04-aa95-a5dbca477d3e">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="eatestmodel@fyac-im-test.database.windows.net" uuid="e06bed7e-e6a0-4da0-b529-3f484240525e">
+      <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../testModels/ModelModel/DB/ModellModell_neu.db</jdbc-url>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=eatestmodel</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="crmTest.db" uuid="b02d66ab-7e77-47a5-a482-a44132a93171">
+    <data-source source="LOCAL" name="DC-IM.db" uuid="36e7e03f-2595-4c25-b3c6-c6f377fda113">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../testModels/crmTest/DB/crmTest.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../Rexroth/DC-IM/DB/DC-IM.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

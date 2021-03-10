@@ -220,7 +220,7 @@ class Languagetext(Baseobject):
         , 'Numerisch': 'Numerical'
         , "Org. Einheiten": "Org. units"
         , "Organisationseinheit": "Organisational unit"
-        , 'Pflichtattribut': 'Attribute of duty'
+        , 'Pflichtattribut': 'Mandatory attribute '
         , 'Quartal': 'quarter'
         , 'Referenziert in': 'Referenced in'
         , 'Referenziert von': 'Referenced by'
