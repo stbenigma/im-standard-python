@@ -7230,7 +7230,7 @@ sv.setDirty(true);]]>
 // Functions:
 // createsubview - creates a new subview (according to entered zoomlevel) based on the current subview + executes "showhideelements" at the end
 // showhideelements - logs all visibility errors according to defined zoomlevel and displayed parentsubview
-// initzoomlevel - set all (or only not set) zoomlevel definitions according standardrules
+// initzoomlevel - set only "not set" zoomlevel definitions according standardrules
 
 //InitVars begin
 var CODEVERSION = '0.2'
@@ -7337,43 +7337,84 @@ function getMinMax(checkObj){
         g_logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
     }    
 }
+function checkSetDescAttr(checkObj){
+    var thisdescflag = checkObj.getProperty("isdescriptive")
+    if (thisdescflag == ""){
+        thisdescflag = "FALSE"
+        var keys = checkObj.getEntity().getUniqueIdentifiers()
+        for (var ik=0;ik<keys.length;ik++){
+            key = keys[ik]
+            var attrkeys = key.getElementsCollection()
+            for (var ik2=0;ik2<attrkeys.length;ik2++){
+                var attrkey = attrkeys[ik2]
+                if (attrkey == checkObj){
+                    thisdescflag = "TRUE"
+                    break
+                }
+            }
+        }            
+        checkObj.setProperty("isdescriptive", thisdescflag)
+    }
+}
 
 function calcnewMinMax(checkObj){
+    //DEV
+    checkObj.setProperty("minzoomlevel","")  
+    checkObj.setProperty("maxzoomlevel","")  
+    checkObj.setProperty("isdescriptive","")  
+    //DEV
+
     var minzl = checkObj.getProperty("minzoomlevel")  
     var maxzl = checkObj.getProperty("maxzoomlevel")  
     var newminzl = g_minzoomlevel
     var newmaxzl = g_maxzoomlevel
     switch(checkObj.getObjectTypeName().toString()){
         case "Entity":
-            break
-        case "Attribute":
-            var thisdescflag = checkObj.getProperty("isdescriptive")
-            if (thisdescflag == ""){
-                if (checkObj.isFKAttribute()){
-                    thisdescflag = "TRUE"
-                }else{
-                    thisdescflag = "FALSE"
+            var attrs = checkObj.getAttributes().toArray()
+            var relas = checkObj.getRelations().toArray()
+            //DEV Not Root?
+            var haschildren = false
+            for (var ir=0;ir<relas.length;ir++){
+                var rela = relas[ir]
+                if (rela.getSourceEntity() == checkObj){
+                    haschildren = true
+                    break
                 }
-                checkObj.setProperty("isdescriptive", thisdescflag)
-            }            
-            if (thisdescflag == "FALSE") {
+            }
+            if ((attrs.length == 0) && (!(haschildren))){
                 newmaxzl = 1
-            }else{
-                newmaxzl = 3
+            }else if((attrs.length > 0) && (!(haschildren))){
+                var hasdescattr = false
+                for (var ia=0;ia<attrs.length;ia++){
+                    var attr = attrs[ia]
+                    checkSetDescAttr(attr)
+                    if (attr.getProperty("isdescriptive") == "TRUE"){
+                        hasdescattr = true
+                    }
+                }
+                if (!(hasdescattr)){
+                    newmaxzl = 2
+                }
             }
             break
-        case "Relation":
+        case "Attribute":
+            checkSetDescAttr(checkObj)
+            var thisdescflag = checkObj.getProperty("isdescriptive")
+            if (thisdescflag == "FALSE") {
+                newmaxzl = 0
+            }else{
+                newmaxzl = 2
+            }
             break
-        case "Hirarchy":
-            break
-        default:
-            g_logger.logMessage("getObjectTypeName \""+checkObj.getObjectTypeName()+"\" not defined!")
     }
+    g_logger.logMessage("DEV: Set \""+checkObj+"\" ("+checkObj.getObjectTypeName()+") min/max to: "+newminzl+"/"+newmaxzl)
     if (!(isNumeric(minzl))){
-        checkObj.setProperty("minzoomlevel",newminzl)
+        //DEV
+        //checkObj.setProperty("minzoomlevel",newminzl)      
     }
     if ((!(isNumeric(maxzl))) || ((maxzl == g_maxzoomlevel) && (maxzl != newmaxzl))) {
-        checkObj.setProperty("maxzoomlevel",newmaxzl)
+        //DEV
+        //checkObj.setProperty("maxzoomlevel",newmaxzl)
     }
 }
 
@@ -7755,11 +7796,13 @@ function initzoomlevel(){
             calcnewMinMax(attr)
         }
     }
+    /*
     //setMinMax to relations
     for (var ir=0;ir<relations.length;ir++){
         var relation = relations[ir]
         calcnewMinMax(relation)
     }
+    */
 }
 //initzoomlevel end]]>
 		</script>
@@ -9413,7 +9456,7 @@ ddlStatementsList.add(new java.lang.String(ddl));
 // Functions:
 // createsubview - creates a new subview (according to entered zoomlevel) based on the current subview + executes "showhideelements" at the end
 // showhideelements - logs all visibility errors according to defined zoomlevel and displayed parentsubview
-// initzoomlevel - set all (or only not set) zoomlevel definitions according standardrules
+// initzoomlevel - set only "not set" zoomlevel definitions according standardrules
 
 //InitVars begin
 var CODEVERSION = '0.2'
@@ -9520,43 +9563,84 @@ function getMinMax(checkObj){
         g_logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
     }    
 }
+function checkSetDescAttr(checkObj){
+    var thisdescflag = checkObj.getProperty("isdescriptive")
+    if (thisdescflag == ""){
+        thisdescflag = "FALSE"
+        var keys = checkObj.getEntity().getUniqueIdentifiers()
+        for (var ik=0;ik<keys.length;ik++){
+            key = keys[ik]
+            var attrkeys = key.getElementsCollection()
+            for (var ik2=0;ik2<attrkeys.length;ik2++){
+                var attrkey = attrkeys[ik2]
+                if (attrkey == checkObj){
+                    thisdescflag = "TRUE"
+                    break
+                }
+            }
+        }            
+        checkObj.setProperty("isdescriptive", thisdescflag)
+    }
+}
 
 function calcnewMinMax(checkObj){
+    //DEV
+    checkObj.setProperty("minzoomlevel","")  
+    checkObj.setProperty("maxzoomlevel","")  
+    checkObj.setProperty("isdescriptive","")  
+    //DEV
+
     var minzl = checkObj.getProperty("minzoomlevel")  
     var maxzl = checkObj.getProperty("maxzoomlevel")  
     var newminzl = g_minzoomlevel
     var newmaxzl = g_maxzoomlevel
     switch(checkObj.getObjectTypeName().toString()){
         case "Entity":
-            break
-        case "Attribute":
-            var thisdescflag = checkObj.getProperty("isdescriptive")
-            if (thisdescflag == ""){
-                if (checkObj.isFKAttribute()){
-                    thisdescflag = "TRUE"
-                }else{
-                    thisdescflag = "FALSE"
+            var attrs = checkObj.getAttributes().toArray()
+            var relas = checkObj.getRelations().toArray()
+            //DEV Not Root?
+            var haschildren = false
+            for (var ir=0;ir<relas.length;ir++){
+                var rela = relas[ir]
+                if (rela.getSourceEntity() == checkObj){
+                    haschildren = true
+                    break
                 }
-                checkObj.setProperty("isdescriptive", thisdescflag)
-            }            
-            if (thisdescflag == "FALSE") {
+            }
+            if ((attrs.length == 0) && (!(haschildren))){
                 newmaxzl = 1
-            }else{
-                newmaxzl = 3
+            }else if((attrs.length > 0) && (!(haschildren))){
+                var hasdescattr = false
+                for (var ia=0;ia<attrs.length;ia++){
+                    var attr = attrs[ia]
+                    checkSetDescAttr(attr)
+                    if (attr.getProperty("isdescriptive") == "TRUE"){
+                        hasdescattr = true
+                    }
+                }
+                if (!(hasdescattr)){
+                    newmaxzl = 2
+                }
             }
             break
-        case "Relation":
+        case "Attribute":
+            checkSetDescAttr(checkObj)
+            var thisdescflag = checkObj.getProperty("isdescriptive")
+            if (thisdescflag == "FALSE") {
+                newmaxzl = 0
+            }else{
+                newmaxzl = 2
+            }
             break
-        case "Hirarchy":
-            break
-        default:
-            g_logger.logMessage("getObjectTypeName \""+checkObj.getObjectTypeName()+"\" not defined!")
     }
+    g_logger.logMessage("DEV: Set \""+checkObj+"\" ("+checkObj.getObjectTypeName()+") min/max to: "+newminzl+"/"+newmaxzl)
     if (!(isNumeric(minzl))){
-        checkObj.setProperty("minzoomlevel",newminzl)
+        //DEV
+        //checkObj.setProperty("minzoomlevel",newminzl)      
     }
     if ((!(isNumeric(maxzl))) || ((maxzl == g_maxzoomlevel) && (maxzl != newmaxzl))) {
-        checkObj.setProperty("maxzoomlevel",newmaxzl)
+        //DEV
+        //checkObj.setProperty("maxzoomlevel",newmaxzl)
     }
 }
 
@@ -9938,11 +10022,13 @@ function initzoomlevel(){
             calcnewMinMax(attr)
         }
     }
+    /*
     //setMinMax to relations
     for (var ir=0;ir<relations.length;ir++){
         var relation = relations[ir]
         calcnewMinMax(relation)
     }
+    */
 }
 //initzoomlevel end]]>
 		</script>
