@@ -17,9 +17,8 @@
 <normalForm>Third</normalForm>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
-<property name="isdescriptive" value=""/>
-<property name="maxzoomlevel" value=""/>
-<property name="minzoomlevel" value=""/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Kürzel" id="55CABD5F-9462-BF35-239C-E8A1A1D0848C">
@@ -35,9 +34,9 @@
 <dataTypeSize>10</dataTypeSize>
 <ownDataTypeParameters>10,,</ownDataTypeParameters>
 <propertyMap>
-<property name="isdescriptive" value="TRUE"/>
-<property name="maxzoomlevel" value=""/>
-<property name="minzoomlevel" value=""/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Beschreibung" id="F867E8A4-918F-6080-28A2-29F17C191237">
@@ -47,15 +46,14 @@
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <domain>A1C92196-C338-7A03-9785-9C26AC235EA0</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value=""/>
-<property name="minzoomlevel" value=""/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Gültigperiode" id="BF0C6DE8-EB85-2BA9-957F-24D2906D86AA">
@@ -65,15 +63,14 @@
 <engineerTo>
 <item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
 <structuredType>66BFBF95-B0E6-4D93-EB1C-93CEEE4064C6</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value=""/>
-<property name="minzoomlevel" value=""/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="Standort" id="ADC7A453-19E1-879D-D4DF-B9DF8368A828">
@@ -90,8 +87,8 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value=""/>
-<property name="minzoomlevel" value=""/>
+<property name="maxzoomlevel" value="0"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 <Attribute name="wahroderfalsch" id="66598900-5B1C-00B3-05F0-E5C935F7D9BC">
@@ -108,8 +105,8 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
 <property name="isdescriptive" value="FALSE"/>
-<property name="maxzoomlevel" value=""/>
-<property name="minzoomlevel" value=""/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Attribute>
 </attributes>
@@ -130,6 +127,11 @@
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Gültigperiode.EndTag" directorySegmentName="seg_0" id="A7D058E2-0D3B-3397-1399-02EEA0F0C51F">
 <createdBy>stb</createdBy>
@@ -147,6 +149,11 @@
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Standort.X" directorySegmentName="seg_0" id="16894671-35E0-92A8-8694-A2800F545AD8">
 <createdBy>stb</createdBy>
@@ -164,6 +171,11 @@
 <dataTypePrecision>12</dataTypePrecision>
 <dataTypeScale>9</dataTypeScale>
 <ownDataTypeParameters>,12,9</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 <nestedAttribute name="Standort.Y" directorySegmentName="seg_0" id="5D27944F-A278-212B-A3DD-9C7716B470CF">
 <createdBy>stb</createdBy>
@@ -181,6 +193,11 @@
 <dataTypePrecision>12</dataTypePrecision>
 <dataTypeScale>9</dataTypeScale>
 <ownDataTypeParameters>,12,9</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </nestedAttribute>
 </nestedAttributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -194,6 +211,31 @@
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>55CABD5F-9462-BF35-239C-E8A1A1D0848C</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="B24EB4F9-3579-634E-4F4D-4AD591050543" name="UK2">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-10 12:49:35 UTC</createdTime>
+<ownerDesignName>fyayc_dev_base</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<newElementsIDs>F867E8A4-918F-6080-28A2-29F17C191237,66598900-5B1C-00B3-05F0-E5C935F7D9BC</newElementsIDs>
+<usedAttributes>
+<attributeRef>F867E8A4-918F-6080-28A2-29F17C191237</attributeRef>
+<attributeRef>66598900-5B1C-00B3-05F0-E5C935F7D9BC</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="B5B2CB65-BEFB-0B4D-68CB-477EA9F5825A" name="UK3">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-10 12:50:53 UTC</createdTime>
+<ownerDesignName>fyayc_dev_base</ownerDesignName>
+<engineerTo>
+<item key="5BE1D3DE-1298-62A6-B8A4-2793AE250A49" value="true"/>
+</engineerTo>
+<newElementsIDs>F867E8A4-918F-6080-28A2-29F17C191237,4E6F8483-4ACE-52D9-ECC9-9F8A9799DB89</newElementsIDs>
+<usedAttributes>
+<attributeRef>F867E8A4-918F-6080-28A2-29F17C191237</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
