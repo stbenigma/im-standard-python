@@ -10236,13 +10236,15 @@ function addChildrenToList(svObj, entityList, entityObj, checkzl){
     var entityChildren = entityObj.getHierarchicalChildren()
     for (var ic=0;ic<entityChildren.length;ic++){
         var entityChild = entityChildren[ic]
-        getMinMax(entityChild)
-        if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
-            var thistv0 = entityChild.getFirstViewForDPV(svObj)
-            var thiscell0 = thistv0.getCellView().getCell()
-            entityList.push(thiscell0)
-            if (entityChild.getHierarchicalChildrenCount() > 0) {
-                entityList = addChildrenToList(svObj, entityList, entityChild, checkzl)
+        if (entityChild != null){
+            getMinMax(entityChild)
+            if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
+                var thistv0 = entityChild.getFirstViewForDPV(svObj)
+                var thiscell0 = thistv0.getCellView().getCell()
+                entityList.push(thiscell0)
+                if (entityChild.getHierarchicalChildrenCount() > 0) {
+                    entityList = addChildrenToList(svObj, entityList, entityChild, checkzl)
+                }
             }
         }
     }
