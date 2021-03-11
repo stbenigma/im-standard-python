@@ -173,7 +173,7 @@ def fromodm2db(presult,podmjson, pdbjson, pelemtype, pjs2obj,pwithextsrcref=True
     """from ODM to DB transfer"""
     newdberrors = []
     olddberrors = None
-    odmelements = podmjson.getelements(pelemtype=pelemtype)
+    odmelements = copy(podmjson.getelements(pelemtype=pelemtype))
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
         Try several times, stop trying if errors stagnate"""

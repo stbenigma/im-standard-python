@@ -19,35 +19,64 @@ def inssourceref(pmodel,pmodeid, psources):
 
 def udps2js(pemptymodel):
     model = ['theme','group'
-            ,'name','usedfor' ]
+            ,'name','uc','dc','um','dm'
+             ,'usedfor']
     if pemptymodel:
-        retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['', '', '', reflist()])}
+        retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model)-1)]+[reflist()])}
     else:
         retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
                                 [u.udpr_theme,u.udpr_group,u.udpr_name
+                                 ,u.udpr_uc,u.udpr_dc,u.udpr_um,u.udpr_dm
                                        ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
                                                      for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))])
-                        ])
+                                ])
                  for u in Userdefprop().select()
             }
     return retval
 
-def udps2sql(pmodel:JSModel):
-    for udpranker,judp in pmodel.getelements(pelemtype=Modelelemtype.UDPR).items():
-        udpr = Userdefprop(ptheme=judp['theme'],pgroup=judp['group'],pname=judp['name'])
-        udpr.udpr_id = jsguid2id(udpranker)
-        try:
-            udpr.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=list(judp))
-            continue
+def js2udpr(pkey,pelem,psrcname=None,psrcid=None):
+    udpr = Userdefprop()
+    udpr.udpr_id = jsguid2id(pkey)
+    udpr.udpr_theme = pelem['theme']
+    udpr.udpr_group = pelem['group']
+    udpr.udpr_name = pelem['name']
+    udpr.udpr_uc = pelem['uc']
+    udpr.udpr_dc = pelem['dc']
+    udpr.udpr_um = pelem['um']
+    udpr.udpr_dm = pelem['dm']
+    return udpr
 
-        for melttype in judp['usedfor']:
+def udps2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
+    global fktranslate
+    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
+                   pwithextsrcref=pwithextsrcref)
+    # for udpranker,judp in pmodel.getelements(pelemtype=Modelelemtype.UDPR).items():
+    #     udpr = Userdefprop(ptheme=judp['theme'],pgroup=judp['group'],pname=judp['name'])
+    #     udpr.udpr_id = jsguid2id(udpranker)
+    #     try:
+    #         udpr.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=list(judp))
+    #         continue
+    #
+    #     for melttype in judp['usedfor']:
+    #         try:
+    #             ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(melttype).getid(),pudprid=udpr.udpr_id).insert()
+    #         except Exception as err:
+    #             pmodel.markerror(pmsg=err, pelemstr=list(judp))
+    #     #for
+    # #for
+    for jskey,jselem in podmjson.getelements(pelemtype=Modelelemtype.UDPR).items():
+        """mdelelemetype_properties are emptied and loaded from source"""
+        newudprid = fktranslate[jskey]
+        ModelelementProperty.delete(pwhere="metp_udpr_id={}".format(newudprid))
+        for elemtype in jselem["usedfor"]:
             try:
-                ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(melttype).getid(),pudprid=udpr.udpr_id).insert()
+                metp = ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(elemtype).getid(),pudprid=newudprid)
+                metp.insert()
+                presult.insertcnt += 1
             except Exception as err:
-                pmodel.markerror(pmsg=err, pelemstr=list(judp))
-        #for
+                presult.markdberror(perr=err,pelem=list(jselem))
     #for
     return
 
@@ -126,7 +155,7 @@ def js2docu(pkey,pelem,psrcname=None,psrcid=None):
     docu.docu_docu_id = jsguid2id(pelem['parent'])
     return docu
 
-def documents2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
+def documents2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
                    pwithextsrcref=pwithextsrcref)
     # parents = [] #(docu_id, parent_id)
@@ -219,26 +248,28 @@ def js2orgu(pkey,pelem,psrcname=None,psrcid=None):
     orgu.orgu_mail = pelem['mail']
     orgu.orgu_telefon = pelem['telefon']
     orgu.orgu_address = pelem['address']
+    orgu.orgu_orgu_id = jsguid2id(pelem['parent'])
     return orgu
 
 
-def orgunits2sql(pmodel:JSModel):
-    parents = [] #(orgu_id, parent_id)
-    for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
-        orgu = js2orgu(pkey=jid,pelem=jelem)
-        parentid = jsguid2id(jelem['parent'])
-        if parentid is not None:
-            parents.append((orgu.orgu_id, parentid))
-
-        try:
-            orguid = orgu.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=orgu.tostring())
-            continue
-        inssourceref(pmodel = pmodel,pmodeid=orguid, psources=jelem["sourceref"])
-    #for
-    OragnisationalUnit.updparentpairs(pparents=parents)
-
+def orgunits2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
+                   pwithextsrcref=pwithextsrcref)
+    # parents = [] #(orgu_id, parent_id)
+    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
+    #     orgu = js2orgu(pkey=jid,pelem=jelem)
+    #     parentid = jsguid2id(jelem['parent'])
+    #     if parentid is not None:
+    #         parents.append((orgu.orgu_id, parentid))
+    #
+    #     try:
+    #         orguid = orgu.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=orgu.tostring())
+    #         continue
+    #     inssourceref(pmodel = pmodel,pmodeid=orguid, psources=jelem["sourceref"])
+    # #for
+    # OragnisationalUnit.updparentpairs(pparents=parents)
     return
 
 """transfer references and subtypes"""

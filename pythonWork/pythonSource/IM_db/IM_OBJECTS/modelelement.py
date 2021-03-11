@@ -268,8 +268,8 @@ class ModelelementProperty(Baseobject):
         self.metp_optional = Boolean.FALSE
 
     @staticmethod
-    def delete():
-        Baseobject.delete(ModelelementProperty._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(ModelelementProperty._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="metp_id"):

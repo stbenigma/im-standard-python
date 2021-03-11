@@ -14,7 +14,7 @@ transferprocs = {
 ,'storageformats' : (5,storageformats2sql,stforefs2sql,js2stfo,False)
 ,'documents': (6,documents2sql, docurefs2sql,js2docu,True)
 ,'orgunits': (7,orgunits2sql, orgurefs2sql,js2orgu,True)
-,'userdefprops': (8,udps2sql, udprefs2sql,nofunc,True)
+,'userdefprops': (8,udps2sql, udprefs2sql,nofunc,False)
 ,'systems': (10,systems2sql, systrefs2sql,nofunc,True)
 ,'domains': (12,domains2sql, domarefs2sql,nofunc,True)
 ,'entities': (14,entities2sql,entirefs2sql,nofunc,True)
@@ -32,7 +32,7 @@ def mergeodm2db(podmjson,pdbjson):
     assert dbConnect.isopenDB()
     result = Mergeresult()
     for masterobject in sorted(transferprocs.keys(),key=lambda val:transferprocs[val][0]):
-        if masterobject not in ("languages","model","physicalunits","datatypes","storageformats","documents"): #or masterobject in ("_imprint_"):
+        if masterobject not in ("languages","model","physicalunits","datatypes","storageformats","documents","orgunits","userdefprops","systems"): #or masterobject in ("_imprint_"):
             print (masterobject)
         else:
             objtype = JSModel.label2elemtype(masterobject)

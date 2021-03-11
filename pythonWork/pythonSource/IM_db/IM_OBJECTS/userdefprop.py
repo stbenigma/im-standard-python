@@ -15,7 +15,7 @@ class Userdefprop(Baseobject):
         self.udpr_theme = ptheme
         self.udpr_group = pgroup
         self.udpr_name = pname
-        self.udpr_uc = 'SYS'
+        self.udpr_uc = 'sys'
         self.udpr_dc = date.today()
 
     def getname(self,plang=None):
