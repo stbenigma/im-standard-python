@@ -275,7 +275,8 @@ create table STORAGE_FORMATS
 create table DOCUMENTS
 (
 	DOCU_ID INTEGER not null
-		primary key,
+		primary key
+		references MODELELEMENT (mode_id),
 	DOCU_NAME VARCHAR(60) not null CONSTRAINT DOCU_UK UNIQUE,
 	DOCU_STFO_ID integer
 		references STORAGE_FORMATS (STFO_ID),
