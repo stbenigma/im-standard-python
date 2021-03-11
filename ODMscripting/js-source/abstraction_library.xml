@@ -83,12 +83,14 @@ function getcommentvalue(srcobj,srcvalue){
     commentlines = srcobj.getComment().split("\n")
     for (var vv=0;vv<commentlines.length;vv++){
         if (commentlines[vv].contains(srcvalue+"=")){
-            retval = commentlines[vv].replace(srcvalue+"=","")
+            retval = commentlines[vv].replace(srcvalue+"=","").trim()
             break
         }
     }
-    if (retval == null) {
-        error("No "+srcvalue+" definition in view "+srcobj+" found!")
+    if (((retval == null) || (retval == "")) && (srcvalue == "zoomlevel")) {
+        retval = g_minzoomlevel
+        message("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+        g_logger.logMessage("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
     }
     return retval
 }
@@ -96,7 +98,8 @@ function getcommentvalue(srcobj,srcvalue){
 function getzoomlevelprompt(){
     var retval = prompt('Choose desired zoomlevel')
     if ((!(isNumeric(retval))) || (retval > g_maxzoomlevel) || (retval < g_minzoomlevel)) {
-        error("No correct zoomlevel entered")
+        error("ERROR: No correct zoomlevel entered")
+        g_logger.logMessage("ERROR: No correct zoomlevel entered")
         retval = null
     }
     return retval
@@ -199,10 +202,10 @@ function addChildrenToList(svObj, entityList, entityObj, checkzl){
     var entityChildren = entityObj.getHierarchicalChildren()
     for (var ic=0;ic<entityChildren.length;ic++){
         var entityChild = entityChildren[ic]
-        if (entityChild != null){
-            getMinMax(entityChild)
-            if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
-                var thistv0 = entityChild.getFirstViewForDPV(svObj)
+        getMinMax(entityChild)
+        if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
+            var thistv0 = entityChild.getFirstViewForDPV(svObj)
+            if (thistv0 != null){
                 var thiscell0 = thistv0.getCellView().getCell()
                 entityList.push(thiscell0)
                 if (entityChild.getHierarchicalChildrenCount() > 0) {
@@ -225,6 +228,7 @@ function createsubview(){
     var sventities = sv.getTVShapes()
     var list = []
     g_logger.logMessage("\n")
+    g_logger.logMessage("Start function createsubview")
 
     //Mark all hierarchical elements with the appropriate zoomlevel
     for (var ie=0;ie<sventities.length;ie++){
@@ -246,7 +250,7 @@ function createsubview(){
         var thisentity = model.getEntitySet().getByName(sventity)
         if ((thisentity != null) && (thisentity.isHierarchicalEntityType() == false)) {
             getMinMax(thisentity)
-            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){               
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){       
                 var tv0 = thisentity.getFirstViewForDPV(sv)
                 var cell0 = tv0.getCellView().getCell()
                 list.push(cell0)
@@ -261,8 +265,7 @@ function createsubview(){
     for (var vv=0;vv<svlist.length;vv++){
         var newsv = svlist[vv]
         if (newsv.isCurrentDPV()) {            
-            var newdate = new Date().toLocaleDateString()
-            newsv.setName(sv+"_ZL"+newzlevel+"_"+newdate)
+            newsv.setName(sv+"_ZL"+newzlevel)
             newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
             newsv.setShowLegend(sv.showLegend())
             newsv.setShowLabels(sv.showLabels())
@@ -299,30 +302,32 @@ function createsubview(){
             }
         }
     }
-    showhideelements()
+    g_logger.logMessage("End function createsubview")
+    showhideelements()    
 }
 //createsubview start
 
 //showhideelements start
 function showhideelements(){
     g_logger.logMessage("\n")
-    var sv = getsubview(null)  
-    var svzlevel = getcommentvalue(sv,"zoomlevel")
-    var svpview = getcommentvalue(sv,"parentview")  
-    if ((svzlevel == null) || (svpview == null)){
-        return
-    }
-    var pv = getsubview(svpview)
-    var pvzlevel = getcommentvalue(pv,"zoomlevel")
-    if (pvzlevel == null) {
-        return
-    }
+    g_logger.logMessage("Start function showhideelements")
     var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    var sv = getsubview(null)
     var sventities = sv.getTVShapes()
     var svrelations = sv.getTVConnectors()
-    var relations = model.getRelationSet().toArray()
-    var pventities = pv.getTVShapes()
-    var pvrelations = pv.getTVConnectors()    
+    var svzlevel = getcommentvalue(sv,"zoomlevel")
+    var svpview = getcommentvalue(sv,"parentview")
+    var haspv = false
+    if ((svpview != null) && (svpview != "")){
+        haspv = true
+        var pv = getsubview(svpview)
+        var pvzlevel = getcommentvalue(pv,"zoomlevel")
+        var pventities = pv.getTVShapes()
+        var pvrelations = pv.getTVConnectors()    
+    }
+    var NoOfDifZL = 0
+    var NoOfDifPV = 0
     var logPrefix = ""
 
     //Zoomlevelcheck entity begin
@@ -354,11 +359,13 @@ function showhideelements(){
                     }
                     if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)) {
                         if (isOnSVEntity) {
-                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)    
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)
+                            NoOfDifZL++
                         }
                     }else{
                         if (!(isOnSVEntity)){
                             showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                            NoOfDifZL++
                         }
                     }
                 }    
@@ -368,11 +375,13 @@ function showhideelements(){
         getMinMax(entity)
         if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
             if (isOnSV) {
-                hideElements.push(logPrefix+" > HIDE: "+entity)    
+                hideElements.push(logPrefix+" > HIDE: "+entity)
+                NoOfDifZL++
             }
         }else{
             if (!(isOnSV)){
-                showElements.push(logPrefix+" > SHOW: "+entity)    
+                showElements.push(logPrefix+" > SHOW: "+entity)
+                NoOfDifZL++
             }
         }
     }
@@ -408,11 +417,13 @@ function showhideelements(){
         getMinMax(relation)
         if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
             if (isOnSV) {
-                hideElements.push(logPrefix+" > HIDE: "+relation)    
+                hideElements.push(logPrefix+" > HIDE: "+relation)
+                NoOfDifZL++
             }
         }else{
             if (!(isOnSV)){
-                showElements.push(logPrefix+" > SHOW: "+relation)    
+                showElements.push(logPrefix+" > SHOW: "+relation)
+                NoOfDifZL++
             }
         }
     }   
@@ -425,143 +436,169 @@ function showhideelements(){
     //Zoomlevelcheck relation end
 
     //Parentviewcompare entity begin
-    logPrefix = "ParentViewCompare > Entity"
-    g_logger.logMessage(logPrefix)
-    var showAttributes = []
-    var hideAttributes = []
-    for (var ie = 0; ie < pventities.length; ie++){
-        var pventity = pventities[ie]
-        var entity = model.getEntitySet().getByName(pventity)
-        var thissventity = null
-        var isOnSV = false
-        for (var ie2=0;ie2<sventities.length;ie2++){
-            var sventity = sventities[ie2]
-            if (pventity.toString() == sventity.toString()){
-                isOnSV = true
-                thissventity = sventity
-                break
-            }
-        }
-        if (!(isOnSV)){            
-            if (entity != null){
-                getMinMax(entity)
-                if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
-                    g_logger.logMessage(logPrefix+" > SHOW: "+entity)
+    if (haspv){
+        logPrefix = "ParentViewCompare > Entity"
+        g_logger.logMessage(logPrefix)
+        var showAttributes = []
+        var hideAttributes = []
+        for (var ie = 0; ie < pventities.length; ie++){
+            var pventity = pventities[ie]
+            var entity = model.getEntitySet().getByName(pventity)
+            var thissventity = null
+            var isOnSV = false
+            for (var ie2=0;ie2<sventities.length;ie2++){
+                var sventity = sventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnSV = true
+                    thissventity = sventity
+                    break
                 }
             }
-        }else{
-            var pvhiddenElements = pventity.getHiddenElements()
-            var svhiddenElements = thissventity.getHiddenElements()
-            for (var ih=0;ih<pvhiddenElements.length;ih++){
-                var pvhiddenElement = pvhiddenElements[ih]
-                getMinMax(pvhiddenElement)
-                if (!((pvzlevel > g_maxzl) || (pvzlevel < g_minzl))) {
-                    for (var ih2=0;ih2<svhiddenElements.length;ih2++){
-                        if (pvhiddenElements[ih] == svhiddenElements[ih2]){
-                            isOnSV = false
-                            break
-                        }
+            if (!(isOnSV)){            
+                if (entity != null){
+                    getMinMax(entity)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+entity)
+                        NoOfDifPV++
                     }
-                    if (isOnSV){
-                        hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
-                    } 
                 }
-            }
-            if (entity != null){
-                var attrs = entity.getAttributes().toArray()
-                for (var ia=0;ia<attrs.length;ia++) {
-                    var attr = attrs[ia]
-                    getMinMax(attr)
-                    var isOnPV = true
-                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)) {
-                        for (var ih=0;ih<pvhiddenElements.length;ih++){
-                            if (pvhiddenElements[ih] == attr){
-                                isOnPV = false
+            }else{
+                var pvhiddenElements = pventity.getHiddenElements()
+                var svhiddenElements = thissventity.getHiddenElements()
+                for (var ih=0;ih<pvhiddenElements.length;ih++){
+                    var pvhiddenElement = pvhiddenElements[ih]
+                    getMinMax(pvhiddenElement)
+                    if (!((pvzlevel > g_maxzl) || (pvzlevel < g_minzl))) {
+                        for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                            if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                                isOnSV = false
                                 break
                             }
                         }
-                        if (isOnPV){
-                            isOnSV = true
-                            for (var ih=0;ih<svhiddenElements.length;ih++){
-                                if (svhiddenElements[ih] == attr){
-                                    isOnSV = false
+                        if (isOnSV){
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                            NoOfDifPV++
+                        } 
+                    }
+                }
+                if (entity != null){
+                    var attrs = entity.getAttributes().toArray()
+                    for (var ia=0;ia<attrs.length;ia++) {
+                        var attr = attrs[ia]
+                        getMinMax(attr)
+                        var isOnPV = true
+                        if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)) {
+                            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                                if (pvhiddenElements[ih] == attr){
+                                    isOnPV = false
                                     break
                                 }
                             }
-                            if (!(isOnSV)){
-                                showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
+                            if (isOnPV){
+                                isOnSV = true
+                                for (var ih=0;ih<svhiddenElements.length;ih++){
+                                    if (svhiddenElements[ih] == attr){
+                                        isOnSV = false
+                                        break
+                                    }
+                                }
+                                if (!(isOnSV)){
+                                    showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
+                                    NoOfDifPV++
+                                }
                             }
                         }
-                    }
-                }        
-            }
-        }
-    }
-    for (var ie = 0; ie < sventities.length; ie++){
-        var sventity = sventities[ie]
-        var isOnPV = false
-        for (var ie2=0;ie2<pventities.length;ie2++){
-            var pventity = pventities[ie2]
-            if (pventity.toString() == sventity.toString()){
-                isOnPV = true
-                break
-            }
-        }
-        if (!(isOnPV)){
-            g_logger.logMessage(logPrefix+" > HIDE: "+sventity) 
-        }
-    }
-    for (var i=0;i<showAttributes.length;i++){
-        g_logger.logMessage(showAttributes[i])
-    }
-    for (var i=0;i<hideAttributes.length;i++){
-        g_logger.logMessage(hideAttributes[i])
-    }
-    //Parentviewcompare entity end
-
-    //Parentviewcompare relation begin
-    logPrefix = "ParentViewCompare > Relation"
-    g_logger.logMessage(logPrefix)
-    for (var ir = 0; ir < pvrelations.length; ir++){
-        var pvrelation = pvrelations[ir]
-        var isOnSV = false
-        for (var ir2=0;ir2<svrelations.length;ir2++){
-            var svrelation = svrelations[ir2]
-            if (pvrelation.toString() == svrelation.toString()){
-                isOnSV = true
-                break
-            }
-        }
-        if (!(isOnSV)){
-            var relation = model.getRelationSet().getByName(pvrelation)
-            if (relation != null){
-                getMinMax(relation)
-                if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
-                    g_logger.logMessage(logPrefix+" > SHOW: "+pvrelation)    
+                    }        
                 }
             }
         }
-    }
-    for (var ir = 0; ir < svrelations.length; ir++){
-        var svrelation = svrelations[ir]
-        var isOnPV = false
-        for (var ir2=0;ir2<pvrelations.length;ir2++){
-            var pvrelation = pvrelations[ir2]
-            if (pvrelation.toString() == svrelation.toString()){
-                isOnPV = true
-                break
+        for (var ie = 0; ie < sventities.length; ie++){
+            var sventity = sventities[ie]
+            var isOnPV = false
+            for (var ie2=0;ie2<pventities.length;ie2++){
+                var pventity = pventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+                NoOfDifPV++
             }
         }
-        if (!(isOnPV)){
-            g_logger.logMessage(logPrefix+" > HIDE: "+svrelation)    
+        for (var i=0;i<showAttributes.length;i++){
+            g_logger.logMessage(showAttributes[i])
         }
+        for (var i=0;i<hideAttributes.length;i++){
+            g_logger.logMessage(hideAttributes[i])
+        }
+        //Parentviewcompare entity end
+
+        //Parentviewcompare relation begin
+        logPrefix = "ParentViewCompare > Relation"
+        g_logger.logMessage(logPrefix)
+        for (var ir = 0; ir < pvrelations.length; ir++){
+            var pvrelation = pvrelations[ir]
+            var isOnSV = false
+            for (var ir2=0;ir2<svrelations.length;ir2++){
+                var svrelation = svrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnSV = true
+                    break
+                }
+            }
+            if (!(isOnSV)){
+                var relation = model.getRelationSet().getByName(pvrelation)
+                if (relation != null){
+                    getMinMax(relation)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+pvrelation)
+                        NoOfDifPV++
+                    }
+                }
+            }
+        }
+        for (var ir = 0; ir < svrelations.length; ir++){
+            var svrelation = svrelations[ir]
+            var isOnPV = false
+            for (var ir2=0;ir2<pvrelations.length;ir2++){
+                var pvrelation = pvrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+svrelation)
+                NoOfDifPV++
+            }
+        }
+    }else{
+        g_logger.logMessage("CHECK: No comparison of the parent view due to missing ABC definition")
     }
     //Parentviewcompare relation end   
+    var finalmessage = "Showhideelements result:"
+    if (NoOfDifZL > 0){
+        finalmessage += "\n"+NoOfDifZL+" differences to zoomlevel definition found!"
+    }
+    if (NoOfDifPV > 0){
+        finalmessage += "\n"+NoOfDifPV+" differences to parentview definition found!"
+    }
+    if ((NoOfDifPV == 0) && (NoOfDifZL == 0)){
+        finalmessage += "\nNo differences found."
+    }else{
+        finalmessage += "\nPlease check log-messages."
+    }
+    message(finalmessage)
+    g_logger.logMessage("End function showhideelements")       
 } 
 //showhideelements end
 
 //initzoomlevel start
 function initzoomlevel(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function initzoomlevel")
     var entities = model.getEntitySet().toArray()
     var relations = model.getRelationSet().toArray()
     //setMinMax to entities
@@ -582,6 +619,7 @@ function initzoomlevel(){
         calcnewMinMax(relation)
     }
     */
+    g_logger.logMessage("End function initzoomlevel")
 }
 //initzoomlevel end]]>
 		</script>
