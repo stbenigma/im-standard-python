@@ -99,6 +99,9 @@ class Baseobject:
     def getid(self):
         return self.colvalue(self._idcolname)
 
+    def getidcolname(self):
+        return self._idcolname
+
     def setid(self, pid):
         self.setcolvalue(pcolname=self._idcolname,pvalue=pid)
 
@@ -283,13 +286,18 @@ class Baseobject:
     def getsprachvals(self):
         raise NotImplementedError("Must override getsprachvals")
 
-    def translatefks(self):
-        print ("translatefks für {}".format(self._tablename))
-
     def getukvaluepairs(self):
         uklist = dbDDL.getuklist(ptablename=self._tablename)
         return [dbDML.valuepairs2sqlexpr(**{colname:self.colvalue(colname) for colname in uk}) for uk in uklist]
 
+    def getfkcolumns(self):
+        """{colname: (fktable, fkcolname,fkprefix)} all names in lowercase"""
+        fkcols = dbDDL.getfklist(ptablename=self._tablename)
+        retval = {}
+        for col, fk in fkcols.items():
+            fk.append(self._prefix)
+            retval[col] = fk
+        return retval
 
     @staticmethod
     def select(pclass, pwhere=None, porderby=None):

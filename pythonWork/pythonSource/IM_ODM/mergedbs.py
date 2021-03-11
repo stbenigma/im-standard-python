@@ -32,7 +32,7 @@ def mergeodm2db(podmjson,pdbjson):
     assert dbConnect.isopenDB()
     result = Mergeresult()
     for masterobject in sorted(transferprocs.keys(),key=lambda val:transferprocs[val][0]):
-        if masterobject not in ("languages","model","physicalunits","datatypes"): #or masterobject in ("_imprint_"):
+        if masterobject not in ("languages","model","physicalunits","datatypes","storageformats","documents"): #or masterobject in ("_imprint_"):
             print (masterobject)
         else:
             objtype = JSModel.label2elemtype(masterobject)

@@ -96,15 +96,18 @@ def js2stfo(pkey,pelem):
     stfo.stfo_dm = pelem['dm']
     return stfo
 
-def storageformats2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['storageformats'].items():
-        stfo = js2stfo(pkey=jid,pelem=jelem)
-        try:
-            stfo.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=stfo.tostring())
-            continue
-    #for
+def storageformats2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
+                   pwithextsrcref=pwithextsrcref)
+
+    # for jid,jelem in pmodel.jsmodel['storageformats'].items():
+    #     stfo = js2stfo(pkey=jid,pelem=jelem)
+    #     try:
+    #         stfo.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=stfo.tostring())
+    #         continue
+    # #for
     return
 
 """transfer references and subtypes"""
@@ -136,7 +139,7 @@ def datatypes2js(pemptymodel):
     return retval
 
 def js2daty(pkey,pelem,psrcname=None,psrcid=None):
-    daty:Datatype = Datatype(pname=pelem['name'],pbasetype=pelem['basetype'],psrcname=psrcname,pscrid=psrcid)
+    daty = Datatype(pname=pelem['name'],pbasetype=pelem['basetype'],psrcname=psrcname,pscrid=psrcid)
     daty.daty_id = jsguid2id(pkey)
     daty.daty_uc = pelem['uc']
     daty.daty_dc = pelem['dc']

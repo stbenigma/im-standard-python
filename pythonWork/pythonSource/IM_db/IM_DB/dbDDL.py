@@ -91,12 +91,12 @@ def getuklist(ptablename):
     return retval
 
 def getfklist(ptablename):
-    """return {colname:(fktable,fkcolname)}"""
+    """return {colname:[fktable,fkcolname]} all names in lowercase"""
     cursor = dbConnect.myDbConn.cursor()
     cursor.execute("PRAGMA foreign_key_list('{}')".format(ptablename))
     fks = cursor.fetchall()
     """foreign_key_list [id,seq,table,from,to,on_update (NO_ACTION),on_delete(CASCADE),match]
        """
-    retval = {fk[3]: (fk[2], fk[4]) for fk in fks}
+    retval = {fk[3].lower(): [fk[2].lower(), fk[4].lower()] for fk in fks}
     cursor.close()
     return retval

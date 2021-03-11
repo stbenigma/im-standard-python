@@ -123,22 +123,25 @@ def js2docu(pkey,pelem,psrcname=None,psrcid=None):
     docu.docu_reference = pelem['reference']
     docu.docu_content = pelem['content']
     docu.docu_stfo_id = jsguid2id(pelem['formatid'])
+    docu.docu_docu_id = jsguid2id(pelem['parent'])
     return docu
 
-def documents2sql(pmodel):
-    parents = [] #(docu_id, parent_id)
-    for jid,jelem in pmodel.getelements(Modelelemtype.DOCU).items():
-        docu = js2docu(pkey=jid,pelem=jelem)
-        try:
-            docuid = docu.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=docu.tostring())
-            continue
-
-        parents.append(jsguid2id(pelem['parent']))
-        inssourceref(pmodel=pmodel, pmodeid=docuid, psources=jelem["sourceref"])
-    #for
-    Document.updparentpairs(pparents=parents)
+def documents2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
+                   pwithextsrcref=pwithextsrcref)
+    # parents = [] #(docu_id, parent_id)
+    # for jid,jelem in pmodel.getelements(Modelelemtype.DOCU).items():
+    #     docu = js2docu(pkey=jid,pelem=jelem)
+    #     try:
+    #         docuid = docu.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=docu.tostring())
+    #         continue
+    #
+    #     parents.append(jsguid2id(pelem['parent']))
+    #     inssourceref(pmodel=pmodel, pmodeid=docuid, psources=jelem["sourceref"])
+    # #for
+    # Document.updparentpairs(pparents=parents)
     return
 
 """transfer references and subtypes"""

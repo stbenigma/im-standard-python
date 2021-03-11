@@ -1,9 +1,16 @@
 from IM_JSON import *
 from IM_OBJECTS import *
-from datetime import datetime
-from IM_DB import dbConnect
 from dbDML import valuepairs2sqlexpr
+from copy import copy
 
+"""{odmjsid: dbid,}  jsid MMMMxxxx (RELA1442)"""
+fktranslate= dict()
+def addfk(odmjsid, dbid):
+    global fktranslate
+    fktranslate[odmjsid] = dbid
+def dbid(odmjsid):
+    global fktranslate
+    return fktranslate[odmjsid]
 
 class Mergeresult:
     def __init__(self):
@@ -76,15 +83,15 @@ class Extsourcerefs(list):
         return False
 #Extrsourceref
 
-def getallsrcrefs(pelemtype,pjson):
+def getallsrcrefs(pelemtype):
     retval = Extsourcerefs()
-    for key, elem in pjson.getelements(pelemtype=pelemtype).items():
-        for srcname, srcelem in elem["sourceref"].items():
-            retval.push(Extsourceref(psrcname=srcname, psrcid=srcelem[0], plastupd=srcelem[1], pdbid=key))
+    for extr in Externalref.getallextrs (pelemtype=pelemtype):
+        retval.push(Extsourceref(psrcname=extr.extr_source_name, psrcid=extr.extr_source_id, plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
     # for
     return retval
 
 def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcref=True):
+
     """from DB to ODM transfer"""
     removedrefs = []
     """get all srcrefs existing in ODM
@@ -146,26 +153,49 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
         #for
     return
 
+
+def translatefks(pdbobj):
+    global fktranslate
+    """fkvalues {colname:[fktable,fkcolname,fkprefix]} all names in lowercase"""
+    fkvalues = pdbobj.getfkcolumns()
+    if len(fkvalues) == 0: return
+    for colname,fk in fkvalues.items():
+        if not (colname == pdbobj.getidcolname() and fk[2] == 'mode'):
+            """fk from ID to mode_id is not handled
+               translate id, if it's jsid MMMMxxxx is already translated"""
+            if jsguid(fk[2].upper(),pdbobj.colvalue(pcolname=colname)) in fktranslate:
+                pdbobj.setcolvalue(pcolname=colname,pvalue=fktranslate[jsguid(fk[2].upper(),pdbobj.colvalue(pcolname=colname))])
+    #for
+    return
+
+
 def fromodm2db(presult,podmjson, pdbjson, pelemtype, pjs2obj,pwithextsrcref=True):
     """from ODM to DB transfer"""
-    newdberrors = [0]
-    olddberrors = []
-
+    newdberrors = []
+    olddberrors = None
+    odmelements = podmjson.getelements(pelemtype=pelemtype)
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
         Try several times, stop trying if errors stagnate"""
+    loopcnt = 0 #safeguard
     while olddberrors != newdberrors:
+        loopcnt += 1
+        if loopcnt > 50:
+            print ("***** fromodm2db: too many trys for element {}".format(pelemtype))
+            break
+
         olddberrors = newdberrors
         newdberrors = []
 
-        """external source refs in the form
+        """external source refs in the target Database for the acutal elementtype (pelemtype) in the form
             {OBJTkey: [srcname,srcid,srclastupd,dbid]}"""
         if pwithextsrcref:
-            alldbsrcrefs = getallsrcrefs(pelemtype=pelemtype,pjson=pdbjson)
+            alldbsrcrefs = getallsrcrefs(pelemtype=pelemtype)
         else:
             alldbsrcrefs = Extsourcerefs()
 
-        for key,elem in podmjson.getelements(pelemtype=pelemtype).items():
+        curodmelements = copy(odmelements) #to allow deletion of done elements in loop
+        for key,elem in curodmelements.items():
             if pwithextsrcref:
                 odmsrcref = Extsourceref(psrcname = Externalref.SOURCE_ODM,
                                          psrcid = elem['sourceref'][Externalref.SOURCE_ODM][0]
@@ -181,7 +211,8 @@ def fromodm2db(presult,podmjson, pdbjson, pelemtype, pjs2obj,pwithextsrcref=True
 
             if dbsrcref is not None:
                 """entry via ODM-GUID found. this is my existing brother, try to update it"""
-                """get all sourcerefs from all sources for this db-ID"""
+
+                """get all external sourcerefs from all sources for this db-ID"""
                 dbsrcrefs:Extsourcerefs = alldbsrcrefs.getall(pdbid=dbsrcref.dbid)
                 lastupdatesrcref = dbsrcrefs.getwithmaxupd()
                 if (lastupdatesrcref.srcname !=  Externalref.SOURCE_ODM):
@@ -190,40 +221,52 @@ def fromodm2db(presult,podmjson, pdbjson, pelemtype, pjs2obj,pwithextsrcref=True
                                        .format(pelemtype,dbsrcref.dbid,lastupdatesrcref.srcname,Externalref.SOURCE_ODM))
                 else:
                     """update db-record if there is a difference"""
-                    if not obj.semanticequal(pjs2obj(pkey=dbsrcref.dbid,pelem=pdbjson.getbyid(dbsrcref.dbid))):
+                    if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid)):
                         try:
+                            addfk(odmjsid=key, dbid=jsdbsrcref.dbid)
                             obj.setid(jsguid2id(dbsrcref.dbid)) #preserve DB-id
+                            translatefks(obj)
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
                             presult.updatecnt += 1
+                            del odmelements[key] #omit in next loop
                         except Exception as e:
                             newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,obj.getid(),e))
                     # fi
                 #fi
             else:
+                """Entry not found via dbsrcref. It could still have a different srcref-GUID"""
                 ukref = obj.getbyanyuk() #getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
                 """ if an entry with the same UK exists (must have different srcid, otherwise it would not land here)
                     we habe a UK-problem. Otherwise insert the element """
                 if ukref is None:
+                    """Entry not found via SRCREF and not found via UK -> it is new"""
                     try:
                         obj.setid(None) #provoke new ID in new db
-                        obj.translatefks()
+                        translatefks(obj)
                         objid = obj.insert(pdoerrhdlng=False)
+                        addfk(odmjsid=key, dbid=objid)
                         presult.insertcnt += 1
+                        del odmelements[key]  # omit in next loop
                     except Exception as e:
                         newdberrors.append("""*** insert-error: ID = "{}:{}" exists with different GUID\n{}""".format(pelemtype,obj.getid(),e))
                 else:
-                    if pwithextsrcref:
-                        ukvalues = '\n'.join(val for val in obj.getukvaluepairs())
-                        newdberrors.append("""*** Merge-error: Element "{}:{}" with UK "{}" exists with different GUID"""
-                                         .format(pelemtype,obj.getid(),ukvalues))
-                    else:
-                        if not ukref.semanticequal(obj):
+                    """Entry found via UK. update it.  update the external ref as well, as it could be"""
+                    if not ukref.semanticequal(obj):
+                        try:
                             """update element found by it's uk"""
+                            addfk(odmjsid=key, dbid=ukref.getid())
                             ukref.semanticcopy(obj)
+                            translatefks(ukref)
                             ukref.updatedb(pdoerrhdlng=False)
+                            if pwithextsrcref:
+                                """update lastupd and add extr scr id as it may have changed or is new"""
+                                Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
                             presult.updatecnt += 1
-                        #fi
+                            del odmelements[key]  # omit in next loop
+                        except Exception as e:
+                            newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,ukref.getid(),e))
+
                     #fi
                 # fi
             #fi

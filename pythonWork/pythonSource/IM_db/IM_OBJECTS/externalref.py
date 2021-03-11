@@ -18,6 +18,22 @@ class Externalref(Baseobject):
         self.extr_last_update = plastupd or datetime.today()
 
     @staticmethod
+    def setlastupdate(psrcname,pmodeid,psrcid=None):
+        extr:Externalref = Externalref().getbyuk(extr_source_name=psrcname,extr_source_id=pmodeid)
+        if extr is None:
+            """not found, insert it"""
+            extr.extr_source_name = psrcname
+            extr.extr_mode_id = pmodeid
+            extr.extr_source_id = psrcid
+            extr.extr_last_update = datetime.today()
+            extr.insert()
+        else:
+            extr.extr_last_update = datetime.today()
+            if psrcid is not None: extr.extr_source_id = psrcid
+            extr.updatedb()
+        return
+
+    @staticmethod
     def getsources():
         data = dbDML.select("""select distinct extr_source_name from external_refs order by extr_source_name""")
         return [d[0] for d in data]
@@ -47,6 +63,12 @@ class Externalref(Baseobject):
         srcid = None if len(extrs) == 0 else extrs[0].extr_source_id
         return srcid
     # getsrcid
+
+    @staticmethod
+    def getallextrs (pelemtype):
+        return  Externalref.select(pwhere="""exists (select mode_id 
+                                                        from modelelement 
+                                                        where upper(mode_type) = upper('{}'))""".format(pelemtype))
 
     @staticmethod
     def getmodeid(psrcname,psrcid):
