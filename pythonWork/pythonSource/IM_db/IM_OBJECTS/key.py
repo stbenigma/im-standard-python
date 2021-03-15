@@ -62,8 +62,8 @@ class Keyelement(Baseobject):
     # getkeyelement
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Keyelement._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(Keyelement._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="kele_id"):

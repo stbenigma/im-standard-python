@@ -202,21 +202,22 @@ def keys2js(pemptymodel):
     if pemptymodel:
         retval = {jsguid(Modelelemtype.KEYS, "0000") : fillmodel(pmodel=model, pentries=['', '', '', '', '', '', sourceref(), keyelems2js(None)])}
     else:
+        keys = Key.select()
 
         retval = {jsguid(Modelelemtype.KEYS, k.keys_id):
                       fillmodel(pmodel=model
                                ,pentries=[k.keys_name, jsguid(Modelelemtype.ENTI, k.keys_enti_id)
-                                        , 'uc', 'dc', 'um', 'dm'
+                                        ,k.keys_uc,k.keys_dc,k.keys_um,k.keys_dm
                                     , Externalref.getsrcinfo(pmodeid=k.keys_id)
                                     ,  keyelems2js(k)
                                       ]
                                 )
-                 for k in Key.select()}
+                 for k in keys}
 
     return retval
 
 
-def ins1kele(pmodel: JSModel, pkey: Key, pattrid, prelaid):
+def ins1kele(presult:Mergeresult, pkey: Key, pattrid, prelaid):
     kele = Keyelement()
     kele.kele_keys_id = pkey.keys_id
     kele.kele_attr_id = pattrid
@@ -232,11 +233,11 @@ def ins1kele(pmodel: JSModel, pkey: Key, pattrid, prelaid):
         print(pkey.keys_id, [p.keys_id for p in Key.select(pwhere="keys_id = {}".format(nvl(pkey.keys_id, -1)))])
         print(prelaid, [p.rela_id for p in Relation.select(pwhere="rela_id = {}".format(nvl(prelaid, -1)))])
         print(pattrid, [p.attr_id for p in Attribute.select(pwhere="attr_id = {}".format(nvl(pattrid, -1)))])
-        pmodel.markerror(pmsg=err, pelemstr=str(pkey.keys_id) + kele.tostring())
+        presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
     return
 
 
-def inskeyelements(pmodel: JSModel, pkey: Key, pkeles):
+def inskeyelements(presult:Mergeresult, pkey: Key, pkeles):
     """         "key-elements": {
             "attributes": [
                "ATTR11911",
@@ -248,29 +249,34 @@ def inskeyelements(pmodel: JSModel, pkey: Key, pkeles):
             ]
          }
     """
+    Keyelement.delete(pwhere="kele_keys_id = {}".format(pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
-        ins1kele(pmodel=pmodel, pkey=pkey
-                 , pattrid=jsguid2id(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None
-                 , prelaid=jsguid2id(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
+        ins1kele(presult=presult, pkey=pkey
+                 , pattrid=idTranslate[jid] if jsguid2type(jid) == Modelelemtype.ATTR else None
+                 , prelaid=idTranslate[jid] if jsguid2type(jid) == Modelelemtype.RELA else None)
+    return
+
+def js2keys(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    key = Key(psrcname=psrcname,psrcid=psrcid)
+    key.keys_id = jsguid2id(pkey)
+    key.keys_name = pelem['name']
+    key.keys_enti_id = jsguid2id(pelem['entity'])
+    key.keys_uc = pelem['uc']
+    key.keys_dc = pelem['dc']
+    key.keys_um = pelem['um']
+    key.keys_dm = pelem['dm']
+    return key
 
 
-def keys2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.getelements(Modelelemtype.KEYS).items():
-        key = Key()
-        key.keys_id = jsguid2id(jid)
-        key.keys_name = jelem['name']
-        key.keys_enti_id = jsguid2id(jelem['entity'])
-        key.keys_uc = jelem['uc']
-        key.keys_dc = jelem['dc']
-        key.keys_um = jelem['um']
-        key.keys_dm = jelem['dm']
-        try:
-            key.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jsguid2id(jid)] + list(jelem))
-            continue
-        inskeyelements(pmodel=pmodel, pkey=key, pkeles=jelem['key-elements'])
-        inssourceref(pmodel=pmodel, pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+def keys2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
+                   pwithextsrcref=pwithextsrcref)
+
+    for jid, jelem in podmjson.getelements(Modelelemtype.KEYS).items():
+        key = Key().getbyid(pid=idTranslate[jid])
+        inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
+        if pwithextsrcref:
+            inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])
     # for
     return
 

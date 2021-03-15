@@ -24,6 +24,7 @@ def relation2js(prela):
         , 'from-to', 'to-from'
         , 'isinkeys+', 'sourceref'
         , 'uc', 'dc', 'um', 'dm'
+        , 'userdefprops'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
               ]
     if prela is None:
@@ -31,7 +32,9 @@ def relation2js(prela):
                            , pentries=['', ''
                                     , relaend2js(), relaend2js()
                                        , reflist(), sourceref()
-                                     , '', '', '', '',0,4,'DEV'
+                                     , '', '', '', ''
+                                    ,userdefprops(None)
+                                    ,0,4,'DEV'
                                        ]
                            )
     else:
@@ -59,6 +62,7 @@ def relation2js(prela):
                                         ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys])
                                       , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                        ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm
+                                       ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
                                     , prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getdevstatus()
 
                                        ]
@@ -74,43 +78,47 @@ def relations2js(pemptymodel):
         relas = {jsguid(Modelelemtype.RELA, r.rela_id): relation2js(r) for r in Relation.select()}
     return relas
 
+def js2rela (pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    rela = Relation(psrcname=psrcname,psrcid=psrcid)
+    rela.rela_id = jsguid2id(pkey)
+    rela.rela_name = pelem['name']
+    rela.rela_type = pelem['type']
+    rela.rela_enti_id_from = jsguid2id(pelem['from-to']['enti'])
+    rela.rela_arcs_id_from = jsguid2id(pelem['from-to']['arc'])
+    rela.rela_assoc_from_to = pelem['from-to']['assoc'][pmodellang]
+    rela.rela_maptype_from_to = pelem['from-to']['maptype']
+    rela.rela_mandatory_from_to = Boolean.bool2str(pelem['from-to']['mandatory'])
+    rela.rela_hist_from_to = Boolean.bool2str(pelem['from-to']['hist'])
+    rela.rela_enti_id_to = jsguid2id(pelem['to-from']['enti'])
+    rela.rela_arcs_id_to = jsguid2id(pelem['to-from']['arc'])
+    rela.rela_assoc_to_from = pelem['to-from']['assoc'][pmodellang]
+    rela.rela_maptype_to_from = pelem['to-from']['maptype']
+    rela.rela_mandatory_to_from = Boolean.bool2str(pelem['to-from']['mandatory'])
+    rela.rela_hist_to_from = Boolean.bool2str(pelem['to-from']['hist'])
+    rela.rela_uc = pelem['uc']
+    rela.rela_dc = pelem['dc']
+    rela.rela_um = pelem['um']
+    rela.rela_dm = pelem['dm']
+    return rela
 
+def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    """there are arcs without extref (those generated for subtypes) will be handled in fromodm2db"""
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.RELA, pjs2obj=js2rela,
+                   pwithextsrcref=pwithextsrcref)
 
-def relations2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.getelements(pelemtype=Modelelemtype.RELA).items():
-        rela = Relation()
-        rela.rela_id = jsguid2id(jid)
-        rela.rela_name = jelem['name']
-        rela.rela_type = jelem['type']
-        rela.rela_enti_id_from = jsguid2id(jelem['from-to']['enti'])
-        rela.rela_arcs_id_from = jsguid2id(jelem['from-to']['arc'])
-        rela.rela_assoc_from_to = jelem['from-to']['assoc'][pmodel.modellanguage()]
-        rela.rela_maptype_from_to = jelem['from-to']['maptype']
-        rela.rela_mandatory_from_to = Boolean.bool2str(jelem['from-to']['mandatory'])
-        rela.rela_hist_from_to = Boolean.bool2str(jelem['from-to']['hist'])
-        rela.rela_enti_id_to = jsguid2id(jelem['to-from']['enti'])
-        rela.rela_arcs_id_to = jsguid2id(jelem['to-from']['arc'])
-        rela.rela_assoc_to_from = jelem['to-from']['assoc'][pmodel.modellanguage()]
-        rela.rela_maptype_to_from = jelem['to-from']['maptype']
-        rela.rela_mandatory_to_from = Boolean.bool2str(jelem['to-from']['mandatory'])
-        rela.rela_hist_to_from = Boolean.bool2str(jelem['to-from']['hist'])
-        rela.rela_uc = jelem['uc']
-        rela.rela_dc = jelem['dc']
-        rela.rela_um = jelem['um']
-        rela.rela_dm = jelem['dm']
+    for jid, jelem in podmjson.getelements(Modelelemtype.RELA).items():
+        newrelaid = idTranslate[jid]
+
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
-        try:
-            relaid = rela.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=rela.tostring())
-            continue
-        Modelelement.upddisplelements(pmodeid=relaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-        replacelgtx(pmodel=pmodel, pmodeid=rela.rela_id, pattr=Languagetext.RELA_TEXT_TO, ptexts=jelem['to-from']['assoc'])
-        replacelgtx(pmodel=pmodel, pmodeid=rela.rela_id, pattr=Languagetext.RELA_TEXT_FROM, ptexts=jelem['from-to']['assoc'])
-        inssourceref(pmodel=pmodel,pmodeid=relaid, psources=jelem["sourceref"])
-        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+        Modelelement.upddisplelements(pmodeid=newrelaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        replacelgtx(presult=presult, pmodeid=newrelaid, pattr=Languagetext.RELA_TEXT_TO, ptexts=jelem['to-from']['assoc'])
+        replacelgtx(presult=presult, pmodeid=newrelaid, pattr=Languagetext.RELA_TEXT_FROM, ptexts=jelem['from-to']['assoc'])
+        if pwithextsrcref:
+            inssourceref(presult=presult,pmodeid=newrelaid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=newrelaid, pudps=jelem["userdefprops"])
+
     # for
     return
 
