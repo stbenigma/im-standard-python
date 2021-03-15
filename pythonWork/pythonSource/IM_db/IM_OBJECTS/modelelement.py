@@ -249,8 +249,9 @@ class Modelelement(Baseobject):
         lsql = """update modelelement
                     set mode_min_zoom_level = {}
                     ,mode_max_zoom_level = {}
-                    ,mode_dev_status = '{}' 
-                    where mode_id = {}""".format(pminzl,pmaxzl,pdevstat,pmodeid)
+                    ,mode_dev_status = {} 
+                    where mode_id = {}""".format(dbDML.dbval(pminzl),dbDML.dbval(pmaxzl)
+                                                 ,dbDML.dbval(pdevstat),pmodeid)
         dbDML.exec(lsql)
 
 # modelelement

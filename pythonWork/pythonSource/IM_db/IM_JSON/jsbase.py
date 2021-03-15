@@ -163,6 +163,8 @@ class JSModel:
         if pelemstr != '': self._errors.append(pelemstr)
         self.incerrcnt()
     # markerror
+
+
     def markwarning(self,pmsg):
         self._warnings.append("WARNING: {}".format(pmsg))
         self.incwrncnt()

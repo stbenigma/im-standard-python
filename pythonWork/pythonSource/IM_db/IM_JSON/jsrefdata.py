@@ -28,7 +28,7 @@ def physicalunits2js(pemptymodel):
     # fi
     return retval
 
-def js2phyu(pkey,pelem):
+def js2phyu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     phyu:PhysicalUnit = PhysicalUnit()
     phyu.phyu_id = jsguid2id(pkey)
     phyu.phyu_si_unit = pelem['si-unit']
@@ -41,8 +41,8 @@ def js2phyu(pkey,pelem):
     return phyu
 
 
-def physicalunits2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
-    fromodm2db(presult=presult,podmjson=podmjson,pdbjson=pdbjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
+def physicalunits2sql(presult, podmjson:JSModel,pwithextsrcref):
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
     # for jid,jelem in pmodel.jsmodel['physicalunits'].items():
     #     phyu = js2phyu(pkey=jid,pelem=jelem)
     #     try:
@@ -51,11 +51,6 @@ def physicalunits2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref)
     #         pmodel.markerror(pmsg=err, pelemstr=phyu.tostring())
     #         continue
     # # for
-    return
-
-"""transfer references and subtypes"""
-def phyurefs2sql(pmodel:JSModel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 def storageformats2js(pemptymodel):
@@ -85,7 +80,7 @@ def storageformats2js(pemptymodel):
     # fi
     return retval
 
-def js2stfo(pkey,pelem):
+def js2stfo(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     stfo:Storageformat = Storageformat()
     stfo.stfo_id = jsguid2id(pkey)
     stfo.stfo_name = pelem['name']
@@ -96,8 +91,8 @@ def js2stfo(pkey,pelem):
     stfo.stfo_dm = pelem['dm']
     return stfo
 
-def storageformats2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
+def storageformats2sql(presult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
                    pwithextsrcref=pwithextsrcref)
 
     # for jid,jelem in pmodel.jsmodel['storageformats'].items():
@@ -109,12 +104,6 @@ def storageformats2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrc
     #         continue
     # #for
     return
-
-"""transfer references and subtypes"""
-def stforefs2sql(pmodel:JSModel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
-    return
-
 
 def datatypes2js(pemptymodel):
     model = ['name'
@@ -138,7 +127,7 @@ def datatypes2js(pemptymodel):
     # fi
     return retval
 
-def js2daty(pkey,pelem,psrcname=None,psrcid=None):
+def js2daty(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     daty = Datatype(pname=pelem['name'],pbasetype=pelem['basetype'],psrcname=psrcname,pscrid=psrcid)
     daty.daty_id = jsguid2id(pkey)
     daty.daty_uc = pelem['uc']
@@ -148,8 +137,8 @@ def js2daty(pkey,pelem,psrcname=None,psrcid=None):
     return daty
 
 
-def datatypes2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
-    fromodm2db(presult=presult,podmjson=podmjson,pdbjson=pdbjson,pelemtype=Modelelemtype.DATY,pjs2obj=js2daty,pwithextsrcref=pwithextsrcref)
+def datatypes2sql(presult, podmjson:JSModel,pwithextsrcref):
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=Modelelemtype.DATY,pjs2obj=js2daty,pwithextsrcref=pwithextsrcref)
     # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DATY).items():
     #     daty = js2daty(pkey=jid,pelem=jelem)
     #     try:
@@ -159,11 +148,6 @@ def datatypes2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
     #         continue
     #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     # #for
-    return
-
-"""transfer references and subtypes"""
-def dtayrefs2sql(pmodel:JSModel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 

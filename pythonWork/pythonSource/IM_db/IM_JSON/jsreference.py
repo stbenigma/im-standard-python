@@ -2,7 +2,7 @@ from IM_OBJECTS import *
 from IM_JSON import *
 from mystring import nvl
 
-def inssourceref(pmodel,pmodeid, psources):
+def inssourceref(presult:Mergeresult,pmodeid, psources):
     """   "sourceref": {
         "ODM": ["80D2A6F4-56D6-88E4-2E84-676699D4EBF2","2021-02-13 15:23:41.412333"]
     },"""
@@ -10,9 +10,12 @@ def inssourceref(pmodel,pmodeid, psources):
     for src, entry in psources.items():
         extr = Externalref(pmodeid=pmodeid, psrcname=src, psrcid=entry[0],plastupd=entry[1])
         try:
-            extr.insert()
+            extr.insert(pdoerrhdlng=False)
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=extr.tostring())
+            """simple version **** ignore error, it could be the first entry of the loading system
+            laster version: if it is duplicate ID, ignore it, otherwise report it"""
+            continue
+            presult.markdberror(perr=err, pelem=extr.tostring())
     # for
     return
 
@@ -34,7 +37,7 @@ def udps2js(pemptymodel):
             }
     return retval
 
-def js2udpr(pkey,pelem,psrcname=None,psrcid=None):
+def js2udpr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     udpr = Userdefprop()
     udpr.udpr_id = jsguid2id(pkey)
     udpr.udpr_theme = pelem['theme']
@@ -46,9 +49,9 @@ def js2udpr(pkey,pelem,psrcname=None,psrcid=None):
     udpr.udpr_dm = pelem['dm']
     return udpr
 
-def udps2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
+def udps2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     global fktranslate
-    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
                    pwithextsrcref=pwithextsrcref)
     # for udpranker,judp in pmodel.getelements(pelemtype=Modelelemtype.UDPR).items():
     #     udpr = Userdefprop(ptheme=judp['theme'],pgroup=judp['group'],pname=judp['name'])
@@ -68,7 +71,7 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithexts
     # #for
     for jskey,jselem in podmjson.getelements(pelemtype=Modelelemtype.UDPR).items():
         """mdelelemetype_properties are emptied and loaded from source"""
-        newudprid = fktranslate[jskey]
+        newudprid = idTranslate[jskey]
         ModelelementProperty.delete(pwhere="metp_udpr_id={}".format(newudprid))
         for elemtype in jselem["usedfor"]:
             try:
@@ -80,11 +83,6 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithexts
     #for
     return
 
-"""transfer references and subtypes"""
-def udprefs2sql(pmodel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprops"])
-    return
-
 def udpv2js(pmodeid,pmodelemtype):
     return {
         th[0]: {gr[1]: {jsguid(mtype=Modelelemtype.UDPR,id=u.udpr_id): {'name': u.udpr_name
@@ -94,7 +92,7 @@ def udpv2js(pmodeid,pmodelemtype):
         for th in Userdefprop.themelist(pmelttype=pmodelemtype)
     }
 
-def updvs2sql(pmodel:JSModel, pmodeid, pudps):
+def udpvs2sql(presult, pmodeid, pudps):
     if pudps is None: return
     """ "userdefprop": {
             "-theme-": {
@@ -107,16 +105,17 @@ def updvs2sql(pmodel:JSModel, pmodeid, pudps):
     for theme,jtheme in pudps.items():
         for group,jgroup in jtheme.items():
             for jid,jelem in jgroup.items():
-                udpr = Userdefprop().getbyid(jsguid2id(jid))
+                udpr = Userdefprop().getbyid(idTranslate[jid])
                 if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))
                         or (nvl(udpr.udpr_name) != nvl(jelem['name']))):
-                    pmodel.markerror(pmsg="User defined property has unknown theme or group",pelemstr="Theme '{}', group '{}'".format(theme,group))
+                    presult.markdberror(perr="User defined property has unknown theme or group"
+                                        ,pelem="Theme '{}', group '{}'".format(theme,group))
                     continue
                 udpv = Userdefpropvalue(pmodeid=pmodeid,pudprid=udpr.udpr_id,pvalue=jelem['value'])
                 try:
                     udpv.insert()
                 except Exception as err:
-                    pmodel.markerror(pmsg=err, pelemstr=udpv.tostring())
+                    pmodel.markdberror(perr=err, pelem=udpv.tostring())
             #for
         #for
     #for
@@ -145,7 +144,7 @@ def documents2js(pemtpymodel):
         for d in Document.select()}
     return retval
 
-def js2docu(pkey,pelem,psrcname=None,psrcid=None):
+def js2docu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     docu = Document(psrcname=psrcname,psrcid=psrcid)
     docu.docu_id = jsguid2id(pkey)
     docu.docu_name = pelem['name']
@@ -155,8 +154,8 @@ def js2docu(pkey,pelem,psrcname=None,psrcid=None):
     docu.docu_docu_id = jsguid2id(pelem['parent'])
     return docu
 
-def documents2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
+def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
                    pwithextsrcref=pwithextsrcref)
     # parents = [] #(docu_id, parent_id)
     # for jid,jelem in pmodel.getelements(Modelelemtype.DOCU).items():
@@ -174,19 +173,18 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwit
     return
 
 """transfer references and subtypes"""
-def docurefs2sql(pmodel):
-    for jid,jelem in pmodel.getelements(Modelelemtype.DOCU).items():
+def docurefs2sql(presult:Mergeresult,podmjson:JSModel):
+    for jid,jelem in podmjson.getelements(Modelelemtype.DOCU).items():
         jrefs = jelem['references']
         for refid in jrefs['entities'] + jrefs['attributes'] +jrefs['domains'] +jrefs['systems'] +jrefs['tables'] +jrefs['columns'] :
-            modo = ModelelemDocu(pmodeid=jsguid2id(refid),pdocuid=jsguid2id(jid))
+            modo = ModelelemDocu(pmodeid=idTranslate[refid],pdocuid=idTranslate(jid))
             try:
                 modo.insert()
             except Exception as err:
-                pmodel.markerror(pmsg=err, pelemstr=[refid]+list(jelem))
+                presult.markdberror(perr=err, pelem=[refid]+list(jelem))
                 continue
         #for
     #for
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return
 
 def references(pmode=None):
@@ -235,7 +233,7 @@ def orgUnits2js(pemptymodel):
             }
     return retval
 
-def js2orgu(pkey,pelem,psrcname=None,psrcid=None):
+def js2orgu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     orgu:OragnisationalUnit = OragnisationalUnit(psrcname=psrcname,psrcid=psrcid)
     orgu.orgu_id = jsguid2id(pkey)
     orgu.orgu_name = pelem['name']
@@ -252,8 +250,8 @@ def js2orgu(pkey,pelem,psrcname=None,psrcid=None):
     return orgu
 
 
-def orgunits2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
+def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
                    pwithextsrcref=pwithextsrcref)
     # parents = [] #(orgu_id, parent_id)
     # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
@@ -273,17 +271,16 @@ def orgunits2sql(presult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
     return
 
 """transfer references and subtypes"""
-def orgurefs2sql(pmodel:JSModel):
+def orgurefs2sql(presult:Mergeresult,podmjson:JSModel):
     for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
         jrefs = jelem['references']
         for refid in jrefs['entities'] + jrefs['attributes'] +jrefs['domains'] +jrefs['systems'] +jrefs['tables'] +jrefs['columns'] :
-            moou = ModelelemOrgu(pmodeid=jsguid2id(refid),porguid=jsguid2id(jid))
+            moou = ModelelemOrgu(pmodeid=idTranslate[refid],porguid=idTranslate[jid])
             try:
                 moou.insert()
             except Exception as err:
-                pmodel.markerror(pmsg=err, pelemstr=[refid]+list(jelem))
+                presult.markdberror(perr=err, pelem=[refid]+list(jelem))
                 continue
         #for
     #for
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return

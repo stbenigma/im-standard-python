@@ -4,13 +4,13 @@ from dbDML import valuepairs2sqlexpr
 from copy import copy
 
 """{odmjsid: dbid,}  jsid MMMMxxxx (RELA1442)"""
-fktranslate= dict()
+idTranslate= dict()
 def addfk(odmjsid, dbid):
-    global fktranslate
-    fktranslate[odmjsid] = dbid
+    global idTranslate
+    idTranslate[odmjsid] = dbid
 def dbid(odmjsid):
-    global fktranslate
-    return fktranslate[odmjsid]
+    global idTranslate
+    return idTranslate[odmjsid]
 
 class Mergeresult:
     def __init__(self):
@@ -31,8 +31,10 @@ class Mergeresult:
 
     def markdberror(self,perr,pelem):
         self.errors.append("""*** DB-Error {}\{}""".format(perr, pelem))
+
     def markerror(self,pstr):
         self.errors.append(str)
+
     def markwarning(self,pstr):
         self.warnings.append(str)
 
@@ -91,7 +93,6 @@ def getallsrcrefs(pelemtype):
     return retval
 
 def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcref=True):
-
     """from DB to ODM transfer"""
     removedrefs = []
     """get all srcrefs existing in ODM
@@ -155,7 +156,7 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
 
 
 def translatefks(pdbobj):
-    global fktranslate
+    global idTranslate
     """fkvalues {colname:[fktable,fkcolname,fkprefix]} all names in lowercase"""
     fkvalues = pdbobj.getfkcolumns()
     if len(fkvalues) == 0: return
@@ -163,14 +164,15 @@ def translatefks(pdbobj):
         if not (colname == pdbobj.getidcolname() and fk[2] == 'mode'):
             """fk from ID to mode_id is not handled
                translate id, if it's jsid MMMMxxxx is already translated"""
-            if jsguid(fk[2].upper(),pdbobj.colvalue(pcolname=colname)) in fktranslate:
-                pdbobj.setcolvalue(pcolname=colname,pvalue=fktranslate[jsguid(fk[2].upper(),pdbobj.colvalue(pcolname=colname))])
+            if jsguid(fk[2].upper(),pdbobj.colvalue(pcolname=colname)) in idTranslate:
+                pdbobj.setcolvalue(pcolname=colname, pvalue=idTranslate[jsguid(fk[2].upper(), pdbobj.colvalue(pcolname=colname))])
     #for
     return
 
 
-def fromodm2db(presult,podmjson, pdbjson, pelemtype, pjs2obj,pwithextsrcref=True):
+def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True):
     """from ODM to DB transfer"""
+    modellang = Language.getdefaultlang().lang_iso_code2
     newdberrors = []
     olddberrors = None
     odmelements = copy(podmjson.getelements(pelemtype=pelemtype))
@@ -201,11 +203,12 @@ def fromodm2db(presult,podmjson, pdbjson, pelemtype, pjs2obj,pwithextsrcref=True
                                          psrcid = elem['sourceref'][Externalref.SOURCE_ODM][0]
                                         ,plastupd = elem['sourceref'][Externalref.SOURCE_ODM][1]
                                         ,pdbid = key)
-                obj = pjs2obj(pkey=key,pelem=elem,psrcname=odmsrcref.srcname,psrcid=odmsrcref.srcid)
+                obj = pjs2obj(pkey=key,pelem=elem,pmodellang=modellang
+                              ,psrcname=odmsrcref.srcname,psrcid=odmsrcref.srcid)
                 """get the db entry with the same ODM src GUID"""
                 dbsrcref = alldbsrcrefs.get(psrcname=odmsrcref.srcname, psrcid=odmsrcref.srcid)
             else:
-                obj = pjs2obj(pkey=key, pelem=elem)
+                obj = pjs2obj(pkey=key, pelem=elem,pmodellang=modellang)
                 dbsrcref = None
             #fi
 

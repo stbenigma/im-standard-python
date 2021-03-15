@@ -5,45 +5,54 @@ from IM_DB import dbConnect
 from dbDML import valuepairs2sqlexpr
 
 nofunc = lambda p : None
-#json-key: (processorder,baseobjectload, referencesload,js2obj,hasexternalref)
+#json-key: (processorder,baseobjectload, referencesload,hasexternalref)
 transferprocs = {
- 'model': (1,proj2sql,nofunc,js2proj,False)
-,'languages': (2,langs2sql,nofunc,js2lang,False)
-,'physicalunits' : (3,physicalunits2sql,phyurefs2sql,js2phyu,False)
-,'datatypes' : (4,datatypes2sql,dtayrefs2sql,js2daty,True)
-,'storageformats' : (5,storageformats2sql,stforefs2sql,js2stfo,False)
-,'documents': (6,documents2sql, docurefs2sql,js2docu,True)
-,'orgunits': (7,orgunits2sql, orgurefs2sql,js2orgu,True)
-,'userdefprops': (8,udps2sql, udprefs2sql,nofunc,False)
-,'systems': (10,systems2sql, systrefs2sql,nofunc,True)
-,'domains': (12,domains2sql, domarefs2sql,nofunc,True)
-,'entities': (14,entities2sql,entirefs2sql,nofunc,True)
-,'attributes': (16,attributes2sql, attrrefs2sql,nofunc,True)
-,'arcs': (18,arcs2sql, arcsref2sql,nofunc,True)
-,'relations': (20,relations2sql, relarefs2sql,nofunc,True)
-,'keys': (22,keys2sql, keysrefs2sql,nofunc,True)
-,'tables': (30,tables2sql, tablrefs2sql,nofunc,True)
-,'columns': (32,columns2sql, colurefs2sql,nofunc,True)
-,'diagrams': (34,diagrams2sql, diagrefs2sql,nofunc,True)
-,'_imprint_':(99,nofunc,nofunc,nofunc,True)
+ 'model': (1,proj2sql,nofunc,False)
+,'languages': (2,langs2sql,nofunc,False)
+,'physicalunits' : (3,physicalunits2sql,nofunc,False)
+,'datatypes' : (4,datatypes2sql,nofunc,True)
+,'storageformats' : (5,storageformats2sql,nofunc,False)
+,'documents': (6,documents2sql, docurefs2sql,True)
+,'orgunits': (7,orgunits2sql, orgurefs2sql,True)
+,'userdefprops': (8,udps2sql, nofunc,False)
+,'systems': (10,systems2sql, nofunc,True)
+,'domains': (12,domains2sql, domarefs2sql,False)
+,'entities': (14,entities2sql,nofunc,True)
+,'attributes': (16,attributes2sql, nofunc,True)
+,'arcs': (18,arcs2sql, nofunc,True)
+,'relations': (20,relations2sql, nofunc,True)
+,'keys': (22,keys2sql, nofunc,True)
+,'tables': (30,tables2sql, nofunc,True)
+,'columns': (32,columns2sql, nofunc,True)
+,'diagrams': (34,diagrams2sql, nofunc,True)
+,'_imprint_':(99,nofunc,nofunc,True)
 }
 
-def mergeodm2db(podmjson,pdbjson):
+def mergeodm2db(podmjson):
     assert dbConnect.isopenDB()
     result = Mergeresult()
     for masterobject in sorted(transferprocs.keys(),key=lambda val:transferprocs[val][0]):
-        if masterobject not in ("languages","model","physicalunits","datatypes","storageformats","documents","orgunits","userdefprops","systems"): #or masterobject in ("_imprint_"):
+        if masterobject not in ("languages","model","physicalunits","datatypes"
+                                ,"storageformats","documents","orgunits"
+                                ,"userdefprops","systems"
+                                ,'domains','entities','attributes','arcs'):
             print (masterobject)
-        else:
-            objtype = JSModel.label2elemtype(masterobject)
-            js2sql = transferprocs[masterobject][1]
-            extref = transferprocs[masterobject][4]
-            if js2sql != nofunc:
-                js2sql(presult=result, podmjson=podmjson, pdbjson=pdbjson,pwithextsrcref=extref)
-            #if masterobject not in ('model'):
-            #    fromdb2odm(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=objtype, pjs2obj=js2obj,pwithextsrcref=extref)
+            continue
+        js2sql = transferprocs[masterobject][1]
+        if js2sql != nofunc:
+            extref = transferprocs[masterobject][3]
+            js2sql(presult=result, podmjson=podmjson, pwithextsrcref=extref)
         # fi
     #for
+
+    """Do dependency inserts where you need all Elements of a type (like superentities)"""
+    for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
+        continue
+        js2refsql = transferprocs[masterobject][2]
+        if js2refsql != nofunc:
+            js2refsql(presult=result, podmjson=podmjson)
+        # fi
+    # for
     if (len(result.errors) == 0):
         """clean up and set final projecte parameters"""
         Language.deleteunused()

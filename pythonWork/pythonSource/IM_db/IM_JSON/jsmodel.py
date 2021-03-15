@@ -81,7 +81,7 @@ def proj2js(pemptymodel: bool):
 
 # proj2js
 
-def js2proj(pkey, pelem):
+def js2proj(pkey, pelem,pmodellang=None):
     proj = Project()
     proj.proj_name = pelem["name"]
     proj.proj_type = pelem["type"]
@@ -93,7 +93,7 @@ def js2proj(pkey, pelem):
     return proj
 
 
-def proj2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
+def proj2sql(presult, podmjson:JSModel, pwithextsrcref):
     elem = podmjson.jsmodel['model']
     try:
         """insert if nonexistent, otherwise don't touch"""
@@ -102,6 +102,5 @@ def proj2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
             proj = js2proj(pkey=None,pelem=elem)
             proj.insert()
     except Exception as err:
-        presult.errors.append("""*** DB-Error {}\{}""".format(err, pelem))
-
+        presult.markdberror(perr=err,pelem=elem)
     return

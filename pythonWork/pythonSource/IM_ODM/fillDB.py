@@ -39,8 +39,8 @@ def filldbmain2(callarg,createnewdb=False):
     dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
     if createnewdb:
         transferModel.insertBaseData()
-    dbjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-    mergedbs.mergeodm2db(podmjson=odmjson, pdbjson=dbjson)
+    #dbjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+    mergedbs.mergeodm2db(podmjson=odmjson)
     dbConnect.closeDB()
 
 def main(p_param1):

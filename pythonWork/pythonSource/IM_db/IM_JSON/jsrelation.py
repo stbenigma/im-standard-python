@@ -107,16 +107,11 @@ def relations2sql(pmodel: JSModel):
             pmodel.markerror(pmsg=err, pelemstr=rela.tostring())
             continue
         Modelelement.upddisplelements(pmodeid=relaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-        inslgtx(pmodel=pmodel,pmodeid=rela.rela_id,pattr=Languagetext.RELA_TEXT_TO,ptexts=jelem['to-from']['assoc'])
-        inslgtx(pmodel=pmodel,pmodeid=rela.rela_id,pattr=Languagetext.RELA_TEXT_FROM,ptexts=jelem['from-to']['assoc'])
+        replacelgtx(pmodel=pmodel, pmodeid=rela.rela_id, pattr=Languagetext.RELA_TEXT_TO, ptexts=jelem['to-from']['assoc'])
+        replacelgtx(pmodel=pmodel, pmodeid=rela.rela_id, pattr=Languagetext.RELA_TEXT_FROM, ptexts=jelem['from-to']['assoc'])
         inssourceref(pmodel=pmodel,pmodeid=relaid, psources=jelem["sourceref"])
+        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     # for
-    return
-
-"""transfer references and subtypes"""
-def relarefs2sql(pmodel):
-    #for jid, jelem in pmodel.jsmodel['relations'].items():
-        #updvs2sql(pmodel=pmodel,pburuid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
 
 
@@ -144,25 +139,23 @@ def arcs2js(pemptymodel):
     # fi
     return retval
 
+def js2arcs(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    arc = Arc(pname=pelem['name'],psrcname=psrcname,psrcid=psrcid)
+    arc.arcs_id = jsguid2id(pkey)
+    arc.arcs_enti_id = jsguid2id(pelem['entity'])
+    arc.arcs_uc = pelem['uc']
+    arc.arcs_dc = pelem['dc']
+    arc.arcs_um = pelem['um']
+    arc.arcs_dm = pelem['dm']
+    return arc
 
-def arcs2sql(pmodel):
-    for jid, jelem in pmodel.getelements(Modelelemtype.ARCS).items():
-        arc = Arc()
-        arc.arcs_id = jsguid2id(jid)
-        arc.arcs_name = jelem['name']
-        arc.arcs_enti_id = jsguid2id(jelem['entity'])
-        arc.arcs_uc = jelem['uc']
-        arc.arcs_dc = jelem['dc']
-        arc.arcs_um = jelem['um']
-        arc.arcs_dm = jelem['dm']
-        try:
-            arcid = arc.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=arc.tostring())
-            continue
-        inssourceref(pmodel = pmodel,pmodeid=arcid, psources=jelem["sourceref"])
+def arcs2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    """there are arcs without extref (those generated for subtypes) will be handled in fromodm2db"""
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ARCS, pjs2obj=js2arcs,
+                   pwithextsrcref=pwithextsrcref)
+
+    for jid, jelem in podmjson.getelements(Modelelemtype.ARCS).items():
+        inssourceref(presult=presult,pmodeid=idTranslate[arcid], psources=jelem["sourceref"])
     # for
     return
 
-def arcsref2sql(pmodel):
-    return

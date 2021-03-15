@@ -100,12 +100,7 @@ def colattrmaps2sql(pmodel:JSModel, pcoluid, pattrs):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=coam.tostring())
             continue
+        colattrmaps2sql(pmodel=pmodel, pcoluid=jsguid2id(jid), pattrs=jelem['attributes-mapped'])
+        updvs2sql(pmodel=pmodel, pmodeid=jid, pudps=jelem["userdefprops"])
     #for
-    return
-
-"""transfer references and subtypes"""
-def colurefs2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['columns'].items():
-        colattrmaps2sql(pmodel=pmodel,pcoluid=jsguid2id(jid),pattrs=jelem['attributes-mapped'])
-        updvs2sql(pmodel=pmodel,pmodeid=jid, pudps=jelem["userdefprops"])
     return

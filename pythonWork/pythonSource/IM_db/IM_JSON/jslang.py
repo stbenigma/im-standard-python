@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from IM_JSON import *
 from IM_OBJECTS import Languagetext, Language, Boolean,Project
 from IM_DB import dbConnect
@@ -28,26 +28,38 @@ def langs2js(pemptymodel):
 
 # languages
 
-def inslgtx(pmodel, pmodeid, pattr, ptexts):
-    for langid, lang in pmodel.languages.items():
-        lgtx = Languagetext()
-        lgtx.lgtx_attrname = pattr
-        lgtx.lgtx_text = ptexts[lang]
-        lgtx.lgtx_lang_id = langid
-        lgtx.lgtx_mode_id = pmodeid
-        lgtx.lgtx_uc = "sys"
-        lgtx.lgtx_dc = date.today()
-        try:
-            lgtx.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=lgtx.tostring())
-            continue
-    # for
+def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
+    """Starting Version *******
+            delete all texts from this modeid
+       Later probably
+            delete all texts from all languages in ptexts
+       Then
+           insert all texts from all languages """
+    Languagetext.delete(pwhere="""lgtx_mode_id = {} 
+                            and lgtx_attrname = '{}'""".format(pmodeid,pattr))
+    for lang in Language.select():
+        iso2 = lang.lang_iso_code2
+        if iso2 in ptexts.keys():
+            lgtx = Languagetext()
+            lgtx.lgtx_attrname = pattr
+            lgtx.lgtx_text = ptexts[iso2]
+            lgtx.lgtx_lang_id = lang.lang_id
+            lgtx.lgtx_mode_id = pmodeid
+            lgtx.lgtx_uc = "sys"
+            lgtx.lgtx_dc = datetime.today()
+            try:
+                lgtx.insert()
+                presult.insertcnt += 1
+            except Exception as err:
+                presult.markdberror(perr=err, pelem=lgtx.tostring())
+                continue
+        #if
+    #for
+    return
 
+# replacelgtx
 
-# inslgtx
-
-def js2lang(pkey, pelem):
+def js2lang(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     lang = Language()
     lang.lang_iso_code2 = pkey
     lang.lang_iso_code3 = pelem['iso3']
@@ -56,7 +68,7 @@ def js2lang(pkey, pelem):
     lang.lang_is_text_lang = Boolean.FALSE
     return lang
 
-def langs2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
+def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
     assert dbConnect.isopenDB()
     """   "languages": {
       "de": {
@@ -65,7 +77,7 @@ def langs2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
          "modellanguage": true,
          "replacementlang": null
       }"""
-    fromodm2db(presult=presult,podmjson=podmjson,pdbjson=pdbjson,pelemtype='LANG',pjs2obj=js2lang,pwithextsrcref=pwithextsrcref)
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype='LANG',pjs2obj=js2lang,pwithextsrcref=pwithextsrcref)
     # for iso2, jlang in podmjson.getelements('LANG').items():
     #     lang = js2lang(pkey=iso2,pelem=jlang)
     #     try:
@@ -78,7 +90,6 @@ def langs2sql(presult, podmjson:JSModel, pdbjson:JSModel,pwithextsrcref):
     try:
         deflang =  Language.getdefaultlang()
         if deflang is None: presult.errors.append("""*** No modellanguage defined""")
-        pdbjson.setmodellanguage(deflang.lang_iso_code2)
     except:
         presult.errors.append("""*** more then one default modellanguage defined""")
 

@@ -112,9 +112,15 @@ def exec(psql, *args):
             logmessages.writelog("exec: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
-
-
 # end exec
+
+"""translates None into NULL, string into 'string' """
+def dbval(pval):
+    return 'NULL' if pval is None \
+                else str(pval) if type(pval)==int \
+                else "'{}'".format(Boolean.bool2str(pval) if type(pval)==bool
+                                    else pval)
+
 def execmany(psql, recs):
     # print (psql)
     # return

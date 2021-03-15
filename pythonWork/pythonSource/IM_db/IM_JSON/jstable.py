@@ -61,6 +61,8 @@ def tables2sql(pmodel:JSModel):
 
         Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+        instablemapping(pmodel=pmodel, ptablid=jsguid2id(jid), pentities=jelem['entitiesmapped'])
+        updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
     return
 
 
@@ -78,9 +80,3 @@ def instablemapping(pmodel, ptablid=None,prelaid=None, pentities=None):
     #for
     return
 
-"""transfer references and subtypes"""
-def tablrefs2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.getelements(Modelelemtype.TABL).items():
-        instablemapping(pmodel=pmodel, ptablid=jsguid2id(jid), pentities=jelem['entitiesmapped'])
-        updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
-    return

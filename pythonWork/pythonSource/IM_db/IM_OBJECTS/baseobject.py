@@ -4,6 +4,7 @@ from IM_DB import dbDML, dbDDL,logmessages
 from datetime import datetime
 
 
+
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
@@ -32,8 +33,6 @@ class Boolean:
 
 # Boolean
 
-"""translates None into NULL, string into 'string' """
-dbval = lambda val : 'NULL' if val is None else str(val) if type(val)==int else  "'{}'".format(Boolean.bool2str(val) if type(val)==bool else val)
 class Baseobject:
     defaultCreator:str= "sys"
     def fullcolname(self, col):
@@ -150,8 +149,8 @@ class Baseobject:
         updcollist = self._columnlist.copy()
         updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
         lsql = """update {} """.format(self._tablename, Baseobject.columnsliststring(updcollist))
-        lsql += """\nset {}""".format('\n,'.join("""{} = {}""".format(col,dbval(self.colvalue(pcolname=col))) for col in updcollist))
-        lsql += """\nwhere {} = {}""".format(self._idcolname,dbval(self.getid()))
+        lsql += """\nset {}""".format('\n,'.join("""{} = {}""".format(col,dbDML.dbval(self.colvalue(pcolname=col))) for col in updcollist))
+        lsql += """\nwhere {} = {}""".format(self._idcolname,dbDML.dbval(self.getid()))
         #print (lsql)
         try:
             id = dbDML.exec(lsql)
@@ -295,7 +294,7 @@ class Baseobject:
         fkcols = dbDDL.getfklist(ptablename=self._tablename)
         retval = {}
         for col, fk in fkcols.items():
-            fk.append(self._prefix)
+            fk.append(fk[1][0:4])
             retval[col] = fk
         return retval
 

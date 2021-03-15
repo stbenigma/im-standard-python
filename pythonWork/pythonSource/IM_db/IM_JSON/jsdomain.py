@@ -1,4 +1,3 @@
-from datetime import date
 from IM_JSON import *
 from IM_OBJECTS import *
 
@@ -36,27 +35,34 @@ def domaingroupmembers2sql(pmodel:JSModel,pdomaid,pelements):
     #for
     return
 
+def js2deva(pdomaid,pelem):
+    deva = DefaultValue()
+    deva.deva_doma_id = pdomaid
+    deva.deva_sort_order = pelem['sort']
+    deva.deva_value = pelem['value']
+    deva.deva_displ = pelem['displ']
+    deva.deva_descr = pelem['descr']
+    deva.deva_uc = pelem['uc']
+    deva.deva_dc = pelem['dc']
+    deva.deva_um = pelem['um']
+    deva.deva_dm = pelem['dm']
+    return deva
 
-def defaultvalues2sql(pmodel:JSModel, pdomaid, pvalues):
+
+def defaultvalues2sql(presult:Mergeresult, pdomaid, pvalues):
     """'value':d.deva_value,'sort': d.deva_sort_order
                             , 'displ': d.deva_displ, 'descr': d.deva_descr
                              ,'uc': d.deva_uc, 'dc': d.deva_dc
-                             ,'um' : d.deva_um, 'dm': d.deva_dm"""
+                             ,'um' : d.deva_um, 'dm': d.deva_dm
+    default values are always replaced """
+    DefaultValue.delete(pwhere="deva_doma_id={}".format(str(pdomaid)))
     for val in pvalues:
-        deva = DefaultValue()
-        deva.deva_doma_id = pdomaid
-        deva.deva_sort_order = val['sort']
-        deva.deva_value = val['value']
-        deva.deva_displ = val['displ']
-        deva.deva_descr = val['descr']
-        deva.deva_uc = val['uc']
-        deva.deva_dc = val['dc']
-        deva.deva_um = val['um']
-        deva.deva_dm = val['dm']
+        deva = js2deva(pdomaid=pdomaid,pelem=val)
         try:
             deva.insert()
+            presult.insertcnt += 1
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=val)
+            presult.markdberror(perr=err, pelem=val)
 
 
 def domelements(pelems:list=None):
@@ -222,53 +228,68 @@ def domains2js(pemptymodel):
                  for d in Domain.select()}
     return domas
 
-def domains2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['domains'].items():
-        doma = Domain()
-        doma.doma_id = jsguid2id(jid)
-        doma.doma_uc = jelem['uc']
-        doma.doma_dc = jelem['dc']
-        doma.doma_um = jelem['um']
-        doma.doma_dm = jelem['dm']
-        doma.doma_type = jelem['type']
-        doma.doma_name = jelem['name'][pmodel.modellanguage()]
-        doma.doma_descr = jelem['descr'][pmodel.modellanguage()]
-        doma.doma_origin = jelem['origin']
-        doma.doma_intf_id = jsguid2id(optionalvalue(jelem,'interfaceid'))
-        doma.doma_daty_id = jsguid2id(optionalvalue(jelem,'datatypeid'))
-        doma.doma_num_minvalue = None if doma.doma_type != Domain.NUM else optionalvalue(jelem,'minvalue')
-        doma.doma_num_maxvalue = None if doma.doma_type != Domain.NUM else optionalvalue(jelem,'maxvalue')
-        doma.doma_num_total_digits = optionalvalue(jelem,'totaldigits')
-        doma.doma_num_fract_digits = optionalvalue(jelem,'fractdigits')
-        doma.doma_num_round_value = optionalvalue(jelem,'roundvalue')
-        doma.doma_phyu_id = jsguid2id(optionalvalue(jelem,'unitid'))
-        doma.doma_txt_maxlng = optionalvalue(jelem,'maxlng')
-        doma.doma_txt_syntaxrule = optionalvalue(jelem,'syntaxrule')
-        doma.doma_dat_minvalue = None if doma.doma_type != Domain.DAT else optionalvalue(jelem,'minvalue')
-        doma.doma_dat_maxvalue = None if doma.doma_type != Domain.DAT else optionalvalue(jelem,'maxvalue')
-        doma.doma_dat_granularity = optionalvalue(jelem,'granularity')
-        doma.doma_bin_contenttype = optionalvalue(jelem,'contenttype')
-        doma.doma_bin_stfo_id = jsguid2id(optionalvalue(jelem,'formatid'))
-        doma.doma_txt_maxlng = optionalvalue(jelem,'maxlng')
-        try:
-            domaid = doma.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-            continue
+def js2doma(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    doma = Domain(psrcname=psrcname,psrcid=psrcid)
+    doma.doma_id = jsguid2id(pkey)
+    doma.doma_uc = pelem['uc']
+    doma.doma_dc = pelem['dc']
+    doma.doma_um = pelem['um']
+    doma.doma_dm = pelem['dm']
+    doma.doma_type = pelem['type']
+    doma.doma_name = pelem['name'][pmodellang]
+    doma.doma_descr = pelem['descr'][pmodellang]
+    doma.doma_origin = pelem['origin']
+    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interfaceid'))
+    doma.doma_daty_id = jsguid2id(optionalvalue(pelem, 'datatypeid'))
+    doma.doma_num_minvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'minvalue')
+    doma.doma_num_maxvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'maxvalue')
+    doma.doma_num_total_digits = optionalvalue(pelem, 'totaldigits')
+    doma.doma_num_fract_digits = optionalvalue(pelem, 'fractdigits')
+    doma.doma_num_round_value = optionalvalue(pelem, 'roundvalue')
+    doma.doma_phyu_id = jsguid2id(optionalvalue(pelem, 'unitid'))
+    doma.doma_txt_maxlng = optionalvalue(pelem, 'maxlng')
+    doma.doma_txt_syntaxrule = optionalvalue(pelem, 'syntaxrule')
+    doma.doma_dat_minvalue = None if doma.doma_type != Domain.DAT else optionalvalue(pelem, 'minvalue')
+    doma.doma_dat_maxvalue = None if doma.doma_type != Domain.DAT else optionalvalue(pelem, 'maxvalue')
+    doma.doma_dat_granularity = optionalvalue(pelem, 'granularity')
+    doma.doma_bin_contenttype = optionalvalue(pelem, 'contenttype')
+    doma.doma_bin_stfo_id = jsguid2id(optionalvalue(pelem, 'formatid'))
+    doma.doma_txt_maxlng = optionalvalue(pelem, 'maxlng')
+    return doma
 
-        if doma.doma_type == Domain.LOV:
-            defaultvalues2sql(pmodel=pmodel,pdomaid=domaid, pvalues=jelem["values"])
 
-        inslgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_NAME,ptexts=jelem['name'])
-        inslgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_DESCR,ptexts=jelem['descr'])
-        inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
+def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOMA, pjs2obj=js2doma,
+                   pwithextsrcref=pwithextsrcref)
+    # for jid,jelem in pmodel.jsmodel['domains'].items():
+    #     doma = js2doma(pkey=jid,pelem=jelem,pmodellang=pmodel.modellanguage())
+    #     try:
+    #         domaid = doma.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
+    #         continue
+    #
+    #     if doma.doma_type == Domain.LOV:
+    #         defaultvalues2sql(pmodel=pmodel,pdomaid=domaid, pvalues=jelem["values"])
+    #
+    #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_NAME,ptexts=jelem['name'])
+    #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_DESCR,ptexts=jelem['descr'])
+    #     inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
+    for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
+        dbdomaid = jsmergetosql.idTranslate[jid]
+        if jelem['type'] == Domain.LOV:
+            defaultvalues2sql(presult=presult,pdomaid=dbdomaid, pvalues=jelem["values"])
+
+        replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_NAME, ptexts=jelem['name'])
+        replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_DESCR, ptexts=jelem['descr'])
+        inssourceref(presult=presult,pmodeid=dbdomaid, psources=jelem["sourceref"])
     return
 
 """transfer references and subtypes"""
 def domarefs2sql(pmodel:JSModel):
     for jid,jelem in pmodel.jsmodel['domains'].items():
         if jelem['type'] == Domain.GRP:
-            domaingroupmembers2sql(pmodel=pmodel, pdomaid=jsguid2id(jid), pelements=jelem["elements"])
+            domaingroupmembers2sql(presult=presult, pdomaid=jsguid2id(jid), pelements=jelem["elements"])
         #fi
     #for
     return

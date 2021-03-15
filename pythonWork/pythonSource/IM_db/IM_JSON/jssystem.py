@@ -32,7 +32,7 @@ def systems2js(pemptymodel):
     # fi
     return retval
 
-def js2intf(pkey,pelem,psrcname=None,psrcid=None):
+def js2intf(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     intf = Interface(psrcname=psrcname,psrcid=psrcid)
     intf.intf_id = jsguid2id(pkey)
     intf.intf_name = pelem['name']
@@ -44,8 +44,8 @@ def js2intf(pkey,pelem,psrcname=None,psrcid=None):
     return intf
 
 
-def systems2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pdbjson=pdbjson, pelemtype=Modelelemtype.INTF, pjs2obj=js2intf,
+def systems2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.INTF, pjs2obj=js2intf,
                    pwithextsrcref=pwithextsrcref)
     # for jid,jelem in pmodel.getelements(Modelelemtype.INTF).items():
     #     js2intf(pkey=jid,pelem=jelem)
@@ -57,9 +57,4 @@ def systems2sql(presult:Mergeresult, podmjson: JSModel, pdbjson: JSModel, pwithe
     #
     #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     # #for
-    return
-
-"""transfer references and subtypes"""
-def systrefs2sql(pmodel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
     return

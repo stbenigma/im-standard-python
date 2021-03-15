@@ -245,19 +245,12 @@ def diagrams2sql(pmodel: JSModel):
         except Exception as err:
             pmodel.markerror(pmsg=err, pelemstr=jelem)
             continue
+
+        for jelemreps in jelem['elements'].values():
+            elemrep2sql(pmodel=pmodel, pdiagid=jsguid2id(jid), pelemreps=jelemreps)
+        relarep2sql(pmodel=pmodel, pdiagid=jsguid2id(jid), prelareps=jelem['relationships'])
     # inssourceref(pmodel = pmodel,pburuid=jsguid2id(jid), psources=jelem["sourceref"])
     return
-
-"""transfer references and subtypes"""
-def diagrefs2sql(pmodel:JSModel):
-    for jid, jelem in pmodel.jsmodel['diagrams'].items():
-        for jelemreps in jelem['elements'].values():
-            elemrep2sql(pmodel=pmodel,pdiagid=jsguid2id(jid), pelemreps=jelemreps)
-        relarep2sql(pmodel=pmodel,pdiagid=jsguid2id(jid), prelareps=jelem['relationships'])
-
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
-    return
-
 
 def defarcs(parc,pdiagid):
     arc = {}

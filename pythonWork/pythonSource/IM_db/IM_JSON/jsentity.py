@@ -91,14 +91,14 @@ def entities2js(pemptymodel):
   prints out all error and ends with exception if there was an error"""
 
 
-def js2enti(pkey,pelem):
-    enti = Entity()
+def js2enti(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    enti = Entity(psrcname=psrcname,psrcid=psrcid)
     enti.enti_id = jsguid2id(pkey)
-    enti.enti_name = pelem['name'][pmodel.modellanguage()]
+    enti.enti_name = pelem['name'][pmodellang]
     enti.enti_short_name = pelem['shortname']
     enti.enti_prefix = pelem['prefix']
-    enti.enti_tooltip = pelem['tooltip'][pmodel.modellanguage()]
-    enti.enti_descr = pelem['descr'][pmodel.modellanguage()]
+    enti.enti_tooltip = pelem['tooltip'][pmodellang]
+    enti.enti_descr = pelem['descr'][pmodellang]
     enti.enti_exp_tuplecnt = pelem['exptuple#']
     enti.enti_uc = pelem['uc']
     enti.enti_dc = pelem['dc']
@@ -106,48 +106,56 @@ def js2enti(pkey,pelem):
     enti.enti_dm = pelem['dm']
     return enti
 
-def entities2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.jsmodel['entities'].items():
-        enti = js2enti(pkey=jsjid,pelem=jelem)
-        try:
-            entiid = enti.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-            continue
+def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
+                   pwithextsrcref=pwithextsrcref)
+    # for jid, jelem in pmodel.jsmodel['entities'].items():
+    #     enti = js2enti(pkey=jsjid,pelem=jelem)
+    #     try:
+    #         entiid = enti.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
+    #         continue
+    #
+    #     minzoomlevel = pelem['minzoomlevel']
+    #     maxzoomlevel = pelem['maxzoomlevel']
+    #     devstatus = pelem['devstatus']
+    #     Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
+    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
+    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+    #     inssourceref(pmodel=pmodel, pmodeid=entiid, psources=jelem["sourceref"])
+    #     udpvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+    #
+    #     """      "ENTI109": {
+    #      "synonyms":
+    #         {
+    #            "de": "Jemand",
+    #            "en": "Contact person",
+    #         },..
+    #     """
+    #     for synoid, jsyno in jelem["synonyms"].items():
+    #         syno = Synonym(pname=jsyno[pmodel.modellanguage()], pentiid=entiid)
+    #         syno.syno_id = jsguid2id(synoid)
+    #         try:
+    #             syno.insert()
+    #         except Exception as err:
+    #             pmodel.markerror(pmsg=err, pelemstr=jsyno)
+    #             continue
+    #         inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+    #     # for
+    # # for
+    for jid, jelem in podmjson.getelements(Modelelemtype.ENTI).items():
+        entiid = idTranslate[jid]
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
 
-        minzoomlevel = pelem['minzoomlevel']
-        maxzoomlevel = pelem['maxzoomlevel']
-        devstatus = pelem['devstatus']
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-        inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
-        inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
-        inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
-        inssourceref(pmodel=pmodel, pmodeid=entiid, psources=jelem["sourceref"])
-        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
-
-        """      "ENTI109": {
-         "synonyms":
-            {
-               "de": "Jemand",
-               "en": "Contact person",
-            },..
-        """
-        for synoid, jsyno in jelem["synonyms"].items():
-            syno = Synonym(pname=jsyno[pmodel.modellanguage()], pentiid=entiid)
-            syno.syno_id = jsguid2id(synoid)
-            try:
-                syno.insert()
-            except Exception as err:
-                pmodel.markerror(pmsg=err, pelemstr=jsyno)
-                continue
-            inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
-        # for
-
-    # for
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+        inssourceref(presult=presult, pmodeid=entiid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=entiid, pudps=jelem["userdefprops"])
+    #for
 # entities2sql
-
-"""transfer references and subtypes"""
-
-
-def entirefs2sql(pmodel: JSModel):
-    return

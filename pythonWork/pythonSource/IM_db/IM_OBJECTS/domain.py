@@ -299,8 +299,8 @@ class DefaultValue(Baseobject):
         super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(DefaultValue._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(DefaultValue._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="deva_sort_order"):

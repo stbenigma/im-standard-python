@@ -106,8 +106,31 @@ def attributes2js(pemptymodel):
         attrs = {jsguid(Modelelemtype.ATTR, a.attr_id): attr2js(a) for a in Attribute.select()}
     return attrs
 
+def js2attr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    attr = Attribute(psrcname=psrcname,psrcid=psrcid)
+    attr.attr_id = jsguid2id(pkey)
+    attr.attr_enti_id = jsguid2id(pelem['entity'])
+    attr.attr_doma_id = jsguid2id(pelem['domain'])
+    attr.attr_tech_name = pelem['techname']
+    attr.attr_displ_name = pelem['name'][pmodellang]
+    attr.attr_displ_seq = pelem['seq']
+    attr.attr_tooltip = pelem['tooltip'][pmodellang]
+    attr.attr_descr = pelem['descr'][pmodellang]
+    attr.attr_is_descriptive = Boolean.bool2str(pelem['descriptive'])
+    attr.attr_is_mandatory = Boolean.bool2str(pelem['mandatory'])
+    attr.attr_is_historicised = Boolean.bool2str(pelem['historicised'])
+    attr.attr_is_repeated = Boolean.bool2str(pelem['repeated'])
+    attr.attr_is_translated = Boolean.bool2str(pelem['translated'])
+    attr.attr_is_encrypted = Boolean.bool2str(pelem['encrypted'])
+    attr.attr_uc = pelem['uc']
+    attr.attr_dc = pelem['dc']
+    attr.attr_um = pelem['um']
+    attr.attr_dm = pelem['dm']
+    return attr
 
-def attributes2sql(pmodel: JSModel):
+def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
+                   pwithextsrcref=pwithextsrcref)
     """      "ATTR11890": {
          "techname": "EMAIL",
          "name": {
@@ -141,49 +164,18 @@ def attributes2sql(pmodel: JSModel):
          "dm": null,
 
       },"""
-    for jid, jelem in pmodel.jsmodel['attributes'].items():
-        attr = Attribute()
-        attr.attr_id = jsguid2id(jid)
-        attr.attr_enti_id = jsguid2id(jelem['entity'])
-        attr.attr_doma_id = jsguid2id(jelem['domain'])
-        attr.attr_tech_name = jelem['techname']
-        attr.attr_displ_name = jelem['name'][pmodel.modellanguage()]
-        attr.attr_displ_seq = jelem['seq']
-        attr.attr_tooltip = jelem['tooltip'][pmodel.modellanguage()]
-        attr.attr_descr = jelem['descr'][pmodel.modellanguage()]
-        attr.attr_is_descriptive = Boolean.bool2str(jelem['descriptive'])
-        attr.attr_is_mandatory = Boolean.bool2str(jelem['mandatory'])
-        attr.attr_is_historicised = Boolean.bool2str(jelem['historicised'])
-        attr.attr_is_repeated = Boolean.bool2str(jelem['repeated'])
-        attr.attr_is_translated = Boolean.bool2str(jelem['translated'])
-        attr.attr_is_encrypted = Boolean.bool2str(jelem['encrypted'])
-        attr.attr_uc = jelem['uc']
-        attr.attr_dc = jelem['dc']
-        attr.attr_um = jelem['um']
-        attr.attr_dm = jelem['dm']
+    for jid, jelem in podmjson.getelements(Modelelemtype.ATTR).items():
+        attrid = idTranslate[jid]
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
-        try:
-            attrid = attr.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-            continue
-
         Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-        inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
-        inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
-        inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])
-        inssourceref(pmodel=pmodel, pmodeid=attrid, psources=jelem["sourceref"])
+        replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
+        replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
+        replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])
+        inssourceref(presult=presult, pmodeid=attrid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=attrid, pudps=jelem["userdefprops"])
     # for
-
-    """transfer references and subtypes"""
-
-
-def attrrefs2sql(pmodel):
-    for jid, jelem in pmodel.getelements(Modelelemtype.ATTR).items():
-        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
-    return
 
 
 def keyelems2js(pkey):
@@ -282,6 +274,3 @@ def keys2sql(pmodel: JSModel):
     # for
     return
 
-
-def keysrefs2sql(pmodel):
-    return
