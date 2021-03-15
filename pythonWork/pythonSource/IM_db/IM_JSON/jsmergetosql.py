@@ -198,6 +198,9 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
 
         curodmelements = copy(odmelements) #to allow deletion of done elements in loop
         for key,elem in curodmelements.items():
+            """some elements (ARCS,DOMAINS) can have ODM-ref or not (depending wether they are generated or
+               user maintained"""
+            pwithextsrcref = (('sourceref' in elem) and (Externalref.SOURCE_ODM in elem['sourceref']))
             if pwithextsrcref:
                 odmsrcref = Extsourceref(psrcname = Externalref.SOURCE_ODM,
                                          psrcid = elem['sourceref'][Externalref.SOURCE_ODM][0]

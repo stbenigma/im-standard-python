@@ -155,7 +155,8 @@ def arcs2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
                    pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in podmjson.getelements(Modelelemtype.ARCS).items():
-        inssourceref(presult=presult,pmodeid=idTranslate[arcid], psources=jelem["sourceref"])
+        if pwithextsrcref:
+            inssourceref(presult=presult,pmodeid=idTranslate[jid], psources=jelem["sourceref"])
     # for
     return
 

@@ -16,7 +16,7 @@ transferprocs = {
 ,'orgunits': (7,orgunits2sql, orgurefs2sql,True)
 ,'userdefprops': (8,udps2sql, nofunc,False)
 ,'systems': (10,systems2sql, nofunc,True)
-,'domains': (12,domains2sql, domarefs2sql,False)
+,'domains': (12,domains2sql, domarefs2sql,True)
 ,'entities': (14,entities2sql,nofunc,True)
 ,'attributes': (16,attributes2sql, nofunc,True)
 ,'arcs': (18,arcs2sql, nofunc,True)
@@ -35,7 +35,7 @@ def mergeodm2db(podmjson):
         if masterobject not in ("languages","model","physicalunits","datatypes"
                                 ,"storageformats","documents","orgunits"
                                 ,"userdefprops","systems"
-                                ,'domains','entities','attributes','arcs'):
+                                ,'domains','entities','attributes','arcs','relations'):
             print (masterobject)
             continue
         js2sql = transferprocs[masterobject][1]
