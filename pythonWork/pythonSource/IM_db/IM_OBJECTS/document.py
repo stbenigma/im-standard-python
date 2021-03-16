@@ -166,29 +166,8 @@ class ModelelemDocu(Baseobject):
         self.modo_docu_id = pdocuid
 
     @staticmethod
-    def createtable():
-        sql ="""
-CREATE TABLE MODE_DOCU
-    (
-     MODO_ID INTEGER NOT NULL primary key autoincrement,
-     MODO_MODE_ID integer NOT NULL ,
-     MODO_DOCU_ID integer NOT NULL
-    ,CONSTRAINT MODO_UK UNIQUE (MODO_MODE_ID ASC, MODO_DOCU_ID ASC)
-    ,CONSTRAINT MODO_DOCU_FK FOREIGN KEY(     MODO_DOCU_ID)  
-        REFERENCES DOCUMENTS(     DOCU_ID )
-        ON DELETE CASCADE
-    ,CONSTRAINT MODO_MODE_FKv2 FOREIGN KEY    (     MODO_MODE_ID)
-            REFERENCES MODELELEMENT   (     MODE_ID )
-         ON DELETE CASCADE
-    )
-"""
-        Baseobject.createtable(ptablename=ModelelemDocu._tablename
-                               , psql=sql
-        )
-
-    @staticmethod
-    def delete():
-        Baseobject.delete(ModelelemDocu._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(ModelelemDocu._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

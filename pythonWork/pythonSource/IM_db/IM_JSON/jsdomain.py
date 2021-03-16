@@ -120,7 +120,7 @@ def domain2js(pdoma):
         ,'elements','values'
         ,'usedinattrs+', 'usedincols+'
         ,'usedingrps+','sourceref'
-        ,'refindocuments+','refbyorgunits+'
+        ,'referencedby'
         ]
     if pdoma is None:
         retval = fillmodel(pmodel=model
@@ -136,7 +136,7 @@ def domain2js(pdoma):
                                      ,domelements(),domvalues()
                                      ,reflist(),reflist()
                                      ,reflist(),sourceref()
-                                     ,reflist(),reflist()
+                                     ,reflist()
                                     ]
                            )
     else:
@@ -172,8 +172,8 @@ def domain2js(pdoma):
                                                                                     where dgrm_doma_id_member = {})"""
                                                 .format(pdoma.doma_id))])
                                     ,sourceref(Externalref.getsrcinfo(pmodeid=pdoma.doma_id))
-                                     ,reflist([jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pdoma.doma_id)])
-                                    ,reflist([jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)])
+                                     ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pdoma.doma_id)]\
+                                      +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)]
                                       ]
                             )
         if pdoma.doma_type == Domain.NUM:
@@ -282,6 +282,7 @@ def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_NAME, ptexts=jelem['name'])
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_DESCR, ptexts=jelem['descr'])
+        insreferences(presult=presult,pmodeid=dbdomaid,prefs=jelem['referencedby'])
         inssourceref(presult=presult,pmodeid=dbdomaid, psources=jelem["sourceref"])
     return
 

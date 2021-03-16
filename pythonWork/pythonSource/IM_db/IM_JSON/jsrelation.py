@@ -24,7 +24,7 @@ def relation2js(prela):
         , 'from-to', 'to-from'
         , 'isinkeys+', 'sourceref'
         , 'uc', 'dc', 'um', 'dm'
-        , 'userdefprops'
+        , 'userdefprops','referencedby'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
               ]
     if prela is None:
@@ -33,7 +33,7 @@ def relation2js(prela):
                                     , relaend2js(), relaend2js()
                                        , reflist(), sourceref()
                                      , '', '', '', ''
-                                    ,userdefprops(None)
+                                    ,userdefprops(),reflist()
                                     ,0,4,'DEV'
                                        ]
                            )
@@ -63,8 +63,9 @@ def relation2js(prela):
                                       , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                        ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm
                                        ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
+                                       ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=prela.rela_id)]\
+                                        +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=prela.rela_id)]
                                     , prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getdevstatus()
-
                                        ]
                            )
     # fi
@@ -115,6 +116,7 @@ def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         Modelelement.upddisplelements(pmodeid=newrelaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         replacelgtx(presult=presult, pmodeid=newrelaid, pattr=Languagetext.RELA_TEXT_TO, ptexts=jelem['to-from']['assoc'])
         replacelgtx(presult=presult, pmodeid=newrelaid, pattr=Languagetext.RELA_TEXT_FROM, ptexts=jelem['from-to']['assoc'])
+        insreferences(presult=presult, pmodeid=newrelaid, prefs=jelem['referencedby'])
         if pwithextsrcref:
             inssourceref(presult=presult,pmodeid=newrelaid, psources=jelem["sourceref"])
         udpvs2sql(presult=presult, pmodeid=newrelaid, pudps=jelem["userdefprops"])

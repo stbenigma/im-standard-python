@@ -9,13 +9,13 @@ def tables2js(pemptymodel):
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         ,'columns+', 'userdefprops'
                 ,'entitiesmapped', 'sourceref'
-               , 'refindocuments+', 'refbyorgunits+'
+               , 'referencedby'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(9)]
                                                    + [0,4,'DEV',reflist(), userdefprops()
                                                        , reflist(), sourceref()
-                                                       , reflist(), reflist()])}
+                                                       , reflist()])}
     else: 
         retval={jsguid(Modelelemtype.TABL,t.tabl_id) :
                 fillmodel(pmodel=model,pentries=[t.tabl_name
@@ -29,8 +29,8 @@ def tables2js(pemptymodel):
                     , [jsguid(Modelelemtype.ENTI, e.enti_id) for e in
                              TablEntiMap.getentilist(ptablid=t.tabl_id)]
               , Externalref.getsrcinfo(pmodeid=t.tabl_id)
-               , reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)])
-                    , [jsguid(Modelelemtype.ORGU, d[0]) for d in
+               , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)]\
+                 + [jsguid(Modelelemtype.ORGU, d[0]) for d in
                                          OragnisationalUnit.getreforgulist(pid=t.tabl_id)]
                 ])
          for t in Table.select(porderby="tabl_id")
@@ -60,6 +60,7 @@ def tables2sql(pmodel:JSModel):
             continue
 
         Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        insreferences(presult=presult,pmodeid=tablid,prefs=jelem['referencedby'])
         inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
         instablemapping(pmodel=pmodel, ptablid=jsguid2id(jid), pentities=jelem['entitiesmapped'])
         updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])

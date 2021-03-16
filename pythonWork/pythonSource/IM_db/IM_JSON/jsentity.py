@@ -31,8 +31,7 @@ def entities2js(pemptymodel):
         , 'supertypes+','roles+'
         , 'subtypes+', 'attributes+'
         , 'relations+', 'keys+'
-        , 'inarcs+', 'refindocuments+'
-        ,'refbyorgunits+', 'userdefprops'
+        , 'inarcs+', 'referencedby', 'userdefprops'
         , 'tablesmapped+', 'diagrams+'
         ]
     if pemptymodel:
@@ -48,7 +47,7 @@ def entities2js(pemptymodel):
                                        ,reflist(None),reflist(None)
                                        , reflist(None),reflist(None)
                                        , reflist(None),reflist(None)
-                                       , reflist(None), userdefprops(None)
+                                       , userdefprops(None)
                                         , tabreflist(None),reflist(None)
                                             ]
                                        )
@@ -71,8 +70,8 @@ def entities2js(pemptymodel):
                     , reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)])
                          , reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere="keys_enti_id = {}".format(e.enti_id))])
                     , reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))])
-                         , reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)])
-                    , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)])
+                         , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]\
+                            +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
                          , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
                     , tabreflist(plist={
                                 jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id) for t in
@@ -155,6 +154,7 @@ def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+        insreferences(presult=presult,pmodeid=entiid,prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=entiid, psources=jelem["sourceref"])
         udpvs2sql(presult=presult, pmodeid=entiid, pudps=jelem["userdefprops"])
     #for

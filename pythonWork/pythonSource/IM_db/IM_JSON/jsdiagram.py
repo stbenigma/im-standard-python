@@ -180,11 +180,10 @@ def diagrams2js(pemptymodel,pmodelname):
             , 'type', 'width', 'height'
             , 'uc', 'dc', 'um', 'dm'
             , 'elements', 'relationships'
-            , 'arcs', 'refindocuments+'
-            ,'refbyorgunits+']
+            , 'arcs', 'referencedby']
     if pemptymodel:
         retval = {jsguid(Modelelemtype.DIAG, '0000') : fillmodel(pmodel=model,
-                            pentries=['', legend2js(), '', '', '', '', '', '', '', {}, {}, {}, reflist(), reflist()])}
+                            pentries=['', legend2js(), '', '', '', '', '', '', '', {}, {}, {}, reflist()])}
     else:
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
             d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
@@ -218,8 +217,8 @@ def diagrams2js(pemptymodel,pmodelname):
             ,{jsguid(Modelelemtype.ARCS, ar.arcs_id): defarcs(parc=ar,pdiagid=d.diag_id)
                                         for ar in Arc.getdiagarcs(pdiagid=d.diag_id)
                                 }
-            ,reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)])
-            ,reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)])
+            ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)]\
+             +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)]
 
         ])
         for d in Diagram.select()
@@ -249,6 +248,7 @@ def diagrams2sql(pmodel: JSModel):
         for jelemreps in jelem['elements'].values():
             elemrep2sql(pmodel=pmodel, pdiagid=jsguid2id(jid), pelemreps=jelemreps)
         relarep2sql(pmodel=pmodel, pdiagid=jsguid2id(jid), prelareps=jelem['relationships'])
+        insreferences(presult=presult, pmodeid=diagid, prefs=jelem['referencedby'])
     # inssourceref(pmodel = pmodel,pburuid=jsguid2id(jid), psources=jelem["sourceref"])
     return
 

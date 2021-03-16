@@ -44,8 +44,7 @@ def attr2js(pattr):
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         , 'sourceref', 'keys+'
              #, 'businessrules'
-            , 'refindocuments+'
-            , 'refbyorgunits+', 'userdefprops'
+            , 'referencedby', 'userdefprops'
             , 'columnsmapped+', 'diagrams+'
         ]
     if pattr is None:
@@ -61,7 +60,6 @@ def attr2js(pattr):
                                      ,'','','','',0,4,'DEV'
                                      , sourceref(), reflist()
                                      #, businessrules2js()
-                                      , reflist()
                                      , reflist(), userdefprops()
                                     , reflist(), reflist()
                                       ]
@@ -83,8 +81,8 @@ def attr2js(pattr):
             , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getdevstatus()
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
             #, businessrules2js(pburuid=pattr.attr_id)
-                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
-            , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)])
+                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]\
+                    +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)]
                 ,  userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))
             ,  colureflist({jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
                                                         ColAttrMap.getcolulist(pattrid=pattr.attr_id, pintfid=s.getid())]
@@ -173,6 +171,7 @@ def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])
+        insreferences(presult=presult,pmodeid=attrid,prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=attrid, psources=jelem["sourceref"])
         udpvs2sql(presult=presult, pmodeid=attrid, pudps=jelem["userdefprops"])
     # for

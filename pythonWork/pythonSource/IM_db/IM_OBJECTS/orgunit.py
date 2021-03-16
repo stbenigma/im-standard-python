@@ -140,27 +140,8 @@ class ModelelemOrgu(Baseobject):
         self.moou_orgu_id = porguid
 
     @staticmethod
-    def createtable():
-        sql = """
-CREATE TABLE mode_orgu(
-    moou_id       integer primary key,
-    moou_mode_id  integer NOT NULL,
-    moou_orgu_id  integer NOT NULL
-	,CONSTRAINT moou_orgu_fk FOREIGN KEY(moou_orgu_id)
-           REFERENCES organisationalunits(orgu_id)
-               ON DELETE CASCADE
-	,CONSTRAINT moou_mode_fk FOREIGN KEY(moou_mode_id)
-           REFERENCES modelelement(mode_id)
-			  ON DELETE CASCADE
-)
-"""
-        Baseobject.createtable(ptablename=ModelelemOrgu._tablename
-                               , psql=sql
-        )
-
-    @staticmethod
-    def delete():
-        Baseobject.delete(ModelelemOrgu._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(ModelelemOrgu._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

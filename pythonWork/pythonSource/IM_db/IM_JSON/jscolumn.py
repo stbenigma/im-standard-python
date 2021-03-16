@@ -20,13 +20,12 @@ def columns2js(pemptymodel):
         , 'attributes-mapped'
         , 'userdefprops'
             , 'sourceref'
-        , 'refindocuments+'
-            ,'refbyorgunits+'
+        , 'referencedby'
     ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]
                                                                         +[0,4,'DEV',reflist(),userdefprops()
-                                                                        , sourceref(),reflist(),reflist()
+                                                                        , sourceref(),reflist()
                                                                           ])}
     else:
         retval = {jsguid(Modelelemtype.COLU,c.colu_id) : fillmodel(pmodel=model,pentries=[
@@ -49,8 +48,8 @@ def columns2js(pemptymodel):
                                 ColAttrMap.getattrlist(pcoluid=c.colu_id)])
         ,  udpv2js(pmodeid=c.colu_id,pmodelemtype=Modelelemtype.COLU)
             ,  Externalref.getsrcinfo(pmodeid=c.colu_id)
-        ,  reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)])
-            , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)])
+        ,  [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)]\
+            + [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)]
          ])
             for c in Column.select()
             }
@@ -83,6 +82,7 @@ def columns2sql(pmodel:JSModel):
             continue
 
         Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        insreferences(presult=presult,pmodeid=coluid,prefs=jelem['referencedby'])
         inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     #for
     return

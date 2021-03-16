@@ -4,13 +4,13 @@ from IM_OBJECTS import Modelelemtype,PhysicalUnit,Document,Storageformat,Datatyp
 
 def physicalunits2js(pemptymodel):
     model = ['name'
-                                        ,'si-unit'
-                                        ,'descr' 
-                                        , 'uc'
-                                        , 'dc'
-                                        , 'um'
-                                        , 'dm'
-                                        ,'refindomains+']
+            ,'si-unit'
+            ,'descr'
+            , 'uc'
+            , 'dc'
+            , 'um'
+            , 'dm'
+            ,'usedindomains+']
 
     if pemptymodel:
         retval = {jsguid(Modelelemtype.PHYU,'0000'): fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] + [reflist()])}
@@ -55,24 +55,24 @@ def physicalunits2sql(presult, podmjson:JSModel,pwithextsrcref):
 
 def storageformats2js(pemptymodel):
     model = ['name'
-                                        ,'descr' 
-                                        , 'uc'
-                                        , 'dc'
-                                        , 'um'
-                                        , 'dm'
-                                        ,'refindocuments+'
-                                        , 'refindomains+']
+            ,'descr'
+            , 'uc'
+            , 'dc'
+            , 'um'
+            , 'dm'
+            ,'usedindocuments+'
+            ,'usedindomains+']
 
     if pemptymodel:
-        retval = {jsguid(Modelelemtype.STFO,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 2)] + [reflist(),reflist()])}
+        retval = {jsguid(Modelelemtype.STFO,'0000') : fillmodel(pmodel=model, pentries=['','','','','','', reflist(),reflist()])}
     else:
         retval = {jsguid(Modelelemtype.STFO,s.stfo_id) : fillmodel(pmodel=model,pentries=
         [s.stfo_name, s.stfo_descr
                                         ,s.stfo_uc, s.stfo_dc, s.stfo_um, s.stfo_dm
-                                        ,reflist(plist=[jsguid(Modelelemtype.DOCU, d.docu_id)
-                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))])
-                                        , reflist(plist= [jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))])
+                                        ,[jsguid(Modelelemtype.DOCU, d.docu_id)
+                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))]
+                                         ,[jsguid(Modelelemtype.DOMA, d.doma_id)
+                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))]
 
         ])
                 for s in Storageformat.select()
@@ -107,12 +107,12 @@ def storageformats2sql(presult, podmjson: JSModel, pwithextsrcref):
 
 def datatypes2js(pemptymodel):
     model = ['name'
-                                        ,'basetype' 
-                                        , 'uc'
-                                        , 'dc'
-                                        , 'um'
-                                        , 'dm'
-                                        , 'sourceref']
+            ,'basetype'
+            , 'uc'
+            , 'dc'
+            , 'um'
+            , 'dm'
+            , 'sourceref']
     if pemptymodel:
         retval = {jsguid(Modelelemtype.DATY,'0000') : fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[sourceref()])}
     else:

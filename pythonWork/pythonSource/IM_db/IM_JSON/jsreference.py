@@ -126,7 +126,7 @@ def documents2js(pemtpymodel):
             , 'content', 'format+'
             , 'formatid', 'parent'
             ,'sourceref'
-            ,'referencecnt+', 'references']
+            ,'referencecnt+', 'references+']
     if pemtpymodel:
         retval = {jsguid(Modelelemtype.DOCU, "0000"):
                       fillmodel(pmodel=model,pentries=['' for i in range(6)]+[sourceref(),'0',references()])}
@@ -137,7 +137,7 @@ def documents2js(pemtpymodel):
                                                   ,None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO,d.docu_stfo_id)
                                                     ,None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
                                                   ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=d.docu_id))
-                                                     ,len(d.getrefmodes()),references(pmode=d)
+                                                     ,str(len(d.getrefmodes())),references(pmode=d)
 
                                       ]
                            )
@@ -174,9 +174,11 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 """transfer references and subtypes"""
 def docurefs2sql(presult:Mergeresult,podmjson:JSModel):
+    """new solution objects referencing DOCU handle it"""
+    return
     for jid,jelem in podmjson.getelements(Modelelemtype.DOCU).items():
-        jrefs = jelem['references']
-        for refid in jrefs['entities'] + jrefs['attributes'] +jrefs['domains'] +jrefs['systems'] +jrefs['tables'] +jrefs['columns'] :
+        jrefs = jelem['references+']
+        for refid in jrefs:
             modo = ModelelemDocu(pmodeid=idTranslate[refid],pdocuid=idTranslate(jid))
             try:
                 modo.insert()
@@ -187,23 +189,37 @@ def docurefs2sql(presult:Mergeresult,podmjson:JSModel):
     #for
     return
 
+
+def insreferences(presult:Mergeresult, pmodeid, prefs):
+    ModelelemOrgu.delete(pwhere="moou_mode_id={}".format(pmodeid))
+    ModelelemDocu.delete(pwhere="modo_mode_id={}".format(pmodeid))
+    for refid in prefs:
+        elemtype = jsguid2type(refid)
+        if elemtype == Modelelemtype.ORGU:
+            obj = ModelelemOrgu(pmodeid=pmodeid, porguid=idTranslate[refid])
+        elif elemtype == Modelelemtype.DOCU:
+            obj = ModelelemDocu(pmodeid=pmodeid, pdocuid=idTranslate[refid])
+        else:
+            raise Exception("*****insreferences: Illegal type of element {}".format(elemtype))
+        try:
+            obj.insert()
+        except Exception as err:
+            presult.markdberror(perr=err, pelem=[refid])
+            continue
+    # for
+    return
+
 def references(pmode=None):
-    model = [ 'entities', 'attributes'
-            ,'domains','systems'
-            ,'tables','columns','diagrams'
-            ]
     if pmode is None:
-        retval = fillmodel(pmodel=model,pentries=[[] for i in range(len(model))])
+        retval = []
     else:
-        retval = fillmodel(pmodel=model,pentries=[
-            [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ENTI)]
-            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ATTR)]
-            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DOMA)]
-            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.INTF)]
-            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.TABL)]
-            ,[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.COLU)]
-            , [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DIAG)]
-        ])
+        retval = [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ENTI)]\
+            +[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ATTR)]\
+            +[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DOMA)]\
+            +[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.INTF)]\
+            +[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.TABL)]\
+            +[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.COLU)]\
+            +[jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DIAG)]
     # fi
     return retval
 
@@ -214,7 +230,7 @@ def orgUnits2js(pemptymodel):
             , 'mail', 'telefon'
             , 'address', 'parent'
             , 'sourceref'
-            ,'referencecnt+', 'references'
+            ,'referencecnt+', 'references+'
             ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.ORGU, '0000') : fillmodel(pmodel=model
@@ -227,7 +243,8 @@ def orgUnits2js(pemptymodel):
                 ,o.orgu_uc,o.orgu_dc, o.orgu_um,o.orgu_dm
                 ,o.orgu_mail, o.orgu_telefon
                   , o.orgu_address, None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
-                ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=o.orgu_id)),str(len(o.getrefmodes())), references(pmode=o)
+                ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=o.orgu_id))
+                  ,str(len(o.getrefmodes())), references(pmode=o)
                  ])
                 for o in OragnisationalUnit.select()
             }
@@ -272,9 +289,11 @@ def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
 
 """transfer references and subtypes"""
 def orgurefs2sql(presult:Mergeresult,podmjson:JSModel):
+    """new solution takes references in objects referencing ORGU"""
+    return
     for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
-        jrefs = jelem['references']
-        for refid in jrefs['entities'] + jrefs['attributes'] +jrefs['domains'] +jrefs['systems'] +jrefs['tables'] +jrefs['columns'] :
+        jrefs = jelem['references+']
+        for refid in jrefs :
             moou = ModelelemOrgu(pmodeid=idTranslate[refid],porguid=idTranslate[jid])
             try:
                 moou.insert()
