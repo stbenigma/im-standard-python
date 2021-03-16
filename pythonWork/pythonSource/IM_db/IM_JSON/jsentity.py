@@ -75,7 +75,7 @@ def entities2js(pemptymodel):
                          , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
                     , tabreflist(plist={
                                 jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id) for t in
-                                                                 TablEntiMap.gettabllist(pentiid=e.enti_id,
+                                                                TablEntiMap.gettabllist(pentiid=e.enti_id,
                                                                                          pintfid=s.getid())]
                                 for s in Interface.getmapped(pentiid=e.enti_id)})
                         ,reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=e.enti_id)])

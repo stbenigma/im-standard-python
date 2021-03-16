@@ -3,6 +3,7 @@ from .table import Table
 from IM_DB import dbDML
 from collections import defaultdict
 from .entity import Entity
+from .relationship import Relation
 
 class TablEntiMap(Baseobject):
     _tablename:str = 'tabl_enti_maps'
@@ -14,29 +15,8 @@ class TablEntiMap(Baseobject):
         super().__init__(tablename=TablEntiMap._tablename, prefix=TablEntiMap._prefix)
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=TablEntiMap._tablename
-                               , psql="""
- create table tabl_enti_maps 
- (
-  tema_id integer primary key autoincrement , 
-  tema_tabl_id integer not null , 
-  tema_enti_id integer null , 
-  tema_rela_id integer null , 
-  constraint tema_ck check ((tema_enti_id is not null and tema_rela_id is null )
-      	        		  or (tema_enti_id is null and tema_rela_id is not null)),
-		   constraint tema_un unique (tema_tabl_id , tema_enti_id ,tema_rela_id)
-	   ,constraint tema_rela_fk foreign key (tema_rela_id) 
-	      references relations (rela_id ) 
-	   ,constraint tema_enti_fk foreign key (tema_enti_id) 
-	      references entities (enti_id ) 
-	   ,constraint tema_tabl_fk foreign key (tema_tabl_id) 
-	      references tables (tabl_id ) 
- )    """
-                            )
-    @staticmethod
-    def delete():
-        Baseobject.delete(TablEntiMap._tablename)
+    def delete(pwhere):
+        Baseobject.delete(TablEntiMap._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -47,16 +27,37 @@ class TablEntiMap(Baseobject):
         return Baseobject.anker(TablEntiMap._prefix,pid)
 
     @staticmethod
-    def gettabllist(pentiid=None,pintfid=None):
-        return Table.select(pwhere="""tabl_id in (select tema_tabl_id 
+    def gettabllist(pentiid=None,prelaid=None,pintfid=None):
+        where = """tabl_id in (select tema_tabl_id 
                                                     from tabl_enti_maps
                                                     join tables on tabl_id = tema_tabl_id 
-                                                    where tema_enti_id = {}
-                                                    and tabl_intf_id = {})""".format(pentiid if pentiid is not None else 'tema_enti_id',pintfid if pintfid is not None else 'tabl_intf_id')
+                                                    where 
+                                                        case when tema_enti_id is NULL 
+                                                            then ' ' 
+                                                            else tema_enti_id end  like '{}'
+                                                      and case when tema_rela_id is NULL 
+                                                            then ' ' 
+                                                            else tema_rela_id end   like '{}'
+                                                      and case when tabl_intf_id is NULL 
+                                                            then ' ' 
+                                                            else tabl_intf_id end like '{}')"""\
+                            .format(str(pentiid) if pentiid is not None else '%'
+                                    ,str(prelaid) if prelaid is not None else '%'
+                                    ,str(pintfid) if pintfid is not None else '%' )
+        tabls =Table.select(pwhere=where
                             ,porderby="tabl_id")
+        return tabls
+
     @staticmethod
     def getentilist(ptablid):
         return Entity.select(pwhere="""enti_id in (select tema_enti_id 
+                                                    from tabl_enti_maps
+                                                    where tema_tabl_id = {}
+                                                    )""".format(ptablid)
+                             )
+    @staticmethod
+    def getrelalist(ptablid):
+        return Relation.select(pwhere="""rela_id in (select tema_rela_id 
                                                     from tabl_enti_maps
                                                     where tema_tabl_id = {}
                                                     )""".format(ptablid)
@@ -117,6 +118,19 @@ class TablEntiMap(Baseobject):
         # for
         return retval
     #tabentimap
+
+
+    @staticmethod
+    def tabrelamap():
+        data = dbDML.select("""select  tema_tabl_id,tema_rela_id
+                        from tabl_enti_maps
+                        """)
+        retval = defaultdict(dict)
+        for d in data:
+            retval[d[0]][d[1]] = True
+        # for
+        return retval
+    # tabrelamap
 #TablEntiMap
 
 

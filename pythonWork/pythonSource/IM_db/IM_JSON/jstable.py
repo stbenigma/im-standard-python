@@ -3,18 +3,18 @@ from IM_JSON import *
 
 def tables2js(pemptymodel):
     model = ['name','interface-name+'
-                ,'interface-id+','prefix'
+                ,'interface-id','prefix'
                ,'descr'
                 , 'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         ,'columns+', 'userdefprops'
-                ,'entitiesmapped', 'sourceref'
-               , 'referencedby'
+        ,'entitiesmapped','relationsmapped'
+        , 'sourceref', 'referencedby'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(9)]
                                                    + [0,4,'DEV',reflist(), userdefprops()
-                                                       , reflist(), sourceref()
+                                                       , reflist(), reflist(), sourceref()
                                                        , reflist()])}
     else: 
         retval={jsguid(Modelelemtype.TABL,t.tabl_id) :
@@ -28,7 +28,9 @@ def tables2js(pemptymodel):
                 , udpv2js(pmodeid=t.tabl_id,pmodelemtype=Modelelemtype.TABL)
                     , [jsguid(Modelelemtype.ENTI, e.enti_id) for e in
                              TablEntiMap.getentilist(ptablid=t.tabl_id)]
-              , Externalref.getsrcinfo(pmodeid=t.tabl_id)
+                    , [jsguid(Modelelemtype.RELA, r.rela_id) for r in
+                       TablEntiMap.getrelalist(ptablid=t.tabl_id)]
+                    , Externalref.getsrcinfo(pmodeid=t.tabl_id)
                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)]\
                  + [jsguid(Modelelemtype.ORGU, d[0]) for d in
                                          OragnisationalUnit.getreforgulist(pid=t.tabl_id)]
@@ -38,45 +40,49 @@ def tables2js(pemptymodel):
     # fi
     return retval
 
-def tables2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.TABL).items():
-        tabl = Table()
-        tabl.tabl_name = jelem['name']
-        tabl.tabl_id = jsguid2id(jid)
-        tabl.tabl_intf_id = jsguid2id(jelem['interface-id+'])
-        tabl.tabl_prefix = jelem['prefix']
-        tabl.tabl_descr = jelem['descr']
-        tabl.tabl_uc = jelem['uc']
-        tabl.tabl_dc = jelem['dc']
-        tabl.tabl_um = jelem['um']
-        tabl.tabl_dm = jelem['dm']
+
+def js2tabl(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    tabl = Table()
+    tabl.tabl_name = pelem['name']
+    tabl.tabl_id = jsguid2id(pkey)
+    tabl.tabl_intf_id = jsguid2id(pelem['interface-id'])
+    tabl.tabl_prefix = pelem['prefix']
+    tabl.tabl_descr = pelem['descr']
+    tabl.tabl_uc = pelem['uc']
+    tabl.tabl_dc = pelem['dc']
+    tabl.tabl_um = pelem['um']
+    tabl.tabl_dm = pelem['dm']
+    return tabl
+
+def tables2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.TABL, pjs2obj=js2tabl,
+                   pwithextsrcref=pwithextsrcref)
+
+    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.TABL).items():
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
-        try:
-            tabl.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=tabl.tostring())
-            continue
-
-        Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-        insreferences(presult=presult,pmodeid=tablid,prefs=jelem['referencedby'])
-        inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
-        instablemapping(pmodel=pmodel, ptablid=jsguid2id(jid), pentities=jelem['entitiesmapped'])
-        updvs2sql(pmodel=pmodel,pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+        newtablid = idTranslate[jid]
+        Modelelement.upddisplelements(pmodeid=newtablid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        insreferences(presult=presult,pmodeid=newtablid,prefs=jelem['referencedby'])
+        inssourceref(presult=presult,pmodeid=newtablid, psources=jelem["sourceref"])
+        instablemapping(presult=presult, ptablid=newtablid, pmappedelems=jelem['entitiesmapped']+jelem['relationsmapped'])
+        udpvs2sql(presult=presult,pmodeid=newtablid, pudps=jelem["userdefprops"])
     return
 
 
-def instablemapping(pmodel, ptablid=None,prelaid=None, pentities=None):
-    for jentiid in pentities:
+def instablemapping(presult:Mergeresult, ptablid,pmappedelems):
+    TablEntiMap.delete(pwhere="tema_tabl_id = {}".format(ptablid))
+    for jid in pmappedelems:
+        elemtype = jsguid2type(jid)
         tema = TablEntiMap()
         tema.tema_tabl_id = ptablid
-        tema.tema_rela_id = prelaid
-        tema.tema_enti_id = jsguid2id(jentiid)
+        tema.tema_rela_id = idTranslate[jid] if elemtype == Modelelemtype.RELA else None
+        tema.tema_enti_id = idTranslate[jid] if elemtype == Modelelemtype.ENTI else None
         try:
             tema.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr="tablid={}, entiid={}".format(ptablid,jsguid2id(jentiid)))
+            presult.markdberror(perr=err, pelem="tablid={}, enti/relaid={}".format(ptablid,jsguid2id(jentiid)))
             continue
     #for
     return
