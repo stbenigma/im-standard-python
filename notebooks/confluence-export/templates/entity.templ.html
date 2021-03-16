@@ -4,7 +4,7 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>IM Entität {{ util.translate(entity['name']) }}</h1>
+      <h1>Entität {{ util.translate(entity['name']) }} [Informationsmodell]</h1>
       <p>{{ util.translate(entity['descr']) }}</p>
       <h2>Synonyms</h2>
       <p>{% for syno in entity['synonyms'] %}{{ syno[util.language] }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
@@ -13,6 +13,7 @@
       </p>
     </ac:layout-cell>
     <ac:layout-cell>
+      {{ util.translation_links(key) }}
       {{ util.entity_icon(entity) }}
     </ac:layout-cell>
   </ac:layout-section>
@@ -29,10 +30,10 @@
         </tr>
         {% for attribute_key in entity['attributes+'] %}
         <tr>
-          <td>{{ util.attribute_link(attribute_key) }}</td>
+          <td>{{ util.soft_link(attribute_key) }}</td>
           <td></td>
-          <td><br/></td>
-          <td><br/></td>
+          <td></td>
+          <td></td>
         </tr>
         {% endfor %}
       </tbody></table>
@@ -81,7 +82,7 @@
     <ac:layout-cell>
       <h1>Supertypes</h1>
       <ul>{% for supertype in entity['supertypes'] %}
-        <li><ac:link><ri:page ri:content-title="{{util.page_title(supertype)}}" /><![CDATA[{{ util.page_title(supertype) }}]]></ac:link></li>
+        <li>{{ util.soft_link(supertype) }}</li>
         {% endfor %}</ul>
     </ac:layout-cell>
   </ac:layout-section>
@@ -105,7 +106,5 @@
       </tbody></table>
     </ac:layout-cell>
   </ac:layout-section>
-  <ac:layout-section ac:type="single">
-    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
-  </ac:layout-section>
+  {% include 'footer.templ.html' %}
 </ac:layout>

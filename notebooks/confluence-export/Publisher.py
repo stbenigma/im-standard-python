@@ -220,32 +220,54 @@ class Publisher:
 
         page = self.content_map[key]
         if page:
-            if page.get('title') and not page.get('filtered'):
+            if page.get('title') and not page.get('filtered', False):
                 page_title = self.page_title(key)
                 title_text = title if title else page_title
                 return markupsafe.Markup(
-                    '<ac:link><ri:page ri:content-title="{reference}" /><![CDATA[{title_text}]]></ac:link>'.format(
+                    ('<ac:link><ri:page ri:content-title="{reference}" /><ac:plain-text-link-body>'
+                     '<![CDATA[{title_text}]]></ac:plain-text-link-body></ac:link>').format(
                         reference=page_title, title_text=title_text)
                 )
 
         just_name = title if title else key
+        if not item_class:
+            item_class = self.find_class_for_key(key)
+
         if item_class:
             just_name = self.translate(self.json_data[item_class][key].get('name'))
+
         return just_name
 
-    def domain_link(self, key: str):
-        return self.soft_link(key, 'domains')
+    def find_class_for_key(self, key: str) -> str:
+        """
+            Reverse look up te entity class of a key.
+            Known entity classes are domains, entities, attributes, systems, ...
+            :returns: None, if unable to find the entity class
+        """
+        if not key:
+            return None
 
-    def entity_link(self, key: str):
-        return self.soft_link(key, 'entities')
+        # scan top level classes for the key
+        for class_key in self.json_data:
+            node = self.json_data[class_key]
+            if node.get(key):
+                return class_key
 
-    def attribute_link(self, key: str):
-        return self.soft_link(key, 'attributes')
+        return None
+
+    def translation_links(self, key: str) -> markupsafe.Markup:
+        if not key:
+            return None
+        if len(self.json_data['languages']) < 2:
+            return None
+
+        return markupsafe.Markup('<p style="text-align:right">Links to translated pages of this element</p><br/>')
 
     def entity_icon(self, entity: object):
         return markupsafe.Markup(
             '<img width="50px" align="right" ' +
             'src="' +
-            'https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614270727/fyayc_icon_library/svg/ChannelOverview/f-icon_channeloverview_0099_product.svg' +
+            'https://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/ChannelOverview/f-icon_channeloverview_0099_product.svg' +
             '" />'
         )
+

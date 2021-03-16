@@ -4,7 +4,7 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>IM Attribut {{ util.translate(attribute['name']) }}</h1>
+      <h1>Attribut {{ util.translate(attribute['name']) }} [Informationsmodell]</h1>
       <p>{{ util.translate(attribute['descr']) }}</p>
       <table class="relative-table" style="width: 100%;">
         <tbody>
@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th>Entität</th>
-            {{ util.entity_link(attribute.get('entity')) }}
+            {{ util.soft_link(attribute.get('entity')) }}
           </tr>
           <tr>
             <th>Pflichtfeld</th>
@@ -28,7 +28,7 @@
             <th>Domäne</th>
             <td>
               {% if attribute.get('domain') and not 'DER' in attribute['domain']['origin'] %}
-              {{ util.domain_link(attribute.get('domain')) }}
+              {{ util.soft_link(attribute.get('domain')) }}
               {% endif %}
             </td>
             </tr>
@@ -36,7 +36,10 @@
       </table>
     </ac:layout-cell>
     <ac:layout-cell>
-      <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271504/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0765_spare-part.svg" />
+      {{ util.translation_links(key) }}
+      <p style="text-align: right;">
+        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271504/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0765_spare-part.svg" />
+      </p>
     </ac:layout-cell>
   </ac:layout-section>
   <ac:layout-section ac:type="single">
@@ -83,7 +86,5 @@
         </tbody></table>
     </ac:layout-cell>
   </ac:layout-section>
-  <ac:layout-section ac:type="single">
-    <ac:layout-cell><p>ID: {{key}}</p></ac:layout-cell>
-  </ac:layout-section>
+  {% include 'footer.templ.html' %}
 </ac:layout>

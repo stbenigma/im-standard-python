@@ -4,11 +4,14 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>System {{ system['name'] }}</h1>
+      <h1>System {{ system['name'] }} [Datenmodell]</h1>
       <p>{{ util.translate(system['descr']) }}</p>
     </ac:layout-cell>
     <ac:layout-cell>
-      <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271408/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0148_jenga.svg"/>
+      {{ util.translation_links(key) }}
+      <p style="text-align: right;">
+        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271408/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0148_jenga.svg"/>
+      </p>
     </ac:layout-cell>
   </ac:layout-section>
   <ac:layout-section ac:type="single">
@@ -31,7 +34,7 @@
               {% for entity_key in table['entitiesmapped'] %}
               {% set entity = data['entities'][entity_key] %}
               <li>
-                {{ util.entity_link(entity_key) }}
+                {{ util.soft_link(entity_key) }}
               </li>
               {% endfor %}
               </ul>
