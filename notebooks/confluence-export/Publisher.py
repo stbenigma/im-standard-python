@@ -125,6 +125,7 @@ class Publisher:
             if previous:
                 assert page_id == previous, 'Altering page id from {} to {} for key {}'.format(previous, page_id, key)
         page['pageid'] = page_id
+        return page
 
     def page_for_key(self, key: str):
         """Returns the page object of an element or None if there is no page yet
