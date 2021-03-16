@@ -49,8 +49,8 @@ def main(p_param1):
     logmessages.initlog('fillDB')
 
     try:
-        #filldbmain()
-        filldbmain2(callarg=p_param1,createnewdb=True)
+        filldbmain()
+        #filldbmain2(callarg=p_param1,createnewdb=True)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata"
                                  .format(parameters.dbFilePath(),

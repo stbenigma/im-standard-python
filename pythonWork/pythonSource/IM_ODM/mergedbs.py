@@ -53,6 +53,7 @@ def mergeodm2db(podmjson):
             js2refsql(presult=result, podmjson=podmjson)
         # fi
     # for
+
     if (len(result.errors) == 0):
         """clean up and set final projecte parameters"""
         Language.deleteunused()
