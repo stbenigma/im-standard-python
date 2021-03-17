@@ -35,7 +35,7 @@ def mergeodm2db(podmjson):
         if masterobject not in ("languages","model","physicalunits","datatypes"
                                 ,"storageformats","documents","orgunits"
                                 ,"userdefprops","systems"
-                                ,'domains','entities','attributes','arcs','relations','keys','tables'):
+                                ,'domains','entities','attributes','arcs','relations','keys','tables','columns'):
             print (masterobject)
             continue
         js2sql = transferprocs[masterobject][1]

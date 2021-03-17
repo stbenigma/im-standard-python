@@ -183,7 +183,7 @@ def docurefs2sql(presult:Mergeresult,podmjson:JSModel):
             try:
                 modo.insert()
             except Exception as err:
-                presult.markdberror(perr=err, pelem=[refid]+list(jelem))
+                presult.markdberror(perr=err, pelem=[refid,jelem])
                 continue
         #for
     #for
@@ -204,7 +204,7 @@ def insreferences(presult:Mergeresult, pmodeid, prefs):
         try:
             obj.insert()
         except Exception as err:
-            presult.markdberror(perr=err, pelem=[refid])
+            presult.markdberror(perr=err, pelem=[refid,pmodeid])
             continue
     # for
     return

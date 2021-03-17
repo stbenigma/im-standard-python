@@ -15,7 +15,7 @@ class TablEntiMap(Baseobject):
         super().__init__(tablename=TablEntiMap._tablename, prefix=TablEntiMap._prefix)
 
     @staticmethod
-    def delete(pwhere):
+    def delete(pwhere=None):
         Baseobject.delete(TablEntiMap._tablename,pwhere=pwhere)
 
     @staticmethod

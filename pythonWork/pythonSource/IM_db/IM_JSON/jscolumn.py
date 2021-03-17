@@ -15,11 +15,11 @@ def columns2js(pemptymodel):
         ,'domain'
         ,'descr'
        ,'interface_col_id'
-        ,'uc'         ,'dc'        ,'um'        , 'dm'
+        ,'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
-        , 'attributes-mapped'
+        , 'attributesmapped'
         , 'userdefprops'
-            , 'sourceref'
+        , 'sourceref'
         , 'referencedby'
     ]
     if pemptymodel:
@@ -56,51 +56,54 @@ def columns2js(pemptymodel):
     # fi
     return retval
 
-def columns2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['columns'].items():
-        colu = Column()
-        colu.colu_id = jsguid2id(jid)
-        colu.colu_column_name = jelem['name']
-        colu.colu_tabl_id = jsguid2id(jelem['table-id'])
-        colu.colu_mandatory = Boolean.bool2str(jelem['mandatory'])
-        colu.colu_type_string = jelem['datatype']
-        colu.colu_format = jelem['format']
-        colu.colu_doma_id = jsguid2id(jelem['domain'])
-        colu.colu_descr = jelem['descr']
-        colu.colu_ext_system_id = jelem['interface_col_id']
-        colu.colu_uc = jelem['uc']
-        colu.colu_dc = jelem['dc']
-        colu.colu_um = jelem['um']
-        colu.colu_dm = jelem['dm']
+def js2colu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    colu = Column(psrcname=psrcname,psrcid=psrcid)
+    colu.colu_id = jsguid2id(pkey)
+    colu.colu_column_name = pelem['name']
+    colu.colu_tabl_id = jsguid2id(pelem['table-id'])
+    colu.colu_mandatory = Boolean.bool2str(pelem['mandatory'])
+    colu.colu_type_string = pelem['datatype']
+    colu.colu_format = pelem['format']
+    colu.colu_doma_id = jsguid2id(pelem['domain'])
+    colu.colu_descr = pelem['descr']
+    colu.colu_ext_system_id = pelem['interface_col_id']
+    colu.colu_uc = pelem['uc']
+    colu.colu_dc = pelem['dc']
+    colu.colu_um = pelem['um']
+    colu.colu_dm = pelem['dm']
+    return colu
+
+def columns2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.COLU, pjs2obj=js2colu,
+                   pwithextsrcref=pwithextsrcref)
+
+    for jid,jelem in podmjson.getelements(Modelelemtype.COLU).items():
+        newcoluid = idTranslate[jid]
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
-        try:
-            colu.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=colu.tostring())
-            continue
+        Modelelement.upddisplelements(pmodeid=newcoluid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
 
-        Modelelement.upddisplelements(pmodeid=jsguid2id(jid), pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-        insreferences(presult=presult,pmodeid=coluid,prefs=jelem['referencedby'])
-        inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+        colattrmaps2sql(presult=presult, pcoluid=newcoluid, pattrs=jelem['attributesmapped'])
+        insreferences(presult=presult,pmodeid=newcoluid,prefs=jelem['referencedby'])
+        inssourceref(presult=presult,pmodeid=newcoluid, psources=jelem["sourceref"])
     #for
     return
 
 
-def colattrmaps2sql(pmodel:JSModel, pcoluid, pattrs):
-    for jattrid in pattrs:
+def colattrmaps2sql(presult:Mergeresult, pcoluid, pattrs):
+    ColAttrMap.delete(pwhere="coam_colu_id = {}".format(pcoluid))
+    for idx,jattrid in enumerate(pattrs,start=1):
         coam = ColAttrMap()
-        coam.coam_seq = 1
+        coam.coam_seq = idx
         coam.coam_direction = ColAttrMap.INBOUND
         coam.coam_colu_id = pcoluid
-        coam.coam_attr_id = jsguid2id(jattrid)
+        coam.coam_attr_id = idTranslate[jattrid]
         try:
             coam.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=coam.tostring())
+            presult.markdberror(perr=err, pelem=coam.tostring())
             continue
-        colattrmaps2sql(pmodel=pmodel, pcoluid=jsguid2id(jid), pattrs=jelem['attributes-mapped'])
-        updvs2sql(pmodel=pmodel, pmodeid=jid, pudps=jelem["userdefprops"])
+        #try
     #for
     return

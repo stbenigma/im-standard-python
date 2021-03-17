@@ -94,7 +94,7 @@ CREATE TABLE DOCUMENTS
 
     @staticmethod
     def getrefdoculist(pid):
-        """returns list of docu_ids references by an the element pid. (direct = TRUE) . For tables document reference via Interface is selected as well (direkt = FALSE)"""
+        """returns list of docu_ids references by the element pid. (direct = TRUE) . For tables document reference via Interface is selected as well (direkt = FALSE)"""
         docus = dbDML.select("""
         select docu_id, direct
         from (select docu_id,docu_name,direct  
@@ -104,16 +104,18 @@ CREATE TABLE DOCUMENTS
                 ,'TRUE' direct
             from documents
             join mode_docu on MODO_docu_ID = docu_ID
-            join modelelement on mode_id = MODO_MODE_ID
-            join modelelem_type on melt_id = mode_melt_id
             union all 
             select docu_id, docu_name,tabl_id ref_id,'FALSE' direct
             from documents
-            join mode_docu on MODO_docu_ID = docu_ID
+            join mode_docu modo1 on MODO_docu_ID = docu_ID
             join (select intf_id,tabl_id
                   from tables
                   join interfaces on intf_ID = TABL_intf_ID
-                 ) on MODO_MODE_ID = intf_ID      
+                 ) on MODO_MODE_ID = intf_ID
+            where not exists  (select 1
+                                from MODE_DOCU modo2
+                                where modo2.modo_docu_id = docu_id
+                                and modo2.MODO_MODE_ID = tabl_id)      
             ) 
         where ref_id = {}  
         order by upper(docu_name)
