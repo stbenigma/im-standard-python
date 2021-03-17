@@ -32,8 +32,8 @@ class Elementrep(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Elementrep._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(Elementrep._tablename,pwhere=pwhere)
 
     def select(self, pwhere=None, porderby=None):
         return super().select(Elementrep,pwhere=pwhere,porderby=porderby)
@@ -141,8 +141,8 @@ CREATE TABLE relationreps(
         """)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Relationrep._tablename)
+    def delete(pwhere=None):
+        Baseobject.delete(Relationrep._tablename,pwhere=pwhere)
 
 
     @staticmethod

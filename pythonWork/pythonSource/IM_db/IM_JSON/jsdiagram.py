@@ -27,11 +27,12 @@ def elemrep2js(peler, panker):
         , 'dm': peler.eler_dm
             }
 
-def elemrep2sql(pmodel:JSModel,pdiagid,pelemreps):
+def elemreps2sql(presult:Mergeresult, pdiagid, pelemreps):
+    """[elemrep,] """
     for jelem in pelemreps:
         eler = Elementrep()
         eler.eler_diag_id = pdiagid
-        eler.eler_mode_id = jsguid2id(jelem['element'])
+        eler.eler_mode_id = idTranslate[jelem['element']]
         eler.eler_index = jelem['index']
         eler.eler_position_x = jelem['pos_x']
         eler.eler_position_y = jelem['pos_y']
@@ -51,7 +52,7 @@ def elemrep2sql(pmodel:JSModel,pdiagid,pelemreps):
         try:
             eler.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=jelem)
+            presult.markdberror(per=err, pelem=jelem)
             continue
     #for
     return
@@ -99,7 +100,9 @@ def relarep2js(prelarep):
             }
 
 
-def lineseg2sql(pmodel:JSModel,prelrid, plinesegs):
+def lineseg2sql(presult:Mergeresult,prelrid, plinesegs):
+    """               "linesegments": {"0": {"x": 276,...},}
+    """
     for jidx,jelem in plinesegs.items():
         lise = Linesegment()
         lise.lise_seq = jidx
@@ -115,51 +118,50 @@ def lineseg2sql(pmodel:JSModel,prelrid, plinesegs):
         try:
             lise.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=jelem)
+            presult.markdberror(perr=err, pelem=jelem)
             continue
     #for
     return
 
 
-def relarep2sql(pmodel:JSModel,pdiagid,prelareps):
-    for jid,jelem in prelareps.items():
-        relr = Relationrep()
-        relr.relr_diag_id = pdiagid
-        relr.relr_mode_id = jsguid2id(jid)        
-        relr.relr_linewidth = jelem['linewidth']
-        relr.relr_linecolor = jelem['linecolor']
-        relr.relr_lineopacity = jelem['lineopacity']
-        relr.relr_startedge = jelem['startedge']
-        relr.relr_startposition = jelem['startposition']
-        relr.relr_start_connector = jelem['start_connector']
-        relr.relr_starttext_angle = jelem['starttext_angle']
-        relr.relr_starttext_distance = jelem['starttext_distance']
-        relr.relr_starttext_x = jelem['starttext_x']
-        relr.relr_starttext_y = jelem['starttext_y']
-        relr.relr_starttext_width = jelem['starttext_width']
-        relr.relr_starttext_height = jelem['starttext_height']
-        relr.relr_endedge = jelem['endedge']
-        relr.relr_endposition = jelem['endposition']
-        relr.relr_end_connector = jelem['end_connector']
-        relr.relr_endtext_angle = jelem['endtext_angle']
-        relr.relr_endtext_distance = jelem['endtext_distance']
-        relr.relr_endtext_x = jelem['endtext_x']
-        relr.relr_endtext_y = jelem['endtext_y']
-        relr.relr_endtext_width = jelem['endtext_width']
-        relr.relr_endtext_height = jelem['endtext_height']
-        relr.relr_fontcolor = jelem['fontcolor']
-        relr.relr_fontsize = jelem['fontsize']
-        relr.relr_uc = jelem['uc']
-        relr.relr_dc = jelem['dc']
-        relr.relr_um = jelem['um']
-        relr.relr_dm = jelem['dm']
-        try:
-            relrid = relr.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=jelem)
-            continue
-        lineseg2sql(pmodel=pmodel,prelrid=relrid,plinesegs=jelem['linesegments'])
-    #for
+def relarep2sql(presult, pdiagid, prelaid, prelarep):
+    relr = Relationrep()
+    relr.relr_diag_id = pdiagid
+    relr.relr_mode_id = prelaid
+    relr.relr_linewidth = prelarep['linewidth']
+    relr.relr_linecolor = prelarep['linecolor']
+    relr.relr_lineopacity = prelarep['lineopacity']
+    relr.relr_startedge = prelarep['startedge']
+    relr.relr_startposition = prelarep['startposition']
+    relr.relr_start_connector = prelarep['start_connector']
+    relr.relr_starttext_angle = prelarep['starttext_angle']
+    relr.relr_starttext_distance = prelarep['starttext_distance']
+    relr.relr_starttext_x = prelarep['starttext_x']
+    relr.relr_starttext_y = prelarep['starttext_y']
+    relr.relr_starttext_width = prelarep['starttext_width']
+    relr.relr_starttext_height = prelarep['starttext_height']
+    relr.relr_endedge = prelarep['endedge']
+    relr.relr_endposition = prelarep['endposition']
+    relr.relr_end_connector = prelarep['end_connector']
+    relr.relr_endtext_angle = prelarep['endtext_angle']
+    relr.relr_endtext_distance = prelarep['endtext_distance']
+    relr.relr_endtext_x = prelarep['endtext_x']
+    relr.relr_endtext_y = prelarep['endtext_y']
+    relr.relr_endtext_width = prelarep['endtext_width']
+    relr.relr_endtext_height = prelarep['endtext_height']
+    relr.relr_fontcolor = prelarep['fontcolor']
+    relr.relr_fontsize = prelarep['fontsize']
+    relr.relr_uc = prelarep['uc']
+    relr.relr_dc = prelarep['dc']
+    relr.relr_um = prelarep['um']
+    relr.relr_dm = prelarep['dm']
+    try:
+        relrid = relr.insert()
+    except Exception as err:
+        presult.markdberror(perr=err, pelem=jelem)
+
+    lineseg2sql(presult=presult,prelrid=relrid,plinesegs=prelarep['linesegments'])
+
     return
 
 def legend2js(pdiag=None,pmodelname=None):
@@ -180,10 +182,11 @@ def diagrams2js(pemptymodel,pmodelname):
             , 'type', 'width', 'height'
             , 'uc', 'dc', 'um', 'dm'
             , 'elements', 'relationships'
-            , 'arcs', 'referencedby']
+            , 'arcs', 'referencedby','sourceref']
     if pemptymodel:
         retval = {jsguid(Modelelemtype.DIAG, '0000') : fillmodel(pmodel=model,
-                            pentries=['', legend2js(), '', '', '', '', '', '', '', {}, {}, {}, reflist()])}
+                            pentries=['', legend2js(), '', '', '', '', '', '', ''
+                                , {}, {}, {}, reflist(),reflist()])}
     else:
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
             d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
@@ -219,37 +222,53 @@ def diagrams2js(pemptymodel,pmodelname):
                                 }
             ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=d.diag_id)]\
              +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)]
-
+            , Externalref.getsrcinfo(pmodeid=d.diag_id)
         ])
         for d in Diagram.select()
         }
     # fi
     return retval
 
+def js2diag(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    diag = Diagram(psrcname=psrcname,psrcid=psrcid)
+    diag.diag_id = jsguid2id(pkey)
+    diag.diag_name = pelem['name']
+    diag.diag_legendx = pelem['legend']['x']
+    diag.diag_legendy = pelem['legend']['y']
+    diag.diag_diat_id = Diagramtype().getbyuk(diat_name=pelem['type']).diat_id
+    diag.diag_uc = pelem['uc']
+    diag.diag_dc = pelem['dc']
+    diag.diag_um = pelem['um']
+    diag.diag_dm = pelem['dm']
+    return diag
 
-def diagrams2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.jsmodel['diagrams'].items():
-        diag = Diagram()
-        diag.diag_id = jsguid2id(jid)
-        diag.diag_name = jelem['name']
-        diag.diag_legendx = jelem['legend']['x']
-        diag.diag_legendy = jelem['legend']['y']
-        diag.diag_uc = jelem['uc']
-        diag.diag_dc = jelem['dc']
-        diag.diag_um = jelem['um']
-        diag.diag_dm = jelem['dm']
-        try:
-            diag.diag_diat_id = Diagramtype().getbyuk(diat_name=jelem['type']).diat_id
-            diag.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=jelem)
-            continue
 
+def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DIAG, pjs2obj=js2diag,
+                   pwithextsrcref=pwithextsrcref)
+
+    for jid, jelem in podmjson.getelements(Modelelemtype.DIAG).items():
+        newdiagid = idTranslate[jid]
+        Elementrep.delete(pwhere="eler_diag_id = {}".format(newdiagid))
         for jelemreps in jelem['elements'].values():
-            elemrep2sql(pmodel=pmodel, pdiagid=jsguid2id(jid), pelemreps=jelemreps)
-        relarep2sql(pmodel=pmodel, pdiagid=jsguid2id(jid), prelareps=jelem['relationships'])
-        insreferences(presult=presult, pmodeid=diagid, prefs=jelem['referencedby'])
-    # inssourceref(pmodel = pmodel,pburuid=jsguid2id(jid), psources=jelem["sourceref"])
+            """ "elements": {
+                    "attributes: [{attrrep},]
+                    ,"entities": [{entirep},]
+                    }
+            """
+            elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
+
+        Relationrep.delete(pwhere="relr_diag_id = {}".format(newdiagid))
+        for jrelaid,jrelarep in jelem['relationships'].items():
+            """ "relationships":{
+                    "RELAnnn": {relarep},
+                    } 
+            """
+            relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=idTranslate[jrelaid], prelarep=jrelarep)
+
+        insreferences(presult=presult, pmodeid=newdiagid, prefs=jelem['referencedby'])
+        inssourceref(presult=presult,pmodeid=newdiagid, psources=jelem["sourceref"])
+    #for
     return
 
 def defarcs(parc,pdiagid):

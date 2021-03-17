@@ -113,8 +113,6 @@ CREATE TABLE organisationalunits(
                  , MOOU_MODE_ID as ref_id 
              from organisationalunits
              join mode_orgu on MOOU_orgu_ID = orgu_ID
-             join modelelement on mode_id = MOou_MODE_ID
-             join modelelem_type on melt_id = mode_melt_id
              ) 
          where ref_id = {}  
          order by upper(orgu_name)

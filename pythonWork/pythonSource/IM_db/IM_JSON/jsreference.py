@@ -172,23 +172,6 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     # Document.updparentpairs(pparents=parents)
     return
 
-"""transfer references and subtypes"""
-def docurefs2sql(presult:Mergeresult,podmjson:JSModel):
-    """new solution objects referencing DOCU handle it"""
-    return
-    for jid,jelem in podmjson.getelements(Modelelemtype.DOCU).items():
-        jrefs = jelem['references+']
-        for refid in jrefs:
-            modo = ModelelemDocu(pmodeid=idTranslate[refid],pdocuid=idTranslate(jid))
-            try:
-                modo.insert()
-            except Exception as err:
-                presult.markdberror(perr=err, pelem=[refid,jelem])
-                continue
-        #for
-    #for
-    return
-
 
 def insreferences(presult:Mergeresult, pmodeid, prefs):
     ModelelemOrgu.delete(pwhere="moou_mode_id={}".format(pmodeid))
@@ -270,36 +253,9 @@ def js2orgu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
 def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
                    pwithextsrcref=pwithextsrcref)
-    # parents = [] #(orgu_id, parent_id)
-    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
-    #     orgu = js2orgu(pkey=jid,pelem=jelem)
-    #     parentid = jsguid2id(jelem['parent'])
-    #     if parentid is not None:
-    #         parents.append((orgu.orgu_id, parentid))
-    #
-    #     try:
-    #         orguid = orgu.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=orgu.tostring())
-    #         continue
-    #     inssourceref(pmodel = pmodel,pmodeid=orguid, psources=jelem["sourceref"])
-    # #for
-    # OragnisationalUnit.updparentpairs(pparents=parents)
-    return
 
-"""transfer references and subtypes"""
-def orgurefs2sql(presult:Mergeresult,podmjson:JSModel):
-    """new solution takes references in objects referencing ORGU"""
-    return
-    for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.ORGU).items():
-        jrefs = jelem['references+']
-        for refid in jrefs :
-            moou = ModelelemOrgu(pmodeid=idTranslate[refid],porguid=idTranslate[jid])
-            try:
-                moou.insert()
-            except Exception as err:
-                presult.markdberror(perr=err, pelem=[refid]+list(jelem))
-                continue
-        #for
+    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.ORGU).items():
+        inssourceref(presult=presult,pmodeid=idTranslate[jid], psources=jelem["sourceref"])
     #for
     return
+

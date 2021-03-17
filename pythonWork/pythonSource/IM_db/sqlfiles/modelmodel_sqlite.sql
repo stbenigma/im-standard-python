@@ -823,7 +823,8 @@ create table columns
 	colu_descr varchar(4000),
 	colu_type_string varchar(200),
 	colu_tabl_id integer not null
-		references tables (tabl_id),
+		constraint colu_tabl_fk
+			references tables (tabl_id),
 	colu_doma_id integer not null
 		constraint colu_doma_fk
 			references DOMAINS (doma_id),

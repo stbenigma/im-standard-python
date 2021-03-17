@@ -14,16 +14,14 @@ def domaingroupmembers(pdomaid):
             for dg in DomaingroupMember.select(pwhere="dgrm_doma_id_group={}".format(pdomaid))
             ]
 
-def domaingroupmembers2sql(pmodel:JSModel,pdomaid,pelements):
+def domaingroupmembers2sql(presult:Mergeresult,pdomaid,pelements):
     for jelem in pelements:
         dgrm =DomaingroupMember()
-        dgrm.dgrm_uc = 'sys'
-        dgrm.dgrm_dc = date.today()
         dgrm.dgrm_name = jelem['name']
         dgrm.dgrm_descr = jelem['descr']
         dgrm.dgrm_is_mandatory = Boolean.bool2str(jelem['mandatory'])
         dgrm.dgrm_doma_id_group = pdomaid
-        dgrm.dgrm_doma_id_member = jsguid2id(jelem['domain'])
+        dgrm.dgrm_doma_id_member = idTranslate[jelem['domain']]
         dgrm.dgrm_uc = jelem['uc']
         dgrm.dgrm_dc = jelem['dc']
         dgrm.dgrm_um = jelem['um']
@@ -31,7 +29,7 @@ def domaingroupmembers2sql(pmodel:JSModel,pdomaid,pelements):
         try:
             dgrm.insert()
         except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=list(jelem))
+            presult.markdberror(perr=err, pelem=list(jelem))
     #for
     return
 
@@ -277,8 +275,14 @@ def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     #     inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
     for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
         dbdomaid = jsmergetosql.idTranslate[jid]
+
         if jelem['type'] == Domain.LOV:
             defaultvalues2sql(presult=presult,pdomaid=dbdomaid, pvalues=jelem["values"])
+
+        elif jelem['type'] == Domain.GRP:
+            domaingroupmembers2sql(presult=presult, pdomaid=idTranslate[jid]
+                                   , pelements=jelem["elements"])
+        #fi
 
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_NAME, ptexts=jelem['name'])
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_DESCR, ptexts=jelem['descr'])
@@ -286,11 +290,3 @@ def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         inssourceref(presult=presult,pmodeid=dbdomaid, psources=jelem["sourceref"])
     return
 
-"""transfer references and subtypes"""
-def domarefs2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['domains'].items():
-        if jelem['type'] == Domain.GRP:
-            domaingroupmembers2sql(presult=presult, pdomaid=jsguid2id(jid), pelements=jelem["elements"])
-        #fi
-    #for
-    return

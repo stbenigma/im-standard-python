@@ -215,6 +215,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                 obj = pjs2obj(pkey=key, pelem=elem,pmodellang=modellang)
                 dbsrcref = None
             #fi
+            """make sure we use new id's, wehreever we know it already"""
+            translatefks(obj)
 
             if dbsrcref is not None:
                 """entry via ODM-GUID found. this is my existing brother, try to update it"""
@@ -232,7 +234,6 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                         try:
                             addfk(odmjsid=key, dbid=jsdbsrcref.dbid)
                             obj.setid(jsguid2id(dbsrcref.dbid)) #preserve DB-id
-                            translatefks(obj)
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
                             presult.updatecnt += 1
@@ -250,7 +251,6 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                     """Entry not found via SRCREF and not found via UK -> it is new"""
                     try:
                         obj.setid(None) #provoke new ID in new db
-                        translatefks(obj)
                         objid = obj.insert(pdoerrhdlng=False)
                         addfk(odmjsid=key, dbid=objid)
                         presult.insertcnt += 1
