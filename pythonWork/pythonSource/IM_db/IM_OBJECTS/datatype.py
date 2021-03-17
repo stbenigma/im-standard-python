@@ -29,8 +29,8 @@ class Datatype(Baseobject):
         self.daty_dc = date.today()
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Datatype._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Datatype._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="daty_id"):

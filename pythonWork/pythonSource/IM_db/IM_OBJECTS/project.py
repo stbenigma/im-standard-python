@@ -13,8 +13,8 @@ class Project(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Project._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Project._tablename)
 
     @staticmethod
     def select(pwhere=None,porderby=None):

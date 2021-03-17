@@ -62,7 +62,7 @@ def tables2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
-        newtablid = idTranslate[jid]
+        newtablid = keytransl(jid)
         Modelelement.upddisplelements(pmodeid=newtablid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         insreferences(presult=presult,pmodeid=newtablid,prefs=jelem['referencedby'])
         inssourceref(presult=presult,pmodeid=newtablid, psources=jelem["sourceref"])
@@ -72,18 +72,22 @@ def tables2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 
 def instablemapping(presult:Mergeresult, ptablid,pmappedelems):
-    TablEntiMap.delete(pwhere="tema_tabl_id = {}".format(ptablid))
+    inscnt = 0
+    delcnt = TablEntiMap.delete(pwhere="tema_tabl_id = {}".format(ptablid))
     for jid in pmappedelems:
         elemtype = jsguid2type(jid)
         tema = TablEntiMap()
         tema.tema_tabl_id = ptablid
-        tema.tema_rela_id = idTranslate[jid] if elemtype == Modelelemtype.RELA else None
-        tema.tema_enti_id = idTranslate[jid] if elemtype == Modelelemtype.ENTI else None
+        tema.tema_rela_id = keytransl(jid) if elemtype == Modelelemtype.RELA else None
+        tema.tema_enti_id = keytransl(jid) if elemtype == Modelelemtype.ENTI else None
         try:
             tema.insert()
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem="tablid={}, enti/relaid={}".format(ptablid,jsguid2id(jentiid)))
             continue
     #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return
 

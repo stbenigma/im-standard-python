@@ -21,8 +21,8 @@ class Storageformat(Baseobject):
         return self.getdescr()
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Storageformat._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Storageformat._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="stfo_id"):
@@ -58,8 +58,8 @@ class PhysicalUnit(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(PhysicalUnit._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(PhysicalUnit._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="phyu_name"):

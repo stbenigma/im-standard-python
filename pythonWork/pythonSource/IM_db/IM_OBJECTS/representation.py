@@ -33,7 +33,7 @@ class Elementrep(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Elementrep._tablename,pwhere=pwhere)
+        return Baseobject.delete(Elementrep._tablename,pwhere=pwhere)
 
     def select(self, pwhere=None, porderby=None):
         return super().select(Elementrep,pwhere=pwhere,porderby=porderby)
@@ -142,7 +142,7 @@ CREATE TABLE relationreps(
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Relationrep._tablename,pwhere=pwhere)
+        return Baseobject.delete(Relationrep._tablename,pwhere=pwhere)
 
 
     @staticmethod
@@ -198,8 +198,8 @@ CREATE TABLE linesegments(
         """)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Linesegment._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Linesegment._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="lise_seq"):

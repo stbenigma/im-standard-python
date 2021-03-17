@@ -78,7 +78,7 @@ def columns2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
                    pwithextsrcref=pwithextsrcref)
 
     for jid,jelem in podmjson.getelements(Modelelemtype.COLU).items():
-        newcoluid = idTranslate[jid]
+        newcoluid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
@@ -87,23 +87,28 @@ def columns2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         colattrmaps2sql(presult=presult, pcoluid=newcoluid, pattrs=jelem['attributesmapped'])
         insreferences(presult=presult,pmodeid=newcoluid,prefs=jelem['referencedby'])
         inssourceref(presult=presult,pmodeid=newcoluid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=newcoluid, pudps=jelem["userdefprops"])
     #for
     return
 
 
 def colattrmaps2sql(presult:Mergeresult, pcoluid, pattrs):
-    ColAttrMap.delete(pwhere="coam_colu_id = {}".format(pcoluid))
+    inscnt = 0
+    delcnt = ColAttrMap.delete(pwhere="coam_colu_id = {}".format(pcoluid))
     for idx,jattrid in enumerate(pattrs,start=1):
         coam = ColAttrMap()
         coam.coam_seq = idx
         coam.coam_direction = ColAttrMap.INBOUND
         coam.coam_colu_id = pcoluid
-        coam.coam_attr_id = idTranslate[jattrid]
+        coam.coam_attr_id = keytransl(jattrid)
         try:
             coam.insert()
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem=coam.tostring())
             continue
         #try
     #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return

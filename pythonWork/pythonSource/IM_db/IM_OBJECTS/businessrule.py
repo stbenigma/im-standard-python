@@ -38,8 +38,8 @@ class BusinessRule(MultilangBaseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(BusinessRule._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(BusinessRule._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="buru_name"):
@@ -91,8 +91,8 @@ class BusinessruleElement(Baseobject):
         return buru
 
     @staticmethod
-    def delete():
-        Baseobject.delete(BusinessruleElement._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(BusinessruleElement._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

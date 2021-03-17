@@ -28,7 +28,7 @@ class Userdefprop(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
+        return Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -119,7 +119,7 @@ class Userdefpropvalue(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Userdefpropvalue._tablename,pwhere=pwhere)
+        return Baseobject.delete(Userdefpropvalue._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None,porderby=None):

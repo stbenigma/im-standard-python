@@ -16,7 +16,7 @@ class TablEntiMap(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(TablEntiMap._tablename,pwhere=pwhere)
+        return Baseobject.delete(TablEntiMap._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

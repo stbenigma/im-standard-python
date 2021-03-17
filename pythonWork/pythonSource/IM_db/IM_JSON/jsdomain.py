@@ -14,23 +14,28 @@ def domaingroupmembers(pdomaid):
             for dg in DomaingroupMember.select(pwhere="dgrm_doma_id_group={}".format(pdomaid))
             ]
 
-def domaingroupmembers2sql(presult:Mergeresult,pdomaid,pelements):
+def domaingroupmembers2sql(presult:Mergeresult,pgrpdomaid,pelements):
+    inscnt = 0
+    delcnt = DomaingroupMember.delete(pwhere="dgrm_doma_id_group={}".format(pgrpdomaid))
     for jelem in pelements:
         dgrm =DomaingroupMember()
         dgrm.dgrm_name = jelem['name']
         dgrm.dgrm_descr = jelem['descr']
         dgrm.dgrm_is_mandatory = Boolean.bool2str(jelem['mandatory'])
-        dgrm.dgrm_doma_id_group = pdomaid
-        dgrm.dgrm_doma_id_member = idTranslate[jelem['domain']]
+        dgrm.dgrm_doma_id_group = pgrpdomaid
+        dgrm.dgrm_doma_id_member = keytransl(jelem['domain'])
         dgrm.dgrm_uc = jelem['uc']
         dgrm.dgrm_dc = jelem['dc']
         dgrm.dgrm_um = jelem['um']
         dgrm.dgrm_dm = jelem['dm']
         try:
             dgrm.insert()
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem=list(jelem))
     #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return
 
 def js2deva(pdomaid,pelem):
@@ -53,14 +58,19 @@ def defaultvalues2sql(presult:Mergeresult, pdomaid, pvalues):
                              ,'uc': d.deva_uc, 'dc': d.deva_dc
                              ,'um' : d.deva_um, 'dm': d.deva_dm
     default values are always replaced """
-    DefaultValue.delete(pwhere="deva_doma_id={}".format(str(pdomaid)))
+    delcnt = DefaultValue.delete(pwhere="deva_doma_id={}".format(str(pdomaid)))
+    inscnt = 0
     for val in pvalues:
         deva = js2deva(pdomaid=pdomaid,pelem=val)
         try:
             deva.insert()
-            presult.insertcnt += 1
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem=val)
+    #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
+    return
 
 
 def domelements(pelems:list=None):
@@ -274,13 +284,13 @@ def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_DESCR,ptexts=jelem['descr'])
     #     inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
     for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
-        dbdomaid = jsmergetosql.idTranslate[jid]
+        dbdomaid = jsmergetosql.keytransl(jid)
 
         if jelem['type'] == Domain.LOV:
             defaultvalues2sql(presult=presult,pdomaid=dbdomaid, pvalues=jelem["values"])
 
         elif jelem['type'] == Domain.GRP:
-            domaingroupmembers2sql(presult=presult, pdomaid=idTranslate[jid]
+            domaingroupmembers2sql(presult=presult, pgrpdomaid=keytransl(jid)
                                    , pelements=jelem["elements"])
         #fi
 

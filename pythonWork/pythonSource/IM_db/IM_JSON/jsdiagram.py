@@ -32,7 +32,7 @@ def elemreps2sql(presult:Mergeresult, pdiagid, pelemreps):
     for jelem in pelemreps:
         eler = Elementrep()
         eler.eler_diag_id = pdiagid
-        eler.eler_mode_id = idTranslate[jelem['element']]
+        eler.eler_mode_id = keytransl(jelem['element'])
         eler.eler_index = jelem['index']
         eler.eler_position_x = jelem['pos_x']
         eler.eler_position_y = jelem['pos_y']
@@ -248,8 +248,9 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
                    pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in podmjson.getelements(Modelelemtype.DIAG).items():
-        newdiagid = idTranslate[jid]
-        Elementrep.delete(pwhere="eler_diag_id = {}".format(newdiagid))
+        newdiagid = keytransl(jid)
+        inscnt = 0
+        delcnt = Elementrep.delete(pwhere="eler_diag_id = {}".format(newdiagid))
         for jelemreps in jelem['elements'].values():
             """ "elements": {
                     "attributes: [{attrrep},]
@@ -257,14 +258,23 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
                     }
             """
             elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
+            inscnt += len(jelemreps)
+        #for
+        presult.insertcnt += max(0,(inscnt - delcnt))
+        presult.deletecnt += max(0,(delcnt - inscnt))
 
-        Relationrep.delete(pwhere="relr_diag_id = {}".format(newdiagid))
+        inscnt = 0
+        delcnt = Relationrep.delete(pwhere="relr_diag_id = {}".format(newdiagid))
         for jrelaid,jrelarep in jelem['relationships'].items():
             """ "relationships":{
                     "RELAnnn": {relarep},
                     } 
             """
-            relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=idTranslate[jrelaid], prelarep=jrelarep)
+            relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=keytransl(jrelaid), prelarep=jrelarep)
+            inscnt += 1
+        #for
+        presult.insertcnt += max(0,(inscnt - delcnt))
+        presult.deletecnt += max(0,(delcnt - inscnt))
 
         insreferences(presult=presult, pmodeid=newdiagid, prefs=jelem['referencedby'])
         inssourceref(presult=presult,pmodeid=newdiagid, psources=jelem["sourceref"])
@@ -277,11 +287,8 @@ def defarcs(parc,pdiagid):
     enti=Elementrep().select(pwhere="""eler_mode_id={} and eler_diag_id = {} and eler_index = 0""".format(parc.arcs_enti_id,pdiagid))
     enti = enti[0]
     PONTDISTANCE = 20
-    ARCLNG = 10
-    PREDISTANCE = 10
     entiheight,entiwidth = enti.eler_height, enti.eler_width
     enticenterx,enticentery = enti.eler_position_x + (entiwidth / 2),enti.eler_position_y + (entiheight / 2)
-    entistartx,entistarty = enti.eler_position_x ,enti.eler_position_y
 
     circles=[]
     calcwinkel = lambda ey, sy, ex, sx:math.atan2(ey - sy, ex - sx)

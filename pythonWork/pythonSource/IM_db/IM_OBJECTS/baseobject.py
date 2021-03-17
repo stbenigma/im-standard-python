@@ -325,11 +325,13 @@ class Baseobject:
 
     @staticmethod
     def delete(ptablename,pwhere=None):
+        retval = None
         try:
-            dbDML.delete(ptablename,pwhere=pwhere)
+            retval = dbDML.delete(ptablename,pwhere=pwhere)
         except Exception as err:
             if (not err.__str__().startswith("no such table")):
                 raise err
+        return retval
 
     @staticmethod
     def columnsliststring(pcollist, pplaceholder=False):

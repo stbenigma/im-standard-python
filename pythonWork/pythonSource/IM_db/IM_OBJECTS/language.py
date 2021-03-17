@@ -20,8 +20,8 @@ class Language(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Language._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Language._tablename)
 
     @staticmethod
     def select(pwhere=None,porderby="lang_iso_code2"):

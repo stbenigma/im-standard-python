@@ -18,32 +18,6 @@ class OragnisationalUnit(Baseobject):
                          ,psrcname=psrcname
                          )
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=OragnisationalUnit._tablename
-                               , psql="""
-CREATE TABLE organisationalunits(
-   orgu_id       integer primary key,
-   orgu_name     VARCHAR(60)NOT NULL,
-   orgu_descr     VARCHAR(4000),
-   orgu_mail     VARCHAR(200)NULL,
-   orgu_telefon  VARCHAR(30)NULL,
-   orgu_address  VARCHAR(4000)NULL,
-   orgu_orgu_id  NUMBER(10)NULL,
-   orgu_uc             varchar(30) not null,
-   orgu_dc             varchar(30) not null,
-   orgu_um             varchar(30),
-   orgu_dm             varchar(30)
-   ,CONSTRAINT orgu_email_un UNIQUE(orgu_mail)
-   ,CONSTRAINT orgu_name_un UNIQUE(orgu_name)
-   ,CONSTRAINT orgu_mode_fk FOREIGN KEY(orgu_id)
-              REFERENCES modelelement(mode_id)
-                  ON DELETE CASCADE
-	,CONSTRAINT orgu_orgu_fk FOREIGN KEY(orgu_orgu_id)
-       REFERENCES organisationalunits(orgu_id)
-   )"""
-        )
-
     def getname(self,plang=None):
         return self.orgu_name
 
@@ -57,8 +31,8 @@ CREATE TABLE organisationalunits(
     #getchildren
 
     @staticmethod
-    def delete():
-        Baseobject.delete(OragnisationalUnit._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(OragnisationalUnit._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -139,7 +113,7 @@ class ModelelemOrgu(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(ModelelemOrgu._tablename,pwhere=pwhere)
+        return Baseobject.delete(ModelelemOrgu._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

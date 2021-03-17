@@ -35,7 +35,8 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
             delete all texts from all languages in ptexts
        Then
            insert all texts from all languages """
-    Languagetext.delete(pwhere="""lgtx_mode_id = {} 
+    inscnt = 0
+    delcnt = Languagetext.delete(pwhere="""lgtx_mode_id = {} 
                             and lgtx_attrname = '{}'""".format(pmodeid,pattr))
     for lang in Language.select():
         iso2 = lang.lang_iso_code2
@@ -49,12 +50,14 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
             lgtx.lgtx_dc = datetime.today()
             try:
                 lgtx.insert()
-                presult.insertcnt += 1
+                inscnt += 1
             except Exception as err:
                 presult.markdberror(perr=err, pelem=lgtx.tostring())
                 continue
         #if
     #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return
 
 # replacelgtx
@@ -108,6 +111,7 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
         # for
 
     try:
+        """fill replacementlanguage for all languages which do not have one yet"""
         Language.setallreplacementlang()
     except Exception as err:
         presult.markdberror(perr=err, pelem=pelem)

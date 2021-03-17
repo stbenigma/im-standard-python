@@ -57,8 +57,8 @@ CREATE TABLE DOCUMENTS
         return None if stfo is None else stfo.getname()
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Document._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Document._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -156,7 +156,7 @@ class ModelelemDocu(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(ModelelemDocu._tablename,pwhere=pwhere)
+        return Baseobject.delete(ModelelemDocu._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

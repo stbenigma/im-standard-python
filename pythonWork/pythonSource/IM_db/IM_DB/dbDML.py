@@ -49,14 +49,13 @@ def delete(ptableName, pwhere=None):
     cursor = dbConnect.myDbConn.cursor()
     try:
         sql = "delete from {} where {}".format(ptableName, "1=1" if pwhere is None else pwhere)
-        cursor.execute(sql)
+        rows = cursor.execute(sql).rowcount
     except sqlite3.Error as e:
         logmessages.writelog(sql)
         logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
     dbConnect.myDbConn.commit()
-
-
+    return rows
 # delete
 
 def insert(psql, rec):

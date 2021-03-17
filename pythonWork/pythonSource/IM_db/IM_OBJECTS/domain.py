@@ -155,8 +155,8 @@ class Domain(MultilangBaseobject):
     # select
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Domain._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Domain._tablename)
 
 
     @staticmethod
@@ -271,8 +271,8 @@ class DomaingroupMember(Baseobject):
         return self.dgrm_descr
 
     @staticmethod
-    def delete():
-        Baseobject.delete(DomaingroupMember._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(DomaingroupMember._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="dgrm_name"):
@@ -300,7 +300,7 @@ class DefaultValue(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(DefaultValue._tablename,pwhere=pwhere)
+        return Baseobject.delete(DefaultValue._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="deva_sort_order"):

@@ -58,7 +58,7 @@ def mergeodm2db(podmjson):
         for dbe in result.errors:
             print (dbe)
     # fi
-    print("{}Errors {},  Warnings {}".format('' if (len(result.errors)+len(result.warnings)>0) else '**** '
+    print("{}Errors {},  Warnings {}".format('' if (len(result.errors)+len(result.warnings)==0) else '******* '
                                              ,len(result.errors),len(result.warnings)))
     print("elements changed in database {}".format(dbConnect.getDBname()))
     print ("          {} inserted, {} updated, {} deleted, {} references removed".format(result.insertcnt,result.updatecnt,result.deletecnt,result.deleterefcnt))

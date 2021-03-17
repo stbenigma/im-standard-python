@@ -25,8 +25,8 @@ class Key(Baseobject):
         return  Keyelement.select(pwhere='kele_keys_id = {}{}'.format(self.getid(),which))
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Key._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Key._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="keys_id"):
@@ -63,7 +63,7 @@ class Keyelement(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Keyelement._tablename,pwhere=pwhere)
+        return Baseobject.delete(Keyelement._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="kele_id"):

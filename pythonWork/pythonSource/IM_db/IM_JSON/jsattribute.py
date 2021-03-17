@@ -163,7 +163,7 @@ def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
       },"""
     for jid, jelem in podmjson.getelements(Modelelemtype.ATTR).items():
-        attrid = idTranslate[jid]
+        attrid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
@@ -229,9 +229,6 @@ def ins1kele(presult:Mergeresult, pkey: Key, pattrid, prelaid):
         kele.insert()
     except Exception as err:
         from mystring import nvl
-        print(pkey.keys_id, [p.keys_id for p in Key.select(pwhere="keys_id = {}".format(nvl(pkey.keys_id, -1)))])
-        print(prelaid, [p.rela_id for p in Relation.select(pwhere="rela_id = {}".format(nvl(prelaid, -1)))])
-        print(pattrid, [p.attr_id for p in Attribute.select(pwhere="attr_id = {}".format(nvl(pattrid, -1)))])
         presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
     return
 
@@ -248,11 +245,16 @@ def inskeyelements(presult:Mergeresult, pkey: Key, pkeles):
             ]
          }
     """
-    Keyelement.delete(pwhere="kele_keys_id = {}".format(pkey.keys_id))
+    inscnt = 0
+    delcnt = Keyelement.delete(pwhere="kele_keys_id = {}".format(pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
         ins1kele(presult=presult, pkey=pkey
-                 , pattrid=idTranslate[jid] if jsguid2type(jid) == Modelelemtype.ATTR else None
-                 , prelaid=idTranslate[jid] if jsguid2type(jid) == Modelelemtype.RELA else None)
+                 , pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None
+                 , prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
+        inscnt += 1
+    #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return
 
 def js2keys(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
@@ -272,7 +274,7 @@ def keys2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
                    pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in podmjson.getelements(Modelelemtype.KEYS).items():
-        key = Key().getbyid(pid=idTranslate[jid])
+        key = Key().getbyid(pid=keytransl(jid))
         inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
         if pwithextsrcref:
             inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])

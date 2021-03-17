@@ -3,12 +3,13 @@ from IM_OBJECTS import *
 from dbDML import valuepairs2sqlexpr
 from copy import copy
 
-"""{odmjsid: dbid,}  jsid MMMMxxxx (RELA1442)"""
+"""{odmjsid: keytrans,}  jsid MMMMxxxx (RELA1442)"""
 idTranslate= dict()
 def addfk(odmjsid, dbid):
     global idTranslate
     idTranslate[odmjsid] = dbid
-def dbid(odmjsid):
+
+def keytransl(odmjsid):
     global idTranslate
     return idTranslate[odmjsid]
 
@@ -80,7 +81,7 @@ class Extsourcerefs(list):
         for e in self:
             if (e.srcname == psrcname)\
                 and ((psrcid is not None and e.srcid == psrcid)\
-                        or (pdbid is not None and e.dbid == pdbid)):
+                        or (pdbid is not None and e.keytrans == pdbid)):
                 return True
         return False
 #Extrsourceref
@@ -97,7 +98,7 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
     removedrefs = []
     """get all srcrefs existing in ODM
          in the form
-        {OBJTkey: [srcname,srcid,srclastupd,dbid]}"""
+        {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
     if pwithextsrcref:
         allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype,pjson=podmjson)
     else:
@@ -165,7 +166,7 @@ def translatefks(pdbobj):
             """fk from ID to mode_id is not handled
                translate id, if it's jsid MMMMxxxx is already translated"""
             if jsguid(fk[2].upper(),pdbobj.colvalue(pcolname=colname)) in idTranslate:
-                pdbobj.setcolvalue(pcolname=colname, pvalue=idTranslate[jsguid(fk[2].upper(), pdbobj.colvalue(pcolname=colname))])
+                pdbobj.setcolvalue(pcolname=colname, pvalue=keytransl(jsguid(fk[2].upper(), pdbobj.colvalue(pcolname=colname))))
     #for
     return
 
@@ -190,7 +191,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
         newdberrors = []
 
         """external source refs in the target Database for the acutal elementtype (pelemtype) in the form
-            {OBJTkey: [srcname,srcid,srclastupd,dbid]}"""
+            {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
         if pwithextsrcref:
             alldbsrcrefs = getallsrcrefs(pelemtype=pelemtype)
         else:
@@ -217,7 +218,6 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
             #fi
             """make sure we use new id's, wehreever we know it already"""
             translatefks(obj)
-
             if dbsrcref is not None:
                 """entry via ODM-GUID found. this is my existing brother, try to update it"""
 
@@ -230,9 +230,9 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                                        .format(pelemtype,dbsrcref.dbid,lastupdatesrcref.srcname,Externalref.SOURCE_ODM))
                 else:
                     """update db-record if there is a difference"""
+                    addfk(odmjsid=key, dbid=dbsrcref.dbid)
                     if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid)):
                         try:
-                            addfk(odmjsid=key, dbid=jsdbsrcref.dbid)
                             obj.setid(jsguid2id(dbsrcref.dbid)) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
@@ -259,10 +259,10 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                         newdberrors.append("""*** insert-error: ID = "{}:{}" exists with different GUID\n{}""".format(pelemtype,obj.getid(),e))
                 else:
                     """Entry found via UK. update it.  update the external ref as well, as it could be"""
+                    addfk(odmjsid=key, dbid=ukref.getid())
                     if not ukref.semanticequal(obj):
                         try:
                             """update element found by it's uk"""
-                            addfk(odmjsid=key, dbid=ukref.getid())
                             ukref.semanticcopy(obj)
                             translatefks(ukref)
                             ukref.updatedb(pdoerrhdlng=False)

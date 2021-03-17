@@ -55,8 +55,8 @@ class Diagram(Baseobject):
         return self.diag_name
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Diagram._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Diagram._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="upper(diag_name)"):
@@ -110,8 +110,8 @@ CREATE TABLE diagramtypes(
         return self.diat_name
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Diagramtype._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Diagramtype._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -161,8 +161,8 @@ CREATE TABLE melt_diats(
 )	          """)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(MeltDiat._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(MeltDiat._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

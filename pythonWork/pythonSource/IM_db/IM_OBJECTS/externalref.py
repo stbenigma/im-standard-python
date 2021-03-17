@@ -83,8 +83,8 @@ class Externalref(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Externalref._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Externalref._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="extr_id"):

@@ -58,8 +58,8 @@ class Column(Baseobject):
         return tab.tabl_intf_id
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Column._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Column._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="colu_column_name"):
@@ -174,7 +174,7 @@ class ColAttrMap(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(ColAttrMap._tablename,pwhere=pwhere)
+        return Baseobject.delete(ColAttrMap._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

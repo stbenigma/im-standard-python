@@ -144,8 +144,8 @@ class Entity(MultilangBaseobject):
         return subtypelevel[0][0]
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Entity._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Entity._tablename)
 
 
     @staticmethod
@@ -219,8 +219,8 @@ class Synonym(MultilangBaseobject):
     # getparent
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Synonym._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Synonym._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

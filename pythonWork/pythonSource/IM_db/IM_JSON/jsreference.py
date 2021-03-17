@@ -1,6 +1,6 @@
-from IM_OBJECTS import *
 from IM_JSON import *
 from mystring import nvl
+from IM_OBJECTS import *
 
 def inssourceref(presult:Mergeresult,pmodeid, psources):
     """   "sourceref": {
@@ -71,15 +71,19 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     # #for
     for jskey,jselem in podmjson.getelements(pelemtype=Modelelemtype.UDPR).items():
         """mdelelemetype_properties are emptied and loaded from source"""
-        newudprid = idTranslate[jskey]
-        ModelelementProperty.delete(pwhere="metp_udpr_id={}".format(newudprid))
+        newudprid = keytransl(jskey)
+        inscnt = 0
+        delcnt = ModelelementProperty.delete(pwhere="metp_udpr_id={}".format(newudprid))
         for elemtype in jselem["usedfor"]:
             try:
                 metp = ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(elemtype).getid(),pudprid=newudprid)
                 metp.insert()
-                presult.insertcnt += 1
+                inscnt += 1
             except Exception as err:
                 presult.markdberror(perr=err,pelem=list(jselem))
+        #for
+        presult.insertcnt += max(0,(inscnt-delcnt))
+        presult.deletecnt += max(0,(delcnt-inscnt))
     #for
     return
 
@@ -102,10 +106,12 @@ def udpvs2sql(presult, pmodeid, pudps):
             },
         },
     """
+    inscnt = 0
+    delcnt = Userdefpropvalue.delete(pwhere="udpv_mode_id = {}".format(pmodeid))
     for theme,jtheme in pudps.items():
         for group,jgroup in jtheme.items():
             for jid,jelem in jgroup.items():
-                udpr = Userdefprop().getbyid(idTranslate[jid])
+                udpr = Userdefprop().getbyid(keytransl(jid))
                 if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))
                         or (nvl(udpr.udpr_name) != nvl(jelem['name']))):
                     presult.markdberror(perr="User defined property has unknown theme or group"
@@ -114,11 +120,14 @@ def udpvs2sql(presult, pmodeid, pudps):
                 udpv = Userdefpropvalue(pmodeid=pmodeid,pudprid=udpr.udpr_id,pvalue=jelem['value'])
                 try:
                     udpv.insert()
+                    inscnt += 1
                 except Exception as err:
-                    pmodel.markdberror(perr=err, pelem=udpv.tostring())
+                    presult.markdberror(perr=err, pelem=udpv.tostring())
             #for
         #for
     #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return
 
 def documents2js(pemtpymodel):
@@ -174,22 +183,26 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 
 def insreferences(presult:Mergeresult, pmodeid, prefs):
-    ModelelemOrgu.delete(pwhere="moou_mode_id={}".format(pmodeid))
-    ModelelemDocu.delete(pwhere="modo_mode_id={}".format(pmodeid))
+    inscnt = 0
+    delcnt = ModelelemOrgu.delete(pwhere="moou_mode_id={}".format(pmodeid))
+    delcnt += ModelelemDocu.delete(pwhere="modo_mode_id={}".format(pmodeid))
     for refid in prefs:
         elemtype = jsguid2type(refid)
         if elemtype == Modelelemtype.ORGU:
-            obj = ModelelemOrgu(pmodeid=pmodeid, porguid=idTranslate[refid])
+            obj = ModelelemOrgu(pmodeid=pmodeid, porguid=keytransl(refid))
         elif elemtype == Modelelemtype.DOCU:
-            obj = ModelelemDocu(pmodeid=pmodeid, pdocuid=idTranslate[refid])
+            obj = ModelelemDocu(pmodeid=pmodeid, pdocuid=keytransl(refid))
         else:
             raise Exception("*****insreferences: Illegal type of element {}".format(elemtype))
         try:
             obj.insert()
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem=[refid,pmodeid])
             continue
     # for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
     return
 
 def references(pmode=None):
@@ -255,7 +268,7 @@ def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
                    pwithextsrcref=pwithextsrcref)
 
     for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.ORGU).items():
-        inssourceref(presult=presult,pmodeid=idTranslate[jid], psources=jelem["sourceref"])
+        inssourceref(presult=presult,pmodeid=keytransl(jid), psources=jelem["sourceref"])
     #for
     return
 

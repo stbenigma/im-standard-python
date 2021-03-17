@@ -39,7 +39,7 @@ class Languagetext(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Languagetext._tablename,pwhere=pwhere)
+        return Baseobject.delete(Languagetext._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None,porderby=None):

@@ -56,5 +56,5 @@ def systems2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     # #for
     for jid,jelem in podmjson.getelements(Modelelemtype.INTF).items():
-        insreferences(presult=presult, pmodeid=idTranslate[jid], prefs=jelem['referencedby'])
+        insreferences(presult=presult, pmodeid=keytransl(jid), prefs=jelem['referencedby'])
     return

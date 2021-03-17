@@ -145,7 +145,7 @@ def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     #     # for
     # # for
     for jid, jelem in podmjson.getelements(Modelelemtype.ENTI).items():
-        entiid = idTranslate[jid]
+        entiid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']

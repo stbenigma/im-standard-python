@@ -115,7 +115,7 @@ def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
                    pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in podmjson.getelements(Modelelemtype.RELA).items():
-        newrelaid = idTranslate[jid]
+        newrelaid = keytransl(jid)
 
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
@@ -173,7 +173,7 @@ def arcs2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
     for jid, jelem in podmjson.getelements(Modelelemtype.ARCS).items():
         if pwithextsrcref:
-            inssourceref(presult=presult,pmodeid=idTranslate[jid], psources=jelem["sourceref"])
+            inssourceref(presult=presult,pmodeid=keytransl(jid), psources=jelem["sourceref"])
     # for
     return
 

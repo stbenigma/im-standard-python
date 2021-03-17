@@ -29,9 +29,7 @@ def filldbmain2(callarg,createnewdb=False):
     transferModel.insertBaseData()
     transferModel.transferODMModel();
     odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-    #id2uktranslate = buildid2uktranslate()
     dbConnect.closeDB()
-
 
     if createnewdb:
         IM_db.createDB(par1=callarg,pforcecreate=True)
@@ -39,7 +37,6 @@ def filldbmain2(callarg,createnewdb=False):
     dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
     if createnewdb:
         transferModel.insertBaseData()
-    #dbjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     mergedbs.mergeodm2db(podmjson=odmjson)
     dbConnect.closeDB()
 
@@ -50,7 +47,7 @@ def main(p_param1):
 
     try:
         #filldbmain()
-        filldbmain2(callarg=p_param1,createnewdb=True)
+        filldbmain2(callarg=p_param1,createnewdb=False)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata"
                                  .format(parameters.dbFilePath(),
