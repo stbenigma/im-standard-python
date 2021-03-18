@@ -48,7 +48,7 @@
       </table>
     </ac:layout-cell>
     <ac:layout-cell>
-      {{ util.translation_links(key) }}
+      {% include 'international.templ.html' %}
       <p style="text-align: right;">
         <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271859/fyayc_icon_library/svg/Business%20Organisation/f-icon_organisation_0773_characteristic.svg" />
       </p>
@@ -56,12 +56,12 @@
   </ac:layout-section>
 
   {% if config.get('manual-documentation') %}
-  {% set child_title = util.page_title(key) + config['manual-documentation'].get('title-postfix', ' - Dokumentation') %}
+  {% set child_title = util.lang_specific(util.page_title(key) + config['manual-documentation'].get('title-postfix', ' - Dokumentation')) %}
   {% macro content() -%}
     {% include config['manual-documentation']['template'] %}
   {%- endmacro %}
-  {% set content = content() %}
-  {% set child = util.stub(child_title, util.page_for_key(key)['pageid'], content=content, labels=config['manual-documentation'].get('labels', [])) %}
+  {% set child = util.stub(key + '-md', child_title, util.page_for_key(key)['pageid'], content=content(), labels=config['manual-documentation'].get('labels', ['manual'])) %}
+
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <p>

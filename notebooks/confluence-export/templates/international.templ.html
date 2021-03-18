@@ -1,0 +1,16 @@
+<p>
+{% for lang in util.other_languages() %}
+<ac:link>
+    <ri:page ri:content-title="{{ util.translation_title(key, lang) }}"/>
+    <ac:link-body>
+        <ac:image ac:align="right" ac:width="20">
+            <ri:url ri:value="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/{{ lang | replace('en','gb') }}.svg"/>
+        </ac:image>
+    </ac:link-body>
+</ac:link>
+{% endfor %}
+</p>
+{% if util.other_languages() | length > 0 %}
+<p><br/></p>
+{% endif %}
+

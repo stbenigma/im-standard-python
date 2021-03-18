@@ -4,6 +4,18 @@ from requests.exceptions import HTTPError
 from functools import reduce
 import markupsafe
 import logging
+from colorama import Fore, Style
+
+
+class ContextLogger(logging.LoggerAdapter):
+
+    def __init__(self, logger, topic: str, key: str):
+        super().__init__(logger, {'topic': topic, 'key': key})
+        self.topic = topic
+        self.key = key
+
+    def process(self, msg, kwargs):
+        return '[{topic}:{key}] - {message}'.format(topic=self.topic, key=self.key, message=msg), kwargs
 
 
 class Publisher:
@@ -11,30 +23,48 @@ class Publisher:
     The publisher contains mapping information of IM elements.
     Helper methods to translate content from IM json to Confluence.
     """
+    logger = logging.getLogger(__name__)
+    log = logger
 
-    log = logging.getLogger(__name__)
+    def __init__(self, config, data, confluence, space_key, root_page_id,
+                 languages=['de'], version_comment=None):
 
-    def __init__(self, config, data, confluence, space_key, root_page_id, default_language='de'):
         self.config = config
         self.json_data = data
         self.confluence = confluence
         self.space_key = space_key
         self.root_page_id = root_page_id
-        self.language = default_language
+
         self.minor_edit = True
+        self.languages = languages if languages else data['languages']
+        assert len(self.languages) > 0, 'Expecting at least one language to translate to'
 
         # dictionary with key = element_key ('E233322', 'A132452', ...)
+        # value = map with a page entry per language ( { 'de': page_de, 'en': page_en } )
         self.content_map = {}
+
         # dictionary containing page name as key, value = content_map:key
         self.page_name_map = {}
 
         stamp_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.version_comment = 'Update ' + str(stamp_now)
+        self.version_comment = version_comment if version_comment else 'Update ' + str(stamp_now)
+
+        # default translation language: first in self.languages
+        # this is an operational state -> factor out
+        self.language = languages[0]
+
+    def set_context(self, topic: str, key: str):
+        self.log = ContextLogger(self.logger, topic, key)
 
     def translate(self, field, language=None):
-        if language is None: language = self.language
-        if isinstance(field, dict) and field.get(language):
-            return escape(field[language])
+        if language is None:
+            language = self.language
+        if isinstance(field, dict):
+            text = field.get(language)
+            if not text:
+                # fallback, use whatever present
+                text = field.get(self.languages[0], '-no-fallback-')
+            return markupsafe.Markup(text)
         if isinstance(field, str):
             self.log.debug('No translation for "{}" in language {}'.format(field, language))
             return field
@@ -42,23 +72,29 @@ class Publisher:
         self.log.debug('No text for field "{}"'.format(field))
         return ''
 
-    def page_title(self, key: str):
+    def page_title(self, key: str) -> str:
         """Returns the page title of an element. This will be used to reference elements"""
-        page = self.content_map[key]
-        if not page.get('title'):
-            self.log.warning('No title for key {}'.format(key))
-            return None
-        return page['title']
+        return self.translation_title(key, self.language)
+
+    def translation_title(self, key: str, lang: str) -> str:
+        """Returns the page title of an element. This will be used to reference elements"""
+        pages = self.content_map[key]
+        if pages:
+            same_language_page = pages.get(lang)
+            if not same_language_page.get('title'):
+                self.log.warning('No title for key {} in language {}'.format(key, lang))
+                return None
+            return same_language_page['title']
 
     def order_topic_tree(self, topics: dict):
         """Flatten topic tree to process form roots to leaves"""
-        all = list(topics)
+        topic_list = list(topics)
         result = []
 
-        roots = filter(lambda x: x['parent'] is None, all)
-        remainder = all.remove(roots)
+        roots = filter(lambda x: x['parent'] is None, topic_list)
+        topic_list.remove(roots)
 
-        for child in remainder:
+        for child in topic_list:
             result.append(child)
             children = self.sort_topics({child: topics[child]})
             result.append(children)
@@ -89,51 +125,75 @@ class Publisher:
         """Scan current content below page-root and fills the content_map accordingly"""
         topics = self.collect_recursive(self.config)
 
-        for topic in list(topics):
-            self.log.warning('Processing ' + topic)
-            for key in self.json_data[topic]:
-                entry = self.json_data[topic][key]
-                title_safe = self.translate(entry['name']).strip()
+        for language in list(self.languages):
+            self.language = language
+            for topic in list(topics):
+                self.log.warning('Processing ' + topic + ' for language ' + language)
+                for key in self.json_data[topic]:
+                    entry = self.json_data[topic][key]
+                    title_safe = self.translate(entry['name']).strip()
 
-                if topic == 'attributes':
-                    title_safe = '{} - {}'.format(title_safe, self.content_map[entry['entity']]['title'])
+                    if topic == 'attributes':
+                        title_safe = '{} - {}'.format(title_safe,
+                                                      self.translate(
+                                                          self.json_data['entities'][entry['entity']]['name']))
 
-                if topic == 'tables':
-                    title_safe = '{} - {}'.format(title_safe, self.content_map[entry['interface-id+']]['title'])
+                    if topic == 'tables':
+                        title_safe = '{} - {}'.format(title_safe,
+                                                      self.translate(
+                                                          self.json_data['systems'][entry['interface-id+']]['name']))
 
-                if topic == 'columns':
-                    title_safe = '{} - {}'.format(title_safe, entry['table-name+'])
+                    if topic == 'columns':
+                        title_safe = '{} - {}'.format(title_safe,
+                                                      self.translate(
+                                                          self.json_data['tables'][entry['table-id']]['name']))
 
-                is_taken = self.page_name_map.get(self.confluence_stem(title_safe))
-                if is_taken:
-                    title_safe = title_safe + ' [' + key + ']'
-                    self.log.warning(
-                        'Extending title to {} to ensure uniqueness for {} {}'.format(title_safe, topic, key))
-                self.content_map[key] = {'title': title_safe, 'data': entry, 'topic': topic}
-                self.page_name_map[self.confluence_stem(title_safe)] = key
+                    is_taken = self.page_name_map.get(self.confluence_stem(title_safe))
+                    if is_taken:
+                        title_safe = title_safe + ' [' + key + ']'
+                        self.log.warning(
+                            'Extending title to {} to ensure uniqueness for {} {}'.format(title_safe, topic, key))
+
+                    title_safe = self.lang_specific(title_safe)
+
+                    pages = self.content_map.get(key, {})
+                    pages[self.language] = {'title': title_safe, 'data': entry, 'topic': topic}
+                    self.content_map[key] = pages
+
+                    self.page_name_map[self.confluence_stem(title_safe)] = key
 
         return self.content_map
 
     def register_page_id(self, key: str, page_id: str):
-        page = self.content_map.get(key)
-        if not page:
-            self.log.debug('New element {} '.format(key))
-            page = {}
-            self.content_map[key] = page
+        element = self.content_map.get(key)
+        if not element:
+            self.log.debug('New element {}'.format(key))
+            element = {self.language: {}}
         else:
-            previous = page.get('pageid')
-            if previous:
-                assert page_id == previous, 'Altering page id from {} to {} for key {}'.format(previous, page_id, key)
-        page['pageid'] = page_id
-        return page
+            current = element.get(self.language)
+            if not current:
+                self.log.debug('Adding page {} for key {} for language {}'.format(page_id, key, self.language))
+                element[self.language] = {}
+            else:
+                previous = current.get('pageid')
+                if previous:
+                    assert page_id == previous, 'Altering page id from {} to {} for key {}'.format(previous, page_id,
+                                                                                                   key)
+        element[self.language]['pageid'] = page_id
+        self.content_map[key] = element
+        return element
 
     def page_for_key(self, key: str):
-        """Returns the page object of an element or None if there is no page yet
-        A page object is a dictionary containing 'pageid' and 'name'
+        """Returns the page object of an element or None if there is no page yet.
+        A page object is a dictionary containing 'pageid' and 'name'.
         """
-        return self.content_map.get(key)
+        element = self.content_map.get(key)
+        if element and element.get(self.language):
+            assert element[self.language].get('pageid'), 'No page id on element ' + str(element)
+            return element.get(self.language)
+        raise RuntimeError('No page found for key {} in language {}'.format(key, self.language))
 
-    def stub(self, title: str, parent_page_id, content='stub', labels=[]):
+    def stub(self, key: str, title: str, parent_page_id, content='+[stub]+', labels=[]):
         """Create a stub page to obtain the page id for the title"""
         if self.confluence.page_exists(self.space_key, title):
             page_id = self.confluence.get_page_id(self.space_key, title)
@@ -147,12 +207,17 @@ class Publisher:
                     'Moving page {title} from {source} to {destination}'.format(title=title, source=current_parent,
                                                                                 destination=parent_page_id))
                 self.confluence.move_page(self.space_key, page_id, target_id=parent_page_id)
-
+            page = self.register_page_id(key, page_id)
+            page[self.language]['current_confluence_content'] = current
             self.set_page_labels(page_id, labels)
             return {'id': page_id, 'current': current}
 
         create_result = self.confluence.create_page(self.space_key, title=title, parent_id=parent_page_id,
                                                     body=content)
+        self.log.info(
+            'Created new page {} for title {} below parent {}'.format(create_result['id'], title, parent_page_id))
+
+        self.register_page_id(key, create_result['id'])
         self.set_page_labels(create_result['id'], labels)
         create_result['current'] = None
         return create_result
@@ -219,9 +284,10 @@ class Publisher:
         if not key:
             return ''
 
-        page = self.content_map[key]
-        if page:
-            if page.get('title') and not page.get('filtered', False):
+        pages = self.content_map[key]
+        if pages and pages.get(self.language):
+            same_language_page = pages.get(self.language)
+            if same_language_page.get('title') and not same_language_page.get('filtered', False):
                 page_title = self.page_title(key)
                 title_text = title if title else page_title
                 return markupsafe.Markup(
@@ -272,3 +338,29 @@ class Publisher:
             '" />'
         )
 
+    def lang_specific(self, text: str) -> str:
+        if self.is_default_language():
+            return text
+        return text + ' en'
+
+    def is_default_language(self) -> bool:
+        return self.language == self.languages[0]
+
+    def other_languages(self) -> [str]:
+        others = list(self.languages)
+        others.remove(self.language)
+        return others
+
+    def set_language(self, language: str):
+        assert language in self.languages, 'Language ' + language + ' not in known list: ' + str(self.languages)
+        self.language = language
+
+
+def print_http_error_details(e: HTTPError):
+    print(Fore.RED + e.response.content.decode('utf-8'))
+    from pprint import pprint
+    print(Fore.YELLOW + str(vars(e)))
+    pprint(vars(e.response))
+    result = e.response.raw
+    pprint(vars(result))
+    print(Style.RESET_ALL)

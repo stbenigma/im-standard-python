@@ -13,8 +13,10 @@
       </p>
     </ac:layout-cell>
     <ac:layout-cell>
-      {{ util.translation_links(key) }}
-      {{ util.entity_icon(entity) }}
+      {% include 'international.templ.html' %}
+      <p>
+        {{ util.entity_icon(entity) }}
+      </p>
     </ac:layout-cell>
   </ac:layout-section>
   <ac:layout-section ac:type="single">
