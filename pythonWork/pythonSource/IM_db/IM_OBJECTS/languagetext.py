@@ -38,8 +38,8 @@ class Languagetext(Baseobject):
         super().__init__(tablename=Languagetext._tablename, prefix=Languagetext._prefix)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Languagetext._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Languagetext._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None,porderby=None):

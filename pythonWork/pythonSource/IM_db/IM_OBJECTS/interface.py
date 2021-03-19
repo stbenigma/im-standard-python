@@ -23,8 +23,8 @@ class Interface(Baseobject):
         return self.intf_descr
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Interface._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Interface._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby='intf_name'):

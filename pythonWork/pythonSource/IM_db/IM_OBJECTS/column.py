@@ -58,8 +58,8 @@ class Column(Baseobject):
         return tab.tabl_intf_id
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Column._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Column._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="colu_column_name"):
@@ -154,28 +154,6 @@ class ColAttrMap(Baseobject):
         super().__init__(tablename=ColAttrMap._tablename, prefix=ColAttrMap._prefix)
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=ColAttrMap._tablename
-                               , psql="""
-        create table colu_attr_map 
-         (
-       coam_id integer primary key autoincrement,
-       coam_seq integer  not null check ( coam_seq > 0) , 
-       coam_direction varchar (7) not null check ( coam_direction in ('INBOUND', 'OUTBOUND') ) , 
-       coam_transf_rule varchar (4000) null , 
-       coam_triggertype varchar (10) null check ( coam_triggertype in ('MANUELL', 'PERIODE', 'ZPKT') ) , 
-       coam_triggerperiod integer null , 
-       coam_colu_id integer null , 
-       coam_attr_id integer null  
-		,constraint coam_un unique (coam_direction , coam_colu_id , coam_attr_id, coam_seq )
- 	   ,constraint coam_attr_fk foreign key (coam_attr_id) 
- 	      references attributes (attr_id )  on delete cascade 
- 	   ,constraint coam_colu_fk foreign key (coam_colu_id) 
- 	      references columns (colu_id ) on delete cascade 
- 	      )
-    """)
-
-    @staticmethod
     def getcolulist(pattrid=None,pintfid=None):
         return Column.select(pwhere="""colu_id in (select coam_colu_id 
                                                     from colu_attr_map
@@ -184,7 +162,7 @@ class ColAttrMap(Baseobject):
                                                     where coam_attr_id = {}
                                                     and tabl_intf_id = {})"""
                              .format(pattrid if pattrid is not None else 'coam_attr_id'
-                                                ,pintfid if pintfid is not None else 'tabl_intf_id'))
+                                    ,pintfid if pintfid is not None else 'tabl_intf_id'))
     @staticmethod
     def getattrlist(pcoluid=None):
         return Attribute.select(pwhere="""attr_id in (select coam_attr_id 
@@ -195,8 +173,8 @@ class ColAttrMap(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(ColAttrMap._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(ColAttrMap._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

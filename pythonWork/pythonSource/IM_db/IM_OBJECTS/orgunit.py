@@ -18,32 +18,6 @@ class OragnisationalUnit(Baseobject):
                          ,psrcname=psrcname
                          )
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=OragnisationalUnit._tablename
-                               , psql="""
-CREATE TABLE organisationalunits(
-   orgu_id       integer primary key,
-   orgu_name     VARCHAR(60)NOT NULL,
-   orgu_descr     VARCHAR(4000),
-   orgu_mail     VARCHAR(200)NULL,
-   orgu_telefon  VARCHAR(30)NULL,
-   orgu_address  VARCHAR(4000)NULL,
-   orgu_orgu_id  NUMBER(10)NULL,
-   orgu_uc             varchar(30) not null,
-   orgu_dc             varchar(30) not null,
-   orgu_um             varchar(30),
-   orgu_dm             varchar(30)
-   ,CONSTRAINT orgu_email_un UNIQUE(orgu_mail)
-   ,CONSTRAINT orgu_name_un UNIQUE(orgu_name)
-   ,CONSTRAINT orgu_mode_fk FOREIGN KEY(orgu_id)
-              REFERENCES modelelement(mode_id)
-                  ON DELETE CASCADE
-	,CONSTRAINT orgu_orgu_fk FOREIGN KEY(orgu_orgu_id)
-       REFERENCES organisationalunits(orgu_id)
-   )"""
-        )
-
     def getname(self,plang=None):
         return self.orgu_name
 
@@ -57,8 +31,8 @@ CREATE TABLE organisationalunits(
     #getchildren
 
     @staticmethod
-    def delete():
-        Baseobject.delete(OragnisationalUnit._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(OragnisationalUnit._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -113,8 +87,6 @@ CREATE TABLE organisationalunits(
                  , MOOU_MODE_ID as ref_id 
              from organisationalunits
              join mode_orgu on MOOU_orgu_ID = orgu_ID
-             join modelelement on mode_id = MOou_MODE_ID
-             join modelelem_type on melt_id = mode_melt_id
              ) 
          where ref_id = {}  
          order by upper(orgu_name)
@@ -140,27 +112,8 @@ class ModelelemOrgu(Baseobject):
         self.moou_orgu_id = porguid
 
     @staticmethod
-    def createtable():
-        sql = """
-CREATE TABLE mode_orgu(
-    moou_id       integer primary key,
-    moou_mode_id  integer NOT NULL,
-    moou_orgu_id  integer NOT NULL
-	,CONSTRAINT moou_orgu_fk FOREIGN KEY(moou_orgu_id)
-           REFERENCES organisationalunits(orgu_id)
-               ON DELETE CASCADE
-	,CONSTRAINT moou_mode_fk FOREIGN KEY(moou_mode_id)
-           REFERENCES modelelement(mode_id)
-			  ON DELETE CASCADE
-)
-"""
-        Baseobject.createtable(ptablename=ModelelemOrgu._tablename
-                               , psql=sql
-        )
-
-    @staticmethod
-    def delete():
-        Baseobject.delete(ModelelemOrgu._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(ModelelemOrgu._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

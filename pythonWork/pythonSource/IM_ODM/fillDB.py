@@ -1,6 +1,9 @@
 # -*- coding: latin-1 -*-
-from IM_ODM import transferModel
-from IM_DB import dbConnect, parameters, logmessages
+from IM_ODM import transferModel,mergedbs
+from IM_DB import logmessages,dbErstelleTables
+import IM_db,IM_OBJECTS
+from IM_JSON import *
+
 
 
 # Main Programm
@@ -8,7 +11,6 @@ from IM_DB import dbConnect, parameters, logmessages
 def filldbmain(pinmemory=False):
     if not pinmemory:
         dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
-        from IM_OBJECTS import Userdefprop
         transferModel.loeschmodell()
         dbConnect.myDbConn.close()
         #print("filldbmain Constraints sollten auf ON stehen")
@@ -19,13 +21,33 @@ def filldbmain(pinmemory=False):
     if not pinmemory: dbConnect.myDbConn.close()
 # filldbmain
 
+
+def filldbmain2(callarg,createnewdb=False):
+    memoryfilepath = ":memory:"
+    dbConnect.openDB(p_filepath=memoryfilepath,fks='ON');
+    dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
+    transferModel.insertBaseData()
+    transferModel.transferODMModel();
+    odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+    dbConnect.closeDB()
+
+    if createnewdb:
+        IM_db.createDB(par1=callarg,pforcecreate=True)
+
+    dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
+    if createnewdb:
+        transferModel.insertBaseData()
+    mergedbs.mergeodm2db(podmjson=odmjson)
+    dbConnect.closeDB()
+
 def main(p_param1):
     """Main program for fillDB"""
     parameters.initparam(p_callarg=p_param1)
     logmessages.initlog('fillDB')
 
     try:
-        filldbmain()
+        #filldbmain()
+        filldbmain2(callarg=p_param1,createnewdb=False)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata"
                                  .format(parameters.dbFilePath(),

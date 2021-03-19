@@ -15,7 +15,7 @@ class Userdefprop(Baseobject):
         self.udpr_theme = ptheme
         self.udpr_group = pgroup
         self.udpr_name = pname
-        self.udpr_uc = 'SYS'
+        self.udpr_uc = 'sys'
         self.udpr_dc = date.today()
 
     def getname(self,plang=None):
@@ -28,7 +28,7 @@ class Userdefprop(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
+        return Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -37,7 +37,7 @@ class Userdefprop(Baseobject):
 
     @staticmethod
     def getbyname(pname):
-        return Userdefprop().getbyuk(pcolname='UDPR_NAME',pukvalue=pname)
+        return Userdefprop().getbyuk(UDPR_NAME=pname)
 
     @staticmethod
     def themelist(pmelttype=None):
@@ -119,7 +119,7 @@ class Userdefpropvalue(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Userdefpropvalue._tablename,pwhere=pwhere)
+        return Baseobject.delete(Userdefpropvalue._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None,porderby=None):

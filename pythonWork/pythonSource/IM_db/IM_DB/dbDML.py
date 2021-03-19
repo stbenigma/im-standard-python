@@ -49,14 +49,13 @@ def delete(ptableName, pwhere=None):
     cursor = dbConnect.myDbConn.cursor()
     try:
         sql = "delete from {} where {}".format(ptableName, "1=1" if pwhere is None else pwhere)
-        cursor.execute(sql)
+        rows = cursor.execute(sql).rowcount
     except sqlite3.Error as e:
         logmessages.writelog(sql)
         logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
     dbConnect.myDbConn.commit()
-
-
+    return rows
 # delete
 
 def insert(psql, rec):
@@ -112,9 +111,15 @@ def exec(psql, *args):
             logmessages.writelog("exec: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
-
-
 # end exec
+
+"""translates None into NULL, string into 'string' """
+def dbval(pval):
+    return 'NULL' if pval is None \
+                else str(pval) if type(pval)==int \
+                else "'{}'".format(Boolean.bool2str(pval) if type(pval)==bool
+                                    else pval)
+
 def execmany(psql, recs):
     # print (psql)
     # return
@@ -135,7 +140,7 @@ def execmany(psql, recs):
 
 def valuepairs2sqlexpr(**colvalues):
     """input: {colname:colvalue,}
-       return "(col-name is NULL or col-name = value)" and concatenated for every colname/-value pair
+       return "(col-name is NULL or col-name = value)" (depending on colvalue) and concatenated for every colname/-value pair
        if value is not of integer type, enclose it with '' """
     sqlstring = lambda val: "'{}'".format(val) if type(val) != int else str(val)
     comp = lambda col, val: "{} is null".format(col) if val is None else "{} = {}".format(col, sqlstring(val))

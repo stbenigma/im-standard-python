@@ -13,8 +13,8 @@ class Project(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Project._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Project._tablename)
 
     @staticmethod
     def select(pwhere=None,porderby=None):
@@ -23,7 +23,7 @@ class Project(Baseobject):
 
     @staticmethod
     def updlanguages(piso2list):
-        langs = ','.join(upper(iso2) for iso2 in piso2list)
+        langs = ','.join(iso2.upper() for iso2 in piso2list)
         """as we have only one project, do it for all"""
         lsql = """update projects set proj_languages = '{}'""".format(langs)
         dbDML.exec(lsql)

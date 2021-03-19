@@ -275,7 +275,8 @@ create table STORAGE_FORMATS
 create table DOCUMENTS
 (
 	DOCU_ID INTEGER not null
-		primary key,
+		primary key
+		references MODELELEMENT (mode_id),
 	DOCU_NAME VARCHAR(60) not null CONSTRAINT DOCU_UK UNIQUE,
 	DOCU_STFO_ID integer
 		references STORAGE_FORMATS (STFO_ID),
@@ -644,9 +645,7 @@ create table organisationalunits
 		constraint orgu_name_un
 			unique,
 	orgu_descr VARCHAR(4000),
-	orgu_mail VARCHAR(200)
-		constraint orgu_email_un
-			unique,
+	orgu_mail VARCHAR(200),
 	orgu_telefon VARCHAR(30),
 	orgu_address VARCHAR(4000),
 	orgu_orgu_id NUMBER(10)
@@ -824,7 +823,8 @@ create table columns
 	colu_descr varchar(4000),
 	colu_type_string varchar(200),
 	colu_tabl_id integer not null
-		references tables (tabl_id),
+		constraint colu_tabl_fk
+			references tables (tabl_id),
 	colu_doma_id integer not null
 		constraint colu_doma_fk
 			references DOMAINS (doma_id),
@@ -1055,6 +1055,6 @@ CREATE VIEW SUPERENTI AS
           join rel on rela_superenti_id = superentity.ENTI_ID
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
 
-create view dbversion as select '1.1' as version, datetime() as installedtime;
+create view dbversion as select '1.3' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

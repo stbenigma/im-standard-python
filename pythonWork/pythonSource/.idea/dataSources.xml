@@ -14,6 +14,20 @@
       <jdbc-url>jdbc:sqlserver://localhost</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="eatestmodel@fyac-im-test.database.windows.net" uuid="e06bed7e-e6a0-4da0-b529-3f484240525e">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=eatestmodel</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="modelmodel@fyac-im-test.database.windows.net" uuid="bbe79d5b-8404-41e1-80c7-5f018087522a">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=modelmodel</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
     <data-source source="LOCAL" name="postgres@34.65.164.219" uuid="3cce99a8-203b-4408-bf10-913223fa0c1b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -28,18 +42,11 @@
       <jdbc-url>jdbc:sqlite:testscript.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="eatestmodel@fyac-im-test.database.windows.net" uuid="e06bed7e-e6a0-4da0-b529-3f484240525e">
-      <driver-ref>azure.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://fyac-im-test.database.windows.net:1433;database=eatestmodel</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="DC-IM.db" uuid="36e7e03f-2595-4c25-b3c6-c6f377fda113">
+    <data-source source="LOCAL" name="crmTest.db" uuid="f96f4df9-6ece-415d-927e-a0252ea64ef0">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../../../../Rexroth/DC-IM/DB/DC-IM.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../testModels/crmTest/DB/crmTest.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -44,6 +44,8 @@ class JSModel:
       ,Modelelemtype.PHYU: 'physicalunits'
       ,Modelelemtype.STFO: 'storageformats'
       , Modelelemtype.UDPR: 'userdefprops'
+      ,'LANG': 'languages'
+    , 'PROJ': 'model'
     }
 
     def __init__(self,pmodel={}):
@@ -93,6 +95,28 @@ class JSModel:
         except:
             return None
 
+    @staticmethod
+    def label2elemtype(plabel):
+        try:
+            lab = {val:key for key,val in JSModel._elemtype2label.items()}
+            return lab[plabel]
+        except:
+            return plabel
+
+    """return the dict of an elementtype"""
+    def getelements(self,pelemtype):
+        try:
+            """Non-modelelementtypes in JS are treated differently"""
+            if pelemtype in ('LANG'):
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
+            elif pelemtype in ('PROJ'):
+                """Proj has one single entry without any id in js"""
+                return {None: self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]}
+            else:
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
+        except:
+            return None
+
     """return the element identified by the jsid (<type><id>) from the current jsmodel"""
     def getbyid(self,pjsid):
         try:
@@ -102,10 +126,13 @@ class JSModel:
 
     def checked(self):
         return self._checked
+
     def setchecked(self,pvalue):
         self._checked = pvalue
+
     def modellanguage(self):
         return self._modellanguage
+
     def setmodellanguage(self,pvalue):
         self._modellanguage = pvalue
 
@@ -136,6 +163,8 @@ class JSModel:
         if pelemstr != '': self._errors.append(pelemstr)
         self.incerrcnt()
     # markerror
+
+
     def markwarning(self,pmsg):
         self._warnings.append("WARNING: {}".format(pmsg))
         self.incwrncnt()

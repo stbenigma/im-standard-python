@@ -37,8 +37,8 @@ class Modelelemtype(Baseobject):
         return
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Modelelemtype._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Modelelemtype._tablename)
         return
 
     @staticmethod
@@ -134,7 +134,7 @@ class Modelelement(Baseobject):
 
     @staticmethod
     def delete(pwhere=None):
-        Baseobject.delete(Modelelement._tablename,pwhere=pwhere)
+        return Baseobject.delete(Modelelement._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -164,7 +164,7 @@ class Modelelement(Baseobject):
         elif self.mode_type == Modelelemtype.ENTI:
             element = Entity().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.ORGU:
-            element = Organisationseinheit().getbyid(self.mode_id)
+            element = OragnisationalUnit().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.TABL:
             element = Table().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.COLU:
@@ -177,10 +177,12 @@ class Modelelement(Baseobject):
             element = DefaultGroupMember().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DATY:
             element = Datatype().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.KEYS:
+            element = Key().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DIAG:
             element = Diagram().getbyid(self.mode_id)
-        elif self.mode_type == Modelelemtype.BURU:
-            element = BusinessRule().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.DOCU:
+            element = Document().getbyid(self.mode_id)
         else:
             element = None
         return element
@@ -249,8 +251,9 @@ class Modelelement(Baseobject):
         lsql = """update modelelement
                     set mode_min_zoom_level = {}
                     ,mode_max_zoom_level = {}
-                    ,mode_dev_status = '{}' 
-                    where mode_id = {}""".format(pminzl,pmaxzl,pdevstat,pmodeid)
+                    ,mode_dev_status = {} 
+                    where mode_id = {}""".format(dbDML.dbval(pminzl),dbDML.dbval(pmaxzl)
+                                                 ,dbDML.dbval(pdevstat),pmodeid)
         dbDML.exec(lsql)
 
 # modelelement
@@ -268,8 +271,8 @@ class ModelelementProperty(Baseobject):
         self.metp_optional = Boolean.FALSE
 
     @staticmethod
-    def delete():
-        Baseobject.delete(ModelelementProperty._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(ModelelementProperty._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="metp_id"):
@@ -284,3 +287,8 @@ from .table import Table
 from .attribute import Attribute
 from .column import Column
 from .interface import Interface
+from .document import Document
+from .diagram import Diagram
+from .orgunit import OragnisationalUnit
+from .key import Key
+from .relationship import Relation,Arc

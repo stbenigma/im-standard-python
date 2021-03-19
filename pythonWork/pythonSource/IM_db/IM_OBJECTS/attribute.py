@@ -57,8 +57,8 @@ class Attribute(MultilangBaseobject):
                                     from key_elements 
                                     where kele_attr_id = {})""".format(self.attr_id))
     @staticmethod
-    def delete():
-        Baseobject.delete(Attribute._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Attribute._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="attr_displ_seq"):

@@ -16,7 +16,7 @@ def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
 
 
-    jsmodel = JSModel(pmodel=sql2json(pmodelname=parameters.odmModelName(),pdbname=dbConnect.getDBname()))
+    jsmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
     jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)
     dbConnect.myDbConn.close()
@@ -24,7 +24,7 @@ def createJSON(pfilepath, pfilename):
 
 def createemptyJSON(pfilepath,pfilename):
 
-    jsmodel = JSModel(pmodel=sql2json(pmodelname=pfilename,pdbname=None  ,pemptymodel=True))
+    jsmodel = JSModel(pmodel=sql2json(pdbname=None  ,pemptymodel=True))
     jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)
     return
 

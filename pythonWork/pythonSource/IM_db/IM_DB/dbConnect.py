@@ -22,7 +22,12 @@ def openDB(p_filepath,fks='OFF'):
     myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
 
 def closeDB():
+    global myDbConn
     myDbConn.close()
+    myDBConn = None
+
+def isopenDB():
+    return myDbConn is not None
 
 def getDBname():
     global myDbConn

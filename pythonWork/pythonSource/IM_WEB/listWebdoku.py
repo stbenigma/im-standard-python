@@ -267,7 +267,7 @@ def main(pdirec, plang):
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     deflang = Language.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
-    model = JSModel(sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath()))
+    model = JSModel(sql2json(pdbname=parameters.dbFilePath()))
     listwebmain(pmodel=model, plang=plang)
 
     dbConnect.myDbConn.close()

@@ -29,8 +29,8 @@ class Datatype(Baseobject):
         self.daty_dc = date.today()
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Datatype._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Datatype._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="daty_id"):
@@ -59,7 +59,7 @@ class Datatype(Baseobject):
 
     @staticmethod
     def getbyname(pname):
-        return Datatype().getbyuk(pcolname='daty_name', pukvalue=pname)
+        return Datatype().getbyuk(daty_name=pname)
     # getbyname
 
     @staticmethod

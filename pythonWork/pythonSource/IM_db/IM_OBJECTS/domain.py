@@ -155,13 +155,13 @@ class Domain(MultilangBaseobject):
     # select
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Domain._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Domain._tablename)
 
 
     @staticmethod
     def getbyname(pname: str):
-        return Domain().getbyuk(pcolname='doma_name', pukvalue=pname)
+        return Domain().getbyuk(doma_name=pname)
 
     @staticmethod
     def getunknown():
@@ -241,7 +241,7 @@ class Domain(MultilangBaseobject):
         intf2id = {}
         for filename in interfaces:
             if filename is None: continue
-            intf = Interface().getbyuk(pcolname='intf_name',pukvalue=interfacename(filename))
+            intf = Interface().getbyuk(intf_name=interfacename(filename))
             intfid = None if intf is None else intf.intf_id
             intf2id[filename] = intfid
         #for
@@ -270,8 +270,8 @@ class DomaingroupMember(Baseobject):
         return self.dgrm_descr
 
     @staticmethod
-    def delete():
-        Baseobject.delete(DomaingroupMember._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(DomaingroupMember._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="dgrm_name"):
@@ -298,8 +298,8 @@ class DefaultValue(Baseobject):
         super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(DefaultValue._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(DefaultValue._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby="deva_sort_order"):

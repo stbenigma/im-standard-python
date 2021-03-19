@@ -20,8 +20,8 @@ class Language(Baseobject):
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Language._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Language._tablename)
 
     @staticmethod
     def select(pwhere=None,porderby="lang_iso_code2"):
@@ -32,6 +32,7 @@ class Language(Baseobject):
         lDefLangs = Language.select(pwhere="""lang_is_base_lang = 'TRUE'""")
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
+        if (len(lDefLangs) > 1): raise Exception("More than one model-Language defined")
         return lDefLangs[0]
     #getdefaultlang
 
@@ -86,7 +87,7 @@ class Language(Baseobject):
 
     @ staticmethod
     def setallreplacementlang():
-        #currently modellang is always replacement lang
+        #make sure everybody has a replacementlanguage
         dbDML.exec("""update languages  
         set lang_lang_id = 
             case when lang_is_base_lang  = 'TRUE'
@@ -96,7 +97,7 @@ class Language(Baseobject):
                 where sp2.lang_is_base_lang = 'TRUE'
                 )
             end
-        """)
+        where lang_lang_id is NULL""")
     #setallreplacementlang
 #Language
 
