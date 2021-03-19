@@ -128,7 +128,7 @@ class Publisher:
         for language in list(self.languages):
             self.language = language
             for topic in list(topics):
-                self.log.warning('Processing ' + topic + ' for language ' + language)
+                self.log.debug('Processing ' + topic + ' for language ' + language)
                 for key in self.json_data[topic]:
                     entry = self.json_data[topic][key]
                     title_safe = self.translate(entry['name']).strip()
