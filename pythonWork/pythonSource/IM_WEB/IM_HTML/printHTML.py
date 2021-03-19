@@ -6,7 +6,7 @@ from distutils.dir_util import copy_tree
 from IM_DB import parameters
 from IM_OBJECTS import *
 import html
-from IM_JSON import JSModel
+from IM_JSON import JSModel,jsguid2type
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -1258,21 +1258,19 @@ def printcontentdoma(pdomains):
 # printcontentdoma
 
 def type2name(ptyp,plang):
-    if ptyp == 'entities':
+    if ptyp == Modelelemtype.ENTI:
         return Languagetext.transl('Entitäten', plang)
-    elif ptyp == 'attributes':
+    elif ptyp == Modelelemtype.ATTR:
         return Languagetext.transl('Attribute', plang)
-    elif ptyp == 'attributes':
-        return Languagetext.transl('Attribute', plang)
-    elif ptyp == 'domains':
+    elif ptyp == Modelelemtype.DOMA:
         return Languagetext.transl('Wertebereiche', plang)
-    elif ptyp == 'diagrams':
+    elif ptyp == Modelelemtype.DIAG:
         return Languagetext.transl('Diagramme', plang)
-    elif ptyp == 'tables':
+    elif ptyp == Modelelemtype.TABL:
         return Languagetext.transl('Tabellen', plang)
-    elif ptyp == 'systems':
+    elif ptyp == Modelelemtype.INTF:
         return Languagetext.transl('Systeme', plang)
-    elif ptyp == 'columns':
+    elif ptyp == Modelelemtype.COLU:
         return 'Columns'
     else:
         return ptyp
@@ -1283,16 +1281,18 @@ def printreflist(pelem,plang):
     fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert')
                            , pheaders=[Languagetext.transl('Typ'), Languagetext.transl('Elemente')]))
 
+    types = set([jsguid2type(ref) for ref in pelem['references+']])
     refentries = {typ: [{'anker': e
                         , 'name': getelement(e)['name']
-                        ,'htmlfile': htmlfilelist[getelement(e)['interface-id+']] if (typ in ('tables','columns','systems')) else ''
-                         } for e in ref] for typ,ref in pelem['references'].items()}
+                        ,'htmlfile': htmlfilelist[getelement(e)['interface-id+']] if (typ in (Modelelemtype.COLU,Modelelemtype.INTF))
+                                     else htmlfilelist[getelement(e)['interface-id']] if (typ in (Modelelemtype.TABL)) else ''
+                         } for e in pelem['references+'] if jsguid2type(e) == typ] for typ in types}
     if (len(refentries) == 0): return
     for typ,ref in refentries.items():
         if len(ref)==0: continue
         # aus schn-html zurück ins Main
-        docuentry = ', '.join (href(ref='' if (typ in ('systems')) else elem['anker']
-                                    ,anz=elem['name'] if (typ in ('tables','columns','systems'))\
+        docuentry = ', '.join (href(ref='' if (typ in (Modelelemtype.INTF)) else elem['anker']
+                                    ,anz=elem['name'] if (typ in (Modelelemtype.TABL,Modelelemtype.COLU,Modelelemtype.INTF))\
                                                 else elem['name'][plang]
                                     ,htmlfile=elem['htmlfile']
                                     ) for elem in ref)

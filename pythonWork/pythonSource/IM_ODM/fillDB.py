@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 from IM_ODM import transferModel,mergedbs
 from IM_DB import logmessages,dbErstelleTables
-import IM_db,IM_OBJECTS
+import IM_db
 from IM_JSON import *
 
 

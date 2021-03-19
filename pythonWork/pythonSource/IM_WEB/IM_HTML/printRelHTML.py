@@ -18,7 +18,7 @@ def printmapping(pelem):
     werte = {0: [[anker, name] for anker,name in entities.items()]}
 
     for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
-        if intfanker == pelem['interface-id+']: continue
+        if intfanker == pelem['interface-id']: continue
         tablist=[]
         for enti in pelem['entitiesmapped']:
             try:
@@ -35,7 +35,7 @@ def printmapping(pelem):
 
 def printcolmapping(pcol):
     lang=parameters.dbDefaultLang()
-    attrs = {a:getelement(a) for a in pcol['attributes-mapped']}
+    attrs = {a:getelement(a) for a in pcol['attributesmapped']}
     attrlist = []
     for anker,attr in attrs.items():
         if attr['entity'] is None:
@@ -50,7 +50,7 @@ def printcolmapping(pcol):
     for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
         if intfanker == pcol['interface-id+']: continue
         collist=[]
-        for attr in pcol['attributes-mapped']:
+        for attr in pcol['attributesmapped']:
             try:
                 collist += getelement(attr)['columnsmapped+'][intfanker]
             except:

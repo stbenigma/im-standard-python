@@ -1,3 +1,5 @@
+import sys,os
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_DB')
 from IM_JSON import *
 from IM_OBJECTS import *
 from dbDML import valuepairs2sqlexpr
