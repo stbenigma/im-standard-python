@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3640D016-C082-408A-CE3D-0D81EC6FA107" name="SPEICHERFORMAT">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<comment><![CDATA[Format für die Speicherung binär verkodeter Werte.
+
+Beispiele:
+GIF
+TIFF
+JPEG
+DOC
+DOCX
+SVG
+PDF]]></comment>
+<generatorID>1D611ADA-7704-74DB-9BD7-0BA47E173628</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<abbreviation>SPFO</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SPFO_ID" id="D56B2A69-0F22-BFF4-17AA-1A5B52B174A7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="SPFO_NAME" id="F9D51631-0C21-E68E-2D0B-93D1B62250D0">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<generatorID>35005E39-F9B5-44D6-B6BC-4DD77CDC7F86</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPFO_BESCHREIBUNG" id="D79DCAAF-580E-F991-70E0-950CF0492DD6">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<generatorID>1AB68D2F-54E8-5174-768F-0F7BBAD5196E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPFO_UC" id="6DFDBD69-5554-F477-C8C4-70D60211365D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="SPFO_DC" id="B546E74B-7691-22E1-AB8A-C0254F1F3FBF">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="SPFO_UM" id="8E462E1C-8A4E-5FD4-2A82-6C3BE7290157">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="SPFO_DM" id="014466A5-5C22-F182-0BC2-A6C68742AEB5">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="111D5CFE-A4A0-7619-4F1C-EDDB88DE69D6" name="SPFO_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D56B2A69-0F22-BFF4-17AA-1A5B52B174A7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A13380D9-1559-4AC9-FCD5-6D873A9F5E3E" name="SPFO__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:35:10 UTC</createdTime>
+<generatorID>7A618A11-5D69-B1BA-A02C-2A6E96CAC531</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F9D51631-0C21-E68E-2D0B-93D1B62250D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

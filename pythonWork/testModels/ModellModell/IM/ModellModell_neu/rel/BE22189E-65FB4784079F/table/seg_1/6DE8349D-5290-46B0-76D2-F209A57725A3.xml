@@ -1,0 +1,429 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="6DE8349D-5290-46B0-76D2-F209A57725A3" name="dmrs_processes">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A7FECB1E-E7E3-9A44-7693-A4A3D14E0CEA</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="process_id" id="CD4CA333-C342-CD68-4378-D2FEF9F7A76A">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1E26D33E-AF61-3915-068C-F5843360A9FD</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="process_ovid" id="974F367D-A036-A9C1-1EB6-9972DBD89016">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>AE3FF197-0EE2-5DB4-CE8C-1DE4FB1BBA94</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="process_name" id="65A7B425-BBBD-89E8-211D-E1C0CDB4DC7A">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>42E19E68-B49C-B01F-0094-11A862B7EF6D</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="diagram_id" id="961AE225-8BB2-583E-66AB-2F07E92357ED">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>24785598-4EC5-EC56-5307-B0B387D17777</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="diagram_ovid" id="7F80DA26-475E-73F4-B4F2-EA24524FAA6C">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>580F07D2-5D1A-EE8A-58A8-8F8CEA6619B4</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="diagram_name" id="448059BD-518E-41A9-D30E-D6BB8E351F4C">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>C198AE74-D486-5405-CAD6-F12A060CB889</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="transformation_task_id" id="55DA96F7-179F-99E6-4A30-1A4742A0CF0B">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>C7773987-7D0A-2DE3-9FEC-72EB4873BC88</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="transformation_task_ovid" id="6DC839EA-98CB-24BC-2DE1-021E2493884D">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>E27C495D-957F-F287-1E71-97E3DC0D7364</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="transformation_task_name" id="6D4EAF17-8A9C-C876-4290-12C82C34EC39">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>8BAD666B-FA98-4FBA-97EC-E4E0FE534F24</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="parent_process_id" id="9A168C01-DF79-0C78-B467-271C4195ACE5">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>10AC08F7-9A5F-AECD-2CFA-59BBF03EB924</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="parent_process_ovid" id="00A1F804-9BE4-DFB4-F2E5-CCA2ACEE5C32">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>D1904E64-2006-7EFF-ED10-3832A15CCBB7</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="parent_process_name" id="1CB8B4B6-0637-A9A2-1187-916F089BB16D">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>508BE977-FACE-3E47-820D-7572D0332B25</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="process_number" id="634143F4-851B-5011-F72F-9E93E0E23C4E">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>2DD01E26-802F-7D35-BA2A-A3B8CC3E6C83</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="process_type" id="5EBF946F-155F-4EB0-4EFE-F2F4B886612D">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A38F20F1-A823-43B7-2346-6A18EA18EC66</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="process_mode" id="9F02DE1E-72B4-BEF8-89EC-EADBBFAAD87A">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>02060C5F-D18A-453D-7C00-1574B9289E99</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="priority" id="6272F8AB-7ED5-E576-9646-273AF8E838D1">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>5EFE4DB4-3A1C-21C3-A6BD-DCE13F3B4C81</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="frequency_times" id="25D5B037-A2AA-B3F2-22EF-D2C2068A2D84">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>320DECDC-D81E-9091-37F7-E6979B1EB90B</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="frequency_time_unit" id="CF965BDF-9414-5308-75C4-117211760EA4">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>49E90883-738E-A978-7CE2-796E0BE383D3</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="peak_periods_string" id="16A78247-3008-4EE1-6136-1153779AD861">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>52DD42A3-DB8B-3B77-F08F-6E42BC0A307D</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="parameters_wrappers_string" id="3FFCE4E9-D7E7-A9C7-CAD6-60433360FB83">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>DAF428E8-AB06-C637-9063-34145732E7A8</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="interactive_max_response_time" id="2D8EB8A0-E380-125E-5B2A-5535CBE72F2C">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>7DB04EAF-DBA5-4E40-613F-195CAAF9AA3D</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="interactive_response_time_unit" id="0588D052-CAE7-1099-C031-510E1532328F">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A808CF50-F749-CAC4-262C-EFF43EF7FA71</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="batch_min_transactions" id="1F75D075-65CA-343F-0436-C325BB4C8FE7">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A1878B77-879E-AC10-95D7-B3B848AEA57D</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>0</dataTypeSize>
+<ownDataTypeParameters>0,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="batch_time_unit" id="417A7487-590A-4E2E-B2DB-B0AE788826A2">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>2047E64C-1BA8-E44B-BBF1-F53BC4F2E04E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="design_ovid" id="40D41C45-6315-5960-5361-BF3E1241986E">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1D629B85-F6C9-0F66-30D6-B00AE2DDD1A3</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1FFCE407-4007-E410-00F6-2FABFDA441A1" name="processes_fk_diagram_idx">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>4853D542-6FF3-66A8-0E2E-AAA3B82884DD</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F80DA26-475E-73F4-B4F2-EA24524FAA6C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1D91BE78-2758-E76B-E631-1D147E7A78D2" name="processes_pk_idx">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>D0412C3E-D2D8-9AD4-B747-6DBF6963E7F3</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="974F367D-A036-A9C1-1EB6-9972DBD89016"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

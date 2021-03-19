@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="6291CEE8-829A-CD1C-EC55-3657DFA71C24" name="dmrs_sensitive_types">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>94FDFB42-F2BD-1C54-52F9-D5F7A5439F55</importedID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="object_ovid" id="E88F28BC-6AE8-37E8-4EC3-EB8BEBD61ACE">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>CC4637B9-3D09-CB12-9F09-8E365C6155D1</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="object_id" id="A926CA14-8FB4-DB35-8888-40E7D63902FB">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>3191429C-F2CA-3C8B-C065-ADD26BE3913B</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sensitive_type_name" id="D57F6BF5-95FF-9C0C-3D8B-48AE2BA498E9">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>EAE9D8F5-03D4-95E1-2791-7A47944B77A2</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D9BC253A-95B0-26D7-4780-D212CA3B9C36" name="sensitive_type_name_idx">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>531958D0-3C53-25A7-9F12-37C18CEF7AD6</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E88F28BC-6AE8-37E8-4EC3-EB8BEBD61ACE"/>
+<colUsage columnID="D57F6BF5-95FF-9C0C-3D8B-48AE2BA498E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

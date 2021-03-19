@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="Server_Hardware" directorySegmentName="seg_1" id="E186756D-149D-7088-8224-9B5EE802FD91">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Virtuell_(J/N)" id="44E0E3BB-6BA2-708F-943C-56EFD5D37C72">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="Server_Hardware_IT-Komponente_FK" id="03D09533-E10F-8D7B-784C-9DB206F7466B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="Server_Hardware__UN" id="BDE1E595-5980-9004-84E5-8EB35F22184B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

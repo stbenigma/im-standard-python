@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E21B024C-D92D-9F32-575B-F3F75791E0BB" name="Datenbanksystem">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Alleinstehendes Datenbanksystem zur Verwaltung von Daten, dietypischerweise von mehreren Applikationen im Direktzugriff genutzt werden.
+
+Datenbanken ausschliesslich von einer Applikation direkt genutzt werden können und wenn überhaupt nur über Services der Applikation zugreifbar sind werden nicht als Datenbanksysteme aufgezeichnet. Sie sind integraler Bestandteil der Applikation.
+
+Beispiele:
+MDM-DB
+ERP-DB
+Oracle-DB
+mongo-db for documentstorage
+file-system
+excel for commonly used data
+access
+elastic search
+graph db
+enterprize data warehouse]]></comment>
+<generatorID>84E8A0A1-4692-F686-5928-025451D5EB6F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IT-System_IT-Komponente_Modellelement_Modellelement_ID" id="5F8B81A3-A76A-C5CC-9A6B-9BB52A2FA6FD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E078FE17-0125-FEFD-0364-9DEBF8829044" referredColumn="F5191C5A-745F-0194-51B1-01233C963137"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="372C04F1-959B-496D-85F6-B94CE3AB8580" name="Datenbanksystem_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5F8B81A3-A76A-C5CC-9A6B-9BB52A2FA6FD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C140D8D5-70A1-6A43-ECAD-655EA24ABF0B" name="Datenbanksystem_IT-System_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>26FC1A48-5F87-840F-CBB5-4456C76C4AF1</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5F8B81A3-A76A-C5CC-9A6B-9BB52A2FA6FD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

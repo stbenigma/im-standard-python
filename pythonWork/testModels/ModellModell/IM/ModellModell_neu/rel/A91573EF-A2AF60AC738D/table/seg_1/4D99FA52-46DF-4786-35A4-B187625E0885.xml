@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="4D99FA52-46DF-4786-35A4-B187625E0885" name="Server_Hardware">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.]]></comment>
+<generatorID>18BE34D4-9D08-BD1C-B7BC-F12AD6F0772C</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*Computer hardware on which IT systems, applications and databases are installed and running.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Virtuell_(J/N)" id="128DB7C5-339A-1393-CB27-5632AB014E54">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
+<generatorID>A1F579E5-ED25-A64B-2506-374C1268F3D8</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Ist dies eine physische Maschine oder ein genutzte virtuelle?
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Is this a physical machine or a virtual one in use?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="027997D0-1B33-4740-3942-BB35EC122866" name="Server_Hardware__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="6C1E51C8-FB0C-DDD9-E67D-47B1384CA892" name="Server_Hardware_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>C654F170-E969-1CC2-BF36-DD1CCDB9389C</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

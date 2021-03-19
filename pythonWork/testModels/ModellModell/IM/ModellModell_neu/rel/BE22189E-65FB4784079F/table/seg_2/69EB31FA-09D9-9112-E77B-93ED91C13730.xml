@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="69EB31FA-09D9-9112-E77B-93ED91C13730" name="Inbound_Transformation">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<generatorID>40A40CEB-1F74-FE78-A114-09CE544FDCC8</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>2EDFF465-4CEE-72F2-D2EC-896DB596D191</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Attributtransformation_Attributtransformation_ID" id="9D7A7304-C2DC-5CE2-C5B4-79158611E92F">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Inbound_Transformation_ID" id="0CD75731-8BFB-0C8B-3E73-5B504205BF3F">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0EA82564-4898-E31F-65A5-51FD71E2F65D" name="Inbound_Transformation_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="9D7A7304-C2DC-5CE2-C5B4-79158611E92F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3AC540C6-C3CA-CE74-E19B-12336A4632B7" name="Inbound_Transformation__UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<generatorID>C63D6A20-0827-AA8C-917D-58C50BB6C186</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="90DFE783-9419-75B6-5EF6-CAABBFC7414A" name="Inbound_Transformation__UNv1">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<generatorID>79F99273-FBDD-CF28-B620-585E9C021BB6</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="8EFDECA0-7670-6A27-B0A8-ECA528BF8A6A" name="Inbound_Transformation_Inbound_Transformation_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-04-22 15:21:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0CD75731-8BFB-0C8B-3E73-5B504205BF3F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

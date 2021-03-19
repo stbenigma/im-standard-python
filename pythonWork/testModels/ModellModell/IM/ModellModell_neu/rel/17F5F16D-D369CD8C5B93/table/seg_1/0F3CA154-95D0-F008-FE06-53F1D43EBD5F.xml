@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="0F3CA154-95D0-F008-FE06-53F1D43EBD5F" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_secgroup">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_secgroup</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:49 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GroupID" id="A23622BC-9741-AA9B-06A5-9C9F562DCEB4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secgroup</sourceObjSchema>
+<sourceObjName>GroupID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>40</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,40,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GroupName" id="F3DB4D3B-1511-EE97-A105-4F122664BD02">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secgroup</sourceObjSchema>
+<sourceObjName>GroupName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>32</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>32</dataTypeSize>
+<ownDataTypeParameters>32,32,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Description" id="3B06AF56-96E7-F459-27FC-266FBED68E7B">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_secgroup</sourceObjSchema>
+<sourceObjName>Description</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:50 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="752E273D-1A42-F682-3CD3-44308ECFEC86" name="pk_secgroup">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_secgroup</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:52 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A23622BC-9741-AA9B-06A5-9C9F562DCEB4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

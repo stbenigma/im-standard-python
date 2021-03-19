@@ -1,0 +1,198 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="3CFDC50A-000C-5346-F3AE-6261F44E6476" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_TRANSFORMATION_TASKS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_TRANSFORMATION_TASKS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:45 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TRANSFORMATION_TASK_ID" id="807FECDB-576A-16A3-9FB6-DBCAD4BFE987">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TRANSFORMATION_TASK_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRANSFORMATION_TASK_OVID" id="6E3BB7FC-BA95-A8A2-8ED3-F6958CFDB0A9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TRANSFORMATION_TASK_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRANSFORMATION_TASK_NAME" id="74D064D1-50BD-C61F-7A00-2537F01F4362">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TRANSFORMATION_TASK_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRANSFORMATION_PACKAGE_ID" id="D7E599CB-F3C7-237D-6B2D-B21C2A24CBC2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TRANSFORMATION_PACKAGE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRANSFORMATION_PACKAGE_OVID" id="7E5B472A-5630-0A60-DA9D-384DDDED72E2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TRANSFORMATION_PACKAGE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRANSFORMATION_PACKAGE_NAME" id="465E1844-56E5-E457-9CB9-DD9A0347F496">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TRANSFORMATION_PACKAGE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROCESS_ID" id="A8EF2065-D18F-85DB-C811-8B2C09A5961B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>PROCESS_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROCESS_OVID" id="E4E08C2B-7598-81C1-1E9A-C3060E7BE277">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>PROCESS_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROCESS_NAME" id="41EF013A-C256-91EB-F757-120AC6D60CF3">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>PROCESS_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TOP_LEVEL" id="7D4FF545-D49D-F0C1-EF1C-46611F72174A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>TOP_LEVEL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="C30BFCDC-AD43-5F96-669C-2A3C2765F6DC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TRANSFORMATION_TASKS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BC378CAA-F3EA-E531-1ACD-74321F4720B1" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="TRANSFORM_TASKS_FK_PACK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>TRANSFORM_TASKS_FK_PACK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E5B472A-5630-0A60-DA9D-384DDDED72E2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3CA5F7E7-CB58-DA86-DE74-7FB81D513183" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="TRANSFORM_TASKS_PK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>TRANSFORM_TASKS_PK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6E3BB7FC-BA95-A8A2-8ED3-F6958CFDB0A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

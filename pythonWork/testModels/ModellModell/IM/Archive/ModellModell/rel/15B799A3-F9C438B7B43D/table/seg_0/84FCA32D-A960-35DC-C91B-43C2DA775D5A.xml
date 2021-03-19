@@ -1,0 +1,292 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="84FCA32D-A960-35DC-C91B-43C2DA775D5A" name="MODELLELEM_TYP">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<comment><![CDATA[Elemente die im Modell verwendet und in diagrammen dargestellt werden können
+
+Beispiele:
+Entitäten
+Beziehungen
+Akteurrolle
+UseCase
+Betreiber
+Hersteller]]></comment>
+<generatorID>117C4773-B758-77B4-DFD1-F0A9B2C78B1D</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>modellelementtyp</ordsAlias>
+<abbreviation>MELT</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MELT_ID" id="F26A5928-9E50-1BEE-28C7-9989390DFBC6">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="MELT_KURZNAME" id="EA527D6B-B718-FF47-5235-242C5F7A4638">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<generatorID>55DC9BDD-F539-F988-AC4E-5A990F2763E8</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>0D75D1F9-839F-41DA-8464-0FF34C2F4ABB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_NAME" id="365DE1AD-D242-5639-FAD4-219E33DF4D77">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:15:42 UTC</createdTime>
+<generatorID>55DC9BDD-F539-F988-AC4E-5A990F2763E8</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_BREITE" id="AC02CE6B-1A00-9FBF-3F1F-67521499BD5A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_HOEHE" id="61916C3A-2221-589C-F591-800DF46E30F5">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_DECKKRAFT" id="C772BBE7-D010-B307-675E-16FC4CD33F96">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MELT_FARBE" id="76B53E35-999B-6466-CDA7-AE372E7693EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_RANDBREITE" id="956E1294-6152-6C8A-E84D-7D012A89430E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Darstellung des Randes um das Element]]></commentInRDBMS>
+<generatorID>8B735900-0D91-B088-FE52-28C12ECB5967</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_RANDDECKKRAFT" id="403AAD9F-EA65-E6E0-DA1A-7B4E0FB0E8B1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>3C43C579-B2CF-0898-C553-AF95467F1601</domain>
+<defaultValue>100</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MELT_RANDFARBE" id="AB6EA9E8-E771-9ABD-E2CA-D5DADD68ACAE">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:28:54 UTC</createdTime>
+<generatorID>81F5FE40-4448-69B3-37C1-E5DE22FC7B0A</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_SCHRIFTGROESSE" id="06877437-3BCB-288B-20DC-41E5F66C3BFE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<commentInRDBMS><![CDATA[Vorgabewert der Schriftgrösse des Elementsnamens]]></commentInRDBMS>
+<generatorID>1E09C419-0036-4F2A-CD1F-B9F8EBF0F182</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="MELT_SCHRIFTFARBE" id="D15B5F33-314C-C007-A349-50CD883FF629">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<generatorID>1F173911-54B3-F632-33E4-3E24E25C1797</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>06269521-C0BC-78CB-FBC8-656101307358</domain>
+<defaultValue>000000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MELT_UC" id="C9CD815C-0CB4-9555-E1D1-8F6EE9D36FE2">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="MELT_DC" id="F569927A-A170-3CCD-1737-613180A4A13A">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="MELT_UM" id="E01213E1-1AAA-A7F6-AE64-51782DFBC31E">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="MELT_DM" id="654D55BC-4861-D3E9-F9D3-B0D064DF577E">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:56 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="711C5DFD-EB90-2CCD-2862-5531E750CCD0" name="MELT_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:33:55 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F26A5928-9E50-1BEE-28C7-9989390DFBC6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A283A9DE-290E-CEB4-9475-FCF3622E242B" name="MELT_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 16:42:35 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA527D6B-B718-FF47-5235-242C5F7A4638"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54A3B897-2A5E-5D92-27F4-AD6BF09C85B5" name="MELT_UN2">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:16:13 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="365DE1AD-D242-5639-FAD4-219E33DF4D77"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

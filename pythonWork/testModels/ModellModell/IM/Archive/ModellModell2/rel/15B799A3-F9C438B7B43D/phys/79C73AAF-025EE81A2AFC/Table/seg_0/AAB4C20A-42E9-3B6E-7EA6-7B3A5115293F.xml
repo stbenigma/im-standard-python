@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="AKTEURROLLE" directorySegmentName="seg_0" id="AAB4C20A-42E9-3B6E-7EA6-7B3A5115293F">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="Änderungszpkt_[N]" id="05369DFC-C09B-7E82-3AFC-6C034DF59099">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Bezeichnung" id="2D49C0DB-FC64-3949-1404-95CB70C93AE8">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="AKTRO_ID" id="96233709-EE23-75CF-7E8D-B379D44DCA51">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Erstellzpkt" id="9BD690DA-CC41-C98A-8016-180571D99C4E">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="AKTRO_PK" id="F42985E6-7768-1D49-0090-582FB9F39E2C">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

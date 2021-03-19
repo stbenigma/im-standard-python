@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="dmrs_document_elements" directorySegmentName="seg_0" id="0978CC5F-13E7-B3BE-2D76-BF18EA557A08">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="design_ovid" id="07255FC9-76C2-D64B-8EC6-8646BAC170FB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="element_name" id="38DFD4B1-1104-20DA-9EA7-A290C5B727E4">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="element_type" id="5BF3E5C3-67E2-01AD-EC07-4A33F9721DCF">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="element_id" id="85580ADA-0AAB-17EC-18A1-1A7B42DCB948">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="element_ovid" id="9512E19A-08D3-2CBD-C19D-BA2E08AF75A0">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="document_name" id="AE65A7A2-8402-2D9D-5F9C-99D6B0C6B239">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="document_ovid" id="C1C0CED0-3582-4963-D24B-357028601A1F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="document_id" id="D2813FBF-E30E-27B8-1FDE-E72FB174CD52">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="document_elements_fk1_idx" id="5971C485-38EE-E602-CF1F-0A0C6C98AAAB">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="document_elements_fk2_idx" id="91D34AB6-58B2-7022-4825-9445D3E410F5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+</TableProxyOraclev12c>

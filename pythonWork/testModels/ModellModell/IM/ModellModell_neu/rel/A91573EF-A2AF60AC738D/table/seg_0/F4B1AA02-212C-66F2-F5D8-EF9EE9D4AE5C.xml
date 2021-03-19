@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F4B1AA02-212C-66F2-F5D8-EF9EE9D4AE5C" name="1zu1_Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[1:1 Beziehung, die keinen Subtyp definiert.
+Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist.]]></comment>
+<generatorID>F4B7A3C9-7016-A878-F03B-D66730670C5D</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, die keinen Subtyp definiert.
+Subtypen (ISA) gibt es nur, wenn eine Seite NULL und die andere NOT NULL ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship that does not define a subtype. Subtypes (ISA) only exist if one side is NULL and the other NOT is NULL.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7B6AAB4A-5FF7-E3DE-D4D2-5D8ADE028D97" name="1zu1_Beziehung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="AE185F94-8228-2AF5-F975-31C3BBDFA02F" name="1zu1_Beziehung_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>F2443DA1-88EB-ADA3-0AD2-B6D288F05D19</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

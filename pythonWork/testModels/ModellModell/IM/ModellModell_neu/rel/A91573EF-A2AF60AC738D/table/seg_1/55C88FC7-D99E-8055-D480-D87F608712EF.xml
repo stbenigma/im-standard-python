@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="55C88FC7-D99E-8055-D480-D87F608712EF" name="Sprachtext">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Text interpretiert in Sprache, die als Textstprachen markiert ist.]]></comment>
+<generatorID>067E5859-1B16-FD36-D2DE-49F6A02E4D1D</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Text interpretiert in Sprache, die als Textstprachen markiert ist.
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Text interpreted in language that is marked as text language.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>0F21B703-5AD4-9DCA-458B-A19E89BB5BD6</typeID>
+<abbreviation>SPTX</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Text" id="C21245A9-A681-6828-AF9E-EA89FF80F6FC">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs]]></comment>
+<generatorID>DFE953E0-B60B-B378-6E61-6CDFEA6728DC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Text interpretierbar in der Sprache, gehorcht den Regeln des Sprachtextwertebereichs
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Text can be interpreted in the language, obeys the rules of the language text value range
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attribut_Name" id="D62F70DE-2368-9C96-245B-5A230E9C4BEF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Name des Attributs im Modellelement, für das der Text eine Aussage macht]]></comment>
+<generatorID>4214A733-0584-8188-1075-33EC670CA691</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name des Attributs im Modellelement, für das der Text eine Aussage macht
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the attribute in the model element for which the text makes a statement
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPTX_ID" id="7434920E-3203-11B0-E244-79ADEF36FA96">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Modellelement_Modellelement_ID" id="4B6FBFE4-BFA6-F0A0-ADD9-4646D179A9F3">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Sprache_SPRA_ID" id="9C807DAF-A09C-F51C-D090-8A8DA9F9A8A3">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="68907603-2C65-26A1-8983-CBA24602747B" referredColumn="42417410-1586-29CD-08C4-3A8C34FC784F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9BAFBD60-8D30-6AAD-47C1-449F2A2C8EBC" name="SPTX_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7434920E-3203-11B0-E244-79ADEF36FA96"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DF0EBFEC-0766-84E7-40D1-9CE2CC24B838" name="Sprachtext_Attribut_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>C8EDD087-4540-583B-ACFC-C7E75ADA2B73</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D62F70DE-2368-9C96-245B-5A230E9C4BEF"/>
+<colUsage columnID="9C807DAF-A09C-F51C-D090-8A8DA9F9A8A3"/>
+<colUsage columnID="4B6FBFE4-BFA6-F0A0-ADD9-4646D179A9F3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F868114C-671A-8A76-CAFF-001216A18B7D" name="Sprachtext_Sprache_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>6CA1C5DF-F6D9-AA8D-F2B4-EB193ED74383</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C807DAF-A09C-F51C-D090-8A8DA9F9A8A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

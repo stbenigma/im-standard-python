@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="DMRS_DIMENSION_CALC_ATTRS" directorySegmentName="seg_1" id="A9140CC7-D942-F446-A3B9-659BC1A1EF96">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:42 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>B0688D42-6B05-0798-F51E-BCDD05283F6C</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DESIGN_OVID" id="26F2A9E0-C20F-547D-55E9-40CFC5806D65">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CALCULATED_EXPR" id="3B1B578F-F0F1-2CA2-5371-C3BCB299F559">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CALC_ATTRIBUTE_ID" id="72A2D9DB-44EF-7290-88F9-FF770AE9B0E2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIMENSION_OVID" id="9AF8E8E2-7F7E-1CF7-7400-8DA6D3090882">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIMENSION_NAME" id="A58F1E8B-EAE4-A838-8AB3-C08760B522F1">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CALC_ATTRIBUTE_OVID" id="B723FFC6-BF19-3C95-CE4A-FF9EE38AFA70">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CALC_ATTRIBUTE_NAME" id="B799AFA4-42D7-2CA8-FB4A-838953E8D06A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIMENSION_ID" id="CDEFD51F-5EB8-A556-FF6D-26C5C038206E">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:47 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DIMENSION_CALC_ATTRS_FK_IDX" id="42FDE464-8B95-7E27-1FB7-8094BB217BD9">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<segment>16313A9F-ECE7-B6D5-DAE1-8F6D7A0DF97B</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+</IndexProxy>
+</indexProxies>
+</TableProxyOraclev11g>

@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="dmrs_hierarchy_rollup_links" directorySegmentName="seg_0" id="0AE59886-FFFB-1CCF-B4C4-350B9198FD5D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="rollup_link_id" id="0FE94D13-F371-4ADB-0B00-020AFCF9B434">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="rollup_link_name" id="1ED563EE-04F0-0BEE-DC4F-E2CF03E7C78E">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="hierarchy_id" id="6DA3D467-CA1D-AD16-CBE0-76358843A83E">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="rollup_link_ovid" id="73877BBF-2764-C771-1F75-E33AF22C124C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="design_ovid" id="A7FECDC4-F325-1D5C-4F7F-A18ACB8BBA0E">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="hierarchy_ovid" id="BFA08AC0-2E24-9F74-7966-8748E0FEC53D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="hierarchy_name" id="F0FFDF3F-CF63-53D4-7AC2-F808E0C5F88B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="hierarchy_rollup_links_fk2_idx" id="074B565F-EC04-5BA7-5F99-7AF2DCF5D63D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="hierarchy_rollup_links_fk1_idx" id="2EF7048A-466E-5B43-DE03-244D295EF548">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+</TableProxyOraclev12c>

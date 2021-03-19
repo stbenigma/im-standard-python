@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="intern_verwalteter_Server" directorySegmentName="seg_0" id="3022DFCE-61FC-0B94-768C-448DF3FB1EBA">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="Virtuell_(J/N)1" id="25909696-A48A-4B3F-9239-24E0B29BB24F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 08:21:23 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="Virtuell_(J/N)" id="A6BFE752-323F-74B7-C7B2-7FD6CBD7812B">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="IT-Komponente_IT-Komponente_ID" id="CFC31AAF-ACB5-F89C-9D5F-A493DF65BA5B">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="intern_verwalteter_Server_ID" id="E9F19C58-8029-6F73-A09B-8101C495C85A">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="intern_verwalteter_Server_IT-Komponente_FK" id="E17206C0-19A4-89FE-1BE0-F9BB4605C21B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 16:54:54 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="intern_verwalteter_Server_PK" id="644F6CA0-1486-8E39-78BD-864E0D160C88">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="intern_verwalteter_Server_intern_verwalteter_Server_ID_UN" id="C91FCBD1-1505-890B-1EC9-B2844673C6BF">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

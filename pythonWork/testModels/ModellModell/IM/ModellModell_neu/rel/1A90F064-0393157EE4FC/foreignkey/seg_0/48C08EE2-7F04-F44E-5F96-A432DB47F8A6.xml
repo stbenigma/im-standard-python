@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="48C08EE2-7F04-F44E-5F96-A432DB47F8A6" containerWithKeyObject="0EDB2FDB-1E18-0616-002D-D315BC3AB67B" localFKIndex="2DC3FEE4-A147-80C2-2849-15445C58183A" name="LISE_BEDA_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>LISE_BEDA_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 10:54:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>06D51A70-6793-24D4-2B3B-7077EC5795F6</importedID>
+<referredTableLongName>modelmodel_dbo.RELATIONREPS</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>82D448AE-661C-4962-F142-05643B4F6E57</referredTableID>
+<keyObject>80961EE6-F654-5C90-3EF7-D64E4F9E2323</keyObject>
+<referredKeyID>80961EE6-F654-5C90-3EF7-D64E4F9E2323</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>RELR_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_239" directorySegmentName="seg_2" id="363CF1A7-CE31-8775-13F5-3DA7C4316A61">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>abgedeckt durch</nameOnSource>
+<nameOnTarget>deckt ab</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5A09E075-BC31-B259-7FBF-4A9154C6967D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2C57B52E-0A51-E5FA-0B39-DDDD98D49ECB</targetEntity>
+<transferable>true</transferable>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="abgedeckt durch"/>
+<property name="DE_RELA_TEXT_TO" value="deckt ab"/>
+<property name="EN_RELA_TEXT_FROM" value="covered by"/>
+<property name="EN_RELA_TEXT_TO" value="covers"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Relation>

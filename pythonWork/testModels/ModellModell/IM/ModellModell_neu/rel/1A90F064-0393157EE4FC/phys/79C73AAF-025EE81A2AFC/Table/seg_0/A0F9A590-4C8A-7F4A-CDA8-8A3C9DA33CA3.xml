@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DIAGRAMTYPES" directorySegmentName="seg_0" id="A0F9A590-4C8A-7F4A-CDA8-8A3C9DA33CA3">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DIAT_NAME" id="1217FF2F-FF92-6D2B-A353-E489A3C618EC">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIAT_UM" id="1DF81E3F-EE74-EA3D-6F20-56C92A91FE31">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIAT_DC" id="40C85C5A-3B0C-BB7B-F118-9A8E17BF606A">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIAT_ID" id="5513F365-B314-3319-1A4A-98F0677D5697">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIAT_DM" id="C201A1DC-8B7E-7076-187A-E270F5E39876">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DIAT_UC" id="DF1A6CDD-C162-7777-F8D5-977F10007532">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<columnExpression>USER</columnExpression>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DIAT_PK" id="13D72DAF-F89A-3977-D1ED-9D7A0C4FFEF7">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="DIAT__UN" id="0E38D846-D166-7FBD-5A37-FC182EB6FC40">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:11:08 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

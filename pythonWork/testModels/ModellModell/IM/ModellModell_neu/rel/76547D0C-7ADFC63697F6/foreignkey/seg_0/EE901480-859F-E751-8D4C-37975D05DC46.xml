@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EE901480-859F-E751-8D4C-37975D05DC46" containerWithKeyObject="B2D00C84-4FB1-AF81-A223-4C0B96EEBA54" localFKIndex="5A9A392B-59EE-F434-7294-DD4845ED4741" name="ATTR_RELA_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ATTR_RELA_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.RELATIONS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2A09C90E-2D09-4FD5-F005-4FAE24C78481</referredTableID>
+<keyObject>C2EC2A87-58B4-78F8-92AE-382588C38858</keyObject>
+<referredKeyID>C2EC2A87-58B4-78F8-92AE-382588C38858</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>RELA_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

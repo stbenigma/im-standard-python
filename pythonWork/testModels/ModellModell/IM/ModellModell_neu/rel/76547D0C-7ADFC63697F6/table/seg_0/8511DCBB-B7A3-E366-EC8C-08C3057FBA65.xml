@@ -1,0 +1,194 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8511DCBB-B7A3-E366-EC8C-08C3057FBA65" name="ARCS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ARCS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ARCS_ID" id="6BD27553-9AF6-666E-6B8A-C11C14B06061">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="C3FD0BB6-C4F9-C285-934A-7897C41FF525" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</associations>
+</Column>
+<Column name="ARCS_NAME" id="E8682C9A-F372-41B4-C4D8-6A9ADA372A5D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ARCS_ENTI_ID" id="E03B56D8-18EE-28CB-1813-D8660AC27AEB">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_ENTI_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ARCS_UC" id="0B56ED90-3412-10F6-E75E-54968EB33D02">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ARCS_DC" id="08F97D0F-67A6-427B-8BE1-C88D4BC56B8B">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ARCS_UM" id="DF693A3B-4676-1521-50AB-0838999AA6F8">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="ARCS_DM" id="72F0680B-D661-9C74-3EF5-34CF665C76C1">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>ARCS</sourceObjSchema>
+<sourceObjName>ARCS_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A6C362AA-63F7-AAE1-8FFE-C288040E8FFC" name="ARCS_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ARCS_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6BD27553-9AF6-666E-6B8A-C11C14B06061"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EDF6A57C-C6F3-F64F-4DB1-EB3CC5BAA27D" name="ARCS_UK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ARCS_UK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:56 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E03B56D8-18EE-28CB-1813-D8660AC27AEB"/>
+<colUsage columnID="E8682C9A-F372-41B4-C4D8-6A9ADA372A5D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D4E6D899-0EEE-E07B-D59E-D70F8D54C87C" name="ARCS_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6BD27553-9AF6-666E-6B8A-C11C14B06061"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

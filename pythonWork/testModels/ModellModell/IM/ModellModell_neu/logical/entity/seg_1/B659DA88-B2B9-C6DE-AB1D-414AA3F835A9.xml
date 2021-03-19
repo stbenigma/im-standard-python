@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="B659DA88-B2B9-C6DE-AB1D-414AA3F835A9" name="Geschäftsprozess">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen bzw. eine Geschäftsaufgabe zu unterstützen oder erfüllen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Geschäfts(Zwischen-)zustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess normalerweise der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Ein Geschäftsprozess umfasst eine Folge von Geschäftstransaktion, die in einer bestimmten Abhängigkeit ausgeführt werden, um ein übergeordnetes geschäftliches oder betriebliches Ziel zu erreichen bzw. eine Geschäftsaufgabe zu unterstützen oder erfüllen. 
+Er beginnt immer mit einem Auslöser und kann mehrere Entscheidungen und Geschäfts(Zwischen-)zustände umfassen. Am Schluss gibt es ein oder mehrere definierte Zustände / Ergebnisse.
+
+Aus Sicht des Kunden entspricht der Geschäftsprozess normalerweise der Customer Journey.
+
+Beispiele:
+- Verkaufen eines Neuwagens
+- Kundenbestellung bearbeiten
+- Wartungsfall erledigen
+- Neues Produkt entwickeln.
+- Marketingkampagne planen und durchführen
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*A business process is a series of business transactions that are executed in a specific dependency to achieve an overarching business or operational objective.  It always begins with a trigger and can include several decisions and intermediate states. At the end there are one or more defined states / results.  From the customer's perspective, the business process corresponds to the customer journey.  Examples: - Sell a new car - process customer order - take care of maintenance - develop a new product. - Planning and implementing marketing campaigns
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<typeID>049E3124-67AA-37C3-8A6D-286DDE491ECA</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>8CDBEDF4-5478-6F12-0D46-E7BCD9A40CD3</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>GEPROC</shortName>
+<synonym>business process</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Geschäftsprozess"/>
+<property name="DE_ENTI_SYNONYM" value="business process"/>
+<property name="EN_ENTI_NAME" value="Business process"/>
+<property name="EN_ENTI_SYNONYM" value="business process"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="824AEC88-CFC3-8407-7ABF-A7A3834CFB12">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>D95A1B2F-37AD-D3BC-A588-D0645EFD83E5</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="dev_status" value="DEV"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beschreibung" id="CB7E993C-08A3-F784-CE52-28CE8B9E24C0">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1A2C332F-E768-0A4E-4FC9-69B6AED0CCE0</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value=""/>
+<property name="DE_ATTR_NAME" value="Beschreibung"/>
+<property name="EN_ATTR_COMMENT" value=""/>
+<property name="EN_ATTR_NAME" value="Description of the"/>
+<property name="dev_status" value="DEV"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F71C6CD8-3E9F-9418-ECC0-9A6EB7E58207" name="TABL_ENTI_MAP">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>TABL_ENTI_MAP</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:53:45 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>table_56</ordsAlias>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<abbreviation>TEMA</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TEMA_ID" id="3B23DB6A-7D83-AB5A-AAC1-F152605C1ECD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:18 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEMA_TABL_ID" id="9759C755-90F9-F68E-5927-31AEB9554889">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:33 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="824C0B45-DB28-54AD-7730-FC4CA96DA316" referredColumn="A2F5343E-BDFF-9FF3-0FE3-F47D462C52EB"/>
+</associations>
+</Column>
+<Column name="TEMA_ENTI_ID" id="AE454388-ED18-B50B-45F4-677B9CE5D48C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:55:32 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D1837A9B-C1F2-93BB-4AAD-E3EE7866EA10" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</Column>
+<Column name="TEMA_RELA_ID" id="52CCA01F-755A-DB07-6BB9-B49F3126C388">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:12:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1883F708-4C66-A012-AB44-9BFAFC4752E4" referredColumn="D7388798-E399-E297-169C-41CA74A695A9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="31B92EC1-5915-783C-5F2C-07FAE92350C0" name="TEMA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:54:18 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B23DB6A-7D83-AB5A-AAC1-F152605C1ECD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DB98C96-2970-CF4E-FAE5-1C06EC716240" name="TEMA_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 15:06:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
+<colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E3AF84F4-AA77-D094-1222-02A688E1EF0A" name="TEMA_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:55:32 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE454388-ED18-B50B-45F4-677B9CE5D48C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D12F945E-DD97-EE66-945D-01EFEB0E138B" name="tema_tabl_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-02 22:16:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9759C755-90F9-F68E-5927-31AEB9554889"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="334D7BFC-0FA5-5E7D-5AD7-32A30D8B2334" name="TEMA_RELA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52CCA01F-755A-DB07-6BB9-B49F3126C388"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="FKArc_5" directorySegmentName="seg_0" id="01C74757-D008-C2AE-AE3D-65AAB9DC8ACE">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>FKArc_5</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>E177175D-DFE0-CDA7-AAA0-63EECF3C3E78</importedID>
+<rule><![CDATA[[TEMA_RELA_ID] IS NOT NULL AND [TEMA_ENTI_ID] IS NULL OR [TEMA_ENTI_ID] IS NOT NULL AND [TEMA_RELA_ID] IS NULL OR [TEMA_RELA_ID] IS NULL AND [TEMA_ENTI_ID] IS NULL]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

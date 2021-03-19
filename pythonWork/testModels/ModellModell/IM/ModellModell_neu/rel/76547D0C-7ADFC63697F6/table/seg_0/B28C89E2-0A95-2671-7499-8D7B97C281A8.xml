@@ -1,0 +1,227 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B28C89E2-0A95-2671-7499-8D7B97C281A8" name="KEY_ELEMENTS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>KEY_ELEMENTS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="KELE_ID" id="EADB2CAD-0252-8703-83D3-0082D59F5636">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="KELE_KEYS_ID" id="7FDF4104-1E70-6217-0BD9-218069548B46">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_KEYS_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="KELE_ATTR_ID" id="ABE011B9-C198-4D96-6EE0-7CB958DCB576">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_ATTR_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="KELE_RELA_ID" id="64B6608E-FFA6-DEB4-67E9-F742046C6F42">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_RELA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="0FFB55B3-F9A5-9F92-5517-2919AD512A6E" referredColumn="AD15119C-6601-8B26-9534-E6EC2BF98821"/>
+</associations>
+</Column>
+<Column name="KELE_UC" id="2DD4109A-9D69-3CB0-AF6E-A4E3DDE30496">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="KELE_DC" id="FB8D78A6-97C5-FBDD-AD97-24FED51826B9">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="KELE_UM" id="5FDBDCF5-1FBC-11E3-89C1-6723E467CE09">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="KELE_DM" id="2BF0F3C1-B0B0-F7A2-35E7-9A0EC47C5642">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>KEY_ELEMENTS</sourceObjSchema>
+<sourceObjName>KELE_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9EA1EC00-8123-3A29-E70C-823FC5B48CA1" name="KELE_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>KELE_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EADB2CAD-0252-8703-83D3-0082D59F5636"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="646D4578-5AD7-81FA-EB57-CF532AC49006" name="KELE_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>KELE_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7FDF4104-1E70-6217-0BD9-218069548B46"/>
+<colUsage columnID="ABE011B9-C198-4D96-6EE0-7CB958DCB576"/>
+<colUsage columnID="64B6608E-FFA6-DEB4-67E9-F742046C6F42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4543AAA0-A3DF-7ED6-63AC-6092154500F8" name="KELE_RELA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64B6608E-FFA6-DEB4-67E9-F742046C6F42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="FKArc_8" directorySegmentName="seg_1" id="0EDC90AC-4B81-916E-352A-0243B309E569">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>FKArc_8</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[KELE_RELA_ID] IS NOT NULL AND [KELE_ATTR_ID] IS NULL OR [KELE_ATTR_ID] IS NOT NULL AND [KELE_RELA_ID] IS NULL]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

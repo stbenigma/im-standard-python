@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="256048B3-69D5-6C93-68E7-C13CCB661B64" name="WERTEBEREICH_LOV">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>view_1</ordsAlias>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[SELECT
+    wertebereich.wrtb_id,
+    wertebereich.wrtb_business_rule,
+    uetx_name.uetx_originaltext as WRTB_NAME,
+    wertebereich.wrtb_uetx_id_name,
+    uetx_beschr.uetx_originaltext as WRTB_BESCHR,
+    wertebereich.wrtb_uetx_id_beschr
+FROM
+    wertebereich
+    LEFT JOIN uebersetz_text uetx_name ON uetx_name.uetx_id = wertebereich.wrtb_uetx_id_name                              
+    left JOIN uebersetz_text uetx_beschr ON uetx_beschr.uetx_id = wertebereich.wrtb_uetx_id_beschr 
+WHERE wrtb_typ = 'LOV']]></userDefinedSQL>
+<validSQL>false</validSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_ID" id="F466F3E0-93D5-1DAC-8317-DEE87FCAED1D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>NUMBER (10)</dataType>
+<reference>false</reference>
+<referencedColumn>A378345E-C3A2-1DAB-A09D-67630ADC17A8</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>256048B3-69D5-6C93-68E7-C13CCB661B64</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_BUSINESS_RULE" id="2F37D0E4-C566-07B5-5AC1-79414360B83C">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>450575AA-2C0C-0E0C-5546-734FB4B7833D</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>256048B3-69D5-6C93-68E7-C13CCB661B64</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_NAME" id="6B1E029E-2D11-97B1-9985-70F677E65713">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>WRTB_NAME</alias>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<viewID>256048B3-69D5-6C93-68E7-C13CCB661B64</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_NAME" id="EE206C09-099A-D08F-E11B-CFF99182FB21">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (60 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>02619A13-3C8E-180C-80CA-27D791529A48</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>256048B3-69D5-6C93-68E7-C13CCB661B64</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_BESCHR" id="8BF4B96A-E80E-EFE9-6130-51ACE1F78C6B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>WRTB_BESCHR</alias>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<tableAlias>sptx_beschr</tableAlias>
+<viewID>256048B3-69D5-6C93-68E7-C13CCB661B64</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="WRTB_UETX_ID_BESCHR" id="175908C8-6A86-D89A-DB70-702C0BF62CAD">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:17 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (4000 CHAR)</dataType>
+<reference>false</reference>
+<referencedColumn>3B69F5A2-CD30-58B9-5A55-0667CB54EAA7</referencedColumn>
+<table>40E8BAEF-6201-C0D7-25DE-53610BCB8E50</table>
+<viewID>256048B3-69D5-6C93-68E7-C13CCB661B64</viewID>
+</viewElement>
+</viewElements>
+</TableView>

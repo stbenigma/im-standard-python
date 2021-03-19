@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5D2E95B1-8546-3072-F61B-F3972571511F" name="Server_Hardware">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Computer Hardware, auf dem IT-systeme, Anwendungen und Datenbanken installiert sind und laufen.
+
+]]></comment>
+<generatorID>0590D490-04C6-A60A-D9D3-DF5BE0E8C93C</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IT-Komponente_Modellelement_Modellelement_ID" id="5D7C724A-398F-55DC-485D-14BE07448B4C">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="97C441A9-FEC2-F0A0-6264-31A4AC979E8C" referredColumn="EBE9F0A0-0C2B-712B-09E8-9FCD33A9EF7C"/>
+</associations>
+</Column>
+<Column name="Virtuell_(J/N)" id="068212D2-5036-3E0C-362B-AEB7661E7C6E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
+<generatorID>BA7B43A1-CC8C-BEF3-1AE4-ED10488BB11D</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1237915B-BA77-AE30-68AE-372A62B97EE4" name="Server_Hardware_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="5D7C724A-398F-55DC-485D-14BE07448B4C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9BCBA7E3-6E2A-2212-B60F-12A268B13CFF" name="Server_Hardware_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>961DF8F8-F0EE-4065-D031-0DD19C0EA8DE</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D7C724A-398F-55DC-485D-14BE07448B4C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

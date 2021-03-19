@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="WERTEBEREICHGRUPPEN" directorySegmentName="seg_0" id="12060E2A-CFF7-E393-8D3A-07300222DD71">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="WBGR_UC" id="35C3014A-82AF-A479-7968-F535573EDA11">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_NAME" id="36861EB4-F248-FB5F-7EED-D7A9F8EFC545">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_WRTB_ID_MEMBER" id="38D9092A-29C8-09D2-56B3-403CCF5146F2">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_WRTB_ID_GRUPPE" id="432E790C-B2F1-1C03-ACB0-8F2BCCBC74EA">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_BESCHR" id="4E044850-94E2-F6A5-9431-ECF8DD15F543">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-29 10:34:57 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_DC" id="BA8AE06C-E5E4-A19D-A784-434D520DD58D">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_UM" id="C1131C10-86EA-AEBE-3110-42BEFA140D5F">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_ID" id="C9C85094-C9B2-FB7A-699D-6A29AEE0827B">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="WBGR_DM" id="F49D89C9-4A80-0166-30FF-FBC8295C9D83">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="WBGR_WRTB_FK_MEMBECR" id="62924A86-7A9E-0416-BFE9-A6DC33B6AF9A">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="WBGR_WRTB_FK_GRUPPE" id="E667294F-BBDE-18D6-BB18-C61D48D835D4">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="WBGR_PK" id="81331828-DCBB-4D1C-7604-A0367C9D3111">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="WBGR_WRTB_UK" id="4A5C28D6-8AAB-C2D3-F80D-E2E823C91745">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

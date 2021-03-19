@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="DIAGRAMS" directorySegmentName="seg_0" id="8D0DC331-2462-97EE-F5DD-2337467C712B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="DIAG_DIAT_FK" id="6B7143EF-F9DB-1E57-9CE3-872901F853CB">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="DIAGRAMS_MODELELEMENT_FK" id="9AEDD708-62CF-A412-D74A-432CFB8DA1DD">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="DIAGRAMS_MODELELEMENT_FK" id="ACA11318-0122-4584-CBE8-8495E04B6155">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="DIAGRAMS_PK" id="8406DE08-EA97-EBE9-7899-4724CE8019B6">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:39 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="DIAGRAMS_DIAG_ID_UN" id="AC1C56EA-89E3-87AE-D082-6AA2D234243D">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="DIAG__UN" id="0F2A6F19-98E8-0983-1200-27C92F016382">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="DIAGRAMS_Name_[L]_UN" id="CA7F7841-22DD-F7C1-AC70-0501176AB748">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

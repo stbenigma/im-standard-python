@@ -1,0 +1,199 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0768CD7A-6F73-1D8C-D6F1-B60DEB1CD90F" name="DATATYPES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DATATYPES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DATY_ID" id="E3262DEC-2759-8E0E-D883-24692FCF8036">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="0830CCAA-40F3-DB37-F71A-7EB8D305E655" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</associations>
+</Column>
+<Column name="DATY_NAME" id="2F02CA30-4E7C-700E-4AD5-17558829881B">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DATY_BASETYPE" id="E2734A39-5D22-5B68-0FDF-B4D9C3D39226">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_BASETYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>DATY_BASETYPE_CK</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DATY_BASETYPE]=&apos;STRING&apos; OR [DATY_BASETYPE]=&apos;NUMERIC&apos; OR [DATY_BASETYPE]=&apos;DATETIME&apos; OR [DATY_BASETYPE]=&apos;BINARY&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DATY_UC" id="3E624CCC-2DF8-BB89-6C94-23851070BF3A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DATY_DC" id="C5E0C2E0-6DC7-679E-BE91-BCC6863FAB7F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DATY_UM" id="EC64C80E-7B91-4704-2B10-F9779EB8B3DF">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DATY_DM" id="F65B8EDA-0BD2-FC33-481A-A94D5FA47BC2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DATATYPES</sourceObjSchema>
+<sourceObjName>DATY_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8AFD2148-A946-47B8-3A1A-6A3E15C9096F" name="DATY_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DATY_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3262DEC-2759-8E0E-D883-24692FCF8036"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0B38EC45-5A77-D768-031D-FDD7D4138C31" name="DATY_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DATY_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2F02CA30-4E7C-700E-4AD5-17558829881B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BB5605C0-A804-9CFA-F78E-CE72F9C37A26" name="DATY_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E3262DEC-2759-8E0E-D883-24692FCF8036"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

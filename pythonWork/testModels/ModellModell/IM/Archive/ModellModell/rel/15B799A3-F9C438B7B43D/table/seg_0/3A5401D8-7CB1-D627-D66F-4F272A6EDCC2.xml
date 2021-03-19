@@ -1,0 +1,230 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3A5401D8-7CB1-D627-D66F-4F272A6EDCC2" name="LINIE_SEGMENT">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<comment><![CDATA[Information zur Darstellung einer Entität auf einem Diagramm]]></comment>
+<generatorID>8132EFCC-4EC6-BC1A-869F-020BE679EA2F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<ordsAlias>beziehdarst</ordsAlias>
+<abbreviation>LISE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LISE_ID" id="B56AEBC2-DF02-C6D6-EE1C-99F935A4EB90">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LISE_RHFG" id="3C16844F-D889-4487-6619-06110B1FE2BC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<comment><![CDATA[Name eines Geschäftsbereichs]]></comment>
+<generatorID>E8F721F2-AA56-EDE1-C015-1131261D9383</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>E2DCFC37-5428-9FE8-64FF-368960199E02</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LISE_BEDA_ID" id="8AC3B262-B528-DE51-2107-E440D5C24BA3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="016E8785-0FE6-97D2-D85C-272103215FC7" referredColumn="D13C32E9-1536-E8F8-E49B-FC8EC934CD53"/>
+</associations>
+</Column>
+<Column name="LISE_X" id="1F2D4F58-6F9D-7F3F-716A-39F7E81B9A8D">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<generatorID>5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<constraintName>CK_BEDA_BEDA_SCHRIFTFARBE</constraintName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>ACC90DC4-5B08-1F67-561C-C9389709269B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="LISE_Y" id="5EF01819-3079-F829-F1A2-BA683299EB5A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:02:29 UTC</createdTime>
+<generatorID>5C1D0DD7-C753-1C85-38D4-2F6B7A840CF5</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<constraintName>CK_BEDA_BEDA_SCHRIFTFARBE</constraintName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>ACC90DC4-5B08-1F67-561C-C9389709269B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="LISE_LINIENTYP" id="EEBEFF93-1F5F-45AF-5765-D3723E563BE3">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<generatorID>9DBEA9D5-4E5C-B222-7638-38F298F0FA7B</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<constraintName>CK_BEDA_BEDA_SCHRIFTGROESSE</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>30B34D60-5229-19CC-A3D5-584257D800BD</domain>
+<defaultValue>SOLID</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LISE_KONNEKTOR" id="1351B8A8-510F-B58B-617A-9F8B29161D92">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<generatorID>71A04FCF-541F-6AB1-C8CE-52AEF5226573</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<collectionType>C89AD2E9-29AC-3B36-E59F-F3BF7F41BBA1</collectionType>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="1" description="1"/>
+<valueDef value="M" description="M"/>
+</listOfValues>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LISE_WINKEL" id="FB936EA2-893A-2A48-FCD6-B604627A9E40">
+<createdBy>stb</createdBy>
+<createdTime>2020-01-11 15:22:23 UTC</createdTime>
+<comment><![CDATA[Winkel zum nächsten (rhfg + 1) Punkt dieser Linie. (Leer beim letzten Punkt einer Folge). 0 ist nach rechts, 90 nach unten, 180 nach links, -90 nach oben]]></comment>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+<Column name="LISE_UC" id="8531E976-2F08-1F63-3068-598F6AD91108">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="LISE_DC" id="D1C87410-D498-EF56-AB6B-A242A243B78A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="LISE_UM" id="E01390D8-3737-7215-D785-B516BDFA6F95">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="LISE_DM" id="B2985A42-2FE6-D5C5-E107-FEF98D67E0F6">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2293A633-50B1-2502-5F40-0DB950D77D47" name="LISE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<generatorID>68118B2A-67D7-5A86-0165-EBFB8275177F</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B56AEBC2-DF02-C6D6-EE1C-99F935A4EB90"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FC761F5B-FE0B-BE00-EA5C-B6F9FD83879E" name="LISE__UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 10:05:14 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8AC3B262-B528-DE51-2107-E440D5C24BA3"/>
+<colUsage columnID="3C16844F-D889-4487-6619-06110B1FE2BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E95E99EB-B40B-B448-A7BD-180FED2354B9" name="LISE_BEDA_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:59:46 UTC</createdTime>
+<generatorID>98D9C7D0-61D3-5D32-0317-3BA4C7A9B196</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8AC3B262-B528-DE51-2107-E440D5C24BA3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

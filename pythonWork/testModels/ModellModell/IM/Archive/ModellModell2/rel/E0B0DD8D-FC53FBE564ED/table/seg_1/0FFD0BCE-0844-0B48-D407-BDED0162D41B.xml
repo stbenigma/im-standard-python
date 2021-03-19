@@ -1,0 +1,370 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="0FFD0BCE-0844-0B48-D407-BDED0162D41B" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_MAPPINGS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_MAPPINGS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LOGICAL_MODEL_ID" id="3CDF8B8E-78CF-46F6-F9A1-6F8C99B1C466">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGICAL_MODEL_OVID" id="91073CDC-E649-AA8F-39E6-D3E7F43A70B3">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGICAL_MODEL_NAME" id="D53EA2E5-2450-39B4-3258-B5CA7B218CCF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGICAL_OBJECT_ID" id="9BF8D886-32EB-177B-E009-F9C1EA773526">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_OBJECT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 BYTE</dataTypeSize>
+<ownDataTypeParameters>80 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGICAL_OBJECT_OVID" id="97EE0D5C-CE1D-3135-1859-7BE0F6CAD195">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_OBJECT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGICAL_OBJECT_NAME" id="8DE8F5FC-B557-ACC3-6780-8F6964D0DCBD">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_OBJECT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOGICAL_OBJECT_TYPE" id="34DFFA36-AB05-DFD4-2F8E-D35A76E3036B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>LOGICAL_OBJECT_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_MODEL_ID" id="98EB63F4-1255-5ACA-A1AE-08B98DD46392">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_MODEL_OVID" id="D5264333-1D63-C3EC-454F-2E623FBED8BD">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_MODEL_NAME" id="BDE627CA-1B0B-A23F-F19C-EE7BEBDF6109">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_OBJECT_ID" id="A3CEE290-EAC0-2D89-EF18-BB8728E53114">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_OBJECT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_OBJECT_OVID" id="F2886771-759E-29DA-FCF3-3F00BF9E9C2B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_OBJECT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_OBJECT_NAME" id="9536543D-1313-5225-311D-27C4DF7FA8DC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_OBJECT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RELATIONAL_OBJECT_TYPE" id="34AFC00D-04AC-F50E-DDA1-D8E5609B7CD1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>RELATIONAL_OBJECT_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTITY_ID" id="6214E352-FAD7-947D-6BCE-B9C43CFE6B3A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>ENTITY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTITY_OVID" id="C782C299-D4FE-0CDC-22C1-CE2B1170EEB9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>ENTITY_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTITY_NAME" id="9D893291-9C76-FD56-D019-210999AE58E9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>ENTITY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TABLE_ID" id="B4C1A8E6-72C5-6F05-D5A8-F2E4EA40A630">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>TABLE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TABLE_OVID" id="4664C57C-8C8A-6A98-2C04-7527260D681D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>TABLE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TABLE_NAME" id="326C0F43-0F8E-7666-5D4C-7B675460B032">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>TABLE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_ID" id="B02C7DC9-B74E-0397-E900-040FF46E36B7">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>DESIGN_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="706057E6-4E9F-AF66-F822-D459822AE238">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_NAME" id="A2038A68-A7A4-AB3C-56FC-88E5F8989A07">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_MAPPINGS</sourceObjSchema>
+<sourceObjName>DESIGN_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="55ECE16A-43C7-E273-5421-F55396D80853" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="MAPPINGS_LOG_OBJ_OVID_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>MAPPINGS_LOG_OBJ_OVID_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="97EE0D5C-CE1D-3135-1859-7BE0F6CAD195"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D0FB42D3-27EB-2F7D-D2A9-C15332EF14F4" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="MAPPINGS_REL_OBJ_OVID_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>MAPPINGS_REL_OBJ_OVID_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F2886771-759E-29DA-FCF3-3F00BF9E9C2B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

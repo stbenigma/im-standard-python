@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1E41E490-62F3-7CAC-326C-1E4D516DE8DE" name="Interner_Prozess">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<comment><![CDATA[Geschäftsprozess, der durch ein System durchgeführt ist. Er kann durch einen Akteur ausglöst werden, die Ergebnisse sind aber typischerweise nicht direkt für den Akteur berstimmt.
+
+Beispiel:
+- (automatisch) Mahnungen versenden
+- Lohnzahlungen durchführen.
+- nächtliche Datenübernahme ab einem Fremdsystem]]></comment>
+<generatorID>6A7CCECE-7C3D-BB08-EEB5-04BE1DEEFBB8</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GETRANS_GETRANS_ID" id="D4244B7A-A839-82DE-615C-20F4536349AF">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A0233C38-A286-F01F-FBBC-E27CE9428E62" referredColumn="AFA8DFB3-828E-E8E4-798C-B1D4BABDC1FF"/>
+</associations>
+</Column>
+<Column name="Interner_Prozess_ID" id="8E8D05EC-B12C-BA2C-B982-F3806C3A6C29">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="777E451A-65CB-4414-C2E6-B4EB7801BB57" name="Interner_Prozess_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D4244B7A-A839-82DE-615C-20F4536349AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B56A8BF-4B70-BC6F-52F2-EF4B33011A01" name="Interner_Prozess_Interner_Prozess_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="8E8D05EC-B12C-BA2C-B982-F3806C3A6C29"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8013DDE4-12CF-2772-E05D-A23DEA910FB7" name="Interner_Prozess_GETRANS_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-11-20 17:44:28 UTC</createdTime>
+<generatorID>2A18F9A6-26A7-872D-8E41-8B69751D95BA</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D4244B7A-A839-82DE-615C-20F4536349AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

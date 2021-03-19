@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B992E4E4-C96A-A1E5-66D4-ABD271F887FA" containerWithKeyObject="37C4E51A-C325-056A-E510-B8AA5473966E" localFKIndex="6A5DC3FB-F3AB-69C2-4E81-73107908CEBF" name="ELER_MODE_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ELER_MODE_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.MODELELEMENT</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>1A96C2EC-F488-31B6-569C-787BA9B6F5D6</referredTableID>
+<keyObject>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</keyObject>
+<referredKeyID>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MODE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C3E52EFF-41E1-2B96-01BC-495C9D2248F0" name="Hersteller">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Herstellerfirma einer Applikation, einer SW-Lösung, einer IT-Komponente.
+Kann eine externe Firma sein, die eigene Organisationseinheit (IT-Abteilung für Applikationen, alle Abteilungen für Excel, Templates etc.)
+
+Beispiele:
+SAP
+Oracle
+IBM
+HR-Abteilung (die ein Excel entwickelt hat)
+eigene IT-Abteilung (die einen Konfigurator geschrieben hat)
+open source community]]></comment>
+<generatorID>89C9DBA0-DB39-26D1-BF54-3FFFB5212903</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Modellelement_Modellelement_ID" id="BA9301B1-434D-727D-3EB0-5418D55FA0C1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8194EC37-99C2-F10F-1242-59936E040CCD" referredColumn="53372A54-640A-07EE-CBDE-B0E5EB59DBD2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F7878AC3-A9E5-C465-8EA2-8551DB27ABF4" name="Hersteller_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="BA9301B1-434D-727D-3EB0-5418D55FA0C1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="83AEBE2E-1A41-8504-F0E8-10322FEAD13A" name="Hersteller_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>15C4EC26-9E08-44F0-F44C-C72E40B88080</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BA9301B1-434D-727D-3EB0-5418D55FA0C1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

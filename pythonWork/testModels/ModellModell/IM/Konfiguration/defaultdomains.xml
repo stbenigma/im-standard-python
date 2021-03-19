@@ -1,0 +1,169 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
+<domains>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitpunkt" id="0AD80E26-0F5C-D068-29EA-4740A04582AE">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Zeitpunkt (Tag, Zeit auf eine Millisekunde genau)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>0AD80E26-0F5C-D068-29EA-4740A04582AE</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<unitOfMeasure>MILISECOND</unitOfMeasure>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Prozent" id="348830AA-2613-5D59-292A-41AAB32EB3D3">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 15:15:16 UTC</createdTime>
+<comment><![CDATA[Prozentzahl von 0-100]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>100.0</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="SequenzNr" id="39B01BA7-C3D2-D42E-5518-83CB3845A63D">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 14:19:34 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>99999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO Sprachcode 2" id="3CFAACDE-10D2-A99A-844A-975DA633F49B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 10:49:47 UTC</createdTime>
+<comment><![CDATA[2 stelliger ISO-Code für Sprachen (Kleinbuchstaben, ISO 639 )]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>3CFAACDE-10D2-A99A-844A-975DA633F49B</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="ISO Sprachcode 2 = lower(ISO Sprachcode 2)"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="eMail-Adresse" id="4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[gültige eMail-Adresse gemäss SMTP/RFC-Protokoll]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>4B4F8F40-D3A4-4F39-8CB3-BB6C57534E96</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="match(eMail-Adresse, &quot;(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)&quot; )"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Datum" id="631FC893-D28E-5FE4-89DB-473C78BB2B2A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Datum auf einen Tag genau]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>631FC893-D28E-5FE4-89DB-473C78BB2B2A</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<unitOfMeasure>TAG</unitOfMeasure>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="Datum = trunc(Datum,&apos;DAY&apos;)"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO Sprachcode 3" id="7EF070A4-018B-18D6-E996-291F316D16A7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:17:31 UTC</createdTime>
+<comment><![CDATA[3 stelliger ISO Sprachcode (Kleinbuchstaben, ISO 639)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="ISO Sprachcode 3 = lower (ISO Sprachcode 3)"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean" id="7F06A64B-0C00-1355-F863-DBD9FDE5B848">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Logischer Wert TRUE/FALSE]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>7F06A64B-0C00-1355-F863-DBD9FDE5B848</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="FALSE" description="falsch"/>
+<valueDef value="TRUE" description="wahr"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Telefon-Nr" id="7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Internationale Darstellung einer Telefonnummer (inkl. Land, Vorwahl etc.)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>7F98E20B-63A1-C3F1-F7AE-0E2F6BC2C8D5</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="match(Telefon-Nr,&quot;^\+(?:[0-9]⋅?){6,14}[0-9]$&quot;)"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitpunkt (Minute)" id="9B8A68A2-A178-0753-FDD9-7D59F6159FFF">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 08:17:14 UTC</createdTime>
+<comment><![CDATA[Zeitpunkt (Tag, Zeit, auf Minute genau)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<unitOfMeasure>MINUTE</unitOfMeasure>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO Landcode 2" id="A7FEF26D-E676-B32E-E09E-E7C3CBBD53BA">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 10:31:36 UTC</createdTime>
+<comment><![CDATA[2 stelliger ISO-Code für Land (Kleinbuchstaben, ISO 3166)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="ISO Landcode 2 = lower(ISO Landcode 2)"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ISO Landcode 3" id="E630CC32-FE0F-D3B6-576A-ABD92840DA87">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 10:31:36 UTC</createdTime>
+<comment><![CDATA[3 stelliger ISO Land  (kleinbuchstaben, ISO 3166)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="ISO Landcode 3 = lower (ISO Landcode 3)"/>
+</checkConstraint>
+</Domain>
+</domains>
+</DomainFile>

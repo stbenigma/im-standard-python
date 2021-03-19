@@ -1,0 +1,229 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3FC7B528-C13C-5DE0-4A8B-3BD50F99B3E2" name="UDP_VALUES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>UDP_VALUES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="UDPV_ID" id="CFF14CA4-2FBF-5E6A-26D8-827BF1B25A1C">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="UDPV_VALUE" id="ED416275-2516-6B96-CAB2-CB6D1DAB3435">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_VALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="UDPV_MODE_ID" id="0EB527C2-A62B-E875-93D3-9FE5188EEE44">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_MODE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="76FCCA1F-6528-1DC1-B163-9994C89DF0E9" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</associations>
+</Column>
+<Column name="UDPV_UDPR_ID" id="D1B1CD9C-EB1B-C100-1BF1-BAAB13D199CF">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_UDPR_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="381137FB-0E06-B830-F41A-27FE0E885923" referredColumn="B1040B14-69E0-458B-6B71-878CD3F86C25"/>
+</associations>
+</Column>
+<Column name="UDPV_UC" id="FBD8BE50-4C4A-B3C5-D63E-4FBFFEE2A809">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="UDPV_DC" id="E9BEC8DC-FF57-9CB0-FF50-66EA844781F7">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="UDPV_UM" id="B551CB50-5250-816C-A8B3-0E860521C10D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="UDPV_DM" id="C83DAD8A-8EAE-6777-C085-380584BE0B84">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>UDP_VALUES</sourceObjSchema>
+<sourceObjName>UDPV_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="65327EA6-F3B3-E5F5-9693-ABADFBE25ADF" name="UDPV_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>UDPV_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CFF14CA4-2FBF-5E6A-26D8-827BF1B25A1C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A2799AA4-71B6-178C-7104-DE5F3918FD29" name="UDPV_UN">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>UDPV_UN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0EB527C2-A62B-E875-93D3-9FE5188EEE44"/>
+<colUsage columnID="D1B1CD9C-EB1B-C100-1BF1-BAAB13D199CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="12567FC5-E82F-C49F-82EF-0CA2D89B9CD5" name="UDPV_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0EB527C2-A62B-E875-93D3-9FE5188EEE44"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD531166-307A-DEC5-4643-9B5E3C577814" name="UDPV_UDPR_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D1B1CD9C-EB1B-C100-1BF1-BAAB13D199CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

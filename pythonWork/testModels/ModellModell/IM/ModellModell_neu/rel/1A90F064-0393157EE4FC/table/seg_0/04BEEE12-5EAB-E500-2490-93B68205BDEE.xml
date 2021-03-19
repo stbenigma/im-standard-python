@@ -1,0 +1,500 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="04BEEE12-5EAB-E500-2490-93B68205BDEE" name="DOMAINS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMAINS</sourceObjName>
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1AB4133A-F068-68F5-294E-98DEA69E9B82</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DOMA_ID" id="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>112E0C1E-8260-C854-D107-8E6A6A52CA2A</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A06B49AD-D2D5-BBC5-A7AF-E818A067C39A" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="DOMA_NAME" id="FE103E43-E275-1A5B-2F8E-095D3136CEB9">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>195200F6-3E33-C308-6CAC-153ACA67453A</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DESCR" id="082F082B-FB97-E6B4-3028-D538BB31092A">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>64ABAFB5-C6F9-2F68-D079-CD2E42A2F49B</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_TYPE" id="FB19D64F-123B-4EC8-F16A-F27F489E6884">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>88C5D727-C329-B94E-9232-9D0A0797C48B</importedID>
+<constraintName>CK__DOMAINS__DOMA_TY__2DB1C7EE</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DOMA_TYPE]=&apos;TXT&apos; OR [DOMA_TYPE]=&apos;NUM&apos; OR [DOMA_TYPE]=&apos;LOV&apos; OR [DOMA_TYPE]=&apos;GRP&apos; OR [DOMA_TYPE]=&apos;DAT&apos; OR [DOMA_TYPE]=&apos;BIN&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>4,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_ORIGIN" id="432416A2-5514-F196-AA58-BB5067AB0CE3">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>01C86F79-ED04-4A68-D8F7-11B33B11DF0C</importedID>
+<constraintName>CK__DOMAINS__DOMA_OR__2EA5EC27</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DOMA_ORIGIN]=&apos;DOM&apos; OR [DOMA_ORIGIN]=&apos;DER&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>6,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_INTF_ID" id="FF4BD71C-DA53-B132-901A-D5C82491AB2E">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 11:00:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4A2476F2-E6B6-1AD0-8C73-E32F840E7A92" referredColumn="65C00228-99F0-589A-1661-9C55B64918EA"/>
+</associations>
+</Column>
+<Column name="DOMA_DATY_ID" id="F1A62009-F494-A4DC-C395-E7559041B4C8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:21:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4CE5AF94-DC38-5F80-1FBB-6A25EEC202B6" referredColumn="AA1C8108-16B6-83B3-65DA-F1F697F75488"/>
+</associations>
+</Column>
+<Column name="DOMA_DAT_MINVALUE" id="73CC95A0-6452-8E7A-FB71-61C9D8FBFA67">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>57AEA1BA-519B-A701-5757-3FD6035266F1</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>656CA02F-3748-45E2-D2A6-08D930AAB75B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DAT_MAXVALUE" id="EEBC42D5-373A-F687-231A-F90342D09ABA">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>EEEAC806-A7D7-2EE3-3614-25014FEB0E7D</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>656CA02F-3748-45E2-D2A6-08D930AAB75B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DAT_GRANULARITY" id="C87CF2EA-B8C3-719C-CA65-D6C64852AF90">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>E40D02F9-CE06-C818-BEF2-E7C44DCF3CB1</importedID>
+<constraintName>CK__DOMAINS__DOMA_DA__2F9A1060</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DOMA_DAT_GRANULARITY]=&apos;YEAR&apos; OR [DOMA_DAT_GRANULARITY]=&apos;WEEK&apos; OR [DOMA_DAT_GRANULARITY]=&apos;SEMESTER&apos; OR [DOMA_DAT_GRANULARITY]=&apos;SECOND&apos; OR [DOMA_DAT_GRANULARITY]=&apos;QUARTER&apos; OR [DOMA_DAT_GRANULARITY]=&apos;MONTH&apos; OR [DOMA_DAT_GRANULARITY]=&apos;MINUTE&apos; OR [DOMA_DAT_GRANULARITY]=&apos;MILlISECOND&apos; OR [DOMA_DAT_GRANULARITY]=&apos;HOUR&apos; OR [DOMA_DAT_GRANULARITY]=&apos;DAY&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_TXT_MAXLNG" id="3D6BDA03-9F46-38DF-8221-4B7834B38948">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>76EA3B53-35DF-CC89-9F25-C8D138F321A9</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>28</dataTypePrecision>
+<ownDataTypeParameters>,28,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_TXT_SYNTAXRULE" id="EE160604-3308-E066-84A7-ED063423BF05">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>1A514441-3688-9657-16C2-7CC25B4257E2</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_NUM_MAXVALUE" id="ADFAF153-9D39-87FB-E79F-5203AB554628">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>C1E6B2BE-EF96-155D-D4EB-C20620103684</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>10</dataTypeScale>
+<ownDataTypeParameters>,30,10</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_NUM_MINVALUE" id="8AEBAD26-CF06-6C07-1650-BCA6AE62AB77">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>4E1E0099-234D-466F-2F49-41ECD6A5FC13</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>10</dataTypeScale>
+<ownDataTypeParameters>,30,10</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_NUM_TOTAL_DIGITS" id="408469FA-E71C-8F66-002A-3508E4DF2083">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>04D5BBD3-7474-843E-D84B-8E7F110FD089</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_NUM_FRACT_DIGITS" id="2EAD009F-F133-6713-341B-377358A298B0">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>D739FA68-6639-1B80-01EC-A13AD4E5E70F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>,3,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_NUM_ROUND_VALUE" id="AEF4B230-2F0B-8252-8B06-8C0A972259EB">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>8BF72245-B64F-CEF8-B600-345B2EFA25FD</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<ownDataTypeParameters>,7,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_NUM_PHYU_ID" id="A80E32E9-EF75-97CC-F5EF-B52DB7A5FAB8">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>7FFF9C9E-380F-1A36-92E7-D6C67B1AEE5F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EC7BCB4E-F5A4-0F84-83EB-8563E74D9890" referredColumn="CB51A393-73C5-47BA-AFB6-59C2FC518EF7"/>
+</associations>
+</Column>
+<Column name="DOMA_BIN_CONTENTTYPE" id="6F090FA1-0D07-8021-5AAB-77024BD35A55">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>97F04BFA-5E56-B37D-B063-CCE659B5D98C</importedID>
+<constraintName>CK__DOMAINS__DOMA_BI__318258D2</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DOMA_BIN_CONTENTTYPE]=&apos;TEXT&apos; OR [DOMA_BIN_CONTENTTYPE]=&apos;SOUND&apos; OR [DOMA_BIN_CONTENTTYPE]=&apos;OTHER&apos; OR [DOMA_BIN_CONTENTTYPE]=&apos;IMAGE&apos; OR [DOMA_BIN_CONTENTTYPE]=&apos;FILM&apos; OR [DOMA_BIN_CONTENTTYPE]=&apos;DRAWING&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_BIN_STFO_ID" id="58B132E8-F138-84FD-ACA4-0107C63C67AF">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>300A3631-5542-8004-79E6-B193BF70FC15</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="65A584E6-05F3-58CC-D1A3-92DCE2F1B222" referredColumn="7D1BEA00-4DC7-50F9-D083-11C1BEA8F3FE"/>
+</associations>
+</Column>
+<Column name="DOMA_UC" id="9A0DF8BD-9A5D-A98F-18F3-78D4C2D92B34">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>7D92062A-0CD3-2D34-463F-B468214A1747</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DC" id="52225AEB-C2D4-FA01-56C8-994E93BDE482">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>DB177364-817E-D9BC-DD73-7DEE331CF74A</importedID>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_UM" id="F7CFA035-9842-C9C9-634B-439910351E63">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>933F9B46-BE04-64D5-5664-6EAB407A0B59</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DM" id="552B8F61-340E-4827-7DB2-743867F8C477">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>2CA4064E-69F7-D2B3-6FB4-28406A5158B1</importedID>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1BFA51D9-8915-AD03-29CE-BD5492EAA9AA" name="DOMAINS_PK">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>764B3FD1-C2AE-4828-D574-1BAFFFED2C02</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D0432B09-2C49-6A40-6304-DF016FCEEA52" name="DOMA_UK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:24:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FE103E43-E275-1A5B-2F8E-095D3136CEB9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="161E5019-9FE6-E5AE-911B-F32AB56F61BE" name="DOMA_PHYU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:17:21 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A80E32E9-EF75-97CC-F5EF-B52DB7A5FAB8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2CFC631B-A90F-A200-DDD6-B9C8A6D195AB" name="DOMA_STFO_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:17:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58B132E8-F138-84FD-ACA4-0107C63C67AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E0C87340-67F1-D7F1-F7E4-83B553FAB1FE" name="DOMA_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:18:54 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2E2DC8C2-F80A-D2DF-69E8-A2D10C6A341C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CD77A75A-F715-A7BE-95C8-99BAFBB0F01D" name="DOMA_DATY_ID">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 10:21:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F1A62009-F494-A4DC-C395-E7559041B4C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="90D7CCAD-6333-836E-2B5E-7F713AE5ED1D" name="DOMA_INTF_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 11:00:55 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF4BD71C-DA53-B132-901A-D5C82491AB2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="DOMA_ExDep1" directorySegmentName="seg_0" id="C0DF3FD2-011E-8956-A72C-F98709B24FCF">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>9EEEBDA6-3B0C-E59D-AA2B-D8C8AF2A4614</importedID>
+<rule><![CDATA[[DOMA_TYPE]<>'BIN' OR [DOMA_BIN_CONTENTTYPE] IS NOT NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep2" directorySegmentName="seg_0" id="242C92D1-A7B3-42BB-AF63-180AB621D3EF">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>D4BAAD92-74FB-7A22-BF82-4FFF07F4F086</importedID>
+<rule><![CDATA[[DOMA_TYPE]<>'DAT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NOT NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep3" directorySegmentName="seg_0" id="D9CA5524-AF81-64FB-FDDC-4C6F59AD653F">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>AEAD6202-AF78-B594-07E7-12290B3DBAFA</importedID>
+<rule><![CDATA[[DOMA_TYPE]<>'GRP' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep4" directorySegmentName="seg_0" id="07E3E0CD-EB76-9CDB-B2DB-4FF34C28FBED">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>DEB78163-82B7-5B02-8ED2-9507E11633F3</importedID>
+<rule><![CDATA[[DOMA_TYPE]<>'LOV' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep5" directorySegmentName="seg_0" id="F4956C08-99D1-8E20-DF5F-197574A2FE3E">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>A30004BA-F73C-620D-0B92-17B85E983F6A</importedID>
+<rule><![CDATA[[DOMA_TYPE]<>'NUM' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NOT NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NOT NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep6" directorySegmentName="seg_0" id="E4706B41-C173-F945-7572-19259CDCA0DF">
+<sourceDDLFile>domains.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-04 09:14:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>C195EA70-5BC6-90C0-EA8A-DF36FD1CFA43</importedID>
+<rule><![CDATA[[DOMA_TYPE]<>'TXT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

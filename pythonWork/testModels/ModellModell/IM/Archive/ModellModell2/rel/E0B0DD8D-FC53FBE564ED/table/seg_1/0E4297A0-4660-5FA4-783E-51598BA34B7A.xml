@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="0E4297A0-4660-5FA4-783E-51598BA34B7A" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_TSDP_POLICIES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_TSDP_POLICIES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:45 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="OBJECT_OVID" id="6B1ED297-5B43-F4FB-1B3D-29189D60D5B8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TSDP_POLICIES</sourceObjSchema>
+<sourceObjName>OBJECT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBJECT_ID" id="B7367450-AD18-410A-1EEE-E0CCC356DBEA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TSDP_POLICIES</sourceObjSchema>
+<sourceObjName>OBJECT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TSDP_POLICY_NAME" id="BE1ABB8B-9827-75DE-D524-6E2E9F771132">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_TSDP_POLICIES</sourceObjSchema>
+<sourceObjName>TSDP_POLICY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="579794F0-9711-5C1C-BDC3-7849E4261B67" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="TSDP_POLICY_NAME_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>TSDP_POLICY_NAME_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B1ED297-5B43-F4FB-1B3D-29189D60D5B8"/>
+<colUsage columnID="BE1ABB8B-9827-75DE-D524-6E2E9F771132"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

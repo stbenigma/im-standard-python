@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="LANG_TEXTS" directorySegmentName="seg_0" id="CBDBE037-EBA0-63C4-2055-4679E23FA608">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="SPTX_LANG_FK" id="7FD91564-21AF-6E5A-6F35-8B5A6874D96A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="SPTX_MODE_FK" id="BF752995-47C1-8917-DD42-4CCE819B504E">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="LGTX_PK" id="27D5B90E-4860-BDD8-DC57-427773177C3A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="LGTX_UK" id="61E0DCD4-7C08-DD3A-E520-09493ADAEAD5">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 09:48:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

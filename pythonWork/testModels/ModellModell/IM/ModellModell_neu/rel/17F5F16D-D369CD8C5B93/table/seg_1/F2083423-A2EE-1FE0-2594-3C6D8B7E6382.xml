@@ -1,0 +1,171 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="F2083423-A2EE-1FE0-2594-3C6D8B7E6382" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_trxtypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_trxtypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Description" id="EDC43272-5BA7-2FD5-9AE5-E496D2BB61DD">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_trxtypes</sourceObjSchema>
+<sourceObjName>Description</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NumericWeight" id="3D9065FA-397B-16C3-7589-2AF759D81140">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_trxtypes</sourceObjSchema>
+<sourceObjName>NumericWeight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>53</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(1)</defaultValue>
+<ownDataTypeParameters>8,53,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="779DC860-823E-29BE-CB4E-F7D4AC5AAF48">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_trxtypes</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRX" id="2027C13E-AF25-003B-CB53-9DF10F421C7A">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_trxtypes</sourceObjSchema>
+<sourceObjName>TRX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TRX_ID" id="D47E15C0-8054-B18D-AEC0-FA730ADDD673">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_trxtypes</sourceObjSchema>
+<sourceObjName>TRX_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Style" id="C04FDA79-1632-B177-E55D-4623365CA69E">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_trxtypes</sourceObjSchema>
+<sourceObjName>Style</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FF10D254-9940-4DA6-5250-52895BD01EFF" name="pk_trxtypes">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_trxtypes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D47E15C0-8054-B18D-AEC0-FA730ADDD673"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B44FAB9C-E3D3-40FD-F88C-2E80947E8634" name="ix_trxtypes_description">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_trxtypes_description</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EDC43272-5BA7-2FD5-9AE5-E496D2BB61DD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D354EAE1-DB19-9BE4-C41D-4AEA082D8F9C" name="ix_trxtypes_numericweight">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_trxtypes_numericweight</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3D9065FA-397B-16C3-7589-2AF759D81140"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="15A07233-6A75-FC25-75AF-B054FB0D5DCA" name="ix_trxtypes_trx">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>ix_trxtypes_trx</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:57:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2027C13E-AF25-003B-CB53-9DF10F421C7A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

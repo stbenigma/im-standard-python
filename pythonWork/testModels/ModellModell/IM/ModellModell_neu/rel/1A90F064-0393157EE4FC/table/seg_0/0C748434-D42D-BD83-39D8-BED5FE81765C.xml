@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0C748434-D42D-BD83-39D8-BED5FE81765C" name="PHYSICAL_UNIT">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Physical Unit
+see e.g.  https://de.wikipedia.org/wiki/Liste_physikalischer_Größen#SI-Basisgrößen_und_-einheiten]]></comment>
+<generatorID>DC28FCDB-CC97-5454-BD78-F1021F1567DC</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>physikalische_einheit</ordsAlias>
+<abbreviation>PHYU</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PHYU_ID" id="CB51A393-73C5-47BA-AFB6-59C2FC518EF7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="PHYU_SI_UNIT" id="A10A1FCC-1552-2CD1-756C-82B2610DA81F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Einheit gemäss SI-Vorgabe]]></comment>
+<generatorID>EB7B509C-E485-EFAE-3DC7-C07E94245DB7</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHYU_NAME" id="9E18AF1E-9C4C-D0FD-D9EE-F2ED5060AF48">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<generatorID>B63051FE-1409-073C-01EA-C372603FDBA3</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHYU_DESCR" id="1CA1C612-22FD-A393-BC27-AD73A9080A29">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<generatorID>3A2394FA-CB07-573D-46E0-7BE1D89248A6</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHYU_UC" id="6271D08F-54EF-994C-6DE0-D04785B423BC">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="PHYU_DC" id="8C61FDCA-403E-4B83-7A2A-C89C01251856">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="PHYU_UM" id="0F927FE0-C707-8068-33DB-8D4057AAA9E5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="PHYU_DM" id="8618C251-05AA-1433-1A05-7DC9D6ECAA90">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CA844EBE-A921-C94A-B598-75DF21AA9374" name="PHYU_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CB51A393-73C5-47BA-AFB6-59C2FC518EF7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4A3B746-12E9-82EB-9495-A8E95AA7CD9C" name="PHYU_UK_SI">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<generatorID>1962C4FF-FAA9-EE74-A6C0-780CEAFDE513</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A10A1FCC-1552-2CD1-756C-82B2610DA81F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C71EBE6E-E2D3-6EEE-DD77-4D1888443733" name="PHYU_UK_NAME">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<generatorID>40B2B073-BAA3-6F9A-E56A-61E4809B9DE4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E18AF1E-9C4C-D0FD-D9EE-F2ED5060AF48"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

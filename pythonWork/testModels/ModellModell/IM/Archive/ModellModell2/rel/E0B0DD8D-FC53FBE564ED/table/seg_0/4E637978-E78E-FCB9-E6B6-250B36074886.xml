@@ -1,0 +1,232 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4E637978-E78E-FCB9-E6B6-250B36074886" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_GLOSSARY_TERMS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_GLOSSARY_TERMS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TERM_ID" id="1F0F9BE0-C7B2-6966-C201-1A0A83B8E397">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>TERM_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TERM_OVID" id="7429F8B2-86F0-D986-1673-E113388C5553">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>TERM_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TERM_NAME" id="B7E4C5BE-5586-5198-08B3-099285974ADF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>TERM_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SHORT_DESCRIPTION" id="C648ED3E-0A08-421E-ECC8-3F9102D09218">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>SHORT_DESCRIPTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ABBREV" id="687B0A5A-3755-E599-D2BF-341DF0FD1255">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>ABBREV</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ALT_ABBREV" id="C4AFDE94-55C5-6328-B556-6935E4D8F3CB">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>ALT_ABBREV</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRIME_WORD" id="1B974DAF-3B61-0D9D-5F60-DDD019F1AA26">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>PRIME_WORD</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLASS_WORD" id="9A4F9EF1-72CA-051B-BA78-E4EDFAB056F9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>CLASS_WORD</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODIFIER" id="BA62D100-0D46-9912-70D3-2CAE36D8DD50">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>MODIFIER</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="QUALIFIER" id="76A0ECE7-87DF-25A5-90C2-787616C8BE75">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>QUALIFIER</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GLOSSARY_ID" id="8E8C7344-44A0-1E97-D60A-3D1B73A2720F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>GLOSSARY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GLOSSARY_OVID" id="63B1E9F4-156F-7496-F397-D50E406BA799">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>GLOSSARY_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GLOSSARY_NAME" id="F04DC640-3D58-0BEB-FE19-41E96C3BF5F4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>GLOSSARY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLURAL" id="8AE08802-5C3F-484F-B92A-EF44D59118A4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_GLOSSARY_TERMS</sourceObjSchema>
+<sourceObjName>PLURAL</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FE589D65-51C2-6CDD-05A4-F792D4CB7627" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="GLOSSARY_TERMS_FK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>GLOSSARY_TERMS_FK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63B1E9F4-156F-7496-F397-D50E406BA799"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

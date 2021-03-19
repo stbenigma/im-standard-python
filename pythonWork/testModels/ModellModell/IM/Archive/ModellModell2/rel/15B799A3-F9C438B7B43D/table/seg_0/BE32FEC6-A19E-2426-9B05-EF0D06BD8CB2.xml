@@ -1,0 +1,217 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BE32FEC6-A19E-2426-9B05-EF0D06BD8CB2" name="IT_KOMPONENTE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<comment><![CDATA[Irgend eine Komponente die mit Informations Technologie zu tun hat und beschafft, betrieben und betreut  werden muss.
+
+Jede IT-Komponente hat einen Hersteller. D.h. es handelt sich um konkrete Produkte.]]></comment>
+<generatorID>CFE2B0E2-7C7C-3289-90F3-1467F54FCB9E</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<ordsAlias>itkomponente</ordsAlias>
+<abbreviation>ITKO</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<existDependencyGenerationLevel>Discriminator value</existDependencyGenerationLevel>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ITKO_ID" id="8AB08E74-5962-DBEC-AFFF-901D39ED3FB6">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ITKO_TYP" id="335F80E9-2A7F-838F-E57B-28B09265E1D0">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<constraintName>CK_ITKO_ITKO_TYP</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="ANWEN" description="Anwendung"/>
+<valueDef value="DBMS" description="Database"/>
+<valueDef value="SERV" description="Server"/>
+</listOfValues>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isDiscriminatorColumn>true</isDiscriminatorColumn>
+<dependentColumns>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>156FA4A0-FB9F-13D2-7042-9C1281CBB934</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>ANWEN</discriminatorValue>
+<id>F6BC2E9B-60DA-EEB2-8DCB-75027E1C31B4</id>
+</dependentColumn>
+<dependentColumn class="oracle.dbtools.crest.model.design.relational.Column$DependentColumnDescriptor">
+<columnID>3AC556EE-8432-52DA-62A4-DCC2901679B0</columnID>
+<dependAsMandatory>false</dependAsMandatory>
+<dependOnValue>true</dependOnValue>
+<discriminatorValue>DBMS</discriminatorValue>
+<id>70579AB3-CAA6-8E24-8492-FCD9E7CC7CFF</id>
+</dependentColumn>
+</dependentColumns>
+</Column>
+<Column name="ITKO_ANWEND_TYP" id="156FA4A0-FB9F-13D2-7042-9C1281CBB934">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<commentInRDBMS><![CDATA[Umgebungstyp der Anwendung]]></commentInRDBMS>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<constraintName>CK_ITKO_ITKO_ANWEND_TYP</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<listOfValues>
+<valueDef value="EXTERN" description="Anwendung in externem System"/>
+<valueDef value="LOKAL" description="Client Anwendung"/>
+<valueDef value="ZENTRAL" description="Server Anwendung"/>
+</listOfValues>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ITKO_NAME" id="1097AAB6-9585-9022-16F4-09039EE87B48">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<generatorID>E620B7E5-21B9-ADF5-D530-981CC31D9FDB</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ITKO_ZWECK" id="985E2904-4E54-1645-2126-14B02E5F3745">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<comment><![CDATA[Anwendungsgebiet (ERP, PIM, FiBu etc.)]]></comment>
+<generatorID>BF98F3F1-663A-71B7-4491-1BECD8F47FC1</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ITKO_ZEICHENSATZ" id="3AC556EE-8432-52DA-62A4-DCC2901679B0">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<generatorID>524F7806-58A3-DB4D-FBED-6725E831E85D</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C44ED88C-D820-1BFA-9CD0-841B752A5E4B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ITKO_IST_VIRTUELL" id="DD9FAD84-D0D6-4030-EC47-345103C246FE">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<comment><![CDATA[Ist dies eine physische Maschine oder ein genutzte virtuelle?]]></comment>
+<generatorID>BA7B43A1-CC8C-BEF3-1AE4-ED10488BB11D</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<constraintName>CK_ITKO_ITKO_IST_VIRTUELL</constraintName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<defaultValue>FALSE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ITKO_UC" id="813EEDD4-31FB-1E06-3805-1EC07349C766">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<formulaDesc>USER</formulaDesc>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<computed>true</computed>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="ITKO_DC" id="32B56088-1557-EDB6-5655-CFC43466F030">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="ITKO_UM" id="8161324F-7B04-8383-8C54-5FB8103BBA75">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="ITKO_DM" id="ADB1EFCE-B68E-0457-5512-3D5DD6273217">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="944FF76E-30ED-E66B-A4C8-75C63DCBE423" name="ITKO_PKV3">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="8AB08E74-5962-DBEC-AFFF-901D39ED3FB6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E886785A-9751-8786-4A65-88B8A69DEB23" name="ITKO_ITKO_TYP_ITKO_NAME_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-21 09:41:43 UTC</createdTime>
+<generatorID>206CE09F-CBBF-4160-D8B8-143FD684FD16</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="335F80E9-2A7F-838F-E57B-28B09265E1D0"/>
+<colUsage columnID="1097AAB6-9585-9022-16F4-09039EE87B48"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

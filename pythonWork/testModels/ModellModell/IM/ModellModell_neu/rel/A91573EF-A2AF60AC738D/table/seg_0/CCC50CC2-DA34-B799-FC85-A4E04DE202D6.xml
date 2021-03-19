@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CCC50CC2-DA34-B799-FC85-A4E04DE202D6" name="intern_verwalteter_Server">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>E375A019-9356-8B56-3D10-1DEA4343FE22</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8DF0A65D-91CF-15A0-50ED-D367DB9AE76E" name="intern_verwalteter_Server__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="10289535-555F-A279-4FC0-D8FAF6D402B4" name="intern_verwalteter_Server_Server_Hardware_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>EB6F910E-A9B7-A1E2-8D38-5B28FEB1765B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

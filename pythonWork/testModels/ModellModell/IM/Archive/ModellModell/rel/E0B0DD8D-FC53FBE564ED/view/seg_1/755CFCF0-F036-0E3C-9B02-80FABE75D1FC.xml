@@ -1,0 +1,363 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="755CFCF0-F036-0E3C-9B02-80FABE75D1FC" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_SPATIAL_COLUMN_DEFINITION">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_SPATIAL_COLUMN_DEFINITION
+AS 
+select  Table_ID, Table_OVID, Definition_ID, Definition_OVID, Definition_Name, Table_Name, Column_ID, Column_OVID, Column_Name, Use_Function, Function_Expression, Coordinate_System_ID, Has_Spatial_Index, Spatial_Index_ID, Spatial_Index_OVID, Spatial_Index_Name, Design_OVID from DMRS_SPATIAL_COLUMN_DEFINITION]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TABLE_ID" id="5F8D5282-94FD-C3D6-3366-E4E92F2AAB83">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>TABLE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TABLE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>TABLE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>C653838F-9686-E539-E437-0CFCCC933B6D</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TABLE_OVID" id="796D54E5-D810-1931-2853-3D3A0722228A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>TABLE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TABLE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>TABLE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>9A921F32-7AD3-E8C6-CF85-62D1CB52F3A9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DEFINITION_ID" id="6443D5D1-AC4B-5C19-D96C-18D7D9303292">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>DEFINITION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DEFINITION_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>DEFINITION_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>61FE9CC3-4E99-ABA8-4B5E-A53D5E5011ED</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DEFINITION_OVID" id="08F0DC05-1BE8-011B-C95C-DFB8E9641C3E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>DEFINITION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DEFINITION_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DEFINITION_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>10CAC310-6486-21A3-A635-399B4B743A83</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DEFINITION_NAME" id="FA6DE0AC-0E5D-31B7-2561-1B1268332F43">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>DEFINITION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DEFINITION_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>DEFINITION_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>A94CF30B-8180-B95B-9FCF-A86DD29533A9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="TABLE_NAME" id="2E134DFF-CA87-44E6-4556-92BC36B3041D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>TABLE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>TABLE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>TABLE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>F3F45C11-A0D6-9005-2336-24D61B860F10</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COLUMN_ID" id="5D99A7D9-C4DC-30A8-3122-81003A24592E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>COLUMN_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>COLUMN_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>COLUMN_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A54C4B90-0A20-931D-E129-A525091DA229</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COLUMN_OVID" id="CDC9E74A-DC3C-4DC2-95F8-3ED7CAE05E99">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>COLUMN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>COLUMN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>COLUMN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>D89D80ED-F6FC-A376-21C6-B75977589FDB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COLUMN_NAME" id="098C5366-71B7-6C8B-1341-531ADEBABA65">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>COLUMN_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>COLUMN_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>COLUMN_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>FC9E2C34-8EAB-9304-8B62-D2D52DF38CEE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="USE_FUNCTION" id="2EA8B243-350E-D0AE-F50A-63AA31883880">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>USE_FUNCTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>USE_FUNCTION</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>USE_FUNCTION</headerAlias>
+<reference>false</reference>
+<referencedColumn>87F08387-D736-4BE3-EB37-39769B306F35</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FUNCTION_EXPRESSION" id="52C240CA-DDF7-0955-2797-4900811C9453">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>FUNCTION_EXPRESSION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FUNCTION_EXPRESSION</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>FUNCTION_EXPRESSION</headerAlias>
+<reference>false</reference>
+<referencedColumn>03915B20-272E-9B0A-8E0D-7E61AF43F08B</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COORDINATE_SYSTEM_ID" id="9A5D5DFC-8F41-80A4-AF25-E1C0520A2BB4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>COORDINATE_SYSTEM_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>COORDINATE_SYSTEM_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>COORDINATE_SYSTEM_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A7BD3E12-1634-FDC5-377B-A00098ED80C3</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="HAS_SPATIAL_INDEX" id="7C8654B2-DFE7-C7A0-BF5A-4C99E9A97703">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>HAS_SPATIAL_INDEX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>HAS_SPATIAL_INDEX</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>HAS_SPATIAL_INDEX</headerAlias>
+<reference>false</reference>
+<referencedColumn>B1179690-5426-6B90-5890-BD4FDC55F5AB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SPATIAL_INDEX_ID" id="18F0DDDD-3897-8A08-3845-90D42CBC33C2">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>SPATIAL_INDEX_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SPATIAL_INDEX_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>SPATIAL_INDEX_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>6977E262-E7B3-D631-7C62-188243B149A6</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SPATIAL_INDEX_OVID" id="C6429D19-BF42-BB89-DCB1-3904F5F60410">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>SPATIAL_INDEX_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SPATIAL_INDEX_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>SPATIAL_INDEX_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>78856570-262C-B516-056B-E2AB65700CC5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="SPATIAL_INDEX_NAME" id="09A0B20F-3080-2C18-10F1-A33ACB97DE69">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>SPATIAL_INDEX_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>SPATIAL_INDEX_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>SPATIAL_INDEX_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>16F92D6E-2F69-84FD-4BD8-BE01A1F733D5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="4691A85E-D258-739D-9148-6496E7A7A44E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_SPATIAL_COLUMN_DEFINITION</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>90B20A33-FB47-291C-714D-52B1D74C109F</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C653838F-9686-E539-E437-0CFCCC933B6D">
+<columnName>TABLE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9A921F32-7AD3-E8C6-CF85-62D1CB52F3A9">
+<columnName>TABLE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="61FE9CC3-4E99-ABA8-4B5E-A53D5E5011ED">
+<columnName>DEFINITION_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="10CAC310-6486-21A3-A635-399B4B743A83">
+<columnName>DEFINITION_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A94CF30B-8180-B95B-9FCF-A86DD29533A9">
+<columnName>DEFINITION_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F3F45C11-A0D6-9005-2336-24D61B860F10">
+<columnName>TABLE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A54C4B90-0A20-931D-E129-A525091DA229">
+<columnName>COLUMN_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D89D80ED-F6FC-A376-21C6-B75977589FDB">
+<columnName>COLUMN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="FC9E2C34-8EAB-9304-8B62-D2D52DF38CEE">
+<columnName>COLUMN_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="87F08387-D736-4BE3-EB37-39769B306F35">
+<columnName>USE_FUNCTION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="03915B20-272E-9B0A-8E0D-7E61AF43F08B">
+<columnName>FUNCTION_EXPRESSION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A7BD3E12-1634-FDC5-377B-A00098ED80C3">
+<columnName>COORDINATE_SYSTEM_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B1179690-5426-6B90-5890-BD4FDC55F5AB">
+<columnName>HAS_SPATIAL_INDEX</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6977E262-E7B3-D631-7C62-188243B149A6">
+<columnName>SPATIAL_INDEX_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="78856570-262C-B516-056B-E2AB65700CC5">
+<columnName>SPATIAL_INDEX_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="16F92D6E-2F69-84FD-4BD8-BE01A1F733D5">
+<columnName>SPATIAL_INDEX_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="90B20A33-FB47-291C-714D-52B1D74C109F">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D2BCF0CA-094E-0A17-6EBC-BA7538A38DC1">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_SPATIAL_COLUMN_DEFINITION</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

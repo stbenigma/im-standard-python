@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="COLUMNS" directorySegmentName="seg_0" id="19A42FD9-044F-92C2-347A-A35FEA9696F3">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="COLU_TABL_FK" id="726140EA-B8FE-7AA5-2BCD-99D87C580F74">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="COLU_MODE_FK" id="E27CEEBE-9630-94CF-023C-2B614F3FA312">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:48:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="COLU_DOMA_FK" id="E8472FCB-D3D2-7061-1771-06E37CBE6DE5">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="COLUMNS_MODELELEMENT_FK" id="F234D113-6569-A2B9-1718-87AB6ACDC30E">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="COLUMNS_COLU_ID_UN" id="6025C7CA-AE58-F459-9942-86C054754876">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:55:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</PrimaryKey>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="COLUMNS_PK" id="846A2937-06C1-F3F3-CE8E-E72AD81383B3">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="COLU_UK" id="06A2C18C-7E1E-34C6-255F-2EC9C2BA60C8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:40:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>B5085ECB-8936-7A63-9779-77515397EA4F</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="67C8F1DD-3AD4-5F5D-9973-0945839B92C6" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_projectroles">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_projectroles</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:05 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Role" id="F40B95B0-17E5-6E6D-F15E-48CC5FF752D4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_projectroles</sourceObjSchema>
+<sourceObjName>Role</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Description" id="B44C3E98-5ACE-A594-4BE0-E098902878C4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_projectroles</sourceObjSchema>
+<sourceObjName>Description</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notes" id="C864F708-1173-07F7-86FA-2A9752433BF5">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_projectroles</sourceObjSchema>
+<sourceObjName>Notes</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:06 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B4756490-4846-2D7C-EE3A-D1A6B9E38582" name="pk_projectroles">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_projectroles</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:55:07 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F40B95B0-17E5-6E6D-F15E-48CC5FF752D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
