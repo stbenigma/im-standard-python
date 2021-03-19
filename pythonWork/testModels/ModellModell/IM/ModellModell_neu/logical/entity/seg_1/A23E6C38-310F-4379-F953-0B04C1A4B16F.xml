@@ -1,0 +1,329 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A23E6C38-310F-4379-F953-0B04C1A4B16F" name="Entität">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Bezeichnet etwas, das existiert, ein Ding, ein greifbares oder abstraktes Objekt mit Eigenschaften und Beziehungen.
+Ding von Interesse in der betrachteten Umgebung / Miniwelt.
+Sie ist eine IT-System- und Technologie-unabhängige, konsolidierte Beschreibung der Struktur und Bedeutung des interessierenden Dings.
+
+Eine Entität kann wiederum aus einzelnen Teilen (Attributen, Unterentitäten, Beziehungen, etc.) bestehen ; entsprechend dem Begriff Holon oder Ganzes/Teil.]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Ding das uns interessiert im systemübergreifenden, konsolidierten, konzeptionellen Modell eines Unternehmens
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Designates something that exists, a being, a tangible or abstract object with properties and relationships.
+Thing of interest in the considered environment / mini-world.
+It is IT-system- and technology-independent and consolidated description of the structure and meaning of the thing of interest.
+An entity can in turn consist of individual parts (attributes, subentities, relationships, etc.) ; corresponding to the term holon or whole/part.
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="false"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>8CDBEDF4-5478-6F12-0D46-E7BCD9A40CD3</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ENTI</shortName>
+<generateDiscrimColumn>true</generateDiscrimColumn>
+<discriminatorColumnName>ENTI_SUBTYPE</discriminatorColumnName>
+<completeSubtypes>true</completeSubtypes>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Entität"/>
+<property name="EN_ENTI_NAME" value="Entity"/>
+<property name="dev_status" value="REL"/>
+<property name="maxzoomlevel" value="3"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Entitätname [L]" id="F1D0F128-7361-E0A9-E706-227C158FCD42">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>0F2758D2-C7D1-07D3-5C35-F1697AF2FBE0</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="DE_ATTR_NAME" value="Entitätname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name der Entität der in der Kommunikation normalerweise gebraucht wird."/>
+<property name="EN_ATTR_NAME" value="Entity name [L]"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Synonym [LN]" id="A95649D8-C7D7-F752-DF78-460367ECD340">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Name, der für diese Entität auch verwendet wird]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name, der für diese Entität auch verwendet wird
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name that is also used for this entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>86F63762-7E3D-9675-C4EB-5EF70C2112E7</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Name, der für diese Entität auch verwendet wird"/>
+<property name="DE_ATTR_NAME" value="Synonym [LN]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Name, der für diese Entität auch verwendet wird"/>
+<property name="EN_ATTR_NAME" value="Synonym [LN]"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Beschreibung [L]" id="8AE86DAB-876D-4996-6150-123B705AB4AA">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Bedeutung, Nutzen, Nutzung der Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Bedeutung, Nutzen, Nutzung der Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Meaning, Benefits, Use of the Entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>78E7CC00-D288-42DD-98DE-293BD4C4788A</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Bedeutung, Nutzen, Nutzung der Entität"/>
+<property name="DE_ATTR_NAME" value="Beschreibung [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Bedeutung, Nutzen, Nutzung der Entität"/>
+<property name="EN_ATTR_NAME" value="Description [L]"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Kurzname [L]" id="5E305761-9FBD-94B3-D12B-A0811406A63D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+*Entity short name for use from heading, in references
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>3F71D6FF-01E1-8249-78A0-A7FF4F70650A</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="DE_ATTR_NAME" value="Kurzname [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kurzbezeichnung der Entität für die Verwendung aus Überschrift, in Referenzen "/>
+<property name="EN_ATTR_NAME" value="Short name [L]"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="0"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Präfixname" id="7EC6D9A7-E9AA-F77D-4FAF-CF5E57BD58E7">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Abbreviated name (3-5 characters, usually capital letters) that can be used as a prefix for implementation names.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>05044FC2-ACB4-20D7-8B53-8FCF430B32D9</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
+<property name="DE_ATTR_NAME" value="Präfixname"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Kürzestname (3-5 Zeichen, Normalerweise Grossbuchstaben) der als Präfix für  Implementierungsnamen verwendet werden kann."/>
+<property name="EN_ATTR_NAME" value="Prefix name"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="0"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Tooltip [L]" id="09BFD6A9-516C-6EA2-95BC-6189D7482BFC">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Anzeige der Bedeutung für Bediener auf einer Maske.]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzeige der Bedeutung für Bediener auf einer Maske.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Display of the meaning for the operator on a mask.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>54A2577F-F95D-B646-574D-6693D12215E0</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Anzeige der Bedeutung für Bediener auf einer Maske."/>
+<property name="DE_ATTR_NAME" value="Tooltip [L]"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Anzeige der Bedeutung für Bediener auf einer Maske."/>
+<property name="EN_ATTR_NAME" value="Tooltip [L]"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="0"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+<Attribute name="erwartete Tupelanzahl" id="799DBB03-3FC8-5BA7-35F1-8D8DA7716A52">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:03:22 UTC</createdTime>
+<comment><![CDATA[Grössenordnung der Tupelanzahl in dieser Entität]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Grössenordnung der Tupelanzahl in dieser Entität
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Order of magnitude of the number of tuples in this entity
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>5D1A133A-66CD-CCDD-815F-E71B76100EF4</importedID>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>897B91BA-60B8-3A16-793A-97B535605E5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_COMMENT" value="Grössenordnung der Tupelanzahl in dieser Entität"/>
+<property name="DE_ATTR_NAME" value="erwartete Tupelanzahl"/>
+<property name="EN_ATTR_COMMENT" value="*DE* Grössenordnung der Tupelanzahl in dieser Entität"/>
+<property name="EN_ATTR_NAME" value="expected number of tuples"/>
+<property name="dev_status" value="REL"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="0"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0DCB8532-B1E4-BF67-1F61-05895B0E758E" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2020-08-09 08:46:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<newElementsIDs>F1D0F128-7361-E0A9-E706-227C158FCD42</newElementsIDs>
+<usedAttributes>
+<attributeRef>F1D0F128-7361-E0A9-E706-227C158FCD42</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

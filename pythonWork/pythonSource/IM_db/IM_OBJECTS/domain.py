@@ -167,13 +167,12 @@ class Domain(MultilangBaseobject):
     def getunknown():
         if Domain.__unknowndom is None:
             dom = Domain.getbyname(pname='Unknown')
-            if dom.doma_id is None:
+            if dom is None or dom.doma_id is None:
                 dom = Domain.getbyname(pname='unknown')
             # fi
             Domain.__unknowndom = dom
         # fi
         return Domain.__unknowndom
-
     # getunknown
 
     @staticmethod
