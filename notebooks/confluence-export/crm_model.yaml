@@ -25,7 +25,7 @@ locale: ./locale
 content:
 
   domains:
-    title: Domänen
+    title: Domains [TOC]
     template: domain.templ.html
     filter: "'DER' in item.get('origin','') == False"
     labels:
@@ -34,15 +34,24 @@ content:
       - generated
 
   documents:
-    title: Dokumente
+    title: Documents [TOC]
     template: document.templ.html
     labels:
-      - domain
+      - document
+      - IM
+      - generated
+
+
+  diagrams:
+    title: Diagrams [TOC]
+    template: diagram.templ.html
+    labels:
+      - diagram
       - IM
       - generated
 
   systems:
-    title: Systeme
+    title: Systems [TOC]
     template: system.templ.html
     labels:
       - system
@@ -51,15 +60,16 @@ content:
 
     content:
       tables:
-        title: Tabellen
+        title: Tables [TOC]
         template: table.templ.html
         manual-documentation:
           template: children.templ.html
-          title-postfix: ' - Tabellen-Dokumentation'
+          title-postfix: ' - Table-Doc'
           labels:
             - table
             - DM
-            - toc
+            - documentation
+            - manual
         labels:
           - table
           - DM
@@ -67,10 +77,11 @@ content:
 
         content:
           columns:
-            title: Spalten
+            title: Columns [TOC]
             template: column.templ.html
             manual-documentation:
               template: manual-documentation.templ.html
+              title-postfix: ' - Column-Doc'
               labels:
                 - column
                 - DM
@@ -82,7 +93,7 @@ content:
               - generated
 
   entities:
-    title: Entitäten
+    title: Entities [TOC]
     template: entity.templ.html
     labels:
       - entity
@@ -91,7 +102,7 @@ content:
 
     content:
       attributes:
-        title: Attribute
+        title: Attributes [TOC]
         template: attribute.templ.html
         labels:
           - attribute

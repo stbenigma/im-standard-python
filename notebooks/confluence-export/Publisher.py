@@ -148,13 +148,18 @@ class Publisher:
                                                       self.translate(
                                                           self.json_data['tables'][entry['table-id']]['name']))
 
+                    title_safe = self.lang_specific(title_safe)
+
                     is_taken = self.page_name_map.get(self.confluence_stem(title_safe))
                     if is_taken:
                         title_safe = title_safe + ' [' + key + ']'
-                        self.log.warning(
+                        self.log.debug(
                             'Extending title to {} to ensure uniqueness for {} {}'.format(title_safe, topic, key))
 
-                    title_safe = self.lang_specific(title_safe)
+                        is_taken = self.page_name_map.get(self.confluence_stem(title_safe))
+                        while is_taken:
+                            title_safe = title_safe + '+'
+                            is_taken = self.page_name_map.get(self.confluence_stem(title_safe))
 
                     pages = self.content_map.get(key, {})
                     pages[self.language] = {'title': title_safe, 'data': entry, 'topic': topic}
@@ -322,14 +327,6 @@ class Publisher:
 
         return None
 
-    def translation_links(self, key: str) -> markupsafe.Markup:
-        if not key:
-            return None
-        if len(self.json_data['languages']) < 2:
-            return None
-
-        return markupsafe.Markup('<p style="text-align:right">Links to translated pages of this element</p><br/>')
-
     def entity_icon(self, entity: object):
         return markupsafe.Markup(
             '<img width="50px" align="right" ' +
@@ -341,7 +338,7 @@ class Publisher:
     def lang_specific(self, text: str) -> str:
         if self.is_default_language():
             return text
-        return text + ' en'
+        return text + ' ' + self.language
 
     def is_default_language(self) -> bool:
         return self.language == self.languages[0]

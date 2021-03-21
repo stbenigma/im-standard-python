@@ -4,36 +4,36 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>Spalte {{ util.translate(column['name']) }} [Datenmodell]</h1>
-      <p>{{util.translate(column['descr'])}}</p>
+      <h1>{{ gettext('Spalte %(name)s [Datenmodell]', name=util.translate(column['name'])) }}</h1>
+      <p>{{ util.translate(column['descr']) }}</p>
       <table class="relative-table" style="width: 100%;">
         <tbody>
           <tr>
-            <th>Name</th>
-            <td>{{column['name']}}</td>
+            <th>{{ gettext('Name') }}</th>
+            <td>{{ column['name'] }}</td>
           </tr>
           <tr>
-            <th>Tabelle</th>
+            <th>{{ gettext('Tabelle') }}</th>
             <td>{{ util.soft_link(column.get('table-id')) }}</td>
           </tr>
           <tr>
-            <th>Datentyp</th>
-            <td>{{column['datatype']}}</td>
+            <th>{{ gettext('Datatype') }}</th>
+            <td>{{ column['datatype'] }}</td>
           </tr>
           <tr>
-            <th>Basistyp</th>
-            <td>{{column['basedatatype+']}}</td>
+            <th>{{ gettext('Basetype') }}</th>
+            <td>{{ column['basedatatype+'] }}</td>
           </tr>
           <tr>
-            <th>Typ</th>
-            <td>{{column['datatypeid+']}}</td>
+            <th>{{ gettext('Type') }}</th>
+            <td>{{ column['datatypeid+'] }}</td>
           </tr>
           <tr>
-            <th>Format</th>
-            <td>{{column['format']}}</td>
+            <th>{{ gettext('Format') }}</th>
+            <td>{{ column['format'] }}</td>
           </tr>
           <tr>
-            <th>Domäne</th>
+            <th>{{ gettext('Domain') }}</th>
             <td>
               {% if column.get('domain') %}
               {{ util.soft_link(column.get('domain')) }}
@@ -41,7 +41,7 @@
             </td>
           </tr>
           <tr>
-            <th>Spalten ID</th>
+            <th>{{ gettext('Column ID') }}</th>
             <td>{{ column['interface_col_id'] }}</td>
           </tr>
         </tbody>
@@ -86,19 +86,17 @@
 
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
-      <h1>IM Attribute</h1>
+      <h1>{{ gettext('IM Attributes') }}</h1>
+      <p>{{ gettext('The following attributes of the Information Model are linked with this column:') }}</p>
       <p>
-      Attribute des Informationsmodells, die mit dieser Tabellenspalte verbunden sind:
       <table class="relative-table" style="width: 100%;">
         <tbody>
         <tr>
-          <th>Attribut</th>
+          <th>{{ gettext('Attribute') }}</th>
         </tr>
         {% for attribute_key in column['attributes-mapped'] %}
         <tr>
-          <td>
-            <ac:link><ri:page ri:content-title="{{util.page_title(attribute_key)}}" /><![CDATA[{{util.page_title(attribute_key)}}]]></ac:link>
-          </td>
+          <td>{{ util.soft_link(attribute_key) }}</td>
         </tr>
         {% endfor %}
         </tbody></table>
@@ -108,28 +106,22 @@
 
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
-      <h1>Data Lineage</h1>
+      <h1>{{ gettext('Data Lineage') }}</h1>
+      <p>{{ gettext('Columns linked with the same IM attribute:') }}</p>
       <p>
-        Spalten welche dasselbe Informationselment (Attribut) abbilden:
       <table class="relative-table" style="width: 100%;">
         <tbody>
         <tr>
-          <th>System</th>
-          <th>Tabelle</th>
-          <th>Spalte</th>
+          <th>{{ gettext('System') }}</th>
+          <th>{{ gettext('Table') }}</th>
+          <th>{{ gettext('Column') }}</th>
         </tr>
         {% for other_key in util.column_lineage(key) %}
         {% set other = data['columns'][other_key] %}
         <tr>
-          <td>
-            <ac:link><ri:page ri:content-title="{{util.page_title(other['interface-id+'])}}" /><![CDATA[{{util.page_title(other['interface-id+'])}}]]></ac:link>
-          </td>
-          <td>
-            <ac:link><ri:page ri:content-title="{{util.page_title(other['table-id'])}}" /><![CDATA[{{util.page_title(other['table-id'])}}]]></ac:link>
-          </td>
-          <td>
-            <ac:link><ri:page ri:content-title="{{util.page_title(other_key)}}" /><![CDATA[{{util.page_title(other_key)}}]]></ac:link>
-          </td>
+          <td>{{ util.soft_link(other['interface-id+']) }}</td>
+          <td>{{ util.soft_link(other['table-id']) }}</td>
+          <td>{{ util.soft_link(other[other_key]) }}</td>
         </tr>
         {% endfor %}
         </tbody></table>
@@ -137,23 +129,24 @@
     </ac:layout-cell>
   </ac:layout-section>
 
-
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
-      <h1>Referenziert in folgenden Dokumenten</h1>
-      <table class="relative-table" style="width: 100%;">
-        <tbody>
-        <tr>
-          <th>Dokument</th>
-        </tr>
-        {% for document in column['refindocuments+'] %}
-        <tr>
-          <td>
-            <ac:link><ri:page ri:content-title="{{util.page_title(document)}}" /><![CDATA[{{util.page_title(document)}}]]></ac:link>
-          </td>
-        </tr>
-        {% endfor %}
-        </tbody></table>
+      <h1>{{ gettext('Document references') }}</h1>
+      <p>{{ gettext('This column is linked with the following documents:') }}</p>
+      <p>
+        <table class="relative-table" style="width: 100%;">
+          <tbody>
+          <tr>
+            <th>{{ gettext('Document') }}</th>
+          </tr>
+          {% for document in column['refindocuments+'] %}
+          <tr>
+            <td>{{ util.soft_link(document) }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </p>
     </ac:layout-cell>
   </ac:layout-section>
   {% include 'footer.templ.html' %}

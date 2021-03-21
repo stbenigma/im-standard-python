@@ -71,7 +71,7 @@
             <td class="highlight-grey" colspan="1" data-highlight-colour="grey" title="Background colour : Grey"></td>
             <td>{{ util.translate(other_end['assoc']) }}</td>
             <td>{{ other_end['cardstr'] }}</td>
-            <td><p><ac:link><ri:page ri:content-title="{{util.page_title(other_end['enti'])}}" /><![CDATA[{{ util.page_title(other_end['enti']) }}]]></ac:link></p></td>
+            <td>{{ util.soft_link(other_end['enti']) }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -99,7 +99,7 @@
         </tr>
         {% for diagram in entity['diagrams'] %}
         <tr>
-          <td>{{diagram}}</td>
+          <td>{{ util.soft_link(diagram) }}</td>
         </tr>
         {% endfor %}
       </tbody></table>

@@ -4,7 +4,7 @@
     {% include 'header.templ.html' %}
     <ac:layout-section ac:type="two_right_sidebar">
         <ac:layout-cell>
-            <p>{{ util.translate(domain['descr']) }}</p>
+            <p>{{ gettext('Domain %(name)s', name=util.translate(domain['descr'])) }}</p>
             <p>
             <table>
                 <colgroup>
@@ -12,55 +12,55 @@
                     <col style="width: 70%;"/>
                 </colgroup>
                 <tr>
-                    <th>Domänenname</th>
+                    <th>{{ gettext('Domain name') }}</th>
                     <td>{{ util.translate(domain['name']) }}</td>
                 </tr>
                 <tr>
-                    <th>System</th>
+                    <th>{{ gettext('System') }}</th>
                     <td>{{ util.translate(domain['displdatatype+']) }}</td>
                 </tr>
                 <tr>
-                    <th>Typ</th>
+                    <th>{{ gettext('Type') }}</th>
                     <td>{{ domain['type'] }}</td>
                 </tr>
                 <tr>
-                    <th>Typbezeichnung</th>
+                    <th>{{ gettext('Type description') }}</th>
                     <td>{{ util.translate(domain['datatypestr+']) }}</td>
                 </tr>
                 <tr>
-                    <th>Basistyp</th>
+                    <th>{{ gettext('Basetype') }}</th>
                     <td>{{ domain['basedatatype+'] }}</td>
                 </tr>
                 <tr>
-                    <th>ID</th>
+                    <th>{{ gettext('ID') }}</th>
                     <td>{{ domain['datatypeid'] }}</td>
                 </tr>
                 <tr>
-                    <th>Format</th>
+                    <th>{{ gettext('Format') }}</th>
                     <td>{{ domain['format+'] }}</td>
                 </tr>
                 <tr>
-                    <th>Format ID</th>
+                    <th>{{ gettext('Format ID') }}</th>
                     <td>{{ domain['formatid'] }}</td>
                 </tr>
                 <tr>
-                    <th>Minimum</th>
+                    <th>{{ gettext('Minimum') }}</th>
                     <td>{{ domain['minvalue'] }}</td>
                 </tr>
                 <tr>
-                    <th>Maximum</th>
+                    <th>{{ gettext('Maximum') }}</th>
                     <td>{{ domain['maxvalue'] }}</td>
                 </tr>
                 <tr>
-                    <th>Granularität</th>
+                    <th>{{ gettext('Granularity') }}</th>
                     <td>{{ domain['granularity'] }}</td>
                 </tr>
                 <tr>
-                    <th>Beschreibung Granularität</th>
+                    <th>{{ gettext('Granularity description') }}</th>
                     <td>{{ util.translate(domain['granularitytext+']) }}</td>
                 </tr>
                 <tr>
-                    <th>Quelle</th>
+                    <th>{{ gettext('Source') }}</th>
                     <td>{{ domain['origin'] }}</td>
                 </tr>
             </table>
@@ -72,28 +72,18 @@
     </ac:layout-section>
     <ac:layout-section ac:type="single">
         <ac:layout-cell>
-            <h1>Verknüpfte Attribute</h1>
+            <h1>{{ gettext('Linked attributes') }}</h1>
             <table class="relative-table" style="width: 100%;">
                 <tbody>
                 <tr>
-                    <th>Entity</th>
-                    <th>Attribute</th>
+                    <th>{{ gettext('Entity') }}</th>
+                    <th>{{ gettext('Attribute') }}</th>
                 </tr>
                 {% for attribute_key in domain['usedinattrs+'] %}
                 {% set attribute = data['attributes'][attribute_key] %}
                 <tr>
-                    <td>
-                        <ac:link>
-                            <ri:page ri:content-title="{{util.page_title(attribute['entity'])}}"/>
-                            <![CDATA[{{util.page_title(attribute['entity'])}}]]>
-                        </ac:link>
-                    </td>
-                    <td>
-                        <ac:link>
-                            <ri:page ri:content-title="{{util.page_title(attribute_key)}}"/>
-                            <![CDATA[{{util.page_title(attribute_key)}}]]>
-                        </ac:link>
-                    </td>
+                    <td>{{ util.soft_link(attribute['entity']) }}</td>
+                    <td>{{ util.soft_link(attribute_key) }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -102,23 +92,18 @@
     </ac:layout-section>
     <ac:layout-section ac:type="single">
         <ac:layout-cell>
-            <h1>Verknüpfte Spalten</h1>
+            <h1>{{ gettext('Linked columns') }}</h1>
             <table class="relative-table" style="width: 100%;">
                 <tbody>
                 <tr>
-                    <th>Tabelle</th>
-                    <th>Spalte</th>
+                    <th>{{ gettext('Table') }}</th>
+                    <th>{{ gettext('Column') }}</th>
                 </tr>
                 {% for column_key in domain['usedincols+'] %}
                 {% set column = data['columns'][column_key] %}
                 <tr>
-                    <td>
-                        <ac:link>
-                            <ri:page ri:content-title="{{util.page_title(column['table-id'])}}"/>
-                            <![CDATA[{{ util.page_title(column['table-id']) }}]]>
-                        </ac:link>
-                    </td>
-                    <td>{{column_key}}</td>
+                    <td>{{ util.soft_link(column['table-id']) }}</td>
+                    <td>{{ column_key }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
