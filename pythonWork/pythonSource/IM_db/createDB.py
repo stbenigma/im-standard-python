@@ -5,6 +5,9 @@ import sys
 from IM_DB import parameters, dbConnect, dbErstelleTables, logmessages
 
 
+def existsDB(pfilepath):
+    return os.path.exists(pfilepath)
+
 def createDB(par1,pforcecreate=False):
     """Main program for createDB"""
     parameters.initparam(p_callarg=par1)
@@ -12,7 +15,7 @@ def createDB(par1,pforcecreate=False):
 
     dbtype = parameters.SQLITE #only option for the moment
     if dbtype == parameters.SQLITE:
-        if os.path.exists(parameters.dbFilePath()):
+        if existsDB(parameters.dbFilePath()):
             if pforcecreate:
                 os.remove(parameters.dbFilePath())
             else:

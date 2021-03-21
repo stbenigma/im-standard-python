@@ -7,10 +7,9 @@ from IM_DB import parameters, dbConnect, logmessages
 from IM_HTML import printHTML
 from IM_ODM import fillDB
 import listWebdoku
-#import listmapping
 from IM_JSON import sql2json,JSModel
 from IM_OBJECTS import Languagetext
-from IM_db import createDB
+from IM_db import createDB,existsDB
 
 
 def main(pdirec, plang,pforceoverwrite = False):
@@ -25,9 +24,8 @@ def main(pdirec, plang,pforceoverwrite = False):
 
     os.makedirs(parameters.webDirec(),exist_ok=True)
     os.makedirs(parameters.dbDirect(),exist_ok=True)
-    createDB(par1=pdirec,pforcecreate=pforceoverwrite)
 
-    fillDB.filldbmain()
+    fillDB.filldbmain2(callarg=pdirec,createnewdb=not existsDB(parameters.dbFilePath()))
 
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
     jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
@@ -49,4 +47,4 @@ if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv) > 2) else None
     force = (len(sys.argv) > 3) and (sys.argv[3] == 'FORCE')
-    main(pdirec=direc, plang=lang,pforceoverwrite=force)
+    main(pdirec=direc, plang=lang)

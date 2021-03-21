@@ -173,7 +173,7 @@ def translatefks(pdbobj):
     return
 
 
-def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True):
+def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,pequalexceptlist=[]):
     """from ODM to DB transfer"""
     modellang = Language.getdefaultlang().lang_iso_code2
     newdberrors = []
@@ -233,7 +233,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                 else:
                     """update db-record if there is a difference"""
                     addfk(odmjsid=key, dbid=dbsrcref.dbid)
-                    if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid)):
+                    if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid),pequalexceptlist=pequalexceptlist):
                         try:
                             obj.setid(jsguid2id(dbsrcref.dbid)) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
@@ -262,7 +262,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True)
                 else:
                     """Entry found via UK. update it.  update the external ref as well, as it could be"""
                     addfk(odmjsid=key, dbid=ukref.getid())
-                    if not ukref.semanticequal(obj):
+
+                    if not ukref.semanticequal(obj,pequalexceptlist=pequalexceptlist):
                         try:
                             """update element found by it's uk"""
                             ukref.semanticcopy(obj)

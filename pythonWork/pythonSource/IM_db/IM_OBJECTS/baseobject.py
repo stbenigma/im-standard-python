@@ -68,10 +68,10 @@ class Baseobject:
         """Return list of columns without standard management columns"""
         return list(set(self._columnlist).difference((self.fullcolname(n) for n in ['id', 'uc', 'um', 'dc', 'dm'])))
 
-    def semanticequal(self,pbrother):
+    def semanticequal(self,pbrother,pequalexceptlist=[]):
         """ true, if all semantic elements are equal. Managing attributes (id, uc,dc etc.) are excluded"""
         for sc in self._semanticcols():
-            if self.colvalue(sc) != pbrother.colvalue(sc):
+            if (sc not in pequalexceptlist) and (self.colvalue(sc) != pbrother.colvalue(sc)):
                 return False
         return True
 

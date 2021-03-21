@@ -1,6 +1,6 @@
 from datetime import datetime
 from IM_JSON import *
-from IM_OBJECTS import Languagetext, Language, Boolean,Project
+from IM_OBJECTS import Languagetext, Language, Boolean
 from IM_DB import dbConnect
 
 def langs2js(pemptymodel):
@@ -80,15 +80,21 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
          "modellanguage": true,
          "replacementlang": null
       }"""
-    fromodm2db(presult=presult,podmjson=podmjson,pelemtype='LANG',pjs2obj=js2lang,pwithextsrcref=pwithextsrcref)
-    # for iso2, jlang in podmjson.getelements('LANG').items():
-    #     lang = js2lang(pkey=iso2,pelem=jlang)
-    #     try:
-    #         langid = lang.insert()
-    #     except Exception as err:
-    #         presult.markdberror(perr=err, pelem=lang.tostring())
-    #         continue
-    # # for
+    """exclude lang_lang_id from semantic compare"""
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype='LANG',pjs2obj=js2lang,pwithextsrcref=pwithextsrcref,pequalexceptlist=['lang_lang_id'])
+
+    for iso2, jlang in podmjson.getelements('LANG').items():
+        replangiso2 = jlang['replacementlang']
+        curlang:Language = Language().getbyuk(lang_iso_code2 =iso2)
+        if replangiso2 is None:
+            curlang.lang_lang_id = None
+        else:
+            replang = Language().getbyuk(lang_iso_code2=replangiso2.lower())
+            curlang.lang_lang_id = None if replang is None else replang.getid()
+        #fi
+        """update the replacementlang fk"""
+        curlang.updatedb()
+    #for
 
     try:
         deflang =  Language.getdefaultlang()

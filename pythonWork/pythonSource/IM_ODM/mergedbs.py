@@ -48,11 +48,11 @@ def mergeodm2db(podmjson):
     # for
 
     if (len(result.errors) == 0):
-        """clean up and set final projecte parameters"""
+        """clean up and set final project parameters"""
         Language.deleteunused()
         proj:Project = Project.select()[0]
         proj.proj_um,proj.proj_dm = Baseobject.defaultCreator,datetime.today()
-        Project.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
+        proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     else:
         for dbe in result.errors:

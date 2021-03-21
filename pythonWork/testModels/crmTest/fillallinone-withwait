@@ -1,5 +1,5 @@
 #!/bin/bash
 CURRDIR=$(dirname "$0")
 SOURCEPATH=$CURRDIR/../../pythonSource
-python $SOURCEPATH/IM_WEB/webfillallin1.py $CURRDIR de FORCE
+python $SOURCEPATH/IM_WEB/webfillallin1.py $CURRDIR de 
 read -p "press enter to close"
