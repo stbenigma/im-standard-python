@@ -41,10 +41,10 @@ def attr2js(pattr):
             , 'translated', 'encrypted'
             , 'tooltip', 'descr'
             , 'uc', 'dc', 'um', 'dm'
-            , 'sourceref', 'keys+'
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        , 'sourceref', 'keys+'
              #, 'businessrules'
-            , 'refindocuments+'
-            , 'refbyorgunits+', 'userdefprops'
+            , 'referencedby', 'userdefprops'
             , 'columnsmapped+', 'diagrams+'
         ]
     if pattr is None:
@@ -57,10 +57,9 @@ def attr2js(pattr):
                                     ,'',''
                                     ,'',''
                                     , multilangtext(), multilangtext()
-                                     ,'','','',''
+                                     ,'','','','',0,4,'DEV'
                                      , sourceref(), reflist()
                                      #, businessrules2js()
-                                      , reflist()
                                      , reflist(), userdefprops()
                                     , reflist(), reflist()
                                       ]
@@ -69,20 +68,21 @@ def attr2js(pattr):
         doma = Domain().getbyid(pattr.attr_doma_id)
 
         retval = fillmodel(pmodel=model
-                           ,pentries=[ pattr.attr_tech_name,multilangtext( pattr.attr_displ_name_L)
+                           ,pentries=[ pattr.attr_tech_name,multilangtext( pattr.attr_displ_name_l)
             ,  pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id)
             ,  jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),  None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
             ,  doma.doma_type,  None if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP) else domaingroupmembers(pdomaid=pattr.attr_doma_id)
             , Boolean.str2bool(pattr.attr_is_descriptive),Boolean.str2bool(pattr.attr_is_mandatory)
             , Boolean.str2bool(pattr.attr_is_historicised), Boolean.str2bool(pattr.attr_is_repeated)
             , Boolean.str2bool(pattr.attr_is_translated),  Boolean.str2bool(pattr.attr_is_encrypted)
-            , multilangtext(pattr.attr_tooltip_L)
-            , multilangtext(pattr.attr_descr_L)
+            , multilangtext(pattr.attr_tooltip_l)
+            , multilangtext(pattr.attr_descr_l)
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
+            , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getdevstatus()
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
             #, businessrules2js(pburuid=pattr.attr_id)
-                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]
-            , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)])
+                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]\
+                    +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)]
                 ,  userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))
             ,  colureflist({jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
                                                         ColAttrMap.getcolulist(pattrid=pattr.attr_id, pintfid=s.getid())]
@@ -104,8 +104,31 @@ def attributes2js(pemptymodel):
         attrs = {jsguid(Modelelemtype.ATTR, a.attr_id): attr2js(a) for a in Attribute.select()}
     return attrs
 
+def js2attr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    attr = Attribute(psrcname=psrcname,psrcid=psrcid)
+    attr.attr_id = jsguid2id(pkey)
+    attr.attr_enti_id = jsguid2id(pelem['entity'])
+    attr.attr_doma_id = jsguid2id(pelem['domain'])
+    attr.attr_tech_name = pelem['techname']
+    attr.attr_displ_name = pelem['name'][pmodellang]
+    attr.attr_displ_seq = pelem['seq']
+    attr.attr_tooltip = pelem['tooltip'][pmodellang]
+    attr.attr_descr = pelem['descr'][pmodellang]
+    attr.attr_is_descriptive = Boolean.bool2str(pelem['descriptive'])
+    attr.attr_is_mandatory = Boolean.bool2str(pelem['mandatory'])
+    attr.attr_is_historicised = Boolean.bool2str(pelem['historicised'])
+    attr.attr_is_repeated = Boolean.bool2str(pelem['repeated'])
+    attr.attr_is_translated = Boolean.bool2str(pelem['translated'])
+    attr.attr_is_encrypted = Boolean.bool2str(pelem['encrypted'])
+    attr.attr_uc = pelem['uc']
+    attr.attr_dc = pelem['dc']
+    attr.attr_um = pelem['um']
+    attr.attr_dm = pelem['dm']
+    return attr
 
-def attributes2sql(pmodel: JSModel):
+def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
+                   pwithextsrcref=pwithextsrcref)
     """      "ATTR11890": {
          "techname": "EMAIL",
          "name": {
@@ -139,44 +162,19 @@ def attributes2sql(pmodel: JSModel):
          "dm": null,
 
       },"""
-    for jid, jelem in pmodel.jsmodel['attributes'].items():
-        attr = Attribute()
-        attr.attr_id = jsguid2id(jid)
-        attr.attr_enti_id = jsguid2id(jelem['entity'])
-        attr.attr_doma_id = jsguid2id(jelem['domain'])
-        attr.attr_tech_name = jelem['techname']
-        attr.attr_displ_name = jelem['name'][pmodel.modellanguage()]
-        attr.attr_displ_seq = jelem['seq']
-        attr.attr_tooltip = jelem['tooltip'][pmodel.modellanguage()]
-        attr.attr_descr = jelem['descr'][pmodel.modellanguage()]
-        attr.attr_is_descriptive = Boolean.bool2str(jelem['descriptive'])
-        attr.attr_is_mandatory = Boolean.bool2str(jelem['mandatory'])
-        attr.attr_is_historicised = Boolean.bool2str(jelem['historicised'])
-        attr.attr_is_repeated = Boolean.bool2str(jelem['repeated'])
-        attr.attr_is_translated = Boolean.bool2str(jelem['translated'])
-        attr.attr_is_encrypted = Boolean.bool2str(jelem['encrypted'])
-        attr.attr_uc = jelem['uc']
-        attr.attr_dc = jelem['dc']
-        attr.attr_um = jelem['um']
-        attr.attr_dm = jelem['dm']
-        try:
-            attrid = attr.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-            continue
-        inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
-        inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
-        inslgtx(pmodel=pmodel, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])
-        inssourceref(pmodel=pmodel, pmodeid=attrid, psources=jelem["sourceref"])
+    for jid, jelem in podmjson.getelements(Modelelemtype.ATTR).items():
+        attrid = keytransl(jid)
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
+        Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
+        replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
+        replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])
+        insreferences(presult=presult,pmodeid=attrid,prefs=jelem['referencedby'])
+        inssourceref(presult=presult, pmodeid=attrid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=attrid, pudps=jelem["userdefprops"])
     # for
-
-    """transfer references and subtypes"""
-
-
-def attrrefs2sql(pmodel):
-    for jid, jelem in pmodel.jsmodel['attributes'].items():
-        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
-    return
 
 
 def keyelems2js(pkey):
@@ -203,21 +201,22 @@ def keys2js(pemptymodel):
     if pemptymodel:
         retval = {jsguid(Modelelemtype.KEYS, "0000") : fillmodel(pmodel=model, pentries=['', '', '', '', '', '', sourceref(), keyelems2js(None)])}
     else:
+        keys = Key.select()
 
         retval = {jsguid(Modelelemtype.KEYS, k.keys_id):
                       fillmodel(pmodel=model
                                ,pentries=[k.keys_name, jsguid(Modelelemtype.ENTI, k.keys_enti_id)
-                                        , 'uc', 'dc', 'um', 'dm'
+                                        ,k.keys_uc,k.keys_dc,k.keys_um,k.keys_dm
                                     , Externalref.getsrcinfo(pmodeid=k.keys_id)
                                     ,  keyelems2js(k)
                                       ]
                                 )
-                 for k in Key.select()}
+                 for k in keys}
 
     return retval
 
 
-def ins1kele(pmodel: JSModel, pkey: Key, pattrid, prelaid):
+def ins1kele(presult:Mergeresult, pkey: Key, pattrid, prelaid):
     kele = Keyelement()
     kele.kele_keys_id = pkey.keys_id
     kele.kele_attr_id = pattrid
@@ -230,14 +229,11 @@ def ins1kele(pmodel: JSModel, pkey: Key, pattrid, prelaid):
         kele.insert()
     except Exception as err:
         from mystring import nvl
-        print(pkey.keys_id, [p.keys_id for p in Key.select(pwhere="keys_id = {}".format(nvl(pkey.keys_id, -1)))])
-        print(prelaid, [p.rela_id for p in Relation.select(pwhere="rela_id = {}".format(nvl(prelaid, -1)))])
-        print(pattrid, [p.attr_id for p in Attribute.select(pwhere="attr_id = {}".format(nvl(pattrid, -1)))])
-        pmodel.markerror(pmsg=err, pelemstr=str(pkey.keys_id) + kele.tostring())
+        presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
     return
 
 
-def inskeyelements(pmodel: JSModel, pkey: Key, pkeles):
+def inskeyelements(presult:Mergeresult, pkey: Key, pkeles):
     """         "key-elements": {
             "attributes": [
                "ATTR11911",
@@ -249,32 +245,39 @@ def inskeyelements(pmodel: JSModel, pkey: Key, pkeles):
             ]
          }
     """
+    inscnt = 0
+    delcnt = Keyelement.delete(pwhere="kele_keys_id = {}".format(pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
-        ins1kele(pmodel=pmodel, pkey=pkey
-                 , pattrid=jsguid2id(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None
-                 , prelaid=jsguid2id(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
+        ins1kele(presult=presult, pkey=pkey
+                 , pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None
+                 , prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
+        inscnt += 1
+    #for
+    presult.insertcnt += max(0,(inscnt-delcnt))
+    presult.deletecnt += max(0,(delcnt-inscnt))
+    return
+
+def js2keys(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    key = Key(psrcname=psrcname,psrcid=psrcid)
+    key.keys_id = jsguid2id(pkey)
+    key.keys_name = pelem['name']
+    key.keys_enti_id = jsguid2id(pelem['entity'])
+    key.keys_uc = pelem['uc']
+    key.keys_dc = pelem['dc']
+    key.keys_um = pelem['um']
+    key.keys_dm = pelem['dm']
+    return key
 
 
-def keys2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.jsmodel['keys'].items():
-        key = Key()
-        key.keys_id = jsguid2id(jid)
-        key.keys_name = jelem['name']
-        key.keys_enti_id = jsguid2id(jelem['entity'])
-        key.keys_uc = jelem['uc']
-        key.keys_dc = jelem['dc']
-        key.keys_um = jelem['um']
-        key.keys_dm = jelem['dm']
-        try:
-            key.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jsguid2id(jid)] + list(jelem))
-            continue
-        inskeyelements(pmodel=pmodel, pkey=key, pkeles=jelem['key-elements'])
-        inssourceref(pmodel=pmodel, pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+def keys2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
+                   pwithextsrcref=pwithextsrcref)
+
+    for jid, jelem in podmjson.getelements(Modelelemtype.KEYS).items():
+        key = Key().getbyid(pid=keytransl(jid))
+        inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
+        if pwithextsrcref:
+            inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])
     # for
     return
 
-
-def keysrefs2sql(pmodel):
-    return

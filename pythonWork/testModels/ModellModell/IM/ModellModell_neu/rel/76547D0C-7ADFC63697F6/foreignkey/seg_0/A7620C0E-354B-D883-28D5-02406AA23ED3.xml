@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A7620C0E-354B-D883-28D5-02406AA23ED3" containerWithKeyObject="2418D66C-9E6E-6C85-5734-01A3E1D71F78" localFKIndex="8838F568-F8F6-9032-EEE7-39A791AC4273" name="RELR_MODE_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>RELR_MODE_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.MODELELEMENT</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>1A96C2EC-F488-31B6-569C-787BA9B6F5D6</referredTableID>
+<keyObject>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</keyObject>
+<referredKeyID>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MODE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

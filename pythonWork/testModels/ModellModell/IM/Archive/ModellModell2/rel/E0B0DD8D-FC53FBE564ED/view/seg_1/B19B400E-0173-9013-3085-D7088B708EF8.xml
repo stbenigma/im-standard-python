@@ -1,0 +1,163 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="B19B400E-0173-9013-3085-D7088B708EF8" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_RAGGED_HIER_LINK_ATTRS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_RAGGED_HIER_LINK_ATTRS
+AS 
+select  Ragged_Hier_Link_ID, Ragged_Hier_Link_Name, Ragged_Hier_Link_OVID, Attribute_ID, Attribute_Name, Attribute_OVID, Design_OVID from DMRS_RAGGED_HIER_LINK_ATTRS]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RAGGED_HIER_LINK_ID" id="1CB2C3D1-63AF-CD74-7147-EC84AB4CD4BA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>RAGGED_HIER_LINK_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RAGGED_HIER_LINK_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>RAGGED_HIER_LINK_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>3556D26C-90B1-2401-AAF8-54984F9F9E41</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RAGGED_HIER_LINK_NAME" id="CCE2329C-07F7-950B-5C5A-FB6FBD9DD802">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>RAGGED_HIER_LINK_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RAGGED_HIER_LINK_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>RAGGED_HIER_LINK_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>8EE4AEC8-315C-BF96-7FF3-71DD344C9C19</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RAGGED_HIER_LINK_OVID" id="8A4E659C-C3FB-352C-2F7E-6C514EB6982F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>RAGGED_HIER_LINK_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>RAGGED_HIER_LINK_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>RAGGED_HIER_LINK_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>9EFB00EF-3024-B9C0-8C75-DE7A22C7B53A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ATTRIBUTE_ID" id="96B4ABB0-5A77-F1F5-16B8-FFE7259C6910">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>ATTRIBUTE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ATTRIBUTE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>ATTRIBUTE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>2A16A7CB-2697-7CFD-241A-55E1B5A257CB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ATTRIBUTE_NAME" id="72D3A276-8E64-27AA-8819-DFFCA8D1F0E5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>ATTRIBUTE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ATTRIBUTE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>ATTRIBUTE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>56BF9507-79F7-08F3-CAC7-0CBE413715BB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ATTRIBUTE_OVID" id="BD516BF1-1C02-4479-95C9-EDF682D97D29">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>ATTRIBUTE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ATTRIBUTE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>ATTRIBUTE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>474B9231-BC9F-0EF6-2E1B-95E83563FDFE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="1C311771-88DC-BA60-2BB2-A962FDA8D240">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_RAGGED_HIER_LINK_ATTRS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:33 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>27FF7A72-EABA-6B67-8771-32902C80BAB0</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3556D26C-90B1-2401-AAF8-54984F9F9E41">
+<columnName>RAGGED_HIER_LINK_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8EE4AEC8-315C-BF96-7FF3-71DD344C9C19">
+<columnName>RAGGED_HIER_LINK_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9EFB00EF-3024-B9C0-8C75-DE7A22C7B53A">
+<columnName>RAGGED_HIER_LINK_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2A16A7CB-2697-7CFD-241A-55E1B5A257CB">
+<columnName>ATTRIBUTE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="56BF9507-79F7-08F3-CAC7-0CBE413715BB">
+<columnName>ATTRIBUTE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="474B9231-BC9F-0EF6-2E1B-95E83563FDFE">
+<columnName>ATTRIBUTE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="27FF7A72-EABA-6B67-8771-32902C80BAB0">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D34D1CDA-7643-547B-AEAA-D45FF497D337">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_RAGGED_HIER_LINK_ATTRS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BCE5486B-8DBB-AF30-669A-73C07ECB2D7C" name="Meta_Information">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)]]></comment>
+<generatorID>3C58AFFA-DF20-230B-8C48-74EC14E8F01C</generatorID>
+<notes><![CDATA[[EN_ENTI_COMMENT[
+*DE* Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)
+]EN_ENTI_COMMENT]
+[DE_ENTI_COMMENT[
+Referenz (ID) des Elementes in einer externen Quelle (Modellierungstool, DB, etc.)
+]DE_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>0F21B703-5AD4-9DCA-458B-A19E89BB5BD6</typeID>
+<abbreviation>EXTR</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EXTR_ID" id="CF6933FF-BEAB-469D-6F7A-50898760FCA0">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A7CF080C-510E-73FB-CFDD-C06DE531D3E7" name="EXTR_PKv1">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="CF6933FF-BEAB-469D-6F7A-50898760FCA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D2261201-5E33-0DBC-3D69-8F983658C9E8" name="Meta_Information__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>AAA455D7-914B-6DE1-70F3-AB883B11B761</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

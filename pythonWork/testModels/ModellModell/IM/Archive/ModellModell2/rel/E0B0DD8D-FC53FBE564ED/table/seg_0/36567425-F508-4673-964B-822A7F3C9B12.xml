@@ -1,0 +1,288 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="36567425-F508-4673-964B-822A7F3C9B12" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_HIERARCHIES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_HIERARCHIES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:43 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="HIERARCHY_ID" id="2018F161-5081-8455-452E-1E5D641F8744">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>HIERARCHY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HIERARCHY_NAME" id="31AEC61B-E2DD-C45D-8C29-94B8C09A411B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>HIERARCHY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HIERARCHY_OVID" id="68951ED1-19AC-FB37-74CF-C08D477AA94C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>HIERARCHY_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODEL_ID" id="D7F72ED8-7D38-72AC-603D-CA79C7B2DCD4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODEL_NAME" id="352624EA-9796-6DAF-B888-B7E814554B35">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODEL_OVID" id="AA5A9ECD-FB20-33FD-4DA1-ED4A2EEE8336">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSION_ID" id="E49DFECD-7645-1B89-590E-EFBF276DBFB7">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>DIMENSION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSION_NAME" id="48E451AB-EA78-8CFB-455D-92F538BD219A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>DIMENSION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DIMENSION_OVID" id="7FA43CEC-E6D6-C761-0784-6473594B527D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>DIMENSION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORACLE_LONG_NAME" id="D892E90A-349C-FA84-8056-35A186FD17D9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>ORACLE_LONG_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORACLE_PLURAL_NAME" id="107B5DCE-0528-5F95-AE10-6E6F522A0008">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>ORACLE_PLURAL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORACLE_SHORT_NAME" id="D7907BBD-2718-ABF6-92DA-1D8CB904D351">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>ORACLE_SHORT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IS_DEFAULT_HIERARCHY" id="B3AE233E-18C9-86CF-F534-89EF17C679F5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>IS_DEFAULT_HIERARCHY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IS_RAGGED_HIERARCHY" id="36F8F11F-9BD8-645F-E03F-67A518E0EC43">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>IS_RAGGED_HIERARCHY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IS_VALUE_BASED_HIERARCHY" id="8CB25EE8-B0CE-381D-9243-219A7A02F089">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>IS_VALUE_BASED_HIERARCHY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRIPTION" id="BA761549-AD41-BEA4-93D3-6D738F3B073D">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>DESCRIPTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="15831A9B-7125-1DE7-63BB-08DAC3D87467">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_HIERARCHIES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:49 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5E5368BB-17D4-0FCE-A713-E879D69C2161" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="HIERARCHIES_FK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>HIERARCHIES_FK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA5A9ECD-FB20-33FD-4DA1-ED4A2EEE8336"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2DC96E34-A43A-DB94-0548-FA8A6FB56ABA" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="HIERARCHIES_PK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>HIERARCHIES_PK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:54 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="68951ED1-19AC-FB37-74CF-C08D477AA94C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

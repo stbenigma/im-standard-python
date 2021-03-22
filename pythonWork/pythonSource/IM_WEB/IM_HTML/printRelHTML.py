@@ -4,7 +4,7 @@ import html
 sys.path.append(os.getcwd())
 from IM_HTML import printHTML
 from IM_DB import parameters
-from IM_OBJECTS import Domain,Languagetext,Modelelemtype
+from IM_OBJECTS import Domain,Languagetext,Modelelemtype,Modelelement
 
 
 def nvl(s, default=''):
@@ -18,7 +18,7 @@ def printmapping(pelem):
     werte = {0: [[anker, name] for anker,name in entities.items()]}
 
     for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
-        if intfanker == pelem['interface-id+']: continue
+        if intfanker == pelem['interface-id']: continue
         tablist=[]
         for enti in pelem['entitiesmapped']:
             try:
@@ -35,7 +35,7 @@ def printmapping(pelem):
 
 def printcolmapping(pcol):
     lang=parameters.dbDefaultLang()
-    attrs = {a:getelement(a) for a in pcol['attributes-mapped']}
+    attrs = {a:getelement(a) for a in pcol['attributesmapped']}
     attrlist = []
     for anker,attr in attrs.items():
         if attr['entity'] is None:
@@ -50,7 +50,7 @@ def printcolmapping(pcol):
     for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
         if intfanker == pcol['interface-id+']: continue
         collist=[]
-        for attr in pcol['attributes-mapped']:
+        for attr in pcol['attributesmapped']:
             try:
                 collist += getelement(attr)['columnsmapped+'][intfanker]
             except:
@@ -128,7 +128,9 @@ def printcontenttable(pintf):
                      ,key=lambda val:val[1]['name'].upper()
                      )
     printHTML.printcontentstart('tables')
-    infoheaders = (Languagetext.transl('auf Diagram(en)'), Languagetext.transl('geändert'))
+    infoheaders = (
+        'Dev. Status'
+        ,Languagetext.transl('auf Diagram(en)'), Languagetext.transl('geändert'))
     for t in tablist:
         anker = t[0]
         elem = t[1]
@@ -138,7 +140,8 @@ def printcontenttable(pintf):
                                , pname=elem['name']
                                , pdescr=printHTML.lf2htmlbr(nvl(elem['descr']))
                                , plbc=lbc)
-        infovalues = ('', nvl(elem['um']) + ', ' + nvl(elem['dm']))
+        infovalues = (Modelelement.longdevstatus(elem['devstatus'])
+                        ,'', nvl(elem['um']) + ', ' + nvl(elem['dm']))
         printHTML.printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         printHTML.printelemreflists(pelem=elem, pelemtype=Modelelemtype.TABL)
@@ -151,7 +154,9 @@ def printcontenttable(pintf):
 
 def printcontentcolumn(pintf):
     lang = parameters.dbDefaultLang()
-    infoheaders = ('Domain','Datatype','Base Type','changed')
+    infoheaders = ('Domain','Datatype','Base Type'
+                   , 'Dev. Status'
+                   ,'changed')
     collist = sorted([[anker,elem] for anker,elem in printHTML.model.jsmodel['columns'].items() if elem['interface-id+'] == pintf['interface-id+'] ]
                     ,key=lambda val:val[1]['name'].upper()
                      )
@@ -172,7 +177,7 @@ def printcontentcolumn(pintf):
                                      ,htmlfile='' if domain['interfaceid'] is not None else printHTML.htmlfilelist[0],pself=True
                                             )
                         ,domain['displdatatype+'][lang],domain['basedatatype+']
-                        ,nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
+                        , Modelelement.longdevstatus(colelem['devstatus']),nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
         printHTML.printcontentinfo(ptitle=Languagetext.transl('Information'), pheaders=infoheaders, pvalues=infovalues)
 
         printHTML.printelemreflists(pelem=colelem, pelemtype=Modelelemtype.COLU)
@@ -187,12 +192,12 @@ def printcontentdomain(pintf):
 def printlistofcontent(pintf):
     printHTML.printlistofcontenthead()
     idxlist = sorted([{'anker':key,'name': value['name']}
-                     for key,value in printHTML.model.jsmodel['tables'].items() if key in pintf['tables+']]
+                     for key,value in printHTML.model.getelement('tables').items() if key in pintf['tables+']]
                      ,key=lambda val:val['name'].upper())
     printHTML.printlistofcontentelement(pname='Tables'
                                          , plist=idxlist)
     idxlist = sorted([{'anker':key,'name': "{} ({})".format(value['name'],value['table-name+'])}
-                     for key,value in printHTML.model.jsmodel['columns'].items() if value['interface-id+'] == pintf['interface-id+']]
+                     for key,value in printHTML.model.getelement('columns').items() if value['interface-id+'] == pintf['interface-id+']]
                      ,key=lambda val:val['name'].upper())
     printHTML.printlistofcontentelement(pname='Columns'
                                          , plist=idxlist

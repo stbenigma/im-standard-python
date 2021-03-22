@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="DMRS_TRANSFORMATIONS" directorySegmentName="seg_1" id="7E8F5748-B8CF-65B2-528D-125C34B9A7A2">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:45 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>B0688D42-6B05-0798-F51E-BCDD05283F6C</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DESIGN_OVID" id="14E3419C-4FC3-839B-9F5C-F05F46E8B216">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TRANSFORMATION_TASK_NAME" id="4F3EF8BB-DD2D-6209-BF53-AF9B5E9AD178">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TRANSFORMATION_ID" id="82EF0F8F-894C-347E-1BFA-A617AD919269">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PRIMARY" id="8CD5425C-0477-55F9-B229-46BC3FA66E58">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="JOIN_CONDITION" id="B87EBB20-8086-9B70-77FF-215F31780A68">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FILTER_CONDITION" id="C536D71F-4FA3-DF67-16FA-510D2980A752">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TRANSFORMATION_NAME" id="C592C4A4-BA1A-F3C3-7A43-296CEE72846C">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TRANSFORMATION_OVID" id="CFC4A499-21FE-EC7B-146A-BB5731392513">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TRANSFORMATION_TASK_OVID" id="E0B8531A-A921-F693-B0AF-408B0FA8F0A7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TRANSFORMATION_TASK_ID" id="E767BCA2-5300-1AC8-FD44-BBEA948817A0">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:52 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TRANSFORMS_PK_IDX" id="D3F19B76-4EBD-3281-8E04-DB30FF4C9139">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<segment>16313A9F-ECE7-B6D5-DAE1-8F6D7A0DF97B</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TRANSFORMS_FK_TASK_IDX" id="F130787B-45B4-433B-9672-57CA9D4EA7F4">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:56 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<schemaObject>19221298-76C4-E323-B35B-7857802DF7E7</schemaObject>
+<segment>16313A9F-ECE7-B6D5-DAE1-8F6D7A0DF97B</segment>
+<tableSpace>F75A32E8-BEE4-D5D6-B0D7-FE9E9A500018</tableSpace>
+</IndexProxy>
+</indexProxies>
+</TableProxyOraclev11g>

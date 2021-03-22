@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C2F2FD7F-44BE-5D55-0B81-E15AE679B134" name="KEYS-RELA">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="62131AA6-5DB1-4F6C-3C22-69FFDB4A9A0D" name="KEYS-RELA_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="181FD6DB-4864-8D48-D8D1-BB922424F6A7" name="KEYS-RELA_Funktionale_Beziehung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>2FA14090-AA4D-AD22-5685-813B7C06904E</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="FAFD463C-F848-2F4D-1F17-368F2F875C4C" name="KEYS-RELA_Schlüssel_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>2FA14090-AA4D-AD22-5685-813B7C06904E</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

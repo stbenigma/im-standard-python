@@ -1,0 +1,190 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="24B6CD44-87F9-D97C-B043-3D70DDE22CF2" schemaObject="9FE9A69D-CD33-9A61-E432-C27F2DF62432" name="SUPERENTI">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>SUPERENTI</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:08:29 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>966CC16B-3ACB-ED58-61BC-D3BA411B5485</importedID>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE  VIEW SUPERENTI AS
+        with rel as (select rela_type
+               , case
+                     when RELA_MANDATORY_TO_FROM = 'TRUE' then RELA_ENTI_ID_FROM
+                     else RELA_ENTI_ID_TO end as rela_superenti_id
+               , case
+                     when RELA_MANDATORY_FROM_TO = 'TRUE' then RELA_ENTI_ID_FROM
+                     else RELA_ENTI_ID_TO end as rela_subenti_id
+                 from relations
+                where rela_type = 'ISAR'
+                )
+    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
+        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
+          from ENTITIES superentity
+            join ARCS on ARCS_ENTI_ID = superentity.enti_id
+            join relations
+                  on  ((rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
+                   or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID))
+                     and RELA_TYPE =  'ISAS'
+           left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
+                or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
+    union all
+        select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
+        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
+          from ENTITIES superentity
+          join rel on rela_superenti_id = superentity.ENTI_ID
+        join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id]]></userDefinedSQL>
+<validSQL>false</validSQL>
+<parsed>true</parsed>
+<syntaxProvider>MSSQL</syntaxProvider>
+<usedContainers>
+<container alias="superentity" containerID="05B89BF6-C97E-8CC1-D005-80D985DA4785"/>
+<container containerID="BB44EF2A-7E97-0F6D-275C-929F10B2249C"/>
+</usedContainers>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RELA_TYPE" id="1CD413AC-FDD4-7DBA-AAD3-FF4A0DF4C447">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:22:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR (4)</dataType>
+<reference>false</reference>
+<referencedColumn>4F27DE6B-3C9E-36C3-52D3-524729FAC05F</referencedColumn>
+<table>BB44EF2A-7E97-0F6D-275C-929F10B2249C</table>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="superenti_id" id="73789196-FA40-F071-5642-4776CDFD48A7">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:22:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>superenti_id</alias>
+<dataType>NUMERIC (10)</dataType>
+<reference>false</reference>
+<referencedColumn>365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3</referencedColumn>
+<table>05B89BF6-C97E-8CC1-D005-80D985DA4785</table>
+<tableAlias>superentity</tableAlias>
+<associations>
+<colAssociation fkAssociation="129DCABC-57CA-6BEC-0B43-76B6BEE612D6" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="super_enti_name" id="0FFA9C72-D10D-6E4E-9EBC-660FBA69B16F">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:22:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>super_enti_name</alias>
+<dataType>VARCHAR (60)</dataType>
+<reference>false</reference>
+<referencedColumn>A1BE7547-9EC3-4E1B-7776-810460C3E817</referencedColumn>
+<table>05B89BF6-C97E-8CC1-D005-80D985DA4785</table>
+<tableAlias>superentity</tableAlias>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="subenti_id" id="D7DE65F9-E04F-8DFA-A952-BEC7B07B0AE9">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:22:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>subenti_id</alias>
+<dataType>NUMERIC (10)</dataType>
+<reference>false</reference>
+<referencedColumn>365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3</referencedColumn>
+<table>05B89BF6-C97E-8CC1-D005-80D985DA4785</table>
+<tableAlias>subentity</tableAlias>
+<associations>
+<colAssociation fkAssociation="D6F92673-F799-194D-6E48-EF539325864D" referredColumn="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3"/>
+</associations>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="sub_enti_name" id="7168A4EA-43E0-16B2-B9EC-50512357E4A6">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:22:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>sub_enti_name</alias>
+<dataType>VARCHAR (60)</dataType>
+<reference>false</reference>
+<referencedColumn>A1BE7547-9EC3-4E1B-7776-810460C3E817</referencedColumn>
+<table>05B89BF6-C97E-8CC1-D005-80D985DA4785</table>
+<tableAlias>subentity</tableAlias>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BB44EF2A-7E97-0F6D-275C-929F10B2249C">
+<container>true</container>
+<schema>modelmodel_dbo</schema>
+<tableName>RELATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="05B89BF6-C97E-8CC1-D005-80D985DA4785">
+<container>true</container>
+<tableName>ENTITIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="EA2CAFF9-C7D7-CA8C-28A9-28698D0F930B">
+<container>true</container>
+<tableName>ARCS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4F27DE6B-3C9E-36C3-52D3-524729FAC05F">
+<columnName>RELA_TYPE</columnName>
+<schema>modelmodel_dbo</schema>
+<tableName>RELATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="365AA3F1-7B02-CFAB-BB51-AE721CDEA5F3">
+<columnName>ENTI_ID</columnName>
+<tableName>ENTITIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A1BE7547-9EC3-4E1B-7776-810460C3E817">
+<columnName>ENTI_NAME</columnName>
+<tableName>ENTITIES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1C77062D-CAE4-CC3B-B4CB-7705E06199CF">
+<columnName>ARCS_ENTI_ID</columnName>
+<tableName>ARCS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="14A1914A-15FC-6E96-DC6C-59A7412F79F4">
+<columnName>RELA_ARCS_ID_FROM</columnName>
+<schema>modelmodel_dbo</schema>
+<tableName>RELATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8419DB38-AE17-BE94-73F6-B492485B7E69">
+<columnName>ARCS_ID</columnName>
+<tableName>ARCS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C36B2B43-E5EC-5241-7D92-E67814E3C9D0">
+<columnName>RELA_ENTI_ID_FROM</columnName>
+<schema>modelmodel_dbo</schema>
+<tableName>RELATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="536B868F-CA14-A019-64E2-ADA5FCCFDD29">
+<columnName>RELA_ARCS_ID_TO</columnName>
+<schema>modelmodel_dbo</schema>
+<tableName>RELATIONS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8C85E598-2472-2099-30B3-168F785EF048">
+<columnName>RELA_ENTI_ID_TO</columnName>
+<schema>modelmodel_dbo</schema>
+<tableName>RELATIONS</tableName>
+</UsedObject>
+</usedObjects>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.ViewIndex">
+<ind_PK_UK id="D0D6A554-4877-9067-3718-65C40EF7D8EC" name="SUPERENTI_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:22:57 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<indexColumnUsage>
+<colUsage columnID="73789196-FA40-F071-5642-4776CDFD48A7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="443F343B-1B93-6079-1B10-8BFA90FC06D0" name="SUBENTI_ENTI_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:23:24 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<indexColumnUsage>
+<colUsage columnID="D7DE65F9-E04F-8DFA-A952-BEC7B07B0AE9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</TableView>

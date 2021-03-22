@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="t_attributetag" directorySegmentName="seg_0" id="8BE6E1C3-0BAE-5368-7AEC-08AE6E65565B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<schemaObject>BA9AB875-9DE2-0270-F892-66DA7F318378</schemaObject>
+<database>759CFA14-360B-D41C-B437-EA3166EBFDA9</database>
+<filegroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</filegroup>
+<schema>1</schema>
+<textImageFG>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</textImageFG>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="ea_guid" id="3956133D-A48C-5C5D-850A-9AE4460BF496">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="PropertyID" id="484EF89B-3177-09C4-430E-E66354274AF1">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<asIdentity>true</asIdentity>
+<identityForReplication>YES</identityForReplication>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="NOTES" id="60B39B1B-5850-6123-F798-F997502A68D3">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Property" id="9F1BA200-DF28-B967-7BEE-4A1469073A76">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="ElementID" id="C1BB4169-F4F2-4AB4-CCFB-B7CB8B8E4E35">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="VALUE" id="FE04845D-358C-D000-D253-8AA2AE107E89">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<collation>SQL_Latin1_General_CP1_CI_AS</collation>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="ix_attributetag_elementid" id="58EF10F1-1935-38A7-BC50-CC2BC034F53A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>OFF</recomputeStatistics>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="ix_attributetag_property" id="A297618E-A580-633C-A787-D7D2E0BE1BD0">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>OFF</recomputeStatistics>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="ix_attributetag_value" id="AE4682A6-8B83-4E19-ABE9-96411162BD4C">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>OFF</recomputeStatistics>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="ix_attributetag_elementidprop" id="D018A684-2300-6843-CB99-0AE3490E8E7F">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>OFF</recomputeStatistics>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="ix_attributetag_eaguid" id="F295ACB9-0A31-8346-1F11-6CA282FF54C7">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:53:59 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>OFF</recomputeStatistics>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="pk_attributetag" id="1AA48A41-1CD8-FDEE-8859-2B7C6C1B654F">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:00 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+<fileGroup>E334DD31-BD37-EB4F-E1F6-F4F77A1CCDEF</fileGroup>
+<recomputeStatistics>NO</recomputeStatistics>
+</PrimaryKey>
+</primaryKeys>
+</TableProxySqlServerv2k5>

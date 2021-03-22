@@ -62,11 +62,11 @@ class Arc(Baseobject):
     # liesarcselem
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Arc._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Arc._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="arcs_id"):
         arcs = Baseobject.select(pclass=Arc
                                  , pwhere=pwhere, porderby=porderby)
         return arcs
@@ -148,11 +148,11 @@ class Relation(MultilangBaseobject):
         return Relation.select(pwhere="""rela_enti_id_from = {} or rela_enti_id_to = {}""".format(pentiid,pentiid))
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Relation._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Relation._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="rela_name"):
         rela = Baseobject.select(pclass=Relation
                                  , pwhere=pwhere, porderby=porderby)
         return rela

@@ -1,16 +1,13 @@
 from datetime import datetime
-
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
-from IM_DB import parameters
+from IM_DB import parameters,dbConnect
 
 
 def lastupd():
     return datetime.today().__str__()
 
-
 import copy
-
 
 def make_hash(pmodel):
     """
@@ -30,7 +27,7 @@ def make_hash(pmodel):
     return hash(tuple(frozenset(sorted(new_model.items()))))
 
 
-def sql2json(pmodelname, pdbname, pemptymodel=False):
+def sql2json(pdbname, pemptymodel=False):
     jsmodel = {}
     jsmodel['model'] = proj2js(pemptymodel)
     jsmodel['languages'] = langs2js(pemptymodel)
@@ -46,18 +43,16 @@ def sql2json(pmodelname, pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.TABL)] = tables2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.COLU)] = columns2js(pemptymodel)
-    jsmodel[JSModel.elemtype2label(Modelelemtype.DIAG)] = diagrams2js(pemptymodel=pemptymodel, pmodelname=pmodelname)
+    jsmodel[JSModel.elemtype2label(Modelelemtype.DIAG)] = diagrams2js(pemptymodel=pemptymodel, pmodelname=jsmodel['model']['name'])
     jsmodel[JSModel.elemtype2label(Modelelemtype.UDPR)] = udps2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.PHYU)] = physicalunits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.DATY)] = datatypes2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.STFO)] = storageformats2js(pemptymodel)
 
-    if not pemptymodel and jsmodel['model']['dm'] is None: jsmodel['model']['dm'] = lastupd()
-
     modelhash = make_hash(jsmodel)
     jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:"
         , "created": str(datetime.today())
-        ,"Modelversion" : parameters.modelmodelversion()
+        ,"Modelversion" : "" if pemptymodel else dbConnect.getversion()
         , "hashvalue": modelhash
         ,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
@@ -71,26 +66,41 @@ def proj2js(pemptymodel: bool):
     if pemptymodel:
         entries = ['' for i in range(len(model))]
     else:
-        proj = Project.select()[0]
-        entries = [proj.proj_name, Project.LOGICALTYPE
-                , proj.proj_curr_lang.lower()
+        projs = Project.select()
+        if len(projs)== 0:
+            """empty db no project found"""
+            entries = [None for i in range(len(model))]
+        else:
+            proj = projs[0]
+            entries = [proj.proj_name, Project.LOGICALTYPE
+                , '' if proj.proj_curr_lang is None else proj.proj_curr_lang.lower()
                 , proj.proj_uc, proj.proj_dc, proj.proj_um, proj.proj_dm]
+        #fi
+    #fi
     return fillmodel(pmodel=model, pentries=entries)
 
 # proj2js
 
+def js2proj(pkey, pelem,pmodellang=None):
+    proj = Project()
+    proj.proj_name = pelem["name"]
+    proj.proj_type = pelem["type"]
+    proj.proj_curr_lang = pelem["language"]
+    proj.proj_uc = pelem["uc"]
+    proj.proj_dc = pelem["dc"]
+    proj.proj_um = pelem["um"]
+    proj.proj_dm = pelem["dm"]
+    return proj
 
-def proj2sql(pmodel):
-    elem = pmodel.jsmodel['model']
+
+def proj2sql(presult, podmjson:JSModel, pwithextsrcref):
+    elem = podmjson.jsmodel['model']
     try:
-        proj = Project()
-        proj.proj_name = elem["name"]
-        proj.proj_languages = elem["type"]
-        proj.proj_curr_lang = elem["language"]
-        proj.proj_uc = elem["uc"]
-        proj.proj_dc = elem["dc"]
-        proj.proj_um = elem["um"]
-        proj.proj_dm = elem["dm"]
-        proj.insert()
+        """insert if nonexistent, otherwise don't touch"""
+        projs = Project.select()
+        if len(projs)== 0:
+            proj = js2proj(pkey=None,pelem=elem)
+            proj.insert()
     except Exception as err:
-        error(pmsg=err, pelem=elem)
+        presult.markdberror(perr=err,pelem=elem)
+    return

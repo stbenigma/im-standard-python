@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F39CCDFF-AB2D-A8AD-9559-77878CF924EF" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_objectfiles">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_objectfiles</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Object_ID" id="33B7AC9B-D11D-486D-D281-9D66030A82DF">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_objectfiles</sourceObjSchema>
+<sourceObjName>Object_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<defaultValue>(0)</defaultValue>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FileName" id="2F19B172-2AE6-A12B-FB34-AA5ACC2581A4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_objectfiles</sourceObjSchema>
+<sourceObjName>FileName</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Type" id="78A472DF-0A7D-350D-3DDF-EB2FFB8644BB">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_objectfiles</sourceObjSchema>
+<sourceObjName>Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>50</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,50,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Note" id="CA576523-F3A8-7E31-3995-62A985719283">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_objectfiles</sourceObjSchema>
+<sourceObjName>Note</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>-1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>max</dataTypeSize>
+<ownDataTypeParameters>max,-1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FileSize" id="AE855326-0C2F-E795-2028-0513F1A8C696">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_objectfiles</sourceObjSchema>
+<sourceObjName>FileSize</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FileDate" id="F47D749B-697D-DBF5-A643-74865826B5DB">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_objectfiles</sourceObjSchema>
+<sourceObjName>FileDate</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CDF872E9-8850-804B-FA9A-4EA5E23AF588" name="pk_objectfiles">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_objectfiles</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33B7AC9B-D11D-486D-D281-9D66030A82DF"/>
+<colUsage columnID="2F19B172-2AE6-A12B-FB34-AA5ACC2581A4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

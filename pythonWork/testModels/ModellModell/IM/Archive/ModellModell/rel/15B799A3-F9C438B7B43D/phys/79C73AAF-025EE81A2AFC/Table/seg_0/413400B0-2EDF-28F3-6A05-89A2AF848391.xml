@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="PHYS_EINHEIT" directorySegmentName="seg_0" id="413400B0-2EDF-28F3-6A05-89A2AF848391">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="PHEH_UM" id="107F045F-7996-F6B3-10A2-44901ADC48B6">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_DM" id="38FE4CE9-C6B8-AE63-8CBC-FDDA05F1232C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_DC" id="416EB493-1D58-401F-3047-2DFF0EDC32EC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_SI_EINHEIT" id="49B52436-EFAE-AD03-EB19-C88295618601">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_NAME" id="63C1E3EB-6DE5-2E7F-251B-FD5E02D33CC7">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_BESCHR" id="AA47CBD4-1503-F347-4F5D-68491B21BA40">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_UC" id="E2B2B98B-F507-62B1-4B6E-6849640DC42E">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHEH_ID" id="F4EDCA59-F7D9-EC99-204A-396FA09121FF">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PHEH_PK" id="90264223-020F-063D-0126-CD55A5912CEA">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="PHEH_UK_SI" id="17246FFE-6B57-F278-8A98-2403E834202C">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="PHEH_UK_NAME" id="72A7E1FA-8771-CF03-40A3-BE7941650414">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 07:58:15 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6DE6554F-9850-AE48-1024-5A90A189987B" name="GETR">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Eine Geschäftstransaktion beschreibt eine Folge von Einzeltätigkeiten, die schrittweise ausgeführt werden, um ein geschäftliches oder betriebliches Ziel zu erreichen. 
+Eine Geschäftstransaktion überführt das System "Geschäft" von einem stabilen, definierten Zustand in einen neuen.
+Sie besteht aus Einzelschritten, die alle oder gar nicht ausgeführt werden. 
+Sie kann Medienbrüche enthalten (z.B. wenn der Output reale Produkte und ihre digitalen Zwillinge sind).
+
+Wird auch als Geschäftsprozess (Business Process) bezeichnet. 
+
+Wikipedia:
+Ein Geschäftsprozess (Abkürzung: GP) ist eine Menge logisch verknüpfter Einzeltätigkeiten (Aufgaben, Arbeitsabläufe), die ausgeführt werden, um ein bestimmtes 
+geschäftliches oder betriebliches Ziel zu erreichen. Er wird durch ein definiertes Ereignis ausgelöst und transformiert ‚Input‘ durch den Einsatz materieller und immaterieller Güter und unter Beachtung bestimmter Regeln und unternehmensinterner und -externer Faktoren zu einem ‚Output‘.
+
+Das Prozesssystem strebt einen Wertschöpfungsprozess an, der bezüglich Ressourcenverzehr, Durchlaufzeiten und Qualität permanent optimiert werden sollte. Idealerweise stellt demnach der erzielte Output für das jeweilige Unternehmen einen höheren Wert als der ursprünglich eingesetzte Input dar.
+
+Beispiele:
+- Erfassen und prüfen Bestellung
+- Mahnung versenden
+- Buchhaltungsjahr abschliessen
+- Produkt ausliefern
+- Steuerschuld verfügen
+- Angestellem/r kündigen
+
+]]></comment>
+<generatorID>F86E14F1-5AB3-D203-38C5-60F7A9FE6085</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>22C80650-70BB-112A-562F-823C3A147D9C</typeID>
+<abbreviation>GETRANS</abbreviation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Modellelement_Modellelement_ID" id="D69D4359-CDB7-EF6D-C333-9D5BC6DC565F">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="258D37E5-CB0D-955E-22AF-3E6339F45EAC" referredColumn="53372A54-640A-07EE-CBDE-B0E5EB59DBD2"/>
+</associations>
+</Column>
+<Column name="GETRANS_ID" id="259F6C41-C347-350A-A673-DD6CA30AEB96">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="096754E3-004F-3152-15B0-BEDEFF9CEC5B" name="GETRANS_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D69D4359-CDB7-EF6D-C333-9D5BC6DC565F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FBCAC0DC-7DCC-2E2B-B809-3C53F86EB70A" name="GETRANS_GETRANS_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="259F6C41-C347-350A-A673-DD6CA30AEB96"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98D4B8DC-B7F6-1D9D-ADDC-DA30F6F65F42" name="GETRANS_Modellelement_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>0A37BF34-FC17-E8D7-8EEA-464D19CF2BC6</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D69D4359-CDB7-EF6D-C333-9D5BC6DC565F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

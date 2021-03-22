@@ -1,0 +1,243 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="961BBD9E-8A88-3D1E-E8D5-C8A7DC7C4959" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_CHANGE_REQUESTS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_CHANGE_REQUESTS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_CHANGE_REQUESTS
+AS 
+select  Design_ID, Design_OVID, Design_Name, Change_Request_ID, Change_Request_OVID, Change_Request_Name, Request_Status, Request_Date_String, Completion_Date_String, Is_Completed, Reason from DMRS_CHANGE_REQUESTS]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_ID" id="F3650777-8428-259D-13A5-D1FD801B7552">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>DESIGN_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>DESIGN_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>31DCF954-AA7D-BECB-CFFD-D529503B6F7E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="95BD09DA-A008-3815-E056-AE2C470DBE85">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>983A12DE-6234-6F06-52B1-919FAE53750C</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_NAME" id="F22AF6EF-AC6C-EE2A-68E4-5A3AF4FC3A63">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>DESIGN_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>DESIGN_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>F81B3C6A-A2D3-B91F-8C1A-44A5ED51A89E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHANGE_REQUEST_ID" id="AFCB3676-0A0C-661E-5523-0375657E74C0">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>CHANGE_REQUEST_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHANGE_REQUEST_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>CHANGE_REQUEST_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>EB37610F-5181-FE4C-B210-C0A954828A2E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHANGE_REQUEST_OVID" id="1D870649-65B9-9998-F725-DFF7BC4D7692">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>CHANGE_REQUEST_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHANGE_REQUEST_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>CHANGE_REQUEST_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1A12881E-CA3D-4855-7740-05EEB17BCB96</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHANGE_REQUEST_NAME" id="83FBD48B-1AAB-9D08-8FD2-7AB864F431EA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>CHANGE_REQUEST_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHANGE_REQUEST_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>CHANGE_REQUEST_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>C9598086-168E-8DC7-B15A-2C1D545657F7</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="REQUEST_STATUS" id="6F5840A9-A8A4-9E54-77A4-CA68E2C97AFC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>REQUEST_STATUS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>REQUEST_STATUS</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>REQUEST_STATUS</headerAlias>
+<reference>false</reference>
+<referencedColumn>7BE27976-B297-D977-B6E7-39E102203576</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="REQUEST_DATE_STRING" id="F851F192-FC86-997A-C4B2-07C1B538F364">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>REQUEST_DATE_STRING</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>REQUEST_DATE_STRING</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>REQUEST_DATE_STRING</headerAlias>
+<reference>false</reference>
+<referencedColumn>637BAA70-4A87-CE46-4EF6-03D579AD670C</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="COMPLETION_DATE_STRING" id="56BE7BFC-6AA0-FC46-7EEB-40976BB45168">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>COMPLETION_DATE_STRING</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>COMPLETION_DATE_STRING</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>COMPLETION_DATE_STRING</headerAlias>
+<reference>false</reference>
+<referencedColumn>715E5FFA-AAD2-CD4E-A53C-5755864ED856</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_COMPLETED" id="DD29A604-5A91-1CD5-3DDF-9D561864943E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>IS_COMPLETED</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>IS_COMPLETED</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>IS_COMPLETED</headerAlias>
+<reference>false</reference>
+<referencedColumn>CFB07C50-55FA-9C72-70C7-109A277CED53</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="REASON" id="CE225449-80BC-48A2-0D4F-421D45433C10">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_CHANGE_REQUESTS</sourceObjSchema>
+<sourceObjName>REASON</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:25 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>REASON</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>REASON</headerAlias>
+<reference>false</reference>
+<referencedColumn>C33D2AF9-FA71-F394-66DF-2817B4C44AC2</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="31DCF954-AA7D-BECB-CFFD-D529503B6F7E">
+<columnName>DESIGN_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="983A12DE-6234-6F06-52B1-919FAE53750C">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F81B3C6A-A2D3-B91F-8C1A-44A5ED51A89E">
+<columnName>DESIGN_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="EB37610F-5181-FE4C-B210-C0A954828A2E">
+<columnName>CHANGE_REQUEST_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1A12881E-CA3D-4855-7740-05EEB17BCB96">
+<columnName>CHANGE_REQUEST_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C9598086-168E-8DC7-B15A-2C1D545657F7">
+<columnName>CHANGE_REQUEST_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="7BE27976-B297-D977-B6E7-39E102203576">
+<columnName>REQUEST_STATUS</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="637BAA70-4A87-CE46-4EF6-03D579AD670C">
+<columnName>REQUEST_DATE_STRING</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="715E5FFA-AAD2-CD4E-A53C-5755864ED856">
+<columnName>COMPLETION_DATE_STRING</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CFB07C50-55FA-9C72-70C7-109A277CED53">
+<columnName>IS_COMPLETED</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C33D2AF9-FA71-F394-66DF-2817B4C44AC2">
+<columnName>REASON</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="76CEEF84-8277-7D72-0704-0AB7F200360C">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_CHANGE_REQUESTS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

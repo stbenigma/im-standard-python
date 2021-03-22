@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F5394923-6DFA-8C01-6D38-3997884B3C41" name="IsA Subtyp Beziehung">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:04:00 UTC</createdTime>
+<comment><![CDATA[1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
+Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
+Bei ODM Entity in Entity gezeichnet.
+Die Superentity ist immer genau eine der Subentities.
+Es gibt immer mindestens 2 Subentities.
+Beispiele:
+   Partner ist entweder eine Firma oder eine Person]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+1:1 Beziehung, die einen echten, exklusiven Subtyp definiert.
+Die Beziehungen müssen vom Vater aus 1:1 pflicht und in einem Arc sein.
+Bei ODM Entity in Entity gezeichnet.
+Die Superentity ist immer genau eine der Subentities.
+Es gibt immer mindestens 2 Subentities.
+Beispiele:
+   Partner ist entweder eine Firma oder eine Person
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+1:1 relationship that defines a true exclusive subtype
+The relationships must be 1:1 obligatory from the father and must be in an arc.
+For ODM Entity drawn in Entity.
+The superentity is always exactly one of the subentities.
+There are always at least 2 subentities.
+Examples:
+   Partner is either a company or a person
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>1A2BD7DD-DE7A-C8E0-C1A6-B282BC7AD488</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="IsA Subtyp Beziehung"/>
+<property name="EN_ENTI_NAME" value="*IsA Subtype Relationship"/>
+<property name="dev_status" value="REL"/>
+<property name="maxzoomlevel" value="1"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Entity>

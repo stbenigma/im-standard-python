@@ -14,7 +14,7 @@ create table LANGUAGES
 	LANG_IS_TEXT_LANG VARCHAR(5) not null,
 	LANG_IS_BASE_LANG VARCHAR(5) not null,
 	LANG_LANG_ID integer
-		references LANGUAGES
+		references LANGUAGES (lang_id)
 			on delete set null,
 	LANG_UC VARCHAR(30),
 	LANG_DC VARCHAR(30) not null,
@@ -53,7 +53,10 @@ create table MODELELEMENT
 		primary key autoincrement,
 	MODE_TYPE VARCHAR(4) not null,
 	MODE_MELT_ID integer not null
-		references MODELELEM_TYPE,
+		references MODELELEM_TYPE (melt_id),
+    MODE_MIN_ZOOM_LEVEL numeric(1) NULL CHECK ( MODE_MIN_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
+    MODE_MAX_ZOOM_LEVEL numeric(1)  NULL CHECK ( MODE_MAX_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
+    MODE_DEV_STATUS VARCHAR (4) NULL DEFAULT 'DEV' CHECK ( MODE_DEV_STATUS IN ('DEV', 'REL', 'TEST') ),
 	check (MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
                             , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM','DIAG'))
 );
@@ -62,9 +65,10 @@ create table DATATYPES
 (
 	DATY_ID INTEGER not null
 		primary key
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
-	DATY_NAME VARCHAR(60) not null,
+	DATY_NAME VARCHAR(60) not null
+		constraint DATI_UN unique,
 	DATY_BASETYPE VARCHAR(60) not null,
 	DATY_UC VARCHAR(30),
 	DATY_DC VARCHAR(30) not null,
@@ -78,7 +82,7 @@ create table ENTITIES
 (
 	ENTI_ID integer not null
 		primary key
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	ENTI_NAME VARCHAR(60) not null
 		constraint ENTI_NAME_UK
@@ -98,11 +102,11 @@ create table ARCS
 (
 	ARCS_ID INTEGER not null
 		primary key autoincrement
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	ARCS_NAME VARCHAR(60) not null,
 	ARCS_ENTI_ID integer not null
-		references ENTITIES
+		references ENTITIES (enti_id)
 			on delete cascade,
 	ARCS_UC VARCHAR(30),
 	ARCS_DC VARCHAR(30) not null,
@@ -119,8 +123,9 @@ create table EXTERNAL_REFS
 	EXTR_SOURCE_NAME VARCHAR(60) not null,
 	EXTR_SOURCE_ID VARCHAR(100) not null,
 	EXTR_MODE_ID integer not null
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
+	EXTR_LAST_UPDATE VARCHAR(30) NOT NULL,
 	constraint EXTR_UK
 		unique (EXTR_SOURCE_NAME, EXTR_MODE_ID),
 	constraint EXTR_UK_ID
@@ -133,7 +138,7 @@ create table KEYS
 		primary key autoincrement,
 	KEYS_NAME VARCHAR(60) not null,
 	KEYS_ENTI_ID integer not null
-		references ENTITIES
+		references ENTITIES (enti_id)
 			on delete cascade,
 	KEYS_UC VARCHAR(30) not null,
 	KEYS_DC VARCHAR(30) not null,
@@ -150,9 +155,9 @@ create table LANG_TEXTS
 	LGTX_ATTRNAME VARCHAR(60) not null,
 	LGTX_TEXT VARCHAR(4000),
 	LGTX_LANG_ID integer not null
-		references LANGUAGES,
+		references LANGUAGES (lang_id),
 	LGTX_MODE_ID integer not null
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	LGTX_UC VARCHAR(30),
 	LGTX_DC VARCHAR(30) not null,
@@ -181,24 +186,24 @@ create table RELATIONS
 (
 	RELA_ID integer not null
 		primary key
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	RELA_NAME VARCHAR(60) not null
 		constraint RELA_UK_NAME
 			unique,
 	RELA_TYPE VARCHAR(4) not null,
 	RELA_ENTI_ID_FROM integer not null
-		references ENTITIES,
+		references ENTITIES (enti_id),
 	RELA_ARCS_ID_FROM integer
-		references ARCS,
+		references ARCS (arcs_id),
 	RELA_ASSOC_FROM_TO VARCHAR(4000),
 	RELA_MAPTYPE_FROM_TO CHAR(1) not null,
 	RELA_MANDATORY_FROM_TO VARCHAR(5) not null,
 	RELA_HIST_FROM_TO VARCHAR(5) not null,
 	RELA_ENTI_ID_TO integer not null
-		references ENTITIES,
+		references ENTITIES (enti_id),
 	RELA_ARCS_ID_TO integer
-		references ARCS,
+		references ARCS (arcs_id),
 	RELA_ASSOC_TO_FROM VARCHAR(100),
 	RELA_MAPTYPE_TO_FROM CHAR(1) not null,
 	RELA_MANDATORY_TO_FROM VARCHAR(5) not null,
@@ -270,14 +275,15 @@ create table STORAGE_FORMATS
 create table DOCUMENTS
 (
 	DOCU_ID INTEGER not null
-		primary key,
-	DOCU_NAME VARCHAR(60) not null,
+		primary key
+		references MODELELEMENT (mode_id),
+	DOCU_NAME VARCHAR(60) not null CONSTRAINT DOCU_UK UNIQUE,
 	DOCU_STFO_ID integer
-		references STORAGE_FORMATS,
+		references STORAGE_FORMATS (STFO_ID),
 	DOCU_REFERENCE VARCHAR(500),
 	DOCU_CONTENT IMAGE,
 	DOCU_DOCU_ID integer
-		references DOCUMENTS
+		references DOCUMENTS (docu_id)
 );
 
 create table MODE_DOCU
@@ -285,10 +291,10 @@ create table MODE_DOCU
 	MODO_ID INTEGER not null
 		primary key autoincrement,
 	MODO_MODE_ID integer not null
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	MODO_DOCU_ID integer not null
-		references DOCUMENTS
+		references DOCUMENTS (DOCU_ID)
 			on delete cascade,
 	constraint MODO_UK
 		unique (MODO_MODE_ID, MODO_DOCU_ID)
@@ -298,16 +304,17 @@ create table SYNONYMS
 (
 	SYNO_ID INTEGER not null
 		primary key
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	SYNO_NAME VARCHAR(60) not null,
 	SYNO_ENTI_ID integer not null
-		references ENTITIES
+		references ENTITIES (ENTI_ID)
 			on delete cascade,
 	SYNO_UC VARCHAR(30),
 	SYNO_DC VARCHAR(30) not null,
 	SYNO_UM VARCHAR(30),
-	SYNO_DM VARCHAR(30)
+	SYNO_DM VARCHAR(30),
+	constraint SYNO_UK unique (SYNO_ENTI_ID,SYNO_NAME)
 );
 
 create table USER_DEFINED_PROPERTIES
@@ -331,9 +338,11 @@ create table MODELEMTYPE_PROPERTIES
 	METP_ID INTEGER not null
 		primary key autoincrement,
 	METP_MELT_ID integer not null
-		references MODELELEM_TYPE,
+		references MODELELEM_TYPE (MELT_ID)
+            on delete cascade,
 	METP_UDPR_ID integer not null
-		references USER_DEFINED_PROPERTIES,
+		references USER_DEFINED_PROPERTIES (UDPR_ID)
+            on delete cascade,
 	METP_OPTIONAL VARCHAR(5) not null,
 	constraint METP_UN
 		unique (METP_MELT_ID, METP_UDPR_ID),
@@ -346,10 +355,11 @@ create table UDP_VALUES
 		primary key autoincrement,
 	UDPV_VALUE VARCHAR(4000),
 	UDPV_MODE_ID integer not null
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	UDPV_UDPR_ID integer not null
-		references USER_DEFINED_PROPERTIES,
+		references USER_DEFINED_PROPERTIES (UDPR_ID)
+            on delete cascade,
 	UDPV_UC VARCHAR(30) not null,
 	UDPV_DC VARCHAR(30) not null,
 	UDPV_UM VARCHAR(30),
@@ -375,13 +385,13 @@ create table diagrams
 (
 	diag_id integer
 		primary key autoincrement
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	diag_name varchar(60) not null
 		constraint diag__un
 			unique,
 	diag_diat_id integer not null
-		references diagramtypes,
+		references diagramtypes (diat_id),
 	diag_legendx integer,
 	diag_legendy integer,
 	diag_uc varchar(30) not null,
@@ -399,7 +409,7 @@ create table elementreps
 			references MODELELEMENT (mode_id)
 				on delete cascade,
 	eler_diag_id integer not null
-		references diagrams
+		references diagrams (diag_id)
 			on delete cascade,
 	eler_index NUMBER(4) default 0 not null,
 	eler_position_x integer,
@@ -431,7 +441,7 @@ create table interfaces
 (
 	intf_ID integer
 		primary key autoincrement
-		references MODELELEMENT,
+		references MODELELEMENT (MODE_ID),
 	intf_NAME VARCHAR(60) not null
 		constraint intf_UN
 			unique,
@@ -446,7 +456,7 @@ create table DOMAINS
 (
 	DOMA_ID integer not null
 		primary key
-		references MODELELEMENT
+		references MODELELEMENT (MODE_ID)
 			on delete cascade,
 	DOMA_NAME VARCHAR(60) not null
 		constraint DOMA_NAME_UK
@@ -458,7 +468,7 @@ create table DOMAINS
 		constraint DOMA_INTF_FK
 			references interfaces (INTF_ID),
 	DOMA_DATY_ID integer
-		references DATATYPES,
+		references DATATYPES (daty_id) ,
 	DOMA_DAT_MINVALUE VARCHAR(30),
 	DOMA_DAT_MAXVALUE VARCHAR(30),
 	DOMA_DAT_GRANULARITY VARCHAR(15),
@@ -470,10 +480,10 @@ create table DOMAINS
 	DOMA_NUM_FRACT_DIGITS NUMERIC(3) default 0,
 	DOMA_NUM_ROUND_VALUE NUMERIC(7,3),
 	DOMA_NUM_PHYU_ID integer
-		references PHYSICAL_UNIT,
+		references PHYSICAL_UNIT (PHYU_ID),
 	DOMA_BIN_CONTENTTYPE VARCHAR(30),
 	DOMA_BIN_STFO_ID integer
-		references STORAGE_FORMATS,
+		references STORAGE_FORMATS (STFO_ID),
 	DOMA_UC VARCHAR(30) not null,
 	DOMA_DC VARCHAR(30) not null,
 	DOMA_UM VARCHAR(30),
@@ -510,9 +520,9 @@ create table ATTRIBUTES
 (
 	ATTR_ID integer not null
 		primary key
-		references MODELELEMENT			on delete cascade,
-	ATTR_ENTI_ID integer not null		references ENTITIES,
-	ATTR_DOMA_ID integer not null		references DOMAINS,
+		references MODELELEMENT (mode_id)			on delete cascade,
+	ATTR_ENTI_ID integer not null		references ENTITIES (ENTI_ID),
+	ATTR_DOMA_ID integer not null		references DOMAINS (DOMA_ID),
 	ATTR_TECH_NAME VARCHAR(60) not null,
 	ATTR_DISPL_NAME VARCHAR(4000),
 	ATTR_DISPL_SEQ NUMERIC(5),
@@ -543,7 +553,7 @@ create table DEFAULT_VALUES
 	DEVA_ID INTEGER not null
 		primary key autoincrement,
 	DEVA_DOMA_ID integer not null
-		references DOMAINS
+		references DOMAINS (DOMA_ID)
 			on delete cascade,
 	DEVA_VALUE VARCHAR(100) not null,
 	DEVA_SORT_ORDER NUMERIC(3),
@@ -561,15 +571,15 @@ create table DOMAINGROUP_MEMBERS
 (
 	DGRM_ID INTEGER not null
 		primary key autoincrement
-		references MODELELEMENT
+		references MODELELEMENT (mode_id)
 			on delete cascade,
 	DGRM_NAME VARCHAR(4000) not null,
 	DGRM_DESCR VARCHAR(4000),
 	DGRM_IS_MANDATORY VARCHAR(5) not null,
 	DGRM_DOMA_ID_GROUP integer not null
-		references DOMAINS,
+		references DOMAINS (DOMA_ID),
 	DGRM_DOMA_ID_MEMBER integer not null
-		references DOMAINS,
+		references DOMAINS (DOMA_ID),
 	DGRM_UC VARCHAR(30) not null,
 	DGRM_DC VARCHAR(30) not null,
 	DGRM_UM VARCHAR(30),
@@ -584,13 +594,13 @@ create table KEY_ELEMENTS
 	KELE_ID INTEGER not null
 		primary key autoincrement,
 	KELE_KEYS_ID integer not null
-		references KEYS
+		references KEYS (KEYS_ID)
 			on delete cascade,
 	KELE_ATTR_ID integer
-		references ATTRIBUTES
+		references ATTRIBUTES (ATTR_ID)
 			on delete cascade,
 	KELE_RELA_ID integer
-		references RELATIONS
+		references RELATIONS (RELA_ID)
 			on delete cascade,
 	KELE_UC VARCHAR(30) not null,
 	KELE_DC VARCHAR(30) not null,
@@ -610,7 +620,7 @@ create table melt_diats
 	medi_id integer
 		primary key autoincrement,
 	medi_diat_id integer not null
-		references diagramtypes
+		references diagramtypes (diat_id)
 			on delete cascade,
 	medi_melt_id integer not null
 		constraint modi_melt_fk
@@ -635,13 +645,11 @@ create table organisationalunits
 		constraint orgu_name_un
 			unique,
 	orgu_descr VARCHAR(4000),
-	orgu_mail VARCHAR(200)
-		constraint orgu_email_un
-			unique,
+	orgu_mail VARCHAR(200),
 	orgu_telefon VARCHAR(30),
 	orgu_address VARCHAR(4000),
 	orgu_orgu_id NUMBER(10)
-		references organisationalunits,
+		references organisationalunits (orgu_id),
 	orgu_uc varchar(30) not null,
 	orgu_dc varchar(30) not null,
 	orgu_um varchar(30),
@@ -657,7 +665,7 @@ create table mode_orgu
 			references MODELELEMENT (mode_id)
 				on delete cascade,
 	moou_orgu_id integer not null
-		references organisationalunits
+		references organisationalunits (orgu_id)
 			on delete cascade
 );
 
@@ -681,7 +689,7 @@ create table relationreps
 	relr_id integer
 		primary key autoincrement,
 	relr_diag_id integer not null
-		references diagrams,
+		references diagrams (diag_id),
 	relr_mode_id integer not null
 		constraint relr_mode_fk
 			references MODELELEMENT (mode_id)
@@ -765,7 +773,7 @@ create table linesegments
 		primary key autoincrement,
 	lise_seq integer not null,
 	lise_relr_id integer not null
-		references relationreps
+		references relationreps (relr_id)
 			on delete cascade,
 	lise_x integer not null,
 	lise_y integer not null,
@@ -791,7 +799,7 @@ create table tables
 			references MODELELEMENT (mode_ID),
 	tabl_name varchar(60) not null,
 	tabl_intf_id integer not null
-		references interfaces,
+		references interfaces (intf_ID),
 	tabl_prefix varchar(60),
 	tabl_descr varchar(4000),
 	tabl_uc varchar(30) not null,
@@ -815,7 +823,8 @@ create table columns
 	colu_descr varchar(4000),
 	colu_type_string varchar(200),
 	colu_tabl_id integer not null
-		references tables,
+		constraint colu_tabl_fk
+			references tables (tabl_id),
 	colu_doma_id integer not null
 		constraint colu_doma_fk
 			references DOMAINS (doma_id),
@@ -837,10 +846,10 @@ create table colu_attr_map
 	coam_transf_rule varchar(4000),
 	coam_triggertype varchar(10),
 	coam_triggerperiod integer,
-	coam_colu_id integer
-		references columns
+	coam_colu_id integer not null
+		references columns (colu_id)
 			on delete cascade,
-	coam_attr_id integer
+	coam_attr_id integer not null
 		constraint coam_attr_fk
 			references ATTRIBUTES (attr_id)
 				on delete cascade,
@@ -856,13 +865,13 @@ create table tabl_enti_maps
 	tema_id integer
 		primary key autoincrement,
 	tema_tabl_id integer not null
-		references tables,
+		references tables (tabl_id) on delete  cascade ,
 	tema_enti_id integer
 		constraint tema_enti_fk
-			references ENTITIES (enti_id),
+			references ENTITIES (enti_id) on delete cascade ,
 	tema_rela_id integer
 		constraint tema_rela_fk
-			references RELATIONS (rela_id),
+			references RELATIONS (rela_id) on delete cascade ,
 	constraint tema_un
 		unique (tema_tabl_id, tema_enti_id, tema_rela_id),
 	constraint tema_ck
@@ -875,12 +884,12 @@ CREATE TABLE BUSINESS_RULES
      BURU_ID integer NOT NULL primary key autoincrement
     		constraint BURU_MODE_FK
 			references MODELELEMENT (mode_ID),
-     BURU_NAME VARCHAR (60) NOT NULL , 
-     BURU_RULE VARCHAR (4000) NOT NULL , 
-     BURU_DESCR VARCHAR (4000) NULL , 
-     BURU_IMPACT VARCHAR (4000) NULL , 
-     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( [BURU_TYPE]='TRIGGER' OR [BURU_TYPE]='CHECK' OR [BURU_TYPE]='CALC' ) , 
-     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( [BURU_LEVEL]='TUPL' OR [BURU_LEVEL]='ENTI' OR [BURU_LEVEL]='DB' OR [BURU_LEVEL]='ATTR' ) , 
+     BURU_NAME VARCHAR (60) NOT NULL ,
+     BURU_RULE VARCHAR (4000) NOT NULL ,
+     BURU_DESCR VARCHAR (4000) NULL ,
+     BURU_IMPACT VARCHAR (4000) NULL ,
+     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( [BURU_TYPE]='TRIGGER' OR [BURU_TYPE]='CHECK' OR [BURU_TYPE]='CALC' ) ,
+     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( [BURU_LEVEL]='TUPL' OR [BURU_LEVEL]='ENTI' OR [BURU_LEVEL]='DB' OR [BURU_LEVEL]='ATTR' ) ,
      BURU_ERRORMSG VARCHAR (100) ,
      BURU_UC VARCHAR (30) NOT NULL ,
      BURU_DC DATETIME (8) NOT NULL ,
@@ -890,117 +899,117 @@ CREATE TABLE BUSINESS_RULES
 
 CREATE TABLE BUSINESSRULE_ELEMENTS
     (
-     BURE_ID integer NOT NULL primary key autoincrement, 
-     BURE_BURU_ID NUMERIC (10) NOT NULL , 
-     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( [BURE_WRITEABLE]='TRUE' OR [BURE_WRITEABLE]='FALSE' ) , 
-     BURE_ATTR_ID NUMERIC (10) NULL , 
-     BURE_ENTI_ID NUMERIC (10) NULL , 
-     BURE_RELA_ID NUMERIC (10) NULL , 
-     BURE_DEVA_ID NUMERIC (10) NULL , 
-     BURE_TABL_ID NUMERIC (10) NULL , 
-     BURE_COLU_ID NUMERIC (10) NULL , 
-     BURE_UC VARCHAR (30) NOT NULL , 
-     BURE_DC DATETIME (8) NOT NULL , 
-     BURE_UM VARCHAR (30) NULL , 
+     BURE_ID integer NOT NULL primary key autoincrement,
+     BURE_BURU_ID NUMERIC (10) NOT NULL ,
+     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( [BURE_WRITEABLE]='TRUE' OR [BURE_WRITEABLE]='FALSE' ) ,
+     BURE_ATTR_ID NUMERIC (10) NULL ,
+     BURE_ENTI_ID NUMERIC (10) NULL ,
+     BURE_RELA_ID NUMERIC (10) NULL ,
+     BURE_DEVA_ID NUMERIC (10) NULL ,
+     BURE_TABL_ID NUMERIC (10) NULL ,
+     BURE_COLU_ID NUMERIC (10) NULL ,
+     BURE_UC VARCHAR (30) NOT NULL ,
+     BURE_DC DATETIME (8) NOT NULL ,
+     BURE_UM VARCHAR (30) NULL ,
      BURE_DM DATETIME (8) NULL ,
-	 CONSTRAINT FKArc_1 CHECK ( 
-        (  (BURE_ENTI_ID IS NOT NULL) AND 
-         (BURE_TABL_ID IS NULL)  AND 
-         (BURE_RELA_ID IS NULL)  AND 
-         (BURE_ATTR_ID IS NULL)  AND 
-         (BURE_COLU_ID IS NULL)  AND 
-         (BURE_DEVA_ID IS NULL) ) OR 
-        (  (BURE_TABL_ID IS NOT NULL) AND 
-         (BURE_ENTI_ID IS NULL)  AND 
-         (BURE_RELA_ID IS NULL)  AND 
-         (BURE_ATTR_ID IS NULL)  AND 
-         (BURE_COLU_ID IS NULL)  AND 
-         (BURE_DEVA_ID IS NULL) ) OR 
-        (  (BURE_RELA_ID IS NOT NULL) AND 
-         (BURE_ENTI_ID IS NULL)  AND 
-         (BURE_TABL_ID IS NULL)  AND 
-         (BURE_ATTR_ID IS NULL)  AND 
-         (BURE_COLU_ID IS NULL)  AND 
-         (BURE_DEVA_ID IS NULL) ) OR 
-        (  (BURE_ATTR_ID IS NOT NULL) AND 
-         (BURE_ENTI_ID IS NULL)  AND 
-         (BURE_TABL_ID IS NULL)  AND 
-         (BURE_RELA_ID IS NULL)  AND 
-         (BURE_COLU_ID IS NULL)  AND 
-         (BURE_DEVA_ID IS NULL) ) OR 
-        (  (BURE_COLU_ID IS NOT NULL) AND 
-         (BURE_ENTI_ID IS NULL)  AND 
-         (BURE_TABL_ID IS NULL)  AND 
-         (BURE_RELA_ID IS NULL)  AND 
-         (BURE_ATTR_ID IS NULL)  AND 
-         (BURE_DEVA_ID IS NULL) ) OR 
-        (  (BURE_DEVA_ID IS NOT NULL) AND 
-         (BURE_ENTI_ID IS NULL)  AND 
-         (BURE_TABL_ID IS NULL)  AND 
-         (BURE_RELA_ID IS NULL)  AND 
-         (BURE_ATTR_ID IS NULL)  AND 
-         (BURE_COLU_ID IS NULL) ) OR  
-        (  (BURE_ENTI_ID IS NULL)  AND 
-         (BURE_TABL_ID IS NULL)  AND 
-         (BURE_RELA_ID IS NULL)  AND 
-         (BURE_ATTR_ID IS NULL)  AND 
-         (BURE_COLU_ID IS NULL)  AND 
+	 CONSTRAINT FKArc_1 CHECK (
+        (  (BURE_ENTI_ID IS NOT NULL) AND
+         (BURE_TABL_ID IS NULL)  AND
+         (BURE_RELA_ID IS NULL)  AND
+         (BURE_ATTR_ID IS NULL)  AND
+         (BURE_COLU_ID IS NULL)  AND
+         (BURE_DEVA_ID IS NULL) ) OR
+        (  (BURE_TABL_ID IS NOT NULL) AND
+         (BURE_ENTI_ID IS NULL)  AND
+         (BURE_RELA_ID IS NULL)  AND
+         (BURE_ATTR_ID IS NULL)  AND
+         (BURE_COLU_ID IS NULL)  AND
+         (BURE_DEVA_ID IS NULL) ) OR
+        (  (BURE_RELA_ID IS NOT NULL) AND
+         (BURE_ENTI_ID IS NULL)  AND
+         (BURE_TABL_ID IS NULL)  AND
+         (BURE_ATTR_ID IS NULL)  AND
+         (BURE_COLU_ID IS NULL)  AND
+         (BURE_DEVA_ID IS NULL) ) OR
+        (  (BURE_ATTR_ID IS NOT NULL) AND
+         (BURE_ENTI_ID IS NULL)  AND
+         (BURE_TABL_ID IS NULL)  AND
+         (BURE_RELA_ID IS NULL)  AND
+         (BURE_COLU_ID IS NULL)  AND
+         (BURE_DEVA_ID IS NULL) ) OR
+        (  (BURE_COLU_ID IS NOT NULL) AND
+         (BURE_ENTI_ID IS NULL)  AND
+         (BURE_TABL_ID IS NULL)  AND
+         (BURE_RELA_ID IS NULL)  AND
+         (BURE_ATTR_ID IS NULL)  AND
+         (BURE_DEVA_ID IS NULL) ) OR
+        (  (BURE_DEVA_ID IS NOT NULL) AND
+         (BURE_ENTI_ID IS NULL)  AND
+         (BURE_TABL_ID IS NULL)  AND
+         (BURE_RELA_ID IS NULL)  AND
+         (BURE_ATTR_ID IS NULL)  AND
+         (BURE_COLU_ID IS NULL) ) OR
+        (  (BURE_ENTI_ID IS NULL)  AND
+         (BURE_TABL_ID IS NULL)  AND
+         (BURE_RELA_ID IS NULL)  AND
+         (BURE_ATTR_ID IS NULL)  AND
+         (BURE_COLU_ID IS NULL)  AND
          (BURE_DEVA_ID IS NULL) )  ),
-		 CONSTRAINT BURE_ATTR_FK FOREIGN KEY 
-    ( 
+		 CONSTRAINT BURE_ATTR_FK FOREIGN KEY
+    (
      BURE_ATTR_ID
-    ) 
-    REFERENCES ATTRIBUTES 
-    ( 
-     ATTR_ID 
-    ) 
-    ON DELETE CASCADE 
+    )
+    REFERENCES ATTRIBUTES
+    (
+     ATTR_ID
+    )
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-	CONSTRAINT BURE_BURU_FK FOREIGN KEY 
-    ( 
+	CONSTRAINT BURE_BURU_FK FOREIGN KEY
+    (
      BURE_BURU_ID
-    ) 
+    )
     REFERENCES BUSINESS_RULES
-    ( 
-     BURU_ID 
-    ) 
-    ON DELETE CASCADE 
+    (
+     BURU_ID
+    )
+    ON DELETE CASCADE
     ON UPDATE NO ACTION ,
-	 CONSTRAINT BURE_DEVA_FK FOREIGN KEY 
-    ( 
+	 CONSTRAINT BURE_DEVA_FK FOREIGN KEY
+    (
      BURE_DEVA_ID
-    ) 
-    REFERENCES DEFAULT_VALUES 
-    ( 
-     DEVA_ID 
-    ) 
-    ON DELETE CASCADE 
+    )
+    REFERENCES DEFAULT_VALUES
+    (
+     DEVA_ID
+    )
+    ON DELETE CASCADE
 	  ON UPDATE NO ACTION,
-	  CONSTRAINT BURE_ENTI_FK FOREIGN KEY 
-    ( 
+	  CONSTRAINT BURE_ENTI_FK FOREIGN KEY
+    (
      BURE_ENTI_ID
-    ) 
-    REFERENCES ENTITIES 
-    ( 
-     ENTI_ID 
-    ) 
-    ON DELETE CASCADE 
+    )
+    REFERENCES ENTITIES
+    (
+     ENTI_ID
+    )
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-	CONSTRAINT BURE_RELA_FK FOREIGN KEY 
-    ( 
+	CONSTRAINT BURE_RELA_FK FOREIGN KEY
+    (
      BURE_RELA_ID
-    ) 
-    REFERENCES RELATIONS 
-    ( 
-     RELA_ID 
-    ) 
-    ON DELETE CASCADE 
+    )
+    REFERENCES RELATIONS
+    (
+     RELA_ID
+    )
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
-	 CONSTRAINT BURU_COLU_FK FOREIGN KEY 
-    ( 
+	 CONSTRAINT BURU_COLU_FK FOREIGN KEY
+    (
      BURE_COLU_ID
-    ) 
-    REFERENCES COLUMNS 
+    )
+    REFERENCES COLUMNS
     ( 
      COLU_ID 
     ) 
@@ -1046,7 +1055,6 @@ CREATE VIEW SUPERENTI AS
           join rel on rela_superenti_id = superentity.ENTI_ID
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
 
---drop view dbversion;
-create view dbversion as select '1.0' as version, datetime() as installedtime;
+create view dbversion as select '1.3' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

@@ -26,12 +26,12 @@ def entities2js(pemptymodel):
         , 'exptuple#', 'prefix'
         , 'subtypellevel+'
         , 'uc', 'dc', 'um', 'dm'
+        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         , 'synonyms', 'sourceref'
         , 'supertypes+','roles+'
         , 'subtypes+', 'attributes+'
         , 'relations+', 'keys+'
-        , 'inarcs+', 'refindocuments+'
-        ,'refbyorgunits+', 'userdefprops'
+        , 'inarcs+', 'referencedby', 'userdefprops'
         , 'tablesmapped+', 'diagrams+'
         ]
     if pemptymodel:
@@ -41,12 +41,13 @@ def entities2js(pemptymodel):
                                        ,'',''
                                        ,''
                                        ,'','','',''
+                                        ,0,4,'DEV'
                                        ,synonyms(None),sourceref(None)
                                        ,reflist(None),reflist(None)
                                        ,reflist(None),reflist(None)
                                        , reflist(None),reflist(None)
                                        , reflist(None),reflist(None)
-                                       , reflist(None), userdefprops(None)
+                                       , userdefprops(None)
                                         , tabreflist(None),reflist(None)
                                             ]
                                        )
@@ -54,12 +55,13 @@ def entities2js(pemptymodel):
     else:
         entis = {jsguid(Modelelemtype.ENTI, e.enti_id):
                      fillmodel(pmodel=model,
-                            pentries=[multilangtext(ptext=e.enti_name_L), nvl(e.enti_short_name)
-                    , multilangtext(e.enti_descr_L),multilangtext(e.enti_tooltip_L)
+                            pentries=[multilangtext(ptext=e.enti_name_l), nvl(e.enti_short_name)
+                    , multilangtext(e.enti_descr_l),multilangtext(e.enti_tooltip_l)
                     , e.enti_exp_tuplecnt,e.enti_prefix
                     , e.getsubtypelevel()
                     , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
-                    , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_L for s in e.getsynonyms()})
+                    , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
+                    , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in e.getsynonyms()})
                          ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
                     ,  reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
                          ,reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)])
@@ -67,18 +69,18 @@ def entities2js(pemptymodel):
                          , reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()])
                     , reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)])
                          , reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere="keys_enti_id = {}".format(e.enti_id))])
-                    , reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in   Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))])
-                         , reflist(plist=[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)])
-                    , reflist(plist=[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)])
+                    , reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere="arcs_enti_id = {}".format(e.enti_id))])
+                         , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]\
+                            +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
                          , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
                     , tabreflist(plist={
                                 jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id) for t in
-                                                                 TablEntiMap.gettabllist(pentiid=e.enti_id,
+                                                                TablEntiMap.gettabllist(pentiid=e.enti_id,
                                                                                          pintfid=s.getid())]
                                 for s in Interface.getmapped(pentiid=e.enti_id)})
                         ,reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=e.enti_id)])
                             ]
-                        ) for e in Entity.select(porderby="enti_id")
+                        ) for e in Entity.select()
                  }
 
     return entis
@@ -88,57 +90,72 @@ def entities2js(pemptymodel):
   prints out all error and ends with exception if there was an error"""
 
 
-def entities2sql(pmodel: JSModel):
-    for jid, jelem in pmodel.jsmodel['entities'].items():
-        enti = Entity()
-        enti.enti_id = jsguid2id(jid)
-        enti.enti_name = jelem['name'][pmodel.modellanguage()]
-        enti.enti_short_name = jelem['shortname']
-        enti.enti_prefix = jelem['prefix']
-        enti.enti_tooltip = jelem['tooltip'][pmodel.modellanguage()]
-        enti.enti_descr = jelem['descr'][pmodel.modellanguage()]
-        enti.enti_exp_tuplecnt = jelem['exptuple#']
-        enti.enti_uc = jelem['uc']
-        enti.enti_dc = jelem['dc']
-        enti.enti_um = jelem['um']
-        enti.enti_dm = jelem['dm']
-        try:
-            entiid = enti.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-            continue
+def js2enti(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    enti = Entity(psrcname=psrcname,psrcid=psrcid)
+    enti.enti_id = jsguid2id(pkey)
+    enti.enti_name = pelem['name'][pmodellang]
+    enti.enti_short_name = pelem['shortname']
+    enti.enti_prefix = pelem['prefix']
+    enti.enti_tooltip = pelem['tooltip'][pmodellang]
+    enti.enti_descr = pelem['descr'][pmodellang]
+    enti.enti_exp_tuplecnt = pelem['exptuple#']
+    enti.enti_uc = pelem['uc']
+    enti.enti_dc = pelem['dc']
+    enti.enti_um = pelem['um']
+    enti.enti_dm = pelem['dm']
+    return enti
 
-        inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
-        inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
-        inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
-        inssourceref(pmodel=pmodel, pmodeid=entiid, psources=jelem["sourceref"])
-        updvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
+                   pwithextsrcref=pwithextsrcref)
+    # for jid, jelem in pmodel.jsmodel['entities'].items():
+    #     enti = js2enti(pkey=jsjid,pelem=jelem)
+    #     try:
+    #         entiid = enti.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
+    #         continue
+    #
+    #     minzoomlevel = pelem['minzoomlevel']
+    #     maxzoomlevel = pelem['maxzoomlevel']
+    #     devstatus = pelem['devstatus']
+    #     Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
+    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
+    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+    #     inssourceref(pmodel=pmodel, pmodeid=entiid, psources=jelem["sourceref"])
+    #     udpvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
+    #
+    #     """      "ENTI109": {
+    #      "synonyms":
+    #         {
+    #            "de": "Jemand",
+    #            "en": "Contact person",
+    #         },..
+    #     """
+    #     for synoid, jsyno in jelem["synonyms"].items():
+    #         syno = Synonym(pname=jsyno[pmodel.modellanguage()], pentiid=entiid)
+    #         syno.syno_id = jsguid2id(synoid)
+    #         try:
+    #             syno.insert()
+    #         except Exception as err:
+    #             pmodel.markerror(pmsg=err, pelemstr=jsyno)
+    #             continue
+    #         inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+    #     # for
+    # # for
+    for jid, jelem in podmjson.getelements(Modelelemtype.ENTI).items():
+        entiid = keytransl(jid)
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
 
-        """      "ENTI109": {
-         "synonyms":
-            {
-               "de": "Jemand",
-               "en": "Contact person",
-            },..
-        """
-        for synoid, jsyno in jelem["synonyms"].items():
-            syno = Synonym(pname=jsyno[pmodel.modellanguage()], pentiid=entiid)
-            syno.syno_id = jsguid2id(synoid)
-            try:
-                syno.insert()
-            except Exception as err:
-                pmodel.markerror(pmsg=err, pelemstr=jsyno)
-                continue
-            inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.SYNO_NAME, ptexts=jsyno)
-        # for
-
-    # for
-
-
+        Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+        insreferences(presult=presult,pmodeid=entiid,prefs=jelem['referencedby'])
+        inssourceref(presult=presult, pmodeid=entiid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=entiid, pudps=jelem["userdefprops"])
+    #for
 # entities2sql
-
-"""transfer references and subtypes"""
-
-
-def entirefs2sql(pmodel: JSModel):
-    return

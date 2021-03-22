@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="4BB5BA9B-8482-EDAB-8852-487CEFAE7EE6" name="Zentrale_Anwendung">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu]]></comment>
+<generatorID>4B9EDDFB-A16A-43A5-5835-596C59E6F7A3</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Eine Anwendung (Programm, SW-Paket) die als SW-Produkt gekauft oder selber hergestellt wurde.
+Die Anwendung kann zentral (Server, Cloud) oder lokal (Arbeitsplatz) installiert sein. 
+Wichtige Eigenschaft ist, dass die Daten nur einmal vorhanden sind und von allen Nutzenden gemeinsam genutzt werden. Durch welche Technologie ist irrelevant.
+
+Beispiele:
+ERP
+PIM
+FiBu
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*An application (program, SW package) that was purchased as a SW product or produced by the user. The application can be installed centrally (server, cloud) or locally (workstation).  An important feature is that the data only exists once and is shared by all users. By what technology is irrelevant.  Examples: ERP PIM FiBu
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9E0CE6ED-73CF-2F5C-20FF-9647370705BE" name="Zentrale_Anwendung__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="9714B40B-CBAF-2C6B-887B-5ECF476A0E36" name="Zentrale_Anwendung_Anwendung_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>E2239592-2955-304D-7911-867C29BC0603</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

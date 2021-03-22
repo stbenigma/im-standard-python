@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="09E9551D-7C34-1BC8-1F14-2A29C3A30C24" name="Wertliste">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Eine Liste (abschliessende Aufzählung) von gültigen Werten Werten]]></comment>
+<generatorID>8DBFEADB-BD39-A440-63E9-6D81B31BDD16</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wertebereich_Modellelement_Modellelement_ID" id="B145FB37-BEC9-9B46-6FC3-DAD45E0072E9">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="50EE1868-C62D-4E88-3817-0ACC738EECA6" referredColumn="9FC5982B-2A47-B59D-A525-415732968AB0"/>
+</associations>
+</Column>
+<Column name="Wertliste_ID" id="E183E567-9591-9A0C-AC41-B5E28C2F4BE1">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0C68A561-F838-FE99-60CB-846B8FCB24C9" name="Wertliste_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="B145FB37-BEC9-9B46-6FC3-DAD45E0072E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DBA76A10-5712-6DF9-E36D-6117570B6554" name="Wertliste_Wertliste_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E183E567-9591-9A0C-AC41-B5E28C2F4BE1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3FE5723B-E70A-B0D1-09A3-1782857ED8F8" name="Wertliste_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>ABB5FA5B-9D7F-4BB3-14A6-955C26AE9DEF</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B145FB37-BEC9-9B46-6FC3-DAD45E0072E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

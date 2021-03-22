@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="779E8DE8-5C5E-7862-C319-0E1C43D44A9A" containerWithKeyObject="ED417D08-5B18-44EF-E91B-A0C4297C3A6F" localFKIndex="21815CAC-5ECB-4CAE-E548-4CE053328F22" name="BURE_DEVA_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>BURE_DEVA_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:13 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.DEFAULT_VALUES</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>98506968-E13F-EEC6-1548-C333A82AA628</referredTableID>
+<keyObject>6E9F353B-CC6C-83C3-E86C-5C882DFC45A6</keyObject>
+<referredKeyID>6E9F353B-CC6C-83C3-E86C-5C882DFC45A6</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>DEVA_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

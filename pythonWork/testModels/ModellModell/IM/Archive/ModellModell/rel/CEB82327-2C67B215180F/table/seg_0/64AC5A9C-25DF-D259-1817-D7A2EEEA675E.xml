@@ -1,0 +1,140 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="64AC5A9C-25DF-D259-1817-D7A2EEEA675E" name="Numerischer_Wertebereich">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Kann Zahlenwerte aufnehmen ]]></comment>
+<generatorID>1D08DB6C-0C55-67D5-E56D-53B1AD268AF2</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<typeID>1C6A8769-7651-51C0-9E0A-D0C138DE6193</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Wertebereich_Modellelement_Modellelement_ID" id="55C06DC3-00F3-7009-745F-00F11E0796AD">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B01034EF-A618-3E03-F80D-BD830FCC2467" referredColumn="9FC5982B-2A47-B59D-A525-415732968AB0"/>
+</associations>
+</Column>
+<Column name="Numerischer_Wertebereich_ID" id="4E7A11E6-96D9-B08C-46A0-C4B04167844A">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Vorkommastellen#" id="8B2377FA-39E5-E840-905C-C898A97A628B">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen vor dem Komma]]></comment>
+<generatorID>6013584E-6DC3-0F87-63DB-782BE75793F2</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nachkommastellen#" id="0BC4CC67-3BE3-1F91-62C4-A0D4C7E91D00">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen nach dem Komma]]></comment>
+<generatorID>1A0F5548-154B-9B85-CAD0-538CA8502229</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Min_Wert" id="8D4CDDBC-39EC-7489-0490-D39F78745036">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
+<generatorID>5D6EF497-1C80-55B3-9A08-19906F7E598E</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Max_Wert" id="AD3E3B20-3A28-E564-160E-7B9076C9893E">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
+<generatorID>A72F2CB8-1949-9C66-ECCA-BF3F2AC681C0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Rundungseinheit" id="11172701-BAC6-96EE-2063-5D48F1640A08">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet]]></comment>
+<generatorID>7B43FC60-8938-1F2F-FFC9-AC52103A91B0</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="70261BBA-E563-9931-51FB-43AAA7FD7FD0" name="Numerischer_Wertebereich_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="55C06DC3-00F3-7009-745F-00F11E0796AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BE24D201-6CD8-2A77-52C1-E632DDC21A84" name="Numerischer_Wertebereich_Numerischer_Wertebereich_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="4E7A11E6-96D9-B08C-46A0-C4B04167844A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5DC5B9DB-1A9D-9765-4972-7B1707BB7D3E" name="Numerischer_Wertebereich_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>0025785D-63C1-B235-FE06-6823193DCA28</generatorID>
+<ownerDesignName>ModellModell</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="55C06DC3-00F3-7009-745F-00F11E0796AD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

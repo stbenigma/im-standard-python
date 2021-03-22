@@ -44,6 +44,8 @@ class JSModel:
       ,Modelelemtype.PHYU: 'physicalunits'
       ,Modelelemtype.STFO: 'storageformats'
       , Modelelemtype.UDPR: 'userdefprops'
+      ,'LANG': 'languages'
+    , 'PROJ': 'model'
     }
 
     def __init__(self,pmodel={}):
@@ -55,6 +57,30 @@ class JSModel:
         self._warnings = []
         self._modellanguage = None
         self.languages = {}  # langid:iso2
+        self._statusfilter = (None,'DEV','TEST','REL')
+
+    def getelement(self,pelem,pfiltered=True):
+        """returns list of top level Elements filtered by statusfilter"""
+        elemkey = JSModel.elemtype2label(pelemtype=pelem)
+        if elemkey is None:
+            """ not found, check wether pelem is already a key"""
+            if pelem in self.jsmodel:
+                elemkey = pelem
+            else:
+                return None
+            #fi
+        #fi
+        assert (elemkey in self.jsmodel),"key {} not found in json-model".format(elemkey)
+        """get all elements, if filtered make sure it is a) not a dict, b) has no devstatus or c) its devstatus is in my statusfilter"""
+        elems = {key : value for key,value in self.jsmodel[elemkey].items()
+                   if (not pfiltered or type(value) != dict or 'devstatus' not in value or value['devstatus'] in self.statusfilter) }
+        return elems
+
+    def setstatusfilter(self,pfilter):
+        self.statusfilter = pfilter
+
+    def getstatusfilter(self,pfilter):
+        return self.statusfilter
 
     @staticmethod
     def readfromfile(pfilename):
@@ -69,6 +95,28 @@ class JSModel:
         except:
             return None
 
+    @staticmethod
+    def label2elemtype(plabel):
+        try:
+            lab = {val:key for key,val in JSModel._elemtype2label.items()}
+            return lab[plabel]
+        except:
+            return plabel
+
+    """return the dict of an elementtype"""
+    def getelements(self,pelemtype):
+        try:
+            """Non-modelelementtypes in JS are treated differently"""
+            if pelemtype in ('LANG'):
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
+            elif pelemtype in ('PROJ'):
+                """Proj has one single entry without any id in js"""
+                return {None: self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]}
+            else:
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
+        except:
+            return None
+
     """return the element identified by the jsid (<type><id>) from the current jsmodel"""
     def getbyid(self,pjsid):
         try:
@@ -78,10 +126,13 @@ class JSModel:
 
     def checked(self):
         return self._checked
+
     def setchecked(self,pvalue):
         self._checked = pvalue
+
     def modellanguage(self):
         return self._modellanguage
+
     def setmodellanguage(self,pvalue):
         self._modellanguage = pvalue
 
@@ -112,6 +163,8 @@ class JSModel:
         if pelemstr != '': self._errors.append(pelemstr)
         self.incerrcnt()
     # markerror
+
+
     def markwarning(self,pmsg):
         self._warnings.append("WARNING: {}".format(pmsg))
         self.incwrncnt()
@@ -171,7 +224,7 @@ def colureflist(plist:dict=None):
 def sourceref(pvalues:dict=None):
     """ None = emptymodel"""
     if pvalues is None:
-        return {"ODM": ''}
+        return {"ODM": ["",""]}
     else:
         return pvalues
 

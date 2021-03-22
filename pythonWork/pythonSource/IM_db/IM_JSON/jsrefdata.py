@@ -4,13 +4,13 @@ from IM_OBJECTS import Modelelemtype,PhysicalUnit,Document,Storageformat,Datatyp
 
 def physicalunits2js(pemptymodel):
     model = ['name'
-                                        ,'si-unit'
-                                        ,'descr' 
-                                        , 'uc'
-                                        , 'dc'
-                                        , 'um'
-                                        , 'dm'
-                                        ,'refindomains+']
+            ,'si-unit'
+            ,'descr'
+            , 'uc'
+            , 'dc'
+            , 'um'
+            , 'dm'
+            ,'usedindomains+']
 
     if pemptymodel:
         retval = {jsguid(Modelelemtype.PHYU,'0000'): fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] + [reflist()])}
@@ -28,50 +28,51 @@ def physicalunits2js(pemptymodel):
     # fi
     return retval
 
-def physicalunits2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['physicalunits'].items():
-        phyu = PhysicalUnit()
-        phyu.phyu_id = jsguid2id(jid)
-        phyu.phyu_si_unit = jelem['si-unit']
-        phyu.phyu_descr = jelem['descr']
-        phyu.phyu_name = jelem['name']
-        phyu.phyu_uc = jelem['uc']
-        phyu.phyu_dc = jelem['dc']
-        phyu.phyu_um = jelem['um']
-        phyu.phyu_dm = jelem['dm']
-        try:
-            phyu.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=phyu.tostring())
-            continue
-    # for
-    return
+def js2phyu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    phyu:PhysicalUnit = PhysicalUnit()
+    phyu.phyu_id = jsguid2id(pkey)
+    phyu.phyu_si_unit = pelem['si-unit']
+    phyu.phyu_descr = pelem['descr']
+    phyu.phyu_name = pelem['name']
+    phyu.phyu_uc = pelem['uc']
+    phyu.phyu_dc = pelem['dc']
+    phyu.phyu_um = pelem['um']
+    phyu.phyu_dm = pelem['dm']
+    return phyu
 
-"""transfer references and subtypes"""
-def phyurefs2sql(pmodel:JSModel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
+
+def physicalunits2sql(presult, podmjson:JSModel,pwithextsrcref):
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
+    # for jid,jelem in pmodel.jsmodel['physicalunits'].items():
+    #     phyu = js2phyu(pkey=jid,pelem=jelem)
+    #     try:
+    #         phyu.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=phyu.tostring())
+    #         continue
+    # # for
     return
 
 def storageformats2js(pemptymodel):
     model = ['name'
-                                        ,'descr' 
-                                        , 'uc'
-                                        , 'dc'
-                                        , 'um'
-                                        , 'dm'
-                                        ,'refindocuments+'
-                                        , 'refindomains+']
+            ,'descr'
+            , 'uc'
+            , 'dc'
+            , 'um'
+            , 'dm'
+            ,'usedindocuments+'
+            ,'usedindomains+']
 
     if pemptymodel:
-        retval = {jsguid(Modelelemtype.STFO,'0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 2)] + [reflist(),reflist()])}
+        retval = {jsguid(Modelelemtype.STFO,'0000') : fillmodel(pmodel=model, pentries=['','','','','','', reflist(),reflist()])}
     else:
         retval = {jsguid(Modelelemtype.STFO,s.stfo_id) : fillmodel(pmodel=model,pentries=
         [s.stfo_name, s.stfo_descr
                                         ,s.stfo_uc, s.stfo_dc, s.stfo_um, s.stfo_dm
-                                        ,reflist(plist=[jsguid(Modelelemtype.DOCU, d.docu_id)
-                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))])
-                                        , reflist(plist= [jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))])
+                                        ,[jsguid(Modelelemtype.DOCU, d.docu_id)
+                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))]
+                                         ,[jsguid(Modelelemtype.DOMA, d.doma_id)
+                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))]
 
         ])
                 for s in Storageformat.select()
@@ -79,38 +80,39 @@ def storageformats2js(pemptymodel):
     # fi
     return retval
 
-def storageformats2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['storageformats'].items():
-        stfo = Storageformat()
-        stfo.stfo_id = jsguid2id(jid)
-        stfo.stfo_name = jelem['name']
-        stfo.stfo_descr = jelem['descr']
-        stfo.stfo_uc = jelem['uc']
-        stfo.stfo_dc = jelem['dc']
-        stfo.stfo_um = jelem['um']
-        stfo.stfo_dm = jelem['dm']
-        try:
-            stfo.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=stfo.tostring())
-            continue
-    #for
-    return
+def js2stfo(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    stfo:Storageformat = Storageformat()
+    stfo.stfo_id = jsguid2id(pkey)
+    stfo.stfo_name = pelem['name']
+    stfo.stfo_descr = pelem['descr']
+    stfo.stfo_uc = pelem['uc']
+    stfo.stfo_dc = pelem['dc']
+    stfo.stfo_um = pelem['um']
+    stfo.stfo_dm = pelem['dm']
+    return stfo
 
-"""transfer references and subtypes"""
-def stforefs2sql(pmodel:JSModel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
-    return
+def storageformats2sql(presult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
+                   pwithextsrcref=pwithextsrcref)
 
+    # for jid,jelem in pmodel.jsmodel['storageformats'].items():
+    #     stfo = js2stfo(pkey=jid,pelem=jelem)
+    #     try:
+    #         stfo.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=stfo.tostring())
+    #         continue
+    # #for
+    return
 
 def datatypes2js(pemptymodel):
     model = ['name'
-                                        ,'basetype' 
-                                        , 'uc'
-                                        , 'dc'
-                                        , 'um'
-                                        , 'dm'
-                                        , 'sourceref']
+            ,'basetype'
+            , 'uc'
+            , 'dc'
+            , 'um'
+            , 'dm'
+            , 'sourceref']
     if pemptymodel:
         retval = {jsguid(Modelelemtype.DATY,'0000') : fillmodel(pmodel=model,pentries=['' for i in range(len(model)-1)]+[sourceref()])}
     else:
@@ -125,26 +127,27 @@ def datatypes2js(pemptymodel):
     # fi
     return retval
 
-def datatypes2sql(pmodel:JSModel):
-    for jid,jelem in pmodel.jsmodel['datatypes'].items():
-        daty= Datatype(pname=jelem['name'],pbasetype=jelem['basetype'])
-        daty.daty_id = jsguid2id(jid)
-        daty.daty_uc = jelem['uc']
-        daty.daty_dc = jelem['dc']
-        daty.daty_um = jelem['um']
-        daty.daty_dm = jelem['dm']
-        try:
-            daty.insert()
-        except Exception as err:
-            pmodel.markerror(pmsg=err, pelemstr=daty.tostring())
-            continue        
-        inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
-    #for
-    return
+def js2daty(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
+    daty = Datatype(pname=pelem['name'],pbasetype=pelem['basetype'],psrcname=psrcname,pscrid=psrcid)
+    daty.daty_id = jsguid2id(pkey)
+    daty.daty_uc = pelem['uc']
+    daty.daty_dc = pelem['dc']
+    daty.daty_um = pelem['um']
+    daty.daty_dm = pelem['dm']
+    return daty
 
-"""transfer references and subtypes"""
-def dtayrefs2sql(pmodel:JSModel):
-    #    insudp(pburuid=entiid, pudps=jenti["userdefprop"])
+
+def datatypes2sql(presult, podmjson:JSModel,pwithextsrcref):
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=Modelelemtype.DATY,pjs2obj=js2daty,pwithextsrcref=pwithextsrcref)
+    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DATY).items():
+    #     daty = js2daty(pkey=jid,pelem=jelem)
+    #     try:
+    #         daty.insert()
+    #     except Exception as err:
+    #         pmodel.markerror(pmsg=err, pelemstr=daty.tostring())
+    #         continue
+    #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
+    # #for
     return
 
 

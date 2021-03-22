@@ -57,8 +57,8 @@ CREATE TABLE DOCUMENTS
         return None if stfo is None else stfo.getname()
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Document._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Document._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -94,29 +94,18 @@ CREATE TABLE DOCUMENTS
 
     @staticmethod
     def getrefdoculist(pid):
-        """returns list of docu_ids references by an the element pid. (direct = TRUE) . For tables document reference via Interface is selected as well (direkt = FALSE)"""
+        """returns list of docu_ids references by the element pid"""
         docus = dbDML.select("""
-        select docu_id, direct
-        from (select docu_id,docu_name,direct  
+        select docu_id
+        from (select docu_id,docu_name  
            from(
             select docu_id,docu_name 
                 , MODO_MODE_ID as ref_id 
-                ,'TRUE' direct
             from documents
             join mode_docu on MODO_docu_ID = docu_ID
-            join modelelement on mode_id = MODO_MODE_ID
-            join modelelem_type on melt_id = mode_melt_id
-            union all 
-            select docu_id, docu_name,tabl_id ref_id,'FALSE' direct
-            from documents
-            join mode_docu on MODO_docu_ID = docu_ID
-            join (select intf_id,tabl_id
-                  from tables
-                  join interfaces on intf_ID = TABL_intf_ID
-                 ) on MODO_MODE_ID = intf_ID      
             ) 
-        where ref_id = {}  
-        order by upper(docu_name)
+            where ref_id = {}  
+            order by upper(docu_name)
         )
         """.format(pid))
         return docus
@@ -166,29 +155,8 @@ class ModelelemDocu(Baseobject):
         self.modo_docu_id = pdocuid
 
     @staticmethod
-    def createtable():
-        sql ="""
-CREATE TABLE MODE_DOCU
-    (
-     MODO_ID INTEGER NOT NULL primary key autoincrement,
-     MODO_MODE_ID integer NOT NULL ,
-     MODO_DOCU_ID integer NOT NULL
-    ,CONSTRAINT MODO_UK UNIQUE (MODO_MODE_ID ASC, MODO_DOCU_ID ASC)
-    ,CONSTRAINT MODO_DOCU_FK FOREIGN KEY(     MODO_DOCU_ID)  
-        REFERENCES DOCUMENTS(     DOCU_ID )
-        ON DELETE CASCADE
-    ,CONSTRAINT MODO_MODE_FKv2 FOREIGN KEY    (     MODO_MODE_ID)
-            REFERENCES MODELELEMENT   (     MODE_ID )
-         ON DELETE CASCADE
-    )
-"""
-        Baseobject.createtable(ptablename=ModelelemDocu._tablename
-                               , psql=sql
-        )
-
-    @staticmethod
-    def delete():
-        Baseobject.delete(ModelelemDocu._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(ModelelemDocu._tablename,pwhere=pwhere)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

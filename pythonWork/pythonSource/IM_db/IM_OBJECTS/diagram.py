@@ -18,27 +18,6 @@ class Diagram(Baseobject):
         self._diagwidth = None
         self._diagheight = None
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Diagram._tablename
-                                ,psql="""
-CREATE TABLE diagrams(
-    diag_id      integer primary key autoincrement,
-    diag_name      varchar(60) NOT NULL,
-    diag_diat_id   integer NOT NULL,
-    diag_legendx       integer,
-    diag_legendy       integer,
-    diag_uc    varchar(30) NOT NULL,
-    diag_dc        varchar(30) NOT NULL,
-    diag_um        varchar(30) ,
-    diag_dm        varchar(30),
-	CONSTRAINT diag__un UNIQUE(diag_name),
-	CONSTRAINT diag_diat_fk FOREIGN KEY(diag_diat_id)
-									   REFERENCES diagramtypes(diat_id)
-	,CONSTRAINT DIAGRAMS_MODELELEMENT_FK FOREIGN KEY (DIAG_ID) 
-       REFERENCES MODELELEMENT (MODE_ID )ON DELETE CASCADE
-)	          """)
-
     def __diagsize(self):
         """(width,height)"""
         diagsize = dbDML.select("""
@@ -76,23 +55,23 @@ CREATE TABLE diagrams(
         return self.diag_name
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Diagram._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Diagram._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="upper(diag_name)"):
         return Baseobject.select(pclass=Diagram
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def getdiagrams(pmodeid):
         diags = Diagram.select(pwhere="diag_id in (select eler_diag_id "
                                       "            from elementreps where eler_mode_id = {})".format(pmodeid)
-                               , porderby="upper(diag_name)")
+                                    )
         return diags
 
     @staticmethod
     def getbyname(pname):
-        return Diagram().getbyuk(pcolname='diag_name', pukvalue=pname)
+        return Diagram().getbyuk(diag_name=pname)
     # getbyname
 
 #Diagram
@@ -131,8 +110,8 @@ CREATE TABLE diagramtypes(
         return self.diat_name
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Diagramtype._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Diagramtype._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -141,7 +120,7 @@ CREATE TABLE diagramtypes(
 
     @staticmethod
     def getbyname(pname):
-        return Diagramtype().getbyuk(pcolname='diat_name', pukvalue=pname)
+        return Diagramtype().getbyuk(diat_name=pname)
     # getbyname
 #Diagramtype
 
@@ -182,8 +161,8 @@ CREATE TABLE melt_diats(
 )	          """)
 
     @staticmethod
-    def delete():
-        Baseobject.delete(MeltDiat._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(MeltDiat._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):

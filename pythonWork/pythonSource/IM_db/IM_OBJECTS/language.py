@@ -18,36 +18,13 @@ class Language(Baseobject):
         self.lang_uc ='stb'
         self.lang_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Language._tablename
-                               , psql="""
-CREATE TABLE LANGUAGES
-    (
-     LANG_ID INTEGER NOT NULL primary key autoincrement,
-     LANG_ISO_NAME VARCHAR (60) NULL ,
-     LANG_ISO_CODE2 CHAR (2) NOT NULL CONSTRAINT LANG_ISO2_CHK CHECK ( LANG_ISO_CODE2 = lower(LANG_ISO_CODE2) ) ,
-     LANG_ISO_CODE3 CHAR (3) NOT NULL CONSTRAINT LANG_ISO3_CHK CHECK ( LANG_ISO_CODE3 = lower(LANG_ISO_CODE3) ) ,
-     LANG_IS_TEXT_LANG VARCHAR (5) NOT NULL CHECK ( LANG_IS_TEXT_LANG IN ('FALSE', 'TRUE') ) ,
-     LANG_IS_BASE_LANG VARCHAR (5) NOT NULL CHECK ( LANG_IS_BASE_LANG IN ('FALSE', 'TRUE') ) ,
-     LANG_LANG_ID integer NULL ,
-     LANG_UC VARCHAR(30) NULL  ,
-     LANG_DC VARCHAR (30) NOT NULL ,
-     LANG_UM VARCHAR (30) NULL ,
-     LANG_DM VARCHAR (30) NULL
-    ,CONSTRAINT LANG_ISO_NAME_UN UNIQUE (LANG_ISO_NAME ASC)
-      ,CONSTRAINT LANG_ISO_CODE2_UN UNIQUE (LANG_ISO_CODE2 ASC)
-      ,CONSTRAINT LANG_ISO_CODE3_UN UNIQUE (LANG_ISO_CODE3 ASC)
-      ,CONSTRAINT LANG_REPLACE_FK FOREIGN KEY      (     LANG_LANG_ID)
-      REFERENCES LANGUAGES      (     LANG_ID )      ON DELETE SET NULL
-  )"""
-           )
-    @staticmethod
-    def delete():
-        Baseobject.delete(Language._tablename)
 
     @staticmethod
-    def select(pwhere=None,porderby=None):
+    def delete(pwhere=None):
+        return Baseobject.delete(Language._tablename)
+
+    @staticmethod
+    def select(pwhere=None,porderby="lang_iso_code2"):
         return Baseobject.select(pclass=Language
                                 ,pwhere=pwhere,porderby=porderby)
     @staticmethod
@@ -55,6 +32,7 @@ CREATE TABLE LANGUAGES
         lDefLangs = Language.select(pwhere="""lang_is_base_lang = 'TRUE'""")
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
+        if (len(lDefLangs) > 1): raise Exception("More than one model-Language defined")
         return lDefLangs[0]
     #getdefaultlang
 
@@ -109,7 +87,7 @@ CREATE TABLE LANGUAGES
 
     @ staticmethod
     def setallreplacementlang():
-        #currently modellang is always replacement lang
+        #make sure everybody has a replacementlanguage
         dbDML.exec("""update languages  
         set lang_lang_id = 
             case when lang_is_base_lang  = 'TRUE'
@@ -119,7 +97,7 @@ CREATE TABLE LANGUAGES
                 where sp2.lang_is_base_lang = 'TRUE'
                 )
             end
-        """)
+        where lang_lang_id is NULL""")
     #setallreplacementlang
 #Language
 

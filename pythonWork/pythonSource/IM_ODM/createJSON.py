@@ -1,4 +1,6 @@
 # -*- coding: latin-1 -*-
+import os,sys
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 import json
 from IM_DB import dbConnect, parameters, logmessages
 from IM_JSON import sql2json,jsonfilename,JSModel
@@ -13,7 +15,8 @@ def getJSONfile(pfilename):
 def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
 
-    jsmodel = JSModel(pmodel=sql2json(pmodelname=parameters.odmModelName(),pdbname=dbConnect.getDBname()))
+
+    jsmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
     jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)
     dbConnect.myDbConn.close()
@@ -21,7 +24,7 @@ def createJSON(pfilepath, pfilename):
 
 def createemptyJSON(pfilepath,pfilename):
 
-    jsmodel = JSModel(pmodel=sql2json(pmodelname=pfilename,pdbname=None  ,pemptymodel=True))
+    jsmodel = JSModel(pmodel=sql2json(pdbname=None  ,pemptymodel=True))
     jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)
     return
 
@@ -51,8 +54,8 @@ def json2xml(json_obj, line_padding=""):
 
 def main(param1):
     if param1 is None:
-        filepath ='./sqlfiles/'
-        filename = 'emptyModel'
+        filepath =os.path.dirname(__file__)+'/../IM_db/sqlfiles/'
+        filename = 'modelmodel-empty'
         createemptyJSON(pfilepath=filepath,pfilename=filename)
         print ("empty JSON file {} created"
                                     .format(filepath + jsonfilename(filename) ))

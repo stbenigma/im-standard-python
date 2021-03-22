@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
 from IM_DB import  dbDML
+from datetime import datetime
 
 class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
@@ -8,30 +9,29 @@ class Externalref(Baseobject):
     _columnlist:list = []
 
 
-    def __init__(self,psrcname=None,psrcid=None,pmodeid=None):
+    def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
         if (len(Externalref._columnlist) == 0): Externalref._columnlist = Baseobject.gettablecolumns(Externalref._tablename)
         super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix)
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid
         self.extr_mode_id = pmodeid
+        self.extr_last_update = plastupd or datetime.today()
 
     @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Externalref._tablename
-                                ,psql="""
-CREATE TABLE EXTERNAL_REFS
-    (
-     EXTR_ID INTEGER NOT NULL primary key autoincrement,
-     EXTR_SOURCE_NAME VARCHAR (60) NOT NULL ,
-     EXTR_SOURCE_ID VARCHAR (100) NOT NULL ,
-     EXTR_MODE_ID integer NOT NULL
-    ,CONSTRAINT EXTR_UK UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_MODE_ID ASC)
-     ,CONSTRAINT EXTR_UK_ID UNIQUE (EXTR_SOURCE_NAME ASC, EXTR_SOURCE_ID ASC)
-    ,CONSTRAINT EXTR_MODE_FK FOREIGN KEY(     EXTR_MODE_ID) 
-        REFERENCES MODELELEMENT(     MODE_ID )
-        ON DELETE CASCADE
-    )
-""")
+    def setlastupdate(psrcname,pmodeid,psrcid=None):
+        extr:Externalref = Externalref().getbyuk(extr_source_name=psrcname,extr_source_id=pmodeid)
+        if extr is None:
+            """not found, insert it"""
+            extr.extr_source_name = psrcname
+            extr.extr_mode_id = pmodeid
+            extr.extr_source_id = psrcid
+            extr.extr_last_update = datetime.today()
+            extr.insert()
+        else:
+            extr.extr_last_update = datetime.today()
+            if psrcid is not None: extr.extr_source_id = psrcid
+            extr.updatedb()
+        return
 
     @staticmethod
     def getsources():
@@ -40,8 +40,9 @@ CREATE TABLE EXTERNAL_REFS
 
     @staticmethod
     def getsrcinfo(pmodeid):
-        extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid),porderby="extr_source_name")
-        list = {e.extr_source_name : e.extr_source_id for e in extrs}
+        extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid)
+                                    ,porderby="extr_source_name,extr_source_id")
+        list = {e.extr_source_name : [e.extr_source_id,e.extr_last_update] for e in extrs}
         return list
     # getsrcsinfo
 
@@ -64,6 +65,12 @@ CREATE TABLE EXTERNAL_REFS
     # getsrcid
 
     @staticmethod
+    def getallextrs (pelemtype):
+        return  Externalref.select(pwhere="""exists (select mode_id 
+                                                        from modelelement 
+                                                        where upper(mode_type) = upper('{}'))""".format(pelemtype))
+
+    @staticmethod
     def getmodeid(psrcname,psrcid):
         extrs = Externalref.getextr(psrcname=psrcname,psrcid=psrcid)
         modeid = None if len(extrs) == 0 else extrs[0].extr_mode_id
@@ -76,11 +83,11 @@ CREATE TABLE EXTERNAL_REFS
 
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Externalref._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Externalref._tablename)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
+    def select(pwhere=None, porderby="extr_id"):
         return Baseobject.select(pclass=Externalref
                                  , pwhere=pwhere, porderby=porderby)
 

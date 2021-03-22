@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="41A71773-C43A-324C-48E9-B5ABA3AF95FA" name="IT-System">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX]]></comment>
+<generatorID>5641423D-1F40-DA72-BB6A-567C174139A5</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+IT_System, Betriebssystem, Infrastruktur in oder auf dem Anwendungen laufen können.
+
+Beispiele:
+Power-DNS
+JRE java runtime environment
+Windows
+Android
+ubuntu Linux
+mongo-DB
+Excel
+Access
+SAP-Hana
+IDE  = Application for IT-People
+Eclipse / Microsoft Studio
+Jenkins
+Oracle-APEX
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+*IT_System, operating system, infrastructure in or on which applications can run.  Examples: Power-DNS JRE java runtime environment Windows Android ubuntu Linux mongo-DB Excel Access SAP-Hana IDE = Application for IT-People Eclipse / Microsoft Studio Jenkins Oracle-APEX
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Zeichnsatz" id="B9DB986E-0ADC-0CD7-4934-431C4C8D58E6">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>9E4F1EF5-A882-1837-570F-7741DEB53954</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C44ED88C-D820-1BFA-9CD0-841B752A5E4B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="A79403DB-D234-20B2-0E45-DF327067EF5C">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Name der Entität der in der Kommunikation normalerweise gebraucht wird.]]></comment>
+<generatorID>BE8D87DB-7E88-9AC2-5CAE-CCC53742DBE6</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Name der Entität der in der Kommunikation normalerweise gebraucht wird.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Name of the entity normally used in communication.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name_" id="2E15D3AD-B782-94C9-EB73-302AAA03ACD8">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>2F835C75-8726-CA73-843D-B6EE0A0425FE</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E24E3587-7DE7-9400-8499-28398C70FF12" name="IT-System__UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>7465F71C-6E0A-E3D8-95A6-E74B987A6AA2</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="CE3F49F7-9190-072C-A799-BB7BB674D75D" name="IT-System_Name_UN">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>C7E8D919-A624-69D2-5D8C-2BF4A7013523</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A79403DB-D234-20B2-0E45-DF327067EF5C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="67C4D8F3-0D2B-BF8F-18AF-764EC1D4258B" name="IT-System_IT-Komponente_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>29C8F4A8-23AF-0517-3F82-8943CC94D28B</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+</indexes>
+</Table>

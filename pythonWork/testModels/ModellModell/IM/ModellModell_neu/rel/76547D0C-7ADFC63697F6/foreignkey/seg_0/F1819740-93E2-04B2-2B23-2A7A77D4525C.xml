@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F1819740-93E2-04B2-2B23-2A7A77D4525C" containerWithKeyObject="9AC5AFC5-991A-F149-DB22-3022F846B277" localFKIndex="09AA0E6B-2366-53D3-9C14-D01464FF2F99" name="SYNO_MODE_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>SYNO_MODE_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.MODELELEMENT</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>1A96C2EC-F488-31B6-569C-787BA9B6F5D6</referredTableID>
+<keyObject>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</keyObject>
+<referredKeyID>51E6FDA0-D6E1-B245-684E-64A9B6CE71CB</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MODE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

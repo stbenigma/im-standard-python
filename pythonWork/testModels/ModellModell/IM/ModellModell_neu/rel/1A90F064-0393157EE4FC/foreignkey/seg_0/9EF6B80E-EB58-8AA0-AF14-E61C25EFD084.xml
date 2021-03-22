@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9EF6B80E-EB58-8AA0-AF14-E61C25EFD084" containerWithKeyObject="2B5AD4D9-50C7-27F4-4A08-375328BBF2E4" localFKIndex="41E05B39-B7FE-88F6-7FC8-A31D26928291" name="BURE_ENTI_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>BURE_ENTI_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 11:17:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>10508A7C-5978-3172-516B-F800A77E1FAC</importedID>
+<referredTableLongName>ENTITIES</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>05B89BF6-C97E-8CC1-D005-80D985DA4785</referredTableID>
+<keyObject>5E5A02DF-4CA3-AFD8-563D-962D8561CE49</keyObject>
+<referredKeyID>5E5A02DF-4CA3-AFD8-563D-962D8561CE49</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ENTI_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

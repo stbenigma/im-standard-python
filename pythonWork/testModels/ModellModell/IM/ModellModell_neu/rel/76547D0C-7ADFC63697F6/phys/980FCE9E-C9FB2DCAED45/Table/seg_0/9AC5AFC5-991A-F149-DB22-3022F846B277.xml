@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="SYNONYMS" directorySegmentName="seg_0" id="9AC5AFC5-991A-F149-DB22-3022F846B277">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:10 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<database>F882837E-36FB-2009-38C2-1F82ED2F7BB1</database>
+<filegroup>B5085ECB-8936-7A63-9779-77515397EA4F</filegroup>
+<schema>1</schema>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="SYNO_ENTI_FK" id="0363C7BB-1578-E500-FE07-089CBB5A5CAC">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="SYNO_MODE_FK" id="09AA0E6B-2366-53D3-9C14-D01464FF2F99">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="SYNONYMS_PK" id="9A335345-3C2A-EDD3-F995-C5E737C0C957">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="SYNONYMS_SYNO_ID_UN" id="AB155134-C4F3-F8CF-5CD7-EB171F092308">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="SYNO_UK" id="45926B63-B387-B51E-25AE-FEA91B8622B5">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:48:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.UniqueProxySqlServerv2k5" name="SYNONYMS_Entitätname_[L]_UN" id="84F2C133-7FEF-A6C6-C8B0-D014C002DBBA">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+</UniqueKey>
+</uniqueKeys>
+</TableProxySqlServerv2k5>

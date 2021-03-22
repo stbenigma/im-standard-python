@@ -1,0 +1,157 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="95CC7E35-4CEA-1BDF-000A-0F08913150FB" name="Benutzerdefinierte_Eigenschaft">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
+
+Beispiel:
+- Qualitätsanspruch-Level
+- Sicherheitsstufe]]></comment>
+<generatorID>C2AD7328-2E70-C424-A9DD-5DC855F3EDE8</generatorID>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Für projekt- oder umgebungsspezifische Erweiterungen, können für jedes Modellelement eigene Eigenschaften definiert werden.
+
+Beispiel:
+- Qualitätsanspruch-Level
+- Sicherheitsstufe
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+For project- or environment-specific extensions, separate properties can be defined for each model element.  Example: - Quality requirement level - Security level
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<typeID>0F21B703-5AD4-9DCA-458B-A19E89BB5BD6</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Name" id="301A2CFF-890E-F442-15F6-53F5A7630469">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>41CD85F5-88E3-F509-4545-3308BEF8D46F</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Gruppenname" id="7BB6D8F5-3D78-1FF6-84FB-82067529A44A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<comment><![CDATA[Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezung....)]]></comment>
+<generatorID>227E5C4B-1CA9-DFF9-BB54-E9DF4A56A3C5</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Möglichkeit UDP's thematisch zu gruppieren (Qualität, Interface-ID, Überstezung....)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Possibility to group UDP together (Quality, Interface-ID, Translation ...)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Beschreibung_[L]" id="46369059-B8C8-DA92-3EDF-695680110536">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>0CB6EB45-CED2-986A-9F57-3B6AD23BEE2F</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Optional" id="F0E21E39-FF44-D63E-52D4-BD02D419134A">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<generatorID>78C0A207-DA89-3B50-73D9-CD2FA1C3FA21</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Benutzerdefinierte_Eigenschaft_ID" id="C6A99347-58BA-ADBB-F438-A6A5AC02B8F4">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Wertebereich_DOM_ID" id="072E290F-E776-B492-4E7B-DAA063C01F1D">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="63D1927E-0A47-3505-4C66-35CFB73211D6" referredColumn="1B04D29E-0B6C-A1A5-B617-AA9D28740F71"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3087FCCB-3137-1873-DDBD-E2D67BE69D40" name="Benutzerdefinierte_Eigenschaft_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:43 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C6A99347-58BA-ADBB-F438-A6A5AC02B8F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C59557FB-BCA1-67FD-C6A4-B31C757D4109" name="Benutzerdefinierte_Eigenschaft_Wertebereich_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-19 07:27:44 UTC</createdTime>
+<generatorID>74080F16-5F75-A879-F560-7F22556C514D</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="072E290F-E776-B492-4E7B-DAA063C01F1D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

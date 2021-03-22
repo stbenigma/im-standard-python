@@ -1,0 +1,523 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="940228DE-67AB-6476-EA02-299A38F9E279" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_ROLLUP_LINKS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_ROLLUP_LINKS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_ROLLUP_LINKS
+AS 
+select  Rollup_Link_ID, Rollup_Link_Name, Rollup_Link_OVID, Model_ID, Model_Name, Model_OVID, Parent_Object_ID, Parent_Object_Name, Parent_Object_OVID, Child_Object_ID, Child_Object_Name, Child_Object_OVID, Fact_Entity_ID, Fact_Entity_Name, Fact_Entity_OVID, Parent_Object_Type, Child_Object_Type, Oracle_Long_Name, Oracle_Plural_Name, Oracle_Short_Name, Default_Aggr_Operator, Is_Role_Playing, Is_Sparse_Dimension, Description, Design_OVID from DMRS_ROLLUP_LINKS]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ROLLUP_LINK_ID" id="CB9DE1F8-50DF-1F3D-D61F-F4408AEA0063">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>ROLLUP_LINK_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ROLLUP_LINK_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>ROLLUP_LINK_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>9B24BACF-F2C5-D13A-DE93-04C993979A4D</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ROLLUP_LINK_NAME" id="C70ED06E-97C8-0DB3-AF08-CB805AE9A21B">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>ROLLUP_LINK_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ROLLUP_LINK_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>ROLLUP_LINK_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>097021A2-7C2D-7BA5-1D13-C205333E4537</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ROLLUP_LINK_OVID" id="2A347D40-0CCF-1E91-D80A-F2B3EDE5D8B8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>ROLLUP_LINK_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ROLLUP_LINK_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>ROLLUP_LINK_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>6D80C586-EB37-65DD-66C9-6F1B8AFF365F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_ID" id="32084235-DD92-3C28-107D-98C528EF8F9A">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>MODEL_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>4280067C-755F-F5B5-2DA4-87FB76F23432</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_NAME" id="3F62E8C5-5281-6808-2087-C2A66D872F06">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>MODEL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>29345406-413B-CAED-8850-FC22F1322426</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MODEL_OVID" id="8E0D0AF6-CD81-65E7-E647-19C7A5358071">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MODEL_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>MODEL_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>42CB3054-E813-E93C-889D-B8897F6C118A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_ID" id="4C41A84C-DC06-8F9D-FB6A-140E119B4933">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>2D7C2B2B-7952-AF71-39F9-DAE09F5B60C1</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_NAME" id="B6B0679B-F5FD-1E7E-C7A4-65CE5CEE1245">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>76F1E25A-81B3-6D12-BE98-AB1A796D7635</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_OVID" id="CE7B8FDF-5A3E-563A-426D-5C76E177BD16">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>0B09C4AD-3E87-BC4F-945F-CC93DF657E98</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHILD_OBJECT_ID" id="B314FF2C-4408-942A-DC0F-C5CF38539558">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>CHILD_OBJECT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHILD_OBJECT_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>CHILD_OBJECT_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1770AB8F-963E-14F3-FC52-018BFCF6A3E4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHILD_OBJECT_NAME" id="BA6010C1-999F-6515-978B-9229A7CB47F8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>CHILD_OBJECT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHILD_OBJECT_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>CHILD_OBJECT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>7E12A31F-C0F2-0A7F-22DC-5013755C04AE</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHILD_OBJECT_OVID" id="7BAF0967-22E3-50B2-EE2B-5FB53CD9B27F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>CHILD_OBJECT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHILD_OBJECT_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>CHILD_OBJECT_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>19BD795D-E86C-FC21-9B4E-D9CF8C5A6E68</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_ENTITY_ID" id="BD4C16F1-287E-980D-3B97-1F5AA070D162">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>FACT_ENTITY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FACT_ENTITY_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>FACT_ENTITY_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>D8744743-7D2C-3C2D-276B-5934DA7AF10E</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_ENTITY_NAME" id="574C3C21-0800-52F3-9479-1B9E0EF3B945">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>FACT_ENTITY_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FACT_ENTITY_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>FACT_ENTITY_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>570C5A54-D26F-7223-DB6A-AFFC9CF1071F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="FACT_ENTITY_OVID" id="F6CF8C58-C104-C55B-B945-B994B21ED574">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>FACT_ENTITY_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>FACT_ENTITY_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>FACT_ENTITY_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>72E2556D-990B-F540-FC17-D939A0D06EE5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_TYPE" id="FD7BCA3B-A44F-7E6B-9EE8-6E6AA3DA03FF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_TYPE</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>A71A6EB9-8FCA-7A19-FA8E-6EF3255A4BC6</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="CHILD_OBJECT_TYPE" id="0646D294-C618-FA03-B7A3-D94376A421BF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>CHILD_OBJECT_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>CHILD_OBJECT_TYPE</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>CHILD_OBJECT_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>B0BB4211-DA58-85AB-3026-AC6004964A4B</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_LONG_NAME" id="70219E34-3E2B-40D7-21A4-954F0D1CCF28">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>ORACLE_LONG_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ORACLE_LONG_NAME</alias>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>ORACLE_LONG_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>F3A0070F-4CE3-B038-A56D-D29C40EAF7CB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_PLURAL_NAME" id="AA3495B6-6ECC-7167-4BCA-3E96E9F525CF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>ORACLE_PLURAL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ORACLE_PLURAL_NAME</alias>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>ORACLE_PLURAL_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>A424C5CB-9783-1531-7C78-D7AD668A87AD</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="ORACLE_SHORT_NAME" id="898E7F43-5D6E-7332-D47A-D3AE14096CA1">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>ORACLE_SHORT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>ORACLE_SHORT_NAME</alias>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>ORACLE_SHORT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>73540519-9CE7-3668-B496-59939EA2DAE4</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DEFAULT_AGGR_OPERATOR" id="23489AE2-6537-7A88-6183-D0BAEEED3E8C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>DEFAULT_AGGR_OPERATOR</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DEFAULT_AGGR_OPERATOR</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>DEFAULT_AGGR_OPERATOR</headerAlias>
+<reference>false</reference>
+<referencedColumn>5F4A1F45-373F-64D2-CD99-98B65C57D391</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_ROLE_PLAYING" id="83D799C5-8A51-2EF7-6400-86CD3BDDB51E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>IS_ROLE_PLAYING</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>IS_ROLE_PLAYING</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>IS_ROLE_PLAYING</headerAlias>
+<reference>false</reference>
+<referencedColumn>48D8FA1B-6CAD-67B0-86B1-9840630F5BE6</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="IS_SPARSE_DIMENSION" id="828530D5-6C2E-6D0D-0ED4-BE5C65E4BFC5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>IS_SPARSE_DIMENSION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>IS_SPARSE_DIMENSION</alias>
+<dataType>CHAR (1 BYTE)</dataType>
+<headerAlias>IS_SPARSE_DIMENSION</headerAlias>
+<reference>false</reference>
+<referencedColumn>BA534548-6342-F419-9C36-AEEE7F626578</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESCRIPTION" id="6FA88A0A-7EE3-B5E5-C393-D7D4EB174879">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>DESCRIPTION</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESCRIPTION</alias>
+<dataType>VARCHAR2 (4000 BYTE)</dataType>
+<headerAlias>DESCRIPTION</headerAlias>
+<reference>false</reference>
+<referencedColumn>2319C2D3-FFA0-0754-2169-09B2D59C912B</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="B17CD930-1EA1-A267-CDC3-6D2D0A4360B9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_ROLLUP_LINKS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:34 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>C7F1619F-A8C1-46D9-D0AE-1A60FE962D22</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9B24BACF-F2C5-D13A-DE93-04C993979A4D">
+<columnName>ROLLUP_LINK_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="097021A2-7C2D-7BA5-1D13-C205333E4537">
+<columnName>ROLLUP_LINK_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6D80C586-EB37-65DD-66C9-6F1B8AFF365F">
+<columnName>ROLLUP_LINK_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4280067C-755F-F5B5-2DA4-87FB76F23432">
+<columnName>MODEL_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="29345406-413B-CAED-8850-FC22F1322426">
+<columnName>MODEL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="42CB3054-E813-E93C-889D-B8897F6C118A">
+<columnName>MODEL_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2D7C2B2B-7952-AF71-39F9-DAE09F5B60C1">
+<columnName>PARENT_OBJECT_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="76F1E25A-81B3-6D12-BE98-AB1A796D7635">
+<columnName>PARENT_OBJECT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0B09C4AD-3E87-BC4F-945F-CC93DF657E98">
+<columnName>PARENT_OBJECT_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1770AB8F-963E-14F3-FC52-018BFCF6A3E4">
+<columnName>CHILD_OBJECT_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="7E12A31F-C0F2-0A7F-22DC-5013755C04AE">
+<columnName>CHILD_OBJECT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="19BD795D-E86C-FC21-9B4E-D9CF8C5A6E68">
+<columnName>CHILD_OBJECT_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D8744743-7D2C-3C2D-276B-5934DA7AF10E">
+<columnName>FACT_ENTITY_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="570C5A54-D26F-7223-DB6A-AFFC9CF1071F">
+<columnName>FACT_ENTITY_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="72E2556D-990B-F540-FC17-D939A0D06EE5">
+<columnName>FACT_ENTITY_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A71A6EB9-8FCA-7A19-FA8E-6EF3255A4BC6">
+<columnName>PARENT_OBJECT_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B0BB4211-DA58-85AB-3026-AC6004964A4B">
+<columnName>CHILD_OBJECT_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F3A0070F-4CE3-B038-A56D-D29C40EAF7CB">
+<columnName>ORACLE_LONG_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A424C5CB-9783-1531-7C78-D7AD668A87AD">
+<columnName>ORACLE_PLURAL_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="73540519-9CE7-3668-B496-59939EA2DAE4">
+<columnName>ORACLE_SHORT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5F4A1F45-373F-64D2-CD99-98B65C57D391">
+<columnName>DEFAULT_AGGR_OPERATOR</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="48D8FA1B-6CAD-67B0-86B1-9840630F5BE6">
+<columnName>IS_ROLE_PLAYING</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BA534548-6342-F419-9C36-AEEE7F626578">
+<columnName>IS_SPARSE_DIMENSION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2319C2D3-FFA0-0754-2169-09B2D59C912B">
+<columnName>DESCRIPTION</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C7F1619F-A8C1-46D9-D0AE-1A60FE962D22">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CC647CDA-4295-6ADF-90B8-C13DFB5F995A">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_ROLLUP_LINKS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

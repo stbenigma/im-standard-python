@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0FC852DA-07D0-543C-A5E4-6B494E90CE94" name="Tatsache">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 09:41:35 UTC</createdTime>
+<commentInRDBMS><![CDATA[tooltip]]></commentInRDBMS>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<typeID>899A6DDC-95E0-4AD5-5F58-B3A2FF5C2D08</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Prädikat, Aussage</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Tatsache"/>
+<property name="DE_ENTI_SYNONYM" value="Prädikat, Aussage"/>
+<property name="EN_ENTI_NAME" value="Fact"/>
+<property name="EN_ENTI_SYNONYM" value="Proposition, Predicate"/>
+<property name="dev_status" value="DEV"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Aussage" id="57648719-4534-DEE4-5952-12F2027E0729">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-28 09:41:35 UTC</createdTime>
+<comment><![CDATA[Struktur der Aussage <>..<>..<>]]></comment>
+<commentInRDBMS><![CDATA[tooltip]]></commentInRDBMS>
+<notes><![CDATA[[EN_ATTR_COMMENT[
+*DE* Struktur der Aussage <>..<>..<>
+]EN_ATTR_COMMENT]
+[DE_ATTR_COMMENT[
+Struktur der Aussage <>..<>..<>
+]DE_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<engineerTo>
+<item key="76547D0C-003E-6F74-D2FC-7ADFC63697F6" value="true"/>
+<item key="17F5F16D-4CB1-2968-618E-D369CD8C5B93" value="true"/>
+<item key="BE22189E-C358-530C-6354-65FB4784079F" value="true"/>
+<item key="A91573EF-1254-1C9A-797A-A2AF60AC738D" value="true"/>
+<item key="1A90F064-D225-B8AB-AC38-0393157EE4FC" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Aussage"/>
+<property name="EN_ATTR_NAME" value="Statement"/>
+<property name="dev_status" value="DEV"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

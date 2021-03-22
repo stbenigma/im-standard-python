@@ -50,8 +50,8 @@ class Table(Baseobject):
         return self.tabl_descr
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Table._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Table._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby="tabl_name"):

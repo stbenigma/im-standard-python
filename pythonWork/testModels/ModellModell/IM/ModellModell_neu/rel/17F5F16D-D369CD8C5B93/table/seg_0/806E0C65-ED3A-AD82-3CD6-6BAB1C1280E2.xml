@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="806E0C65-ED3A-AD82-3CD6-6BAB1C1280E2" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_palette">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_palette</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:46 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PaletteID" id="8981D6EF-356D-E453-2A4B-FF64B27D65E8">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_palette</sourceObjSchema>
+<sourceObjName>PaletteID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="C36EEF46-FC05-AEC7-828F-ABAB52BE19D4">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_palette</sourceObjSchema>
+<sourceObjName>Name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Type" id="571CF7BA-E68F-DFB5-A908-EA0070880673">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_palette</sourceObjSchema>
+<sourceObjName>Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:47 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F512D970-A734-8B54-E05B-EC0174277F53" name="pk_palette">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_palette</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:48 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8981D6EF-356D-E453-2A4B-FF64B27D65E8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,140 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D6E83EF-AAD2-E88F-BC99-749286916284" name="INTERFACES">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>INTERFACES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:34:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>table_54</ordsAlias>
+<typeID>FAF70092-F6A9-97FE-9880-A36ECEDBFE26</typeID>
+<abbreviation>INTF</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="INTF_ID" id="65C00228-99F0-589A-1661-9C55B64918EA">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:34:58 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7766FA59-86A0-8232-0B5A-75231A27538C" referredColumn="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</associations>
+</Column>
+<Column name="INTF_NAME" id="DF0A212E-BAD8-1B08-6F08-F7557C5C5C24">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:35:31 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INTF_DESCR" id="561B7419-2CD7-EBC9-1151-440D27A7B85F">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 14:53:34 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INTF_UC" id="CEEB984E-4393-4D78-54BD-577DCD92D70F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:49:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="F7EEFF47-7A42-2A3E-7DFC-D0558D6996B8"/>
+</propertyMap>
+</Column>
+<Column name="INTF_DC" id="007AB128-D0D4-08C1-642B-A49B542DC277">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:49:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="74D877A0-4C3B-63EE-06C5-071C7695907C"/>
+</propertyMap>
+</Column>
+<Column name="INTF_UM" id="D0DA72F2-6DDB-D678-1A65-CEAA580AFD30">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:49:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B2E17D53-C2F7-74D9-022D-5D63F3931519"/>
+</propertyMap>
+</Column>
+<Column name="INTF_DM" id="796ECCAA-EACD-04C6-609D-7A16248E8D3E">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:49:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT047</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="ctemplateID" value="B398D247-00C1-F016-3BBB-FE65CFFFF7AA"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A568333F-B322-1EA4-F0EB-46BE6E1FE58C" name="INTF_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:35:31 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65C00228-99F0-589A-1661-9C55B64918EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0EDE3B43-8CDF-E79E-66FE-F4263ED2A9E7" name="SCHN_UN">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-04 14:35:31 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DF0A212E-BAD8-1B08-6F08-F7557C5C5C24"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22ABFD7B-0C50-1A6F-8F65-C9A6255D965F" name="INFT_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-12-01 14:49:33 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65C00228-99F0-589A-1661-9C55B64918EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

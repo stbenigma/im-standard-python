@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AE883B8E-30C6-7953-A217-331A00BD0894" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_AGGR_FUNC_LEVELS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_AGGR_FUNC_LEVELS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:41 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="AGGREGATE_FUNCTION_ID" id="E8AF210F-CE6A-F5E9-5402-B606EA7386E0">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>AGGREGATE_FUNCTION_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AGGREGATE_FUNCTION_NAME" id="BF031DAA-112F-09EB-B15A-673D7EFBABA9">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>AGGREGATE_FUNCTION_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AGGREGATE_FUNCTION_OVID" id="6858741F-2BCC-E33B-129A-1E138C8B81AA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>AGGREGATE_FUNCTION_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LEVEL_ID" id="09E67103-3353-DAC4-8B70-7DCB1417EFF8">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>LEVEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LEVEL_NAME" id="A57A34EF-454D-1722-88E3-2778AE4CE6DA">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>LEVEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LEVEL_OVID" id="62026702-A034-8175-F000-3B0BD256A4A4">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>LEVEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="6BD60056-3D1E-C0B3-1BD9-ACD19FAD6175">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_AGGR_FUNC_LEVELS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:46 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="66909B9F-82EC-7978-1373-A0CE7C02A26C" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="AGGR_FUNC_LEVELS_FK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>AGGR_FUNC_LEVELS_FK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:53 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6858741F-2BCC-E33B-129A-1E138C8B81AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,155 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="48B51085-1B68-F1A3-4829-B519D4600378" name="DMRV_RESPONSIBLE_PARTIES">
+<sourceDDLFile>dbms-odm.sql</sourceDDLFile>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>0A0BC06F-85D1-340F-6BFB-43366B3631A5</importedID>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[select  Responsible_Party_ID, Responsible_Party_OVID, Responsible_Party_Name, Business_Info_ID, Business_Info_OVID, Business_Info_Name, Parent_ID, Parent_OVID, Parent_Name, Responsibility, Design_OVID from DMRS_RESPONSIBLE_PARTIES]]></userDefinedSQL>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESPONSIBLE_PARTY_ID" id="2644C307-22A7-6D11-053C-0E6A79FF0C82">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Responsible_Party_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A222D604-ECD8-D11A-2C74-6EE099F72A1C</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESPONSIBLE_PARTY_OVID" id="5E3EF45C-2172-F69A-CBFA-8E28177E4CC5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Responsible_Party_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>5AE0E252-5AF2-4E5D-0129-3157115A036D</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESPONSIBLE_PARTY_NAME" id="06656AAD-12C7-DBB0-2ADC-450EAB07F7A5">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Responsible_Party_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>8CD5D902-9074-3C5C-5E1E-2BFE9B10B594</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_ID" id="CA089F44-09BE-AF0A-1B22-B32EAA94B8C4">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Business_Info_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>FD596600-72C2-0703-3A8C-0F92B740EB8C</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_OVID" id="BD354AF3-22B8-1CA1-5716-77FC01658D8D">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Business_Info_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>BAAD381D-1439-DC57-3458-9217C3B07C85</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="BUSINESS_INFO_NAME" id="D717352D-011C-35AD-2112-04B7A80DB8D4">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Business_Info_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>8A0D5B3B-8EDB-5C2E-C49E-36BCD741B148</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_ID" id="A33EAE01-EF61-D2DC-024B-A33BAA677B2F">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>Parent_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>17AFDDE4-6D79-D7C3-86CD-923A1CE1D276</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OVID" id="A25A66DE-4BEC-0AFD-158A-1F8188DA3F33">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Parent_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A3005AFC-B99B-0EA5-82EE-C9010EA2B825</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_NAME" id="C9D1DFBF-D272-F9CF-5D6A-B387E552C0BC">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>Parent_Name</headerAlias>
+<reference>false</reference>
+<referencedColumn>D9090CB2-D5A6-7DA7-6BF7-20B88E6A210F</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="RESPONSIBILITY" id="EFE873B8-BA2A-7FD4-7090-22F4EA58452B">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (2000 BYTE)</dataType>
+<headerAlias>Responsibility</headerAlias>
+<reference>false</reference>
+<referencedColumn>78ABE84F-48FF-5FD0-F97C-742D6DB625CB</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="C20D4BE4-C389-0D2D-FBB9-72BDA735EE15">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:16:09 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>Design_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>AF82ACF3-919D-7E23-E1DD-EC4DA459E0DF</referencedColumn>
+<table>24EF7FDF-2C70-5F64-EAEB-05A0F3302319</table>
+<viewID>48B51085-1B68-F1A3-4829-B519D4600378</viewID>
+</viewElement>
+</viewElements>
+</TableView>

@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="DB1660F2-81E0-4E3F-86D4-88980C82AC3B" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRS_RECORD_STRUCTURES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRS_RECORD_STRUCTURES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:44 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RECORD_STRUCTURE_ID" id="1CDF57B5-3AD9-76F7-368C-2706BC3DA523">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECORD_STRUCTURE_OVID" id="5856BC15-A9C4-1AF8-8948-2426BC9F8024">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RECORD_STRUCTURE_NAME" id="C6B2FF69-AB7E-6FBE-FAF4-6228CD95DB44">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTURE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODEL_ID" id="BBB60B7F-E2D8-4FA0-B970-82546948C9A7">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>MODEL_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>70 BYTE</dataTypeSize>
+<ownDataTypeParameters>70 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODEL_OVID" id="DFE3D37B-D214-54C8-9895-41384830CDE5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>MODEL_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODEL_NAME" id="0103B1FD-D4EC-2956-2465-B6ABE4888720">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>MODEL_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>256 BYTE</dataTypeSize>
+<ownDataTypeParameters>256 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESIGN_OVID" id="459F4E5E-3B5E-7411-6608-E59DDB4C988F">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRS_RECORD_STRUCTURES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:50 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>36 BYTE</dataTypeSize>
+<ownDataTypeParameters>36 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C1D01324-E953-293A-7239-A163B77F763D" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="RECORD_STRUCTS_FK_MODEL_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTS_FK_MODEL_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFE3D37B-D214-54C8-9895-41384830CDE5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3D4D60B3-4F08-F166-5EEE-E2528F01A2F9" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="RECORD_STRUCTS_PK_IDX">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>RECORD_STRUCTS_PK_IDX</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:55 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5856BC15-A9C4-1AF8-8948-2426BC9F8024"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

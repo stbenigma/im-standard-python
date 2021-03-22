@@ -1027,7 +1027,24 @@ def do1Entity(fileName):
     enti.enti_tooltip = findText(entixml, 'note')
     enti.enti_uc = findText(entixml, 'createdBy')
     enti.enti_dc = findText(entixml, 'createdTime')
-    entiId = enti.insert()
+
+    i=1 #safeguard for eternal loop
+    while i<10:
+        try:
+            entiId = enti.insert()
+            break
+        except Exception as e:
+            logmessages.writelog("in Entity {}: {} ".format(entiguid, enti.enti_name))
+            logmessages.writelog(e.__str__())
+            logmessages.writelog(e.__str__())
+            #Entities can have duplicate names (merging in github)
+            if re.match(r"UNIQUE constraint failed: ENTITIES.ENTI_NAME",e.__str__()):
+                rela.rela_name += "v{}".format(str(i))
+                i += 1
+            else: raise Exception("Insert-error in entities: see logfile")
+            if (i == 10): raise Exception("Key-error in entities: see logfile")
+        #try
+    #while
 
     entientiguid = findText(entixml, 'hierarchicalParent')
     enticategoryguid = findText(entixml, 'typeID')
@@ -1137,7 +1154,22 @@ def do1Relation(fileName):
         return
     # fi
 
-    rela.insert()
+    i=1 #safeguard for eternal loop
+    while i<10:
+        try:
+            rela.insert()
+            break
+        except Exception as e:
+            logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
+            logmessages.writelog(e.__str__())
+            #relations can have duplicate names (merging in github)
+            if re.match(r"UNIQUE constraint failed: RELATIONS.RELA_NAME",e.__str__()):
+                rela.rela_name += "v{}".format(str(i))
+                i += 1
+            else: raise Exception("Key-error in relations: see logfile")
+            if (i == 10): raise Exception("Key-error in relations: see logfile")
+        #try
+    #while
     Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.RELA,prelaid=rela.rela_id)
 
     updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
@@ -1396,7 +1428,12 @@ def filllanguages():
     # fill all elements in default language
     Languagetext.filldefaulttext(dbParam.dbDefaultLangID)
     Language.deleteunused()
-# filllanguages
+    return
+
+def fillelementdisplays():
+    Modelelement.insertudpelems(pudpthema=parameters.odmUDPElemdisplFileName())
+    return
+
 
 def transferproject():
     proj = et.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
@@ -1482,7 +1519,21 @@ def transferorgunits():
 
 
 def removeemptyudp():
+    """remove all UDP's which are empty (containing '.' or '' or null as value"""
     Userdefpropvalue.removeemptyUDP(('.',''))
+
+def removefixedudp():
+    """remove all UDP's which are pa rt of our model"""
+    modeludps = [(parameters.odmUDPElemdisplFileName(), val) for val in Modelelement.ODMattrmapping.values()]
+    for lang in Language.select():
+        for name in Languagetext.ODMtranslAttributes:
+            modeludps.append(
+                (parameters.odmUDPTranslFileName(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
+        #for
+    #for
+
+    Userdefprop.removemodelUDP(modeludps)
+    return
 
 emails = {}
 def do1email(fileName):
@@ -1514,6 +1565,7 @@ def do1contact(fileName):
     global contacts,emails,phones
     tree = et.parse(fileName)
     root = tree.getroot()
+    phone,mail = "",""
 
     ems = root.findall("emails/email")
     for em in ems:
@@ -1564,4 +1616,6 @@ def transferODMModel():
     BusinessRule.setburuelements()
     removeemptyudp()
     filllanguages()
+    fillelementdisplays()
+    removefixedudp()
 # end transferODMModel

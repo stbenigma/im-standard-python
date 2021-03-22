@@ -6,7 +6,7 @@ from distutils.dir_util import copy_tree
 from IM_DB import parameters
 from IM_OBJECTS import *
 import html
-from IM_JSON import JSModel
+from IM_JSON import JSModel,jsguid2type
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -953,6 +953,12 @@ def entidiag(pwebenti):
     return diagstring
 # entidiag
 
+def hasiconfiles():
+    global model
+    iconmaster = [key for key,val in model.getelements(pelemtype=Modelelemtype.DOCU).items()
+                            if val["name"]== parameters.iconmasterdocumentname()]
+    return len(iconmaster) == 1
+
 def iconfilename(pfilename):
     lfilename = re.sub(r'[^a-zäöüñéàè_-]+', '', pfilename.lower())
     fullfilename = "{}/{}.{}".format('image',lfilename,'png').lower()
@@ -968,11 +974,13 @@ def printcontententi():
     deflang = Language.getdefaultlang().lang_iso_code2
     printcontentstart('entities')
     infoheaders = (Languagetext.transl('Synonyme'), Languagetext.transl('Superentitäten')
-                   , Languagetext.transl('Subentitäten'), Languagetext.transl('Rollen'), Languagetext.transl('auf Diagramm(en)')
+                   , Languagetext.transl('Subentitäten'), Languagetext.transl('Rollen')
+                   ,'Zoom levels','Dev. Status'
+                   , Languagetext.transl('auf Diagramm(en)')
                    , Languagetext.transl('geändert'))
 
     for enti in sorted([{'anker':key,'element': value}
-                     for key,value in model.jsmodel['entities'].items()]
+                     for key,value in model.getelement('entities').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = enti['element']
         lbc = str(newbarcounter())
@@ -990,6 +998,7 @@ def printcontententi():
         diagstr = ', '.join(href(ref="{}-{}".format(d, enti['anker'])
                                     , anz=getelement(d)['name']) for d in elem['diagrams+'])
         infovalues = (parameters.nvl(synostr), parentstr, subtypestr,rolesstr
+                      ,'{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']),Modelelement.longdevstatus(elem['devstatus'])
                       , diagstr, parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc']))
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
         printattrlist(penti=elem)
@@ -1007,7 +1016,8 @@ def printcontentattr():
     infoheaders = (
         Languagetext.transl('Technischer Name'), Languagetext.transl('Wertebereich'), Languagetext.transl('Datentyp'),
         Languagetext.transl('Tooltip')
-        , Languagetext.transl('geändert'))
+        , 'Zoom levels', 'Dev. Status'
+    , Languagetext.transl('geändert'))
     flagheaders = (
         Languagetext.transl('Pflichtattribut'), Languagetext.transl('Schlüssel'), Languagetext.transl('Deskriptor'),
         Languagetext.transl('übersetzt')
@@ -1015,7 +1025,7 @@ def printcontentattr():
     lang = Languagetext.reportLang()
 
     for attr in sorted([{'anker':key,'element': value}
-                     for key,value in model.jsmodel['attributes'].items()]
+                     for key,value in model.getelement('attributes').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = attr['element']
         printcontentstart('attributes')
@@ -1039,7 +1049,9 @@ def printcontentattr():
         domainref =  domainname if  domain['origin'] == Domain.DERIVED\
                      else href(ref=elem['domain'], anz=domainname)
         infovalues = (parameters.nvl(elem['techname'], ''), domainref, domain['displdatatype+'][lang]
-                      , parameters.nvl(elem['tooltip'][lang]), re.sub(r'^, $', '', parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc'])))
+                      , parameters.nvl(elem['tooltip'][lang])
+                      , '{} - {}'.format(elem['minzoomlevel'], elem['maxzoomlevel']),Modelelement.longdevstatus(elem['devstatus'])
+                      , re.sub(r'^, $', '', parameters.nvl(elem['uc']) + ', ' + parameters.nvl(elem['dc'])))
         printcontentinfo(ptitle=Languagetext.transl('Informationen'), pheaders=infoheaders, pvalues=infovalues)
 
         flagvalues = (bool2icon(elem['mandatory']), bool2icon(len(elem['keys+'])>0), bool2icon(elem['descriptive'])
@@ -1205,7 +1217,7 @@ def printcontentdoma(pdomains):
                            Languagetext.transl('geändert'))
             infovalues = (
             parameters.nvl(elem['displdatatype+'][lang]), parameters.nvl(elem['contenttype']),
-                parameters.nvl(elem['contenttypename']), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+                parameters.nvl(elem['contenttypename+']), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.GRP):
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
             infovalues = (elem['displdatatype+'][lang], parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
@@ -1246,21 +1258,19 @@ def printcontentdoma(pdomains):
 # printcontentdoma
 
 def type2name(ptyp,plang):
-    if ptyp == 'entities':
+    if ptyp == Modelelemtype.ENTI:
         return Languagetext.transl('Entitäten', plang)
-    elif ptyp == 'attributes':
+    elif ptyp == Modelelemtype.ATTR:
         return Languagetext.transl('Attribute', plang)
-    elif ptyp == 'attributes':
-        return Languagetext.transl('Attribute', plang)
-    elif ptyp == 'domains':
+    elif ptyp == Modelelemtype.DOMA:
         return Languagetext.transl('Wertebereiche', plang)
-    elif ptyp == 'diagrams':
+    elif ptyp == Modelelemtype.DIAG:
         return Languagetext.transl('Diagramme', plang)
-    elif ptyp == 'tables':
+    elif ptyp == Modelelemtype.TABL:
         return Languagetext.transl('Tabellen', plang)
-    elif ptyp == 'systems':
+    elif ptyp == Modelelemtype.INTF:
         return Languagetext.transl('Systeme', plang)
-    elif ptyp == 'columns':
+    elif ptyp == Modelelemtype.COLU:
         return 'Columns'
     else:
         return ptyp
@@ -1271,16 +1281,18 @@ def printreflist(pelem,plang):
     fhtml.write(starttable(ptitle=Languagetext.transl('Referenziert')
                            , pheaders=[Languagetext.transl('Typ'), Languagetext.transl('Elemente')]))
 
+    types = set([jsguid2type(ref) for ref in pelem['references+']])
     refentries = {typ: [{'anker': e
                         , 'name': getelement(e)['name']
-                        ,'htmlfile': htmlfilelist[getelement(e)['interface-id+']] if (typ in ('tables','columns','systems')) else ''
-                         } for e in ref] for typ,ref in pelem['references'].items()}
+                        ,'htmlfile': htmlfilelist[getelement(e)['interface-id+']] if (typ in (Modelelemtype.COLU,Modelelemtype.INTF))
+                                     else htmlfilelist[getelement(e)['interface-id']] if (typ in (Modelelemtype.TABL)) else ''
+                         } for e in pelem['references+'] if jsguid2type(e) == typ] for typ in types}
     if (len(refentries) == 0): return
     for typ,ref in refentries.items():
         if len(ref)==0: continue
         # aus schn-html zurück ins Main
-        docuentry = ', '.join (href(ref='' if (typ in ('systems')) else elem['anker']
-                                    ,anz=elem['name'] if (typ in ('tables','columns','systems'))\
+        docuentry = ', '.join (href(ref='' if (typ in (Modelelemtype.INTF)) else elem['anker']
+                                    ,anz=elem['name'] if (typ in (Modelelemtype.TABL,Modelelemtype.COLU,Modelelemtype.INTF))\
                                                 else elem['name'][plang]
                                     ,htmlfile=elem['htmlfile']
                                     ) for elem in ref)
@@ -1411,7 +1423,7 @@ def attname2element(pattrname):
         return Languagetext.transl('Name')
     elif pattrname in ['ENTI_COMMENT', 'ATTR_COMMENT']:
         return Languagetext.transl('Beschreibung')
-    elif pattrname in ['SYNO_NAME']:
+    elif pattrname in ['ENTI_SYNONYM']:
         return Languagetext.transl('Synonym')
     else:
         return pattrname

@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68B80608-B5FD-2A5B-AB66-9091851A033A" name="EXTERNAL_REFS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>EXTERNAL_REFS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EXTR_ID" id="56FE644A-8400-BC46-BFD6-16459D4BB6C1">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>EXTERNAL_REFS</sourceObjSchema>
+<sourceObjName>EXTR_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="EXTR_SOURCE_NAME" id="3CB518CD-DC8D-57AB-3F92-6A418716CF20">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>EXTERNAL_REFS</sourceObjSchema>
+<sourceObjName>EXTR_SOURCE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>60</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,60,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="EXTR_SOURCE_ID" id="9BA924B4-20C4-3767-FC7E-276B4351B557">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>EXTERNAL_REFS</sourceObjSchema>
+<sourceObjName>EXTR_SOURCE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>100</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,100,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="EXTR_MODE_ID" id="158F9E6C-72E3-2336-3E7A-0B01AFF76B40">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>EXTERNAL_REFS</sourceObjSchema>
+<sourceObjName>EXTR_MODE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="FA60A70E-1A04-F9AC-C71C-9E07154CDC75" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</associations>
+</Column>
+<Column name="EXTR_LAST_UPDATE" id="9D310EF7-FFFE-5CC5-2A31-FC7DAE5D098D">
+<createdBy>stb</createdBy>
+<createdTime>2021-02-13 14:14:20 UTC</createdTime>
+<comment><![CDATA[exact time when this source updated this entry the last time. Used for merging]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="990BB392-858A-864A-9D70-E6EA60F8CB8D" name="EXTR_PK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>EXTR_PK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="56FE644A-8400-BC46-BFD6-16459D4BB6C1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B4A3DC7C-354B-131B-35BE-93585D887784" name="EXTR_UK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>EXTR_UK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3CB518CD-DC8D-57AB-3F92-6A418716CF20"/>
+<colUsage columnID="158F9E6C-72E3-2336-3E7A-0B01AFF76B40"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4B8B51AC-DE35-D8CD-D707-7CC0DDCFABAD" name="Extr_UK_id">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>Extr_UK_id</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:03 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3CB518CD-DC8D-57AB-3F92-6A418716CF20"/>
+<colUsage columnID="9BA924B4-20C4-3767-FC7E-276B4351B557"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E8B83301-BF3F-2060-0186-0E362E66A1B3" name="EXTR_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="158F9E6C-72E3-2336-3E7A-0B01AFF76B40"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

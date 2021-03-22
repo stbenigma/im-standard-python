@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C81C0CE7-44FE-0626-88B6-9B5C598BFDD7" name="MODELELEMENT">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>MODELELEMENT</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<comment><![CDATA[Supertype for severl model element (entites, synonyms, attributes, relationships etc.)
+Combining management-information like (documents, responsible parties, usert defined properties, display information, translations, etc.)
+
+The MODE_ID is identical to the ID of the corresponding model element (ENTI_ID, ATTR_ID, RELA_ID etc.)
+This is a real Supertype implmentation with corresponding PK (but no FK between parent and child)]]></comment>
+<generatorID>EA10CFC2-DB6B-A934-F362-5835CCEBBCA4</generatorID>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<ordsAlias>vorgabewertv1</ordsAlias>
+<abbreviation>MODE</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MODE_ID" id="9698F1F3-1EBE-8770-4F8C-4FFC3465A776">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODE_TYPE" id="0536A706-C345-77CF-44AA-2B04A96A30BF">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:39:57 UTC</createdTime>
+<comment><![CDATA[Redundant to modelelem_type.melt_shortname.
+Helps facilitate joins.]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__MODELELEM__MODE___7720AD13</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>0D75D1F9-839F-41DA-8464-0FF34C2F4ABB</domain>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[MODE_TYPE]=&apos;TABL&apos; OR [MODE_TYPE]=&apos;SYNO&apos; OR [MODE_TYPE]=&apos;RELA&apos; OR [MODE_TYPE]=&apos;ORGU&apos; OR [MODE_TYPE]=&apos;KEYS&apos; OR [MODE_TYPE]=&apos;INTF&apos; OR [MODE_TYPE]=&apos;ENTI&apos; OR [MODE_TYPE]=&apos;DOMA&apos; OR [MODE_TYPE]=&apos;DOCU&apos; OR [MODE_TYPE]=&apos;DIAG&apos; OR [MODE_TYPE]=&apos;DGRM&apos; OR [MODE_TYPE]=&apos;DATY&apos; OR [MODE_TYPE]=&apos;COLU&apos; OR [MODE_TYPE]=&apos;BURU&apos; OR [MODE_TYPE]=&apos;ATTR&apos; OR [MODE_TYPE]=&apos;ARCS&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MODE_MELT_ID" id="C9B9090E-ACD2-912C-656D-4F0FF9462048">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:30:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F2A77F25-5E5D-1BB8-7C92-67491783DF83</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9EF8BAFB-6835-A096-982F-161CCA2F27A3" referredColumn="62C7EB27-D88E-E5B4-8507-4DB9AB2AFED0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9459F08D-A00D-AE0D-1CBC-2CA53BEB7031" name="MODE_PK">
+<createdBy>stb</createdBy>
+<createdTime>2020-02-03 20:18:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="9698F1F3-1EBE-8770-4F8C-4FFC3465A776"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85DC1AEF-3FE5-D068-9D4F-6FC08A80EC6C" name="MODE_MELT_FK">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-30 13:30:53 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C9B9090E-ACD2-912C-656D-4F0FF9462048"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

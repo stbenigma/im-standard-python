@@ -13,25 +13,6 @@ class Interface(Baseobject):
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Interface._tablename
-                               , psql="""
-    CREATE TABLE interfaces
-        (
-         intf_ID integer primary key autoincrement, 
-         intf_NAME VARCHAR (60) NOT NULL , 
-         intf_DESCR VARCHAR (4000)  , 
-         intf_UC VARCHAR (30) NOT NULL , 
-         intf_DC VARCHAR (30) NOT NULL , 
-         intf_UM VARCHAR (30) NULL , 
-         intf_DM VARCHAR (30) NULL ,
-     CONSTRAINT intf_UN UNIQUE (intf_NAME)
-      ,CONSTRAINT INFT_MODE_FK FOREIGN KEY (INTF_ID) 
-        REFERENCES MODELELEMENT (MODE_ID) 
-        )
-        """)
-
     def getname(self,plang=None):
         return self.intf_name
 
@@ -42,8 +23,8 @@ class Interface(Baseobject):
         return self.intf_descr
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Interface._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Interface._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby='intf_name'):

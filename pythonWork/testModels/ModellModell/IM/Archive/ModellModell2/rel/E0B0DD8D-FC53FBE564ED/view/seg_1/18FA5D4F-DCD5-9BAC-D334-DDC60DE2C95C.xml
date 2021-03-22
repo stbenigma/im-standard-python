@@ -1,0 +1,243 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_1" id="18FA5D4F-DCD5-9BAC-D334-DDC60DE2C95C" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_MEASURE_FOLDER_MEASURES">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_MEASURE_FOLDER_MEASURES</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_MEASURE_FOLDER_MEASURES
+AS 
+select  Measure_Folder_ID, Measure_Folder_Name, Measure_Folder_OVID, Measure_ID, Measure_Name, Measure_OVID, Parent_Object_ID, Parent_Object_Name, Parent_Object_OVID, Parent_Object_Type, Design_OVID from DMRS_MEASURE_FOLDER_MEASURES]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_FOLDER_ID" id="1B842567-485B-8A30-369A-3539C55FCAE5">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>MEASURE_FOLDER_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MEASURE_FOLDER_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>MEASURE_FOLDER_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>12268814-D7C9-44B2-7D02-14A42A3371F5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_FOLDER_NAME" id="0EBBF75A-209D-FFD7-A13A-662F49922646">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>MEASURE_FOLDER_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MEASURE_FOLDER_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>MEASURE_FOLDER_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>EE22F6D8-EBA1-BA08-84ED-0B84EEF3E02D</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_FOLDER_OVID" id="F7F0F47A-966C-1EF1-CD3A-96C3025431DC">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>MEASURE_FOLDER_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MEASURE_FOLDER_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>MEASURE_FOLDER_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1F4F38D4-C63F-A468-EAD0-B2A768E8C7D9</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_ID" id="FDE2F216-7B6E-BAD2-0E63-B2E5A19C5D0C">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>MEASURE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MEASURE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>MEASURE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1309E969-6FA0-D892-767E-96DB57D0F41F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_NAME" id="47EE24A0-789B-1DC4-1972-668451620CF6">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>MEASURE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MEASURE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>MEASURE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>98203394-627A-35E9-1C71-67CF5E39E0E5</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="MEASURE_OVID" id="8D793134-F147-3896-4149-59E63D9431DE">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>MEASURE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>MEASURE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>MEASURE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>572A8B93-4C27-D7F7-1B38-8ED492421188</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_ID" id="206BE65C-8F9E-B4C4-CDD8-5FFB7C9E97F0">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>8E630F4D-8BA8-BBA4-C2C3-9DBB2DB3EA70</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_NAME" id="4E6AD435-3F37-3450-FC40-216B2282D363">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>B421639A-1D56-73BD-A49D-5797A3FE09BB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_OVID" id="05595E89-DF15-D196-3936-CD79B2B08C88">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>A9A706A3-423A-6658-09E7-2926B49E3906</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="PARENT_OBJECT_TYPE" id="7BFC0399-6BD4-403B-3919-971DBFC8A31E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>PARENT_OBJECT_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:31 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>PARENT_OBJECT_TYPE</alias>
+<dataType>VARCHAR2 (30 BYTE)</dataType>
+<headerAlias>PARENT_OBJECT_TYPE</headerAlias>
+<reference>false</reference>
+<referencedColumn>CEBA949F-CD0A-F9A5-68C3-2917D1C7603F</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="BBA9974D-11A4-5002-7704-39967F32030E">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_MEASURE_FOLDER_MEASURES</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:32 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>FD56BD09-BB84-5701-6C61-3FB99A273973</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="12268814-D7C9-44B2-7D02-14A42A3371F5">
+<columnName>MEASURE_FOLDER_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="EE22F6D8-EBA1-BA08-84ED-0B84EEF3E02D">
+<columnName>MEASURE_FOLDER_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1F4F38D4-C63F-A468-EAD0-B2A768E8C7D9">
+<columnName>MEASURE_FOLDER_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1309E969-6FA0-D892-767E-96DB57D0F41F">
+<columnName>MEASURE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="98203394-627A-35E9-1C71-67CF5E39E0E5">
+<columnName>MEASURE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="572A8B93-4C27-D7F7-1B38-8ED492421188">
+<columnName>MEASURE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="8E630F4D-8BA8-BBA4-C2C3-9DBB2DB3EA70">
+<columnName>PARENT_OBJECT_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B421639A-1D56-73BD-A49D-5797A3FE09BB">
+<columnName>PARENT_OBJECT_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A9A706A3-423A-6658-09E7-2926B49E3906">
+<columnName>PARENT_OBJECT_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CEBA949F-CD0A-F9A5-68C3-2917D1C7603F">
+<columnName>PARENT_OBJECT_TYPE</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="FD56BD09-BB84-5701-6C61-3FB99A273973">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="4693DA5D-210B-37FB-EDCC-2C7CDAB9E997">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_MEASURE_FOLDER_MEASURES</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

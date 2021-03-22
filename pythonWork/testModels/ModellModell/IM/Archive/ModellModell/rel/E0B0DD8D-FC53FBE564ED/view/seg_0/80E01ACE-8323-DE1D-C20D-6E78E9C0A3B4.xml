@@ -1,0 +1,163 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="80E01ACE-8323-DE1D-C20D-6E78E9C0A3B4" schemaObject="19221298-76C4-E323-B35B-7857802DF7E7" name="DMRV_DATA_FLOW_DIAGRAM_INFOS">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>ADMIN</sourceObjSchema>
+<sourceObjName>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[CREATE OR REPLACE VIEW DMRV_DATA_FLOW_DIAGRAM_INFOS
+AS 
+select  Diagram_ID, Diagram_OVID, Diagram_Name, Info_Store_ID, Info_Store_OVID, Info_Store_Name, Design_OVID from DMRS_DATA_FLOW_DIAGRAM_INFOS]]></userDefinedSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIAGRAM_ID" id="B356EC09-ABF6-336A-F080-4A5C49E0CEAE">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>DIAGRAM_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DIAGRAM_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>DIAGRAM_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>1494C22F-85D0-1875-B4D3-3D5505D5A7FB</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIAGRAM_OVID" id="69AE89A0-A726-4559-F7F7-7C3060CDBE17">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>DIAGRAM_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DIAGRAM_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DIAGRAM_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>38242F52-F244-1463-386D-514B8EABC308</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DIAGRAM_NAME" id="4973F4CD-A31E-F8E8-FC42-F294CF4564CF">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>DIAGRAM_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DIAGRAM_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>DIAGRAM_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>E01269E6-5C0B-676E-1222-04EB92E960A0</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="INFO_STORE_ID" id="77732510-8B78-B741-B0C6-052598CC1090">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>INFO_STORE_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>INFO_STORE_ID</alias>
+<dataType>VARCHAR2 (70 BYTE)</dataType>
+<headerAlias>INFO_STORE_ID</headerAlias>
+<reference>false</reference>
+<referencedColumn>5B2A9586-A684-46FF-E0CF-882548D630FC</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="INFO_STORE_OVID" id="699590AD-F494-C07B-859F-8566E259C901">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>INFO_STORE_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>INFO_STORE_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>INFO_STORE_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>CD3A8DF1-39A3-6B7C-BAF6-5188623FCF7A</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="INFO_STORE_NAME" id="C9460A7A-E9D6-F7A2-7AD6-0F3E74149018">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>INFO_STORE_NAME</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>INFO_STORE_NAME</alias>
+<dataType>VARCHAR2 (256 BYTE)</dataType>
+<headerAlias>INFO_STORE_NAME</headerAlias>
+<reference>false</reference>
+<referencedColumn>3A85453E-46C5-DCF8-96E6-0A199C426EAA</referencedColumn>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="DESIGN_OVID" id="EC3EF42C-C2CD-66B6-40D0-3E0DD6487A80">
+<sourceConnName>cloudadmin</sourceConnName>
+<sourceObjSchema>DMRV_DATA_FLOW_DIAGRAM_INFOS</sourceObjSchema>
+<sourceObjName>DESIGN_OVID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2019-03-29 09:01:27 UTC</createdTime>
+<ownerDesignName>ModellModell</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>DESIGN_OVID</alias>
+<dataType>VARCHAR2 (36 BYTE)</dataType>
+<headerAlias>DESIGN_OVID</headerAlias>
+<reference>false</reference>
+<referencedColumn>C6AC55F7-8CFD-DEF7-E8C2-76B938B7726B</referencedColumn>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1494C22F-85D0-1875-B4D3-3D5505D5A7FB">
+<columnName>DIAGRAM_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="38242F52-F244-1463-386D-514B8EABC308">
+<columnName>DIAGRAM_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E01269E6-5C0B-676E-1222-04EB92E960A0">
+<columnName>DIAGRAM_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5B2A9586-A684-46FF-E0CF-882548D630FC">
+<columnName>INFO_STORE_ID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CD3A8DF1-39A3-6B7C-BAF6-5188623FCF7A">
+<columnName>INFO_STORE_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3A85453E-46C5-DCF8-96E6-0A199C426EAA">
+<columnName>INFO_STORE_NAME</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C6AC55F7-8CFD-DEF7-E8C2-76B938B7726B">
+<columnName>DESIGN_OVID</columnName>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1F4D7FA7-2CC3-7161-B88B-E8FF347F4DF0">
+<container>true</container>
+<schema>ADMIN</schema>
+<tableName>DMRS_DATA_FLOW_DIAGRAM_INFOS</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E4E7C09E-C00F-8BA8-251F-D9409E5AF8BF" containerWithKeyObject="2A09C90E-2D09-4FD5-F005-4FAE24C78481" localFKIndex="E522E206-E96C-693E-B1F9-CFC75F64BD6C" name="RELA_ARCS_TO_FK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>RELA_ARCS_TO_FK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:16 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<referredTableLongName>modelmodel_dbo.ARCS</referredTableLongName>
+<deleteRule>RESTRICT</deleteRule>
+<referredTableID>8511DCBB-B7A3-E366-EC8C-08C3057FBA65</referredTableID>
+<keyObject>A6C362AA-63F7-AAE1-8FFE-C288040E8FFC</keyObject>
+<referredKeyID>A6C362AA-63F7-AAE1-8FFE-C288040E8FFC</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ARCS_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

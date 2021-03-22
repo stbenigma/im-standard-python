@@ -1,0 +1,737 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="IM_Domains">
+<domains>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Farbcode" id="06269521-C0BC-78CB-FBC8-656101307358">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[6stelliger RGB Code in Hexadezimalzeichen]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>06269521-C0BC-78CB-FBC8-656101307358</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<defaultValue>000000</defaultValue>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Oracle Database 12cR2" definition="length({column}) = 6"/>
+<implementationDef dbType="SQL Server 2012" definition="datalength({column}) = 6"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Technischer Datentyp" id="06475D8D-E9C3-9A63-A19D-2EF365B97D2D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Technischer Datentyp in einem System (String, integer, date etc.), inkl. Grössenangaben (byte, zeichen etc.)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>06475D8D-E9C3-9A63-A19D-2EF365B97D2D</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument Inhalt" id="0BF630F8-9481-C3AD-A066-44A5FEC6E877">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:50:33 UTC</createdTime>
+<comment><![CDATA[binär abgespeichertes Dokument]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT029</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Modellquelle" id="0CE30750-EBC5-AE67-ADF3-4A997C83A295">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-07 16:06:10 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<listOfValues>
+<valueDef value="ODM" description="Oracle Data Modeler"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ModellelementTyp" id="0D75D1F9-839F-41DA-8464-0FF34C2F4ABB">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-27 17:06:51 UTC</createdTime>
+<comment><![CDATA[Kürzel der Tabelle eines Modellelementes]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="ARCS" description="Arcs"/>
+<valueDef value="ATTR" description="Attribute"/>
+<valueDef value="BURU" description="Business Rule"/>
+<valueDef value="COLU" description="Column"/>
+<valueDef value="DATY" description="Data Type"/>
+<valueDef value="DGRM" description="Domaingroupmember"/>
+<valueDef value="DIAG" description="Diagram"/>
+<valueDef value="DOCU" description="Document"/>
+<valueDef value="DOMA" description="Domain"/>
+<valueDef value="ENTI" description="Entity"/>
+<valueDef value="INTF" description="Interface"/>
+<valueDef value="KEYS" description="Schlüssel"/>
+<valueDef value="ORGU" description="Organisational Unit"/>
+<valueDef value="RELA" description="Relation"/>
+<valueDef value="SYNO" description="Synonym"/>
+<valueDef value="TABL" description="Table"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Referenz" id="17A3A5E7-15FD-8979-FF7A-1FAC09CEC963">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:51:18 UTC</createdTime>
+<comment><![CDATA[externe Referenz auf einen Verzeichniseintrag oder ein URL]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument" id="1DD73E5D-0E1F-A292-71E3-05600D84D49D">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Irgend eine Datei in einem mit üblichen Werkzeugen lesbaren Format (Word, Excel, PDF, etc.)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>1DD73E5D-0E1F-A292-71E3-05600D84D49D</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Inhaltstyp" id="23CFFE8F-D989-8ED0-93D0-C4BF59140074">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-03 13:22:40 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="DRAWING" description="Graphik"/>
+<valueDef value="FILM" description="Film"/>
+<valueDef value="IMAGE" description="Bild"/>
+<valueDef value="OTHER" description=""/>
+<valueDef value="SOUND" description="Ton"/>
+<valueDef value="TEXT" description="Formatierter Text"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Entwicklungs-Status" id="24FB953F-D6BE-0C10-F459-B7B964B563C2">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:33:48 UTC</createdTime>
+<comment><![CDATA[Development / Relaease Status of an element  ]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<synonym>Development Status</synonym>
+<listOfValues>
+<valueDef value="DEV" description="Development"/>
+<valueDef value="REL" description="Released"/>
+<valueDef value="TEST" description="in Test / QA"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Linientyp" id="30B34D60-5229-19CC-A3D5-584257D800BD">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:18:33 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<defaultValue>SOLID</defaultValue>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="DADO" description="gestrichtelt-gepunktete Linie"/>
+<valueDef value="DASHED" description="gestrichelte Linie"/>
+<valueDef value="DOTTED" description="gepunktete Linie"/>
+<valueDef value="SOLID" description="solide Linie"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Deckkraft" id="3C43C579-B2CF-0898-C553-AF95467F1601">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:13:35 UTC</createdTime>
+<comment><![CDATA[% Deckkraft aller sichtbaren Teile des Elementes]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>100</defaultValue>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>%</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>100</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Schriftgrösse" id="435C11BA-FCF7-BBBA-6AA9-FAB7326273D3">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Grösse der Schrift auf einem Diagramm in points]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>435C11BA-FCF7-BBBA-6AA9-FAB7326273D3</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Businessrule Ebene" id="4655A975-6C53-BBE1-01B9-D658AD7C5FC5">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Ebene auf der eine Business Rule die Konsistenz prüft]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>4655A975-6C53-BBE1-01B9-D658AD7C5FC5</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="ATTR" description="Attribute"/>
+<valueDef value="DB" description="Database"/>
+<valueDef value="ENTI" description="Entity"/>
+<valueDef value="TUPL" description="Tupel "/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Beziehungstyp" id="474B8F52-5B70-256E-A0FA-DF8164EAFE54">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-26 14:31:17 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="1:1" description="one - one"/>
+<valueDef value="ISAR" description="IsA Role"/>
+<valueDef value="ISAS" description="IsA Subtype"/>
+<valueDef value="M:1" description="many - one"/>
+<valueDef value="M:N" description="many - many"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsauslöseart" id="55CB11A1-3EFC-3253-465C-D58D3D8252AD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Art der Auslösung einer Transformation eines Attributwertes]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>55CB11A1-3EFC-3253-465C-D58D3D8252AD</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="MANUELL" description="Manuell"/>
+<valueDef value="PERIODE" description="Periodisch nach letztem Start"/>
+<valueDef value="ZPKT" description="Zeitpunkt"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="57EF5654-BB1B-99CD-E31A-A47A05AD3EE6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Frei wählbare Namen für etwas]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>60 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Beziehungsendetyp" id="58A81D94-A2AD-3DA7-4B9E-471B043185E0">
+<createdBy>stb</createdBy>
+<createdTime>2020-07-27 16:15:31 UTC</createdTime>
+<comment><![CDATA[Cardinalität am Ende der Beziehung ]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<listOfValues>
+<valueDef value="1" description=""/>
+<valueDef value="M" description=""/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="GUID" id="5D3D105A-15CC-2DBC-8E41-2A63484D069D">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-24 10:45:12 UTC</createdTime>
+<comment><![CDATA[Global-ID string]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>36 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Himmelsrichtung" id="6278A05A-92AB-F45B-2BB8-31C71ABC2F69">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:54:21 UTC</createdTime>
+<comment><![CDATA[NWSO]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="N" description="Norden"/>
+<valueDef value="O" description="Osten"/>
+<valueDef value="S" description="Süden"/>
+<valueDef value="W" description="Westen"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Wertegrenze" id="656CA02F-3748-45E2-D2A6-08D930AAB75B">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 10:09:41 UTC</createdTime>
+<comment><![CDATA[Numerischer Wert als Minimum oder Maximum eines numerischen Feldes]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Dokument Format" id="6F7CFEB3-F007-D17C-AA67-F209D129C3DE">
+<createdBy>stb</createdBy>
+<createdTime>2019-07-02 15:48:04 UTC</createdTime>
+<comment><![CDATA[Dokumenttyp im Filesystem]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="csv" description=""/>
+<valueDef value="doc" description=""/>
+<valueDef value="docx" description=""/>
+<valueDef value="gif" description=""/>
+<valueDef value="html" description=""/>
+<valueDef value="jpeg" description=""/>
+<valueDef value="json" description=""/>
+<valueDef value="key" description=""/>
+<valueDef value="numbers" description=""/>
+<valueDef value="pages" description=""/>
+<valueDef value="pdf" description=""/>
+<valueDef value="png" description=""/>
+<valueDef value="ppt" description=""/>
+<valueDef value="pptx" description=""/>
+<valueDef value="text" description=""/>
+<valueDef value="tiff" description=""/>
+<valueDef value="unbestimmt" description=""/>
+<valueDef value="xls" description=""/>
+<valueDef value="xlsx" description=""/>
+<valueDef value="xml" description=""/>
+<valueDef value="xmlx" description=""/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsverarbeitung" id="70371CD6-E734-52D3-6D46-C65613C10CE8">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Art der Verarbeitung einer Transformation]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>70371CD6-E734-52D3-6D46-C65613C10CE8</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeitgranularität" id="802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Kleinste Einheit in der ein Zeitpunkt dargestellt werden kann]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<listOfValues>
+<valueDef value="DAY" description="Tag"/>
+<valueDef value="HOUR" description="Stunde"/>
+<valueDef value="MILlISECOND" description="Millisekunde"/>
+<valueDef value="MINUTE" description="Minute"/>
+<valueDef value="MONTH" description="Monat"/>
+<valueDef value="QUARTER" description="Quartal"/>
+<valueDef value="SECOND" description="Sekunde"/>
+<valueDef value="SEMESTER" description="Semester"/>
+<valueDef value="WEEK" description="Woche"/>
+<valueDef value="YEAR" description="Jahr"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Abbildungstyp" id="8831EDF9-D218-4FB3-5BB6-7B34E8325AF7">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Anzahl der Verknüpfungen zur verknüpften Entität]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>8831EDF9-D218-4FB3-5BB6-7B34E8325AF7</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<listOfValues>
+<valueDef value="1" description="1:1"/>
+<valueDef value="M" description="1:M"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Bezeichnung" id="897B91BA-60B8-3A16-793A-97B535605E5E">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-13 18:00:28 UTC</createdTime>
+<comment><![CDATA[Bezeichnung (mit mehr Zeichen als typischerweise ein Name)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Transformationsstatus" id="8E5E9BA3-FC75-C21A-8AC5-C0DB38C2D07A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Status über den Stand der Transformation eines Wertes]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>8E5E9BA3-FC75-C21A-8AC5-C0DB38C2D07A</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Einheitenumrechnungsfaktor" id="9519F611-7F37-CA7C-1088-EDDCA6F81D17">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Faktor um eine Masseinheit in eine andere Umrechnen zu können]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>9519F611-7F37-CA7C-1088-EDDCA6F81D17</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>20</dataTypePrecision>
+<dataTypeScale>10</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Geschäftsregeltyp" id="96A9C6B2-3074-8688-262C-5F65FC2CE590">
+<createdBy>stb</createdBy>
+<createdTime>2020-10-23 14:13:38 UTC</createdTime>
+<comment><![CDATA[Art von Geschäftsregel]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<listOfValues>
+<valueDef value="CALC" description="Berechne einen Wert"/>
+<valueDef value="CHECK" description="Prüfe eine Bedingung (liefert TRUE oder FALSE)"/>
+<valueDef value="TRIGGER" description="Löst etwas aus"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Längenmass" id="9899F774-954D-6AB0-8DC2-BB1FE9F99D28">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[eindimensionale Ausdehnung]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>9899F774-954D-6AB0-8DC2-BB1FE9F99D28</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>mm</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Adresse" id="9B99E814-DBEA-128A-C17E-01680EEEDFBC">
+<createdBy>stb</createdBy>
+<createdTime>2019-04-04 15:21:19 UTC</createdTime>
+<comment><![CDATA[Postalische Adresse als Textfeld]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>400 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Stellen#" id="9CA83673-0453-9943-665C-CCB4497CF164">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Anzahl Vor- oder Nachkommastellen bei einer Zahl]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>9CA83673-0453-9943-665C-CCB4497CF164</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Rundungseinheit" id="9D57C5ED-8336-6617-9BC7-29B138AA6191">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[EInheit, auf die eine Zahl gerundet wird (0.5, 0,1, 100)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>9D57C5ED-8336-6617-9BC7-29B138AA6191</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfValues>
+<valueDef value="0.001" description=""/>
+<valueDef value="0.01" description=""/>
+<valueDef value="0.05" description=""/>
+<valueDef value="0.1" description=""/>
+<valueDef value="0.25" description=""/>
+<valueDef value="0.5" description=""/>
+<valueDef value="1" description=""/>
+<valueDef value="10" description=""/>
+<valueDef value="100" description=""/>
+<valueDef value="1000" description=""/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="erwartete Tupelanzahl" id="A32A539A-AA2C-608E-1F61-A290079F25AD">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Grössenordnung der Anzahl Tupel in dieser Entität]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>A32A539A-AA2C-608E-1F61-A290079F25AD</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<listOfValues>
+<valueDef value="1 Mio" description="viel"/>
+<valueDef value="100" description="sehr wenig"/>
+<valueDef value="10000" description="wenig"/>
+<valueDef value="&gt;100 Mio" description="sehr viel"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Diagramm Koordinate" id="ACC90DC4-5B08-1F67-561C-C9389709269B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[x/y Position gemessen ab oberer linken Ecke des Diagramms]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>ACC90DC4-5B08-1F67-561C-C9389709269B</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="DB Technologie" id="B0B9E99A-15A9-E130-AC4D-23A0FE4E1919">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Art der Datenhaltung in einem DBMS]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>B0B9E99A-15A9-E130-AC4D-23A0FE4E1919</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Winkel" id="BD2395F1-C866-A30F-511F-952C9D772388">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-08 05:39:25 UTC</createdTime>
+<comment><![CDATA[Winkel in Grad]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>-179</beginValue>
+<endValue>180</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Beschreibung" id="C3DAFABD-5133-27CA-E0E5-B039A45135D6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Text als Beschreibung für etwas]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>C3DAFABD-5133-27CA-E0E5-B039A45135D6</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4000 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zeichensatz" id="C44ED88C-D820-1BFA-9CD0-841B752A5E4B">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Zeichensatzname für die Codierung von Zeichen (ASCII, Unicode, UTF-x)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>C44ED88C-D820-1BFA-9CD0-841B752A5E4B</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>60 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Textlänge" id="C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Anzahl der Zeichen eines Textes (semantisch, nicht technisch)]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<importedID>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>999999</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Linienbreite" id="CB54E08F-9CBF-16C7-AB25-64ADCC8C4FFB">
+<createdBy>stb</createdBy>
+<createdTime>2019-08-07 14:17:13 UTC</createdTime>
+<comment><![CDATA[Breite einer Linie ]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<defaultValue>1</defaultValue>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>mm</unitOfMeasure>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0.0</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Anwendungszweck" id="CEF66788-EC07-3347-F213-6A5B74AB29A4">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Zweck/Bereich einer Anwendung]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>CEF66788-EC07-3347-F213-6A5B74AB29A4</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>2000 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Assotziationstext" id="D6C502B3-C779-CE1C-86D5-5492C6CA1E9F">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Text der auf der Beziehung zwischen 2 Entitäten steht. ]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>D6C502B3-C779-CE1C-86D5-5492C6CA1E9F</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Linienpfad" id="D87F0AC2-8B47-16C7-5D9C-A77A3626F787">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Pfad einer Linie auf einem Diagramm (Vetkroen)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>D87F0AC2-8B47-16C7-5D9C-A77A3626F787</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="SI-Einheit" id="DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Name einer physikalischen Einheit gemäss SI]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>DD765D8A-B6DE-C725-89D4-5A0AE9EEB09A</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:08:19 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<importedID>DOM3000004</importedID>
+<avTSortOrder>0</avTSortOrder>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Ordnungsnummer" id="E2DCFC37-5428-9FE8-64FF-368960199E02">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Nummer für die Sequenz/ Ordnung (aufsteigend)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>E2DCFC37-5428-9FE8-64FF-368960199E02</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="RegExp" id="EAB77EBE-9C06-2899-E462-A33684354F43">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Regulärer Ausdruck  (regexp) für die Einschränkung von Zeichenfolgen]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>EAB77EBE-9C06-2899-E462-A33684354F43</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>4000 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="ID" id="F2A77F25-5E5D-1BB8-7C92-67491783DF83">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-06 14:27:25 UTC</createdTime>
+<comment><![CDATA[Systemgenerierter ID]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>F2A77F25-5E5D-1BB8-7C92-67491783DF83</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Zoom-Level" id="F8587786-FB94-6E95-F103-E64497B8F02A">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 10:32:09 UTC</createdTime>
+<comment><![CDATA[Zoom-Stufe (Absraktionslevel) in der ein Element angezeigt wird.]]></comment>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+<endValue>4</endValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Anzeigeformat" id="F8923415-2F34-2023-2112-9B16A52B1FD6">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Formatierungsvorgabe für numerische oder Zeitpunkt-Attribute]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>F8923415-2F34-2023-2112-9B16A52B1FD6</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Periodizität" id="FEA1A894-BD6D-FEF8-423C-6857A9D694A1">
+<createdBy>stb</createdBy>
+<createdTime>2019-03-10 11:09:09 UTC</createdTime>
+<comment><![CDATA[Beschreibung einer Zeitdifferenz, nach der etwas erneut geschieht (Dauer, fixe Zeitpunkte am Tag/im Jahr)]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<importedID>FEA1A894-BD6D-FEF8-423C-6857A9D694A1</importedID>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>IM_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>sec</unitOfMeasure>
+</Domain>
+</domains>
+</DomainFile>

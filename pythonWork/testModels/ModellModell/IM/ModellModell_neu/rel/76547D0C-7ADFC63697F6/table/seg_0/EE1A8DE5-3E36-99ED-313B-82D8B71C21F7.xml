@@ -1,0 +1,681 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EE1A8DE5-3E36-99ED-313B-82D8B71C21F7" name="DOMAINS">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMAINS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DOMA_ID" id="1E5AF82A-E320-4109-07BC-155F78733238">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="D3BF93DD-F1F3-5675-6EA0-4B6E1C0F9D6E" referredColumn="C12EC17B-0E35-6E0C-D62D-4B5ECC5620EE"/>
+</associations>
+</Column>
+<Column name="DOMA_NAME" id="EEA38F08-B6C1-9A0F-175A-EFC1B5126F4F">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-16 17:09:04 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_DESCR" id="05F2F21B-FEC5-C796-3BA8-BCAAA675AB93">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-16 17:10:12 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DOMA_TYPE" id="95FA8ED6-6F61-4C68-AFA3-2B4B663ECAEB">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_TYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__DOMAINS__DOMA_TY__2DB1C7EE</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DOMA_TYPE]=&apos;TXT&apos; OR [DOMA_TYPE]=&apos;NUM&apos; OR [DOMA_TYPE]=&apos;LOV&apos; OR [DOMA_TYPE]=&apos;GRP&apos; OR [DOMA_TYPE]=&apos;DAT&apos; OR [DOMA_TYPE]=&apos;BIN&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>4,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_ORIGIN" id="9651D5F5-8E74-EA46-77D9-0A455F44C86B">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_ORIGIN</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<constraintName>CK__DOMAINS__DOMA_OR__2EA5EC27</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6</dataTypeSize>
+<checkConstraint>
+<implementationDef dbType="SQL Server 2012" definition="[DOMA_ORIGIN]=&apos;DOM&apos; OR [DOMA_ORIGIN]=&apos;DER&apos;"/>
+</checkConstraint>
+<ownDataTypeParameters>6,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_INTF_ID" id="95B11596-11B3-7FB9-7D42-E63F3BBC3CEA">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_INTF_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_DATY_ID" id="88021088-6B33-C5A8-E214-975C4998A99D">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_DATY_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="184CD26B-6FC7-B7C7-2290-890C695C9579" referredColumn="E3262DEC-2759-8E0E-D883-24692FCF8036"/>
+</associations>
+</Column>
+<Column name="DOMA_DAT_MINVALUE" id="06CA182C-C556-08F9-D580-EC93E3FF823F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_DAT_MINVALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze]]></comment>
+<generatorID>F8E42CB1-E43D-0D27-9900-D7A7BD67D0D6</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+frühestes Zeitpunkt in diesem Attribut. Leer -> es gibt keine Untergrenze
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+earliest time in this attribute. Empty -> there is no lower limit
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_DAT_MAXVALUE" id="4B2EDC63-9492-5636-B6B3-A7E6000219F0">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_DAT_MAXVALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze]]></comment>
+<generatorID>7B927CAB-9C49-8F87-C70C-F980DF438F94</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+spätester Zeitpunkt in diesem Attribut. Leer -> es gibt keine Obergrenze
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+latest time in this attribute. Empty -> there is no upper limit
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_DAT_GRANULARITY" id="498C3B23-8CAD-28F9-8677-B99D3CA73C0B">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_DAT_GRANULARITY</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)]]></comment>
+<generatorID>6E889AC5-72FE-0BF0-A64F-E96B19560FAC</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Auf welche Einheit wird die Datumsangabe gerundet (Tag, Minute, Monat, Jahr)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+To which unit is the date rounded (day, minute, month, year)?
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>802FD5C1-7C5B-0290-1F1C-F8FBB1AD2AA9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_TXT_MAXLNG" id="BD428B0E-1717-519E-2F10-C61EA1FB4DA6">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_TXT_MAXLNG</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Maximale Länge des Textes in Buchstaben (CHAR)]]></comment>
+<generatorID>E2F20100-F3E8-3E95-BA43-0EEE3EE63B36</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximale Länge des Textes in Buchstaben (CHAR)
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum length of text in letters (CHAR)
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>C9DBFF99-FC63-E2AC-8EB8-BE5A63AA7B61</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_TXT_SYNTAXRULE" id="4FA82E70-6FA5-A426-8E7D-94569F9D4A35">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_TXT_SYNTAXRULE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Einschränkende Regel für die erlaubten Zeichen eines Textes.]]></comment>
+<generatorID>CC367FCD-01E3-C3AF-28D1-CB4750AD7381</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Einschränkende Regel für die erlaubten Zeichen eines Textes.
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Restrictive rule for the permitted characters of a text.
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>C3DAFABD-5133-27CA-E0E5-B039A45135D6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_NUM_MAXVALUE" id="5D0E685A-3A7F-4765-09DA-D3B78CDCD9B8">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_NUM_MAXVALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt]]></comment>
+<generatorID>EBB0952C-C757-86BA-30FC-CF6002E22D95</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Maximaler Wert für ein numerisches Feld. Leer -> so gross wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Maximum value for a numeric field. Empty -> as big as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>656CA02F-3748-45E2-D2A6-08D930AAB75B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_NUM_MINVALUE" id="5C6E1FA8-3B11-2295-5270-080D4F591B8B">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_NUM_MINVALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt]]></comment>
+<generatorID>E5CC6E75-E08C-C5ED-7AD2-5C644AC557AD</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Minimaler Wert für ein numerisches Feld. Leer -> so klein wie das System zulässt
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Minimum value for a numeric field. Empty -> as small as the system allows
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>656CA02F-3748-45E2-D2A6-08D930AAB75B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_NUM_TOTAL_DIGITS" id="E21F646F-054C-D451-764A-36D969702FC2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_NUM_TOTAL_DIGITS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen vor dem Komma]]></comment>
+<generatorID>7E77D48A-823A-2E1C-12FB-94F9A785C501</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen vor dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits before the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_NUM_FRACT_DIGITS" id="EE13B0E6-FFF3-C5D2-4446-6E6FB2AAF422">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_NUM_FRACT_DIGITS</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Anzahl der Stellen nach dem Komma]]></comment>
+<generatorID>D2115AAA-10BB-6729-053F-50CD98171F6C</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Anzahl der Stellen nach dem Komma
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Number of digits after the decimal point
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9CA83673-0453-9943-665C-CCB4497CF164</domain>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_NUM_ROUND_VALUE" id="53913260-7B6D-8A02-070E-8067E764F819">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_NUM_ROUND_VALUE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<comment><![CDATA[Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet]]></comment>
+<generatorID>EB863265-2766-76A8-568E-EEFEA2D851F2</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Wert, der angibt, auf welche Einheit ein numerischer Wert für die Speicherung gerundet wird. (z.B. 0.5, 0.25, 1000) leer -> es wird nicht explizit gerundet
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+A value that indicates the unit to which a numeric value is rounded for storage. (e.g. 0.5, 0.25, 1000) empty -> not rounded explicitly
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>9D57C5ED-8336-6617-9BC7-29B138AA6191</domain>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_NUM_PHYU_ID" id="3B16941D-0C2A-A2E5-E1D0-CF0EE2727F4C">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_NUM_PHYU_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="8A469947-9729-8435-5ED6-E0E7341A58C8" referredColumn="6B28FDB3-3419-D838-6DC7-BAD03DB2B9E7"/>
+</associations>
+</Column>
+<Column name="DOMA_BIN_CONTENTTYPE" id="D6C621B3-3394-1B99-C068-DCA198B449E7">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_BIN_CONTENTTYPE</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<generatorID>C5CA5BD0-DFBF-51B8-8719-DDA23703721E</generatorID>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<domain>23CFFE8F-D989-8ED0-93D0-C4BF59140074</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_BIN_STFO_ID" id="53CA1FDA-D462-0191-A727-5DC2AFE125E8">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_BIN_STFO_ID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+<associations>
+<colAssociation fkAssociation="AE233AD6-A884-F750-B9AF-5990C1F03E38" referredColumn="6AEF6111-009A-CC5D-0848-CE77043BE846"/>
+</associations>
+</Column>
+<Column name="DOMA_UC" id="BDA82314-FF57-E316-93EF-C105D6571928">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_UC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_DC" id="75B41400-ECEF-B030-3926-99AD0C762FB3">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_DC</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_UM" id="7D9F7724-31A3-D2F2-FEDB-4F13BD61D5C3">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_UM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>30</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,30,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+<Column name="DOMA_DM" id="6CEFBFDE-FEF4-CDEB-66A1-B0998911411F">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>DOMAINS</sourceObjSchema>
+<sourceObjName>DOMA_DM</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<dataTypePrecision>23</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<dataTypeSize>8</dataTypeSize>
+<ownDataTypeParameters>8,23,3</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<propertyMap>
+<property name="dev_status" value="REL"/>
+</propertyMap>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BDF3EE68-0E9B-462A-55B4-CCE48122DE18" name="DOMAINS_PK">
+<createdBy>stb</createdBy>
+<createdTime>2021-03-02 11:07:38 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="1E5AF82A-E320-4109-07BC-155F78733238"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3929413A-395B-DE09-3BBE-BDDAB37D6EFE" name="DOMA_UK">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_UK</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EEA38F08-B6C1-9A0F-175A-EFC1B5126F4F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B572BE52-D582-C1A0-F207-D2D2CCB4921E" name="DOMA_DATY_ID">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="88021088-6B33-C5A8-E214-975C4998A99D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CDA4FEF2-3943-E764-1041-2110A0BDC854" name="DOMA_MODE_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1E5AF82A-E320-4109-07BC-155F78733238"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E138B355-8717-B962-09BD-08F55E4B5E5C" name="DOMA_PHYU_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:14 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B16941D-0C2A-A2E5-E1D0-CF0EE2727F4C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E145408D-E1C1-F3E6-730E-9F31E1BEE28C" name="DOMA_STFO_FK">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:15 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53CA1FDA-D462-0191-A727-5DC2AFE125E8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="DOMA_ExDep1" directorySegmentName="seg_1" id="2F1A7A66-8DE1-639A-1589-88A36C7EB96A">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_ExDep1</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[DOMA_TYPE]<>'BIN' OR [DOMA_BIN_CONTENTTYPE] IS NOT NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep2" directorySegmentName="seg_1" id="8A741940-F818-60E3-EBB7-33FF61892704">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_ExDep2</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[DOMA_TYPE]<>'DAT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NOT NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep3" directorySegmentName="seg_1" id="B80D3051-67D1-22B0-AFB9-0A4FF71495C6">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_ExDep3</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[DOMA_TYPE]<>'GRP' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep4" directorySegmentName="seg_1" id="03897148-79D0-8265-AAAA-95947B9AECE2">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_ExDep4</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[DOMA_TYPE]<>'LOV' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep5" directorySegmentName="seg_1" id="ACD75E65-75D9-F121-6179-32462E85442C">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_ExDep5</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[DOMA_TYPE]<>'NUM' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NOT NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NOT NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL AND [DOMA_TXT_SYNTAXRULE] IS NULL AND [DOMA_TXT_MAXLNG] IS NULL]]></rule>
+</tableCheckConstraint>
+<tableCheckConstraint name="DOMA_ExDep6" directorySegmentName="seg_1" id="3C800228-3277-DE6F-22AE-0D6508D8E0EC">
+<sourceConnName>sqlserver-modelmodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>DOMA_ExDep6</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-14 16:41:02 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<rule><![CDATA[[DOMA_TYPE]<>'TXT' OR [DOMA_BIN_CONTENTTYPE] IS NULL AND [DOMA_BIN_STFO_ID] IS NULL AND [DOMA_NUM_FRACT_DIGITS] IS NULL AND [DOMA_NUM_MAXVALUE] IS NULL AND [DOMA_NUM_MINVALUE] IS NULL AND [DOMA_NUM_PHYU_ID] IS NULL AND [DOMA_NUM_ROUND_VALUE] IS NULL AND [DOMA_NUM_TOTAL_DIGITS] IS NULL AND [DOMA_DAT_GRANULARITY] IS NULL AND [DOMA_DAT_MAXVALUE] IS NULL AND [DOMA_DAT_MINVALUE] IS NULL]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

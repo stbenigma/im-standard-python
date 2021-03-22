@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="576614AE-CCA2-1D00-69E3-C5E7EDAA8065" name="extern_verwalteter_Server">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>A3B3683F-989A-EA2D-1925-7FC1211C5D49</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<typeID>57779FAE-171C-9BB2-9F88-9B2ED7060C6F</typeID>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Server_Hardware_IT-Komponente_Modellelement_Modellelement_ID" id="FBDB627F-D9FB-7A7F-5FC8-ED64E6E22FDC">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B8F3C7AF-A267-2F80-4D7B-0B63E80B6CCD" referredColumn="5D7C724A-398F-55DC-485D-14BE07448B4C"/>
+</associations>
+</Column>
+<Column name="extern_verwalteter_Server_ID" id="C88BE565-3639-4EA7-E21F-98C164FE6540">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C666F7F8-D6C9-7E29-A90C-5EB4844C6A09" name="extern_verwalteter_Server_PK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FBDB627F-D9FB-7A7F-5FC8-ED64E6E22FDC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D039E1D7-85F0-501F-815A-438B1885CDC5" name="extern_verwalteter_Server_extern_verwalteter_Server_ID_UN">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="C88BE565-3639-4EA7-E21F-98C164FE6540"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5733E992-B9E9-25DE-12BF-0DB9A8D081A0" name="extern_verwalteter_Server_Server_Hardware_FK">
+<createdBy>stb</createdBy>
+<createdTime>2019-10-30 09:23:16 UTC</createdTime>
+<generatorID>4A94183C-A0EF-DD67-F6CD-78435CCE6F45</generatorID>
+<ownerDesignName>ModellModell2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FBDB627F-D9FB-7A7F-5FC8-ED64E6E22FDC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

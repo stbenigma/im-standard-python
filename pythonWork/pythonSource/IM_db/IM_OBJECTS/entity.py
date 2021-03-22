@@ -27,29 +27,7 @@ class Entity(MultilangBaseobject):
         self._schluessel = None
         self._attributes = None
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Entity._tablename
-                               , psql="""
-CREATE TABLE ENTITIES
-    (
-     ENTI_ID integer NOT NULL  primary key,
-     ENTI_NAME VARCHAR (60) NOT NULL ,
-     ENTI_SHORT_NAME VARCHAR (15) NULL ,
-     ENTI_PREFIX VARCHAR (5) NULL ,
-     ENTI_TOOLTIP VARCHAR (4000) NULL ,
-     ENTI_DESCR VARCHAR (4000) NULL ,
-     ENTI_EXP_TUPLECNT VARCHAR (500) NULL ,
-     ENTI_UC VARCHAR(30) NULL  ,
-     ENTI_DC VARCHAR (30) NOT NULL ,
-     ENTI_UM VARCHAR (30) NULL ,
-     ENTI_DM VARCHAR (30) NULL
-    ,CONSTRAINT ENTI_NAME_UK UNIQUE (ENTI_NAME ASC)
-    ,CONSTRAINT ENTI_MODE_FK FOREIGN KEY    (     ENTI_ID)
-		REFERENCES MODELELEMENT    (     MODE_ID )
-    ON DELETE CASCADE
-    )"""
-    )
+
 
     @staticmethod
     def createviews():
@@ -99,7 +77,8 @@ CREATE TABLE ENTITIES
         return Entity().getbyid(pid).enti_category_guid
 
     def getparents(self):
-        parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})".format(self.getid()))
+        parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})"
+                                .format(self.getid()))
         return [] if parents is None else parents
     #getparent
 
@@ -115,7 +94,7 @@ CREATE TABLE ENTITIES
                                       from SUPERENTI 
                                       where superenti_id = {} 
                                       and rela_type like '{}')""".format(self.getid(),relatype)
-                                , porderby= 'enti_name')
+                                )
         return []  if children is None else children
     #getchildren
 
@@ -165,8 +144,8 @@ CREATE TABLE ENTITIES
         return subtypelevel[0][0]
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Entity._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Entity._tablename)
 
 
     @staticmethod
@@ -218,39 +197,18 @@ class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'
     _prefix: str = 'syno'
     _columnlist: list = []
-##    _multilangcols: list = {'syno_name': 'SYNO_NAME'}
+##    _multilangcols: list = {'syno_name': 'ENTI_SYNONYM'}
 
     def __init__(self,pname=None,pentiid=None):
         if (len(Synonym._columnlist) == 0): Synonym._columnlist = Baseobject.gettablecolumns(Synonym._tablename)
         super().__init__(tablename=Synonym._tablename, prefix=Synonym._prefix
-                         ,multilangcols = {'syno_name': Languagetext.SYNO_NAME}
+                         ,multilangcols = {'syno_name': Languagetext.ENTI_SYNONYM}
                          ,pmodelemtype=Modelelemtype.SYNO)
         self.syno_name = pname
         self.syno_enti_id = pentiid
         self.syno_uc = 'SYS'
         self.syno_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Synonym._tablename
-                               , psql="""
-CREATE TABLE SYNONYMS
-    (
-     SYNO_ID INTEGER NOT NULL primary key,
-     SYNO_NAME VARCHAR (60) NOT NULL ,
-     SYNO_ENTI_ID integer NOT NULL ,
-     SYNO_UC VARCHAR(30) NULL  ,
-     SYNO_DC VARCHAR (30) NOT NULL ,
-     SYNO_UM VARCHAR (30) NULL ,
-     SYNO_DM VARCHAR (30) NULL
-     ,CONSTRAINT SYNO_ENTI_FK FOREIGN KEY     (     SYNO_ENTI_ID)
-		 REFERENCES ENTITIES     (     ENTI_ID )
-		 ON DELETE CASCADE
-     ,CONSTRAINT SYNO_MODE_FK FOREIGN KEY     (     SYNO_ID)
-		 REFERENCES MODELELEMENT     (     MODE_ID )
-		 ON DELETE CASCADE
-    )
-        """)
 
     def getname(self,plang=None):
         retval = self._getsprachval(colname='syno_name',plang=plang)
@@ -261,8 +219,8 @@ CREATE TABLE SYNONYMS
     # getparent
 
     @staticmethod
-    def delete():
-        Baseobject.delete(Synonym._tablename)
+    def delete(pwhere=None):
+        return Baseobject.delete(Synonym._tablename)
 
     @staticmethod
     def select(pwhere=None, porderby=None):
@@ -277,7 +235,7 @@ CREATE TABLE SYNONYMS
            If order or number is not the same, ignore it"""
         for udpr in Userdefprop.select(pwhere="udpr_name like '___ENTI_SYNONYM'"):
             langiso2 = udpr.udpr_name[0:2].lower()
-            langid=Language().getbyuk(pcolname='lang_iso_code2', pukvalue=langiso2).getid()
+            langid=Language().getbyuk(lang_iso_code2=langiso2).getid()
             if langid == Language.liesdeflangid(): continue
             for udpv in Userdefpropvalue.select(pwhere="udpv_udpr_id = {}".format(udpr.udpr_id)):
                 langsynos = udpv.udpv_value.split(',')
@@ -287,7 +245,7 @@ CREATE TABLE SYNONYMS
                     except:
                         continue
                     lgtx=Languagetext()
-                    lgtx.lgtx_attrname='SYNO_NAME'
+                    lgtx.lgtx_attrname=Languagetext.ENTI_SYNONYM
                     lgtx.lgtx_text=synotransl
                     lgtx.lgtx_lang_id=langid
                     lgtx.lgtx_mode_id=syno.syno_id

@@ -3,16 +3,16 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
-from IM_DB import parameters, dbConnect, dbErstelleTables, logmessages
+from IM_DB import parameters, dbConnect, logmessages
 from IM_HTML import printHTML
-from IM_ODM import fillDB,createJSON
+from IM_ODM import fillDB
 import listWebdoku
-import listmapping
-from IM_JSON import sql2json,printJSON,JSModel
+from IM_JSON import sql2json,JSModel
 from IM_OBJECTS import Languagetext
+from IM_db import createDB,existsDB
 
 
-def main(pdirec, plang,force = False):
+def main(pdirec, plang,pforceoverwrite = False):
     parameters.initparam(p_callarg=pdirec)
     if plang is None:
         Languagetext.reportLang(parameters.dbDefaultLang())
@@ -21,16 +21,22 @@ def main(pdirec, plang,force = False):
     logmessages.initlog('AllIn1')
 
 
-    dbConnect.openDB(p_filepath=":memory:",fks='ON');
-    dbErstelleTables.erstelleInfra();
-    fillDB.filldbmain(pinmemory=True)
+
+    os.makedirs(parameters.webDirec(),exist_ok=True)
+    os.makedirs(parameters.dbDirect(),exist_ok=True)
+
+    fillDB.filldbmain2(callarg=pdirec,createnewdb=not existsDB(parameters.dbFilePath()))
+
+    dbConnect.openDB(parameters.dbFilePath(), fks='ON')
+    jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     printHTML.setWebDirec(p_webdirec=None)
-    jsmodel = JSModel(pmodel=sql2json(pmodelname=parameters.odmModelName(),pdbname=parameters.dbFilePath()))
+
     listWebdoku.listwebmain(plang=Languagetext.reportLang(),pmodel=jsmodel)
-    createJSON.createJSON(pfilepath=parameters.dbDirect(),pfilename=parameters.odmModelName())
-    jsmodel.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
-    listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
-    listmapping.writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
+    jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.odmModelName())
+    dbConnect.closeDB()
+
+#    listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
+#    listmapping.writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
 
 
     logmessages.showmessages("model {}: created and filled database ({})\n   created json, webdocu and mapping excel"
@@ -41,4 +47,4 @@ if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv) > 2) else None
     force = (len(sys.argv) > 3) and (sys.argv[3] == 'FORCE')
-    main(pdirec=direc, plang=lang,pforceoverwrite=force)
+    main(pdirec=direc, plang=lang)

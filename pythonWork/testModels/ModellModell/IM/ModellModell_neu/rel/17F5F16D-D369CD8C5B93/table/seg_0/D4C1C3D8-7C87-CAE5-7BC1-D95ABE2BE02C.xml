@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D4C1C3D8-7C87-CAE5-7BC1-D95ABE2BE02C" schemaObject="BA9AB875-9DE2-0270-F892-66DA7F318378" name="t_image">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>t_image</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ImageID" id="A6618B6D-B9AE-06FE-4BB8-8C56F2CE96BB">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_image</sourceObjSchema>
+<sourceObjName>ImageID</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>4</dataTypeSize>
+<ownDataTypeParameters>4,10,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="8A008981-B6B1-40A4-66EE-95B64A24CE84">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_image</sourceObjSchema>
+<sourceObjName>Name</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Type" id="4EA12D04-BB6E-74DF-7262-5A30F73A0DC7">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_image</sourceObjSchema>
+<sourceObjName>Type</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypePrecision>255</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,255,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Image" id="ABB436CA-5D9F-86FF-394C-E0F4DB30C46A">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>t_image</sourceObjSchema>
+<sourceObjName>Image</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>16</dataTypeSize>
+<ownDataTypeParameters>16,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5DF19D9F-0994-944C-1427-0758C47A0C69" name="pk_image">
+<sourceConnName>eamodel</sourceConnName>
+<sourceObjSchema>dbo</sourceObjSchema>
+<sourceObjName>pk_image</sourceObjName>
+<createdBy>stb</createdBy>
+<createdTime>2021-01-13 16:54:11 UTC</createdTime>
+<ownerDesignName>ModellModell_neu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A6618B6D-B9AE-06FE-4BB8-8C56F2CE96BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
