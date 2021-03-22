@@ -28,7 +28,7 @@ class TablEntiMap(Baseobject):
 
     @staticmethod
     def gettabllist(pentiid=None,prelaid=None,pintfid=None):
-        where = """tabl_id in (select tema_tabl_id 
+        where = ("""tabl_id in (select tema_tabl_id 
                                                     from tabl_enti_maps
                                                     join tables on tabl_id = tema_tabl_id 
                                                     where 
@@ -43,24 +43,24 @@ class TablEntiMap(Baseobject):
                                                             else tabl_intf_id end like '{}')"""\
                             .format(str(pentiid) if pentiid is not None else '%'
                                     ,str(prelaid) if prelaid is not None else '%'
-                                    ,str(pintfid) if pintfid is not None else '%' )
+                                    ,str(pintfid) if pintfid is not None else '%' ))
         tabls =Table.select(pwhere=where
                             ,porderby="tabl_id")
         return tabls
 
     @staticmethod
     def getentilist(ptablid):
-        return Entity.select(pwhere="""enti_id in (select tema_enti_id 
+        return Entity.select(pwhere=("""enti_id in (select tema_enti_id 
                                                     from tabl_enti_maps
-                                                    where tema_tabl_id = {}
-                                                    )""".format(ptablid)
+                                                    where tema_tabl_id = ?
+                                                    )""", ptablid)
                              )
     @staticmethod
     def getrelalist(ptablid):
-        return Relation.select(pwhere="""rela_id in (select tema_rela_id 
+        return Relation.select(pwhere=("""rela_id in (select tema_rela_id 
                                                     from tabl_enti_maps
-                                                    where tema_tabl_id = {}
-                                                    )""".format(ptablid)
+                                                    where tema_tabl_id = ?
+                                                    )""", ptablid)
                              )
 
     @staticmethod

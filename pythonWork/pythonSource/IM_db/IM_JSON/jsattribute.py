@@ -246,7 +246,7 @@ def inskeyelements(presult:Mergeresult, pkey: Key, pkeles):
          }
     """
     inscnt = 0
-    delcnt = Keyelement.delete(pwhere="kele_keys_id = {}".format(pkey.keys_id))
+    delcnt = Keyelement.delete(pwhere=("kele_keys_id = ?", pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
         ins1kele(presult=presult, pkey=pkey
                  , pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None

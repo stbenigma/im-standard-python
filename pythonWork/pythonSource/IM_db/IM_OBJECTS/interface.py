@@ -34,18 +34,18 @@ class Interface(Baseobject):
     @staticmethod
     def getmapped(pentiid=None,pattrid=None):
         if pentiid is not None:
-            return Interface.select(pwhere="""intf_id in (select tabl_intf_id 
+            return Interface.select(pwhere=("""intf_id in (select tabl_intf_id 
                                                         from tables
                                                         join tabl_enti_maps on tema_tabl_id = tabl_id
-                                                        where tema_enti_id = {}
-                                                        )""".format(pentiid))
+                                                        where tema_enti_id = ?
+                                                        )""", pentiid))
         if pattrid is not None:
-            return Interface.select(pwhere="""intf_id in (select tabl_intf_id 
+            return Interface.select(pwhere=("""intf_id in (select tabl_intf_id 
                                                         from tables
                                                         join columns on colu_tabl_id = tabl_id
                                                         join colu_attr_map on coam_colu_id = colu_id
-                                                        where coam_attr_id = {}
-                                                        )""".format(pattrid))
+                                                        where coam_attr_id = ?
+                                                        )""", pattrid))
         return []
 
 #Interface

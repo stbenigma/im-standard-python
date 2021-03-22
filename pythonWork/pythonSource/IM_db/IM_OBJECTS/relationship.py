@@ -29,7 +29,7 @@ class Arc(Baseobject):
 
     def getrelalist(self):
         """List of relations in this arc"""
-        return Relation().select(pwhere="rela_arcs_id_from = {} or rela_arcs_id_to = {}".format(self.arcs_id,self.arcs_id))
+        return Relation().select(pwhere=("rela_arcs_id_from = ? or rela_arcs_id_to = ?", self.arcs_id,self.arcs_id))
 
     def getentity(self):
         return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
@@ -73,21 +73,21 @@ class Arc(Baseobject):
 
     @staticmethod
     def getrelaarcs(pdiagid):
-        return Arc.select(pwhere="""arcs_id in (select case when rela_arcs_id_from is NULL 
+        return Arc.select(pwhere=("""arcs_id in (select case when rela_arcs_id_from is NULL 
                                                 then rela_arcs_id_to
                                                 else rela_arcs_id_from end rela_arcs_id 
                                             from relations 
-                                            where rela_id = {})""".format(prelaid))
+                                            where rela_id = ?)""", prelaid))
 
         #getrelaarcs
     @staticmethod
     def getdiagarcs(pdiagid):
-        return Arc.select(pwhere="""arcs_id in (select case when rela_arcs_id_from is NULL 
+        return Arc.select(pwhere=("""arcs_id in (select case when rela_arcs_id_from is NULL 
                                                 then rela_arcs_id_to
                                                 else rela_arcs_id_from end rela_arcs_id 
                                             from relations 
                                             join relationreps on relr_mode_id = rela_id
-                                            where relr_diag_id = {})""".format(pdiagid)
+                                            where relr_diag_id = ?)""", pdiagid)
                           ,porderby="arcs_id")
         #getrelaarcs
 
@@ -145,7 +145,7 @@ class Relation(MultilangBaseobject):
 
     @staticmethod
     def getbyentity(pentiid):
-        return Relation.select(pwhere="""rela_enti_id_from = {} or rela_enti_id_to = {}""".format(pentiid,pentiid))
+        return Relation.select(pwhere=("""rela_enti_id_from = ? or rela_enti_id_to = ?""", pentiid,pentiid))
 
     @staticmethod
     def delete(pwhere=None):

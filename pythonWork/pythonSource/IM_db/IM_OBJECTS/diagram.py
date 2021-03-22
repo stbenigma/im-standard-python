@@ -64,9 +64,9 @@ class Diagram(Baseobject):
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def getdiagrams(pmodeid):
-        diags = Diagram.select(pwhere="diag_id in (select eler_diag_id "
-                                      "            from elementreps where eler_mode_id = {})".format(pmodeid)
-                                    )
+        diags = Diagram.select(pwhere=("diag_id in (select eler_diag_id "
+                                       "            from elementreps where eler_mode_id = ?)", pmodeid)
+                               )
         return diags
 
     @staticmethod

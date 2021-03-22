@@ -77,8 +77,8 @@ class Entity(MultilangBaseobject):
         return Entity().getbyid(pid).enti_category_guid
 
     def getparents(self):
-        parents = Entity.select(pwhere="enti_id in (select superenti_id from SUPERENTI where subenti_id = {})"
-                                .format(self.getid()))
+        parents = Entity.select(pwhere=("enti_id in (select superenti_id from SUPERENTI where subenti_id = ?)",
+                                        self.getid()))
         return [] if parents is None else parents
     #getparent
 
@@ -88,19 +88,19 @@ class Entity(MultilangBaseobject):
             relatype = ptype
         else:
             relatype = "%"
-        children =  Entity.select(pwhere=
+        children =  Entity.select(pwhere=(
                                 """enti_id in 
                                     (select subenti_id 
                                       from SUPERENTI 
-                                      where superenti_id = {} 
-                                      and rela_type like '{}')""".format(self.getid(),relatype)
+                                      where superenti_id = ? 
+                                      and rela_type like ?)""", self.getid(),relatype)
                                 )
         return []  if children is None else children
     #getchildren
 
     def getsynonyms(self):
         if (self.getid() is not None) and (self._synonyms is None):
-            self._synonyms = Synonym.select(pwhere='syno_enti_id = {}'.format(self.getid())
+            self._synonyms = Synonym.select(pwhere=('syno_enti_id = ?', self.getid())
                                              , porderby='syno_name')
         # fi
         return self._synonyms
@@ -108,13 +108,13 @@ class Entity(MultilangBaseobject):
 
 
     def getkeys(self):
-        return Key.select(pwhere='keys_enti_id = {}'.format(self.getid())
+        return Key.select(pwhere=('keys_enti_id = ?', self.getid())
                                   , porderby='keys_name')
     #getkeys
 
     def getschluessel(self):
         if (self.getid() is not None) and (self._schluessel is None):
-            self._schluessel = Key.select(pwhere='keys_enti_id = {}'.format(self.getid())
+            self._schluessel = Key.select(pwhere=('keys_enti_id = ?', self.getid())
                                           , porderby='keys_laufnr')
         # fi
         return self._schluessel
@@ -122,7 +122,7 @@ class Entity(MultilangBaseobject):
 
     def getattributes(self):
         if (self.getid() is not None) and (self._attributes is None):
-            self._attributes = Attribute.select(pwhere='attr_enti_id = {}'.format(self.getid()))
+            self._attributes = Attribute.select(pwhere=('attr_enti_id = ?', self.getid()))
         # fi
         return self._attributes
     #getschluessel
@@ -233,11 +233,11 @@ class Synonym(MultilangBaseobject):
         """get all udpr translations for synonyms except for the default language
            if it is comma separated, dispatch an entry per synonym into language texts.
            If order or number is not the same, ignore it"""
-        for udpr in Userdefprop.select(pwhere="udpr_name like '___ENTI_SYNONYM'"):
+        for udpr in Userdefprop.select(pwhere=("udpr_name like ?", '___ENTI_SYNONYM')):
             langiso2 = udpr.udpr_name[0:2].lower()
             langid=Language().getbyuk(lang_iso_code2=langiso2).getid()
             if langid == Language.liesdeflangid(): continue
-            for udpv in Userdefpropvalue.select(pwhere="udpv_udpr_id = {}".format(udpr.udpr_id)):
+            for udpv in Userdefpropvalue.select(pwhere=("udpv_udpr_id = ?", udpr.udpr_id)):
                 langsynos = udpv.udpv_value.split(',')
                 for idx,syno in enumerate(Entity().getbyid(udpv.udpv_mode_id).getsynonyms()):
                     try:

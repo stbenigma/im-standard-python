@@ -40,8 +40,7 @@ class Table(Baseobject):
         return Modellelement.getbyelemid(ptablid=self.tabl_id)
 
     def getcolumns(self):
-        return Column.select(pwhere="colu_tabl_id = {}".format(self.tabl_id)
-                             ,porderby="colu_id")
+        return Column.select(pwhere=("colu_tabl_id = ?", self.tabl_id), porderby="colu_id")
 
     def getname(self,plang=None):
         return self.tabl_name
@@ -59,11 +58,11 @@ class Table(Baseobject):
                                  , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def selectbyschnid(pschnid):
-        return Table.select(pwhere="tabl_intf_id = {}".format(pschnid))
+        return Table.select(pwhere=("tabl_intf_id = ?", pschnid))
 
     @staticmethod
     def indexlist(pschnid=None):
-        data = Table.select(pwhere="tabl_intf_id={}".format('tabl_intf_id' if pschnid is None else pschnid))
+        data = Table.select(pwhere=("tabl_intf_id = ?", 'tabl_intf_id' if pschnid is None else pschnid))
         indexlist = [[d.tabl_name,"TAB",d.tabl_id] for d in data]
         return indexlist
     #grouplist

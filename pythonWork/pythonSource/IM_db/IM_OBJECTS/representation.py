@@ -41,10 +41,10 @@ class Elementrep(Baseobject):
 
     @staticmethod
     def getbydiagmode(pdiagid, pmodeid,pidx=None):
-        elers = Elementrep().select(pwhere="""eler_diag_id = {} 
-                                              and eler_mode_id = {}
-                                              and eler_index = {}"""
-                                    .format(pdiagid, pmodeid,pidx if pidx is not None else 'eler_index'))
+        elers = Elementrep().select(pwhere=("""eler_diag_id = ? 
+                                              and eler_mode_id = ?
+                                              and eler_index = ?""",
+                                    pdiagid, pmodeid, pidx if pidx is not None else 'eler_index'))
         if elers is None:
             return []
         elif (pidx is None):
@@ -150,7 +150,7 @@ CREATE TABLE relationreps(
         return Baseobject.select(pclass=Relationrep,pwhere=pwhere,porderby=porderby)
 
     def getlinesegments(self):
-        return Linesegment.select(pwhere="lise_relr_id={}".format(self.relr_id))
+        return Linesegment.select(pwhere=("lise_relr_id = ?", self.relr_id))
 
 
 # relationrep

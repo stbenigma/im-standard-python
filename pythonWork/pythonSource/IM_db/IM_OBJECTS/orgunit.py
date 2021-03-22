@@ -26,8 +26,7 @@ class OragnisationalUnit(Baseobject):
     #getparent
 
     def getchildren(self):
-        return Document.select(pwhere='orgu_orgu_id = {}'.format(self.orgu_id)
-                                              , porderby= 'orgu_name')
+        return Document.select(pwhere=('orgu_orgu_id = ?', self.orgu_id), porderby='orgu_name')
     #getchildren
 
     @staticmethod
@@ -68,13 +67,13 @@ class OragnisationalUnit(Baseobject):
 
     def getrefmodes(self,pmelttype=None):
         return  Modelelement.select(
-                pwhere="""mode_id in 
+                pwhere=("""mode_id in 
                             (select mode_id 
                             from mode_orgu 
                             join modelelement on mode_id = moou_mode_id
-                            where moou_orgu_id = {}
-                            and mode_type like '{}')"""
-                    .format(self.orgu_id,pmelttype if pmelttype is not None else '%'))
+                            where moou_orgu_id = ?
+                            and mode_type like ?)""",
+                    self.orgu_id, pmelttype if pmelttype is not None else '%'))
 
     @staticmethod
     def getreforgulist(pid):

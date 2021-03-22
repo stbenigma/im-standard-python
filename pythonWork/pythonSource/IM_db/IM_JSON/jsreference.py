@@ -31,7 +31,7 @@ def udps2js(pemptymodel):
                                 [u.udpr_theme,u.udpr_group,u.udpr_name
                                  ,u.udpr_uc,u.udpr_dc,u.udpr_um,u.udpr_dm
                                        ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
-                                                     for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))])
+                                                     for metp in ModelelementProperty().select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
                                 ])
                  for u in Userdefprop().select()
             }
@@ -73,7 +73,7 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         """mdelelemetype_properties are emptied and loaded from source"""
         newudprid = keytransl(jskey)
         inscnt = 0
-        delcnt = ModelelementProperty.delete(pwhere="metp_udpr_id={}".format(newudprid))
+        delcnt = ModelelementProperty.delete(pwhere=("metp_udpr_id = ?", newudprid))
         for elemtype in jselem["usedfor"]:
             try:
                 metp = ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(elemtype).getid(),pudprid=newudprid)
@@ -107,7 +107,7 @@ def udpvs2sql(presult, pmodeid, pudps):
         },
     """
     inscnt = 0
-    delcnt = Userdefpropvalue.delete(pwhere="udpv_mode_id = {}".format(pmodeid))
+    delcnt = Userdefpropvalue.delete(pwhere=("udpv_mode_id = ?", pmodeid))
     for theme,jtheme in pudps.items():
         for group,jgroup in jtheme.items():
             for jid,jelem in jgroup.items():
@@ -184,8 +184,8 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 def insreferences(presult:Mergeresult, pmodeid, prefs):
     inscnt = 0
-    delcnt = ModelelemOrgu.delete(pwhere="moou_mode_id={}".format(pmodeid))
-    delcnt += ModelelemDocu.delete(pwhere="modo_mode_id={}".format(pmodeid))
+    delcnt = ModelelemOrgu.delete(pwhere=("moou_mode_id = ?", pmodeid))
+    delcnt += ModelelemDocu.delete(pwhere=("modo_mode_id = ?", pmodeid))
     for refid in prefs:
         elemtype = jsguid2type(refid)
         if elemtype == Modelelemtype.ORGU:
