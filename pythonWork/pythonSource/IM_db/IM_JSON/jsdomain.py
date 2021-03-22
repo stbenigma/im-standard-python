@@ -11,12 +11,12 @@ def domaingroupmembers(pdomaid):
              ,'dc': dg.dgrm_dc
             ,'um': dg.dgrm_um
             ,'dm': dg.dgrm_dm}
-            for dg in DomaingroupMember.select(pwhere="dgrm_doma_id_group={}".format(pdomaid))
+            for dg in DomaingroupMember.select(pwhere=("dgrm_doma_id_group=?", pdomaid))
             ]
 
 def domaingroupmembers2sql(presult:Mergeresult,pgrpdomaid,pelements):
     inscnt = 0
-    delcnt = DomaingroupMember.delete(pwhere="dgrm_doma_id_group={}".format(pgrpdomaid))
+    delcnt = DomaingroupMember.delete(pwhere=("dgrm_doma_id_group=?", pgrpdomaid))
     for jelem in pelements:
         dgrm =DomaingroupMember()
         dgrm.dgrm_name = jelem['name']
@@ -58,7 +58,7 @@ def defaultvalues2sql(presult:Mergeresult, pdomaid, pvalues):
                              ,'uc': d.deva_uc, 'dc': d.deva_dc
                              ,'um' : d.deva_um, 'dm': d.deva_dm
     default values are always replaced """
-    delcnt = DefaultValue.delete(pwhere="deva_doma_id={}".format(str(pdomaid)))
+    delcnt = DefaultValue.delete(pwhere=("deva_doma_id=?", str(pdomaid)))
     inscnt = 0
     for val in pvalues:
         deva = js2deva(pdomaid=pdomaid,pelem=val)
@@ -169,16 +169,16 @@ def domain2js(pdoma):
                                      ,None if pdoma.doma_bin_stfo_id is None else Storageformat().getbyid(pdoma.doma_bin_stfo_id).stfo_name
                                         ,jsguid(Modelelemtype.STFO,pdoma.doma_bin_stfo_id)
                                      ,domelements(domaingroupmembers(pdoma.doma_id))
-                                        ,domvalues(DefaultValue.select(pwhere="deva_doma_id = {}".format(pdoma.doma_id))
+                                        ,domvalues(DefaultValue.select(pwhere=("deva_doma_id = ?",pdoma.doma_id))
                                                    )
                                      ,reflist([jsguid(Modelelemtype.ATTR, a.attr_id)
-                                                for a in Attribute.select(pwhere="attr_doma_id = {}".format(pdoma.doma_id))])
-                                        ,reflist([jsguid(Modelelemtype.COLU, c.colu_id) for c in Column.select(pwhere="colu_doma_id = {}".format(pdoma.doma_id))])
+                                                for a in Attribute.select(pwhere=("attr_doma_id = ?", pdoma.doma_id))])
+                                        ,reflist([jsguid(Modelelemtype.COLU, c.colu_id) for c in Column.select(pwhere=("colu_doma_id = ?", pdoma.doma_id))])
                                      ,reflist([jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                    for d in Domain.select(pwhere="""doma_id in (select dgrm_doma_id_group 
+                                                    for d in Domain.select(pwhere=("""doma_id in (select dgrm_doma_id_group 
                                                                                     from domaingroup_members 
-                                                                                    where dgrm_doma_id_member = {})"""
-                                                .format(pdoma.doma_id))])
+                                                                                    where dgrm_doma_id_member = ?)""",
+                                                pdoma.doma_id))])
                                     ,sourceref(Externalref.getsrcinfo(pmodeid=pdoma.doma_id))
                                      ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pdoma.doma_id)]\
                                       +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)]

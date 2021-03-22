@@ -127,8 +127,8 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
                     if odmsrcref is None:
                         """odm-source id does no longer exist in ODM
                             remove it from DB"""
-                        Externalref.delete(pwhere="extr_source_name = '{}' and extr_source_id = '{}'"
-                                                    .format(Externalref.SOURCE_ODM,dbsrcid))
+                        Externalref.delete(pwhere=("extr_source_name = ? and extr_source_id = ?",
+                                                    Externalref.SOURCE_ODM, dbsrcid))
                         removedrefs.append(key)
                         presult.deleterefcnt += 1
                     else:

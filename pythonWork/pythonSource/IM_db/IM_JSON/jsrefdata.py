@@ -21,7 +21,7 @@ def physicalunits2js(pemptymodel):
                                         ,p.phyu_descr
                                         , p.phyu_uc, p.phyu_dc, p.phyu_um, p.phyu_dm
                                         ,reflist(plist= [jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                            for d in Domain.select(pwhere="doma_num_phyu_id ={}".format(p.phyu_id))])
+                                                            for d in Domain.select(pwhere=("doma_num_phyu_id = ?", p.phyu_id))])
                     ])
                 for p in PhysicalUnit.select()
              }
@@ -70,9 +70,9 @@ def storageformats2js(pemptymodel):
         [s.stfo_name, s.stfo_descr
                                         ,s.stfo_uc, s.stfo_dc, s.stfo_um, s.stfo_dm
                                         ,[jsguid(Modelelemtype.DOCU, d.docu_id)
-                                                            for d in Document.select(pwhere="docu_stfo_id ={}".format(s.stfo_id))]
+                                                            for d in Document.select(pwhere=("docu_stfo_id = ?", s.stfo_id))]
                                          ,[jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                for d in Domain.select(pwhere="doma_bin_stfo_id ={}".format(s.stfo_id))]
+                                                for d in Domain.select(pwhere=("doma_bin_stfo_id = ?", s.stfo_id))]
 
         ])
                 for s in Storageformat.select()

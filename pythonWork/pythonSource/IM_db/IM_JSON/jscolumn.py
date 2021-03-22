@@ -94,7 +94,7 @@ def columns2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 def colattrmaps2sql(presult:Mergeresult, pcoluid, pattrs):
     inscnt = 0
-    delcnt = ColAttrMap.delete(pwhere="coam_colu_id = {}".format(pcoluid))
+    delcnt = ColAttrMap.delete(pwhere=("coam_colu_id = ?", pcoluid))
     for idx,jattrid in enumerate(pattrs,start=1):
         coam = ColAttrMap()
         coam.coam_seq = idx

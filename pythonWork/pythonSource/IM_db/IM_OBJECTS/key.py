@@ -22,7 +22,7 @@ class Key(Baseobject):
         else:
             which = ''
         #fi
-        return  Keyelement.select(pwhere='kele_keys_id = {}{}'.format(self.getid(),which))
+        return  Keyelement.select(pwhere=('kele_keys_id = ?', str(self.getid()) + which))
 
     @staticmethod
     def delete(pwhere=None):
@@ -46,9 +46,9 @@ class Keyelement(Baseobject):
     @staticmethod
     def isinkey(pattrid=None, prelaid=None) -> bool:
         if pattrid is not None:
-            return len(Keyelement.select(pwhere="kele_attr_id = {}".format(pattrid))) > 0
+            return len(Keyelement.select(pwhere=("kele_attr_id = ?", pattrid))) > 0
         if prelaid is not None:
-            return len(Keyelement.select(pwhere="kele_rela_id = {}".format(prelaid))) > 0
+            return len(Keyelement.select(pwhere=("kele_rela_id = ?", prelaid))) > 0
         return False
 
     # isinkey

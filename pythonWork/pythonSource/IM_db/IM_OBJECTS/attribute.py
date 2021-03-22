@@ -52,10 +52,10 @@ class Attribute(MultilangBaseobject):
 
 
     def getkeys(self):
-        return Key.select(pwhere="""keys_id in 
+        return Key.select(pwhere=("""keys_id in 
                                     (select kele_keys_id 
                                     from key_elements 
-                                    where kele_attr_id = {})""".format(self.attr_id))
+                                    where kele_attr_id = ?)""", self.attr_id))
     @staticmethod
     def delete(pwhere=None):
         return Baseobject.delete(Attribute._tablename,pwhere=pwhere)

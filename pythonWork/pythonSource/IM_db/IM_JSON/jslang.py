@@ -36,8 +36,8 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
        Then
            insert all texts from all languages """
     inscnt = 0
-    delcnt = Languagetext.delete(pwhere="""lgtx_mode_id = {} 
-                            and lgtx_attrname = '{}'""".format(pmodeid,pattr))
+    delcnt = Languagetext.delete(pwhere=("""lgtx_mode_id = ? 
+                            and lgtx_attrname = ?""", pmodeid, pattr))
     for lang in Language.select():
         iso2 = lang.lang_iso_code2
         if iso2 in ptexts.keys():

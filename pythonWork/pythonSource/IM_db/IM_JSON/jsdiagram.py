@@ -199,22 +199,21 @@ def diagrams2js(pemptymodel,pmodelname):
             ,  d.diag_dm
             ,{mt.melt_name.lower():
                                [elemrep2js(peler=eler, panker=jsguid(mt.melt_shortname, eler.eler_mode_id))
-                                for eler in sorted(Elementrep().select(pwhere="""eler_diag_id = {} and eler_mode_id in
+                                for eler in sorted(Elementrep().select(pwhere=("""eler_diag_id = ? and eler_mode_id in
                                                                 (select mode_id
                                                                 from modelelement
-                                                                where mode_type ='{}')""".format(d.diag_id,
-                                                                                                 mt.melt_shortname))
+                                                                where mode_type = ?)""", d.diag_id, mt.melt_shortname))
                                                    ,key=lambda e : e.displorder())
                                 ]
-                           for mt in Modelelemtype.select(pwhere="""melt_id in (select medi_melt_id
+                           for mt in Modelelemtype.select(pwhere=("""melt_id in (select medi_melt_id
                                                                     from melt_diats
-                                                                    where melt_shortname != '{}'
-                                                                    and medi_diat_id = {})"""
-                                                          .format(Modelelemtype.RELA, d.diag_diat_id)
+                                                                    where melt_shortname != ?
+                                                                    and medi_diat_id = ?)""",
+                                                          Modelelemtype.RELA, d.diag_diat_id)
                                                           ,porderby="melt_id")
                            }
             ,{jsguid(Modelelemtype.RELA, rr.relr_mode_id): relarep2js(rr)
-                                for rr in Relationrep.select(pwhere="relr_diag_id = {}".format(d.diag_id)
+                                for rr in Relationrep.select(pwhere=("relr_diag_id = ?", d.diag_id)
                                                              ,porderby="relr_id")
                                 }
             ,{jsguid(Modelelemtype.ARCS, ar.arcs_id): defarcs(parc=ar,pdiagid=d.diag_id)
@@ -250,7 +249,7 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     for jid, jelem in podmjson.getelements(Modelelemtype.DIAG).items():
         newdiagid = keytransl(jid)
         inscnt = 0
-        delcnt = Elementrep.delete(pwhere="eler_diag_id = {}".format(newdiagid))
+        delcnt = Elementrep.delete(pwhere=("eler_diag_id = ?", newdiagid))
         for jelemreps in jelem['elements'].values():
             """ "elements": {
                     "attributes: [{attrrep},]
@@ -264,7 +263,7 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         presult.deletecnt += max(0,(delcnt - inscnt))
 
         inscnt = 0
-        delcnt = Relationrep.delete(pwhere="relr_diag_id = {}".format(newdiagid))
+        delcnt = Relationrep.delete(pwhere=("relr_diag_id = ?", newdiagid))
         for jrelaid,jrelarep in jelem['relationships'].items():
             """ "relationships":{
                     "RELAnnn": {relarep},
@@ -284,7 +283,7 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 def defarcs(parc,pdiagid):
     arc = {}
     arcselem = parc.getarcselem(pdiagid=pdiagid)
-    enti=Elementrep().select(pwhere="""eler_mode_id={} and eler_diag_id = {} and eler_index = 0""".format(parc.arcs_enti_id,pdiagid))
+    enti=Elementrep().select(pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
     enti = enti[0]
     PONTDISTANCE = 20
     entiheight,entiwidth = enti.eler_height, enti.eler_width

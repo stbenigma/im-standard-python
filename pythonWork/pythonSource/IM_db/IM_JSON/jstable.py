@@ -73,7 +73,7 @@ def tables2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 def instablemapping(presult:Mergeresult, ptablid,pmappedelems):
     inscnt = 0
-    delcnt = TablEntiMap.delete(pwhere="tema_tabl_id = {}".format(ptablid))
+    delcnt = TablEntiMap.delete(pwhere=("tema_tabl_id = ?", ptablid))
     for jid in pmappedelems:
         elemtype = jsguid2type(jid)
         tema = TablEntiMap()

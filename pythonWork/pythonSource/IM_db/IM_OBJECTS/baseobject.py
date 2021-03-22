@@ -123,18 +123,23 @@ class Baseobject:
             if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
+                print("Cannot insert tuple {} into {}. Skipping it!".format(self.totuple(), self._tablename))
+                #for row in dbDML.select('select * from {}'.format(self._tablename)):
+                #    print(str(row))
                 try:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
                     if self.__modelemtype is not None:
-                        Modelelement.delete(pwhere="mode_id = {}".format(locid))
+                        Modelelement.delete(pwhere=("mode_id = ?", locid))
                 except:
                     print ("Loggin-Error in Baseobject.insert():")
                     print(str(e))
                     print (lsql)
                     print (self.totuple())
             # if
-            raise e
+            else:
+                raise Exception("Cannot insert tuple {}".format(self.totuple())) from e
+            #raise e
         # try
         if self.__srcname is not None:
             Externalref(psrcname=self.__srcname, psrcid=self.__srcid, pmodeid=self.getid()).insert(
@@ -186,7 +191,7 @@ class Baseobject:
 
     def getbyid(self, pid):
         if pid is None: return None
-        data = self.select(pwhere="{}={}".format(self._idcolname, pid))
+        data = self.select(pwhere=("{}=?".format(self._idcolname), pid))
         if (len(data) > 1):
             logmessages.writelog("{}: nonunique ID={}'".format(self._tablename, pid))
             raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
@@ -305,11 +310,13 @@ class Baseobject:
             .format(Baseobject.columnsliststring(pclass._columnlist)
                     , pclass._tablename
                     , pclass._prefix
-                    , "" if pwhere is None else
-                    "where {}".format(pwhere)
+                    , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0])
                     , "" if porderby is None else
                     "order by {}".format(porderby))
-        data = dbDML.select(psql=lsql)
+        arguments = ()
+        if type(pwhere) is tuple and len(pwhere) > 1:
+            arguments = (*arguments, *pwhere[1:])
+        data = dbDML.execute(lsql, *arguments)
         retval = []
         for d in data:
             obj = pclass()._fromarray(d)

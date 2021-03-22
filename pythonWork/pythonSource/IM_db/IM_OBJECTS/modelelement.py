@@ -70,7 +70,7 @@ class Modelelemtype(Baseobject):
 
     @staticmethod
     def getidbyshortname(pshortname):
-        melt = Modelelemtype.select(pwhere="melt_shortname= '{}'".format(pshortname))
+        melt = Modelelemtype.select(pwhere=("melt_shortname = ?", pshortname))
         if melt is None or (len(melt)==0): return None
         return melt[0].melt_id
 

@@ -63,17 +63,17 @@ class Userdefprop(Baseobject):
 
     @staticmethod
     def getudps(pmeltname=None, ptheme=None, pgroup=None):
-        return Userdefprop.select(pwhere="""udpr_theme like '{}'
-                                        and udpr_group like '{}'
+        return Userdefprop.select(pwhere=("""udpr_theme like ?
+                                        and udpr_group like ?
                                         and udpr_id in (select metp_udpr_id
                                                         from modelemtype_properties
                                                         join modelelem_type on melt_id = metp_melt_id
-                                                        where melt_shortname like '{}')
-                                        """.format ('%' if ptheme is None else ptheme
-                                                    ,'%' if pgroup is None else pgroup
-                                                    ,'%' if pmeltname is None else pmeltname)
-                                ,porderby="udpr_theme,udpr_group,udpr_name"
-                                )
+                                                        where melt_shortname like ?)""",
+                                          '%' if ptheme is None else ptheme,
+                                          '%' if pgroup is None else pgroup,
+                                          '%' if pmeltname is None else pmeltname),
+                                  porderby="udpr_theme,udpr_group,udpr_name"
+                                  )
 
     @staticmethod
     def removemodelUDP(modeludps):
@@ -113,7 +113,7 @@ class Userdefpropvalue(Baseobject):
     @staticmethod
     def removeemptyUDP(pempties):
         emptylist = ','.join("'{}'".format(e) for e in pempties)
-        Userdefpropvalue.delete(pwhere="udpv_value is null or udpv_value  in ({})".format(emptylist)
+        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value  in (?)", emptylist)
                    )
         return
 
@@ -160,7 +160,7 @@ class Userdefpropvalue(Baseobject):
 
     @staticmethod
     def udpvalue(pudprid,pmodeid):
-        udpv = Userdefpropvalue.select(pwhere="udpv_udpr_id = {} and udpv_mode_id={}".format(pudprid,pmodeid))
+        udpv = Userdefpropvalue.select(pwhere=("udpv_udpr_id = ? and udpv_mode_id= ?", pudprid, pmodeid))
         if udpv is None or len(udpv) == 0: return None
         return udpv[0].udpv_value
 

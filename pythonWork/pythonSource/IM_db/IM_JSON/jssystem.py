@@ -23,7 +23,7 @@ def systems2js(pemptymodel):
                                                  ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=i.intf_id)]\
                                                    +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=i.intf_id)]
                                          ,reflist(plist=[jsguid(Modelelemtype.TABL,t.tabl_id) for t in Table.selectbyschnid(pschnid=i.intf_id)])
-                                         ,reflist(plist=[jsguid(Modelelemtype.DOMA, d.doma_id) for d in Domain.select(pwhere="doma_intf_id = {}".format(i.intf_id))])
+                                         ,reflist(plist=[jsguid(Modelelemtype.DOMA, d.doma_id) for d in Domain.select(pwhere=("doma_intf_id = ?", i.intf_id))])
                                         ]   )
                     for i in Interface.select()
                  }

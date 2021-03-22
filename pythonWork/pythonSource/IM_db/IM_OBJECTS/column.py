@@ -69,7 +69,7 @@ class Column(Baseobject):
     @staticmethod
     def indexlist(pschnid):
         schas = Column.select(
-            pwhere="""colu_tabl_id in (select tabl_id from tables where tabl_intf_id={})""".format(pschnid)
+            pwhere=("""colu_tabl_id in (select tabl_id from tables where tabl_intf_id = ?)""", pschnid)
             , porderby='colu_column_name')
         indexlist = []
         for s in schas:
@@ -81,9 +81,9 @@ class Column(Baseobject):
 
     @staticmethod
     def selectbyschnid(pschnid):
-        return Column.select(pwhere="exists (select 1 from tables where"
-                                    + " tabl_intf_id = {} ".format(pschnid)
-                                    + " and tabl_id = colu_tabl_id)")
+        return Column.select(pwhere=("""exists (select 1 from tables where
+                                     tabl_intf_id = ? 
+                                     and tabl_id = colu_tabl_id)""", pschnid))
 
     @staticmethod
     def mappingto(pschaid):
@@ -155,21 +155,20 @@ class ColAttrMap(Baseobject):
 
     @staticmethod
     def getcolulist(pattrid=None,pintfid=None):
-        return Column.select(pwhere="""colu_id in (select coam_colu_id 
+        return Column.select(pwhere=("""colu_id in (select coam_colu_id 
                                                     from colu_attr_map
                                                     join columns on colu_id = coam_colu_id
                                                     join tables on tabl_id = colu_tabl_id 
-                                                    where coam_attr_id = {}
-                                                    and tabl_intf_id = {})"""
-                             .format(pattrid if pattrid is not None else 'coam_attr_id'
-                                    ,pintfid if pintfid is not None else 'tabl_intf_id'))
+                                                    where coam_attr_id = ?
+                                                    and tabl_intf_id = ?)""",
+                                     pattrid if pattrid is not None else 'coam_attr_id',
+                                     pintfid if pintfid is not None else 'tabl_intf_id'))
     @staticmethod
     def getattrlist(pcoluid=None):
-        return Attribute.select(pwhere="""attr_id in (select coam_attr_id 
+        return Attribute.select(pwhere=("""attr_id in (select coam_attr_id 
                                                     from colu_attr_map
-                                                    where coam_colu_id = {}
-                                                    )"""
-                                        .format(pcoluid))
+                                                    where coam_colu_id = ?
+                                                    )""", pcoluid))
 
 
     @staticmethod

@@ -29,7 +29,7 @@ class Language(Baseobject):
                                 ,pwhere=pwhere,porderby=porderby)
     @staticmethod
     def getdefaultlang():
-        lDefLangs = Language.select(pwhere="""lang_is_base_lang = 'TRUE'""")
+        lDefLangs = Language.select(pwhere=("""lang_is_base_lang = ?""", 'TRUE'))
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
         if (len(lDefLangs) > 1): raise Exception("More than one model-Language defined")
@@ -37,7 +37,7 @@ class Language(Baseobject):
     #getdefaultlang
 
     def getreplacementlang(self):
-        return Language.select(pwhere='lang_id={}'.format(self.lang_lang_id))[0]
+        return Language.select(pwhere=('lang_id=?', self.lang_lang_id))[0]
 
     @staticmethod
     def liesdeflangid():
@@ -69,7 +69,7 @@ class Language(Baseobject):
         else: return None
         #fi
         try:
-            languages = Language.select(pwhere="""{} = lower("{}")""".format(colname, piso))
+            languages = Language.select(pwhere=("""{} = lower(?)""".format(colname), piso))
             return languages[0].lang_id
         except: return None
     #spraidlookup

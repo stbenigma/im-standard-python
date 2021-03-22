@@ -103,13 +103,13 @@ class BusinessruleElement(Baseobject):
 
     @staticmethod
     def getburuelements(pmodeid):
-        bures = BusinessruleElement.select(pwhere="""(bure_attr_id = {}
-                                                    or bure_enti_id = {}
-                                                    or bure_rela_id = {}
-                                                    or bure_deva_id = {}
-                                                    or bure_tabl_id = {}
-                                                    or bure_colu_id = {})
-                                                    """.format(pmodeid,pmodeid,pmodeid,pmodeid,pmodeid,pmodeid))
+        bures = BusinessruleElement.select(pwhere=("""(bure_attr_id = ?
+                                                    or bure_enti_id = ?
+                                                    or bure_rela_id = ?
+                                                    or bure_deva_id = ?
+                                                    or bure_tabl_id = ?
+                                                    or bure_colu_id = ?)
+                                                    """, pmodeid,pmodeid,pmodeid,pmodeid,pmodeid,pmodeid))
         return bures
 # BusinessruleELement
 from .modelelement import Modelelement,Modelelemtype

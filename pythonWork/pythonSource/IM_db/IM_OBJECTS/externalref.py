@@ -40,7 +40,7 @@ class Externalref(Baseobject):
 
     @staticmethod
     def getsrcinfo(pmodeid):
-        extrs = Externalref.select (pwhere="extr_mode_id = '{}'".format(pmodeid)
+        extrs = Externalref.select (pwhere=("extr_mode_id = ?", pmodeid)
                                     ,porderby="extr_source_name,extr_source_id")
         list = {e.extr_source_name : [e.extr_source_id,e.extr_last_update] for e in extrs}
         return list
@@ -48,12 +48,10 @@ class Externalref(Baseobject):
 
     @staticmethod
     def getextr(psrcname,pmodeid=None,psrcid=None):
-        extr = Externalref.select (pwhere="extr_source_name = '{}' and {}"
-                                   .format(psrcname
-                                           ,"extr_mode_id = '{}'".format(pmodeid) if pmodeid is not None
-                                        else "extr_source_id = '{}'".format(psrcid)
-                                           )
-                                   )
+        extr = Externalref.select(pwhere=("extr_source_name = ? and {}".format(
+            "extr_mode_id = ?" if pmodeid is not None else "extr_source_id = ?"
+        ), psrcname, pmodeid if pmodeid is not None else psrcid)
+        )
         return extr
 
 
@@ -66,9 +64,9 @@ class Externalref(Baseobject):
 
     @staticmethod
     def getallextrs (pelemtype):
-        return  Externalref.select(pwhere="""exists (select mode_id 
+        return  Externalref.select(pwhere=("""exists (select mode_id 
                                                         from modelelement 
-                                                        where upper(mode_type) = upper('{}'))""".format(pelemtype))
+                                                        where upper(mode_type) = upper(?))""", pelemtype))
 
     @staticmethod
     def getmodeid(psrcname,psrcid):
