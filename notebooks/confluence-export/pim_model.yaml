@@ -12,20 +12,17 @@ confluence:
 json: testdata/IM_PIM_FYAYC.json
 #json: testdata/IM_CRM_FYAYC.json
 
-
 # translations to publish
 # first language listed here is not placed in a language subfolder
 # and titles will not be suffixed
 languages:
   - 'de'
-  - 'en'
-  - 'fr'
 
 # output structure
 content:
 
   domains:
-    title: Domänen
+    title: Domains [TOC]
     template: domain.templ.html
     filter: "'DER' in item.get('origin','') == False"
     labels:
@@ -34,15 +31,15 @@ content:
       - generated
 
   documents:
-    title: Dokumente
+    title: Documents [TOC]
     template: document.templ.html
     labels:
-      - document
+      - domain
       - IM
       - generated
 
   systems:
-    title: Systeme
+    title: Systems [TOC]
     template: system.templ.html
     labels:
       - system
@@ -51,16 +48,15 @@ content:
 
     content:
       tables:
-        title: Tabellen
+        title: Tables [TOC]
         template: table.templ.html
         manual-documentation:
           template: children.templ.html
-          title-postfix: ' - Tabellen-Dokumentation'
+          title-postfix: ' - Table-Doc'
           labels:
             - table
             - DM
-            - manual
-            - documentation
+            - toc
         labels:
           - table
           - DM
@@ -68,10 +64,11 @@ content:
 
         content:
           columns:
-            title: Spalten
+            title: Columns [TOC]
             template: column.templ.html
             manual-documentation:
               template: manual-documentation.templ.html
+              title-postfix: ' - Column-Doc'
               labels:
                 - column
                 - DM
@@ -83,7 +80,7 @@ content:
               - generated
 
   entities:
-    title: Entitäten
+    title: Entities [TOC]
     template: entity.templ.html
     labels:
       - entity
@@ -92,7 +89,7 @@ content:
 
     content:
       attributes:
-        title: Attribute
+        title: Attributes [TOC]
         template: attribute.templ.html
         labels:
           - attribute
