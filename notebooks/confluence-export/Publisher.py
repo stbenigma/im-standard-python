@@ -141,7 +141,7 @@ class Publisher:
                     if topic == 'tables':
                         title_safe = '{} - {}'.format(title_safe,
                                                       self.translate(
-                                                          self.json_data['systems'][entry['interface-id+']]['name']))
+                                                          self.json_data['systems'][entry['interface-id']]['name']))
 
                     if topic == 'columns':
                         title_safe = '{} - {}'.format(title_safe,
