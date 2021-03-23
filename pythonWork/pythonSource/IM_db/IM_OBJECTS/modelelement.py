@@ -210,7 +210,6 @@ class Modelelement(Baseobject):
         """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_dev_status) aus Elementdisplay
             in die Modelelement Felder
         """
-        print('Processing {}'.format(pudpthema))
         subselect = lambda pcolname : """(select UDPV_VALUE
                          from UDP_VALUES
                          join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
@@ -231,18 +230,17 @@ class Modelelement(Baseobject):
                           ,subselect(Modelelement.ODMattrmapping['mode_max_zoom_level'])
                           ,subselect(Modelelement.ODMattrmapping['mode_dev_status'])
                           ,pudpthema)
-        print(dbDML.exec("select * from UDP_VALUES join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id where udpr_name in ('maxzoomlevel', 'minzoomlevel') and UDPV_VALUE not in (0,1,2,3,4)"))
         dbDML.exec(lsql)
         #update the attributes "descriptive" UDP
         lsql = """with udpval as (select UDPV_VALUE,udpv_mode_id
                          from UDP_VALUES
-                         join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id,
+                         join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
                     where lower(udpr_name) = lower('isdescriptive')
                         )
                 update ATTRIBUTES set ATTR_IS_DESCRIPTIVE
                     = case when (select udpv_value from udpval where udpv_mode_id =attr_id) is Null then 'FALSE'
                     else  (select udpv_value from udpval where udpv_mode_id =attr_id) end
-                """.format(pudpthema, Modelelement.ODMattrmapping['attr_is_descriptive'])
+                """
         dbDML.exec(lsql)
         return
 
