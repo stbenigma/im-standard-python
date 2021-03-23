@@ -33,6 +33,14 @@ class Boolean:
 
 # Boolean
 
+
+class UniqueKeyException(Exception):
+    pass
+
+class ForeignKeyException(Exception):
+    pass
+
+
 class Baseobject:
     defaultCreator:str= "sys"
     def fullcolname(self, col):
@@ -123,9 +131,6 @@ class Baseobject:
             if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
-                print("Cannot insert tuple {} into {}. Skipping it!".format(self.totuple(), self._tablename))
-                #for row in dbDML.select('select * from {}'.format(self._tablename)):
-                #    print(str(row))
                 try:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
@@ -137,9 +142,11 @@ class Baseobject:
                     print (lsql)
                     print (self.totuple())
             # if
+            if str(e).startswith("UNIQUE constraint failed"):
+                raise UniqueKeyException("Cannot insert into {} tuple {}".format(self._tablename, self.totuple())) from e
             else:
-                raise Exception("Cannot insert tuple {}".format(self.totuple())) from e
-            #raise e
+                raise Exception("Cannot insert into {} tuple {}".format(self._tablename, self.totuple())) from e
+
         # try
         if self.__srcname is not None:
             Externalref(psrcname=self.__srcname, psrcid=self.__srcid, pmodeid=self.getid()).insert(

@@ -323,7 +323,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         if e != "":
             attr = Attribute().getbyODMref(psrcid=e)
             if attr is not None: hiddenattrs2.append(attr.attr_id)
-    attrs = Attribute.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
+    attrs = Attribute.select(pwhere=("attr_enti_id = ?", enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
 
@@ -405,12 +405,8 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler.eler_dc = pdc
                 try:
                     atteler.insert()
-                except sqlite3.IntegrityError as err:
-                    if str(err).startswith("UNIQUE constraint failed"):
-                        logmessages.writelog("Attr-representation")
-                        logmessages.writelog(str(e))
-                        logmessages.writelog(atteler.tostring())
-                    else: raise err
+                except baseobject.UniqueKeyException as err:
+                    raise err
                 except Exception as e:
                     logmessages.writelog("Attr-representation")
                     logmessages.writelog(str(e))
@@ -421,12 +417,11 @@ def transferentity(penti, pdiagid, puc, pdc):
                 if ((attry - entiy) > (entiheight - 10)): break
             # for
             break  # no more looping for copies of element on diagramm
-        except sqlite3.IntegrityError as err:
-            if str(err).startswith("UNIQUE constraint failed"):
-                index += 1
-                if index > 100: #emergency stop
-                    raise err
-            else: raise err
+
+        except baseobject.UniqueKeyException as err:
+            index += 1
+            if index > 100: #emergency stop
+                raise err
         except Exception as ex:
             logmessages.writelog("Entity-representation")
             logmessages.writelog(str(ex))
@@ -1464,6 +1459,7 @@ def transferproject():
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     # fi
+    assert dbParam.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):
@@ -1596,7 +1592,6 @@ def transferODMModel():
 
     """überträgt das ganze ODM Modell in die DB"""
     transferproject()
-    dbParam.liesdefaultlang()
     transferTypes()
     transferDocuments()
     transferorgunits()

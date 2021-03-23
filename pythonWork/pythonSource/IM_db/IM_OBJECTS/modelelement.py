@@ -210,6 +210,7 @@ class Modelelement(Baseobject):
         """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_dev_status) aus Elementdisplay
             in die Modelelement Felder
         """
+        print('Processing {}'.format(pudpthema))
         subselect = lambda pcolname : """(select UDPV_VALUE
                          from UDP_VALUES
                          join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
@@ -218,9 +219,9 @@ class Modelelement(Baseobject):
                      and udpv_mode_id = mode_id
                         )""".format(pudpthema,pcolname)
 
-        lsql = """update MODELELEMENT set MODE_MIN_ZOOM_LEVEL = {}
-                , MODE_MAX_ZOOM_LEVEL = {}
-                ,MODE_DEV_STATUS =    {}
+        lsql = """update MODELELEMENT set MODE_MIN_ZOOM_LEVEL = {},
+                MODE_MAX_ZOOM_LEVEL = {},
+                MODE_DEV_STATUS = {}
                 where mode_melt_id in (select metp_melt_id
                                         from MODELEMTYPE_PROPERTIES
                                         join user_defined_properties on udpr_id = metp_udpr_id
@@ -230,11 +231,12 @@ class Modelelement(Baseobject):
                           ,subselect(Modelelement.ODMattrmapping['mode_max_zoom_level'])
                           ,subselect(Modelelement.ODMattrmapping['mode_dev_status'])
                           ,pudpthema)
+        print(dbDML.exec("select * from UDP_VALUES join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id where udpr_name in ('maxzoomlevel', 'minzoomlevel') and UDPV_VALUE not in (0,1,2,3,4)"))
         dbDML.exec(lsql)
         #update the attributes "descriptive" UDP
         lsql = """with udpval as (select UDPV_VALUE,udpv_mode_id
                          from UDP_VALUES
-                         join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
+                         join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id,
                     where lower(udpr_name) = lower('isdescriptive')
                         )
                 update ATTRIBUTES set ATTR_IS_DESCRIPTIVE
