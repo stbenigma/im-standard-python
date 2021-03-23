@@ -25,7 +25,7 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="isdescriptive" dispalay_name="Descriptive Attribute" type="Text" group_id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" default_value="">
+		<property name="isdescriptive" dispalay_name="Descriptive Attribute" type="List" group_id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" default_value="FALSE">
 		<description>
 			<![CDATA[TRUE -&amp;amp;amp;gt; Attribute helps to understand Entity
 FALSE -&amp;amp;amp;gt; Attribute is not important for understanding]]>
@@ -33,6 +33,10 @@ FALSE -&amp;amp;amp;gt; Attribute is not important for understanding]]>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
 			</objects>
+			<list_of_values>
+				<item value="TRUE" default="false"/>
+				<item value="FALSE" default="true"/>
+			</list_of_values>
 		</property>
 		<property name="dev_status" dispalay_name="" type="List" group_id="3B8B1A0F-E04A-B3AC-18EE-B43F1EC1A761" default_value="TEST">
 		<description>
