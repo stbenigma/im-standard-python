@@ -6,11 +6,11 @@ import sqlite3
 from IM_DB import logmessages, dbConnect
 
 
-def select(psql):
+def select(psql,*args):
     cursor = dbConnect.myDbConn.cursor()
 
     try:
-        cursor.execute(psql)
+        cursor.execute(psql,args)
     except sqlite3.Error as e:
         if re.match("table .* already exists", e.__str__()):
             pass

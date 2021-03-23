@@ -15,7 +15,7 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="maxzoomlevel" dispalay_name="Maximum Zoom Level" type="Number" group_id="" default_value="5">
+		<property name="maxzoomlevel" dispalay_name="Maximum Zoom Level" type="Number" group_id="" default_value="4">
 		<description>
 			<![CDATA[Maximum zoom level (Overvie, Entry-Point) in which element is displayed
 ]]>
@@ -26,7 +26,7 @@
 				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
 			</objects>
 		</property>
-		<property name="isdescriptive" dispalay_name="Descriptive Attribute" type="Text" group_id="" default_value="">
+		<property name="isdescriptive" dispalay_name="Descriptive Attribute" type="Text" group_id="" default_value="FALSE">
 		<description>
 			<![CDATA[TRUE -&gt; Attribute helps to understand Entity
 FALSE -&gt; Attribute is not important for understanding]]>

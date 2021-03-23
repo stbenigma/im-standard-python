@@ -872,7 +872,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
     attr.attr_is_encrypted = 'FALSE'
     attrId = attr.insert()
 
-    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ATTR,pattrid=attrId)
+    Userdefpropvalue.fillallvalues(pattrid=attrId)
     updateUDP(pmodeid=attrId, pobj=pattrxml)
 
     documents = getdokuref(pelem=pattrxml)
@@ -1045,7 +1045,7 @@ def do1Entity(fileName):
     enticategoryguid = findText(entixml, 'typeID')
     entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
 
-    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ENTI,pentiid=entiId)
+    Userdefpropvalue.fillallvalues(pentiid=entiId)
 
     sobj = findText(entixml, 'synonym')
     if (sobj is not None):
@@ -1165,7 +1165,7 @@ def do1Relation(fileName):
             if (i == 10): raise Exception("Key-error in relations: see logfile")
         #try
     #while
-    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.RELA,prelaid=rela.rela_id)
+    Userdefpropvalue.fillallvalues(prelaid=rela.rela_id)
 
     updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
@@ -1234,6 +1234,7 @@ def do1UDPFile(pfileName):
         proptext = findText(prop, 'description')
         udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgroups[group],pname=propname)
         udpr.udpr_descr = proptext
+        udpr.udpr_defaultvalue = propdefault
         udprid = udpr.insert()
 
         obj = prop.findall('objects/object')

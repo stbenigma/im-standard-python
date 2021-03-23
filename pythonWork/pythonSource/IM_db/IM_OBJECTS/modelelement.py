@@ -240,7 +240,7 @@ class Modelelement(Baseobject):
                 update ATTRIBUTES set ATTR_IS_DESCRIPTIVE
                     = case when (select udpv_value from udpval where udpv_mode_id =attr_id) is Null then 'FALSE'
                     else  (select udpv_value from udpval where udpv_mode_id =attr_id) end
-                """.format(pudpthema, Modelelement.ODMattrmapping['attr_is_descriptive'])
+                """
         dbDML.exec(lsql)
         return
 

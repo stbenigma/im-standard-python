@@ -142,10 +142,13 @@ class Baseobject:
                     print (lsql)
                     print (self.totuple())
             # if
+            msg = "Cannot insert into {} tuple {}".format(self._tablename, self.totuple())
             if str(e).startswith("UNIQUE constraint failed"):
-                raise UniqueKeyException("Cannot insert into {} tuple {}".format(self._tablename, self.totuple())) from e
+                raise UniqueKeyException(msg) from e
+            elif str(e).startswith("FOREIGN KEY constraint failed"):
+                raise ForeignKeyException(msg) from e
             else:
-                raise Exception("Cannot insert into {} tuple {}".format(self._tablename, self.totuple())) from e
+                raise Exception(msg) from e
 
         # try
         if self.__srcname is not None:

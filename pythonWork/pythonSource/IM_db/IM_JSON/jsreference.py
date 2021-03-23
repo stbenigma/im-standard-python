@@ -22,13 +22,14 @@ def inssourceref(presult:Mergeresult,pmodeid, psources):
 
 def udps2js(pemptymodel):
     model = ['theme','group'
-            ,'name','uc','dc','um','dm'
+            ,'name','defvalue'
+            ,'uc','dc','um','dm'
              ,'usedfor']
     if pemptymodel:
         retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model)-1)]+[reflist()])}
     else:
         retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
-                                [u.udpr_theme,u.udpr_group,u.udpr_name
+                                [u.udpr_theme,u.udpr_group,u.udpr_name,u.udpr_defaultvalue
                                  ,u.udpr_uc,u.udpr_dc,u.udpr_um,u.udpr_dm
                                        ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
                                                      for metp in ModelelementProperty().select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
@@ -43,6 +44,7 @@ def js2udpr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     udpr.udpr_theme = pelem['theme']
     udpr.udpr_group = pelem['group']
     udpr.udpr_name = pelem['name']
+    udpr.udpr_defaultvalue = pelem['defvalue']
     udpr.udpr_uc = pelem['uc']
     udpr.udpr_dc = pelem['dc']
     udpr.udpr_um = pelem['um']
