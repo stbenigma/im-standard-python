@@ -263,7 +263,7 @@ class Publisher:
         """Collects columns that are mapped with the column provided via the IM"""
         column = self.json_data['columns'][column_key]
         result = []
-        for attribute_key in column['attributes-mapped']:
+        for attribute_key in column['attributesmapped']:
             attribute = self.json_data['attributes'][attribute_key]
             columns_mapped = attribute['columnsmapped+']
             all_columns = map(lambda entry: columns_mapped[entry], columns_mapped)
