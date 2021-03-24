@@ -6,11 +6,11 @@ import sqlite3
 from IM_DB import logmessages, dbConnect
 
 
-def select(psql):
+def select(psql,*args):
     cursor = dbConnect.myDbConn.cursor()
 
     try:
-        cursor.execute(psql)
+        cursor.execute(psql,args)
     except sqlite3.Error as e:
         if re.match("table .* already exists", e.__str__()):
             pass
@@ -21,6 +21,21 @@ def select(psql):
     result = cursor.fetchall()
     return result
 
+
+def execute(psql, *args):
+    cursor = dbConnect.myDbConn.cursor()
+
+    try:
+        cursor.execute(psql, args)
+    except sqlite3.Error as e:
+        if re.match("table .* already exists", e.__str__()):
+            pass
+        else:
+            print(psql)
+            print("execute: Unerwarteter SQL-Fehler: \t%s" % e)
+            raise Exception('Statement failed "{}" {}'.format(psql, args)) from e
+    result = cursor.fetchall()
+    return result
 
 # end select
 
@@ -48,8 +63,8 @@ def lookup(psql):
 def delete(ptableName, pwhere=None):
     cursor = dbConnect.myDbConn.cursor()
     try:
-        sql = "delete from {} where {}".format(ptableName, "1=1" if pwhere is None else pwhere)
-        rows = cursor.execute(sql).rowcount
+        sql = "delete from {} where {}".format(ptableName, "1=1" if pwhere is None else pwhere[0])
+        rows = cursor.execute(sql, pwhere[1:] if len(pwhere) > 1 else None).rowcount
     except sqlite3.Error as e:
         logmessages.writelog(sql)
         logmessages.writelog("unexpected SQL-error: \t%s" % e)
@@ -104,6 +119,7 @@ def exec(psql, *args):
     try:
         cursor.execute(psql, args)
     except sqlite3.Error as e:
+        print('Failed to execute {} {}'.format(psql, str(args)))
         if re.match("xxxxxxx", e.__str__()):
             pass
         else:
@@ -142,10 +158,18 @@ def valuepairs2sqlexpr(**colvalues):
     """input: {colname:colvalue,}
        return "(col-name is NULL or col-name = value)" (depending on colvalue) and concatenated for every colname/-value pair
        if value is not of integer type, enclose it with '' """
-    sqlstring = lambda val: "'{}'".format(val) if type(val) != int else str(val)
-    comp = lambda col, val: "{} is null".format(col) if val is None else "{} = {}".format(col, sqlstring(val))
-    retval = " and ".join("({})".format(comp(col, val)) for col, val in colvalues.items())
-    return retval
+#    sqlstring = lambda val: "'{}'".format(val) if type(val) != int else str(val)
+#    comp = lambda col, val: "{} is null".format(col) if val is None else "{} = {}".format(col, sqlstring(val))
+#    retval = " and ".join("({})".format(comp(col, val)) for col, val in colvalues.items())
+#    return retval
+
+    condition = ''
+    for key in colvalues:
+        if len(condition) > 0:
+            condition = condition + ' and '
+        condition = condition + '{} = ?'.format(key)
+    arguments = list(colvalues.values())
+    return '({})'.format(condition), *arguments
 
 
 def id2uktranslate():

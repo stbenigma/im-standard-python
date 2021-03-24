@@ -22,16 +22,17 @@ def inssourceref(presult:Mergeresult,pmodeid, psources):
 
 def udps2js(pemptymodel):
     model = ['theme','group'
-            ,'name','uc','dc','um','dm'
+            ,'name','defvalue'
+            ,'uc','dc','um','dm'
              ,'usedfor']
     if pemptymodel:
         retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model)-1)]+[reflist()])}
     else:
         retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
-                                [u.udpr_theme,u.udpr_group,u.udpr_name
+                                [u.udpr_theme,u.udpr_group,u.udpr_name,u.udpr_defaultvalue
                                  ,u.udpr_uc,u.udpr_dc,u.udpr_um,u.udpr_dm
                                        ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
-                                                     for metp in ModelelementProperty().select(pwhere="METP_UDPR_ID = {}".format(u.udpr_id))])
+                                                     for metp in ModelelementProperty().select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
                                 ])
                  for u in Userdefprop().select()
             }
@@ -43,6 +44,7 @@ def js2udpr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     udpr.udpr_theme = pelem['theme']
     udpr.udpr_group = pelem['group']
     udpr.udpr_name = pelem['name']
+    udpr.udpr_defaultvalue = pelem['defvalue']
     udpr.udpr_uc = pelem['uc']
     udpr.udpr_dc = pelem['dc']
     udpr.udpr_um = pelem['um']
@@ -73,7 +75,7 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         """mdelelemetype_properties are emptied and loaded from source"""
         newudprid = keytransl(jskey)
         inscnt = 0
-        delcnt = ModelelementProperty.delete(pwhere="metp_udpr_id={}".format(newudprid))
+        delcnt = ModelelementProperty.delete(pwhere=("metp_udpr_id = ?", newudprid))
         for elemtype in jselem["usedfor"]:
             try:
                 metp = ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(elemtype).getid(),pudprid=newudprid)
@@ -107,7 +109,7 @@ def udpvs2sql(presult, pmodeid, pudps):
         },
     """
     inscnt = 0
-    delcnt = Userdefpropvalue.delete(pwhere="udpv_mode_id = {}".format(pmodeid))
+    delcnt = Userdefpropvalue.delete(pwhere=("udpv_mode_id = ?", pmodeid))
     for theme,jtheme in pudps.items():
         for group,jgroup in jtheme.items():
             for jid,jelem in jgroup.items():
@@ -184,8 +186,8 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
 def insreferences(presult:Mergeresult, pmodeid, prefs):
     inscnt = 0
-    delcnt = ModelelemOrgu.delete(pwhere="moou_mode_id={}".format(pmodeid))
-    delcnt += ModelelemDocu.delete(pwhere="modo_mode_id={}".format(pmodeid))
+    delcnt = ModelelemOrgu.delete(pwhere=("moou_mode_id = ?", pmodeid))
+    delcnt += ModelelemDocu.delete(pwhere=("modo_mode_id = ?", pmodeid))
     for refid in prefs:
         elemtype = jsguid2type(refid)
         if elemtype == Modelelemtype.ORGU:

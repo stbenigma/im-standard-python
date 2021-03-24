@@ -323,7 +323,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         if e != "":
             attr = Attribute().getbyODMref(psrcid=e)
             if attr is not None: hiddenattrs2.append(attr.attr_id)
-    attrs = Attribute.select(pwhere="attr_enti_id = {}".format(enti.enti_id), porderby="attr_displ_seq")
+    attrs = Attribute.select(pwhere=("attr_enti_id = ?", enti.enti_id), porderby="attr_displ_seq")
     attrids = [a.attr_id for a in attrs]
     attrids = list(set(attrids) - set(hiddenattrs2))
 
@@ -405,12 +405,8 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler.eler_dc = pdc
                 try:
                     atteler.insert()
-                except sqlite3.IntegrityError as err:
-                    if str(err).startswith("UNIQUE constraint failed"):
-                        logmessages.writelog("Attr-representation")
-                        logmessages.writelog(str(e))
-                        logmessages.writelog(atteler.tostring())
-                    else: raise err
+                except baseobject.UniqueKeyException as err:
+                    raise err
                 except Exception as e:
                     logmessages.writelog("Attr-representation")
                     logmessages.writelog(str(e))
@@ -421,12 +417,11 @@ def transferentity(penti, pdiagid, puc, pdc):
                 if ((attry - entiy) > (entiheight - 10)): break
             # for
             break  # no more looping for copies of element on diagramm
-        except sqlite3.IntegrityError as err:
-            if str(err).startswith("UNIQUE constraint failed"):
-                index += 1
-                if index > 100: #emergency stop
-                    raise err
-            else: raise err
+
+        except baseobject.UniqueKeyException as err:
+            index += 1
+            if index > 100: #emergency stop
+                raise err
         except Exception as ex:
             logmessages.writelog("Entity-representation")
             logmessages.writelog(str(ex))
@@ -877,7 +872,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
     attr.attr_is_encrypted = 'FALSE'
     attrId = attr.insert()
 
-    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ATTR,pattrid=attrId)
+    Userdefpropvalue.fillallvalues(pattrid=attrId)
     updateUDP(pmodeid=attrId, pobj=pattrxml)
 
     documents = getdokuref(pelem=pattrxml)
@@ -1050,7 +1045,7 @@ def do1Entity(fileName):
     enticategoryguid = findText(entixml, 'typeID')
     entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
 
-    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.ENTI,pentiid=entiId)
+    Userdefpropvalue.fillallvalues(pentiid=entiId)
 
     sobj = findText(entixml, 'synonym')
     if (sobj is not None):
@@ -1170,7 +1165,7 @@ def do1Relation(fileName):
             if (i == 10): raise Exception("Key-error in relations: see logfile")
         #try
     #while
-    Userdefpropvalue.fillallvalues(pmodetype=Modelelemtype.RELA,prelaid=rela.rela_id)
+    Userdefpropvalue.fillallvalues(prelaid=rela.rela_id)
 
     updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
@@ -1239,6 +1234,7 @@ def do1UDPFile(pfileName):
         proptext = findText(prop, 'description')
         udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgroups[group],pname=propname)
         udpr.udpr_descr = proptext
+        udpr.udpr_defaultvalue = propdefault
         udprid = udpr.insert()
 
         obj = prop.findall('objects/object')
@@ -1464,6 +1460,7 @@ def transferproject():
         dbParam.liesdefaultlang()
         parameters.dbDefaultLang(defspra)
     # fi
+    assert dbParam.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):
@@ -1596,7 +1593,6 @@ def transferODMModel():
 
     """überträgt das ganze ODM Modell in die DB"""
     transferproject()
-    dbParam.liesdefaultlang()
     transferTypes()
     transferDocuments()
     transferorgunits()

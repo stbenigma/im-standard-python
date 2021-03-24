@@ -70,7 +70,7 @@ class Modelelemtype(Baseobject):
 
     @staticmethod
     def getidbyshortname(pshortname):
-        melt = Modelelemtype.select(pwhere="melt_shortname= '{}'".format(pshortname))
+        melt = Modelelemtype.select(pwhere=("melt_shortname = ?", pshortname))
         if melt is None or (len(melt)==0): return None
         return melt[0].melt_id
 
@@ -218,9 +218,9 @@ class Modelelement(Baseobject):
                      and udpv_mode_id = mode_id
                         )""".format(pudpthema,pcolname)
 
-        lsql = """update MODELELEMENT set MODE_MIN_ZOOM_LEVEL = {}
-                , MODE_MAX_ZOOM_LEVEL = {}
-                ,MODE_DEV_STATUS =    {}
+        lsql = """update MODELELEMENT set MODE_MIN_ZOOM_LEVEL = {},
+                MODE_MAX_ZOOM_LEVEL = {},
+                MODE_DEV_STATUS = {}
                 where mode_melt_id in (select metp_melt_id
                                         from MODELEMTYPE_PROPERTIES
                                         join user_defined_properties on udpr_id = metp_udpr_id
@@ -240,7 +240,7 @@ class Modelelement(Baseobject):
                 update ATTRIBUTES set ATTR_IS_DESCRIPTIVE
                     = case when (select udpv_value from udpval where udpv_mode_id =attr_id) is Null then 'FALSE'
                     else  (select udpv_value from udpval where udpv_mode_id =attr_id) end
-                """.format(pudpthema, Modelelement.ODMattrmapping['attr_is_descriptive'])
+                """
         dbDML.exec(lsql)
         return
 

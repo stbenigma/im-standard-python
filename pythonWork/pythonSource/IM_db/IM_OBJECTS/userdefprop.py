@@ -2,6 +2,7 @@ from IM_DB import dbDML
 from .baseobject import Baseobject
 from datetime import date
 from mystring import nvl
+from .modelelement import Modelelemtype
 
 
 class Userdefprop(Baseobject):
@@ -63,17 +64,17 @@ class Userdefprop(Baseobject):
 
     @staticmethod
     def getudps(pmeltname=None, ptheme=None, pgroup=None):
-        return Userdefprop.select(pwhere="""udpr_theme like '{}'
-                                        and udpr_group like '{}'
+        return Userdefprop.select(pwhere=("""udpr_theme like ?
+                                        and udpr_group like ?
                                         and udpr_id in (select metp_udpr_id
                                                         from modelemtype_properties
                                                         join modelelem_type on melt_id = metp_melt_id
-                                                        where melt_shortname like '{}')
-                                        """.format ('%' if ptheme is None else ptheme
-                                                    ,'%' if pgroup is None else pgroup
-                                                    ,'%' if pmeltname is None else pmeltname)
-                                ,porderby="udpr_theme,udpr_group,udpr_name"
-                                )
+                                                        where melt_shortname like ?)""",
+                                          '%' if ptheme is None else ptheme,
+                                          '%' if pgroup is None else pgroup,
+                                          '%' if pmeltname is None else pmeltname),
+                                  porderby="udpr_theme,udpr_group,udpr_name"
+                                  )
 
     @staticmethod
     def removemodelUDP(modeludps):
@@ -113,7 +114,7 @@ class Userdefpropvalue(Baseobject):
     @staticmethod
     def removeemptyUDP(pempties):
         emptylist = ','.join("'{}'".format(e) for e in pempties)
-        Userdefpropvalue.delete(pwhere="udpv_value is null or udpv_value  in ({})".format(emptylist)
+        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value  in (?)", emptylist)
                    )
         return
 
@@ -126,27 +127,29 @@ class Userdefpropvalue(Baseobject):
         return Baseobject.select(Userdefpropvalue,pwhere=pwhere,porderby=porderby)
 
     @staticmethod
-    def fillallvalues(pmodetype,pentiid=None,pattrid=None,prelaid=None):
+    def fillallvalues(pentiid=None,pattrid=None,prelaid=None):
         dbDML.exec("""insert into UDP_VALUES (
                 udpv_value,udpv_mode_id,UDPV_UDPR_ID,udpv_uc,udpv_dc)
-                select '.',mode_id,METP_UDPR_ID,uc,dc
+                select UDPR_DEFAULTVALUE,mode_id,UDPR_ID,uc,dc
                 from (select enti_id as mode_id,enti_uc as uc, enti_dc as dc
                     from entities
-                    where enti_id = {}
+                    where enti_id = ?
                     union all
                     select attr_id as mode_id, attr_uc as uc,attr_dc as dc
                     from attributes
-                    where attr_id = {}
+                    where attr_id = ?
                     union all
                     select rela_id as mode_id,rela_uc as uc,rela_dc as dc
                     from RELATIONS
-                    where rela_id = {}
+                    where rela_id = ?
                     )
-                cross join (select METP_UDPR_ID 
+                cross join (select UDPR_ID,UDPR_DEFAULTVALUE
                              from modelelem_type
                              join MODELEMTYPE_PROPERTIES on METP_MELT_ID = melt_id
-                             where melt_shortname = '{}')
-            """.format(nvl(pentiid,-1),nvl(pattrid,-1),nvl(prelaid,-1),pmodetype))
+                             join USER_DEFINED_PROPERTIES on UDPR_ID = METP_UDPR_ID
+                             where melt_shortname = ?)
+            """,nvl(pentiid,-1),nvl(pattrid,-1),nvl(prelaid,-1)
+                ,Modelelemtype.ENTI if pentiid is not None else Modelelemtype.ATTR if pattrid is not None else Modelelemtype.RELA)
 
     @staticmethod
     def updvalues(prows):
@@ -160,7 +163,7 @@ class Userdefpropvalue(Baseobject):
 
     @staticmethod
     def udpvalue(pudprid,pmodeid):
-        udpv = Userdefpropvalue.select(pwhere="udpv_udpr_id = {} and udpv_mode_id={}".format(pudprid,pmodeid))
+        udpv = Userdefpropvalue.select(pwhere=("udpv_udpr_id = ? and udpv_mode_id= ?", pudprid, pmodeid))
         if udpv is None or len(udpv) == 0: return None
         return udpv[0].udpv_value
 
@@ -173,10 +176,10 @@ class Userdefpropvalue(Baseobject):
                 join modelelem_type on melt_id = metp_melt_id
                  left join udp_values on udpv_udpr_id = udpr_id 
                      and udpv_mode_id = {}
-                where udpr_theme = '{}' and udpr_group like '{}'
-                  and MELT_SHORTNAME = '{}'  
+                where udpr_theme = ? and udpr_group like ?
+                  and MELT_SHORTNAME = ?  
                 order by udpr_theme,udpr_group,udpr_name
-                """.format( pmodeid,ptheme, '%' if pgroup == '*' else pgroup,pmeltype))
+                """, pmodeid,ptheme, '%' if pgroup == '*' else pgroup,pmeltype)
         return data
     # udpvalues
 

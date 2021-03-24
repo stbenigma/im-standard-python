@@ -14,5 +14,5 @@ def liesdefaultlang():
     global dbDefaultLangID
     dbDefaultLang = Language.liesdeflangiso2()
     dbDefaultLangID = Language.liesdeflangid()
-    #print("defaultLang=" + dbDefaultLang + " " + str(dbDefaultLangID))
+    assert dbDefaultLangID, "Unable to read back default language id"
 #getdefaultlang

@@ -39,9 +39,9 @@ def relation2js(prela):
                                        ]
                            )
     else:
-        keys = [k for k in Key.select(pwhere="""keys_id in (select kele_keys_id 
+        keys = [k for k in Key.select(pwhere=("""keys_id in (select kele_keys_id 
                                                     from key_elements 
-                                                    where kele_rela_id = {})""".format(prela.rela_id))]
+                                                    where kele_rela_id = ?)""", prela.rela_id))]
         retval = fillmodel(pmodel=model
                            , pentries=[prela.rela_name, prela.rela_type
                                        ,relaend2js(prelaend= [jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from)

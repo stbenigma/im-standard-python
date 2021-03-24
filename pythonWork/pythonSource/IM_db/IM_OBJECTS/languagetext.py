@@ -56,6 +56,7 @@ class Languagetext(Baseobject):
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
            Synonyms have been handled beforehand (they are in a comma-separated list...)
         """
+        assert plang, "No language provided"
         dbDML.exec("""insert into lang_texts 
                     (lgtx_attrname,  lgtx_text
                    ,lgtx_mode_id, lgtx_uc, lgtx_dc

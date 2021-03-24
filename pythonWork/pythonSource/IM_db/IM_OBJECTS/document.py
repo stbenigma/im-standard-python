@@ -47,8 +47,7 @@ CREATE TABLE DOCUMENTS
     #getparent
 
     def getchildren(self):
-        return Document.select(pwhere='docu_docu_id = {}'.format(self.docu_id)
-                                              , porderby= 'docu_name')
+        return Document.select(pwhere=('docu_docu_id = ?', self.docu_id), porderby='docu_name')
     #getchildren
 
     def getformat(self):
@@ -111,15 +110,14 @@ CREATE TABLE DOCUMENTS
         return docus
 
     def getrefmodes(self,pmelttype=None):
-        return  Modelelement.select(
-                pwhere="""mode_id in 
+        return Modelelement.select(
+            pwhere=("""mode_id in 
                             (select mode_id 
                             from mode_docu 
                             join modelelement on mode_id = modo_mode_id
-                            where modo_docu_id = {}
-                            and mode_type like '{}')"""
-                    .format(self.docu_id,pmelttype if pmelttype is not None else '%')
-              ,porderby="mode_id")
+                            where modo_docu_id = ?
+                            and mode_type like ?)""",
+                    self.docu_id, pmelttype if pmelttype is not None else '%'), porderby="mode_id")
 
     @staticmethod
     def doculist():
