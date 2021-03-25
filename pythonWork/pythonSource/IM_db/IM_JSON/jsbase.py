@@ -171,15 +171,15 @@ class JSModel:
     # markwarning
 
     def printmodel(self,pfilepath, pfilename):
-        printJSON(pmodel=self.jsmodel,pfilepath=pfilepath,pfilename=pfilename)
+        return printJSON(pmodel=self.jsmodel,pfilepath=pfilepath,pfilename=pfilename)
 #JSModel
 
 
 def printJSON(pmodel, pfilepath, pfilename):
-    jsonfile = open(pfilepath + jsonfilename(pfilename), 'w')
-    jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
-    jsonfile.close()
-
+    destination = pfilepath + jsonfilename(pfilename)
+    with open(destination, 'w') as jsonfile:
+        jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
+    return destination
 
 def fillmodel(pmodel, pentries):
     """
