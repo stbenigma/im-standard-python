@@ -1,10 +1,9 @@
 import math
 import os
 import re
-import sqlite3
 import xml.etree.ElementTree as et
 
-from IM_DB import dbConnect, parameters, dbParam, logmessages
+from IM_DB import dbConnect, parameters, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferRelational
 from mystring import nvl
@@ -1422,7 +1421,7 @@ def filllanguages():
     #copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
-    Languagetext.filldefaulttext(dbParam.dbDefaultLangID)
+    Languagetext.filldefaulttext(parameters.dbDefaultLangID())
     Language.deleteunused()
     return
 
@@ -1452,15 +1451,16 @@ def transferproject():
 
     if defspra is not None:
         defspra = defspra.lower()
+        defspraid = Language.spraidlookup(piso=defspra)
         # setze die Defaultsprache aus dem Modell
-        if Language.spraidlookup(piso=defspra) is None:
+        if  defspraid is None:
             raise Exception("Language '{}' does not exist".format(defspra))
-        Language.setmodellang(pmodellang=defspra)
-        Language.setallreplacementlang()
-        dbParam.liesdefaultlang()
-        parameters.dbDefaultLang(defspra)
+        else:
+            Language.setmodellang(pmodellang=defspra)
+            Language.setallreplacementlang()
+            parameters.dbDefaultLang(defspra)
+            parameters.dbDefaultLangID(defspraid)
     # fi
-    assert dbParam.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):
