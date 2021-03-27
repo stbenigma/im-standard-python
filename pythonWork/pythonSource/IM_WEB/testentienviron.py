@@ -15,9 +15,9 @@ def main(pjson, plang):
         print (entiid,enti['name'][plang],enti["roles+"],enti['subtypes+'],enti["supertypes+"],enti["relations+"])
         entienvir = entityenviron.createentienvironment(pentiid=entiid,pjson=jsmodel,pmodellang=modellang)
         for hkey in range(entienvir.getminhkey(),entienvir.getmaxhkey()+1):
-            line = str(hkey)+': '
-            for vkey in range(entienvir.getminvkey(), entienvir.getmaxvkey() + 1):
-                line += ' | '+entienvir.getcell(phidx=hkey,pvidx=vkey).__str__()
+            line = str(hkey).ljust(4)+': '
+            for vkey in range(-1,2):
+                line += ' | '+entityenviron.nvl(entienvir.getcell(phidx=hkey,pvidx=vkey).getentiname()).ljust(20)[:20]
             print (line)
         #if idx > 10: break
 # main

@@ -99,44 +99,22 @@ class EntityEnvironment():
         else:
             return cell.getassoc()
 
-    def togrid(self,pentities: list, ptype, pjson, pmodellang,passoc=None):
-        doubleline = len(pentities) > 2
+    def togrid(self, pcells: list, ptype):
+        #doubleline = len(pcells) > 2
         if ptype == EntityEnvironment.ROLE:
             hidx, vidx = 1, 0
         elif ptype == EntityEnvironment.SUPER:
             hidx, vidx = -1, 0
         elif ptype == EntityEnvironment.PARENT:
-            hidx, vidx = -1, -1
+            hidx, vidx = 0, -1
         elif ptype == EntityEnvironment.CHILD:
-            hidx, vidx = 1, 1
-        else:
-            assert false, "illegal type '{}'".format(ptype)
-
-        entities: dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
-        for entiid in pentities:
-            self.fillcell(pvidx=hidx, phidx=vidx,
-                          pcell=EntityCell(pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang], passoc=passoc))
-            hidx = switchhidx(hidx, doubleline)
-            vidx += 1 if ptype in (EntityEnvironment.CHILD, EntityEnvironment.SUPER) else -1
-        # for
-        return
-
-    def togrid2(self,pcells: list, ptype):
-        doubleline = len(pcells) > 2
-        if ptype == EntityEnvironment.ROLE:
-            hidx, vidx = 1, 0
-        elif ptype == EntityEnvironment.SUPER:
-            hidx, vidx = -1, 0
-        elif ptype == EntityEnvironment.PARENT:
-            hidx, vidx = -1, -1
-        elif ptype == EntityEnvironment.CHILD:
-            hidx, vidx = 1, 1
+            hidx, vidx = 0, 1
         else:
             assert false, "illegal type '{}'".format(ptype)
 
         for cell in pcells:
             self.fillcell(pvidx=hidx, phidx=vidx,pcell=cell)
-            hidx = switchhidx(hidx, doubleline)
+            #hidx = switchhidx(hidx, doubleline) moved to display procedure
             vidx += 1 if ptype in (EntityEnvironment.CHILD, EntityEnvironment.SUPER) else -1
         # for
         return
@@ -151,16 +129,16 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang):
     for relaid in prelated:
         rela = pjson.getelements(pelemtype=Modelelemtype.RELA)[relaid]
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
-        if (rela['from-to']['enti'] == pentiid
+        if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] != pentiid
             and rela['to-from']['maptype'] == pcardinality):
             parentid=rela['to-from']['enti']
             assoc = rela['from-to']['assoc'][pmodellang]
-        elif (rela['to-from']['enti'] == pentiid
+        elif (rela['to-from']['enti'] == pentiid and rela['from-to']['enti'] != pentiid
             and rela['from-to']['maptype'] == pcardinality):
             parentid = rela['from-to']['enti']
             assoc = rela['to-from']['assoc'][pmodellang]
         else:
-            continue # not my relation or I am not a child
+            continue # not my relation or I am not a child or I am recursive
         #fi
         retval.append(EntityCell(pentiid=parentid, pentiname=entities[parentid]['name'][pmodellang],passoc=assoc))
     #for
@@ -174,16 +152,19 @@ def createentienvironment(pentiid,pjson:JSModel,pmodellang):
     if not pentiid in entities.keys(): return None #non existing entity is Nothing
 
     entienvir = EntityEnvironment(pentiid=pentiid,pentiname=entities[pentiid]['name'][pmodellang])
-    entienvir.togrid(pentities= entities[pentiid]['roles+'] + entities[pentiid]['subtypes+'],ptype=EntityEnvironment.ROLE,pjson=pjson,pmodellang=pmodellang)
-    entienvir.togrid(pentities= entities[pentiid]['supertypes+'],ptype=EntityEnvironment.SUPER,pjson=pjson,pmodellang=pmodellang)
+    enties = [EntityCell(pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]) for entiid in entities[pentiid]['roles+'] + entities[pentiid]['subtypes+']]
+    entienvir.togrid(pcells=enties, ptype=EntityEnvironment.ROLE)
+
+    enties = [EntityCell(pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]) for entiid in entities[pentiid]['supertypes+']]
+    entienvir.togrid(pcells=enties, ptype=EntityEnvironment.SUPER)
 
     """handle Parents (I am ONE, parent is MANY)"""
     parents = related(pentiid=pentiid,prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.ONE, pmodellang=pmodellang)
-    entienvir.togrid2(pcells=parents,ptype=EntityEnvironment.PARENT)
+    entienvir.togrid(pcells=parents, ptype=EntityEnvironment.PARENT)
 
     """handle children (I am MANY, Child is ONE or MANY)"""
     children = related(pentiid=pentiid,prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.MANY, pmodellang=pmodellang)
-    entienvir.togrid2(pcells=children,ptype=EntityEnvironment.CHILD)
+    entienvir.togrid(pcells=children, ptype=EntityEnvironment.CHILD)
 
     return entienvir
 
