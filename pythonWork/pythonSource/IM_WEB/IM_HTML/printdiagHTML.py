@@ -346,10 +346,10 @@ getelement = lambda e:printHTML.model.getbyid(e)
 def printelements(pdiag, pdiaganker,plang):
     entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
         transform="translate({},{})" >
-<rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-<text id="{}" x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-{} </text></a>
-"""
+        <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
+        <text id="{}" x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
+            {} </text></a>
+        """
     entiende="""</g>"""
     imagehtml=""""<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
         .format('{}',ICONSIZE,ICONSIZE,'{}','{}')

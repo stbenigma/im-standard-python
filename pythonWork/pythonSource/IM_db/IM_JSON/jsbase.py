@@ -111,7 +111,7 @@ class JSModel:
                 return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
             elif pelemtype in ('PROJ'):
                 """Proj has one single entry without any id in js"""
-                return {None: self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]}
+                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
             else:
                 return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
         except:

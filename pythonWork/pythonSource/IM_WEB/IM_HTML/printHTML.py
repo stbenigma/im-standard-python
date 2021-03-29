@@ -846,6 +846,9 @@ def printentirela(penti,plang):
                                                , href(ref=elem['from-to']['enti'], anz=html.escape(otherentiname)))))
         # if
     # for
+    import entityenviron
+    entienvir = entityenviron.createentienvironment(pentiid=penti['anker'],pjson=model,pmodellang=plang)
+    fhtml.write(entityenviron.entienviro2svg(penviron=entienvir))
     fhtml.write(endtable(plabel=Languagetext.transl('Beziehungen'), plbc=lbc))
 # printentirela
 
@@ -968,6 +971,10 @@ def iconfilename(pfilename):
         retval = ''
     return retval
 
+
+def printentienvironment(penti, plang):
+    pass
+
 def printcontententi():
     global model
     lang = Languagetext.reportLang()
@@ -1004,6 +1011,7 @@ def printcontententi():
         printattrlist(penti=elem)
         printkeys(pelem=elem,plang=lang)
         printentirela(penti=enti,plang=lang)
+        printentienvironment(penti=enti,plang=lang)
         printelemreflists(pelem=elem, pelemtype=Modelelemtype.ENTI)
         printtransl(penti=enti)
         printUDP(pelem=elem)
