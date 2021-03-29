@@ -210,8 +210,6 @@ def printenti(pcell:EntityCell,pposx,pposy):
                                , pcell.getentiid(), pcell.getentiid()
                                ,'black' if pcell.gettype()== EntityCell.CENTER else 'blue', FONTSIZE
                                , nvl(pcell.getentiname())[:MAXENTICHARS])
-    print (pcell.getentiname(),len(nvl(pcell.getentiname())))
-
     return entibox
 
 def printrela(pcell:EntityCell,pposx,pposy):
