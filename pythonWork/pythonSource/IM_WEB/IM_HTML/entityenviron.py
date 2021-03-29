@@ -1,7 +1,7 @@
 from IM_JSON import JSModel
 
 """defines the classes and functions to implement an entity-environment representation"""
-nvl = lambda str: str if str is not None else ''
+nvl = lambda str,default='': str if str is not None else default
 
 class EntityCell():
     CENTER = 'center'
@@ -186,6 +186,57 @@ def enti2svg():
     entisvg += entiende
     return entisvg
 
+ENTIWIDTH = 120
+ENTIHEIGHT = 20
+FONTSIZE = 9
+CELLHEIGHT = 30
+CELLWIDTH = ENTIWIDTH *5/4
+LINESHORTEN = 20
+MAXRELACHARS = 16
+MAXENTICHARS = 22
+
+
+def printenti(pcell:EntityCell,pposx,pposy):
+    entistart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
+            transform="translate({},{})" >
+            <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
+            <text id="{}" x="6" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
+            {} </text></a>
+            </g>
+            """
+    entibox = entistart.format('white', 'blue'
+                               , 80, 80
+                               , pposx, pposy, ENTIWIDTH, ENTIHEIGHT
+                               , pcell.getentiid(), pcell.getentiid()
+                               ,'black' if pcell.gettype()== EntityCell.CENTER else 'blue', FONTSIZE
+                               , nvl(pcell.getentiname())[:MAXENTICHARS])
+    print (pcell.getentiname(),len(nvl(pcell.getentiname())))
+
+    return entibox
+
+def printrela(pcell:EntityCell,pposx,pposy):
+    textstart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
+            transform="translate({},{})" >
+            <text id="{}" x="2" y="4" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
+            {} </text></a>
+            </g>
+            """
+    textbox = textstart.format('white', 'blue'
+                                , 80,80
+                                , pposx,pposy,'','black',FONTSIZE
+                                , nvl(pcell.getassoc())[:MAXRELACHARS])
+
+    return textbox
+
+def printline(pstartx,pstarty,plenx,pleny):
+    DEFAULT_LINEWIDTH: int = 1
+    line = """<g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="{}" 
+                    d="M{} {} L{} {}" />
+                </g>
+            """
+    return line.format(DEFAULT_LINEWIDTH,pstartx,pstarty,pstartx+plenx,pstarty+pleny)
+
 def entienviro2svg(penviron):
     diagramhead ="""
     <div id="{}-container">
@@ -198,7 +249,92 @@ def entienviro2svg(penviron):
         </svg>
     </div>
     """
-    svgtext = diagramhead
+
+
+    maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
+    minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
+    maincell = penviron.getcell(phidx='left', pvidx=0)
+
+    rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
+    rectwidth = 3 * CELLWIDTH
+    svgtext = diagramhead.format(maincell.getentiid(), rectwidth, rectheight)
+
+    entistarty = (CELLHEIGHT - ENTIHEIGHT) / 2
+    parentlinestarty,parentlineendy=None,None
+    rolelinestarty,rolelineendy = None,None
+    childlinestarty,childlineendy = None,None
+    superlinestarty,superlineendy = None,None
+    for vkey in range(minvidx, maxvidx + 1):
+        entistartx = 0
+        linestarty = entistarty + (ENTIHEIGHT / 2)
+        relastarty = linestarty - 10
+
+        cellleft = penviron.getcell(phidx='left', pvidx=vkey)
+        cellcenter = penviron.getcell(phidx='center', pvidx=vkey)
+        cellright = penviron.getcell(phidx='right', pvidx=vkey)
+
+        if cellleft.gettype() == EntityCell.SUPER:
+            svgtext += printenti(pcell=cellleft,pposx=entistartx,pposy=entistarty)
+            lenx = entistartx+CELLWIDTH-ENTIWIDTH
+            if vkey != 0:
+                lenx -= LINESHORTEN
+            svgtext += printline(pstartx=entistartx+ENTIWIDTH, pstarty=linestarty, plenx=lenx, pleny=0)
+            superlineendy = linestarty
+
+        elif cellcenter.gettype() == EntityCell.PARENT:
+            svgtext += printenti(pcell=cellcenter,pposx=entistartx,pposy=entistarty)
+            linelength = ENTIWIDTH
+            svgtext += printline(pstartx=entistartx+ENTIWIDTH, pstarty=linestarty, plenx=linelength, pleny=0)
+            parentlinestarty = nvl(parentlinestarty,linestarty)
+        else:
+            pass
+        # fi
+        entistartx += CELLWIDTH
+        if cellcenter.gettype() == EntityCell.CENTER:
+            svgtext += printenti(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
+            superlinestarty = linestarty
+            rolelineendy = linestarty
+            childlinestarty = entistarty + ENTIHEIGHT
+            parentlineendy = entistarty
+        elif cellcenter.gettype() == EntityCell.PARENT:
+            svgtext += printrela(pcell=cellcenter, pposx=entistartx, pposy=relastarty)
+        elif cellcenter.gettype() == EntityCell.CHILD:
+            svgtext += printrela(pcell=cellcenter, pposx=entistartx+CELLWIDTH-ENTIWIDTH+5, pposy=relastarty)
+        else:
+            pass
+        # fi
+        entistartx += CELLWIDTH
+        if cellright.gettype() == EntityCell.ROLE:
+            svgtext += printenti(pcell=cellright, pposx=entistartx, pposy=entistarty)
+            lenx = CELLWIDTH-ENTIWIDTH
+            if vkey != 0:
+                lenx -= LINESHORTEN
+            svgtext += printline(pstartx=entistartx, pstarty=linestarty, plenx=-lenx, pleny=0)
+            rolelinestarty = nvl(rolelinestarty,linestarty)
+        elif cellcenter.gettype() == EntityCell.CHILD:
+            svgtext += printenti(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
+            linelength = -ENTIWIDTH
+            svgtext += printline(pstartx=entistartx, pstarty=linestarty, plenx=linelength, pleny=0)
+            childlineendy = linestarty
+        else:
+            pass
+        # fi
+        entistarty += CELLHEIGHT
+    #for
+    # print vertical lines
+    if superlineendy is not None and (superlineendy-superlinestarty > 0):
+        svgtext += printline(pstartx=CELLWIDTH - LINESHORTEN, pstarty=superlinestarty
+                             , plenx=0, pleny=superlineendy-superlinestarty)
+    if parentlinestarty is not None and (parentlineendy - parentlinestarty > 0):
+        svgtext += printline(pstartx=2*ENTIWIDTH, pstarty=parentlinestarty
+                             , plenx=0, pleny=parentlineendy - parentlinestarty)
+    if childlineendy is not None and (childlineendy - childlinestarty > 0):
+        svgtext += printline(pstartx=2*CELLWIDTH-ENTIWIDTH, pstarty=childlinestarty
+                             , plenx=0, pleny=childlineendy - childlinestarty)
+    if rolelinestarty is not None and (rolelineendy - rolelinestarty > 0):
+        svgtext += printline(pstartx=(2*CELLWIDTH)-(LINESHORTEN/2), pstarty=rolelinestarty
+                             , plenx=0, pleny= rolelineendy - rolelinestarty)
+
     svgtext += diagramfoot
     return svgtext
 
