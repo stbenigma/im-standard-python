@@ -3,7 +3,7 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from datetime import datetime
-from IM_DB import parameters,dbConnect, dbParam,logmessages,parameters
+from IM_DB import parameters,dbConnect, logmessages,parameters
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
 from IM_OBJECTS import *
 from IM_JSON import JSModel,sql2json
@@ -200,7 +200,6 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
 #printhtmlsysfile
 
 def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
-    dbParam.liesdefaultlang()
     printHTML.createlib()
     printHTML.copyimages()
     pmodel.setstatusfilter(pfilter)

@@ -813,7 +813,7 @@ def printentirela(penti,plang):
 
     relalist = [{'anker': r, 'element': getelement(r)}
                   for r in penti['element']['relations+'] if not getelement(r)['type'] in (Relation.ISAROLE,Relation.ISASUBTYPE)]
-    if (len(relalist) == 0):
+    if ((len(relalist) == 0) and len(penti['element']["supertypes+"]+penti['element']["roles+"]+penti['element']["subtypes+"])==0):
         return
     lbc = str(newbarcounter())
     fhtml.write(starttable(ptitle=Languagetext.transl('Beziehungen'), plbc=lbc
@@ -846,6 +846,9 @@ def printentirela(penti,plang):
                                                , href(ref=elem['from-to']['enti'], anz=html.escape(otherentiname)))))
         # if
     # for
+    import entityenviron
+    entienvir = entityenviron.createentienvironment(pentiid=penti['anker'],pjson=model,pmodellang=plang)
+    fhtml.write(entityenviron.entienviro2svg(penviron=entienvir))
     fhtml.write(endtable(plabel=Languagetext.transl('Beziehungen'), plbc=lbc))
 # printentirela
 
@@ -968,6 +971,10 @@ def iconfilename(pfilename):
         retval = ''
     return retval
 
+
+def printentienvironment(penti, plang):
+    pass
+
 def printcontententi():
     global model
     lang = Languagetext.reportLang()
@@ -1004,6 +1011,7 @@ def printcontententi():
         printattrlist(penti=elem)
         printkeys(pelem=elem,plang=lang)
         printentirela(penti=enti,plang=lang)
+        printentienvironment(penti=enti,plang=lang)
         printelemreflists(pelem=elem, pelemtype=Modelelemtype.ENTI)
         printtransl(penti=enti)
         printUDP(pelem=elem)
