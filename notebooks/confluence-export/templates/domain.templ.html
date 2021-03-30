@@ -4,7 +4,8 @@
     {% include 'header.templ.html' %}
     <ac:layout-section ac:type="two_right_sidebar">
         <ac:layout-cell>
-            <p>{{ gettext('Domain %(name)s', name=util.translate(domain['descr'])) }}</p>
+            <h1>{{ gettext('Domain %(name)s', name=util.translate(domain['name'])) }}</h1>
+            <p>{{ util.translate_text(domain['descr']) }}</p>
             <p>
             <table>
                 <colgroup>
@@ -12,20 +13,16 @@
                     <col style="width: 70%;"/>
                 </colgroup>
                 <tr>
-                    <th>{{ gettext('Domain name') }}</th>
-                    <td>{{ util.translate(domain['name']) }}</td>
-                </tr>
-                <tr>
-                    <th>{{ gettext('System') }}</th>
-                    <td>{{ util.translate(domain['displdatatype+']) }}</td>
-                </tr>
-                <tr>
                     <th>{{ gettext('Type') }}</th>
                     <td>{{ domain['type'] }}</td>
                 </tr>
                 <tr>
                     <th>{{ gettext('Type description') }}</th>
-                    <td>{{ util.translate(domain['datatypestr+']) }}</td>
+                    <td>{{ util.translate(domain['displdatatype+']) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Typesting') }}</th>
+                    <td>{{ domain['datatypestr+'] }}</td>
                 </tr>
                 <tr>
                     <th>{{ gettext('Basetype') }}</th>
@@ -44,12 +41,24 @@
                     <td>{{ domain['formatid'] }}</td>
                 </tr>
                 <tr>
+                    <th>{{ gettext('Display data type') }}</th>
+                    <td>{{ util.translate(domain['displdatatype+']) }}</td>
+                </tr>
+                <tr>
                     <th>{{ gettext('Minimum') }}</th>
                     <td>{{ domain['minvalue'] }}</td>
                 </tr>
                 <tr>
                     <th>{{ gettext('Maximum') }}</th>
                     <td>{{ domain['maxvalue'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Total digits') }}</th>
+                    <td>{{ domain['totaldigits'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Fraction digits') }}</th>
+                    <td>{{ domain['fractdigits'] }}</td>
                 </tr>
                 <tr>
                     <th>{{ gettext('Granularity') }}</th>
@@ -60,8 +69,20 @@
                     <td>{{ util.translate(domain['granularitytext+']) }}</td>
                 </tr>
                 <tr>
+                    <th>{{ gettext('Unit') }}</th>
+                    <td>{{ domain['unit'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Round value') }}</th>
+                    <td>{{ domain['roundvalue'] }}</td>
+                </tr>
+                <tr>
                     <th>{{ gettext('Source') }}</th>
                     <td>{{ domain['origin'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Interface') }}</th>
+                    <td>{{ until.soft_link['interfaceid'] }}</td>
                 </tr>
             </table>
             </p>

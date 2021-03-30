@@ -5,7 +5,7 @@
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
       <h1>{{ gettext('System %(name)s [Datenmodell]', name=system['name']) }}</h1>
-      <p>{{ util.translate(system['descr']) }}</p>
+      <p>{{ util.translate_text(system['descr']) }}</p>
     </ac:layout-cell>
     <ac:layout-cell>
       {% include 'international.templ.html' %}

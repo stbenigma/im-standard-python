@@ -1,9 +1,9 @@
-from xml.sax.saxutils import escape
 from datetime import datetime
 from requests.exceptions import HTTPError
 from functools import reduce
 import markupsafe
 import logging
+import html
 from colorama import Fore, Style
 
 
@@ -56,21 +56,34 @@ class Publisher:
     def set_context(self, topic: str, key: str):
         self.log = ContextLogger(self.logger, topic, key)
 
-    def translate(self, field, language=None):
+
+    def tr(self, field, language=None) -> str:
         if language is None:
             language = self.language
+
         if isinstance(field, dict):
             text = field.get(language)
             if not text:
                 # fallback, use whatever present
                 text = field.get(self.languages[0], '-no-fallback-')
-            return markupsafe.Markup(text)
+            if not text:
+                return ''
+            return text
+
         if isinstance(field, str):
-            self.log.debug('No translation for "{}" in language {}'.format(field, language))
+            self.log.debug('Untranslated string "{}"'.format(field))
             return field
 
         self.log.debug('No text for field "{}"'.format(field))
         return ''
+
+    def translate(self, field, language=None) -> markupsafe.Markup:
+        return markupsafe.Markup(self.tr(field, language))
+
+    def translate_text(self, field, language=None) -> markupsafe.Markup:
+        text = html.escape(self.tr(field, language))
+        linebreaks = text.replace('\n', '<br/>\n')
+        return markupsafe.Markup(linebreaks)
 
     def page_title(self, key: str) -> str:
         """Returns the page title of an element. This will be used to reference elements"""
@@ -83,7 +96,7 @@ class Publisher:
             same_language_page = pages.get(lang)
             if not same_language_page.get('title'):
                 self.log.warning('No title for key {} in language {}'.format(key, lang))
-                return None
+                return '*missing title for key "{key}" in language {lang}*'.format(key=key, lang=lang)
             return same_language_page['title']
 
     def order_topic_tree(self, topics: dict):
@@ -186,6 +199,7 @@ class Publisher:
                                                                                                    key)
         element[self.language]['pageid'] = page_id
         self.content_map[key] = element
+        element['filtered'] = False
         return element
 
     def page_for_key(self, key: str):
@@ -292,13 +306,13 @@ class Publisher:
         pages = self.content_map[key]
         if pages and pages.get(self.language):
             same_language_page = pages.get(self.language)
-            if same_language_page.get('title') and not same_language_page.get('filtered', False):
+            if same_language_page.get('title') and not pages.get('filtered', False):
                 page_title = self.page_title(key)
                 title_text = title if title else page_title
                 return markupsafe.Markup(
                     ('<ac:link><ri:page ri:content-title="{reference}" /><ac:plain-text-link-body>'
                      '<![CDATA[{title_text}]]></ac:plain-text-link-body></ac:link>').format(
-                        reference=page_title, title_text=title_text)
+                        reference=html.escape(page_title), title_text=title_text)
                 )
 
         just_name = title if title else key
