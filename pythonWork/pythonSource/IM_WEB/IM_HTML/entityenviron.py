@@ -200,7 +200,7 @@ def printenti(pcell:EntityCell,pposx,pposy):
     entistart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
             transform="translate({},{})" >
             <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-            <text id="{}" x="6" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
+            <text id="box{}" x="6" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
             {} </text></a>
             </g>
             """

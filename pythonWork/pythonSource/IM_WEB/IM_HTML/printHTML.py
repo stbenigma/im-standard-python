@@ -813,7 +813,7 @@ def printentirela(penti,plang):
 
     relalist = [{'anker': r, 'element': getelement(r)}
                   for r in penti['element']['relations+'] if not getelement(r)['type'] in (Relation.ISAROLE,Relation.ISASUBTYPE)]
-    if (len(relalist) == 0):
+    if ((len(relalist) == 0) and len(penti['element']["supertypes+"]+penti['element']["roles+"]+penti['element']["subtypes+"])==0):
         return
     lbc = str(newbarcounter())
     fhtml.write(starttable(ptitle=Languagetext.transl('Beziehungen'), plbc=lbc
