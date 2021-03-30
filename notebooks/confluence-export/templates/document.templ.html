@@ -1,0 +1,39 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set document = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{ gettext('Document %(name)s', name=util.translate(document['name'])) }}</h1>
+      <table>
+        <colgroup>
+          <col style="width: 30%;"/>
+          <col style="width: 70%;"/>
+        </colgroup>
+        <tr>
+          <th>{{ gettext('Link') }}</th>
+          <td><a href="{{ document['reference'] }}">Dokument</a></td>
+        </tr>
+        <tr>
+          <th>{{ gettext('Format') }}</th>
+          <td>{{ document['format+'] }}</td>
+        </tr>
+        <tr>
+          <th>{{ gettext('Reference count') }}</th>
+          <td>{{ document['referencecnt+'] }}</td>
+        </tr>
+        <tr>
+          <th>{{ gettext('Parent') }}</th>
+          <td>{{ util.soft_link(document['parent']) }}</td>
+        </tr>
+      </table>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      {% include 'international.templ.html' %}
+      <p>
+        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/Services/f-icon_service_0422_digital-document.svg"/>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+  {% include 'footer.templ.html' %}
+</ac:layout>

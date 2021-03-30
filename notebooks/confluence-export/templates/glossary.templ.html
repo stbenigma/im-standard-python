@@ -1,0 +1,26 @@
+<!-- this creates a glossary section (Confluence cell content). the template should be rendered using jinja2 -->
+<p>
+<table class="relative-table" style="width: 100%;">
+    <tbody>
+    <tr>
+        <th>{{ gettext('Begriff') }}</th>
+        <th>{{ gettext('Synonyme') }}</th>
+        <th>{{ gettext('Synonyme *') }}</th>
+        <th>{{ gettext('Beschreibung') }}</th>
+        <th>{{ gettext('Notizen, Links') }}</th>
+    </tr>
+    {% for entity_key in data['entities'] %}
+    {% set entity = data['entities'][entity_key] %}
+    <tr>
+        <td><p>{{ util.soft_link(entity_key) }}</p></td>
+        <td><p>{% for synonym in entity['synonyms'] %} {{ util.translate(synonym) }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+        <td><p><ul>{% for synonym in entity['synonyms'] %} <li>{{ util.translate(synonym) }}</li>{% endfor %}</ul></p></td>
+        <td><p>{{ util.translate_text(entity['descr']) }}</p></td>
+        <td><p>{{ entity['userdefprops'] }}</p></td>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</p>
+{% include 'generated.templ.html' %}

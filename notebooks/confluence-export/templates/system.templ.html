@@ -1,0 +1,48 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set system = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{ gettext('System %(name)s [Datenmodell]', name=system['name']) }}</h1>
+      <p>{{ util.translate_text(system['descr']) }}</p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      {% include 'international.templ.html' %}
+      <p>
+        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0148_jenga.svg"/>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>{{ gettext('Tables') }}</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>{{ gettext('Name') }}</th>
+          <th>{{ gettext('# Columns') }}</th>
+          <th>{{ gettext('Linked Entities') }}</th>
+        </tr>
+        {% for table_key in system['tables+'] %}
+        {% set table = data['tables'][table_key] %}
+        <tr>
+          <td>{{ util.soft_link(table_key, item_class='tables', title=table['name']) }}</td>
+          <td>{{ table['columns+'] | length}}</td>
+          <td>
+            <ul>
+              {% for entity_key in table['entitiesmapped'] %}
+              {% set entity = data['entities'][entity_key] %}
+              <li>
+                {{ util.soft_link(entity_key) }}
+              </li>
+              {% endfor %}
+              </ul>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+  {% include 'footer.templ.html' %}
+</ac:layout>
