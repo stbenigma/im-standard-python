@@ -98,6 +98,10 @@ class Languagetext(Baseobject):
                         ,doma_id,doma_uc,doma_dc
                     from DOMAINS
                     union all  
+                   select 'DOMA_DESCR' attrname, doma_descr text 
+                        ,doma_id,doma_uc,doma_dc
+                    from DOMAINS
+                    union all  
                    select 'BURU_NAME' attrname, buru_name text 
                         ,buru_id,buru_uc,buru_dc
                     from business_rules  

@@ -1453,7 +1453,7 @@ def transferproject():
         defspra = defspra.lower()
         defspraid = Language.spraidlookup(piso=defspra)
         # setze die Defaultsprache aus dem Modell
-        if  defspraid is None:
+        if defspraid is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         else:
             Language.setmodellang(pmodellang=defspra)
@@ -1461,7 +1461,6 @@ def transferproject():
             parameters.dbDefaultLang(defspra)
             parameters.dbDefaultLangID(defspraid)
     # fi
-    assert dbParam.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):

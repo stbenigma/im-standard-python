@@ -542,10 +542,11 @@ def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster="", piconfilenam
 #                 {}
 #                 {}
 # """
+
     fhtml.write(contentelementhead.format(panker, ptype, html.escape(pname )
                                           , piconfilename
                                           , pmaster
-                                          , pdescr.replace('\n', '').replace('\r', '').replace("'",'&#39;')  #"" if (pdescr == "") else "<p1>{}</p1>".format(pdescr)
+                                          , pdescr.replace('\n', '').replace('\r', '').replace("'",'&#39;')
                                           , plbc))
 # printcontent
 
@@ -1207,6 +1208,7 @@ def printcontentdoma(pdomains):
         elem = doma['element']
         printcontentstart('domains')
         lbc = str(newbarcounter())
+
         printcontent(ptype=Languagetext.transl('Wertebereich')
                      , panker=doma['anker']
                      , pname=elem['name'][lang]
