@@ -4,6 +4,7 @@ from IM_JSON import *
 from IM_OBJECTS import *
 from dbDML import valuepairs2sqlexpr
 from copy import copy
+from IM_DB import parameters
 
 """{odmjsid: keytrans,}  jsid MMMMxxxx (RELA1442)"""
 idTranslate= dict()
@@ -175,7 +176,13 @@ def translatefks(pdbobj):
 
 def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,pequalexceptlist=[]):
     """from ODM to DB transfer"""
-    modellang = Language.getdefaultlang().lang_iso_code2
+    try:
+        modellang = Language.getdefaultlang().lang_iso_code2
+    except:
+        #e.g. if languages are not yet filled
+        modellang = parameters.dbDefaultLang()
+
+
     newdberrors = []
     olddberrors = None
     odmelements = copy(podmjson.getelements(pelemtype=pelemtype))

@@ -35,8 +35,6 @@ def filldbmain2(callarg,createnewdb=False):
         IM_db.createDB(par1=callarg,pforcecreate=True)
 
     dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
-    if createnewdb:
-        transferModel.insertBaseData()
     mergedbs.mergeodm2db(podmjson=odmjson)
     dbConnect.closeDB()
 
