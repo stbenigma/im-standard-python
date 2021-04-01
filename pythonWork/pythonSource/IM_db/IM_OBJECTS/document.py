@@ -12,32 +12,10 @@ class Document(Baseobject):
 
     def __init__(self,psrcname=None,psrcid=None):
         if (len(Document._columnlist) == 0): Document._columnlist = Baseobject.gettablecolumns(Document._tablename)
-        super().__init__(tablename=self._tablename, prefix=self._prefix
-                         ,pmodelemtype=Modelelemtype.DOCU
+        super().__init__(pmodelemtype=Modelelemtype.DOCU
                          ,pscrid=psrcid
                          ,psrcname=psrcname
                          )
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Document._tablename
-                               , psql="""
-CREATE TABLE DOCUMENTS
-    (
-     DOCU_ID INTEGER NOT NULL primary key ,
-     DOCU_NAME VARCHAR (60) NOT NULL ,
-     DOCU_STFO_ID integer NULL ,
-     DOCU_REFERENCE VARCHAR (500) NULL ,
-     DOCU_CONTENT IMAGE NULL ,
-     DOCU_DOCU_ID integer NULL
-     ,CONSTRAINT DOCU_DOCU_FK FOREIGN KEY     (     DOCU_DOCU_ID)
-		 REFERENCES DOCUMENTS     (     DOCU_ID )
-	 ,CONSTRAINT DOCU_STFO_FK FOREIGN KEY (     DOCU_STFO_ID)
-		 REFERENCES STORAGE_FORMATS (     STFO_ID )
-	 
-    )
-"""
-        )
 
     def getname(self,plang=None):
         return self.docu_name
@@ -55,14 +33,7 @@ CREATE TABLE DOCUMENTS
         stfo = Storageformat().getbyid(pid=self.docu_stfo_id)
         return None if stfo is None else stfo.getname()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Document._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Document
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def updparent(pchildid,pparentid):
         if pchildid is not None and pparentid is not None:
@@ -119,9 +90,9 @@ CREATE TABLE DOCUMENTS
                             and mode_type like ?)""",
                     self.docu_id, pmelttype if pmelttype is not None else '%'), porderby="mode_id")
 
-    @staticmethod
-    def doculist():
-        return Document.select(porderby='docu_name')
+    @classmethod
+    def doculist(cls):
+        return cls.select(porderby='docu_name')
     #doculist
 
     """def xxdocureferenced(prelaid=None,penti=None,pwebattr=None):
@@ -148,18 +119,11 @@ class ModelelemDocu(Baseobject):
 
     def __init__(self,pmodeid = None,pdocuid=None):
         if (len(ModelelemDocu._columnlist) == 0): ModelelemDocu._columnlist = Baseobject.gettablecolumns(ModelelemDocu._tablename)
-        super().__init__(tablename=self._tablename, prefix=self._prefix)
+        super().__init__()
         self.modo_mode_id = pmodeid
         self.modo_docu_id = pdocuid
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(ModelelemDocu._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=ModelelemDocu
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def insertdocuref(pdocguidlist,pmodeid):
         if pdocguidlist is None: return

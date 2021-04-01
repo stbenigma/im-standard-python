@@ -14,11 +14,11 @@ class Column(Baseobject):
     _tablename: str = 'columns'
     _prefix: str = 'colu'
     _columnlist = []
+    _defaultorderby = "colu_column_name"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Column._columnlist) == 0): Column._columnlist = Baseobject.gettablecolumns(Column._tablename)
-        super().__init__(tablename=Column._tablename, prefix=Column._prefix
-                         , pmodelemtype=Modelelemtype.COLU
+        super().__init__( pmodelemtype=Modelelemtype.COLU
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -57,18 +57,11 @@ class Column(Baseobject):
         tab = Table().getbyid(self.colu_tabl_id)
         return tab.tabl_intf_id
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Column._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby="colu_column_name"):
-        return Baseobject.select(pclass=Column
-                                 , pwhere=pwhere, porderby=porderby)
 
-    @staticmethod
-    def indexlist(pschnid):
-        schas = Column.select(
+    @classmethod
+    def indexlist(cls,pschnid):
+        schas = cls.select(
             pwhere=("""colu_tabl_id in (select tabl_id from tables where tabl_intf_id = ?)""", pschnid)
             , porderby='colu_column_name')
         indexlist = []
@@ -79,9 +72,9 @@ class Column(Baseobject):
 
     # grouplist
 
-    @staticmethod
-    def selectbyschnid(pschnid):
-        return Column.select(pwhere=("""exists (select 1 from tables where
+    @classmethod
+    def selectbyschnid(cls,pschnid):
+        return cls.select(pwhere=("""exists (select 1 from tables where
                                      tabl_intf_id = ? 
                                      and tabl_id = colu_tabl_id)""", pschnid))
 
@@ -126,14 +119,14 @@ class Column(Baseobject):
 
     # maopingto
 
-    @staticmethod
-    def fillextid():
+    @classmethod
+    def fillextid(cls):
         dbDML.exec("""update {}
                      set colu_ext_system_id = (select UDPV_VALUE
                     from UDP_VALUES 
                     join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
                         and udpr_name = '{}'
-                    where udpv_mode_id = colu_id)""".format(Column._tablename, Column.EXTIDUDP))
+                    where udpv_mode_id = colu_id)""".format(cls._tablename, cls.EXTIDUDP))
 
 
 # Column
@@ -151,10 +144,10 @@ class ColAttrMap(Baseobject):
 
     def __init__(self):
         if (len(ColAttrMap._columnlist) == 0): ColAttrMap._columnlist = Baseobject.gettablecolumns(ColAttrMap._tablename)
-        super().__init__(tablename=ColAttrMap._tablename, prefix=ColAttrMap._prefix)
+        super().__init__()
 
-    @staticmethod
-    def getcolulist(pattrid=None,pintfid=None):
+    @classmethod
+    def getcolulist(cls,pattrid=None,pintfid=None):
         return Column.select(pwhere=("""colu_id in (select coam_colu_id 
                                                     from colu_attr_map
                                                     join columns on colu_id = coam_colu_id
@@ -171,14 +164,6 @@ class ColAttrMap(Baseobject):
                                                     )""", pcoluid))
 
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(ColAttrMap._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=ColAttrMap
-                                 , pwhere=pwhere, porderby=porderby)
 
 
     @staticmethod

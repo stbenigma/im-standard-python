@@ -12,11 +12,11 @@ class Arc(Baseobject):
     _tablename: str = 'arcs'
     _prefix: str = 'arcs'
     _columnlist: list = []
+    _defaultorderby = "arcs_id"
 
     def __init__(self, pname=None, pentiid=None, puc=None, pdc=None, psrcname=None, psrcid=None):
         if (len(Arc._columnlist) == 0): Arc._columnlist = Baseobject.gettablecolumns(Arc._tablename)
-        super().__init__(tablename=Arc._tablename, prefix=Arc._prefix
-                         , pmodelemtype=Modelelemtype.ARCS
+        super().__init__( pmodelemtype=Modelelemtype.ARCS
                          , psrcname=psrcname
                          , pscrid=psrcid)
         self.arcs_name = pname
@@ -29,7 +29,7 @@ class Arc(Baseobject):
 
     def getrelalist(self):
         """List of relations in this arc"""
-        return Relation().select(pwhere=("rela_arcs_id_from = ? or rela_arcs_id_to = ?", self.arcs_id,self.arcs_id))
+        return Relation.select(pwhere=("rela_arcs_id_from = ? or rela_arcs_id_to = ?", self.arcs_id,self.arcs_id))
 
     def getentity(self):
         return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
@@ -61,15 +61,6 @@ class Arc(Baseobject):
         return data
     # liesarcselem
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Arc._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="arcs_id"):
-        arcs = Baseobject.select(pclass=Arc
-                                 , pwhere=pwhere, porderby=porderby)
-        return arcs
 
     @staticmethod
     def getrelaarcs(pdiagid):
@@ -104,11 +95,11 @@ class Relation(MultilangBaseobject):
     _tablename: str = 'relations'
     _prefix: str = 'rela'
     _columnlist: list = []
+    _defaultorderby = "rela_name"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Relation._columnlist) == 0): Relation._columnlist = Baseobject.gettablecolumns(Relation._tablename)
-        super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
-                         , multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
+        super().__init__( multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
                                         , 'rela_assoc_to_from': Languagetext.RELA_TEXT_TO}
                          , pmodelemtype=Modelelemtype.RELA
                          , psrcname=psrcname
@@ -147,15 +138,6 @@ class Relation(MultilangBaseobject):
     def getbyentity(pentiid):
         return Relation.select(pwhere=("""rela_enti_id_from = ? or rela_enti_id_to = ?""", pentiid,pentiid))
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Relation._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="rela_name"):
-        rela = Baseobject.select(pclass=Relation
-                                 , pwhere=pwhere, porderby=porderby)
-        return rela
 
     def simpleType(self):
         """only the first try. Add arcs later to find distinguisch ISAR and ISAS"""

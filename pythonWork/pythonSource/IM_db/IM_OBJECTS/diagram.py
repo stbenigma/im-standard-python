@@ -7,11 +7,11 @@ class Diagram(Baseobject):
     _tablename:str = 'diagrams'
     _prefix:str = 'diag'
     _columnlist:list = []
+    _defaultorderby = "upper(diag_name)"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Diagram._columnlist) == 0): Diagram._columnlist = Baseobject.gettablecolumns(Diagram._tablename)
-        super().__init__(tablename= Diagram._tablename, prefix= Diagram._prefix
-                         , pmodelemtype=Modelelemtype.DIAG
+        super().__init__( pmodelemtype=Modelelemtype.DIAG
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
@@ -54,24 +54,17 @@ class Diagram(Baseobject):
     def getname(self, plang=None):
         return self.diag_name
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Diagram._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby="upper(diag_name)"):
-        return Baseobject.select(pclass=Diagram
-                                 , pwhere=pwhere, porderby=porderby)
-    @staticmethod
-    def getdiagrams(pmodeid):
-        diags = Diagram.select(pwhere=("diag_id in (select eler_diag_id "
+    @classmethod
+    def getdiagrams(cls,pmodeid):
+        diags = cls.select(pwhere=("diag_id in (select eler_diag_id "
                                        "            from elementreps where eler_mode_id = ?)", pmodeid)
                                )
         return diags
 
-    @staticmethod
-    def getbyname(pname):
-        return Diagram().getbyuk(diag_name=pname)
+    @classmethod
+    def getbyname(cls,pname):
+        return cls.getbyuk(diag_name=pname)
     # getbyname
 
 #Diagram
@@ -87,40 +80,18 @@ class Diagramtype(Baseobject):
 
     def __init__(self,pname=None):
         if (len(Diagramtype._columnlist) == 0): Diagramtype._columnlist = Baseobject.gettablecolumns(Diagramtype._tablename)
-        super().__init__(tablename= Diagramtype._tablename, prefix= Diagramtype._prefix)
+        super().__init__()
         self.diat_name = pname
         self.diat_uc = 'system'
         self.diat_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Diagramtype._tablename
-                                ,psql="""
-CREATE TABLE diagramtypes(
-    diat_id    integer primary key autoincrement,
-    diat_name   varchar(100) NOT NULL,
-     diat_uc varchar(30) NOT NULL,
-    diat_dc    varchar(30) NOT NULL,
-    diat_um    varchar(30) ,
-    diat_dm    varchar(30),
-	CONSTRAINT diat_un UNIQUE(diat_name)
-)	          """)
 
     def getname(self,plang=None):
         return self.diat_name
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Diagramtype._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Diagramtype
-                                 , pwhere=pwhere, porderby=porderby)
-
-    @staticmethod
-    def getbyname(pname):
-        return Diagramtype().getbyuk(diat_name=pname)
+    @classmethod
+    def getbyname(cls,pname):
+        return cls.getbyuk(diat_name=pname)
     # getbyname
 #Diagramtype
 
@@ -132,40 +103,11 @@ class MeltDiat(Baseobject):
     def __init__(self,pmeltid=None,pdiatid=None):
         _columnlist = []
         if (len(MeltDiat._columnlist) == 0): MeltDiat._columnlist = Baseobject.gettablecolumns(MeltDiat._tablename)
-        super().__init__(tablename= MeltDiat._tablename, prefix= MeltDiat._prefix)
+        super().__init__()
         self.medi_melt_id = pmeltid
         self.medi_diat_id = pdiatid
         self.medi_uc = 'system'
         self.medi_dc = date.today()
 
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=MeltDiat._tablename
-                                ,psql="""
-CREATE TABLE melt_diats(
-    medi_id        integer primary key autoincrement,
-    medi_diat_id   integer NOT NULL,
-    medi_melt_id   integer NOT NULL,
-    medi_uc    varchar(30) NOT NULL,
-    medi_dc        varchar(30) NOT NULL,
-    medi_um        varchar(30) ,
-    medi_dm        varchar(30),
-	CONSTRAINT medi__un UNIQUE(medi_diat_id,
-	                                   medi_melt_id),
-    CONSTRAINT medi_diat_fk FOREIGN KEY(medi_diat_id)			           
-					REFERENCES diagramtypes(diat_id)
-								    ON DELETE CASCADE,
-	CONSTRAINT modi_melt_fk FOREIGN KEY(medi_melt_id)
-		REFERENCES MODELELEM_TYPE(melt_id)
-		     ON DELETE CASCADE
-)	          """)
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(MeltDiat._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=MeltDiat
-                                 , pwhere=pwhere, porderby=porderby)
 #Diagramtype

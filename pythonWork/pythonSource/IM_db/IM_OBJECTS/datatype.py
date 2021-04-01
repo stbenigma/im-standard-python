@@ -15,12 +15,9 @@ class Datatype(Baseobject):
     __srcname = None
     __srcid = None
 
-
-
     def __init__(self,pname=None,pbasetype=None,psrcname=None,pscrid=None):
         if (len(Datatype._columnlist) == 0): Datatype._columnlist = Baseobject.gettablecolumns(Datatype._tablename)
-        super().__init__(tablename= Datatype._tablename, prefix= Datatype._prefix
-                        ,pmodelemtype=Modelelemtype.DATY
+        super().__init__(pmodelemtype=Modelelemtype.DATY
                         ,pscrid=pscrid
                         ,psrcname=psrcname)
         self.daty_name = pname
@@ -28,14 +25,7 @@ class Datatype(Baseobject):
         self.daty_uc = 'fillDB'
         self.daty_dc = date.today()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Datatype._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby="daty_id"):
-        return Baseobject.select(pclass=Datatype
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def baseType(dt):
         if (dt in ('BLOB', 'RAW, size', 'BFIE', 'BINARY_DOUBLE', 'BINARY_DOUBLE', 'CLOB' \
@@ -57,14 +47,14 @@ class Datatype(Baseobject):
                                       )"""
         dbDML.exec(psql=sql)
 
-    @staticmethod
-    def getbyname(pname):
-        return Datatype().getbyuk(daty_name=pname)
+    @classmethod
+    def getbyname(cls,pname):
+        return cls.getbyuk(daty_name=pname)
     # getbyname
 
-    @staticmethod
+    @classmethod
     def getunknown():
-        return Datatype.getbyname(pname='unknown')
+        return cls.getbyname(pname='unknown')
 #Datatype
 
 

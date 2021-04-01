@@ -92,7 +92,8 @@ class Extsourcerefs(list):
 def getallsrcrefs(pelemtype):
     retval = Extsourcerefs()
     for extr in Externalref.getallextrs (pelemtype=pelemtype):
-        retval.push(Extsourceref(psrcname=extr.extr_source_name, psrcid=extr.extr_source_id, plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
+        retval.push(Extsourceref(psrcname=extr.extr_source_name, psrcid=extr.extr_source_id
+                                 , plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
     # for
     return retval
 
@@ -103,7 +104,7 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
          in the form
         {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
     if pwithextsrcref:
-        allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype,pjson=podmjson)
+        allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype)
     else:
         allodmsrcrefs = Extsourcerefs()
 
@@ -242,7 +243,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                     addfk(odmjsid=key, dbid=dbsrcref.dbid)
                     if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid),pequalexceptlist=pequalexceptlist):
                         try:
-                            obj.setid(jsguid2id(dbsrcref.dbid)) #preserve DB-id
+                            obj.setid(dbsrcref.dbid) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
                             presult.updatecnt += 1

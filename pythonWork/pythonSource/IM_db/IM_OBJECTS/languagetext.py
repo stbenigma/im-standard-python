@@ -35,16 +35,9 @@ class Languagetext(Baseobject):
 
     def __init__(self):
         if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(Languagetext._tablename)
-        super().__init__(tablename=Languagetext._tablename, prefix=Languagetext._prefix)
+        super().__init__()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Languagetext._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None,porderby=None):
-        return Baseobject.select(pclass=Languagetext
-                                ,pwhere=pwhere,porderby=porderby)
     @staticmethod
     def sptxistleer():
         data = dbDML.select("""select count(*) from lang_texts""")

@@ -6,10 +6,11 @@ class Language(Baseobject):
     _tablename:str ='languages'
     _prefix:str ='lang'
     _columnlist = []
+    _defaultorderby = "lang_iso_code2"
 
     def __init__(self,pname=None,piso2=None,piso3=None):
         if (len(Language._columnlist) == 0): Language._columnlist = Baseobject.gettablecolumns(Language._tablename)
-        super().__init__(tablename=Language._tablename, prefix=Language._prefix)
+        super().__init__()
         self.lang_iso_name = pname
         self.lang_iso_code2 = piso2
         self.lang_iso_code3 =  piso3
@@ -19,14 +20,6 @@ class Language(Baseobject):
         self.lang_dc = date.today()
 
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Language._tablename)
-
-    @staticmethod
-    def select(pwhere=None,porderby="lang_iso_code2"):
-        return Baseobject.select(pclass=Language
-                                ,pwhere=pwhere,porderby=porderby)
     @staticmethod
     def getdefaultlang():
         lDefLangs = Language.select(pwhere=("""lang_is_base_lang = ?""", 'TRUE'))

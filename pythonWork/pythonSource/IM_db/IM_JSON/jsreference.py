@@ -32,9 +32,9 @@ def udps2js(pemptymodel):
                                 [u.udpr_theme,u.udpr_group,u.udpr_name,u.udpr_defaultvalue
                                  ,u.udpr_uc,u.udpr_dc,u.udpr_um,u.udpr_dm
                                        ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
-                                                     for metp in ModelelementProperty().select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
+                                                     for metp in ModelelementProperty.select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
                                 ])
-                 for u in Userdefprop().select()
+                 for u in Userdefprop.select()
             }
     return retval
 

@@ -7,11 +7,12 @@ class Externalref(Baseobject):
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
     _columnlist:list = []
+    _defaultorderby = "extr_id"
 
 
     def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
         if (len(Externalref._columnlist) == 0): Externalref._columnlist = Baseobject.gettablecolumns(Externalref._tablename)
-        super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix)
+        super().__init__()
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid
         self.extr_mode_id = pmodeid
@@ -79,15 +80,6 @@ class Externalref(Baseobject):
         extrs = Externalref.getextr(psrcname=psrcname,psrcid=psrcid)
         return (len(extrs) > 0)
 
-
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Externalref._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="extr_id"):
-        return Baseobject.select(pclass=Externalref
-                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def getODMmodeid(psrcid):

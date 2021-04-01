@@ -5,11 +5,11 @@ class Interface(Baseobject):
     _tablename:str = 'interfaces'
     _prefix:str = 'intf'
     _columnlist =  []
+    _defaultorderby = 'intf_name'
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Interface._columnlist) == 0): Interface._columnlist = Baseobject.gettablecolumns(Interface._tablename)
-        super().__init__(tablename=Interface._tablename, prefix=Interface._prefix
-                         , pmodelemtype=Modelelemtype.INTF
+        super().__init__( pmodelemtype=Modelelemtype.INTF
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -22,14 +22,7 @@ class Interface(Baseobject):
     def getdescr(self, plang=None):
         return self.intf_descr
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Interface._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby='intf_name'):
-        return Baseobject.select(pclass=Interface
-                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def getmapped(pentiid=None,pattrid=None):

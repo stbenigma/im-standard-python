@@ -8,13 +8,13 @@ class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
     _prefix: str = 'attr'
     _columnlist: list = []
+    _defaultorderby : "attr_displ_seq"
 
     def __init__(self, pname=None, pentiid=None
                     ,psrcname=None, psrcid=None):
 
         if (len(Attribute._columnlist) == 0): Attribute._columnlist = Baseobject.gettablecolumns(Attribute._tablename)
-        super().__init__(tablename=Attribute._tablename, prefix=Attribute._prefix
-                         , multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
+        super().__init__( multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
                                           'attr_descr': Languagetext.ATTR_COMMENT,
                                           'attr_tooltip': Languagetext.ATTR_TOOLTIP}
                          , pmodelemtype=Modelelemtype.ATTR
@@ -56,16 +56,7 @@ class Attribute(MultilangBaseobject):
                                     (select kele_keys_id 
                                     from key_elements 
                                     where kele_attr_id = ?)""", self.attr_id))
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Attribute._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby="attr_displ_seq"):
-        attrs = Baseobject.select(pclass=Attribute
-                                  , pwhere=pwhere, porderby=porderby)
-        return attrs
-    # select
 # Attribute
 from .modelelement import Modelelement,Modelelemtype
 from .key import Keyelement

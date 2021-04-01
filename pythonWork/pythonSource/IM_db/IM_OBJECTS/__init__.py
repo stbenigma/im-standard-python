@@ -15,7 +15,7 @@ from .diagram import Diagram,Diagramtype,MeltDiat
 from .attribute import Attribute
 from .key import Key,Keyelement
 from .relationship import Arc,Relation
-from .entity import Entity,Synonym
+from .entity import Entity,Synonym,EntityCategory
 from .userdefprop import Userdefprop,Userdefpropvalue
 from .externalref import Externalref
 from .physicals import PhysicalUnit, Storageformat

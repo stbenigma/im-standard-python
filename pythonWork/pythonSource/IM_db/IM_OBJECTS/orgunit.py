@@ -12,8 +12,7 @@ class OragnisationalUnit(Baseobject):
 
     def __init__(self,psrcname=None,psrcid=None):
         if (len(OragnisationalUnit._columnlist) == 0): OragnisationalUnit._columnlist = Baseobject.gettablecolumns(OragnisationalUnit._tablename)
-        super().__init__(tablename=self._tablename, prefix=self._prefix
-                         ,pmodelemtype=Modelelemtype.ORGU
+        super().__init__(pmodelemtype=Modelelemtype.ORGU
                          ,pscrid=psrcid
                          ,psrcname=psrcname
                          )
@@ -29,14 +28,6 @@ class OragnisationalUnit(Baseobject):
         return Document.select(pwhere=('orgu_orgu_id = ?', self.orgu_id), porderby='orgu_name')
     #getchildren
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(OragnisationalUnit._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=OragnisationalUnit
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def updparent(pchildid, pparentid):
         if pchildid is not None and pparentid is not None:
@@ -106,18 +97,11 @@ class ModelelemOrgu(Baseobject):
 
     def __init__(self,pmodeid=None,porguid = None):
         if (len(ModelelemOrgu._columnlist) == 0): ModelelemOrgu._columnlist = Baseobject.gettablecolumns(ModelelemOrgu._tablename)
-        super().__init__(tablename=self._tablename, prefix=self._prefix)
+        super().__init__()
         self.moou_mode_id = pmodeid
         self.moou_orgu_id = porguid
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(ModelelemOrgu._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=ModelelemOrgu
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def insertorguref(porguidlist, pmodeid):
         if porguidlist is None: return

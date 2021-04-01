@@ -23,20 +23,29 @@ def filldbmain(pinmemory=False):
 
 
 def filldbmain2(callarg,createnewdb=False):
-    memoryfilepath = ":memory:"
-    dbConnect.openDB(p_filepath=memoryfilepath,fks='ON');
-    dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
-    transferModel.insertBaseData()
+    if createnewdb:
+        IM_db.createDB(par1=callarg,pforcecreate=True)
+        dbConnect.openDB(p_filepath=parameters.dbFilePath(), fks='ON');
+    else:
+        memoryfilepath = ":memory:"
+        dbConnect.openDB(p_filepath=memoryfilepath,fks='ON')
+        dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
+        transferModel.insertBaseData()
+    #fi
     transferModel.transferODMModel();
     odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
+    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
     if createnewdb:
-        IM_db.createDB(par1=callarg,pforcecreate=True)
-
-    dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
-    mergedbs.mergeodm2db(podmjson=odmjson)
-    dbConnect.closeDB()
+        pass # new db does not need merge
+    else:
+        """merge created DB into existing one"""
+        dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
+        mergedbs.mergeodm2db(podmjson=odmjson)
+        dbConnect.closeDB()
+    #fi
+    return
 
 def main(p_param1):
     """Main program for fillDB"""
@@ -46,7 +55,7 @@ def main(p_param1):
     try:
         filldbmain2(callarg=p_param1,createnewdb=not IM_db.existsDB(parameters.dbFilePath()))
     finally:
-        logmessages.showmessages("database {} for model {} filled with modeldata"
+        logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),
                                parameters.odmModelName()))
 #  main

@@ -1376,14 +1376,14 @@ def loeschmodell():
     Language.delete()
 # loeschmodell
 
-def loadcolors(coldict, classkey, elem):
+def loadcolors(color:Color, elem):
     for fo in elem.findall('fonts/font_object'):
         if ((findField(fo, 'fo_type') == 'Title')
                 or (findField(fo, 'fo_type') == 'Titel')):  # es könnte auch Deutsch sein
-            coldict[classkey].fontcolor = findField(fo, 'font_color')
-            coldict[classkey].fontname = findField(fo, 'font_name')
-            coldict[classkey].fontsize = findField(fo, 'font_size')
-            coldict[classkey].fontstyle = findField(fo, 'font_style')
+            color.fontcolor = findField(fo, 'font_color')
+            color.fontname = findField(fo, 'font_name')
+            color.fontsize = findField(fo, 'font_size')
+            color.fontstyle = findField(fo, 'font_style')
         # fi
     # for
 
@@ -1397,22 +1397,24 @@ def loaddefaultcolors():
     classif = root.find('classification_types')
 
     for ty in classif:
-        # classname = findField(ty,'name')
+        category = EntityCategory(pname=findField(ty,'name'))
+        classid = category.insert()
         classguid = findField(ty, 'id')
+
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
-        classcolors[classguid] = \
-            Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
-        loadcolors(coldict=classcolors, classkey=classguid, elem=ty)
+        color = Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
+        loadcolors(color=color, elem=ty)
+        classcolors[classguid] = color
         # print(classname,classcolors[classguid].foregcolor,classcolors[classguid].backgcolor)
     # for
     default = root.find('default_fonts_and_colors')
     for de in default:
         classname = findField(de, 'classname')
-        defcolors[classname] = Color(findField(de, 'foreground')
-                                     , findField(de, 'background')
-                                     , None, None, None, None)
-        loadcolors(coldict=defcolors, classkey=classname, elem=de)
-        # print(classname,defcolors[classname].fontsize)
+        color= Color(findField(de, 'foreground')
+                                , findField(de, 'background')
+                                , None, None, None, None)
+        loadcolors(color = color, elem=de)
+        defcolors[classname] = color
     # for
 # loaddefaultcolors
 
