@@ -1,5 +1,6 @@
 from IM_HTML import printHTML
 import math
+import os,re
 from IM_DB import parameters 
 from IM_OBJECTS import Language
 
@@ -386,6 +387,47 @@ def printelements(pdiag, pdiaganker,plang):
     printarcs(plist=pdiag['arcs'])
 #printelements
 
+def putrefinsvg(ptext,pdiagid,plang):
+    imagehtml = """<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
+                .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
+    retval = ptext
+    for entiid,entival in printHTML.model.getelements('ENTI').items():
+        try:
+            odmref = entival["sourceref"]["ODM"][0]
+        except:
+            continue
+        retval = re.sub("""(<text id="){}-{}(.*\n.*\n</text>)""".format(odmref[:8],odmref[-12:])
+                       ,r'<a href="#{}">\1{}-{}\2</a>'.format(entiid,pdiagid,entiid)
+                    ,retval)
+    #     filename = printHTML.iconfilename(entival['name'][Language.getdefaultlang().lang_iso_code2])
+    #     if filename != "":
+    #         retval = re.sub("""(<g [\w\W]*?translate\((\d+),(\d+)\)[\w\W]*?<text id="{}-{}"[\w\W]*?</g>)""".format(pdiagid, entiid)
+    #                         , r'\1\n<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="\2px" y="\3px"></image>'.format(filename,ICONSIZE,ICONSIZE)
+    #                         , retval)
+    #         """            transform = "translate(30,290)" >
+    #         < rect
+    #         x = "0"
+    #         y = "0"
+    #         width = "159"
+    #         height = "78"
+    #         rx = "20"
+    #         ry = "20" / >
+    #         printHTML.fhtml.write(imagehtml.format(filename
+    #                                            ,eler['pos_x']+eler['width']-ICONSIZE/2,
+    #                                             eler['pos_y'] - ICONSIZE/2))
+    # """
+
+    #for
+
+    for attrid, attrval in printHTML.model.getelements('ATTR').items():
+        attrname = attrval["name"][plang]
+        entiid = attrval["entity"]
+        retval = re.sub("""(<text id="{}-{}"[\w\W]*?)(<text x=.*\n *{} *\n</text>)""".format(pdiagid,entiid, re.escape(attrname))
+             , r'\1<a href="#{}">\2</a>'.format(attrid)
+             , retval)
+    # #for
+    return retval
+
 def printcontentdiag(plist, plang, ptitel):
     contenthead="""        <!--diagramms-->"""
 
@@ -428,15 +470,27 @@ def printcontentdiag(plist, plang, ptitel):
                                                   , diaelem['width'], diaelem['height']))
                                 #wäre clippath,legendwidth,legendhigh))
 
-        if ('legend' in diaelem.keys()):
-            #es hat eine Legende
-            printlegend(pdata=[diaelem['name'], parameters.nvl(diaelem['uc']), parameters.nvl(diaelem['dc']),parameters.nvl(diaelem['dm'])
-                , parameters.nvl(diaelem['um']), ptitel, 'Logical']
-                    ,pwidth=LEGENDWIDTH,pheigh=LEGENDHEIGHT
-                    ,px=diaelem['legend']['x'],py=diaelem['legend']['y'])
+        svgfilename = parameters.webDirec() + "/image/" + diaelem['name'] + "_"+plang+".svg"
+        if not os.path.exists(svgfilename):
+            svgfilename = parameters.webDirec() + "/image/" + diaelem['name'] + ".svg"
+        if os.path.exists(svgfilename):
+            with (open(file=svgfilename,mode="r")) as f:
+                svgtext = f.read()
+            svgtext = putrefinsvg(ptext=svgtext,pdiagid=diaanker,plang=plang)
+            #svgtext = puticonsinsvg(ptext=svgtext,pdiagid=diaanker)
+            printHTML.fhtml.write(svgtext)
+        else:
+            """render diagram"""
+            if ('legend' in diaelem.keys()):
+                #es hat eine Legende
+                printlegend(pdata=[diaelem['name'], parameters.nvl(diaelem['uc']), parameters.nvl(diaelem['dc']),parameters.nvl(diaelem['dm'])
+                    , parameters.nvl(diaelem['um']), ptitel, 'Logical']
+                        ,pwidth=LEGENDWIDTH,pheigh=LEGENDHEIGHT
+                        ,px=diaelem['legend']['x'],py=diaelem['legend']['y'])
+            #fi
+            printelements(pdiag=diaelem, pdiaganker=diaanker,plang=plang)
         #fi
 
-        printelements(pdiag=diaelem, pdiaganker=diaanker,plang=plang)
         printHTML.fhtml.write(diagramfoot)
     #for
 #printcontendiag
