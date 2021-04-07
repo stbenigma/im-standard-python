@@ -964,13 +964,12 @@ def hasiconfiles():
     return len(iconmaster) == 1
 
 def iconfilename(pfilename):
-    lfilename = re.sub(r'[^a-zäöüñéàè_-]+', '', pfilename.lower())
-    fullfilename = "{}/{}.{}".format('image',lfilename,'png').lower()
-    if os.path.isfile(parameters.webDirec()+ fullfilename):
-        retval =  lfilename
-    else:
-        retval = ''
-    return retval
+    lfilename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', pfilename.lower())
+    for ext in ('png','jpg','jpeg','gif'):
+        fullfilename = "{}/{}.{}".format('image',lfilename,ext).lower()
+        if os.path.isfile(parameters.webDirec()+ fullfilename):
+            return fullfilename
+    return ''
 
 
 def printentienvironment(penti, plang):

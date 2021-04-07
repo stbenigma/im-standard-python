@@ -352,7 +352,7 @@ def printelements(pdiag, pdiaganker,plang):
             {} </text></a>
         """
     entiende="""</g>"""
-    imagehtml=""""<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
+    imagehtml=""""<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
         .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
 
     for eler in pdiag['elements']['entity']:
@@ -396,36 +396,36 @@ def putrefinsvg(ptext,pdiagid,plang):
             odmref = entival["sourceref"]["ODM"][0]
         except:
             continue
-        retval = re.sub("""(<text id="){}-{}(.*\n.*\n</text>)""".format(odmref[:8],odmref[-12:])
-                       ,r'<a href="#{}">\1{}-{}\2</a>'.format(entiid,pdiagid,entiid)
-                    ,retval)
-    #     filename = printHTML.iconfilename(entival['name'][Language.getdefaultlang().lang_iso_code2])
-    #     if filename != "":
-    #         retval = re.sub("""(<g [\w\W]*?translate\((\d+),(\d+)\)[\w\W]*?<text id="{}-{}"[\w\W]*?</g>)""".format(pdiagid, entiid)
-    #                         , r'\1\n<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="\2px" y="\3px"></image>'.format(filename,ICONSIZE,ICONSIZE)
-    #                         , retval)
-    #         """            transform = "translate(30,290)" >
-    #         < rect
-    #         x = "0"
-    #         y = "0"
-    #         width = "159"
-    #         height = "78"
-    #         rx = "20"
-    #         ry = "20" / >
-    #         printHTML.fhtml.write(imagehtml.format(filename
-    #                                            ,eler['pos_x']+eler['width']-ICONSIZE/2,
-    #                                             eler['pos_y'] - ICONSIZE/2))
-    # """
 
+        entisearch = re.search(r'<g.*"translate\((\d+),(\d+)\)".*\n<rect.*width="(\d+)".*rx="(\d+)".*\n.*<text id="{}-{}"[\d\D]*?</g>'
+                            .format(re.escape(odmref[:8]),re.escape(odmref[-12:])), retval)
+        if entisearch is None:
+            continue
+        entistr = entisearch.group()
+        xstart, ystart, xwidth, xoffset = None,None,None,None
+        if ((entisearch.groups() is not None) and (len(entisearch.groups()) > 3)):
+            xstart, ystart, xwidth, xoffset = int(entisearch.groups()[0]), int(entisearch.groups()[1]), int(entisearch.groups()[2]), int(entisearch.groups()[3])
+
+        newenti = entistr
+        #replace id by diagid-entiid
+        newenti = re.sub('"{}-{}"'.format(re.escape(odmref[:8]),re.escape(odmref[-12:])), '"{}-{}"'.format(re.escape(pdiagid),re.escape(entiid)), newenti)
+        #add <a href= to enti
+        newenti = re.sub('<text id="', '<a href="#{}"><text id="'.format(re.escape(entiid)), newenti)
+        newenti = re.sub(r'(<text id="[\d\D]+?</text>)', r'\1</a>', newenti)
+
+        for attrid in entival["attributes+"]:
+            attrval = printHTML.getelement(attrid)
+            newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang])),
+                             r'<a href="#{}">\1</a>'.format(re.escape(attrid)), newenti)
+        #add image if exists
+        filename = printHTML.iconfilename(entival['name'][Language.getdefaultlang().lang_iso_code2])
+        if filename != "":
+            newenti += '\n<image href="{}" width="40px" height="40px" class ="entity-image" x="{}px" y="{}px"></image>' \
+                        .format(filename,xstart + xwidth - (ICONSIZE/2), ystart - (ICONSIZE/2))
+
+        retval = re.sub(re.escape(entistr),newenti,retval)
     #for
 
-    for attrid, attrval in printHTML.model.getelements('ATTR').items():
-        attrname = attrval["name"][plang]
-        entiid = attrval["entity"]
-        retval = re.sub("""(<text id="{}-{}"[\w\W]*?)(<text x=.*\n *{} *\n</text>)""".format(pdiagid,entiid, re.escape(attrname))
-             , r'\1<a href="#{}">\2</a>'.format(attrid)
-             , retval)
-    # #for
     return retval
 
 def printcontentdiag(plist, plang, ptitel):
