@@ -1941,11 +1941,11 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 	</scr>
 	<scr id="DCBECD3B-4F1F-7211-54BC-52A6E066AD18" name="importMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="mappingLib" method="importMapping" purpose="transformation" >
 		<script>
-			<![CDATA[var CODEVERSION = '3.0'
-			var FORMATJSON = 'JSON'
-			var FORMATCSV = 'CSV'
-			var g_tabanz = 0
-			var g_colanz = 0
+			<![CDATA[var CODEVERSION = "3.0";
+			var FORMATJSON = "JSON";
+			var FORMATCSV = "CSV"
+			var g_tabanz = 0;
+			var g_colanz = 0;
 			var g_colmapanz = 0
 			var g_tabmapanz = 0
 			var g_lineanz = 0
@@ -1955,8 +1955,8 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 			var g_inheritanceSet
 			var g_rmodels
 			var g_writtenCols = {}
-			var g_exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
-			var g_importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_exportDirec = java.lang.System.getProperty("user.home") +"/Downloads" 
+			var g_importDirec = java.lang.System.getProperty("user.home") +"/Downloads"
 			var EXTIDPROPNAME = "EXT_ATTR_ID"
 			var EXCELCSVSEP = ";"
 			var EXCELESCCHAR = '"'
@@ -2728,26 +2728,31 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 
 			function escapeexcelchars(s){
 				var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
-				if (retval.test(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
 			function printline(fw, line) {
-				for (zi = 0; zi < line.length; zi++) {
-					field = line[zi]
-					if (zi > 0) {
-						fw.write(EXCELCSVSEP)
+//				for (zi = 0; zi < line.length; zi++) {
+//					field = line[zi]
+				forEach(line,
+					function print1ine(field,idx){
+						if (idx > 0) {
+							fw.write(EXCELCSVSEP)
+						}
+						try {
+							if (typeof field == 'string') {
+								fw.write(escapeexcelchars(field) )
+							} else if (field.length == 0) {
+								fw.write('') // empty List
+							} else if (field.length == 1) {
+								fw.write(escapeexcelchars(field[0])) // single string in List
+							} else {
+								// list of Strings
+								fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
+							}
+						} catch (err) {linemessage(typeof field, field,line); throw err}
 					}
-					try {if (typeof field == 'string') {
-						fw.write(escapeexcelchars(field) )
-					} else if (field.length == 0) {
-						fw.write('') // empty List
-					} else if (field.length == 1) {
-						fw.write(escapeexcelchars(field[0])) // single string in List
-					} else {
-						// list of Strings
-						fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
-					}} catch (err) {linemessage(typeof field)}
-				}
+				)				
 				fw.write(EXCELLINEEND)
 			}
 
@@ -2861,7 +2866,7 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 					if (g_rmodels[ih].getName() != mymodelname) {
 						//linemessage(ih,g_rmodels[ih].getName(), mymodelname)
 						allmapping["model"].push(g_rmodels[ih].getName(), '', '')
-						allmapping["header"].push('table', 'column', 'ID')
+						allmapping["header"].push('table','column','ID')
 					}
 				}
 				
@@ -2870,7 +2875,7 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 
 			function chooseoutputfilename(pfilename, pformat) {
 				fileName = chooseFile(g_exportDirec, pfilename +
-					((pformat == FORMATJSON) ? '.js' : ((pformat == 'CSV') ? '.csv' : 'txt')))
+					((pformat == FORMATJSON) ?'.js' : ((pformat == FORMATCSV) ?'.csv' :'txt')))
 				return fileName
 			}
 
@@ -2955,11 +2960,11 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 	</scr>
 	<scr id="1E255E28-D058-2421-EA89-691DC63F696D" name="print1Mapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="mappingLib" method="print1Mapping" purpose="transformation" >
 		<script>
-			<![CDATA[var CODEVERSION = '3.0'
-			var FORMATJSON = 'JSON'
-			var FORMATCSV = 'CSV'
-			var g_tabanz = 0
-			var g_colanz = 0
+			<![CDATA[var CODEVERSION = "3.0";
+			var FORMATJSON = "JSON";
+			var FORMATCSV = "CSV"
+			var g_tabanz = 0;
+			var g_colanz = 0;
 			var g_colmapanz = 0
 			var g_tabmapanz = 0
 			var g_lineanz = 0
@@ -2969,8 +2974,8 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 			var g_inheritanceSet
 			var g_rmodels
 			var g_writtenCols = {}
-			var g_exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
-			var g_importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_exportDirec = java.lang.System.getProperty("user.home") +"/Downloads" 
+			var g_importDirec = java.lang.System.getProperty("user.home") +"/Downloads"
 			var EXTIDPROPNAME = "EXT_ATTR_ID"
 			var EXCELCSVSEP = ";"
 			var EXCELESCCHAR = '"'
@@ -3742,26 +3747,31 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 
 			function escapeexcelchars(s){
 				var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
-				if (retval.test(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
 			function printline(fw, line) {
-				for (zi = 0; zi < line.length; zi++) {
-					field = line[zi]
-					if (zi > 0) {
-						fw.write(EXCELCSVSEP)
+//				for (zi = 0; zi < line.length; zi++) {
+//					field = line[zi]
+				forEach(line,
+					function print1ine(field,idx){
+						if (idx > 0) {
+							fw.write(EXCELCSVSEP)
+						}
+						try {
+							if (typeof field == 'string') {
+								fw.write(escapeexcelchars(field) )
+							} else if (field.length == 0) {
+								fw.write('') // empty List
+							} else if (field.length == 1) {
+								fw.write(escapeexcelchars(field[0])) // single string in List
+							} else {
+								// list of Strings
+								fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
+							}
+						} catch (err) {linemessage(typeof field, field,line); throw err}
 					}
-					try {if (typeof field == 'string') {
-						fw.write(escapeexcelchars(field) )
-					} else if (field.length == 0) {
-						fw.write('') // empty List
-					} else if (field.length == 1) {
-						fw.write(escapeexcelchars(field[0])) // single string in List
-					} else {
-						// list of Strings
-						fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
-					}} catch (err) {linemessage(typeof field)}
-				}
+				)				
 				fw.write(EXCELLINEEND)
 			}
 
@@ -3875,7 +3885,7 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 					if (g_rmodels[ih].getName() != mymodelname) {
 						//linemessage(ih,g_rmodels[ih].getName(), mymodelname)
 						allmapping["model"].push(g_rmodels[ih].getName(), '', '')
-						allmapping["header"].push('table', 'column', 'ID')
+						allmapping["header"].push('table','column','ID')
 					}
 				}
 				
@@ -3884,7 +3894,7 @@ message2('de=>'+vontext,'en=>'+translate('de','en',vontext))]]>
 
 			function chooseoutputfilename(pfilename, pformat) {
 				fileName = chooseFile(g_exportDirec, pfilename +
-					((pformat == FORMATJSON) ? '.js' : ((pformat == 'CSV') ? '.csv' : 'txt')))
+					((pformat == FORMATJSON) ?'.js' : ((pformat == FORMATCSV) ?'.csv' :'txt')))
 				return fileName
 			}
 
@@ -6180,84 +6190,28 @@ function getAttrMap(attrID,modName){
 	</scr>
 	<scr id="14F053A0-66BA-6023-35E8-344311DB60B3" name="testJS" object="logical" engine="Oracle Nashorn" type="" var="model" library="" method="" purpose="transformation" >
 		<script>
-			<![CDATA[// message
-				var PLAINMESSAGE = 1;
-				var ERRORMESSAGE = 0;
-				var WARNINGMESSAGE = 2;
-				var QUESTIONMESSAGE = 3;
+			<![CDATA[// Testjsfunktionen
+model.getAppView().logMessage("Some message...");
 
-	
-				function fullmessage(msg,type) {
-					Java.type("javax.swing.JOptionPane").showMessageDialog(null
-					, msg,'ODM-Translation', type);
-				}
+sv= model.getSubViewByName("Overview");
+enti = model.getEntitySet().getByName("Subentit 1-1"); 
+rel = model.getRelationSet().getByName("Relation_1");
+model.getAppView().logMessage(sv + enti+rel);
+tve= sv.createTopViewFor(enti);
+sv.add(tve)
+tvr= sv.createTopViewFor(rel);
+sv.add(tvr)
 
-				function error(msg) {
-					fullmessage(msg,ERRORMESSAGE);
-					}
-				function message(msg) {
-					fullmessage(msg,PLAINMESSAGE);
-					}
-
-				function linemessage() {
-					var str = ''
-					for (var i = 0;i < arguments.length; i++){
-						str = str.concat(arguments[i],'\n')
-					}
-					fullmessage(str, PLAINMESSAGE);
-				}
-				
-			var entities = model.getEntitySet().toArray();
-			function forEach(arr,f){
-				for (var i = 0;i < arr.length; i++) { 
-					f(arr[i],i);
-				}
-			}
-			function subf(enti,idx,s){
-				forEach(s,function sub2(o,i) {message(enti.getName()+idx+o+i)})
-			}
-				
-			//forEach(entities,function listenty(enti,idx){subf(enti,idx,['A','B'])})
-			var lparam = "abc\ndef\nghijklm\n"
-			var g_Params={}
-			var valsfuncvar = function valsfunc(line,idx){
-						     	message(line+':'+idx+pp)
-								 var vals=line.split("=")
-								 	if (vals[0] != null && vals[0] != "") {  
-										l_Params[vals[0]] = vals[1]
-									}
-								pp='xx'
-							 }
-			var lparlines = lparam.split("\n")
-			for (var l = 0;l < lparlines.length; l++){
-			    	//message(lparlines[l]+':'+l)
-				var vals=lparlines[l].split("=")
-				if (vals[0] != null && vals[0] != "") {  
-					g_Params[vals[0]] = vals[1]
-				}
-			}
-			
-			var l_Params={}
-			var pp = 'pp'
-			forEach(lparam.split("\n"), valsfuncvar
-//						     function vals(line,idx){
-//						     	message(line+':'+idx+pp)
-//								 var vals=line.split("=")
-//								 	if (vals[0] != null && vals[0] != "") {  
-//										l_Params[vals[0]] = vals[1]
-//									}
-//							 }
-			 )
-		//	 forEach(g_Params,function pp(p,i){message(i+':'+g_Params[i]+'='+l_Params[i])})]]>
+sv.setDirty(true);]]>
 		</script>
 	</scr>
 	<scr id="27151E1F-0678-E8D6-53B9-3003B6DDEB1B" name="printDevMapping" object="logical" engine="Oracle Nashorn" type="" var="model" library="mappingLib" method="printDevMapping" purpose="transformation" >
 		<script>
-			<![CDATA[var CODEVERSION = '3.0'
-			var FORMATJSON = 'JSON'
-			var FORMATCSV = 'CSV'
-			var g_tabanz = 0
-			var g_colanz = 0
+			<![CDATA[var CODEVERSION = "3.0";
+			var FORMATJSON = "JSON";
+			var FORMATCSV = "CSV"
+			var g_tabanz = 0;
+			var g_colanz = 0;
 			var g_colmapanz = 0
 			var g_tabmapanz = 0
 			var g_lineanz = 0
@@ -6267,8 +6221,8 @@ function getAttrMap(attrID,modName){
 			var g_inheritanceSet
 			var g_rmodels
 			var g_writtenCols = {}
-			var g_exportDirec = java.lang.System.getProperty("user.home") + "/Downloads"
-			var g_importDirec = java.lang.System.getProperty("user.home") + "/Downloads"
+			var g_exportDirec = java.lang.System.getProperty("user.home") +"/Downloads" 
+			var g_importDirec = java.lang.System.getProperty("user.home") +"/Downloads"
 			var EXTIDPROPNAME = "EXT_ATTR_ID"
 			var EXCELCSVSEP = ";"
 			var EXCELESCCHAR = '"'
@@ -7040,26 +6994,31 @@ function getAttrMap(attrID,modName){
 
 			function escapeexcelchars(s){
 				var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
-				if (retval.test(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
+				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
 			function printline(fw, line) {
-				for (zi = 0; zi < line.length; zi++) {
-					field = line[zi]
-					if (zi > 0) {
-						fw.write(EXCELCSVSEP)
+//				for (zi = 0; zi < line.length; zi++) {
+//					field = line[zi]
+				forEach(line,
+					function print1ine(field,idx){
+						if (idx > 0) {
+							fw.write(EXCELCSVSEP)
+						}
+						try {
+							if (typeof field == 'string') {
+								fw.write(escapeexcelchars(field) )
+							} else if (field.length == 0) {
+								fw.write('') // empty List
+							} else if (field.length == 1) {
+								fw.write(escapeexcelchars(field[0])) // single string in List
+							} else {
+								// list of Strings
+								fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
+							}
+						} catch (err) {linemessage(typeof field, field,line); throw err}
 					}
-					try {if (typeof field == 'string') {
-						fw.write(escapeexcelchars(field) )
-					} else if (field.length == 0) {
-						fw.write('') // empty List
-					} else if (field.length == 1) {
-						fw.write(escapeexcelchars(field[0])) // single string in List
-					} else {
-						// list of Strings
-						fw.write(escapeexcelchars(field.join(EXCELMULTILINESEP)) )
-					}} catch (err) {linemessage(typeof field)}
-				}
+				)				
 				fw.write(EXCELLINEEND)
 			}
 
@@ -7173,7 +7132,7 @@ function getAttrMap(attrID,modName){
 					if (g_rmodels[ih].getName() != mymodelname) {
 						//linemessage(ih,g_rmodels[ih].getName(), mymodelname)
 						allmapping["model"].push(g_rmodels[ih].getName(), '', '')
-						allmapping["header"].push('table', 'column', 'ID')
+						allmapping["header"].push('table','column','ID')
 					}
 				}
 				
@@ -7182,7 +7141,7 @@ function getAttrMap(attrID,modName){
 
 			function chooseoutputfilename(pfilename, pformat) {
 				fileName = chooseFile(g_exportDirec, pfilename +
-					((pformat == FORMATJSON) ? '.js' : ((pformat == 'CSV') ? '.csv' : 'txt')))
+					((pformat == FORMATJSON) ?'.js' : ((pformat == FORMATCSV) ?'.csv' :'txt')))
 				return fileName
 			}
 
@@ -7263,6 +7222,1869 @@ function getAttrMap(attrID,modName){
 			function printNameMapping() {
 				printAllMapping(false)
 			}]]>
+		</script>
+	</scr>
+	<scr id="44681E48-E007-E0B8-C34D-4639E2790590" name="abstraction-initlevels" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="initzoomlevel" purpose="transformation" >
+		<script>
+			<![CDATA[// Autoren: aro, stb
+// Functions:
+// createsubview - creates a new subview (according to entered zoomlevel) based on the current subview + executes "showhideelements" at the end
+// showhideelements - logs all visibility errors according to defined zoomlevel and displayed parentsubview
+// initzoomlevel - set only "not set" zoomlevel definitions according standardrules
+
+//InitVars begin
+var CODEVERSION = '0.3'
+var PLAINMESSAGE = 1
+var ERRORMESSAGE = 0
+var WARNINGMESSAGE = 2
+var QUESTIONMESSAGE = 3
+
+var g_minzoomlevel = 0
+var g_maxzoomlevel = 4
+var g_logger = model.getAppView()
+//InitVars end
+
+//HelperFunctions start
+function fullmessage(msg,type) {
+    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type)
+}
+
+function promptmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type)
+    return retval
+}
+
+function confirmmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showConfirmDialog(null, msg,'ODM-Confirmbox', type)
+    if (retval == 0) {
+        return true
+    }else{
+        return false
+    }
+}
+
+function error(msg) {
+    fullmessage(msg,ERRORMESSAGE)
+}
+
+function message(msg) {
+    fullmessage(msg,PLAINMESSAGE)
+}
+
+function prompt(msg){
+    var retval = promptmessage(msg,QUESTIONMESSAGE)
+    return retval
+}
+
+function confirm(msg){
+    var retval = confirmmessage(msg,0)
+    return retval
+}
+
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n)
+}
+//HelperFunctions end
+
+//LogicalFunctions start
+function getsubview(thissv){
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    var retval = null
+    for (var vv=0;vv<svlist.length;vv++){
+        var checksv = svlist[vv]
+        if (((thissv == null) && (checksv.isCurrentDPV())) || (thissv == checksv)) {
+            retval = checksv
+            break
+        }
+    }
+    return retval
+}
+
+function getcommentvalue(srcobj,srcvalue){      
+    var retval = null
+    var commentlines = []
+    commentlines = srcobj.getComment().split("\n")
+    for (var vv=0;vv<commentlines.length;vv++){
+        if (commentlines[vv].contains(srcvalue+"=")){
+            retval = commentlines[vv].replace(srcvalue+"=","").trim()
+            break
+        }
+    }
+    if (((retval == null) || (retval == "")) && (srcvalue == "zoomlevel")) {
+        retval = g_minzoomlevel
+        message("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+        g_logger.logMessage("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+    }
+    return retval
+}
+
+function getzoomlevelprompt(){
+    var retval = prompt('Choose desired zoomlevel')
+    if ((!(isNumeric(retval))) || (retval > g_maxzoomlevel) || (retval < g_minzoomlevel)) {
+        error("ERROR: No correct zoomlevel entered")
+        g_logger.logMessage("ERROR: No correct zoomlevel entered")
+        retval = null
+    }
+    return retval
+}
+
+function getMinMax(checkObj){
+    g_minzl = checkObj.getProperty("minzoomlevel")  
+    g_maxzl = checkObj.getProperty("maxzoomlevel")
+    if ((!(isNumeric(g_minzl))) || (g_minzl < g_minzoomlevel)){
+        g_minzl = g_minzoomlevel
+        g_logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }
+    if ((!(isNumeric(g_maxzl))) || (g_maxzl > g_maxzoomlevel)){
+        g_maxzl = g_maxzoomlevel
+        g_logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }    
+}
+function checkSetDescAttr(checkObj){
+    var thisdescflag = checkObj.getProperty("isdescriptive")
+    if (thisdescflag == ""){
+        thisdescflag = "FALSE"
+        var keys = checkObj.getEntity().getUniqueIdentifiers()
+        for (var ik=0;ik<keys.length;ik++){
+            key = keys[ik]
+            var attrkeys = key.getElementsCollection()
+            for (var ik2=0;ik2<attrkeys.length;ik2++){
+                var attrkey = attrkeys[ik2]
+                if (attrkey == checkObj){
+                    thisdescflag = "TRUE"
+                    break
+                }
+            }
+        }            
+        checkObj.setProperty("isdescriptive", thisdescflag)
+    }
+}
+
+function calcnewMinMax(checkObj){
+    //DEV
+    checkObj.setProperty("minzoomlevel","")  
+    checkObj.setProperty("maxzoomlevel","")  
+    checkObj.setProperty("isdescriptive","")  
+    //DEV
+
+    var minzl = checkObj.getProperty("minzoomlevel")  
+    var maxzl = checkObj.getProperty("maxzoomlevel")  
+    var newminzl = g_minzoomlevel
+    var newmaxzl = g_maxzoomlevel
+    switch(checkObj.getObjectTypeName().toString()){
+        case "Entity":
+            var attrs = checkObj.getAttributes().toArray()
+            var relas = checkObj.getRelations().toArray()
+            //DEV Not Root?
+            var haschildren = false
+            for (var ir=0;ir<relas.length;ir++){
+                var rela = relas[ir]
+                if (rela.getSourceEntity() == checkObj){
+                    haschildren = true
+                    break
+                }
+            }
+            if ((attrs.length == 0) && (!(haschildren))){
+                newmaxzl = 1
+            }else if((attrs.length > 0) && (!(haschildren))){
+                var hasdescattr = false
+                for (var ia=0;ia<attrs.length;ia++){
+                    var attr = attrs[ia]
+                    checkSetDescAttr(attr)
+                    if (attr.getProperty("isdescriptive") == "TRUE"){
+                        hasdescattr = true
+                    }
+                }
+                if (!(hasdescattr)){
+                    newmaxzl = 2
+                }
+            }
+            break
+        case "Attribute":
+            checkSetDescAttr(checkObj)
+            var thisdescflag = checkObj.getProperty("isdescriptive")
+            if (thisdescflag == "FALSE") {
+                newmaxzl = 0
+            }else{
+                newmaxzl = 2
+            }
+            break
+    }
+    g_logger.logMessage("DEV: Set \""+checkObj+"\" ("+checkObj.getObjectTypeName()+") min/max to: "+newminzl+"/"+newmaxzl)
+    if (!(isNumeric(minzl))){
+        //DEV
+        //checkObj.setProperty("minzoomlevel",newminzl)      
+    }
+    if ((!(isNumeric(maxzl))) || ((maxzl == g_maxzoomlevel) && (maxzl != newmaxzl))) {
+        //DEV
+        //checkObj.setProperty("maxzoomlevel",newmaxzl)
+    }
+}
+
+function addChildrenToList(svObj, entityList, entityObj, checkzl){  
+    var entityChildren = entityObj.getHierarchicalChildren()
+    for (var ic=0;ic<entityChildren.length;ic++){
+        var entityChild = entityChildren[ic]
+        getMinMax(entityChild)
+        if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
+            var thistv0 = entityChild.getFirstViewForDPV(svObj)
+            if (thistv0 != null){
+                var thiscell0 = thistv0.getCellView().getCell()
+                entityList.push(thiscell0)
+                if (entityChild.getHierarchicalChildrenCount() > 0) {
+                    entityList = addChildrenToList(svObj, entityList, entityChild, checkzl)
+                }
+            }
+        }
+    }
+    return entityList
+}
+//LogicalFunctions end
+
+//createsubview start
+function createsubview(){
+    var sv = getsubview(null)
+    var newzlevel = getzoomlevelprompt()
+    if ((sv == null) || (newzlevel == null)){
+        return
+    }
+    var sventities = sv.getTVShapes()
+    var list = []
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function createsubview")
+
+    //Mark all hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalRoot() == true)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){               
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Mark all non-hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalEntityType() == false)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){       
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Create new subview & cleanup (rename, set comment, show elements, hide attributes)
+    sv.getWorkSpace().setSelectionCells(list)
+    sv.createSubViewFromSelected()
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    for (var vv=0;vv<svlist.length;vv++){
+        var newsv = svlist[vv]
+        if (newsv.isCurrentDPV()) {            
+            newsv.setName(sv+"_ZL"+newzlevel)
+            newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+            newsv.setShowLegend(sv.showLegend())
+            newsv.setShowLabels(sv.showLabels())
+            newsv.setShowRelAttributes(sv.showRelAttributes())
+            newsv.setShowGrid(sv.showGrid())
+            newsv.setShowPageGrid(sv.showPageGrid())
+            var newsventities = newsv.getTVShapes()
+            for (var ie=0;ie<newsventities.length;ie++){
+                var newsventity = newsventities[ie]
+                var newentity = model.getEntitySet().getByName(newsventity)
+                if (newentity != null) {
+                    if (newentity.getName() == newsventity){          
+                        var attrs = newentity.getAttributes().toArray()
+                        for (var ia=0;ia<attrs.length;ia++) {
+                            var attr = attrs[ia]
+                            getMinMax(attr)
+                            var hiddenElements = newsventity.getHiddenElements()
+                            var isOnSVEntity = true
+                            for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                                var hiddenElement = hiddenElements[ia2]
+                                if (attr == hiddenElement){
+                                    isOnSVEntity = false
+                                }
+                            }
+                            if (((newzlevel > g_maxzl) || (newzlevel < g_minzl)) && (isOnSVEntity)){
+                                if (!(newsventity.isHideElementsInCurrentOnly())){
+                                    newsventity.setHideElementsInCurrentOnly(true)
+                                }
+                                hiddenElements.add(attr)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    g_logger.logMessage("End function createsubview")
+    showhideelements()    
+}
+//createsubview start
+
+//showhideelements start
+function showhideelements(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function showhideelements")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    var sv = getsubview(null)
+    var sventities = sv.getTVShapes()
+    var svrelations = sv.getTVConnectors()
+    var svzlevel = getcommentvalue(sv,"zoomlevel")
+    var svpview = getcommentvalue(sv,"parentview")
+    var haspv = false
+    if ((svpview != null) && (svpview != "")){
+        haspv = true
+        var pv = getsubview(svpview)
+        var pvzlevel = getcommentvalue(pv,"zoomlevel")
+        var pventities = pv.getTVShapes()
+        var pvrelations = pv.getTVConnectors()    
+    }
+    var NoOfDifZL = 0
+    var NoOfDifPV = 0
+    var logPrefix = ""
+
+    //Zoomlevelcheck entity begin
+    logPrefix = "ZoomLevelCheck > Entity"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    var showAttributes = []
+    var hideAttributes = []    
+    for (var ie = 0; ie < entities.length; ie++){
+        var entity = entities[ie]
+        var isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            var sventity = sventities[ie2]
+            if (entity.getName() == sventity){
+                isOnSV = true               
+                var attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    var attr = attrs[ia]
+                    getMinMax(attr)
+                    var isOnSVEntity = true
+                    var hiddenElements = sventity.getHiddenElements()
+                    for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                        var hiddenElement = hiddenElements[ia2]
+                        if (attr == hiddenElement){
+                            isOnSVEntity = false
+                            break
+                        }
+                    }
+                    if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)) {
+                        if (isOnSVEntity) {
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)
+                            NoOfDifZL++
+                        }
+                    }else{
+                        if (!(isOnSVEntity)){
+                            showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                            NoOfDifZL++
+                        }
+                    }
+                }    
+                break                         
+            }
+        }
+        getMinMax(entity)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+entity)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+entity)
+                NoOfDifZL++
+            }
+        }
+    }
+    for (var i=0;i<showElements.length;i++){
+        g_logger.logMessage(showElements[i])
+    }
+    for (var i=0;i<hideElements.length;i++){
+        g_logger.logMessage(hideElements[i])
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        g_logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        g_logger.logMessage(hideAttributes[i])
+    }
+    //Zoomlevelcheck entity end
+
+    //Zoomlevelcheck relation begin
+    logPrefix = "ZoomLevelCheck > Relation"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    for (var ir = 0; ir < relations.length; ir++){
+        var relation = relations[ir]
+        var isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            var svrelation = svrelations[ir2]
+            if (relation.getName() == svrelation){
+                isOnSV = true
+                break
+            }
+        }
+        getMinMax(relation)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+relation)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+relation)
+                NoOfDifZL++
+            }
+        }
+    }   
+    for (var is=0;is<showElements.length;is++){
+        g_logger.logMessage(showElements[is])
+    }
+    for (var ih=0;ih<hideElements.length;ih++){
+        g_logger.logMessage(hideElements[ih])
+    }
+    //Zoomlevelcheck relation end
+
+    //Parentviewcompare entity begin
+    if (haspv){
+        logPrefix = "ParentViewCompare > Entity"
+        g_logger.logMessage(logPrefix)
+        var showAttributes = []
+        var hideAttributes = []
+        for (var ie = 0; ie < pventities.length; ie++){
+            var pventity = pventities[ie]
+            var entity = model.getEntitySet().getByName(pventity)
+            var thissventity = null
+            var isOnSV = false
+            for (var ie2=0;ie2<sventities.length;ie2++){
+                var sventity = sventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnSV = true
+                    thissventity = sventity
+                    break
+                }
+            }
+            if (!(isOnSV)){            
+                if (entity != null){
+                    getMinMax(entity)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+entity)
+                        NoOfDifPV++
+                    }
+                }
+            }else{
+                var pvhiddenElements = pventity.getHiddenElements()
+                var svhiddenElements = thissventity.getHiddenElements()
+                for (var ih=0;ih<pvhiddenElements.length;ih++){
+                    var pvhiddenElement = pvhiddenElements[ih]
+                    getMinMax(pvhiddenElement)
+                    if (!((pvzlevel > g_maxzl) || (pvzlevel < g_minzl))) {
+                        for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                            if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                                isOnSV = false
+                                break
+                            }
+                        }
+                        if (isOnSV){
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                            NoOfDifPV++
+                        } 
+                    }
+                }
+                if (entity != null){
+                    var attrs = entity.getAttributes().toArray()
+                    for (var ia=0;ia<attrs.length;ia++) {
+                        var attr = attrs[ia]
+                        getMinMax(attr)
+                        var isOnPV = true
+                        if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)) {
+                            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                                if (pvhiddenElements[ih] == attr){
+                                    isOnPV = false
+                                    break
+                                }
+                            }
+                            if (isOnPV){
+                                isOnSV = true
+                                for (var ih=0;ih<svhiddenElements.length;ih++){
+                                    if (svhiddenElements[ih] == attr){
+                                        isOnSV = false
+                                        break
+                                    }
+                                }
+                                if (!(isOnSV)){
+                                    showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
+                                    NoOfDifPV++
+                                }
+                            }
+                        }
+                    }        
+                }
+            }
+        }
+        for (var ie = 0; ie < sventities.length; ie++){
+            var sventity = sventities[ie]
+            var isOnPV = false
+            for (var ie2=0;ie2<pventities.length;ie2++){
+                var pventity = pventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+                NoOfDifPV++
+            }
+        }
+        for (var i=0;i<showAttributes.length;i++){
+            g_logger.logMessage(showAttributes[i])
+        }
+        for (var i=0;i<hideAttributes.length;i++){
+            g_logger.logMessage(hideAttributes[i])
+        }
+        //Parentviewcompare entity end
+
+        //Parentviewcompare relation begin
+        logPrefix = "ParentViewCompare > Relation"
+        g_logger.logMessage(logPrefix)
+        for (var ir = 0; ir < pvrelations.length; ir++){
+            var pvrelation = pvrelations[ir]
+            var isOnSV = false
+            for (var ir2=0;ir2<svrelations.length;ir2++){
+                var svrelation = svrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnSV = true
+                    break
+                }
+            }
+            if (!(isOnSV)){
+                var relation = model.getRelationSet().getByName(pvrelation)
+                if (relation != null){
+                    getMinMax(relation)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+pvrelation)
+                        NoOfDifPV++
+                    }
+                }
+            }
+        }
+        for (var ir = 0; ir < svrelations.length; ir++){
+            var svrelation = svrelations[ir]
+            var isOnPV = false
+            for (var ir2=0;ir2<pvrelations.length;ir2++){
+                var pvrelation = pvrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+svrelation)
+                NoOfDifPV++
+            }
+        }
+    }else{
+        g_logger.logMessage("CHECK: No comparison of the parent view due to missing ABC definition")
+    }
+    //Parentviewcompare relation end   
+    var finalmessage = "Showhideelements result:"
+    if (NoOfDifZL > 0){
+        finalmessage += "\n"+NoOfDifZL+" differences to zoomlevel definition found!"
+    }
+    if (NoOfDifPV > 0){
+        finalmessage += "\n"+NoOfDifPV+" differences to parentview definition found!"
+    }
+    if ((NoOfDifPV == 0) && (NoOfDifZL == 0)){
+        finalmessage += "\nNo differences found."
+    }else{
+        finalmessage += "\nPlease check log-messages."
+    }
+    message(finalmessage)
+    g_logger.logMessage("End function showhideelements")       
+} 
+//showhideelements end
+
+//initzoomlevel start
+function initzoomlevel(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function initzoomlevel")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    //setMinMax to entities
+    for (var ie=0;ie<entities.length;ie++){
+        var entity = entities[ie]
+        calcnewMinMax(entity)
+        //setMinMax to attributes of entity
+        var attrs = entity.getAttributes().toArray()
+        for (var ia=0;ia<attrs.length;ia++) {
+            var attr = attrs[ia]
+            calcnewMinMax(attr)
+        }
+    }
+    //setMinMax to relations
+    for (var ir=0;ir<relations.length;ir++){
+        var relation = relations[ir]
+        calcnewMinMax(relation)
+    }
+    g_logger.logMessage("End function initzoomlevel")
+}
+//initzoomlevel end]]>
+		</script>
+	</scr>
+	<scr id="E930D4DC-04DF-CAF2-BF98-23254FF7E7DF" name="abstraction-createsubview" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="createsubview" purpose="transformation" >
+		<script>
+			<![CDATA[// Autoren: aro, stb
+// Functions:
+// createsubview - creates a new subview (according to entered zoomlevel) based on the current subview + executes "showhideelements" at the end
+// showhideelements - logs all visibility errors according to defined zoomlevel and displayed parentsubview
+// initzoomlevel - set only "not set" zoomlevel definitions according standardrules
+
+//InitVars begin
+var CODEVERSION = '0.3'
+var PLAINMESSAGE = 1
+var ERRORMESSAGE = 0
+var WARNINGMESSAGE = 2
+var QUESTIONMESSAGE = 3
+
+var g_minzoomlevel = 0
+var g_maxzoomlevel = 4
+var g_logger = model.getAppView()
+//InitVars end
+
+//HelperFunctions start
+function fullmessage(msg,type) {
+    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type)
+}
+
+function promptmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type)
+    return retval
+}
+
+function confirmmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showConfirmDialog(null, msg,'ODM-Confirmbox', type)
+    if (retval == 0) {
+        return true
+    }else{
+        return false
+    }
+}
+
+function error(msg) {
+    fullmessage(msg,ERRORMESSAGE)
+}
+
+function message(msg) {
+    fullmessage(msg,PLAINMESSAGE)
+}
+
+function prompt(msg){
+    var retval = promptmessage(msg,QUESTIONMESSAGE)
+    return retval
+}
+
+function confirm(msg){
+    var retval = confirmmessage(msg,0)
+    return retval
+}
+
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n)
+}
+//HelperFunctions end
+
+//LogicalFunctions start
+function getsubview(thissv){
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    var retval = null
+    for (var vv=0;vv<svlist.length;vv++){
+        var checksv = svlist[vv]
+        if (((thissv == null) && (checksv.isCurrentDPV())) || (thissv == checksv)) {
+            retval = checksv
+            break
+        }
+    }
+    return retval
+}
+
+function getcommentvalue(srcobj,srcvalue){      
+    var retval = null
+    var commentlines = []
+    commentlines = srcobj.getComment().split("\n")
+    for (var vv=0;vv<commentlines.length;vv++){
+        if (commentlines[vv].contains(srcvalue+"=")){
+            retval = commentlines[vv].replace(srcvalue+"=","").trim()
+            break
+        }
+    }
+    if (((retval == null) || (retval == "")) && (srcvalue == "zoomlevel")) {
+        retval = g_minzoomlevel
+        message("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+        g_logger.logMessage("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+    }
+    return retval
+}
+
+function getzoomlevelprompt(){
+    var retval = prompt('Choose desired zoomlevel')
+    if ((!(isNumeric(retval))) || (retval > g_maxzoomlevel) || (retval < g_minzoomlevel)) {
+        error("ERROR: No correct zoomlevel entered")
+        g_logger.logMessage("ERROR: No correct zoomlevel entered")
+        retval = null
+    }
+    return retval
+}
+
+function getMinMax(checkObj){
+    g_minzl = checkObj.getProperty("minzoomlevel")  
+    g_maxzl = checkObj.getProperty("maxzoomlevel")
+    if ((!(isNumeric(g_minzl))) || (g_minzl < g_minzoomlevel)){
+        g_minzl = g_minzoomlevel
+        g_logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }
+    if ((!(isNumeric(g_maxzl))) || (g_maxzl > g_maxzoomlevel)){
+        g_maxzl = g_maxzoomlevel
+        g_logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }    
+}
+function checkSetDescAttr(checkObj){
+    var thisdescflag = checkObj.getProperty("isdescriptive")
+    if (thisdescflag == ""){
+        thisdescflag = "FALSE"
+        var keys = checkObj.getEntity().getUniqueIdentifiers()
+        for (var ik=0;ik<keys.length;ik++){
+            key = keys[ik]
+            var attrkeys = key.getElementsCollection()
+            for (var ik2=0;ik2<attrkeys.length;ik2++){
+                var attrkey = attrkeys[ik2]
+                if (attrkey == checkObj){
+                    thisdescflag = "TRUE"
+                    break
+                }
+            }
+        }            
+        checkObj.setProperty("isdescriptive", thisdescflag)
+    }
+}
+
+function calcnewMinMax(checkObj){
+    //DEV
+    checkObj.setProperty("minzoomlevel","")  
+    checkObj.setProperty("maxzoomlevel","")  
+    checkObj.setProperty("isdescriptive","")  
+    //DEV
+
+    var minzl = checkObj.getProperty("minzoomlevel")  
+    var maxzl = checkObj.getProperty("maxzoomlevel")  
+    var newminzl = g_minzoomlevel
+    var newmaxzl = g_maxzoomlevel
+    switch(checkObj.getObjectTypeName().toString()){
+        case "Entity":
+            var attrs = checkObj.getAttributes().toArray()
+            var relas = checkObj.getRelations().toArray()
+            //DEV Not Root?
+            var haschildren = false
+            for (var ir=0;ir<relas.length;ir++){
+                var rela = relas[ir]
+                if (rela.getSourceEntity() == checkObj){
+                    haschildren = true
+                    break
+                }
+            }
+            if ((attrs.length == 0) && (!(haschildren))){
+                newmaxzl = 1
+            }else if((attrs.length > 0) && (!(haschildren))){
+                var hasdescattr = false
+                for (var ia=0;ia<attrs.length;ia++){
+                    var attr = attrs[ia]
+                    checkSetDescAttr(attr)
+                    if (attr.getProperty("isdescriptive") == "TRUE"){
+                        hasdescattr = true
+                    }
+                }
+                if (!(hasdescattr)){
+                    newmaxzl = 2
+                }
+            }
+            break
+        case "Attribute":
+            checkSetDescAttr(checkObj)
+            var thisdescflag = checkObj.getProperty("isdescriptive")
+            if (thisdescflag == "FALSE") {
+                newmaxzl = 0
+            }else{
+                newmaxzl = 2
+            }
+            break
+    }
+    g_logger.logMessage("DEV: Set \""+checkObj+"\" ("+checkObj.getObjectTypeName()+") min/max to: "+newminzl+"/"+newmaxzl)
+    if (!(isNumeric(minzl))){
+        //DEV
+        //checkObj.setProperty("minzoomlevel",newminzl)      
+    }
+    if ((!(isNumeric(maxzl))) || ((maxzl == g_maxzoomlevel) && (maxzl != newmaxzl))) {
+        //DEV
+        //checkObj.setProperty("maxzoomlevel",newmaxzl)
+    }
+}
+
+function addChildrenToList(svObj, entityList, entityObj, checkzl){  
+    var entityChildren = entityObj.getHierarchicalChildren()
+    for (var ic=0;ic<entityChildren.length;ic++){
+        var entityChild = entityChildren[ic]
+        getMinMax(entityChild)
+        if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
+            var thistv0 = entityChild.getFirstViewForDPV(svObj)
+            if (thistv0 != null){
+                var thiscell0 = thistv0.getCellView().getCell()
+                entityList.push(thiscell0)
+                if (entityChild.getHierarchicalChildrenCount() > 0) {
+                    entityList = addChildrenToList(svObj, entityList, entityChild, checkzl)
+                }
+            }
+        }
+    }
+    return entityList
+}
+//LogicalFunctions end
+
+//createsubview start
+function createsubview(){
+    var sv = getsubview(null)
+    var newzlevel = getzoomlevelprompt()
+    if ((sv == null) || (newzlevel == null)){
+        return
+    }
+    var sventities = sv.getTVShapes()
+    var list = []
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function createsubview")
+
+    //Mark all hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalRoot() == true)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){               
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Mark all non-hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalEntityType() == false)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){       
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Create new subview & cleanup (rename, set comment, show elements, hide attributes)
+    sv.getWorkSpace().setSelectionCells(list)
+    sv.createSubViewFromSelected()
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    for (var vv=0;vv<svlist.length;vv++){
+        var newsv = svlist[vv]
+        if (newsv.isCurrentDPV()) {            
+            newsv.setName(sv+"_ZL"+newzlevel)
+            newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+            newsv.setShowLegend(sv.showLegend())
+            newsv.setShowLabels(sv.showLabels())
+            newsv.setShowRelAttributes(sv.showRelAttributes())
+            newsv.setShowGrid(sv.showGrid())
+            newsv.setShowPageGrid(sv.showPageGrid())
+            var newsventities = newsv.getTVShapes()
+            for (var ie=0;ie<newsventities.length;ie++){
+                var newsventity = newsventities[ie]
+                var newentity = model.getEntitySet().getByName(newsventity)
+                if (newentity != null) {
+                    if (newentity.getName() == newsventity){          
+                        var attrs = newentity.getAttributes().toArray()
+                        for (var ia=0;ia<attrs.length;ia++) {
+                            var attr = attrs[ia]
+                            getMinMax(attr)
+                            var hiddenElements = newsventity.getHiddenElements()
+                            var isOnSVEntity = true
+                            for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                                var hiddenElement = hiddenElements[ia2]
+                                if (attr == hiddenElement){
+                                    isOnSVEntity = false
+                                }
+                            }
+                            if (((newzlevel > g_maxzl) || (newzlevel < g_minzl)) && (isOnSVEntity)){
+                                if (!(newsventity.isHideElementsInCurrentOnly())){
+                                    newsventity.setHideElementsInCurrentOnly(true)
+                                }
+                                hiddenElements.add(attr)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    g_logger.logMessage("End function createsubview")
+    showhideelements()    
+}
+//createsubview start
+
+//showhideelements start
+function showhideelements(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function showhideelements")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    var sv = getsubview(null)
+    var sventities = sv.getTVShapes()
+    var svrelations = sv.getTVConnectors()
+    var svzlevel = getcommentvalue(sv,"zoomlevel")
+    var svpview = getcommentvalue(sv,"parentview")
+    var haspv = false
+    if ((svpview != null) && (svpview != "")){
+        haspv = true
+        var pv = getsubview(svpview)
+        var pvzlevel = getcommentvalue(pv,"zoomlevel")
+        var pventities = pv.getTVShapes()
+        var pvrelations = pv.getTVConnectors()    
+    }
+    var NoOfDifZL = 0
+    var NoOfDifPV = 0
+    var logPrefix = ""
+
+    //Zoomlevelcheck entity begin
+    logPrefix = "ZoomLevelCheck > Entity"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    var showAttributes = []
+    var hideAttributes = []    
+    for (var ie = 0; ie < entities.length; ie++){
+        var entity = entities[ie]
+        var isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            var sventity = sventities[ie2]
+            if (entity.getName() == sventity){
+                isOnSV = true               
+                var attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    var attr = attrs[ia]
+                    getMinMax(attr)
+                    var isOnSVEntity = true
+                    var hiddenElements = sventity.getHiddenElements()
+                    for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                        var hiddenElement = hiddenElements[ia2]
+                        if (attr == hiddenElement){
+                            isOnSVEntity = false
+                            break
+                        }
+                    }
+                    if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)) {
+                        if (isOnSVEntity) {
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)
+                            NoOfDifZL++
+                        }
+                    }else{
+                        if (!(isOnSVEntity)){
+                            showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                            NoOfDifZL++
+                        }
+                    }
+                }    
+                break                         
+            }
+        }
+        getMinMax(entity)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+entity)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+entity)
+                NoOfDifZL++
+            }
+        }
+    }
+    for (var i=0;i<showElements.length;i++){
+        g_logger.logMessage(showElements[i])
+    }
+    for (var i=0;i<hideElements.length;i++){
+        g_logger.logMessage(hideElements[i])
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        g_logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        g_logger.logMessage(hideAttributes[i])
+    }
+    //Zoomlevelcheck entity end
+
+    //Zoomlevelcheck relation begin
+    logPrefix = "ZoomLevelCheck > Relation"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    for (var ir = 0; ir < relations.length; ir++){
+        var relation = relations[ir]
+        var isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            var svrelation = svrelations[ir2]
+            if (relation.getName() == svrelation){
+                isOnSV = true
+                break
+            }
+        }
+        getMinMax(relation)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+relation)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+relation)
+                NoOfDifZL++
+            }
+        }
+    }   
+    for (var is=0;is<showElements.length;is++){
+        g_logger.logMessage(showElements[is])
+    }
+    for (var ih=0;ih<hideElements.length;ih++){
+        g_logger.logMessage(hideElements[ih])
+    }
+    //Zoomlevelcheck relation end
+
+    //Parentviewcompare entity begin
+    if (haspv){
+        logPrefix = "ParentViewCompare > Entity"
+        g_logger.logMessage(logPrefix)
+        var showAttributes = []
+        var hideAttributes = []
+        for (var ie = 0; ie < pventities.length; ie++){
+            var pventity = pventities[ie]
+            var entity = model.getEntitySet().getByName(pventity)
+            var thissventity = null
+            var isOnSV = false
+            for (var ie2=0;ie2<sventities.length;ie2++){
+                var sventity = sventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnSV = true
+                    thissventity = sventity
+                    break
+                }
+            }
+            if (!(isOnSV)){            
+                if (entity != null){
+                    getMinMax(entity)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+entity)
+                        NoOfDifPV++
+                    }
+                }
+            }else{
+                var pvhiddenElements = pventity.getHiddenElements()
+                var svhiddenElements = thissventity.getHiddenElements()
+                for (var ih=0;ih<pvhiddenElements.length;ih++){
+                    var pvhiddenElement = pvhiddenElements[ih]
+                    getMinMax(pvhiddenElement)
+                    if (!((pvzlevel > g_maxzl) || (pvzlevel < g_minzl))) {
+                        for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                            if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                                isOnSV = false
+                                break
+                            }
+                        }
+                        if (isOnSV){
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                            NoOfDifPV++
+                        } 
+                    }
+                }
+                if (entity != null){
+                    var attrs = entity.getAttributes().toArray()
+                    for (var ia=0;ia<attrs.length;ia++) {
+                        var attr = attrs[ia]
+                        getMinMax(attr)
+                        var isOnPV = true
+                        if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)) {
+                            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                                if (pvhiddenElements[ih] == attr){
+                                    isOnPV = false
+                                    break
+                                }
+                            }
+                            if (isOnPV){
+                                isOnSV = true
+                                for (var ih=0;ih<svhiddenElements.length;ih++){
+                                    if (svhiddenElements[ih] == attr){
+                                        isOnSV = false
+                                        break
+                                    }
+                                }
+                                if (!(isOnSV)){
+                                    showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
+                                    NoOfDifPV++
+                                }
+                            }
+                        }
+                    }        
+                }
+            }
+        }
+        for (var ie = 0; ie < sventities.length; ie++){
+            var sventity = sventities[ie]
+            var isOnPV = false
+            for (var ie2=0;ie2<pventities.length;ie2++){
+                var pventity = pventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+                NoOfDifPV++
+            }
+        }
+        for (var i=0;i<showAttributes.length;i++){
+            g_logger.logMessage(showAttributes[i])
+        }
+        for (var i=0;i<hideAttributes.length;i++){
+            g_logger.logMessage(hideAttributes[i])
+        }
+        //Parentviewcompare entity end
+
+        //Parentviewcompare relation begin
+        logPrefix = "ParentViewCompare > Relation"
+        g_logger.logMessage(logPrefix)
+        for (var ir = 0; ir < pvrelations.length; ir++){
+            var pvrelation = pvrelations[ir]
+            var isOnSV = false
+            for (var ir2=0;ir2<svrelations.length;ir2++){
+                var svrelation = svrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnSV = true
+                    break
+                }
+            }
+            if (!(isOnSV)){
+                var relation = model.getRelationSet().getByName(pvrelation)
+                if (relation != null){
+                    getMinMax(relation)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+pvrelation)
+                        NoOfDifPV++
+                    }
+                }
+            }
+        }
+        for (var ir = 0; ir < svrelations.length; ir++){
+            var svrelation = svrelations[ir]
+            var isOnPV = false
+            for (var ir2=0;ir2<pvrelations.length;ir2++){
+                var pvrelation = pvrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+svrelation)
+                NoOfDifPV++
+            }
+        }
+    }else{
+        g_logger.logMessage("CHECK: No comparison of the parent view due to missing ABC definition")
+    }
+    //Parentviewcompare relation end   
+    var finalmessage = "Showhideelements result:"
+    if (NoOfDifZL > 0){
+        finalmessage += "\n"+NoOfDifZL+" differences to zoomlevel definition found!"
+    }
+    if (NoOfDifPV > 0){
+        finalmessage += "\n"+NoOfDifPV+" differences to parentview definition found!"
+    }
+    if ((NoOfDifPV == 0) && (NoOfDifZL == 0)){
+        finalmessage += "\nNo differences found."
+    }else{
+        finalmessage += "\nPlease check log-messages."
+    }
+    message(finalmessage)
+    g_logger.logMessage("End function showhideelements")       
+} 
+//showhideelements end
+
+//initzoomlevel start
+function initzoomlevel(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function initzoomlevel")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    //setMinMax to entities
+    for (var ie=0;ie<entities.length;ie++){
+        var entity = entities[ie]
+        calcnewMinMax(entity)
+        //setMinMax to attributes of entity
+        var attrs = entity.getAttributes().toArray()
+        for (var ia=0;ia<attrs.length;ia++) {
+            var attr = attrs[ia]
+            calcnewMinMax(attr)
+        }
+    }
+    //setMinMax to relations
+    for (var ir=0;ir<relations.length;ir++){
+        var relation = relations[ir]
+        calcnewMinMax(relation)
+    }
+    g_logger.logMessage("End function initzoomlevel")
+}
+//initzoomlevel end]]>
+		</script>
+	</scr>
+	<scr id="2711F3AD-08FF-8C7E-D23B-F6727AB2BF62" name="abstraction-showhide" object="logical" engine="Oracle Nashorn" type="" var="model" library="abstractionlevel" method="showhideelements" purpose="transformation" >
+		<script>
+			<![CDATA[// Autoren: aro, stb
+// Functions:
+// createsubview - creates a new subview (according to entered zoomlevel) based on the current subview + executes "showhideelements" at the end
+// showhideelements - logs all visibility errors according to defined zoomlevel and displayed parentsubview
+// initzoomlevel - set only "not set" zoomlevel definitions according standardrules
+
+//InitVars begin
+var CODEVERSION = '0.3'
+var PLAINMESSAGE = 1
+var ERRORMESSAGE = 0
+var WARNINGMESSAGE = 2
+var QUESTIONMESSAGE = 3
+
+var g_minzoomlevel = 0
+var g_maxzoomlevel = 4
+var g_logger = model.getAppView()
+//InitVars end
+
+//HelperFunctions start
+function fullmessage(msg,type) {
+    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type)
+}
+
+function promptmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type)
+    return retval
+}
+
+function confirmmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showConfirmDialog(null, msg,'ODM-Confirmbox', type)
+    if (retval == 0) {
+        return true
+    }else{
+        return false
+    }
+}
+
+function error(msg) {
+    fullmessage(msg,ERRORMESSAGE)
+}
+
+function message(msg) {
+    fullmessage(msg,PLAINMESSAGE)
+}
+
+function prompt(msg){
+    var retval = promptmessage(msg,QUESTIONMESSAGE)
+    return retval
+}
+
+function confirm(msg){
+    var retval = confirmmessage(msg,0)
+    return retval
+}
+
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n)
+}
+//HelperFunctions end
+
+//LogicalFunctions start
+function getsubview(thissv){
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    var retval = null
+    for (var vv=0;vv<svlist.length;vv++){
+        var checksv = svlist[vv]
+        if (((thissv == null) && (checksv.isCurrentDPV())) || (thissv == checksv)) {
+            retval = checksv
+            break
+        }
+    }
+    return retval
+}
+
+function getcommentvalue(srcobj,srcvalue){      
+    var retval = null
+    var commentlines = []
+    commentlines = srcobj.getComment().split("\n")
+    for (var vv=0;vv<commentlines.length;vv++){
+        if (commentlines[vv].contains(srcvalue+"=")){
+            retval = commentlines[vv].replace(srcvalue+"=","").trim()
+            break
+        }
+    }
+    if (((retval == null) || (retval == "")) && (srcvalue == "zoomlevel")) {
+        retval = g_minzoomlevel
+        message("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+        g_logger.logMessage("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+    }
+    return retval
+}
+
+function getzoomlevelprompt(){
+    var retval = prompt('Choose desired zoomlevel')
+    if ((!(isNumeric(retval))) || (retval > g_maxzoomlevel) || (retval < g_minzoomlevel)) {
+        error("ERROR: No correct zoomlevel entered")
+        g_logger.logMessage("ERROR: No correct zoomlevel entered")
+        retval = null
+    }
+    return retval
+}
+
+function getMinMax(checkObj){
+    g_minzl = checkObj.getProperty("minzoomlevel")  
+    g_maxzl = checkObj.getProperty("maxzoomlevel")
+    if ((!(isNumeric(g_minzl))) || (g_minzl < g_minzoomlevel)){
+        g_minzl = g_minzoomlevel
+        g_logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }
+    if ((!(isNumeric(g_maxzl))) || (g_maxzl > g_maxzoomlevel)){
+        g_maxzl = g_maxzoomlevel
+        g_logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }    
+}
+function checkSetDescAttr(checkObj){
+    var thisdescflag = checkObj.getProperty("isdescriptive")
+    if (thisdescflag == ""){
+        thisdescflag = "FALSE"
+        var keys = checkObj.getEntity().getUniqueIdentifiers()
+        for (var ik=0;ik<keys.length;ik++){
+            key = keys[ik]
+            var attrkeys = key.getElementsCollection()
+            for (var ik2=0;ik2<attrkeys.length;ik2++){
+                var attrkey = attrkeys[ik2]
+                if (attrkey == checkObj){
+                    thisdescflag = "TRUE"
+                    break
+                }
+            }
+        }            
+        checkObj.setProperty("isdescriptive", thisdescflag)
+    }
+}
+
+function calcnewMinMax(checkObj){
+    //DEV
+    checkObj.setProperty("minzoomlevel","")  
+    checkObj.setProperty("maxzoomlevel","")  
+    checkObj.setProperty("isdescriptive","")  
+    //DEV
+
+    var minzl = checkObj.getProperty("minzoomlevel")  
+    var maxzl = checkObj.getProperty("maxzoomlevel")  
+    var newminzl = g_minzoomlevel
+    var newmaxzl = g_maxzoomlevel
+    switch(checkObj.getObjectTypeName().toString()){
+        case "Entity":
+            var attrs = checkObj.getAttributes().toArray()
+            var relas = checkObj.getRelations().toArray()
+            //DEV Not Root?
+            var haschildren = false
+            for (var ir=0;ir<relas.length;ir++){
+                var rela = relas[ir]
+                if (rela.getSourceEntity() == checkObj){
+                    haschildren = true
+                    break
+                }
+            }
+            if ((attrs.length == 0) && (!(haschildren))){
+                newmaxzl = 1
+            }else if((attrs.length > 0) && (!(haschildren))){
+                var hasdescattr = false
+                for (var ia=0;ia<attrs.length;ia++){
+                    var attr = attrs[ia]
+                    checkSetDescAttr(attr)
+                    if (attr.getProperty("isdescriptive") == "TRUE"){
+                        hasdescattr = true
+                    }
+                }
+                if (!(hasdescattr)){
+                    newmaxzl = 2
+                }
+            }
+            break
+        case "Attribute":
+            checkSetDescAttr(checkObj)
+            var thisdescflag = checkObj.getProperty("isdescriptive")
+            if (thisdescflag == "FALSE") {
+                newmaxzl = 0
+            }else{
+                newmaxzl = 2
+            }
+            break
+    }
+    g_logger.logMessage("DEV: Set \""+checkObj+"\" ("+checkObj.getObjectTypeName()+") min/max to: "+newminzl+"/"+newmaxzl)
+    if (!(isNumeric(minzl))){
+        //DEV
+        //checkObj.setProperty("minzoomlevel",newminzl)      
+    }
+    if ((!(isNumeric(maxzl))) || ((maxzl == g_maxzoomlevel) && (maxzl != newmaxzl))) {
+        //DEV
+        //checkObj.setProperty("maxzoomlevel",newmaxzl)
+    }
+}
+
+function addChildrenToList(svObj, entityList, entityObj, checkzl){  
+    var entityChildren = entityObj.getHierarchicalChildren()
+    for (var ic=0;ic<entityChildren.length;ic++){
+        var entityChild = entityChildren[ic]
+        getMinMax(entityChild)
+        if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
+            var thistv0 = entityChild.getFirstViewForDPV(svObj)
+            if (thistv0 != null){
+                var thiscell0 = thistv0.getCellView().getCell()
+                entityList.push(thiscell0)
+                if (entityChild.getHierarchicalChildrenCount() > 0) {
+                    entityList = addChildrenToList(svObj, entityList, entityChild, checkzl)
+                }
+            }
+        }
+    }
+    return entityList
+}
+//LogicalFunctions end
+
+//createsubview start
+function createsubview(){
+    var sv = getsubview(null)
+    var newzlevel = getzoomlevelprompt()
+    if ((sv == null) || (newzlevel == null)){
+        return
+    }
+    var sventities = sv.getTVShapes()
+    var list = []
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function createsubview")
+
+    //Mark all hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalRoot() == true)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){               
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Mark all non-hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalEntityType() == false)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){       
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Create new subview & cleanup (rename, set comment, show elements, hide attributes)
+    sv.getWorkSpace().setSelectionCells(list)
+    sv.createSubViewFromSelected()
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    for (var vv=0;vv<svlist.length;vv++){
+        var newsv = svlist[vv]
+        if (newsv.isCurrentDPV()) {            
+            newsv.setName(sv+"_ZL"+newzlevel)
+            newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+            newsv.setShowLegend(sv.showLegend())
+            newsv.setShowLabels(sv.showLabels())
+            newsv.setShowRelAttributes(sv.showRelAttributes())
+            newsv.setShowGrid(sv.showGrid())
+            newsv.setShowPageGrid(sv.showPageGrid())
+            var newsventities = newsv.getTVShapes()
+            for (var ie=0;ie<newsventities.length;ie++){
+                var newsventity = newsventities[ie]
+                var newentity = model.getEntitySet().getByName(newsventity)
+                if (newentity != null) {
+                    if (newentity.getName() == newsventity){          
+                        var attrs = newentity.getAttributes().toArray()
+                        for (var ia=0;ia<attrs.length;ia++) {
+                            var attr = attrs[ia]
+                            getMinMax(attr)
+                            var hiddenElements = newsventity.getHiddenElements()
+                            var isOnSVEntity = true
+                            for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                                var hiddenElement = hiddenElements[ia2]
+                                if (attr == hiddenElement){
+                                    isOnSVEntity = false
+                                }
+                            }
+                            if (((newzlevel > g_maxzl) || (newzlevel < g_minzl)) && (isOnSVEntity)){
+                                if (!(newsventity.isHideElementsInCurrentOnly())){
+                                    newsventity.setHideElementsInCurrentOnly(true)
+                                }
+                                hiddenElements.add(attr)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    g_logger.logMessage("End function createsubview")
+    showhideelements()    
+}
+//createsubview start
+
+//showhideelements start
+function showhideelements(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function showhideelements")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    var sv = getsubview(null)
+    var sventities = sv.getTVShapes()
+    var svrelations = sv.getTVConnectors()
+    var svzlevel = getcommentvalue(sv,"zoomlevel")
+    var svpview = getcommentvalue(sv,"parentview")
+    var haspv = false
+    if ((svpview != null) && (svpview != "")){
+        haspv = true
+        var pv = getsubview(svpview)
+        var pvzlevel = getcommentvalue(pv,"zoomlevel")
+        var pventities = pv.getTVShapes()
+        var pvrelations = pv.getTVConnectors()    
+    }
+    var NoOfDifZL = 0
+    var NoOfDifPV = 0
+    var logPrefix = ""
+
+    //Zoomlevelcheck entity begin
+    logPrefix = "ZoomLevelCheck > Entity"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    var showAttributes = []
+    var hideAttributes = []    
+    for (var ie = 0; ie < entities.length; ie++){
+        var entity = entities[ie]
+        var isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            var sventity = sventities[ie2]
+            if (entity.getName() == sventity){
+                isOnSV = true               
+                var attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    var attr = attrs[ia]
+                    getMinMax(attr)
+                    var isOnSVEntity = true
+                    var hiddenElements = sventity.getHiddenElements()
+                    for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                        var hiddenElement = hiddenElements[ia2]
+                        if (attr == hiddenElement){
+                            isOnSVEntity = false
+                            break
+                        }
+                    }
+                    if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)) {
+                        if (isOnSVEntity) {
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)
+                            NoOfDifZL++
+                        }
+                    }else{
+                        if (!(isOnSVEntity)){
+                            showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                            NoOfDifZL++
+                        }
+                    }
+                }    
+                break                         
+            }
+        }
+        getMinMax(entity)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+entity)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+entity)
+                NoOfDifZL++
+            }
+        }
+    }
+    for (var i=0;i<showElements.length;i++){
+        g_logger.logMessage(showElements[i])
+    }
+    for (var i=0;i<hideElements.length;i++){
+        g_logger.logMessage(hideElements[i])
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        g_logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        g_logger.logMessage(hideAttributes[i])
+    }
+    //Zoomlevelcheck entity end
+
+    //Zoomlevelcheck relation begin
+    logPrefix = "ZoomLevelCheck > Relation"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    for (var ir = 0; ir < relations.length; ir++){
+        var relation = relations[ir]
+        var isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            var svrelation = svrelations[ir2]
+            if (relation.getName() == svrelation){
+                isOnSV = true
+                break
+            }
+        }
+        getMinMax(relation)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+relation)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+relation)
+                NoOfDifZL++
+            }
+        }
+    }   
+    for (var is=0;is<showElements.length;is++){
+        g_logger.logMessage(showElements[is])
+    }
+    for (var ih=0;ih<hideElements.length;ih++){
+        g_logger.logMessage(hideElements[ih])
+    }
+    //Zoomlevelcheck relation end
+
+    //Parentviewcompare entity begin
+    if (haspv){
+        logPrefix = "ParentViewCompare > Entity"
+        g_logger.logMessage(logPrefix)
+        var showAttributes = []
+        var hideAttributes = []
+        for (var ie = 0; ie < pventities.length; ie++){
+            var pventity = pventities[ie]
+            var entity = model.getEntitySet().getByName(pventity)
+            var thissventity = null
+            var isOnSV = false
+            for (var ie2=0;ie2<sventities.length;ie2++){
+                var sventity = sventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnSV = true
+                    thissventity = sventity
+                    break
+                }
+            }
+            if (!(isOnSV)){            
+                if (entity != null){
+                    getMinMax(entity)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+entity)
+                        NoOfDifPV++
+                    }
+                }
+            }else{
+                var pvhiddenElements = pventity.getHiddenElements()
+                var svhiddenElements = thissventity.getHiddenElements()
+                for (var ih=0;ih<pvhiddenElements.length;ih++){
+                    var pvhiddenElement = pvhiddenElements[ih]
+                    getMinMax(pvhiddenElement)
+                    if (!((pvzlevel > g_maxzl) || (pvzlevel < g_minzl))) {
+                        for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                            if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                                isOnSV = false
+                                break
+                            }
+                        }
+                        if (isOnSV){
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                            NoOfDifPV++
+                        } 
+                    }
+                }
+                if (entity != null){
+                    var attrs = entity.getAttributes().toArray()
+                    for (var ia=0;ia<attrs.length;ia++) {
+                        var attr = attrs[ia]
+                        getMinMax(attr)
+                        var isOnPV = true
+                        if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)) {
+                            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                                if (pvhiddenElements[ih] == attr){
+                                    isOnPV = false
+                                    break
+                                }
+                            }
+                            if (isOnPV){
+                                isOnSV = true
+                                for (var ih=0;ih<svhiddenElements.length;ih++){
+                                    if (svhiddenElements[ih] == attr){
+                                        isOnSV = false
+                                        break
+                                    }
+                                }
+                                if (!(isOnSV)){
+                                    showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
+                                    NoOfDifPV++
+                                }
+                            }
+                        }
+                    }        
+                }
+            }
+        }
+        for (var ie = 0; ie < sventities.length; ie++){
+            var sventity = sventities[ie]
+            var isOnPV = false
+            for (var ie2=0;ie2<pventities.length;ie2++){
+                var pventity = pventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+                NoOfDifPV++
+            }
+        }
+        for (var i=0;i<showAttributes.length;i++){
+            g_logger.logMessage(showAttributes[i])
+        }
+        for (var i=0;i<hideAttributes.length;i++){
+            g_logger.logMessage(hideAttributes[i])
+        }
+        //Parentviewcompare entity end
+
+        //Parentviewcompare relation begin
+        logPrefix = "ParentViewCompare > Relation"
+        g_logger.logMessage(logPrefix)
+        for (var ir = 0; ir < pvrelations.length; ir++){
+            var pvrelation = pvrelations[ir]
+            var isOnSV = false
+            for (var ir2=0;ir2<svrelations.length;ir2++){
+                var svrelation = svrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnSV = true
+                    break
+                }
+            }
+            if (!(isOnSV)){
+                var relation = model.getRelationSet().getByName(pvrelation)
+                if (relation != null){
+                    getMinMax(relation)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+pvrelation)
+                        NoOfDifPV++
+                    }
+                }
+            }
+        }
+        for (var ir = 0; ir < svrelations.length; ir++){
+            var svrelation = svrelations[ir]
+            var isOnPV = false
+            for (var ir2=0;ir2<pvrelations.length;ir2++){
+                var pvrelation = pvrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+svrelation)
+                NoOfDifPV++
+            }
+        }
+    }else{
+        g_logger.logMessage("CHECK: No comparison of the parent view due to missing ABC definition")
+    }
+    //Parentviewcompare relation end   
+    var finalmessage = "Showhideelements result:"
+    if (NoOfDifZL > 0){
+        finalmessage += "\n"+NoOfDifZL+" differences to zoomlevel definition found!"
+    }
+    if (NoOfDifPV > 0){
+        finalmessage += "\n"+NoOfDifPV+" differences to parentview definition found!"
+    }
+    if ((NoOfDifPV == 0) && (NoOfDifZL == 0)){
+        finalmessage += "\nNo differences found."
+    }else{
+        finalmessage += "\nPlease check log-messages."
+    }
+    message(finalmessage)
+    g_logger.logMessage("End function showhideelements")       
+} 
+//showhideelements end
+
+//initzoomlevel start
+function initzoomlevel(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function initzoomlevel")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    //setMinMax to entities
+    for (var ie=0;ie<entities.length;ie++){
+        var entity = entities[ie]
+        calcnewMinMax(entity)
+        //setMinMax to attributes of entity
+        var attrs = entity.getAttributes().toArray()
+        for (var ia=0;ia<attrs.length;ia++) {
+            var attr = attrs[ia]
+            calcnewMinMax(attr)
+        }
+    }
+    //setMinMax to relations
+    for (var ir=0;ir<relations.length;ir++){
+        var relation = relations[ir]
+        calcnewMinMax(relation)
+    }
+    g_logger.logMessage("End function initzoomlevel")
+}
+//initzoomlevel end]]>
 		</script>
 	</scr>
 
@@ -8906,6 +10728,627 @@ ddlStatementsList.add(new java.lang.String(ddl));
 						}
 					}			
 				}]]>
+		</script>
+	</lib>
+	<lib id="01549B4A-FBAA-A168-A09B-CFDA99211B5F" name="abstractionlevel" engine="Oracle Nashorn" methods="showhideelements,createsubview,initzoomlevel" >
+		<script>
+			<![CDATA[// Autoren: aro, stb
+// Functions:
+// createsubview - creates a new subview (according to entered zoomlevel) based on the current subview + executes "showhideelements" at the end
+// showhideelements - logs all visibility errors according to defined zoomlevel and displayed parentsubview
+// initzoomlevel - set only "not set" zoomlevel definitions according standardrules
+
+//InitVars begin
+var CODEVERSION = '0.3'
+var PLAINMESSAGE = 1
+var ERRORMESSAGE = 0
+var WARNINGMESSAGE = 2
+var QUESTIONMESSAGE = 3
+
+var g_minzoomlevel = 0
+var g_maxzoomlevel = 4
+var g_logger = model.getAppView()
+//InitVars end
+
+//HelperFunctions start
+function fullmessage(msg,type) {
+    Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg,'ODM-Message', type)
+}
+
+function promptmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showInputDialog(null, msg,'ODM-Promtbox', type)
+    return retval
+}
+
+function confirmmessage(msg,type) {
+    var retval = Java.type("javax.swing.JOptionPane").showConfirmDialog(null, msg,'ODM-Confirmbox', type)
+    if (retval == 0) {
+        return true
+    }else{
+        return false
+    }
+}
+
+function error(msg) {
+    fullmessage(msg,ERRORMESSAGE)
+}
+
+function message(msg) {
+    fullmessage(msg,PLAINMESSAGE)
+}
+
+function prompt(msg){
+    var retval = promptmessage(msg,QUESTIONMESSAGE)
+    return retval
+}
+
+function confirm(msg){
+    var retval = confirmmessage(msg,0)
+    return retval
+}
+
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n)
+}
+//HelperFunctions end
+
+//LogicalFunctions start
+function getsubview(thissv){
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    var retval = null
+    for (var vv=0;vv<svlist.length;vv++){
+        var checksv = svlist[vv]
+        if (((thissv == null) && (checksv.isCurrentDPV())) || (thissv == checksv)) {
+            retval = checksv
+            break
+        }
+    }
+    return retval
+}
+
+function getcommentvalue(srcobj,srcvalue){      
+    var retval = null
+    var commentlines = []
+    commentlines = srcobj.getComment().split("\n")
+    for (var vv=0;vv<commentlines.length;vv++){
+        if (commentlines[vv].contains(srcvalue+"=")){
+            retval = commentlines[vv].replace(srcvalue+"=","").trim()
+            break
+        }
+    }
+    if (((retval == null) || (retval == "")) && (srcvalue == "zoomlevel")) {
+        retval = g_minzoomlevel
+        message("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+        g_logger.logMessage("No "+srcvalue+" definition in view \""+srcobj+"\" found! The default value \""+g_minzoomlevel+"\" was used!")
+    }
+    return retval
+}
+
+function getzoomlevelprompt(){
+    var retval = prompt('Choose desired zoomlevel')
+    if ((!(isNumeric(retval))) || (retval > g_maxzoomlevel) || (retval < g_minzoomlevel)) {
+        error("ERROR: No correct zoomlevel entered")
+        g_logger.logMessage("ERROR: No correct zoomlevel entered")
+        retval = null
+    }
+    return retval
+}
+
+function getMinMax(checkObj){
+    g_minzl = checkObj.getProperty("minzoomlevel")  
+    g_maxzl = checkObj.getProperty("maxzoomlevel")
+    if ((!(isNumeric(g_minzl))) || (g_minzl < g_minzoomlevel)){
+        g_minzl = g_minzoomlevel
+        g_logger.logMessage("No correct zoomlevel (min) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }
+    if ((!(isNumeric(g_maxzl))) || (g_maxzl > g_maxzoomlevel)){
+        g_maxzl = g_maxzoomlevel
+        g_logger.logMessage("No correct zoomlevel (max) definition found on element \""+checkObj+"\" ("+checkObj.getObjectTypeName()+")")
+    }    
+}
+function checkSetDescAttr(checkObj){
+    var thisdescflag = checkObj.getProperty("isdescriptive")
+    if (thisdescflag == ""){
+        thisdescflag = "FALSE"
+        var keys = checkObj.getEntity().getUniqueIdentifiers()
+        for (var ik=0;ik<keys.length;ik++){
+            key = keys[ik]
+            var attrkeys = key.getElementsCollection()
+            for (var ik2=0;ik2<attrkeys.length;ik2++){
+                var attrkey = attrkeys[ik2]
+                if (attrkey == checkObj){
+                    thisdescflag = "TRUE"
+                    break
+                }
+            }
+        }            
+        checkObj.setProperty("isdescriptive", thisdescflag)
+    }
+}
+
+function calcnewMinMax(checkObj){
+    //DEV
+    checkObj.setProperty("minzoomlevel","")  
+    checkObj.setProperty("maxzoomlevel","")  
+    checkObj.setProperty("isdescriptive","")  
+    //DEV
+
+    var minzl = checkObj.getProperty("minzoomlevel")  
+    var maxzl = checkObj.getProperty("maxzoomlevel")  
+    var newminzl = g_minzoomlevel
+    var newmaxzl = g_maxzoomlevel
+    switch(checkObj.getObjectTypeName().toString()){
+        case "Entity":
+            var attrs = checkObj.getAttributes().toArray()
+            var relas = checkObj.getRelations().toArray()
+            //DEV Not Root?
+            var haschildren = false
+            for (var ir=0;ir<relas.length;ir++){
+                var rela = relas[ir]
+                if (rela.getSourceEntity() == checkObj){
+                    haschildren = true
+                    break
+                }
+            }
+            if ((attrs.length == 0) && (!(haschildren))){
+                newmaxzl = 1
+            }else if((attrs.length > 0) && (!(haschildren))){
+                var hasdescattr = false
+                for (var ia=0;ia<attrs.length;ia++){
+                    var attr = attrs[ia]
+                    checkSetDescAttr(attr)
+                    if (attr.getProperty("isdescriptive") == "TRUE"){
+                        hasdescattr = true
+                    }
+                }
+                if (!(hasdescattr)){
+                    newmaxzl = 2
+                }
+            }
+            break
+        case "Attribute":
+            checkSetDescAttr(checkObj)
+            var thisdescflag = checkObj.getProperty("isdescriptive")
+            if (thisdescflag == "FALSE") {
+                newmaxzl = 0
+            }else{
+                newmaxzl = 2
+            }
+            break
+    }
+    g_logger.logMessage("DEV: Set \""+checkObj+"\" ("+checkObj.getObjectTypeName()+") min/max to: "+newminzl+"/"+newmaxzl)
+    if (!(isNumeric(minzl))){
+        //DEV
+        //checkObj.setProperty("minzoomlevel",newminzl)      
+    }
+    if ((!(isNumeric(maxzl))) || ((maxzl == g_maxzoomlevel) && (maxzl != newmaxzl))) {
+        //DEV
+        //checkObj.setProperty("maxzoomlevel",newmaxzl)
+    }
+}
+
+function addChildrenToList(svObj, entityList, entityObj, checkzl){  
+    var entityChildren = entityObj.getHierarchicalChildren()
+    for (var ic=0;ic<entityChildren.length;ic++){
+        var entityChild = entityChildren[ic]
+        getMinMax(entityChild)
+        if (!((checkzl > g_maxzl) || (checkzl < g_minzl))){    
+            var thistv0 = entityChild.getFirstViewForDPV(svObj)
+            if (thistv0 != null){
+                var thiscell0 = thistv0.getCellView().getCell()
+                entityList.push(thiscell0)
+                if (entityChild.getHierarchicalChildrenCount() > 0) {
+                    entityList = addChildrenToList(svObj, entityList, entityChild, checkzl)
+                }
+            }
+        }
+    }
+    return entityList
+}
+//LogicalFunctions end
+
+//createsubview start
+function createsubview(){
+    var sv = getsubview(null)
+    var newzlevel = getzoomlevelprompt()
+    if ((sv == null) || (newzlevel == null)){
+        return
+    }
+    var sventities = sv.getTVShapes()
+    var list = []
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function createsubview")
+
+    //Mark all hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalRoot() == true)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){               
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Mark all non-hierarchical elements with the appropriate zoomlevel
+    for (var ie=0;ie<sventities.length;ie++){
+        var sventity = sventities[ie]
+        var thisentity = model.getEntitySet().getByName(sventity)
+        if ((thisentity != null) && (thisentity.isHierarchicalEntityType() == false)) {
+            getMinMax(thisentity)
+            if (!((newzlevel > g_maxzl) || (newzlevel < g_minzl))){       
+                var tv0 = thisentity.getFirstViewForDPV(sv)
+                var cell0 = tv0.getCellView().getCell()
+                list.push(cell0)
+                list = addChildrenToList(sv, list, thisentity, newzlevel)
+            }
+        }
+    }
+    //Create new subview & cleanup (rename, set comment, show elements, hide attributes)
+    sv.getWorkSpace().setSelectionCells(list)
+    sv.createSubViewFromSelected()
+    var svlist = model.getDesign().getLogicalDesign().getListOfSubviews()
+    for (var vv=0;vv<svlist.length;vv++){
+        var newsv = svlist[vv]
+        if (newsv.isCurrentDPV()) {            
+            newsv.setName(sv+"_ZL"+newzlevel)
+            newsv.setComment("zoomlevel="+newzlevel+"\nparentview="+sv)
+            newsv.setShowLegend(sv.showLegend())
+            newsv.setShowLabels(sv.showLabels())
+            newsv.setShowRelAttributes(sv.showRelAttributes())
+            newsv.setShowGrid(sv.showGrid())
+            newsv.setShowPageGrid(sv.showPageGrid())
+            var newsventities = newsv.getTVShapes()
+            for (var ie=0;ie<newsventities.length;ie++){
+                var newsventity = newsventities[ie]
+                var newentity = model.getEntitySet().getByName(newsventity)
+                if (newentity != null) {
+                    if (newentity.getName() == newsventity){          
+                        var attrs = newentity.getAttributes().toArray()
+                        for (var ia=0;ia<attrs.length;ia++) {
+                            var attr = attrs[ia]
+                            getMinMax(attr)
+                            var hiddenElements = newsventity.getHiddenElements()
+                            var isOnSVEntity = true
+                            for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                                var hiddenElement = hiddenElements[ia2]
+                                if (attr == hiddenElement){
+                                    isOnSVEntity = false
+                                }
+                            }
+                            if (((newzlevel > g_maxzl) || (newzlevel < g_minzl)) && (isOnSVEntity)){
+                                if (!(newsventity.isHideElementsInCurrentOnly())){
+                                    newsventity.setHideElementsInCurrentOnly(true)
+                                }
+                                hiddenElements.add(attr)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    g_logger.logMessage("End function createsubview")
+    showhideelements()    
+}
+//createsubview start
+
+//showhideelements start
+function showhideelements(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function showhideelements")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    var sv = getsubview(null)
+    var sventities = sv.getTVShapes()
+    var svrelations = sv.getTVConnectors()
+    var svzlevel = getcommentvalue(sv,"zoomlevel")
+    var svpview = getcommentvalue(sv,"parentview")
+    var haspv = false
+    if ((svpview != null) && (svpview != "")){
+        haspv = true
+        var pv = getsubview(svpview)
+        var pvzlevel = getcommentvalue(pv,"zoomlevel")
+        var pventities = pv.getTVShapes()
+        var pvrelations = pv.getTVConnectors()    
+    }
+    var NoOfDifZL = 0
+    var NoOfDifPV = 0
+    var logPrefix = ""
+
+    //Zoomlevelcheck entity begin
+    logPrefix = "ZoomLevelCheck > Entity"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    var showAttributes = []
+    var hideAttributes = []    
+    for (var ie = 0; ie < entities.length; ie++){
+        var entity = entities[ie]
+        var isOnSV = false
+        for (var ie2=0;ie2<sventities.length;ie2++){
+            var sventity = sventities[ie2]
+            if (entity.getName() == sventity){
+                isOnSV = true               
+                var attrs = entity.getAttributes().toArray()
+                for (var ia=0;ia<attrs.length;ia++) {
+                    var attr = attrs[ia]
+                    getMinMax(attr)
+                    var isOnSVEntity = true
+                    var hiddenElements = sventity.getHiddenElements()
+                    for (var ia2=0;ia2<hiddenElements.length;ia2++) {
+                        var hiddenElement = hiddenElements[ia2]
+                        if (attr == hiddenElement){
+                            isOnSVEntity = false
+                            break
+                        }
+                    }
+                    if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)) {
+                        if (isOnSVEntity) {
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+attr)
+                            NoOfDifZL++
+                        }
+                    }else{
+                        if (!(isOnSVEntity)){
+                            showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)    
+                            NoOfDifZL++
+                        }
+                    }
+                }    
+                break                         
+            }
+        }
+        getMinMax(entity)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+entity)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+entity)
+                NoOfDifZL++
+            }
+        }
+    }
+    for (var i=0;i<showElements.length;i++){
+        g_logger.logMessage(showElements[i])
+    }
+    for (var i=0;i<hideElements.length;i++){
+        g_logger.logMessage(hideElements[i])
+    }
+    for (var i=0;i<showAttributes.length;i++){
+        g_logger.logMessage(showAttributes[i])
+    }
+    for (var i=0;i<hideAttributes.length;i++){
+        g_logger.logMessage(hideAttributes[i])
+    }
+    //Zoomlevelcheck entity end
+
+    //Zoomlevelcheck relation begin
+    logPrefix = "ZoomLevelCheck > Relation"
+    g_logger.logMessage(logPrefix)
+    var showElements = []
+    var hideElements = []
+    for (var ir = 0; ir < relations.length; ir++){
+        var relation = relations[ir]
+        var isOnSV = false
+        for (var ir2=0;ir2<svrelations.length;ir2++){
+            var svrelation = svrelations[ir2]
+            if (relation.getName() == svrelation){
+                isOnSV = true
+                break
+            }
+        }
+        getMinMax(relation)
+        if ((svzlevel > g_maxzl) || (svzlevel < g_minzl)){
+            if (isOnSV) {
+                hideElements.push(logPrefix+" > HIDE: "+relation)
+                NoOfDifZL++
+            }
+        }else{
+            if (!(isOnSV)){
+                showElements.push(logPrefix+" > SHOW: "+relation)
+                NoOfDifZL++
+            }
+        }
+    }   
+    for (var is=0;is<showElements.length;is++){
+        g_logger.logMessage(showElements[is])
+    }
+    for (var ih=0;ih<hideElements.length;ih++){
+        g_logger.logMessage(hideElements[ih])
+    }
+    //Zoomlevelcheck relation end
+
+    //Parentviewcompare entity begin
+    if (haspv){
+        logPrefix = "ParentViewCompare > Entity"
+        g_logger.logMessage(logPrefix)
+        var showAttributes = []
+        var hideAttributes = []
+        for (var ie = 0; ie < pventities.length; ie++){
+            var pventity = pventities[ie]
+            var entity = model.getEntitySet().getByName(pventity)
+            var thissventity = null
+            var isOnSV = false
+            for (var ie2=0;ie2<sventities.length;ie2++){
+                var sventity = sventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnSV = true
+                    thissventity = sventity
+                    break
+                }
+            }
+            if (!(isOnSV)){            
+                if (entity != null){
+                    getMinMax(entity)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+entity)
+                        NoOfDifPV++
+                    }
+                }
+            }else{
+                var pvhiddenElements = pventity.getHiddenElements()
+                var svhiddenElements = thissventity.getHiddenElements()
+                for (var ih=0;ih<pvhiddenElements.length;ih++){
+                    var pvhiddenElement = pvhiddenElements[ih]
+                    getMinMax(pvhiddenElement)
+                    if (!((pvzlevel > g_maxzl) || (pvzlevel < g_minzl))) {
+                        for (var ih2=0;ih2<svhiddenElements.length;ih2++){
+                            if (pvhiddenElements[ih] == svhiddenElements[ih2]){
+                                isOnSV = false
+                                break
+                            }
+                        }
+                        if (isOnSV){
+                            hideAttributes.push(logPrefix+" ("+entity+") > Attribute > HIDE: "+pvhiddenElements[ih])
+                            NoOfDifPV++
+                        } 
+                    }
+                }
+                if (entity != null){
+                    var attrs = entity.getAttributes().toArray()
+                    for (var ia=0;ia<attrs.length;ia++) {
+                        var attr = attrs[ia]
+                        getMinMax(attr)
+                        var isOnPV = true
+                        if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)) {
+                            for (var ih=0;ih<pvhiddenElements.length;ih++){
+                                if (pvhiddenElements[ih] == attr){
+                                    isOnPV = false
+                                    break
+                                }
+                            }
+                            if (isOnPV){
+                                isOnSV = true
+                                for (var ih=0;ih<svhiddenElements.length;ih++){
+                                    if (svhiddenElements[ih] == attr){
+                                        isOnSV = false
+                                        break
+                                    }
+                                }
+                                if (!(isOnSV)){
+                                    showAttributes.push(logPrefix+" ("+entity+") > Attribute > SHOW: "+attr)
+                                    NoOfDifPV++
+                                }
+                            }
+                        }
+                    }        
+                }
+            }
+        }
+        for (var ie = 0; ie < sventities.length; ie++){
+            var sventity = sventities[ie]
+            var isOnPV = false
+            for (var ie2=0;ie2<pventities.length;ie2++){
+                var pventity = pventities[ie2]
+                if (pventity.toString() == sventity.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+sventity) 
+                NoOfDifPV++
+            }
+        }
+        for (var i=0;i<showAttributes.length;i++){
+            g_logger.logMessage(showAttributes[i])
+        }
+        for (var i=0;i<hideAttributes.length;i++){
+            g_logger.logMessage(hideAttributes[i])
+        }
+        //Parentviewcompare entity end
+
+        //Parentviewcompare relation begin
+        logPrefix = "ParentViewCompare > Relation"
+        g_logger.logMessage(logPrefix)
+        for (var ir = 0; ir < pvrelations.length; ir++){
+            var pvrelation = pvrelations[ir]
+            var isOnSV = false
+            for (var ir2=0;ir2<svrelations.length;ir2++){
+                var svrelation = svrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnSV = true
+                    break
+                }
+            }
+            if (!(isOnSV)){
+                var relation = model.getRelationSet().getByName(pvrelation)
+                if (relation != null){
+                    getMinMax(relation)
+                    if ((pvzlevel > g_maxzl) || (pvzlevel < g_minzl)){
+                        g_logger.logMessage(logPrefix+" > SHOW: "+pvrelation)
+                        NoOfDifPV++
+                    }
+                }
+            }
+        }
+        for (var ir = 0; ir < svrelations.length; ir++){
+            var svrelation = svrelations[ir]
+            var isOnPV = false
+            for (var ir2=0;ir2<pvrelations.length;ir2++){
+                var pvrelation = pvrelations[ir2]
+                if (pvrelation.toString() == svrelation.toString()){
+                    isOnPV = true
+                    break
+                }
+            }
+            if (!(isOnPV)){
+                g_logger.logMessage(logPrefix+" > HIDE: "+svrelation)
+                NoOfDifPV++
+            }
+        }
+    }else{
+        g_logger.logMessage("CHECK: No comparison of the parent view due to missing ABC definition")
+    }
+    //Parentviewcompare relation end   
+    var finalmessage = "Showhideelements result:"
+    if (NoOfDifZL > 0){
+        finalmessage += "\n"+NoOfDifZL+" differences to zoomlevel definition found!"
+    }
+    if (NoOfDifPV > 0){
+        finalmessage += "\n"+NoOfDifPV+" differences to parentview definition found!"
+    }
+    if ((NoOfDifPV == 0) && (NoOfDifZL == 0)){
+        finalmessage += "\nNo differences found."
+    }else{
+        finalmessage += "\nPlease check log-messages."
+    }
+    message(finalmessage)
+    g_logger.logMessage("End function showhideelements")       
+} 
+//showhideelements end
+
+//initzoomlevel start
+function initzoomlevel(){
+    g_logger.logMessage("\n")
+    g_logger.logMessage("Start function initzoomlevel")
+    var entities = model.getEntitySet().toArray()
+    var relations = model.getRelationSet().toArray()
+    //setMinMax to entities
+    for (var ie=0;ie<entities.length;ie++){
+        var entity = entities[ie]
+        calcnewMinMax(entity)
+        //setMinMax to attributes of entity
+        var attrs = entity.getAttributes().toArray()
+        for (var ia=0;ia<attrs.length;ia++) {
+            var attr = attrs[ia]
+            calcnewMinMax(attr)
+        }
+    }
+    //setMinMax to relations
+    for (var ir=0;ir<relations.length;ir++){
+        var relation = relations[ir]
+        calcnewMinMax(relation)
+    }
+    g_logger.logMessage("End function initzoomlevel")
+}
+//initzoomlevel end]]>
 		</script>
 	</lib>
 
