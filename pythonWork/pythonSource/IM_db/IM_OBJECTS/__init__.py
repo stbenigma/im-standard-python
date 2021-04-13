@@ -1,5 +1,6 @@
 #__all__ = [""]
 from .baseobject import Baseobject,MultilangBaseobject,Boolean
+from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .datatype import Datatype
 from .project import Project
 from .interface import Interface
@@ -10,7 +11,6 @@ from .languagetext import Languagetext
 from .tablentimap import TablEntiMap
 from .document import Document, ModelelemDocu
 from .domain import Domain, DomaingroupMember, DefaultValue
-from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .diagram import Diagram,Diagramtype,MeltDiat
 from .attribute import Attribute
 from .key import Key,Keyelement

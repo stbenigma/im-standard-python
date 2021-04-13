@@ -6,13 +6,14 @@ from IM_DB import dbDML
 class Diagram(Baseobject):
     _tablename:str = 'diagrams'
     _prefix:str = 'diag'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.DIAG
     _columnlist:list = []
     _defaultorderby = "upper(diag_name)"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Diagram._columnlist) == 0): Diagram._columnlist = Baseobject.gettablecolumns(Diagram._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.DIAG
-                         , pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          , psrcname=psrcname
                          )
         self._diagwidth = None
@@ -75,6 +76,7 @@ class Diagramtype(Baseobject):
 
     _tablename:str = 'diagramtypes'
     _prefix:str = 'diat'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
 
@@ -98,6 +100,7 @@ class Diagramtype(Baseobject):
 class MeltDiat(Baseobject):
     _tablename:str = 'melt_diats'
     _prefix:str = 'medi'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self,pmeltid=None,pdiatid=None):

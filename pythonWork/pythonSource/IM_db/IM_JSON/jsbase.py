@@ -55,7 +55,6 @@ class JSModel:
         self._warningcnt = 0
         self._errors = []
         self._warnings = []
-        self._modellanguage = None
         self.languages = {}  # langid:iso2
         self._statusfilter = (None,'DEV','TEST','REL')
 
@@ -131,10 +130,7 @@ class JSModel:
         self._checked = pvalue
 
     def modellanguage(self):
-        return self._modellanguage
-
-    def setmodellanguage(self,pvalue):
-        self._modellanguage = pvalue
+        return self.jsmodel["model"]["language"]
 
     def incerrcnt(self):
         self._errorcnt += 1

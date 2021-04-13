@@ -5,6 +5,7 @@ class Project(Baseobject):
     LOGICALTYPE = "logical"
     _tablename:str ='projects'
     _prefix:str ='proj'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self):

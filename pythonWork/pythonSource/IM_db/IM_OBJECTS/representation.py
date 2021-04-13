@@ -9,6 +9,7 @@ from .attribute import Attribute
 class Elementrep(Baseobject):
     _tablename: str = 'elementreps'
     _prefix: str = 'eler'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self):
@@ -60,6 +61,7 @@ class Relationrep(Baseobject):
 
     _tablename: str = 'relationreps'
     _prefix: str = 'relr'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self):
@@ -83,6 +85,7 @@ class Linesegment(Baseobject):
 
     _tablename: str = 'linesegments'
     _prefix: str = 'lise'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
     _defaultorderby = "lise_seq"
 

@@ -6,6 +6,7 @@ class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
     _defaultorderby = "extr_id"
 

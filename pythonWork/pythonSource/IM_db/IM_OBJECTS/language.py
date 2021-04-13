@@ -5,6 +5,7 @@ from IM_DB import dbDML
 class Language(Baseobject):
     _tablename:str ='languages'
     _prefix:str ='lang'
+    _idcolname: str = _prefix + '_id'
     _columnlist = []
     _defaultorderby = "lang_iso_code2"
 

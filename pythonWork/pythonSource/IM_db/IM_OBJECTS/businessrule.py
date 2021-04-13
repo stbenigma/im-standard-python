@@ -1,5 +1,6 @@
 from .baseobject import Baseobject, MultilangBaseobject,Boolean
 from .languagetext import Languagetext
+from .modelelement import Modelelement,Modelelemtype
 
 class BusinessRule(MultilangBaseobject):
     BURU_TYPE_TRIGGER = 'TRIGGER'
@@ -12,6 +13,8 @@ class BusinessRule(MultilangBaseobject):
 
     _tablename: str = 'business_rules'
     _prefix: str = 'buru'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.BURU
     _columnlist: list = []
     _defaultorderby = "buru_name"
 
@@ -20,7 +23,6 @@ class BusinessRule(MultilangBaseobject):
         if (len(BusinessRule._columnlist) == 0): BusinessRule._columnlist = Baseobject.gettablecolumns(BusinessRule._tablename)
         super().__init__( multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
                                           'buru_errormsg': Languagetext.ATTR_TOOLTIP}
-                         , pmodelemtype=Modelelemtype.BURU
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -51,6 +53,7 @@ class BusinessRule(MultilangBaseobject):
 class BusinessruleElement(Baseobject):
     _tablename: str = 'businessrule_elements'
     _prefix: str = 'bure'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self, pburuid=None,pwriteable=False
@@ -92,7 +95,6 @@ class BusinessruleElement(Baseobject):
                                                     """, pmodeid,pmodeid,pmodeid,pmodeid,pmodeid,pmodeid))
         return bures
 # BusinessruleELement
-from .modelelement import Modelelement,Modelelemtype
 
 
 

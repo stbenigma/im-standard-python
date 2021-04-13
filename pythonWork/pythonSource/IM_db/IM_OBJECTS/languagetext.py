@@ -31,6 +31,7 @@ class Languagetext(Baseobject):
 
     _tablename:str ='lang_texts'
     _prefix:str ='lgtx'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self):
@@ -142,8 +143,8 @@ class Languagetext(Baseobject):
         lsql = """with lgtx as 
             (select lgtx_lang_id,lgtx_text
              from lang_texts
-            where lgtx_attrname = '{}'
-            and lgtx_mode_id = {}
+            where lgtx_attrname = ?
+            and lgtx_mode_id = ?
             )
         select lang_iso_code2,
             case when lgtx.lgtx_text is not NULL
@@ -153,8 +154,9 @@ class Languagetext(Baseobject):
         from languages
         left join lgtx as lgtx on lgtx.lgtx_lang_id = lang_id
         left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang_lang_id
-        order by lang_iso_code2""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
-        data = dbDML.select(lsql)
+        order by lang_iso_code2"""
+        values=(pattrname,pmodeid)
+        data = dbDML.select(lsql,*values)
         retval = {d[0]:d[1] for d in data}
         return retval
     #getlang_texts

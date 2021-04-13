@@ -388,7 +388,7 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler = Elementrep()
                 atteler.eler_mode_id = aid
                 atteler.eler_diag_id = pdiagid
-                atteler.eler_index = 0
+                atteler.eler_index = eler.eler_index
                 atteler.eler_position_x = attrx
                 atteler.eler_position_y = attry
                 atteler.eler_width = attrwidth
@@ -1143,7 +1143,7 @@ def do1Relation(fileName):
     rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logmessages.writelog(
-            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".
+            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Relation mit gelöschten Entities".
                 format(relaguid,sourceentiguid, targetentiguid))
         return
     # fi

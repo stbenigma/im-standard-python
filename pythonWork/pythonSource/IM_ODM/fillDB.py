@@ -4,22 +4,7 @@ from IM_DB import logmessages,dbErstelleTables
 import IM_db
 from IM_JSON import *
 
-
-
 # Main Programm
-
-def filldbmain(pinmemory=False):
-    if not pinmemory:
-        dbConnect.openDB(parameters.dbFilePath(), fks='OFF')
-        transferModel.loeschmodell()
-        dbConnect.myDbConn.close()
-        #print("filldbmain Constraints sollten auf ON stehen")
-        dbConnect.openDB(parameters.dbFilePath(), fks='ON')
-    #fi
-    transferModel.insertBaseData()
-    transferModel.transferODMModel();
-    if not pinmemory: dbConnect.myDbConn.close()
-# filldbmain
 
 
 def filldbmain2(callarg,createnewdb=False):

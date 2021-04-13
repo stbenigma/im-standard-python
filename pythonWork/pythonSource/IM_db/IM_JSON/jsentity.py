@@ -150,6 +150,23 @@ def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
 
+        """Synonyms have in ODM no guid. Delete them and fill new synonyms"""
+        inscnt = 0
+        delcnt = Synonym.delete(pwhere=("syno_enti_id=?",entiid))
+        for synoid, jsyno in jelem["synonyms"].items():
+            syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
+            syno.syno_id = jsguid2id(synoid)
+            try:
+                syno.insert()
+                inscnt += 1
+            except Exception as err:
+                presult.markdberror(perr=err, pelem=jsyno)
+                continue
+            replacelgtx(presult=presult, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+        # for
+        presult.insertcnt += max(0, (inscnt - delcnt))
+        presult.deletecnt += max(0, (delcnt - inscnt))
+
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])

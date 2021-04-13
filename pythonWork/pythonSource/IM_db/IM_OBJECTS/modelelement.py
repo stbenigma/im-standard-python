@@ -25,6 +25,7 @@ class Modelelemtype(Baseobject):
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
+    _idcolname: str = _prefix + '_id'
     _columnlist = []
 
     def __init__(self, pshortname=None, pname=None):
@@ -98,6 +99,7 @@ class Modelelement(Baseobject):
     """
     _tablename: str = 'modelelement'
     _prefix: str = 'mode'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self, pid=None,pmeltshortname=None):
@@ -241,6 +243,7 @@ class Modelelement(Baseobject):
 class ModelelementProperty(Baseobject):
     _tablename: str = 'modelemtype_properties'
     _prefix: str = 'metp'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
     _defaultorderby = "metp_id"
 

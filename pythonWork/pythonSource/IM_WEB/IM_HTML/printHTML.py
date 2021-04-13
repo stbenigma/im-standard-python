@@ -7,6 +7,8 @@ from IM_DB import parameters
 from IM_OBJECTS import *
 import html
 from IM_JSON import JSModel,jsguid2type
+from IM_HTML import entityenviron
+
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -847,7 +849,6 @@ def printentirela(penti,plang):
                                                , href(ref=elem['from-to']['enti'], anz=html.escape(otherentiname)))))
         # if
     # for
-    import entityenviron
     entienvir = entityenviron.createentienvironment(pentiid=penti['anker'],pjson=model,pmodellang=plang)
     fhtml.write(entityenviron.entienviro2svg(penviron=entienvir))
     fhtml.write(endtable(plabel=Languagetext.transl('Beziehungen'), plbc=lbc))

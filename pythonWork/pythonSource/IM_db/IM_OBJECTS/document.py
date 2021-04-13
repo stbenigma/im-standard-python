@@ -8,12 +8,13 @@ from .physicals import Storageformat
 class Document(Baseobject):
     _tablename:str = 'documents'
     _prefix:str = 'docu'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.DOCU
     _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
         if (len(Document._columnlist) == 0): Document._columnlist = Baseobject.gettablecolumns(Document._tablename)
-        super().__init__(pmodelemtype=Modelelemtype.DOCU
-                         ,pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          ,psrcname=psrcname
                          )
 
@@ -115,6 +116,7 @@ where  (   mode_rela_id = {}
 class ModelelemDocu(Baseobject):
     _tablename:str = 'mode_docu'
     _prefix:str = 'modo'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self,pmodeid = None,pdocuid=None):

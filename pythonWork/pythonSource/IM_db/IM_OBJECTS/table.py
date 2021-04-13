@@ -5,13 +5,14 @@ from IM_DB import dbDML
 class Table(Baseobject):
     _tablename:str = 'tables'
     _prefix:str = 'tabl'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.TABL
     _columnlist = []
     _defaultorderby = "tabl_name"
 
     def __init__(self,psrcname=None, psrcid=None):
         if (len(Table._columnlist) == 0): Table._columnlist = Baseobject.gettablecolumns(Table._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.TABL
-                         , pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          , psrcname=psrcname)
 
 

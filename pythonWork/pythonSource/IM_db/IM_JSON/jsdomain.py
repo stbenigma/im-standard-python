@@ -16,7 +16,7 @@ def domaingroupmembers(pdomaid):
 
 def domaingroupmembers2sql(presult:Mergeresult,pgrpdomaid,pelements):
     inscnt = 0
-    delcnt = DomaingroupMember.delete(pwhere=("dgrm_doma_id_group=?", pgrpdomaid))
+    delcnt = DomaingroupMember.delete(pwhere=("dgrm_doma_id_group = ?", pgrpdomaid))
     for jelem in pelements:
         dgrm =DomaingroupMember()
         dgrm.dgrm_name = jelem['name']

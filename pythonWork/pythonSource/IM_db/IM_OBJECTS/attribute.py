@@ -2,11 +2,14 @@ from .baseobject import Baseobject, MultilangBaseobject
 from .languagetext import Languagetext
 from .domain import Domain
 from .key import Key
-import IM_OBJECTS
+from .modelelement import Modelelemtype,Modelelement
 
 class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
     _prefix: str = 'attr'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.ATTR
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
     _defaultorderby : "attr_displ_seq"
 
@@ -17,7 +20,6 @@ class Attribute(MultilangBaseobject):
         super().__init__( multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
                                           'attr_descr': Languagetext.ATTR_COMMENT,
                                           'attr_tooltip': Languagetext.ATTR_TOOLTIP}
-                         , pmodelemtype=Modelelemtype.ATTR
                          , pscrid=psrcid
                          , psrcname=psrcname)
         self.attr_displ_name = pname
@@ -58,7 +60,6 @@ class Attribute(MultilangBaseobject):
                                     where kele_attr_id = ?)""", self.attr_id))
 
 # Attribute
-from .modelelement import Modelelement,Modelelemtype
 from .key import Keyelement
 
 

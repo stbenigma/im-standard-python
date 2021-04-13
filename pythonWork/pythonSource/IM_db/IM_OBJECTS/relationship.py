@@ -11,13 +11,14 @@ import IM_OBJECTS
 class Arc(Baseobject):
     _tablename: str = 'arcs'
     _prefix: str = 'arcs'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.ARCS
     _columnlist: list = []
     _defaultorderby = "arcs_id"
 
     def __init__(self, pname=None, pentiid=None, puc=None, pdc=None, psrcname=None, psrcid=None):
         if (len(Arc._columnlist) == 0): Arc._columnlist = Baseobject.gettablecolumns(Arc._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.ARCS
-                         , psrcname=psrcname
+        super().__init__( psrcname=psrcname
                          , pscrid=psrcid)
         self.arcs_name = pname
         self.arcs_enti_id = pentiid
@@ -94,6 +95,8 @@ class Relation(MultilangBaseobject):
 
     _tablename: str = 'relations'
     _prefix: str = 'rela'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.RELA
     _columnlist: list = []
     _defaultorderby = "rela_name"
 
@@ -101,7 +104,6 @@ class Relation(MultilangBaseobject):
         if (len(Relation._columnlist) == 0): Relation._columnlist = Baseobject.gettablecolumns(Relation._tablename)
         super().__init__( multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
                                         , 'rela_assoc_to_from': Languagetext.RELA_TEXT_TO}
-                         , pmodelemtype=Modelelemtype.RELA
                          , psrcname=psrcname
                          , pscrid=psrcid
                          )

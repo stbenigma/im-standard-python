@@ -60,13 +60,13 @@ def lookup(psql):
 
 # lookup
 
-def delete(ptableName, pwhere=None):
+def delete(psql, *args):
     cursor = dbConnect.myDbConn.cursor()
     try:
-        sql = "delete from {} where {}".format(ptableName, "1=1" if pwhere is None else pwhere[0])
-        rows = cursor.execute(sql, pwhere[1:] if len(pwhere) > 1 else None).rowcount
+        rows = cursor.execute(psql,args).rowcount
     except sqlite3.Error as e:
-        logmessages.writelog(sql)
+        logmessages.writelog(psql)
+        logmessages.writelog(args)
         logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
     dbConnect.myDbConn.commit()

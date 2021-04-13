@@ -8,6 +8,7 @@ from .modelelement import Modelelemtype
 class Userdefprop(Baseobject):
     _tablename: str = 'user_defined_properties'
     _prefix: str = 'udpr'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self,ptheme=None,pgroup=None,pname=None):
@@ -91,6 +92,7 @@ class Userdefprop(Baseobject):
 class Userdefpropvalue(Baseobject):
     _tablename: str = 'udp_values'
     _prefix: str = 'udpv'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self,pmodeid=None,pudprid =None,pvalue=None):
@@ -104,9 +106,9 @@ class Userdefpropvalue(Baseobject):
 
     @staticmethod
     def removeemptyUDP(pempties):
-        emptylist = ','.join("'{}'".format(e) for e in pempties)
-        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value  in (?)", emptylist)
-                   )
+
+        pempties
+        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value in ({})".format(','.join('?' for e in pempties) ), *pempties))
         return
 
     @staticmethod

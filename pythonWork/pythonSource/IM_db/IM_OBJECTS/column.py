@@ -13,13 +13,14 @@ class Column(Baseobject):
     EXTIDUDP: str = 'EXT_ATTR_ID'
     _tablename: str = 'columns'
     _prefix: str = 'colu'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.COLU
     _columnlist = []
     _defaultorderby = "colu_column_name"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Column._columnlist) == 0): Column._columnlist = Baseobject.gettablecolumns(Column._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.COLU
-                         , pscrid=psrcid
+        super().__init__( pscrid=psrcid
                          , psrcname=psrcname)
 
 
@@ -140,6 +141,7 @@ class ColAttrMap(Baseobject):
 
     _tablename: str = 'colu_attr_map'
     _prefix: str = 'coam'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self):

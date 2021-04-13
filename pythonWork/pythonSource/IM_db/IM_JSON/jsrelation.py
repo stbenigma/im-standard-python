@@ -63,7 +63,8 @@ def relation2js(prela):
                                         ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys])
                                       , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                        ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm
-                                        , prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getdevstatus()                                       ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
+                                        , prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getdevstatus()
+                                        ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
                                        ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=prela.rela_id)]\
                                         +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=prela.rela_id)]
                                        ,tabreflist(plist={

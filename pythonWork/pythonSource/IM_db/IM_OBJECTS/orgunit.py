@@ -8,12 +8,13 @@ from .physicals import Storageformat
 class OragnisationalUnit(Baseobject):
     _tablename:str = 'organisationalunits'
     _prefix:str = 'orgu'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.ORGU
     _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
         if (len(OragnisationalUnit._columnlist) == 0): OragnisationalUnit._columnlist = Baseobject.gettablecolumns(OragnisationalUnit._tablename)
-        super().__init__(pmodelemtype=Modelelemtype.ORGU
-                         ,pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          ,psrcname=psrcname
                          )
 
@@ -93,6 +94,7 @@ class OragnisationalUnit(Baseobject):
 class ModelelemOrgu(Baseobject):
     _tablename:str = 'mode_orgu'
     _prefix:str = 'moou'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self,pmodeid=None,porguid = None):

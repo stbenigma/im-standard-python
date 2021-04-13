@@ -8,6 +8,7 @@ from .relationship import Relation
 class TablEntiMap(Baseobject):
     _tablename:str = 'tabl_enti_maps'
     _prefix:str = 'tema'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self):

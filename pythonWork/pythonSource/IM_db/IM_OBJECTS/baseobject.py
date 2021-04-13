@@ -42,6 +42,8 @@ class ForeignKeyException(Exception):
 
 
 class Baseobject:
+    _modelemtype = None #if not overwritten, the object is no Modelelement
+
     defaultCreator:str= "sys"
     def fullcolname(self, col):
         return self._prefix+'_'+col
@@ -60,13 +62,10 @@ class Baseobject:
         if col in self._columnlist:
             if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
 
-    def __init__(self, idcolname=None
-                 , psrcname=None, pscrid=None, pmodelemtype=None):
+    def __init__(self, psrcname=None, pscrid=None):
         if (len(self.__class__._columnlist) == 0): self.__class__._columnlist = Baseobject.gettablecolumns(self._tablename)
-        self._idcolname: str = self.fullcolname('id') if idcolname is None else idcolname
         self.__srcname = psrcname
         self.__srcid = pscrid
-        self.__modelemtype = pmodelemtype
         self.__emptyclass()
 
     def __emptyclass(self):
@@ -121,8 +120,8 @@ class Baseobject:
         if self.colvalue(self.fullcolname('dm')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dm')), datetime.today())
         if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreator)
         """
-        if self.__modelemtype is not None:
-            locid = Modelelement(pid=self.getid(),pmeltshortname=self.__modelemtype).insert()
+        if self._modelemtype is not None:
+            locid = Modelelement(pid=self.getid(),pmeltshortname=self._modelemtype).insert()
             self.setid(locid)
 
         lsql = """insert into {} ({}) values ({})
@@ -136,7 +135,7 @@ class Baseobject:
                 try:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
-                    if self.__modelemtype is not None:
+                    if self._modelemtype is not None:
                         Modelelement.delete(pwhere=("mode_id = ?", locid))
                 except:
                     print ("Loggin-Error in Baseobject.insert():")
@@ -166,11 +165,12 @@ class Baseobject:
         updcollist = self._columnlist.copy()
         updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
         lsql = """update {} """.format(self._tablename)
-        lsql += """\nset {}""".format('\n,'.join("""{} = {}""".format(col,dbDML.dbval(self.colvalue(pcolname=col))) for col in updcollist))
+        lsql += """\nset {}""".format('\n,'.join(col +" = ?" for col in updcollist))
         lsql += """\nwhere {} = {}""".format(self._idcolname,dbDML.dbval(self.getid()))
+        values = [self.colvalue(pcolname=col) for col in updcollist]
         #print (lsql)
         try:
-            id = dbDML.exec(lsql)
+            id = dbDML.exec(lsql,*values)
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 try:
@@ -261,7 +261,7 @@ class Baseobject:
         return self._prefix
 
     def _getmode(self):
-        if self.__modelemtype is None: return None
+        if self._modelemtype is None: return None
         mode = Modelelement().getbyid(self.getid())
         return mode
 
@@ -278,9 +278,9 @@ class Baseobject:
         return None if mode is None else mode.mode_dev_status
 
     def getbyextref(self, psrcid, psrcname):
-        if self.__modelemtype is None: return None
+        if self._modelemtype is None: return None
         mode = Modelelement.getmodebyextref(psrcname=psrcname, psrcid=psrcid)
-        if mode is None or mode.mode_type != self.__modelemtype: return None
+        if mode is None or mode.mode_type != self._modelemtype: return None
         return self.getbyid(mode.mode_id)
 
     def getIDbyextref(self, psrcid, psrcname):
@@ -293,8 +293,8 @@ class Baseobject:
     def getIDbyODMref(self, psrcid):
         return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
 
-    def getsprachvals(self):
-        raise NotImplementedError("Must override getsprachvals")
+#    def getsprachvals(self):
+#        raise NotImplementedError("Must override getsprachvals")
 
     def getukvaluepairs(self):
         uklist = dbDDL.getuklist(ptablename=self._tablename)
@@ -339,20 +339,35 @@ class Baseobject:
                 """obj ist vom Typ des Subtypes"""
                 """ist in MultilangBaseobject definiert"""
                 obj.getsprachvals()
-            except Exception as err:
+            except AttributeError as err:
                 pass
+            except Exception as err:
+                raise err
             retval.append(obj)
         return retval
     # select
 
     @classmethod
     def delete(cls,pwhere=None):
+        arguments = ()
+        if type(pwhere) is tuple and len(pwhere) > 1:
+            arguments = (*arguments, *pwhere[1:])
+
         retval = None
         try:
-            retval = dbDML.delete(cls._tablename,pwhere=pwhere)
+            if cls._modelemtype is not None:
+                subselect = "select {} from {}".format(cls._idcolname, cls._tablename)
+                values = []
+                if pwhere is not None:
+                    subselect += " where {}".format(pwhere[0])
+                Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
+            #fi
+            lsql = """delete from {} {}""" \
+                .format(cls._tablename
+                        , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0]))
+            retval = dbDML.delete(lsql,*arguments)
         except Exception as err:
-            if (not err.__str__().startswith("no such table")):
-                raise err
+            raise err
         return retval
 
     @classmethod
@@ -363,10 +378,8 @@ class Baseobject:
 # Baseobject
 
 class MultilangBaseobject(Baseobject):
-    def __init__(self, multilangcols
-                 , idcolname=None, psrcname=None, pscrid=None, pmodelemtype=None):
-        super().__init__(idcolname=idcolname
-                         , pmodelemtype=pmodelemtype, psrcname=psrcname, pscrid=pscrid
+    def __init__(self, multilangcols, psrcname=None, pscrid=None):
+        super().__init__(psrcname=psrcname, pscrid=pscrid
                          )
         self._multilangcols = multilangcols
         return

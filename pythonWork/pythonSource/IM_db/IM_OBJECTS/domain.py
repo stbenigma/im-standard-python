@@ -34,6 +34,8 @@ class Domain(MultilangBaseobject):
     TEXT: str = 'TEXT'
     _tablename: str = 'domains'
     _prefix: str = 'doma'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype=Modelelemtype.DOMA
     _columnlist: list = []
     _defaultorderby = "doma_name"
     __unknowndom = None
@@ -41,7 +43,6 @@ class Domain(MultilangBaseobject):
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Domain._columnlist) == 0): Domain._columnlist = Baseobject.gettablecolumns(Domain._tablename)
         super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
-                         , pmodelemtype=Modelelemtype.DOMA
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
@@ -242,13 +243,14 @@ class Domain(MultilangBaseobject):
 class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'
     _prefix: str = 'dgrm'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.DGRM
     _columnlist: list = []
     _defaultorderby = "dgrm_name"
 
     def __init__(self,psrcname=None,psrcid=None ):
         if (len(DomaingroupMember._columnlist) == 0): DomaingroupMember._columnlist = Baseobject.gettablecolumns(DomaingroupMember._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.DGRM
-                         , pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          , psrcname=psrcname
                          )
 
@@ -273,6 +275,7 @@ class DomaingroupMember(Baseobject):
 class DefaultValue(Baseobject):
     _tablename: str = 'default_values'
     _prefix: str = 'deva'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
     _defaultorderby = "deva_sort_order"
 

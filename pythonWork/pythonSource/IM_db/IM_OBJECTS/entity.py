@@ -1,16 +1,17 @@
-from .key import Key
 from IM_DB import dbDML,dbDDL
 from datetime import date
 from .baseobject import Baseobject,MultilangBaseobject
 from .languagetext import Languagetext
 from .language import Language
-import IM_OBJECTS
+from .modelelement import Modelelemtype,Modelelement
 from .userdefprop import Userdefpropvalue,Userdefprop
+import IM_OBJECTS
 
 
 class EntityCategory(Baseobject):
     _tablename:str = 'entity_categories'
     _prefix:str = 'enca'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
     _defaultorderby = None
 
@@ -30,6 +31,8 @@ class EntityCategory(Baseobject):
 class Entity(MultilangBaseobject):
     _tablename:str = 'entities'
     _prefix:str = 'enti'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.ENTI
     _columnlist:list = []
     _defaultorderby = "enti_name"
 
@@ -37,7 +40,6 @@ class Entity(MultilangBaseobject):
         super().__init__(multilangcols = {'enti_name':Languagetext.ENTI_NAME
                                           ,'enti_descr':Languagetext.ENTI_COMMENT
                                           ,'enti_tooltip': Languagetext.ENTI_TOOLTIP}
-                         , pmodelemtype=Modelelemtype.ENTI
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
@@ -172,12 +174,13 @@ class Entity(MultilangBaseobject):
 class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'
     _prefix: str = 'syno'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.SYNO
     _columnlist: list = []
 ##    _multilangcols: list = {'syno_name': 'ENTI_SYNONYM'}
 
     def __init__(self,pname=None,pentiid=None):
-        super().__init__(multilangcols = {'syno_name': Languagetext.ENTI_SYNONYM}
-                         ,pmodelemtype=Modelelemtype.SYNO)
+        super().__init__(multilangcols = {'syno_name': Languagetext.ENTI_SYNONYM})
         self.syno_name = pname
         self.syno_enti_id = pentiid
         self.syno_uc = 'SYS'
@@ -219,9 +222,8 @@ class Synonym(MultilangBaseobject):
                     lgtx.lgtx_um = udpv.udpv_um
                     lgtx.lgtx_dm = udpv.udpv_dm
                     lgtx.insert()
-
+from .key import Key
 from .attribute import Attribute
-from .modelelement import Modelelemtype,Modelelement
 
 
 

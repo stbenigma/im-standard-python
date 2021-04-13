@@ -7,7 +7,6 @@ from IM_ODM import transferModel
 
 errcnt: int = 0
 warncnt: int = 0
-modellang: str = None
 
 anker = lambda n, i: None if i is None else n + str(i)
 ankerid = lambda a: None if a is None else a[4:]

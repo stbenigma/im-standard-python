@@ -4,13 +4,14 @@ from .modelelement import Modelelemtype
 class Interface(Baseobject):
     _tablename:str = 'interfaces'
     _prefix:str = 'intf'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.INTF
     _columnlist =  []
     _defaultorderby = 'intf_name'
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Interface._columnlist) == 0): Interface._columnlist = Baseobject.gettablecolumns(Interface._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.INTF
-                         , pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          , psrcname=psrcname)
 
     def getname(self,plang=None):

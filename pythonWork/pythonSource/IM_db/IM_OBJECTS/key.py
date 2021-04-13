@@ -4,13 +4,14 @@ from .modelelement import Modelelemtype
 class Key(Baseobject):
     _tablename: str = 'keys'
     _prefix: str = 'keys'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.KEYS
     _columnlist: list = []
     _defaultorderby = "keys_id"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Key._columnlist) == 0): Key._columnlist = Baseobject.gettablecolumns(Key._tablename)
-        super().__init__( pmodelemtype=Modelelemtype.KEYS
-                         , psrcname=psrcname
+        super().__init__(psrcname=psrcname
                          , pscrid=psrcid)
 
 
@@ -30,6 +31,7 @@ class Key(Baseobject):
 class Keyelement(Baseobject):
     _tablename: str = 'key_elements'
     _prefix: str = 'kele'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
     _defaultorderby = "kele_id"
 
