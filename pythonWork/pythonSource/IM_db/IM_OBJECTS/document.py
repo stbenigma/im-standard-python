@@ -96,6 +96,16 @@ class Document(Baseobject):
         return cls.select(porderby='docu_name')
     #doculist
 
+    @classmethod
+    def geticons(cls,pentiid):
+        iconmasterdocumentname = "ENTITY-ICONS"
+        """reads subdocuments of documents attached to an entity
+        """
+        return cls.select(pwhere=("""docu_id in (select modo_docu_id from mode_docu 
+                                                    where modo_mode_id = ?)
+                                    and docu_docu_id in (select docu_id from documents 
+                                                        where docu_name = ?)""",pentiid,iconmasterdocumentname))
+
     """def xxdocureferenced(prelaid=None,penti=None,pwebattr=None):
     data = dbDML.select("
     select child.docu_id, child.docu_NAME,child.docu_stfo_id,child.docu_REFERENZ

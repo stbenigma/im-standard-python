@@ -1,6 +1,7 @@
 from IM_JSON import *
 from IM_OBJECTS import *
 from mystring import nvl
+import re
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
@@ -20,6 +21,37 @@ def synonyms (psynos:dict=None):
     else:
         return {s:multilangtext(v) for s,v in psynos.items()}
 
+def entityicon(penti:Entity = None):
+    """ None = emptymodel"""
+    """    "icon": {
+               "type": "", 
+               "reference": ""
+            },
+    """
+    urlregex = re.compile("((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)")
+    iconnoregexp = re.compile(r"^[0-9]{2,5}$")
+
+    icontype,iconref = None,None
+    retval = lambda t,r : {"type" : t, "reference": r}
+    if penti is None:
+        return retval(icontype,iconref)
+    else:
+        docus = Document.geticons(penti.enti_id)
+        """if there is more than 1, choose the first one"""
+        if len(docus) > 0:
+            ref = docus[0].docu_reference
+            if ref is not None and re.match(iconnoregexp,ref):
+                icontype = 'FYAYCICON'
+                iconref = ref
+            elif ref is not None and re.match(urlregex,docus[0].docu_reference):
+                icontype = 'URL'
+                iconref = ref
+            else:
+                icontype ='FILE'
+                iconref = ref if ref is not None else docus[0].docu_name
+            #fi
+        return retval(icontype,iconref)
+
 def entities2js(pemptymodel):
     model = ['name', 'shortname'
         , 'descr', 'tooltip'
@@ -27,6 +59,7 @@ def entities2js(pemptymodel):
         , 'subtypellevel+'
         , 'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        , 'icon'
         , 'synonyms', 'sourceref'
         , 'supertypes+','roles+'
         , 'subtypes+', 'attributes+'
@@ -42,6 +75,7 @@ def entities2js(pemptymodel):
                                        ,''
                                        ,'','','',''
                                         ,0,4,'DEV'
+                                        ,entityicon()
                                        ,synonyms(None),sourceref(None)
                                        ,reflist(None),reflist(None)
                                        ,reflist(None),reflist(None)
@@ -61,6 +95,7 @@ def entities2js(pemptymodel):
                     , e.getsubtypelevel()
                     , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
                     , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
+                    ,entityicon(penti=e)
                     , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in e.getsynonyms()})
                          ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
                     ,  reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])

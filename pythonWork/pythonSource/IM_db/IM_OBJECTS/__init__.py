@@ -1,5 +1,5 @@
 #__all__ = [""]
-from .baseobject import Baseobject,MultilangBaseobject,Boolean
+from .baseobject import Baseobject,MultilangBaseobject,Boolean,UniqueKeyException,ForeignKeyException
 from .modelelement import Modelelemtype,Modelelement,ModelelementProperty
 from .datatype import Datatype
 from .project import Project

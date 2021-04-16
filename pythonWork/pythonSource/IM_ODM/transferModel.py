@@ -8,6 +8,7 @@ from IM_OBJECTS import *
 from IM_ODM import transferRelational
 from mystring import nvl
 
+
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
@@ -1153,15 +1154,18 @@ def do1Relation(fileName):
         try:
             rela.insert()
             break
-        except Exception as e:
+        except UniqueKeyException as e:
+            #ODM can have duplicate names for exception. Add digit to name
             logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
             logmessages.writelog(e.__str__())
             #relations can have duplicate names (merging in github)
-            if re.match(r"UNIQUE constraint failed: RELATIONS.RELA_NAME",e.__str__()):
-                rela.rela_name += "v{}".format(str(i))
-                i += 1
-            else: raise Exception("Key-error in relations: see logfile")
+            rela.rela_name += "v{}".format(str(i))
+            i += 1
             if (i == 10): raise Exception("Key-error in relations: see logfile")
+        except Exception as e:
+            logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
+            logmessages.writelog(e.__str__())
+            raise e
         #try
     #while
     Userdefpropvalue.fillallvalues(prelaid=rela.rela_id)
