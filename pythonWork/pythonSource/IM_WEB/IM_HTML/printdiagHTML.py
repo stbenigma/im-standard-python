@@ -366,9 +366,9 @@ def printelements(pdiag, pdiaganker,plang):
                                                , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))))
 
         printHTML.fhtml.write(entiende)
-        filename = printHTML.iconfilename(getelement(eler['element'])['name'][Language.getdefaultlang().lang_iso_code2])
-        if filename != "":
-            printHTML.fhtml.write(imagehtml.format(filename
+        iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']))
+        if iconsrc != "":
+            printHTML.fhtml.write(imagehtml.format(iconsrc
                                                ,eler['pos_x']+eler['width']-ICONSIZE/2,
                                                 eler['pos_y'] - ICONSIZE/2))
 
@@ -390,6 +390,8 @@ def printelements(pdiag, pdiaganker,plang):
 def putrefinsvg(ptext,pdiagid,plang):
     imagehtml = """<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
                 .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
+    deflang = printHTML.model.jsmodel["model"]["language"]
+
     retval = ptext
     for entiid,entival in printHTML.model.getelements('ENTI').items():
         try:
@@ -418,7 +420,7 @@ def putrefinsvg(ptext,pdiagid,plang):
             newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang])),
                              r'<a href="#{}">\1</a>'.format(re.escape(attrid)), newenti)
         #add image if exists
-        filename = printHTML.iconfilename(entival['name'][Language.getdefaultlang().lang_iso_code2])
+        filename = printHTML.iconsrc(pjsenti=entival)
         if filename != "":
             newenti += '\n<image href="{}" width="40px" height="40px" class ="entity-image" x="{}px" y="{}px"></image>' \
                         .format(filename,xstart + xwidth - (ICONSIZE/2), ystart - (ICONSIZE/2))

@@ -102,6 +102,9 @@ class JSModel:
         except:
             return plabel
 
+    def getdefaultlang(self):
+        return self.jsmodel["model"]["language"]
+
     """return the dict of an elementtype"""
     def getelements(self,pelemtype):
         try:

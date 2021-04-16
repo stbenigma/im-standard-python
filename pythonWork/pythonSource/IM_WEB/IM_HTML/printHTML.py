@@ -529,7 +529,7 @@ def printcontentend(plbc):
     fhtml.write(contentelementfoot.format(plbc, Languagetext.transl('Mehr')))
 # printcontentend
 
-def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster="", piconfilename=""):
+def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster="", piconsrc=""):
     contentelementhead = """        <div class="entity" id="{}">
             <div class="describtion">
 				 <span> 
@@ -546,7 +546,7 @@ def printcontent(ptype, pname, panker, plbc, pdescr="", pmaster="", piconfilenam
 # """
 
     fhtml.write(contentelementhead.format(panker, ptype, html.escape(pname )
-                                          , piconfilename
+                                          , piconsrc
                                           , pmaster
                                           , pdescr.replace('\n', '').replace('\r', '').replace("'",'&#39;')
                                           , plbc))
@@ -964,10 +964,28 @@ def hasiconfiles():
                             if val["name"]== parameters.iconmasterdocumentname()]
     return len(iconmaster) == 1
 
-def iconfilename(pfilename):
-    lfilename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', pfilename.lower())
+def iconsrc(pjsenti):
+    global model
+    icon = pjsenti["icon"]
+    if icon['type']== 'FYAYCICON':
+        filename = ''  #to be resolved
+    elif icon['type']== 'URL':
+        return icon['reference']
+    elif icon['type']== 'FILE':
+        filename = icon['reference']
+    else:
+        """look for entityname in defaultlanguage"""
+        filename = pjsenti["name"][model.getdefaultlang()]
+        filename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', filename.lower())
+    #fi
+    #filename found search in image
+    if os.path.isfile(filename):
+        #absolute path, return it
+        return filename
+
+    #search for filename with extensions in image directory
     for ext in ('png','jpg','jpeg','gif'):
-        fullfilename = "{}/{}.{}".format('image',lfilename,ext).lower()
+        fullfilename = "{}/{}.{}".format('image',filename,ext).lower()
         if os.path.isfile(parameters.webDirec()+ fullfilename):
             return fullfilename
     return ''
@@ -979,7 +997,6 @@ def printentienvironment(penti, plang):
 def printcontententi():
     global model
     lang = Languagetext.reportLang()
-    deflang = Language.getdefaultlang().lang_iso_code2
     printcontentstart('entities')
     infoheaders = (Languagetext.transl('Synonyme'), Languagetext.transl('Superentitäten')
                    , Languagetext.transl('Subentitäten'), Languagetext.transl('Rollen')
@@ -995,7 +1012,7 @@ def printcontententi():
         printcontent(ptype=Languagetext.transl('Entität')
                      , panker=enti['anker']
                      , pname=elem['name'][lang]
-                     , piconfilename=iconfilename(pfilename=elem['name'][deflang])
+                     , piconsrc=iconsrc(pjsenti=elem)
                      , pdescr=lf2htmlbr(parameters.nvl(elem['descr'][lang]))
                      , plbc=lbc)
         """print entity Info"""

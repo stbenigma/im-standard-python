@@ -1,15 +1,3 @@
-class base():
-    classvar:str = "BASE"
-    @classmethod
-    def clsvar(cls):
-        return cls.classvar
-
-class sup1(base):
-    classvar:str = "SUP1"
-
-class sup2(base):
-    pass
-
-print (base.clsvar())
-print (sup1.clsvar())
-print (sup2.clsvar())
+import re
+iconnoregexp = re.compile(r"^[0-9]{2,5}$")
+print (re.match(iconnoregexp, None))
