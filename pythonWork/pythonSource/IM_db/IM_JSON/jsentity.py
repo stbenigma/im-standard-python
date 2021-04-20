@@ -90,29 +90,29 @@ def entities2js(pemptymodel):
         entis = {jsguid(Modelelemtype.ENTI, e.enti_id):
                      fillmodel(pmodel=model,
                             pentries=[multilangtext(ptext=e.enti_name_l), nvl(e.enti_short_name)
-                    , multilangtext(e.enti_descr_l),multilangtext(e.enti_tooltip_l)
-                    , e.enti_exp_tuplecnt,e.enti_prefix
-                    , e.getsubtypelevel()
-                    , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
-                    , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
-                    ,entityicon(penti=e)
-                    , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in e.getsynonyms()})
-                         ,sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
-                    ,  reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
-                         ,reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)])
-                    , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISASUBTYPE)])
-                         , reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()])
-                    , reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)])
-                         , reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere=("keys_enti_id = ?", e.enti_id))])
-                    , reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere=("arcs_enti_id = ?",e.enti_id))])
-                         , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]\
-                            +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
-                         , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
-                    , tabreflist(plist={
-                                jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id) for t in
-                                                                TablEntiMap.gettabllist(pentiid=e.enti_id,
-                                                                                         pintfid=s.getid())]
-                                for s in Interface.getmapped(pentiid=e.enti_id)})
+                        , multilangtext(e.enti_descr_l),multilangtext(e.enti_tooltip_l)
+                        , e.enti_exp_tuplecnt,e.enti_prefix
+                        , e.getsubtypelevel()
+                        , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
+                        , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
+                        , entityicon(penti=e)
+                        , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in e.getsynonyms()})
+                        , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
+                        , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
+                        , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISAROLE)])
+                        , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getchildren(ptype=Relation.ISASUBTYPE)])
+                        , reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()])
+                        , reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in Relation.getbyentity(pentiid=e.enti_id)])
+                        , reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in Key.select(pwhere=("keys_enti_id = ?", e.enti_id))])
+                        , reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in Arc.select(pwhere=("arcs_enti_id = ?",e.enti_id))])
+                             , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)]\
+                                +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=e.enti_id)]
+                        , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
+                        , tabreflist(plist={
+                                    jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id) for t in
+                                                                    TablEntiMap.gettabllist(pentiid=e.enti_id,
+                                                                                             pintfid=s.getid())]
+                                    for s in Interface.getmapped(pentiid=e.enti_id)})
                         ,reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=e.enti_id)])
                             ]
                         ) for e in Entity.select()
@@ -143,42 +143,7 @@ def js2enti(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
 def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
                    pwithextsrcref=pwithextsrcref)
-    # for jid, jelem in pmodel.jsmodel['entities'].items():
-    #     enti = js2enti(pkey=jsjid,pelem=jelem)
-    #     try:
-    #         entiid = enti.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-    #         continue
-    #
-    #     minzoomlevel = pelem['minzoomlevel']
-    #     maxzoomlevel = pelem['maxzoomlevel']
-    #     devstatus = pelem['devstatus']
-    #     Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
-    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
-    #     inslgtx(pmodel=pmodel, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
-    #     inssourceref(pmodel=pmodel, pmodeid=entiid, psources=jelem["sourceref"])
-    #     udpvs2sql(pmodel=pmodel, pmodeid=jsguid2id(jid), pudps=jelem["userdefprops"])
-    #
-    #     """      "ENTI109": {
-    #      "synonyms":
-    #         {
-    #            "de": "Jemand",
-    #            "en": "Contact person",
-    #         },..
-    #     """
-    #     for synoid, jsyno in jelem["synonyms"].items():
-    #         syno = Synonym(pname=jsyno[pmodel.modellanguage()], pentiid=entiid)
-    #         syno.syno_id = jsguid2id(synoid)
-    #         try:
-    #             syno.insert()
-    #         except Exception as err:
-    #             pmodel.markerror(pmsg=err, pelemstr=jsyno)
-    #             continue
-    #         inslgtx(pmodel=pmodel, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
-    #     # for
-    # # for
+
     for jid, jelem in podmjson.getelements(Modelelemtype.ENTI).items():
         entiid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']

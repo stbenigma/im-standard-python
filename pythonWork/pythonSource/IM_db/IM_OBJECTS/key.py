@@ -23,9 +23,7 @@ class Key(Baseobject):
         else:
             which = ''
         #fi
-        return  Keyelement.select(pwhere=('kele_keys_id = ?', str(self.getid()) + which))
-
-
+        return  Keyelement.select(pwhere=('kele_keys_id = ?' + which, str(self.getid())))
 # Key
 
 class Keyelement(Baseobject):

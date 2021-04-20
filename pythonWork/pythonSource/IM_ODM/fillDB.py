@@ -21,15 +21,19 @@ def filldbmain(callarg, createnewdb=False):
     odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
-    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
+    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName()+"_loadedfromodm")
     if createnewdb:
-        pass # new db does not need merge
+        pass # new db does not need merge print json
     else:
         """merge created DB into existing one"""
         dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
         mergedbs.mergeodm2db(podmjson=odmjson)
+        """generate json from merged DB"""
+        odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         dbConnect.closeDB()
     #fi
+    #print current db as json file
+    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
     return
 
 def main(p_param1):

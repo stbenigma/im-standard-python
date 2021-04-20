@@ -47,14 +47,12 @@ class Language(Baseobject):
         else: return ldeflang.lang_iso_code2
     #liesdeflangiso2
 
-    @staticmethod
-    def deleteunused():
-        dbDML.exec("""delete from languages
-                        where not exists(select 1 from LANG_TEXTS
-                                       where lgtx_lang_id = lang_id
-                                       )
-                    """)
-    #deleteunsed
+    @classmethod
+    def deleteunused(cls):
+        return cls.delete(pwhere="""not exists(select 1 from LANG_TEXTS
+                            where lgtx_lang_id = lang_id
+                            )""")
+    #deleteunused
 
     @staticmethod
     def spraidlookup(piso):

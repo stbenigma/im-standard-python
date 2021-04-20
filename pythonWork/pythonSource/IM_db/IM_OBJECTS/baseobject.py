@@ -331,6 +331,7 @@ class Baseobject:
         arguments = ()
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])
+
         data = dbDML.execute(lsql, *arguments)
         retval = []
         for d in data:

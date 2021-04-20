@@ -24,8 +24,6 @@ def langs2js(pemptymodel):
         #      }
     # fi
     return langs
-
-
 # languages
 
 def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
@@ -48,9 +46,14 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
 
 def insertlgtx(pmodeid, pattr, ptexts):
     inscnt = 0
+    baselang = Language.liesdeflangiso2()
+    replaceprefix = "*{}* ".format(baselang)
     for lang in Language.select():
         iso2 = lang.lang_iso_code2
         if iso2 in ptexts.keys():
+            if (iso2 != baselang\
+                    and (ptexts[iso2] is None or ptexts[iso2].startswith(replaceprefix))):
+                continue  #insert only genuine texts, not replacement texts
             lgtx = Languagetext()
             lgtx.lgtx_attrname = pattr
             lgtx.lgtx_text = ptexts[iso2]
@@ -76,7 +79,7 @@ def js2lang(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     lang.lang_iso_code3 = pelem['iso3']
     lang.lang_iso_name = pelem['name']
     lang.lang_is_base_lang = Boolean.bool2str(pelem['modellanguage'])
-    lang.lang_is_text_lang = Boolean.FALSE
+    lang.lang_is_text_lang = Boolean.TRUE
     return lang
 
 def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
@@ -131,5 +134,4 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
         presult.markdberror(perr=err, pelem=pelem)
 
     return
-
 # langs2sql

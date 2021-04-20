@@ -40,11 +40,6 @@ class Languagetext(Baseobject):
 
 
     @staticmethod
-    def sptxistleer():
-        data = dbDML.select("""select count(*) from lang_texts""")
-        return data[0][0] == 0
-
-    @staticmethod
     def filldefaulttext(plang):
         """füllt sämtliche übersetzten Elemente in die lang_texts der Defaultsprache ein.
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
@@ -146,15 +141,19 @@ class Languagetext(Baseobject):
             where lgtx_attrname = ?
             and lgtx_mode_id = ?
             )
-        select lang_iso_code2,
-            case when lgtx.lgtx_text is not NULL
-                then lgtx.lgtx_text
-                else lgtxdef.lgtx_text
+        select lang.lang_iso_code2,
+            case when lgtxori.lgtx_text is not NULL
+                then lgtxori.lgtx_text
+                else case when lgtxdef.lgtx_text is not NULL 
+                        then "*" || langlang.lang_iso_code2 || "* " || lgtxdef.lgtx_text
+                        else lgtxdef.lgtx_text
+                      end
                 end text
-        from languages
-        left join lgtx as lgtx on lgtx.lgtx_lang_id = lang_id
-        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang_lang_id
-        order by lang_iso_code2"""
+        from languages lang
+        left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID
+        left join lgtx as lgtxori on lgtxori.lgtx_lang_id = lang.lang_id
+        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang.lang_lang_id
+        order by lang.lang_iso_code2"""
         values=(pattrname,pmodeid)
         data = dbDML.select(lsql,*values)
         retval = {d[0]:d[1] for d in data}
