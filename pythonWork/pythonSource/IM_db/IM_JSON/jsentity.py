@@ -197,7 +197,8 @@ def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
             except Exception as err:
                 presult.markdberror(perr=err, pelem=jsyno)
                 continue
-            replacelgtx(presult=presult, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+            """synonyms and their lang-texts are alreday deleted"""
+            insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
         presult.insertcnt += max(0, (inscnt - delcnt))
         presult.deletecnt += max(0, (delcnt - inscnt))

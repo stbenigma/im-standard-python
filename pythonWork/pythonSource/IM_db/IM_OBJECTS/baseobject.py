@@ -355,17 +355,19 @@ class Baseobject:
 
         retval = None
         try:
+            modedelcnt = 0
             if cls._modelemtype is not None:
                 subselect = "select {} from {}".format(cls._idcolname, cls._tablename)
                 values = []
                 if pwhere is not None:
                     subselect += " where {}".format(pwhere[0])
-                Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
+                modedelcnt = Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
             #fi
             lsql = """delete from {} {}""" \
                 .format(cls._tablename
                         , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0]))
-            retval = dbDML.delete(lsql,*arguments)
+            elemdelcnt = dbDML.delete(lsql,*arguments)
+            retval = elemdelcnt + modedelcnt #cascade delete from MODE has to be counted as well
         except Exception as err:
             raise err
         return retval

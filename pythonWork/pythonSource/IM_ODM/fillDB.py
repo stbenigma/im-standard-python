@@ -7,7 +7,7 @@ from IM_JSON import *
 # Main Programm
 
 
-def filldbmain2(callarg,createnewdb=False):
+def filldbmain(callarg, createnewdb=False):
     if createnewdb:
         IM_db.createDB(par1=callarg,pforcecreate=True)
         dbConnect.openDB(p_filepath=parameters.dbFilePath(), fks='ON');
@@ -38,7 +38,7 @@ def main(p_param1):
     logmessages.initlog('fillDB')
 
     try:
-        filldbmain2(callarg=p_param1,createnewdb=not IM_db.existsDB(parameters.dbFilePath()))
+        filldbmain(callarg=p_param1, createnewdb=not IM_db.existsDB(parameters.dbFilePath()))
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),

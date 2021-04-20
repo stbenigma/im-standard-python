@@ -35,9 +35,19 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
             delete all texts from all languages in ptexts
        Then
            insert all texts from all languages """
-    inscnt = 0
     delcnt = Languagetext.delete(pwhere=("""lgtx_mode_id = ? 
-                            and lgtx_attrname = ?""", pmodeid, pattr))
+                            and lgtx_attrname = ?"""
+                            , pmodeid, pattr))
+    inscnt =insertlgtx(pmodeid=pmodeid,pattr=pattr,ptexts=ptexts)
+
+    presult.insertcnt += max(0,inscnt - delcnt)
+    presult.deletecnt += max(0,delcnt - inscnt)
+    return
+
+# replacelgtx
+
+def insertlgtx(pmodeid, pattr, ptexts):
+    inscnt = 0
     for lang in Language.select():
         iso2 = lang.lang_iso_code2
         if iso2 in ptexts.keys():
@@ -56,9 +66,7 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
                 continue
         #if
     #for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
-    return
+    return inscnt
 
 # replacelgtx
 
