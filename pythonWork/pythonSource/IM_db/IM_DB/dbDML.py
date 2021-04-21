@@ -102,8 +102,6 @@ def insert(psql, rec):
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
     return id
-
-
 # insert
 
 def insertmany(psql, rec):
@@ -172,16 +170,6 @@ def valuepairs2sqlexpr(**colvalues):
     return '({})'.format(condition), *arguments
 
 
-def id2uktranslate():
-    """from currently open db, return list of all id's together with their UK-columns
-        {<tableshortname>id : {colname:value,}} for every column being in a uk
-    """
-    tables = select(psql="""SELECT name
-                            FROM sqlite_master
-                            WHERE type = 'table' 
-                            AND name NOT LIKE'sqlite_%'""")
-    retval = {}
-    for tab in tables:
-        t = tab[0]
-        rows = t
-
+def getrowcount(ptablename):
+    retval = select(psql="select count(*) from {}".format(ptablename))[0][0]
+    return retval

@@ -1,4 +1,5 @@
 # -*- coding: latin-1 -*-
+import dbConnect
 from IM_ODM import transferModel,mergedbs
 from IM_DB import logmessages,dbErstelleTables
 import IM_db
@@ -14,6 +15,7 @@ def filldbmain(callarg, createnewdb=False):
         memoryfilepath = ":memory:"
         dbConnect.openDB(p_filepath=memoryfilepath,fks='ON')
         dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
+        dbConnect.setversion() #newly created view in infra
         transferModel.insertBaseData()
     #fi
     transferModel.transferODMModel();
@@ -26,6 +28,14 @@ def filldbmain(callarg, createnewdb=False):
     else:
         """merge created DB into existing one"""
         dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
+        newversion =odmjson.jsmodel['_imprint_']["Modelversion"]
+        if newversion != dbConnect.getversion():
+            logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
+                                     .format(parameters.dbFilePath(),dbConnect.getversion()
+                                             ,newversion))
+            raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion()
+                                             ,newversion))
+
         mergedbs.mergeodm2db(podmjson=odmjson)
         """generate json from merged DB"""
         odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))

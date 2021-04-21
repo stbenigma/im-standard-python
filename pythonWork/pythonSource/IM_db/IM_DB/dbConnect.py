@@ -15,7 +15,8 @@ def openDB(p_filepath,fks='OFF'):
     """ öffnet die DB pfad/Name """
     global myDbConn,dbversion
     try:
-        myDbConn = sqlite3.connect(p_filepath)
+        locconn =sqlite3.connect(p_filepath)
+        myDbConn = locconn
         dbversion = readversion(myDbConn)
     except Exception as exp:
         raise exp
@@ -47,6 +48,11 @@ def readversion(pconn):
     return {"version": curr_table[0][0]
         , "installdate": curr_table[0][1]
             }
+
+def setversion():
+    global dbversion,myDbConn
+    dbversion = readversion(myDbConn)
+    return
 
 def getversion():
     global dbversion
