@@ -6,7 +6,6 @@ from IM_JSON import *
 
 # Main Programm
 
-
 def filldbmain(callarg, createnewdb=False):
     if createnewdb:
         IM_db.createDB(par1=callarg,pforcecreate=True)

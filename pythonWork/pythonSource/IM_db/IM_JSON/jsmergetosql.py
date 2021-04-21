@@ -211,9 +211,9 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
         for key,elem in curodmelements.items():
             """some elements (ARCS,DOMAINS) can have ODM-ref or not (depending wether they are generated or
                user maintained
-               if pwithtextref is True, make sure the element really has an 'sourceref' entry for  ODM """
-            pwithextsrcref = pwithextsrcref and (('sourceref' in elem) and (Externalref.SOURCE_ODM in elem['sourceref']))
-            if pwithextsrcref:
+               if pwithtextref is True, make sure the element really has a 'sourceref' entry for  ODM """
+            lwithextsrcref = pwithextsrcref and (('sourceref' in elem) and (Externalref.SOURCE_ODM in elem['sourceref']))
+            if lwithextsrcref:
                 odmsrcref = Extsourceref(psrcname = Externalref.SOURCE_ODM,
                                          psrcid = elem['sourceref'][Externalref.SOURCE_ODM][0]
                                         ,plastupd = elem['sourceref'][Externalref.SOURCE_ODM][1]
@@ -241,7 +241,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                 else:
                     """update db-record if there is a difference"""
                     addfk(odmjsid=key, dbid=dbsrcref.dbid)
-                    if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid),pequalexceptlist=pequalexceptlist):
+                    dbelem = Modelelement.getelement(pmodeid=dbsrcref.dbid)
+                    if not obj.semanticequal(dbelem,pequalexceptlist=pequalexceptlist):
                         try:
                             obj.setid(dbsrcref.dbid) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
@@ -277,9 +278,9 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             ukref.semanticcopy(obj)
                             translatefks(ukref)
                             ukref.updatedb(pdoerrhdlng=False)
-                            if pwithextsrcref:
+                            if lwithextsrcref:
                                 """update lastupd and add extr scr id as it may have changed or is new"""
-                                Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
+                                Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=ukref.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
                             presult.updatecnt += 1
                             del odmelements[key]  # omit in next loop
                         except Exception as e:

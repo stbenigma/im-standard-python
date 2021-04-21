@@ -21,9 +21,10 @@ class Externalref(Baseobject):
 
     @staticmethod
     def setlastupdate(psrcname,pmodeid,psrcid=None):
-        extr:Externalref = Externalref().getbyuk(extr_source_name=psrcname,extr_source_id=pmodeid)
+        extr:Externalref = Externalref().getbyuk(extr_source_name=psrcname,extr_mode_id=pmodeid)
         if extr is None:
             """not found, insert it"""
+            extr = Externalref()
             extr.extr_source_name = psrcname
             extr.extr_mode_id = pmodeid
             extr.extr_source_id = psrcid

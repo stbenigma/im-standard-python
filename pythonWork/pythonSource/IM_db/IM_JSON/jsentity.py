@@ -89,7 +89,7 @@ def entities2js(pemptymodel):
     else:
         entis = {jsguid(Modelelemtype.ENTI, e.enti_id):
                      fillmodel(pmodel=model,
-                            pentries=[multilangtext(ptext=e.enti_name_l), nvl(e.enti_short_name)
+                            pentries=[multilangtext(ptext=e.enti_name_l), e.enti_short_name
                         , multilangtext(e.enti_descr_l),multilangtext(e.enti_tooltip_l)
                         , e.enti_exp_tuplecnt,e.enti_prefix
                         , e.getsubtypelevel()

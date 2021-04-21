@@ -269,20 +269,7 @@ def js2doma(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
 def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOMA, pjs2obj=js2doma,
                    pwithextsrcref=pwithextsrcref)
-    # for jid,jelem in pmodel.jsmodel['domains'].items():
-    #     doma = js2doma(pkey=jid,pelem=jelem,pmodellang=pmodel.modellanguage())
-    #     try:
-    #         domaid = doma.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-    #         continue
-    #
-    #     if doma.doma_type == Domain.LOV:
-    #         defaultvalues2sql(pmodel=pmodel,pdomaid=domaid, pvalues=jelem["values"])
-    #
-    #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_NAME,ptexts=jelem['name'])
-    #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_DESCR,ptexts=jelem['descr'])
-    #     inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
+
     for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
         dbdomaid = jsmergetosql.keytransl(jid)
 

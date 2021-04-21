@@ -17,6 +17,7 @@ Wohneinheit (Adresse + Wohnungsnummer) als Hauptwohnsitz gemeinsam genutzt durch
 <engineerTo>
 <item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
 <item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="9241F612-8113-F88A-4089-614960194052" value="true"/>
 <item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="false"/>
 <item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
 </engineerTo>
@@ -32,10 +33,24 @@ Wohneinheit (Adresse + Wohnungsnummer) als Hauptwohnsitz gemeinsam genutzt durch
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Haushalt"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="**Budget"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="Ménage"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Anzahl Leute" id="92B8AEC0-C4DD-A8E6-3272-9BE5DF2F56B0">
+<createdBy>stb</createdBy>
+<createdTime>2021-04-21 07:54:50 UTC</createdTime>
+<ownerDesignName>crmTest</ownerDesignName>
+<engineerTo>
+<item key="1AB27667-C11D-3493-68AA-DF92C84041A7" value="true"/>
+<item key="851DDEFA-B048-37E9-7826-4E48946EAF1C" value="true"/>
+<item key="9241F612-8113-F88A-4089-614960194052" value="true"/>
+<item key="38850BAE-45EC-FD64-F3B2-14554CAABBF9" value="true"/>
+<item key="015DE428-05B6-58DD-323D-ECDC72266F4A" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>
