@@ -19,6 +19,21 @@
       </p>
     </ac:layout-cell>
   </ac:layout-section>
+
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{ gettext('Supertypes') }}</h1>
+      <ul>{% for supertype in entity['supertypes'] %}
+        <li>{{ util.soft_link(supertype) }}</li>
+        {% endfor %}</ul>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      {% if entity['structure-graph'] %}
+      <p><ac:image><ri:attachment ri:filename="{{ entity['structure-graph'] }}" /></ac:image></p>
+      {% endif %}
+    </ac:layout-cell>
+  </ac:layout-section>
+
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <h1>{{ gettext('Attributes') }}</h1>
@@ -41,6 +56,7 @@
       </tbody></table>
     </ac:layout-cell>
   </ac:layout-section>
+
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <h1>{{ gettext('Relations') }}</h1>
@@ -76,16 +92,6 @@
           {% endfor %}
         </tbody>
       </table>
-    </ac:layout-cell>
-  </ac:layout-section>
-
-
-  <ac:layout-section ac:type="single">
-    <ac:layout-cell>
-      <h1>{{ gettext('Supertypes') }}</h1>
-      <ul>{% for supertype in entity['supertypes'] %}
-        <li>{{ util.soft_link(supertype) }}</li>
-        {% endfor %}</ul>
     </ac:layout-cell>
   </ac:layout-section>
 
