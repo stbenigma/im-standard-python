@@ -81,7 +81,7 @@ class Entity(MultilangBaseobject):
                                       where superenti_id = ? 
                                       and rela_type like ?)""", self.getid(),relatype)
                                 )
-        return []  if children is None else children
+        return [] if children is None else children
 
 
     def getsynonyms(self):

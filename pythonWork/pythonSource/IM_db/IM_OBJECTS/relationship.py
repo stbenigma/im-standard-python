@@ -212,7 +212,7 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
    or RELA_ARCS_ID_from in (select arcs_id from arcrela)
             """
                    )
-        """Roles are 1:1 with differen relationshipsend mandataory flag (TRUE/FALSE FALSE/TRUE)"""
+        """Roles are 1:1 with different relationshipsend mandataory flag (TRUE/FALSE FALSE/TRUE)"""
         dbDML.exec("""update relations set  rela_type = 'ISAR'
                     where rela_type = '1:1'
                         and (RELA_MANDATORY_FROM_TO  !=  RELA_MANDATORY_TO_FROM)
@@ -228,10 +228,10 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
             rela.rela_enti_id_from = enti.enti_id
             rela.rela_enti_id_to = parc.arcs_enti_id
             rela.rela_arcs_id_to = parc.arcs_id
-            rela.rela_assoc_to_from = ''
+            rela.rela_assoc_to_from = None
             rela.rela_mandatory_to_from = 'TRUE'
             rela.rela_hist_to_from = 'FALSE'
-            rela.rela_assoc_from_to = ''
+            rela.rela_assoc_from_to = None
             rela.rela_mandatory_from_to = 'TRUE'
             rela.rela_hist_from_to = 'FALSE'
             rela.rela_uc = parc.arcs_uc

@@ -5,7 +5,6 @@ import sqlite3
 
 from IM_DB import logmessages, dbConnect
 
-
 def select(psql,*args):
     cursor = dbConnect.myDbConn.cursor()
 
@@ -85,8 +84,9 @@ def insert(psql, rec):
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
     except sqlite3.IntegrityError as ei:
-        # Unique kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
-        if not str(ei).startswith('UNIQUE'):
+        # Unique und FK kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
+        if not (str(ei).startswith("UNIQUE constraint failed")\
+                or str(ei).startswith("FOREIGN KEY constraint failed")):
             logmessages.writelog(psql)
             logmessages.writelog(rec)
             logmessages.writelog(type(rec))
@@ -148,8 +148,6 @@ def execmany(psql, recs):
             logmessages.writelog("execmany: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
-
-
 # execmany
 
 def valuepairs2sqlexpr(**colvalues):

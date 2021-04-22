@@ -1,15 +1,15 @@
 # -*- coding: latin-1 -*-
-import dbConnect
+from IM_DB import logmessages,dbErstelleTables,createDB
 from IM_ODM import transferModel,mergedbs
-from IM_DB import logmessages,dbErstelleTables
-import IM_db
 from IM_JSON import *
-
-# Main Programm
+import createDB
 
 def filldbmain(callarg, createnewdb=False):
+    fillmergedb(callarg=callarg,createnewdb=createnewdb,transferfunction=transferModel.transferODMModel)
+
+def fillmergedb(callarg,transferfunction, createnewdb=False):
     if createnewdb:
-        IM_db.createDB(par1=callarg,pforcecreate=True)
+        createDB.createDB(par1=callarg,pforcecreate=True)
         dbConnect.openDB(p_filepath=parameters.dbFilePath(), fks='ON');
     else:
         memoryfilepath = ":memory:"
@@ -18,13 +18,13 @@ def filldbmain(callarg, createnewdb=False):
         dbConnect.setversion() #newly created view in infra
         transferModel.insertBaseData()
     #fi
-    transferModel.transferODMModel();
+    transferfunction()
     odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
-    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName()+"_loadedfromodm")
+    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName()+"_loaded")
     if createnewdb:
-        pass # new db does not need merge print json
+        pass
     else:
         """merge created DB into existing one"""
         dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
@@ -51,7 +51,7 @@ def main(p_param1):
     logmessages.initlog('fillDB')
 
     try:
-        filldbmain(callarg=p_param1, createnewdb=not IM_db.existsDB(parameters.dbFilePath()))
+        filldbmain(callarg=p_param1, createnewdb=not createDB.existsDB(parameters.dbFilePath()))
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),

@@ -1,16 +1,7 @@
 #__all__ = [""]
-from .dbConnect import createDB
-from .dbConnect import openDB
-from .dbDDL import createTable
-from .dbDDL import dropView
-from .dbDDL import dropTable
-from .dbDML import delete
-from .dbDML import exec
-from .dbDML import execmany
-from .dbDML import insert
-from .dbDML import insertmany
-from .dbDML import lookup
-from .dbDML import select
+from .dbConnect import createDB,openDB
+from .dbDDL import createTable, dropView, dropTable
+from .dbDML import *
 from .dbErstelleTables import erstelleInfra
 from .dbLookup import *
 from .parameters import *

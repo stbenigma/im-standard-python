@@ -56,8 +56,6 @@ def findText(set, name):
         return set.find(name).text
     except Exception as ex:
         return None
-
-
 # findText
 
 def findField(set, name):
@@ -65,8 +63,6 @@ def findField(set, name):
         return set.get(name)
     except Exception as ex:
         return None
-
-
 # findField
 
 
@@ -405,7 +401,7 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler.eler_dc = pdc
                 try:
                     atteler.insert()
-                except baseobject.UniqueKeyException as err:
+                except UniqueKeyException as err:
                     raise err
                 except Exception as e:
                     logmessages.writelog("Attr-representation")
@@ -418,7 +414,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             # for
             break  # no more looping for copies of element on diagramm
 
-        except baseobject.UniqueKeyException as err:
+        except UniqueKeyException as err:
             index += 1
             if index > 100: #emergency stop
                 raise err
@@ -1154,7 +1150,7 @@ def do1Relation(fileName):
         try:
             rela.insert()
             break
-        except UniqueKeyException as e:
+        except dbDML.UniqueKeyException as e:
             #ODM can have duplicate names for exception. Add digit to name
             logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
             logmessages.writelog(e.__str__())
@@ -1335,8 +1331,7 @@ def insertdiagtypes():
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
     diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
 
-def insertBaseData(pwithlangs = True):
-    if pwithlangs: insertlanguages()
+def insertBaseData():
     insertmelts()
     insertdiagtypes()
 # insertBaseData
@@ -1598,6 +1593,7 @@ def transferODMModel():
     dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact,pmandatoryfile=False)
 
     """überträgt das ganze ODM Modell in die DB"""
+    insertlanguages()
     transferproject()
     transferTypes()
     transferDocuments()

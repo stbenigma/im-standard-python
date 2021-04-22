@@ -3,7 +3,6 @@ import dbDML
 from IM_DB import dbConnect
 from dbDDL import gettablelist
 from IM_DB import parameters,logmessages
-from IM_OBJECTS import *
 import sys
 from openpyxl import Workbook
 
