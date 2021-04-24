@@ -4,13 +4,14 @@ from .modelelement import Modelelemtype
 class Interface(Baseobject):
     _tablename:str = 'interfaces'
     _prefix:str = 'intf'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.INTF
     _columnlist =  []
+    _defaultorderby = 'intf_name'
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Interface._columnlist) == 0): Interface._columnlist = Baseobject.gettablecolumns(Interface._tablename)
-        super().__init__(tablename=Interface._tablename, prefix=Interface._prefix
-                         , pmodelemtype=Modelelemtype.INTF
-                         , pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          , psrcname=psrcname)
 
     def getname(self,plang=None):
@@ -22,14 +23,7 @@ class Interface(Baseobject):
     def getdescr(self, plang=None):
         return self.intf_descr
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Interface._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby='intf_name'):
-        return Baseobject.select(pclass=Interface
-                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def getmapped(pentiid=None,pattrid=None):

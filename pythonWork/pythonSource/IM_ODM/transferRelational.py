@@ -137,16 +137,16 @@ noneint = lambda elem : None if elem is None else int(elem)
 
 class Odmmapping:
     ENTITYPE = 0
-    COLTYPE = 5
-    TABLETYPE = 4
     ATTRTYPE = 1
+    KEYTYPE = 2
     RELATYPE = 3 # (source ent, targ ent)
+    TABLETYPE = 4
+    COLTYPE = 5
     FKTYPE = 8
     INHERITTYPE = 9
     RELARCTYPE = 13
     LOGARCTYPE = 14
     RELKEYTYPE = 6
-    LOGKEYTYPE = 2
     """
     <CM id="43D673EB-E3DCB674F0CEBE86A026-88057DB0AEEE" lID="43D673EB-E9B4-6636-072A-E3DCB674F0CE" lT="0" rID="BE86A026-2DB5-7C03-0A73-88057DB0AEEE" rT="4">
     <attributesSelection>61138C28-07E5-0E0E-C192-206CA0708A77,7F3CDF26-54F3-142A-4FC1-63D2DBE22319,1FAF93B9-B4A0-C357-3C10-77335807489F</attributesSelection>
@@ -192,6 +192,17 @@ class Odmmapping:
 
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
+        """        if cntmapxml is not None:
+            self.cntmappings = [{'id': transferModel.findField(mg, 'id')
+                                , 'itype': noneint(transferModel.findField(mg, 'iT'))
+                                , 'lID': transferModel.findField(mg, 'lID')
+                                , 'ltype': noneint(transferModel.findField(mg, 'lT'))
+                                , 'rID': transferModel.findField(mg, 'rID')
+                                , 'rtype': noneint (transferModel.findField(mg, 'rT'))
+                                 }
+                                for mg in cntmapxml]"""
+        if (colmap["rtype"] ==  Odmmapping.RELKEYTYPE and colmap['ltype'] == Odmmapping.KEYTYPE):
+            continue
         attrid = Externalref.getODMmodeid (psrcid=colmap['lID'])
         colu = Externalref.getODMmodeid(psrcid=colmap['rID'])
         if ((colu is None) or (attrid is None)):
@@ -231,31 +242,29 @@ def do1mapping(pfilename):
                 and odmmap.itype in (None,2,3) # hierachical mappings
                 ):
             continue #only Entity/Relation to Table mappings are handled
-        try:
-            tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
-            tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
-            tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
+        tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
+        tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
+        tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
+        if (odmmap.logtype == Odmmapping.ENTITYPE and tabentimap.tema_enti_id is None):
+            element = 'Entity fehlt'
+        elif (odmmap.reltype == Odmmapping.TABLETYPE and tabentimap.tema_tabl_id is None):
+            element = 'Table fehlt'
+        elif (odmmap.logtype == Odmmapping.RELATYPE and tabentimap.tema_rela_id is None):
+            element = 'Relation fehlt'
+        else:
+            element = None
+        #fi
+        if element is None:
             tabentimap.insert(pdoerrhdlng=False)
-        except:
-            if (odmmap.reltype == Odmmapping.ENTITYPE and tabentimap.tema_enti_id is None):
-                element = 'Entity fehlt'
-            elif (odmmap.reltype == Odmmapping.TABLETYPE and tabentimap.tema_tabl_id is None):
-                element = 'Table fehlt'
-            elif (odmmap.reltype == Odmmapping.RELATYPE and tabentimap.tema_rela_id is None):
-                element = 'Relation fehlt'
-            else:
-                element = 'unbekannte Situation'
-
+            if odmmap.logtype == Odmmapping.ENTITYPE:
+                """for existing entites, consider column Mappings"""
+                doattrmapping(pcolmappings=odmmap.cntmappings)
+        else:
             logmessages.writelog('Mapping funktioniert nicht. ({}) :   '.format(element)
-                                     + 'Logic: type = {}   guid = {}'.format(odmmap.logtype,odmmap.logid)
-                                     + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
-                                     + '    file: {}'.format(pfilename)
-                                     )
-
-        #try
-        if odmmap.logtype == Odmmapping.ENTITYPE:
-            """for entites, consider column Mappings"""
-            doattrmapping(pcolmappings=odmmap.cntmappings)
+                             + 'Logic: type = {}   guid = {}'.format(odmmap.logtype, odmmap.logid)
+                             + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                             + '    file: {}'.format(pfilename)
+                             )
     #for
 #do1mapping
 

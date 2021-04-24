@@ -1,65 +1,51 @@
-from .key import Key
 from IM_DB import dbDML,dbDDL
 from datetime import date
 from .baseobject import Baseobject,MultilangBaseobject
 from .languagetext import Languagetext
 from .language import Language
-import IM_OBJECTS
+from .modelelement import Modelelemtype,Modelelement
 from .userdefprop import Userdefpropvalue,Userdefprop
+import IM_OBJECTS
+
+
+class EntityCategory(Baseobject):
+    _tablename:str = 'entity_categories'
+    _prefix:str = 'enca'
+    _idcolname: str = _prefix + '_id'
+    _columnlist:list = []
+    _defaultorderby = None
+
+    def __init__(self,pname):
+        super().__init__()
+        self.enca_name = pname
+
+    def getname(self,plang=None):
+        return self.enca_name
+
+    def getchildren(self):
+        children = Entity.select(pwhere=("enti_enca_id=?",self.enca_id))
+        return [] if children is None else children
+    # getchildren
 
 
 class Entity(MultilangBaseobject):
     _tablename:str = 'entities'
     _prefix:str = 'enti'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.ENTI
     _columnlist:list = []
+    _defaultorderby = "enti_name"
 
     def __init__(self, psrcname=None, psrcid=None):
-        if (len(Entity._columnlist) == 0): Entity._columnlist = Baseobject.gettablecolumns(Entity._tablename)
-        super().__init__(tablename=Entity._tablename, prefix=Entity._prefix
-                         , multilangcols = {'enti_name':Languagetext.ENTI_NAME
+        super().__init__(multilangcols = {'enti_name':Languagetext.ENTI_NAME
                                           ,'enti_descr':Languagetext.ENTI_COMMENT
                                           ,'enti_tooltip': Languagetext.ENTI_TOOLTIP}
-                         , pmodelemtype=Modelelemtype.ENTI
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
         self._synonyms = None
         self._schluessel = None
         self._attributes = None
-
-
-
-    @staticmethod
-    def createviews():
-        dbDDL.dropView("SUPERENTI");
-        dbDDL.createTable("""
-        create view SUPERENTI AS
-    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
-        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-          from ENTITIES superentity
-            join ARCS on ARCS_ENTI_ID = superentity.enti_id
-            join relations
-                  on  ((rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
-                   or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID))
-                     and RELA_TYPE =  'ISAS'
-           left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
-                or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
-    union all
-    select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
-        ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-          from ENTITIES superentity
-          join (select rela_type
-               , case
-                     when RELA_MANDATORY_TO_FROM = 'TRUE' then RELA_ENTI_ID_FROM
-                     else RELA_ENTI_ID_TO end as rela_superenti_id
-               , case
-                     when RELA_MANDATORY_FROM_TO = 'TRUE' then RELA_ENTI_ID_FROM
-                     else RELA_ENTI_ID_TO end as rela_subenti_id
-                 from relations
-                where rela_type = 'ISAR'
-                ) on rela_superenti_id = superentity.ENTI_ID
-        join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id
-        """)
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pentiid=self.enti_id)
@@ -80,7 +66,7 @@ class Entity(MultilangBaseobject):
         parents = Entity.select(pwhere=("enti_id in (select superenti_id from SUPERENTI where subenti_id = ?)",
                                         self.getid()))
         return [] if parents is None else parents
-    #getparent
+
 
     def getchildren(self,ptype=None):
         """ptype None-> ALL, ISAS,'ISAR"""
@@ -95,8 +81,8 @@ class Entity(MultilangBaseobject):
                                       where superenti_id = ? 
                                       and rela_type like ?)""", self.getid(),relatype)
                                 )
-        return []  if children is None else children
-    #getchildren
+        return [] if children is None else children
+
 
     def getsynonyms(self):
         if (self.getid() is not None) and (self._synonyms is None):
@@ -104,13 +90,13 @@ class Entity(MultilangBaseobject):
                                              , porderby='syno_name')
         # fi
         return self._synonyms
-    #getsynonyms
+
 
 
     def getkeys(self):
         return Key.select(pwhere=('keys_enti_id = ?', self.getid())
                                   , porderby='keys_name')
-    #getkeys
+
 
     def getschluessel(self):
         if (self.getid() is not None) and (self._schluessel is None):
@@ -118,7 +104,7 @@ class Entity(MultilangBaseobject):
                                           , porderby='keys_laufnr')
         # fi
         return self._schluessel
-    #getschluessel
+
 
     def getattributes(self):
         if (self.getid() is not None) and (self._attributes is None):
@@ -143,16 +129,8 @@ class Entity(MultilangBaseobject):
             """.format(self.enti_id))
         return subtypelevel[0][0]
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Entity._tablename)
 
 
-    @staticmethod
-    def select(pwhere=None, porderby="enti_name"):
-        entis = Baseobject.select(pclass=Entity
-                                 , pwhere=pwhere, porderby=porderby)
-        return entis
 
     @staticmethod
     def mappingto(ptablid):
@@ -196,14 +174,13 @@ class Entity(MultilangBaseobject):
 class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'
     _prefix: str = 'syno'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.SYNO
     _columnlist: list = []
 ##    _multilangcols: list = {'syno_name': 'ENTI_SYNONYM'}
 
     def __init__(self,pname=None,pentiid=None):
-        if (len(Synonym._columnlist) == 0): Synonym._columnlist = Baseobject.gettablecolumns(Synonym._tablename)
-        super().__init__(tablename=Synonym._tablename, prefix=Synonym._prefix
-                         ,multilangcols = {'syno_name': Languagetext.ENTI_SYNONYM}
-                         ,pmodelemtype=Modelelemtype.SYNO)
+        super().__init__(multilangcols = {'syno_name': Languagetext.ENTI_SYNONYM})
         self.syno_name = pname
         self.syno_enti_id = pentiid
         self.syno_uc = 'SYS'
@@ -218,16 +195,7 @@ class Synonym(MultilangBaseobject):
         return Entity.getbyid(self.syno_enti_id)
     # getparent
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Synonym._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        synos = Baseobject.select(pclass=Synonym
-                                  ,pwhere=pwhere, porderby=porderby)
-        return synos
-    #select
     @staticmethod
     def transfersynotransl():
         """get all udpr translations for synonyms except for the default language
@@ -254,9 +222,8 @@ class Synonym(MultilangBaseobject):
                     lgtx.lgtx_um = udpv.udpv_um
                     lgtx.lgtx_dm = udpv.udpv_dm
                     lgtx.insert()
-
+from .key import Key
 from .attribute import Attribute
-from .modelelement import Modelelemtype,Modelelement
 
 
 

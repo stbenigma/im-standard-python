@@ -199,7 +199,7 @@ def diagrams2js(pemptymodel,pmodelname):
             ,  d.diag_dm
             ,{mt.melt_name.lower():
                                [elemrep2js(peler=eler, panker=jsguid(mt.melt_shortname, eler.eler_mode_id))
-                                for eler in sorted(Elementrep().select(pwhere=("""eler_diag_id = ? and eler_mode_id in
+                                for eler in sorted(Elementrep.select(pwhere=("""eler_diag_id = ? and eler_mode_id in
                                                                 (select mode_id
                                                                 from modelelement
                                                                 where mode_type = ?)""", d.diag_id, mt.melt_shortname))
@@ -283,7 +283,7 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 def defarcs(parc,pdiagid):
     arc = {}
     arcselem = parc.getarcselem(pdiagid=pdiagid)
-    enti=Elementrep().select(pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
+    enti=Elementrep.select(pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
     enti = enti[0]
     PONTDISTANCE = 20
     entiheight,entiwidth = enti.eler_height, enti.eler_width

@@ -4,6 +4,7 @@ from IM_JSON import *
 from IM_OBJECTS import *
 from dbDML import valuepairs2sqlexpr
 from copy import copy
+from IM_DB import parameters
 
 """{odmjsid: keytrans,}  jsid MMMMxxxx (RELA1442)"""
 idTranslate= dict()
@@ -91,7 +92,8 @@ class Extsourcerefs(list):
 def getallsrcrefs(pelemtype):
     retval = Extsourcerefs()
     for extr in Externalref.getallextrs (pelemtype=pelemtype):
-        retval.push(Extsourceref(psrcname=extr.extr_source_name, psrcid=extr.extr_source_id, plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
+        retval.push(Extsourceref(psrcname=extr.extr_source_name, psrcid=extr.extr_source_id
+                                 , plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
     # for
     return retval
 
@@ -102,7 +104,7 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
          in the form
         {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
     if pwithextsrcref:
-        allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype,pjson=podmjson)
+        allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype)
     else:
         allodmsrcrefs = Extsourcerefs()
 
@@ -175,7 +177,13 @@ def translatefks(pdbobj):
 
 def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,pequalexceptlist=[]):
     """from ODM to DB transfer"""
-    modellang = Language.getdefaultlang().lang_iso_code2
+    try:
+        modellang = Language.getdefaultlang().lang_iso_code2
+    except:
+        #e.g. if languages are not yet filled
+        modellang = parameters.dbDefaultLang()
+
+
     newdberrors = []
     olddberrors = None
     odmelements = copy(podmjson.getelements(pelemtype=pelemtype))
@@ -203,9 +211,9 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
         for key,elem in curodmelements.items():
             """some elements (ARCS,DOMAINS) can have ODM-ref or not (depending wether they are generated or
                user maintained
-               if pwithtextref is True, make sure the element really has an 'sourceref' entry for  ODM """
-            pwithextsrcref = pwithextsrcref and (('sourceref' in elem) and (Externalref.SOURCE_ODM in elem['sourceref']))
-            if pwithextsrcref:
+               if pwithtextref is True, make sure the element really has a 'sourceref' entry for  ODM """
+            lwithextsrcref = pwithextsrcref and (('sourceref' in elem) and (Externalref.SOURCE_ODM in elem['sourceref']))
+            if lwithextsrcref:
                 odmsrcref = Extsourceref(psrcname = Externalref.SOURCE_ODM,
                                          psrcid = elem['sourceref'][Externalref.SOURCE_ODM][0]
                                         ,plastupd = elem['sourceref'][Externalref.SOURCE_ODM][1]
@@ -233,9 +241,10 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                 else:
                     """update db-record if there is a difference"""
                     addfk(odmjsid=key, dbid=dbsrcref.dbid)
-                    if not obj.semanticequal(Modelelement.getelement(pmodeid=dbsrcref.dbid),pequalexceptlist=pequalexceptlist):
+                    dbelem = Modelelement.getelement(pmodeid=dbsrcref.dbid)
+                    if not obj.semanticequal(dbelem,pequalexceptlist=pequalexceptlist):
                         try:
-                            obj.setid(jsguid2id(dbsrcref.dbid)) #preserve DB-id
+                            obj.setid(dbsrcref.dbid) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
                             presult.updatecnt += 1
@@ -269,9 +278,9 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             ukref.semanticcopy(obj)
                             translatefks(ukref)
                             ukref.updatedb(pdoerrhdlng=False)
-                            if pwithextsrcref:
+                            if lwithextsrcref:
                                 """update lastupd and add extr scr id as it may have changed or is new"""
-                                Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
+                                Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=ukref.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
                             presult.updatecnt += 1
                             del odmelements[key]  # omit in next loop
                         except Exception as e:

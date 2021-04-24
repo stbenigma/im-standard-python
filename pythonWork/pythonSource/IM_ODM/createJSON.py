@@ -14,8 +14,6 @@ def getJSONfile(pfilename):
 
 def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
-
-
     jsmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
     jsmodel.printmodel(pfilepath=pfilepath,pfilename=pfilename)

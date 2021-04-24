@@ -8,6 +8,7 @@ from IM_OBJECTS import *
 from IM_ODM import transferRelational
 from mystring import nvl
 
+
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
@@ -55,8 +56,6 @@ def findText(set, name):
         return set.find(name).text
     except Exception as ex:
         return None
-
-
 # findText
 
 def findField(set, name):
@@ -64,8 +63,6 @@ def findField(set, name):
         return set.get(name)
     except Exception as ex:
         return None
-
-
 # findField
 
 
@@ -388,7 +385,7 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler = Elementrep()
                 atteler.eler_mode_id = aid
                 atteler.eler_diag_id = pdiagid
-                atteler.eler_index = 0
+                atteler.eler_index = eler.eler_index
                 atteler.eler_position_x = attrx
                 atteler.eler_position_y = attry
                 atteler.eler_width = attrwidth
@@ -404,7 +401,7 @@ def transferentity(penti, pdiagid, puc, pdc):
                 atteler.eler_dc = pdc
                 try:
                     atteler.insert()
-                except baseobject.UniqueKeyException as err:
+                except UniqueKeyException as err:
                     raise err
                 except Exception as e:
                     logmessages.writelog("Attr-representation")
@@ -417,7 +414,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             # for
             break  # no more looping for copies of element on diagramm
 
-        except baseobject.UniqueKeyException as err:
+        except UniqueKeyException as err:
             index += 1
             if index > 100: #emergency stop
                 raise err
@@ -1143,7 +1140,7 @@ def do1Relation(fileName):
     rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logmessages.writelog(
-            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Realtion mit gelöschten Entities".
+            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Relation mit gelöschten Entities".
                 format(relaguid,sourceentiguid, targetentiguid))
         return
     # fi
@@ -1153,15 +1150,18 @@ def do1Relation(fileName):
         try:
             rela.insert()
             break
-        except Exception as e:
+        except dbDML.UniqueKeyException as e:
+            #ODM can have duplicate names for exception. Add digit to name
             logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
             logmessages.writelog(e.__str__())
             #relations can have duplicate names (merging in github)
-            if re.match(r"UNIQUE constraint failed: RELATIONS.RELA_NAME",e.__str__()):
-                rela.rela_name += "v{}".format(str(i))
-                i += 1
-            else: raise Exception("Key-error in relations: see logfile")
+            rela.rela_name += "v{}".format(str(i))
+            i += 1
             if (i == 10): raise Exception("Key-error in relations: see logfile")
+        except Exception as e:
+            logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
+            logmessages.writelog(e.__str__())
+            raise e
         #try
     #while
     Userdefpropvalue.fillallvalues(prelaid=rela.rela_id)
@@ -1331,8 +1331,7 @@ def insertdiagtypes():
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
     diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
 
-def insertBaseData(pwithlangs = True):
-    if pwithlangs: insertlanguages()
+def insertBaseData():
     insertmelts()
     insertdiagtypes()
 # insertBaseData
@@ -1376,14 +1375,14 @@ def loeschmodell():
     Language.delete()
 # loeschmodell
 
-def loadcolors(coldict, classkey, elem):
+def loadcolors(color:Color, elem):
     for fo in elem.findall('fonts/font_object'):
         if ((findField(fo, 'fo_type') == 'Title')
                 or (findField(fo, 'fo_type') == 'Titel')):  # es könnte auch Deutsch sein
-            coldict[classkey].fontcolor = findField(fo, 'font_color')
-            coldict[classkey].fontname = findField(fo, 'font_name')
-            coldict[classkey].fontsize = findField(fo, 'font_size')
-            coldict[classkey].fontstyle = findField(fo, 'font_style')
+            color.fontcolor = findField(fo, 'font_color')
+            color.fontname = findField(fo, 'font_name')
+            color.fontsize = findField(fo, 'font_size')
+            color.fontstyle = findField(fo, 'font_style')
         # fi
     # for
 
@@ -1397,22 +1396,24 @@ def loaddefaultcolors():
     classif = root.find('classification_types')
 
     for ty in classif:
-        # classname = findField(ty,'name')
+        category = EntityCategory(pname=findField(ty,'name'))
+        classid = category.insert()
         classguid = findField(ty, 'id')
+
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
-        classcolors[classguid] = \
-            Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
-        loadcolors(coldict=classcolors, classkey=classguid, elem=ty)
+        color = Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
+        loadcolors(color=color, elem=ty)
+        classcolors[classguid] = color
         # print(classname,classcolors[classguid].foregcolor,classcolors[classguid].backgcolor)
     # for
     default = root.find('default_fonts_and_colors')
     for de in default:
         classname = findField(de, 'classname')
-        defcolors[classname] = Color(findField(de, 'foreground')
-                                     , findField(de, 'background')
-                                     , None, None, None, None)
-        loadcolors(coldict=defcolors, classkey=classname, elem=de)
-        # print(classname,defcolors[classname].fontsize)
+        color= Color(findField(de, 'foreground')
+                                , findField(de, 'background')
+                                , None, None, None, None)
+        loadcolors(color = color, elem=de)
+        defcolors[classname] = color
     # for
 # loaddefaultcolors
 
@@ -1453,7 +1454,7 @@ def transferproject():
         defspra = defspra.lower()
         defspraid = Language.spraidlookup(piso=defspra)
         # setze die Defaultsprache aus dem Modell
-        if  defspraid is None:
+        if defspraid is None:
             raise Exception("Language '{}' does not exist".format(defspra))
         else:
             Language.setmodellang(pmodellang=defspra)
@@ -1461,7 +1462,6 @@ def transferproject():
             parameters.dbDefaultLang(defspra)
             parameters.dbDefaultLangID(defspraid)
     # fi
-    assert dbParam.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):
@@ -1593,6 +1593,7 @@ def transferODMModel():
     dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact,pmandatoryfile=False)
 
     """überträgt das ganze ODM Modell in die DB"""
+    insertlanguages()
     transferproject()
     transferTypes()
     transferDocuments()

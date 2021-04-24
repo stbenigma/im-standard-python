@@ -4,13 +4,14 @@ from .modelelement import Modelelemtype
 class Key(Baseobject):
     _tablename: str = 'keys'
     _prefix: str = 'keys'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.KEYS
     _columnlist: list = []
+    _defaultorderby = "keys_id"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Key._columnlist) == 0): Key._columnlist = Baseobject.gettablecolumns(Key._tablename)
-        super().__init__(tablename=Key._tablename, prefix=Key._prefix
-                         , pmodelemtype=Modelelemtype.KEYS
-                         , psrcname=psrcname
+        super().__init__(psrcname=psrcname
                          , pscrid=psrcid)
 
 
@@ -22,25 +23,19 @@ class Key(Baseobject):
         else:
             which = ''
         #fi
-        return  Keyelement.select(pwhere=('kele_keys_id = ?', str(self.getid()) + which))
-
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Key._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="keys_id"):
-        return Baseobject.select(pclass=Key, pwhere=pwhere, porderby=porderby)
+        return  Keyelement.select(pwhere=('kele_keys_id = ?' + which, str(self.getid())))
 # Key
 
 class Keyelement(Baseobject):
     _tablename: str = 'key_elements'
     _prefix: str = 'kele'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
+    _defaultorderby = "kele_id"
 
     def __init__(self):
         if (len(Keyelement._columnlist) == 0): Keyelement._columnlist = Baseobject.gettablecolumns(Keyelement._tablename)
-        super().__init__(tablename=Keyelement._tablename, prefix=Keyelement._prefix)
+        super().__init__()
 
 
     @staticmethod
@@ -61,13 +56,7 @@ class Keyelement(Baseobject):
 
     # getkeyelement
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Keyelement._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby="kele_id"):
-        return Baseobject.select(pclass=Keyelement, pwhere=pwhere, porderby=porderby)
-    # Keyelement
+# Keyelement
 from .attribute import Attribute
 from .relationship import Relation

@@ -1,6 +1,3 @@
-from IM_DB import dbDML
-def t (**colvals):
-      print (colvals)
-      print(dbDML.valuepairs2sqlexpr(**colvals))
-
-t(col1='axx',col2=None,col3=123)
+import re
+iconnoregexp = re.compile(r"^[0-9]{2,5}$")
+print (re.match(iconnoregexp, None))

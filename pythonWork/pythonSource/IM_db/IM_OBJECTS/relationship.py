@@ -11,13 +11,14 @@ import IM_OBJECTS
 class Arc(Baseobject):
     _tablename: str = 'arcs'
     _prefix: str = 'arcs'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.ARCS
     _columnlist: list = []
+    _defaultorderby = "arcs_id"
 
     def __init__(self, pname=None, pentiid=None, puc=None, pdc=None, psrcname=None, psrcid=None):
         if (len(Arc._columnlist) == 0): Arc._columnlist = Baseobject.gettablecolumns(Arc._tablename)
-        super().__init__(tablename=Arc._tablename, prefix=Arc._prefix
-                         , pmodelemtype=Modelelemtype.ARCS
-                         , psrcname=psrcname
+        super().__init__( psrcname=psrcname
                          , pscrid=psrcid)
         self.arcs_name = pname
         self.arcs_enti_id = pentiid
@@ -29,7 +30,7 @@ class Arc(Baseobject):
 
     def getrelalist(self):
         """List of relations in this arc"""
-        return Relation().select(pwhere=("rela_arcs_id_from = ? or rela_arcs_id_to = ?", self.arcs_id,self.arcs_id))
+        return Relation.select(pwhere=("rela_arcs_id_from = ? or rela_arcs_id_to = ?", self.arcs_id,self.arcs_id))
 
     def getentity(self):
         return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
@@ -61,15 +62,6 @@ class Arc(Baseobject):
         return data
     # liesarcselem
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Arc._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="arcs_id"):
-        arcs = Baseobject.select(pclass=Arc
-                                 , pwhere=pwhere, porderby=porderby)
-        return arcs
 
     @staticmethod
     def getrelaarcs(pdiagid):
@@ -103,14 +95,15 @@ class Relation(MultilangBaseobject):
 
     _tablename: str = 'relations'
     _prefix: str = 'rela'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.RELA
     _columnlist: list = []
+    _defaultorderby = "rela_name"
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Relation._columnlist) == 0): Relation._columnlist = Baseobject.gettablecolumns(Relation._tablename)
-        super().__init__(tablename=Relation._tablename, prefix=Relation._prefix
-                         , multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
+        super().__init__( multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
                                         , 'rela_assoc_to_from': Languagetext.RELA_TEXT_TO}
-                         , pmodelemtype=Modelelemtype.RELA
                          , psrcname=psrcname
                          , pscrid=psrcid
                          )
@@ -147,15 +140,6 @@ class Relation(MultilangBaseobject):
     def getbyentity(pentiid):
         return Relation.select(pwhere=("""rela_enti_id_from = ? or rela_enti_id_to = ?""", pentiid,pentiid))
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Relation._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="rela_name"):
-        rela = Baseobject.select(pclass=Relation
-                                 , pwhere=pwhere, porderby=porderby)
-        return rela
 
     def simpleType(self):
         """only the first try. Add arcs later to find distinguisch ISAR and ISAS"""
@@ -228,7 +212,7 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
    or RELA_ARCS_ID_from in (select arcs_id from arcrela)
             """
                    )
-        """Roles are 1:1 with differen relationshipsend mandataory flag (TRUE/FALSE FALSE/TRUE)"""
+        """Roles are 1:1 with different relationshipsend mandataory flag (TRUE/FALSE FALSE/TRUE)"""
         dbDML.exec("""update relations set  rela_type = 'ISAR'
                     where rela_type = '1:1'
                         and (RELA_MANDATORY_FROM_TO  !=  RELA_MANDATORY_TO_FROM)
@@ -244,10 +228,10 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
             rela.rela_enti_id_from = enti.enti_id
             rela.rela_enti_id_to = parc.arcs_enti_id
             rela.rela_arcs_id_to = parc.arcs_id
-            rela.rela_assoc_to_from = ''
+            rela.rela_assoc_to_from = None
             rela.rela_mandatory_to_from = 'TRUE'
             rela.rela_hist_to_from = 'FALSE'
-            rela.rela_assoc_from_to = ''
+            rela.rela_assoc_from_to = None
             rela.rela_mandatory_from_to = 'TRUE'
             rela.rela_hist_from_to = 'FALSE'
             rela.rela_uc = parc.arcs_uc

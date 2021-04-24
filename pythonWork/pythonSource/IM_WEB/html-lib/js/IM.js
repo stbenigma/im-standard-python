@@ -651,7 +651,7 @@ function attachCSS(url, parent){
 function entityheader (typ,name,filename,master,text){
  document.write('<p>'+typ+'</p>');
  var titel = name
- var fileref = 'image/' + filename + '.png'
+ var fileref = filename
  if (filename !='') {
    titel += '   <img src="'+ fileref +'" height="40px" width="40px">'
  }

@@ -5,7 +5,6 @@ import sqlite3
 
 from IM_DB import logmessages, dbConnect
 
-
 def select(psql,*args):
     cursor = dbConnect.myDbConn.cursor()
 
@@ -60,13 +59,13 @@ def lookup(psql):
 
 # lookup
 
-def delete(ptableName, pwhere=None):
+def delete(psql, *args):
     cursor = dbConnect.myDbConn.cursor()
     try:
-        sql = "delete from {} where {}".format(ptableName, "1=1" if pwhere is None else pwhere[0])
-        rows = cursor.execute(sql, pwhere[1:] if len(pwhere) > 1 else None).rowcount
+        rows = cursor.execute(psql,args).rowcount
     except sqlite3.Error as e:
-        logmessages.writelog(sql)
+        logmessages.writelog(psql)
+        logmessages.writelog(args)
         logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
     dbConnect.myDbConn.commit()
@@ -85,8 +84,9 @@ def insert(psql, rec):
         else:
             raise Exception("unknown type for insert {}".format(type(rec)))
     except sqlite3.IntegrityError as ei:
-        # Unique kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
-        if not str(ei).startswith('UNIQUE'):
+        # Unique und FK kann für Indexweiterzählen gebraucht werden. darum keine Fehlermeldung
+        if not (str(ei).startswith("UNIQUE constraint failed")\
+                or str(ei).startswith("FOREIGN KEY constraint failed")):
             logmessages.writelog(psql)
             logmessages.writelog(rec)
             logmessages.writelog(type(rec))
@@ -102,8 +102,6 @@ def insert(psql, rec):
     id = cursor.lastrowid
     dbConnect.myDbConn.commit()
     return id
-
-
 # insert
 
 def insertmany(psql, rec):
@@ -150,8 +148,6 @@ def execmany(psql, recs):
             logmessages.writelog("execmany: unexpected SQL-error: \t%s" % e)
             raise e
     dbConnect.myDbConn.commit()
-
-
 # execmany
 
 def valuepairs2sqlexpr(**colvalues):
@@ -172,16 +168,6 @@ def valuepairs2sqlexpr(**colvalues):
     return '({})'.format(condition), *arguments
 
 
-def id2uktranslate():
-    """from currently open db, return list of all id's together with their UK-columns
-        {<tableshortname>id : {colname:value,}} for every column being in a uk
-    """
-    tables = select(psql="""SELECT name
-                            FROM sqlite_master
-                            WHERE type = 'table' 
-                            AND name NOT LIKE'sqlite_%'""")
-    retval = {}
-    for tab in tables:
-        t = tab[0]
-        rows = t
-
+def getrowcount(ptablename):
+    retval = select(psql="select count(*) from {}".format(ptablename))[0][0]
+    return retval

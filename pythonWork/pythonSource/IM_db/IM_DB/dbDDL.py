@@ -1,12 +1,12 @@
 # -*- coding: latin-1 -*-
 
-from IM_DB import *
+from IM_DB import dbConnect
 import sqlite3
 import re
 
-def createTable(psql):
-    cursor = dbConnect.myDbConn.cursor()
-
+def createTable(psql,pconn=None):
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
     try:
         cursor.execute(psql)
     except sqlite3.Error as e:
@@ -20,8 +20,9 @@ def createTable(psql):
 
 # end createTable
 
-def dropTable(ptableName):
-    cursor = dbConnect.myDbConn.cursor()
+def dropTable(ptableName,pconn=None):
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
 
     try:
         cursor.execute("drop table " + ptableName + ";")
@@ -32,10 +33,10 @@ def dropTable(ptableName):
             print("Unerwarteter SQL-Fehler: \t{}".format(e))
             raise e
     return
-#end dropTable
-def dropView(ptableName):
-    cursor = dbConnect.myDbConn.cursor()
 
+def dropView(ptableName,pconn=None):
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
     try:
         cursor.execute("drop view " + ptableName + ";")
     except sqlite3.Error as e:
@@ -48,8 +49,9 @@ def dropView(ptableName):
 
 # end dropView
 
-def execscript(psql):
-    cursor = dbConnect.myDbConn.cursor()
+def execscript(psql,pconn=None):
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
     try:
         cursor.executescript(psql)
     except sqlite3.Error as e:
@@ -59,19 +61,20 @@ def execscript(psql):
             print(psql)
             print("exec: unexpected SQL-error: \t%s" % e)
             raise e
-    dbConnect.myDbConn.commit()
+    conn.commit()
 # end executescript
 
-def getsoleukcolname(ptablename):
-    uks = getuklist(ptablename)
+def getsoleukcolname(ptablename,pconn=None):
+    uks = getuklist(ptablename,pconn=pconn)
     if len(uks)== 1 and len(uks[0])==1:
         return uks[0][0]
     else:
         return None
 
-def getuklist(ptablename):
+def getuklist(ptablename,pconn=None):
     """List of all uk (list of columns) for this table  [[colname,],]"""
-    cursor = dbConnect.myDbConn.cursor()
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
     cursor.execute("PRAGMA index_list('{}')".format(ptablename))
     indices = cursor.fetchall()
     """index_list [seq,name,unique(0,1),origin (u),partial]
@@ -90,9 +93,10 @@ def getuklist(ptablename):
     cursor.close()
     return retval
 
-def getfklist(ptablename):
+def getfklist(ptablename,pconn=None):
     """return {colname:[fktable,fkcolname]} all names in lowercase"""
-    cursor = dbConnect.myDbConn.cursor()
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
     cursor.execute("PRAGMA foreign_key_list('{}')".format(ptablename))
     fks = cursor.fetchall()
     """foreign_key_list [id,seq,table,from,to,on_update (NO_ACTION),on_delete(CASCADE),match]
@@ -100,3 +104,26 @@ def getfklist(ptablename):
     retval = {fk[3].lower(): [fk[2].lower(), fk[4].lower()] for fk in fks}
     cursor.close()
     return retval
+
+
+def gettablelist(pconn=None):
+    """from currently open db, return list of all tables
+    """
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
+    cursor.execute("""SELECT name
+                       FROM sqlite_master
+                       WHERE type = 'table' 
+                       AND name NOT LIKE'sqlite_%'"""
+                   )
+    tables = cursor.fetchall()
+    retval = [tab[0] for tab in tables]
+    return retval
+
+def getcolums(ptablename,pconn=None):
+    conn = pconn if pconn is not None else dbConnect.myDbConn
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA table_info ({})".format(ptablename))
+    cols = cursor.fetchall()
+    colsinfo = {col[1]:(col[2],("NOT " if col[3]==1 else "") + "NULL") for col in cols}
+    return colsinfo
