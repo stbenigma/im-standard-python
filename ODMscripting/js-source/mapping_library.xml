@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- File contains Custom Libraries Scripts -->
 <custom_libraries>
-	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="attrmapping" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping,printDevMapping" >
+	<lib id="B2F713AD-5E48-670F-8A2B-55D1ABD0440C" name="mappinglib" engine="Oracle Nashorn" methods="importMapping,print1Mapping,printXMapping,printNameMapping,printDevMapping" >
 		<script>
 			<![CDATA[
-			var CODEVERSION = "3.0";
+			var CODEVERSION = "3.1";
 						var FORMATJSON = "JSON";
 						var FORMATCSV = "CSV"
 						var g_tabanz = 0;
@@ -26,6 +26,12 @@
 						var EXCELMULTILINESEP = String.fromCharCode(10)
 						var EXCELLINEEND = String.fromCharCode(10)
 						var EXCELBOM = "\ufeff" //String.fromCharCode(0xef,0xbb,0xbf)
+						var svlogger = model.getAppView() // messages to LOG
+						function logMessage(){
+							args = Array.prototype.slice.call(arguments,0);
+							svlogger.logMessage(args.join(', '))
+						}
+						
 
 						// Types for mapping element
 						ENTITYPE = 0
@@ -40,12 +46,31 @@
 						var g_containerMappings = {}
 						var g_attrMappings = {}
 
+						//ClassCollectionLoad
+						var javaclasses = new JavaImporter(
+							javax.swing.JOptionPane,
+							javax.swing.JFileChooser,
+							java.io.File,
+							java.io.FileWriter,
+							java.nio.file.Paths,
+							java.nio.file.Files,
+							java.nio.charset.StandardCharsets
+							)
+						//var Gui = new JavaImporter(java.awt, javax.swing);
+						//with (Gui) {
+						//    var awtframe = new Frame("AWT Frame");
+						//    var jframe = new JFrame("Swing JFrame");
+						//};
+
 						var PLAINMESSAGE = 1;
 						var ERRORMESSAGE = 0;
 						var WARNINGMESSAGE = 2;
 						var QUESTIONMESSAGE = 3;
 						function fullmessage(msg, type) {
-							Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
+							//Java.type("javax.swing.JOptionPane").showMessageDialog(null, msg, 'ODM-Translation', type);
+							with(javaclasses) {
+								JOptionPane.showMessageDialog(null, msg, 'ODM-Translation', type);
+							}
 						}
 
 						function error(msg) {
@@ -184,12 +209,16 @@
 							return null
 						}
 
-						function getAttrMap(attrID, modName) {
+						// For the given Attribute, read the column mapping  in the modName
+						function getAttrMap(attrID, relmodName) {
 							attrmaps = []
 							for (key in g_attrMappings) {
 								//message(colID+'|'+cmap[icolmap].getRelID())
 								if ((attrID == g_attrMappings[key].logID) &&
-									(modName == g_attrMappings[key].modelName)) attrmaps.push(g_attrMappings[key])
+									(relmodName == g_attrMappings[key].modelName)
+									) {
+										attrmaps.push(g_attrMappings[key])
+									}
 							}
 							return attrmaps
 						}
@@ -280,9 +309,9 @@
 						}
 
 						function importFile(fpath) {
-							var Paths = Java.type('java.nio.file.Paths');
-							var Files = Java.type('java.nio.file.Files');
-							var lines = Files.readAllLines(Paths.get(fpath), Java.type('java.nio.charset.StandardCharsets').UTF_8);
+							with (javaclasses) {
+								var lines = Files.readAllLines(Paths.get(fpath), StandardCharsets.UTF_8);
+							}
 							for (lnoif = 0; lnoif < lines.length; lnoif++) {
 								line = lines[lnoif]
 								values = line.split(";");
@@ -314,14 +343,17 @@
 
 						function importMapping() {
 							//Create a file chooser
-							var Filebrowse = Java.type("javax.swing.JFileChooser");
-							f = new Filebrowse(g_importDirec);
-							returnVal = f.showOpenDialog(null);
-							if (returnVal == Filebrowse.APPROVE_OPTION) {
-								imppath = f.getSelectedFile();
-								//message(imppath);
-							} else {
-								return
+							with(javaclasses) {	
+								//var Filebrowse = Java.type("javax.swing.JFileChooser");
+								//f = new JFileChooser.Filebrowse(g_importDirec);
+								f = new JFileChooser(g_importDirec);
+								returnVal = f.showOpenDialog(null);
+								if (returnVal == JFileChooser.APPROVE_OPTION) {
+									imppath = f.getSelectedFile();
+									//message(imppath);
+								} else {
+									return
+								}
 							}
 							g_tabanz = 0
 							g_colanz = 0
@@ -344,12 +376,14 @@
 								antwort = g_rmodels[0]
 							} else {
 								rmodel = g_rmodels[0]
-								antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
-									"Choose relational model",
-									"choose model",
-									QUESTIONMESSAGE,
-									null,
-									g_rmodels, rmodel);
+								with(javaclasses) {
+									antwort = JOptionPane.showInputDialog(null,
+										"Choose relational model",
+										"choose model",
+										QUESTIONMESSAGE,
+										null,
+										g_rmodels, rmodel);
+								}
 							}
 							return antwort
 						}
@@ -479,57 +513,77 @@
 							return b ? 'X' : ''
 						}
 			
+						//get all info and mappings for developpers output into an attributelist
 						function gatherDevCols(relModel) {
-							var attrids
+							//attrlist is a list of columns to be outputted as a line of ; seaparated fields in the final csv
+							//it has to contain as many entries, as the headers in allmapping in the calling function
+							var attrlist = []
+							
 							//print all tables and columns for 1 relational model
 							var tables = relModel.getTableSet().toArray();
-							var attrlist = []
-							for (itpc = 0; itpc < tables.length; itpc++) {
+							//for every table in this relmodel
+							for (var itpc = 0; itpc < tables.length; itpc++) {
 								var tab = tables[itpc]
 
+								//for all columns in the current table
 								var cols = tab.getElementsCollection().toArray()
-								for (icpcm = 0; icpcm < cols.length; icpcm++) {
+								for (var icpcm = 0; icpcm < cols.length; icpcm++) {
 									var col = cols[icpcm]
+									
 									var colkey = tab + '.' + col
-									//linemessage(1,attrlist.length,tab.getName(),col.getName())
 						
 									//start with the entry for the current model table/column
-									var mycolentry = [tab.getName(),col.getName()
+									var mycolentry = [tab.getName(),col.getName(),colProperty(relModel, tab.getName(), col.getName(), EXTIDPROPNAME)
 													,col.getDatatypeText(),booltoX(col.isMandatory()),col.getDefaultValue()
 													,col.getComment(),col.getNotes()
 													]
-									//add the Logical model mapping in the format [['enti',...],['attr',...]]
+													
+									//add the Logical model mapping in the format ['enti\nenti\nenti','attr\nattr\nattr']
 									var colattrs = getcolattrmap(col)										
-									mycolentry = mycolentry.concat(colattrs[0],colattrs[1])
+									mycolentry.push(colattrs[0],colattrs[1])
+									
 									//linemessage(2,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
 
 									var attrids = colattrs[2]
-									// alle Modelle ausser dem aktuellen 
+									// alle relationalen Modelle ausser dem aktuellen 
 									var restrmodels = []
 									var emptycols = []
+									var allindirectcols = {}
 									for (r = 0; r < g_rmodels.length; r ++){
 										if (g_rmodels[r] != relModel.getName()) {
 											restrmodels.push(g_rmodels[r])
 											emptycols.push([],[],[])
+											allindirectcols[g_rmodels[r].getName()] = [[],[],[]] 
 										}
 									} 
-									//linemessage('gatherDevCols',restrmodels.length,attrids.length,col.getName(),tab.getName())
-						
+									
 									if (attrids.length == 0) {
 										mycolentry = mycolentry.concat(emptycols)
 									} else {
+										// for all attributes mapped to the current column,
+										// get all columns mapped to them
 										for (i = 0; i < attrids.length; i ++){
-											// add to the line all mappings from all attributes to all columns in the other models
+											// add to the line all mappings from the attribute to all columns in the other models
 											var attrid = attrids[i]
 											if (attrid != null) {
-												//linemessage(colattrs[0][i],colattrs[1][i],attrids[i])
-												mycolentry = mycolentry.concat(attrElements(restrmodels, attrid, false))
+												attrelements = modelAttrElements(restrmodels, attrid)
+												// {modelname : [[tabname,],[colname,],[id,]]}
+												//logMessage('===== attrelements',JSON.stringify(attrelements,undefined,2))
+												for (modelName in attrelements){
+													//logMessage('=== ' , modelName, '===',JSON.stringify(attrelements[modelName][0],undefined,2),JSON.stringify(attrelements[modelName][1],undefined,2),JSON.stringify(attrelements[modelName][2],undefined,2))
+													allindirectcols[modelName][0] = allindirectcols[modelName][0].concat(attrelements[modelName][0])
+													allindirectcols[modelName][1] = allindirectcols[modelName][1].concat(attrelements[modelName][1])
+													allindirectcols[modelName][2] = allindirectcols[modelName][2].concat(attrelements[modelName][2])
+												}
 											}
-											//linemessage(3,attrlist.length,tab.getName(),col.getName(),attrid,mycolentry.length)
 										}
+										//logMessage(JSON.stringify(allindirectcols,undefined,2))
+										for (modelName in allindirectcols){
+											mycolentry = mycolentry.concat(allindirectcols[modelName])
+										}	
+										//logMessage(JSON.stringify(mycolentry,undefined,2))
 									}
 									attrlist.push(mycolentry)
-									//linemessage(5,attrlist.length,tab.getName(),col.getName(),mycolentry.length)
 								}
 							}
 							return attrlist
@@ -574,22 +628,23 @@
 						function chooseFile(direc, fileName) {
 							//Create a file chooser
 							//message("direc= "+direc)
-							var Filebrowse = Java.type("javax.swing.JFileChooser");
-							var File = Java.type("java.io.File");
-							f = new Filebrowse(direc);
-							f.setSelectedFile(new File(fileName));
-							returnVal = f.showSaveDialog(null);
-							if (returnVal == Filebrowse.APPROVE_OPTION) {
-								return f.getSelectedFile();
-							} else {
-								return null
+							with(javaclasses) {	
+								f = new JFileChooser(direc);
+								f.setSelectedFile(new File(fileName));
+								returnVal = f.showOpenDialog(null);
+								if (returnVal == JFileChooser.APPROVE_OPTION) {
+									return f.getSelectedFile();
+								} else {
+									return null
+								}
 							}
 						}
 
 						function createFile(fileName) {
 							//Create a file chooser
-							var FileWriter = Java.type('java.io.FileWriter')
-							fw = new FileWriter(fileName);
+							with (javaclasses) {
+								fw = new FileWriter(fileName);
+							}
 							return fw
 						}
 
@@ -601,9 +656,9 @@
 						}
 
 						function colProperty(pcurmodel, tabname, colname, propName) {
-							table = pcurmodel.getTableSet().getByName(tabName);
+							table = pcurmodel.getTableSet().getByName(tabname);
 							if (table == null) return ""
-							column = table.getElementByName(colName);
+							column = table.getElementByName(colname);
 							extID = column.getProperty(propName)
 							return ((extID == null) || (extID == ".")) ? "" : extID
 						}
@@ -669,6 +724,8 @@
 							var acol = g_curmodel.getTableSet().getByName(atab).getElementByID(a.relID)
 							var btab = g_containerMappings[b.parentID].tableName
 							var bcol = g_curmodel.getTableSet().getByName(btab).getElementByID(b.relID)
+							if (a.modelName < b.modelName) {return -1 }
+							if (a.modelName > b.modelName) {return 1 }
 							if (atab < btab) {return -1 }
 							if (atab > btab) {return 1}
 							return (acol < bcol) ? -1 : (acol > bcol) ? 1 : 0
@@ -682,13 +739,10 @@
 							var colIDs = []
 							for (irmpm = 0; irmpm < rmodels.length; irmpm++) {
 								g_curmodel = rmodels[irmpm]
-								//linemessage('attrElements 1',rmodels.length,attrID,g_curmodel.getName())
+								
 								var attrmaps = getAttrMap(attrID, g_curmodel.getName())
-									//		if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
-									//			message(g_curmodel.getName()+':'+attrID+':'+attrmaps.length)
-									//		}
-								//linemessage('attrElements 2',attrmaps.length,g_curmodel.getName())
 								if (attrmaps.length > 0) {
+									// NICHT NOETIG attrmaps.sort(sortattrmaps)
 									if (nurX) {
 										attrlist = [
 											['X']
@@ -698,27 +752,19 @@
 										tabNames = []
 										colNames = []
 										colIDs = []
-										//SORT
 										var attrmaplist = []
 										for (var key in attrmaps) {
 										    attrmaplist.push( attrmaps[key] );
-										}
-										attrmaplist.sort(sortattrmaps);
+										}											
+											
 										for (var amidx=0;amidx<attrmaplist.length;amidx++) {
 											var attrmap = attrmaplist[amidx]
-											//linemessage('attrElements 3',attrmap.parentID,attrmap.relID,g_curmodel.getName())
-										//SORT
-										//for (key in attrmaps) {
-										//attrmap = attrmaps[key]
 											tabName = g_containerMappings[attrmap.parentID].tableName
 											colName = g_curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
 											tabNames.push(tabName.getName())
 											colNames.push(colName.getName())
 											colIDs.push(colProperty(g_curmodel, tabName, colName, EXTIDPROPNAME))
 										}
-										//				if (attrID == '55CABD5F-9462-BF35-239C-E8A1A1D0848C') {
-										//					message('tabName1='+tabNames+'\ncolNames='+colNames+'\ncolIDs='+colIDs)
-										//				}
 
 										//tabNames = tabNames.slice(0, -1)
 										//colNames = colNames.slice(0, -1)
@@ -739,6 +785,51 @@
 							return aeretval
 						}
 
+						function modelAttrElements(rmodels, attrID) {
+							var aeretval = {}
+							var attrlist = []
+							var tabNames = []
+							var colNames = []
+							var colIDs = []
+							for (irmpm = 0; irmpm < rmodels.length; irmpm++) {
+								g_curmodel = rmodels[irmpm]
+								
+								var attrmaps = getAttrMap(attrID, g_curmodel.getName())
+								if (attrmaps.length > 0) {
+									// NICHT NOETIG attrmaps.sort(sortattrmaps)
+									attrlist = [],
+									tabNames = []
+									colNames = []
+									colIDs = []
+									var attrmaplist = []
+									for (var key in attrmaps) {
+									    attrmaplist.push( attrmaps[key] );
+									}											
+										
+									for (var amidx=0;amidx<attrmaplist.length;amidx++) {
+										var attrmap = attrmaplist[amidx]
+										tabName = g_containerMappings[attrmap.parentID].tableName
+										colName = g_curmodel.getTableSet().getByName(tabName).getElementByID(attrmap.relID)
+										tabNames.push(tabName.getName())
+										colNames.push(colName.getName())
+										colIDs.push(colProperty(g_curmodel, tabName, colName, EXTIDPROPNAME))
+									}
+
+									//tabNames = tabNames.slice(0, -1)
+									//colNames = colNames.slice(0, -1)
+									//colIDs = colIDs.slice(0, -1)
+									attrlist = [tabNames, colNames, colIDs]
+								} else {
+									attrlist = [
+										[],
+										[],
+										[]
+									]
+								}
+								aeretval[g_curmodel.getName()] = attrlist
+							}
+							return aeretval
+						}
 
 						function logicalElement(rmodels, logElem, nurX) {
 							var leretval = []
@@ -777,7 +868,6 @@
 							return leretval
 						}
 
-						//	function printElementGroup(rmodels, group, nurX) {
 						function mappings2json(rmodels, group, nurX) {
 							m2jretval = []
 							if (group != null) {
@@ -785,18 +875,19 @@
 									m2jretval = m2jretval.concat(logicalElement(rmodels, group[ig], nurX))
 								}
 							}
-							//message('mappings2json= '+retval)
 							return m2jretval
 						}
 
+						// replace " by ', enclose string between "" if it contains lf
 						function escapeexcelchars(s){
 							var retval = s.replace(/"/g, "'") //  " sollte EXCELESCCHAR sein ist aber umständlich
 							if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 							return retval
 						}
+						
+						// print a line (list of entries) as a lf-separated list enclosed between ""
+						// if there is a " in the string, replace it
 						function printline(fw, line) {
-			//				for (zi = 0; zi < line.length; zi++) {
-			//					field = line[zi]
 							forEach(line,
 								function print1ine(field,idx){
 									if (idx > 0) {
@@ -819,6 +910,7 @@
 							fw.write(EXCELLINEEND)
 						}
 
+						//print entries as possible list of entries
 						function printlines(fw, entry) {
 							for (ie = 0; ie < entry.length; ie++) {
 								line = entry[ie]
@@ -827,6 +919,7 @@
 							}
 						}
 
+						// output jsonstructure in allMapping iin csv-format
 						function json2csv(fw, allMapping) {
 							fw.write(EXCELBOM)
 							for (key in allMapping) {
@@ -851,6 +944,7 @@
 							}
 						}
 
+						// gather globals for all needed elements
 						function gatherModel() {
 							g_logicalModel = model.getDesign().getLogicalDesign();
 							g_entitySet = g_logicalModel.getEntitySet()
@@ -859,12 +953,15 @@
 							g_rmodels = model.getDesign().getRelationalDesigns().toArray();
 						}
 
+						// all data is collected in allmapping
+						// print it to json or transform it into csv
 						function printjson(fw, format, allmapping) {
 							switch (format) {
 								case FORMATJSON:
 									fw.write(JSON.stringify(allmapping, null, 2)); // spacing level = 2)
 									break;
 								case FORMATCSV:
+									// transform json structure into csv and print it
 									json2csv(fw, allmapping)
 									break;
 								default:
@@ -872,9 +969,15 @@
 							}
 						}
 
+						// print matrix of Entities/Attributes to tables or tables/columns
+						// format-> CSV or JSON
+						// fw -> open file
+						// nurX -> True: only existence in table (X), False: with columnnames
 						function printMatrix(fw, nurX, format) {
+							// Read complete model into globals
 							gatherModel()
 
+							//read all mappings of all models into
 							getAllMappings(g_rmodels)
 
 							if (nurX) {
@@ -882,7 +985,6 @@
 									"header": ['entity', 'attr']
 								}
 								for (ih = 0; ih < g_rmodels.length; ih++) {
-									//throw new Error("\nrmodel: " + g_rmodels[ih].getName() + '|'+g_rmodels[ih] + "\n");
 									allmapping["header"].push(g_rmodels[ih].getName())
 								}
 							} else {
@@ -916,14 +1018,18 @@
 							printjson(fw, format, allmapping)
 						}
 
+						//prints a developpers CVS for one relmodel
+						// starting with information about the tables/columns continuing with mapping to IM and other relmodels.
 						function printDevCVS(fw, format,relModel) {
 							// lies alle Mappings des gewählten Modells
 							mymodelname = relModel.getName()
+							// prepare jsonstructure for Header and data
 							allmapping = {
-								"model": [mymodelname,'','','','','','', 'Information Model',''],
-								"header": ['tableName', 'columnName','datatype','mand.','def. value','descr','rules','entity','attribute'],
+								"model": [mymodelname,'','','','','','','', 'Information Model',''],
+								"header": ['tableName', 'columnName','ID','datatype','mand.','def. value','descr','rules','entity','attribute'],
 								"attrlist": gatherDevCols(relModel)
 							}
+							
 							// Add all relational models except myself to the header
 							for (ih = 0; ih < g_rmodels.length; ih++) {
 								if (g_rmodels[ih].getName() != mymodelname) {
@@ -933,26 +1039,34 @@
 								}
 							}
 				
+							// add all other models into the allmapping-structure and print it
 							printjson(fw, format, allmapping)
 						}
 
+						//choose outputfilepath. Default = pfilename
 						function chooseoutputfilename(pfilename, pformat) {
 							fileName = chooseFile(g_exportDirec, pfilename +
 								((pformat == FORMATJSON) ?'.js' : ((pformat == FORMATCSV) ?'.csv' :'txt')))
 							return fileName
 						}
 
+						// ask and return the output format (CSV / JSON)
 						function outputformat() {
 							var formatauswahl = [FORMATJSON, FORMATCSV]
-							antwort = Java.type("javax.swing.JOptionPane").showInputDialog(null,
-								"Output format",
-								"choose output format",
-								QUESTIONMESSAGE,
-								null,
-								formatauswahl, FORMATCSV);
+							with(javaclasses) {
+								antwort = JOptionPane.showInputDialog(null,
+									"Output format",
+									"choose output format",
+									QUESTIONMESSAGE,
+									null,
+									formatauswahl, FORMATCSV);
+							}
 							return antwort
 						}
 
+						//print mapping for one relmodel to the IM
+						// tables/columuns to entities/attributes
+						// This csv will be imported later to set mappings
 						function print1Mapping() {
 							gatherModel()
 							var relModel = chooseModel();
@@ -973,28 +1087,41 @@
 							message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
 						}
 
+						//Print developpers mapping for one relmodel
+						//some information about every column
+						// followed by informationmodel Entitiy/Attribute
+						// followed by (indirect via IM) mapping to other systems tables/columns
 						function printDevMapping() {
 							gatherModel()
+							// select 1 relmodel
 							var relModel = chooseModel();
 							if (relModel == null) return;
 	
+							//select the output format (CSV,JSON)
 							format = outputformat()
 							if (format == null) {
 								return null
 							}
+							//define and open file
 							filename = chooseoutputfilename(relModel.getName()+'_dev', format)
 							if (filename == null) {
 								return
 							} else {
 								fw = createFile(filename)
 							}
+							// read all mappings for all relmodels
 							getAllMappings(g_rmodels)
+							//print developers excel for the chosen relmodel
 							printDevCVS(fw, format,relModel)
 							fw.close();
 							message("Mapping file " + fileName + " for model " + relModel.getName() + " created.");
 						}
 
 
+						// Print matrix of Entities/Attributes to Tables or tables/columns of all relational systems
+						// Mappings are read within the printMatrix
+						// nurX -> only X for existence in table
+						// not nurX -> print name of attributes
 						function printAllMapping(nurX) {
 							format = outputformat()
 							if (format == null) {
@@ -1012,10 +1139,14 @@
 							message("Mapping file " + fileName + " created.");
 						}
 
+						// Print matrix of Entities/Attributes to Tables of all relational systems
+						// print only existence (X) 
 						function printXMapping() {
 							printAllMapping(true)
 						}
-
+						
+						// Print matrix of Entities/Attributes to Tables/Columns of all relational systems
+						// print names of mapping (can be multiline)
 						function printNameMapping() {
 							printAllMapping(false)
 						}

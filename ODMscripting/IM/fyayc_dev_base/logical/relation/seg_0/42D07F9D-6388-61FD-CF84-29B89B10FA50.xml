@@ -10,9 +10,13 @@
 <identifying>false</identifying>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
-<sourceCardinality>1</sourceCardinality>
+<sourceCardinality>*</sourceCardinality>
 <sourceEntity>14B08944-61ED-5412-55F3-1A5EAEA2D6B7</sourceEntity>
-<targetCardinalityString>1</targetCardinalityString>
+<targetCardinalityString>*</targetCardinalityString>
 <targetEntity>2E5C2E2A-FFB5-B2FF-2CDD-96FDB4508EA0</targetEntity>
 <transferable>true</transferable>
+<propertyMap>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
 </Relation>
