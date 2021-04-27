@@ -430,29 +430,50 @@ def putrefinsvg(ptext,pdiagid,plang):
 
     return retval
 
-def printcontentdiag(plist, plang, ptitel):
-    contenthead="""        <!--diagramms-->"""
+def svgfilename(pname,plang=None):
+    retval = None
+    if (plang is not None):
+        svgfn = parameters.webDirec() + "/image/" + pname + "_" + plang + ".svg"
+        if os.path.exists(svgfn): retval = svgfn
+    #fi
+    if retval is None: #try filename without language marker
+        svgfn = parameters.webDirec() + "/image/" + pname + ".svg"
+        if os.path.exists(svgfn):
+            retval = svgfn
+        else:
+            retval = None
+        #fi
+    #fi
+    return retval
 
-    diagramhead = """        <br><hr><br><br>
+
+def diaghtmlhead(panker, pname, pwidth, pheight):
+    return """        <br><hr><br><br>
         <div id="{}-container">
        <h3 id="{}">{}</h3>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
         version="1.1"  width="{}" height="{}">
         <defs id="dmw_defs" >
         </defs>
-"""
-#wäre in defs drin
-#           <clipPath clipPathUnits="userSpaceOnUse" id="clipPathlegend">
-#             <rect x="0" y="0" width="{}" height="{}" />
-#        </clipPath>
+    """.format (panker,panker,pname,pwidth,pheight)
+    #wäre in defs drin
+    #           <clipPath clipPathUnits="userSpaceOnUse" id="clipPathlegend">
+    #             <rect x="0" y="0" width="{}" height="{}" />
+    #        </clipPath>
 
-    diagramfoot = """
-</svg>
-    <div class="print-button-container">
-        <button class="print-button" onclick="printElem(this)">print</button>
+def diaghtmlfoot():
+    return """
+    </svg>
+        <div class="print-button-container">
+            <button class="print-button" onclick="printElem(this)">print</button>
+        </div>
     </div>
-</div>
-"""
+    """
+
+
+def printcontentdiag(plist, plang, ptitel):
+    contenthead="""        <!--diagramms-->"""
+
     detailshead = """           
                 <!-- The inside div eliminates the 'jumping' animation. -->
 """
@@ -468,15 +489,14 @@ def printcontentdiag(plist, plang, ptitel):
 """
     for diaanker,diaelem in plist.items():
         #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        printHTML.fhtml.write (diagramhead.format(diaanker,diaanker, diaelem['name']
-                                                  , diaelem['width'], diaelem['height']))
+        printHTML.fhtml.write (diaghtmlhead(panker=diaanker, pname=diaelem['name']
+                                                  , pwidth=diaelem['width'], pheight=diaelem['height']))
                                 #wäre clippath,legendwidth,legendhigh))
 
-        svgfilename = parameters.webDirec() + "/image/" + diaelem['name'] + "_"+plang+".svg"
-        if not os.path.exists(svgfilename):
-            svgfilename = parameters.webDirec() + "/image/" + diaelem['name'] + ".svg"
-        if os.path.exists(svgfilename):
-            with (open(file=svgfilename,mode="r")) as f:
+        svgfn = svgfilename(pname=diaelem['name'],plang=plang)
+        if svgfn is not None:
+            """add links to svg and include it in html"""
+            with (open(file=svgfn,mode="r")) as f:
                 svgtext = f.read()
             svgtext = putrefinsvg(ptext=svgtext,pdiagid=diaanker,plang=plang)
             #svgtext = puticonsinsvg(ptext=svgtext,pdiagid=diaanker)
@@ -493,6 +513,6 @@ def printcontentdiag(plist, plang, ptitel):
             printelements(pdiag=diaelem, pdiaganker=diaanker,plang=plang)
         #fi
 
-        printHTML.fhtml.write(diagramfoot)
+        printHTML.fhtml.write(diaghtmlfoot())
     #for
 #printcontendiag

@@ -1,0 +1,305 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set domain = item %}
+<ac:layout>
+    {% include 'header.templ.html' %}
+    <ac:layout-section ac:type="two_right_sidebar">
+        <ac:layout-cell>
+            <!--domains-->        
+			<div class="entity" id={{getid()}}>
+				<div class="describtion">
+					<span> 
+						<p>gettext('Wertebereich')</p>
+						<h1>{{ gettext('Domain %(name)s', name=util.translate(domain['name'])) }}</h1>
+						<p1>{{ util.translate_text(domain['descr']) }}</p1>
+					</span>
+				</div>
+				<div class="panel-body">
+					<div class="collapse" id={{getbar()}}>                    
+						<h2>Informationen</h2>
+						<div id="container2">
+							<div class="table-responsive">
+								<table class="table borderless">
+									<tbody>
+										<tr>
+											<th>gettext('Datentyp')</th>
+											{% if domain['type'] in ('TXT','LOV') %}
+												<th>gettext('Max. Länge')</th>
+												<th>gettext('Syntaxregel')</th>
+											{% elif domain['type'] in ('BIN') %}
+												<th>gettext('Inhaltstyp')</th>
+												<th>gettext('Format')</th>
+											{% elif domain['type'] in ('NUM','DAT') %}
+												{% elif domain['type'] in ('NUM') %}
+													<th>gettext('Vorkommast.')</th>
+													<th>gettext('Nachkommast.')</th>
+													<th>gettext('Rundungseinh.')</th>
+													<th>gettext('Einheit')</th>
+												{% elif domain['type'] in ('DAT') %}
+													<th>gettext('Granularität')</th>
+												{% endif %}
+												<th>gettext('Min. Wert')</th>
+												<th>gettext('Max. Wert')</th>												
+											{% elif domain['type'] in ('GRP') %}
+																						
+											{% endif %}
+											<th>gettext('geändert')</th>
+										</tr>
+										<tr>
+											<td class="attribute">{{ util.translate(domain['displdatatype+']) }}</td>
+											{% if domain['type'] in ('TXT','LOV') %}
+											<td class="attribute">domain['maxlng']</td>
+											<td class="attribute">domain['syntaxrule']</td>
+											{% elif domain['type'] in ('BIN') %}
+												<th>gettext('Inhaltstyp')</th>
+												<th>gettext('Format')</th>
+											{% elif domain['type'] in ('NUM','DAT') %}
+												{% elif domain['type'] in ('NUM') %}
+													<th>gettext('Vorkommast.')</th>
+													<th>gettext('Nachkommast.')</th>
+													<th>gettext('Rundungseinh.')</th>
+													<th>gettext('Einheit')</th>
+												{% elif domain['type'] in ('DAT') %}
+													<th>gettext('Granularität')</th>
+												{% endif %}
+												<th>gettext('Min. Wert')</th>
+												<th>gettext('Max. Wert')</th>												
+											{% elif domain['type'] in ('GRP') %}
+																						
+											{% endif %}
+											<td class="attribute">domain['um']+', '+domain['dm']</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+        if (elem['type'] in (Domain.TXT, Domain.LOV)):
+            infoheaders = (
+                Languagetext.transl('Datentyp'), Languagetext.transl('Max. Länge'), Languagetext.transl('Syntaxregel'),
+                Languagetext.transl('geändert'))
+            infovalues = (
+                parameters.nvl(elem['displdatatype+'][lang]), parameters.nvl(elem['maxlng']), parameters.nvl(elem['syntaxrule'] if elem['type'] == Domain.TXT else ''),
+                parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+        elif (elem['type'] == Domain.BIN):
+            infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('Inhaltstyp'), Languagetext.transl('Format'),
+                           Languagetext.transl('geändert'))
+            infovalues = (
+            parameters.nvl(elem['displdatatype+'][lang]), parameters.nvl(elem['contenttype']),
+                parameters.nvl(elem['contenttypename+']), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+        elif (elem['type'] == Domain.GRP):
+            infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
+            infovalues = (elem['displdatatype+'][lang], parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+        elif (elem['type'] == Domain.NUM):
+            infoheaders = (
+                Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
+                , Languagetext.transl('Rundungseinh.'), Languagetext.transl('Einheit'), Languagetext.transl('Min. Wert'),
+                Languagetext.transl('Max. Wwert')
+                , Languagetext.transl('geändert'))
+            infovalues = (
+                parameters.nvl(elem['displdatatype+'][lang]), parameters.nvl(elem['totaldigits']), parameters.nvl(elem['fractdigits']),
+                parameters.nvl(elem['roundvalue']), parameters.nvl(elem['unit'])
+                , parameters.nvl(elem['minvalue']), parameters.nvl(elem['maxvalue'])
+                , parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+        elif (elem['type'] == Domain.DAT):
+            infoheaders = (
+                Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
+                Languagetext.transl('Granularität')
+                , Languagetext.transl('geändert'))
+            infovalues = (elem['displdatatype+'][lang], parameters.nvl(elem['minvalue']), parameters.nvl(elem['maxvalue']),
+                          parameters.nvl(elem['granularitytext+'][lang]), parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
+        else:							
+                		<tr>
+                    		<th>{{ gettext('Type') }}</th>
+                    		<td>{{ domain['type'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Type description') }}</th>
+                    <td>{{ util.translate(domain['displdatatype+']) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Typesting') }}</th>
+                    <td>{{ domain['datatypestr+'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Basetype') }}</th>
+                    <td>{{ domain['basedatatype+'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('ID') }}</th>
+                    <td>{{ domain['datatypeid'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Format') }}</th>
+                    <td>{{ domain['format+'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Format ID') }}</th>
+                    <td>{{ domain['formatid'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Display data type') }}</th>
+                    <td>{{ util.translate(domain['displdatatype+']) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Minimum') }}</th>
+                    <td>{{ domain['minvalue'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Maximum') }}</th>
+                    <td>{{ domain['maxvalue'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Total digits') }}</th>
+                    <td>{{ domain['totaldigits'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Fraction digits') }}</th>
+                    <td>{{ domain['fractdigits'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Granularity') }}</th>
+                    <td>{{ domain['granularity'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Granularity description') }}</th>
+                    <td>{{ util.translate(domain['granularitytext+']) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Unit') }}</th>
+                    <td>{{ domain['unit'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Round value') }}</th>
+                    <td>{{ domain['roundvalue'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Source') }}</th>
+                    <td>{{ domain['origin'] }}</td>
+                </tr>
+                <tr>
+                    <th>{{ gettext('Interface') }}</th>
+                    <td>{{ until.soft_link['interfaceid'] }}</td>
+                </tr>
+            </table>
+            </p>
+        </ac:layout-cell>
+        <ac:layout-cell>
+            <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271490/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0551_temperature.svg"/>
+        </ac:layout-cell>
+    </ac:layout-section>
+    <ac:layout-section ac:type="single">
+        <ac:layout-cell>
+            <h1>{{ gettext('Linked attributes') }}</h1>
+            <table class="relative-table" style="width: 100%;">
+                <tbody>
+                <tr>
+                    <th>{{ gettext('Entity') }}</th>
+                    <th>{{ gettext('Attribute') }}</th>
+                </tr>
+                {% for attribute_key in domain['usedinattrs+'] %}
+                {% set attribute = data['attributes'][attribute_key] %}
+                <tr>
+                    <td>{{ util.soft_link(attribute['entity']) }}</td>
+                    <td>{{ util.soft_link(attribute_key) }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </ac:layout-cell>
+    </ac:layout-section>
+    <ac:layout-section ac:type="single">
+        <ac:layout-cell>
+            <h1>{{ gettext('Linked columns') }}</h1>
+            <table class="relative-table" style="width: 100%;">
+                <tbody>
+                <tr>
+                    <th>{{ gettext('Table') }}</th>
+                    <th>{{ gettext('Column') }}</th>
+                </tr>
+                {% for column_key in domain['usedincols+'] %}
+                {% set column = data['columns'][column_key] %}
+                <tr>
+                    <td>{{ util.soft_link(column['table-id']) }}</td>
+                    <td>{{ column_key }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+			</div>
+			
+        </ac:layout-cell>
+    </ac:layout-section>
+    {% include 'footer.templ.html' %}
+</ac:layout>
+
+
+		<h2>Werteliste</h2>        
+        <div id="container1">
+    
+        <div class="table-responsive">
+            <table class="table borderless" >
+                <tbody>
+                    <tr>
+             <th>Nr</th>
+                 <th>Wert</th>
+                 <th>Anzeige</th>
+                 <th>Beschreibung</th>
+                   </tr>
+    <tr>
+                     <td>1</td>
+                 <td>FALSE</td>
+                 <td>unwahr</td>
+                 <td></td>
+                   </tr>
+    <tr>
+                     <td>2</td>
+                 <td>TRUE</td>
+                 <td>wahr</td>
+                 <td></td>
+                   </tr>
+    
+        </tbody>
+      </table>
+    </div> 
+    </div>
+                
+                            </div>                 <div class="panel">
+                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar292">
+                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+                    <label class="label1">Mehr</label>
+                </div>
+            </div>
+        </div>
+        </div>
+		
+<h2>Elemente</h2>        
+        <div id="container1">
+    
+        <div class="table-responsive">
+            <table class="table borderless" >
+                <tbody>
+                    <tr>
+             <th>Element</th>
+                 <th>Beschreibung</th>
+                 <th>Wertebereich</th>
+                 <th>Pflichtattribut</th>
+                   </tr>
+    <tr>
+                     <td>x</td>
+                 <td></td>
+                 <td><a href="#DOMA3296" target="_self">x (Numerisch)</a></td>
+               <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                   </tr>
+    <tr>
+                     <td>y</td>
+                 <td></td>
+                 <td><a href="#DOMA3297" target="_self">y (Numerisch)</a></td>
+               <td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+                   </tr>
+    
+        </tbody>
+      </table>
+    </div> 
+    </div>
+    

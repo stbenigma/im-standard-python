@@ -1252,7 +1252,7 @@ def printcontentdoma(pdomains):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
                 , Languagetext.transl('Rundungseinh.'), Languagetext.transl('Einheit'), Languagetext.transl('Min. Wert'),
-                Languagetext.transl('Max. Wwert')
+                Languagetext.transl('Max. Wert')
                 , Languagetext.transl('geändert'))
             infovalues = (
                 parameters.nvl(elem['displdatatype+'][lang]), parameters.nvl(elem['totaldigits']), parameters.nvl(elem['fractdigits']),
@@ -1261,7 +1261,7 @@ def printcontentdoma(pdomains):
                 , parameters.nvl(elem['uc']) + ',' + parameters.nvl(elem['dc']))
         elif (elem['type'] == Domain.DAT):
             infoheaders = (
-                Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
+                Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wert'),
                 Languagetext.transl('Granularität')
                 , Languagetext.transl('geändert'))
             infovalues = (elem['displdatatype+'][lang], parameters.nvl(elem['minvalue']), parameters.nvl(elem['maxvalue']),
