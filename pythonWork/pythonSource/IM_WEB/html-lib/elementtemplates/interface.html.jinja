@@ -64,7 +64,7 @@
 					<div class="collapse" id="bartabl">
 						<ol class="tree" id="TablesList">
 							{% for tab in tables %} 
-							<li class="obj"><a href="#{{ tab[0] }}" target="_self">{{ tab[1] }}</a></li>
+							<li class="obj">{{ getreflink(name=tab[1], destid=tab[0]) }}
 							{% endfor %}
 						</ol>
 					</div>
@@ -83,7 +83,7 @@
 							{% for col in columns %}
 							{% set tablid = getelem(col[0])["table-id"] %}
 							{% set tabl = getelem(tablid) %}
-							<li class="obj"><a href="#{{ col[0] }}" target="_self">{{ col[1] ~ " (" ~ tabl["name"] ~ ")" }}</a></li> {# ["table-id"] #}
+							<li class="obj">{{ getreflink(name=col[1] ~ " (" ~ tabl["name"] ~ ")", destid=col[0]) }} 
 							{% endfor %}
 						</ol>
 					</div>
@@ -102,7 +102,7 @@
 					<div class="collapse" id="bardoma">
 						<ol class="tree" id="DomainList">
 							{% for dom in domains %}
-							<li class="obj"><a href="#{{ dom[0] }}" target="_self">{{ dom[1] }}</a></li>
+							<li class="obj">{{ getreflink(name=dom[1],destid=dom[0]) }} 
 							{% endfor %}
 						</ol>
 					</div>
@@ -112,7 +112,7 @@
 				{% if diagram|count > 0 %}
 				<div class="panel-body" id="ColumnsL">	
 					<label class="label0">Diagram</label><br>
-					<a href="#{{ diagram.id }}" target="_self">{{ title }}</a>
+					{{ getreflink(name=title,destid=diagram.id) }} 
 					{% endif %}
 				</div>
 			</div>
@@ -170,73 +170,78 @@
 							</tbody>
 						</table>
 					</div>
+
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{ tablid }}colu">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Columns</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="{{ tablid }}colu">
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Domain</th>
+										<th>Datatype</th>
+									</tr>
+									{% for colid in elem["columns+"] %}
+									{% set colu = getelem(colid) %}
+									{% set domaid = colu["domain"] %}
+									<tr>
+										<td><a href="#{{ colid }}" target="_self">{{ colu["name"] }}</a></td>
+										<td>{{ getnvl(colu["descr"]) }}</td>
+										<td> {% if domaid is defined %}
+											{% set doma = getelem(domaid) %}
+											{% if doma["origin"] == 'DER' %}
+											{{ getlangname(doma["name"]) }}
+											{% else %}
+											{{ getreflink(name=getlangname(doma["name"]),curintfid=elem["interface-id"]
+														 ,destintfid=doma["interfaceid"],destid=domaid)}}
+											{% endif %}
+											{% endif %}
+										</td>
+										<td>{{ colu["datatype"] }}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div> 
+					</div>
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{ tablid }}map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					{% if elem["entitiesmapped"]|count + elem["relationsmapped"]|count > 0 %}
+					<div class="collapse" id="{{ tablid }}map">
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model</th>
+										<th>Entity(ies) / Table(s)</th>
+									</tr>
+									<tr>
+										<td>Information Model</td>
+										<td>
+										{% for entiid in elem["entitiesmapped"] %}
+										{% if loop.index > 1 %}', '{% endif %}
+										{{ getreflink(name=getlangname(getelem(entiid)["name"]),destid=entiid,curintfid=elem["interface-id"]) }}
+										{% endfor %}
+									</tr>
+								</tbody>
+							</table>
+						</div> 
+					</div>
+					{% endif %}
 				</div>
 			</div>
-			<div class="panel">
-				<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{ tablid }}colu">
-					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-					<label class="label1"><h3>Columns</h3></label>				
-				</div>
-			</div>
-			<div class="collapse" id="{{ tablid }}colu">
-				<div class="table-responsive">
-					<table class="table borderless" >
-						<tbody>
-							<tr>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Domain</th>
-								<th>Datatype</th>
-							</tr>
-							{% for colid in elem["columns+"] %}
-							{% set colu = getelem(colid) %}
-							{% set domaid = colu["domain"] %}
-							{% set doma = getelem(doamid) %}
-							<tr>
-								<td><a href="#{{ colid }}" target="_self">{{ colu["name"] }}</a></td>
-								<td>{{ getnvl(colu["descr"]) }}</td>
-								<td> {% if doma["origin"]== 'DER' %}
-									{{ getlangname(doma["name"]) }}
-									{% else %}
-									{{ getelemlink(domaid,getlangname(doma["name"]),doma["interfaceid"]) }}
-									{% endif %}
-								</td>
-								<td>{{ colu["datatype"] }}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div> 
-			</div>
-			<div class="panel">
-				<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{ tablid }}map">
-					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-					<label class="label1"><h3>Mappings</h3></label>				
-				</div>
-			</div>
-			{% set tablref = getreflist (tablid) %}
-			{% if tablref|count > 0 %}
-			<div class="collapse" id="{{ tablid }}map">
-				<div class="table-responsive">
-					<table class="table borderless" >
-						<tbody>
-							<tr>
-								<th>Model</th>
-								<th>Entity(ies) / Table(s)</th>
-							</tr>
-							{% for key,val in tablref.items() %}
-							<tr>
-								<td>{{ key }}</td>
-								<td>{{ val }}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div> 
-			</div>
-			{% endif %}
 			<div class="panel">
 				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{ tablid }}main">
 					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">

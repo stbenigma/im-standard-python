@@ -1,5 +1,5 @@
 from datetime import datetime
-from IM_JSON import JSModel
+from IM_JSON import JSModel,jsguid2type
 
 from jinja2 import Template
 
@@ -7,10 +7,7 @@ def gettext(str):
     return str
 
 def getlangname(str):
-    try:
-        return str['de']
-    except:
-        return "gugus"
+    return str['de']
 
 def getelem(id):
     global jsmodel
@@ -20,9 +17,16 @@ def getelem(id):
 def getnvl(val,default = ""):
     return default if val is None else val
 
-def getelemlink(domaid,name,intfid):
-    return """<a href="{}#{}" target="{}">{}</a>""".format("" if intfid is not None else "file:///Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/Web/crmTest_de.html"
-                                                              ,domaid,"_self",name)
+def getreflink(name,destid,curintfid=None,destintfid=None):
+    return """<a href="{}#{}" target="{}">{}</a>"""\
+                .format('' if curintfid == destintfid \
+                            else "file:///Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/Web/crmTest_de.html"\
+                                 if destintfid is None\
+                                 else 'anderes interface '+destintfid
+                        ,destid
+                        ,'_self' if curintfid == destintfid else '_blank'
+                        ,name)
+
 
 def getreflist(id):
     return {"Information Model": '('+', '.join(["""<a href="{}#{}" target="_self">{}</a>""".format("crmTest_de.html","ENTI127","ENTI127"),"""<a href="{}#{}" target="_self">{}</a>""".format("","ENTI77","ENTI177")])
@@ -38,7 +42,7 @@ t.globals['gettext'] = gettext
 t.globals['getelem'] = getelem
 t.globals['getlangname'] = getlangname
 t.globals['getnvl'] = getnvl
-t.globals['getelemlink'] = getelemlink
+t.globals['getreflink'] = getreflink
 t.globals['getreflist'] = getreflist
 res = t.render(timestamp=datetime.now()
                ,metainfo = {"title" : "CRM-Salesforce"
