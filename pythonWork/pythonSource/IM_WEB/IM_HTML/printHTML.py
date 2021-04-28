@@ -9,7 +9,6 @@ import html
 from IM_JSON import JSModel,jsguid2type
 from IM_HTML import entityenviron
 
-
 outputDirectory: str = None
 webDirectory: str = "";
 webFileName: str = "";

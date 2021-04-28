@@ -85,7 +85,7 @@ class JSModel:
     def readfromfile(pfilename):
         with open(pfilename, 'r') as handle:
             model = json.load(handle)
-        return JSModel(pmodel=model)\
+        return JSModel(pmodel=model)
 
     @staticmethod
     def elemtype2label(pelemtype):

@@ -1,0 +1,13 @@
+<!-- this is the Confluence page content template for IM:domain to be rendered using jinja2 -->
+{% set domain = item %}
+	{#% include 'header.templ.html' %#}
+	<!--domains-->        
+	<div class="entity" id={{ itemid }}>
+		<div class="describtion">
+			<span> 
+				<p> {{ gettext('Wertebereich') }}</p>
+				<h1>{{ domain['name'][lang] }}</h1>
+				<p1>{{ domain['descr'][lang] }}</p1>
+			</span>
+		</div>
+

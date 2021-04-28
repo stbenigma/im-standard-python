@@ -463,7 +463,6 @@ def diaghtmlhead(panker, pname, pwidth, pheight):
 
 def diaghtmlfoot():
     return """
-    </svg>
         <div class="print-button-container">
             <button class="print-button" onclick="printElem(this)">print</button>
         </div>
