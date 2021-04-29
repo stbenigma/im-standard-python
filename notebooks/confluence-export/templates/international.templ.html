@@ -1,7 +1,7 @@
 <p>
-{% for lang in util.other_languages() %}
+{% for lang in i18n.other_languages() %}
 <ac:link>
-    <ri:page ri:content-title="{{ util.translation_title(key, lang) }}"/>
+    <ri:page ri:content-title="{{ util.navigator.page_4_language(key, lang)['title'] }}"/>
     <ac:link-body>
         <ac:image ac:align="right" ac:width="20">
             <ri:url ri:value="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/{{ lang | replace('en','gb') }}.svg"/>

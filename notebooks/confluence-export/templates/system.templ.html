@@ -10,7 +10,7 @@
     <ac:layout-cell>
       {% include 'international.templ.html' %}
       <p>
-        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/Tangible%20Objects/f-icon_object_0148_jenga.svg"/>
+        <img width="50px" align="right" src="http://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/0148.svg"/>
       </p>
     </ac:layout-cell>
   </ac:layout-section>
@@ -27,7 +27,7 @@
         {% for table_key in system['tables+'] %}
         {% set table = data['tables'][table_key] %}
         <tr>
-          <td>{{ util.soft_link(table_key, item_class='tables', title=table['name']) }}</td>
+          <td>{{ util.soft_link(table_key) }}</td>
           <td>{{ table['columns+'] | length}}</td>
           <td>
             <ul>

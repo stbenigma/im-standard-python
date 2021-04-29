@@ -25,32 +25,29 @@
     <ac:layout-cell>
       {% include 'international.templ.html' %}
       <p style="text-align: right;">
-        <img width="50px" align="right" src="https://res.cloudinary.com/foryouandyourcustomers/image/upload/v1614271016/fyayc_icon_library/svg/Objects/f-icon_object_0110_excel-list.svg" />
+        <img width="50px" align="right" src="http://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/0610.svg" />
       </p>
       <p style="text-align: right;">
         <ac:structured-macro ac:macro-id="737597dc-3c50-496b-8631-43e6b435b74a" ac:name="toc" ac:schema-version="1"/>
       </p>
     </ac:layout-cell>
   </ac:layout-section>
-  {% if config.get('manual-documentation') %}
-  {% set child_title = util.lang_specific(util.page_title(key) + config['manual-documentation'].get('title-postfix', ' - Dokumentation')) %}
-  {% macro content() -%}
-    {% include config['manual-documentation']['template'] %}
-  {%- endmacro %}
-  {% set child = util.stub(key + '-md', child_title, util.page_for_key(key)['pageid'], content=content(), labels=config['manual-documentation'].get('labels', ['manual'])) %}
+
+  {% set doc_page_title = page.get('manual-documentation-page-title') %}
+  {% if doc_page_title %}
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <p>
         <ac:structured-macro ac:macro-id="eb891189-be96-4a41-9d8a-328a335a125c" ac:name="tip" ac:schema-version="1">
           <ac:parameter ac:name="title">Hinweis</ac:parameter>
-          <ac:rich-text-body>Der folgende Abschnitt bis zur Trennlinie enthält die manuell gepflegte Dokumentation. Der Inhalt wird auf der Subpage <ac:link><ri:page ri:content-title="{{child_title}}" /><![CDATA[{{child_title}}]]></ac:link> gepflegt.</ac:rich-text-body>
+          <ac:rich-text-body>{{ gettext('The following section contains the manual documentation. This content is maintained on ') }}<ac:link><ri:page ri:content-title="{{ doc_page_title }}" /><![CDATA[[{{ gettext('this subpage') }}]]></ac:link>{{ gettext('.') }}</ac:rich-text-body>
         </ac:structured-macro>
       </p>
       <p>
         <ac:structured-macro ac:macro-id="315d5e59-c232-4f16-a6e4-e2fe90f52dac" ac:name="include" ac:schema-version="1">
           <ac:parameter ac:name="">
             <ac:link>
-              <ri:page ri:content-title="{{child_title}}"/>
+              <ri:page ri:content-title="{{ doc_page_title }}"/>
             </ac:link>
           </ac:parameter>
         </ac:structured-macro>
@@ -59,6 +56,7 @@
     </ac:layout-cell>
   </ac:layout-section>
   {% endif %}
+
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <h1>Spalten</h1>
