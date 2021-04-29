@@ -1,13 +1,16 @@
 from datetime import datetime
 from IM_JSON import JSModel,jsguid2type
 
-from jinja2 import Template
+from jinja2 import Template,FileSystemLoader,Environment
 
 def gettext(str):
     return str
 
 def getlangname(str):
-    return str['de']
+    if type(str) == dict:
+        return str['de']
+    else:
+        return str
 
 def getelem(id):
     global jsmodel
@@ -34,17 +37,19 @@ def getreflist(id):
 
 lang = "en"
 jsmodel = JSModel().readfromfile(pfilename='/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/DB/crmTest.json')
-fhtml = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates/interface.html.jinja', 'r')
+fhtml = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates/interface.html', 'r')
 intfid ="INTF294"
-templ = fhtml.read()
-t = Template(templ)
-t.globals['gettext'] = gettext
-t.globals['getelem'] = getelem
-t.globals['getlangname'] = getlangname
-t.globals['getnvl'] = getnvl
-t.globals['getreflink'] = getreflink
-t.globals['getreflist'] = getreflist
-res = t.render(timestamp=datetime.now()
+#templ = fhtml.read()
+t = Environment(loader=FileSystemLoader("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates"))
+templ = t.get_template("interface.html")
+#t = Template(templ)
+templ.globals['gettext'] = gettext
+templ.globals['getelem'] = getelem
+templ.globals['getlangname'] = getlangname
+templ.globals['getnvl'] = getnvl
+templ.globals['getreflink'] = getreflink
+templ.globals['getreflist'] = getreflist
+res = templ.render(timestamp=datetime.now()
                ,metainfo = {"title" : "CRM-Salesforce"
                             ,"modelname" : "crmTest"
                             ,"interfacename" : "CRM-Salesforce"
@@ -55,7 +60,8 @@ res = t.render(timestamp=datetime.now()
                               if value["interface-id+"] == intfid],key=lambda x:x[1].upper())
                 ,domains = sorted ([[key, value["name"][lang]] for key, value in jsmodel.jsmodel["domains"].items()
                               if (value["interfaceid"] == intfid) and (value["origin"] == "DOM")],key=lambda x:x[1].upper())
-               ,diagram ={"id": intfid
+               ,diagrams =[{"id": intfid
+                           ,"name": "CRM-Salesforce"
                         , "svg" : """<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  width="3472" height="2212">
 <defs id="dmw_defs" >
 <svg id="fk_sym" viewBox="0 0 48.665 48.665" style="enable-background:new 0 0 48.665 48.665;" >
@@ -78,7 +84,7 @@ res = t.render(timestamp=datetime.now()
 <g>
 <path fill="black" d="M660.224 422.656c6.976 16.192-0.512 35.008-16.768 42.048-16.128 6.976-34.944-0.448-41.984-16.768-8.448-19.776-20.736-37.696-36.224-53.248-64.64-64.64-177.344-64.64-241.92 0l-145.216 145.28c-66.688 66.688-66.688 175.232 0 241.984 66.688 66.688 175.104 66.752 241.92 0l92.8-92.864c12.48-12.48 32.768-12.48 45.248 0s12.48 32.768 0 45.248l-92.8 92.864c-91.648 91.648-240.832 91.52-332.416 0-91.712-91.648-91.712-240.832 0-332.48l145.216-145.28c44.352-44.416 103.424-68.864 166.272-68.864s121.792 24.448 166.208 68.864c21.248 21.312 38.016 45.952 49.664 73.216zM891.136 401.344l-145.216 145.216c-88.768 88.832-243.712 88.832-332.416 0-21.312-21.312-38.080-45.952-49.728-73.216-7.040-16.256 0.448-35.072 16.704-42.048 16.064-6.784 35.008 0.512 41.984 16.768 8.512 19.776 20.8 37.696 36.288 53.248 64.64 64.64 177.344 64.64 241.92 0l145.216-145.216c66.688-66.688 66.688-175.232 0-241.984-66.752-66.624-175.168-66.688-241.92 0l-92.8 92.864c-12.48 12.48-32.768 12.48-45.248 0s-12.48-32.768 0-45.248l92.8-92.864c45.824-45.824 105.984-68.736 166.208-68.736s120.448 22.912 166.272 68.736c91.584 91.648 91.584 240.768-0.064 332.48z" />
 </g>
-</svg></svg>"""}
+</svg></svg>"""}]
                )
 output = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/Web/crm-test.html', 'w')
 output.write(res)
