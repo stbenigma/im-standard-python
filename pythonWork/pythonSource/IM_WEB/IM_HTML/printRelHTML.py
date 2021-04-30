@@ -12,25 +12,29 @@ def nvl(s, default=''):
 
 getelement = lambda e:printHTML.model.getbyid(e)
 
-def printmapping(pelem):
+def collectallmappings(pelem):
     # name, list of entries mit {webanker:'name'}
-    entities = {e:getelement(e)['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
-    werte = {0: [[anker, name] for anker,name in entities.items()]}
+    entities = {e: getelement(e)['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
+    relations = {r: getelement(e)['name'] for r in pelem['relationsmapped']}
+    entities.update(relations)
+    allmappings = {0: [[anker, name] for anker, name in entities.items()]}
 
-    for intfanker,intfelem in printHTML.model.jsmodel['systems'].items():
+    for intfanker, intfelem in printHTML.model.jsmodel['systems'].items():
         if intfanker == pelem['interface-id']: continue
-        tablist=[]
+        tablist = []
         for enti in pelem['entitiesmapped']:
             try:
                 tablist += getelement(enti)['tablesmapped+'][intfanker]
             except:
                 pass
         if len(tablist) == 0: continue
-        werte[intfanker] = [[tabanker,"({})".format(getelement(tabanker)['name'])] for tabanker in tablist]
-    #for
+        allmappings[intfanker] = [[tabanker, "({})".format(getelement(tabanker)['name'])] for tabanker in tablist]
+    # for
+    return allmappings
+def printmapping(pelem):
     printHTML.printmappinghtml(ptitel=Languagetext.transl('Mapping')
                                , pueberschriften=(Languagetext.transl('Model'), Languagetext.transl('Entitäten / Tabellen'))
-                               ,pwerte = werte)
+                               ,pwerte = collectallmappings(pelem=pelem))
 # printmapping
 
 def printcolmapping(pcol):

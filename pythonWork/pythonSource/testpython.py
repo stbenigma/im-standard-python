@@ -1,56 +1,140 @@
 from datetime import datetime
 from IM_JSON import JSModel,jsguid2type
+from IM_OBJECTS import Languagetext
 
-from jinja2 import Template,FileSystemLoader,Environment
+from jinja2 import FileSystemLoader,Environment
 
-def gettext(str):
-    return str
+class Webmodel():
+    def __init__(self,pcurlang,pjsmodel,pintfid):
+        self.curlanguage = pcurlang
+        self.jsmodel = pjsmodel
+        self.intferfaceid = pintfid
 
-def getlangname(str):
-    if type(str) == dict:
-        return str['de']
-    else:
+    def getintfid(self):
+        return self.intferfaceid
+
+    def getcurlanguage(self):
+        return self.curlanguage
+
+    def getdeflanguage(self):
+        return self.jsmodel.getdefaultlang()
+
+    def setelements(self,**kwargs):
+        for key,val in kwargs.items():
+            self.__setattr__(key.lower(),val)
+
+    def gettransltext(self,str):
+        retval = languagetext.transl(pname=str,plang=self.getcurlanguage())
         return str
 
-def getelem(id):
-    global jsmodel
-    retval = jsmodel.getbyid(id)
-    return retval
+    def getlangstr(self,str,default=None):
+        if type(str) == dict:
+            """assumes str = {'de':"xxx",'en':"xxy",...}"""
+            try:
+                retval = str[default if default is not None else self.getcurlanguage()]
+            except: #chosen language chosen does not exist, take default language
+                retval = str[default if default is not None else self.getdeflanguage()]
+        else:
+            retval = str
+        #fi
+        return retval
+
+
+    def getelem(self,id):
+        retval = self.jsmodel.getbyid(id)
+        return retval
+
+    def getreflink(self,name,destid,curintfid=None,destintfid=None):
+        return """<a href="{}#{}" target="{}">{}</a>"""\
+                    .format('' if curintfid == destintfid \
+                                else "file:///Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/Web/crmTest_de.html"\
+                                     if destintfid is None\
+                                     else 'anderes interface '+destintfid
+                            ,destid
+                            ,'_self' if curintfid == destintfid else '_blank'
+                            ,name)
+
+    def collecttablemappings(self,pelem):
+        # name, list of entries mit {webanker:'name'}
+        entities = {e: self.getelem(e)['name'][self.curlanguage] for e in pelem['entitiesmapped']}
+        relations = {r: self.getelem(r)['name'] for r in pelem['relationsmapped']}
+        entities.update(relations)
+        allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
+                                                                       ,curintfid=self.getintfid()) for anker,name  in entities.items())}
+
+        for intfanker, intfelem in self.jsmodel.getelement('systems').items():
+            if intfanker == pelem['interface-id']: continue
+            tablist = []
+            for enti in pelem['entitiesmapped']+pelem['relationsmapped']:
+                try:
+                    tablist += self.getelem(enti)['tablesmapped+'][intfanker]
+                except:
+                    pass
+            if len(tablist) == 0: continue
+            allmappings[intfelem["name"]] = ', '.join (self.getreflink(name="({})".format(self.getelem(tabanker)['name'])
+                                                                ,destid=tabanker
+                                                                ,curintfid=self.getintfid()) for tabanker in tablist)
+        # for
+        return allmappings
+
+    def collectcolmappings(self,pelem):
+        attrs = {a: self.getelem(a) for a in pelem['attributesmapped']}
+        attrlist = []
+        for anker, attr in attrs.items():
+            if attr['entity'] is None:
+                attrlist.append([anker, "{}.{}".format(self.getelem(attr['relation'])['name']
+                                                       , attr['name'][self.curlanguage])])
+            else:
+                attrlist.append([anker, "{}.{}".format(self.getelem(attr['entity'])['name'][self.curlanguage]
+                                                       , attr['name'][self.curlanguage])])
+            # fi
+        # for
+        allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
+                                                                       ,curintfid=self.getintfid()) for anker,name  in attrlist.items())}
+        for intfanker, intfelem in self.jsmodel.getelement('systems').items():
+            if intfanker == pelem['interface-id+']: continue
+            collist = []
+            for attr in pelem['attributesmapped']:
+                try:
+                    collist += self.getelem(attr)['columnsmapped+'][intfanker]
+                except:
+                    pass
+            if len(collist) == 0: continue
+            allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({}.{})".format(self.getelem(colanker)['table-name+']
+                                                                                    , self.getelem(colanker)['name'])
+                                                                      , destid=colanker
+                                                                      , curintfid=self.getintfid()) for colanker in collist)
+        # for
+        return allmappings
+
+    def getmaplist(self,id,curintfid=None,):
+        elem = self.jsmodel.getbyid(id)
+        if jsguid2type(id) in ('TABL','RELA'):
+            retval = self.collecttablemappings(pelem=elem)
+
+        elif jsguid2type(id)=='COLU':
+            retval = self.collectcolmappings(pelem=elem)
+        elif jsguid2type(id) == 'ENTI':
+            retval = {}
+        elif jsguid2type(id) == 'ATTR':
+            retval = {}
+        else:
+            retval = {}
+        return retval
 
 def getnvl(val,default = ""):
     return default if val is None else val
 
-def getreflink(name,destid,curintfid=None,destintfid=None):
-    return """<a href="{}#{}" target="{}">{}</a>"""\
-                .format('' if curintfid == destintfid \
-                            else "file:///Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/Web/crmTest_de.html"\
-                                 if destintfid is None\
-                                 else 'anderes interface '+destintfid
-                        ,destid
-                        ,'_self' if curintfid == destintfid else '_blank'
-                        ,name)
+def displelemtype(typ):
+    return typ[:4]
+    #type2name(ptyp=typ,plang=plang)
 
 
-def getreflist(id):
-    return {"Information Model": '('+', '.join(["""<a href="{}#{}" target="_self">{}</a>""".format("crmTest_de.html","ENTI127","ENTI127"),"""<a href="{}#{}" target="_self">{}</a>""".format("","ENTI77","ENTI177")])
-                                    +')'}
-
-lang = "en"
 jsmodel = JSModel().readfromfile(pfilename='/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/DB/crmTest.json')
 fhtml = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates/interface.html', 'r')
-intfid ="INTF294"
-#templ = fhtml.read()
-t = Environment(loader=FileSystemLoader("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates"))
-templ = t.get_template("interface.html")
-#t = Template(templ)
-templ.globals['gettext'] = gettext
-templ.globals['getelem'] = getelem
-templ.globals['getlangname'] = getlangname
-templ.globals['getnvl'] = getnvl
-templ.globals['getreflink'] = getreflink
-templ.globals['getreflist'] = getreflist
-res = templ.render(timestamp=datetime.now()
-               ,metainfo = {"title" : "CRM-Salesforce"
+intfid="INTF294"
+webmodel = Webmodel(pcurlang="en",pjsmodel=jsmodel,pintfid=intfid)
+webmodel.setelements(metainfo = {"title" : "CRM-Salesforce"
                             ,"modelname" : "crmTest"
                             ,"interfacename" : "CRM-Salesforce"
                             ,}
@@ -84,8 +168,12 @@ res = templ.render(timestamp=datetime.now()
 <g>
 <path fill="black" d="M660.224 422.656c6.976 16.192-0.512 35.008-16.768 42.048-16.128 6.976-34.944-0.448-41.984-16.768-8.448-19.776-20.736-37.696-36.224-53.248-64.64-64.64-177.344-64.64-241.92 0l-145.216 145.28c-66.688 66.688-66.688 175.232 0 241.984 66.688 66.688 175.104 66.752 241.92 0l92.8-92.864c12.48-12.48 32.768-12.48 45.248 0s12.48 32.768 0 45.248l-92.8 92.864c-91.648 91.648-240.832 91.52-332.416 0-91.712-91.648-91.712-240.832 0-332.48l145.216-145.28c44.352-44.416 103.424-68.864 166.272-68.864s121.792 24.448 166.208 68.864c21.248 21.312 38.016 45.952 49.664 73.216zM891.136 401.344l-145.216 145.216c-88.768 88.832-243.712 88.832-332.416 0-21.312-21.312-38.080-45.952-49.728-73.216-7.040-16.256 0.448-35.072 16.704-42.048 16.064-6.784 35.008 0.512 41.984 16.768 8.512 19.776 20.8 37.696 36.288 53.248 64.64 64.64 177.344 64.64 241.92 0l145.216-145.216c66.688-66.688 66.688-175.232 0-241.984-66.752-66.624-175.168-66.688-241.92 0l-92.8 92.864c-12.48 12.48-32.768 12.48-45.248 0s-12.48-32.768 0-45.248l92.8-92.864c45.824-45.824 105.984-68.736 166.208-68.736s120.448 22.912 166.272 68.736c91.584 91.648 91.584 240.768-0.064 332.48z" />
 </g>
-</svg></svg>"""}]
-               )
+</svg></svg>"""}])
+t = Environment(loader=FileSystemLoader("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates"))
+templ = t.get_template("interface.html")
+templ.globals['getnvl'] = getnvl
+templ.globals['displelemtype'] = displelemtype
+res = templ.render(timestamp=datetime.now(),webmodel=webmodel)
 output = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/Web/crm-test.html', 'w')
 output.write(res)
 output.close()

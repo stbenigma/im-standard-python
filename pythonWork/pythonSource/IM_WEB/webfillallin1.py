@@ -9,7 +9,7 @@ from IM_ODM import fillDB
 import listWebdoku
 from IM_JSON import sql2json,JSModel
 from IM_OBJECTS import Languagetext
-from IM_db import createDB,existsDB
+from createDB import existsDB
 
 
 def main(pdirec, plang,pforceoverwrite = False):

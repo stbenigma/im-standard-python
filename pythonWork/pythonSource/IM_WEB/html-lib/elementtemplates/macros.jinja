@@ -56,3 +56,29 @@
 {% macro subblockend() -%}
 					</div>
 {%- endmacro %}
+
+{% macro userdefproperties(udprs) -%}
+				{% for udptheme,udpgroups in udprs.items() %}
+					<div class="table-responsive">
+						<h3>{{ udptheme }}</h3>
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Group</th>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+								{% for udpgrpid,udpgroup in udpgroups.items() %}
+									{% for udpid,udp in udpgroup.items() %}
+									<tr>
+										<td>{{ udpgrpid }}</td>
+										<td>{{ udp.name }}</td> 
+										<td>{{ getnvl(udp.value) }}</td>
+									</tr>
+									{% endfor %}
+								{% endfor %}
+							</tbody>
+						</table>
+					</div> 
+				{% endfor %}
+{%- endmacro %}
