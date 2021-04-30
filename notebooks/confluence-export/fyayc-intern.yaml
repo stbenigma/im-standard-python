@@ -1,0 +1,96 @@
+confluence:
+  apiurl: 'https://foryouandyourteam.com'
+  space: '~bue'
+  rootpage: 'foryouandyourcustomers internal IM'
+  username: bue
+  password: 'OB7P,aXLAEZ9%bBzYyV+x`'
+  cooldown: 0.25
+
+# datasource
+json: /Users/bue/dev/fyyccim-projects/DB/FYAYC_intern.json
+
+# translations to publish
+# first language listed here is not placed in a language subfolder
+# and titles will not be suffixed
+languages:
+  - 'de'
+  - 'en'
+
+disclaimer: '<span style="color:red;"><b>Unreliable information. For testing purposes only!</b></span><br/>'
+
+# output structure
+content:
+
+  domains:
+    title: Domains
+    template: domain.templ.html
+    filter: "'DER' in item.get('origin','') == False"
+    labels:
+      - domain
+      - IM
+      - generated
+
+  documents:
+    title: Documents
+    template: document.templ.html
+    labels:
+      - domain
+      - IM
+      - generated
+
+  systems:
+    title: Systems
+    template: system.templ.html
+    labels:
+      - system
+      - DM
+      - generated
+
+    content:
+      tables:
+        title: Tables
+        template: table.templ.html
+        manual-documentation:
+          template: children.templ.html
+          title-postfix: ' - Tabellen-Dokumentation'
+          labels:
+            - table
+            - DM
+            - toc
+        labels:
+          - table
+          - DM
+          - generated
+
+        content:
+          columns:
+            title: Columns
+            template: column.templ.html
+            manual-documentation:
+              template: manual-documentation.templ.html
+              labels:
+                - column
+                - DM
+                - manual
+                - documentation
+            labels:
+              - column
+              - DM
+              - generated
+
+  entities:
+    title: Entities
+    template: entity.templ.html
+    labels:
+      - entity
+      - IM
+      - generated
+
+    content:
+      attributes:
+        title: Attributes
+        template: attribute.templ.html
+        labels:
+          - attribute
+          - IM
+          - generated
