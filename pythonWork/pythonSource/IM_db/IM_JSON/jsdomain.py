@@ -270,7 +270,7 @@ def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOMA, pjs2obj=js2doma,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
+    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.DOMA).items():
         dbdomaid = jsmergetosql.keytransl(jid)
 
         if jelem['type'] == Domain.LOV:

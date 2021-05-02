@@ -86,7 +86,7 @@ def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
     try:
         idxlist = sorted([{'anker':key,'name': value['name'][plang]}
-                     for key,value in printHTML.model.getelement('entities').items()]
+                     for key,value in printHTML.model.getelements(pelemtype='entities').items()]
                      ,key=lambda val:val['name'])
     except:
         idxlist=[]
@@ -101,7 +101,7 @@ def printlistofcontent(plang):
                                             if value['entity'] is not None
                                     else printHTML.model.getbyid(value['relation'])['name'])
                    }
-                 for key,value in printHTML.model.getelement('attributes').items()]
+                 for key,value in printHTML.model.getelements(pelemtype='attributes').items()]
                  ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
 
@@ -188,6 +188,7 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
 
 def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
     printHTML.createFile (pfilename=pfilename)
+
     printHTML.printhead(p_firma=pfirma
                         ,piconfilename="image/imicon.png"
                         , p_titel=ptitel
@@ -198,6 +199,23 @@ def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
     printHTML.printfoot();
     printHTML.closefile ();
 #printhtmlsysfile
+
+def printhtmlrender(pfilename, planguage, pmodel, pintfid):
+    printHTML.createFile (pfilename=pfilename)
+
+    from IM_WEB import jinja2web,jinjawebmodel
+    if pintfid is None:
+        diags =[]
+    else:
+        diags = [{"id": pintfid
+                , "name": pmodel.getbyid(pintfid)["name"]
+                , "svg": printRelHTML.interfacediagram(pintf=pmodel.getbyid(pintfid))}
+                 ]
+    #fi
+    html = jinjawebmodel.rendermodel(pcurlang=planguage,pmodel=pmodel,pintfid=pintfid,pdiagrams=diags,phtmlfilelist=printHTML.htmlfilelist)
+    printHTML.fhtml.write(html)
+    printHTML.closefile ();
+#printhtmlrenderfile
 
 def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     printHTML.createlib()
@@ -219,7 +237,7 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    schnlist = pmodel.getelement(Modelelemtype.INTF)
+    schnlist = pmodel.getelements(pelemtype=Modelelemtype.INTF)
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
     printHTML.model = pmodel
@@ -247,13 +265,14 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     for anker,element in schnlist.items():
         langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
-        printhtmlsysfile(pfirma="foryouandyourcustomers"
-                      ,pfilename= langfilename
-                      , ptitel= parameters.odmModelName() + ' - {}'.format(element['name'])
-                      , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
-                      , plogofilename=parameters.logoFileName()
-                      ,pelement=element
-                      )
+        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.model, pintfid=anker)
+        # printhtmlsysfile(pfirma="foryouandyourcustomers"
+        #               ,pfilename= langfilename
+        #               , ptitel= parameters.odmModelName() + ' - {}'.format(element['name'])
+        #               , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
+        #               , plogofilename=parameters.logoFileName()
+        #               ,pelement=anker
+        #               )
     #
 #listwebmain
 

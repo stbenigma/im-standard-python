@@ -15,7 +15,7 @@ getelement = lambda e:printHTML.model.getbyid(e)
 def collectallmappings(pelem):
     # name, list of entries mit {webanker:'name'}
     entities = {e: getelement(e)['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
-    relations = {r: getelement(e)['name'] for r in pelem['relationsmapped']}
+    relations = {r: getelement(r)['name'] for r in pelem['relationsmapped']}
     entities.update(relations)
     allmappings = {0: [[anker, name] for anker, name in entities.items()]}
 
@@ -196,12 +196,12 @@ def printcontentdomain(pintf):
 def printlistofcontent(pintf):
     printHTML.printlistofcontenthead()
     idxlist = sorted([{'anker':key,'name': value['name']}
-                     for key,value in printHTML.model.getelement('tables').items() if key in pintf['tables+']]
+                     for key,value in printHTML.model.getelements(pelemtype='tables').items() if key in pintf['tables+']]
                      ,key=lambda val:val['name'].upper())
     printHTML.printlistofcontentelement(pname='Tables'
                                          , plist=idxlist)
     idxlist = sorted([{'anker':key,'name': "{} ({})".format(value['name'],value['table-name+'])}
-                     for key,value in printHTML.model.getelement('columns').items() if value['interface-id+'] == pintf['interface-id+']]
+                     for key,value in printHTML.model.getelements(pelemtype='columns').items() if value['interface-id+'] == pintf['interface-id+']]
                      ,key=lambda val:val['name'].upper())
     printHTML.printlistofcontentelement(pname='Columns'
                                          , plist=idxlist
@@ -290,32 +290,27 @@ def putrefinsvg(ptext,pintf):
 
     return retval
 
-def printcontentdiagram(pintf):
+def interfacediagram(pintf):
     svgfn = printdiagHTML.svgfilename(pname=pintf['name'])
-    if svgfn is None: return
+    if svgfn is None: return ""
+    """add links to svg and include it in html"""
+    with (open(file=svgfn, mode="r")) as f:
+        svgtext = f.read()
+        # svgtext = puticonsinsvg(ptext=svgtext,pdiagid=diaanker)
+        dimensions = re.search(r"<svg .* width=\"([0-9]+)\".*height=\"([0-9]+)\">",svgtext)
+        if dimensions is None:
+            dimensions = [0,500,500]#safeguard if svg does not contain width and height
+        #printHTML.fhtml.write(printdiagHTML.diaghtmlhead(panker=pintf["interface-id+"], pname=pintf['name']
+        #                           , pwidth=dimensions[1], pheight=dimensions[2]))
 
-    """<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  width="3472" height="2212">"""
-
-    svgfn = printdiagHTML.svgfilename(pname=pintf['name'])
-    if svgfn is not None:
-        """add links to svg and include it in html"""
-        with (open(file=svgfn, mode="r")) as f:
-            svgtext = f.read()
-            # svgtext = puticonsinsvg(ptext=svgtext,pdiagid=diaanker)
-            dimensions = re.search(r"<svg .* width=\"([0-9]+)\".*height=\"([0-9]+)\">",svgtext)
-            if dimensions is None:
-                dimensions = [0,500,500]#safeguard if svg does not contain width and height
-            printHTML.fhtml.write(printdiagHTML.diaghtmlhead(panker=pintf["interface-id+"], pname=pintf['name']
-                                       , pwidth=dimensions[1], pheight=dimensions[2]))
-
-            svgtext = putrefinsvg(ptext=svgtext,pintf=pintf)
-            printHTML.fhtml.write(svgtext)
-            printHTML.fhtml.write(printdiagHTML.diaghtmlfoot())
-    return
+        svgtext = putrefinsvg(ptext=svgtext,pintf=pintf)
+        #printHTML.fhtml.write(svgtext)
+        #printHTML.fhtml.write(printdiagHTML.diaghtmlfoot())
+    return svgtext
 
 def printcontent(pfirma, ptitel, pintf):
     printcontenthead(pfirma=pfirma, ptitel=ptitel, pintf=pintf)
-    printcontentdiagram(pintf=pintf)
+    #printcontentdiagram(pintf=pintf)
     printcontenttable(pintf=pintf)
     printcontentcolumn(pintf=pintf)
     printHTML.printcontentdoma(pdomains= printHTML.origindomains(pintfid= pintf['interface-id+']))

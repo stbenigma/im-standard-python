@@ -43,8 +43,6 @@ def lf2htmlbr(pstr):
         return re.sub(r"\n", "<br>\n", pstr)
     except:
         return pstr
-
-
 # lf2htmlbr
 
 
@@ -1004,7 +1002,7 @@ def printcontententi():
                    , Languagetext.transl('geändert'))
 
     for enti in sorted([{'anker':key,'element': value}
-                     for key,value in model.getelement('entities').items()]
+                     for key,value in model.getelements(pelemtype='entities').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = enti['element']
         lbc = str(newbarcounter())
@@ -1050,7 +1048,7 @@ def printcontentattr():
     lang = Languagetext.reportLang()
 
     for attr in sorted([{'anker':key,'element': value}
-                     for key,value in model.getelement('attributes').items()]
+                     for key,value in model.getelements(pelemtype='attributes').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = attr['element']
         printcontentstart('attributes')

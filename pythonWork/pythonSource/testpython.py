@@ -24,8 +24,8 @@ class Webmodel():
             self.__setattr__(key.lower(),val)
 
     def gettransltext(self,str):
-        retval = languagetext.transl(pname=str,plang=self.getcurlanguage())
-        return str
+        retval = Languagetext.transl(pname=str,plang=self.getcurlanguage())
+        return retval
 
     def getlangstr(self,str,default=None):
         if type(str) == dict:
@@ -62,7 +62,7 @@ class Webmodel():
         allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
                                                                        ,curintfid=self.getintfid()) for anker,name  in entities.items())}
 
-        for intfanker, intfelem in self.jsmodel.getelement('systems').items():
+        for intfanker, intfelem in self.jsmodel.getelements(pelemtype='systems').items():
             if intfanker == pelem['interface-id']: continue
             tablist = []
             for enti in pelem['entitiesmapped']+pelem['relationsmapped']:
@@ -91,7 +91,7 @@ class Webmodel():
         # for
         allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
                                                                        ,curintfid=self.getintfid()) for anker,name  in attrlist.items())}
-        for intfanker, intfelem in self.jsmodel.getelement('systems').items():
+        for intfanker, intfelem in self.jsmodel.getelements(pelemtype='systems').items():
             if intfanker == pelem['interface-id+']: continue
             collist = []
             for attr in pelem['attributesmapped']:
@@ -131,7 +131,7 @@ def displelemtype(typ):
 
 
 jsmodel = JSModel().readfromfile(pfilename='/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/DB/crmTest.json')
-fhtml = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates/interface.html', 'r')
+fhtml = open('/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates/interface.jinja.html', 'r')
 intfid="INTF294"
 webmodel = Webmodel(pcurlang="en",pjsmodel=jsmodel,pintfid=intfid)
 webmodel.setelements(metainfo = {"title" : "CRM-Salesforce"
@@ -169,8 +169,8 @@ webmodel.setelements(metainfo = {"title" : "CRM-Salesforce"
 <path fill="black" d="M660.224 422.656c6.976 16.192-0.512 35.008-16.768 42.048-16.128 6.976-34.944-0.448-41.984-16.768-8.448-19.776-20.736-37.696-36.224-53.248-64.64-64.64-177.344-64.64-241.92 0l-145.216 145.28c-66.688 66.688-66.688 175.232 0 241.984 66.688 66.688 175.104 66.752 241.92 0l92.8-92.864c12.48-12.48 32.768-12.48 45.248 0s12.48 32.768 0 45.248l-92.8 92.864c-91.648 91.648-240.832 91.52-332.416 0-91.712-91.648-91.712-240.832 0-332.48l145.216-145.28c44.352-44.416 103.424-68.864 166.272-68.864s121.792 24.448 166.208 68.864c21.248 21.312 38.016 45.952 49.664 73.216zM891.136 401.344l-145.216 145.216c-88.768 88.832-243.712 88.832-332.416 0-21.312-21.312-38.080-45.952-49.728-73.216-7.040-16.256 0.448-35.072 16.704-42.048 16.064-6.784 35.008 0.512 41.984 16.768 8.512 19.776 20.8 37.696 36.288 53.248 64.64 64.64 177.344 64.64 241.92 0l145.216-145.216c66.688-66.688 66.688-175.232 0-241.984-66.752-66.624-175.168-66.688-241.92 0l-92.8 92.864c-12.48 12.48-32.768 12.48-45.248 0s-12.48-32.768 0-45.248l92.8-92.864c45.824-45.824 105.984-68.736 166.208-68.736s120.448 22.912 166.272 68.736c91.584 91.648 91.584 240.768-0.064 332.48z" />
 </g>
 </svg></svg>"""}])
-t = Environment(loader=FileSystemLoader("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/elementtemplates"))
-templ = t.get_template("interface.html")
+t = Environment(loader=FileSystemLoader("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"))
+templ = t.get_template("interface.jinja.html")
 templ.globals['getnvl'] = getnvl
 templ.globals['displelemtype'] = displelemtype
 res = templ.render(timestamp=datetime.now(),webmodel=webmodel)

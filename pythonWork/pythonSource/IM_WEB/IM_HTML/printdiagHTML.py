@@ -393,7 +393,7 @@ def putrefinsvg(ptext,pdiagid,plang):
     deflang = printHTML.model.jsmodel["model"]["language"]
 
     retval = ptext
-    for entiid,entival in printHTML.model.getelements('ENTI').items():
+    for entiid,entival in printHTML.model.getelements(pelemtype='ENTI').items():
         try:
             odmref = entival["sourceref"]["ODM"][0]
         except:

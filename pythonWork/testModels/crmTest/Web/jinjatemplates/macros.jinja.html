@@ -1,0 +1,84 @@
+{% macro listblockstart(label, id, lbc) -%}
+				<div class="panel-body" id="{{id}}">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{lbc}}">
+							<label class="label0">{{ label }}</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="{{lbc}}">
+{%- endmacro %}
+{% macro listblockend() -%}
+					</div>
+				</div>
+{%- endmacro %}
+
+{% macro mainblockstart(type, id, name, descr, lbc, parent='') -%}
+		<div class="entity" id="{{ id }}">
+			<div class="describtion">
+				 <span>
+						<p>{{ type }}</p>
+						<h1>{{ name }}</h1>
+						<p>{{ parent }}</p>
+						<p1>{{ getnvl(descr) }}</p1>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="{{ lbc }}">
+{%- endmacro %}
+
+{% macro mainblockend(lbc) -%}
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{ lbc }}">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+{%- endmacro %}
+
+{% macro subblockstart(header, lbc) -%}
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{lbc}}">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>{{ header }}</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="{{lbc}}">
+{%- endmacro %}
+{% macro subblockend() -%}
+					</div>
+{%- endmacro %}
+
+{% macro userdefproperties(udprs) -%}
+				{% for udptheme,udpgroups in udprs.items() %}
+					<div class="table-responsive">
+						<h3>{{ udptheme }}</h3>
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Group</th>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+								{% for udpgrpid,udpgroup in udpgroups.items() %}
+									{% for udpid,udp in udpgroup.items() %}
+									<tr>
+										<td>{{ udpgrpid }}</td>
+										<td>{{ udp.name }}</td> 
+										<td>{{ getnvl(udp.value) }}</td>
+									</tr>
+									{% endfor %}
+								{% endfor %}
+							</tbody>
+						</table>
+					</div> 
+				{% endfor %}
+{%- endmacro %}
