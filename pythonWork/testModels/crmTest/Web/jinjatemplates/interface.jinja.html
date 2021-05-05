@@ -327,6 +327,57 @@
 						</table>
 					</div>
 					
+					<!--used in attrs-->
+					{% if (doma['usedinattrs+']|count) > 0 %}
+					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet für Attribute'), lbc=domaid ~ "inattr") }}
+						<div class="table-responsive">
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>{{ gettext('Entity') }}</th>
+									<th>{{ gettext('Attribute') }}</th>
+								</tr>
+								{% for attrid in doma['usedinattrs+'] %}
+								{% set attr = webmodel.getelem(attrid) %}
+								{% set enti = webmodel.getelem(attr["entity"]) %}
+								<tr>
+									<td>{{ webmodel.getlangstr(enti["name"]) }}</td>
+									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(attr["name"])
+															,destid=attrid,destintfid=None,curintfid=doma["interfaceid"]) }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					{{ blocks.subblockend() }}
+					{% endif %}
+					
+					<!--used in columns-->
+					{% if (doma['usedincols+']|count) > 0 %}
+					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet für Columns'), lbc=domaid ~ "incols") }}
+						<div class="table-responsive">
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Tabelle') }}</th>
+									<th>{{ webmodel.gettransltext('Column') }}</th>
+								</tr>
+								{% for coluid in doma['usedincols+'] %}
+								{% set colu = webmodel.getelem(coluid) %}
+								{% set tabl = webmodel.getelem(colu["table-id"]) %}
+								<tr>
+									<td>{{ tabl["name"] }}</td>
+									<td>{{ webmodel.getreflink(name=colu["name"],destid=coluid
+													,curintfid=doma["interfaceid"]
+													,destintfid=colu["interface-id+"]) }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					{{ blocks.subblockend() }}
+					{% endif %}
+					
 					<!--references-->       
 					{% if doma["referencedby"]|count > 0 %}
 					{{ blocks.subblockstart(header="References", lbc=domaid ~ "ref") }}
@@ -351,6 +402,7 @@
 						</div> 
 					{{ blocks.subblockend() }}					
 					{% endif %}
+					
 					
 		{{ blocks.mainblockend(lbc=domaid ~ "main") }}
 		{% endfor %}
