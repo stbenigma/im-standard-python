@@ -38,6 +38,10 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
          "synonyms": {
             "SYNO000": {
                "en": ""
@@ -84,7 +88,7 @@
             "en": ""
          },
          "origin": "",
-         "interfaceid": "",
+         "interfasce-id": "",
          "interface+": "",
          "basedatatype+": "",
          "type": "",
@@ -240,6 +244,9 @@
          "dc": "",
          "um": "",
          "dm": "",
+         "minzoomlevel": 0,
+         "maxzoomlevel": 4,
+         "devstatus": "DEV",
          "userdefprops": {
             "Theme": {
                "Group": {
@@ -251,9 +258,11 @@
             }
          },
          "referencedby": [],
-         "minzoomlevel": 0,
-         "maxzoomlevel": 4,
-         "devstatus": "DEV"
+         "tablesmapped+": {
+            "INTF000": [
+               "TABL000"
+            ]
+         }
       }
    },
    "arcs": {
@@ -357,7 +366,7 @@
       "TABL0000": {
          "name": "",
          "interface-name+": "",
-         "interface-id+": "",
+         "interface-id": "",
          "prefix": "",
          "descr": "",
          "uc": "",
@@ -379,6 +388,7 @@
             }
          },
          "entitiesmapped": [],
+         "relationsmapped": [],
          "sourceref": {
             "ODM": [
                "",
@@ -410,7 +420,7 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "devstatus": "DEV",
-         "attributes-mapped": [],
+         "attributesmapped": [],
          "userdefprops": {
             "Theme": {
                "Group": {
@@ -448,7 +458,8 @@
          "elements": {},
          "relationships": {},
          "arcs": {},
-         "referencedby": []
+         "referencedby": [],
+         "sourceref": []
       }
    },
    "userdefprops": {
@@ -456,6 +467,8 @@
          "theme": "",
          "group": "",
          "name": "",
+         "defvalue": "",
+         "descr": "",
          "uc": "",
          "dc": "",
          "um": "",
@@ -472,7 +485,7 @@
          "dc": "",
          "um": "",
          "dm": "",
-         "refindomains+": []
+         "usedindomains+": []
       }
    },
    "datatypes": {
@@ -499,15 +512,15 @@
          "dc": "",
          "um": "",
          "dm": "",
-         "refindocuments+": [],
-         "refindomains+": []
+         "usedindocuments+": [],
+         "usedindomains+": []
       }
    },
    "_imprint_": {
       "database": "None",
-      "created": "2021-03-16 10:48:19.982207",
+      "created": "2021-05-06 11:25:54.951338",
       "Modelversion": "",
-      "hashvalue": 3010672289043212381,
+      "hashvalue": -2961809021649092582,
       "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
    }
 }
