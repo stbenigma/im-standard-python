@@ -1122,7 +1122,7 @@ def origindomains(pintfid):
     #dict of domain with origin DOMAIN and defined in interface intfid (or im if None)
     return {key: value for key, value in model.jsmodel['domains'].items()
                                                 if (value['origin'] == Domain.DOMAIN
-                                                and value['interfasce-id'] == pintfid)}
+                                                and value['interface-id'] == pintfid)}
 
 
 def printdomaattrlist(pdoma, plang,pisgroup=False):
@@ -1151,7 +1151,7 @@ def printdomaattrlist(pdoma, plang,pisgroup=False):
 #printdomaattrlist
 
 def printdomacollist(pdoma):
-    domaintfid = pdoma['element']['interfasce-id']
+    domaintfid = pdoma['element']['interface-id']
     clist = [[href(ref=colanker
                        ,anz=getelement(colanker)['name']
                    ,htmlfile='' if domaintfid == getelement(colanker)['interface-id+'] else htmlfilelist[getelement(colanker)['interface-id+']])

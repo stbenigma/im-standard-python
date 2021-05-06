@@ -241,7 +241,7 @@ class Languagetext(Baseobject):
         , 'Syntaxregel': 'Syntax rule'
         , 'Systeme': 'Systems'
         , 'Tag': 'day'
-        , 'Table': 'Table'
+        , 'Tabelle': 'Table'
         , 'Tabellen': 'Tables'
         , 'Technischer Name': 'Technical Name'
         , 'Text': 'Text'
@@ -348,7 +348,7 @@ class Languagetext(Baseobject):
         , "Synonyme": "Synonyme"
         , "Syntaxregel": "Règle syntaxique"
         , "Systeme": "Systèmes"
-        , 'Table': 'Table'
+        , 'Tabelle': 'Table'
         , 'Tabellen': 'Tables'
         , "Tag": "Jour"
         , "Technischer Name": "Terme technique"

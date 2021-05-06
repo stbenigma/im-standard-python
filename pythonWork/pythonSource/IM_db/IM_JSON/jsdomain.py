@@ -112,7 +112,7 @@ def domvalues(pvalues:list=None):
 
 def domain2js(pdoma):
     model = ['name', 'descr'
-        , 'origin','interfasce-id'
+        , 'origin','interface-id'
         ,'interface+' , 'basedatatype+'
         , 'type', 'displdatatype+'
         , 'datatypestr+', 'datatypeid' 
@@ -247,7 +247,7 @@ def js2doma(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     doma.doma_name = pelem['name'][pmodellang]
     doma.doma_descr = pelem['descr'][pmodellang]
     doma.doma_origin = pelem['origin']
-    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interfasce-id'))
+    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interface-id'))
     doma.doma_daty_id = jsguid2id(optionalvalue(pelem, 'datatypeid'))
     doma.doma_num_minvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'minvalue')
     doma.doma_num_maxvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'maxvalue')

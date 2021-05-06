@@ -18,7 +18,7 @@ def rendermodel(pmodel:JSModel,pcurlang,pintfid=None,phtmlfilelist={},pdiagrams=
                        ,columns = sorted ([[key, value["name"]] for key, value in pmodel.jsmodel["columns"].items()
                                       if value["interface-id+"] == pintfid],key=lambda x:x[1].upper())
                         ,domains = sorted ([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["domains"].items()
-                                      if (value["interfaceid"] == pintfid) and (value["origin"] == "DOM")],key=lambda x:x[1].upper())
+                                      if (value["interface-id"] == pintfid) and (value["origin"] == "DOM")],key=lambda x:x[1].upper())
                        ,diagrams =pdiagrams)
     #fi
     retval = jinja2web.model2html(pwebmodel=webmodel)

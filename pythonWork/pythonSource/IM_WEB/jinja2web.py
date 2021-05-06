@@ -143,6 +143,7 @@ def lf2htmlbr(pstr):
 
 def model2html(pwebmodel:Webmodel):
     jinjadirec = parameters.webDirec()+"jinjatemplates"
+    jinjadirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"
     t = Environment(loader=FileSystemLoader(jinjadirec))
     if pwebmodel.getintfid() is not None:
         templatename = "interface.jinja.html"

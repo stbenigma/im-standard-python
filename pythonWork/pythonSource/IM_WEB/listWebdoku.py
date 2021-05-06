@@ -186,20 +186,6 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
     printHTML.closefile ();
 #printhtmlfile
 
-def printhtmlsysfile(pfirma, pfilename, ptitel, pinfo, plogofilename,pelement):
-    printHTML.createFile (pfilename=pfilename)
-
-    printHTML.printhead(p_firma=pfirma
-                        ,piconfilename="image/imicon.png"
-                        , p_titel=ptitel
-                        , p_info=pinfo
-                        , p_logofilename=plogofilename)
-    printRelHTML.printlistofcontent(pintf=pelement)
-    printRelHTML.printcontent(pfirma=pfirma, ptitel=ptitel,pintf=pelement)
-    printHTML.printfoot();
-    printHTML.closefile ();
-#printhtmlsysfile
-
 def printhtmlrender(pfilename, planguage, pmodel, pintfid):
     printHTML.createFile (pfilename=pfilename)
 
@@ -266,14 +252,7 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
         langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
         printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.model, pintfid=anker)
-        # printhtmlsysfile(pfirma="foryouandyourcustomers"
-        #               ,pfilename= langfilename
-        #               , ptitel= parameters.odmModelName() + ' - {}'.format(element['name'])
-        #               , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
-        #               , plogofilename=parameters.logoFileName()
-        #               ,pelement=anker
-        #               )
-    #
+    #for
 #listwebmain
 
 def main(pdirec, plang):
