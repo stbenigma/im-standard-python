@@ -1,0 +1,217 @@
+		<!--domains-->
+		{% for domalist in webmodel.domains %}
+		{% set domaid = domalist[0] %}
+		{% set doma = webmodel.getelem (domaid) %}
+
+		{{ blocks.mainblockstart(type="Domain", id=domaid
+								, name=webmodel.getlangstr(doma["name"]), descr=lf2htmlbr(webmodel.getlangstr(doma["descr"]))
+							, lbc=domaid ~ "main" ) }}
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Datentyp') }}</th>
+									{% if doma['type'] in ('TXT','LOV') %}
+										<th>{{ webmodel.gettransltext('Max. Länge') }}</th>
+										<th>{{ webmodel.gettransltext('Syntaxregel') }}</th>
+									{% elif doma['type'] in ('BIN') %}
+										<th>{{ webmodel.gettransltext('Inhaltstyp') }}</th>
+										<th>{{ webmodel.gettransltext('Format') }}</th>
+									{% elif doma['type'] in ('NUM','DAT') %}
+										{% if doma['type'] in ('NUM') %}
+											<th>{{ webmodel.gettransltext('Vorkommast.') }}</th>
+											<th>{{ webmodel.gettransltext('Nachkommast.') }}</th>
+											<th>{{ webmodel.gettransltext('Rundungseinh.') }}</th>
+											<th>{{ webmodel.gettransltext('Einheit') }}</th>
+										{% elif doma['type'] in ('DAT') %}
+											<th>{{ webmodel.gettransltext('Granularität') }}</th>
+										{% endif %}
+										<th>{{ webmodel.gettransltext('Min. Wert') }}</th>
+										<th>{{ webmodel.gettransltext('Max. Wert') }}</th>
+									{% elif doma['type'] in ('GRP') %}
+
+									{% endif %}
+									<th>{{ webmodel.gettransltext('geändert') }}</th>
+								</tr>
+								<tr>
+									<td class="attribute">{{ webmodel.getlangstr(doma['displdatatype+']) }}</td>
+									{% if doma['type'] in ('TXT','LOV') %}
+									<td class="attribute">{{ doma['maxlng'] }}</td>
+									<td class="attribute">{{ doma['syntaxrule'] }}</td>
+									{% elif doma['type'] in ('BIN') %}
+										<td class="attribute">{{ doma['contenttype'] }}</td>
+										<td class="attribute">{{ doma['contenttypename+'] }}</td>
+									{% elif doma['type'] in ('NUM','DAT') %}
+										{% if doma['type'] in ('NUM') %}
+											<td class="attribute">{{ doma['totaldigits'] }}</td>
+											<td class="attribute">{{ doma['fractdigits'] }}</td>
+											<td class="attribute">{{ doma['roundvalue'] }}</td>
+											<td class="attribute">{{ doma['unit'] }}</td>
+										{% elif doma['type'] in ('DAT') %}
+											<td class="attribute">{{ webmodel.getlangstr(doma['granularitytext+']) }}</td>
+										{% endif %}
+											<td class="attribute">{{ doma['minvalue'] }}</td>
+											<td class="attribute">{{ doma['maxvalue'] }}</td>
+									{% elif doma['type'] in ('GRP') %}
+
+									{% endif %}
+									<td class="attribute">{{ doma['uc'] + ', ' + doma['dc'] }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					{% if doma['type'] in ("LOV") and doma['values']|count > 0 %}
+						{{ blocks.subblockstart(header=webmodel.gettransltext('Werteliste'), lbc=domaid ~ "valuelist") }}
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Nr') }}</th>
+									<th>{{ webmodel.gettransltext('Wert') }}</th>
+									<th>{{ webmodel.gettransltext('Anzeige') }}</th>
+									<th>{{ webmodel.gettransltext('Beschreibung') }}</th>
+								</tr>
+								{% for val in doma['values']|sort(attribute='sort') %}
+								<tr>
+									<td class="attribute">{{ val['sort'] }}</td>
+									<td class="attribute">{{ val['value'] }}</td>
+									<td class="attribute">{{ val['displ'] }}</td>
+									<td class="attribute">{{ val['descr'] }}</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						{{ blocks.subblockend() }}
+					{% elif doma['type'] in ("GRP")  %}
+						{{ blocks.subblockstart(header=webmodel.gettransltext('Elemente'), lbc=domaid ~ "elemlist") }}
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Anzeige') }}</th>
+									<th>{{ webmodel.gettransltext('Wertebereich') }}</th>
+									<th>{{ webmodel.gettransltext('Pflichtattribut') }}</th>
+									<th>{{ webmodel.gettransltext('Beschreibung') }}</th>
+								</tr>
+								{% for val in doma["elements"] %}
+								{% set doma2id = val["domain"] %}
+								{% set doma2 = webmodel.getelem(doma2id) %}
+								<tr>
+									<td class="attribute">{{ webmodel.getlangstr(val['name']) }}</td>
+									<td class="attribute">{{ webmodel.getreflink(name=webmodel.getlangstr(doma2["name"])
+																,destid=doma2id
+																, curintfid=doma["interface-id"],destintfid=doma2["interface-id"]) }} </td>
+									{{ blocks.tdbool2icon(val["mandatory"]) }}
+									<td class="attribute">{{ val['descr'] }}</td>
+								</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						{{ blocks.subblockend() }}
+					{% endif %}
+
+					<!--used in domainGroups-->
+					{% if (doma['usedingrps+']|count) > 0 %}
+					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet in Attributgruppen'), lbc=domaid ~ "usingrp") }}
+						<div class="table-responsive">
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Domain') }}</th>
+								</tr>
+								{% for doma2id in doma['usedingrps+'] %}
+								{% set doma2 = webmodel.getelem(doma2id) %}
+								<tr>
+									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(doma2["name"])
+															,destid=doma2id
+															,curintfid=doma["interface-id"],destintfid=doma2["interface-id"]) }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					{{ blocks.subblockend() }}
+					{% endif %}					
+					
+					<!--used in attrs-->
+					{% if (doma['usedinattrs+']|count) > 0 %}
+					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet für Attribute'), lbc=domaid ~ "inattr") }}
+						<div class="table-responsive">
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Entity') }}</th>
+									<th>{{ webmodel.gettransltext('Attribute') }}</th>
+								</tr>
+								{% for attrid in doma['usedinattrs+'] %}
+								{% set attr = webmodel.getelem(attrid) %}
+								{% set enti = webmodel.getelem(attr["entity"]) %}
+								<tr>
+									<td>{{ webmodel.getlangstr(enti["name"]) }}</td>
+									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(attr["name"])
+															,destid=attrid,destintfid=None,curintfid=doma["interface-id"]) }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					{{ blocks.subblockend() }}
+					{% endif %}
+
+					<!--used in columns-->
+					{% if (doma['usedincols+']|count) > 0 %}
+					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet für Columns'), lbc=domaid ~ "incols") }}
+						<div class="table-responsive">
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Tabelle') }}</th>
+									<th>{{ webmodel.gettransltext('Column') }}</th>
+								</tr>
+								{% for coluid in doma['usedincols+'] %}
+								{% set colu = webmodel.getelem(coluid) %}
+								{% set tabl = webmodel.getelem(colu["table-id"]) %}
+								<tr>
+									<td>{{ tabl["name"] }}</td>
+									<td>{{ webmodel.getreflink(name=colu["name"],destid=coluid
+													,curintfid=doma["interface-id"]
+													,destintfid=colu["interface-id+"]) }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					{{ blocks.subblockend() }}
+					{% endif %}
+
+					<!--references-->
+					{% if doma["referencedby"]|count > 0 %}
+					{{ blocks.subblockstart(header="References", lbc=domaid ~ "ref") }}
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Type</th>
+										<th>Reference</th>
+									</tr>
+									{% for refid in doma["referencedby"] %}
+									<tr>
+										<td>{{ displelemtype(refid) }}</td>
+										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(refid)["name"])
+											   ,destid=refid
+											   ,curintfid=doma["interface-id"])}}
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					{{ blocks.subblockend() }}
+					{% endif %}
+
+		{{ blocks.mainblockend(lbc=domaid ~ "main") }}
+		{% endfor %}

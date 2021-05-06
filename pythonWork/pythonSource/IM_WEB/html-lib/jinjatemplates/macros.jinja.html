@@ -1,3 +1,11 @@
+{% macro tdbool2icon(bool) -%}
+	{% if bool %}	
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+	{% else %}	
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	{% endif %}	
+{%- endmacro %}
+
 {% macro listblockstart(label, id, lbc) -%}
 				<div class="panel-body" id="{{id}}">
 					<div class="panel">

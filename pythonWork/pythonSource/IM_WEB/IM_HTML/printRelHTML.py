@@ -77,15 +77,10 @@ def interfacediagram(pintf):
     """add links to svg and include it in html"""
     with (open(file=svgfn, mode="r")) as f:
         svgtext = f.read()
-        # svgtext = puticonsinsvg(ptext=svgtext,pdiagid=diaanker)
         dimensions = re.search(r"<svg .* width=\"([0-9]+)\".*height=\"([0-9]+)\">",svgtext)
         if dimensions is None:
-            dimensions = [0,500,500]#safeguard if svg does not contain width and height
-        #printHTML.fhtml.write(printdiagHTML.diaghtmlhead(panker=pintf["interface-id+"], pname=pintf['name']
-        #                           , pwidth=dimensions[1], pheight=dimensions[2]))
+            dimensions = [0,500,500] #safeguard if svg does not contain width and height
 
         svgtext = putrefinsvg(ptext=svgtext,pintf=pintf)
-        #printHTML.fhtml.write(svgtext)
-        #printHTML.fhtml.write(printdiagHTML.diaghtmlfoot())
     return svgtext
 

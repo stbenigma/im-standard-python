@@ -2,11 +2,11 @@
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
-from datetime import datetime
-from IM_DB import parameters,dbConnect, logmessages,parameters
+from IM_DB import dbConnect, logmessages,parameters
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
 from IM_OBJECTS import *
 from IM_JSON import JSModel,sql2json
+from IM_WEB import jinjawebmodel
 
 
 def formatDatentyp(w):
@@ -186,12 +186,15 @@ def printhtmlfile(pfirma, ptitel, pinfo, plogofilename,pfilename):
     printHTML.closefile ();
 #printhtmlfile
 
-def printhtmlrender(pfilename, planguage, pmodel, pintfid):
+def printhtmlrender(pfilename, planguage, pmodel, pintfid=None):
     printHTML.createFile (pfilename=pfilename)
 
-    from IM_WEB import jinja2web,jinjawebmodel
     if pintfid is None:
-        diags =[]
+        diags =sorted([{"id":key
+                 ,"name": value["name"]
+                ,"svg": ""} for key, value in pmodel.jsmodel["diagrams"].items()
+                                                    if (value["type"] == "Entity")]
+                , key=lambda x: x["name"].upper())
     else:
         diags = [{"id": pintfid
                 , "name": pmodel.getbyid(pintfid)["name"]
@@ -234,12 +237,13 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
         langfilename = printHTML.webFileName + '_' + Languagetext.reportLang() + '.html'
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
-        printhtmlfile(pfirma="foryouandyourcustomers"
-                      , ptitel=parameters.odmModelName() + ' ({})'.format(lang)
-                      , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
-                      , plogofilename=parameters.logoFileName()
-                      , pfilename=  langfilename
-                      )
+        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.model)
+        # printhtmlfile(pfirma="foryouandyourcustomers"
+        #               , ptitel=parameters.odmModelName() + ' ({})'.format(lang)
+        #               , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
+        #               , plogofilename=parameters.logoFileName()
+        #               , pfilename=  langfilename
+        #               )
     # for
     Languagetext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model

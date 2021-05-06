@@ -5,10 +5,11 @@
 {% set company =  "foryouandyourcustomers"  %} {# webmodel.metainfo.company #}
 {% set modelname = webmodel.metainfo.modelname  %}
 {% set interfacename = webmodel.metainfo.interfacename  %}
-{% set title = webmodel.metainfo.interfacename  %}
+{% set title = webmodel.metainfo.modelname  %}
 {% set logofilename = "logo.jpg" %}
 
-{% import 'macros.jinja' as blocks %}
+{% import 'macros.jinja.html' as blocks %}
+{% import 'header.jinja.html' as companyheader %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,22 +53,22 @@
 			<output id="count"></output>
 			<div class="contentView">
 
-				<!--tables-->       
-				{{ blocks.listblockstart(label="Tables", id="TablesL", lbc="bartabl") }}
-						<ol class="tree" id="TablesList">
-							{% for tab in webmodel.tables %} 
-							<li class="obj">{{ webmodel.getreflink(name=tab[1], destid=tab[0]) }}
+				<!--entites-->       
+				{{ blocks.listblockstart(label=webmodel.gettransltext("Entitäten"), id="EntitesL", lbc="barenti") }}
+						<ol class="tree" id="EntitesList">
+							{% for enti in webmodel.entities %} 
+							<li class="obj">{{ webmodel.getreflink(name=enti[1], destid=enti[0]) }}
 							{% endfor %}
 						</ol>
 				{{ blocks.listblockend() }}
 				
-				<!--columns-->       
-				{{ blocks.listblockstart(label="Columns", id="ColumnsL",lbc="barcolu") }}
-						<ol class="tree" id="ColumnsList">
-							{% for col in webmodel.columns %}
-							{% set tablid = webmodel.getelem(col[0])["table-id"] %}
-							{% set tabl = webmodel.getelem(tablid) %}
-							<li class="obj">{{ webmodel.getreflink(name=col[1] ~ " (" ~ tabl["name"] ~ ")", destid=col[0]) }} 
+				<!--attributes-->
+				{{ blocks.listblockstart(label=webmodel.gettransltext("Attribute"), id="AttrsL",lbc="barattr") }}
+						<ol class="tree" id="AttrsList">
+							{% for attr in webmodel.attributes %}
+							{% set entiid = webmodel.getelem(attr[0])["entity"] %}
+							{% set enti = webmodel.getelem(entiid) %}
+							<li class="obj">{{ webmodel.getreflink(name=attr[1] ~ " (" ~ webmodel.getlangstr(enti["name"]) ~ ")", destid=attr[0]) }}
 							{% endfor %}
 						</ol>
 				{{ blocks.listblockend() }}
@@ -75,7 +76,7 @@
 				
 				<!--domains-->       
 				{% if webmodel.domains|count > 0 %}
-				{{ blocks.listblockstart(label="Domains", id="DomainsL",lbc="bardoma") }}
+				{{ blocks.listblockstart(label=webmodel.gettransltext("Wertebereiche"), id="DomainsL",lbc="bardoma") }}
 						<ol class="tree" id="DomainList">
 							{% for dom in webmodel.domains %}
 							<li class="obj">{{ webmodel.getreflink(name=dom[1],destid=dom[0]) }} 
@@ -83,20 +84,52 @@
 						</ol>
 				{{ blocks.listblockend() }}
 				{% endif %}
-				
+
+				<!--Documents-->       
+				{% if webmodel.documents|count > 0 %}
+				{{ blocks.listblockstart(label=webmodel.gettransltext("Dokumente"), id="DocusL",lbc="bardocu") }}
+						<ol class="tree" id="DocusList">
+							{% for elem in webmodel.documents %}
+							<li class="obj">{{ webmodel.getreflink(name=elem[1],destid=elem[0]) }} 
+							{% endfor %}
+						</ol>
+				{{ blocks.listblockend() }}
+				{% endif %}
+
+				<!--OrgUnits-->       
+				{% if webmodel.orgunits|count > 0 %}
+				{{ blocks.listblockstart(label=webmodel.gettransltext("Org. Einheiten"), id="OrgusL",lbc="barorgu") }}
+						<ol class="tree" id="OrguList">
+							{% for elem in webmodel.orgunits %}
+							<li class="obj">{{ webmodel.getreflink(name=elem[1],destid=elem[0]) }} 
+							{% endfor %}
+						</ol>
+				{{ blocks.listblockend() }}
+				{% endif %}
+
 				<!--diagrams-->       
 				{% if webmodel.diagrams|count > 0 %}
-					{{ blocks.listblockstart(label="Diagrams", id="DiagramL",lbc="bardiag") }}
+					{{ blocks.listblockstart(label=webmodel.gettransltext("Diagramme"), id="DiagramL",lbc="bardiag") }}
 						<ol class="tree" id="DiagramList">
-							{% for diag in webmodel.diagrams %}
-								<li class="obj">{{ webmodel.getreflink(name=diag.name,destid=diag.id) }} 
+							{% for elem in webmodel.diagrams %}
+								<li class="obj">{{ webmodel.getreflink(name=elem.name,destid=elem.id) }} 
 							{% endfor %}
 						</ol>
 					{{ blocks.listblockend() }}
-{#				<div class="panel-body" id="ColumnsL">	
-					<label class="label0">Diagram</label><br>
-					{{ webmodel.getreflink(name=title,destid=diagram.id) }} 
-#}				{% endif %}
+				{% endif %}
+				
+				<!--Systems-->       
+				{% if webmodel.systems|count > 0 %}
+				{{ blocks.listblockstart(label=webmodel.gettransltext("Systeme"), id="IntfL",lbc="barintf") }}
+						<ol class="tree" id="IntfList">
+							{% for elem in webmodel.systems %}
+							<li class="obj">{{ webmodel.getreflink(name=elem[1],destid=elem[0]
+								                ,curintfid=None, destintfid=elem[0]) }} 
+							{% endfor %}
+						</ol>
+				{{ blocks.listblockend() }}
+				{% endif %}
+
 				</div>
 			</div>
 		</div>
@@ -116,19 +149,6 @@
 		</div>
 		<br><hr>
 
-		<!--diagrams-->       
-		{% if webmodel.diagrams|count > 0 %}
-			{% for diag in webmodel.diagrams %}
-				<div id="{{ diag.id }}-container">
-					<h3 id="{{ diag.id }}">{{ diag.name }}</h3>
-					{{ diag.svg }}
-					<div class="print-button-container">
-						<button class="print-button" onclick="printElem(this)">print</button>
-					</div>
-				</div>
-			{% endfor %}
-		{% endif %}
-		
 		<!--tables-->       
 		{% for tabl in webmodel.tables %}
 		{% set tablid = tabl[0] %}
@@ -296,7 +316,7 @@
 										<td>Information Model</td>
 										<td>
 										{% for attrid in elem["attributesmapped"] %}
-										{% if loop.index > 1 %}', '{% endif %}
+										{% if loop.index > 1 %} ', ' {% endif %}
 										{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"]),destid=attrid,curintfid=elem["interface-id"]) }}
 										{% endfor %}
 									</tr>
@@ -315,6 +335,21 @@
 
 		{{ blocks.mainblockend(lbc=coluid ~ "main") }}
 		{% endfor %}
+
+		{% include 'domains.jinja.html' %}
+		
+		<!--diagrams-->
+		{% if webmodel.diagrams|count > 0 %}
+			{% for diag in webmodel.diagrams %}
+				<div id="{{ diag.id }}-container">
+					<h3 id="{{ diag.id }}">{{ diag.name }}</h3>
+					{{ diag.svg }}
+					<div class="print-button-container">
+						<button class="print-button" onclick="printElem(this)">print</button>
+					</div>
+				</div>
+			{% endfor %}
+		{% endif %}
 	</div>
 
     <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">

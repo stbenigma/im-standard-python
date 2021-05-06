@@ -149,6 +149,7 @@ def model2html(pwebmodel:Webmodel):
         templatename = "interface.jinja.html"
     else:
         templatename = "informationmodel.jinja.html"
+    #fi
 
     try:
         templ = t.get_template(templatename)
