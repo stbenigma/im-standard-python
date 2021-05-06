@@ -178,7 +178,7 @@ def printcontentcolumn(pintf):
                                , plbc=lbc)
         infovalues = (domain['name'][lang] if domain['origin']== Domain.DERIVED \
                         else printHTML.href(ref=colelem['domain'],anz=domain['name'][lang]
-                                     ,htmlfile='' if domain['interfaceid'] is not None else printHTML.htmlfilelist[0],pself=True
+                                     ,htmlfile='' if domain['interfasce-id'] is not None else printHTML.htmlfilelist[0],pself=True
                                             )
                         ,domain['displdatatype+'][lang],domain['basedatatype+']
                         , Modelelement.longdevstatus(colelem['devstatus']),nvl(colelem['um']) + ', ' + nvl(colelem['dm']))
