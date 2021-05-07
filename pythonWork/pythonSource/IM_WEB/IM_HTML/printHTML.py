@@ -18,6 +18,7 @@ imagedirec: str = "";
 cssdirec: str = "";
 icondirec: str = "";
 jsdirec: str = "";
+jinadirec: str = "";
 htmlfilelist = {}
 model:JSModel = None
 
@@ -1283,19 +1284,23 @@ def printcontentdoma(pdomains):
 
 def type2name(ptyp,plang):
     if ptyp == Modelelemtype.ENTI:
-        return Languagetext.transl('Entitäten', plang)
+        return Languagetext.transl('Entität', plang)
     elif ptyp == Modelelemtype.ATTR:
-        return Languagetext.transl('Attribute', plang)
+        return Languagetext.transl('Attribut', plang)
     elif ptyp == Modelelemtype.DOMA:
-        return Languagetext.transl('Wertebereiche', plang)
+        return Languagetext.transl('Wertebereich', plang)
     elif ptyp == Modelelemtype.DIAG:
-        return Languagetext.transl('Diagramme', plang)
+        return Languagetext.transl('Diagramm', plang)
     elif ptyp == Modelelemtype.TABL:
-        return Languagetext.transl('Tabellen', plang)
+        return Languagetext.transl('Tabelle', plang)
+    elif ptyp == Modelelemtype.DOCU:
+        return Languagetext.transl('Dokument', plang)
+    elif ptyp == Modelelemtype.ORGU:
+        return Languagetext.transl('Organisatioseinheit', plang)
     elif ptyp == Modelelemtype.INTF:
-        return Languagetext.transl('Systeme', plang)
+        return Languagetext.transl('System', plang)
     elif ptyp == Modelelemtype.COLU:
-        return 'Columns'
+        return Languagetext.transl('Column', plang)
     else:
         return ptyp
     #fi
@@ -1394,7 +1399,7 @@ def searchlogo(p_imagedirec):
 
 def setWebDirec(p_webdirec):
     global webDirectory, webFileName, webFileNamePath
-    global libSourceDirec, imagedirec, cssdirec, icondirec,jsdirec
+    global libSourceDirec, imagedirec, cssdirec, icondirec,jsdirec,jinadirec
 
     webDirectory = parameters.nvl(p_webdirec, parameters.webDirec());
     webFileName = parameters.odmModelName();
@@ -1402,13 +1407,15 @@ def setWebDirec(p_webdirec):
     cssdirec = webDirectory + "css/";
     icondirec = webDirectory + "icons/";
     jsdirec = webDirectory + "js/";
+    jinadirec = webDirectory + "jinjatemplates/";
+
     libSourceDirec = os.path.dirname(os.path.abspath(__file__))
     libSourceDirec += '/../html-lib/';
     if (parameters.logoFileName() is None): parameters.logoFileName(searchlogo(imagedirec));
 
 
 def createlib():
-    global cssdirec,icondirec,imagedirec,jsdirec,libSourceDirec
+    global cssdirec,icondirec,imagedirec,jsdirec,libSourceDirec,jinadirec
     if not os.path.exists(cssdirec):
         shutil.copytree(libSourceDirec + 'css', cssdirec)
     if not os.path.exists(jsdirec):
@@ -1417,6 +1424,12 @@ def createlib():
         shutil.copytree(libSourceDirec + 'icons', icondirec)
     if not os.path.exists(imagedirec):
         shutil.copytree(libSourceDirec + 'image', imagedirec)
+    if not os.path.exists(jinadirec):
+        shutil.copytree(libSourceDirec + 'jinjatemplates', jinadirec)
+    else: #replace the original files every time
+        shutil.copytree(libSourceDirec + 'jinjatemplates/original', jinadirec + 'original/',dirs_exist_ok=True)
+
+
 # createlib
 
 def copyimages():

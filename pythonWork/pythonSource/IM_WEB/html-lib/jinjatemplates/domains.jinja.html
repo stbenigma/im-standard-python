@@ -3,9 +3,9 @@
 		{% set domaid = domalist[0] %}
 		{% set doma = webmodel.getelem (domaid) %}
 
-		{{ blocks.mainblockstart(type="Domain", id=domaid
+		{% call blocks.mainblock(type="Domain", id=domaid
 								, name=webmodel.getlangstr(doma["name"]), descr=lf2htmlbr(webmodel.getlangstr(doma["descr"]))
-							, lbc=domaid ~ "main" ) }}
+							, lbc=domaid ~ "main" ) %}
 					<h2>Information</h2>
 					<div class="table-responsive">
 						<table class="table borderless">
@@ -37,22 +37,22 @@
 								<tr>
 									<td class="attribute">{{ webmodel.getlangstr(doma['displdatatype+']) }}</td>
 									{% if doma['type'] in ('TXT','LOV') %}
-									<td class="attribute">{{ doma['maxlng'] }}</td>
-									<td class="attribute">{{ doma['syntaxrule'] }}</td>
+									<td class="attribute">{{ getnvl(doma['maxlng']) }}</td>
+									<td class="attribute">{{ getnvl(doma['syntaxrule']) }}</td>
 									{% elif doma['type'] in ('BIN') %}
 										<td class="attribute">{{ doma['contenttype'] }}</td>
 										<td class="attribute">{{ doma['contenttypename+'] }}</td>
 									{% elif doma['type'] in ('NUM','DAT') %}
 										{% if doma['type'] in ('NUM') %}
-											<td class="attribute">{{ doma['totaldigits'] }}</td>
-											<td class="attribute">{{ doma['fractdigits'] }}</td>
-											<td class="attribute">{{ doma['roundvalue'] }}</td>
-											<td class="attribute">{{ doma['unit'] }}</td>
+											<td class="attribute">{{ getnvl(doma['totaldigits']) }}</td>
+											<td class="attribute">{{ getnvl(doma['fractdigits']) }}</td>
+											<td class="attribute">{{ getnvl(doma['roundvalue']) }}</td>
+											<td class="attribute">{{ getnvl(doma['unit']) }}</td>
 										{% elif doma['type'] in ('DAT') %}
 											<td class="attribute">{{ webmodel.getlangstr(doma['granularitytext+']) }}</td>
 										{% endif %}
-											<td class="attribute">{{ doma['minvalue'] }}</td>
-											<td class="attribute">{{ doma['maxvalue'] }}</td>
+											<td class="attribute">{{ getnvl(doma['minvalue']) }}</td>
+											<td class="attribute">{{ getnvl(doma['maxvalue']) }}</td>
 									{% elif doma['type'] in ('GRP') %}
 
 									{% endif %}
@@ -63,7 +63,7 @@
 					</div>
 
 					{% if doma['type'] in ("LOV") and doma['values']|count > 0 %}
-						{{ blocks.subblockstart(header=webmodel.gettransltext('Werteliste'), lbc=domaid ~ "valuelist") }}
+						{% call blocks.subblock(header=webmodel.gettransltext('Werteliste'), lbc=domaid ~ "valuelist") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -78,15 +78,15 @@
 									<td class="attribute">{{ val['sort'] }}</td>
 									<td class="attribute">{{ val['value'] }}</td>
 									<td class="attribute">{{ val['displ'] }}</td>
-									<td class="attribute">{{ val['descr'] }}</td>
+									<td class="attribute">{{ getnvl(val['descr']) }}</td>
 								</tr>
 								{% endfor %}
 								</tbody>
 							</table>
 						</div>
-						{{ blocks.subblockend() }}
+						{% endcall %}
 					{% elif doma['type'] in ("GRP")  %}
-						{{ blocks.subblockstart(header=webmodel.gettransltext('Elemente'), lbc=domaid ~ "elemlist") }}
+						{% call blocks.subblock(header=webmodel.gettransltext('Elemente'), lbc=domaid ~ "elemlist") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -103,20 +103,20 @@
 									<td class="attribute">{{ webmodel.getlangstr(val['name']) }}</td>
 									<td class="attribute">{{ webmodel.getreflink(name=webmodel.getlangstr(doma2["name"])
 																,destid=doma2id
-																, curintfid=doma["interface-id"],destintfid=doma2["interface-id"]) }} </td>
+																, curintfid=webmodel.getelemintfid(domaid),destintfid=webmodel.getelemintfid(doma2id)) }} </td>
 									{{ blocks.tdbool2icon(val["mandatory"]) }}
-									<td class="attribute">{{ val['descr'] }}</td>
+									<td class="attribute">{{ getnvl(val['descr']) }}</td>
 								</tr>
 								{% endfor %}
 								</tbody>
 							</table>
 						</div>
-						{{ blocks.subblockend() }}
+						{% endcall %}
 					{% endif %}
 
 					<!--used in domainGroups-->
 					{% if (doma['usedingrps+']|count) > 0 %}
-					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet in Attributgruppen'), lbc=domaid ~ "usingrp") }}
+					{% call blocks.subblock(header=webmodel.gettransltext('Verwendet in Attributgruppen'), lbc=domaid ~ "usingrp") %}
 						<div class="table-responsive">
 						<table class="table borderless" >
 							<tbody>
@@ -128,18 +128,18 @@
 								<tr>
 									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(doma2["name"])
 															,destid=doma2id
-															,curintfid=doma["interface-id"],destintfid=doma2["interface-id"]) }}</td>
+															,curintfid=webmodel.getelemintfid(domaid),destintfid=webmodel.getelemintfid(domaid)) }}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
 						</table>
 					</div>
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}					
 					
 					<!--used in attrs-->
 					{% if (doma['usedinattrs+']|count) > 0 %}
-					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet für Attribute'), lbc=domaid ~ "inattr") }}
+					{% call blocks.subblock(header=webmodel.gettransltext('Verwendet für Attribute'), lbc=domaid ~ "inattr") %}
 						<div class="table-responsive">
 						<table class="table borderless" >
 							<tbody>
@@ -153,22 +153,23 @@
 								<tr>
 									<td>{{ webmodel.getlangstr(enti["name"]) }}</td>
 									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(attr["name"])
-															,destid=attrid,destintfid=None,curintfid=doma["interface-id"]) }}</td>
+															,destid=attrid,destintfid=webmodel.getelemintfid(attrid),curintfid=webmodel.getelemintfid(domaid)) }}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
 						</table>
 					</div>
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
 
 					<!--used in columns-->
 					{% if (doma['usedincols+']|count) > 0 %}
-					{{ blocks.subblockstart(header=webmodel.gettransltext('Verwendet für Columns'), lbc=domaid ~ "incols") }}
+					{% call blocks.subblock(header=webmodel.gettransltext('Verwendet für Columns'), lbc=domaid ~ "incols") %}
 						<div class="table-responsive">
 						<table class="table borderless" >
 							<tbody>
 								<tr>
+									<th>{{ webmodel.gettransltext('System') }}</th>
 									<th>{{ webmodel.gettransltext('Tabelle') }}</th>
 									<th>{{ webmodel.gettransltext('Column') }}</th>
 								</tr>
@@ -176,21 +177,22 @@
 								{% set colu = webmodel.getelem(coluid) %}
 								{% set tabl = webmodel.getelem(colu["table-id"]) %}
 								<tr>
+									<td>{{ tabl["interface-name+"] }}</td>
 									<td>{{ tabl["name"] }}</td>
 									<td>{{ webmodel.getreflink(name=colu["name"],destid=coluid
-													,curintfid=doma["interface-id"]
-													,destintfid=colu["interface-id+"]) }}</td>
+													,curintfid=webmodel.getelemintfid(domaid)
+													,destintfid=webmodel.getelemintfid(coluid)) }}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
 						</table>
 					</div>
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
 
 					<!--references-->
 					{% if doma["referencedby"]|count > 0 %}
-					{{ blocks.subblockstart(header="References", lbc=domaid ~ "ref") }}
+					{% call blocks.subblock(header="References", lbc=domaid ~ "ref") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -200,7 +202,7 @@
 									</tr>
 									{% for refid in doma["referencedby"] %}
 									<tr>
-										<td>{{ displelemtype(refid) }}</td>
+										<td>{{ webmodel.displelemtype(refid) }}</td>
 										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(refid)["name"])
 											   ,destid=refid
 											   ,curintfid=doma["interface-id"])}}
@@ -210,8 +212,8 @@
 								</tbody>
 							</table>
 						</div>
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
 
-		{{ blocks.mainblockend(lbc=domaid ~ "main") }}
+		{% endcall %}
 		{% endfor %}

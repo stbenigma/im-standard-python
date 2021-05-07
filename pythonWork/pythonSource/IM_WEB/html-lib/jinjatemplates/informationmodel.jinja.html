@@ -54,16 +54,16 @@
 			<div class="contentView">
 
 				<!--entites-->       
-				{{ blocks.listblockstart(label=webmodel.gettransltext("Entitäten"), id="EntitesL", lbc="barenti") }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Entitäten"), id="EntitesL", lbc="barenti") %}
 						<ol class="tree" id="EntitesList">
 							{% for enti in webmodel.entities %} 
 							<li class="obj">{{ webmodel.getreflink(name=enti[1], destid=enti[0]) }}
 							{% endfor %}
 						</ol>
-				{{ blocks.listblockend() }}
+				{% endcall %}
 				
 				<!--attributes-->
-				{{ blocks.listblockstart(label=webmodel.gettransltext("Attribute"), id="AttrsL",lbc="barattr") }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Attribute"), id="AttrsL",lbc="barattr") %}
 						<ol class="tree" id="AttrsList">
 							{% for attr in webmodel.attributes %}
 							{% set entiid = webmodel.getelem(attr[0])["entity"] %}
@@ -71,63 +71,63 @@
 							<li class="obj">{{ webmodel.getreflink(name=attr[1] ~ " (" ~ webmodel.getlangstr(enti["name"]) ~ ")", destid=attr[0]) }}
 							{% endfor %}
 						</ol>
-				{{ blocks.listblockend() }}
+				{% endcall %}
 				
 				
 				<!--domains-->       
 				{% if webmodel.domains|count > 0 %}
-				{{ blocks.listblockstart(label=webmodel.gettransltext("Wertebereiche"), id="DomainsL",lbc="bardoma") }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Wertebereiche"), id="DomainsL",lbc="bardoma") %}
 						<ol class="tree" id="DomainList">
 							{% for dom in webmodel.domains %}
 							<li class="obj">{{ webmodel.getreflink(name=dom[1],destid=dom[0]) }} 
 							{% endfor %}
 						</ol>
-				{{ blocks.listblockend() }}
+				{% endcall %}
 				{% endif %}
 
 				<!--Documents-->       
 				{% if webmodel.documents|count > 0 %}
-				{{ blocks.listblockstart(label=webmodel.gettransltext("Dokumente"), id="DocusL",lbc="bardocu") }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Dokumente"), id="DocusL",lbc="bardocu") %}
 						<ol class="tree" id="DocusList">
 							{% for elem in webmodel.documents %}
 							<li class="obj">{{ webmodel.getreflink(name=elem[1],destid=elem[0]) }} 
 							{% endfor %}
 						</ol>
-				{{ blocks.listblockend() }}
+				{% endcall %}
 				{% endif %}
 
 				<!--OrgUnits-->       
 				{% if webmodel.orgunits|count > 0 %}
-				{{ blocks.listblockstart(label=webmodel.gettransltext("Org. Einheiten"), id="OrgusL",lbc="barorgu") }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Org. Einheiten"), id="OrgusL",lbc="barorgu") %}
 						<ol class="tree" id="OrguList">
 							{% for elem in webmodel.orgunits %}
 							<li class="obj">{{ webmodel.getreflink(name=elem[1],destid=elem[0]) }} 
 							{% endfor %}
 						</ol>
-				{{ blocks.listblockend() }}
+				{% endcall %}
 				{% endif %}
 
 				<!--diagrams-->       
 				{% if webmodel.diagrams|count > 0 %}
-					{{ blocks.listblockstart(label=webmodel.gettransltext("Diagramme"), id="DiagramL",lbc="bardiag") }}
-						<ol class="tree" id="DiagramList">
-							{% for elem in webmodel.diagrams %}
-								<li class="obj">{{ webmodel.getreflink(name=elem.name,destid=elem.id) }} 
-							{% endfor %}
-						</ol>
-					{{ blocks.listblockend() }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Diagramme"), id="DiagramL",lbc="bardiag") %}
+					<ol class="tree" id="DiagramList">
+						{% for elem in webmodel.diagrams %}
+							<li class="obj">{{ webmodel.getreflink(name=elem.name,destid=elem.id) }} 
+						{% endfor %}
+					</ol>
+				{% endcall %}
 				{% endif %}
 				
 				<!--Systems-->       
 				{% if webmodel.systems|count > 0 %}
-				{{ blocks.listblockstart(label=webmodel.gettransltext("Systeme"), id="IntfL",lbc="barintf") }}
+				{% call blocks.listblock(label=webmodel.gettransltext("Systeme"), id="IntfL",lbc="barintf") %}
 						<ol class="tree" id="IntfList">
 							{% for elem in webmodel.systems %}
 							<li class="obj">{{ webmodel.getreflink(name=elem[1],destid=elem[0]
 								                ,curintfid=None, destintfid=elem[0]) }} 
 							{% endfor %}
 						</ol>
-				{{ blocks.listblockend() }}
+				{% endcall %}
 				{% endif %}
 
 				</div>
@@ -153,7 +153,7 @@
 		{% for tabl in webmodel.tables %}
 		{% set tablid = tabl[0] %}
 		{% set elem = webmodel.getelem (tablid) %}
-		{{ blocks.mainblockstart(type="Table", id=tablid, name=elem["name"], descr=elem["descr"], lbc=tablid ~ "main") }}
+		{% call blocks.mainblock(type="Table", id=tablid, name=elem["name"], descr=elem["descr"], lbc=tablid ~ "main") %}
 					<h2>Information</h2>
 					<div class="table-responsive">
 						<table class="table borderless">
@@ -171,7 +171,7 @@
 					</div>
 					
 					<!--columns-->       
-					{{ blocks.subblockstart(header="Columns", lbc=tablid ~ "colu") }}
+					{% call blocks.subblock(header="Columns", lbc=tablid ~ "colu") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -192,8 +192,8 @@
 											{% if doma["origin"] == 'DER' %}
 											{{ webmodel.getlangstr(doma["name"]) }}
 											{% else %}
-											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]),curintfid=elem["interface-id"]
-														 ,destintfid=doma["interface-id"],destid=domaid)}}
+											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]),curintfid=webmodel.getelemintfid(tablid)
+														 ,destintfid=webmodel.getelemintfid(domaid),destid=domaid)}}
 											{% endif %}
 											{% endif %}
 										</td>
@@ -203,11 +203,11 @@
 								</tbody>
 							</table>
 						</div> 
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					
 					<!--mappings-->       
 					{% if (elem["entitiesmapped"]|count + elem["relationsmapped"]|count) > 0 %}
-					{{ blocks.subblockstart(header="Mappings", lbc=tablid ~ "map") }}
+					{% call blocks.subblock(header="Mappings", lbc=tablid ~ "map") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -215,7 +215,7 @@
 										<th>Model</th>
 										<th>Entity(ies) / Table(s)</th>
 									</tr>
-									{% for key,val in webmodel.getmaplist(id=tablid,curintfid=elem["interface-id"]).items() %}
+									{% for key,val in webmodel.getmaplist(id=tablid,curintfid=webmodel.getelemintfid(tablid)).items() %}
 									<tr>
 										<td>{{ key }}</td>
 										<td>{{ val }}</td>
@@ -224,11 +224,12 @@
 								</tbody>
 							</table>
 						</div> 
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
-					<!--references-->       
+
+					<!--referencedby-->       
 					{% if elem["referencedby"]|count > 0 %}
-					{{ blocks.subblockstart(header="References", lbc=tablid ~ "ref") }}
+					{% call blocks.subblock(header="Referenced by", lbc=tablid ~ "ref") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -237,27 +238,28 @@
 										<th>Reference</th>
 									</tr>
 									{% for refid in elem["referencedby"] %}
+									{% set refelem = webmodel.getelem(refid) %}
 									<tr>
-										<td>{{ displelemtype(refid)}}</td>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(refid)["name"])
+										<td>{{ webmodel.displelemtype(refid)}}</td>
+										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(refelem["name"])
 											   ,destid=refid
-											   ,curintfid=elem["interface-id"])}}
+											   ,curintfid=webmodel.getelemintfid(tablid))}}
 										</td>
 									</tr>
 									{% endfor %}
 								</tbody>
 							</table>
 						</div> 
-					{{ blocks.subblockend() }}					
+					{% endcall %}					
 					{% endif %}
 					
 					<!--user defined properties-->
 					{% if elem["userdefprops"]|count > 0 %}
-					{{ blocks.subblockstart(header="User defined properties", lbc=tablid ~ "udp") }}
+					{% call blocks.subblock(header="User defined properties", lbc=tablid ~ "udp") %}
 					{{ blocks.userdefproperties(udprs=elem["userdefprops"]) }}
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
-		{{ blocks.mainblockend(lbc=tablid ~ "main") }}
+		{% endcall %}
 		{% endfor %}
 
 		<!--columns-->        
@@ -266,9 +268,8 @@
 		{% set elem = webmodel.getelem (coluid) %}
 		{% set tablid = elem["table-id"] %}
 		{% set domaid = elem["domain"] %}
-		
-		{{ blocks.mainblockstart(type="Column", id=coluid, name=elem["name"], descr=elem["descr"], lbc=coluid ~ "main"
-						 , parent=webmodel.getreflink(name=webmodel.getelem(tablid)["name"],destid=tablid)) }}
+		{% call blocks.mainblock(type="Column", id=coluid, name=elem["name"], descr=elem["descr"], lbc=coluid ~ "main"
+						 , parent=webmodel.getreflink(name=webmodel.getelem(tablid)["name"],destid=tablid)) %}
 					<h2>Information</h2>
 					<div class="table-responsive">
 						<table class="table borderless">
@@ -288,8 +289,8 @@
 												{{ webmodel.getlangstr(doma["name"]) }}
 											{% else %}
 												{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid
-															,curintfid=elem["interface-id"]
-														 	,destintfid=doma["interface-id"]) }}
+															,curintfid=webmodel.getelemintfid(coluid)
+														 	,destintfid=webmodel.getelemintfid(domaid)) }}
 											{% endif %}
 										{% endif %}
 										</td>
@@ -304,7 +305,7 @@
 					
 					<!--mappings-->       
 					{% if (elem["attributesmapped"]|count) > 0 %}
-					{{ blocks.subblockstart(header="Mappings", lbc=coluid ~ "map") }}
+					{% call blocks.subblock(header="Mappings", lbc=coluid ~ "map") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -317,27 +318,140 @@
 										<td>
 										{% for attrid in elem["attributesmapped"] %}
 										{% if loop.index > 1 %} ', ' {% endif %}
-										{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"]),destid=attrid,curintfid=elem["interface-id"]) }}
+										{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"]),destid=attrid
+										        ,curintfid=webmodel.getelemintfid(coluid)) }}
 										{% endfor %}
 									</tr>
 								</tbody>
 							</table>
 						</div> 
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
 
 					<!--user defined properties-->
 					{% if elem["userdefprops"]|count > 0 %}
-					{{ blocks.subblockstart(header="User defined properties", lbc=coluid ~ "udp") }}
+					{% call blocks.subblock(header="User defined properties", lbc=coluid ~ "udp") %}
 					{{ blocks.userdefproperties(udprs=elem["userdefprops"]) }}
-					{{ blocks.subblockend() }}
+					{% endcall %}
 					{% endif %}
 
-		{{ blocks.mainblockend(lbc=coluid ~ "main") }}
+		{% endcall %}
 		{% endfor %}
 
 		{% include 'domains.jinja.html' %}
+
+		<!--Documents-->
+		{% for docu in webmodel.documents %}
+		{% set elemid = docu[0] %}
+		{% set elem = webmodel.getelem (elemid) %}
+		{% call blocks.mainblock(type=webmodel.gettransltext("Dokumente"), id=elemid, name=elem["name"], descr=elem["descr"], lbc=elemid ~ "main") %}
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Format') }}</th>
+									<th>{{ webmodel.gettransltext('Referenz') }}</th>
+									<th>{{ webmodel.gettransltext('Vaterdokument') }}</th>
+									<th>{{ webmodel.gettransltext('Unterdokumente') }}</th>
+								</tr>
+								<tr>
+									<td class="attribute">{{ getnvl(elem["format+"]) }}</td>
+									{% set ref = getnvl(elem['reference']) %}
+									{% if ref.startswith("http")%}
+										<td class="attribute">{{ ref|urlize }}</td>
+									{% else %}
+										<td class="attribute">{{ ref }}</td>
+									{% endif %}
+									{% set parentdispl = "" %}
+									{% set parentid = elem['parent'] %}
+									{% if parentid %}
+										{% set parent = webmodel.getelem (parentid) %}
+										{% set parentdispl = webmodel.getreflink(name=parent['name'],destid=parentid) %}
+									{% endif %}	
+									<td class="attribute">{{ parentdispl }}</td>
+									
+									<td class="attribute">
+										{% for child in webmodel.documents %}
+										{% set childelem = webmodel.getelem(child[0])%}
+										{% if childelem['parent'] == elemid %}
+											 {{ webmodel.getreflink(name=childelem['name'],destid=child[0]) +', '}} 
+										{% endif %}
+										{% endfor %}
+								  </td>
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--references-->       
+					{% if elem|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Referenziert"), lbc=elemid ~ "ref") %}
+						{{ blocks.referencelist(webmodel,elemid,elem["references+"]) }}
+					{% endcall %}
+					{% endif %}
+					
+		{% endcall%}
+		{% endfor %}
 		
+		<!--organisational units-->
+		{% for orgu in webmodel.orgunits %}
+		{% set elemid = orgu[0] %}
+		{% set elem = webmodel.getelem (elemid) %}
+		{% call blocks.mainblock(type=webmodel.gettransltext("Org. Einheiten"), id=elemid, name=elem["name"], descr=elem["descr"], lbc=elemid ~ "main") %}
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>{{ webmodel.gettransltext('Beschreibung') }}</th>
+									<th>{{ webmodel.gettransltext('Mail') }}</th>
+									<th>{{ webmodel.gettransltext('Telefon') }}</th>
+									<th>{{ webmodel.gettransltext('Adresse') }}</th>
+									<th>{{ webmodel.gettransltext('übergeordnet') }}</th>
+									<th>{{ webmodel.gettransltext('untergeordnet') }}
+								</tr>
+								<tr>
+									<td class="attribute">{{ getnvl(elem["descr"]) }}</td>
+									<td class="attribute">{{ getnvl(elem['mail']) }}</td>
+									<td class="attribute">{{ getnvl(elem['telefon']) }}</td>
+									<td class="attribute">{{ getnvl(elem['address']) }}</td>
+									{% set parentdispl = "" %}
+									{% set parentid = elem['parent'] %}
+									{% if parentid %}
+										{% set parent = webmodel.getelem (parentid) %}
+										{% set parentdispl = webmodel.getreflink(name=parent['name'],destid=parentid) %}
+									{% endif %}	
+									<td class="attribute">{{ parentdispl }}</td>
+									{% set children = "" %}
+									{% for child in webmodel.orgunits %}
+									{% set childelem = webmodel.getelem(child[0])%}
+									{% if childelem['parent'] == elemid %}
+										{% if children != "" %}
+											{% set children = children ~ ', ' %}
+										{% endif %}
+										{% set children = children ~ webmodel.getreflink(name=childelem['name'],destid=child[0]) %}
+									{% endif %}
+									{% endfor %}
+									<td class="attribute">{{ children }}</td>
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--references-->       
+					{% if elem|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Referenziert"), lbc=elemid ~ "ref") %}
+						{{ blocks.referencelist(webmodel,elemid,elem["references+"]) }}
+					{% endcall %}
+					{% endif %}
+					
+		{% endcall%}
+		{% endfor %}
+
+
 		<!--diagrams-->
 		{% if webmodel.diagrams|count > 0 %}
 			{% for diag in webmodel.diagrams %}

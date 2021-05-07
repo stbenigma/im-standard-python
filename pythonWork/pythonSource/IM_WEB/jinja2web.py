@@ -4,6 +4,7 @@ import logmessages
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
+from  printHTML import type2name
 from jinja2 import FileSystemLoader,Environment
 
 class Webmodel():
@@ -15,6 +16,17 @@ class Webmodel():
 
     def getintfid(self):
         return self.intferfaceid
+
+    def getelemintfid(self,elemid):
+        elem = self.getelem(elemid)
+        if jsguid2type(elemid) in ["TABL","DOMA"]:
+            retval = elem["interface-id"]
+        elif jsguid2type(elemid) in ["INTF","COLU"]:
+            retval = elem["interface-id+"]
+        else:
+            retval = None
+        #fi
+        return retval
 
     def getcurlanguage(self):
         return self.curlanguage
@@ -42,6 +54,8 @@ class Webmodel():
         #fi
         return retval
 
+    def displelemtype(self,typ):
+        return type2name(ptyp=typ[:4],plang=self.getcurlanguage)
 
     def getelem(self,id):
         retval = self.jsmodel.getbyid(id)
@@ -52,12 +66,16 @@ class Webmodel():
         if "curintfid" in intfs: curintfid = intfs["curintfid"]
         if "destintfid" in intfs:
             destintfid = intfs["destintfid"]
-        retval = """<a href="{}#{}" target="{}">{}</a>""" \
+
+        try:
+            retval = """<a href="{}#{}" target="{}">{}</a>""" \
             .format('' if curintfid == destintfid \
                         else self.htmlfilelist[0 if destintfid is None else destintfid]\
                     ,destid
                     ,'_self' if curintfid == destintfid else '_blank'
                     ,name)
+        except Exception as err:
+            pass
         return retval
 
     def collecttablemappings(self,pelem):
@@ -131,9 +149,6 @@ class Webmodel():
 def getnvl(val,default = ""):
     return default if val is None else val
 
-def displelemtype(typ):
-    return typ[:4]
-    #type2name(ptyp=typ,plang=plang)
 
 def lf2htmlbr(pstr):
     try:
@@ -159,9 +174,7 @@ def model2html(pwebmodel:Webmodel):
     #try
 
     templ.globals['getnvl'] = getnvl
-    templ.globals['displelemtype'] = displelemtype
     templ.globals['lf2htmlbr'] = lf2htmlbr
-    lf2htmlbr
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:
