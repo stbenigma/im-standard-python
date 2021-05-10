@@ -1461,7 +1461,7 @@ def transferproject():
             parameters.dbDefaultLang(defspra)
             parameters.dbDefaultLangID(defspraid)
     # fi
-    assert dbParam.dbDefaultLangID, "Unable to determine default language"
+    assert parameters.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):
