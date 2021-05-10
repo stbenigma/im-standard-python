@@ -149,29 +149,62 @@
 		</div>
 		<br><hr>
 
-		<!--tables-->       
-		{% for tabl in webmodel.tables %}
-		{% set tablid = tabl[0] %}
-		{% set elem = webmodel.getelem (tablid) %}
-		{% call blocks.mainblock(type="Table", id=tablid, name=elem["name"], descr=elem["descr"], lbc=tablid ~ "main") %}
+
+		<!--Entities-->       
+		{% for enti in webmodel.entities %}
+		{% set elemid = enti[0] %}
+		{% set elem = webmodel.getelem (elemid) %}
+		{% call blocks.mainblock(type = webmodel.gettransltext("Entität"), id=elemid, name = webmodel.getlangstr(elem["name"])
+									, descr = webmodel.getlangstr(elem["descr"]), lbc=elemid ~ "main") %}
+
+{#        synostr = ', '.join(s[lang] for s in elem['synonyms'].values())
+        diagstr = ', '.join(href(ref="{}-{}".format(d, enti['anker'])
+                                    , anz=getelement(d)['name']) for d in elem['diagrams+'])
+        infovalues = (parameters.nvl(synostr), parentstr, subtypestr,rolesstr
+                      ,'{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']),Modelelement.longdevstatus(elem['devstatus'])
+                      , diagstr, 
+#}
 					<h2>Information</h2>
 					<div class="table-responsive">
 						<table class="table borderless">
 							<tbody>
 								<tr>
+									<th>{{ webmodel.gettransltext('Synonyme') }}</th>									
+									<th>{{ webmodel.gettransltext('Superentitäten') }}</th>
+									<th>{{ webmodel.gettransltext('Subentitäten') }}</th>
+									<th>{{ webmodel.gettransltext('Rollen') }}</th>
+									<th>Zoom levels</th>
 									<th>Dev. Status</th>
-									<th>updated</th>
+									<th>{{ webmodel.gettransltext('auf Diagramm(en)') }}</th>
+									<th> {{ webmodel.gettransltext('geändert') }}</th>
 								</tr>
 								<tr>
-									<td class="attribute">{{ elem["devstatus"] }}</td>
-									<td class="attribute">{{ "{}, {}".format(elem["uc"],elem["dc"]) }}</td>
+									<td class="attribute">
+										{% for syno in elem["synonyms"].values() %}
+										{% if loop.index > 1 %} {{ ', ' }} {% endif %}
+										{{ webmodel.getlangstr(syno) }}
+										{% endfor %}
+									</td>
+									<td class="attribute">
+										{{ blocks.elementlist(webmodel=webmodel, elems=elem["supertypes+"]) }}
+									</td>
+									<td class="attribute">
+										{{ blocks.elementlist(webmodel=webmodel, elems=elem["subtypes+"]) }}
+									</td>
+									<td class="attribute">
+										{{ blocks.elementlist(webmodel=webmodel, elems=elem["roles+"]) }}
+									</td>
+									<td class="attribute">{{ '{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']) }}</td>
+									<td class="attribute">{{ getnvl(elem['devstatus']) }}</td> {#Modelelement.longdevstatus(#}
+									<td class="attribute">{{ x }}</td>
+									<td class="attribute">{{ '{}, {}'.format(elem['uc'],elem['dc']) }}</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					
-					<!--columns-->       
-					{% call blocks.subblock(header="Columns", lbc=tablid ~ "colu") %}
+					<!--attributes-->       
+					{% call blocks.subblock(header=webmodel.gettransltext("Attribute"), lbc=elemid ~ "colu") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -227,35 +260,17 @@
 					{% endcall %}
 					{% endif %}
 
+
 					<!--referencedby-->       
 					{% if elem["referencedby"]|count > 0 %}
-					{% call blocks.subblock(header="Referenced by", lbc=tablid ~ "ref") %}
-						<div class="table-responsive">
-							<table class="table borderless" >
-								<tbody>
-									<tr>
-										<th>Type</th>
-										<th>Reference</th>
-									</tr>
-									{% for refid in elem["referencedby"] %}
-									{% set refelem = webmodel.getelem(refid) %}
-									<tr>
-										<td>{{ webmodel.displelemtype(refid)}}</td>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(refelem["name"])
-											   ,destid=refid
-											   ,curintfid=webmodel.getelemintfid(tablid))}}
-										</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div> 
+					{% call blocks.subblock(header=webmodel.gettransltext("Referenziert von"), lbc=tablid ~ "ref") %}
+						{{ blocks.refbylist(webmodel,elemid,elem) }}
 					{% endcall %}					
 					{% endif %}
 					
 					<!--user defined properties-->
 					{% if elem["userdefprops"]|count > 0 %}
-					{% call blocks.subblock(header="User defined properties", lbc=tablid ~ "udp") %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Benutzerdefinerte Eigenschaften"), lbc=elemid ~ "udp") %}
 					{{ blocks.userdefproperties(udprs=elem["userdefprops"]) }}
 					{% endcall %}
 					{% endif %}

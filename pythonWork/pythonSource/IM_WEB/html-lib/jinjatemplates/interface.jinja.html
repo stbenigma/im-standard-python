@@ -119,9 +119,9 @@
 		
 		<!--tables-->       
 		{% for tabl in webmodel.tables %}
-		{% set tablid = tabl[0] %}
-		{% set elem = webmodel.getelem (tablid) %}
-		{% call blocks.mainblock(type="Table", id=tablid, name=elem["name"], descr=elem["descr"], lbc=tablid ~ "main") %}
+		{% set elemid = tabl[0] %}
+		{% set elem = webmodel.getelem (elemid) %}
+		{% call blocks.mainblock(type="Table", id=elemid, name=elem["name"], descr=elem["descr"], lbc=elemid ~ "main") %}
 					<h2>Information</h2>
 					<div class="table-responsive">
 						<table class="table borderless">
@@ -139,7 +139,7 @@
 					</div>
 					
 					<!--columns-->       
-					{% call blocks.subblock(header="Columns", lbc=tablid ~ "colu") %}
+					{% call blocks.subblock(header="Columns", lbc=elemid ~ "colu") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -161,7 +161,7 @@
 											{{ webmodel.getlangstr(doma["name"]) }}
 											{% else %}
 											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid
-														, curintfid=webmodel.getelemintfid(tablid)
+														, curintfid=webmodel.getelemintfid(elemid)
 														 ,destintfid=webmodel.getelemintfid(domaid)) }}
 											{% endif %}
 											{% endif %}
@@ -176,7 +176,7 @@
 					
 					<!--mappings-->       
 					{% if (elem["entitiesmapped"]|count + elem["relationsmapped"]|count) > 0 %}
-					{% call blocks.subblock(header="Mappings", lbc=tablid ~ "map") %}
+					{% call blocks.subblock(header="Mappings", lbc=elemid ~ "map") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -184,7 +184,7 @@
 										<th>Model</th>
 										<th>Entity(ies) / Table(s)</th>
 									</tr>
-									{% for key,val in webmodel.getmaplist(id=tablid,curintfid=webmodel.getelemintfid(tablid)).items() %}
+									{% for key,val in webmodel.getmaplist(id=elemid,curintfid=webmodel.getelemintfid(elemid)).items() %}
 									<tr>
 										<td>{{ key }}</td>
 										<td>{{ val }}</td>
@@ -195,9 +195,10 @@
 						</div> 
 					{% endcall %}
 					{% endif %}
-					<!--references-->       
+					
+					<!--referencedby-->       
 					{% if elem["referencedby"]|count > 0 %}
-					{% call blocks.subblock(header="References", lbc=tablid ~ "ref") %}
+					{% call blocks.subblock(header="Referenced by", lbc=elemid ~ "ref") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -210,7 +211,7 @@
 										<td>{{ webmodel.displelemtype(refid)}}</td>
 										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(refid)["name"])
 											   ,destid=refid
-											   ,curintfid=webmodel.getelemintfid(tablid))}}
+											   ,curintfid=webmodel.getelemintfid(elemid))}}
 										</td>
 									</tr>
 									{% endfor %}
@@ -222,7 +223,7 @@
 					
 					<!--user defined properties-->
 					{% if elem["userdefprops"]|count > 0 %}
-					{% call blocks.subblock(header="User defined properties", lbc=tablid ~ "udp") %}
+					{% call blocks.subblock(header="User defined properties", lbc=elemid ~ "udp") %}
 					{{ blocks.userdefproperties(udprs=elem["userdefprops"]) }}
 					{% endcall %}
 					{% endif %}
@@ -231,12 +232,12 @@
 
 		<!--columns-->        
 		{% for col in webmodel.columns %}
-		{% set coluid = col[0] %}
-		{% set elem = webmodel.getelem (coluid) %}
+		{% set elemid = col[0] %}
+		{% set elem = webmodel.getelem (elemid) %}
 		{% set tablid = elem["table-id"] %}
 		{% set domaid = elem["domain"] %}
 		
-		{% call blocks.mainblock(type="Column", id=coluid, name=elem["name"], descr=elem["descr"], lbc=coluid ~ "main"
+		{% call blocks.mainblock(type="Column", id=elemid, name=elem["name"], descr=elem["descr"], lbc=elemid ~ "main"
 						 , parent=webmodel.getreflink(name=webmodel.getelem(tablid)["name"],destid=tablid)) %}
 					<h2>Information</h2>
 					<div class="table-responsive">
@@ -257,7 +258,7 @@
 												{{ webmodel.getlangstr(doma["name"]) }}
 											{% else %}
 												{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid
-															,curintfid=webmodel.getelemintfid(coluid)
+															,curintfid=webmodel.getelemintfid(elemid)
 														 	,destintfid=webmodel.getelemintfid(domaid)) }}
 											{% endif %}
 										{% endif %}
@@ -273,7 +274,7 @@
 					
 					<!--mappings-->       
 					{% if (elem["attributesmapped"]|count) > 0 %}
-					{% call blocks.subblock(header="Mappings", lbc=coluid ~ "map") %}
+					{% call blocks.subblock(header="Mappings", lbc=elemid ~ "map") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
@@ -286,7 +287,7 @@
 										<td>
 										{% for attrid in elem["attributesmapped"] %}
 											{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"])
-														,destid=attrid,curintfid=webmodel.getelemintfid(coluid)) }}
+														,destid=attrid,curintfid=webmodel.getelemintfid(elemid)) }}
 											{% if not loop.last %}, {% endif %}
 										{% endfor %}
 									</tr>
@@ -298,7 +299,7 @@
 
 					<!--user defined properties-->
 					{% if elem["userdefprops"]|count > 0 %}
-					{% call blocks.subblock(header="User defined properties", lbc=coluid ~ "udp") %}
+					{% call blocks.subblock(header="User defined properties", lbc=elemid ~ "udp") %}
 					{{ blocks.userdefproperties(udprs=elem["userdefprops"]) }}
 					{% endcall %}
 					{% endif %}

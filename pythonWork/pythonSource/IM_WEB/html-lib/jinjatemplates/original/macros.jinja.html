@@ -6,7 +6,7 @@
 	{% endif %}	
 {%- endmacro %}
 
-{% macro listblock(label, id, lbc) -%}
+{% macro listblockstart(label, id, lbc) -%}
 				<div class="panel-body" id="{{id}}">
 					<div class="panel">
 						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{lbc}}">
@@ -17,12 +17,13 @@
 					</div>
 					<!-- The inside div eliminates the 'jumping' animation. -->
 					<div class="collapse" id="{{lbc}}">
-						{{ caller() }}
+{%- endmacro %}
+{% macro listblockend() -%}
 					</div>
 				</div>
 {%- endmacro %}
 
-{% macro mainblock(type, id, name, descr, lbc, parent='') -%}
+{% macro mainblockstart(type, id, name, descr, lbc, parent='') -%}
 		<div class="entity" id="{{ id }}">
 			<div class="describtion">
 				 <span>
@@ -35,7 +36,9 @@
 			
 			<div class="panel-body">
 				<div class="collapse" id="{{ lbc }}">
-				   {{  caller() }}
+{%- endmacro %}
+
+{% macro mainblockend(lbc) -%}
 				</div>
 			</div>
 			<div class="panel">
@@ -48,7 +51,7 @@
 		</div>
 {%- endmacro %}
 
-{% macro subblock(header, lbc) -%}
+{% macro subblockstart(header, lbc) -%}
 					<div class="panel">
 						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{lbc}}">
 							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
@@ -57,7 +60,8 @@
 						</div>
 					</div>
 					<div class="collapse" id="{{lbc}}">
-						{{caller ()}}
+{%- endmacro %}
+{% macro subblockend() -%}
 					</div>
 {%- endmacro %}
 
@@ -86,63 +90,3 @@
 					</div> 
 				{% endfor %}
 {%- endmacro %}
-
-{% macro referencelist(webmodel,elemid,elem) -%}
-						<div class="table-responsive">
-							<table class="table borderless" >
-								<tbody>
-									<tr>
-										<th>{{ webmodel.gettransltext("Typ") }}</th>
-										<th>{{ webmodel.gettransltext("Referenz") }}</th>
-									</tr>
-									{% for refid in elem %}
-									{% set refelem = webmodel.getelem(refid) %}
-									<tr>
-										<td>{{ webmodel.displelemtype(refid)}}</td>
-										{% set displ = webmodel.getlangstr(refelem["name"]) %}
-										{% if refid[:4] == 'TABL' %}
-											{% set displ = displ ~ " ({})".format(refelem["interface-name+"]) %}
-										{% elif refid[:4] == 'COLU' %}
-											{% set displ = displ ~ " ({}: {})".format(refelem["table-name+"],refelem["interface-name+"]) %}
-										{% endif %}
-										<td>{{ webmodel.getreflink(name=displ
-											   ,destid=refid
-											   ,destintfid=webmodel.getelemintfid(refid))}}
-										</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div> 
-{%- endmacro %}
-
-{% macro refbylist(webmodel, elemid, elem) -%}
-						<div class="table-responsive">
-							<table class="table borderless" >
-								<tbody>
-									<tr>
-										<th>{{ webmodel.gettransltext("Typ") }}</th>
-										<th>{{ webmodel.gettransltext("Reference") }}</th>
-									</tr>
-									{% for refid in elem["referencedby"] %}
-									{% set refelem = webmodel.getelem(refid) %}
-									<tr>
-										<td>{{ webmodel.displelemtype(refid)}}</td>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(refelem["name"])
-											   ,destid=refid
-											   ,curintfid=webmodel.getelemintfid(elemid))}}
-										</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div> 
-{%- endmacro %}
-
-{% macro elementlist(webmodel, elems) -%}
-			{% for elemid in elems %}
-			{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-			{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(elemid)["name"]),destid=elemid) }}
-			{% endfor %}
-{%- endmacro %}
-
