@@ -4,25 +4,50 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>Attribut {{ util.translate(attribute['name']) }} [Informationsmodell]</h1>
+      <h1>{{ gettext('Attribute %(name)s [Information Model]', name=util.translate(attribute['name'])) }}</h1>
       <p>{{ util.translate_text(attribute['descr']) }}</p>
       <table class="relative-table" style="width: 100%;">
         <tbody>
           <tr>
-            <th>Typ</th>
+            <th>{{ gettext('Type') }}</th>
             <td>{{attribute['basedatatype+']}}</td>
           </tr>
           <tr>
-            <th>Basistyp</th>
-            <td>{{attribute['type+']}}</td>
+            <th>{{ gettext('Basetype') }}</th>
+            <td>{{ attribute['type+'] }}</td>
           </tr>
           <tr>
-            <th>Entität</th>
-            {{ util.soft_link(attribute.get('entity')) }}
+            <th>{{ gettext('Entity') }}</th>
+            <td>{{ util.soft_link(attribute.get('entity')) }}</td>
           </tr>
           <tr>
-            <th>Pflichtfeld</th>
-            <td>{{attribute['mandatory']}}</td>
+            <th>{{ gettext('Mandatory') }}</th>
+            <td>{{ attribute['mandatory']}} </td>
+          </tr>
+          <tr>
+            <th>{{ gettext('Descriptive') }}</th>
+            <td>{{ attribute['descriptive']}} </td>
+            <td>{{ gettext('The attribute is used for description') }}</td>
+          </tr>
+          <tr>
+            <th>{{ gettext('Translated') }}</th>
+            <td>{{ attribute['translated']}}</td>
+            <td>{{ gettext('The entity requires/provides translation') }}</td>
+          </tr>
+          <tr>
+            <th>{{ gettext('Historicised') }}</th>
+            <td>{{ attribute['historicised']}}</td>
+            <td>{{ gettext("The history for this attribute's value is preserved") }}</td>
+          </tr>
+          <tr>
+            <th>{{ gettext('Repeated') }}</th>
+            <td>{{ attribute['repeated'] }}</td>
+            <td>{{ gettext('This attribute is repeated multiple times') }}</td>
+          </tr>
+          <tr>
+            <th>{{ gettext('Encrypted') }}</th>
+            <td>{{ attribute['encrypted'] }}</td>
+            <td>{{ gettext('This attribute is encrypted') }}</td>
           </tr>
           <tr>
             <th>Domäne</th>
