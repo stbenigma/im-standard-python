@@ -989,9 +989,6 @@ def iconsrc(pjsenti):
     return ''
 
 
-def printentienvironment(penti, plang):
-    pass
-
 def printcontententi():
     global model
     lang = Languagetext.reportLang()
@@ -1027,7 +1024,6 @@ def printcontententi():
         printattrlist(penti=elem)
         printkeys(pelem=elem,plang=lang)
         printentirela(penti=enti,plang=lang)
-        printentienvironment(penti=enti,plang=lang)
         printelemreflists(pelem=elem, pelemtype=Modelelemtype.ENTI)
         printtransl(penti=enti)
         printUDP(pelem=elem)

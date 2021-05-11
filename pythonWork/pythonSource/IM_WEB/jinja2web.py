@@ -4,7 +4,7 @@ import logmessages
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from  printHTML import type2name
+from printHTML import type2name,entityenviron
 from jinja2 import FileSystemLoader,Environment
 
 class Webmodel():
@@ -145,6 +145,11 @@ class Webmodel():
         else:
             retval = {}
         return retval
+
+    def getentienviron(self,entiid):
+        entienvir = entityenviron.createentienvironment(pentiid=entiid,pjson=self.jsmodel,pmodellang=self.getcurlanguage())
+        return entienvir
+
 
 def getnvl(val,default = ""):
     return default if val is None else val
