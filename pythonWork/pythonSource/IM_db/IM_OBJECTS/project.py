@@ -5,21 +5,13 @@ class Project(Baseobject):
     LOGICALTYPE = "logical"
     _tablename:str ='projects'
     _prefix:str ='proj'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self):
         if (len(Project._columnlist) == 0): Project._columnlist = Baseobject.gettablecolumns(Project._tablename)
-        super().__init__(tablename=Project._tablename, prefix=Project._prefix)
+        super().__init__()
 
-
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Project._tablename)
-
-    @staticmethod
-    def select(pwhere=None,porderby=None):
-        return Baseobject.select(pclass=Project
-                                 ,pwhere=pwhere,porderby=porderby)
 
     @staticmethod
     def updlanguages(piso2list):
@@ -32,6 +24,6 @@ class Project(Baseobject):
 
 def projektlangs():
     """pwhere='select proj_languages from projects'"""
-    data = Project().select()
+    data = Project.select()
     return data[0].proj_languages.lower()
 #

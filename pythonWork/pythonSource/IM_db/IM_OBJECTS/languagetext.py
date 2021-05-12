@@ -31,24 +31,13 @@ class Languagetext(Baseobject):
 
     _tablename:str ='lang_texts'
     _prefix:str ='lgtx'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self):
         if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(Languagetext._tablename)
-        super().__init__(tablename=Languagetext._tablename, prefix=Languagetext._prefix)
+        super().__init__()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Languagetext._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None,porderby=None):
-        return Baseobject.select(pclass=Languagetext
-                                ,pwhere=pwhere,porderby=porderby)
-    @staticmethod
-    def sptxistleer():
-        data = dbDML.select("""select count(*) from lang_texts""")
-        return data[0][0] == 0
 
     @staticmethod
     def filldefaulttext(plang):
@@ -95,6 +84,10 @@ class Languagetext(Baseobject):
                     from relations
                     union all 
                    select 'DOMA_NAME' attrname, doma_name text 
+                        ,doma_id,doma_uc,doma_dc
+                    from DOMAINS
+                    union all  
+                   select 'DOMA_DESCR' attrname, doma_descr text 
                         ,doma_id,doma_uc,doma_dc
                     from DOMAINS
                     union all  
@@ -145,19 +138,24 @@ class Languagetext(Baseobject):
         lsql = """with lgtx as 
             (select lgtx_lang_id,lgtx_text
              from lang_texts
-            where lgtx_attrname = '{}'
-            and lgtx_mode_id = {}
+            where lgtx_attrname = ?
+            and lgtx_mode_id = ?
             )
-        select lang_iso_code2,
-            case when lgtx.lgtx_text is not NULL
-                then lgtx.lgtx_text
-                else lgtxdef.lgtx_text
+        select lang.lang_iso_code2,
+            case when lgtxori.lgtx_text is not NULL
+                then lgtxori.lgtx_text
+                else case when lgtxdef.lgtx_text is not NULL 
+                        then "*" || langlang.lang_iso_code2 || "* " || lgtxdef.lgtx_text
+                        else lgtxdef.lgtx_text
+                      end
                 end text
-        from languages
-        left join lgtx as lgtx on lgtx.lgtx_lang_id = lang_id
-        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang_lang_id
-        order by lang_iso_code2""".format(pattrname,pmodeid if pmodeid is not None else 'NULL')
-        data = dbDML.select(lsql)
+        from languages lang
+        left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID
+        left join lgtx as lgtxori on lgtxori.lgtx_lang_id = lang.lang_id
+        left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang.lang_lang_id
+        order by lang.lang_iso_code2"""
+        values=(pattrname,pmodeid)
+        data = dbDML.select(lsql,*values)
         retval = {d[0]:d[1] for d in data}
         return retval
     #getlang_texts

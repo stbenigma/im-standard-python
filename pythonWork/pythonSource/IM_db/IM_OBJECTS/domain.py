@@ -34,14 +34,15 @@ class Domain(MultilangBaseobject):
     TEXT: str = 'TEXT'
     _tablename: str = 'domains'
     _prefix: str = 'doma'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype=Modelelemtype.DOMA
     _columnlist: list = []
+    _defaultorderby = "doma_name"
     __unknowndom = None
 
     def __init__(self, psrcname=None, psrcid=None):
         if (len(Domain._columnlist) == 0): Domain._columnlist = Baseobject.gettablecolumns(Domain._tablename)
-        super().__init__(tablename=Domain._tablename, prefix=Domain._prefix
-                         , multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
-                         , pmodelemtype=Modelelemtype.DOMA
+        super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
                          , pscrid=psrcid
                          , psrcname=psrcname
                          )
@@ -147,21 +148,10 @@ class Domain(MultilangBaseobject):
                   }
         return transl[pdatybasetype]
 
-    @staticmethod
-    def select(pwhere=None, porderby="doma_name"):
-        wrtbs = Baseobject.select(pclass=Domain
-                                  , pwhere=pwhere, porderby=porderby)
-        return wrtbs
-    # select
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Domain._tablename)
-
-
-    @staticmethod
-    def getbyname(pname: str):
-        return Domain().getbyuk(doma_name=pname)
+    @classmethod
+    def getbyname(cls,pname: str):
+        return cls.getbyuk(doma_name=pname)
 
     @staticmethod
     def getunknown():
@@ -253,13 +243,14 @@ class Domain(MultilangBaseobject):
 class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'
     _prefix: str = 'dgrm'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.DGRM
     _columnlist: list = []
+    _defaultorderby = "dgrm_name"
 
     def __init__(self,psrcname=None,psrcid=None ):
         if (len(DomaingroupMember._columnlist) == 0): DomaingroupMember._columnlist = Baseobject.gettablecolumns(DomaingroupMember._tablename)
-        super().__init__(tablename=DomaingroupMember._tablename, prefix=DomaingroupMember._prefix
-                         , pmodelemtype=Modelelemtype.DGRM
-                         , pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          , psrcname=psrcname
                          )
 
@@ -269,14 +260,7 @@ class DomaingroupMember(Baseobject):
     def getdescr(self,plang=None):
         return self.dgrm_descr
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(DomaingroupMember._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby="dgrm_name"):
-        return Baseobject.select(pclass=DomaingroupMember
-                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def updmember(pid,pdomaid):
@@ -291,19 +275,13 @@ class DomaingroupMember(Baseobject):
 class DefaultValue(Baseobject):
     _tablename: str = 'default_values'
     _prefix: str = 'deva'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
+    _defaultorderby = "deva_sort_order"
 
     def __init__(self):
         if (len(DefaultValue._columnlist) == 0): DefaultValue._columnlist = Baseobject.gettablecolumns(DefaultValue._tablename)
-        super().__init__(tablename=DefaultValue._tablename, prefix=DefaultValue._prefix)
+        super().__init__()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(DefaultValue._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None, porderby="deva_sort_order"):
-        return Baseobject.select(pclass=DefaultValue
-                                 , pwhere=pwhere, porderby=porderby)
 
 # DefaultValue

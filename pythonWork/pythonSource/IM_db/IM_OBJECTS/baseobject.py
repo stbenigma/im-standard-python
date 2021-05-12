@@ -9,25 +9,25 @@ class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
 
-    @staticmethod
-    def str2bool(pstr):
+    @classmethod
+    def str2bool(cls,pstr):
         if (pstr is None):
             return None
-        elif (pstr.upper() in (Boolean.TRUE, 'T')):
+        elif (pstr.upper() in (cls.TRUE, 'T')):
             return True
-        elif (pstr.upper() in (Boolean.FALSE, 'F')):
+        elif (pstr.upper() in (cls.FALSE, 'F')):
             return False
         else:
             raise Exception('Ungültiger Wert für Boolean "{}"'.format(pstr))
 
     # str2bool
-    @staticmethod
-    def bool2str(bool):
-        return Boolean.TRUE if bool else Boolean.FALSE
+    @classmethod
+    def bool2str(cls,bool):
+        return cls.TRUE if bool else cls.FALSE
 
-    @staticmethod
-    def strnegbool(pstr):
-        return Boolean.bool2str(not Boolean.str2bool(pstr))
+    @classmethod
+    def strnegbool(cls,pstr):
+        return cls.bool2str(not cls.str2bool(pstr))
     # strNegBool
 
 
@@ -42,31 +42,32 @@ class ForeignKeyException(Exception):
 
 
 class Baseobject:
+    _modelemtype = None #if not overwritten, the object is no Modelelement
+
     defaultCreator:str= "sys"
     def fullcolname(self, col):
         return self._prefix+'_'+col
 
     def colvalue(self,pcolname):
-        return self.__dict__[pcolname.lower()] if pcolname.lower() in self.__dict__ else None
+        try:
+            return self.__getattribute__(pcolname.lower())
+        except:
+            return None
+
     def setcolvalue(self, pcolname, pvalue):
-        self.__dict__[pcolname.lower()] = pvalue
+        self.__setattr__(pcolname.lower(),pvalue)
 
     def setdefaultval(self, pcolname, pvalue):
         col = self.fullcolname(pcolname.lower())
         if col in self._columnlist:
             if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
 
-
-
-    def __init__(self, tablename, prefix, idcolname=None
-                 , psrcname=None, pscrid=None, pmodelemtype=None):
-        self._tablename: str = tablename
-        self._prefix: str = prefix
-        self._idcolname: str = self.fullcolname('id') if idcolname is None else idcolname
+    def __init__(self, psrcname=None, pscrid=None):
+        if (len(self.__class__._columnlist) == 0): self.__class__._columnlist = Baseobject.gettablecolumns(self._tablename)
         self.__srcname = psrcname
         self.__srcid = pscrid
-        self.__modelemtype = pmodelemtype
         self.__emptyclass()
+
     def __emptyclass(self):
         for col in self._columnlist:
             self.setcolvalue(pcolname=col,pvalue=None)
@@ -119,13 +120,13 @@ class Baseobject:
         if self.colvalue(self.fullcolname('dm')) is None: self.setcolvalue(self.colvalue(self.fullcolname('dm')), datetime.today())
         if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreator)
         """
-        if self.__modelemtype is not None:
-            locid = Modelelement(pid=self.getid(),pmeltshortname=self.__modelemtype).insert()
+        if self._modelemtype is not None:
+            locid = Modelelement(pid=self.getid(),pmeltshortname=self._modelemtype).insert()
             self.setid(locid)
 
         lsql = """insert into {} ({}) values ({})
-           """.format(self._tablename, Baseobject.columnsliststring(self._columnlist)
-                      , Baseobject.columnsliststring(pcollist=self._columnlist, pplaceholder=True))
+           """.format(self._tablename, self.columnsliststring()
+                      , self.columnsliststring(pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
             if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
@@ -134,7 +135,7 @@ class Baseobject:
                 try:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
-                    if self.__modelemtype is not None:
+                    if self._modelemtype is not None:
                         Modelelement.delete(pwhere=("mode_id = ?", locid))
                 except:
                     print ("Loggin-Error in Baseobject.insert():")
@@ -163,12 +164,13 @@ class Baseobject:
 
         updcollist = self._columnlist.copy()
         updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
-        lsql = """update {} """.format(self._tablename, Baseobject.columnsliststring(updcollist))
-        lsql += """\nset {}""".format('\n,'.join("""{} = {}""".format(col,dbDML.dbval(self.colvalue(pcolname=col))) for col in updcollist))
+        lsql = """update {} """.format(self._tablename)
+        lsql += """\nset {}""".format('\n,'.join(col +" = ?" for col in updcollist))
         lsql += """\nwhere {} = {}""".format(self._idcolname,dbDML.dbval(self.getid()))
+        values = [self.colvalue(pcolname=col) for col in updcollist]
         #print (lsql)
         try:
-            id = dbDML.exec(lsql)
+            id = dbDML.exec(lsql,*values)
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 try:
@@ -214,20 +216,19 @@ class Baseobject:
 
     # getbyid
 
-    def getbyuk(self, **colvalpairs):
+    @classmethod
+    def getbyuk(cls, **colvalpairs):
         """{colname:colvalue,}"""
         wherecond = dbDML.valuepairs2sqlexpr(**colvalpairs)
-        data = self.select(pwhere=wherecond)
+        data = cls.select(pwhere=wherecond)
         if (len(data) > 1):
-            raise Exception('{}: nonunique {}'.format(self._tablename, wherecond))
+            raise Exception('{}: nonunique {}'.format(cls._tablename, wherecond))
         elif (len(data) == 0):
-            # self.__emptyclass()
-            return None
+            retval = None
         else:
-            self = data[0]
+            retval = data[0]
         # fi
-        return self
-    # getbyuk
+        return retval
 
     def getbyanyuk(self):
         """return a new object selected with the uk-values of self.
@@ -260,7 +261,7 @@ class Baseobject:
         return self._prefix
 
     def _getmode(self):
-        if self.__modelemtype is None: return None
+        if self._modelemtype is None: return None
         mode = Modelelement().getbyid(self.getid())
         return mode
 
@@ -276,15 +277,10 @@ class Baseobject:
         mode = self._getmode()
         return None if mode is None else mode.mode_dev_status
 
-    @staticmethod
-    def createtable(ptablename, psql):
-        dbDDL.createTable(psql)
-    # createtable
-
     def getbyextref(self, psrcid, psrcname):
-        if self.__modelemtype is None: return None
+        if self._modelemtype is None: return None
         mode = Modelelement.getmodebyextref(psrcname=psrcname, psrcid=psrcid)
-        if mode is None or mode.mode_type != self.__modelemtype: return None
+        if mode is None or mode.mode_type != self._modelemtype: return None
         return self.getbyid(mode.mode_id)
 
     def getIDbyextref(self, psrcid, psrcname):
@@ -297,8 +293,8 @@ class Baseobject:
     def getIDbyODMref(self, psrcid):
         return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
 
-    def getsprachvals(self):
-        raise NotImplementedError("Must override getsprachvals")
+#    def getsprachvals(self):
+#        raise NotImplementedError("Must override getsprachvals")
 
     def getukvaluepairs(self):
         uklist = dbDDL.getuklist(ptablename=self._tablename)
@@ -313,60 +309,83 @@ class Baseobject:
             retval[col] = fk
         return retval
 
-    @staticmethod
-    def select(pclass, pwhere=None, porderby=None):
-        if (len(pclass._columnlist) == 0): pclass._columnlist = Baseobject.gettablecolumns(pclass._tablename)
+    @classmethod
+    def defaultorderby(cls):
+        try:
+            return cls._defaultorderby
+        except:
+            return None
+
+    @classmethod
+    def select(cls, pwhere=None, porderby=None):
+        if (len(cls._columnlist) == 0): cls._columnlist = Baseobject.gettablecolumns(cls._tablename)
+        if porderby is None:
+            porderby = cls.defaultorderby()
         lsql = """select {} from {} as {} {} {} """ \
-            .format(Baseobject.columnsliststring(pclass._columnlist)
-                    , pclass._tablename
-                    , pclass._prefix
+            .format(cls.columnsliststring()
+                    , cls._tablename
+                    , cls._prefix
                     , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0])
                     , "" if porderby is None else
                     "order by {}".format(porderby))
         arguments = ()
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])
+
         data = dbDML.execute(lsql, *arguments)
         retval = []
         for d in data:
-            obj = pclass()._fromarray(d)
+            obj = cls()._fromarray(d)
             try:
                 """obj ist vom Typ des Subtypes"""
                 """ist in MultilangBaseobject definiert"""
                 obj.getsprachvals()
-            except Exception as err:
+            except AttributeError as err:
                 pass
+            except Exception as err:
+                raise err
             retval.append(obj)
         return retval
     # select
 
-    @staticmethod
-    def delete(ptablename,pwhere=None):
+    @classmethod
+    def delete(cls,pwhere=None):
+        arguments = ()
+        if type(pwhere) is tuple and len(pwhere) > 1:
+            arguments = (*arguments, *pwhere[1:])
+
         retval = None
         try:
-            retval = dbDML.delete(ptablename,pwhere=pwhere)
+            modedelcnt = 0
+            if cls._modelemtype is not None:
+                subselect = "select {} from {}".format(cls._idcolname, cls._tablename)
+                values = []
+                if pwhere is not None:
+                    subselect += " where {}".format(pwhere[0])
+                modedelcnt = Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
+            #fi
+            lsql = """delete from {} {}""" \
+                .format(cls._tablename
+                        , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0]))
+            elemdelcnt = dbDML.delete(lsql,*arguments)
+            retval = elemdelcnt + modedelcnt #cascade delete from MODE has to be counted as well
         except Exception as err:
-            if (not err.__str__().startswith("no such table")):
-                raise err
+            raise err
         return retval
 
-    @staticmethod
-    def columnsliststring(pcollist, pplaceholder=False):
-        return ','.join('?' if pplaceholder else col for col in pcollist)
+    @classmethod
+    def columnsliststring(cls, pplaceholder=False):
+        return ','.join('?' if pplaceholder else col for col in cls._columnlist)
 
 
 # Baseobject
 
 class MultilangBaseobject(Baseobject):
-    def __init__(self, tablename, prefix, multilangcols
-                 , idcolname=None, psrcname=None, pscrid=None, pmodelemtype=None):
-        super().__init__(tablename=tablename, prefix=prefix
-                         , idcolname=idcolname
-                         , pmodelemtype=pmodelemtype, psrcname=psrcname, pscrid=pscrid
+    def __init__(self, multilangcols, psrcname=None, pscrid=None):
+        super().__init__(psrcname=psrcname, pscrid=pscrid
                          )
         self._multilangcols = multilangcols
-
-    # __init__
+        return
 
     def getmodeid(self):
         raise NotImplementedError("'getmodeid' muss implementiert werden")
@@ -376,8 +395,7 @@ class MultilangBaseobject(Baseobject):
             spt = Languagetext.getlang_texts(pattrname=self._multilangcols[col], pmodeid=self.getid())
             self.setcolvalue(pcolname=col + '_l', pvalue=spt)
         # for
-
-    # getsprachvals
+        return
 
     def _getsprachval(self, colname, plang = None):
         try:
@@ -388,7 +406,6 @@ class MultilangBaseobject(Baseobject):
         # try
 
         return retval
-    #_getsprachval
 
 
 from .languagetext import Languagetext

@@ -8,36 +8,15 @@ from .physicals import Storageformat
 class Document(Baseobject):
     _tablename:str = 'documents'
     _prefix:str = 'docu'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.DOCU
     _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
         if (len(Document._columnlist) == 0): Document._columnlist = Baseobject.gettablecolumns(Document._tablename)
-        super().__init__(tablename=self._tablename, prefix=self._prefix
-                         ,pmodelemtype=Modelelemtype.DOCU
-                         ,pscrid=psrcid
+        super().__init__(pscrid=psrcid
                          ,psrcname=psrcname
                          )
-
-    @staticmethod
-    def createtable():
-        Baseobject.createtable(ptablename=Document._tablename
-                               , psql="""
-CREATE TABLE DOCUMENTS
-    (
-     DOCU_ID INTEGER NOT NULL primary key ,
-     DOCU_NAME VARCHAR (60) NOT NULL ,
-     DOCU_STFO_ID integer NULL ,
-     DOCU_REFERENCE VARCHAR (500) NULL ,
-     DOCU_CONTENT IMAGE NULL ,
-     DOCU_DOCU_ID integer NULL
-     ,CONSTRAINT DOCU_DOCU_FK FOREIGN KEY     (     DOCU_DOCU_ID)
-		 REFERENCES DOCUMENTS     (     DOCU_ID )
-	 ,CONSTRAINT DOCU_STFO_FK FOREIGN KEY (     DOCU_STFO_ID)
-		 REFERENCES STORAGE_FORMATS (     STFO_ID )
-	 
-    )
-"""
-        )
 
     def getname(self,plang=None):
         return self.docu_name
@@ -55,14 +34,7 @@ CREATE TABLE DOCUMENTS
         stfo = Storageformat().getbyid(pid=self.docu_stfo_id)
         return None if stfo is None else stfo.getname()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Document._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Document
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def updparent(pchildid,pparentid):
         if pchildid is not None and pparentid is not None:
@@ -119,10 +91,20 @@ CREATE TABLE DOCUMENTS
                             and mode_type like ?)""",
                     self.docu_id, pmelttype if pmelttype is not None else '%'), porderby="mode_id")
 
-    @staticmethod
-    def doculist():
-        return Document.select(porderby='docu_name')
+    @classmethod
+    def doculist(cls):
+        return cls.select(porderby='docu_name')
     #doculist
+
+    @classmethod
+    def geticons(cls,pentiid):
+        iconmasterdocumentname = "ENTITY-ICONS"
+        """reads subdocuments of documents attached to an entity
+        """
+        return cls.select(pwhere=("""docu_id in (select modo_docu_id from mode_docu 
+                                                    where modo_mode_id = ?)
+                                    and docu_docu_id in (select docu_id from documents 
+                                                        where docu_name = ?)""",pentiid,iconmasterdocumentname))
 
     """def xxdocureferenced(prelaid=None,penti=None,pwebattr=None):
     data = dbDML.select("
@@ -144,22 +126,16 @@ where  (   mode_rela_id = {}
 class ModelelemDocu(Baseobject):
     _tablename:str = 'mode_docu'
     _prefix:str = 'modo'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self,pmodeid = None,pdocuid=None):
         if (len(ModelelemDocu._columnlist) == 0): ModelelemDocu._columnlist = Baseobject.gettablecolumns(ModelelemDocu._tablename)
-        super().__init__(tablename=self._tablename, prefix=self._prefix)
+        super().__init__()
         self.modo_mode_id = pmodeid
         self.modo_docu_id = pdocuid
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(ModelelemDocu._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=ModelelemDocu
-                                 , pwhere=pwhere, porderby=porderby)
     @staticmethod
     def insertdocuref(pdocguidlist,pmodeid):
         if pdocguidlist is None: return

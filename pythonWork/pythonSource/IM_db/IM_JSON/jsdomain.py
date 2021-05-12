@@ -16,7 +16,7 @@ def domaingroupmembers(pdomaid):
 
 def domaingroupmembers2sql(presult:Mergeresult,pgrpdomaid,pelements):
     inscnt = 0
-    delcnt = DomaingroupMember.delete(pwhere=("dgrm_doma_id_group=?", pgrpdomaid))
+    delcnt = DomaingroupMember.delete(pwhere=("dgrm_doma_id_group = ?", pgrpdomaid))
     for jelem in pelements:
         dgrm =DomaingroupMember()
         dgrm.dgrm_name = jelem['name']
@@ -112,7 +112,7 @@ def domvalues(pvalues:list=None):
 
 def domain2js(pdoma):
     model = ['name', 'descr'
-        , 'origin','interfaceid' 
+        , 'origin','interfasce-id'
         ,'interface+' , 'basedatatype+'
         , 'type', 'displdatatype+'
         , 'datatypestr+', 'datatypeid' 
@@ -149,41 +149,41 @@ def domain2js(pdoma):
                            )
     else:
         retval = fillmodel(pmodel=model
-                           ,pentries=[multilangtext(pdoma.doma_name_l),multilangtext(pdoma.doma_descr_l)
-                                     , pdoma.doma_origin,jsguid(Modelelemtype.INTF, pdoma.doma_intf_id)
-                                    ,None if pdoma.doma_intf_id is None else Interface().getbyid(pdoma.doma_intf_id).getname()
-                                        ,None if pdoma.doma_daty_id is None else Datatype().getbyid(pdoma.doma_daty_id).daty_name
-                                    ,pdoma.doma_type
-                                    ,multilangtext({l.lang_iso_code2: pdoma.displdatatype(l.lang_iso_code2) for l in Language.select()})
-                                    ,pdoma.typestring(),jsguid(Modelelemtype.DATY, pdoma.doma_daty_id)
-                                     ,pdoma.doma_uc,pdoma.doma_um,pdoma.doma_dc,pdoma.doma_dm
-                                     ,pdoma.doma_num_minvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_minvalue
-                                        ,pdoma.doma_num_maxvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_maxvalue
-                                    ,pdoma.doma_num_total_digits,pdoma.doma_num_fract_digits
-                                    ,pdoma.doma_num_round_value
-                                     ,None if pdoma.doma_num_phyu_id is None else PhysicalUnit().getbyid(pdoma.doma_num_phyu_id).phyu_name
-                                          ,jsguid(Modelelemtype.PHYU,pdoma.doma_num_phyu_id)
-                                    ,pdoma.doma_txt_maxlng ,pdoma.doma_txt_syntaxrule
-                                     ,pdoma.doma_dat_granularity,multilangtext({l.lang_iso_code2: pdoma.displgranul(l.lang_iso_code2) for l in Language.select()})
-                                      ,pdoma.doma_bin_contenttype,pdoma.displcontenttype()
-                                     ,None if pdoma.doma_bin_stfo_id is None else Storageformat().getbyid(pdoma.doma_bin_stfo_id).stfo_name
-                                        ,jsguid(Modelelemtype.STFO,pdoma.doma_bin_stfo_id)
-                                     ,domelements(domaingroupmembers(pdoma.doma_id))
-                                        ,domvalues(DefaultValue.select(pwhere=("deva_doma_id = ?",pdoma.doma_id))
-                                                   )
-                                     ,reflist([jsguid(Modelelemtype.ATTR, a.attr_id)
-                                                for a in Attribute.select(pwhere=("attr_doma_id = ?", pdoma.doma_id))])
-                                        ,reflist([jsguid(Modelelemtype.COLU, c.colu_id) for c in Column.select(pwhere=("colu_doma_id = ?", pdoma.doma_id))])
-                                     ,reflist([jsguid(Modelelemtype.DOMA, d.doma_id)
-                                                    for d in Domain.select(pwhere=("""doma_id in (select dgrm_doma_id_group 
-                                                                                    from domaingroup_members 
-                                                                                    where dgrm_doma_id_member = ?)""",
-                                                pdoma.doma_id))])
-                                    ,sourceref(Externalref.getsrcinfo(pmodeid=pdoma.doma_id))
-                                     ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pdoma.doma_id)]\
-                                      +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)]
-                                      ]
-                            )
+                   ,pentries=[multilangtext(pdoma.doma_name_l),multilangtext(pdoma.doma_descr_l)
+                             , pdoma.doma_origin,jsguid(Modelelemtype.INTF, pdoma.doma_intf_id)
+                            ,None if pdoma.doma_intf_id is None else Interface().getbyid(pdoma.doma_intf_id).getname()
+                                ,None if pdoma.doma_daty_id is None else Datatype().getbyid(pdoma.doma_daty_id).daty_name
+                            ,pdoma.doma_type
+                            ,multilangtext({l.lang_iso_code2: pdoma.displdatatype(l.lang_iso_code2) for l in Language.select()})
+                            ,pdoma.typestring(),jsguid(Modelelemtype.DATY, pdoma.doma_daty_id)
+                             ,pdoma.doma_uc,pdoma.doma_um,pdoma.doma_dc,pdoma.doma_dm
+                             ,pdoma.doma_num_minvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_minvalue
+                                ,pdoma.doma_num_maxvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_maxvalue
+                            ,pdoma.doma_num_total_digits,pdoma.doma_num_fract_digits
+                            ,pdoma.doma_num_round_value
+                             ,None if pdoma.doma_num_phyu_id is None else PhysicalUnit().getbyid(pdoma.doma_num_phyu_id).phyu_name
+                                  ,jsguid(Modelelemtype.PHYU,pdoma.doma_num_phyu_id)
+                            ,pdoma.doma_txt_maxlng ,pdoma.doma_txt_syntaxrule
+                             ,pdoma.doma_dat_granularity,multilangtext({l.lang_iso_code2: pdoma.displgranul(l.lang_iso_code2) for l in Language.select()})
+                              ,pdoma.doma_bin_contenttype,pdoma.displcontenttype()
+                             ,None if pdoma.doma_bin_stfo_id is None else Storageformat().getbyid(pdoma.doma_bin_stfo_id).stfo_name
+                                ,jsguid(Modelelemtype.STFO,pdoma.doma_bin_stfo_id)
+                             ,domelements(domaingroupmembers(pdoma.doma_id))
+                                ,domvalues(DefaultValue.select(pwhere=("deva_doma_id = ?",pdoma.doma_id))
+                                           )
+                             ,reflist([jsguid(Modelelemtype.ATTR, a.attr_id)
+                                        for a in Attribute.select(pwhere=("attr_doma_id = ?", pdoma.doma_id))])
+                                ,reflist([jsguid(Modelelemtype.COLU, c.colu_id) for c in Column.select(pwhere=("colu_doma_id = ?", pdoma.doma_id))])
+                             ,reflist([jsguid(Modelelemtype.DOMA, d.doma_id)
+                                            for d in Domain.select(pwhere=("""doma_id in (select dgrm_doma_id_group 
+                                                                            from domaingroup_members 
+                                                                            where dgrm_doma_id_member = ?)""",
+                                        pdoma.doma_id))])
+                            ,sourceref(Externalref.getsrcinfo(pmodeid=pdoma.doma_id))
+                             ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pdoma.doma_id)]\
+                              +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)]
+                              ]
+                    )
         if pdoma.doma_type == Domain.NUM:
             for rm in ["maxlng","syntaxrule","granularity","granularitytext+","contenttype","contenttypename+"
                         ,"format+","formatid","elements","values"
@@ -247,7 +247,7 @@ def js2doma(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     doma.doma_name = pelem['name'][pmodellang]
     doma.doma_descr = pelem['descr'][pmodellang]
     doma.doma_origin = pelem['origin']
-    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interfaceid'))
+    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interfasce-id'))
     doma.doma_daty_id = jsguid2id(optionalvalue(pelem, 'datatypeid'))
     doma.doma_num_minvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'minvalue')
     doma.doma_num_maxvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'maxvalue')
@@ -269,20 +269,7 @@ def js2doma(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
 def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOMA, pjs2obj=js2doma,
                    pwithextsrcref=pwithextsrcref)
-    # for jid,jelem in pmodel.jsmodel['domains'].items():
-    #     doma = js2doma(pkey=jid,pelem=jelem,pmodellang=pmodel.modellanguage())
-    #     try:
-    #         domaid = doma.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=[jid] + list(jelem))
-    #         continue
-    #
-    #     if doma.doma_type == Domain.LOV:
-    #         defaultvalues2sql(pmodel=pmodel,pdomaid=domaid, pvalues=jelem["values"])
-    #
-    #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_NAME,ptexts=jelem['name'])
-    #     replacelgtx(pmodeid=domaid,pmodel=pmodel,pattr=Languagetext.DOMA_DESCR,ptexts=jelem['descr'])
-    #     inssourceref(pmodel = pmodel,pmodeid=domaid, psources=jelem["sourceref"])
+
     for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
         dbdomaid = jsmergetosql.keytransl(jid)
 

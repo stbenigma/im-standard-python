@@ -22,19 +22,19 @@ def inssourceref(presult:Mergeresult,pmodeid, psources):
 
 def udps2js(pemptymodel):
     model = ['theme','group'
-            ,'name','defvalue'
+            ,'name','defvalue','descr'
             ,'uc','dc','um','dm'
              ,'usedfor']
     if pemptymodel:
         retval = {jsguid (Modelelemtype.UDPR, '0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model)-1)]+[reflist()])}
     else:
         retval =  {jsguid (Modelelemtype.UDPR,u.udpr_id) : fillmodel(pmodel=model,pentries=
-                                [u.udpr_theme,u.udpr_group,u.udpr_name,u.udpr_defaultvalue
+                                [u.udpr_theme,u.udpr_group,u.udpr_name,u.udpr_defaultvalue,u.udpr_descr
                                  ,u.udpr_uc,u.udpr_dc,u.udpr_um,u.udpr_dm
                                        ,reflist(plist= [Modelelemtype.getshortname(metp.metp_melt_id)
-                                                     for metp in ModelelementProperty().select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
+                                                     for metp in ModelelementProperty.select(pwhere=("METP_UDPR_ID = ?", u.udpr_id))])
                                 ])
-                 for u in Userdefprop().select()
+                 for u in Userdefprop.select()
             }
     return retval
 
@@ -45,6 +45,7 @@ def js2udpr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     udpr.udpr_group = pelem['group']
     udpr.udpr_name = pelem['name']
     udpr.udpr_defaultvalue = pelem['defvalue']
+    udpr.udpr_descr = pelem['descr']
     udpr.udpr_uc = pelem['uc']
     udpr.udpr_dc = pelem['dc']
     udpr.udpr_um = pelem['um']
@@ -55,22 +56,7 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     global fktranslate
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
                    pwithextsrcref=pwithextsrcref)
-    # for udpranker,judp in pmodel.getelements(pelemtype=Modelelemtype.UDPR).items():
-    #     udpr = Userdefprop(ptheme=judp['theme'],pgroup=judp['group'],pname=judp['name'])
-    #     udpr.udpr_id = jsguid2id(udpranker)
-    #     try:
-    #         udpr.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=list(judp))
-    #         continue
-    #
-    #     for melttype in judp['usedfor']:
-    #         try:
-    #             ModelelementProperty(pmeltid=Modelelemtype.getbyshortname(melttype).getid(),pudprid=udpr.udpr_id).insert()
-    #         except Exception as err:
-    #             pmodel.markerror(pmsg=err, pelemstr=list(judp))
-    #     #for
-    # #for
+
     for jskey,jselem in podmjson.getelements(pelemtype=Modelelemtype.UDPR).items():
         """mdelelemetype_properties are emptied and loaded from source"""
         newudprid = keytransl(jskey)
@@ -113,6 +99,8 @@ def udpvs2sql(presult, pmodeid, pudps):
     for theme,jtheme in pudps.items():
         for group,jgroup in jtheme.items():
             for jid,jelem in jgroup.items():
+                #only non-null-udpr are copied to the database
+                if jelem['value'] is None: continue
                 udpr = Userdefprop().getbyid(keytransl(jid))
                 if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))
                         or (nvl(udpr.udpr_name) != nvl(jelem['name']))):

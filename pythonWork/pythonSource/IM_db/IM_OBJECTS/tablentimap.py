@@ -8,23 +8,13 @@ from .relationship import Relation
 class TablEntiMap(Baseobject):
     _tablename:str = 'tabl_enti_maps'
     _prefix:str = 'tema'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
 
     def __init__(self):
         if (len(TablEntiMap._columnlist) == 0): TablEntiMap._columnlist = Baseobject.gettablecolumns(TablEntiMap._tablename)
-        super().__init__(tablename=TablEntiMap._tablename, prefix=TablEntiMap._prefix)
+        super().__init__()
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(TablEntiMap._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=TablEntiMap
-                                 , pwhere=pwhere, porderby="tabl_name")
-    @staticmethod
-    def anker(pid):
-        return Baseobject.anker(TablEntiMap._prefix,pid)
 
     @staticmethod
     def gettabllist(pentiid=None,prelaid=None,pintfid=None):

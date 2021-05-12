@@ -8,11 +8,12 @@ from .modelelement import Modelelemtype
 class Userdefprop(Baseobject):
     _tablename: str = 'user_defined_properties'
     _prefix: str = 'udpr'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self,ptheme=None,pgroup=None,pname=None):
         if (len(Userdefprop._columnlist) == 0): Userdefprop._columnlist = Baseobject.gettablecolumns(Userdefprop._tablename)
-        super().__init__(tablename=Userdefprop._tablename, prefix=Userdefprop._prefix)
+        super().__init__()
         self.udpr_theme = ptheme
         self.udpr_group = pgroup
         self.udpr_name = pname
@@ -27,18 +28,9 @@ class Userdefprop(Baseobject):
     def getqualifiedname(self,plang = None):
         return "{} ({})".format(self.getname(plang=plang),self.udpr_group)
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(ptablename=Userdefprop._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Userdefprop
-                                  , pwhere=pwhere, porderby=porderby)
-
-    @staticmethod
-    def getbyname(pname):
-        return Userdefprop().getbyuk(UDPR_NAME=pname)
+    @classmethod
+    def getbyname(cls,pname):
+        return cls.getbyuk(UDPR_NAME=pname)
 
     @staticmethod
     def themelist(pmelttype=None):
@@ -100,11 +92,12 @@ class Userdefprop(Baseobject):
 class Userdefpropvalue(Baseobject):
     _tablename: str = 'udp_values'
     _prefix: str = 'udpv'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self,pmodeid=None,pudprid =None,pvalue=None):
         if (len(Userdefpropvalue._columnlist) == 0): Userdefpropvalue._columnlist = Baseobject.gettablecolumns(Userdefpropvalue._tablename)
-        super().__init__(tablename=Userdefpropvalue._tablename, prefix=Userdefpropvalue._prefix)
+        super().__init__()
         self.udpv_value = pvalue
         self.udpv_mode_id = pmodeid
         self.udpv_udpr_id = pudprid
@@ -113,18 +106,10 @@ class Userdefpropvalue(Baseobject):
 
     @staticmethod
     def removeemptyUDP(pempties):
-        emptylist = ','.join("'{}'".format(e) for e in pempties)
-        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value  in (?)", emptylist)
-                   )
+
+        pempties
+        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value in ({})".format(','.join('?' for e in pempties) ), *pempties))
         return
-
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Userdefpropvalue._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None,porderby=None):
-        return Baseobject.select(Userdefpropvalue,pwhere=pwhere,porderby=porderby)
 
     @staticmethod
     def fillallvalues(pentiid=None,pattrid=None,prelaid=None):

@@ -25,25 +25,19 @@ class Modelelemtype(Baseobject):
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
+    _idcolname: str = _prefix + '_id'
     _columnlist = []
 
     def __init__(self, pshortname=None, pname=None):
         if (len(Modelelemtype._columnlist) == 0): Modelelemtype._columnlist = Baseobject.gettablecolumns(Modelelemtype._tablename)
-        super().__init__(tablename=Modelelemtype._tablename, prefix=Modelelemtype._prefix)
+        super().__init__()
         self.melt_shortname = pshortname
         self.melt_name = pname
         self.melt_uc = 'SYS'
         self.melt_dc = date.today()
         return
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Modelelemtype._tablename)
         return
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Modelelemtype, pwhere=pwhere, porderby=porderby)
 
     def getname(self,plang=None):
         return self.melt_name
@@ -105,11 +99,12 @@ class Modelelement(Baseobject):
     """
     _tablename: str = 'modelelement'
     _prefix: str = 'mode'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self, pid=None,pmeltshortname=None):
         if (len(Modelelement._columnlist) == 0): Modelelement._columnlist = Baseobject.gettablecolumns(Modelelement._tablename)
-        super().__init__(tablename=Modelelement._tablename, prefix=Modelelement._prefix)
+        super().__init__()
         self.mode_type = pmeltshortname
         self.mode_id = pid
         if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
@@ -131,15 +126,6 @@ class Modelelement(Baseobject):
         if pdbvalue in longstati: return longstati[pdbvalue]
         return None
 
-
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Modelelement._tablename,pwhere=pwhere)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Modelelement
-                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def getmodebyextref(psrcname, psrcid):
@@ -202,10 +188,6 @@ class Modelelement(Baseobject):
         return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
 
     @staticmethod
-    def select(pwhere=None, porderby=None):
-        return Baseobject.select(pclass=Modelelement, pwhere=pwhere, porderby=porderby)
-
-    @staticmethod
     def insertudpelems(pudpthema):
         """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_dev_status) aus Elementdisplay
             in die Modelelement Felder
@@ -261,22 +243,18 @@ class Modelelement(Baseobject):
 class ModelelementProperty(Baseobject):
     _tablename: str = 'modelemtype_properties'
     _prefix: str = 'metp'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
+    _defaultorderby = "metp_id"
 
     def __init__(self, pmeltid=None,pudprid=None):
         if (len(ModelelementProperty._columnlist) == 0): ModelelementProperty._columnlist = Baseobject.gettablecolumns(ModelelementProperty._tablename)
-        super().__init__(tablename=ModelelementProperty._tablename, prefix=ModelelementProperty._prefix)
+        super().__init__()
         self.metp_melt_id = pmeltid
         self.metp_udpr_id = pudprid
         self.metp_optional = Boolean.FALSE
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(ModelelementProperty._tablename,pwhere=pwhere)
 
-    @staticmethod
-    def select(pwhere=None, porderby="metp_id"):
-        return Baseobject.select(pclass=ModelelementProperty, pwhere=pwhere, porderby=porderby)
 
 #ModelelementProperty
 from .externalref import Externalref

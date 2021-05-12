@@ -1,5 +1,6 @@
 from .baseobject import Baseobject, MultilangBaseobject,Boolean
 from .languagetext import Languagetext
+from .modelelement import Modelelement,Modelelemtype
 
 class BusinessRule(MultilangBaseobject):
     BURU_TYPE_TRIGGER = 'TRIGGER'
@@ -12,15 +13,16 @@ class BusinessRule(MultilangBaseobject):
 
     _tablename: str = 'business_rules'
     _prefix: str = 'buru'
+    _idcolname: str = _prefix + '_id'
+    _modelemtype = Modelelemtype.BURU
     _columnlist: list = []
+    _defaultorderby = "buru_name"
 
     def __init__(self, psrcname=None, psrcid=None):
 
         if (len(BusinessRule._columnlist) == 0): BusinessRule._columnlist = Baseobject.gettablecolumns(BusinessRule._tablename)
-        super().__init__(tablename=BusinessRule._tablename, prefix=BusinessRule._prefix
-                         , multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
+        super().__init__( multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
                                           'buru_errormsg': Languagetext.ATTR_TOOLTIP}
-                         , pmodelemtype=Modelelemtype.BURU
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -37,16 +39,7 @@ class BusinessRule(MultilangBaseobject):
         return Modelelement.getbyelemid(pattrid=self.buru_id)
 
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(BusinessRule._tablename)
 
-    @staticmethod
-    def select(pwhere=None, porderby="buru_name"):
-        attrs = Baseobject.select(pclass=BusinessRule
-                                  , pwhere=pwhere, porderby=porderby)
-        return attrs
-    # select
     @staticmethod
     def setburuelements():
         """
@@ -60,13 +53,14 @@ class BusinessRule(MultilangBaseobject):
 class BusinessruleElement(Baseobject):
     _tablename: str = 'businessrule_elements'
     _prefix: str = 'bure'
+    _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self, pburuid=None,pwriteable=False
                  ,pattrid=None,pentiid=None,prelaid=None,pdevaid=None,ptablid=None,pcoluid=None):
 
         if (len(BusinessruleElement._columnlist) == 0): BusinessruleElement._columnlist = Baseobject.gettablecolumns(BusinessruleElement._tablename)
-        super().__init__(tablename=BusinessruleElement._tablename, prefix=BusinessruleElement._prefix)
+        super().__init__()
         self.bure_buru_id = pburuid
         self.bure_attr_id = pattrid
         self.bure_enti_id = pentiid
@@ -90,20 +84,9 @@ class BusinessruleElement(Baseobject):
         buru = BusinessRule().getbyid(pid=self.bure_buru_id)
         return buru
 
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(BusinessruleElement._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby=None):
-        attrs = Baseobject.select(pclass=BusinessruleElement
-                                  , pwhere=pwhere, porderby=porderby)
-        return attrs
-    # select
-
-    @staticmethod
-    def getburuelements(pmodeid):
-        bures = BusinessruleElement.select(pwhere=("""(bure_attr_id = ?
+    @classmethod
+    def getburuelements(cls,pmodeid):
+        bures = cls.select(pwhere=("""(bure_attr_id = ?
                                                     or bure_enti_id = ?
                                                     or bure_rela_id = ?
                                                     or bure_deva_id = ?
@@ -112,7 +95,6 @@ class BusinessruleElement(Baseobject):
                                                     """, pmodeid,pmodeid,pmodeid,pmodeid,pmodeid,pmodeid))
         return bures
 # BusinessruleELement
-from .modelelement import Modelelement,Modelelemtype
 
 
 

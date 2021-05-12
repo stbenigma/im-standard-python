@@ -3,6 +3,7 @@ import os
 import sys
 
 from IM_DB import parameters, dbConnect, dbErstelleTables, logmessages
+from IM_ODM import transferModel
 
 
 def existsDB(pfilepath):
@@ -30,6 +31,7 @@ def createDB(par1,pforcecreate=False):
         sqlfile = parameters.sqlfilepath()
     #fi
     dbErstelleTables.erstelleInfra(psqlfilename=sqlfile);
+    transferModel.insertBaseData()
     dbConnect.myDbConn.close()
     logmessages.showmessages("database {} for model {} created"
                              .format(parameters.dbFilePath()

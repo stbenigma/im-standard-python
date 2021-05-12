@@ -6,12 +6,14 @@ class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
+    _idcolname: str = _prefix + '_id'
     _columnlist:list = []
+    _defaultorderby = "extr_id"
 
 
     def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
         if (len(Externalref._columnlist) == 0): Externalref._columnlist = Baseobject.gettablecolumns(Externalref._tablename)
-        super().__init__(tablename= Externalref._tablename, prefix= Externalref._prefix)
+        super().__init__()
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid
         self.extr_mode_id = pmodeid
@@ -19,9 +21,10 @@ class Externalref(Baseobject):
 
     @staticmethod
     def setlastupdate(psrcname,pmodeid,psrcid=None):
-        extr:Externalref = Externalref().getbyuk(extr_source_name=psrcname,extr_source_id=pmodeid)
+        extr:Externalref = Externalref().getbyuk(extr_source_name=psrcname,extr_mode_id=pmodeid)
         if extr is None:
             """not found, insert it"""
+            extr = Externalref()
             extr.extr_source_name = psrcname
             extr.extr_mode_id = pmodeid
             extr.extr_source_id = psrcid
@@ -79,15 +82,6 @@ class Externalref(Baseobject):
         extrs = Externalref.getextr(psrcname=psrcname,psrcid=psrcid)
         return (len(extrs) > 0)
 
-
-    @staticmethod
-    def delete(pwhere=None):
-        return Baseobject.delete(Externalref._tablename)
-
-    @staticmethod
-    def select(pwhere=None, porderby="extr_id"):
-        return Baseobject.select(pclass=Externalref
-                                 , pwhere=pwhere, porderby=porderby)
 
     @staticmethod
     def getODMmodeid(psrcid):
