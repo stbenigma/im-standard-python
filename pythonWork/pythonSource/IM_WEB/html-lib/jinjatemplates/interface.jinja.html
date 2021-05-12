@@ -56,7 +56,7 @@
 				{% call blocks.listblock(label="Tables", id="TablesL", lbc="bartabl") %}
 						<ol class="tree" id="TablesList">
 							{% for tab in webmodel.tables %} 
-							<li class="obj">{{ webmodel.getreflink(name=tab[1], destid=tab[0]) }}
+							<li class="obj">{{ webmodel.getreflink(name=tab[1], destid=tab[0]) |safe}}
 							{% endfor %}
 						</ol>
 				{% endcall %}
@@ -67,7 +67,7 @@
 							{% for col in webmodel.columns %}
 							{% set tablid = webmodel.getelem(col[0])["table-id"] %}
 							{% set tabl = webmodel.getelem(tablid) %}
-							<li class="obj">{{ webmodel.getreflink(name=col[1] ~ " (" ~ tabl["name"] ~ ")", destid=col[0]) }} 
+							<li class="obj">{{ webmodel.getreflink(name=col[1] ~ " (" ~ tabl["name"] ~ ")", destid=col[0]) |safe}} 
 							{% endfor %}
 						</ol>
 				{% endcall %}
@@ -78,7 +78,7 @@
 				{% call blocks.listblock(label="Domains", id="DomainsL",lbc="bardoma") %}
 						<ol class="tree" id="DomainList">
 							{% for dom in webmodel.domains %}
-							<li class="obj">{{ webmodel.getreflink(name=dom[1],destid=dom[0]) }} 
+							<li class="obj">{{ webmodel.getreflink(name=dom[1],destid=dom[0]) |safe}} 
 							{% endfor %}
 						</ol>
 				{% endcall %}
@@ -89,7 +89,7 @@
 				{% call blocks.listblock(label="Diagrams", id="DiagramL",lbc="bardiag") %}
 					<ol class="tree" id="DiagramList">
 						{% for diag in webmodel.diagrams %}
-							<li class="obj">{{ webmodel.getreflink(name=diag.name,destid=diag.id) }} 
+							<li class="obj">{{ webmodel.getreflink(name=diag.name,destid=diag.id) |safe}} 
 						{% endfor %}
 					</ol>
 				{% endcall %}
@@ -109,7 +109,7 @@
 			{% for diag in webmodel.diagrams %}
 				<div id="{{ diag.id }}-container">
 					<h3 id="{{ diag.id }}">{{ diag.name }}</h3>
-					{{ diag.svg }}
+					{{ diag.svg|safe }}
 					<div class="print-button-container">
 						<button class="print-button" onclick="printElem(this)">print</button>
 					</div>
@@ -153,7 +153,7 @@
 									{% set colu = webmodel.getelem(colid) %}
 									{% set domaid = colu["domain"] %}
 									<tr>
-										<td>{{ webmodel.getreflink(name=colu["name"], destid=colid) }}</td>
+										<td>{{ webmodel.getreflink(name=colu["name"], destid=colid) |safe}}</td>
 										<td>{{ getnvl(colu["descr"]) }}</td>
 										<td> {% if domaid is defined %}
 											{% set doma = webmodel.getelem(domaid) %}
@@ -162,7 +162,7 @@
 											{% else %}
 											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid
 														, curintfid=webmodel.getelemintfid(elemid)
-														 ,destintfid=webmodel.getelemintfid(domaid)) }}
+														 ,destintfid=webmodel.getelemintfid(domaid)) |safe }}
 											{% endif %}
 											{% endif %}
 										</td>
@@ -211,7 +211,7 @@
 										<td>{{ webmodel.displelemtype(refid)}}</td>
 										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(refid)["name"])
 											   ,destid=refid
-											   ,curintfid=webmodel.getelemintfid(elemid))}}
+											   ,curintfid=webmodel.getelemintfid(elemid))|safe }}
 										</td>
 									</tr>
 									{% endfor %}
@@ -238,7 +238,7 @@
 		{% set domaid = elem["domain"] %}
 		
 		{% call blocks.mainblock(type="Column", id=elemid, name=elem["name"], descr=elem["descr"], lbc=elemid ~ "main"
-						 , parent=webmodel.getreflink(name=webmodel.getelem(tablid)["name"],destid=tablid)) %}
+						 , parent="Table " ~ webmodel.getreflink(name=webmodel.getelem(tablid)["name"],destid=tablid)|safe) %}
 					<h2>Information</h2>
 					<div class="table-responsive">
 						<table class="table borderless">
@@ -259,7 +259,7 @@
 											{% else %}
 												{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid
 															,curintfid=webmodel.getelemintfid(elemid)
-														 	,destintfid=webmodel.getelemintfid(domaid)) }}
+														 	,destintfid=webmodel.getelemintfid(domaid)) |safe }}
 											{% endif %}
 										{% endif %}
 										</td>
@@ -287,7 +287,7 @@
 										<td>
 										{% for attrid in elem["attributesmapped"] %}
 											{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"])
-														,destid=attrid,curintfid=webmodel.getelemintfid(elemid)) }}
+														,destid=attrid,curintfid=webmodel.getelemintfid(elemid)) |safe }}
 											{% if not loop.last %}, {% endif %}
 										{% endfor %}
 									</tr>

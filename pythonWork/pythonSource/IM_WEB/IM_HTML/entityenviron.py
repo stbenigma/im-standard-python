@@ -216,7 +216,7 @@ def printrela(pcell:EntityCell,pposx,pposy):
     textstart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
             transform="translate({},{})" >
             <text id="{}" x="2" y="4" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
+            {} </text>
             </g>
             """
     textbox = textstart.format('white', 'blue'
@@ -235,19 +235,20 @@ def printline(pstartx,pstarty,plenx,pleny):
             """
     return line.format(DEFAULT_LINEWIDTH,pstartx,pstarty,pstartx+plenx,pstarty+pleny)
 
-def entienviro2svg(penviron):
+
+def entienviro2svg(pentiid,penviron):
+    return '<div id="{}-container">\n{}\n</div>'.format(pentiid, generate_svg_content(penviron))
+
+def generate_svg_content(penviron):
     diagramhead ="""
-    <div id="{}-container">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                version="1.1"  width="{}" height="{}">
+                version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">
         <defs id="dmw_defs" >
         </defs>
     """
     diagramfoot ="""
         </svg>
-    </div>
     """
-
 
     maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
     minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
@@ -255,7 +256,7 @@ def entienviro2svg(penviron):
 
     rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
     rectwidth = 3 * CELLWIDTH
-    svgtext = diagramhead.format(maincell.getentiid(), rectwidth, rectheight)
+    svgtext = diagramhead.format(width=rectwidth, height=rectheight)
 
     entistarty = (CELLHEIGHT - ENTIHEIGHT) / 2
     parentlinestarty,parentlineendy=None,None
@@ -335,7 +336,6 @@ def entienviro2svg(penviron):
 
     svgtext += diagramfoot
     return svgtext
-
 
 from IM_OBJECTS import Modelelemtype,Relation
 

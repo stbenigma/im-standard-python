@@ -6,6 +6,17 @@
 	{% endif %}	
 {%- endmacro %}
 
+{% macro tdicon(icon) -%}
+	{% if icon == 'down' %}	
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	{% elif icon == 'up' %}		
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	{% else %}	
+		<td> icon </td>
+	{% endif %}	
+{%- endmacro %}
+
+
 {% macro listblock(label, id, lbc) -%}
 				<div class="panel-body" id="{{id}}">
 					<div class="panel">
@@ -107,7 +118,7 @@
 										{% endif %}
 										<td>{{ webmodel.getreflink(name=displ
 											   ,destid=refid
-											   ,destintfid=webmodel.getelemintfid(refid))}}
+											   ,destintfid=webmodel.getelemintfid(refid))|safe }}
 										</td>
 									</tr>
 									{% endfor %}
@@ -130,7 +141,7 @@
 										<td>{{ webmodel.displelemtype(refid)}}</td>
 										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(refelem["name"])
 											   ,destid=refid
-											   ,curintfid=webmodel.getelemintfid(elemid))}}
+											   ,curintfid=webmodel.getelemintfid(elemid))|safe }}
 										</td>
 									</tr>
 									{% endfor %}
@@ -142,7 +153,7 @@
 {% macro elementlist(webmodel, elems) -%}
 			{% for elemid in elems %}
 			{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-			{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(elemid)["name"]),destid=elemid) }}
+			{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(elemid)["name"]),destid=elemid) |safe}}
 			{% endfor %}
 {%- endmacro %}
 

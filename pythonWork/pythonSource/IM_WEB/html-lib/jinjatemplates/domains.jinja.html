@@ -103,7 +103,7 @@
 									<td class="attribute">{{ webmodel.getlangstr(val['name']) }}</td>
 									<td class="attribute">{{ webmodel.getreflink(name=webmodel.getlangstr(doma2["name"])
 																,destid=doma2id
-																, curintfid=webmodel.getelemintfid(domaid),destintfid=webmodel.getelemintfid(doma2id)) }} </td>
+																, curintfid=webmodel.getelemintfid(domaid),destintfid=webmodel.getelemintfid(doma2id))|safe }} </td>
 									{{ blocks.tdbool2icon(val["mandatory"]) }}
 									<td class="attribute">{{ getnvl(val['descr']) }}</td>
 								</tr>
@@ -128,7 +128,7 @@
 								<tr>
 									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(doma2["name"])
 															,destid=doma2id
-															,curintfid=webmodel.getelemintfid(domaid),destintfid=webmodel.getelemintfid(domaid)) }}</td>
+															,curintfid=webmodel.getelemintfid(domaid),destintfid=webmodel.getelemintfid(domaid)) |safe }}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -153,7 +153,7 @@
 								<tr>
 									<td>{{ webmodel.getlangstr(enti["name"]) }}</td>
 									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(attr["name"])
-															,destid=attrid,destintfid=webmodel.getelemintfid(attrid),curintfid=webmodel.getelemintfid(domaid)) }}</td>
+															,destid=attrid,destintfid=webmodel.getelemintfid(attrid),curintfid=webmodel.getelemintfid(domaid))|safe }}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -181,7 +181,7 @@
 									<td>{{ tabl["name"] }}</td>
 									<td>{{ webmodel.getreflink(name=colu["name"],destid=coluid
 													,curintfid=webmodel.getelemintfid(domaid)
-													,destintfid=webmodel.getelemintfid(coluid)) }}</td>
+													,destintfid=webmodel.getelemintfid(coluid)) |safe }}</td>
 								</tr>
 								{% endfor %}
 							</tbody>
@@ -205,7 +205,7 @@
 										<td>{{ webmodel.displelemtype(refid) }}</td>
 										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(refid)["name"])
 											   ,destid=refid
-											   ,curintfid=doma["interface-id"])}}
+											   ,curintfid=doma["interface-id"])|safe }}
 										</td>
 									</tr>
 									{% endfor %}

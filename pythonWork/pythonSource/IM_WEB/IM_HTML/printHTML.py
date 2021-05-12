@@ -848,7 +848,7 @@ def printentirela(penti,plang):
         # if
     # for
     entienvir = entityenviron.createentienvironment(pentiid=penti['anker'],pjson=model,pmodellang=plang)
-    fhtml.write(entityenviron.entienviro2svg(penviron=entienvir))
+    fhtml.write(entityenviron.entienviro2svg(pentiid=penti['anker'],penviron=entienvir))
     fhtml.write(endtable(plabel=Languagetext.transl('Beziehungen'), plbc=lbc))
 # printentirela
 

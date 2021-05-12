@@ -37,36 +37,38 @@ def printlegend(pdata,pwidth,pheigh,px,py):
 """
     legendfoot= """</g>
 """
+    retval = ""
     starty=14
-    printHTML.fhtml.write(legenhead.format(parameters.nvl(px,0)+2,parameters.nvl(py,0)+1))
-    printHTML.fhtml.write(legendentry1.format(pwidth-100,pheigh-2
+    retval += legenhead.format(parameters.nvl(px,0)+2,parameters.nvl(py,0)+1)
+    retval += legendentry1.format(pwidth-100,pheigh-2
                                     ,starty,'Diagram'
-                                    ,starty,pdata[0]))
+                                    ,starty,pdata[0])
     starty += 18
-    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+    retval += legendentry2.format(starty-13,starty-13
                                     ,starty,'Author'
-                                    ,starty,pdata[1]))
+                                    ,starty,pdata[1])
     starty += 18
-    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+    retval += legendentry2.format(starty-13,starty-13
                                     ,starty,'Created on:'
-                                    ,starty,pdata[2]))
+                                    ,starty,pdata[2])
     starty += 18
-    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+    retval += legendentry2.format(starty-13,starty-13
                                     ,starty,'Modified on'
-                                    ,starty,pdata[3]))
+                                    ,starty,pdata[3])
     starty += 18
-    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+    retval += legendentry2.format(starty-13,starty-13
                                     ,starty,'Modified by'
-                                    ,starty,pdata[4]))
+                                    ,starty,pdata[4])
     starty += 18
-    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+    retval += legendentry2.format(starty-13,starty-13
                                     ,starty,'Model'
-                                    ,starty,pdata[5]))
+                                    ,starty,pdata[5])
     starty += 18
-    printHTML.fhtml.write(legendentry2.format(starty-13,starty-13
+    retval += legendentry2.format(starty-13,starty-13
                                     ,starty,'Modeltype'
-                                    ,starty,pdata[6]))
-    printHTML.fhtml.write(legendfoot)
+                                    ,starty,pdata[6])
+    retval += legendfoot
+    return retval
 #printlegend
 
 def hex2rbg(phex):
@@ -86,9 +88,11 @@ def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False):
     {}
     </text>
     """
-    if pstandalone: printHTML.fhtml.write("<g >")
-    printHTML.fhtml.write(showtext.format(px, py,pfillcolor,pfontsize, ptext))
-    if pstandalone: printHTML.fhtml.write("</g>\n")
+    retval = ""
+    if pstandalone: retval += "<g >"
+    retval += showtext.format(px, py,pfillcolor,pfontsize, ptext)
+    if pstandalone: retval += "</g>\n"
+    return retval
 #printtext
 
 calcwinkel = lambda ey,sy,ex,sx : math.atan2(ey - sy, ex - sx)
@@ -117,10 +121,11 @@ def printrela(plist):
             """
     relaend = """</g>
                """
+    retval = ""
     for line in plist.values():
         """lise_x,lise_y,lise_konnektor,lise_linientyp"""
         points = line['linesegments']
-        printHTML.fhtml.write(relastart)
+        retval += relastart
         for idx,point in points.items():
             if idx == len(points)-1: break #letzter Punkt ist endx/y
             startx=point['x']
@@ -132,7 +137,7 @@ def printrela(plist):
             startconnector = ((line['start_connector'] == 'M') and (idx == 0))
             endconnector = ((line['end_connector'] == 'M') and (idx == len(points)-2))
             dash = "8,8" if point['linetype']=='DASHED' else 'none'
-            printHTML.fhtml.write(relaline.format(opacity,linewidth,dash,startx,starty,endx,endy))
+            retval += relaline.format(opacity,linewidth,dash,startx,starty,endx,endy)
             if startconnector or endconnector:
                 """zeichne die Krähenfüsse"""
                 xoffset, yoffset, xl, yl = calccrowfoot(pstartx=startx, pstarty=starty, pendx=endx, pendy=endy)
@@ -142,19 +147,20 @@ def printrela(plist):
                       , round(winkel1,1), winkel1 / math.pi * 180
                       ,xoffset,yoffset,xl,yl
                       , sep=', ')"""
-                    printHTML.fhtml.write(konnektor.format(opacity, linewidth, startx-xoffset, starty+yoffset
+                    retval += konnektor.format(opacity, linewidth, startx-xoffset, starty+yoffset
                                                ,-xl,yl,yl,xl
-                                                       ))
+                                                       )
                 #fi
                 if (endconnector) :
-                    printHTML.fhtml.write(konnektor.format(opacity, linewidth, endx+xoffset, endy-yoffset
+                    retval += konnektor.format(opacity, linewidth, endx+xoffset, endy-yoffset
                                                ,xl,-yl,-yl,-xl
-                                                       ))
+                                                       )
                 #fi
             #fi
         #for
-        printHTML.fhtml.write(relaend)
+        retval += relaend
     #for
+    return retval
 #printrela
 
 def textpos(pangle,px,py,ptextlen,pstart):
@@ -187,6 +193,7 @@ def printtexte(plist,plang):
        ,sto.sptx_text toname
         ,beda_id
        ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft"""
+    retval= ""
     for relaanker,relaelem in plist.items():
         startx, starty = relaelem['starttext_x'],relaelem['starttext_y']
         starttextw,starttexth=parameters.nvl(relaelem['starttext_width'],0),parameters.nvl(relaelem['starttext_height'],0)
@@ -211,7 +218,7 @@ def printtexte(plist,plang):
             posx, posy = textpos(pangle=linestartangle, px=linestartx, py=linestarty, ptextlen=textlength(starttext),
                                  pstart=True)
             for t in s:
-                printtext(px=posx, py=posy, ptext=t
+                retval += printtext(px=posx, py=posy, ptext=t
                   , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
                   ,pstandalone=True)
                 posy += 12 
@@ -225,11 +232,12 @@ def printtexte(plist,plang):
             if lineendangle > 0:
                 posy -= 12 *(len(s)-1)
             for t in s:
-                printtext(px=posx, py=posy, ptext=t
+                retval += printtext(px=posx, py=posy, ptext=t
                           , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
                           , pstandalone=True)
                 posy += 12 
     #for
+    return retval
 #printtexte
 
 def print1arc(parc,pcolor):
@@ -253,10 +261,11 @@ def print1arc(parc,pcolor):
     endarcstr = """    
         </g>
     """
-    printHTML.fhtml.write(startarcstr.format(0,0))
+    retval = ""
+    retval += startarcstr.format(0,0)
     for c in parc['circles']:
         #print(circledraw.format(c[0],c[1],c[0],c[1]))
-        printHTML.fhtml.write(circle.format(c[0],c[1],pcolor))
+        retval += circle.format(c[0],c[1],pcolor)
     # for
     if False: # mal probieren ohne Linien. Es hat noch Fehler
         arcline = ''
@@ -267,9 +276,9 @@ def print1arc(parc,pcolor):
                 arcline += ' L{} {} '.format(line['x'],line['y'])
             #fi
         #for
-        printHTML.fhtml.write(pathstr.format(arcline))
+        retval += pathstr.format(arcline)
     # fi
-    printHTML.fhtml.write(endarcstr)
+    retval += endarcstr
     return
     pointdistance = 20
     arclng = 10
@@ -278,7 +287,7 @@ def print1arc(parc,pcolor):
     entiheight,entiwidth = pentipos[2],pentipos[3]
     enticenterx,enticentery = pentipos[0] + (entiwidth / 2),pentipos[1] + (entiheight / 2)
     arcwidth,archeight = entiwidth + (2 * (pointdistance - arclng)),  entiheight + (2 * (pointdistance - arclng))
-    printHTML.fhtml.write(startarcstr.format(arcstartx,arcstarty))
+    retval += startarcstr.format(arcstartx,arcstarty)
 
     xfactor = {1:[0,-1],2:[1,1],3:[0,1],4:[-1,-1]}
     yfactor = {1:[-1,-1],2:[0,-1],3:[1,1],4:[0,1]}
@@ -322,12 +331,14 @@ def print1arc(parc,pcolor):
                                             ,arclng * yfactor[currentq][1],arclng * -xfactor[currentq][1])
         #fi
     #for
-    printHTML.fhtml.write(endarcstr.format(arcline))
+    retval += endarcstr.format(arcline)
+    return retval
 #print1arc
 
 def printarcs(plist):
     colors = ["blue","yellow","purple","green","red","black"]
     """select arcs_id,beda_id"""
+    retval = ""
     idx = 0
     lastenti = None
     arcs = [(getelement(arc)["entity"], arc) for arc in sorted(plist.keys(), key=lambda k: getelement(k)["entity"])]
@@ -340,6 +351,7 @@ def printarcs(plist):
         # fi
         print1arc(parc=plist[arc[1]],pcolor=colors[idx])
     #for
+    return retval
 #printarcs
 
 getelement = lambda e:printHTML.model.getbyid(e)
@@ -355,22 +367,23 @@ def printelements(pdiag, pdiaganker,plang):
     imagehtml=""""<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
         .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
 
+    retval = ""
     for eler in pdiag['elements']['entity']:
-        printHTML.fhtml.write(entistart.format(hex2rbg(eler['Color']), hex2rbg(eler['margincolor'])
+        retval += entistart.format(hex2rbg(eler['Color']), hex2rbg(eler['margincolor'])
                                                , round(eler['opacity']/100,2), round(eler['marginopacity']/100,2)
                                                , eler['pos_x'], eler['pos_y'], eler['width'], eler['height']
                                                , eler['element']
                                                , pdiaganker + '-' + eler['element']
                                                , hex2rbg(eler['fontcolor'])
                                                , 11  #vorläufig mal fix verdrahtet e[9], font size
-                                               , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))))
+                                               , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index'])))
 
-        printHTML.fhtml.write(entiende)
+        retval += entiende
         iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']))
         if iconsrc != "":
-            printHTML.fhtml.write(imagehtml.format(iconsrc
+            retval += imagehtml.format(iconsrc
                                                ,eler['pos_x']+eler['width']-ICONSIZE/2,
-                                                eler['pos_y'] - ICONSIZE/2))
+                                                eler['pos_y'] - ICONSIZE/2)
 
     #for
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
@@ -378,13 +391,14 @@ def printelements(pdiag, pdiaganker,plang):
         x = attr['pos_x']
         y = attr['pos_y']
         aelem = getelement(attr['element'])
-        printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
+        retval += printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
                   , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
                   )
     # for
-    printrela(plist=pdiag['relationships'])
-    printtexte(plist=pdiag['relationships'],plang=plang)
-    printarcs(plist=pdiag['arcs'])
+    retval += printrela(plist=pdiag['relationships'])
+    retval += printtexte(plist=pdiag['relationships'],plang=plang)
+    retval += printarcs(plist=pdiag['arcs'])
+    return retval
 #printelements
 
 def putrefinsvg(ptext,pdiagid,plang):
@@ -470,6 +484,28 @@ def diaghtmlfoot():
     """
 
 
+def getsvgtext( plang,pdiaganker,pdiagelem,ptitel,pmodel=None)
+    svgfn = svgfilename(pname=pdiagelem["name"], plang=plang)
+    if svgfn is not None:
+        """add links to svg and include it in html"""
+        with (open(file=svgfn, mode="r")) as f:
+            svgtext = f.read()
+        retval = putrefinsvg(ptext=svgtext, pdiagid=pdiaganker, plang=plang,pmodel=)
+    else:
+        """render diagram"""
+        retval = ""
+        if ('legend' in pdiagelem.keys()):
+            # es hat eine Legende
+            retval += printlegend(pdata=[pdiagelem['name'], parameters.nvl(pdiagelem['uc']), parameters.nvl(pdiagelem['dc']),
+                                          parameters.nvl(pdiagelem['dm'])
+                , parameters.nvl(pdiagelem['um']), ptitel, 'Logical']
+                                   , pwidth=LEGENDWIDTH, pheigh=LEGENDHEIGHT
+                                   , px=pdiagelem['legend']['x'], py=pdiagelem['legend']['y'])
+        # fi
+        retval += printelements(pdiag=pdiagelem, pdiaganker=pdiaganker, plang=plang)
+    # fi
+    return retval
+
 def printcontentdiag(plist, plang, ptitel):
     contenthead="""        <!--diagramms-->"""
 
@@ -486,32 +522,17 @@ def printcontentdiag(plist, plang, ptitel):
                             <table class="table borderless">
                                 <tbody>
 """
+    retval = ""
     for diaanker,diaelem in plist.items():
         #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        printHTML.fhtml.write (diaghtmlhead(panker=diaanker, pname=diaelem['name']
-                                                  , pwidth=diaelem['width'], pheight=diaelem['height']))
+        retval += diaghtmlhead(panker=diaanker, pname=diaelem['name']
+                                                  , pwidth=diaelem['width'], pheight=diaelem['height'])
                                 #wäre clippath,legendwidth,legendhigh))
 
-        svgfn = svgfilename(pname=diaelem['name'],plang=plang)
-        if svgfn is not None:
-            """add links to svg and include it in html"""
-            with (open(file=svgfn,mode="r")) as f:
-                svgtext = f.read()
-            svgtext = putrefinsvg(ptext=svgtext,pdiagid=diaanker,plang=plang)
-            #svgtext = puticonsinsvg(ptext=svgtext,pdiagid=diaanker)
-            printHTML.fhtml.write(svgtext)
-        else:
-            """render diagram"""
-            if ('legend' in diaelem.keys()):
-                #es hat eine Legende
-                printlegend(pdata=[diaelem['name'], parameters.nvl(diaelem['uc']), parameters.nvl(diaelem['dc']),parameters.nvl(diaelem['dm'])
-                    , parameters.nvl(diaelem['um']), ptitel, 'Logical']
-                        ,pwidth=LEGENDWIDTH,pheigh=LEGENDHEIGHT
-                        ,px=diaelem['legend']['x'],py=diaelem['legend']['y'])
-            #fi
-            printelements(pdiag=diaelem, pdiaganker=diaanker,plang=plang)
-        #fi
+        svgtext = getsvgtext(plang = plang,pdiaganker=diaanker,pdiagelem=diaelem,ptitel=ptitel)
 
+        printHTML.fhtml.write(svgtext)
         printHTML.fhtml.write(diaghtmlfoot())
     #for
+    return retval
 #printcontendiag

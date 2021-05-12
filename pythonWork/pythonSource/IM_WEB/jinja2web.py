@@ -4,13 +4,14 @@ import logmessages
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from printHTML import type2name,entityenviron
+from printHTML import type2name
+from IM_HTML import entityenviron
 from jinja2 import FileSystemLoader,Environment
 
 class Webmodel():
-    def __init__(self,pcurlang,pjsmodel,pintfid,phtmlfilelist):
+    def __init__(self,pcurlang,pjsmodel:JSModel,pintfid,phtmlfilelist):
         self.curlanguage = pcurlang
-        self.jsmodel = pjsmodel
+        self.jsmodel:JSModel = pjsmodel
         self.intferfaceid = pintfid
         self.htmlfilelist = phtmlfilelist
 
@@ -33,6 +34,12 @@ class Webmodel():
 
     def getdeflanguage(self):
         return self.jsmodel.getdefaultlang()
+
+    def getlanguages(self,all=True):
+        langs = list(self.jsmodel.jsmodel["languages"].keys())
+        if not all:
+            langs.remove(self.getcurlanguage())
+        return langs
 
     def setelements(self,**kwargs):
         for key,val in kwargs.items():
@@ -62,15 +69,24 @@ class Webmodel():
         return retval
 
     def getreflink(self,name,destid,**intfs):
-        curintfid,destintfid = None,None
+        curintfid,destintfid,destlang = None,None,None
         if "curintfid" in intfs: curintfid = intfs["curintfid"]
-        if "destintfid" in intfs:
-            destintfid = intfs["destintfid"]
+        if "destintfid" in intfs: destintfid = intfs["destintfid"]
+        if "destlang" in intfs:
+            destlang= intfs["destlang"]
+        if (curintfid == destintfid and destlang is None):
+            destfilename = ''
+        else:
+            destfilename = self.htmlfilelist[0 if destintfid is None else destintfid]
+            if destlang is not None:
+                """ language dependent file"""
+                destfilename = destfilename[:-7] + destlang + ".html"
+            #fi
+        #fi
 
         try:
             retval = """<a href="{}#{}" target="{}">{}</a>""" \
-            .format('' if curintfid == destintfid \
-                        else self.htmlfilelist[0 if destintfid is None else destintfid]\
+            .format(destfilename
                     ,destid
                     ,'_self' if curintfid == destintfid else '_blank'
                     ,name)
@@ -147,10 +163,10 @@ class Webmodel():
         return retval
 
     def getentienviron(self,entiid):
-        entienvir = entityenviron.createentienvironment(pentiid=entiid,pjson=self.jsmodel,pmodellang=self.getcurlanguage())
-        return entienvir
-
-
+        return entityenviron.entienviro2svg(pentiid=entiid
+                                            ,penviron=entityenviron.createentienvironment(pentiid=entiid
+                                                                                          ,pjson=self.jsmodel
+                                                                                          ,pmodellang=self.getcurlanguage()))
 def getnvl(val,default = ""):
     return default if val is None else val
 
@@ -161,10 +177,11 @@ def lf2htmlbr(pstr):
     except:
         return pstr
 
+
 def model2html(pwebmodel:Webmodel):
     jinjadirec = parameters.webDirec()+"jinjatemplates"
     jinjadirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"
-    t = Environment(loader=FileSystemLoader(jinjadirec))
+    t = Environment(loader=FileSystemLoader(jinjadirec),autoescape=True)
     if pwebmodel.getintfid() is not None:
         templatename = "interface.jinja.html"
     else:
@@ -177,6 +194,7 @@ def model2html(pwebmodel:Webmodel):
         logmessages.writelog("jinja template {} in {} not found".format(templatename,jinjadirec))
         raise
     #try
+
 
     templ.globals['getnvl'] = getnvl
     templ.globals['lf2htmlbr'] = lf2htmlbr
