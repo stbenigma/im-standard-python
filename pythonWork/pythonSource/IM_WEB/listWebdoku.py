@@ -192,7 +192,8 @@ def printhtmlrender(pfilename, planguage, pmodel, pintfid=None):
     if pintfid is None:
         diags =sorted([{"id":key
                  ,"name": value["name"]
-                ,"svg": ""} for key, value in pmodel.jsmodel["diagrams"].items()
+                ,"svg": printdiagHTML.getsvgtext(pdiagelem=value,pdiaganker=key,plang=planguage)
+                        } for key, value in pmodel.jsmodel["diagrams"].items()
                                                     if (value["type"] == "Entity")]
                 , key=lambda x: x["name"].upper())
     else:

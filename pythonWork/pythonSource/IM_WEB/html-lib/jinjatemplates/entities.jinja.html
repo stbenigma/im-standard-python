@@ -37,8 +37,14 @@
 									</td>
 									
 									<td class="attribute">{{ '{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']) }}</td>
-									<td class="attribute">{{ getnvl(elem['devstatus']) }}</td> {#Modelelement.longdevstatus(#}
-									<td class="attribute">{{ x }}</td>
+									<td class="attribute">{{ getnvl(elem['devstatus']) }}</td> {# Modelelement.longdevstatus( #}
+									<td class="attribute">
+										{% for diagid in elem["diagrams+"] %}
+										{% set diag = webmodel.getelem(diagid) %}
+										{% if loop.index > 1 %} {{ ', ' }} {% endif %}
+										{{ webmodel.getreflink(name=diag["name"],destid=diagid)|safe }}
+										{% endfor %}
+									</td>
 									<td class="attribute">{{ '{}, {}'.format(elem['uc'],elem['dc']) }}</td>
 								</tr>
 							</tbody>

@@ -484,13 +484,13 @@ def diaghtmlfoot():
     """
 
 
-def getsvgtext( plang,pdiaganker,pdiagelem,ptitel,pmodel=None)
+def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
     svgfn = svgfilename(pname=pdiagelem["name"], plang=plang)
     if svgfn is not None:
         """add links to svg and include it in html"""
         with (open(file=svgfn, mode="r")) as f:
             svgtext = f.read()
-        retval = putrefinsvg(ptext=svgtext, pdiagid=pdiaganker, plang=plang,pmodel=)
+        retval = putrefinsvg(ptext=svgtext, pdiagid=pdiaganker, plang=plang)
     else:
         """render diagram"""
         retval = ""

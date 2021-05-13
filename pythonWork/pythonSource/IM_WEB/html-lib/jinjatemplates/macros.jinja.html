@@ -33,13 +33,13 @@
 				</div>
 {%- endmacro %}
 
-{% macro mainblock(type, id, name, descr, lbc, parent='') -%}
+{% macro mainblock(type, id, name, descr, lbc, parenttype='',parentname='') -%}
 		<div class="entity" id="{{ id }}">
 			<div class="describtion">
 				 <span>
 						<p>{{ type }}</p>
 						<h1>{{ name }}</h1>
-						<p>{{ parent }}</p>
+						<p1><span style="text-transform:uppercase">{{ parenttype ~"  "}}</span>{{ parentname }}</p1>
 						<p1>{{ getnvl(descr) }}</p1>
 				</span>
 			</div>

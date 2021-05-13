@@ -138,18 +138,8 @@
 
 
 	<div class="wrapper">
-		<div class="top-container">
-            <p3 class="descr">This website contains the complete content 
-			of the <p2 class="IM">{{ modelname }} - {{ interfacename }}</p2> from {{ company }}. 
-            This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>. 
-            </p3>
-            <br>References in brackets are indirect references:<br>
-                 (Table reference) for tables: Indirect linking of a table via an entity to a table in another interface<br>
-                 (Column reference): Indirect linking of a column via an attribute to a column  in another interface
-                  
-		</div>
-		<br><hr>
-
+		{{ companyheader.IMheader(modelname=modelname,company=company) }}
+		
 		{% include 'entities.jinja.html' %}
 		
 		{% include 'attributes.jinja.html' %}
