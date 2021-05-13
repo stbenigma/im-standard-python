@@ -17,11 +17,6 @@
       <p>
         {{ util.icon(key) }}
       </p>
-      {% set entity_graph = page['entity-graph-name'] %}
-      {% if entity_graph %}
-      <ac:image><ri:attachment ri:filename="{{entity_graph}}" /></ac:image>
-      {% endif %}
-
     </ac:layout-cell>
   </ac:layout-section>
 
@@ -33,8 +28,9 @@
         {% endfor %}</ul>
     </ac:layout-cell>
     <ac:layout-cell>
-      {% if entity['structure-graph'] %}
-      <p><ac:image><ri:attachment ri:filename="{{ entity['structure-graph'] }}" /></ac:image></p>
+      {% set entity_graph = page['entity-graph-name'] %}
+      {% if entity_graph %}
+      <ac:image><ri:attachment ri:filename="{{entity_graph}}" /></ac:image>
       {% endif %}
     </ac:layout-cell>
   </ac:layout-section>
