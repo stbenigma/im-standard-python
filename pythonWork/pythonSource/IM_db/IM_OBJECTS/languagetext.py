@@ -1,43 +1,43 @@
-from IM_DB import dbDML,dbDDL
+from IM_DB import dbDML
 from .baseobject import Baseobject
 
+
 class Languagetext(Baseobject):
-    EN:str='en'
-    DE:str='de'
-    FR:str='fr'
-    ENTI_NAME:str='ENTI_NAME'
-    ENTI_COMMENT:str='ENTI_COMMENT'
-    ENTI_TOOLTIP:str='ENTI_TOOLTIP'
-    ATTR_NAME:str='ATTR_NAME'
-    ATTR_COMMENT:str='ATTR_COMMENT'
-    ATTR_TOOLTIP:str='ATTR_TOOLTIP'
-    DOMA_NAME:str= 'DOMA_NAME'
-    DOMA_DESCR:str= 'DOMA_DESCR'
-    RELA_TEXT_FROM:str='RELA_TEXT_FROM'
-    RELA_TEXT_TO:str='RELA_TEXT_TO'
-    ENTI_SYNONYM:str= 'ENTI_SYNONYM'
-    BURU_NAME:str='BURU_NAME'
-    BURU_ERRORMSG:str='BURU_ERRORMSG'
+    EN: str = 'en'
+    DE: str = 'de'
+    FR: str = 'fr'
+    ENTI_NAME: str = 'ENTI_NAME'
+    ENTI_COMMENT: str = 'ENTI_COMMENT'
+    ENTI_TOOLTIP: str = 'ENTI_TOOLTIP'
+    ATTR_NAME: str = 'ATTR_NAME'
+    ATTR_COMMENT: str = 'ATTR_COMMENT'
+    ATTR_TOOLTIP: str = 'ATTR_TOOLTIP'
+    DOMA_NAME: str = 'DOMA_NAME'
+    DOMA_DESCR: str = 'DOMA_DESCR'
+    RELA_TEXT_FROM: str = 'RELA_TEXT_FROM'
+    RELA_TEXT_TO: str = 'RELA_TEXT_TO'
+    ENTI_SYNONYM: str = 'ENTI_SYNONYM'
+    BURU_NAME: str = 'BURU_NAME'
+    BURU_ERRORMSG: str = 'BURU_ERRORMSG'
     ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
-                         , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
-                        , ENTI_SYNONYM
-                        , RELA_TEXT_TO, RELA_TEXT_FROM
-                        , DOMA_NAME, DOMA_DESCR
-                        , BURU_NAME, BURU_ERRORMSG
+        , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
+        , ENTI_SYNONYM
+        , RELA_TEXT_TO, RELA_TEXT_FROM
+        , DOMA_NAME, DOMA_DESCR
+        , BURU_NAME, BURU_ERRORMSG
                            ]
 
-    __greportLang:str = None
+    __greportLang: str = None
 
-
-    _tablename:str ='lang_texts'
-    _prefix:str ='lgtx'
+    _tablename: str = 'lang_texts'
+    _prefix: str = 'lgtx'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist: list = []
 
     def __init__(self):
-        if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(Languagetext._tablename)
+        if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(
+            Languagetext._tablename)
         super().__init__()
-
 
     @staticmethod
     def filldefaulttext(plang):
@@ -101,7 +101,8 @@ class Languagetext(Baseobject):
                 )
                 cross join (select {} as lang_id)
                    """.format(plang))
-    #filldefaulttext
+
+    # filldefaulttext
 
     @staticmethod
     def insertlang_texts(pudpthema):
@@ -134,7 +135,7 @@ class Languagetext(Baseobject):
     # insertlang_texts
 
     @staticmethod
-    def getlang_texts(pattrname,pmodeid):
+    def getlang_texts(pattrname, pmodeid):
         lsql = """with lgtx as 
             (select lgtx_lang_id,lgtx_text
              from lang_texts
@@ -154,247 +155,133 @@ class Languagetext(Baseobject):
         left join lgtx as lgtxori on lgtxori.lgtx_lang_id = lang.lang_id
         left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang.lang_lang_id
         order by lang.lang_iso_code2"""
-        values=(pattrname,pmodeid)
-        data = dbDML.select(lsql,*values)
-        retval = {d[0]:d[1] for d in data}
+        values = (pattrname, pmodeid)
+        data = dbDML.select(lsql, *values)
+        retval = {d[0]: d[1] for d in data}
         return retval
-    #getlang_texts
+
+    # getlang_texts
+
+    __translNamen = {'Anzeige': {'en': 'Display', 'fr': 'Affichage'}
+                    , 'Arc': {'en': 'Arc', 'fr': 'Arc'},
+                     'Adresse': {'en': 'Address', 'fr': 'Adresse'},
+                     'Attribute': {'en': 'Attributes', 'fr': 'Attributs'},
+                     'Attribute(e)': {'en': 'Attribute(s)', 'fr': 'Attribute(s)'},
+                     'Attributgruppe': {'en': 'Attribute group', 'fr': "Groupe d'attributs"},
+                     'auf Diagramm(en)': {'en': 'on diagram(s)', 'fr': 'sur ce diagramme(s)'},
+                     'Autor': {'en': 'Author', 'fr': 'Auteur'},
+                     'Beschreibung': {'en': 'Description', 'fr': 'Déscription'},
+                     'Beziehung': {'en': 'Relationship', 'fr': 'Relation'},
+                     'Beziehung(en)': {'en': 'relationship(s)', 'fr': 'Relation(s)'},
+                     'Beziehungen': {'en': 'Relationships', 'fr': 'Relations'},
+                     'Benutzerdefinerte Eigenschaften': {'en': 'User defined properties',
+                                                         'fr': "Propriétés définies par l'utilisateur"},
+                     'Bild': {'en': 'Picture', 'fr': 'Image'}
+                    , 'Binär': {'en': 'Binary', 'fr': 'Binaire'},
+                     'Datentyp': {'en': 'Datatype', 'fr': 'Type de données'},
+                     'Deskriptor': {'en': 'descriptor', 'fr': 'Descripteur'},
+                     'Domänen': {'en': 'Domains', 'fr': 'Domaines'}
+                    , 'Diagram': {'en': 'Diagram', 'fr': 'Diagramme'},
+                     'Diagramme': {'en': 'Diagrams', 'fr': 'Diagrammes'},
+                     'Dokument': {'en': 'Document', 'fr': 'Document'},
+                     'Dokumente': {'en': 'Documents', 'fr': 'Documents'}
+                    , 'Domäne': {'en': 'Domain', 'fr': 'Domaine'},
+                     'Einheit': {'en': 'Unit', 'fr': 'Unité'}, 'Element': {'en': 'Element', 'fr': 'Élément'},
+                     'Elemente': {'en': 'Elements', 'fr': 'Éléments'}
+                    , 'Entität': {'en': 'Entity', 'fr': 'Entité'},
+                     'Entität/Table': {'en': 'Entity/Table', 'fr': 'Entité/Tableau'},
+                     'Entitäten': {'en': 'Entities', 'fr': 'Entités'}, 'erstellt': {'en': 'created', 'fr': 'Élaboré'},
+                     'Film': {'en': 'Video', 'fr': 'Film'}
+                    , 'geändert': {'en': 'updated', 'fr': 'changé'},
+                     'Gruppenattribut': {'en': 'Groupattribute', 'fr': 'Attribute de groupe'},
+                     'Grafik': {'en': 'Graphic', 'fr': 'Graphique'},
+                     'Granularität': {'en': 'Granularity', 'fr': 'Granularité'},
+                     'historisiert': {'en': 'historicized', 'fr': 'historisé'},
+                     'in Schlüssel': {'en': 'within key', 'fr': 'dans une clef'},
+                     'Informationsmodell {} (Stand: {})': {'en': 'Informationmodel {} (Status: {})',
+                                                           'fr': 'Informationmodel {} (Status: {})'},
+                     'Informationen': {'en': 'Informations', 'fr': 'Informations'},
+                     'Inhaltstyp': {'en': 'Content type', 'fr': 'Type de contenu'}
+                    , 'Ja': {'en': 'Yes', 'fr': 'Oui'},
+                     'Jahr': {'en': 'year', 'fr': 'Année'}
+                    , 'Max. Länge': {'en': 'Max. length', 'fr': 'Longueur max.'},
+                     'Max. Wert': {'en': 'Max. value', 'fr': 'Valeur max.'}
+                    , 'Mehr': {'en': 'more', 'fr': 'Plus'},
+                     'Millisekunde': {'en': 'millisecond', 'fr': 'Milliseconde'},
+                     'Minute': {'en': 'minute', 'fr': 'Minute'}
+                    , 'Min. Wert': {'en': 'Min. value', 'fr': 'Valeur min.'},
+                     'Monat': {'en': 'month', 'fr': 'Mois'},
+                     'Nachkommast.': {'en': 'digits after period', 'fr': 'Décimales'},
+                     'Name': {'en': 'Name', 'fr': 'Nom'}
+                    , 'Nein': {'en': 'No', 'fr': 'Non'},
+                     'Nr': {'en': 'Nr', 'fr': 'N°'}
+                    , 'Numerisch': {'en': 'Numerical', 'fr': 'Numérique'},
+                     'Org. Einheiten': {'en': 'Org. units', 'fr': 'Unités org.'},
+                     'Organisationseinheit': {'en': 'Organisational unit', 'fr': 'Unités organisationelles'},
+                     'Pflichtattribut': {'en': 'Mandatory attribute ', 'fr': 'Attribute obligatoire'},
+                     'Quartal': {'en': 'quarter', 'fr': 'Trimestre'},
+                     'Referenziert in': {'en': 'Referenced in', 'fr': 'Référencé dans'},
+                     'Referenziert von': {'en': 'Referenced by', 'fr': 'Référencé par'},
+                     'Referenziert': {'en': 'References', 'fr': 'Références'},
+                     'Relational Mapping (Tabellen)': {'en': 'Relational Mapping (tables)',
+                                                       'fr': 'Relational Mapping (tables)'},
+                     'Rollen': {'en': 'Roles', 'fr': 'Rôles'},
+                     'Rundungseinh.': {'en': 'rounding unit', 'fr': "Unité de l'arrondi"},
+                     'Schlüssel': {'en': 'Key', 'fr': 'Clef'}
+                    , 'Sekunde': {'en': 'second', 'fr': 'Seconde'},
+                     'Semester': {'en': 'half-year', 'fr': 'Semestre'}
+                    , 'Sort': {'en': 'Sort', 'fr': 'Sorte'},
+                     'Stunde': {'en': 'hour', 'fr': 'Heure'}
+                    , 'Subentität': {'en': 'Subentity', 'fr': 'Sous-entité'},
+                     'Subentitäten': {'en': 'Subentities', 'fr': 'Sous-entités'},
+                     'Suchbegriff': {'en': 'search key', 'fr': 'Clef de recherche'},
+                     'Superentität': {'en': 'Superentity', 'fr': 'Superentité'},
+                     'Superentitäten': {'en': 'Superentities', 'fr': 'Superentités'},
+                     'Synonyme': {'en': 'Synonyms', 'fr': 'Synonyme'},
+                     'Syntaxregel': {'en': 'Syntax rule', 'fr': 'Règle syntaxique'},
+                     'Systeme': {'en': 'Systems', 'fr': 'Systèmes'}
+                    , 'Tag': {'en': 'day', 'fr': 'Jour'},
+                     'Tabelle': {'en': 'Table', 'fr': 'Table'}
+                    , 'Tabellen': {'en': 'Tables', 'fr': 'Tables'},
+                     'Technischer Name': {'en': 'Technical Name', 'fr': 'Terme technique'},
+                     'Text': {'en': 'Text', 'fr': 'Texte'}
+                    , 'Ton': {'en': 'Sound', 'fr': 'Ton'},
+                     'Tooltip': {'en': 'Tooltip', 'fr': 'Info-bulle'}
+                    , 'Treffer': {'en': 'Hits', 'fr': 'Occurrence'},
+                     'Typ': {'en': 'Type', 'fr': 'Type'}
+                    , 'UDP-Matrix': {'en': 'UDP-Matrix', 'fr': 'Matrice UDP'},
+                     'übersetzt': {'en': 'translated', 'fr': 'traduit'},
+                     'untergeordnet': {'en': 'subordinated', 'fr': 'subordonné'},
+                     'übergeordnet': {'en': 'superordinated', 'fr': 'superordonné'},
+                     'Übersetzungen': {'en': 'Translations', 'fr': 'Traductions'},
+                     'Unterdokumente': {'en': 'Children', 'fr': 'Enfants'},
+                     'Vaterdokument': {'en': 'Parent', 'fr': 'Document père'},
+                     'verschlüsselt': {'en': 'encrypted', 'fr': 'Chiffré'},
+                     'Verwendet für Attribute': {'en': 'Used for attributes', 'fr': 'Utilisé par les attributs'},
+                     'Verwendet für Columns': {'en': 'Used for columns', 'fr': 'Utilisé par les columns'},
+                     'Verwendet in Attributgruppen': {'en': 'Used in attribute groups',
+                                                      'fr': "Utilisé dans les groupes d'attributs"},
+                     'Verwendet von': {'en': 'used by', 'fr': 'Utilisé pour'},
+                     'Vorkommast.': {'en': 'digits before period', 'fr': 'Position avant la décimale'},
+                     'Wert': {'en': 'Value', 'fr': 'Valeur'},
+                     'Wertebereich': {'en': 'Domain', 'fr': 'Domaine des valeurs'},
+                     'Wertebereiche': {'en': 'Domains', 'fr': 'Domaines des valeurs'},
+                     'Werteliste': {'en': 'List of values', 'fr': 'Liste des Valeur'},
+                     'wiederholt': {'en': 'repeated', 'fr': 'répété'}
+                    , 'Woche': {'en': 'week', 'fr': 'Semaine'},
+                     'Zeitpunkt': {'en': 'Point in Time', 'fr': 'Instant'}}
 
 
-    __translNameEN = {'Anzeige': 'Display'
-        , 'Arc': 'Arc'
-        , "Adresse": "Address"
-        , 'Anzeige': 'Display'
-        , 'Attribute': 'Attribute'
-        , 'Attribute(e)': 'Attribute(s)'
-        , 'Attribute': 'Attributes'
-        , 'Attributgruppe': 'Attribute group'
-        , 'auf Diagramm(en)': 'on diagram(s)'
-        , 'Author': 'Author'
-        , 'Beschreibung': 'Description'
-        , 'Beziehung': 'Relationship'
-        , 'Beziehung(en)': 'relationship(s)'
-        , 'Beziehungen': 'Relationships'
-        , 'Benutzerdefinerte Eigenschaften': 'User defined properties'
-        , 'Bild': 'Picture'
-        , 'Binär': 'Binary'
-        , 'Datentyp': 'Datatype'
-        , 'Deskriptor': 'descriptor'
-        , 'Domänen': 'Domains'
-        , 'Diagram': 'Diagram'
-        , 'Diagramme': 'Diagrams'
-        , 'Dokument': 'Document'
-        , 'Dokumente': 'Documents'
-        , 'Domäne': 'Domain'
-        , 'Einheit': 'Unit'
-        , 'Element': 'Element'
-        , 'Elemente': 'Elements'
-        , 'Entität': 'Entity'
-        , 'Entität/Table': 'Entity/Table'
-        , 'Entitäten': 'Entities'
-        , 'erstellt': 'created'
-        , 'Film': 'Video'
-        , 'geändert': 'updated'
-        , 'Gruppenattribut': 'Groupattribute'
-        , 'Grafik': 'Graphic'
-        , 'Granularität': 'Granularity'
-        , 'historisiert': 'historicized'
-        , 'in Schlüssel': 'within key'
-        , 'Informationsmodell {} (Stand: {})': 'Informationmodel {} (Status: {})'
-        , 'Informationen': 'Informations'
-        , 'Inhaltstyp': 'Content type'
-        , 'Ja': 'Yes'
-        , 'Jahr': 'year'
-        , 'Max. Länge': 'Max. length'
-        , 'Max. Wert': 'Max. value'
-        , 'Mehr': 'more'
-        , 'Millisekunde': 'millisecond'
-        , 'Minute': 'minute'
-        , 'Min. Wert': 'Min. value'
-        , 'Monat': 'month'
-        , 'Nachkommast.': 'digits after period'
-        , 'Name': 'Name'
-        , 'Nein': 'No'
-        , 'Nr': 'Nr'
-        , 'Numerisch': 'Numerical'
-        , "Org. Einheiten": "Org. units"
-        , "Organisationseinheit": "Organisational unit"
-        , 'Pflichtattribut': 'Mandatory attribute '
-        , 'Quartal': 'quarter'
-        , 'Referenziert in': 'Referenced in'
-        , 'Referenziert von': 'Referenced by'
-        , 'Referenziert': 'References'
-        , 'Relational Mapping (Tabellen)': 'Relational Mapping (tables)'
-        , "Rollen": "Roles"
-        , 'Rundungseinh.': 'rounding unit'
-        , 'Schlüssel': 'Key'
-        , 'Sekunde': 'second'
-        , 'Semester': 'half-year'
-        , 'Sort': 'Sort'
-        , 'Stunde': 'hour'
-        , 'Subentität': 'Subentity'
-        , 'Subentitäten': 'Subentities'
-        , 'Suchbegriff': 'search key'
-        , 'Superentität': 'Superentity'
-        , 'Superentitäten': 'Superentities'
-        , 'Synonyme': 'Synonyms'
-        , 'Syntaxregel': 'Syntax rule'
-        , 'Systeme': 'Systems'
-        , 'Tag': 'day'
-        , 'Tabelle': 'Table'
-        , 'Tabellen': 'Tables'
-        , 'Technischer Name': 'Technical Name'
-        , 'Text': 'Text'
-        , 'Ton': 'Sound'
-        , 'Tooltip': 'Tooltip'
-        , 'Treffer': 'Hits'
-        , 'Typ': 'Type'
-        , 'UDP-Matrix': 'UDP-Matrix'
-        , 'übersetzt': 'translated'
-        , 'untergeordnet': 'subordinated'
-        , 'übergeordnet': 'superordinated'
-        , 'Übersetzungen': 'Translations'
-        , 'Unterdokumente': 'Children'
-        , "Vaterdokument": "Parent"
-        , 'verschlüsselt': 'encrypted'
-        , 'Verwendet für Attribute': 'Used for attributes'
-        , 'Verwendet für Columns': 'Used for columns'
-        , 'Verwendet in Attributgruppen': 'Used in attribute groups'
-        , 'Verwendet von': 'used by'
-        , 'Vorkommast.': 'digits before period'
-        , 'Wert': 'Value'
-        , 'Wertebereich': 'Domain'
-        , 'Wertebereiche': 'Domains'
-        , 'Werteliste': 'List of values'
-        , 'wiederholt': 'repeated'
-        , 'Woche': 'week'
-        , 'Zeitpunkt': 'Point in Time'
-                      }
-    __translNameFR = {"Anzeige": "Affichage"
-        , "Arc": "Arc"
-        , "Adresse": "Adresse"
-        , "Attribute": "Attribute"
-        , "Attribute(e)": "Attribute(s)"
-        , "Attribute": "Attributs"
-        , "Attributgruppe": "Groupe d'attributs"
-        , "auf Diagramm(en)": "sur ce diagramme(s)"
-        , "Autor": "Auteur"
-        , "Beschreibung": "Déscription"
-        , "Beziehung": "Relation"
-        , "Beziehung(en)": "Relation(s)"
-        , "Beziehungen": "Relations"
-        , "Benutzerdefinerte Eigenschaften": "Propriétés définies par l'utilisateur"
-        , "Bild": "Image"
-        , "Binär": "Binaire"
-        , "Datentyp": "Type de données"
-        , "Deskriptor": "Descripteur"
-        , "Domänen": "Domaines"
-        , "Diagram": "Diagramme"
-        , "Diagramme": "Diagrammes"
-        , "Domäne": "Domaine"
-        , "Dokument": "Document"
-        , "Dokumente": "Documents"
-        , "Einheit": "Unité"
-        , "Element": "Élément"
-        , "Elemente": "Éléments"
-        , "Entität": "Entité"
-        , "Entität/Table": "Entité/Tableau"
-        , "Entitäten": "Entités"
-        , "erstellt": "Élaboré"
-        , "Film": "Film"
-        , "geändert": "changé"
-        , "Gruppenattribut": "Attribute de groupe"
-        , "Grafik": "Graphique"
-        , "Granularität": "Granularité"
-        , "historisiert": "historisé"
-        , "in Schlüssel": "dans une clef"
-        , "Informationsmodell {} (Stand {})": "Modèle d'informations {} (État {})"
-        , "Informationen": "Informations"
-        , "Inhaltstyp": "Type de contenu"
-        , "Ja": "Oui"
-        , "Jahr": "Année"
-        , "Max. Länge": "Longueur max."
-        , "Max. Wert": "Valeur max."
-        , "Mehr": "Plus"
-        , "Millisekunde": "Milliseconde"
-        , "Minute": "Minute"
-        , "Min. Wert": "Valeur min."
-        , "Monat": "Mois"
-        , "Nachkommastellen": "Décimales"
-        , "Name": "Nom"
-        , "Nein": "Non"
-        , "Nr": "N°"
-        , "Numerisch": "Numérique"
-        , "Org. Einheiten": "Unités org."
-        , "Organisationseinheit": "Unités organisationelles"
-        , "Pflichtattribut": "Attribute obligatoire"
-        , "Quartal": "Trimestre"
-        , 'Referenziert in': 'Référencé dans'
-        , 'Referenziert von': 'Référencé par'
-        , 'Referenziert': 'Références'
-        , "Relational Mapping (Tabellen)": "Relational Mapping (tables)"
-        , "Rundungseinheit": "Unité de l'arrondi"
-        , "Rollen": "Rôles"
-        , "Schlüssel": "Clef"
-        , "Sekunde": "Seconde"
-        , "Semester": "Semestre"
-        , "Sort": "Sorte"
-        , "Stunde": "Heure"
-        , "Subentität": "Sous-entité"
-        , "Subentitäten": "Sous-entités"
-        , "Suchbegriff": "Clef de recherche"
-        , "Superentität": "Superentité"
-        , 'Superentitäten': 'Superentités'
-        , "Synonyme": "Synonyme"
-        , "Syntaxregel": "Règle syntaxique"
-        , "Systeme": "Systèmes"
-        , 'Tabelle': 'Table'
-        , 'Tabellen': 'Tables'
-        , "Tag": "Jour"
-        , "Technischer Name": "Terme technique"
-        , "Text": "Texte"
-        , "Ton": "Ton"
-        , "Tooltip": "Info-bulle"
-        , "Treffer": "Occurrence"
-        , "Typ": "Type"
-        , "UDP-Matrix": "Matrice UDP"
-        , "übersetzt": "traduit"
-        , 'untergeordnet': 'subordonné'
-        , 'übergeordnet': 'superordonné'
-        , "Übersetzungen": "Traductions"
-        , 'Unterdokumente': 'Enfants'
-        , "Vaterdokument": "Document père"
-        , "verschlüsselt": "Chiffré"
-        , "Verwendet für Attribute": "Utilisé par les attributs"
-        , 'Verwendet für Columns': 'Utilisé par les columns'
-        , "Verwendet in Attributgruppen": "Utilisé dans les groupes d'attributs"
-        , "Verwendet von": "Utilisé pour"
-        , "Vorkommastellen": "Position avant la décimale"
-        , "Wert": "Valeur"
-        , "Wertebereich": "Domaine des valeurs"
-        , "Wertebereiche": "Domaines des valeurs"
-        , "Werteliste": "Liste des Valeur"
-        , "wiederholt": "répété"
-        , "Woche": "Semaine"
-        , "Zeitpunkt": "Instant"
-                      }
     @staticmethod
-    def transl(pname,plang=None):
+    def transl(pname, plang=None):
         lang = Languagetext.__greportLang if plang is None else plang
         if (lang == Languagetext.DE):
             return pname
-        elif (lang == Languagetext.EN):
-            try:
-                return Languagetext.__translNameEN[pname]
-            except:
-                return pname
-        elif (lang == Languagetext.FR):
-            try:
-                return Languagetext.__translNameFR[pname]
-            except:
-                return pname
         else:
-            return pname
+            try:
+                return Languagetext.__translNamen[pname][lang]
+            except:
+                return pname
     # transl
 
     @staticmethod
@@ -408,6 +295,7 @@ class Languagetext(Baseobject):
         and lower(lang_iso_code2) = lower('{}') 
         """.format(pmodeid, pattrname, plang))
         return data[0][0] if (len(data) > 0) else ''
+
     # translist
 
     @staticmethod
@@ -418,5 +306,4 @@ class Languagetext(Baseobject):
             Languagetext.__greportLang = newval
     # reportLang
 
-#Languagetext
-
+# Languagetext
