@@ -968,7 +968,7 @@ def hasiconfiles():
                             if val["name"]== parameters.iconmasterdocumentname()]
     return len(iconmaster) == 1
 
-def iconsrc(pjsenti):
+def iconsrc(pjsenti,pdefaultlang):
     icon = pjsenti["icon"]
     if icon['type']== 'FYAYCICON':
         filename = ''  #to be resolved
@@ -978,7 +978,7 @@ def iconsrc(pjsenti):
         filename = icon['reference']
     else:
         """look for entityname in defaultlanguage"""
-        filename = pjsenti["name"][getmodel().getdefaultlang()]
+        filename = pjsenti["name"][pdefaultlang]
         filename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', filename.lower())
     #fi
     #filename found search in image

@@ -33,18 +33,30 @@
 				</div>
 {%- endmacro %}
 
-{% macro mainblock(type, id, name, descr, lbc, parenttype='',parentname='',icon = None) -%}
+{% macro mainblock(type, id, name, descr, lbc, parenttype='',parentname='',icon = None,environ=None) -%}
 		<div class="entity" id="{{ id }}">
 			<div class="describtion">
 				 <span>
 						<p>{{ type }}</p>
 						<h1>{{ name }}
-							 {% if icon %}
-								 <img src="{{ icon }}" height="40px" width="40px">
-							 {% endif %}
+{# ersettzt durch Icon in tabelle unten
+						 {% if icon %}
+							 <img src="{{ icon }}" height="40px" width="40px">
+						 {% endif %}
+#}						
 						</h1>
 						<p1><span style="text-transform:uppercase">{{ parenttype ~"  "}}</span>{{ parentname }}</p1>
-						<p1>{{ getnvl(descr) }}</p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%">{{getnvl(descr)}}</th>
+			    {% if icon %}
+					<th style="width:10%"><img src="{{ icon }}" height="100px" width="100px"></th> 
+				{% endif %}  
+			    {% if environ %}
+					<th style="width:20%">{{ environ|safe }}</th>
+				{% endif %}  
+			  </tr>
+			</table>
 				</span>
 			</div>
 			

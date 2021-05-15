@@ -379,7 +379,7 @@ def printelements(pdiag, pdiaganker,plang):
                                                , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index'])))
 
         retval += entiende
-        iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']))
+        iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']),pdefaultlang=printHTML.getmodel().getdefaultlang())
         if iconsrc != "":
             retval += imagehtml.format(iconsrc
                                                ,eler['pos_x']+eler['width']-ICONSIZE/2,
@@ -434,7 +434,7 @@ def putrefinsvg(ptext,pdiagid,plang):
             newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang])),
                              r'<a href="#{}">\1</a>'.format(re.escape(attrid)), newenti)
         #add image if exists
-        filename = printHTML.iconsrc(pjsenti=entival)
+        filename = printHTML.iconsrc(pjsenti=entival,pdefaultlang=printHTML.getmodel().getdefaultlang())
         if filename != "":
             newenti += '\n<image href="{}" width="40px" height="40px" class ="entity-image" x="{}px" y="{}px"></image>' \
                         .format(filename,xstart + xwidth - (ICONSIZE/2), ystart - (ICONSIZE/2))

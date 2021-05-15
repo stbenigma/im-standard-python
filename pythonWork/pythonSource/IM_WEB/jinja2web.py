@@ -168,7 +168,7 @@ class Webmodel():
 
     def getentiicon(self,entielem):
         m = printHTML.getmodel()
-        return iconsrc(pjsenti=entielem)
+        return iconsrc(pjsenti=entielem,pdefaultlang=self.getdeflanguage())
 
     def getentienviron(self,entiid):
         return entityenviron.entienviro2svg(pentiid=entiid

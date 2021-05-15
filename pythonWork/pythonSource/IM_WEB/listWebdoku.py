@@ -210,9 +210,10 @@ def printhtmlrender(pfilename, planguage, pmodel, pintfid=None):
 def listwebmain(plang,pfilter=(None,'TEST','REL')):
     printHTML.createlib()
     printHTML.copyimages()
-    printHTML.getmodel().setstatusfilter(pfilter)
-    defaultlang = printHTML.getmodel().jsmodel["model"]["language"]
-    langs = printHTML.getmodel().jsmodel["languages"].keys()
+    model = printHTML.getmodel()
+    model.setstatusfilter(pfilter)
+    defaultlang = model.jsmodel["model"]["language"]
+    langs = model.jsmodel["languages"].keys()
     if (plang is None or (plang.lower() == 'all')):
         #all languages, with default from db
         parameters.dbDefaultLang(defaultlang)
@@ -222,12 +223,12 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
             #chosen language is default language (for references from system-files)
             parameters.dbDefaultLang(plang.lower())
         else:
-            print ("******* '{}' is invalid language for model '{}'. Valid languages are '{}'".format(plang,pmodel.jsmodel["model"]["name"],','.join(langs)))
+            print ("******* '{}' is invalid language for model '{}'. Valid languages are '{}'".format(plang,model.jsmodel["model"]["name"],','.join(langs)))
             return
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    schnlist = printHTML.getmodel().getelements(pelemtype=Modelelemtype.INTF)
+    schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
 
@@ -237,7 +238,7 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
         langfilename = printHTML.webFileName + '_' + Languagetext.reportLang() + '.html'
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
-        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.getmodel())
+        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=model)
         # printhtmlfile(pfirma="foryouandyourcustomers"
         #               , ptitel=parameters.odmModelName() + ' ({})'.format(lang)
         #               , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
@@ -255,7 +256,7 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     for anker,element in schnlist.items():
         langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
-        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.getmodel(), pintfid=anker)
+        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=model, pintfid=anker)
     #for
 #listwebmain
 
