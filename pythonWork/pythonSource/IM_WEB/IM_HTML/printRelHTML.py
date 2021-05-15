@@ -12,33 +12,6 @@ def nvl(s, default=''):
 
 getelement = lambda e:printHTML.getmodel().getbyid(e)
 
-def collectallmappings(pelem):
-    # name, list of entries mit {webanker:'name'}
-    entities = {e: getelement(e)['name'][parameters.dbDefaultLang()] for e in pelem['entitiesmapped']}
-    relations = {r: getelement(r)['name'] for r in pelem['relationsmapped']}
-    entities.update(relations)
-    allmappings = {0: [[anker, name] for anker, name in entities.items()]}
-
-    for intfanker, intfelem in printHTML.getmodel().jsmodel['systems'].items():
-        if intfanker == pelem['interface-id']: continue
-        tablist = []
-        for enti in pelem['entitiesmapped']:
-            try:
-                tablist += getelement(enti)['tablesmapped+'][intfanker]
-            except:
-                pass
-        if len(tablist) == 0: continue
-        allmappings[intfanker] = [[tabanker, "({})".format(getelement(tabanker)['name'])] for tabanker in tablist]
-    # for
-    return allmappings
-
-def printmapping(pelem):
-    printHTML.printmappinghtml(ptitel=Languagetext.transl('Mapping')
-                               , pueberschriften=(Languagetext.transl('Model'), Languagetext.transl('Entitäten / Tabellen'))
-                               ,pwerte = collectallmappings(pelem=pelem))
-# printmapping
-
-
 def putrefinsvg(ptext,pintf):
     retval = ptext
     for tabid in pintf["tables+"]:

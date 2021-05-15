@@ -2,7 +2,6 @@ from IM_HTML import printHTML
 import math
 import os,re
 from IM_DB import parameters 
-from IM_OBJECTS import Language
 
 LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
@@ -461,28 +460,6 @@ def svgfilename(pname,plang=None):
     return retval
 
 
-def diaghtmlhead(panker, pname, pwidth, pheight):
-    return """        <br><hr><br><br>
-        <div id="{}-container">
-       <h3 id="{}">{}</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-        version="1.1"  width="{}" height="{}">
-        <defs id="dmw_defs" >
-        </defs>
-    """.format (panker,panker,pname,pwidth,pheight)
-    #wäre in defs drin
-    #           <clipPath clipPathUnits="userSpaceOnUse" id="clipPathlegend">
-    #             <rect x="0" y="0" width="{}" height="{}" />
-    #        </clipPath>
-
-def diaghtmlfoot():
-    return """
-        <div class="print-button-container">
-            <button class="print-button" onclick="printElem(this)">print</button>
-        </div>
-    </div>
-    """
-
 
 def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
     svgfn = svgfilename(pname=pdiagelem["name"], plang=plang)
@@ -506,33 +483,3 @@ def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
     # fi
     return retval
 
-def printcontentdiag(plist, plang, ptitel):
-    contenthead="""        <!--diagramms-->"""
-
-    detailshead = """           
-                <!-- The inside div eliminates the 'jumping' animation. -->
-"""
-    detailsfoot = """            
-                            </div>
-"""
-    infohead = """
-                            <h2>{}</h2>
-                        <div id="container2">
-                        <div class="table-responsive">
-                            <table class="table borderless">
-                                <tbody>
-"""
-    retval = ""
-    for diaanker,diaelem in plist.items():
-        #diag_name,diag_id,diag_legendx,diag_legendy,breite,hoehe
-        retval += diaghtmlhead(panker=diaanker, pname=diaelem['name']
-                                                  , pwidth=diaelem['width'], pheight=diaelem['height'])
-                                #wäre clippath,legendwidth,legendhigh))
-
-        svgtext = getsvgtext(plang = plang,pdiaganker=diaanker,pdiagelem=diaelem,ptitel=ptitel)
-
-        printHTML.fhtml.write(svgtext)
-        printHTML.fhtml.write(diaghtmlfoot())
-    #for
-    return retval
-#printcontendiag
