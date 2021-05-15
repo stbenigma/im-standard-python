@@ -1,10 +1,11 @@
 from datetime import datetime
 import re
 import logmessages
+import printHTML
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from printHTML import type2name
+from printHTML import type2name,iconsrc
 from IM_HTML import entityenviron
 from jinja2 import FileSystemLoader,Environment
 
@@ -17,6 +18,9 @@ class Webmodel():
 
     def getintfid(self):
         return self.intferfaceid
+
+    def getmodelname(self):
+        return self.jsmodel.jsmodel['model']['name']
 
     def getelemintfid(self,elemid):
         elem = self.getelem(elemid)
@@ -162,6 +166,10 @@ class Webmodel():
             retval = {}
         return retval
 
+    def getentiicon(self,entielem):
+        m = printHTML.getmodel()
+        return iconsrc(pjsenti=entielem)
+
     def getentienviron(self,entiid):
         return entityenviron.entienviro2svg(pentiid=entiid
                                             ,penviron=entityenviron.createentienvironment(pentiid=entiid
@@ -169,6 +177,7 @@ class Webmodel():
                                                                                           ,pmodellang=self.getcurlanguage()))
 def getnvl(val,default = ""):
     return default if val is None else val
+
 
 
 def lf2htmlbr(pstr):

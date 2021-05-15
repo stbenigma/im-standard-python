@@ -3,7 +3,8 @@
 		{% set elemid = enti[0] %}
 		{% set elem = webmodel.getelem (elemid) %}
 		{% call blocks.mainblock(type = webmodel.gettransltext("Entität"), id=elemid, name = webmodel.getlangstr(elem["name"])
-									, descr = webmodel.getlangstr(elem["descr"]), lbc=elemid ~ "main") %}
+									, descr = webmodel.getlangstr(elem["descr"]), lbc=elemid ~ "main"
+									,icon=webmodel.getentiicon(entielem=elem)) %}
 
 					<h2>Information</h2>
 					<div class="table-responsive">

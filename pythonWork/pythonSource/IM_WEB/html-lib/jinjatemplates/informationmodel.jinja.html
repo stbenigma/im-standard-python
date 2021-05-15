@@ -138,7 +138,7 @@
 
 
 	<div class="wrapper">
-		{{ companyheader.IMheader(modelname=modelname,company=company) }}
+		{{ companyheader.IMheader(model=webmodel,company=company,language=webmodel.getcurlanguage()) }}
 		
 		{% include 'entities.jinja.html' %}
 		

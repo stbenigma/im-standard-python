@@ -86,26 +86,26 @@ def printlistofcontent(plang):
     printHTML.printlistofcontenthead()
     try:
         idxlist = sorted([{'anker':key,'name': value['name'][plang]}
-                     for key,value in printHTML.model.getelements(pelemtype='entities').items()]
+                     for key,value in printHTML.getmodel().getelements(pelemtype='entities').items()]
                      ,key=lambda val:val['name'])
     except:
         idxlist=[]
-        mod = printHTML.model.jsmodel['entities'].values()
+        mod = printHTML.getmodel().jsmodel['entities'].values()
 
     printHTML.printlistofcontentelement(pname='Entitäten'
                                             , plist= idxlist)
 
     idxlist = sorted([{'anker':key
                   ,'name': "{} ({})".format(value['name'][plang]
-                                    ,printHTML.model.getbyid(value['entity'])['name'][plang]
+                                    ,printHTML.getmodel().getbyid(value['entity'])['name'][plang]
                                             if value['entity'] is not None
-                                    else printHTML.model.getbyid(value['relation'])['name'])
+                                    else printHTML.getmodel().getbyid(value['relation'])['name'])
                    }
-                 for key,value in printHTML.model.getelements(pelemtype='attributes').items()]
+                 for key,value in printHTML.getmodel().getelements(pelemtype='attributes').items()]
                  ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Attribute', plist=idxlist)
 
-#    origindomains = {key:value for key,value in printHTML.model.jsmodel['domains'].items() if value['origin'] == Domain.DOMAIN}
+#    origindomains = {key:value for key,value in printHTML.getmodel().jsmodel['domains'].items() if value['origin'] == Domain.DOMAIN}
     idxlist=sorted([{'anker':key
                     ,'name': "{} ({})".format(value['name'][plang]
                                     ,str(len(value['usedinattrs+'])
@@ -118,7 +118,7 @@ def printlistofcontent(plang):
                     ,'name': "{} ({})".format(value['name']
                                              ,str(value['referencecnt+']))
                      }
-                    for key,value in printHTML.model.jsmodel['documents'].items()
+                    for key,value in printHTML.getmodel().jsmodel['documents'].items()
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Dokumente', plist=idxlist)
@@ -127,7 +127,7 @@ def printlistofcontent(plang):
                     ,'name': "{}".format(value['name']
                                              ,str(value['referencecnt+']))
                      }
-                    for key,value in printHTML.model.jsmodel['orgunits'].items()
+                    for key,value in printHTML.getmodel().jsmodel['orgunits'].items()
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Org. Einheiten', plist=idxlist)
@@ -137,7 +137,7 @@ def printlistofcontent(plang):
     #                                          ,str(len(value['referencedfrom']))
     #                                         )
     #                  }
-    #                 for key,value in printHTML.model.jsmodel['documents'].items()
+    #                 for key,value in printHTML.getmodel().jsmodel['documents'].items()
     #                 ]
     #             ,key=lambda val:val['name'])
     # printHTML.printlistofcontentelement(pname='Attribut-Mapping', plist=idxlist)
@@ -145,7 +145,7 @@ def printlistofcontent(plang):
     idxlist=sorted([{'anker':key
                     ,'name': "{}".format(value['name'])
                     }
-                    for key,value in printHTML.model.jsmodel['diagrams'].items()
+                    for key,value in printHTML.getmodel().jsmodel['diagrams'].items()
                     ]
                 ,key=lambda val:val['name'])
 
@@ -154,7 +154,7 @@ def printlistofcontent(plang):
     idxlist=sorted([{'anker':key
                     ,'name': "{}".format(value['name'])
                      }
-                    for key,value in printHTML.model.jsmodel['systems'].items()
+                    for key,value in printHTML.getmodel().jsmodel['systems'].items()
                     ]
                 ,key=lambda val:val['name'])
     printHTML.printlistofcontentelement(pname='Systeme', plist=idxlist,pfileonly = True)
@@ -169,7 +169,7 @@ def printcontent(pfirma,ptitel):
     printHTML.printcontentdoku()
     printHTML.printcontentorgu()
     #printHTML.printcontentmapping(ptheme=parameters.odmUDPMappingFileName())
-    printdiagHTML.printcontentdiag(plist=printHTML.model.jsmodel['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
+    printdiagHTML.printcontentdiag(plist=printHTML.getmodel().jsmodel['diagrams'], plang=Languagetext.reportLang(), ptitel=ptitel)
     printHTML.printcontentfoot()
 #printcontent
 
@@ -207,12 +207,12 @@ def printhtmlrender(pfilename, planguage, pmodel, pintfid=None):
     printHTML.closefile ();
 #printhtmlrenderfile
 
-def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
+def listwebmain(plang,pfilter=(None,'TEST','REL')):
     printHTML.createlib()
     printHTML.copyimages()
-    pmodel.setstatusfilter(pfilter)
-    defaultlang = pmodel.jsmodel["model"]["language"]
-    langs = pmodel.jsmodel["languages"].keys()
+    printHTML.getmodel().setstatusfilter(pfilter)
+    defaultlang = printHTML.getmodel().jsmodel["model"]["language"]
+    langs = printHTML.getmodel().jsmodel["languages"].keys()
     if (plang is None or (plang.lower() == 'all')):
         #all languages, with default from db
         parameters.dbDefaultLang(defaultlang)
@@ -227,10 +227,9 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     #fi
 
     #erstelle die Liste der HTML Files für HREF's
-    schnlist = pmodel.getelements(pelemtype=Modelelemtype.INTF)
+    schnlist = printHTML.getmodel().getelements(pelemtype=Modelelemtype.INTF)
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
-    printHTML.model = pmodel
 
     for lang in langs:
         lang = lang.lower()
@@ -238,7 +237,7 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
         langfilename = printHTML.webFileName + '_' + Languagetext.reportLang() + '.html'
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
-        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.model)
+        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.getmodel())
         # printhtmlfile(pfirma="foryouandyourcustomers"
         #               , ptitel=parameters.odmModelName() + ' ({})'.format(lang)
         #               , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
@@ -256,7 +255,7 @@ def listwebmain(pmodel:JSModel,plang,pfilter=(None,'TEST','REL')):
     for anker,element in schnlist.items():
         langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
-        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.model, pintfid=anker)
+        printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=printHTML.getmodel(), pintfid=anker)
     #for
 #listwebmain
 
@@ -269,8 +268,8 @@ def main(pdirec, plang):
     dbConnect.openDB(p_filepath= parameters.dbFilePath());
     deflang = Language.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
-    model = JSModel(sql2json(pdbname=parameters.dbFilePath()))
-    listwebmain(pmodel=model, plang=plang)
+    printHTML.setmodel(JSModel(sql2json(pdbname=parameters.dbFilePath())))
+    listwebmain(plang=plang)
 
     dbConnect.myDbConn.close()
 

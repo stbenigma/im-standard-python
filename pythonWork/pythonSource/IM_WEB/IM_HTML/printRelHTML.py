@@ -10,7 +10,7 @@ from IM_OBJECTS import Domain,Languagetext,Modelelemtype,Modelelement
 def nvl(s, default=''):
     return parameters.nvl(s, default)
 
-getelement = lambda e:printHTML.model.getbyid(e)
+getelement = lambda e:printHTML.getmodel().getbyid(e)
 
 def collectallmappings(pelem):
     # name, list of entries mit {webanker:'name'}
@@ -19,7 +19,7 @@ def collectallmappings(pelem):
     entities.update(relations)
     allmappings = {0: [[anker, name] for anker, name in entities.items()]}
 
-    for intfanker, intfelem in printHTML.model.jsmodel['systems'].items():
+    for intfanker, intfelem in printHTML.getmodel().jsmodel['systems'].items():
         if intfanker == pelem['interface-id']: continue
         tablist = []
         for enti in pelem['entitiesmapped']:

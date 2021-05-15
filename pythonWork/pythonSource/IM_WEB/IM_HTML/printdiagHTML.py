@@ -354,7 +354,7 @@ def printarcs(plist):
     return retval
 #printarcs
 
-getelement = lambda e:printHTML.model.getbyid(e)
+getelement = lambda e:printHTML.getmodel().getbyid(e)
 
 def printelements(pdiag, pdiaganker,plang):
     entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
@@ -404,10 +404,10 @@ def printelements(pdiag, pdiaganker,plang):
 def putrefinsvg(ptext,pdiagid,plang):
     imagehtml = """<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
                 .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
-    deflang = printHTML.model.jsmodel["model"]["language"]
+    deflang = printHTML.getmodel().jsmodel["model"]["language"]
 
     retval = ptext
-    for entiid,entival in printHTML.model.getelements(pelemtype='ENTI').items():
+    for entiid,entival in printHTML.getmodel().getelements(pelemtype='ENTI').items():
         try:
             odmref = entival["sourceref"]["ODM"][0]
         except:

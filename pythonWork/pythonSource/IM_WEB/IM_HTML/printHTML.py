@@ -22,11 +22,19 @@ jinadirec: str = "";
 htmlfilelist = {}
 model:JSModel = None
 
+def setmodel(pmodel:JSModel):
+    global model
+    model = pmodel
+    return
+def getmodel():
+    global model
+    return model
+
 """zum Zählen der lokalen Ziele für collapse"""
 barcounter: int = 0
 
 
-getelement = lambda e:model.getbyid(e)
+getelement = lambda e:getmodel().getbyid(e)
 
 def newbarcounter():
     global barcounter
@@ -623,7 +631,6 @@ def printcontentinfo(ptitle, pheaders, pvalues):
 
 
 def printattrlist(penti):
-    global model
     lang = Languagetext.reportLang()
     alist = [{'anker':a,'element':getelement(a)} for a in penti['attributes+']]
     if (len(alist) == 0):
@@ -847,7 +854,7 @@ def printentirela(penti,plang):
                                                , href(ref=elem['from-to']['enti'], anz=html.escape(otherentiname)))))
         # if
     # for
-    entienvir = entityenviron.createentienvironment(pentiid=penti['anker'],pjson=model,pmodellang=plang)
+    entienvir = entityenviron.createentienvironment(pentiid=penti['anker'],pjson=getmodel(),pmodellang=plang)
     fhtml.write(entityenviron.entienviro2svg(pentiid=penti['anker'],penviron=entienvir))
     fhtml.write(endtable(plabel=Languagetext.transl('Beziehungen'), plbc=lbc))
 # printentirela
@@ -957,13 +964,11 @@ def entidiag(pwebenti):
 # entidiag
 
 def hasiconfiles():
-    global model
-    iconmaster = [key for key,val in model.getelements(pelemtype=Modelelemtype.DOCU).items()
+    iconmaster = [key for key,val in getmodel().getelements(pelemtype=Modelelemtype.DOCU).items()
                             if val["name"]== parameters.iconmasterdocumentname()]
     return len(iconmaster) == 1
 
 def iconsrc(pjsenti):
-    global model
     icon = pjsenti["icon"]
     if icon['type']== 'FYAYCICON':
         filename = ''  #to be resolved
@@ -973,7 +978,7 @@ def iconsrc(pjsenti):
         filename = icon['reference']
     else:
         """look for entityname in defaultlanguage"""
-        filename = pjsenti["name"][model.getdefaultlang()]
+        filename = pjsenti["name"][getmodel().getdefaultlang()]
         filename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', filename.lower())
     #fi
     #filename found search in image
@@ -990,7 +995,6 @@ def iconsrc(pjsenti):
 
 
 def printcontententi():
-    global model
     lang = Languagetext.reportLang()
     printcontentstart('entities')
     infoheaders = (Languagetext.transl('Synonyme'), Languagetext.transl('Superentitäten')
@@ -1000,7 +1004,7 @@ def printcontententi():
                    , Languagetext.transl('geändert'))
 
     for enti in sorted([{'anker':key,'element': value}
-                     for key,value in model.getelements(pelemtype='entities').items()]
+                     for key,value in getmodel().getelements(pelemtype='entities').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = enti['element']
         lbc = str(newbarcounter())
@@ -1045,7 +1049,7 @@ def printcontentattr():
     lang = Languagetext.reportLang()
 
     for attr in sorted([{'anker':key,'element': value}
-                     for key,value in model.getelements(pelemtype='attributes').items()]
+                     for key,value in getmodel().getelements(pelemtype='attributes').items()]
                      ,key=lambda val:val['element']['name'][lang]):
         elem = attr['element']
         printcontentstart('attributes')
@@ -1117,7 +1121,7 @@ def printelemreflists(pelem, pelemtype):
 
 def origindomains(pintfid):
     #dict of domain with origin DOMAIN and defined in interface intfid (or im if None)
-    return {key: value for key, value in model.jsmodel['domains'].items()
+    return {key: value for key, value in getmodel().jsmodel['domains'].items()
                                                 if (value['origin'] == Domain.DOMAIN
                                                 and value['interface-id'] == pintfid)}
 
@@ -1328,7 +1332,7 @@ def printreflist(pelem,plang):
 
 def printcontentdoku():
     docus = sorted([{'anker': key, 'element': value}
-            for key, value in model.jsmodel['documents'].items()]
+            for key, value in getmodel().jsmodel['documents'].items()]
             ,key=lambda val : val['element']['name'])
     printcontentstart('documents')
     infoheaders = (Languagetext.transl('Format'), Languagetext.transl('Referenz'), Languagetext.transl('Vaterdokument')
@@ -1344,7 +1348,7 @@ def printcontentdoku():
                      , pdescr=""
                      , plbc=lbc)
 
-        children = [href(ref=key,anz=val['name']) for key,val in model.jsmodel['documents'].items() if val['parent'] == doc['anker']]
+        children = [href(ref=key,anz=val['name']) for key,val in getmodel().jsmodel['documents'].items() if val['parent'] == doc['anker']]
         kinder = ', '.join(c for c in children)
 
         infovalues = (parameters.nvl(elem['format+']), parameters.nvl(elem['reference']),
@@ -1357,7 +1361,7 @@ def printcontentdoku():
 
 def printcontentorgu():
     orgus = sorted([{'anker': key, 'element': value}
-            for key, value in model.jsmodel['orgunits'].items()]
+            for key, value in getmodel().jsmodel['orgunits'].items()]
             ,key=lambda val : val['element']['name'])
     printcontentstart('orgunits')
     infoheaders = (Languagetext.transl('descr'), Languagetext.transl('Mail'),Languagetext.transl('Telefon') , Languagetext.transl('Adresse')
@@ -1373,7 +1377,7 @@ def printcontentorgu():
                      , pdescr=""
                      , plbc=lbc)
 
-        children = [href(ref=key,anz=val['name']) for key,val in model.jsmodel['orgunits'].items() if val['parent'] == orgu['anker']]
+        children = [href(ref=key,anz=val['name']) for key,val in getmodel().jsmodel['orgunits'].items() if val['parent'] == orgu['anker']]
         kinder = ', '.join(c for c in children)
 
         infovalues = (parameters.nvl(elem['descr']), parameters.nvl(elem['mail']),parameters.nvl(elem['telefon']),parameters.nvl(elem['address']),
@@ -1478,7 +1482,7 @@ def findtransl(pattrname, pmodeid, plangs, panker = None):
 def printtransl(penti=None, pattr=None):
     global webFileName
     langfilename = "{}_{}.html".format(webFileName,'{}')
-    langs = [k for k in model.jsmodel['languages'].keys()]
+    langs = [k for k in getmodel().jsmodel['languages'].keys()]
     try:
         langs.remove(Languagetext.reportLang())
     except:
