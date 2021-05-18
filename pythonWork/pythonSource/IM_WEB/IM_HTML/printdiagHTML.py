@@ -162,20 +162,24 @@ def printrela(plist):
     return retval
 #printrela
 
-def textpos(pangle,px,py,ptextlen,pstart):
+def textpos(pangle,px,py,ptextlen,pstart,plines):
     if ((pstart and (pangle >= 0) and (pangle < math.pi / 2)) 
        or (not pstart and (pangle >= math.pi / 2))):
+        #line goes vertical North
         x = px + 5
-        y = py - 5
+        y = py - (5 * (plines+1))
     elif ((pstart and (pangle >= math.pi / 2) and (pangle < math.pi))
          or(not pstart and (pangle < 0))):
+        #line goes vertical south
         x = px + 5
         y = py + 10
     elif (pstart and (pangle >= math.pi)
          or (not pstart and (pangle >= 0) and (pangle < math.pi / 2))):
+        #line goes horizontal west
         x = px - 5 - ptextlen
         y = py + 10
     else:
+        #horinzonal east
         x = px + 5
         y = py - 5
     # fi
@@ -194,28 +198,28 @@ def printtexte(plist,plang):
        ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft"""
     retval= ""
     for relaanker,relaelem in plist.items():
-        startx, starty = relaelem['starttext_x'],relaelem['starttext_y']
-        starttextw,starttexth=parameters.nvl(relaelem['starttext_width'],0),parameters.nvl(relaelem['starttext_height'],0)
         starttext=getelement(relaanker)['from-to']['assoc'][plang]
         fontcolor = relaelem['fontcolor']
         fontsize = relaelem['fontsize']
-        endx,endy =relaelem['endtext_x'],relaelem['endtext_y']
-        endtextw,endtexth=parameters.nvl(relaelem['endtext_width'],0),parameters.nvl(relaelem['endtext_height'],0)
         endtext=getelement(relaanker)['to-from']['assoc'][plang]
 
+        #find the starting-/endingpoints of the first / last linesegment = touchoint with entity.
         linesegs = relaelem['linesegments']
         if len(linesegs)> 0:
             linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
             lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
 
+        #assume fixed length font
         textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
         if starttext is not None:
+            #if line is vertically oriented split text in shorter elements
             if ((((linestartangle >= math.pi / 2) and (linestartangle < math.pi )) or (linestartangle < 0))):
                 s = starttext.split(' ')
             else:
                 s =[starttext]
+
             posx, posy = textpos(pangle=linestartangle, px=linestartx, py=linestarty, ptextlen=textlength(starttext),
-                                 pstart=True)
+                                 pstart=True,plines=len(s))
             for t in s:
                 retval += printtext(px=posx, py=posy, ptext=t
                   , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
@@ -227,7 +231,8 @@ def printtexte(plist,plang):
                 s = endtext.split(' ')
             else:
                 s =[endtext]
-            posx,posy = textpos(pangle=lineendangle,px=lineendx,py=lineendy,ptextlen=textlength(endtext),pstart=False)
+            posx,posy = textpos(pangle=lineendangle,px=lineendx,py=lineendy,ptextlen=textlength(endtext)
+                                ,pstart=False,plines=len(s))
             if lineendangle > 0:
                 posy -= 12 *(len(s)-1)
             for t in s:
@@ -460,17 +465,26 @@ def svgfilename(pname,plang=None):
     return retval
 
 
-
-def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
-    svgfn = svgfilename(pname=pdiagelem["name"], plang=plang)
+def getsvgfromfile(pname, plang=None):
+    retval = None
+    svgfn = svgfilename(pname=pname, plang=plang)
     if svgfn is not None:
         """add links to svg and include it in html"""
         with (open(file=svgfn, mode="r")) as f:
-            svgtext = f.read()
-        retval = putrefinsvg(ptext=svgtext, pdiagid=pdiaganker, plang=plang)
+            retval = f.read()
+    #fi
+    return retval
+
+def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
+    retval = getsvgfromfile(pname=pdiagelem["name"],plang=plang)
+    if retval is not None:
+        retval = putrefinsvg(ptext=retval, pdiagid=pdiaganker, plang=plang)
     else:
         """render diagram"""
-        retval = ""
+        retval = """<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1"  width="{}" height="{}">
+                <defs id="dmw_defs" >
+                </defs>""".format(pdiagelem["width"],pdiagelem["height"])
         if ('legend' in pdiagelem.keys()):
             # es hat eine Legende
             retval += printlegend(pdata=[pdiagelem['name'], parameters.nvl(pdiagelem['uc']), parameters.nvl(pdiagelem['dc']),
@@ -480,6 +494,8 @@ def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
                                    , px=pdiagelem['legend']['x'], py=pdiagelem['legend']['y'])
         # fi
         retval += printelements(pdiag=pdiagelem, pdiaganker=pdiaganker, plang=plang)
+        retval += """</svg>"""
     # fi
     return retval
+
 

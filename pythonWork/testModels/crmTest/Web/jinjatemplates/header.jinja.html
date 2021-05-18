@@ -17,3 +17,32 @@
 		</div>
 		<br><hr>
 {%- endmacro %}
+
+{% macro IMheader(model,company,language) -%}
+		<div class="top-container">
+			<p3 class="descr">
+		    {% if language.lower() == 'de' %}
+				Diese Webseite enthält den ganzen Inhalt 
+				des <p2 class="IM">Informationsmodells {{ model.getmodelname() }}</p2> von {{ company }}.
+				Diese Seite wurde von Software von <p2 class="fyayc">foryouandyourcustomers</p2> 
+				erstellt.
+		    {% elif language.lower() == 'fr' %}
+				Ce site web contient l'intégralité du contenu 
+				du <p2 class="IM">Modèle d'Information {{ model.getmodelname() }}</p2> de {{ company }}.
+				Cette page a été créée par le logiciel de <p2 class="fyayc">foryouandyourcustomers</p2>. 
+		    {% else %}
+				This website contains the complete content 
+				of the <p2 class="IM">Information model {{ model.getmodelname() }}</p2> from {{ company }}.
+				This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>.
+		    {% endif %}
+			</p3>
+			<br>
+			{% set otherlangs = model.getlanguages(all=False) %}
+			{% for lang in otherlangs %}
+				{% set icon = ('gb' if lang.lower() == 'en' else lang.lower()) ~ '.png'  %}
+				{{ lang.upper() }} {{ model.getreflink(name='<img class="icon-check" src="icons/{}">'.format(icon) ,destid=None,destlang=lang)|safe }}
+			{% endfor  %}
+
+		</div>
+		<br><hr>
+{%- endmacro %}

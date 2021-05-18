@@ -1,10 +1,8 @@
 import os,re
 import sys
-import html
 sys.path.append(os.getcwd())
 from IM_HTML import printHTML,printdiagHTML
 from IM_DB import parameters
-from IM_OBJECTS import Domain,Languagetext,Modelelemtype,Modelelement
 
 
 def nvl(s, default=''):
@@ -45,15 +43,8 @@ def putrefinsvg(ptext,pintf):
     return retval
 
 def interfacediagram(pintf):
-    svgfn = printdiagHTML.svgfilename(pname=pintf['name'])
-    if svgfn is None: return ""
-    """add links to svg and include it in html"""
-    with (open(file=svgfn, mode="r")) as f:
-        svgtext = f.read()
-        dimensions = re.search(r"<svg .* width=\"([0-9]+)\".*height=\"([0-9]+)\">",svgtext)
-        if dimensions is None:
-            dimensions = [0,500,500] #safeguard if svg does not contain width and height
-
+    svgtext = printdiagHTML.getsvgfromfile(pname=pintf['name'])
+    if svgtext is not None:
         svgtext = putrefinsvg(ptext=svgtext,pintf=pintf)
     return svgtext
 

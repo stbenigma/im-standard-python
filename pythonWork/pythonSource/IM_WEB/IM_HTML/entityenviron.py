@@ -128,9 +128,9 @@ class EntityEnvironment():
 
 def related(pentiid,prelated,pjson,pcardinality,pmodellang):
     retval = []
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
+    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
     for relaid in prelated:
-        rela = pjson.getelements(pelemtype=Modelelemtype.RELA)[relaid]
+        rela = pjson.getelements(pelemtype=Modelelemtype.RELA,pfiltered=False)[relaid]
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
         if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] != pentiid
             and rela['to-from']['maptype'] == pcardinality):
@@ -151,7 +151,7 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang):
 def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
     """creates an EntityEnvironment for the given entity found in the json-structure"""
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
+    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
 
     if not pentiid in entities.keys(): return None #non existing entity is Nothing
 
@@ -250,6 +250,9 @@ def generate_svg_content(penviron):
         </svg>
     """
 
+    if penviron is None:
+        print ("Penviron is NOne: ")
+        return None
     maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
     minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
     maincell = penviron.getcell(phidx='left', pvidx=0)

@@ -6,8 +6,7 @@ from distutils.dir_util import copy_tree
 from IM_DB import parameters
 from IM_OBJECTS import *
 import html
-from IM_JSON import JSModel,jsguid2type
-from IM_HTML import entityenviron
+from IM_JSON import JSModel
 
 outputDirectory: str = None
 webDirectory: str = "";
@@ -191,7 +190,7 @@ def createlib():
     if not os.path.exists(jinadirec):
         shutil.copytree(libSourceDirec + 'jinjatemplates', jinadirec)
     else: #replace the original files every time
-        shutil.copytree(libSourceDirec + 'jinjatemplates/original', jinadirec + 'original/',dirs_exist_ok=True)
+        shutil.copytree(libSourceDirec + 'jinjatemplates', jinadirec + 'original/',dirs_exist_ok=True)
 
 
 # createlib

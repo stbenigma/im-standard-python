@@ -1,12 +1,10 @@
 from datetime import datetime
 import re
 import logmessages
-import printHTML
+from IM_HTML import printHTML,entityenviron
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from printHTML import type2name,iconsrc
-from IM_HTML import entityenviron
 from jinja2 import FileSystemLoader,Environment
 
 class Webmodel():
@@ -66,7 +64,7 @@ class Webmodel():
         return retval
 
     def displelemtype(self,typ):
-        return type2name(ptyp=typ[:4],plang=self.getcurlanguage)
+        return printHTML.type2name(ptyp=typ[:4],plang=self.getcurlanguage)
 
     def getelem(self,id):
         retval = self.jsmodel.getbyid(id)
@@ -168,7 +166,7 @@ class Webmodel():
 
     def getentiicon(self,entielem):
         m = printHTML.getmodel()
-        return iconsrc(pjsenti=entielem,pdefaultlang=self.getdeflanguage())
+        return printHTML.iconsrc(pjsenti=entielem,pdefaultlang=self.getdeflanguage())
 
     def getentienviron(self,entiid):
         return entityenviron.entienviro2svg(pentiid=entiid
@@ -189,7 +187,7 @@ def lf2htmlbr(pstr):
 
 def model2html(pwebmodel:Webmodel):
     jinjadirec = parameters.webDirec()+"jinjatemplates"
-    jinjadirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"
+    #jinjadirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"
     t = Environment(loader=FileSystemLoader(jinjadirec),autoescape=True)
     if pwebmodel.getintfid() is not None:
         templatename = "interface.jinja.html"

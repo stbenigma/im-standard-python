@@ -72,14 +72,14 @@ class JSModel:
         assert (elemkey in self.jsmodel),"key {} not found in json-model".format(elemkey)
         """get all elements, if filtered make sure it is a) not a dict, b) has no devstatus or c) its devstatus is in my statusfilter"""
         elems = {key : value for key,value in self.jsmodel[elemkey].items()
-                   if (not pfiltered or type(value) != dict or 'devstatus' not in value or value['devstatus'] in self.statusfilter) }
+                   if (not pfiltered or type(value) != dict or 'devstatus' not in value or value['devstatus'] in self._statusfilter) }
         return elems
 
     def setstatusfilter(self,pfilter):
-        self.statusfilter = pfilter
+        self._statusfilter = pfilter
 
     def getstatusfilter(self,pfilter):
-        return self.statusfilter
+        return self._statusfilter
 
     @staticmethod
     def readfromfile(pfilename):
