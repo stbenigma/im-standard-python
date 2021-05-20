@@ -4,7 +4,7 @@ from IM_DB import parameters
 
 logcount: int = 0
 logfile = None
-
+logtap = None
 
 def initlog(pfunc):
     """initializes the logfile for appending (creating if it does not exist)
@@ -25,6 +25,10 @@ def writelog(pline: str):
     if logfile is not None:
         logcount += 1
         logfile.write("\t{}\n".format(pline))
+
+    global logtap
+    if logtap:
+        logtap(pline)
 # writelog
 
 def showmessages(pmsg: str = None):
