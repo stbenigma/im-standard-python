@@ -308,6 +308,13 @@ def transferentity(penti, pdiagid, puc, pdc):
 
     entiodm = findField(penti, 'oid')
     enti = Entity().getbyODMref(psrcid=entiodm)
+    if not enti:
+        import logging
+        logging.getLogger('transfermodel').warning('Unable to find entity {0} referenced on diagram {1}\n{2}'.format(
+            entiodm, pdiagid, et.tostring(penti)))
+        return False
+    assert enti, "Cannot find entity with ID>{}<\n{}".format(entiodm, penti)
+
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = findField(hiddenelements, "elements")
@@ -466,6 +473,10 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         if (type == 'Relation'):
             relaguid = findField(c, "oid")
             rela = Relation().getbyODMref(psrcid=relaguid)
+            if not rela:
+                import logging
+                logging.getLogger('transfermodel').warning('Missing relation {}'.format(relaguid))
+                continue
             linewidth = findText(c, 'lineWidth')
             sourcelabel = c.find('sourceLabel/labelBounds')
             sttex = findField(sourcelabel, 'x')
@@ -1005,7 +1016,10 @@ def getpartyref(pelem):
 
 def do1Entity(fileName):
     global entities
-    tree = et.parse(fileName)
+    try:
+        tree = et.parse(fileName)
+    except et.ParseError as e:
+        raise Exception('Cannot parse {}'.format(fileName), e)
     entixml = tree.getroot()
     #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
@@ -1594,6 +1608,7 @@ def transferODMModel():
     dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact,pmandatoryfile=False)
 
     """überträgt das ganze ODM Modell in die DB"""
+    insertlanguages()
     transferproject()
     transferTypes()
     transferDocuments()
