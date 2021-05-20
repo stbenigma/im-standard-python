@@ -1,6 +1,30 @@
 <ac:layout-section ac:type="single">
-  <ac:layout-cell>
-    <h1>Impressum</h1>
-    <p>ID={{key}}</p>
-  </ac:layout-cell>
+    <ac:layout-cell>
+        <h1>{{ gettext('Imprint') }}</h1>
+        <p>ID={{key}}</p>
+        <p></p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+        <ac:structured-macro ac:name="details" ac:schema-version="1" ac:macro-id="549c87d1-a2ed-4f06-a2bf-116cf8e5bb1a">
+            <ac:parameter ac:name="hidden">true</ac:parameter>
+            <ac:rich-text-body>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Topic</th>
+                        <td>{{page['topic']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Key</th>
+                        <td>{{key}}</td>
+                    </tr>
+                    <tr>
+                        <th>Revision</th>
+                        <td>{{ data['_imprint_'].get('model-git-revision', 'Unknown') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </ac:rich-text-body>
+        </ac:structured-macro>
+    </ac:layout-cell>
 </ac:layout-section>

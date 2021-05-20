@@ -11,28 +11,32 @@
           <tr>
             <th>{{ gettext('Type') }}</th>
             <td>{{attribute['basedatatype+']}}</td>
+            <td></td>
           </tr>
           <tr>
             <th>{{ gettext('Basetype') }}</th>
             <td>{{ attribute['type+'] }}</td>
+            <td></td>
           </tr>
           <tr>
             <th>{{ gettext('Entity') }}</th>
             <td>{{ util.soft_link(attribute.get('entity')) }}</td>
+            <td></td>
           </tr>
           <tr>
             <th>{{ gettext('Mandatory') }}</th>
-            <td>{{ attribute['mandatory']}} </td>
+            <td>{{ attribute['mandatory']}}</td>
+            <td></td>
           </tr>
           <tr>
             <th>{{ gettext('Descriptive') }}</th>
             <td>{{ attribute['descriptive']}} </td>
-            <td>{{ gettext('The attribute is used for description') }}</td>
+            <td>{{ gettext('Whether the attribute is used for descriptive purposes') }}</td>
           </tr>
           <tr>
             <th>{{ gettext('Translated') }}</th>
             <td>{{ attribute['translated']}}</td>
-            <td>{{ gettext('The entity requires/provides translation') }}</td>
+            <td>{{ gettext('The attribute value is subject to translation') }}</td>
           </tr>
           <tr>
             <th>{{ gettext('Historicised') }}</th>
@@ -50,12 +54,13 @@
             <td>{{ gettext('This attribute is encrypted') }}</td>
           </tr>
           <tr>
-            <th>Domäne</th>
+            <th>{{ gettext('Domain') }}</th>
             <td>
               {% if attribute.get('domain') and not 'DER' in attribute['domain']['origin'] %}
               {{ util.soft_link(attribute.get('domain')) }}
               {% endif %}
             </td>
+            <td></td>
             </tr>
         </tbody>
       </table>

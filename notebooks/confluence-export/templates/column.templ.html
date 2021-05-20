@@ -4,7 +4,7 @@
   {% include 'header.templ.html' %}
   <ac:layout-section ac:type="two_right_sidebar">
     <ac:layout-cell>
-      <h1>{{ gettext('Spalte %(name)s [Datenmodell]', name=util.translate(column['name'])) }}</h1>
+      <h1>{{ gettext('Column %(name)s [Datamodel]', name=util.translate(column['name'])) }}</h1>
       <p>{{ util.translate_text(column['descr']) }}</p>
       <table class="relative-table" style="width: 100%;">
         <tbody>
@@ -62,8 +62,9 @@
     <ac:layout-cell>
       <p>
         <ac:structured-macro ac:macro-id="eb891189-be96-4a41-9d8a-328a335a125c" ac:name="tip" ac:schema-version="1">
-          <ac:parameter ac:name="title">Hinweis</ac:parameter>
-          <ac:rich-text-body>{{ gettext('The following section contains the manual documentation. This content is maintained on ') }}<ac:link><ri:page ri:content-title="{{ doc_page_title }}" /><![CDATA[[{{ gettext('this subpage') }}]]></ac:link>{{ gettext('.') }}</ac:rich-text-body>
+          <ac:parameter ac:name="title">{{ gettext('Note') }}</ac:parameter>
+          {% set linkbody = '<ac:link><ri:page ri:content-title="{0}" /><![CDATA[[{1}]]></ac:link>'.format(doc_page_title, gettext('this subpage'))|safe %}
+          <ac:rich-text-body>{{ gettext('The following section contains the manual documentation. This content is maintained on %(link)s.', link=linkbody) }}</ac:rich-text-body>
         </ac:structured-macro>
       </p>
       <p>
@@ -103,7 +104,7 @@
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <h1>{{ gettext('Data Lineage') }}</h1>
-      <p>{{ gettext('Columns linked with the same IM attribute:') }}</p>
+      <p>{{ gettext('Columns linked with the same IM attributes:') }}</p>
       <p>
       <table class="relative-table" style="width: 100%;">
         <tbody>

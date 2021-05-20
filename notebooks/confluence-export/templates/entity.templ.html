@@ -26,6 +26,7 @@
       <ul>{% for supertype in entity['supertypes'] %}
         <li>{{ util.soft_link(supertype) }}</li>
         {% endfor %}</ul>
+      <h1>{{ gettext('Subtypes') }}</h1>
     </ac:layout-cell>
     <ac:layout-cell>
       {% set entity_graph = page['entity-graph-name'] %}
@@ -41,8 +42,8 @@
       <table class="relative-table" style="width: 100%;">
       <tbody>
         <tr>
-          <th>Name</th>
-          <th>Type</th>
+          <th>{{ gettext('Name') }}</th>
+          <th>{{ gettext('Type') }}</th>
           <th></th>
           <th></th>
         </tr>
