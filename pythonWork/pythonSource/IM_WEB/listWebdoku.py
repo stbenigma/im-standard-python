@@ -90,8 +90,8 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
 
     """Schnittstellen werden immer englisch gedruckt"""
-    Languagetext.reportLang(Languagetext.EN)
-    lang = Languagetext.EN
+    lang = Languagetext.EN if (Languagetext.EN in langs) else parameters.dbDefaultLang()
+    Languagetext.reportLang(lang)
     for anker,element in schnlist.items():
         langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))
