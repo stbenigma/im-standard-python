@@ -136,7 +136,7 @@
 					
 				    <!-- relationships-->
 					{% call blocks.subblock(header=webmodel.gettransltext("Beziehungen"), lbc=elemid ~ "rela") %}
-						{# is now in head of entity {{ webmodel.getentienviron(elemid)|safe }}#}
+						{{ webmodel.getentienviron(elemid)|safe }}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>

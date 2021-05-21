@@ -6,7 +6,7 @@
       "uc": "stb",
       "dc": "2020-02-03 17:29:16 UTC",
       "um": "sys",
-      "dm": "2021-05-18 09:49:04.286878"
+      "dm": "2021-05-21 16:19:27.514015"
    },
    "languages": {
       "de": {
@@ -3529,7 +3529,10 @@
          "roles+": [
             "ENTI511"
          ],
-         "subtypes+": [],
+         "subtypes+": [
+            "ENTI429",
+            "ENTI638"
+         ],
          "attributes+": [],
          "relations+": [
             "RELA895",
@@ -8172,7 +8175,7 @@
          },
          "exptuple#": null,
          "prefix": null,
-         "subtypellevel+": 0,
+         "subtypellevel+": 1,
          "uc": "stb",
          "dc": "2020-02-03 20:05:22 UTC",
          "um": "sys",
@@ -8191,7 +8194,9 @@
                "2021-05-18 09:48:22.937015"
             ]
          },
-         "supertypes+": [],
+         "supertypes+": [
+            "ENTI430"
+         ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
@@ -8289,7 +8294,7 @@
          },
          "exptuple#": null,
          "prefix": null,
-         "subtypellevel+": 0,
+         "subtypellevel+": 1,
          "uc": "stb",
          "dc": "2020-02-03 20:05:22 UTC",
          "um": "sys",
@@ -8308,7 +8313,9 @@
                "2021-05-18 09:48:22.945121"
             ]
          },
-         "supertypes+": [],
+         "supertypes+": [
+            "ENTI430"
+         ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
@@ -138065,7 +138072,7 @@
          },
          "to-from": {
             "enti": "ENTI430",
-            "arc": "ARCS853",
+            "arc": "ARCS894",
             "assoc": {
                "de": null,
                "en": null
@@ -138105,7 +138112,7 @@
          },
          "to-from": {
             "enti": "ENTI430",
-            "arc": "ARCS853",
+            "arc": "ARCS894",
             "assoc": {
                "de": null,
                "en": null
@@ -138225,7 +138232,7 @@
          },
          "to-from": {
             "enti": "ENTI596",
-            "arc": "ARCS874",
+            "arc": "ARCS871",
             "assoc": {
                "de": null,
                "en": null
@@ -138265,7 +138272,7 @@
          },
          "to-from": {
             "enti": "ENTI596",
-            "arc": "ARCS874",
+            "arc": "ARCS871",
             "assoc": {
                "de": null,
                "en": null
@@ -138305,7 +138312,7 @@
          },
          "to-from": {
             "enti": "ENTI596",
-            "arc": "ARCS874",
+            "arc": "ARCS871",
             "assoc": {
                "de": null,
                "en": null
@@ -138345,7 +138352,7 @@
          },
          "to-from": {
             "enti": "ENTI596",
-            "arc": "ARCS874",
+            "arc": "ARCS871",
             "assoc": {
                "de": null,
                "en": null
@@ -138385,7 +138392,7 @@
          },
          "to-from": {
             "enti": "ENTI596",
-            "arc": "ARCS874",
+            "arc": "ARCS871",
             "assoc": {
                "de": null,
                "en": null
@@ -147788,8 +147795,6 @@
          "name": "Gesch\u00e4ftstransaktion_subtype",
          "entity": "ENTI472",
          "relations": [
-            "RELA895",
-            "RELA896",
             "RELA854",
             "RELA855"
          ],
@@ -147858,6 +147863,11 @@
          "name": "Server Hardware_subtype",
          "entity": "ENTI492",
          "relations": [
+            "RELA829",
+            "RELA828",
+            "RELA827",
+            "RELA831",
+            "RELA830",
             "RELA872",
             "RELA873"
          ],
@@ -147873,12 +147883,7 @@
          "relations": [
             "RELA875",
             "RELA876",
-            "RELA877",
-            "RELA829",
-            "RELA828",
-            "RELA827",
-            "RELA831",
-            "RELA830"
+            "RELA877"
          ],
          "sourceref": {},
          "uc": "stb",
@@ -147935,7 +147940,10 @@
       "ARCS894": {
          "name": "Gesch\u00e4ftsereignis_subtype",
          "entity": "ENTI430",
-         "relations": [],
+         "relations": [
+            "RELA895",
+            "RELA896"
+         ],
          "sourceref": {},
          "uc": "stb",
          "dc": "2020-02-03 20:05:22 UTC",
@@ -278728,25 +278736,6 @@
                   "dm": null
                },
                {
-                  "element": "ENTI429",
-                  "index": 0,
-                  "pos_x": 408,
-                  "pos_y": 876,
-                  "width": 141,
-                  "height": 62,
-                  "opacity": 100,
-                  "Color": "eff7f7",
-                  "marginwidth": null,
-                  "marginopacity": 100,
-                  "margincolor": "ffffff",
-                  "fontsize": 10,
-                  "fontcolor": "0000ff",
-                  "uc": "stb",
-                  "dc": "2020-02-09 20:00:33 UTC",
-                  "um": null,
-                  "dm": null
-               },
-               {
                   "element": "ENTI430",
                   "index": 0,
                   "pos_x": 377,
@@ -278899,25 +278888,6 @@
                   "dm": null
                },
                {
-                  "element": "ENTI638",
-                  "index": 0,
-                  "pos_x": 408,
-                  "pos_y": 794,
-                  "width": 141,
-                  "height": 63,
-                  "opacity": 100,
-                  "Color": "eff7f7",
-                  "marginwidth": null,
-                  "marginopacity": 100,
-                  "margincolor": "ffffff",
-                  "fontsize": 10,
-                  "fontcolor": "0000ff",
-                  "uc": "stb",
-                  "dc": "2020-02-09 20:00:33 UTC",
-                  "um": null,
-                  "dm": null
-               },
-               {
                   "element": "ENTI256",
                   "index": 0,
                   "pos_x": 145,
@@ -278964,6 +278934,25 @@
                   "height": 76,
                   "opacity": 100,
                   "Color": "f9dab6",
+                  "marginwidth": null,
+                  "marginopacity": 100,
+                  "margincolor": "ffffff",
+                  "fontsize": 10,
+                  "fontcolor": "0000ff",
+                  "uc": "stb",
+                  "dc": "2020-02-09 20:00:33 UTC",
+                  "um": null,
+                  "dm": null
+               },
+               {
+                  "element": "ENTI429",
+                  "index": 0,
+                  "pos_x": 408,
+                  "pos_y": 876,
+                  "width": 141,
+                  "height": 62,
+                  "opacity": 100,
+                  "Color": "eff7f7",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -279097,6 +279086,25 @@
                   "height": 522,
                   "opacity": 100,
                   "Color": "f9dab6",
+                  "marginwidth": null,
+                  "marginopacity": 100,
+                  "margincolor": "ffffff",
+                  "fontsize": 10,
+                  "fontcolor": "0000ff",
+                  "uc": "stb",
+                  "dc": "2020-02-09 20:00:33 UTC",
+                  "um": null,
+                  "dm": null
+               },
+               {
+                  "element": "ENTI638",
+                  "index": 0,
+                  "pos_x": 408,
+                  "pos_y": 794,
+                  "width": 141,
+                  "height": 63,
+                  "opacity": 100,
+                  "Color": "eff7f7",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -287630,25 +287638,6 @@
                   "dm": null
                },
                {
-                  "element": "ENTI429",
-                  "index": 0,
-                  "pos_x": 1569,
-                  "pos_y": 554,
-                  "width": 148,
-                  "height": 97,
-                  "opacity": 100,
-                  "Color": "eff7f7",
-                  "marginwidth": null,
-                  "marginopacity": 100,
-                  "margincolor": "ffffff",
-                  "fontsize": 10,
-                  "fontcolor": "0000ff",
-                  "uc": "stb",
-                  "dc": "2020-02-09 20:00:54 UTC",
-                  "um": null,
-                  "dm": null
-               },
-               {
                   "element": "ENTI430",
                   "index": 0,
                   "pos_x": 1535,
@@ -287953,14 +287942,14 @@
                   "dm": null
                },
                {
-                  "element": "ENTI638",
+                  "element": "ENTI256",
                   "index": 0,
-                  "pos_x": 1562,
-                  "pos_y": 432,
-                  "width": 148,
-                  "height": 96,
+                  "pos_x": 1379,
+                  "pos_y": 846,
+                  "width": 170,
+                  "height": 119,
                   "opacity": 100,
-                  "Color": "eff7f7",
+                  "Color": "dae8c5",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -287972,14 +287961,14 @@
                   "dm": null
                },
                {
-                  "element": "ENTI256",
+                  "element": "ENTI429",
                   "index": 0,
-                  "pos_x": 1379,
-                  "pos_y": 846,
-                  "width": 170,
-                  "height": 119,
+                  "pos_x": 1569,
+                  "pos_y": 554,
+                  "width": 148,
+                  "height": 97,
                   "opacity": 100,
-                  "Color": "dae8c5",
+                  "Color": "eff7f7",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -288018,6 +288007,25 @@
                   "height": 155,
                   "opacity": 100,
                   "Color": "fcf0cf",
+                  "marginwidth": null,
+                  "marginopacity": 100,
+                  "margincolor": "ffffff",
+                  "fontsize": 10,
+                  "fontcolor": "0000ff",
+                  "uc": "stb",
+                  "dc": "2020-02-09 20:00:54 UTC",
+                  "um": null,
+                  "dm": null
+               },
+               {
+                  "element": "ENTI638",
+                  "index": 0,
+                  "pos_x": 1562,
+                  "pos_y": 432,
+                  "width": 148,
+                  "height": 96,
+                  "opacity": 100,
+                  "Color": "eff7f7",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -292720,25 +292728,6 @@
                   "dm": null
                },
                {
-                  "element": "ENTI429",
-                  "index": 0,
-                  "pos_x": 1047,
-                  "pos_y": 1255,
-                  "width": 139,
-                  "height": 53,
-                  "opacity": 100,
-                  "Color": "eff7f7",
-                  "marginwidth": null,
-                  "marginopacity": 100,
-                  "margincolor": "ffffff",
-                  "fontsize": 10,
-                  "fontcolor": "0000ff",
-                  "uc": "stb",
-                  "dc": "2020-02-09 20:01:22 UTC",
-                  "um": null,
-                  "dm": null
-               },
-               {
                   "element": "ENTI430",
                   "index": 0,
                   "pos_x": 1037,
@@ -293005,25 +292994,6 @@
                   "dm": null
                },
                {
-                  "element": "ENTI638",
-                  "index": 0,
-                  "pos_x": 1047,
-                  "pos_y": 1198,
-                  "width": 139,
-                  "height": 35,
-                  "opacity": 100,
-                  "Color": "eff7f7",
-                  "marginwidth": null,
-                  "marginopacity": 100,
-                  "margincolor": "ffffff",
-                  "fontsize": 10,
-                  "fontcolor": "0000ff",
-                  "uc": "stb",
-                  "dc": "2020-02-09 20:01:22 UTC",
-                  "um": null,
-                  "dm": null
-               },
-               {
                   "element": "ENTI256",
                   "index": 0,
                   "pos_x": 990,
@@ -293070,6 +293040,25 @@
                   "height": 33,
                   "opacity": 100,
                   "Color": "f9dab6",
+                  "marginwidth": null,
+                  "marginopacity": 100,
+                  "margincolor": "ffffff",
+                  "fontsize": 10,
+                  "fontcolor": "0000ff",
+                  "uc": "stb",
+                  "dc": "2020-02-09 20:01:22 UTC",
+                  "um": null,
+                  "dm": null
+               },
+               {
+                  "element": "ENTI429",
+                  "index": 0,
+                  "pos_x": 1047,
+                  "pos_y": 1255,
+                  "width": 139,
+                  "height": 53,
+                  "opacity": 100,
+                  "Color": "eff7f7",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -293260,6 +293249,25 @@
                   "height": 345,
                   "opacity": 100,
                   "Color": "f9dab6",
+                  "marginwidth": null,
+                  "marginopacity": 100,
+                  "margincolor": "ffffff",
+                  "fontsize": 10,
+                  "fontcolor": "0000ff",
+                  "uc": "stb",
+                  "dc": "2020-02-09 20:01:22 UTC",
+                  "um": null,
+                  "dm": null
+               },
+               {
+                  "element": "ENTI638",
+                  "index": 0,
+                  "pos_x": 1047,
+                  "pos_y": 1198,
+                  "width": 139,
+                  "height": 35,
+                  "opacity": 100,
+                  "Color": "eff7f7",
                   "marginwidth": null,
                   "marginopacity": 100,
                   "margincolor": "ffffff",
@@ -315112,9 +315120,9 @@
    "storageformats": {},
    "_imprint_": {
       "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/ModellModell/DB/ModellModell_neu.db",
-      "created": "2021-05-18 09:49:28.871902",
+      "created": "2021-05-21 16:20:25.982759",
       "Modelversion": "1.3",
-      "hashvalue": 587235552938250701,
+      "hashvalue": 7308890142551027098,
       "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
    }
 }
