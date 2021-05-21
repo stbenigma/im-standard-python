@@ -115,7 +115,8 @@ class Webmodel():
             if len(tablist) == 0: continue
             allmappings[intfelem["name"]] = ', '.join (self.getreflink(name="({})".format(self.getelem(tabanker)['name'])
                                                                 ,destid=tabanker
-                                                                ,curintfid=self.getintfid()) for tabanker in tablist)
+                                                                ,curintfid=self.getintfid()
+                                                                ,destintfid=intfanker) for tabanker in tablist)
         # for
         return allmappings
 
