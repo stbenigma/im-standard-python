@@ -193,7 +193,7 @@ CELLHEIGHT = 30
 CELLWIDTH = ENTIWIDTH *5/4
 LINESHORTEN = 20
 MAXRELACHARS = 16
-MAXENTICHARS = 24
+MAXENTICHARS = 21
 
 
 def printenti(pcell:EntityCell,pposx,pposy):
@@ -251,11 +251,9 @@ def generate_svg_content(penviron):
     """
 
     if penviron is None:
-        print ("Penviron is NOne: ")
+        print ("Penviron is None: ")
         return None
-    maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
     minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
-    maincell = penviron.getcell(phidx='left', pvidx=0)
 
     rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
     rectwidth = 3 * CELLWIDTH

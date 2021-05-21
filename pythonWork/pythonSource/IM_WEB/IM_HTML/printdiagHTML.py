@@ -205,9 +205,9 @@ def printtexte(plist,plang):
 
         #find the starting-/endingpoints of the first / last linesegment = touchoint with entity.
         linesegs = relaelem['linesegments']
-        if len(linesegs)> 0:
-            linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
-            lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
+        if len(linesegs)== 0: continue
+        linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
+        lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
 
         #assume fixed length font
         textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
@@ -266,6 +266,7 @@ def print1arc(parc,pcolor):
         </g>
     """
     retval = ""
+    if len(parc) == 0: return retval
     retval += startarcstr.format(0,0)
     for c in parc['circles']:
         #print(circledraw.format(c[0],c[1],c[0],c[1]))
