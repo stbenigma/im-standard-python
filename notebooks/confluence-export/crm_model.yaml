@@ -8,10 +8,11 @@ confluence:
   # x 2 (read, write)  => 2.5h sleep time for one run
   cooldown: 0.01
 
-cautious: false
+# Abort processing if pages with same title exist outside of the specified document root
+cautious: true
 
 # datasource
-json: testdata/IM_CRM_FYAYC.json
+source: testdata/IM_CRM_FYAYC.json
 
 # translations to publish
 # first language listed here is not placed in a language subfolder

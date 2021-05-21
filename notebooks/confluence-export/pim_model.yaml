@@ -8,11 +8,11 @@ confluence:
   # x 2 (read, write)  => 2.5h sleep time for one run
   cooldown: 0.01
 
-cautious: false
+# Abort processing if pages with same title exist outside of the specified document root
+cautious: true
 
-# datasource
-#json: testdata/IM_PIM_FYAYC.json
-json: /Users/bue/dev/fyyccim-refmodels/PIM/DB/IM_PIM_FYAYC.json
+# Datasource
+source: testdata/IM_PIM_FYAYC.json
 
 # translations to publish
 # first language listed here is not postfixed
