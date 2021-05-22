@@ -52,7 +52,7 @@ def json2xml(json_obj, line_padding=""):
 
 def main(param1):
     if param1 is None:
-        filepath =os.path.dirname(__file__)+'/../IM_db/sqlfiles/'
+        filepath ='./' # current directory is better os.path.dirname(__file__)+'/../IM_db/sqlfiles/'
         filename = 'modelmodel-empty'
         createemptyJSON(pfilepath=filepath,pfilename=filename)
         print ("empty JSON file {} created"
