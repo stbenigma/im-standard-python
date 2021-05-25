@@ -1164,7 +1164,7 @@ def do1Relation(fileName):
         try:
             rela.insert()
             break
-        except dbDML.UniqueKeyException as e:
+        except UniqueKeyException as e:
             #ODM can have duplicate names for exception. Add digit to name
             logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
             logmessages.writelog(e.__str__())

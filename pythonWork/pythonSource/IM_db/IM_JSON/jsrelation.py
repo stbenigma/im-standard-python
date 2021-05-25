@@ -115,7 +115,7 @@ def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.RELA, pjs2obj=js2rela,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(Modelelemtype.RELA).items():
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.RELA).items():
         newrelaid = keytransl(jid)
 
         minzoomlevel = jelem['minzoomlevel']
@@ -172,7 +172,7 @@ def arcs2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ARCS, pjs2obj=js2arcs,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(Modelelemtype.ARCS).items():
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ARCS).items():
         if pwithextsrcref:
             inssourceref(presult=presult,pmodeid=keytransl(jid), psources=jelem["sourceref"])
     # for

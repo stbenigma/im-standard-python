@@ -1,7 +1,16 @@
+
+ 
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>crmTest - TestMapping</title>
+    <title>TestMapping</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="image/imicon.png">
@@ -15,743 +24,1302 @@
 </head>
 
 <body>
-    <div class="header" id="TopBar">
-        <p4>foryouandyourcustomers</p4>
-        <p4>crmTest - TestMapping</p4>
-        <p5>2021-04-16, 17:16</p5>
-        <img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
-    </div>
-        <button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
-        <img class="icon-filter" alt="filter" src="icons/search.svg">
-    </button>
-    <div class="container" id="sidebar">
-        <div id="toc_list">
-            <div class="form-wrapper">
-                <form autocomplete="off">
-                    <div class="form-group">
-                        <label class="form-label" for="first">search key</label>
-                        <input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
-                        <img id="searchclear" class="icon-times" src="icons/cross.svg">
-                        <img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
-                    </div>
-                </form>
-            </div>
-            <p6>Hits:</p6>
-                <output id="count"></output>
-                <div class="contentView">
+	<div class="header" id="TopBar">
+		<p4>foryouandyourcustomers</p4>
+		<p4>TestMapping</p4>
+		<p5>2021-05-21 16:01:59.074916</p5>
+		<img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+	</div>
+	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+		<img class="icon-filter" alt="filter" src="icons/search.svg">
+	</button>
+	<div class="container" id="sidebar">
+		<div id="toc_list">
+			<div class="form-wrapper">
+				<form autocomplete="off">
+					<div class="form-group">
+						<label class="form-label" for="first">search key</label>
+						<input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+						<img id="searchclear" class="icon-times" src="icons/cross.svg">
+						<img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
+					</div>
+				</form>
+			</div>
+			<p6>Hits:</p6>
+			<output id="count"></output>
+			<div class="contentView">
 
-                <div class="panel-body" id="TablesL">
-                    <div class="panel">
-                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2165">
-                            <label class="label0">Tables</label>
-                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
-                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
-                        </div>
-                    </div>
-                    <!-- The inside div eliminates the 'jumping' animation. -->
-                    <div class="collapse" id="bar2165">
-                        <ol class="tree" id="TablesList">
-    
-                <li class="obj"><a href="#TABL726" target="_self">ColAttr</a></li>
-                <li class="obj"><a href="#TABL725" target="_self">TabEntity</a></li>
-                <li class="obj"><a href="#TABL732" target="_self">TabMany</a></li>
-                <li class="obj"><a href="#TABL731" target="_self">TabRela</a></li>
-                    </ol>
-            </div>
-        </div>
+				<!--tables-->       
+				<div class="panel-body" id="TablesL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bartabl">
+							<label class="label0">Tables</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bartabl">
+						
+						<ol class="tree" id="TablesList">
+							 
+							<li class="obj"><a href="#TABL727" target="_self">ColAttr</a>
+							 
+							<li class="obj"><a href="#TABL726" target="_self">TabEntity</a>
+							 
+							<li class="obj"><a href="#TABL733" target="_self">TabMany</a>
+							 
+							<li class="obj"><a href="#TABL732" target="_self">TabRela</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+				<!--columns-->       
+				<div class="panel-body" id="ColumnsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barcolu">
+							<label class="label0">Columns</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barcolu">
+						
+						<ol class="tree" id="ColumnsList">
+							
+							
+							
+							<li class="obj"><a href="#COLU728" target="_self">Col1to1 (ColAttr)</a> 
+							
+							
+							
+							<li class="obj"><a href="#COLU729" target="_self">col1tomany (ColAttr)</a> 
+							
+							
+							
+							<li class="obj"><a href="#COLU730" target="_self">colmanyto11 (ColAttr)</a> 
+							
+							
+							
+							<li class="obj"><a href="#COLU731" target="_self">colmanyto12 (ColAttr)</a> 
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+				
+				<!--domains-->       
+				
+				
+				<!--diagrams-->       
+				
+				<div class="panel-body" id="DiagramL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardiag">
+							<label class="label0">Diagrams</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardiag">
+						
+					<ol class="tree" id="DiagramList">
+						
+							<li class="obj"><a href="#INTF725" target="_self">TestMapping</a> 
+						
+					</ol>
+				
+					</div>
+				</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
 
-                <div class="panel-body" id="ColumnsL">
-                    <div class="panel">
-                        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2166">
-                            <label class="label0">Columns</label>
-                            <img class="icon-minus" alt="minus" src="icons/minus.svg">
-                            <img class="icon-plus" alt="plus" src="icons/plus.svg">
-                        </div>
-                    </div>
-                    <!-- The inside div eliminates the 'jumping' animation. -->
-                    <div class="collapse" id="bar2166">
-                        <ol class="tree" id="ColumnsList">
-    
-                <li class="obj"><a href="#COLU727" target="_self">Col1to1 (ColAttr)</a></li>
-                <li class="obj"><a href="#COLU728" target="_self">col1tomany (ColAttr)</a></li>
-                <li class="obj"><a href="#COLU729" target="_self">colmanyto11 (ColAttr)</a></li>
-                <li class="obj"><a href="#COLU730" target="_self">colmanyto12 (ColAttr)</a></li>
-                    </ol>
-            </div>
-        </div>
+	<div class="wrapper">
+		<!--header-->
+		<div class="top-container">
+			<p3 class="descr">This website contains the complete content 
+				of the <p2 class="IM">crmTest - TestMapping</p2> from foryouandyourcustomers. 
+				This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>. 
+			</p3>
+			<br>References in brackets are indirect references:<br>
+			(Table reference) for tables: Indirect linking of a table via an entity to a table in another interface<br>
+			(Column reference): Indirect linking of a column via an attribute to a column  in another interface                 
+		</div>
+		<br><hr>
+		
+		<!--diagrams-->       
+		
+			
+				<div id="INTF725-container">
+					<h3 id="INTF725">TestMapping</h3>
+					<div class="diagram" id = "diag0"> 
+					None
+					<div class="print-button-container">
+						<button class="print-button" onclick="printElem(this)">print</button>
+					</div>
+				 	</div>
+				</div>
+			
+		
+		
+		<!--tables-->       
+		
+		
+		
+		<div class="entity" id="TABL727">
+			<div class="describtion">
+				 <span>
+						<p>Table</p>
+						<h1>ColAttr
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="TABL727main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:41:30 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--columns-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL727colu">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Columns</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL727colu">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Domain</th>
+										<th>Datatype</th>
+									</tr>
+									
+									
+									
+									<tr>
+										<td><a href="#COLU728" target="_self">Col1to1</a></td>
+										<td></td>
+										<td> 
+											
+											
+											<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+											
+										</td>
+										<td>unknown</td>
+									</tr>
+									
+									
+									
+									<tr>
+										<td><a href="#COLU729" target="_self">col1tomany</a></td>
+										<td></td>
+										<td> 
+											
+											
+											<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+											
+										</td>
+										<td>unknown</td>
+									</tr>
+									
+									
+									
+									<tr>
+										<td><a href="#COLU730" target="_self">colmanyto11</a></td>
+										<td></td>
+										<td> 
+											
+											
+											<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+											
+										</td>
+										<td>unknown</td>
+									</tr>
+									
+									
+									
+									<tr>
+										<td><a href="#COLU731" target="_self">colmanyto12</a></td>
+										<td></td>
+										<td> 
+											
+											
+											<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+											
+										</td>
+										<td>unknown</td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL727map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL727map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model</th>
+										<th>Entity(ies) / Table(s)</th>
+									</tr>
+									
+									<tr>
+										<td>Information Model</td>
+										<td><a href="crmTest_de.html#ENTI191" target="_blank">Company</a>, <a href="crmTest_de.html#ENTI114" target="_blank">*natural person</a></td>
+									</tr>
+									
+									<tr>
+										<td>CRM-Salesforce</td>
+										<td><a href="CRM-Salesforce.html#TABL471" target="_blank">(Juristische_Person)</a>, <a href="CRM-Salesforce.html#TABL402" target="_blank">(person)</a></td>
+									</tr>
+									
+									<tr>
+										<td>MDM</td>
+										<td><a href="MDM.html#TABL702" target="_blank">(natural_person)</a></td>
+									</tr>
+									
+									<tr>
+										<td>PIM-Step</td>
+										<td><a href="PIM-Step.html#TABL919" target="_blank">(account)</a></td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					
+					<!--referencedby-->       
+					
+					
+					<!--user defined properties-->
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL727udp">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>User defined properties</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL727udp">
+						
+					
+					<div class="table-responsive">
+						<h3>datamapping</h3>
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Group</th>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+								
+									
+									<tr>
+										<td>PENTA</td>
+										<td>PENTA TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+									
+									<tr>
+										<td>PIM</td>
+										<td>PIM TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+							</tbody>
+						</table>
+					</div> 
+				
+					
+					</div>
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#TABL727main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="TABL726">
+			<div class="describtion">
+				 <span>
+						<p>Table</p>
+						<h1>TabEntity
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="TABL726main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:41:19 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--columns-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL726colu">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Columns</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL726colu">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Domain</th>
+										<th>Datatype</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL726map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL726map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model</th>
+										<th>Entity(ies) / Table(s)</th>
+									</tr>
+									
+									<tr>
+										<td>Information Model</td>
+										<td><a href="crmTest_de.html#ENTI162" target="_blank">*Role</a></td>
+									</tr>
+									
+									<tr>
+										<td>CRM-Salesforce</td>
+										<td><a href="CRM-Salesforce.html#TABL432" target="_blank">(Personenrolle)</a></td>
+									</tr>
+									
+									<tr>
+										<td>ERP-SAP3</td>
+										<td><a href="ERP-SAP3.html#TABL1052" target="_blank">(Personenrolle)</a></td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					
+					<!--referencedby-->       
+					
+					
+					<!--user defined properties-->
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL726udp">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>User defined properties</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL726udp">
+						
+					
+					<div class="table-responsive">
+						<h3>datamapping</h3>
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Group</th>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+								
+									
+									<tr>
+										<td>PENTA</td>
+										<td>PENTA TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+									
+									<tr>
+										<td>PIM</td>
+										<td>PIM TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+							</tbody>
+						</table>
+					</div> 
+				
+					
+					</div>
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#TABL726main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="TABL733">
+			<div class="describtion">
+				 <span>
+						<p>Table</p>
+						<h1>TabMany
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%">Created on 8/2/2021  9:47:22 during import from /Users/stb/Downloads/TestMapping.csv</th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="TABL733main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:47:22 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--columns-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL733colu">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Columns</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL733colu">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Domain</th>
+										<th>Datatype</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL733map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL733map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model</th>
+										<th>Entity(ies) / Table(s)</th>
+									</tr>
+									
+									<tr>
+										<td>Information Model</td>
+										<td><a href="crmTest_de.html#ENTI145" target="_blank">Country</a>, <a href="crmTest_de.html#ENTI162" target="_blank">*Role</a></td>
+									</tr>
+									
+									<tr>
+										<td>CRM-Salesforce</td>
+										<td><a href="CRM-Salesforce.html#TABL344" target="_blank">(Land)</a>, <a href="CRM-Salesforce.html#TABL432" target="_blank">(Personenrolle)</a></td>
+									</tr>
+									
+									<tr>
+										<td>ERP-SAP3</td>
+										<td><a href="ERP-SAP3.html#TABL1005" target="_blank">(Land)</a>, <a href="ERP-SAP3.html#TABL1052" target="_blank">(Personenrolle)</a></td>
+									</tr>
+									
+									<tr>
+										<td>PIM-Step</td>
+										<td><a href="PIM-Step.html#TABL906" target="_blank">(Land)</a></td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					
+					<!--referencedby-->       
+					
+					
+					<!--user defined properties-->
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL733udp">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>User defined properties</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL733udp">
+						
+					
+					<div class="table-responsive">
+						<h3>datamapping</h3>
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Group</th>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+								
+									
+									<tr>
+										<td>PENTA</td>
+										<td>PENTA TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+									
+									<tr>
+										<td>PIM</td>
+										<td>PIM TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+							</tbody>
+						</table>
+					</div> 
+				
+					
+					</div>
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#TABL733main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="TABL732">
+			<div class="describtion">
+				 <span>
+						<p>Table</p>
+						<h1>TabRela
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="TABL732main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:41:37 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--columns-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL732colu">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Columns</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL732colu">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Domain</th>
+										<th>Datatype</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL732map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL732map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model</th>
+										<th>Entity(ies) / Table(s)</th>
+									</tr>
+									
+									<tr>
+										<td>Information Model</td>
+										<td><a href="crmTest_de.html#RELA227" target="_blank">Relation_46</a></td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					
+					<!--referencedby-->       
+					
+					
+					<!--user defined properties-->
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#TABL732udp">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>User defined properties</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="TABL732udp">
+						
+					
+					<div class="table-responsive">
+						<h3>datamapping</h3>
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Group</th>
+									<th>Property</th>
+									<th>Value</th>
+								</tr>
+								
+									
+									<tr>
+										<td>PENTA</td>
+										<td>PENTA TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+									
+									<tr>
+										<td>PIM</td>
+										<td>PIM TabName</td> 
+										<td></td>
+									</tr>
+									
+								
+							</tbody>
+						</table>
+					</div> 
+				
+					
+					</div>
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#TABL732main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
 
-            </div>
-        </div>
-    </div>
-    <div class="wrapper">
-        <div class="top-container">
-            <p3 class="descr">This website contains the complete content 
-            of the <p2 class="IM">Relational model crmTest - TestMapping</p2> from foryouandyourcustomers. 
-            This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>. 
-            </p3>
-            <br>References in brackets are indirect references:<br>
-                 (Table reference) for tables: Indirect linking of a table via an entity to a table in another interface<br>
-                 (Column reference): Indirect linking of a column via an attribute to a column  in another interface
-                  
-        </div>
-                <!--tables-->        <div class="entity" id="TABL726">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Table','ColAttr','','','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2167">                    
+		<!--columns-->        
+		
+		
+		
+		
+		
+		
+		<div class="entity" id="COLU728">
+			<div class="describtion">
+				 <span>
+						<p>Column</p>
+						<h1>Col1to1
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">Table  </span><a href="#TABL727" target="_self">ColAttr</a></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="COLU728main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Domain</th>
+									<th>Datatype</th>
+									<th>Base Type</th>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+											
+											
+												<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+										
+										</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:42:20 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#COLU728map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="COLU728map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model </th>
+										<th>Attribute(s) / Column(s)</th>
+									</tr>
+									<tr>
+										<td>Information Model</td>
+										<td>
+										
+											<a href="crmTest_de.html#ATTR115" target="_blank">First Name</a>
+											
+										
+									</tr>
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Informations</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Dev. Status</th>
-                     <th>auf Diagram(en)</th>
-                     <th>updated</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute">None</td>
-                      <td class="attribute"></td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2168">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Columns</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2168">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Name</th>
-                 <th>Description</th>
-                 <th>Domain</th>
-                 <th>Datatype</th>
-                   </tr>
-    <tr>
-                     <td><a href="#COLU727" target="_self">Col1to1</a></td>
-                 <td></td>
-                 <td>Unknown</td>
-                 <td>unknown</td>
-                   </tr>
-    <tr>
-                     <td><a href="#COLU728" target="_self">col1tomany</a></td>
-                 <td></td>
-                 <td>Unknown</td>
-                 <td>unknown</td>
-                   </tr>
-    <tr>
-                     <td><a href="#COLU729" target="_self">colmanyto11</a></td>
-                 <td></td>
-                 <td>Unknown</td>
-                 <td>unknown</td>
-                   </tr>
-    <tr>
-                     <td><a href="#COLU730" target="_self">colmanyto12</a></td>
-                 <td></td>
-                 <td>Unknown</td>
-                 <td>unknown</td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-    
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2169">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2169">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Entitäten / Tabellen</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ENTI191" target="_blank">Juristische Person</a>, <a href="crmTest_de.html#ENTI114" target="_blank">natürliche Person</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#TABL470" target="_blank">(Juristische_Person)</a>, <a href="CRM-Salesforce.html#TABL401" target="_blank">(person)</a></td>
-                   </tr>
-    <tr>
-                     <td>MDM</td>
-                 <td><a href="MDM.html#TABL701" target="_blank">(natural_person)</a></td>
-                   </tr>
-    <tr>
-                     <td>PIM-Step</td>
-                 <td><a href="PIM-Step.html#TABL918" target="_blank">(account)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2167">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <div class="entity" id="TABL725">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Table','TabEntity','','','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2170">                    
+					<!--user defined properties-->
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Informations</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Dev. Status</th>
-                     <th>auf Diagram(en)</th>
-                     <th>updated</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute">None</td>
-                      <td class="attribute"></td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2171">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2171">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Entitäten / Tabellen</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ENTI162" target="_blank">Personenrolle</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#TABL431" target="_blank">(Personenrolle)</a></td>
-                   </tr>
-    <tr>
-                     <td>ERP-SAP3</td>
-                 <td><a href="ERP-SAP3.html#TABL1051" target="_blank">(Personenrolle)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2170">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <div class="entity" id="TABL732">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Table','TabMany','','','Created on 8/2/2021  9:47:22 during import from /Users/stb/Downloads/TestMapping.csv');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2172">                    
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#COLU728main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<div class="entity" id="COLU729">
+			<div class="describtion">
+				 <span>
+						<p>Column</p>
+						<h1>col1tomany
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">Table  </span><a href="#TABL727" target="_self">ColAttr</a></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="COLU729main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Domain</th>
+									<th>Datatype</th>
+									<th>Base Type</th>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+											
+											
+												<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+										
+										</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:42:20 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#COLU729map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="COLU729map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model </th>
+										<th>Attribute(s) / Column(s)</th>
+									</tr>
+									<tr>
+										<td>Information Model</td>
+										<td>
+										
+											<a href="crmTest_de.html#ATTR116" target="_blank">Birth date</a>
+											, 
+										
+											<a href="crmTest_de.html#ATTR193" target="_blank">UID no</a>
+											
+										
+									</tr>
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Informations</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Dev. Status</th>
-                     <th>auf Diagram(en)</th>
-                     <th>updated</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute">None</td>
-                      <td class="attribute"></td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2173">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2173">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Entitäten / Tabellen</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ENTI145" target="_blank">Land</a>, <a href="crmTest_de.html#ENTI162" target="_blank">Personenrolle</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#TABL343" target="_blank">(Land)</a>, <a href="CRM-Salesforce.html#TABL431" target="_blank">(Personenrolle)</a></td>
-                   </tr>
-    <tr>
-                     <td>ERP-SAP3</td>
-                 <td><a href="ERP-SAP3.html#TABL1004" target="_blank">(Land)</a>, <a href="ERP-SAP3.html#TABL1051" target="_blank">(Personenrolle)</a></td>
-                   </tr>
-    <tr>
-                     <td>PIM-Step</td>
-                 <td><a href="PIM-Step.html#TABL905" target="_blank">(Land)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2172">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <div class="entity" id="TABL731">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Table','TabRela','','','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2174">                    
+					<!--user defined properties-->
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Informations</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Dev. Status</th>
-                     <th>auf Diagram(en)</th>
-                     <th>updated</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute">None</td>
-                      <td class="attribute"></td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2175">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2175">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Entitäten / Tabellen</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2174">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <!--columns-->        <div class="entity" id="COLU727">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Column','Col1to1','','<a href="#TABL726" target="_self">ColAttr</a>','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2176">                    
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#COLU729main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<div class="entity" id="COLU730">
+			<div class="describtion">
+				 <span>
+						<p>Column</p>
+						<h1>colmanyto11
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">Table  </span><a href="#TABL727" target="_self">ColAttr</a></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="COLU730main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Domain</th>
+									<th>Datatype</th>
+									<th>Base Type</th>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+											
+											
+												<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+										
+										</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:42:20 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#COLU730map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="COLU730map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model </th>
+										<th>Attribute(s) / Column(s)</th>
+									</tr>
+									<tr>
+										<td>Information Model</td>
+										<td>
+										
+											<a href="crmTest_de.html#ATTR117" target="_blank">Gender</a>
+											
+										
+									</tr>
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Information</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Domain</th>
-                     <th>Datatype</th>
-                     <th>Base Type</th>
-                     <th>Dev. Status</th>
-                     <th>changed</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute"><a href="crmTest_de.html#DOMA97" target="_self">Unknown</a></td>
-                      <td class="attribute">Text</td>
-                      <td class="attribute">unknown</td>
-                      <td class="attribute">None</td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2177">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2177">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Attribute / Columns</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ATTR115" target="_blank">natürliche Person.Vorname</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#COLU402" target="_blank">(person.Vorname)</a></td>
-                   </tr>
-    <tr>
-                     <td>MDM</td>
-                 <td><a href="MDM.html#COLU703" target="_blank">(natural_person.First_Name)</a></td>
-                   </tr>
-    <tr>
-                     <td>PIM-Step</td>
-                 <td><a href="PIM-Step.html#COLU919" target="_blank">(account.Vorname)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2176">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <!--columns-->        <div class="entity" id="COLU728">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Column','col1tomany','','<a href="#TABL726" target="_self">ColAttr</a>','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2178">                    
+					<!--user defined properties-->
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Information</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Domain</th>
-                     <th>Datatype</th>
-                     <th>Base Type</th>
-                     <th>Dev. Status</th>
-                     <th>changed</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute"><a href="crmTest_de.html#DOMA97" target="_self">Unknown</a></td>
-                      <td class="attribute">Text</td>
-                      <td class="attribute">unknown</td>
-                      <td class="attribute">None</td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2179">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2179">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Attribute / Columns</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ATTR116" target="_blank">natürliche Person.Geburtsdatum</a>, <a href="crmTest_de.html#ATTR193" target="_blank">Juristische Person.UID Nr</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#COLU403" target="_blank">(person.date_of_birth)</a>, <a href="CRM-Salesforce.html#COLU472" target="_blank">(Juristische_Person.UID_Nr)</a></td>
-                   </tr>
-    <tr>
-                     <td>MDM</td>
-                 <td><a href="MDM.html#COLU704" target="_blank">(natural_person.Birth_date)</a></td>
-                   </tr>
-    <tr>
-                     <td>PIM-Step</td>
-                 <td><a href="PIM-Step.html#COLU920" target="_blank">(account.geburtsdatum)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2178">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <!--columns-->        <div class="entity" id="COLU729">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Column','colmanyto11','','<a href="#TABL726" target="_self">ColAttr</a>','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2180">                    
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#COLU730main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<div class="entity" id="COLU731">
+			<div class="describtion">
+				 <span>
+						<p>Column</p>
+						<h1>colmanyto12
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">Table  </span><a href="#TABL727" target="_self">ColAttr</a></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="COLU731main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Domain</th>
+									<th>Datatype</th>
+									<th>Base Type</th>
+									<th>Dev. Status</th>
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+											
+											
+												<a href="crmTest_de.html#DOMA97" target="_blank">*de* Unknown</a>
+											
+										
+										</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">unknown</td>
+									<td class="attribute">None</td>
+									<td class="attribute">stb, 2021-02-08 08:42:20 UTC</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--mappings-->       
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#COLU731map">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Mappings</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="COLU731map">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Model </th>
+										<th>Attribute(s) / Column(s)</th>
+									</tr>
+									<tr>
+										<td>Information Model</td>
+										<td>
+										
+											<a href="crmTest_de.html#ATTR117" target="_blank">Gender</a>
+											
+										
+									</tr>
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Information</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Domain</th>
-                     <th>Datatype</th>
-                     <th>Base Type</th>
-                     <th>Dev. Status</th>
-                     <th>changed</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute"><a href="crmTest_de.html#DOMA97" target="_self">Unknown</a></td>
-                      <td class="attribute">Text</td>
-                      <td class="attribute">unknown</td>
-                      <td class="attribute">None</td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2181">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2181">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Attribute / Columns</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ATTR117" target="_blank">natürliche Person.Geschlecht</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#COLU404" target="_blank">(person.Geschlecht)</a></td>
-                   </tr>
-    <tr>
-                     <td>MDM</td>
-                 <td><a href="MDM.html#COLU705" target="_blank">(natural_person.Gender)</a></td>
-                   </tr>
-    <tr>
-                     <td>PIM-Step</td>
-                 <td><a href="PIM-Step.html#COLU921" target="_blank">(account.Geschlecht)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2180">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-            <!--columns-->        <div class="entity" id="COLU730">
-            <div class="describtion">
-				 <span> 
-					 <script>entityheader('Column','colmanyto12','','<a href="#TABL726" target="_self">ColAttr</a>','');</script>
-			     </span>
-            </div>
-             <div class="panel-body">
-            <div class="collapse" id="bar2182">                    
+					<!--user defined properties-->
+					
 
-          <!-- The inside div eliminates the 'jumping' animation. -->
-                            <h2>Information</h2>
-                            <div id="container2">
-                            <div class="table-responsive">
-                                <table class="table borderless">
-                                    <tbody>
-                    <tr>
-                     <th>Domain</th>
-                     <th>Datatype</th>
-                     <th>Base Type</th>
-                     <th>Dev. Status</th>
-                     <th>changed</th>
-                      </tr>
-                    <tr>
-                      <td class="attribute"><a href="crmTest_de.html#DOMA97" target="_self">Unknown</a></td>
-                      <td class="attribute">Text</td>
-                      <td class="attribute">unknown</td>
-                      <td class="attribute">None</td>
-                      <td class="attribute">, </td>
-                      </tr>
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        <div class="panel">
-            <div class="panel-heading collapsed" data-toggle="collapse"  data-target="#bar2183">
-                <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                <label class="label1"><h3>Mapping</h3></label>				
-            </div>
-        </div>
-        <div class="collapse" id="bar2183">
-    
-        <div class="table-responsive">
-            <table class="table borderless" >
-                <tbody>
-                    <tr>
-             <th>Model</th>
-                 <th>Attribute / Columns</th>
-                   </tr>
-    <tr>
-                     <td>Information Model</td>
-                 <td><a href="crmTest_de.html#ATTR117" target="_blank">natürliche Person.Geschlecht</a></td>
-                   </tr>
-    <tr>
-                     <td>CRM-Salesforce</td>
-                 <td><a href="CRM-Salesforce.html#COLU404" target="_blank">(person.Geschlecht)</a></td>
-                   </tr>
-    <tr>
-                     <td>MDM</td>
-                 <td><a href="MDM.html#COLU705" target="_blank">(natural_person.Gender)</a></td>
-                   </tr>
-    <tr>
-                     <td>PIM-Step</td>
-                 <td><a href="PIM-Step.html#COLU921" target="_blank">(account.Geschlecht)</a></td>
-                   </tr>
-    
-        </tbody>
-      </table>
-    </div> 
-    </div>
-                
-                            </div>                 <div class="panel">
-                <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar2182">
-                    <img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-                    <img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
-                    <label class="label1">more</label>
-                </div>
-            </div>
-        </div>
-        </div>
-          </div>
-    <!-- modal für mobile devices (search) -->
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#COLU731main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+				<!--domains-->
+		
+		
+	</div>
+
     <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-full" role="document">
             <div class="modal-content">
@@ -769,7 +1337,8 @@
             </div>
         </div>
     </div>
-    <script>
+	
+	<script>
       // Quick and simple export target #table_id into a csv
 function download_table_as_csv(table_id) {
     // Select rows from table_id
@@ -983,5 +1552,6 @@ $(document).ready(function() {
     });
 });
 </script>  
+	
 </body>
 </html>

@@ -128,9 +128,9 @@ class EntityEnvironment():
 
 def related(pentiid,prelated,pjson,pcardinality,pmodellang):
     retval = []
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
+    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
     for relaid in prelated:
-        rela = pjson.getelements(pelemtype=Modelelemtype.RELA)[relaid]
+        rela = pjson.getelements(pelemtype=Modelelemtype.RELA,pfiltered=False)[relaid]
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
         if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] != pentiid
             and rela['to-from']['maptype'] == pcardinality):
@@ -151,7 +151,7 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang):
 def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
     """creates an EntityEnvironment for the given entity found in the json-structure"""
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
+    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
 
     if not pentiid in entities.keys(): return None #non existing entity is Nothing
 
@@ -193,7 +193,7 @@ CELLHEIGHT = 30
 CELLWIDTH = ENTIWIDTH *5/4
 LINESHORTEN = 20
 MAXRELACHARS = 16
-MAXENTICHARS = 24
+MAXENTICHARS = 21
 
 
 def printenti(pcell:EntityCell,pposx,pposy):
@@ -236,10 +236,8 @@ def printline(pstartx,pstarty,plenx,pleny):
     return line.format(DEFAULT_LINEWIDTH,pstartx,pstarty,pstartx+plenx,pstarty+pleny)
 
 
-def entienviro2svg(penviron):
-    maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
-    return '<div id="{}-container">\n{}\n</div>'.format(maincell.getentiid(), generate_svg_content(penviron))
-
+def entienviro2svg(pentiid,penviron):
+    return '<div id="{}-container">\n{}\n</div>'.format(pentiid, generate_svg_content(penviron))
 
 def generate_svg_content(penviron):
     diagramhead ="""
@@ -252,9 +250,10 @@ def generate_svg_content(penviron):
         </svg>
     """
 
-    maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
+    if penviron is None:
+        print ("Penviron is None: ")
+        return None
     minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
-    maincell = penviron.getcell(phidx='left', pvidx=0)
 
     rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
     rectwidth = 3 * CELLWIDTH
@@ -338,7 +337,6 @@ def generate_svg_content(penviron):
 
     svgtext += diagramfoot
     return svgtext
-
 
 from IM_OBJECTS import Modelelemtype,Relation
 

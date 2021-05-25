@@ -77,7 +77,7 @@ def columns2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.COLU, pjs2obj=js2colu,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid,jelem in podmjson.getelements(Modelelemtype.COLU).items():
+    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.COLU).items():
         newcoluid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
