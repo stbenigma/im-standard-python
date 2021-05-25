@@ -162,7 +162,7 @@ def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
          "dm": null,
 
       },"""
-    for jid, jelem in podmjson.getelements(Modelelemtype.ATTR).items():
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ATTR).items():
         attrid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
@@ -273,7 +273,7 @@ def keys2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(Modelelemtype.KEYS).items():
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.KEYS).items():
         key = Key().getbyid(pid=keytransl(jid))
         inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
         if pwithextsrcref:

@@ -45,7 +45,7 @@ def js2intf(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
 def systems2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.INTF, pjs2obj=js2intf,
                    pwithextsrcref=pwithextsrcref)
-    # for jid,jelem in pmodel.getelements(Modelelemtype.INTF).items():
+    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.INTF).items():
     #     js2intf(pkey=jid,pelem=jelem)
     #     try:
     #         intf.insert()
@@ -55,6 +55,6 @@ def systems2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     #
     #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     # #for
-    for jid,jelem in podmjson.getelements(Modelelemtype.INTF).items():
+    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.INTF).items():
         insreferences(presult=presult, pmodeid=keytransl(jid), prefs=jelem['referencedby'])
     return

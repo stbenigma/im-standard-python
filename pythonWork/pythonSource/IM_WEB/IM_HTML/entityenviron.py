@@ -128,9 +128,9 @@ class EntityEnvironment():
 
 def related(pentiid,prelated,pjson,pcardinality,pmodellang):
     retval = []
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
+    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
     for relaid in prelated:
-        rela = pjson.getelements(pelemtype=Modelelemtype.RELA)[relaid]
+        rela = pjson.getelements(pelemtype=Modelelemtype.RELA,pfiltered=False)[relaid]
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
         if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] != pentiid
             and rela['to-from']['maptype'] == pcardinality):
@@ -151,7 +151,7 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang):
 def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
     """creates an EntityEnvironment for the given entity found in the json-structure"""
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
+    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
 
     if not pentiid in entities.keys(): return None #non existing entity is Nothing
 
@@ -193,7 +193,7 @@ CELLHEIGHT = 30
 CELLWIDTH = ENTIWIDTH *5/4
 LINESHORTEN = 20
 MAXRELACHARS = 16
-MAXENTICHARS = 24
+MAXENTICHARS = 21
 
 
 def printenti(pcell:EntityCell,pposx,pposy):
@@ -216,7 +216,7 @@ def printrela(pcell:EntityCell,pposx,pposy):
     textstart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
             transform="translate({},{})" >
             <text id="{}" x="2" y="4" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
+            {} </text>
             </g>
             """
     textbox = textstart.format('white', 'blue'
@@ -235,27 +235,29 @@ def printline(pstartx,pstarty,plenx,pleny):
             """
     return line.format(DEFAULT_LINEWIDTH,pstartx,pstarty,pstartx+plenx,pstarty+pleny)
 
-def entienviro2svg(penviron):
+
+def entienviro2svg(pentiid,penviron):
+    return '<div id="{}-container">\n{}\n</div>'.format(pentiid, generate_svg_content(penviron))
+
+def generate_svg_content(penviron):
     diagramhead ="""
-    <div id="{}-container">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                version="1.1"  width="{}" height="{}">
+                version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">
         <defs id="dmw_defs" >
         </defs>
     """
     diagramfoot ="""
         </svg>
-    </div>
     """
 
-
-    maincell:EntityCell = penviron.getcell(phidx='center',pvidx=0)
+    if penviron is None:
+        print ("Penviron is None: ")
+        return None
     minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
-    maincell = penviron.getcell(phidx='left', pvidx=0)
 
     rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
     rectwidth = 3 * CELLWIDTH
-    svgtext = diagramhead.format(maincell.getentiid(), rectwidth, rectheight)
+    svgtext = diagramhead.format(width=rectwidth, height=rectheight)
 
     entistarty = (CELLHEIGHT - ENTIHEIGHT) / 2
     parentlinestarty,parentlineendy=None,None
@@ -335,7 +337,6 @@ def entienviro2svg(penviron):
 
     svgtext += diagramfoot
     return svgtext
-
 
 from IM_OBJECTS import Modelelemtype,Relation
 

@@ -58,13 +58,13 @@ class JSModel:
         self.languages = {}  # langid:iso2
         self._statusfilter = (None,'DEV','TEST','REL')
 
-    def getelement(self,pelem,pfiltered=True):
-        """returns list of top level Elements filtered by statusfilter"""
-        elemkey = JSModel.elemtype2label(pelemtype=pelem)
+    def getelements(self,pelemtype,pfiltered=True):
+        """returns dict of top level Elements filtered by statusfilter"""
+        elemkey = JSModel.elemtype2label(pelemtype=pelemtype)
         if elemkey is None:
             """ not found, check wether pelem is already a key"""
-            if pelem in self.jsmodel:
-                elemkey = pelem
+            if pelemtype in self.jsmodel:
+                elemkey = pelemtype
             else:
                 return None
             #fi
@@ -72,20 +72,20 @@ class JSModel:
         assert (elemkey in self.jsmodel),"key {} not found in json-model".format(elemkey)
         """get all elements, if filtered make sure it is a) not a dict, b) has no devstatus or c) its devstatus is in my statusfilter"""
         elems = {key : value for key,value in self.jsmodel[elemkey].items()
-                   if (not pfiltered or type(value) != dict or 'devstatus' not in value or value['devstatus'] in self.statusfilter) }
+                   if (not pfiltered or type(value) != dict or 'devstatus' not in value or value['devstatus'] in self._statusfilter) }
         return elems
 
     def setstatusfilter(self,pfilter):
-        self.statusfilter = pfilter
+        self._statusfilter = pfilter
 
     def getstatusfilter(self,pfilter):
-        return self.statusfilter
+        return self._statusfilter
 
     @staticmethod
     def readfromfile(pfilename):
         with open(pfilename, 'r') as handle:
             model = json.load(handle)
-        return JSModel(pmodel=model)\
+        return JSModel(pmodel=model)
 
     @staticmethod
     def elemtype2label(pelemtype):
@@ -104,20 +104,6 @@ class JSModel:
 
     def getdefaultlang(self):
         return self.jsmodel["model"]["language"]
-
-    """return the dict of an elementtype"""
-    def getelements(self,pelemtype):
-        try:
-            """Non-modelelementtypes in JS are treated differently"""
-            if pelemtype in ('LANG'):
-                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
-            elif pelemtype in ('PROJ'):
-                """Proj has one single entry without any id in js"""
-                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
-            else:
-                return self.jsmodel[JSModel.elemtype2label(pelemtype=pelemtype)]
-        except:
-            return None
 
     """return the element identified by the jsid (<type><id>) from the current jsmodel"""
     def getbyid(self,pjsid):
