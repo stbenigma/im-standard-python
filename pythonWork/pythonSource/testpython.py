@@ -1,3 +1,7 @@
-import re
-iconnoregexp = re.compile(r"^[0-9]{2,5}$")
-print (re.match(iconnoregexp, None))
+from IM_OBJECTS import Languagetext
+
+
+neu = {key: {'en': val,'fr':Languagetext.translNameFR[key]} for key,val in Languagetext.translNameEN.items()}
+print (neu)
+
+

@@ -83,7 +83,7 @@ def main(pjson, plang):
             enti =jsmodel.getelements(pelemtype=Modelelemtype.ENTI)[entiid]
             entienvir = entityenviron.createentienvironment(pentiid=entiid,pjson=jsmodel,pmodellang=modellang)
             svgfile.write("<h2>{}</h2>".format (entiid))
-            svgfile.write(entityenviron.entienviro2svg(penviron=entienvir))
+            svgfile.write(entityenviron.entienviro2svg(pentiid=entiid,penviron=entienvir))
         #for
         svgfile.write("""</body>    </html>""")
     # with

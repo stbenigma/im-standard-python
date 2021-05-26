@@ -246,7 +246,7 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DIAG, pjs2obj=js2diag,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(Modelelemtype.DIAG).items():
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.DIAG).items():
         newdiagid = keytransl(jid)
         inscnt = 0
         delcnt = Elementrep.delete(pwhere=("eler_diag_id = ?", newdiagid))
@@ -283,6 +283,8 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 def defarcs(parc,pdiagid):
     arc = {}
     arcselem = parc.getarcselem(pdiagid=pdiagid)
+    if len(arcselem)==0:
+        return arc
     enti=Elementrep.select(pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
     enti = enti[0]
     PONTDISTANCE = 20

@@ -112,7 +112,7 @@ def domvalues(pvalues:list=None):
 
 def domain2js(pdoma):
     model = ['name', 'descr'
-        , 'origin','interfasce-id'
+        , 'origin','interface-id'
         ,'interface+' , 'basedatatype+'
         , 'type', 'displdatatype+'
         , 'datatypestr+', 'datatypeid' 
@@ -247,7 +247,7 @@ def js2doma(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     doma.doma_name = pelem['name'][pmodellang]
     doma.doma_descr = pelem['descr'][pmodellang]
     doma.doma_origin = pelem['origin']
-    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interfasce-id'))
+    doma.doma_intf_id = jsguid2id(optionalvalue(pelem, 'interface-id'))
     doma.doma_daty_id = jsguid2id(optionalvalue(pelem, 'datatypeid'))
     doma.doma_num_minvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'minvalue')
     doma.doma_num_maxvalue = None if doma.doma_type != Domain.NUM else optionalvalue(pelem, 'maxvalue')
@@ -270,7 +270,7 @@ def domains2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOMA, pjs2obj=js2doma,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid,jelem in podmjson.getelements(Modelelemtype.DOMA).items():
+    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.DOMA).items():
         dbdomaid = jsmergetosql.keytransl(jid)
 
         if jelem['type'] == Domain.LOV:

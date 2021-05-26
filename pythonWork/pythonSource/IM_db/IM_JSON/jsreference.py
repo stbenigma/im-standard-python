@@ -157,7 +157,7 @@ def documents2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
                    pwithextsrcref=pwithextsrcref)
     # parents = [] #(docu_id, parent_id)
-    # for jid,jelem in pmodel.getelements(Modelelemtype.DOCU).items():
+    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DOCU).items():
     #     docu = js2docu(pkey=jid,pelem=jelem)
     #     try:
     #         docuid = docu.insert()

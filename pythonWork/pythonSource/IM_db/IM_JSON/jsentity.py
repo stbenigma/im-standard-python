@@ -144,7 +144,7 @@ def entities2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(Modelelemtype.ENTI).items():
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ENTI).items():
         entiid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']

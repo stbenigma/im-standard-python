@@ -9,7 +9,7 @@ from IM_ODM import fillDB
 import listWebdoku
 from IM_JSON import sql2json,JSModel
 from IM_OBJECTS import Languagetext
-from IM_db import createDB,existsDB
+from createDB import existsDB
 
 
 def main(pdirec, plang,pforceoverwrite = False):
@@ -29,9 +29,10 @@ def main(pdirec, plang,pforceoverwrite = False):
 
     dbConnect.openDB(parameters.dbFilePath(), fks='ON')
     jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
+    printHTML.setmodel(jsmodel)
     printHTML.setWebDirec(p_webdirec=None)
 
-    listWebdoku.listwebmain(plang=Languagetext.reportLang(),pmodel=jsmodel)
+    listWebdoku.listwebmain(plang=Languagetext.reportLang())
     jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.odmModelName())
     dbConnect.closeDB()
 
