@@ -38,14 +38,6 @@ getelement = lambda e:getmodel().getbyid(e)
 fhtml = None
 
 
-def lf2htmlbr(pstr):
-    try:
-        return re.sub(r"\n", "<br>\n", pstr)
-    except:
-        return pstr
-# lf2htmlbr
-
-
 def filehref(pref, panz, plang, pself=False,pimg=None):
     img =  parameters.nvl2(pimg,'','<img class="icon-check" src="icons/{}">'.format(pimg))
     return """<a href="{}{}" target="_{}" >{}{}</a>""" \

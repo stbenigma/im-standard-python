@@ -1,11 +1,12 @@
 from datetime import datetime
 import re
+from markdown import markdown,Markdown
 import logmessages
 from IM_HTML import printHTML,entityenviron
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from jinja2 import FileSystemLoader,Environment
+from jinja2 import FileSystemLoader,Environment,Markup
 
 class Webmodel():
     def __init__(self,pcurlang,pjsmodel:JSModel,pintfid,phtmlfilelist):
@@ -179,11 +180,15 @@ def getnvl(val,default = ""):
 
 
 
-def lf2htmlbr(pstr):
+def markdown2html(pstr):
     try:
-        return re.sub(r"\n", "<br>\n", pstr)
+        return markdown(pstr)
+        #return re.sub(r"\n", "<br>\n", pstr)
     except:
-        return pstr
+        try:
+            return re.sub(r"\n", "<br>\n", pstr)
+        except:
+            return pstr
 
 
 def model2html(pwebmodel:Webmodel):
@@ -204,8 +209,10 @@ def model2html(pwebmodel:Webmodel):
     #try
 
 
+    md = Markdown()
     templ.globals['getnvl'] = getnvl
-    templ.globals['lf2htmlbr'] = lf2htmlbr
+    templ.globals['markdown2html'] = markdown2html
+    t.filters['markdown'] = lambda text: Markup(md.convert(text)) if type(text)==str else ""
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:

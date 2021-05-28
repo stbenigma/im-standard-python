@@ -2,24 +2,30 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="80D2A6F4-56D6-88E4-2E84-676699D4EBF2" name="Administrativgebiet">
 <createdBy>stb</createdBy>
 <createdTime>2019-05-06 08:36:39 UTC</createdTime>
-<comment><![CDATA[Gebietsunterteilung eines Landes in kleinere Einheiten.
+<comment><![CDATA[Gebietsunterteilung 
+============
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-NUTS 0	Nationalstaat
-NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
-NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
-NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
-LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
-LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+eines __Landes__ in kleinere Einheiten.
+
+Gemäss [NUTS](https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
++ NUTS 0	Nationalstaat
++ NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
++ NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
+
+	+ NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
+	+ LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+	+ LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+
+---------------------------------------
 
 Es kann weitere Hierarchiestufenbezeichnungen geben:
 Deutschland
-A0: Land
-A1: Bundesland
-A2: leer
-A3: Landkreis
-A4: leer
-A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+	1. 	A0: Land
+	2. 	A1: Bundesland
+	3. 	A2: leer
+	4. 	A3: Landkreis
+	5. 	A4: leer
+	6.	A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
 Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen]]></comment>
 <notes><![CDATA[[EN_ENTI_COMMENT[
 **Territorial division of a country into smaller units.

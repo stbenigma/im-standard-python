@@ -263,9 +263,11 @@
 			{% for diag in webmodel.diagrams %}
 				<div id="{{ diag.id }}-container">
 					<h3 id="{{ diag.id }}">{{ diag.name }}</h3>
-					{{ diag.svg|safe }}
+					<div class="diagram">
+						{{ diag.svg|safe }}
 					<div class="print-button-container">
 						<button class="print-button" onclick="printElem(this)">print</button>
+					</div>
 					</div>
 				</div>
 			{% endfor %}

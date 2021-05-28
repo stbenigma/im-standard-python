@@ -48,7 +48,8 @@
 						<p1><span style="text-transform:uppercase">{{ parenttype ~"  "}}</span>{{ parentname }}</p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">{{getnvl(descr)}}</th>
+				  {% set d = lf2htmlbr(descr) %}
+			  	<th style="width:70%">{{ d }}</th>
 			    {% if icon %}
 					<th style="width:10%"><img src="{{ icon }}" height="100px" width="100px"></th> 
 				{% endif %}  
