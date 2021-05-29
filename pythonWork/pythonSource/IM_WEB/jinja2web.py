@@ -185,9 +185,9 @@ def formattext(pstr:str):
     #check wether we have markdown in the string
     if type(pstr) != str:
         return pstr
-    if pstr.startswith(texttype[0]):
+    if pstr.startswith(texttypes[0]):
         try:
-            htmltext = markdown(pstr[len(texttype[0]):])
+            htmltext = markdown(pstr[len(texttypes[0]):])
             """ mark html tags with a special class to allow css for markdown content"""
             htmltext = re.sub(r'<(h1|h2|h3|h4|p|li|ul|ol)>', '<\g<1> class="md">',htmltext)
             return htmltext
