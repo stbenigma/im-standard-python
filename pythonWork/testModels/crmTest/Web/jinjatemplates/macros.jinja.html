@@ -48,7 +48,7 @@
 						<p1><span style="text-transform:uppercase">{{ parenttype ~"  "}}</span>{{ parentname }}</p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">{{ getnvl(descr)|markdown }}</th>
+			  	<th style="width:70%">{{ descr|nvl|formattext|safe }}</th>
 			    {% if icon %}
 					<th style="width:10%"><img src="{{ icon }}" height="100px" width="100px"></th> 
 				{% endif %}  

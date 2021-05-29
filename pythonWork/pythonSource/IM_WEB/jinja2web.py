@@ -180,15 +180,25 @@ def getnvl(val,default = ""):
 
 
 
-def markdown2html(pstr):
-    try:
-        return markdown(pstr)
-        #return re.sub(r"\n", "<br>\n", pstr)
-    except:
+def formattext(pstr:str):
+    texttypes = ['<text/markdown>']
+    #check wether we have markdown in the string
+    if type(pstr) != str:
+        return pstr
+    if pstr.startswith(texttype[0]):
         try:
+            htmltext = markdown(pstr[len(texttype[0]):])
+            """ mark html tags with a special class to allow css for markdown content"""
+            htmltext = re.sub(r'<(h1|h2|h3|h4|p|li|ul|ol)>', '<\g<1> class="md">',htmltext)
+            return htmltext
+        except:
+            return pstr
+    else: #assume plain text
+        try: #replace cr with <br>cr
             return re.sub(r"\n", "<br>\n", pstr)
         except:
             return pstr
+    #fi
 
 
 def model2html(pwebmodel:Webmodel):
@@ -209,10 +219,9 @@ def model2html(pwebmodel:Webmodel):
     #try
 
 
-    md = Markdown()
     templ.globals['getnvl'] = getnvl
-    templ.globals['markdown2html'] = markdown2html
-    t.filters['markdown'] = lambda text: Markup(md.convert(text)) if type(text)==str else ""
+    t.filters['formattext'] = formattext
+    t.filters['nvl'] = getnvl
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:
