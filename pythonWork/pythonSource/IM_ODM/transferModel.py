@@ -68,9 +68,9 @@ def findField(set, name):
 
 def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
-    if (pstr is None): return
+    if (pstr is None): return False
     lmatch = "\[.{0,2}" + pflag + ".{0,2}\]"
-    return (True if re.match(lmatch, pstr) else False)
+    return True if re.search(lmatch, pstr) else False
 
 
 def is_historisized(pstr: str) -> bool:
