@@ -1,11 +1,12 @@
 from datetime import datetime
 import re
+from markdown import markdown,Markdown
 import logmessages
 from IM_HTML import printHTML,entityenviron
 from IM_DB import parameters
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from jinja2 import FileSystemLoader,Environment
+from jinja2 import FileSystemLoader,Environment,Markup
 
 class Webmodel():
     def __init__(self,pcurlang,pjsmodel:JSModel,pintfid,phtmlfilelist):
@@ -179,11 +180,25 @@ def getnvl(val,default = ""):
 
 
 
-def lf2htmlbr(pstr):
-    try:
-        return re.sub(r"\n", "<br>\n", pstr)
-    except:
+def formattext(pstr:str):
+    MARKDOWN:str = '<text/markdown>'
+    #check wether we have markdown in the string
+    if type(pstr) != str:
         return pstr
+    if pstr.startswith(MARKDOWN):
+        try:
+            htmltext = markdown(pstr[len(MARKDOWN):])
+            """ mark html tags with a special class to allow css for markdown content"""
+            htmltext = re.sub(r'<(h1|h2|h3|h4|p|li|ul|ol)>', '<\g<1> class="md">',htmltext)
+            return htmltext
+        except:
+            return pstr
+    else: #assume plain text
+        try: #replace cr with <br>cr
+            return re.sub(r"\n", "<br>\n", pstr)
+        except:
+            return pstr
+    #fi
 
 
 def model2html(pwebmodel:Webmodel):
@@ -205,7 +220,8 @@ def model2html(pwebmodel:Webmodel):
 
 
     templ.globals['getnvl'] = getnvl
-    templ.globals['lf2htmlbr'] = lf2htmlbr
+    t.filters['formattext'] = formattext
+    t.filters['nvl'] = getnvl
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:

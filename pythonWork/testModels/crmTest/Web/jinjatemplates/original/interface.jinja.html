@@ -99,7 +99,6 @@
 		</div>
 	</div>
 
-
 	<div class="wrapper">
 		<!--header-->
 		{{ companyheader.interfaceheader(modelname=modelname,interfacename=title,company=company) }}
@@ -109,10 +108,12 @@
 			{% for diag in webmodel.diagrams %}
 				<div id="{{ diag.id }}-container">
 					<h3 id="{{ diag.id }}">{{ diag.name }}</h3>
+					<div class="diagram" id = "diag0"> 
 					{{ diag.svg|safe }}
 					<div class="print-button-container">
 						<button class="print-button" onclick="printElem(this)">print</button>
 					</div>
+				 	</div>
 				</div>
 			{% endfor %}
 		{% endif %}
@@ -187,7 +188,7 @@
 									{% for key,val in webmodel.getmaplist(id=elemid,curintfid=webmodel.getelemintfid(elemid)).items() %}
 									<tr>
 										<td>{{ key }}</td>
-										<td>{{ val }}</td>
+										<td>{{ val|safe }}</td>
 									</tr>
 									{% endfor %}
 								</tbody>

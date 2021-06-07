@@ -171,6 +171,36 @@ p {
     letter-spacing: 1px;
 }
 
+.md {
+    font-size: 15px;
+    color: #7a7a7a;
+    text-transform: none;
+    letter-spacing: 1px;
+}
+li.md {
+	margin-left: 30px;
+}
+h1.md {
+    font-size: 18px;
+    color: #00001a;
+    word-break: break-all;
+}
+h2.md {
+    font-size: 16px;
+    color: #00001a;
+    word-break: break-all;
+}
+h3.md {
+    font-size: 14px;
+    color: #00001a;
+    word-break: break-all;
+}
+h4.md {
+    font-size: 12px;
+    color: #00001a;
+    word-break: break-all;
+}
+
 p1 {
     color: #666666;
     word-break: break-all;
@@ -240,12 +270,12 @@ td {
 
 th {
     font-weight: 500;
-    color: #a6a6a6;
+    color: #999999;
     font-size: 14px;
 }
     
 .thAlgn {
-    text-align: center;
+    text-a/*li*/gn: center;
 }
 
 .ttr {
@@ -253,7 +283,7 @@ th {
     color: #a6a6a6;
 }
 
-tr:hover td {
+/*tr*/:hover td {
     background-color: rgb(158, 163, 162, .05);
 }
 
@@ -415,7 +445,7 @@ ol {
     padding-bottom: 10px;
 }
 
-li {
+li.obj {
     list-style: none;
     font-size: 14px;
 }

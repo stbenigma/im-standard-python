@@ -29,7 +29,7 @@
 	<div class="header" id="TopBar">
 		<p4>foryouandyourcustomers</p4>
 		<p4>crmTest</p4>
-		<p5>2021-05-21 16:01:56.578913</p5>
+		<p5>2021-06-01 14:13:04.827591</p5>
 		<img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
 	</div>
 	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
@@ -1056,7 +1056,7 @@
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Entity that has concluded a leasing contract for product.
+			  	<th style="width:70%">**Entity that has concluded a leasing contract for product.<br>
 This means it is the owner but not the owner of the product</th>
 			      
 			    
@@ -2732,12 +2732,12 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Description of a role that a contact person can have.
-
-Examples:
-CEO
-CIO
-Case workers
+			  	<th style="width:70%">**Description of a role that a contact person can have.<br>
+<br>
+Examples:<br>
+CEO<br>
+CIO<br>
+Case workers<br>
 Sales Manager</th>
 			      
 			    
@@ -4024,10 +4024,10 @@ Directeur des ventes</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Postal-geographical localization
-
-Each address is defined for one actor. This means that the same address can occur more than once.
-If a general address directory is maintained as a reference (base address), this must be entered additionally.
+			  	<th style="width:70%">**Postal-geographical localization<br>
+<br>
+Each address is defined for one actor. This means that the same address can occur more than once.<br>
+If a general address directory is maintained as a reference (base address), this must be entered additionally.<br>
 Then this entity becomes the link between actor and base address.</th>
 			    
 					<th style="width:10%"><img src="image/adresse.png" height="100px" width="100px"></th> 
@@ -4751,24 +4751,24 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Territorial division of a country into smaller units.
-
-According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is at NUTS 0
-NUTS 0 Nation State
-NUTS 1 &#34;major socio-economic regions (grouping basic regions)&#34; ... major regions/areas of the country
-NUTS 2 &#34;basic regions (for the application of regional policies)&#34; ... medium-sized regions, megacities
-NUTS 3 &#34;small regions (for specific diagnoses)&#34; ... smaller regions, some of them already large cities
-LAU 1 o.A. ... municipal administration associations, partly municipalities (not defined in all countries)
-LAU 2 &#34;municipalities or equivalent units&#34; ... municipalities, partly municipal divisions
-
-There may be other hierarchy level designations:
-Germany
-A0: Country
-A1: federal state
-A2: empty
-A3: County
-A4: empty
-A5: Municipality: administrative municipality in the respective country
+			  	<th style="width:70%">**Territorial division of a country into smaller units.<br>
+<br>
+According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is at NUTS 0<br>
+NUTS 0 Nation State<br>
+NUTS 1 "major socio-economic regions (grouping basic regions)" ... major regions/areas of the country<br>
+NUTS 2 "basic regions (for the application of regional policies)" ... medium-sized regions, megacities<br>
+NUTS 3 "small regions (for specific diagnoses)" ... smaller regions, some of them already large cities<br>
+LAU 1 o.A. ... municipal administration associations, partly municipalities (not defined in all countries)<br>
+LAU 2 "municipalities or equivalent units" ... municipalities, partly municipal divisions<br>
+<br>
+There may be other hierarchy level designations:<br>
+Germany<br>
+A0: Country<br>
+A1: federal state<br>
+A2: empty<br>
+A3: County<br>
+A4: empty<br>
+A5: Municipality: administrative municipality in the respective country<br>
 field names, municipality areas, old municipality names (subdivide municipality) or further levels</th>
 			    
 					<th style="width:10%"><img src="image/administrativgebiet.png" height="100px" width="100px"></th> 
@@ -5169,24 +5169,32 @@ field names, municipality areas, old municipality names (subdivide municipality)
 									<tr>
 										<td>Description</td>
 										
-											<td>Gebietsunterteilung eines Landes in kleinere Einheiten.
+											<td>&lt;text/markdown&gt;Gebietsunterteilung 
+============
 
-Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
-NUTS 0	Nationalstaat
-NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile
-NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte
-NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte
-LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
-LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen
+eines __Landes__ in **kleinere** Einheiten.
+
+Gemäss [NUTS](https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0
+
++ NUTS 0 Nationalstaat
+    + NUTS 1 “major socio-economic regions (grouping basic regions)” größere Regionen/Landesteile
++ NUTS 2  “basic regions (for the application of regional policies)” mittelgroße Regionen, Millionenstädte
+    + NUTS 3 “small regions (for specific diagnoses)” kleinere Regionen, teils schon Großstädte
+    + LAU 1 o.A. kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)
+    + LAU 2 “municipalities or equivalent units” Gemeinden, teils Gemeindegliederungen
+
+---------------------------------------
 
 Es kann weitere Hierarchiestufenbezeichnungen geben:
 Deutschland
-A0: Land
-A1: Bundesland
-A2: leer
-A3: Landkreis
-A4: leer
-A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+
+1. A0: Land
+1. A1: Bundesland
+3. A2: leer
+    4. A3: Landkreis
+    5. A4: leer
+6. A5: Gemeinde: Administrative Gemeinde im jeweiligen Land
+	
 Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</td>
 										
 											<td>Division territoriale d&#39;un pays en unités plus petites. Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est à NUTS 0 
@@ -5239,7 +5247,7 @@ noms de champs, zones municipales, anciens noms de municipalités (subdivision d
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Person or company who acts as an intermediary for us (in an area).
+			  	<th style="width:70%">**Person or company who acts as an intermediary for us (in an area).<br>
 In this role he does not deal with the goods himself. Therefore has neither stock nor is it the addressee of deliveries.</th>
 			      
 			    
@@ -5616,24 +5624,24 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Territorial division of a country into smaller units.
-
-According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is at NUTS 0
-NUTS 0 Nation State
-NUTS 1 &#34;major socio-economic regions (grouping basic regions)&#34; ... major regions/areas of the country
-NUTS 2 &#34;basic regions (for the application of regional policies)&#34; ... medium-sized regions, megacities
-NUTS 3 &#34;small regions (for specific diagnoses)&#34; ... smaller regions, some of them already large cities
-LAU 1 o.A. ... municipal administration associations, partly municipalities (not defined in all countries)
-LAU 2 &#34;municipalities or equivalent units&#34; ... municipalities, partly municipal divisions
-
-There may be other hierarchy level designations:
-Germany
-A0: Country
-A1: federal state
-A2: empty
-A3: County
-A4: empty
-A5: Municipality: administrative municipality in the respective country
+			  	<th style="width:70%">**Territorial division of a country into smaller units.<br>
+<br>
+According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is at NUTS 0<br>
+NUTS 0 Nation State<br>
+NUTS 1 "major socio-economic regions (grouping basic regions)" ... major regions/areas of the country<br>
+NUTS 2 "basic regions (for the application of regional policies)" ... medium-sized regions, megacities<br>
+NUTS 3 "small regions (for specific diagnoses)" ... smaller regions, some of them already large cities<br>
+LAU 1 o.A. ... municipal administration associations, partly municipalities (not defined in all countries)<br>
+LAU 2 "municipalities or equivalent units" ... municipalities, partly municipal divisions<br>
+<br>
+There may be other hierarchy level designations:<br>
+Germany<br>
+A0: Country<br>
+A1: federal state<br>
+A2: empty<br>
+A3: County<br>
+A4: empty<br>
+A5: Municipality: administrative municipality in the respective country<br>
 field names, municipality areas, old municipality names (subdivide municipality) or further levels</th>
 			    
 					<th style="width:10%"><img src="image/gebiet.png" height="100px" width="100px"></th> 
@@ -6221,15 +6229,15 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Local variant of a language
-Code is composed of ISO2 language code - ISO2 country code
-
-Examples:
-de-en
-de-at
-de-ch
-fr-ch
-fr-fr
+			  	<th style="width:70%">**Local variant of a language<br>
+Code is composed of ISO2 language code - ISO2 country code<br>
+<br>
+Examples:<br>
+de-en<br>
+de-at<br>
+de-ch<br>
+fr-ch<br>
+fr-fr<br>
 fr-ca</th>
 			      
 			    
@@ -6762,7 +6770,7 @@ fr-ca</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**B2C Trade unit
+			  	<th style="width:70%">**B2C Trade unit<br>
 Shop, restaurant, branch</th>
 			    
 					<th style="width:10%"><img src="image/filiale.png" height="100px" width="100px"></th> 
@@ -9893,10 +9901,10 @@ Magasin, restaurant, succursale</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Function of a person for a legal entity. In special cases, a person as a sole proprietorship can be its own contact person.
-
-26.6.18 - THU:
-Name changed from contact person to contact person
+			  	<th style="width:70%">**Function of a person for a legal entity. In special cases, a person as a sole proprietorship can be its own contact person.<br>
+<br>
+26.6.18 - THU:<br>
+Name changed from contact person to contact person<br>
 Synonym changed from contact person to contact person</th>
 			    
 					<th style="width:10%"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/1200px-How_to_use_icon.svg.png" height="100px" width="100px"></th> 
@@ -10676,10 +10684,12 @@ Synonym changed from contact person to contact person</th>
 									<tr>
 										<td>Description</td>
 										
-											<td>Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
+											<td>Funktion einer Person für eine juristische Einheit. 
+
+Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.
 
 26.6.18 - THU:
-Namen von Kontaktperson nach Ansprechpartner geändert
+Namen von Kontaktperson nach Ansprechpartner geändert. 
 Synonym von Ansprechpartner nach Kontaktperson geändert</td>
 										
 											<td>Fonction d&#39;une personne pour une entité juridique. Dans des cas particuliers, une personne en tant qu&#39;entreprise individuelle peut être son propre interlocuteur. 26. 6. 18 - THU : 
@@ -10718,8 +10728,8 @@ Changement de synonyme de personne de référence à personne de contact</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Country according to ISO list ISO-3166-1
-
+			  	<th style="width:70%">**Country according to ISO list ISO-3166-1<br>
+<br>
 According to NUTS (https://de.wikipedia.org/wiki/NUTS), the country is at NUTS 0</th>
 			    
 					<th style="width:10%"><img src="image/land.png" height="100px" width="100px"></th> 
@@ -11626,14 +11636,14 @@ Selon la NUTS (https://de. wikipedia. org/wiki/NUTS), le pays est au niveau NUTS
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**A grouping of several countries into one group.
-In each case, a criterion for group formation or a justification (purpose) for the use of the group should be defined/documented.
-
-Types of country groups allow you to manage several groupings: distribution company, customs, logistics
-
-Examples:
-EU
-SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union)
+			  	<th style="width:70%">**A grouping of several countries into one group.<br>
+In each case, a criterion for group formation or a justification (purpose) for the use of the group should be defined/documented.<br>
+<br>
+Types of country groups allow you to manage several groupings: distribution company, customs, logistics<br>
+<br>
+Examples:<br>
+EU<br>
+SACU Botswana; Eswatini; Lesotho; Namibia; South Africa (Customs Union)<br>
 EMEA (Europe, Middle East, Africa) (sales organization)</th>
 			      
 			    
@@ -12202,7 +12212,7 @@ EMEA (Europe, Moyen-Orient, Afrique) (organisation commerciale)</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**B2B partner who resells our products and services.
+			  	<th style="width:70%">**B2B partner who resells our products and services.<br>
 middleman, agent, service provider, installer</th>
 			      
 			    
@@ -14124,10 +14134,10 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**B2B partner
-Sells our products to other shops. Possibly sole representative in a geographical unit.
-
-A-dealers are dealers with a high degree of professionalism, they sell everything.
+			  	<th style="width:70%">**B2B partner<br>
+Sells our products to other shops. Possibly sole representative in a geographical unit.<br>
+<br>
+A-dealers are dealers with a high degree of professionalism, they sell everything.<br>
 B traders are traders with a lower degree of professionalism; therefore they only sell certain products</th>
 			      
 			    
@@ -14508,7 +14518,7 @@ Vend nos produits à d&#39;autres magasins. Eventuellement représentant unique 
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Company that imports our products into a country.
+			  	<th style="width:70%">**Company that imports our products into a country.<br>
 Often the only company in a country that assumes this role (general importer).</th>
 			      
 			    
@@ -15199,10 +15209,10 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Partner who commissions, assembles, assembles the products / devices.
-
-Examples:
-Installation company
+			  	<th style="width:70%">**Partner who commissions, assembles, assembles the products / devices.<br>
+<br>
+Examples:<br>
+Installation company<br>
 craftsmen who install appliances (electrical, sanitary) in houses</th>
 			      
 			    
@@ -16628,11 +16638,11 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Place where the company is somehow represented
-
-Example:
-Bearing
-Production site
+			  	<th style="width:70%">**Place where the company is somehow represented<br>
+<br>
+Example:<br>
+Bearing<br>
+Production site<br>
 Office building</th>
 			    
 					<th style="width:10%"><img src="image/standort.png" height="100px" width="100px"></th> 
@@ -17187,7 +17197,7 @@ Immeuble de bureaux</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Company internal organizational unit.
+			  	<th style="width:70%">**Company internal organizational unit.<br>
 Mostly hierarchically organized.</th>
 			    
 					<th style="width:10%"><img src="image/organisationseinheit.png" height="100px" width="100px"></th> 
@@ -18991,8 +19001,8 @@ Meist hierarchisch organisiert.</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**single, globally identifiable copy of a product.
-
+			  	<th style="width:70%">**single, globally identifiable copy of a product.<br>
+<br>
 With or without IOT.</th>
 			      
 			    
@@ -21054,7 +21064,7 @@ Mit oder ohne IOT.</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Person, company that is specifically interested in a product.
+			  	<th style="width:70%">**Person, company that is specifically interested in a product.<br>
 Typically already in negotiation (consultation, offer, concluded contract)</th>
 			      
 			    
@@ -22393,7 +22403,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Entity that rents a product for use by the owner.
+			  	<th style="width:70%">**Entity that rents a product for use by the owner.<br>
 Whether pay per use or time rental.</th>
 			      
 			    
@@ -22782,10 +22792,10 @@ Egal ob pay per use  oder Zeitmiete.</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**User of a machine of a product
-
-Examples
-Drivers of special machines
+			  	<th style="width:70%">**User of a machine of a product<br>
+<br>
+Examples<br>
+Drivers of special machines<br>
 pilots of airplanes</th>
 			      
 			    
@@ -23181,18 +23191,18 @@ les pilotes d&#39;avion</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**Territory allocated by the Post Office.
-In many countries, the postal code is not a number but a string of letters and numbers
-
-There are hierarchical systems for the structure of postal codes:
-FOR EXAMPLE, USA
-221 - 62 -10 -10
-Segment - Sector - Post office or delivery section - routing zone or processing and delivery centre
-
-There may be other standardised systems
-P3: Postcode
-P2: Postal code sub-area
-P1: Postcode area
+			  	<th style="width:70%">**Territory allocated by the Post Office.<br>
+In many countries, the postal code is not a number but a string of letters and numbers<br>
+<br>
+There are hierarchical systems for the structure of postal codes:<br>
+FOR EXAMPLE, USA<br>
+221 - 62 -10 -10<br>
+Segment - Sector - Post office or delivery section - routing zone or processing and delivery centre<br>
+<br>
+There may be other standardised systems<br>
+P3: Postcode<br>
+P2: Postal code sub-area<br>
+P1: Postcode area<br>
 P0: Country</th>
 			    
 					<th style="width:10%"><img src="image/plz-gebiet.png" height="100px" width="100px"></th> 
@@ -25368,7 +25378,7 @@ P0 : Pays</td>
 						<p1><span style="text-transform:uppercase">Entität  </span><a href="#ENTI186" target="_self">Area Language</a></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">**2 digits language iso, &#34;-&#34;, 2 digits country iso</th>
+			  	<th style="width:70%">**2 digits language iso, "-", 2 digits country iso</th>
 			      
 			      
 			  </tr>
@@ -37225,7 +37235,7 @@ P0 : Pays</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">*de* irgend eine Zahl &gt;=0</th>
+			  	<th style="width:70%">*de* irgend eine Zahl >=0</th>
 			      
 			      
 			  </tr>
@@ -38731,7 +38741,7 @@ P0 : Pays</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">*de* Laufnummer einer Position &gt; 0</th>
+			  	<th style="width:70%">*de* Laufnummer einer Position > 0</th>
 			      
 			      
 			  </tr>
@@ -42194,7 +42204,7 @@ P0 : Pays</td>
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">Beschreibung der Abteilung M&amp;V</th>
+			  	<th style="width:70%">Beschreibung der Abteilung M&V</th>
 			      
 			      
 			  </tr>

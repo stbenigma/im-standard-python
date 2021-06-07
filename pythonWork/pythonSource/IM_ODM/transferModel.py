@@ -68,9 +68,9 @@ def findField(set, name):
 
 def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
-    if (pstr is None): return
+    if (pstr is None): return False
     lmatch = "\[.{0,2}" + pflag + ".{0,2}\]"
-    return (True if re.match(lmatch, pstr) else False)
+    return True if re.search(lmatch, pstr) else False
 
 
 def is_historisized(pstr: str) -> bool:
@@ -756,7 +756,10 @@ def updateUDP(pmodeid, pobj):
             try:
                 udpr  = Userdefprop.getbyname(pname=findField(prop, 'name'))
                 # print('      ', findField(prop,'name'), findField(prop,'value'), bdegId)
-                udps.append((findField(prop, 'value'), pmodeid, udpr.udpr_id))
+                val = findField(prop, 'value')
+                if udpr.udpr_name.endswith('_ATTR_NAME'):
+                    val = removeattrmeta(val)
+                udps.append((val, pmodeid, udpr.udpr_id))
             except Exception as e:
                 """dynamische Properties lassen wir aus"""
                 pass
@@ -854,7 +857,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
     xmlname = findField(pattrxml, 'name')
     # strip [] am Ende des Namens
 
-    attr = Attribute(pname=re.sub(' ?\[[LNT]+\]', '', xmlname), pentiid=pentiId
+    attr = Attribute(pname=removeattrmeta(xmlname), pentiid=pentiId
                      , psrcname=Externalref.SOURCE_ODM, psrcid=findField(pattrxml, 'id'))
     attr.attr_tech_name = findText(pattrxml, 'preferredAbbreviation')
     if attr.attr_tech_name is None:
@@ -1547,6 +1550,9 @@ def removefixedudp():
 
     Userdefprop.removemodelUDP(modeludps)
     return
+
+def removeattrmeta(pstr):
+    return re.sub(r' ?\[[LNT]+\]','',pstr)
 
 emails = {}
 def do1email(fileName):

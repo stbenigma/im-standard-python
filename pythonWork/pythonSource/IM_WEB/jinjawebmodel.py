@@ -26,7 +26,6 @@ def rendermodel(pmodel:JSModel,pcurlang,pintfid=None,phtmlfilelist={},pdiagrams=
 
     else:
         title = pmodel.getbyid(pintfid)["name"]
-        interfacename = pmodel.getbyid(pintfid)["name"]
         webmodel.setelements(metainfo = {"title" : title
                                     ,"modelname" : modelname
                                     ,}
