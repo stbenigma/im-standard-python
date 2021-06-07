@@ -1,0 +1,6550 @@
+{
+  "model": {
+    "name": "raetsel-3lang",
+    "type": "logical",
+    "language": "de",
+    "uc": "stb",
+    "dc": "2019-05-06 07:48:12 UTC",
+    "um": null,
+    "dm": null
+  },
+  "languages": {
+    "de": {
+      "name": "Deutsch",
+      "iso3": "deu",
+      "modellanguage": true,
+      "replacementlang": null
+    },
+    "en": {
+      "name": "English",
+      "iso3": "eng",
+      "modellanguage": false,
+      "replacementlang": "de"
+    },
+    "fr": {
+      "name": "Fran\u00e7ais",
+      "iso3": "fra",
+      "modellanguage": false,
+      "replacementlang": "de"
+    }
+  },
+  "entities": {
+    "ENTI112": {
+      "name": {
+        "de": "Elternteil",
+        "en": "Parent",
+        "fr": "Parent"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "Mutter oder Vater mindestens eines Kindes",
+        "en": "**Mother or father of at least one child",
+        "fr": "**M\u00e8re ou p\u00e8re d'au moins un enfant"
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 0,
+      "uc": "stb",
+      "dc": "2019-05-06 08:04:25 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "EC159F8C-2DA5-5A73-439A-810CF9225E1A",
+          "2021-06-07 15:18:07.107001"
+        ]
+      },
+      "supertypes+": [],
+      "roles+": [
+        "ENTI104"
+      ],
+      "subtypes+": [],
+      "attributes+": [],
+      "relations+": [
+        "RELA126"
+      ],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ENTI113": {
+      "name": {
+        "de": "Familie",
+        "en": "Family",
+        "fr": "Famille"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "Aus einem Elternpaar oder einem Elternteil und mindestens einem Kind bestehende Gemeinschaft.",
+        "en": "**Community consisting of a parent couple or a parent and at least one child.",
+        "fr": "**Communaut\u00e9 compos\u00e9e d'un couple de parents ou d'un parent et d'au moins un enfant."
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 0,
+      "uc": "stb",
+      "dc": "2019-05-06 12:33:30 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "6A230C51-7652-10F3-4FC2-23219A856BE9",
+          "2021-06-07 15:18:07.108790"
+        ]
+      },
+      "supertypes+": [],
+      "roles+": [],
+      "subtypes+": [],
+      "attributes+": [
+        "ATTR114"
+      ],
+      "relations+": [],
+      "keys+": [
+        "KEYS115"
+      ],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ENTI116": {
+      "name": {
+        "de": "Haustier",
+        "en": "*Pet",
+        "fr": "Animal familier"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "Tier, das in der Gemeinschaft der Menschen lebt, aber kein Nutztier ist.",
+        "en": "**Animal that lives in the community of humans, but is not a farm animal.",
+        "fr": "**Animal qui vit dans la communaut\u00e9 des humains, mais qui n'est pas un animal de ferme."
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 1,
+      "uc": "stb",
+      "dc": "2019-05-06 07:55:51 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "38B61F56-E01A-41E2-D258-AD6114B9B659",
+          "2021-06-07 15:18:07.113780"
+        ]
+      },
+      "supertypes+": [
+        "ENTI121"
+      ],
+      "roles+": [],
+      "subtypes+": [],
+      "attributes+": [
+        "ATTR118"
+      ],
+      "relations+": [
+        "RELA130"
+      ],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": []
+    },
+    "ENTI120": {
+      "name": {
+        "de": "Kind",
+        "en": "Child",
+        "fr": "Enfant"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "*Gesch\u00e4ftsf\u00e4hige Einheit, die ein Produkt zum Gebrauch vom Eigent\u00fcmer mietet.\nEgal ob pay per use  oder Zeitmiete.",
+        "en": "***Business entity that rents a product for use from the owner.\nWhether pay per use or time rental.",
+        "fr": "***Entit\u00e9s commerciales qui louent un produit pour l'utiliser aupr\u00e8s du propri\u00e9taire.\nQu'il s'agisse de paiement \u00e0 l'utilisation ou de location de temps."
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 0,
+      "uc": "stb",
+      "dc": "2019-05-06 08:04:25 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "924C6AB6-7EA7-77BC-2E8E-EA6A768F61D1",
+          "2021-06-07 15:18:07.120433"
+        ]
+      },
+      "supertypes+": [],
+      "roles+": [
+        "ENTI104"
+      ],
+      "subtypes+": [],
+      "attributes+": [],
+      "relations+": [
+        "RELA125"
+      ],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ENTI119": {
+      "name": {
+        "de": "Nutztier",
+        "en": "Domestic animal",
+        "fr": "Animal productiv"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "*Partner, der die Produkte / Ger\u00e4te servisiert (pflegt, repariert, ausbaut, betreut)",
+        "en": "***Partner who services the products / equipment (maintains, repairs, removes, supports)",
+        "fr": "***Partenaire qui assure la maintenance des produits/\u00e9quipements (entretien, r\u00e9paration, retrait, assistance)."
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 1,
+      "uc": "bue",
+      "dc": "2021-06-01 15:07:15 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "FA01D6D0-7120-C24C-7E46-D542F98AE34E",
+          "2021-06-07 15:18:07.118476"
+        ]
+      },
+      "supertypes+": [
+        "ENTI121"
+      ],
+      "roles+": [],
+      "subtypes+": [],
+      "attributes+": [],
+      "relations+": [
+        "RELA131"
+      ],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": []
+    },
+    "ENTI121": {
+      "name": {
+        "de": "Tier",
+        "en": "*Animal",
+        "fr": "Animal"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "*Partner, der die Produkte / Ger\u00e4te servisiert (pflegt, repariert, ausbaut, betreut)",
+        "en": "***Partner who services the products / equipment (maintains, repairs, removes, supports)",
+        "fr": "***Partenaire qui assure la maintenance des produits/\u00e9quipements (entretien, r\u00e9paration, retrait, assistance)."
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 0,
+      "uc": "stb",
+      "dc": "2019-05-06 11:52:40 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "26652566-5BBC-8151-E218-6308024DEA7C",
+          "2021-06-07 15:18:07.122283"
+        ]
+      },
+      "supertypes+": [],
+      "roles+": [],
+      "subtypes+": [
+        "ENTI116",
+        "ENTI119",
+        "ENTI111"
+      ],
+      "attributes+": [],
+      "relations+": [
+        "RELA130",
+        "RELA131",
+        "RELA129",
+        "RELA127"
+      ],
+      "keys+": [],
+      "inarcs+": [
+        "ARCS128"
+      ],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {
+        "INTF134": [
+          "TABL135",
+          "TABL140"
+        ]
+      },
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ENTI111": {
+      "name": {
+        "de": "Wildtier",
+        "en": "Wild animal",
+        "fr": "Animal sauvage"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "Tier, das frei in der Wildnis lebt.",
+        "en": "**Animal that lives free in the wild.",
+        "fr": "**Animal qui vit en libert\u00e9 dans la nature."
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 1,
+      "uc": "bue",
+      "dc": "2021-06-01 15:08:11 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "01F3D79B-9939-DAAD-4D5A-73F2A7B96739",
+          "2021-06-07 15:18:07.105021"
+        ]
+      },
+      "supertypes+": [
+        "ENTI121"
+      ],
+      "roles+": [],
+      "subtypes+": [],
+      "attributes+": [],
+      "relations+": [
+        "RELA129"
+      ],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": []
+    },
+    "ENTI122": {
+      "name": {
+        "de": "juristische Person",
+        "en": "Juristic person",
+        "fr": "Personne morale"
+      },
+      "shortname": null,
+      "descr": {
+        "de": "In der Regel handelt es sich bei juristischen Personen um Unternehmen wie Aktiengesellschaften oder Gesellschaften mit beschr\u00e4nkter Haftung, oder aber auch um Vereine und Stiftungen.\nSiehe (Schweizer Obligationenrecht)[https://www.kalaidos-fh.ch/de-CH/Blog/Posts/Archiv/die-acht-gesellschaftsformen-nach-schweizer-recht]",
+        "en": "*de* In der Regel handelt es sich bei juristischen Personen um Unternehmen wie Aktiengesellschaften oder Gesellschaften mit beschr\u00e4nkter Haftung, oder aber auch um Vereine und Stiftungen.\nSiehe (Schweizer Obligationenrecht)[https://www.kalaidos-fh.ch/de-CH/Blog/Posts/Archiv/die-acht-gesellschaftsformen-nach-schweizer-recht]",
+        "fr": "*de* In der Regel handelt es sich bei juristischen Personen um Unternehmen wie Aktiengesellschaften oder Gesellschaften mit beschr\u00e4nkter Haftung, oder aber auch um Vereine und Stiftungen.\nSiehe (Schweizer Obligationenrecht)[https://www.kalaidos-fh.ch/de-CH/Blog/Posts/Archiv/die-acht-gesellschaftsformen-nach-schweizer-recht]"
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 0,
+      "uc": "stb",
+      "dc": "2019-05-06 08:04:25 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "EAD62900-A983-6D4B-BB81-23486E680160",
+          "2021-06-07 15:18:07.124622"
+        ]
+      },
+      "supertypes+": [],
+      "roles+": [],
+      "subtypes+": [],
+      "attributes+": [
+        "ATTR123"
+      ],
+      "relations+": [],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ENTI104": {
+      "name": {
+        "de": "natuerliche Person",
+        "en": "Natural person",
+        "fr": "personne naturelle"
+      },
+      "shortname": null,
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "exptuple#": null,
+      "prefix": null,
+      "subtypellevel+": 0,
+      "uc": "stb",
+      "dc": "2019-05-06 08:00:37 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "icon": {
+        "type": null,
+        "reference": null
+      },
+      "synonyms": {},
+      "sourceref": {
+        "ODM": [
+          "3DD3ACC9-75E8-8370-383F-69FCF5F4983F",
+          "2021-06-07 15:18:07.088705"
+        ]
+      },
+      "supertypes+": [
+        "ENTI112",
+        "ENTI120"
+      ],
+      "roles+": [],
+      "subtypes+": [],
+      "attributes+": [
+        "ATTR105",
+        "ATTR107",
+        "ATTR109",
+        "ATTR110"
+      ],
+      "relations+": [
+        "RELA125",
+        "RELA124",
+        "RELA127",
+        "RELA126"
+      ],
+      "keys+": [],
+      "inarcs+": [],
+      "referencedby": [
+        "ORGU73"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "tablesmapped+": {
+        "INTF134": [
+          "TABL140"
+        ]
+      },
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    }
+  },
+  "domains": {
+    "DOMA79": {
+      "name": {
+        "de": "Anzahl",
+        "en": "*de* Anzahl",
+        "fr": "*de* Anzahl"
+      },
+      "descr": {
+        "de": "irgend eine Zahl >=0",
+        "en": "*de* irgend eine Zahl >=0",
+        "fr": "*de* irgend eine Zahl >=0"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "unknown",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "unknown",
+      "datatypeid": "DATY1",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-22 08:01:15 UTC",
+      "dm": null,
+      "maxlng": null,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "4371DA6A-2A2E-094E-B223-F78464D5EDE8",
+          "2021-06-07 15:18:07.001109"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA77": {
+      "name": {
+        "de": "Artikel ID",
+        "en": "*de* Artikel ID",
+        "fr": "*de* Artikel ID"
+      },
+      "descr": {
+        "de": "Eindeutige Artikelidentifikation",
+        "en": "*de* Eindeutige Artikelidentifikation",
+        "fr": "*de* Eindeutige Artikelidentifikation"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "unknown",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "unknown",
+      "datatypeid": "DATY1",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 18:54:07 UTC",
+      "dm": null,
+      "maxlng": null,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "3FEA6C94-1CCF-1E45-A44E-09B49FC0035C",
+          "2021-06-07 15:18:06.998332"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA91": {
+      "name": {
+        "de": "Beschreibung",
+        "en": "*de* Beschreibung",
+        "fr": "*de* Beschreibung"
+      },
+      "descr": {
+        "de": "Text als Beschreibung f\u00fcr etwas",
+        "en": "*de* Text als Beschreibung f\u00fcr etwas",
+        "fr": "*de* Text als Beschreibung f\u00fcr etwas"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR (2000)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 14:50:40 UTC",
+      "dm": null,
+      "maxlng": 2000,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [
+        "COLU153"
+      ],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "C3DAFABD-5133-27CA-E0E5-B039A45135D6",
+          "2021-06-07 15:18:07.021327"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA85": {
+      "name": {
+        "de": "Boolean",
+        "en": "*de* Boolean",
+        "fr": "*de* Boolean"
+      },
+      "descr": {
+        "de": "Logischer Wert TRUE/FALSE",
+        "en": "*de* Logischer Wert TRUE/FALSE",
+        "fr": "*de* Logischer Wert TRUE/FALSE"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "LOV",
+      "displdatatype+": {
+        "de": "Werteliste",
+        "en": "List of values",
+        "fr": "Liste des Valeur"
+      },
+      "datatypestr+": "VARCHAR (5)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 14:58:19 UTC",
+      "dm": null,
+      "maxlng": 5,
+      "values": [
+        {
+          "value": "FALSE",
+          "sort": 1,
+          "displ": "unwahr",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-05-17 14:58:19 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "TRUE",
+          "sort": 2,
+          "displ": "wahr",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-05-17 14:58:19 UTC",
+          "um": null,
+          "dm": null
+        }
+      ],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "7F06A64B-0C00-1355-F863-DBD9FDE5B848",
+          "2021-06-07 15:18:07.013709"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA84": {
+      "name": {
+        "de": "Business Rule",
+        "en": "*de* Business Rule",
+        "fr": "*de* Business Rule"
+      },
+      "descr": {
+        "de": "Beschreibung einer Regel f\u00fcr Attributwerte",
+        "en": "*de* Beschreibung einer Regel f\u00fcr Attributwerte",
+        "fr": "*de* Beschreibung einer Regel f\u00fcr Attributwerte"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR (4000)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-06-02 09:14:39 UTC",
+      "dm": null,
+      "maxlng": 4000,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "7EA6DA26-F21D-B053-2D0E-CA84861ECAAB",
+          "2021-06-07 15:18:07.012498"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA82": {
+      "name": {
+        "de": "Datum",
+        "en": "*de* Datum",
+        "fr": "*de* Datum"
+      },
+      "descr": {
+        "de": "Datum auf einen Tag genau",
+        "en": "*de* Datum auf einen Tag genau",
+        "fr": "*de* Datum auf einen Tag genau"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Date",
+      "type": "DAT",
+      "displdatatype+": {
+        "de": "Zeitpunkt",
+        "en": "Point in Time",
+        "fr": "Instant"
+      },
+      "datatypestr+": "Date (  Granularity = MINUTE)",
+      "datatypeid": "DATY14",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 14:57:41 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "granularity": "MINUTE",
+      "granularitytext+": {
+        "de": "Minute",
+        "en": "minute",
+        "fr": "Minute"
+      },
+      "format+": null,
+      "formatid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "631FC893-D28E-5FE4-89DB-473C78BB2B2A",
+          "2021-06-07 15:18:07.008645"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA106": {
+      "name": {
+        "de": "Geburtsdatum",
+        "en": "*de* Geburtsdatum",
+        "fr": "*de* Geburtsdatum"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute natuerliche Person.Geburtsdatum",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute natuerliche Person.Geburtsdatum",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute natuerliche Person.Geburtsdatum"
+      },
+      "origin": "DER",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Date",
+      "type": "DAT",
+      "displdatatype+": {
+        "de": "Zeitpunkt",
+        "en": "Point in Time",
+        "fr": "Instant"
+      },
+      "datatypestr+": "Date (  Granularity = MINUTE)",
+      "datatypeid": "DATY14",
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-05-06 08:00:37 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "granularity": "MINUTE",
+      "granularitytext+": {
+        "de": "Minute",
+        "en": "minute",
+        "fr": "Minute"
+      },
+      "format+": null,
+      "formatid": null,
+      "usedinattrs+": [
+        "ATTR107"
+      ],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {},
+      "referencedby": []
+    },
+    "DOMA89": {
+      "name": {
+        "de": "Geschlecht",
+        "en": "*de* Geschlecht",
+        "fr": "*de* Geschlecht"
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "String",
+      "type": "LOV",
+      "displdatatype+": {
+        "de": "Werteliste",
+        "en": "List of values",
+        "fr": "Liste des Valeur"
+      },
+      "datatypestr+": "String (1)",
+      "datatypeid": "DATY67",
+      "uc": "stb",
+      "um": null,
+      "dc": "2020-10-27 16:15:20 UTC",
+      "dm": null,
+      "maxlng": 1,
+      "values": [
+        {
+          "value": "A",
+          "sort": 1,
+          "displ": "andere",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-10-27 16:15:20 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "M",
+          "sort": 2,
+          "displ": "m\u00e4nnlich",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-10-27 16:15:20 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "W",
+          "sort": 3,
+          "displ": "weiblich",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-10-27 16:15:20 UTC",
+          "um": null,
+          "dm": null
+        }
+      ],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "A7DF1FDC-B701-C635-289F-02B407B98178",
+          "2021-06-07 15:18:07.018552"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA108": {
+      "name": {
+        "de": "Geschlecht-natuerliche Person",
+        "en": "*de* Geschlecht-natuerliche Person",
+        "fr": "*de* Geschlecht-natuerliche Person"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute natuerliche Person.Geschlecht",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute natuerliche Person.Geschlecht",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute natuerliche Person.Geschlecht"
+      },
+      "origin": "DER",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Date",
+      "type": "DAT",
+      "displdatatype+": {
+        "de": "Zeitpunkt",
+        "en": "Point in Time",
+        "fr": "Instant"
+      },
+      "datatypestr+": "Date (  Granularity = MINUTE)",
+      "datatypeid": "DATY14",
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-05-06 08:00:37 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "granularity": "MINUTE",
+      "granularitytext+": {
+        "de": "Minute",
+        "en": "minute",
+        "fr": "Minute"
+      },
+      "format+": null,
+      "formatid": null,
+      "usedinattrs+": [
+        "ATTR109"
+      ],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {},
+      "referencedby": []
+    },
+    "DOMA94": {
+      "name": {
+        "de": "ISO-2-Code",
+        "en": "*de* ISO-2-Code",
+        "fr": "*de* ISO-2-Code"
+      },
+      "descr": {
+        "de": "2-Stelliger ISO_CODE",
+        "en": "*de* 2-Stelliger ISO_CODE",
+        "fr": "*de* 2-Stelliger ISO_CODE"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR (2)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-06-02 12:07:24 UTC",
+      "dm": null,
+      "maxlng": 2,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "FC85688A-BE92-2820-35E2-EB148361AAE1",
+          "2021-06-07 15:18:07.024525"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA83": {
+      "name": {
+        "de": "Komponente Typ",
+        "en": "*de* Komponente Typ",
+        "fr": "*de* Komponente Typ"
+      },
+      "descr": {
+        "de": "Grundtyp einer Komponenten",
+        "en": "*de* Grundtyp einer Komponenten",
+        "fr": "*de* Grundtyp einer Komponenten"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "CHAR",
+      "type": "LOV",
+      "displdatatype+": {
+        "de": "Werteliste",
+        "en": "List of values",
+        "fr": "Liste des Valeur"
+      },
+      "datatypestr+": "CHAR",
+      "datatypeid": "DATY11",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-22 08:49:54 UTC",
+      "dm": null,
+      "maxlng": null,
+      "values": [
+        {
+          "value": "Hardware",
+          "sort": 1,
+          "displ": "physikalische Einheit",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-05-22 08:49:54 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "Lizenz",
+          "sort": 2,
+          "displ": "Berechtigung etwas zu nutzen",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-05-22 08:49:54 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "Service",
+          "sort": 3,
+          "displ": "Dienstleistung (Installation, Garantie, Abbau, Betreuung)",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-05-22 08:49:54 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "Software",
+          "sort": 4,
+          "displ": "Software",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-05-22 08:49:54 UTC",
+          "um": null,
+          "dm": null
+        }
+      ],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "79E5902D-A796-2515-EC5E-B17F6C380958",
+          "2021-06-07 15:18:07.009667"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA97": {
+      "name": {
+        "de": "Koordinate",
+        "en": "*de* Koordinate",
+        "fr": "*de* Koordinate"
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": null,
+      "type": "GRP",
+      "displdatatype+": {
+        "de": "Gruppenattribut",
+        "en": "Groupattribute",
+        "fr": "Attribute de groupe"
+      },
+      "datatypestr+": "",
+      "datatypeid": null,
+      "uc": "stb",
+      "um": null,
+      "dc": "2020-09-03 15:47:48 UTC",
+      "dm": null,
+      "elements": [
+        {
+          "name": "X",
+          "mandatory": true,
+          "domain": "DOMA98",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-09-03 15:47:59 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "name": "Y",
+          "mandatory": true,
+          "domain": "DOMA78",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-09-03 15:48:02 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "name": "Z",
+          "mandatory": false,
+          "domain": "DOMA95",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-09-04 06:45:50 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "name": "xx",
+          "mandatory": false,
+          "domain": "DOMA102",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2020-10-07 18:19:02 UTC",
+          "um": null,
+          "dm": null
+        }
+      ],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "6D62577B-0F5C-1506-A6C6-5A41BEAAC77D",
+          "2021-06-07 15:18:07.027987"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA154": {
+      "name": {
+        "de": "Last name",
+        "en": "*de* Last name",
+        "fr": "*de* Last name"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Government.NaturalPerson.Last name",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Government.NaturalPerson.Last name",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Government.NaturalPerson.Last name"
+      },
+      "origin": "DER",
+      "interface-id": "INTF147",
+      "interface+": "Government",
+      "basedatatype+": "NVARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "NVARCHAR",
+      "datatypeid": "DATY35",
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-11-10 03:27:10 UTC",
+      "dm": null,
+      "maxlng": null,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [
+        "COLU155"
+      ],
+      "usedingrps+": [],
+      "sourceref": {},
+      "referencedby": []
+    },
+    "DOMA81": {
+      "name": {
+        "de": "Name",
+        "en": "*de* Name",
+        "fr": "*de* Name"
+      },
+      "descr": {
+        "de": "Frei w\u00e4hlbare Namen f\u00fcr etwas",
+        "en": "*de* Frei w\u00e4hlbare Namen f\u00fcr etwas",
+        "fr": "*de* Frei w\u00e4hlbare Namen f\u00fcr etwas"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR (60)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 14:50:10 UTC",
+      "dm": null,
+      "maxlng": 60,
+      "syntaxrule": null,
+      "usedinattrs+": [
+        "ATTR123"
+      ],
+      "usedincols+": [
+        "COLU145",
+        "COLU141",
+        "COLU146"
+      ],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "57EF5654-BB1B-99CD-E31A-A47A05AD3EE6",
+          "2021-06-07 15:18:07.007489"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA117": {
+      "name": {
+        "de": "Name-Haustier",
+        "en": "*de* Name-Haustier",
+        "fr": "*de* Name-Haustier"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Haustier.Name",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Haustier.Name",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Haustier.Name"
+      },
+      "origin": "DER",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-05-06 07:55:51 UTC",
+      "dm": null,
+      "maxlng": null,
+      "syntaxrule": null,
+      "usedinattrs+": [
+        "ATTR118"
+      ],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {},
+      "referencedby": []
+    },
+    "DOMA87": {
+      "name": {
+        "de": "Phys. Einheit",
+        "en": "*de* Phys. Einheit",
+        "fr": "*de* Phys. Einheit"
+      },
+      "descr": {
+        "de": "Physikalische Einheit",
+        "en": "*de* Physikalische Einheit",
+        "fr": "*de* Physikalische Einheit"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR (15)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 19:43:39 UTC",
+      "dm": null,
+      "maxlng": 15,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "8C66DAD3-1A37-83CB-43FA-DFE3C73A6F26",
+          "2021-06-07 15:18:07.016577"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA78": {
+      "name": {
+        "de": "Position Nr",
+        "en": "*de* Position Nr",
+        "fr": "*de* Position Nr"
+      },
+      "descr": {
+        "de": "Laufnummer einer Position > 0",
+        "en": "*de* Laufnummer einer Position > 0",
+        "fr": "*de* Laufnummer einer Position > 0"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Integer",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "Integer (0,0  >= 1)",
+      "datatypeid": "DATY27",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-22 07:55:44 UTC",
+      "dm": null,
+      "minvalue": 1,
+      "maxvalue": null,
+      "totaldigits": 0,
+      "fractdigits": 0,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [
+        "DOMA97"
+      ],
+      "sourceref": {
+        "ODM": [
+          "409047B7-0592-72EC-88E9-B6F55E045084",
+          "2021-06-07 15:18:06.999772"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA86": {
+      "name": {
+        "de": "Regular Expression",
+        "en": "*de* Regular Expression",
+        "fr": "*de* Regular Expression"
+      },
+      "descr": {
+        "de": "Regul\u00e4rer Ausdruck zur \u00dcberpr\u00fcfung von Texten",
+        "en": "*de* Regul\u00e4rer Ausdruck zur \u00dcberpr\u00fcfung von Texten",
+        "fr": "*de* Regul\u00e4rer Ausdruck zur \u00dcberpr\u00fcfung von Texten"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "VARCHAR (4000)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 15:26:21 UTC",
+      "dm": null,
+      "maxlng": 4000,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "8BF234D0-8881-3198-71ED-131ADD4FF53E",
+          "2021-06-07 15:18:07.015494"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA95": {
+      "name": {
+        "de": "SDO_GEOMETRY",
+        "en": "*de* SDO_GEOMETRY",
+        "fr": "*de* SDO_GEOMETRY"
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": null,
+      "type": "GRP",
+      "displdatatype+": {
+        "de": "Gruppenattribut",
+        "en": "Groupattribute",
+        "fr": "Attribute de groupe"
+      },
+      "datatypestr+": "",
+      "datatypeid": null,
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-05-06 07:48:12 UTC",
+      "dm": null,
+      "elements": [],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [
+        "DOMA97"
+      ],
+      "sourceref": {
+        "ODM": [
+          "47E390DE-0671-C4B1-8428-0F45CBEE18F8",
+          "2021-06-07 15:18:07.025835"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA88": {
+      "name": {
+        "de": "Stellen#",
+        "en": "*de* Stellen#",
+        "fr": "*de* Stellen#"
+      },
+      "descr": {
+        "de": "Anzahl Vor oder Nachkommastellen bei einer Zahl",
+        "en": "*de* Anzahl Vor oder Nachkommastellen bei einer Zahl",
+        "fr": "*de* Anzahl Vor oder Nachkommastellen bei einer Zahl"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Integer",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "Integer (30,0  >= 0)",
+      "datatypeid": "DATY27",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 14:56:21 UTC",
+      "dm": null,
+      "minvalue": 0,
+      "maxvalue": null,
+      "totaldigits": 30,
+      "fractdigits": 0,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "9CA83673-0453-9943-665C-CCB4497CF164",
+          "2021-06-07 15:18:07.017580"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA93": {
+      "name": {
+        "de": "Surrogate key",
+        "en": "*de* Surrogate key",
+        "fr": "*de* Surrogate key"
+      },
+      "descr": {
+        "de": "Systemgenerierter Schl\u00fcssel",
+        "en": "*de* Systemgenerierter Schl\u00fcssel",
+        "fr": "*de* Systemgenerierter Schl\u00fcssel"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "NUMERIC",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "NUMERIC (15,0)",
+      "datatypeid": "DATY34",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-06-02 10:05:23 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "totaldigits": 15,
+      "fractdigits": 0,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA",
+          "2021-06-07 15:18:07.023423"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA92": {
+      "name": {
+        "de": "Unknown",
+        "en": "*de* Unknown",
+        "fr": "*de* Unknown"
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "unknown",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "unknown",
+      "datatypeid": "DATY1",
+      "uc": "fyayc",
+      "um": null,
+      "dc": "2018-04-24 10:58:28 UTC",
+      "dm": null,
+      "maxlng": null,
+      "syntaxrule": null,
+      "usedinattrs+": [
+        "ATTR105",
+        "ATTR110",
+        "ATTR114"
+      ],
+      "usedincols+": [
+        "COLU136",
+        "COLU139",
+        "COLU157",
+        "COLU162",
+        "COLU160",
+        "COLU149",
+        "COLU159",
+        "COLU158"
+      ],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "DOM3000004",
+          "2021-06-07 15:18:07.022307"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA90": {
+      "name": {
+        "de": "Version-Nr",
+        "en": "*de* Version-Nr",
+        "fr": "*de* Version-Nr"
+      },
+      "descr": {
+        "de": "Fortlaufende Nummer f\u00fcr Versionen",
+        "en": "*de* Fortlaufende Nummer f\u00fcr Versionen",
+        "fr": "*de* Fortlaufende Nummer f\u00fcr Versionen"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Integer",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "Integer (0,0)",
+      "datatypeid": "DATY27",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-22 08:40:38 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "totaldigits": 0,
+      "fractdigits": 0,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "AF5E1D05-661F-8A64-E8AC-C569F2FAD411",
+          "2021-06-07 15:18:07.020361"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA98": {
+      "name": {
+        "de": "X",
+        "en": "*de* X",
+        "fr": "*de* X"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Koordinate.X",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Koordinate.X",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Koordinate.X"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "NUMERIC",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "NUMERIC (8,2)",
+      "datatypeid": "DATY34",
+      "uc": "stb",
+      "um": null,
+      "dc": "2020-09-03 15:47:59 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "totaldigits": 8,
+      "fractdigits": 2,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [
+        "DOMA97"
+      ],
+      "sourceref": {},
+      "referencedby": []
+    },
+    "DOMA96": {
+      "name": {
+        "de": "XMLTYPE",
+        "en": "*de* XMLTYPE",
+        "fr": "*de* XMLTYPE"
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": null,
+      "type": "GRP",
+      "displdatatype+": {
+        "de": "Gruppenattribut",
+        "en": "Groupattribute",
+        "fr": "Attribute de groupe"
+      },
+      "datatypestr+": "",
+      "datatypeid": null,
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-05-06 07:48:12 UTC",
+      "dm": null,
+      "elements": [],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1",
+          "2021-06-07 15:18:07.026915"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA76": {
+      "name": {
+        "de": "Zahlgranularit\u00e4t",
+        "en": "*de* Zahlgranularit\u00e4t",
+        "fr": "*de* Zahlgranularit\u00e4t"
+      },
+      "descr": {
+        "de": "Rundungsangabe f\u00fcr eine Zahl Formel f\u00fcr ZG-Anwendung: round(x/ZG)*ZG",
+        "en": "*de* Rundungsangabe f\u00fcr eine Zahl Formel f\u00fcr ZG-Anwendung: round(x/ZG)*ZG",
+        "fr": "*de* Rundungsangabe f\u00fcr eine Zahl Formel f\u00fcr ZG-Anwendung: round(x/ZG)*ZG"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "NUMERIC",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "NUMERIC (15,6  >= 0)",
+      "datatypeid": "DATY34",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-06-02 08:45:36 UTC",
+      "dm": null,
+      "minvalue": 0,
+      "maxvalue": null,
+      "totaldigits": 15,
+      "fractdigits": 6,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "16723A86-5E8B-B50D-F81D-ECBEEF3E8261",
+          "2021-06-07 15:18:06.996895"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA75": {
+      "name": {
+        "de": "Zeitpunkt",
+        "en": "*de* Zeitpunkt",
+        "fr": "*de* Zeitpunkt"
+      },
+      "descr": {
+        "de": "Zeitpunkt (Tag, Zeit)",
+        "en": "*de* Zeitpunkt (Tag, Zeit)",
+        "fr": "*de* Zeitpunkt (Tag, Zeit)"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "Timestamp",
+      "type": "DAT",
+      "displdatatype+": {
+        "de": "Zeitpunkt",
+        "en": "Point in Time",
+        "fr": "Instant"
+      },
+      "datatypestr+": "Timestamp (  Granularity = MINUTE)",
+      "datatypeid": "DATY57",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-05-17 16:19:03 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "granularity": "MINUTE",
+      "granularitytext+": {
+        "de": "Minute",
+        "en": "minute",
+        "fr": "Minute"
+      },
+      "format+": null,
+      "formatid": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "0AD80E26-0F5C-D068-29EA-4740A04582AE",
+          "2021-06-07 15:18:06.995621"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA80": {
+      "name": {
+        "de": "Zeitpunktgranularit\u00e4t",
+        "en": "*de* Zeitpunktgranularit\u00e4t",
+        "fr": "*de* Zeitpunktgranularit\u00e4t"
+      },
+      "descr": {
+        "de": "Granularit\u00e4t (Rundungsstufe) f\u00fcr Zeitpunkte",
+        "en": "*de* Granularit\u00e4t (Rundungsstufe) f\u00fcr Zeitpunkte",
+        "fr": "*de* Granularit\u00e4t (Rundungsstufe) f\u00fcr Zeitpunkte"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "VARCHAR",
+      "type": "LOV",
+      "displdatatype+": {
+        "de": "Werteliste",
+        "en": "List of values",
+        "fr": "Liste des Valeur"
+      },
+      "datatypestr+": "VARCHAR (10)",
+      "datatypeid": "DATY62",
+      "uc": "stb",
+      "um": null,
+      "dc": "2018-06-02 08:40:42 UTC",
+      "dm": null,
+      "maxlng": 10,
+      "values": [
+        {
+          "value": "HALBSTUNDE",
+          "sort": 1,
+          "displ": "Halbe Stunde",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "JAHR",
+          "sort": 2,
+          "displ": "Jahr",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "MINUTE",
+          "sort": 3,
+          "displ": "Minute",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "MONAT",
+          "sort": 4,
+          "displ": "Monat",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "QUARTAL",
+          "sort": 5,
+          "displ": "Quartal",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "SEKUNDE",
+          "sort": 6,
+          "displ": "Sekunde",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "SEMESTER",
+          "sort": 7,
+          "displ": "Semester",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "STUNDE",
+          "sort": 8,
+          "displ": "Stunde",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "TAG",
+          "sort": 9,
+          "displ": "Tag (24h)",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "VIERTELSTUNDE",
+          "sort": 10,
+          "displ": "Viertelstunde",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        },
+        {
+          "value": "WOCHE",
+          "sort": 11,
+          "displ": "Woche",
+          "descr": null,
+          "uc": "stb",
+          "dc": "2018-06-02 08:40:42 UTC",
+          "um": null,
+          "dm": null
+        }
+      ],
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [],
+      "sourceref": {
+        "ODM": [
+          "5595B09A-F334-06B9-E641-60634C73D28B",
+          "2021-06-07 15:18:07.002443"
+        ]
+      },
+      "referencedby": []
+    },
+    "DOMA150": {
+      "name": {
+        "de": "ansprechpartner_id",
+        "en": "*de* ansprechpartner_id",
+        "fr": "*de* ansprechpartner_id"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Government.LegalRepresentative.ansprechpartner_id",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Government.LegalRepresentative.ansprechpartner_id",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Government.LegalRepresentative.ansprechpartner_id"
+      },
+      "origin": "DER",
+      "interface-id": "INTF147",
+      "interface+": "Government",
+      "basedatatype+": "NUMERIC",
+      "type": "NUM",
+      "displdatatype+": {
+        "de": "Numerisch",
+        "en": "Numerical",
+        "fr": "Num\u00e9rique"
+      },
+      "datatypestr+": "NUMERIC (10,0)",
+      "datatypeid": "DATY34",
+      "uc": "stb",
+      "um": null,
+      "dc": "2019-11-10 03:27:10 UTC",
+      "dm": null,
+      "minvalue": null,
+      "maxvalue": null,
+      "totaldigits": 10,
+      "fractdigits": 0,
+      "roundvalue": null,
+      "unit": null,
+      "unitid": null,
+      "usedinattrs+": [],
+      "usedincols+": [
+        "COLU151"
+      ],
+      "usedingrps+": [],
+      "sourceref": {},
+      "referencedby": []
+    },
+    "DOMA102": {
+      "name": {
+        "de": "xx",
+        "en": "*de* xx",
+        "fr": "*de* xx"
+      },
+      "descr": {
+        "de": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Koordinate.xx",
+        "en": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Koordinate.xx",
+        "fr": "*de* generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Koordinate.xx"
+      },
+      "origin": "DOM",
+      "interface-id": null,
+      "interface+": null,
+      "basedatatype+": "String",
+      "type": "TXT",
+      "displdatatype+": {
+        "de": "Text",
+        "en": "Text",
+        "fr": "Texte"
+      },
+      "datatypestr+": "String",
+      "datatypeid": "DATY67",
+      "uc": "stb",
+      "um": null,
+      "dc": "2020-10-07 18:19:02 UTC",
+      "dm": null,
+      "maxlng": null,
+      "syntaxrule": null,
+      "usedinattrs+": [],
+      "usedincols+": [],
+      "usedingrps+": [
+        "DOMA97"
+      ],
+      "sourceref": {},
+      "referencedby": []
+    }
+  },
+  "attributes": {
+    "ATTR105": {
+      "techname": "VORNAME",
+      "name": {
+        "de": "Vorname",
+        "en": "First Name",
+        "fr": "Pr\u00e9nom"
+      },
+      "seq": 1,
+      "entity": "ENTI104",
+      "domain": "DOMA92",
+      "basedatatype+": "unknown",
+      "type+": "TXT",
+      "descriptive": false,
+      "mandatory": false,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": "**]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT[",
+        "en": "*de* **]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT[",
+        "fr": "*de* **]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT["
+      },
+      "uc": "stb",
+      "dc": "2019-05-06 08:44:03 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "34425C84-C83D-CD8C-C3A8-A29A523A971B",
+          "2021-06-07 15:18:07.093637"
+        ]
+      },
+      "keys+": [],
+      "referencedby": [
+        "ORGU73"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ATTR107": {
+      "techname": "GEBURTSDATUM",
+      "name": {
+        "de": "Geburtsdatum",
+        "en": "Birth date",
+        "fr": "Date d'anniversaire"
+      },
+      "seq": 2,
+      "entity": "ENTI104",
+      "domain": "DOMA106",
+      "basedatatype+": "Date",
+      "type+": "DAT",
+      "descriptive": false,
+      "mandatory": false,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": "**]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT[",
+        "en": "*de* **]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT[",
+        "fr": "*de* **]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT["
+      },
+      "uc": "stb",
+      "dc": "2019-05-06 08:00:37 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "BAA2C6EF-0C92-9643-BF97-C6828D6F6188",
+          "2021-06-07 15:18:07.097127"
+        ]
+      },
+      "keys+": [],
+      "referencedby": [
+        "ORGU73"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ATTR109": {
+      "techname": "GESCHLECHT",
+      "name": {
+        "de": "Geschlecht",
+        "en": "Gender",
+        "fr": "Sexe"
+      },
+      "seq": 3,
+      "entity": "ENTI104",
+      "domain": "DOMA108",
+      "basedatatype+": "Date",
+      "type+": "DAT",
+      "descriptive": false,
+      "mandatory": false,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": "**]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT[",
+        "en": "*de* **]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT[",
+        "fr": "*de* **]EN_ATTR_COMMENT]\n[EN_ATTR_COMMENT["
+      },
+      "uc": "stb",
+      "dc": "2019-05-06 08:00:37 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "114252E2-787D-F3A4-D874-37086E916F60",
+          "2021-06-07 15:18:07.100569"
+        ]
+      },
+      "keys+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ATTR110": {
+      "techname": "NACHNAME",
+      "name": {
+        "de": "Nachname",
+        "en": "Last name",
+        "fr": "nom de famille"
+      },
+      "seq": 4,
+      "entity": "ENTI104",
+      "domain": "DOMA92",
+      "basedatatype+": "unknown",
+      "type+": "TXT",
+      "descriptive": false,
+      "mandatory": false,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "uc": "bue",
+      "dc": "2021-06-02 04:26:06 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "FB96D3DF-0D2D-2542-C8A7-6BA7626F8196",
+          "2021-06-07 15:18:07.102544"
+        ]
+      },
+      "keys+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {
+        "INTF134": [
+          "COLU141"
+        ]
+      },
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ATTR114": {
+      "techname": "NACHNAME",
+      "name": {
+        "de": "Nachname",
+        "en": "Family name",
+        "fr": "nom de famille"
+      },
+      "seq": 1,
+      "entity": "ENTI113",
+      "domain": "DOMA92",
+      "basedatatype+": "unknown",
+      "type+": "TXT",
+      "descriptive": false,
+      "mandatory": true,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "uc": "stb",
+      "dc": "2019-05-06 12:33:46 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "F03F4978-F19A-5AD2-722C-FC0E7553F137",
+          "2021-06-07 15:18:07.110757"
+        ]
+      },
+      "keys+": [
+        "KEYS115"
+      ],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    },
+    "ATTR118": {
+      "techname": "NAME",
+      "name": {
+        "de": "Name",
+        "en": "Name",
+        "fr": "Nom"
+      },
+      "seq": 1,
+      "entity": "ENTI116",
+      "domain": "DOMA117",
+      "basedatatype+": "VARCHAR",
+      "type+": "TXT",
+      "descriptive": false,
+      "mandatory": true,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "uc": "stb",
+      "dc": "2019-05-06 07:55:51 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "EA16140A-BD03-FC98-FB55-8FC572F0C88B",
+          "2021-06-07 15:18:07.116746"
+        ]
+      },
+      "keys+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {},
+      "diagrams+": []
+    },
+    "ATTR123": {
+      "techname": "VORNAME",
+      "name": {
+        "de": "Vorname",
+        "en": "Name",
+        "fr": "Name"
+      },
+      "seq": 1,
+      "entity": "ENTI122",
+      "domain": "DOMA81",
+      "basedatatype+": "VARCHAR",
+      "type+": "TXT",
+      "descriptive": false,
+      "mandatory": false,
+      "historicised": false,
+      "repeated": false,
+      "translated": false,
+      "encrypted": false,
+      "tooltip": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "descr": {
+        "de": null,
+        "en": null,
+        "fr": null
+      },
+      "uc": "bue",
+      "dc": "2021-06-02 05:06:45 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "sourceref": {
+        "ODM": [
+          "2D29777B-8FA3-2A1E-5FF2-B0B28573E743",
+          "2021-06-07 15:18:07.126973"
+        ]
+      },
+      "keys+": [],
+      "referencedby": [],
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "columnsmapped+": {},
+      "diagrams+": [
+        "DIAG132",
+        "DIAG133"
+      ]
+    }
+  },
+  "relations": {
+    "RELA125": {
+      "name": "Kind",
+      "type": "ISAR",
+      "from-to": {
+        "enti": "ENTI120",
+        "arc": null,
+        "assoc": {
+          "de": "ist ein",
+          "en": "**is a",
+          "fr": "*est un"
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": false,
+        "cardstr+": "1"
+      },
+      "to-from": {
+        "enti": "ENTI104",
+        "arc": null,
+        "assoc": {
+          "de": "kann sein",
+          "en": "**may be",
+          "fr": "peut \u00eatre"
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "0..1"
+      },
+      "isinkeys+": [],
+      "sourceref": {
+        "ODM": [
+          "92BAE639-937A-CF05-D264-637666447F2D",
+          "2021-06-07 15:18:07.142840"
+        ]
+      },
+      "uc": "bue",
+      "dc": "2021-06-02 04:23:21 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    },
+    "RELA124": {
+      "name": "Relation_57",
+      "type": "M:N",
+      "from-to": {
+        "enti": "ENTI104",
+        "arc": null,
+        "assoc": {
+          "de": "kennt",
+          "en": "*connected with",
+          "fr": "*connect\u00e9 avec"
+        },
+        "maptype": "M",
+        "hist": false,
+        "mandatory": false,
+        "cardstr+": "0..N"
+      },
+      "to-from": {
+        "enti": "ENTI104",
+        "arc": null,
+        "assoc": {
+          "de": "kennt",
+          "en": "*conntected with [T]",
+          "fr": "*connect\u00e9 avec [T]"
+        },
+        "maptype": "M",
+        "hist": false,
+        "mandatory": false,
+        "cardstr+": "0..N"
+      },
+      "isinkeys+": [],
+      "sourceref": {
+        "ODM": [
+          "688D0870-DC81-CDD2-58D5-490E0CE3BE21",
+          "2021-06-07 15:18:07.139235"
+        ]
+      },
+      "uc": "stb",
+      "dc": "2019-05-06 08:00:37 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    },
+    "RELA130": {
+      "name": "Tier_subtype_Haustier",
+      "type": "ISAS",
+      "from-to": {
+        "enti": "ENTI116",
+        "arc": null,
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "1"
+      },
+      "to-from": {
+        "enti": "ENTI121",
+        "arc": "ARCS128",
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "1"
+      },
+      "isinkeys+": [],
+      "sourceref": {},
+      "uc": "stb",
+      "dc": "2019-05-06 11:52:40 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    },
+    "RELA131": {
+      "name": "Tier_subtype_Nutztier",
+      "type": "ISAS",
+      "from-to": {
+        "enti": "ENTI119",
+        "arc": null,
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "1"
+      },
+      "to-from": {
+        "enti": "ENTI121",
+        "arc": "ARCS128",
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "1"
+      },
+      "isinkeys+": [],
+      "sourceref": {},
+      "uc": "stb",
+      "dc": "2019-05-06 11:52:40 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    },
+    "RELA129": {
+      "name": "Tier_subtype_Wildtier",
+      "type": "ISAS",
+      "from-to": {
+        "enti": "ENTI111",
+        "arc": null,
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "1"
+      },
+      "to-from": {
+        "enti": "ENTI121",
+        "arc": "ARCS128",
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "1"
+      },
+      "isinkeys+": [],
+      "sourceref": {},
+      "uc": "stb",
+      "dc": "2019-05-06 11:52:40 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    },
+    "RELA127": {
+      "name": "domestiziert",
+      "type": "M:1",
+      "from-to": {
+        "enti": "ENTI104",
+        "arc": null,
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": false,
+        "cardstr+": "1..N"
+      },
+      "to-from": {
+        "enti": "ENTI121",
+        "arc": null,
+        "assoc": {
+          "de": null,
+          "en": null,
+          "fr": null
+        },
+        "maptype": "M",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "0..1"
+      },
+      "isinkeys+": [],
+      "sourceref": {
+        "ODM": [
+          "787CCDCA-8F3F-2FAB-B882-091C9BE306FD",
+          "2021-06-07 15:18:07.148222"
+        ]
+      },
+      "uc": "bue",
+      "dc": "2021-06-02 04:28:34 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    },
+    "RELA126": {
+      "name": "hat Kinder",
+      "type": "ISAR",
+      "from-to": {
+        "enti": "ENTI104",
+        "arc": null,
+        "assoc": {
+          "de": "kann sein",
+          "en": "**may be",
+          "fr": "**peut \u00eatre"
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": true,
+        "cardstr+": "0..1"
+      },
+      "to-from": {
+        "enti": "ENTI112",
+        "arc": null,
+        "assoc": {
+          "de": "ist eine",
+          "en": "**is a",
+          "fr": "**est un"
+        },
+        "maptype": "1",
+        "hist": false,
+        "mandatory": false,
+        "cardstr+": "1"
+      },
+      "isinkeys+": [],
+      "sourceref": {
+        "ODM": [
+          "EE291DBA-15BC-D79D-822F-4FE6CFCCC713",
+          "2021-06-07 15:18:07.145839"
+        ]
+      },
+      "uc": "bue",
+      "dc": "2021-06-02 04:27:14 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": 0,
+      "maxzoomlevel": 4,
+      "devstatus": null,
+      "userdefprops": {
+        "datamapping": {
+          "DHL": {
+            "UDPR36": {
+              "name": "DHL AttrName",
+              "value": null
+            },
+            "UDPR39": {
+              "name": "DHL AttrName Receiver",
+              "value": null
+            },
+            "UDPR38": {
+              "name": "DHL AttrName Shipper",
+              "value": null
+            }
+          },
+          "PENTA": {
+            "UDPR32": {
+              "name": "PENTA AttrID",
+              "value": null
+            },
+            "UDPR31": {
+              "name": "PENTA AttrName",
+              "value": null
+            },
+            "UDPR33": {
+              "name": "PENTA datatype",
+              "value": null
+            },
+            "UDPR34": {
+              "name": "PENTA usage",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR27": {
+              "name": "PIM AttrID",
+              "value": null
+            },
+            "UDPR26": {
+              "name": "PIM AttrName",
+              "value": null
+            },
+            "UDPR35": {
+              "name": "PIM EnglName",
+              "value": null
+            },
+            "UDPR28": {
+              "name": "PIM datatype",
+              "value": null
+            },
+            "UDPR29": {
+              "name": "PIM usage",
+              "value": null
+            }
+          },
+          "SAPByD": {
+            "UDPR37": {
+              "name": "SAPByD AttrName",
+              "value": null
+            },
+            "UDPR40": {
+              "name": "SAPByD AttrName Receiver",
+              "value": null
+            },
+            "UDPR41": {
+              "name": "SAPByD AttrName Shipper",
+              "value": null
+            }
+          }
+        }
+      },
+      "referencedby": [],
+      "tablesmapped+": {}
+    }
+  },
+  "arcs": {
+    "ARCS128": {
+      "name": "Tier_subtype",
+      "entity": "ENTI121",
+      "relations": [
+        "RELA130",
+        "RELA131",
+        "RELA129"
+      ],
+      "sourceref": {},
+      "uc": "stb",
+      "dc": "2019-05-06 11:52:40 UTC",
+      "um": null,
+      "dm": null
+    }
+  },
+  "keys": {
+    "KEYS115": {
+      "name": "Key_1",
+      "entity": "ENTI113",
+      "uc": "stb",
+      "dc": "2020-10-07 13:30:24 UTC",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "9B980E00-1380-E90F-1A26-1AE167030F24",
+          "2021-06-07 15:18:07.112678"
+        ]
+      },
+      "key-elements": {
+        "attributes": [
+          "ATTR114"
+        ],
+        "relations": []
+      }
+    }
+  },
+  "documents": {
+    "DOCU68": {
+      "name": "Dok_2",
+      "reference": null,
+      "content": null,
+      "format+": "docx",
+      "formatid": "STFO1",
+      "parent": null,
+      "sourceref": {
+        "ODM": [
+          "E17C12E1-934B-80B4-6FEE-F8D02A29F472",
+          "2021-06-07 15:18:06.985968"
+        ]
+      },
+      "referencecnt+": "1",
+      "references+": [
+        "TABL161"
+      ]
+    },
+    "DOCU69": {
+      "name": "Dok_4",
+      "reference": "KundeIM.pdf",
+      "content": null,
+      "format+": "pdf",
+      "formatid": "STFO2",
+      "parent": null,
+      "sourceref": {
+        "ODM": [
+          "48052187-2483-F809-FB78-85E5B5C3587C",
+          "2021-06-07 15:18:06.987304"
+        ]
+      },
+      "referencecnt+": "2",
+      "references+": [
+        "INTF147",
+        "TABL161"
+      ]
+    },
+    "DOCU70": {
+      "name": "fyayc_BR_catalog",
+      "reference": null,
+      "content": null,
+      "format+": null,
+      "formatid": null,
+      "parent": null,
+      "sourceref": {
+        "ODM": [
+          "D2A2540D-782C-B4AB-45BE-E542267116D2",
+          "2021-06-07 15:18:06.988254"
+        ]
+      },
+      "referencecnt+": "1",
+      "references+": [
+        "INTF134"
+      ]
+    },
+    "DOCU71": {
+      "name": "Dokument online",
+      "reference": "https://de.wikipedia.org/wiki/Informationsmodell",
+      "content": null,
+      "format+": "web",
+      "formatid": "STFO3",
+      "parent": "DOCU70",
+      "sourceref": {
+        "ODM": [
+          "E64AB687-8012-0F0C-C84E-97BB7E8A7B4C",
+          "2021-06-07 15:18:06.989559"
+        ]
+      },
+      "referencecnt+": "0",
+      "references+": []
+    }
+  },
+  "orgunits": {
+    "ORGU72": {
+      "name": "Verkauf",
+      "descr": null,
+      "uc": "stb",
+      "dc": "2020-12-07 13:54:51 UTC",
+      "um": null,
+      "dm": null,
+      "mail": null,
+      "telefon": null,
+      "address": null,
+      "parent": null,
+      "sourceref": {
+        "ODM": [
+          "ACDA33C9-C352-DEC9-2424-A8B256602462",
+          "2021-06-07 15:18:06.991142"
+        ]
+      },
+      "referencecnt+": "1",
+      "references+": [
+        "INTF134"
+      ]
+    },
+    "ORGU73": {
+      "name": "Marketing",
+      "descr": null,
+      "uc": "stb",
+      "dc": "2020-12-07 13:54:38 UTC",
+      "um": null,
+      "dm": null,
+      "mail": null,
+      "telefon": null,
+      "address": null,
+      "parent": null,
+      "sourceref": {
+        "ODM": [
+          "B7591938-640A-FC73-0F8D-22E92BFFB269",
+          "2021-06-07 15:18:06.992100"
+        ]
+      },
+      "referencecnt+": "5",
+      "references+": [
+        "ENTI104",
+        "ATTR105",
+        "ATTR107",
+        "INTF134",
+        "INTF147"
+      ]
+    },
+    "ORGU74": {
+      "name": "Marketing - Verkauf",
+      "descr": "Beschreibung der Abteilung M&V",
+      "uc": "stb",
+      "dc": "2020-12-07 13:51:59 UTC",
+      "um": null,
+      "dm": null,
+      "mail": "peter.pan@internet.ch",
+      "telefon": "098 12345678",
+      "address": null,
+      "parent": null,
+      "sourceref": {
+        "ODM": [
+          "19027DD5-DA37-438E-EBB5-12D02BE3BA5A",
+          "2021-06-07 15:18:06.993646"
+        ]
+      },
+      "referencecnt+": "0",
+      "references+": []
+    }
+  },
+  "systems": {
+    "INTF142": {
+      "name": "Clan",
+      "interface-id+": "INTF142",
+      "descr": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:25:54 UTC",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "015DE428-05B6-58DD-323D-ECDC72266F4A",
+          "2021-06-07 15:18:07.210790"
+        ]
+      },
+      "referencedby": [],
+      "tables+": [
+        "TABL144",
+        "TABL143"
+      ],
+      "domains+": []
+    },
+    "INTF134": {
+      "name": "Farm",
+      "interface-id+": "INTF134",
+      "descr": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:25:41 UTC",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "851DDEFA-B048-37E9-7826-4E48946EAF1C",
+          "2021-06-07 15:18:07.189827"
+        ]
+      },
+      "referencedby": [
+        "DOCU70",
+        "ORGU73",
+        "ORGU72"
+      ],
+      "tables+": [
+        "TABL140",
+        "TABL137",
+        "TABL138",
+        "TABL135"
+      ],
+      "domains+": []
+    },
+    "INTF147": {
+      "name": "Government",
+      "interface-id+": "INTF147",
+      "descr": "System-Beschreibung",
+      "uc": "stb",
+      "dc": "2019-11-10 03:26:09 UTC",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "1AB27667-C11D-3493-68AA-DF92C84041A7",
+          "2021-06-07 15:18:07.220370"
+        ]
+      },
+      "referencedby": [
+        "DOCU69",
+        "ORGU73"
+      ],
+      "tables+": [
+        "TABL156",
+        "TABL148",
+        "TABL152",
+        "TABL161"
+      ],
+      "domains+": [
+        "DOMA154",
+        "DOMA150"
+      ]
+    }
+  },
+  "tables": {
+    "TABL135": {
+      "name": "Nutztier",
+      "interface-name+": "Farm",
+      "interface-id": "INTF134",
+      "prefix": null,
+      "descr": "Production animal means an animal whose products are used by humans and/or which may enter the food chain for consumption.",
+      "uc": "stb",
+      "dc": "2019-11-10 03:26:56 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU136"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [
+        "ENTI121"
+      ],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "92B0C5FC-224C-1E18-1BB7-140E14D85F0C",
+          "2021-06-07 15:18:07.194912"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL137": {
+      "name": "Building",
+      "interface-name+": "Farm",
+      "interface-id": "INTF134",
+      "prefix": null,
+      "descr": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:26:56 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "E4C6AAFE-2255-93D0-C597-6B5E5EF62F40",
+          "2021-06-07 15:18:07.198977"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL138": {
+      "name": "Location",
+      "interface-name+": "Farm",
+      "interface-id": "INTF134",
+      "prefix": null,
+      "descr": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:26:56 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU139"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "4A2A6CE7-BDA8-DEEF-58E8-04C069508D0D",
+          "2021-06-07 15:18:07.200734"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL140": {
+      "name": "Angestellter",
+      "interface-name+": "Farm",
+      "interface-id": "INTF134",
+      "prefix": null,
+      "descr": "Employee",
+      "uc": "stb",
+      "dc": "2019-11-10 03:26:56 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU141"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [
+        "ENTI121",
+        "ENTI104"
+      ],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "2E47F8A2-E61E-D671-D30F-D711B5826B42",
+          "2021-06-07 15:18:07.205961"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL143": {
+      "name": "Household",
+      "interface-name+": "Clan",
+      "interface-id": "INTF142",
+      "prefix": null,
+      "descr": "Domestic home as main residence shared by different persons",
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:03 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "71C784C1-541E-D506-B22C-BA827B28B5A9",
+          "2021-06-07 15:18:07.212140"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL144": {
+      "name": "Familenmitglied",
+      "interface-name+": "Clan",
+      "interface-id": "INTF142",
+      "prefix": null,
+      "descr": "Member of the clan.",
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:03 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU145",
+        "COLU146"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "89200610-1123-2A3C-40F1-4D5EFDE77191",
+          "2021-06-07 15:18:07.214284"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL148": {
+      "name": "LegalRepresentative",
+      "interface-name+": "Government",
+      "interface-id": "INTF147",
+      "prefix": null,
+      "descr": "Funktion einer Person f\u00fcr eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.\n\n26.6.18 - THU:\nNamen von Kontaktperson nach Ansprechpartner ge\u00e4ndert\nSynonym von Ansprechpartner nach Kontaktperson ge\u00e4ndert",
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU149",
+        "COLU151"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "AE760EB7-28EB-2685-4E29-4324E12AC110",
+          "2021-06-07 15:18:07.222400"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL152": {
+      "name": "NaturalPerson",
+      "interface-name+": "Government",
+      "interface-id": "INTF147",
+      "prefix": null,
+      "descr": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU153",
+        "COLU155"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "53CC4ADE-774B-A58D-D31D-9AD231D5BA00",
+          "2021-06-07 15:18:07.228433"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL156": {
+      "name": "Address",
+      "interface-name+": "Government",
+      "interface-id": "INTF147",
+      "prefix": null,
+      "descr": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU157",
+        "COLU158",
+        "COLU159",
+        "COLU160"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "072B7DEA-7EEE-470E-0505-E1676BBE0A5C",
+          "2021-06-07 15:18:07.234658"
+        ]
+      },
+      "referencedby": []
+    },
+    "TABL161": {
+      "name": "PersonRole",
+      "interface-name+": "Government",
+      "interface-id": "INTF147",
+      "prefix": null,
+      "descr": "Beschreibung einer Rolle, die eine Ansprechsperson haben kann.\n\nBeispiele:\nCEO\nCIO\nSachdienstmitarbeiter\nVerkaufsleiter",
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "columns+": [
+        "COLU162"
+      ],
+      "userdefprops": {
+        "datamapping": {
+          "PENTA": {
+            "UDPR30": {
+              "name": "PENTA TabName",
+              "value": null
+            }
+          },
+          "PIM": {
+            "UDPR25": {
+              "name": "PIM TabName",
+              "value": null
+            }
+          }
+        }
+      },
+      "entitiesmapped": [],
+      "relationsmapped": [],
+      "sourceref": {
+        "ODM": [
+          "5FA1CA00-527E-B1F0-1DBF-25357ACC613C",
+          "2021-06-07 15:18:07.243244"
+        ]
+      },
+      "referencedby": [
+        "DOCU68",
+        "DOCU69"
+      ]
+    }
+  },
+  "columns": {
+    "COLU145": {
+      "name": "First name",
+      "table-name+": "Familenmitglied",
+      "table-id": "TABL144",
+      "interface-name+": "Clan",
+      "interface-id+": "INTF142",
+      "mandatory": false,
+      "basedatatype+": "VARCHAR",
+      "datatype": "VARCHAR (60)",
+      "datatypeid+": "DATY62",
+      "format": null,
+      "domain": "DOMA81",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "bue",
+      "dc": "2021-06-02 05:04:49 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "164F326C-7324-FAC7-3C20-8990AEBF0426",
+          "2021-06-07 15:18:07.216617"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU153": {
+      "name": "First name",
+      "table-name+": "NaturalPerson",
+      "table-id": "TABL152",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "VARCHAR",
+      "datatype": "VARCHAR (2000)",
+      "datatypeid+": "DATY62",
+      "format": null,
+      "domain": "DOMA91",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "FC2623E3-BF1A-2F1D-124B-A7D2C0EA0F91",
+          "2021-06-07 15:18:07.230196"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU141": {
+      "name": "Last name",
+      "table-name+": "Angestellter",
+      "table-id": "TABL140",
+      "interface-name+": "Farm",
+      "interface-id+": "INTF134",
+      "mandatory": false,
+      "basedatatype+": "VARCHAR",
+      "datatype": "VARCHAR (60)",
+      "datatypeid+": "DATY62",
+      "format": null,
+      "domain": "DOMA81",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "bue",
+      "dc": "2021-06-02 05:06:35 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [
+        "ATTR110"
+      ],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "AF2DACF0-CD12-C652-7EC0-7DAA4CBC27E7",
+          "2021-06-07 15:18:07.208526"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU146": {
+      "name": "Last name",
+      "table-name+": "Familenmitglied",
+      "table-id": "TABL144",
+      "interface-name+": "Clan",
+      "interface-id+": "INTF142",
+      "mandatory": false,
+      "basedatatype+": "VARCHAR",
+      "datatype": "VARCHAR (60)",
+      "datatypeid+": "DATY62",
+      "format": null,
+      "domain": "DOMA81",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "bue",
+      "dc": "2021-06-02 05:04:58 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "FC2AB2C3-8C6C-D5CF-B499-EC0A17092A8A",
+          "2021-06-07 15:18:07.218441"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU155": {
+      "name": "Last name",
+      "table-name+": "NaturalPerson",
+      "table-id": "TABL152",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "NVARCHAR",
+      "datatype": "NVARCHAR",
+      "datatypeid+": "DATY35",
+      "format": null,
+      "domain": "DOMA154",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "28164781-AE50-B3F4-11B1-10C51EC112E1",
+          "2021-06-07 15:18:07.233009"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU136": {
+      "name": "Name",
+      "table-name+": "Nutztier",
+      "table-id": "TABL135",
+      "interface-name+": "Farm",
+      "interface-id+": "INTF134",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": "Created on 2/6/2021  9:35:30 during import from /Users/bue/dev/fyyccim-refmodels/raetsel-3lang/Bauernhof_1.csv",
+      "interface_col_id": null,
+      "uc": "bue",
+      "dc": "2021-06-02 07:35:30 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "6B4D24B7-508A-837B-28F3-E9EF0A574661",
+          "2021-06-07 15:18:07.196920"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU139": {
+      "name": "Name",
+      "table-name+": "Location",
+      "table-id": "TABL138",
+      "interface-name+": "Farm",
+      "interface-id+": "INTF134",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": "Location",
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:26:56 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "A881DACC-439F-ECDB-207B-4F82A2FA160C",
+          "2021-06-07 15:18:07.202550"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU157": {
+      "name": "adresstyp",
+      "table-name+": "Address",
+      "table-id": "TABL156",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": "Zweck der Adresse (Finanz, Post, Lieferung etc.)",
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "F6FF0D11-2A7A-12CF-CF93-70AA5BC14A7C",
+          "2021-06-07 15:18:07.236180"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU151": {
+      "name": "ansprechpartner_id",
+      "table-name+": "LegalRepresentative",
+      "table-id": "TABL148",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "NUMERIC",
+      "datatype": "NUMERIC (10,0)",
+      "datatypeid+": "DATY34",
+      "format": null,
+      "domain": "DOMA150",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "14AFB77A-BE71-AD2A-2277-065ACA7DA178",
+          "2021-06-07 15:18:07.226549"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU162": {
+      "name": "description",
+      "table-name+": "PersonRole",
+      "table-id": "TABL161",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "852F2024-0DCE-843D-6C32-3F0E5803D543",
+          "2021-06-07 15:18:07.245338"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU160": {
+      "name": "geb\u00e4udename",
+      "table-name+": "Address",
+      "table-id": "TABL156",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "15C29675-2BE4-782F-57A4-4B43F2E0E95B",
+          "2021-06-07 15:18:07.241485"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU149": {
+      "name": "g\u00fcltigkeitsperiode",
+      "table-name+": "LegalRepresentative",
+      "table-id": "TABL148",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "65AF0028-CD9E-E84C-78AF-58F05AE0265C",
+          "2021-06-07 15:18:07.223955"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU159": {
+      "name": "hausnr",
+      "table-name+": "Address",
+      "table-id": "TABL156",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "E754880B-EC8A-4324-F412-C727AF2D9364",
+          "2021-06-07 15:18:07.239523"
+        ]
+      },
+      "referencedby": []
+    },
+    "COLU158": {
+      "name": "strassenname",
+      "table-name+": "Address",
+      "table-id": "TABL156",
+      "interface-name+": "Government",
+      "interface-id+": "INTF147",
+      "mandatory": false,
+      "basedatatype+": "unknown",
+      "datatype": "unknown",
+      "datatypeid+": "DATY1",
+      "format": null,
+      "domain": "DOMA92",
+      "descr": null,
+      "interface_col_id": null,
+      "uc": "stb",
+      "dc": "2019-11-10 03:27:10 UTC",
+      "um": null,
+      "dm": null,
+      "minzoomlevel": null,
+      "maxzoomlevel": null,
+      "devstatus": null,
+      "attributesmapped": [],
+      "userdefprops": {},
+      "sourceref": {
+        "ODM": [
+          "92C70172-6D9E-7331-10B5-31CC1D2E854B",
+          "2021-06-07 15:18:07.237841"
+        ]
+      },
+      "referencedby": []
+    }
+  },
+  "diagrams": {
+    "DIAG132": {
+      "name": "Famile",
+      "legend": {
+        "x": 560,
+        "y": 360,
+        "model": "raetsel-3lang"
+      },
+      "type": "Entity",
+      "width": 960,
+      "height": 500,
+      "uc": "bue",
+      "dc": "2019-05-07 11:30:58 UTC",
+      "um": "bue",
+      "dm": null,
+      "elements": {
+        "attribute": [
+          {
+            "element": "ATTR105",
+            "index": 0,
+            "pos_x": 306,
+            "pos_y": 230,
+            "width": 93,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR114",
+            "index": 0,
+            "pos_x": 466,
+            "pos_y": 230,
+            "width": 115,
+            "height": 13,
+            "opacity": 100,
+            "Color": "ff00ff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR123",
+            "index": 0,
+            "pos_x": 646,
+            "pos_y": 230,
+            "width": 175,
+            "height": 13,
+            "opacity": 100,
+            "Color": "99ff33",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "0000ff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR107",
+            "index": 0,
+            "pos_x": 306,
+            "pos_y": 243,
+            "width": 93,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR109",
+            "index": 0,
+            "pos_x": 306,
+            "pos_y": 256,
+            "width": 93,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR110",
+            "index": 0,
+            "pos_x": 306,
+            "pos_y": 269,
+            "width": 93,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          }
+        ],
+        "entity": [
+          {
+            "element": "ENTI104",
+            "index": 0,
+            "pos_x": 280,
+            "pos_y": 200,
+            "width": 129,
+            "height": 79,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI112",
+            "index": 0,
+            "pos_x": 360,
+            "pos_y": 440,
+            "width": 73,
+            "height": 27,
+            "opacity": 100,
+            "Color": "00ccff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "0000ff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI113",
+            "index": 0,
+            "pos_x": 440,
+            "pos_y": 200,
+            "width": 151,
+            "height": 81,
+            "opacity": 100,
+            "Color": "ff00ff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI120",
+            "index": 0,
+            "pos_x": 240,
+            "pos_y": 440,
+            "width": 70,
+            "height": 27,
+            "opacity": 100,
+            "Color": "00ccff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "0000ff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI121",
+            "index": 0,
+            "pos_x": 330,
+            "pos_y": 90,
+            "width": 111,
+            "height": 27,
+            "opacity": 100,
+            "Color": "00ccff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "0000ff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI122",
+            "index": 0,
+            "pos_x": 620,
+            "pos_y": 200,
+            "width": 211,
+            "height": 81,
+            "opacity": 100,
+            "Color": "99ff33",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "0000ff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2019-05-07 11:30:58 UTC",
+            "um": null,
+            "dm": null
+          }
+        ]
+      },
+      "relationships": {
+        "RELA124": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "M",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": 310,
+          "starttext_y": 167,
+          "starttext_width": 85,
+          "starttext_height": 30,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "M",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": 220,
+          "endtext_y": 232,
+          "endtext_width": 100,
+          "endtext_height": 30,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2019-05-07 11:30:58 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 310,
+              "y": 200,
+              "linetype": "DASHED",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 310,
+              "y": 152,
+              "linetype": "DASHED",
+              "angle": 3.141592653589793,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 220,
+              "y": 152,
+              "linetype": "DASHED",
+              "angle": 1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "3": {
+              "x": 220,
+              "y": 242,
+              "linetype": "DASHED",
+              "angle": 0,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "4": {
+              "x": 280,
+              "y": 242,
+              "linetype": "DASHED",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        },
+        "RELA127": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "M",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": null,
+          "starttext_y": null,
+          "starttext_width": null,
+          "starttext_height": null,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "1",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": null,
+          "endtext_y": null,
+          "endtext_width": null,
+          "endtext_height": null,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2019-05-07 11:30:58 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 369,
+              "y": 200,
+              "linetype": "DASHED",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 369,
+              "y": 158,
+              "linetype": "SOLID",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 369,
+              "y": 117,
+              "linetype": "SOLID",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        },
+        "RELA125": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "1",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": 295,
+          "starttext_y": 404,
+          "starttext_width": 51,
+          "starttext_height": 30,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "1",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": 295,
+          "endtext_y": 323,
+          "endtext_width": 62,
+          "endtext_height": 30,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2019-05-07 11:30:58 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 295,
+              "y": 440,
+              "linetype": "DASHED",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 295,
+              "y": 360,
+              "linetype": "SOLID",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 295,
+              "y": 279,
+              "linetype": "SOLID",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        },
+        "RELA126": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "1",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": 384,
+          "starttext_y": 331,
+          "starttext_width": 62,
+          "starttext_height": 30,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "1",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": 384,
+          "endtext_y": 404,
+          "endtext_width": 51,
+          "endtext_height": 30,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2019-05-07 11:30:58 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 384,
+              "y": 279,
+              "linetype": "SOLID",
+              "angle": 1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 384,
+              "y": 360,
+              "linetype": "DASHED",
+              "angle": 1.5707963267948966,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 384,
+              "y": 440,
+              "linetype": "DASHED",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2019-05-07 11:30:58 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        }
+      },
+      "arcs": {},
+      "referencedby": [],
+      "sourceref": {
+        "ODM": [
+          "688C988A-B65A-1855-E39A-17FCD2F16AC4",
+          "2021-06-07 15:18:07.156298"
+        ]
+      }
+    },
+    "DIAG133": {
+      "name": "Gesellschaft",
+      "legend": {
+        "x": 10,
+        "y": 10,
+        "model": "raetsel-3lang"
+      },
+      "type": "Entity",
+      "width": 1144,
+      "height": 811,
+      "uc": "bue",
+      "dc": "2020-06-24 07:17:30 UTC",
+      "um": "bue",
+      "dm": null,
+      "elements": {
+        "attribute": [
+          {
+            "element": "ATTR105",
+            "index": 0,
+            "pos_x": 806,
+            "pos_y": 520,
+            "width": 245,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR114",
+            "index": 0,
+            "pos_x": 126,
+            "pos_y": 230,
+            "width": 275,
+            "height": 13,
+            "opacity": 100,
+            "Color": "ff00ff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR123",
+            "index": 0,
+            "pos_x": 226,
+            "pos_y": 740,
+            "width": 305,
+            "height": 13,
+            "opacity": 100,
+            "Color": "33ffff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "00ccff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR107",
+            "index": 0,
+            "pos_x": 806,
+            "pos_y": 533,
+            "width": 245,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR109",
+            "index": 0,
+            "pos_x": 806,
+            "pos_y": 546,
+            "width": 245,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ATTR110",
+            "index": 0,
+            "pos_x": 806,
+            "pos_y": 559,
+            "width": 245,
+            "height": 13,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          }
+        ],
+        "entity": [
+          {
+            "element": "ENTI104",
+            "index": 0,
+            "pos_x": 780,
+            "pos_y": 490,
+            "width": 281,
+            "height": 121,
+            "opacity": 100,
+            "Color": "cbda7c",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI112",
+            "index": 0,
+            "pos_x": 30,
+            "pos_y": 400,
+            "width": 271,
+            "height": 111,
+            "opacity": 100,
+            "Color": "33ffff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "00ccff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI113",
+            "index": 0,
+            "pos_x": 100,
+            "pos_y": 200,
+            "width": 311,
+            "height": 144,
+            "opacity": 100,
+            "Color": "ff00ff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI120",
+            "index": 0,
+            "pos_x": 320,
+            "pos_y": 570,
+            "width": 231,
+            "height": 111,
+            "opacity": 100,
+            "Color": "33ffff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "00ccff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI121",
+            "index": 0,
+            "pos_x": 650,
+            "pos_y": 140,
+            "width": 431,
+            "height": 221,
+            "opacity": 100,
+            "Color": "33ffff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "00ccff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          },
+          {
+            "element": "ENTI122",
+            "index": 0,
+            "pos_x": 200,
+            "pos_y": 710,
+            "width": 341,
+            "height": 101,
+            "opacity": 100,
+            "Color": "33ffff",
+            "marginwidth": null,
+            "marginopacity": 100,
+            "margincolor": "00ccff",
+            "fontsize": 10,
+            "fontcolor": "0000ff",
+            "uc": "bue",
+            "dc": "2020-06-24 07:17:30 UTC",
+            "um": null,
+            "dm": null
+          }
+        ]
+      },
+      "relationships": {
+        "RELA124": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "M",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": 1120,
+          "starttext_y": 549,
+          "starttext_width": 43,
+          "starttext_height": 30,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "M",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": 844,
+          "endtext_y": 634,
+          "endtext_width": 43,
+          "endtext_height": 30,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2020-06-24 07:17:30 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 1061,
+              "y": 540,
+              "linetype": "DASHED",
+              "angle": 0,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 1140,
+              "y": 540,
+              "linetype": "DASHED",
+              "angle": 1.5630445440826897,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 1141,
+              "y": 669,
+              "linetype": "DASHED",
+              "angle": 3.141592653589793,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "3": {
+              "x": 909,
+              "y": 669,
+              "linetype": "DASHED",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "4": {
+              "x": 909,
+              "y": 611,
+              "linetype": "DASHED",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        },
+        "RELA127": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "M",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": null,
+          "starttext_y": null,
+          "starttext_width": null,
+          "starttext_height": null,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "1",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": null,
+          "endtext_y": null,
+          "endtext_width": null,
+          "endtext_height": null,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2020-06-24 07:17:30 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 920,
+              "y": 490,
+              "linetype": "DASHED",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 920,
+              "y": 426,
+              "linetype": "SOLID",
+              "angle": -1.5707963267948966,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 920,
+              "y": 361,
+              "linetype": "SOLID",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        },
+        "RELA125": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "1",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": 561,
+          "starttext_y": 560,
+          "starttext_width": 45,
+          "starttext_height": 30,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "1",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": 712,
+          "endtext_y": 593,
+          "endtext_width": 62,
+          "endtext_height": 30,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2020-06-24 07:17:30 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 551,
+              "y": 590,
+              "linetype": "DASHED",
+              "angle": 0,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 666,
+              "y": 590,
+              "linetype": "SOLID",
+              "angle": 0,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 780,
+              "y": 590,
+              "linetype": "SOLID",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        },
+        "RELA126": {
+          "linewidth": 1,
+          "linecolor": null,
+          "lineopacity": 100,
+          "startedge": null,
+          "startposition": null,
+          "start_connector": "1",
+          "starttext_angle": null,
+          "starttext_distance": null,
+          "starttext_x": 749,
+          "starttext_y": 515,
+          "starttext_width": 62,
+          "starttext_height": 30,
+          "endedge": null,
+          "endposition": null,
+          "end_connector": "1",
+          "endtext_angle": null,
+          "endtext_distance": null,
+          "endtext_x": 238,
+          "endtext_y": 515,
+          "endtext_width": 51,
+          "endtext_height": 30,
+          "fontcolor": "000000",
+          "fontsize": 10,
+          "uc": "bue",
+          "dc": "2020-06-24 07:17:30 UTC",
+          "um": null,
+          "dm": null,
+          "linesegments": {
+            "0": {
+              "x": 780,
+              "y": 500,
+              "linetype": "SOLID",
+              "angle": 3.141592653589793,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "1": {
+              "x": 540,
+              "y": 500,
+              "linetype": "DASHED",
+              "angle": 3.141592653589793,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            },
+            "2": {
+              "x": 301,
+              "y": 500,
+              "linetype": "DASHED",
+              "angle": null,
+              "uc": "bue",
+              "dc": "2020-06-24 07:17:30 UTC",
+              "um": null,
+              "dm": null
+            }
+          }
+        }
+      },
+      "arcs": {},
+      "referencedby": [],
+      "sourceref": {
+        "ODM": [
+          "547BF436-30B1-CAA7-5D29-5A13822010DE",
+          "2021-06-07 15:18:07.173635"
+        ]
+      }
+    }
+  },
+  "userdefprops": {
+    "UDPR25": {
+      "theme": "datamapping",
+      "group": "PIM",
+      "name": "PIM TabName",
+      "defvalue": ".",
+      "descr": "\n\t\t\tName der Tabelle im PIM\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ENTI",
+        "TABL"
+      ]
+    },
+    "UDPR26": {
+      "theme": "datamapping",
+      "group": "PIM",
+      "name": "PIM AttrName",
+      "defvalue": ".",
+      "descr": "\n\t\t\tName des Attributes im PIM\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR27": {
+      "theme": "datamapping",
+      "group": "PIM",
+      "name": "PIM AttrID",
+      "defvalue": ".",
+      "descr": "\n\t\t\tID des Attributes im PIM\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR28": {
+      "theme": "datamapping",
+      "group": "PIM",
+      "name": "PIM datatype",
+      "defvalue": ".",
+      "descr": "\n\t\t\tPIM Datentyp Attributtyp mit L\u00e4ngenangabe Bsp CHAR(10), Number(5,2)\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR29": {
+      "theme": "datamapping",
+      "group": "PIM",
+      "name": "PIM usage",
+      "defvalue": "",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR30": {
+      "theme": "datamapping",
+      "group": "PENTA",
+      "name": "PENTA TabName",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ENTI",
+        "TABL"
+      ]
+    },
+    "UDPR31": {
+      "theme": "datamapping",
+      "group": "PENTA",
+      "name": "PENTA AttrName",
+      "defvalue": ".",
+      "descr": "\n\t\t\tPENTA Name des Attributes\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR32": {
+      "theme": "datamapping",
+      "group": "PENTA",
+      "name": "PENTA AttrID",
+      "defvalue": ".",
+      "descr": "\n\t\t\tID des Attributes in PENTA\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR33": {
+      "theme": "datamapping",
+      "group": "PENTA",
+      "name": "PENTA datatype",
+      "defvalue": ".",
+      "descr": "\n\t\t\tPENTA datatype mit L\u00e4ngenangabe Bsp CHAR(10), Number(5,2)\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR34": {
+      "theme": "datamapping",
+      "group": "PENTA",
+      "name": "PENTA usage",
+      "defvalue": "",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR35": {
+      "theme": "datamapping",
+      "group": "PIM",
+      "name": "PIM EnglName",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR36": {
+      "theme": "datamapping",
+      "group": "DHL",
+      "name": "DHL AttrName",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR37": {
+      "theme": "datamapping",
+      "group": "SAPByD",
+      "name": "SAPByD AttrName",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR38": {
+      "theme": "datamapping",
+      "group": "DHL",
+      "name": "DHL AttrName Shipper",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR39": {
+      "theme": "datamapping",
+      "group": "DHL",
+      "name": "DHL AttrName Receiver",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR40": {
+      "theme": "datamapping",
+      "group": "SAPByD",
+      "name": "SAPByD AttrName Receiver",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR41": {
+      "theme": "datamapping",
+      "group": "SAPByD",
+      "name": "SAPByD AttrName Shipper",
+      "defvalue": ".",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "ATTR",
+        "INTF",
+        "RELA"
+      ]
+    },
+    "UDPR42": {
+      "theme": "column-mapping",
+      "group": "EXTERNAL",
+      "name": "EXT_ATTR_ID",
+      "defvalue": "",
+      "descr": "\n\t\t\tID of Attribute in external system\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "INTF"
+      ]
+    },
+    "UDPR43": {
+      "theme": "column-mapping",
+      "group": "EXTERNAL",
+      "name": "EXT_SORT_ORDER",
+      "defvalue": "",
+      "descr": "\n\t\t\tSort order of Attribute in external table/system\n\t\t",
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "INTF"
+      ]
+    },
+    "UDPR44": {
+      "theme": "column-mapping",
+      "group": "EXTERNAL",
+      "name": "EXT_DQM_CHECK_ID",
+      "defvalue": "",
+      "descr": null,
+      "uc": "sys",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedfor": [
+        "INTF"
+      ]
+    }
+  },
+  "physicalunits": {},
+  "datatypes": {
+    "DATY1": {
+      "name": "unknown",
+      "basetype": "STRING",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT017",
+          "2021-06-07 15:18:06.913820"
+        ]
+      }
+    },
+    "DATY11": {
+      "name": "CHAR",
+      "basetype": "STRING",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT025",
+          "2021-06-07 15:18:06.923978"
+        ]
+      }
+    },
+    "DATY14": {
+      "name": "Date",
+      "basetype": "DATETIME",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT007",
+          "2021-06-07 15:18:06.926781"
+        ]
+      }
+    },
+    "DATY27": {
+      "name": "Integer",
+      "basetype": "NUMERIC",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT011",
+          "2021-06-07 15:18:06.944394"
+        ]
+      }
+    },
+    "DATY34": {
+      "name": "NUMERIC",
+      "basetype": "NUMERIC",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT019",
+          "2021-06-07 15:18:06.951119"
+        ]
+      }
+    },
+    "DATY35": {
+      "name": "NVARCHAR",
+      "basetype": "STRING",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT037",
+          "2021-06-07 15:18:06.952049"
+        ]
+      }
+    },
+    "DATY57": {
+      "name": "Timestamp",
+      "basetype": "DATETIME",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT015",
+          "2021-06-07 15:18:06.974159"
+        ]
+      }
+    },
+    "DATY62": {
+      "name": "VARCHAR",
+      "basetype": "STRING",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "LOGDT024",
+          "2021-06-07 15:18:06.979692"
+        ]
+      }
+    },
+    "DATY67": {
+      "name": "String",
+      "basetype": "STRING",
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "sourceref": {
+        "ODM": [
+          "A3A3C77D-0366-9768-FF89-1C25E56881C8",
+          "2021-06-07 15:18:06.984110"
+        ]
+      }
+    }
+  },
+  "storageformats": {
+    "STFO1": {
+      "name": "docx",
+      "descr": null,
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedindocuments+": [
+        "DOCU68"
+      ],
+      "usedindomains+": []
+    },
+    "STFO2": {
+      "name": "pdf",
+      "descr": null,
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedindocuments+": [
+        "DOCU69"
+      ],
+      "usedindomains+": []
+    },
+    "STFO3": {
+      "name": "web",
+      "descr": null,
+      "uc": "fillDB",
+      "dc": "2021-06-07",
+      "um": null,
+      "dm": null,
+      "usedindocuments+": [
+        "DOCU71"
+      ],
+      "usedindomains+": []
+    }
+  },
+  "_imprint_": {
+    "database": "/Users/bue/dev/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db",
+    "created": "2021-06-07 15:18:14.678687",
+    "Modelversion": "1.3",
+    "hashvalue": 4824668339965712039,
+    "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back",
+    "model-git-revision": "855bba6"
+  }
+}
