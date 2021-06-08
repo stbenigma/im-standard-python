@@ -86,7 +86,7 @@ def is_repeated(pstr: str) -> bool:
 
 
 def transferTypes():
-    types = et.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
+    types = parseXML(pfilename=parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
@@ -100,7 +100,7 @@ def transferTypes():
 unkndomains = {}
 def do1structtype(filename):
     global unkndomains
-    structdomains = et.parse(filename)
+    structdomains = parseXML(pfilename=filename)
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
@@ -263,7 +263,7 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
-    domains = et.parse(pfilename)
+    domains = parseXML(pfilename=pfilename)
     root = domains.getroot()
 
     for dom in root.findall('domains/Domain'):
@@ -600,7 +600,7 @@ def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
 def do1diagramm(pfilename):
     # print (p_filename)
     try:
-        diagramme = et.parse(pfilename)
+        diagramme = parseXML(pfilename=pfilename)
     except Exception as ex:
         print("Diagram nicht lesbar: {}".format(pfilename))
         return
@@ -708,7 +708,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml,pintfid = None
 
 
 def do1Arc(fileName):
-    arcXML = et.parse(fileName).getroot()
+    arcXML = parseXML(pfilename=fileName).getroot()
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=findField(arcXML, "name")
@@ -1005,10 +1005,21 @@ def getpartyref(pelem):
     return parties
 # getpartyref
 
+def parseXML(pfilename):
+    try:
+        tree = et.parse(pfilename)
+    except Exception as err:
+        logmessages.writelog("File ({}) could not be handled".format(pfilename))
+        print (pfilename)
+        raise
+    #try
+    return tree
+
+
 
 def do1Entity(fileName):
     global entities
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     entixml = tree.getroot()
     #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
@@ -1118,7 +1129,7 @@ def abbildTyp(ptyp):
 
 
 def do1Relation(fileName):
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     relaxml = tree.getroot()
     documents = getdokuref(pelem=relaxml)
 
@@ -1192,7 +1203,7 @@ def transferRelations():
 
 
 def do1UDPFile(pfileName):
-    tree = et.parse(pfileName)
+    tree = parseXML(pfilename=pfileName)
     root = tree.getroot()
     filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
     ludpTheme = filename
@@ -1394,7 +1405,7 @@ def loadcolors(color:Color, elem):
 
 def loaddefaultcolors():
     global defcolors,classcolors
-    settings = et.parse(parameters.odmsettingsfile())
+    settings = parseXML(pfilename=parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
 
@@ -1435,7 +1446,7 @@ def fillelementdisplays():
 
 
 def transferproject():
-    proj = et.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
+    proj = parseXML(pfilename=parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root, 'comment')
     if comm is None:
@@ -1469,7 +1480,7 @@ def transferproject():
 
 def do1Document(fileName):
     global docuparents
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     id =findField(root, 'id')
     docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
@@ -1486,7 +1497,7 @@ def do1Document(fileName):
 def do1Orgunit(fileName):
     global orguparents,contacts
 
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     srcid =findField(root, 'id')
     orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=srcid)
@@ -1542,7 +1553,7 @@ def removeattrmeta(pstr):
 emails = {}
 def do1email(fileName):
     global emails
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     emails [findField(root, 'id')] = {'name' : findField(root, "name")
                                        ,'descr': findText(root, "comment")
@@ -1554,7 +1565,7 @@ def do1email(fileName):
 phones = {}
 def do1phone(fileName):
     global phones
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     phones[findField(root, 'id')] = {'name' : findField(root, "name")
                                        ,'descr': findText(root, "comment")
@@ -1567,7 +1578,7 @@ def do1phone(fileName):
 contacts = {}
 def do1contact(fileName):
     global contacts,emails,phones
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     phone,mail = "",""
 
