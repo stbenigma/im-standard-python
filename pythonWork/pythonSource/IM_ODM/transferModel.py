@@ -1032,6 +1032,8 @@ def do1Entity(fileName):
     enti.enti_tooltip = findText(entixml, 'note')
     enti.enti_uc = findText(entixml, 'createdBy')
     enti.enti_dc = findText(entixml, 'createdTime')
+    enticategoryguid = findText(entixml, 'typeID')
+    enti.enti_enca_id = None
 
     i=1 #safeguard for eternal loop
     while i<10:
@@ -1052,7 +1054,6 @@ def do1Entity(fileName):
     #while
 
     entientiguid = findText(entixml, 'hierarchicalParent')
-    enticategoryguid = findText(entixml, 'typeID')
     entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
 
     Userdefpropvalue.fillallvalues(pentiid=entiId)

@@ -263,6 +263,21 @@ def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
     #for
     return
 
+def getuicomponents(pencaid,pmeltid):
+    elui = ElementUI.select("elui_enca_id={} and elui_melt_id={}".format(pencaid,pmeltid))
+    if len(elui) == 0: return {}
+    else:
+        return UIELEMENT(width=elui.elui_width
+              , height=elui.elui_height
+              , opacity=elui.elui_opacity
+              , color=elui.elui_color
+              , marginwidth=elui.elui_marginwidth
+              , marginopacity=elui.elui_marginopacity
+              , margincolor=elui.elui_margincolor
+              , fontsize=elui.elui_fontsize
+              , fontcolor=elui.elui_fontcolor).js()
+
+
 def categories2js(pemptymodel):
     model = ['name'
             , 'uc', 'dc', 'um', 'dm'
@@ -277,7 +292,7 @@ def categories2js(pemptymodel):
               fillmodel(pmodel=model,pentries=[
                   ec.enca_name
                 ,ec.enca_uc,ec.enca_dc, ec.enca_um,ec.enca_dm
-                ,UIELEMENT().js()
+                , getuicomponents(pencaid=ec.enca_id,pmeltid=Modelelemtype.getidbyshortname(Modelelemtype.ENTI))
                  ])
                 for ec in EntityCategory.select()
             }
