@@ -1,31 +1,31 @@
-import math
-from IM_OBJECTS import *
 from IM_JSON import *
 from mystring import nvl
 
 
-
-
 def elemrep2js(peler, panker):
-    if peler is None: return {}
-    return {'element':panker
-        , 'index': peler.eler_index
-        , 'pos_x': peler.eler_position_x
-        , 'pos_y': peler.eler_position_y
-        , 'width': peler.eler_width
-        , 'height': peler.eler_height
-        , 'opacity': peler.eler_opacity
-        , 'Color': peler.eler_color
-        , 'marginwidth': peler.eler_marginwidth
-        , 'marginopacity': peler.eler_marginopacity
-        , 'margincolor': peler.eler_margincolor
-        , 'fontsize': peler.eler_fontsize
-        , 'fontcolor': peler.eler_fontcolor
-        , 'uc': peler.eler_uc
-        , 'dc': peler.eler_dc
-        , 'um': peler.eler_um
-        , 'dm': peler.eler_dm
-            }
+    model = ['element', 'index'
+        , 'pos_x', 'pos_y'
+        , 'uc', 'dc', 'um', 'dm','ui'
+             ]
+    if peler is None:
+        retval = fillmodel(pmodel=model, pentries=['XXXX0000' ]+['' for i in range(len(model)-2)]
+                           +[UIELEMENT().js()])
+    else:
+        retval = fillmodel(pmodel=model
+                           ,pentries=[ panker
+                             ,peler.eler_index
+                             ,peler.eler_position_x
+                             ,peler.eler_position_y
+                            ,UIELEMENT(width=peler.eler_width
+                                 , height=peler.eler_height
+                                 , opacity=peler.eler_opacity
+                                 , Color=peler.eler_color
+                                 , marginwidth=peler.eler_marginwidth
+                                 , marginopacity=peler.eler_marginopacity
+                                 , margincolor=peler.eler_margincolor
+                                 , fontsize=peler.eler_fontsize
+                                 , fontcolor=peler.eler_fontcolor).js()])
+    return retval
 
 def elemreps2sql(presult:Mergeresult, pdiagid, pelemreps):
     """[elemrep,] """
@@ -59,8 +59,24 @@ def elemreps2sql(presult:Mergeresult, pdiagid, pelemreps):
 
 
 def relarep2js(prelarep):
-    if prelarep is None: return {}
-    return {'linewidth': prelarep.relr_linewidth
+    model = ['linewidth', 'linecolor', 'lineopacity'
+        , 'startedge', 'startposition', 'start_connector'
+        , 'starttext_angle', 'starttext_distance'
+        , 'starttext_x', 'starttext_y'
+        , 'starttext_width', 'starttext_height'
+        , 'endedge', 'endposition', 'end_connector'
+        , 'endtext_angle', 'endtext_distance'
+        , 'endtext_x', 'endtext_y'
+        , 'endtext_width', 'endtext_height'
+        , 'fontcolor', 'fontsize'
+        , 'uc', 'dc', 'um', 'dm'
+        , 'linesegments'
+         ]
+    if prelarep is None:
+        retval = {jsguid(Modelelemtype.RELA, '0000') : fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] \
+                                                   + [lineseg2js(plineseg=None)])}
+    else:
+        retval =  {'linewidth': prelarep.relr_linewidth
         , 'linecolor': prelarep.relr_linecolor
         , 'lineopacity': prelarep.relr_lineopacity
         , 'startedge': prelarep.relr_startedge
@@ -87,18 +103,26 @@ def relarep2js(prelarep):
         , 'dc': prelarep.relr_dc
         , 'um': prelarep.relr_um
         , 'dm': prelarep.relr_dm
-        , 'linesegments': {l.lise_seq: {'x': l.lise_x
-            , 'y': l.lise_y
-            , 'linetype': l.lise_linetype
-            , 'angle': l.lise_angle
-            , 'uc': l.lise_uc
-            , 'dc': l.lise_dc
-            , 'um': l.lise_um
-            , 'dm': l.lise_dm
-                                        }
-                           for l in prelarep.getlinesegments()}
+        , 'linesegments': {lineseg2js(plineseg=l) for l in prelarep.getlinesegments()}
             }
+    return retval
 
+def lineseg2js(plineseg):
+    model = ['x', 'y'
+            , 'linetype', 'angle'
+            , 'uc', 'dc', 'um', 'dm'
+         ]
+    if plineseg is None:
+        retval = {'0' : fillmodel(pmodel=model,pentries=['' for i in range(len(model))])}
+    else:
+        retval = {l.lise_seq: fillmodel(pmodel=model
+                        ,pentries=[ plineseg.lise_x, plineseg.lise_y
+                        ,  plineseg.lise_linetype,  plineseg.lise_angle
+                        ,  plineseg.lise_uc,  plineseg.lise_dc,  plineseg.lise_um,  plineseg.lise_dm
+                                    ]
+                                    )
+                  }
+    return retval
 
 def lineseg2sql(presult:Mergeresult,prelrid, plinesegs):
     """               "linesegments": {"0": {"x": 276,...},}
@@ -159,6 +183,7 @@ def relarep2sql(presult, pdiagid, prelaid, prelarep):
         relrid = relr.insert()
     except Exception as err:
         presult.markdberror(perr=err, pelem=jelem)
+        relrid = None
 
     lineseg2sql(presult=presult,prelrid=relrid,plinesegs=prelarep['linesegments'])
 
@@ -186,7 +211,9 @@ def diagrams2js(pemptymodel,pmodelname):
     if pemptymodel:
         retval = {jsguid(Modelelemtype.DIAG, '0000') : fillmodel(pmodel=model,
                             pentries=['', legend2js(), '', '', '', '', '', '', ''
-                                , {}, {}, {}, reflist(),reflist()])}
+                                , elemrep2js(peler=None,panker=None), relarep2js(prelarep=None,)
+                                , defarcs(parc=None,pdiagid=None)
+                                , reflist(),reflist()])}
     else:
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
             d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
@@ -281,6 +308,10 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     return
 
 def defarcs(parc,pdiagid):
+    if parc is None:
+        return {'arcs':{'ARCS0000': {"circles":['','']}
+                        }
+                }
     arc = {}
     arcselem = parc.getarcselem(pdiagid=pdiagid)
     if len(arcselem)==0:

@@ -14,6 +14,7 @@ transferprocs = {
 ,'storageformats' : (5,storageformats2sql,nofunc,False)
 ,'documents': (6,documents2sql, nofunc,True)
 ,'orgunits': (7,orgunits2sql, nofunc,True)
+,'categories': (7,entitycategory2sql, nofunc,True)
 ,'userdefprops': (8,udps2sql, nofunc,False)
 ,'systems': (10,systems2sql, nofunc,True)
 ,'domains': (12,domains2sql, nofunc,True)

@@ -26,6 +26,9 @@ def jsonfilename(pfilename):
 
 
 class JSModel:
+    ELEMTYPE_LANG = 'LANG'
+    ELEMTYPE_PROJ = 'PROJ'
+    ELEMTYPE_CATG = 'CATG'
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities'
       ,Modelelemtype.BURU: 'businessrules2js'
@@ -44,8 +47,9 @@ class JSModel:
       ,Modelelemtype.PHYU: 'physicalunits'
       ,Modelelemtype.STFO: 'storageformats'
       , Modelelemtype.UDPR: 'userdefprops'
-      ,'LANG': 'languages'
-    , 'PROJ': 'model'
+      ,ELEMTYPE_CATG: 'categories'
+        , ELEMTYPE_LANG: 'languages'
+        , ELEMTYPE_PROJ: 'model'
     }
 
     def __init__(self,pmodel={}):

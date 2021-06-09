@@ -1,6 +1,7 @@
 from IM_JSON import *
-from mystring import nvl
 from IM_OBJECTS import *
+from mystring import nvl
+
 
 def inssourceref(presult:Mergeresult,pmodeid, psources):
     """   "sourceref": {
@@ -262,3 +263,65 @@ def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
     #for
     return
 
+def categories2js(pemptymodel):
+    model = ['name'
+            , 'uc', 'dc', 'um', 'dm'
+             ,'ui'
+            ]
+    if pemptymodel:
+        retval = {jsguid(JSModel.ELEMTYPE_CATG, '0000') : fillmodel(pmodel=model
+                            , pentries=['' for i in range(len(model)-1)]+[UIELEMENT().js()]
+                            )}
+    else:
+        retval = {jsguid(JSModel.ELEMTYPE_CATG, ec.enca_id):
+              fillmodel(pmodel=model,pentries=[
+                  ec.enca_name
+                ,ec.enca_uc,ec.enca_dc, ec.enca_um,ec.enca_dm
+                ,UIELEMENT().js()
+                 ])
+                for ec in EntityCategory.select()
+            }
+    return retval
+
+
+def js2enca(pkey, pelem, psrcname=None, psrcid=None):
+    enca: EntityCategory = EntityCategory(psrcname=psrcname, psrcid=psrcid)
+    enca.enca_id = jsguid2id(pkey)
+    enca.enca_name = pelem['name']
+    enca.enca_orgu_id = psrcid
+    enca.enca_uc = pelem['uc']
+    enca.enca_dc = pelem['dc']
+    enca.enca_um = pelem['um']
+    enca.enca_dm = pelem['dm']
+    return enca
+
+
+def entitycategory2sql(presult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=JSModel.ELEMTYPE_CATG, pjs2obj=js2enca,
+               pwithextsrcref=pwithextsrcref)
+    return
+
+
+class UIELEMENT():
+    def __init__(self, width='', height='', opacity='', color='', marginwidth='', marginopacity='', margincolor='',
+                 fontsize='', fontcolor=''):
+        self.width = width
+        self.height = height
+        self.opacity = opacity
+        self.color = color
+        self.marginwidth = marginwidth
+        self.marginopacity = marginopacity
+        self.margincolor = margincolor
+        self.fontsize = fontsize
+        self.fontcolor = fontcolor
+
+    def js(self):
+        return {'width': self.width
+                    , 'height': self.height
+                    , 'opacity': self.opacity
+                    , 'Color': self.color
+                    , 'marginwidth': self.marginwidth
+                    , 'marginopacity': self.marginopacity
+                    , 'margincolor': self.margincolor
+                    , 'fontsize': self.fontsize
+                    , 'fontcolor': self.fontcolor}
