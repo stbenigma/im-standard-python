@@ -263,19 +263,19 @@ def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
     #for
     return
 
-def getuicomponents(pencaid,pmeltid):
-    elui = ElementUI.select("elui_enca_id={} and elui_melt_id={}".format(pencaid,pmeltid))
+def getuicomponents(pencaid):
+    elui = ElementUI.select("elui_enca_id={}".format(pencaid))
     if len(elui) == 0: return {}
     else:
-        return UIELEMENT(width=elui.elui_width
-              , height=elui.elui_height
-              , opacity=elui.elui_opacity
-              , color=elui.elui_color
-              , marginwidth=elui.elui_marginwidth
-              , marginopacity=elui.elui_marginopacity
-              , margincolor=elui.elui_margincolor
-              , fontsize=elui.elui_fontsize
-              , fontcolor=elui.elui_fontcolor).js()
+        return UIELEMENT(width=elui[0].elui_width
+              , height=elui[0].elui_height
+              , opacity=elui[0].elui_opacity
+              , color=elui[0].elui_color
+              , marginwidth=elui[0].elui_marginwidth
+              , marginopacity=elui[0].elui_marginopacity
+              , margincolor=elui[0].elui_margincolor
+              , fontsize=elui[0].elui_fontsize
+              , fontcolor=elui[0].elui_fontcolor).js()
 
 
 def categories2js(pemptymodel):
@@ -292,18 +292,17 @@ def categories2js(pemptymodel):
               fillmodel(pmodel=model,pentries=[
                   ec.enca_name
                 ,ec.enca_uc,ec.enca_dc, ec.enca_um,ec.enca_dm
-                , getuicomponents(pencaid=ec.enca_id,pmeltid=Modelelemtype.getidbyshortname(Modelelemtype.ENTI))
+                , getuicomponents(pencaid=ec.enca_id)
                  ])
                 for ec in EntityCategory.select()
             }
     return retval
 
 
-def js2enca(pkey, pelem, psrcname=None, psrcid=None):
-    enca: EntityCategory = EntityCategory(psrcname=psrcname, psrcid=psrcid)
+def js2enca(pkey, pelem, psrcname=None, psrcid=None,pmodellang=None):
+    enca:EntityCategory = EntityCategory(pname=pelem['name'])
     enca.enca_id = jsguid2id(pkey)
     enca.enca_name = pelem['name']
-    enca.enca_orgu_id = psrcid
     enca.enca_uc = pelem['uc']
     enca.enca_dc = pelem['dc']
     enca.enca_um = pelem['um']

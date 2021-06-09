@@ -28,6 +28,20 @@ def elemrep2js(peler, panker):
                                  , fontcolor=peler.eler_fontcolor).js()])
     return retval
 
+
+def ui2eler(pjsui, peler):
+    peler.eler_width =  pjsui['width']
+    peler.eler_height =  pjsui['height']
+    peler.eler_opacity =  pjsui['opacity']
+    peler.eler_color =  pjsui['Color']
+    peler.eler_marginwidth =  pjsui['marginwidth']
+    peler.eler_marginopacity =  pjsui['marginopacity']
+    peler.eler_margincolor =  pjsui['margincolor']
+    peler.eler_fontsize =  pjsui['fontsize']
+    peler.eler_fontcolor =  pjsui['fontcolor']
+    return
+
+
 def elemreps2sql(presult:Mergeresult, pdiagid, pelemreps):
     """[elemrep,] """
     for jelem in pelemreps:
@@ -37,19 +51,11 @@ def elemreps2sql(presult:Mergeresult, pdiagid, pelemreps):
         eler.eler_index = jelem['index']
         eler.eler_position_x = jelem['pos_x']
         eler.eler_position_y = jelem['pos_y']
-        eler.eler_width = jelem['width']
-        eler.eler_height = jelem['height']
-        eler.eler_opacity = jelem['opacity']
-        eler.eler_color = jelem['Color']
-        eler.eler_marginwidth = jelem['marginwidth']
-        eler.eler_marginopacity = jelem['marginopacity']
-        eler.eler_margincolor = jelem['margincolor']
-        eler.eler_fontsize = jelem['fontsize']
-        eler.eler_fontcolor = jelem['fontcolor']
         eler.eler_uc = jelem['uc']
         eler.eler_dc = jelem['dc']
         eler.eler_um = jelem['um']
         eler.eler_dm = jelem['dm']
+        ui2eler(pjsui=jelem["ui"],peler=eler)
         try:
             eler.insert()
         except Exception as err:

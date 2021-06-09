@@ -28,6 +28,7 @@
          "tooltip": {
             "en": ""
          },
+         "category": "",
          "exptuple#": "",
          "prefix": "",
          "subtypellevel+": "",
@@ -342,6 +343,26 @@
          "references+": []
       }
    },
+   "categories": {
+      "CATG0000": {
+         "name": "",
+         "uc": "",
+         "dc": "",
+         "um": "",
+         "dm": "",
+         "ui": {
+            "width": "",
+            "height": "",
+            "opacity": "",
+            "Color": "",
+            "marginwidth": "",
+            "marginopacity": "",
+            "margincolor": "",
+            "fontsize": "",
+            "fontcolor": ""
+         }
+      }
+   },
    "systems": {
       "INTF0000": {
          "name": "",
@@ -455,9 +476,80 @@
          "dc": "",
          "um": "",
          "dm": "",
-         "elements": {},
-         "relationships": {},
-         "arcs": {},
+         "elements": {
+            "element": "XXXX0000",
+            "index": "",
+            "pos_x": "",
+            "pos_y": "",
+            "uc": "",
+            "dc": "",
+            "um": "",
+            "dm": "",
+            "ui": {
+               "width": "",
+               "height": "",
+               "opacity": "",
+               "Color": "",
+               "marginwidth": "",
+               "marginopacity": "",
+               "margincolor": "",
+               "fontsize": "",
+               "fontcolor": ""
+            }
+         },
+         "relationships": {
+            "RELA0000": {
+               "linewidth": "",
+               "linecolor": "",
+               "lineopacity": "",
+               "startedge": "",
+               "startposition": "",
+               "start_connector": "",
+               "starttext_angle": "",
+               "starttext_distance": "",
+               "starttext_x": "",
+               "starttext_y": "",
+               "starttext_width": "",
+               "starttext_height": "",
+               "endedge": "",
+               "endposition": "",
+               "end_connector": "",
+               "endtext_angle": "",
+               "endtext_distance": "",
+               "endtext_x": "",
+               "endtext_y": "",
+               "endtext_width": "",
+               "endtext_height": "",
+               "fontcolor": "",
+               "fontsize": "",
+               "uc": "",
+               "dc": "",
+               "um": "",
+               "dm": "",
+               "linesegments": {
+                  "0": {
+                     "x": "",
+                     "y": "",
+                     "linetype": "",
+                     "angle": "",
+                     "uc": "",
+                     "dc": "",
+                     "um": "",
+                     "dm": ""
+                  }
+               }
+            }
+         },
+         "arcs": {
+            "arcs": {
+               "ARCS0000": {
+                  "circles": [
+                     "",
+                     ""
+                  ]
+               }
+            }
+         },
          "referencedby": [],
          "sourceref": []
       }
@@ -518,9 +610,9 @@
    },
    "_imprint_": {
       "database": "None",
-      "created": "2021-05-06 11:25:54.951338",
+      "created": "2021-06-09 16:09:43.055664",
       "Modelversion": "",
-      "hashvalue": -2961809021649092582,
+      "hashvalue": 1193813289201600102,
       "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
    }
 }
