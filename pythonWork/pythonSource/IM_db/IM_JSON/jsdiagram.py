@@ -33,7 +33,7 @@ def ui2eler(pjsui, peler):
     peler.eler_width =  pjsui['width']
     peler.eler_height =  pjsui['height']
     peler.eler_opacity =  pjsui['opacity']
-    peler.eler_color =  pjsui['Color']
+    peler.eler_color =  pjsui['color']
     peler.eler_marginwidth =  pjsui['marginwidth']
     peler.eler_marginopacity =  pjsui['marginopacity']
     peler.eler_margincolor =  pjsui['margincolor']

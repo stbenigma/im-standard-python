@@ -333,7 +333,7 @@ class UIELEMENT():
         return {'width': self.width
                     , 'height': self.height
                     , 'opacity': self.opacity
-                    , 'Color': self.color
+                    , 'color': self.color
                     , 'marginwidth': self.marginwidth
                     , 'marginopacity': self.marginopacity
                     , 'margincolor': self.margincolor

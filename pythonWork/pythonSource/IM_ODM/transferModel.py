@@ -1038,7 +1038,10 @@ def do1Entity(fileName):
     enti.enti_dc = findText(entixml, 'createdTime')
     enticategoryguid = findText(entixml, 'typeID')
     if enticategoryguid is not None and enticategoryguid != '':
-        enti.enti_enca_id = classids[enticategoryguid]
+        if enticategoryguid in classids:
+            enti.enti_enca_id = classids[enticategoryguid]
+        else:
+            print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
 
     i=1 #safeguard for eternal loop
     while i<10:
