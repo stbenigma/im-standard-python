@@ -1154,7 +1154,7 @@ def do1Relation(fileName):
     rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logmessages.writelog(
-            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Relation mit gelöschten Entities".
+            "in Relation {}: Entity Id {} or {} not found. Datenleichen von Relation mit gelöschten Entities".
                 format(relaguid,sourceentiguid, targetentiguid))
         return
     # fi
