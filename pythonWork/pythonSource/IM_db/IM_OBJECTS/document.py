@@ -1,5 +1,4 @@
-import logmessages
-from IM_DB import dbDML
+from IM_DB import dbDML,logmessages
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype,Modelelement
 from .externalref import Externalref
