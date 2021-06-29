@@ -652,7 +652,7 @@ def transferdiagramme():
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pintfid=None):
-    doma = Domain()
+    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=Modelelemtype.DOMA+findField(pattrxml, 'id'))
     doma.doma_name = pattrname
     domatest = Domain.getbyname(pname=doma.doma_name)
     if (domatest is not None):

@@ -109,7 +109,7 @@ class ModelelemOrgu(Baseobject):
         for orguguid in porguidlist:
             moou = ModelelemOrgu()
             moou.moou_orgu_id = Externalref.getODMmodeid(psrcid=orguguid)
-            if modo.modo_orgu_id is None:
+            if moou.moou_orgu_id is None:
                 #GUID no longer exists
                 logmessages.writelog("Org-Unit ({}) referenced in model-element id={} does not exist".format(orguguid,pmodeid))
                 return
