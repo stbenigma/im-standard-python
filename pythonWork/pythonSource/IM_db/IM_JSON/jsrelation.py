@@ -67,13 +67,15 @@ def relation2js(prela):
                                 ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
                                ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=prela.rela_id)]\
                                 +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=prela.rela_id)]
-                               ,tabreflist(plist={
-                                   jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.TABL, t.tabl_id)
-                                                                           for t in
-                                                                           TablEntiMap.gettabllist(
-                                                                               prelaid=prela.rela_id
-                                                                               ,pintfid=s.getid())]
-                                   for s in Interface.getmapped(pentiid=prela.rela_id)})
+                , tabreflist(plist={
+                    jsguid(Modelelemtype.INTF, s.getid()):
+                        {jsguid(Modelelemtype.TABL, t[0]): crud(pcreate=t[1], pread=t[2], pupdate=t[3], pdelete=t[4])
+                         for t in
+                         TablEntiMap.gettablcrud(prelaid=rela.rela_id,
+                                                 pintfid=s.getid())
+                         }
+                    for s in Interface.getmapped(pentiid=prela.rela_id)})
+
                                ]
                    )
     # fi

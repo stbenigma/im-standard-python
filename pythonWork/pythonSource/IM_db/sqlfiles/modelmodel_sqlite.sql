@@ -492,7 +492,7 @@ create table DOMAINS
 	DOMA_NUM_MAXVALUE NUMERIC(30,10),
 	DOMA_NUM_MINVALUE NUMERIC(30,10),
 	DOMA_NUM_TOTAL_DIGITS NUMERIC(3),
-	DOMA_NUM_FRACT_DIGITS NUMERIC(3) default 0,
+	DOMA_NUM_FRACT_DIGITS NUMERIC(3) ,
 	DOMA_NUM_ROUND_VALUE NUMERIC(7,3),
 	DOMA_NUM_PHYU_ID integer
 		references PHYSICAL_UNIT (PHYU_ID),
@@ -868,12 +868,15 @@ create table colu_attr_map
 		constraint coam_attr_fk
 			references ATTRIBUTES (attr_id)
 				on delete cascade,
+    coam_read VARCHAR (5) NOT NULL DEFAULT 'TRUE' CHECK ( coam_read IN ('FALSE', 'TRUE') ) , 
+    coam_update VARCHAR (5) NOT NULL DEFAULT 'FALSE' CHECK ( coam_update IN ('FALSE', 'TRUE') ), 
 	constraint coam_un
 		unique (coam_direction, coam_colu_id, coam_attr_id, coam_seq),
 	check (coam_direction in ('INBOUND', 'OUTBOUND')),
 	check (coam_seq > 0),
 	check (coam_triggertype in ('MANUELL', 'PERIODE', 'ZPKT'))
 );
+
 
 create table tabl_enti_maps
 (
@@ -887,6 +890,10 @@ create table tabl_enti_maps
 	tema_rela_id integer
 		constraint tema_rela_fk
 			references RELATIONS (rela_id) on delete cascade ,
+    tema_create varchar (5) not null default 'FALSE' check ( tema_create in ('FALSE', 'TRUE') ) , 
+    tema_read varchar (5) not null default 'TRUE' check ( tema_read in ('FALSE', 'TRUE') ) , 
+    tema_update varchar (5) not null default 'FALSE' check ( tema_update in ('FALSE', 'TRUE') ) , 
+    tema_delete varchar (5) not null default 'FALSE' check ( tema_delete in ('FALSE', 'TRUE') ) ,
 	constraint tema_un
 		unique (tema_tabl_id, tema_enti_id, tema_rela_id),
 	constraint tema_ck
@@ -903,8 +910,8 @@ CREATE TABLE BUSINESS_RULES
      BURU_RULE VARCHAR (4000) NOT NULL ,
      BURU_DESCR VARCHAR (4000) NULL ,
      BURU_IMPACT VARCHAR (4000) NULL ,
-     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( [BURU_TYPE]='TRIGGER' OR [BURU_TYPE]='CHECK' OR [BURU_TYPE]='CALC' ) ,
-     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( [BURU_LEVEL]='TUPL' OR [BURU_LEVEL]='ENTI' OR [BURU_LEVEL]='DB' OR [BURU_LEVEL]='ATTR' ) ,
+     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( BURU_TYPE='TRIGGER' OR BURU_TYPE='CHECK' OR BURU_TYPE='CALC' ) ,
+     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( BURU_LEVEL='TUPL' OR BURU_LEVEL='ENTI' OR BURU_LEVEL='DB' OR BURU_LEVEL='ATTR' ) ,
      BURU_ERRORMSG VARCHAR (100) ,
      BURU_UC VARCHAR (30) NOT NULL ,
      BURU_DC DATETIME (8) NOT NULL ,
@@ -916,7 +923,7 @@ CREATE TABLE BUSINESSRULE_ELEMENTS
     (
      BURE_ID integer NOT NULL primary key autoincrement,
      BURE_BURU_ID NUMERIC (10) NOT NULL ,
-     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( [BURE_WRITEABLE]='TRUE' OR [BURE_WRITEABLE]='FALSE' ) ,
+     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( BURE_WRITEABLE='TRUE' OR BURE_WRITEABLE='FALSE' ) ,
      BURE_ATTR_ID NUMERIC (10) NULL ,
      BURE_ENTI_ID NUMERIC (10) NULL ,
      BURE_RELA_ID NUMERIC (10) NULL ,

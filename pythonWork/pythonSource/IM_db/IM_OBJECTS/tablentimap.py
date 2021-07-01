@@ -1,42 +1,57 @@
-from .baseobject import Baseobject
-from .table import Table
-from IM_DB import dbDML
 from collections import defaultdict
+
+from IM_DB import dbDML
+from .baseobject import Baseobject, Boolean
 from .entity import Entity
 from .relationship import Relation
+from .table import Table
+
 
 class TablEntiMap(Baseobject):
-    _tablename:str = 'tabl_enti_maps'
-    _prefix:str = 'tema'
+    _tablename: str = 'tabl_enti_maps'
+    _prefix: str = 'tema'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist: list = []
 
     def __init__(self):
-        if (len(TablEntiMap._columnlist) == 0): TablEntiMap._columnlist = Baseobject.gettablecolumns(TablEntiMap._tablename)
+        if (len(TablEntiMap._columnlist) == 0): TablEntiMap._columnlist = Baseobject.gettablecolumns(
+            TablEntiMap._tablename)
         super().__init__()
 
+    @staticmethod
+    def __combiwhere(pentiid=None, prelaid=None, pintfid=None):
+        return """ case when tema_enti_id is NULL 
+                            then ' ' 
+                            else tema_enti_id end  like '{}'
+                      and case when tema_rela_id is NULL 
+                            then ' ' 
+                            else tema_rela_id end   like '{}'
+                      and case when tabl_intf_id is NULL 
+                            then ' ' 
+                            else tabl_intf_id end like '{}'""".format(str(pentiid) if pentiid is not None else '%'
+                                                                      , str(prelaid) if prelaid is not None else '%'
+                                                                      , str(pintfid) if pintfid is not None else '%')
 
     @staticmethod
-    def gettabllist(pentiid=None,prelaid=None,pintfid=None):
-        where = ("""tabl_id in (select tema_tabl_id 
-                                                    from tabl_enti_maps
-                                                    join tables on tabl_id = tema_tabl_id 
-                                                    where 
-                                                        case when tema_enti_id is NULL 
-                                                            then ' ' 
-                                                            else tema_enti_id end  like '{}'
-                                                      and case when tema_rela_id is NULL 
-                                                            then ' ' 
-                                                            else tema_rela_id end   like '{}'
-                                                      and case when tabl_intf_id is NULL 
-                                                            then ' ' 
-                                                            else tabl_intf_id end like '{}')"""\
-                            .format(str(pentiid) if pentiid is not None else '%'
-                                    ,str(prelaid) if prelaid is not None else '%'
-                                    ,str(pintfid) if pintfid is not None else '%' ))
-        tabls =Table.select(pwhere=where
-                            ,porderby="tabl_id")
+    def gettabllist(pentiid=None, prelaid=None, pintfid=None):
+        where = """tabl_id in (select tema_tabl_id 
+                                from tabl_enti_maps
+                                join tables on tabl_id = tema_tabl_id 
+                                where {}""".format(
+                                    TablEntiMap.__combiwhere(pentiid=pentiid, prelaid=prelaid, pintfid=pintfid))
+        tabls = Table.select(pwhere=(where), porderby="tabl_id")
         return tabls
+
+    @staticmethod
+    def gettablcrud(pentiid=None, prelaid=None, pintfid=None):
+        select = """select tema_tabl_id, tema_create, tema_read, tema_update, tema_delete 
+                    from tabl_enti_maps
+                    join tables on tabl_id = tema_tabl_id
+                    where {}""".format (TablEntiMap.__combiwhere(pentiid=pentiid, prelaid=prelaid, pintfid=pintfid))
+        tabs = [[maps[0], Boolean.str2bool(maps[1]), Boolean.str2bool(maps[2]),
+                 Boolean.str2bool(maps[3]), Boolean.str2bool(maps[4])] for maps in dbDML.select(select)]
+        if len(tabs) == 0 or (len(tabs) == 1 and tabs[0][0] is None): tabs = []
+        return tabs
 
     @staticmethod
     def getentilist(ptablid):
@@ -45,13 +60,31 @@ class TablEntiMap(Baseobject):
                                                     where tema_tabl_id = ?
                                                     )""", ptablid)
                              )
+
+    @staticmethod
+    def getenticrud(ptablid):
+        entis = [[maps.tema_enti_id, Boolean.str2bool(maps.tema_create), Boolean.str2bool(maps.tema_read),
+                  Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)] for maps in
+                 TablEntiMap.select(pwhere=("""tema_tabl_id = ?""", ptablid))]
+
+        if len(entis) == 0 or (len(entis) == 1 and entis[0][0] is None): entis = []
+        return entis
+
     @staticmethod
     def getrelalist(ptablid):
         return Relation.select(pwhere=("""rela_id in (select tema_rela_id 
                                                     from tabl_enti_maps
                                                     where tema_tabl_id = ?
                                                     )""", ptablid)
-                             )
+                               )
+
+    @staticmethod
+    def getrelacrud(ptablid):
+        relas = [[maps.tema_rela_id, Boolean.str2bool(maps.tema_create), Boolean.str2bool(maps.tema_read),
+                  Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)] for maps in
+                 TablEntiMap.select(pwhere=("""tema_tabl_id = ?""", ptablid))]
+        if len(relas) == 0 or (len(relas) == 1 and relas[0][0] is None): relas = []
+        return relas
 
     @staticmethod
     def tablelist(pentiid=None):
@@ -78,6 +111,7 @@ class TablEntiMap(Baseobject):
             pass
         # try
         return retval
+
     # tablelist
 
     @staticmethod
@@ -91,11 +125,11 @@ class TablEntiMap(Baseobject):
                             """)
         retval = defaultdict(dict)
         for d in data:
-            retval[d[0]][d[1]] = [d[2],d[3],d[4]]
+            retval[d[0]][d[1]] = [d[2], d[3], d[4]]
         # for
         return retval
-    #extendedtabentimap
 
+    # extendedtabentimap
 
     @staticmethod
     def tabentimap():
@@ -107,8 +141,8 @@ class TablEntiMap(Baseobject):
             retval[d[0]][d[1]] = True
         # for
         return retval
-    #tabentimap
 
+    # tabentimap
 
     @staticmethod
     def tabrelamap():
@@ -121,6 +155,4 @@ class TablEntiMap(Baseobject):
         # for
         return retval
     # tabrelamap
-#TablEntiMap
-
-
+# TablEntiMap

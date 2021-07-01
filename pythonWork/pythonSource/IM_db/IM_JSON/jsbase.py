@@ -239,3 +239,11 @@ def userdefprops (pprops:dict=None):
         return {'Theme': {"Group": {"UDPR000": {"name":'', "value":''}}}}
     else:
         return pprops
+
+def crud(pread=True,pupdate=False,pdelete=None,pcreate=None):
+    crud = []
+    if pcreate: crud.append('C')
+    if pread: crud.append('R')
+    if pupdate: crud.append('U')
+    if pdelete: crud.append('D')
+    return crud
