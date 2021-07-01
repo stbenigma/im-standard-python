@@ -70,7 +70,7 @@ def tables2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         insreferences(presult=presult, pmodeid=newtablid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newtablid, psources=jelem["sourceref"])
         instablemapping(presult=presult, ptablid=newtablid,
-                        pmappedelems=jelem['entitiesmapped'] + jelem['relationsmapped'])
+                        pmappedelems={**jelem['entitiesmapped'],**jelem['relationsmapped']})
         udpvs2sql(presult=presult, pmodeid=newtablid, pudps=jelem["userdefprops"])
     return
 

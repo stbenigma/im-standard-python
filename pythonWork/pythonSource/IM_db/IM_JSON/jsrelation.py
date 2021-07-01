@@ -71,10 +71,10 @@ def relation2js(prela):
                     jsguid(Modelelemtype.INTF, s.getid()):
                         {jsguid(Modelelemtype.TABL, t[0]): crud(pcreate=t[1], pread=t[2], pupdate=t[3], pdelete=t[4])
                          for t in
-                         TablEntiMap.gettablcrud(prelaid=rela.rela_id,
+                         TablEntiMap.gettablcrud(prelaid=prela.rela_id,
                                                  pintfid=s.getid())
                          }
-                    for s in Interface.getmapped(pentiid=prela.rela_id)})
+                    for s in Interface.getmapped(prelaid=prela.rela_id)})
 
                                ]
                    )

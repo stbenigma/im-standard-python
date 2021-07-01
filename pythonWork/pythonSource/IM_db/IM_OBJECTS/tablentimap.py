@@ -65,7 +65,7 @@ class TablEntiMap(Baseobject):
     def getenticrud(ptablid):
         entis = [[maps.tema_enti_id, Boolean.str2bool(maps.tema_create), Boolean.str2bool(maps.tema_read),
                   Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)] for maps in
-                 TablEntiMap.select(pwhere=("""tema_tabl_id = ?""", ptablid))]
+                 TablEntiMap.select(pwhere=("""tema_enti_id is not null and tema_tabl_id = ?""", ptablid))]
 
         if len(entis) == 0 or (len(entis) == 1 and entis[0][0] is None): entis = []
         return entis
@@ -81,8 +81,8 @@ class TablEntiMap(Baseobject):
     @staticmethod
     def getrelacrud(ptablid):
         relas = [[maps.tema_rela_id, Boolean.str2bool(maps.tema_create), Boolean.str2bool(maps.tema_read),
-                  Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)] for maps in
-                 TablEntiMap.select(pwhere=("""tema_tabl_id = ?""", ptablid))]
+                  Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)]
+                 for maps in TablEntiMap.select(pwhere=("""tema_rela_id is not null and tema_tabl_id = ?""", ptablid))]
         if len(relas) == 0 or (len(relas) == 1 and relas[0][0] is None): relas = []
         return relas
 

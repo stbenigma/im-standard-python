@@ -220,10 +220,10 @@
 									<tr>
 										<td>{{ intf["name"] }}</td>
 										<td>
-											{% for tablid in val %}
+											{% for tablid,mapping in val.items() %}
 											{% set tabl = webmodel.getelem(tablid)%}
 											{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-											{{ webmodel.getreflink(name= tabl["name"],destid=tablid,destintfid = intfid)|safe }}
+											{{ webmodel.getreflink(name= tabl["name"],destid=tablid,destintfid = intfid) |safe + " ({})".format(''.join(mapping)) }}
 											{% endfor %}
 										</td>
 									</tr>

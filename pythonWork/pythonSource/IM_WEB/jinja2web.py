@@ -99,25 +99,25 @@ class Webmodel():
 
     def collecttablemappings(self,pelem):
         # name, list of entries mit {webanker:'name'}
-        entities = {e: self.getelem(e)['name'][self.curlanguage] for e in pelem['entitiesmapped']}
-        relations = {r: self.getelem(r)['name'] for r in pelem['relationsmapped']}
+        entities = {e: self.getelem(e)['name'][self.curlanguage] for e in pelem['entitiesmapped'].keys()}
+        relations = {r: self.getelem(r)['name'] for r in pelem['relationsmapped'].keys()}
         entities.update(relations)
         allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
                                                                        ,curintfid=self.getintfid()) for anker,name  in entities.items())}
 
         for intfanker, intfelem in self.jsmodel.getelements(pelemtype='systems').items():
             if intfanker == pelem['interface-id']: continue
-            tablist = []
-            for enti in pelem['entitiesmapped']+pelem['relationsmapped']:
+            tablist = {}
+            for enti in {**pelem['entitiesmapped'],**pelem['relationsmapped']}:
                 try:
-                    tablist += self.getelem(enti)['tablesmapped+'][intfanker]
+                    tablist = {**tablist,**self.getelem(enti)['tablesmapped+'][intfanker]}
                 except:
                     pass
             if len(tablist) == 0: continue
-            allmappings[intfelem["name"]] = ', '.join (self.getreflink(name="({})".format(self.getelem(tabanker)['name'])
+            allmappings[intfelem["name"]] = ', '.join (self.getreflink(name="({} ({}))".format(self.getelem(tabanker)['name'],''.join(map))
                                                                 ,destid=tabanker
                                                                 ,curintfid=self.getintfid()
-                                                                ,destintfid=intfanker) for tabanker in tablist)
+                                                                ,destintfid=intfanker) for tabanker,map in tablist.items())
         # for
         return allmappings
 
