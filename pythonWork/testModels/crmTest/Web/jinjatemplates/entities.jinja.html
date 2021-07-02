@@ -223,7 +223,8 @@
 											{% for tablid in val %}
 											{% set tabl = webmodel.getelem(tablid)%}
 											{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-											{{ webmodel.getreflink(name= tabl["name"],destid=tablid,destintfid = intfid) |safe  }} {# + " ({})".format(''.join(mapping)) #}
+											{{ webmodel.getreflink(name= tabl["name"],destid=tablid,destintfid = intfid) |safe
+											     + " (" +tabl["CRUD"] +")" }} {# + " ({})".format(''.join(mapping)) #}
 											{% endfor %}
 										</td>
 									</tr>

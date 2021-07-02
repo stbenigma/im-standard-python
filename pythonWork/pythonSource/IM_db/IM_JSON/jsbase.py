@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from IM_OBJECTS import Modelelemtype
+from IM_OBJECTS import Modelelemtype,Boolean
 
 
 
@@ -240,10 +240,28 @@ def userdefprops (pprops:dict=None):
     else:
         return pprops
 
-def crud(pread=True,pupdate=False,pdelete=None,pcreate=None):
-    crud = []
-    if pcreate: crud.append('C')
-    if pread: crud.append('R')
-    if pupdate: crud.append('U')
-    if pdelete: crud.append('D')
-    return crud
+def rwstr(pread=True,pwrite=False):
+    return ''.join(rw(pread=pread,pwrite=pwrite))
+def rw(pread=True,pwrite=False):
+    if type(pread)== str:pread = Boolean.str2bool(pread)
+    if type(pwrite)== str:pwrite = Boolean.str2bool(pwrite)
+    retval = []
+    if pread: retval.append('R')
+    if pwrite:
+        retval.append('W')
+    return retval
+
+def crudstr(pread=True,pupdate=False,pdelete=False,pcreate=False):
+    return ''.join(crud(pread=pread,pupdate=pupdate,pdelete=pdelete,pcreate=pcreate))
+
+def crud(pread=True,pupdate=False,pdelete=False,pcreate=False):
+    if type(pread)== str:pread = Boolean.str2bool(pread)
+    if type(pcreate)== str:pcreate = Boolean.str2bool(pcreate)
+    if type(pupdate)== str:pupdate = Boolean.str2bool(pupdate)
+    if type(pdelete)== str:pdelete = Boolean.str2bool(pdelete)
+    retval = []
+    if pcreate: retval.append('C')
+    if pread: retval.append('R')
+    if pupdate: retval.append('U')
+    if pdelete: retval.append('D')
+    return retval

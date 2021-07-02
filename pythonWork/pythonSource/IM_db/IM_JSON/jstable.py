@@ -6,14 +6,16 @@ def tables2js(pemptymodel):
         , 'descr'
         , 'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        ,'CRUD'
         , 'columns+', 'userdefprops'
         , 'entitiesmapped', 'relationsmapped'
         , 'sourceref', 'referencedby'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(9)]
-                                                                                       + [0, 4, 'DEV', reflist(),
-                                                                                          userdefprops()
+                                                                                       + [0, 4, 'DEV'
+                                                                                          ,crudstr()
+                                                                                           , reflist(),userdefprops()
                                                                                            ,[jsguid(Modelelemtype.ENTI, '0000')]
                                                                                           , [jsguid(Modelelemtype.RELA, '0000')]
                                                                                            , sourceref(), reflist()])
@@ -26,6 +28,7 @@ def tables2js(pemptymodel):
                           , t.tabl_prefix, t.tabl_descr
                           , t.tabl_uc, t.tabl_dc, t.tabl_um, t.tabl_dm
                           , t.getminzoomlevel(), t.getmaxzoomlevel(), t.getdevstatus()
+                          , crudstr(pcreate=t.tabl_create,pread=t.tabl_read,pupdate=t.tabl_update,pdelete=t.tabl_delete)
                           , [jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
                           , udpv2js(pmodeid=t.tabl_id, pmodelemtype=Modelelemtype.TABL)
                           , [jsguid(Modelelemtype.ENTI, e.enti_id)

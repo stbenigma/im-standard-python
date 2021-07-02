@@ -69,7 +69,7 @@ def relation2js(prela):
                                 +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=prela.rela_id)]
                 , tabreflist(plist={
                     jsguid(Modelelemtype.INTF, s.getid()):
-                        [jsguid(Modelelemtype.TABL, t)
+                        [jsguid(Modelelemtype.TABL, t.tabl_id)
                          for t in TablEntiMap.gettabllist(prelaid=prela.rela_id,
                                                  pintfid=s.getid())
                         ]

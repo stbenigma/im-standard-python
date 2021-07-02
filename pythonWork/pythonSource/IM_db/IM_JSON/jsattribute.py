@@ -61,7 +61,7 @@ def attr2js(pattr):
                                      , sourceref(), reflist()
                                      #, businessrules2js()
                                      , reflist(), userdefprops()
-                                    , reflist(), reflist()
+                                    , {jsguid(Modelelemtype.INTF,"0000"):[jsguid(Modelelemtype.COLU, "0000")]}, reflist()
                                       ]
                            )
     else:
