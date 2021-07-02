@@ -205,6 +205,7 @@ class Baseobject:
             defval= c[4]
             if defval is None: continue
             defval = defval.strip("'")
+            defval = defval.strip('"')
             colname = c[1].lower()
             self.setcolvalue(pcolname=colname,pvalue=defval)
         #for

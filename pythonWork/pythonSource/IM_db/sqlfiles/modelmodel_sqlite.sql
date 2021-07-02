@@ -56,9 +56,9 @@ create table MODELELEMENT
 		references MODELELEM_TYPE (melt_id),
     MODE_MIN_ZOOM_LEVEL numeric(1) NULL CHECK ( MODE_MIN_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
     MODE_MAX_ZOOM_LEVEL numeric(1)  NULL CHECK ( MODE_MAX_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
-    MODE_DEV_STATUS VARCHAR (4) NULL DEFAULT 'DEV' CHECK ( MODE_DEV_STATUS IN ('DEV', 'REL', 'TEST') ),
-	check (MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM','DIAG'))
+    MODE_DEV_STATUS VARCHAR (4) NULL DEFAULT "DEV" CHECK ( MODE_DEV_STATUS IN ("DEV", "REL", "TEST") ),
+	check (MODE_TYPE IN ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
+                            , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU","KEYS","DATY","DGRM","DIAG"))
 );
 
 create table DATATYPES
@@ -817,6 +817,10 @@ create table tables
 		references interfaces (intf_ID),
 	tabl_prefix varchar(60),
 	tabl_descr varchar(4000),
+    tabl_create varchar (5) not null default 'FALSE' check ( tabl_create in ('FALSE', 'TRUE') ) , 
+    tabl_read varchar (5) not null default 'TRUE' check ( tabl_read in ('FALSE', 'TRUE') ) , 
+    tabl_update varchar (5) not null default 'FALSE' check ( tabl_update in ('FALSE', 'TRUE') ) , 
+    tabl_delete varchar (5) not null default 'FALSE' check ( tabl_delete in ('FALSE', 'TRUE') ) ,
 	tabl_uc varchar(30) not null,
 	tabl_dc varchar(30) not null,
 	tabl_um varchar(30),
@@ -837,6 +841,8 @@ create table columns
 	colu_ext_system_id varchar(100),
 	colu_descr varchar(4000),
 	colu_type_string varchar(200),
+    colu_read VARCHAR (5) NOT NULL DEFAULT 'TRUE' CHECK ( colu_read IN ('FALSE', 'TRUE') ) , 
+    colu_update VARCHAR (5) NOT NULL DEFAULT 'FALSE' CHECK ( colu_update IN ('FALSE', 'TRUE') ), 
 	colu_tabl_id integer not null
 		constraint colu_tabl_fk
 			references tables (tabl_id),
@@ -868,8 +874,6 @@ create table colu_attr_map
 		constraint coam_attr_fk
 			references ATTRIBUTES (attr_id)
 				on delete cascade,
-    coam_read VARCHAR (5) NOT NULL DEFAULT 'TRUE' CHECK ( coam_read IN ('FALSE', 'TRUE') ) , 
-    coam_update VARCHAR (5) NOT NULL DEFAULT 'FALSE' CHECK ( coam_update IN ('FALSE', 'TRUE') ), 
 	constraint coam_un
 		unique (coam_direction, coam_colu_id, coam_attr_id, coam_seq),
 	check (coam_direction in ('INBOUND', 'OUTBOUND')),
@@ -890,10 +894,6 @@ create table tabl_enti_maps
 	tema_rela_id integer
 		constraint tema_rela_fk
 			references RELATIONS (rela_id) on delete cascade ,
-    tema_create varchar (5) not null default 'FALSE' check ( tema_create in ('FALSE', 'TRUE') ) , 
-    tema_read varchar (5) not null default 'TRUE' check ( tema_read in ('FALSE', 'TRUE') ) , 
-    tema_update varchar (5) not null default 'FALSE' check ( tema_update in ('FALSE', 'TRUE') ) , 
-    tema_delete varchar (5) not null default 'FALSE' check ( tema_delete in ('FALSE', 'TRUE') ) ,
 	constraint tema_un
 		unique (tema_tabl_id, tema_enti_id, tema_rela_id),
 	constraint tema_ck

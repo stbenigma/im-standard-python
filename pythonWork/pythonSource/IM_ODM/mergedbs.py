@@ -2,7 +2,6 @@ from IM_JSON import *
 from IM_OBJECTS import *
 from datetime import datetime
 from IM_DB import dbConnect
-from dbDML import valuepairs2sqlexpr
 
 nofunc = lambda p : None
 #json-key: (processorder,baseobjectload, referencesload,hasexternalref)
@@ -14,7 +13,6 @@ transferprocs = {
 ,'storageformats' : (5,storageformats2sql,nofunc,False)
 ,'documents': (6,documents2sql, nofunc,True)
 ,'orgunits': (7,orgunits2sql, nofunc,True)
-,'categories': (7,entitycategory2sql, nofunc,True)
 ,'categories': (7,entitycategory2sql, nofunc,True)
 ,'userdefprops': (8,udps2sql, nofunc,False)
 ,'systems': (10,systems2sql, nofunc,True)

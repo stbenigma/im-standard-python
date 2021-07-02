@@ -1,6 +1,7 @@
+import re
+
 from IM_JSON import *
 from IM_OBJECTS import *
-import re
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
@@ -52,7 +53,9 @@ def entityicon(penti: Entity = None):
                 icontype = 'FILE'
                 iconref = ref if ref is not None else docus[0].docu_name
             # fi
+        # fi
         return retval(icontype, iconref)
+    # fi
 
 
 def entities2js(pemptymodel):
@@ -122,11 +125,10 @@ def entities2js(pemptymodel):
                                    , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
                                    , tabreflist(plist={
                                        jsguid(Modelelemtype.INTF, s.getid()):
-                                           {jsguid(Modelelemtype.TABL,t[0]): crud(pcreate=t[1], pread=t[2], pupdate=t[3], pdelete=t[4])
-                                            for t in
-                                            TablEntiMap.gettablcrud(pentiid=e.enti_id,
-                                                                    pintfid=s.getid())
-                                            }
+                                           [jsguid(Modelelemtype.TABL, t)
+                                            for t in TablEntiMap.gettabllist(pentiid=e.enti_id,
+                                                                       pintfid=s.getid())
+                                            ]
                                        for s in Interface.getmapped(pentiid=e.enti_id)})
                                    , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                     Diagram.getdiagrams(pmodeid=e.enti_id)])
@@ -134,63 +136,62 @@ def entities2js(pemptymodel):
                                ) for e in Entity.select()
                  }
 
-        return entis
-
+    return entis
     # entities2js
 
-    """inserts all entities from json structure (like the one in entities2js to the sql database
-      prints out all error and ends with exception if there was an error"""
+"""inserts all entities from json structure (like the one in entities2js to the sql database
+  prints out all error and ends with exception if there was an error"""
 
-    def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
-        enti = Entity(psrcname=psrcname, psrcid=psrcid)
-        enti.enti_id = jsguid2id(pkey)
-        enti.enti_name = pelem['name'][pmodellang]
-        enti.enti_short_name = pelem['shortname']
-        enti.enti_prefix = pelem['prefix']
-        enti.enti_enca_id = jsguid2id(pelem['category'])
-        enti.enti_tooltip = pelem['tooltip'][pmodellang]
-        enti.enti_descr = pelem['descr'][pmodellang]
-        enti.enti_exp_tuplecnt = pelem['exptuple#']
-        enti.enti_uc = pelem['uc']
-        enti.enti_dc = pelem['dc']
-        enti.enti_um = pelem['um']
-        enti.enti_dm = pelem['dm']
-        return enti
+def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
+    enti = Entity(psrcname=psrcname, psrcid=psrcid)
+    enti.enti_id = jsguid2id(pkey)
+    enti.enti_name = pelem['name'][pmodellang]
+    enti.enti_short_name = pelem['shortname']
+    enti.enti_prefix = pelem['prefix']
+    enti.enti_enca_id = jsguid2id(pelem['category'])
+    enti.enti_tooltip = pelem['tooltip'][pmodellang]
+    enti.enti_descr = pelem['descr'][pmodellang]
+    enti.enti_exp_tuplecnt = pelem['exptuple#']
+    enti.enti_uc = pelem['uc']
+    enti.enti_dc = pelem['dc']
+    enti.enti_um = pelem['um']
+    enti.enti_dm = pelem['dm']
+    return enti
 
-    def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-        fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
-                   pwithextsrcref=pwithextsrcref)
+def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
+               pwithextsrcref=pwithextsrcref)
 
-        for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ENTI).items():
-            entiid = keytransl(jid)
-            minzoomlevel = jelem['minzoomlevel']
-            maxzoomlevel = jelem['maxzoomlevel']
-            devstatus = jelem['devstatus']
+    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ENTI).items():
+        entiid = keytransl(jid)
+        minzoomlevel = jelem['minzoomlevel']
+        maxzoomlevel = jelem['maxzoomlevel']
+        devstatus = jelem['devstatus']
 
-            """Synonyms have in ODM no guid. Delete them and fill new synonyms"""
-            inscnt = 0
-            delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
-            for synoid, jsyno in jelem["synonyms"].items():
-                syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
-                syno.syno_id = jsguid2id(synoid)
-                try:
-                    syno.insert()
-                    inscnt += 1
-                except Exception as err:
-                    presult.markdberror(perr=err, pelem=jsyno)
-                    continue
-                """synonyms and their lang-texts are alreday deleted"""
-                insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
-            # for
-            presult.insertcnt += max(0, (inscnt - delcnt))
-            presult.deletecnt += max(0, (delcnt - inscnt))
-
-            Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
-            replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
-            replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
-            replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
-            insreferences(presult=presult, pmodeid=entiid, prefs=jelem['referencedby'])
-            inssourceref(presult=presult, pmodeid=entiid, psources=jelem["sourceref"])
-            udpvs2sql(presult=presult, pmodeid=entiid, pudps=jelem["userdefprops"])
+        """Synonyms have in ODM no guid. Delete them and fill new synonyms"""
+        inscnt = 0
+        delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
+        for synoid, jsyno in jelem["synonyms"].items():
+            syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
+            syno.syno_id = jsguid2id(synoid)
+            try:
+                syno.insert()
+                inscnt += 1
+            except Exception as err:
+                presult.markdberror(perr=err, pelem=jsyno)
+                continue
+            """synonyms and their lang-texts are alreday deleted"""
+            insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
-    # entities2sql
+        presult.insertcnt += max(0, (inscnt - delcnt))
+        presult.deletecnt += max(0, (delcnt - inscnt))
+
+        Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
+        replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])
+        insreferences(presult=presult, pmodeid=entiid, prefs=jelem['referencedby'])
+        inssourceref(presult=presult, pmodeid=entiid, psources=jelem["sourceref"])
+        udpvs2sql(presult=presult, pmodeid=entiid, pudps=jelem["userdefprops"])
+    # for
+# entities2sql

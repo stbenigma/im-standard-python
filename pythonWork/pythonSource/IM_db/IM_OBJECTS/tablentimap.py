@@ -37,21 +37,10 @@ class TablEntiMap(Baseobject):
         where = """tabl_id in (select tema_tabl_id 
                                 from tabl_enti_maps
                                 join tables on tabl_id = tema_tabl_id 
-                                where {}""".format(
+                                where {})""".format(
                                     TablEntiMap.__combiwhere(pentiid=pentiid, prelaid=prelaid, pintfid=pintfid))
         tabls = Table.select(pwhere=(where), porderby="tabl_id")
         return tabls
-
-    @staticmethod
-    def gettablcrud(pentiid=None, prelaid=None, pintfid=None):
-        select = """select tema_tabl_id, tema_create, tema_read, tema_update, tema_delete 
-                    from tabl_enti_maps
-                    join tables on tabl_id = tema_tabl_id
-                    where {}""".format (TablEntiMap.__combiwhere(pentiid=pentiid, prelaid=prelaid, pintfid=pintfid))
-        tabs = [[maps[0], Boolean.str2bool(maps[1]), Boolean.str2bool(maps[2]),
-                 Boolean.str2bool(maps[3]), Boolean.str2bool(maps[4])] for maps in dbDML.select(select)]
-        if len(tabs) == 0 or (len(tabs) == 1 and tabs[0][0] is None): tabs = []
-        return tabs
 
     @staticmethod
     def getentilist(ptablid):
@@ -61,14 +50,6 @@ class TablEntiMap(Baseobject):
                                                     )""", ptablid)
                              )
 
-    @staticmethod
-    def getenticrud(ptablid):
-        entis = [[maps.tema_enti_id, Boolean.str2bool(maps.tema_create), Boolean.str2bool(maps.tema_read),
-                  Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)] for maps in
-                 TablEntiMap.select(pwhere=("""tema_enti_id is not null and tema_tabl_id = ?""", ptablid))]
-
-        if len(entis) == 0 or (len(entis) == 1 and entis[0][0] is None): entis = []
-        return entis
 
     @staticmethod
     def getrelalist(ptablid):
@@ -77,14 +58,6 @@ class TablEntiMap(Baseobject):
                                                     where tema_tabl_id = ?
                                                     )""", ptablid)
                                )
-
-    @staticmethod
-    def getrelacrud(ptablid):
-        relas = [[maps.tema_rela_id, Boolean.str2bool(maps.tema_create), Boolean.str2bool(maps.tema_read),
-                  Boolean.str2bool(maps.tema_update), Boolean.str2bool(maps.tema_delete)]
-                 for maps in TablEntiMap.select(pwhere=("""tema_rela_id is not null and tema_tabl_id = ?""", ptablid))]
-        if len(relas) == 0 or (len(relas) == 1 and relas[0][0] is None): relas = []
-        return relas
 
     @staticmethod
     def tablelist(pentiid=None):

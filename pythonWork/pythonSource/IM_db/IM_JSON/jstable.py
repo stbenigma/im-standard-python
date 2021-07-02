@@ -14,8 +14,8 @@ def tables2js(pemptymodel):
         retval = {jsguid(Modelelemtype.TABL, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(9)]
                                                                                        + [0, 4, 'DEV', reflist(),
                                                                                           userdefprops()
-                                                                                           ,{jsguid(Modelelemtype.ENTI, '0000'): crud()}
-                                                                                          , {jsguid(Modelelemtype.RELA, '0000'): crud()}
+                                                                                           ,[jsguid(Modelelemtype.ENTI, '0000')]
+                                                                                          , [jsguid(Modelelemtype.RELA, '0000')]
                                                                                            , sourceref(), reflist()])
                   }
     else:
@@ -28,10 +28,10 @@ def tables2js(pemptymodel):
                           , t.getminzoomlevel(), t.getmaxzoomlevel(), t.getdevstatus()
                           , [jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
                           , udpv2js(pmodeid=t.tabl_id, pmodelemtype=Modelelemtype.TABL)
-                          , {jsguid(Modelelemtype.ENTI, e[0]) : crud(pcreate=e[1],pread=e[2],pupdate=e[3],pdelete=e[4])
-                                    for e in TablEntiMap.getenticrud(ptablid=t.tabl_id)}
-                        , {jsguid(Modelelemtype.RELA,r[0]) : crud(pcreate=r[1],pread=r[2],pupdate=r[3],pdelete=r[4])
-                                 for r in TablEntiMap.getrelacrud(ptablid=t.tabl_id)}
+                          , [jsguid(Modelelemtype.ENTI, e.enti_id)
+                                    for e in TablEntiMap.getentilist(ptablid=t.tabl_id)]
+                        , [jsguid(Modelelemtype.RELA,r.rela_id)
+                                 for r in TablEntiMap.getrelalist(ptablid=t.tabl_id)]
                           , Externalref.getsrcinfo(pmodeid=t.tabl_id)
                           , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)] \
                                                         + [jsguid(Modelelemtype.ORGU, d[0]) for d in
