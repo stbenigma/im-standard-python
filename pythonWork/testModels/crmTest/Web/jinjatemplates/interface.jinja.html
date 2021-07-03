@@ -289,15 +289,12 @@
 										<th>Model </th>
 										<th>Attribute(s) / Column(s)</th>
 									</tr>
+									{% for key,val in webmodel.getmaplist(id=elemid,curintfid=webmodel.getelemintfid(elemid)).items() %}
 									<tr>
-										<td>Information Model</td>
-										<td>
-										{% for attrid in elem["attributesmapped"] %}
-											{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"])
-														,destid=attrid,curintfid=webmodel.getelemintfid(elemid)) |safe }}
-											{% if not loop.last %}, {% endif %}
-										{% endfor %}
+										<td>{{ key }}</td>
+										<td>{{ val|safe }}</td>
 									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div> 

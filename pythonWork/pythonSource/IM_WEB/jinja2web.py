@@ -99,58 +99,58 @@ class Webmodel():
 
     def collecttablemappings(self,pelem):
         # name, list of entries mit {webanker:'name'}
-        try:
-            entities = {e: self.getelem(e)['name'][self.curlanguage] for e in pelem['entitiesmapped']}
-            relations = {r: self.getelem(r)['name'] for r in pelem['relationsmapped']}
-        except:
-            pass
+        entities = {e: self.getelem(e)['name'][self.curlanguage] for e in pelem['entitiesmapped']}
+        relations = {r: self.getelem(r)['name'] for r in pelem['relationsmapped']}
         entities.update(relations)
         allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
                                                                        ,curintfid=self.getintfid()) for anker,name  in entities.items())}
 
         for intfanker, intfelem in self.jsmodel.getelements(pelemtype='systems').items():
             if intfanker == pelem['interface-id']: continue
-            tablist = {}
+            tablist = []
             for enti in pelem['entitiesmapped'] + pelem['relationsmapped']:
-                try:
-                    tablist += self.getelem(enti)['tablesmapped+'][intfanker]
-                except:
-                    pass
+                elem = self.getelem(enti)['tablesmapped+']
+                if intfanker in elem:
+                    tablist += elem[intfanker]
             if len(tablist) == 0: continue
-            allmappings[intfelem["name"]] = ', '.join (self.getreflink(name="({})".format(self.getelem(tabanker)['name'])
-                                                                ,destid=tabanker
-                                                                ,curintfid=self.getintfid()
-                                                                ,destintfid=intfanker) for tabanker in tablist)
+            allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({} ({}))".format(self.getelem(tabanker)['name']
+                                                                                                , self.getelem(tabanker)['CRUD'])
+                                                , destid=tabanker
+                                          , curintfid=self.getintfid()
+                                          , destintfid=intfanker)
+                                                      for tabanker in tablist)
         # for
         return allmappings
 
     def collectcolmappings(self,pelem):
         attrs = {a: self.getelem(a) for a in pelem['attributesmapped']}
-        attrlist = []
+        attrlist = {}
         for anker, attr in attrs.items():
             if attr['entity'] is None:
-                attrlist.append([anker, "{}.{}".format(self.getelem(attr['relation'])['name']
-                                                       , attr['name'][self.curlanguage])])
+                attrlist[anker] = "{}.{}".format(self.getelem(attr['relation'])['name']
+                                                       , attr['name'][self.curlanguage])
             else:
-                attrlist.append([anker, "{}.{}".format(self.getelem(attr['entity'])['name'][self.curlanguage]
-                                                       , attr['name'][self.curlanguage])])
+                attrlist[anker] = "{}.{}".format(self.getelem(attr['entity'])['name'][self.curlanguage]
+                                                       , attr['name'][self.curlanguage])
             # fi
         # for
         allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
                                                                        ,curintfid=self.getintfid()) for anker,name  in attrlist.items())}
+
         for intfanker, intfelem in self.jsmodel.getelements(pelemtype='systems').items():
             if intfanker == pelem['interface-id+']: continue
             collist = []
             for attr in pelem['attributesmapped']:
-                try:
-                    collist += self.getelem(attr)['columnsmapped+'][intfanker]
-                except:
-                    pass
+                mapcolus = self.getelem(attr)['columnsmapped+']
+                if intfanker in mapcolus:
+                    collist += mapcolus[intfanker]
             if len(collist) == 0: continue
-            allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({}.{})".format(self.getelem(colanker)['table-name+']
-                                                                                    , self.getelem(colanker)['name'])
+            allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({}.{} ({}))".format(self.getelem(colanker)['table-name+']
+                                                                                    , self.getelem(colanker)['name']
+                                                                                    , self.getelem(colanker)['R/W'])
                                                                       , destid=colanker
-                                                                      , curintfid=self.getintfid()) for colanker in collist)
+                                                                      , curintfid=self.getintfid()
+                                                                      , destintfid=intfanker) for colanker in collist)
         # for
         return allmappings
 
