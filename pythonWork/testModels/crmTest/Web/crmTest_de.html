@@ -29,7 +29,7 @@
 	<div class="header" id="TopBar">
 		<p4>foryouandyourcustomers</p4>
 		<p4>crmTest</p4>
-		<p5>2021-06-01 14:13:04.111588</p5>
+		<p5>2021-06-29 16:52:17.193682</p5>
 		<img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
 	</div>
 	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
@@ -574,35 +574,31 @@
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%"><h1 class="md">Gebietsunterteilung</h1>
-<p class="md">eines <strong>Landes</strong> in <strong>kleinere</strong> Einheiten.</p>
-<p class="md">Gemäss <a href="https://de.wikipedia.org/wiki/NUTS">NUTS</a> ist das Land die Gebietsstufe NUTS 0</p>
-<ul class="md">
-<li class="md">NUTS 0 Nationalstaat<ul class="md">
-<li class="md">NUTS 1 “major socio-economic regions (grouping basic regions)” größere Regionen/Landesteile</li>
-</ul>
-</li>
-<li class="md">NUTS 2  “basic regions (for the application of regional policies)” mittelgroße Regionen, Millionenstädte<ul class="md">
-<li class="md">NUTS 3 “small regions (for specific diagnoses)” kleinere Regionen, teils schon Großstädte</li>
-<li class="md">LAU 1 o.A. kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)</li>
-<li class="md">LAU 2 “municipalities or equivalent units” Gemeinden, teils Gemeindegliederungen</li>
-</ul>
-</li>
-</ul>
-<hr />
-<p class="md">Es kann weitere Hierarchiestufenbezeichnungen geben:
-Deutschland</p>
-<ol class="md">
-<li class="md">A0: Land</li>
-<li class="md">A1: Bundesland</li>
-<li class="md">A2: leer<ol class="md">
-<li class="md">A3: Landkreis</li>
-<li class="md">A4: leer</li>
-</ol>
-</li>
-<li class="md">A5: Gemeinde: Administrative Gemeinde im jeweiligen Land</li>
-</ol>
-<p class="md">Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</p></th>
+			  	<th style="width:70%">Gebietsunterteilung <br>
+============<br>
+<br>
+eines __Landes__ in kleinere Einheiten.<br>
+<br>
+Gemäss [NUTS](https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0<br>
++ NUTS 0	Nationalstaat<br>
++ NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile<br>
++ NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte<br>
+<br>
+	+ NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte<br>
+	+ LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)<br>
+	+ LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen<br>
+<br>
+---------------------------------------<br>
+<br>
+Es kann weitere Hierarchiestufenbezeichnungen geben:<br>
+Deutschland<br>
+	1. 	A0: Land<br>
+	2. 	A1: Bundesland<br>
+	3. 	A2: leer<br>
+	4. 	A3: Landkreis<br>
+	5. 	A4: leer<br>
+	6.	A5: Gemeinde: Administrative Gemeinde im jeweiligen Land<br>
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</th>
 			    
 					<th style="width:10%"><img src="image/administrativgebiet.png" height="100px" width="100px"></th> 
 				  
@@ -652,6 +648,7 @@ Deutschland</p>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -673,7 +670,8 @@ Deutschland</p>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -1135,6 +1133,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -1153,7 +1152,8 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -1848,6 +1848,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -1869,7 +1870,8 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -2214,6 +2216,7 @@ In this role he does not deal with the goods himself. Therefore has neither stoc
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -2232,7 +2235,8 @@ In this role he does not deal with the goods himself. Therefore has neither stoc
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -2490,12 +2494,10 @@ In this role he does not deal with the goods himself. Therefore has neither stoc
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">Funktion einer Person für eine juristische Einheit. <br>
-<br>
-Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.<br>
+			  	<th style="width:70%">Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.<br>
 <br>
 26.6.18 - THU:<br>
-Namen von Kontaktperson nach Ansprechpartner geändert. <br>
+Namen von Kontaktperson nach Ansprechpartner geändert<br>
 Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 			    
 					<th style="width:10%"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/1200px-How_to_use_icon.svg.png" height="100px" width="100px"></th> 
@@ -2619,6 +2621,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -2646,7 +2649,8 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -3403,6 +3407,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -3424,7 +3429,8 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -4004,6 +4010,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -4028,7 +4035,8 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -4534,6 +4542,7 @@ Geschäft, Lokal, Filiale</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -4555,7 +4564,8 @@ Geschäft, Lokal, Filiale</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -4921,6 +4931,7 @@ Magasin, restaurant, succursale</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -4945,7 +4956,8 @@ Magasin, restaurant, succursale</td>
 			<a href="#ENTI144" target="_self">Eigentümer</a>
 			
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -5387,6 +5399,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -5414,7 +5427,8 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -5962,6 +5976,7 @@ fr-ca</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -5980,7 +5995,8 @@ fr-ca</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -6040,7 +6056,7 @@ fr-ca</th>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -6528,6 +6544,7 @@ fr-ca</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -6555,7 +6572,8 @@ fr-ca</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -6627,7 +6645,7 @@ fr-ca</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -7238,6 +7256,7 @@ fr-ca</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -7262,7 +7281,8 @@ fr-ca</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -8093,6 +8113,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -8129,7 +8150,8 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -8819,6 +8841,7 @@ middleman, agent, service provider, installer</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -8837,7 +8860,8 @@ middleman, agent, service provider, installer</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -9295,6 +9319,7 @@ B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen de
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -9316,7 +9341,8 @@ B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen de
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -9676,6 +9702,7 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -9697,7 +9724,8 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -10109,6 +10137,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -10130,7 +10159,8 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -10704,6 +10734,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -10728,7 +10759,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -11305,6 +11337,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -11326,7 +11359,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -11941,6 +11975,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -11959,7 +11994,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -12284,6 +12320,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -12305,7 +12342,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -12797,6 +12835,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -12818,7 +12857,8 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -13634,6 +13674,7 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -13655,7 +13696,8 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -14049,6 +14091,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -14073,7 +14116,8 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -14599,6 +14643,7 @@ Egal ob pay per use  oder Zeitmiete.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -14620,7 +14665,8 @@ Egal ob pay per use  oder Zeitmiete.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -15025,6 +15071,7 @@ Whether pay per use or time rental.</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -15046,7 +15093,8 @@ Whether pay per use or time rental.</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -15718,6 +15766,7 @@ Piloten von Flugzeugen</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -15739,7 +15788,8 @@ Piloten von Flugzeugen</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -16125,6 +16175,7 @@ Meist hierarchisch organisiert.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -16143,7 +16194,8 @@ Meist hierarchisch organisiert.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -16631,6 +16683,7 @@ Mostly hierarchically organized.</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -16649,7 +16702,8 @@ Mostly hierarchically organized.</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -16970,6 +17024,7 @@ Verkaufsleiter</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -16988,7 +17043,8 @@ Verkaufsleiter</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -17659,6 +17715,7 @@ P0: Land</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -17680,7 +17737,8 @@ P0: Land</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -18205,6 +18263,7 @@ P0 : Pays</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -18226,7 +18285,8 @@ P0 : Pays</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -18570,6 +18630,7 @@ P0 : Pays</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -18588,7 +18649,8 @@ P0 : Pays</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Produkt</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -18920,6 +18982,7 @@ Mit oder ohne IOT.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -18938,7 +19001,8 @@ Mit oder ohne IOT.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Produkt</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -19461,6 +19525,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -19482,7 +19547,8 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -19839,6 +19905,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -19860,7 +19927,8 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -20240,6 +20308,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -20261,7 +20330,8 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -20321,7 +20391,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -20809,6 +20879,7 @@ Bürogebäude</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -20827,7 +20898,8 @@ Bürogebäude</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -21422,6 +21494,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -21452,7 +21525,8 @@ Immeuble de bureaux</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -22089,6 +22163,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -22116,7 +22191,8 @@ Immeuble de bureaux</td>
 			<a href="#ENTI144" target="_self">Eigentümer</a>
 			
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -22690,6 +22766,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -22720,7 +22797,8 @@ Immeuble de bureaux</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -23280,6 +23358,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -23298,7 +23377,8 @@ Immeuble de bureaux</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -31588,7 +31668,7 @@ Immeuble de bureaux</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -31822,9 +31902,9 @@ Immeuble de bureaux</td>
 									<tr>
 										<td>Name</td>
 										
-											<td><a href="crmTest_en.html#ATTR138" target="_self">**Name [L]</a></td>
+											<td><a href="crmTest_en.html#ATTR138" target="_self">**Name</a></td>
 										
-											<td><a href="crmTest_fr.html#ATTR138" target="_self">Nom [L]</a></td>
+											<td><a href="crmTest_fr.html#ATTR138" target="_self">Nom</a></td>
 										
 									</tr>
 									<tr>
@@ -32274,7 +32354,7 @@ Immeuble de bureaux</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -32449,9 +32529,9 @@ Immeuble de bureaux</td>
 									<tr>
 										<td>Name</td>
 										
-											<td><a href="crmTest_en.html#ATTR181" target="_self">**Name [L]</a></td>
+											<td><a href="crmTest_en.html#ATTR181" target="_self">**Name</a></td>
 										
-											<td><a href="crmTest_fr.html#ATTR181" target="_self">Nom [L]</a></td>
+											<td><a href="crmTest_fr.html#ATTR181" target="_self">Nom</a></td>
 										
 									</tr>
 									<tr>
@@ -32564,7 +32644,7 @@ Immeuble de bureaux</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -32739,9 +32819,9 @@ Immeuble de bureaux</td>
 									<tr>
 										<td>Name</td>
 										
-											<td><a href="crmTest_en.html#ATTR188" target="_self">**Name [L]</a></td>
+											<td><a href="crmTest_en.html#ATTR188" target="_self">**Name</a></td>
 										
-											<td><a href="crmTest_fr.html#ATTR188" target="_self">Nom [L]</a></td>
+											<td><a href="crmTest_fr.html#ATTR188" target="_self">Nom</a></td>
 										
 									</tr>
 									<tr>

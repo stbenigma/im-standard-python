@@ -33,6 +33,10 @@ schluessel = []
  classguid : Color
 """
 classcolors = dict()
+""" Classification id's
+ classguid : id
+"""
+classids = dict()
 
 """ default colors
  {elementtypename : Color}
@@ -648,7 +652,7 @@ def transferdiagramme():
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pintfid=None):
-    doma = Domain()
+    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=Modelelemtype.DOMA+findField(pattrxml, 'id'))
     doma.doma_name = pattrname
     domatest = Domain.getbyname(pname=doma.doma_name)
     if (domatest is not None):
@@ -1018,7 +1022,7 @@ def parseXML(pfilename):
 
 
 def do1Entity(fileName):
-    global entities
+    global entities,classids
     tree = parseXML(pfilename=fileName)
     entixml = tree.getroot()
     #es hat noch fremde XMLS in den Verzeichnissen
@@ -1032,6 +1036,12 @@ def do1Entity(fileName):
     enti.enti_tooltip = findText(entixml, 'note')
     enti.enti_uc = findText(entixml, 'createdBy')
     enti.enti_dc = findText(entixml, 'createdTime')
+    enticategoryguid = findText(entixml, 'typeID')
+    if enticategoryguid is not None and enticategoryguid != '':
+        if enticategoryguid in classids:
+            enti.enti_enca_id = classids[enticategoryguid]
+        else:
+            print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
 
     i=1 #safeguard for eternal loop
     while i<10:
@@ -1052,7 +1062,6 @@ def do1Entity(fileName):
     #while
 
     entientiguid = findText(entixml, 'hierarchicalParent')
-    enticategoryguid = findText(entixml, 'typeID')
     entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
 
     Userdefpropvalue.fillallvalues(pentiid=entiId)
@@ -1399,27 +1408,34 @@ def loadcolors(color:Color, elem):
             color.fontstyle = findField(fo, 'font_style')
         # fi
     # for
-
-
 # loadcolors
 
 def loaddefaultcolors():
-    global defcolors,classcolors
+    global defcolors,classcolors,classids
     settings = parseXML(pfilename=parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
 
     for ty in classif:
-        category = EntityCategory(pname=findField(ty,'name'))
+        catname = findField(ty,'name')
+        category = EntityCategory(pname=catname.strip())
         classid = category.insert()
         classguid = findField(ty, 'id')
+        classids[classguid] = classid
 
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
         color = Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
         loadcolors(color=color, elem=ty)
         classcolors[classguid] = color
-        # print(classname,classcolors[classguid].foregcolor,classcolors[classguid].backgcolor)
+        elui = ElementUI()
+        elui.elui_enca_id = classid
+        elui.elui_color = int2hex(color.foregcolor)
+        elui.elui_margincolor = int2hex(color.backgcolor)
+        elui.elui_fontsize = color.fontsize
+        elui.elui_fontcolor = int2hex(color.fontcolor)
+        elui.insert()
     # for
+
     default = root.find('default_fonts_and_colors')
     for de in default:
         classname = findField(de, 'classname')
@@ -1428,6 +1444,15 @@ def loaddefaultcolors():
                                 , None, None, None, None)
         loadcolors(color = color, elem=de)
         defcolors[classname] = color
+        if classname == "Entity":
+            categoryid = EntityCategory(pname=classname).insert()
+            elui = ElementUI()
+            elui.elui_enca_id = categoryid
+            elui.elui_color = int2hex(color.foregcolor)
+            elui.elui_margincolor = int2hex(color.backgcolor)
+            elui.elui_fontsize = color.fontsize
+            elui.elui_fontcolor = int2hex(color.fontcolor)
+            elui.insert()
     # for
 # loaddefaultcolors
 

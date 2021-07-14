@@ -78,12 +78,6 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=model)
-        # printhtmlfile(pfirma="foryouandyourcustomers"
-        #               , ptitel=parameters.odmModelName() + ' ({})'.format(lang)
-        #               , pinfo="{}".format(datetime.now().strftime("%Y-%m-%d, %H:%M"))
-        #               , plogofilename=parameters.logoFileName()
-        #               , pfilename=  langfilename
-        #               )
     # for
     Languagetext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model

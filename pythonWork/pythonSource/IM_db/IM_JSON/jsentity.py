@@ -55,6 +55,7 @@ def entityicon(penti:Entity = None):
 def entities2js(pemptymodel):
     model = ['name', 'shortname'
         , 'descr', 'tooltip'
+        ,'category'
         , 'exptuple#', 'prefix'
         , 'subtypellevel+'
         , 'uc', 'dc', 'um', 'dm'
@@ -71,7 +72,7 @@ def entities2js(pemptymodel):
         entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
                                        pentries=[multilangtext(None), ''
                                        ,multilangtext(None),multilangtext(None)
-                                       ,'',''
+                                       ,'','',''
                                        ,''
                                        ,'','','',''
                                         ,0,4,'DEV'
@@ -91,7 +92,8 @@ def entities2js(pemptymodel):
                      fillmodel(pmodel=model,
                             pentries=[multilangtext(ptext=e.enti_name_l), e.enti_short_name
                         , multilangtext(e.enti_descr_l),multilangtext(e.enti_tooltip_l)
-                        , e.enti_exp_tuplecnt,e.enti_prefix
+                        , jsguid(JSModel.ELEMTYPE_CATG,e.enti_enca_id)
+                        ,e.enti_exp_tuplecnt,e.enti_prefix
                         , e.getsubtypelevel()
                         , e.enti_uc, e.enti_dc, e.enti_um,e.enti_dm
                         , e.getminzoomlevel(),e.getmaxzoomlevel(),e.getdevstatus()
@@ -131,6 +133,7 @@ def js2enti(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     enti.enti_name = pelem['name'][pmodellang]
     enti.enti_short_name = pelem['shortname']
     enti.enti_prefix = pelem['prefix']
+    enti.enti_enca_id = jsguid2id(pelem['category'])
     enti.enti_tooltip = pelem['tooltip'][pmodellang]
     enti.enti_descr = pelem['descr'][pmodellang]
     enti.enti_exp_tuplecnt = pelem['exptuple#']

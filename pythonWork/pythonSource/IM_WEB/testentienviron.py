@@ -15,7 +15,7 @@ def createFile(pfilename):
 
 def main(pjson, plang):
     jsmodel = JSModel.readfromfile(pfilename=pjson)
-    model =jsmodel.getelements(pelemtype='PROJ')
+    model =jsmodel.getelements(pelemtype=JSModel.ELEMTYPE_PROJ)
     modellang = model["language"] if plang is None else plang
 
     for idx, entiid in enumerate(jsmodel.getelements(pelemtype=Modelelemtype.ENTI).keys()):

@@ -39,7 +39,7 @@ class Webmodel():
         return self.jsmodel.getdefaultlang()
 
     def getlanguages(self,all=True):
-        langs = list(self.jsmodel.jsmodel["languages"].keys())
+        langs = list(self.jsmodel.jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_LANG)].keys())
         if not all:
             langs.remove(self.getcurlanguage())
         return langs

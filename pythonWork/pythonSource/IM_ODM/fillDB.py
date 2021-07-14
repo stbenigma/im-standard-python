@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 from IM_DB import logmessages,dbErstelleTables,createDB
-from IM_ODM import transferModel,mergedbs
+from IM_ODM import transferModel,mergedbs,createJSON
 from IM_JSON import *
 import createDB
 
@@ -52,6 +52,9 @@ def main(p_param1):
 
     try:
         filldbmain(callarg=p_param1, createnewdb=not createDB.existsDB(parameters.dbFilePath()))
+        filename = parameters.odmModelName()
+        filepath = parameters.dbDirect()
+        createJSON.createJSON(pfilepath=filepath, pfilename=filename)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),

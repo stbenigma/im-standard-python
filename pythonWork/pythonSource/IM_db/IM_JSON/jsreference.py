@@ -1,6 +1,7 @@
 from IM_JSON import *
-from mystring import nvl
 from IM_OBJECTS import *
+from mystring import nvl
+
 
 def inssourceref(presult:Mergeresult,pmodeid, psources):
     """   "sourceref": {
@@ -262,3 +263,79 @@ def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
     #for
     return
 
+def getuicomponents(pencaid):
+    elui = ElementUI.select("elui_enca_id={}".format(pencaid))
+    if len(elui) == 0: return {}
+    else:
+        return UIELEMENT(width=elui[0].elui_width
+              , height=elui[0].elui_height
+              , opacity=elui[0].elui_opacity
+              , color=elui[0].elui_color
+              , marginwidth=elui[0].elui_marginwidth
+              , marginopacity=elui[0].elui_marginopacity
+              , margincolor=elui[0].elui_margincolor
+              , fontsize=elui[0].elui_fontsize
+              , fontcolor=elui[0].elui_fontcolor).js()
+
+
+def categories2js(pemptymodel):
+    model = ['name'
+            , 'uc', 'dc', 'um', 'dm'
+             ,'ui'
+            ]
+    if pemptymodel:
+        retval = {jsguid(JSModel.ELEMTYPE_CATG, '0000') : fillmodel(pmodel=model
+                            , pentries=['' for i in range(len(model)-1)]+[UIELEMENT().js()]
+                            )}
+    else:
+        retval = {jsguid(JSModel.ELEMTYPE_CATG, ec.enca_id):
+              fillmodel(pmodel=model,pentries=[
+                  ec.enca_name
+                ,ec.enca_uc,ec.enca_dc, ec.enca_um,ec.enca_dm
+                , getuicomponents(pencaid=ec.enca_id)
+                 ])
+                for ec in EntityCategory.select()
+            }
+    return retval
+
+
+def js2enca(pkey, pelem, psrcname=None, psrcid=None,pmodellang=None):
+    enca:EntityCategory = EntityCategory(pname=pelem['name'])
+    enca.enca_id = jsguid2id(pkey)
+    enca.enca_name = pelem['name']
+    enca.enca_uc = pelem['uc']
+    enca.enca_dc = pelem['dc']
+    enca.enca_um = pelem['um']
+    enca.enca_dm = pelem['dm']
+    return enca
+
+
+def entitycategory2sql(presult, podmjson: JSModel, pwithextsrcref):
+    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=JSModel.ELEMTYPE_CATG, pjs2obj=js2enca,
+               pwithextsrcref=pwithextsrcref)
+    return
+
+
+class UIELEMENT():
+    def __init__(self, width='', height='', opacity='', color='', marginwidth='', marginopacity='', margincolor='',
+                 fontsize='', fontcolor=''):
+        self.width = width
+        self.height = height
+        self.opacity = opacity
+        self.color = color
+        self.marginwidth = marginwidth
+        self.marginopacity = marginopacity
+        self.margincolor = margincolor
+        self.fontsize = fontsize
+        self.fontcolor = fontcolor
+
+    def js(self):
+        return {'width': self.width
+                    , 'height': self.height
+                    , 'opacity': self.opacity
+                    , 'color': self.color
+                    , 'marginwidth': self.marginwidth
+                    , 'marginopacity': self.marginopacity
+                    , 'margincolor': self.margincolor
+                    , 'fontsize': self.fontsize
+                    , 'fontcolor': self.fontcolor}

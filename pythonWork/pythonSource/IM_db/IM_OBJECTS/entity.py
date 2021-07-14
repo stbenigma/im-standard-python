@@ -7,6 +7,15 @@ from .modelelement import Modelelemtype,Modelelement
 from .userdefprop import Userdefpropvalue,Userdefprop
 import IM_OBJECTS
 
+class ElementUI(Baseobject):
+    _tablename:str = 'element_ui'
+    _prefix:str = 'elui'
+    _idcolname: str = _prefix + '_id'
+    _columnlist:list = []
+    _defaultorderby = None
+
+    def __init__(self):
+        super().__init__()
 
 class EntityCategory(Baseobject):
     _tablename:str = 'entity_categories'
@@ -15,7 +24,7 @@ class EntityCategory(Baseobject):
     _columnlist:list = []
     _defaultorderby = None
 
-    def __init__(self,pname):
+    def __init__(self,pname=None):
         super().__init__()
         self.enca_name = pname
 
