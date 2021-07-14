@@ -67,6 +67,8 @@ class Baseobject:
         self.__srcname = psrcname
         self.__srcid = pscrid
         self.__emptyclass()
+        self.setdefaultvalues()
+
 
     def __emptyclass(self):
         for col in self._columnlist:
@@ -195,6 +197,19 @@ class Baseobject:
         except:
             retval = []
         return retval
+
+    def setdefaultvalues(self):
+        sql = "PRAGMA table_info({})".format(self._tablename)
+        cols = dbDML.select(sql)
+        for c in cols:
+            defval= c[4]
+            if defval is None: continue
+            defval = defval.strip("'")
+            defval = defval.strip('"')
+            colname = c[1].lower()
+            self.setcolvalue(pcolname=colname,pvalue=defval)
+        #for
+        return
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)

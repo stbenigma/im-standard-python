@@ -92,9 +92,9 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
          "replacementlang": null
       }"""
     """exclude lang_lang_id from semantic compare"""
-    fromodm2db(presult=presult,podmjson=podmjson,pelemtype='LANG',pjs2obj=js2lang,pwithextsrcref=pwithextsrcref,pequalexceptlist=['lang_lang_id'])
+    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=JSModel.ELEMTYPE_LANG,pjs2obj=js2lang,pwithextsrcref=pwithextsrcref,pequalexceptlist=['lang_lang_id'])
 
-    for iso2, jlang in podmjson.getelements(pelemtype='LANG').items():
+    for iso2, jlang in podmjson.getelements(pelemtype=JSModel.ELEMTYPE_LANG).items():
         replangiso2 = jlang['replacementlang']
         curlang:Language = Language().getbyuk(lang_iso_code2 =iso2)
         if replangiso2 is None:
@@ -114,7 +114,7 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
         presult.errors.append("""*** more then one default modellanguage defined""")
 
     """update proj_languages field with all languages found"""
-    for iso2, jlang in podmjson.getelements(pelemtype='LANG').items():
+    for iso2, jlang in podmjson.getelements(pelemtype=JSModel.ELEMTYPE_LANG).items():
         newlang:Language = Language().getbyuk(lang_iso_code2=iso2)
         if newlang is not None:
             replacementiso2 = jlang["replacementlang"]

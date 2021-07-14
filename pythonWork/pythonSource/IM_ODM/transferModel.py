@@ -33,6 +33,10 @@ schluessel = []
  classguid : Color
 """
 classcolors = dict()
+""" Classification id's
+ classguid : id
+"""
+classids = dict()
 
 """ default colors
  {elementtypename : Color}
@@ -86,7 +90,7 @@ def is_repeated(pstr: str) -> bool:
 
 
 def transferTypes():
-    types = et.parse(parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
+    types = parseXML(pfilename=parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
@@ -100,7 +104,7 @@ def transferTypes():
 unkndomains = {}
 def do1structtype(filename):
     global unkndomains
-    structdomains = et.parse(filename)
+    structdomains = parseXML(pfilename=filename)
     structdom = structdomains.getroot()
     if (findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (findField(structdom,"name"))
@@ -263,7 +267,7 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
-    domains = et.parse(pfilename)
+    domains = parseXML(pfilename=pfilename)
     root = domains.getroot()
 
     for dom in root.findall('domains/Domain'):
@@ -611,7 +615,7 @@ def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
 def do1diagramm(pfilename):
     # print (p_filename)
     try:
-        diagramme = et.parse(pfilename)
+        diagramme = parseXML(pfilename=pfilename)
     except Exception as ex:
         print("Diagram nicht lesbar: {}".format(pfilename))
         return
@@ -659,7 +663,7 @@ def transferdiagramme():
 # transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pintfid=None):
-    doma = Domain()
+    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=Modelelemtype.DOMA+findField(pattrxml, 'id'))
     doma.doma_name = pattrname
     domatest = Domain.getbyname(pname=doma.doma_name)
     if (domatest is not None):
@@ -719,7 +723,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml,pintfid = None
 
 
 def do1Arc(fileName):
-    arcXML = et.parse(fileName).getroot()
+    arcXML = parseXML(pfilename=fileName).getroot()
     if (findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=findField(arcXML, "name")
@@ -1016,11 +1020,22 @@ def getpartyref(pelem):
     return parties
 # getpartyref
 
+def parseXML(pfilename):
+    try:
+        tree = et.parse(pfilename)
+    except Exception as err:
+        logmessages.writelog("File ({}) could not be handled".format(pfilename))
+        print (pfilename)
+        raise
+    #try
+    return tree
+
+
 
 def do1Entity(fileName):
-    global entities
+    global entities, classids
     try:
-        tree = et.parse(fileName)
+        tree = parseXML(pfilename=fileName)
     except et.ParseError as e:
         raise Exception('Cannot parse {}'.format(fileName), e)
     entixml = tree.getroot()
@@ -1035,6 +1050,12 @@ def do1Entity(fileName):
     enti.enti_tooltip = findText(entixml, 'note')
     enti.enti_uc = findText(entixml, 'createdBy')
     enti.enti_dc = findText(entixml, 'createdTime')
+    enticategoryguid = findText(entixml, 'typeID')
+    if enticategoryguid is not None and enticategoryguid != '':
+        if enticategoryguid in classids:
+            enti.enti_enca_id = classids[enticategoryguid]
+        else:
+            print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
 
     i=1 #safeguard for eternal loop
     while i<10:
@@ -1055,7 +1076,6 @@ def do1Entity(fileName):
     #while
 
     entientiguid = findText(entixml, 'hierarchicalParent')
-    enticategoryguid = findText(entixml, 'typeID')
     entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
 
     Userdefpropvalue.fillallvalues(pentiid=entiId)
@@ -1132,7 +1152,7 @@ def abbildTyp(ptyp):
 
 
 def do1Relation(fileName):
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     relaxml = tree.getroot()
     documents = getdokuref(pelem=relaxml)
 
@@ -1157,7 +1177,7 @@ def do1Relation(fileName):
     rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
     if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
         logmessages.writelog(
-            "in Relation {}: Entity Id {} oder {} nicht gefunden. Datenleichen von Relation mit gelöschten Entities".
+            "in Relation {}: Entity Id {} or {} not found. Datenleichen von Relation mit gelöschten Entities".
                 format(relaguid,sourceentiguid, targetentiguid))
         return
     # fi
@@ -1206,7 +1226,7 @@ def transferRelations():
 
 
 def do1UDPFile(pfileName):
-    tree = et.parse(pfileName)
+    tree = parseXML(pfilename=pfileName)
     root = tree.getroot()
     filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
     ludpTheme = filename
@@ -1402,27 +1422,34 @@ def loadcolors(color:Color, elem):
             color.fontstyle = findField(fo, 'font_style')
         # fi
     # for
-
-
 # loadcolors
 
 def loaddefaultcolors():
-    global defcolors,classcolors
-    settings = et.parse(parameters.odmsettingsfile())
+    global defcolors,classcolors,classids
+    settings = parseXML(pfilename=parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
 
     for ty in classif:
-        category = EntityCategory(pname=findField(ty,'name'))
+        catname = findField(ty,'name')
+        category = EntityCategory(pname=catname.strip())
         classid = category.insert()
         classguid = findField(ty, 'id')
+        classids[classguid] = classid
 
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
         color = Color(findField(ty, 'fgcolor'), findField(ty, 'color'), None, None, None, None)
         loadcolors(color=color, elem=ty)
         classcolors[classguid] = color
-        # print(classname,classcolors[classguid].foregcolor,classcolors[classguid].backgcolor)
+        elui = ElementUI()
+        elui.elui_enca_id = classid
+        elui.elui_color = int2hex(color.foregcolor)
+        elui.elui_margincolor = int2hex(color.backgcolor)
+        elui.elui_fontsize = color.fontsize
+        elui.elui_fontcolor = int2hex(color.fontcolor)
+        elui.insert()
     # for
+
     default = root.find('default_fonts_and_colors')
     for de in default:
         classname = findField(de, 'classname')
@@ -1431,6 +1458,15 @@ def loaddefaultcolors():
                                 , None, None, None, None)
         loadcolors(color = color, elem=de)
         defcolors[classname] = color
+        if classname == "Entity":
+            categoryid = EntityCategory(pname=classname).insert()
+            elui = ElementUI()
+            elui.elui_enca_id = categoryid
+            elui.elui_color = int2hex(color.foregcolor)
+            elui.elui_margincolor = int2hex(color.backgcolor)
+            elui.elui_fontsize = color.fontsize
+            elui.elui_fontcolor = int2hex(color.fontcolor)
+            elui.insert()
     # for
 # loaddefaultcolors
 
@@ -1449,7 +1485,7 @@ def fillelementdisplays():
 
 
 def transferproject():
-    proj = et.parse(parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
+    proj = parseXML(pfilename=parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root, 'comment')
     if comm is None:
@@ -1484,7 +1520,7 @@ def transferproject():
 
 def do1Document(fileName):
     global docuparents
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     id =findField(root, 'id')
     docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
@@ -1501,7 +1537,7 @@ def do1Document(fileName):
 def do1Orgunit(fileName):
     global orguparents,contacts
 
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     srcid =findField(root, 'id')
     orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=srcid)
@@ -1557,7 +1593,7 @@ def removeattrmeta(pstr):
 emails = {}
 def do1email(fileName):
     global emails
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     emails [findField(root, 'id')] = {'name' : findField(root, "name")
                                        ,'descr': findText(root, "comment")
@@ -1569,7 +1605,7 @@ def do1email(fileName):
 phones = {}
 def do1phone(fileName):
     global phones
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     phones[findField(root, 'id')] = {'name' : findField(root, "name")
                                        ,'descr': findText(root, "comment")
@@ -1582,7 +1618,7 @@ def do1phone(fileName):
 contacts = {}
 def do1contact(fileName):
     global contacts,emails,phones
-    tree = et.parse(fileName)
+    tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     phone,mail = "",""
 

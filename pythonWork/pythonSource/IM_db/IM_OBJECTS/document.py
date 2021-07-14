@@ -1,4 +1,4 @@
-from IM_DB import dbDML
+from IM_DB import dbDML,logmessages
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype,Modelelement
 from .externalref import Externalref
@@ -142,6 +142,10 @@ class ModelelemDocu(Baseobject):
         for docguid in pdocguidlist:
             modo = ModelelemDocu()
             modo.modo_docu_id = Externalref.getODMmodeid(psrcid=docguid)
+            if modo.modo_docu_id is None:
+                #GUID no longer exists
+                logmessages.writelog("Document ({}) referenced in model-element id={} does not exist".format(docguid,pmodeid))
+                return
             modo.modo_mode_id = pmodeid
             modo.insert()
         #for

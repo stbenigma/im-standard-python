@@ -31,7 +31,7 @@ def warning(pmsg):
     print("WARNING: {}".format(pmsg))
     warncnt += 1
 
-def fillsql(pmodel):
+def fillsql(pmodel:JSModel):
     for eletyp in pmodel.jsmodel.keys():
         if not (eletyp in transferprocs.keys()):
             warning('Unknown elementtype "{}" ignored'.format(eletyp))

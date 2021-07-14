@@ -1,8 +1,7 @@
-from IM_DB import dbDML
+from IM_DB import dbDML,logmessages
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype,Modelelement
 from .externalref import Externalref
-from .physicals import Storageformat
 
 
 class OragnisationalUnit(Baseobject):
@@ -110,6 +109,10 @@ class ModelelemOrgu(Baseobject):
         for orguguid in porguidlist:
             moou = ModelelemOrgu()
             moou.moou_orgu_id = Externalref.getODMmodeid(psrcid=orguguid)
+            if moou.moou_orgu_id is None:
+                #GUID no longer exists
+                logmessages.writelog("Org-Unit ({}) referenced in model-element id={} does not exist".format(orguguid,pmodeid))
+                return
             moou.moou_mode_id = pmodeid
             moou.insert()
         #for

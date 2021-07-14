@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from IM_OBJECTS import Modelelemtype
+from IM_OBJECTS import Modelelemtype,Boolean
 
 
 
@@ -26,6 +26,9 @@ def jsonfilename(pfilename):
 
 
 class JSModel:
+    ELEMTYPE_LANG = 'LANG'
+    ELEMTYPE_PROJ = 'PROJ'
+    ELEMTYPE_CATG = 'CATG'
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities'
       ,Modelelemtype.BURU: 'businessrules2js'
@@ -44,8 +47,9 @@ class JSModel:
       ,Modelelemtype.PHYU: 'physicalunits'
       ,Modelelemtype.STFO: 'storageformats'
       , Modelelemtype.UDPR: 'userdefprops'
-      ,'LANG': 'languages'
-    , 'PROJ': 'model'
+      ,ELEMTYPE_CATG: 'categories'
+        , ELEMTYPE_LANG: 'languages'
+        , ELEMTYPE_PROJ: 'model'
     }
 
     def __init__(self,pmodel={}):
@@ -235,3 +239,29 @@ def userdefprops (pprops:dict=None):
         return {'Theme': {"Group": {"UDPR000": {"name":'', "value":''}}}}
     else:
         return pprops
+
+def rwstr(pread=True,pwrite=False):
+    return ''.join(rw(pread=pread,pwrite=pwrite))
+def rw(pread=True,pwrite=False):
+    if type(pread)== str:pread = Boolean.str2bool(pread)
+    if type(pwrite)== str:pwrite = Boolean.str2bool(pwrite)
+    retval = []
+    if pread: retval.append('R')
+    if pwrite:
+        retval.append('W')
+    return retval
+
+def crudstr(pread=True,pupdate=False,pdelete=False,pcreate=False):
+    return ''.join(crud(pread=pread,pupdate=pupdate,pdelete=pdelete,pcreate=pcreate))
+
+def crud(pread=True,pupdate=False,pdelete=False,pcreate=False):
+    if type(pread)== str:pread = Boolean.str2bool(pread)
+    if type(pcreate)== str:pcreate = Boolean.str2bool(pcreate)
+    if type(pupdate)== str:pupdate = Boolean.str2bool(pupdate)
+    if type(pdelete)== str:pdelete = Boolean.str2bool(pdelete)
+    retval = []
+    if pcreate: retval.append('C')
+    if pread: retval.append('R')
+    if pupdate: retval.append('U')
+    if pdelete: retval.append('D')
+    return retval

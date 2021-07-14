@@ -29,7 +29,7 @@
 	<div class="header" id="TopBar">
 		<p4>foryouandyourcustomers</p4>
 		<p4>crmTest</p4>
-		<p5>2021-06-01 14:13:04.111588</p5>
+		<p5>2021-07-03 11:07:44.762712</p5>
 		<img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
 	</div>
 	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
@@ -574,35 +574,31 @@
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%"><h1 class="md">Gebietsunterteilung</h1>
-<p class="md">eines <strong>Landes</strong> in <strong>kleinere</strong> Einheiten.</p>
-<p class="md">Gemäss <a href="https://de.wikipedia.org/wiki/NUTS">NUTS</a> ist das Land die Gebietsstufe NUTS 0</p>
-<ul class="md">
-<li class="md">NUTS 0 Nationalstaat<ul class="md">
-<li class="md">NUTS 1 “major socio-economic regions (grouping basic regions)” größere Regionen/Landesteile</li>
-</ul>
-</li>
-<li class="md">NUTS 2  “basic regions (for the application of regional policies)” mittelgroße Regionen, Millionenstädte<ul class="md">
-<li class="md">NUTS 3 “small regions (for specific diagnoses)” kleinere Regionen, teils schon Großstädte</li>
-<li class="md">LAU 1 o.A. kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)</li>
-<li class="md">LAU 2 “municipalities or equivalent units” Gemeinden, teils Gemeindegliederungen</li>
-</ul>
-</li>
-</ul>
-<hr />
-<p class="md">Es kann weitere Hierarchiestufenbezeichnungen geben:
-Deutschland</p>
-<ol class="md">
-<li class="md">A0: Land</li>
-<li class="md">A1: Bundesland</li>
-<li class="md">A2: leer<ol class="md">
-<li class="md">A3: Landkreis</li>
-<li class="md">A4: leer</li>
-</ol>
-</li>
-<li class="md">A5: Gemeinde: Administrative Gemeinde im jeweiligen Land</li>
-</ol>
-<p class="md">Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</p></th>
+			  	<th style="width:70%">Gebietsunterteilung <br>
+============<br>
+<br>
+eines __Landes__ in kleinere Einheiten.<br>
+<br>
+Gemäss [NUTS](https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe NUTS 0<br>
++ NUTS 0	Nationalstaat<br>
++ NUTS 1	“major socio-economic regions (grouping basic regions)” … größere Regionen/Landesteile<br>
++ NUTS 2 	“basic regions (for the application of regional policies)” … mittelgroße Regionen, Millionenstädte<br>
+<br>
+	+ NUTS 3	“small regions (for specific diagnoses)” … kleinere Regionen, teils schon Großstädte<br>
+	+ LAU 1	o.A. … kommunale Verwaltungsverbände, teils Gemeinden (nicht in allen Staaten definiert)<br>
+	+ LAU 2	“municipalities or equivalent units” … Gemeinden, teils Gemeindegliederungen<br>
+<br>
+---------------------------------------<br>
+<br>
+Es kann weitere Hierarchiestufenbezeichnungen geben:<br>
+Deutschland<br>
+	1. 	A0: Land<br>
+	2. 	A1: Bundesland<br>
+	3. 	A2: leer<br>
+	4. 	A3: Landkreis<br>
+	5. 	A4: leer<br>
+	6.	A5: Gemeinde: Administrative Gemeinde im jeweiligen Land<br>
+Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weitere Stufen</th>
 			    
 					<th style="width:10%"><img src="image/administrativgebiet.png" height="100px" width="100px"></th> 
 				  
@@ -652,6 +648,7 @@ Deutschland</p>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -673,7 +670,8 @@ Deutschland</p>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -919,7 +917,7 @@ Deutschland</p>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL556" target="_blank">Administrativgebiet</a>
+											<a href="CRM-Salesforce.html#TABL556" target="_blank">Administrativgebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -931,7 +929,7 @@ Deutschland</p>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL952" target="_blank">Administrativgebiet</a>
+											<a href="ERP-SAP3.html#TABL952" target="_blank">Administrativgebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -943,7 +941,7 @@ Deutschland</p>
 											
 											
 											
-											<a href="PIM-Step.html#TABL827" target="_blank">Administrativgebiet</a>
+											<a href="PIM-Step.html#TABL827" target="_blank">Administrativgebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -1135,6 +1133,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -1153,7 +1152,8 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -1664,7 +1664,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL323" target="_blank">Adresse</a>
+											<a href="CRM-Salesforce.html#TABL323" target="_blank">Adresse</a> (R) 
 											
 										</td>
 									</tr>
@@ -1676,7 +1676,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL1036" target="_blank">Adresse</a>
+											<a href="ERP-SAP3.html#TABL1036" target="_blank">Adresse</a> (R) 
 											
 										</td>
 									</tr>
@@ -1688,7 +1688,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 											
 											
 											
-											<a href="MDM.html#TABL633" target="_blank">Adresse</a>
+											<a href="MDM.html#TABL633" target="_blank">Adresse</a> (R) 
 											
 										</td>
 									</tr>
@@ -1700,7 +1700,7 @@ Dann wird diese Entität zur Verknüpfung zwischen Akteur und Basisadresse.</th>
 											
 											
 											
-											<a href="PIM-Step.html#TABL751" target="_blank">Adresse</a>
+											<a href="PIM-Step.html#TABL751" target="_blank">Adresse</a> (R) 
 											
 										</td>
 									</tr>
@@ -1848,6 +1848,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -1869,7 +1870,8 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -2080,7 +2082,7 @@ Handelt in dieser Rolle selber nicht mit den Waren. Hat also weder Lager noch is
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL551" target="_blank">Agent</a>
+											<a href="CRM-Salesforce.html#TABL551" target="_blank">Agent</a> (R) 
 											
 										</td>
 									</tr>
@@ -2214,6 +2216,7 @@ In this role he does not deal with the goods himself. Therefore has neither stoc
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -2232,7 +2235,8 @@ In this role he does not deal with the goods himself. Therefore has neither stoc
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -2490,12 +2494,10 @@ In this role he does not deal with the goods himself. Therefore has neither stoc
 						<p1><span style="text-transform:uppercase">  </span></p1>
 			<table style="width:100%">
 			  <tr>
-			  	<th style="width:70%">Funktion einer Person für eine juristische Einheit. <br>
-<br>
-Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.<br>
+			  	<th style="width:70%">Funktion einer Person für eine juristische Einheit. Im Spezialfall kann eine Person als Einzelfirma ihr eigener Ansprechspartner sein.<br>
 <br>
 26.6.18 - THU:<br>
-Namen von Kontaktperson nach Ansprechpartner geändert. <br>
+Namen von Kontaktperson nach Ansprechpartner geändert<br>
 Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 			    
 					<th style="width:10%"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/1200px-How_to_use_icon.svg.png" height="100px" width="100px"></th> 
@@ -2619,6 +2621,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -2646,7 +2649,8 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -3174,7 +3178,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL311" target="_blank">Ansprechpartner</a>
+											<a href="CRM-Salesforce.html#TABL311" target="_blank">Ansprechpartner</a> (R) 
 											
 										</td>
 									</tr>
@@ -3186,7 +3190,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL963" target="_blank">Ansprechpartner</a>
+											<a href="ERP-SAP3.html#TABL963" target="_blank">Ansprechpartner</a> (CR) 
 											
 										</td>
 									</tr>
@@ -3198,7 +3202,7 @@ Synonym von Ansprechpartner nach Kontaktperson geändert</th>
 											
 											
 											
-											<a href="MDM.html#TABL663" target="_blank">Ansprechpartner</a>
+											<a href="MDM.html#TABL663" target="_blank">Ansprechpartner</a> (R) 
 											
 										</td>
 									</tr>
@@ -3403,6 +3407,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -3424,7 +3429,8 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -3773,7 +3779,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL497" target="_blank">Besitzer</a>
+											<a href="CRM-Salesforce.html#TABL497" target="_blank">Besitzer</a> (R) 
 											
 										</td>
 									</tr>
@@ -3785,7 +3791,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL982" target="_blank">Besitzer</a>
+											<a href="ERP-SAP3.html#TABL982" target="_blank">Besitzer</a> (R) 
 											
 										</td>
 									</tr>
@@ -3797,7 +3803,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="MDM.html#TABL627" target="_blank">Besitzer</a>
+											<a href="MDM.html#TABL627" target="_blank">Besitzer</a> (R) 
 											
 										</td>
 									</tr>
@@ -3809,7 +3815,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL816" target="_blank">Besitzer</a>
+											<a href="PIM-Step.html#TABL816" target="_blank">Besitzer</a> (RU) 
 											
 										</td>
 									</tr>
@@ -4004,6 +4010,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -4028,7 +4035,8 @@ Changement de synonyme de personne de référence à personne de contact</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -4364,7 +4372,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL478" target="_blank">Eigentümer</a>
+											<a href="CRM-Salesforce.html#TABL478" target="_blank">Eigentümer</a> (R) 
 											
 										</td>
 									</tr>
@@ -4376,7 +4384,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="MDM.html#TABL644" target="_blank">Eigentümer</a>
+											<a href="MDM.html#TABL644" target="_blank">Eigentümer</a> (R) 
 											
 										</td>
 									</tr>
@@ -4388,7 +4396,7 @@ Changement de synonyme de personne de référence à personne de contact</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL853" target="_blank">Eigentümer</a>
+											<a href="PIM-Step.html#TABL853" target="_blank">Eigentümer</a> (R) 
 											
 										</td>
 									</tr>
@@ -4534,6 +4542,7 @@ Geschäft, Lokal, Filiale</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -4555,7 +4564,8 @@ Geschäft, Lokal, Filiale</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -4766,7 +4776,7 @@ Geschäft, Lokal, Filiale</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL487" target="_blank">Filiale</a>
+											<a href="CRM-Salesforce.html#TABL487" target="_blank">Filiale</a> (R) 
 											
 										</td>
 									</tr>
@@ -4921,6 +4931,7 @@ Magasin, restaurant, succursale</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -4945,7 +4956,8 @@ Magasin, restaurant, succursale</td>
 			<a href="#ENTI144" target="_self">Eigentümer</a>
 			
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -5169,7 +5181,7 @@ Magasin, restaurant, succursale</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL412" target="_blank">Finanzierungspartner</a>
+											<a href="CRM-Salesforce.html#TABL412" target="_blank">Finanzierungspartner</a> (R) 
 											
 										</td>
 									</tr>
@@ -5181,7 +5193,7 @@ Magasin, restaurant, succursale</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL738" target="_blank">Finanzierungspartner</a>
+											<a href="PIM-Step.html#TABL738" target="_blank">Finanzierungspartner</a> (CRU) 
 											
 										</td>
 									</tr>
@@ -5387,6 +5399,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -5414,7 +5427,8 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -5744,7 +5758,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL540" target="_blank">Gebiet</a>
+											<a href="CRM-Salesforce.html#TABL540" target="_blank">Gebiet</a> (CRU) 
 											
 										</td>
 									</tr>
@@ -5756,7 +5770,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL931" target="_blank">Gebiet</a>
+											<a href="ERP-SAP3.html#TABL931" target="_blank">Gebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -5768,7 +5782,7 @@ Flurnamen, Gemeindegebiete, alte Gemeindenamen (unterteilen Gemeinde) oder weite
 											
 											
 											
-											<a href="PIM-Step.html#TABL767" target="_blank">Gebiet</a>
+											<a href="PIM-Step.html#TABL767" target="_blank">Gebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -5962,6 +5976,7 @@ fr-ca</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -5980,7 +5995,8 @@ fr-ca</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -6040,7 +6056,7 @@ fr-ca</th>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -6528,6 +6544,7 @@ fr-ca</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -6555,7 +6572,8 @@ fr-ca</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -6627,7 +6645,7 @@ fr-ca</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -6974,7 +6992,7 @@ fr-ca</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL492" target="_blank">Geografische_Einheit</a>
+											<a href="CRM-Salesforce.html#TABL492" target="_blank">Geografische_Einheit</a> (RU) 
 											
 										</td>
 									</tr>
@@ -6986,7 +7004,7 @@ fr-ca</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL958" target="_blank">Geografische_Einheit</a>
+											<a href="ERP-SAP3.html#TABL958" target="_blank">Geografische_Einheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -6998,7 +7016,7 @@ fr-ca</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL787" target="_blank">Geografische_Einheit</a>
+											<a href="PIM-Step.html#TABL787" target="_blank">Geografische_Einheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -7238,6 +7256,7 @@ fr-ca</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -7262,7 +7281,8 @@ fr-ca</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -7803,7 +7823,7 @@ fr-ca</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL357" target="_blank">Geschäftsfähige_Einheit</a>
+											<a href="CRM-Salesforce.html#TABL357" target="_blank">Geschäftsfähige_Einheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -7815,7 +7835,7 @@ fr-ca</td>
 											
 											
 											
-											<a href="MDM.html#TABL702" target="_blank">natural_person</a>
+											<a href="MDM.html#TABL702" target="_blank">natural_person</a> (CRU) 
 											
 										</td>
 									</tr>
@@ -7827,7 +7847,7 @@ fr-ca</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL833" target="_blank">Geschäftsfähige_Einheit</a>
+											<a href="PIM-Step.html#TABL833" target="_blank">Geschäftsfähige_Einheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -8093,6 +8113,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -8129,7 +8150,8 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -8652,7 +8674,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL525" target="_blank">Handelseinheit</a>
+											<a href="CRM-Salesforce.html#TABL525" target="_blank">Handelseinheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -8664,7 +8686,7 @@ Zwischenhändler, Vermittler, Servicedienstleister, Installateur</th>
 											
 											
 											
-											<a href="PIM-Step.html#TABL881" target="_blank">Handelseinheit</a>
+											<a href="PIM-Step.html#TABL881" target="_blank">Handelseinheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -8819,6 +8841,7 @@ middleman, agent, service provider, installer</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -8837,7 +8860,8 @@ middleman, agent, service provider, installer</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -9124,7 +9148,7 @@ middleman, agent, service provider, installer</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL446" target="_blank">Haushalt</a>
+											<a href="CRM-Salesforce.html#TABL446" target="_blank">Haushalt</a> (R) 
 											
 										</td>
 									</tr>
@@ -9136,7 +9160,7 @@ middleman, agent, service provider, installer</td>
 											
 											
 											
-											<a href="MDM.html#TABL678" target="_blank">Haushalt</a>
+											<a href="MDM.html#TABL678" target="_blank">Haushalt</a> (RU) 
 											
 										</td>
 									</tr>
@@ -9148,7 +9172,7 @@ middleman, agent, service provider, installer</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL735" target="_blank">Haushalt</a>
+											<a href="PIM-Step.html#TABL735" target="_blank">Haushalt</a> (R) 
 											
 										</td>
 									</tr>
@@ -9295,6 +9319,7 @@ B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen de
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -9316,7 +9341,8 @@ B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen de
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -9527,7 +9553,7 @@ B-Händler sind Händler mit niedrigerem Professionalisierungsgrad; verkaufen de
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL382" target="_blank">Händler</a>
+											<a href="CRM-Salesforce.html#TABL382" target="_blank">Händler</a> (R) 
 											
 										</td>
 									</tr>
@@ -9676,6 +9702,7 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -9697,7 +9724,8 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -9908,7 +9936,7 @@ Häufig die einzige Firma in einem Land, die diese Rolle übernimmt (Generalimpo
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL588" target="_blank">Importeur</a>
+											<a href="CRM-Salesforce.html#TABL588" target="_blank">Importeur</a> (RU) 
 											
 										</td>
 									</tr>
@@ -10109,6 +10137,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -10130,7 +10159,8 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -10503,7 +10533,7 @@ Handwerker der Geräten (Elektro, Sanitär) in Häusern einbaut</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL593" target="_blank">Installateur</a>
+											<a href="CRM-Salesforce.html#TABL593" target="_blank">Installateur</a> (R) 
 											
 										</td>
 									</tr>
@@ -10704,6 +10734,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -10728,7 +10759,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -11101,7 +11133,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL610" target="_blank">Interessent</a>
+											<a href="CRM-Salesforce.html#TABL610" target="_blank">Interessent</a> (R) 
 											
 										</td>
 									</tr>
@@ -11113,7 +11145,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 											
 											
 											
-											<a href="PIM-Step.html#TABL799" target="_blank">Interessent</a>
+											<a href="PIM-Step.html#TABL799" target="_blank">Interessent</a> (R) 
 											
 										</td>
 									</tr>
@@ -11305,6 +11337,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -11326,7 +11359,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -11796,7 +11830,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL471" target="_blank">Juristische_Person</a>
+											<a href="CRM-Salesforce.html#TABL471" target="_blank">Juristische_Person</a> (R) 
 											
 										</td>
 									</tr>
@@ -11808,7 +11842,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 											
 											
 											
-											<a href="TestMapping.html#TABL727" target="_blank">ColAttr</a>
+											<a href="TestMapping.html#TABL727" target="_blank">ColAttr</a> (R) 
 											
 										</td>
 									</tr>
@@ -11941,6 +11975,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -11959,7 +11994,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -12284,6 +12320,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -12305,7 +12342,8 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -12570,7 +12608,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL598" target="_blank">Käufer</a>
+											<a href="CRM-Salesforce.html#TABL598" target="_blank">Käufer</a> (R) 
 											
 										</td>
 									</tr>
@@ -12582,7 +12620,7 @@ les artisans de l&#39;équipement installé dans les maisons (électrique, sanit
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL942" target="_blank">Käufer</a>
+											<a href="ERP-SAP3.html#TABL942" target="_blank">Käufer</a> (RU) 
 											
 										</td>
 									</tr>
@@ -12797,6 +12835,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -12818,7 +12857,8 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -13451,7 +13491,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL344" target="_blank">Land</a>
+											<a href="CRM-Salesforce.html#TABL344" target="_blank">Land</a> (R) 
 											
 										</td>
 									</tr>
@@ -13463,7 +13503,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL1005" target="_blank">Land</a>
+											<a href="ERP-SAP3.html#TABL1005" target="_blank">Land</a> (R) 
 											
 										</td>
 									</tr>
@@ -13475,7 +13515,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 											
 											
 											
-											<a href="PIM-Step.html#TABL906" target="_blank">Land</a>
+											<a href="PIM-Step.html#TABL906" target="_blank">Land</a> (RU) 
 											
 										</td>
 									</tr>
@@ -13487,7 +13527,7 @@ Gemäss NUTS (https://de.wikipedia.org/wiki/NUTS) ist das Land die Gebietsstufe 
 											
 											
 											
-											<a href="TestMapping.html#TABL733" target="_blank">TabMany</a>
+											<a href="TestMapping.html#TABL733" target="_blank">TabMany</a> (R) 
 											
 										</td>
 									</tr>
@@ -13634,6 +13674,7 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -13655,7 +13696,8 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -13866,7 +13908,7 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL466" target="_blank">Leasingnehmer</a>
+											<a href="CRM-Salesforce.html#TABL466" target="_blank">Leasingnehmer</a> (R) 
 											
 										</td>
 									</tr>
@@ -13878,7 +13920,7 @@ Damit ist sie Besitzer aber nicht Eigentümer des Produktes</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL947" target="_blank">Leasingnehmer</a>
+											<a href="ERP-SAP3.html#TABL947" target="_blank">Leasingnehmer</a> (R) 
 											
 										</td>
 									</tr>
@@ -14049,6 +14091,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -14073,7 +14116,8 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -14412,7 +14456,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL375" target="_blank">Ländergruppe</a>
+											<a href="CRM-Salesforce.html#TABL375" target="_blank">Ländergruppe</a> (R) 
 											
 										</td>
 									</tr>
@@ -14424,7 +14468,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL998" target="_blank">Ländergruppe</a>
+											<a href="ERP-SAP3.html#TABL998" target="_blank">Ländergruppe</a> (R) 
 											
 										</td>
 									</tr>
@@ -14436,7 +14480,7 @@ EMEA (Europe, Middle East, Africa) (Vertriebsorganisation)</th>
 											
 											
 											
-											<a href="PIM-Step.html#TABL860" target="_blank">Ländergruppe</a>
+											<a href="PIM-Step.html#TABL860" target="_blank">Ländergruppe</a> (R) 
 											
 										</td>
 									</tr>
@@ -14599,6 +14643,7 @@ Egal ob pay per use  oder Zeitmiete.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -14620,7 +14665,8 @@ Egal ob pay per use  oder Zeitmiete.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -14831,7 +14877,7 @@ Egal ob pay per use  oder Zeitmiete.</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL520" target="_blank">Mieter</a>
+											<a href="CRM-Salesforce.html#TABL520" target="_blank">Mieter</a> (R) 
 											
 										</td>
 									</tr>
@@ -14843,7 +14889,7 @@ Egal ob pay per use  oder Zeitmiete.</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL926" target="_blank">Mieter</a>
+											<a href="ERP-SAP3.html#TABL926" target="_blank">Mieter</a> (R) 
 											
 										</td>
 									</tr>
@@ -15025,6 +15071,7 @@ Whether pay per use or time rental.</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -15046,7 +15093,8 @@ Whether pay per use or time rental.</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -15535,7 +15583,7 @@ Whether pay per use or time rental.</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL402" target="_blank">person</a>
+											<a href="CRM-Salesforce.html#TABL402" target="_blank">person</a> (RU) 
 											
 										</td>
 									</tr>
@@ -15547,7 +15595,7 @@ Whether pay per use or time rental.</td>
 											
 											
 											
-											<a href="MDM.html#TABL702" target="_blank">natural_person</a>
+											<a href="MDM.html#TABL702" target="_blank">natural_person</a> (CRU) 
 											
 										</td>
 									</tr>
@@ -15559,7 +15607,7 @@ Whether pay per use or time rental.</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL919" target="_blank">account</a>
+											<a href="PIM-Step.html#TABL919" target="_blank">account</a> (R) 
 											
 										</td>
 									</tr>
@@ -15571,7 +15619,7 @@ Whether pay per use or time rental.</td>
 											
 											
 											
-											<a href="TestMapping.html#TABL727" target="_blank">ColAttr</a>
+											<a href="TestMapping.html#TABL727" target="_blank">ColAttr</a> (R) 
 											
 										</td>
 									</tr>
@@ -15718,6 +15766,7 @@ Piloten von Flugzeugen</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -15739,7 +15788,8 @@ Piloten von Flugzeugen</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -15950,7 +16000,7 @@ Piloten von Flugzeugen</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL461" target="_blank">Nutzer</a>
+											<a href="CRM-Salesforce.html#TABL461" target="_blank">Nutzer</a> (R) 
 											
 										</td>
 									</tr>
@@ -15962,7 +16012,7 @@ Piloten von Flugzeugen</th>
 											
 											
 											
-											<a href="PIM-Step.html#TABL876" target="_blank">Nutzer</a>
+											<a href="PIM-Step.html#TABL876" target="_blank">Nutzer</a> (RU) 
 											
 										</td>
 									</tr>
@@ -16125,6 +16175,7 @@ Meist hierarchisch organisiert.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -16143,7 +16194,8 @@ Meist hierarchisch organisiert.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -16485,7 +16537,7 @@ Meist hierarchisch organisiert.</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL508" target="_blank">Organisationseinheit</a>
+											<a href="CRM-Salesforce.html#TABL508" target="_blank">Organisationseinheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -16497,7 +16549,7 @@ Meist hierarchisch organisiert.</th>
 											
 											
 											
-											<a href="MDM.html#TABL649" target="_blank">Organisationseinheit</a>
+											<a href="MDM.html#TABL649" target="_blank">Organisationseinheit</a> (R) 
 											
 										</td>
 									</tr>
@@ -16631,6 +16683,7 @@ Mostly hierarchically organized.</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -16649,7 +16702,8 @@ Mostly hierarchically organized.</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -16970,6 +17024,7 @@ Verkaufsleiter</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -16988,7 +17043,8 @@ Verkaufsleiter</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -17445,7 +17501,7 @@ Verkaufsleiter</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL432" target="_blank">Personenrolle</a>
+											<a href="CRM-Salesforce.html#TABL432" target="_blank">Personenrolle</a> (CRU) 
 											
 										</td>
 									</tr>
@@ -17457,7 +17513,7 @@ Verkaufsleiter</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL1052" target="_blank">Personenrolle</a>
+											<a href="ERP-SAP3.html#TABL1052" target="_blank">Personenrolle</a> (R) 
 											
 										</td>
 									</tr>
@@ -17469,11 +17525,11 @@ Verkaufsleiter</th>
 											
 											
 											
-											<a href="TestMapping.html#TABL726" target="_blank">TabEntity</a>
+											<a href="TestMapping.html#TABL726" target="_blank">TabEntity</a> (RU) 
 											
 											
 											 ,  
-											<a href="TestMapping.html#TABL733" target="_blank">TabMany</a>
+											<a href="TestMapping.html#TABL733" target="_blank">TabMany</a> (R) 
 											
 										</td>
 									</tr>
@@ -17659,6 +17715,7 @@ P0: Land</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -17680,7 +17737,8 @@ P0: Land</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -18015,7 +18073,7 @@ P0: Land</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL449" target="_blank">PLZ-Gebiet</a>
+											<a href="CRM-Salesforce.html#TABL449" target="_blank">PLZ-Gebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -18027,7 +18085,7 @@ P0: Land</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL1018" target="_blank">PLZ-Gebiet</a>
+											<a href="ERP-SAP3.html#TABL1018" target="_blank">PLZ-Gebiet</a> (R) 
 											
 										</td>
 									</tr>
@@ -18039,7 +18097,7 @@ P0: Land</th>
 											
 											
 											
-											<a href="PIM-Step.html#TABL792" target="_blank">PLZ-Gebiet</a>
+											<a href="PIM-Step.html#TABL792" target="_blank">PLZ-Gebiet</a> (CRU) 
 											
 										</td>
 									</tr>
@@ -18205,6 +18263,7 @@ P0 : Pays</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -18226,7 +18285,8 @@ P0 : Pays</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -18437,7 +18497,7 @@ P0 : Pays</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL583" target="_blank">Potenzieller_Interessent</a>
+											<a href="CRM-Salesforce.html#TABL583" target="_blank">Potenzieller_Interessent</a> (R) 
 											
 										</td>
 									</tr>
@@ -18570,6 +18630,7 @@ P0 : Pays</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -18588,7 +18649,8 @@ P0 : Pays</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Produkt</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -18920,6 +18982,7 @@ Mit oder ohne IOT.</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -18938,7 +19001,8 @@ Mit oder ohne IOT.</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Produkt</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -19279,7 +19343,7 @@ Mit oder ohne IOT.</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL575" target="_blank">Produktinstanz</a>
+											<a href="CRM-Salesforce.html#TABL575" target="_blank">Produktinstanz</a> (R) 
 											
 										</td>
 									</tr>
@@ -19291,7 +19355,7 @@ Mit oder ohne IOT.</th>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL976" target="_blank">Produktinstanz</a>
+											<a href="ERP-SAP3.html#TABL976" target="_blank">Produktinstanz</a> (R) 
 											
 										</td>
 									</tr>
@@ -19303,7 +19367,7 @@ Mit oder ohne IOT.</th>
 											
 											
 											
-											<a href="MDM.html#TABL697" target="_blank">Produktinstanz</a>
+											<a href="MDM.html#TABL697" target="_blank">Produktinstanz</a> (R) 
 											
 										</td>
 									</tr>
@@ -19315,7 +19379,7 @@ Mit oder ohne IOT.</th>
 											
 											
 											
-											<a href="PIM-Step.html#TABL743" target="_blank">Produktinstanz</a>
+											<a href="PIM-Step.html#TABL743" target="_blank">Produktinstanz</a> (R) 
 											
 										</td>
 									</tr>
@@ -19461,6 +19525,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -19482,7 +19547,8 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -19693,7 +19759,7 @@ Typischerweise bereits in Verhandlung (Beratung, Angebot, abgeschlossener Vertra
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL363" target="_blank">Qualifizierter_Interessent</a>
+											<a href="CRM-Salesforce.html#TABL363" target="_blank">Qualifizierter_Interessent</a> (R) 
 											
 										</td>
 									</tr>
@@ -19839,6 +19905,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -19860,7 +19927,8 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -20071,7 +20139,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL417" target="_blank">Servicepartner</a>
+											<a href="CRM-Salesforce.html#TABL417" target="_blank">Servicepartner</a> (R) 
 											
 										</td>
 									</tr>
@@ -20240,6 +20308,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -20261,7 +20330,8 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Geografie</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -20321,7 +20391,7 @@ Typically already in negotiation (consultation, offer, concluded contract)</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -20809,6 +20879,7 @@ Bürogebäude</th>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -20827,7 +20898,8 @@ Bürogebäude</th>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Customer</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -21168,7 +21240,7 @@ Bürogebäude</th>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL387" target="_blank">Standort</a>
+											<a href="CRM-Salesforce.html#TABL387" target="_blank">Standort</a> (CR) 
 											
 										</td>
 									</tr>
@@ -21180,7 +21252,7 @@ Bürogebäude</th>
 											
 											
 											
-											<a href="MDM.html#TABL621" target="_blank">Standort</a>
+											<a href="MDM.html#TABL621" target="_blank">Standort</a> (CR) 
 											
 										</td>
 									</tr>
@@ -21422,6 +21494,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -21452,7 +21525,8 @@ Immeuble de bureaux</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -21864,7 +21938,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL368" target="_blank">Vertriebskunde</a>
+											<a href="CRM-Salesforce.html#TABL368" target="_blank">Vertriebskunde</a> (R) 
 											
 										</td>
 									</tr>
@@ -21876,7 +21950,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#TABL969" target="_blank">Vertriebskunde</a>
+											<a href="ERP-SAP3.html#TABL969" target="_blank">Vertriebskunde</a> (R) 
 											
 										</td>
 									</tr>
@@ -21888,7 +21962,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL804" target="_blank">Vertriebskunde</a>
+											<a href="PIM-Step.html#TABL804" target="_blank">Vertriebskunde</a> (RU) 
 											
 										</td>
 									</tr>
@@ -22089,6 +22163,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -22116,7 +22191,8 @@ Immeuble de bureaux</td>
 			<a href="#ENTI144" target="_self">Eigentümer</a>
 			
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -22461,7 +22537,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL427" target="_blank">Vertriebspartner</a>
+											<a href="CRM-Salesforce.html#TABL427" target="_blank">Vertriebspartner</a> (R) 
 											
 										</td>
 									</tr>
@@ -22473,7 +22549,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL901" target="_blank">Vertriebspartner</a>
+											<a href="PIM-Step.html#TABL901" target="_blank">Vertriebspartner</a> (R) 
 											
 										</td>
 									</tr>
@@ -22690,6 +22766,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -22720,7 +22797,8 @@ Immeuble de bureaux</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -23082,7 +23160,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL339" target="_blank">Vertriebsteilnehmer</a>
+											<a href="CRM-Salesforce.html#TABL339" target="_blank">Vertriebsteilnehmer</a> (R) 
 											
 										</td>
 									</tr>
@@ -23094,7 +23172,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL848" target="_blank">Vertriebsteilnehmer</a>
+											<a href="PIM-Step.html#TABL848" target="_blank">Vertriebsteilnehmer</a> (R) 
 											
 										</td>
 									</tr>
@@ -23280,6 +23358,7 @@ Immeuble de bureaux</td>
 									<th>Superentitäten</th>
 									<th>Subentitäten</th>
 									<th>Rollen</th>
+									<th>Klassifikation</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>auf Diagramm(en)</th>
@@ -23298,7 +23377,8 @@ Immeuble de bureaux</td>
 									<td class="attribute">
 										
 									</td>
-									
+
+									<td class="attribute">Kunde</td>
 									<td class="attribute">0 - 4</td>
 									<td class="attribute"></td> 
 									<td class="attribute">
@@ -23654,7 +23734,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#TABL605" target="_blank">Wettbewerber</a>
+											<a href="CRM-Salesforce.html#TABL605" target="_blank">Wettbewerber</a> (R) 
 											
 										</td>
 									</tr>
@@ -23666,7 +23746,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#TABL694" target="_blank">Wettbewerber</a>
+											<a href="MDM.html#TABL694" target="_blank">Wettbewerber</a> (R) 
 											
 										</td>
 									</tr>
@@ -23678,7 +23758,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#TABL891" target="_blank">Wettbewerber</a>
+											<a href="PIM-Step.html#TABL891" target="_blank">Wettbewerber</a> (CR) 
 											
 										</td>
 									</tr>
@@ -24011,7 +24091,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU377" target="_blank">Zweck</a>
+											<a href="CRM-Salesforce.html#COLU377" target="_blank">Zweck</a> (R)
 											
 										</td>
 									</tr>
@@ -24023,7 +24103,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1000" target="_blank">Zweck</a>
+											<a href="ERP-SAP3.html#COLU1000" target="_blank">Zweck</a> (R)
 											
 										</td>
 									</tr>
@@ -24035,7 +24115,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU862" target="_blank">Zweck</a>
+											<a href="PIM-Step.html#COLU862" target="_blank">Zweck</a> (R)
 											
 										</td>
 									</tr>
@@ -24360,7 +24440,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU559" target="_blank">Administrativebene</a>
+											<a href="CRM-Salesforce.html#COLU559" target="_blank">Administrativebene</a> (R)
 											
 										</td>
 									</tr>
@@ -24372,7 +24452,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU955" target="_blank">Administrativebene</a>
+											<a href="ERP-SAP3.html#COLU955" target="_blank">Administrativebene</a> (R)
 											
 										</td>
 									</tr>
@@ -24384,7 +24464,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU830" target="_blank">Administrativebene</a>
+											<a href="PIM-Step.html#COLU830" target="_blank">Administrativebene</a> (R)
 											
 										</td>
 									</tr>
@@ -24709,7 +24789,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU324" target="_blank">Adresstyp</a>
+											<a href="CRM-Salesforce.html#COLU324" target="_blank">Adresstyp</a> (RW)
 											
 										</td>
 									</tr>
@@ -24721,7 +24801,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1037" target="_blank">Adresstyp</a>
+											<a href="ERP-SAP3.html#COLU1037" target="_blank">Adresstyp</a> (R)
 											
 										</td>
 									</tr>
@@ -24733,7 +24813,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU634" target="_blank">Adresstyp</a>
+											<a href="MDM.html#COLU634" target="_blank">Adresstyp</a> (R)
 											
 										</td>
 									</tr>
@@ -24745,7 +24825,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU752" target="_blank">Adresstyp</a>
+											<a href="PIM-Step.html#COLU752" target="_blank">Adresstyp</a> (R)
 											
 										</td>
 									</tr>
@@ -25360,7 +25440,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU434" target="_blank">Beschreibung</a>
+											<a href="CRM-Salesforce.html#COLU434" target="_blank">Beschreibung</a> (R)
 											
 										</td>
 									</tr>
@@ -25372,7 +25452,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1054" target="_blank">Beschreibung</a>
+											<a href="ERP-SAP3.html#COLU1054" target="_blank">Beschreibung</a> (R)
 											
 										</td>
 									</tr>
@@ -25697,7 +25777,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU433" target="_blank">Bezeichnung</a>
+											<a href="CRM-Salesforce.html#COLU433" target="_blank">Bezeichnung</a> (R)
 											
 										</td>
 									</tr>
@@ -25709,7 +25789,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1053" target="_blank">Bezeichnung</a>
+											<a href="ERP-SAP3.html#COLU1053" target="_blank">Bezeichnung</a> (RW)
 											
 										</td>
 									</tr>
@@ -26644,7 +26724,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU404" target="_blank">date_of_birth</a>
+											<a href="CRM-Salesforce.html#COLU404" target="_blank">date_of_birth</a> (R)
 											
 										</td>
 									</tr>
@@ -26656,7 +26736,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU705" target="_blank">Birth_date</a>
+											<a href="MDM.html#COLU705" target="_blank">Birth_date</a> (R)
 											
 										</td>
 									</tr>
@@ -26668,7 +26748,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU921" target="_blank">geburtsdatum</a>
+											<a href="PIM-Step.html#COLU921" target="_blank">geburtsdatum</a> (R)
 											
 										</td>
 									</tr>
@@ -26680,7 +26760,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="TestMapping.html#COLU729" target="_blank">col1tomany</a>
+											<a href="TestMapping.html#COLU729" target="_blank">col1tomany</a> (RW)
 											
 										</td>
 									</tr>
@@ -27005,7 +27085,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU327" target="_blank">Gebäudename</a>
+											<a href="CRM-Salesforce.html#COLU327" target="_blank">Gebäudename</a> (R)
 											
 										</td>
 									</tr>
@@ -27017,7 +27097,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1040" target="_blank">Gebäudename</a>
+											<a href="ERP-SAP3.html#COLU1040" target="_blank">Gebäudename</a> (R)
 											
 										</td>
 									</tr>
@@ -27029,7 +27109,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU637" target="_blank">Gebäudename</a>
+											<a href="MDM.html#COLU637" target="_blank">Gebäudename</a> (R)
 											
 										</td>
 									</tr>
@@ -27041,7 +27121,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU755" target="_blank">Gebäudename</a>
+											<a href="PIM-Step.html#COLU755" target="_blank">Gebäudename</a> (R)
 											
 										</td>
 									</tr>
@@ -27366,7 +27446,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU496" target="_blank">GeoInformation</a>
+											<a href="CRM-Salesforce.html#COLU496" target="_blank">GeoInformation</a> (R)
 											
 										</td>
 									</tr>
@@ -27378,7 +27458,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU962" target="_blank">GeoInformation</a>
+											<a href="ERP-SAP3.html#COLU962" target="_blank">GeoInformation</a> (R)
 											
 										</td>
 									</tr>
@@ -27390,7 +27470,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU791" target="_blank">GeoInformation</a>
+											<a href="PIM-Step.html#COLU791" target="_blank">GeoInformation</a> (R)
 											
 										</td>
 									</tr>
@@ -27715,7 +27795,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU328" target="_blank">Geokoordinate</a>
+											<a href="CRM-Salesforce.html#COLU328" target="_blank">Geokoordinate</a> (R)
 											
 										</td>
 									</tr>
@@ -27727,7 +27807,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1041" target="_blank">Geokoordinate</a>
+											<a href="ERP-SAP3.html#COLU1041" target="_blank">Geokoordinate</a> (R)
 											
 										</td>
 									</tr>
@@ -27739,7 +27819,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU638" target="_blank">Geokoordinate</a>
+											<a href="MDM.html#COLU638" target="_blank">Geokoordinate</a> (R)
 											
 										</td>
 									</tr>
@@ -27751,7 +27831,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU756" target="_blank">Geokoordinate</a>
+											<a href="PIM-Step.html#COLU756" target="_blank">Geokoordinate</a> (RW)
 											
 										</td>
 									</tr>
@@ -28076,7 +28156,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU405" target="_blank">Geschlecht</a>
+											<a href="CRM-Salesforce.html#COLU405" target="_blank">Geschlecht</a> (RW)
 											
 										</td>
 									</tr>
@@ -28088,7 +28168,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU706" target="_blank">Gender</a>
+											<a href="MDM.html#COLU706" target="_blank">Gender</a> (R)
 											
 										</td>
 									</tr>
@@ -28100,7 +28180,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU922" target="_blank">Geschlecht</a>
+											<a href="PIM-Step.html#COLU922" target="_blank">Geschlecht</a> (R)
 											
 										</td>
 									</tr>
@@ -28112,11 +28192,11 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="TestMapping.html#COLU730" target="_blank">colmanyto11</a>
+											<a href="TestMapping.html#COLU730" target="_blank">colmanyto11</a> (R)
 											
 											
 											 ,  
-											<a href="TestMapping.html#COLU731" target="_blank">colmanyto12</a>
+											<a href="TestMapping.html#COLU731" target="_blank">colmanyto12</a> (R)
 											
 										</td>
 									</tr>
@@ -28441,7 +28521,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU472" target="_blank">Gesellschaftsform</a>
+											<a href="CRM-Salesforce.html#COLU472" target="_blank">Gesellschaftsform</a> (R)
 											
 										</td>
 									</tr>
@@ -28766,7 +28846,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU312" target="_blank">Gültigkeitsperiode</a>
+											<a href="CRM-Salesforce.html#COLU312" target="_blank">Gültigkeitsperiode</a> (R)
 											
 										</td>
 									</tr>
@@ -28778,7 +28858,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU964" target="_blank">Gültigkeitsperiode</a>
+											<a href="ERP-SAP3.html#COLU964" target="_blank">Gültigkeitsperiode</a> (R)
 											
 										</td>
 									</tr>
@@ -28790,7 +28870,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU665" target="_blank">Gültigkeitsperiode</a>
+											<a href="MDM.html#COLU665" target="_blank">Gültigkeitsperiode</a> (R)
 											
 										</td>
 									</tr>
@@ -29145,7 +29225,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU326" target="_blank">Hausnr</a>
+											<a href="CRM-Salesforce.html#COLU326" target="_blank">Hausnr</a> (R)
 											
 										</td>
 									</tr>
@@ -29157,7 +29237,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1039" target="_blank">Hausnr</a>
+											<a href="ERP-SAP3.html#COLU1039" target="_blank">Hausnr</a> (R)
 											
 										</td>
 									</tr>
@@ -29169,7 +29249,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU636" target="_blank">nummer</a>
+											<a href="MDM.html#COLU636" target="_blank">nummer</a> (R)
 											
 										</td>
 									</tr>
@@ -29181,7 +29261,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU754" target="_blank">Hausnr</a>
+											<a href="PIM-Step.html#COLU754" target="_blank">Hausnr</a> (R)
 											
 										</td>
 									</tr>
@@ -30086,7 +30166,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU345" target="_blank">ISO2_Code</a>
+											<a href="CRM-Salesforce.html#COLU345" target="_blank">ISO2_Code</a> (R)
 											
 										</td>
 									</tr>
@@ -30098,7 +30178,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1006" target="_blank">ISO2_Code</a>
+											<a href="ERP-SAP3.html#COLU1006" target="_blank">ISO2_Code</a> (R)
 											
 										</td>
 									</tr>
@@ -30110,7 +30190,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU907" target="_blank">ISO2_Code</a>
+											<a href="PIM-Step.html#COLU907" target="_blank">ISO2_Code</a> (R)
 											
 										</td>
 									</tr>
@@ -30725,7 +30805,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU346" target="_blank">ISO3_Code</a>
+											<a href="CRM-Salesforce.html#COLU346" target="_blank">ISO3_Code</a> (R)
 											
 										</td>
 									</tr>
@@ -30737,7 +30817,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1007" target="_blank">ISO3_Code</a>
+											<a href="ERP-SAP3.html#COLU1007" target="_blank">ISO3_Code</a> (R)
 											
 										</td>
 									</tr>
@@ -30749,7 +30829,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU908" target="_blank">ISO3_Code</a>
+											<a href="PIM-Step.html#COLU908" target="_blank">ISO3_Code</a> (R)
 											
 										</td>
 									</tr>
@@ -31074,7 +31154,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU347" target="_blank">ISO_Code_numerisch</a>
+											<a href="CRM-Salesforce.html#COLU347" target="_blank">ISO_Code_numerisch</a> (R)
 											
 										</td>
 									</tr>
@@ -31086,7 +31166,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1008" target="_blank">ISO_Code_numerisch</a>
+											<a href="ERP-SAP3.html#COLU1008" target="_blank">ISO_Code_numerisch</a> (RW)
 											
 										</td>
 									</tr>
@@ -31098,7 +31178,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU909" target="_blank">ISO_Code_numerisch</a>
+											<a href="PIM-Step.html#COLU909" target="_blank">ISO_Code_numerisch</a> (RW)
 											
 										</td>
 									</tr>
@@ -31423,7 +31503,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU388" target="_blank">Name</a>
+											<a href="CRM-Salesforce.html#COLU388" target="_blank">Name</a> (R)
 											
 										</td>
 									</tr>
@@ -31435,7 +31515,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU623" target="_blank">Name</a>
+											<a href="MDM.html#COLU623" target="_blank">Name</a> (R)
 											
 										</td>
 									</tr>
@@ -31588,7 +31668,7 @@ Immeuble de bureaux</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -31760,7 +31840,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU495" target="_blank">Name_[L]</a>
+											<a href="CRM-Salesforce.html#COLU495" target="_blank">Name_[L]</a> (RW)
 											
 										</td>
 									</tr>
@@ -31772,7 +31852,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU961" target="_blank">Name_[L]</a>
+											<a href="ERP-SAP3.html#COLU961" target="_blank">Name_[L]</a> (R)
 											
 										</td>
 									</tr>
@@ -31784,7 +31864,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU790" target="_blank">Name_[L]</a>
+											<a href="PIM-Step.html#COLU790" target="_blank">Name_[L]</a> (R)
 											
 										</td>
 									</tr>
@@ -31822,9 +31902,9 @@ Immeuble de bureaux</td>
 									<tr>
 										<td>Name</td>
 										
-											<td><a href="crmTest_en.html#ATTR138" target="_self">**Name [L]</a></td>
+											<td><a href="crmTest_en.html#ATTR138" target="_self">**Name</a></td>
 										
-											<td><a href="crmTest_fr.html#ATTR138" target="_self">Nom [L]</a></td>
+											<td><a href="crmTest_fr.html#ATTR138" target="_self">Nom</a></td>
 										
 									</tr>
 									<tr>
@@ -32109,7 +32189,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU509" target="_blank">Name</a>
+											<a href="CRM-Salesforce.html#COLU509" target="_blank">Name</a> (R)
 											
 										</td>
 									</tr>
@@ -32121,7 +32201,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU650" target="_blank">Name</a>
+											<a href="MDM.html#COLU650" target="_blank">Name</a> (R)
 											
 										</td>
 									</tr>
@@ -32274,7 +32354,7 @@ Immeuble de bureaux</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -32449,9 +32529,9 @@ Immeuble de bureaux</td>
 									<tr>
 										<td>Name</td>
 										
-											<td><a href="crmTest_en.html#ATTR181" target="_self">**Name [L]</a></td>
+											<td><a href="crmTest_en.html#ATTR181" target="_self">**Name</a></td>
 										
-											<td><a href="crmTest_fr.html#ATTR181" target="_self">Nom [L]</a></td>
+											<td><a href="crmTest_fr.html#ATTR181" target="_self">Nom</a></td>
 										
 									</tr>
 									<tr>
@@ -32564,7 +32644,7 @@ Immeuble de bureaux</td>
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
 	
 											
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
 	
 											
 		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
@@ -32739,9 +32819,9 @@ Immeuble de bureaux</td>
 									<tr>
 										<td>Name</td>
 										
-											<td><a href="crmTest_en.html#ATTR188" target="_self">**Name [L]</a></td>
+											<td><a href="crmTest_en.html#ATTR188" target="_self">**Name</a></td>
 										
-											<td><a href="crmTest_fr.html#ATTR188" target="_self">Nom [L]</a></td>
+											<td><a href="crmTest_fr.html#ATTR188" target="_self">Nom</a></td>
 										
 									</tr>
 									<tr>
@@ -33026,7 +33106,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU360" target="_blank">Name</a>
+											<a href="CRM-Salesforce.html#COLU360" target="_blank">Name</a> (RW)
 											
 										</td>
 									</tr>
@@ -33038,7 +33118,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU703" target="_blank">Name</a>
+											<a href="MDM.html#COLU703" target="_blank">Name</a> (R)
 											
 										</td>
 									</tr>
@@ -33050,7 +33130,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU836" target="_blank">Name</a>
+											<a href="PIM-Step.html#COLU836" target="_blank">Name</a> (R)
 											
 										</td>
 									</tr>
@@ -33955,7 +34035,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU451" target="_blank">PLZ-Ebene</a>
+											<a href="CRM-Salesforce.html#COLU451" target="_blank">PLZ-Ebene</a> (R)
 											
 										</td>
 									</tr>
@@ -33967,7 +34047,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1020" target="_blank">PLZ-Ebene</a>
+											<a href="ERP-SAP3.html#COLU1020" target="_blank">PLZ-Ebene</a> (R)
 											
 										</td>
 									</tr>
@@ -33979,7 +34059,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU794" target="_blank">PLZ-Ebene</a>
+											<a href="PIM-Step.html#COLU794" target="_blank">PLZ-Ebene</a> (R)
 											
 										</td>
 									</tr>
@@ -34304,7 +34384,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU450" target="_blank">Postleitzahl</a>
+											<a href="CRM-Salesforce.html#COLU450" target="_blank">Postleitzahl</a> (RW)
 											
 										</td>
 									</tr>
@@ -34316,7 +34396,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1019" target="_blank">Postleitzahl</a>
+											<a href="ERP-SAP3.html#COLU1019" target="_blank">Postleitzahl</a> (R)
 											
 										</td>
 									</tr>
@@ -34328,7 +34408,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU793" target="_blank">Postleitzahl</a>
+											<a href="PIM-Step.html#COLU793" target="_blank">Postleitzahl</a> (R)
 											
 										</td>
 									</tr>
@@ -34653,7 +34733,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU528" target="_blank">Professionalisierungsgrad</a>
+											<a href="CRM-Salesforce.html#COLU528" target="_blank">Professionalisierungsgrad</a> (R)
 											
 										</td>
 									</tr>
@@ -34665,7 +34745,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU884" target="_blank">Professionalisierungsgrad</a>
+											<a href="PIM-Step.html#COLU884" target="_blank">Professionalisierungsgrad</a> (R)
 											
 										</td>
 									</tr>
@@ -34990,7 +35070,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU576" target="_blank">Serie-Nr</a>
+											<a href="CRM-Salesforce.html#COLU576" target="_blank">Serie-Nr</a> (RW)
 											
 										</td>
 									</tr>
@@ -35002,7 +35082,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU977" target="_blank">Serie-Nr</a>
+											<a href="ERP-SAP3.html#COLU977" target="_blank">Serie-Nr</a> (R)
 											
 										</td>
 									</tr>
@@ -35014,7 +35094,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU698" target="_blank">Serie-Nr</a>
+											<a href="MDM.html#COLU698" target="_blank">Serie-Nr</a> (R)
 											
 										</td>
 									</tr>
@@ -35026,7 +35106,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU744" target="_blank">Serie-Nr</a>
+											<a href="PIM-Step.html#COLU744" target="_blank">Serie-Nr</a> (R)
 											
 										</td>
 									</tr>
@@ -35388,11 +35468,11 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU327" target="_blank">Gebäudename</a>
+											<a href="CRM-Salesforce.html#COLU327" target="_blank">Gebäudename</a> (R)
 											
 											
 											 ,  
-											<a href="CRM-Salesforce.html#COLU325" target="_blank">Strassenname</a>
+											<a href="CRM-Salesforce.html#COLU325" target="_blank">Strassenname</a> (R)
 											
 										</td>
 									</tr>
@@ -35404,7 +35484,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1038" target="_blank">Strassenname</a>
+											<a href="ERP-SAP3.html#COLU1038" target="_blank">Strassenname</a> (R)
 											
 										</td>
 									</tr>
@@ -35416,7 +35496,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU635" target="_blank">Strassenname</a>
+											<a href="MDM.html#COLU635" target="_blank">Strassenname</a> (R)
 											
 										</td>
 									</tr>
@@ -35428,7 +35508,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU753" target="_blank">Strassenname</a>
+											<a href="PIM-Step.html#COLU753" target="_blank">Strassenname</a> (R)
 											
 										</td>
 									</tr>
@@ -35753,7 +35833,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU348" target="_blank">TopLevelDomain</a>
+											<a href="CRM-Salesforce.html#COLU348" target="_blank">TopLevelDomain</a> (R)
 											
 										</td>
 									</tr>
@@ -35765,7 +35845,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU1009" target="_blank">TopLevelDomain</a>
+											<a href="ERP-SAP3.html#COLU1009" target="_blank">TopLevelDomain</a> (R)
 											
 										</td>
 									</tr>
@@ -35777,7 +35857,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU910" target="_blank">TopLevelDomain</a>
+											<a href="PIM-Step.html#COLU910" target="_blank">TopLevelDomain</a> (R)
 											
 										</td>
 									</tr>
@@ -36102,7 +36182,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU376" target="_blank">Typ</a>
+											<a href="CRM-Salesforce.html#COLU376" target="_blank">Typ</a> (R)
 											
 										</td>
 									</tr>
@@ -36114,7 +36194,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="ERP-SAP3.html#COLU999" target="_blank">Typ</a>
+											<a href="ERP-SAP3.html#COLU999" target="_blank">Typ</a> (RW)
 											
 										</td>
 									</tr>
@@ -36126,7 +36206,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU861" target="_blank">Typ</a>
+											<a href="PIM-Step.html#COLU861" target="_blank">Typ</a> (R)
 											
 										</td>
 									</tr>
@@ -36451,7 +36531,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU473" target="_blank">UID_Nr</a>
+											<a href="CRM-Salesforce.html#COLU473" target="_blank">UID_Nr</a> (R)
 											
 										</td>
 									</tr>
@@ -36463,7 +36543,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="TestMapping.html#COLU729" target="_blank">col1tomany</a>
+											<a href="TestMapping.html#COLU729" target="_blank">col1tomany</a> (RW)
 											
 										</td>
 									</tr>
@@ -37108,7 +37188,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="CRM-Salesforce.html#COLU403" target="_blank">Vorname</a>
+											<a href="CRM-Salesforce.html#COLU403" target="_blank">Vorname</a> (R)
 											
 										</td>
 									</tr>
@@ -37120,7 +37200,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="MDM.html#COLU704" target="_blank">First_Name</a>
+											<a href="MDM.html#COLU704" target="_blank">First_Name</a> (R)
 											
 										</td>
 									</tr>
@@ -37132,7 +37212,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="PIM-Step.html#COLU920" target="_blank">Vorname</a>
+											<a href="PIM-Step.html#COLU920" target="_blank">Vorname</a> (R)
 											
 										</td>
 									</tr>
@@ -37144,7 +37224,7 @@ Immeuble de bureaux</td>
 											
 											
 											
-											<a href="TestMapping.html#COLU728" target="_blank">Col1to1</a>
+											<a href="TestMapping.html#COLU728" target="_blank">Col1to1</a> (R)
 											
 										</td>
 									</tr>

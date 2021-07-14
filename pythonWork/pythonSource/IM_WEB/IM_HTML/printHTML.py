@@ -181,8 +181,6 @@ def createlib():
         shutil.copytree(libSourceDirec + 'image', imagedirec)
     if not os.path.exists(jinadirec):
         shutil.copytree(libSourceDirec + 'jinjatemplates', jinadirec)
-    else: #replace the original files every time
-        shutil.copytree(libSourceDirec + 'jinjatemplates', jinadirec + 'original/',dirs_exist_ok=True)
 
 
 # createlib

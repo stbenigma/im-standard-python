@@ -17,6 +17,7 @@ def columns2js(pemptymodel):
        ,'interface_col_id'
         ,'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        ,'R/W'
         , 'attributesmapped'
         , 'userdefprops'
         , 'sourceref'
@@ -24,7 +25,8 @@ def columns2js(pemptymodel):
     ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]
-                                                                        +[0,4,'DEV',reflist(),userdefprops()
+                                                                        +[0,4,'DEV',rwstr()
+                                                                        ,reflist(plist=[Modelelemtype.ATTR+"0000"]),userdefprops()
                                                                         , sourceref(),reflist()
                                                                           ])}
     else:
@@ -44,6 +46,7 @@ def columns2js(pemptymodel):
        ,c.colu_ext_system_id
         , c.colu_uc, c.colu_dc, c.colu_um,  c.colu_dm
             , c.getminzoomlevel(), c.getmaxzoomlevel(), c.getdevstatus()
+            ,rwstr(pread=c.colu_read,pwrite=c.colu_update)
             ,  reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in
                                 ColAttrMap.getattrlist(pcoluid=c.colu_id)])
         ,  udpv2js(pmodeid=c.colu_id,pmodelemtype=Modelelemtype.COLU)

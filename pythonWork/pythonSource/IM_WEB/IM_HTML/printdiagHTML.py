@@ -374,12 +374,13 @@ def printelements(pdiag, pdiaganker,plang):
 
     retval = ""
     for eler in pdiag['elements']['entity']:
-        retval += entistart.format(hex2rbg(eler['Color']), hex2rbg(eler['margincolor'])
-                                               , round(eler['opacity']/100,2), round(eler['marginopacity']/100,2)
-                                               , eler['pos_x'], eler['pos_y'], eler['width'], eler['height']
+        elerui=eler["ui"]
+        retval += entistart.format(hex2rbg(elerui['color']), hex2rbg(elerui['margincolor'])
+                                               , round(elerui['opacity']/100,2), round(elerui['marginopacity']/100,2)
+                                               , eler['pos_x'], eler['pos_y'], elerui['width'], elerui['height']
                                                , eler['element']
                                                , pdiaganker + '-' + eler['element']
-                                               , hex2rbg(eler['fontcolor'])
+                                               , hex2rbg(elerui['fontcolor'])
                                                , 11  #vorläufig mal fix verdrahtet e[9], font size
                                                , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index'])))
 
@@ -387,17 +388,18 @@ def printelements(pdiag, pdiaganker,plang):
         iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']),pdefaultlang=printHTML.getmodel().getdefaultlang())
         if iconsrc != "":
             retval += imagehtml.format(iconsrc
-                                               ,eler['pos_x']+eler['width']-ICONSIZE/2,
+                                               ,eler['pos_x']+elerui['width']-ICONSIZE/2,
                                                 eler['pos_y'] - ICONSIZE/2)
 
     #for
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
     for attr in pdiag['elements']['attribute']:
+        attrui = attr["ui"]
         x = attr['pos_x']
         y = attr['pos_y']
         aelem = getelement(attr['element'])
         retval += printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
-                  , pfillcolor=hex2rbg(attr['fontcolor']), pfontsize=attr['fontsize']
+                  , pfillcolor=hex2rbg(attrui['fontcolor']), pfontsize=attrui['fontsize']
                   )
     # for
     retval += printrela(plist=pdiag['relationships'])
