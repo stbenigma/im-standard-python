@@ -129,10 +129,12 @@
 							<tbody>
 								<tr>
 									<th>Dev. Status</th>
+									<th>CRUD</th>
 									<th>updated</th>
 								</tr>
 								<tr>
 									<td class="attribute">{{ elem["devstatus"] }}</td>
+									<td class="attribute">{{ elem["CRUD"] }}</td>
 									<td class="attribute">{{ "{}, {}".format(elem["uc"],elem["dc"]) }}</td>
 								</tr>
 							</tbody>
@@ -149,6 +151,7 @@
 										<th>Description</th>
 										<th>Domain</th>
 										<th>Datatype</th>
+										<th>R/W</th>
 									</tr>
 									{% for colid in elem["columns+"] %}
 									{% set colu = webmodel.getelem(colid) %}
@@ -168,6 +171,7 @@
 											{% endif %}
 										</td>
 										<td>{{ colu["datatype"] }}</td>
+										<td>{{ colu["R/W"] }}</td>
 									</tr>
 									{% endfor %}
 								</tbody>
@@ -249,6 +253,7 @@
 									<th>Datatype</th>
 									<th>Base Type</th>
 									<th>Dev. Status</th>
+									<th>R/W</th>
 									<th>updated</th>
 								</tr>
 								<tr>
@@ -267,6 +272,7 @@
 									<td class="attribute">{{ elem["datatype"] }}</td>
 									<td class="attribute">{{ elem["basedatatype+"] }}</td>
 									<td class="attribute">{{ elem["devstatus"] }}</td>
+									<td class="attribute">{{ elem["R/W"] }}</td>
 									<td class="attribute">{{ "{}, {}".format(elem["uc"],elem["dc"]) }}</td>
 								</tr>
 							</tbody>
@@ -283,15 +289,12 @@
 										<th>Model </th>
 										<th>Attribute(s) / Column(s)</th>
 									</tr>
+									{% for key,val in webmodel.getmaplist(id=elemid,curintfid=webmodel.getelemintfid(elemid)).items() %}
 									<tr>
-										<td>Information Model</td>
-										<td>
-										{% for attrid in elem["attributesmapped"] %}
-											{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(attrid)["name"])
-														,destid=attrid,curintfid=webmodel.getelemintfid(elemid)) |safe }}
-											{% if not loop.last %}, {% endif %}
-										{% endfor %}
+										<td>{{ key }}</td>
+										<td>{{ val|safe }}</td>
 									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div> 

@@ -26,13 +26,19 @@ class Interface(Baseobject):
 
 
     @staticmethod
-    def getmapped(pentiid=None,pattrid=None):
+    def getmapped(pentiid=None,pattrid=None,prelaid=None):
         if pentiid is not None:
             return Interface.select(pwhere=("""intf_id in (select tabl_intf_id 
                                                         from tables
                                                         join tabl_enti_maps on tema_tabl_id = tabl_id
                                                         where tema_enti_id = ?
                                                         )""", pentiid))
+        if prelaid is not None:
+            return Interface.select(pwhere=("""intf_id in (select tabl_intf_id 
+                                                        from tables
+                                                        join tabl_enti_maps on tema_tabl_id = tabl_id
+                                                        where tema_rela_id = ?
+                                                        )""", prelaid))
         if pattrid is not None:
             return Interface.select(pwhere=("""intf_id in (select tabl_intf_id 
                                                         from tables

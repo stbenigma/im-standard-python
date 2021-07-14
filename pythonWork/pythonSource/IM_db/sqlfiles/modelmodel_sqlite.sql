@@ -56,9 +56,9 @@ create table MODELELEMENT
 		references MODELELEM_TYPE (melt_id),
     MODE_MIN_ZOOM_LEVEL numeric(1) NULL CHECK ( MODE_MIN_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
     MODE_MAX_ZOOM_LEVEL numeric(1)  NULL CHECK ( MODE_MAX_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
-    MODE_DEV_STATUS VARCHAR (4) NULL DEFAULT 'DEV' CHECK ( MODE_DEV_STATUS IN ('DEV', 'REL', 'TEST') ),
-	check (MODE_TYPE IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                            , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY','DGRM','DIAG'))
+    MODE_DEV_STATUS VARCHAR (4) NULL DEFAULT "DEV" CHECK ( MODE_DEV_STATUS IN ("DEV", "REL", "TEST") ),
+	check (MODE_TYPE IN ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
+                            , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU","KEYS","DATY","DGRM","DIAG"))
 );
 
 create table DATATYPES
@@ -492,7 +492,7 @@ create table DOMAINS
 	DOMA_NUM_MAXVALUE NUMERIC(30,10),
 	DOMA_NUM_MINVALUE NUMERIC(30,10),
 	DOMA_NUM_TOTAL_DIGITS NUMERIC(3),
-	DOMA_NUM_FRACT_DIGITS NUMERIC(3) default 0,
+	DOMA_NUM_FRACT_DIGITS NUMERIC(3) ,
 	DOMA_NUM_ROUND_VALUE NUMERIC(7,3),
 	DOMA_NUM_PHYU_ID integer
 		references PHYSICAL_UNIT (PHYU_ID),
@@ -817,6 +817,10 @@ create table tables
 		references interfaces (intf_ID),
 	tabl_prefix varchar(60),
 	tabl_descr varchar(4000),
+    tabl_create varchar (5) not null default 'FALSE' check ( tabl_create in ('FALSE', 'TRUE') ) , 
+    tabl_read varchar (5) not null default 'TRUE' check ( tabl_read in ('FALSE', 'TRUE') ) , 
+    tabl_update varchar (5) not null default 'FALSE' check ( tabl_update in ('FALSE', 'TRUE') ) , 
+    tabl_delete varchar (5) not null default 'FALSE' check ( tabl_delete in ('FALSE', 'TRUE') ) ,
 	tabl_uc varchar(30) not null,
 	tabl_dc varchar(30) not null,
 	tabl_um varchar(30),
@@ -837,6 +841,8 @@ create table columns
 	colu_ext_system_id varchar(100),
 	colu_descr varchar(4000),
 	colu_type_string varchar(200),
+    colu_read VARCHAR (5) NOT NULL DEFAULT 'TRUE' CHECK ( colu_read IN ('FALSE', 'TRUE') ) , 
+    colu_update VARCHAR (5) NOT NULL DEFAULT 'FALSE' CHECK ( colu_update IN ('FALSE', 'TRUE') ), 
 	colu_tabl_id integer not null
 		constraint colu_tabl_fk
 			references tables (tabl_id),
@@ -875,6 +881,7 @@ create table colu_attr_map
 	check (coam_triggertype in ('MANUELL', 'PERIODE', 'ZPKT'))
 );
 
+
 create table tabl_enti_maps
 (
 	tema_id integer
@@ -903,8 +910,8 @@ CREATE TABLE BUSINESS_RULES
      BURU_RULE VARCHAR (4000) NOT NULL ,
      BURU_DESCR VARCHAR (4000) NULL ,
      BURU_IMPACT VARCHAR (4000) NULL ,
-     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( [BURU_TYPE]='TRIGGER' OR [BURU_TYPE]='CHECK' OR [BURU_TYPE]='CALC' ) ,
-     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( [BURU_LEVEL]='TUPL' OR [BURU_LEVEL]='ENTI' OR [BURU_LEVEL]='DB' OR [BURU_LEVEL]='ATTR' ) ,
+     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( BURU_TYPE='TRIGGER' OR BURU_TYPE='CHECK' OR BURU_TYPE='CALC' ) ,
+     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( BURU_LEVEL='TUPL' OR BURU_LEVEL='ENTI' OR BURU_LEVEL='DB' OR BURU_LEVEL='ATTR' ) ,
      BURU_ERRORMSG VARCHAR (100) ,
      BURU_UC VARCHAR (30) NOT NULL ,
      BURU_DC DATETIME (8) NOT NULL ,
@@ -916,7 +923,7 @@ CREATE TABLE BUSINESSRULE_ELEMENTS
     (
      BURE_ID integer NOT NULL primary key autoincrement,
      BURE_BURU_ID NUMERIC (10) NOT NULL ,
-     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( [BURE_WRITEABLE]='TRUE' OR [BURE_WRITEABLE]='FALSE' ) ,
+     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( BURE_WRITEABLE='TRUE' OR BURE_WRITEABLE='FALSE' ) ,
      BURE_ATTR_ID NUMERIC (10) NULL ,
      BURE_ENTI_ID NUMERIC (10) NULL ,
      BURE_RELA_ID NUMERIC (10) NULL ,

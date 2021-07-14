@@ -1,8 +1,7 @@
 from collections import defaultdict
 from IM_DB import dbDML
 from .attribute import Attribute
-from .baseobject import Baseobject
-from .datatype import Datatype
+from .baseobject import Baseobject,Boolean
 from .interface import Interface
 from .table import Table
 from .domain import  Domain
@@ -147,6 +146,8 @@ class ColAttrMap(Baseobject):
     def __init__(self):
         if (len(ColAttrMap._columnlist) == 0): ColAttrMap._columnlist = Baseobject.gettablecolumns(ColAttrMap._tablename)
         super().__init__()
+        self.coam_read = Boolean.TRUE
+        self.coam_update = Boolean.FALSE
 
     @classmethod
     def getcolulist(cls,pattrid=None,pintfid=None):
