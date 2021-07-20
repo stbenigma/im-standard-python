@@ -16,6 +16,8 @@ with open(VERSIONFILEPATH, 'r') as handle:
     versions = json.load(handle)
 def toolversion():
     return versions['TOOLVERSION']
+def expecteddbversion():
+    return versions['DBVERSION']
 
 SQLITE:str = 'sqlite'
 SQLSERVER:str = 'sql-server'

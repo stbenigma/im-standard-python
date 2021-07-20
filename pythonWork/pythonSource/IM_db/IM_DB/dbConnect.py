@@ -1,34 +1,42 @@
 # -*- coding: latin-1 -*-
 
-""" Datenbank erstellen bzw. dazu connecten """
-
 import sqlite3
 
+from parameters import expecteddbversion
+
+""" Datenbank erstellen bzw. dazu connecten """
+
 myDbConn: sqlite3.Connection = None
-dbversion = {}
+actualdbversion = {}
 
-def createDB(p_filepath):
-    """ erstellt eine Datenbank im Pfad mit diesem Namen """
-    openDB(p_filepath)
-
-def openDB(p_filepath,fks='OFF'):
+def openDBbasic(pfilepath, pfks='OFF'):
     """ öffnet die DB pfad/Name """
-    global myDbConn,dbversion
+    global myDbConn
     try:
-        locconn =sqlite3.connect(p_filepath)
+        locconn = sqlite3.connect(pfilepath)
         myDbConn = locconn
-        dbversion = readversion(myDbConn)
+        setversion()
     except Exception as exp:
         raise exp
-    myDbConn.execute("PRAGMA foreign_keys = {}".format(fks))
+    myDbConn.execute("PRAGMA foreign_keys = {}".format(pfks))
+
+def opendDB4DDL(pfilepath, pfks="OFF"):
+    """ erstellt eine Datenbank im Pfad mit diesem Namen """
+    openDBbasic(pfilepath, pfks=pfks)
+
+def openDB(pfilepath, pfks='OFF'):
+    openDBbasic(pfilepath=pfilepath,pfks=pfks)
+    checkversion()
 
 def closeDB():
     global myDbConn
     myDbConn.close()
     myDBConn = None
 
+
 def isopenDB():
     return myDbConn is not None
+
 
 def getDBname():
     global myDbConn
@@ -36,6 +44,7 @@ def getDBname():
     cursor.execute("PRAGMA database_list;")
     curr_table = cursor.fetchall()
     return curr_table[0][2]
+
 
 def readversion(pconn):
     cursor = pconn.cursor()
@@ -49,11 +58,19 @@ def readversion(pconn):
         , "installdate": curr_table[0][1]
             }
 
+def checkversion():
+    actversion, expversion = readversion(myDbConn)['version'], expecteddbversion()
+    if actversion is not None and (actversion != expversion):
+        raise Exception("DB-Versions expected {}, DB-version found {}"
+                        .format(expversion, actversion))
+
+
 def setversion():
-    global dbversion,myDbConn
-    dbversion = readversion(myDbConn)
+    global actualdbversion, myDbConn
+    actualdbversion = readversion(myDbConn)
     return
 
+
 def getversion():
-    global dbversion
-    return dbversion["version"]
+    global actualdbversion
+    return actualdbversion["version"]

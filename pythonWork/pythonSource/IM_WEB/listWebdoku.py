@@ -99,7 +99,7 @@ def main(pdirec, plang):
 
     printHTML.setWebDirec(p_webdirec=None)
 
-    dbConnect.openDB(p_filepath= parameters.dbFilePath());
+    dbConnect.openDB(pfilepath= parameters.dbFilePath());
     deflang = Language.liesdeflangiso2()
     if deflang is not None : parameters.dbDefaultLang(deflang)
     printHTML.setmodel(JSModel(sql2json(pdbname=parameters.dbFilePath())))
