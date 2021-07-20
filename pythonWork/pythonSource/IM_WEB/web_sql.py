@@ -5,46 +5,6 @@ from IM_DB import dbDML, parameters
 from IM_OBJECTS import *
 from WEB_OBJECTS import *
 
-
-# def  namelist(ptype, plang=None, pid=None):
-#     datalist = []
-#     if ptype == Modelelemtype.ENTI:
-#         datalist = WebEntity.indexlist(plang=plang)
-#     elif (ptype ==  Modelelemtype.ATTR):
-#         datalist = WebAttribute.indexlist(plang=plang)
-#     elif (ptype == Modelelemtype.DGRM):
-#         data = dbDML.select("""select wbgrname || ' ('||wrtbname||')' name, dgrm_id,wrtbname,doma_id
-#             from
-#              (select  dgrm_name wbgrname
-#                 ,dgrm_id,w2.doma_id
-#                 ,case when ana.lgtx_text is null then w2.doma_name
-#                                                 else ana.lgtx_text end  wrtbname
-#               from domaingroup_members
-#               join domains w2 on w2.doma_id = dgrm_doma_id_group
-#               join languages sp on sp.lang_iso_code2 = '{}'
-#               left join langattr ana on ana.lgtx_attrname = 'DOMA_NAME'
-#                                     and ana.lgtx_mode_id = w2.doma_id
-#                                     and ana.lang_id = sp.lang_id
-#               where dgrm_doma_id_member = {}
-#               ) order by wrtbname,upper(name)
-#                   """.format(plang, pid if (pid is not None) else 'doma_id'))
-#         datalist = [(e[0], wrtbAnker(e[3]),'') for e in data]
-#     elif (ptype == Modelelemtype.DOMA):
-#         datalist = WebDomain.indexlist(porigin =Domain.DOMAIN, plang=plang)
-#     elif (ptype == Modelelemtype.DIAG):
-#         datalist = WebDiagram.indexlist()
-#     elif (ptype == Modelelemtype.DOCU) :
-#         datalist = WebDocument.indexlist()
-#     elif (ptype == Modelelemtype.INTF) :
-#         datalist = WebInterface.indexlist()
-#     elif (ptype == Modelelemtype.COLU):
-#         datalist = Column.indexlist(pschnid=pid)
-#     elif (ptype == Modelelemtype.TABL) :
-#         datalist = Table.indexlist(pschnid=pid)
-#     #fi
-#     return datalist
-# #namelist
-
 def pointlist(pliseid):
     data = dbDML.select("""
             select lise_x,lise_y,'Konnektor' as connector ,lise_linetype,lise_angle
