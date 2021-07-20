@@ -27,7 +27,7 @@ def main(pdirec, plang,pforceoverwrite = False):
 
     fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
 
-    dbConnect.openDB(parameters.dbFilePath(), fks='ON')
+    dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
     jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     printHTML.setmodel(jsmodel)
     printHTML.setWebDirec(p_webdirec=None)

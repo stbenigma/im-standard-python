@@ -56,7 +56,7 @@ def main(param1):
     filename = parameters.odmModelName()
     filepath = parameters.dbDirect()
     try:
-        dbConnect.openDB(p_filepath=parameters.dbFilePath());
+        dbConnect.openDB(pfilepath=parameters.dbFilePath());
         createExcel(pfilename=filepath+excelfilename(filename))
         dbConnect.closeDB()
     finally:

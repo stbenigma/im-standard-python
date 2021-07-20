@@ -10,11 +10,11 @@ def filldbmain(callarg, createnewdb=False):
 def fillmergedb(callarg,transferfunction, createnewdb=False):
     if createnewdb:
         createDB.createDB(par1=callarg,pforcecreate=True)
-        dbConnect.openDB(p_filepath=parameters.dbFilePath(), fks='ON');
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON');
     else:
         memoryfilepath = ":memory:"
-        dbConnect.openDB(p_filepath=memoryfilepath,fks='ON')
-        dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
+        dbConnect.openDB(pfilepath=memoryfilepath, pfks='ON')
+        dbErstelleTables.applysqlscript(parameters.sqlfilepath());
         dbConnect.setversion() #newly created view in infra
         transferModel.insertBaseData()
     #fi
@@ -27,7 +27,7 @@ def fillmergedb(callarg,transferfunction, createnewdb=False):
         pass
     else:
         """merge created DB into existing one"""
-        dbConnect.openDB(p_filepath=parameters.dbFilePath(),fks='ON');
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON');
         newversion =odmjson.jsmodel['_imprint_']["Modelversion"]
         if newversion != dbConnect.getversion():
             logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
