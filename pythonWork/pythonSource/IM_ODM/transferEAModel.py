@@ -1,27 +1,14 @@
 import math
 import os
 import re
+import xml.etree.ElementTree as et
 import handleXML
+from datetime import datetime
 from IM_DB import dbConnect, parameters, logmessages
 from IM_OBJECTS import *
-from IM_ODM import transferRelational
+from IM_ODM import transferRelational,transferModel
 from mystring import nvl
 
-
-GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
-UDPEXTENSION: str = 'udposdm'
-
-
-class Color:
-    def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
-        self.backgcolor = backgcolor
-        self.foregcolor = foregcolor
-        self.fontcolor = fontcolor
-        self.fontname = fontname
-        self.fontsize = fontsize
-        self.fontstyle = fontstyle
-    # end __init__
-# Color
 
 """ entry of keys found in entites
  [Key, (listof attr and relationship guids)]
@@ -47,11 +34,6 @@ defcolors = dict()
 """
 entities = dict()
 
-"""domains in non-default file are IM or interface (relationale model) dependent.
-    fix interface-id of Domains at end of transfer.
-    {doma_id : filename of domainfile}
- """
-interfacedomains = dict()
 
 def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
@@ -71,23 +53,12 @@ def is_langdept(pstr: str) -> bool:
 def is_repeated(pstr: str) -> bool:
     return nameflags(pstr=pstr, pflag='N')
 
-
-def transferTypes():
-    types = handleXML.parseXML(pfilename=parameters.odmIMDirec() + parameters.odmKonfDirec() + parameters.odmTypesFile())
-    root = types.getroot()
-    for typ in root.findall('logicaltype'):
-        Datatype(pname=handleXML.findField(typ, 'name')
-                 , pbasetype=Datatype.baseType(handleXML.findText(typ, 'mapping'))
-                ,psrcname=Externalref.SOURCE_ODM,pscrid=handleXML.findField(typ, 'objectid')
-                ).insert()
-    # endfor
-
 """List of not yet finished domain
     {id of unfinished domain : guid of type it is supposed to be}"""
 unkndomains = {}
 def do1structtype(filename):
     global unkndomains
-    structdomains = handleXML.parseXML(pfilename=filename)
+    structdomains = parseXML(pfilename=filename)
     structdom = structdomains.getroot()
     if (handleXML.findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (handleXML.findField(structdom,"name"))
@@ -125,7 +96,7 @@ def do1structtype(filename):
                            , pattrname=dgrm.dgrm_name
                            , pfathername=doma.doma_name
                            , pdomatype=Domain.DOMAIN
-                           , pattrxml=el)
+                           , pattr=el)
             unknowndoma = False
         else :
             """type has not yet been parsed or does not exist at all or is type I haven't considered
@@ -135,160 +106,21 @@ def do1structtype(filename):
         dgrm.insert()
         if unknowndoma: unkndomains[dgrm.dgrm_id] = reftypeguid
     # for
-"""    attr.attr_doma_id = findorcreateDomain(pdomguid=handleXML.findText(pattrxml, 'domain')
-                                           , pstructdomguid=handleXML.findText(pattrxml, 'structuredType')
-                                           , ptypeguid=handleXML.findText(pattrxml, 'logicalDatatype')
-                                           , pattrname=attr.attr_displ_name
-                                           , pfathername=vatername
-                                           , pattrxml=pattrxml)
-"""
-def dostructtypes():
-    global unkndomains
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype,pmandatoryfile=False)
-
-    """update group domains as their types may now be available"""
-    for key,val in unkndomains.items():
-        doma = Modelelement.getelementbyodmguid(psrcid=val)
-        if isinstance(doma,Domain):
-            DomaingroupMember.updmember(pid=key,pdomaid=doma.doma_id)
-        else:
-            logmessages.writelog("Illegal domainreference {} (id={}) for structured type member {}".format(type(doma), key, val))
-        #fi
-
-def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
-    pdoma.doma_uc = handleXML.findText(pxml, 'createdBy')
-    pdoma.doma_dc = handleXML.findText(pxml, 'createdTime')
-    if pdatyid is None:
-        daty = Modelelement.getelementbyextref(psrcid=handleXML.findText(pxml, 'logicalDatatype'),psrcname=Externalref.SOURCE_ODM)
-    else:
-        daty = Datatype().getbyid(pid=pdatyid)
-    if daty is None:
-        pdoma.doma_daty_id = None
-        pdoma.doma_type = Domain.TXT
-    else:
-        pdoma.doma_daty_id = daty.daty_id
-        pdoma.doma_type = Domain.TXT if (daty.daty_basetype is None) \
-                                    else Domain.basetype2domatype(pdatybasetype=daty.daty_basetype)
-
-    lov = pxml.find('listOfValues')
-    if (lov is not None) and (lov != {}):
-        pdoma.doma_type = Domain.LOV
-        lovs = dict()
-        for lovval in lov:
-            # print (handleXML.findField(lovval,'value'),handleXML.findField(lovval,'description'),lovval.attrib)
-            lovs.update({handleXML.findField(lovval, 'value'): handleXML.findField(lovval, 'description')})
-        # endfor
-        # print (len(lovs))
-    # endif
-    ranges = pxml.findall('listOfRanges/rangeDef')
-    if not (ranges == []):
-        range = (handleXML.findText(ranges[0], 'beginValue'), handleXML.findText(ranges[0], 'endValue'))
-    else:
-        range = (None, None)
-    # endif
-
-    # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
-
-    if (pdoma.doma_type == Domain.BIN):
-        pdoma.doma_bin_contenttype = Domain.IMAGE  # 'FILM','GRAPH','TEXT','TON'
-        pdoma.doma_bin_spfo_id = None
-    elif (pdoma.doma_type == Domain.LOV):
-        zahl = re.search('\A\d+', nvl(handleXML.findText(pxml, 'dataTypeSize')))
-        pdoma.doma_txt_maxlng = None if zahl is None else zahl.group()
-    elif (pdoma.doma_type == Domain.TXT):
-        #            print(re.search('\A\d* ','123 ab').group())
-        zahl = re.search('\A\d+', nvl(handleXML.findText(pxml, 'dataTypeSize')))
-        pdoma.doma_txt_maxlng = None if zahl is None else zahl.group()
-        buru = getcheckconstraint(pxml=pxml)
-        if buru:
-            regexpprefix: str = "REGEXP:"
-            if (pdoma.doma_type == Domain.TXT) and buru.buru_rule.startswith(regexpprefix):
-                pdoma.doma_txt_syntaxrule = re.sub(regexpprefix, '', buru.buru_rule)
-            else:
-                buru.buru_name = nvl(buru.buru_name, pdoma.doma_name + '_CHK')
-                buru.buru_impact = 'REFUSE'
-                buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-                buru.insert()
-            # fi
-        # fi
-    elif (pdoma.doma_type == Domain.DAT):
-        pdoma.doma_dat_minvalue = range[0]
-        pdoma.doma_dat_maxvalue = range[1]
-        pdoma.doma_dat_granularity = Domain.MINUTE
-    elif (pdoma.doma_type == Domain.NUM):
-        pdoma.doma_num_minvalue = range[0]
-        pdoma.doma_num_maxvalue = range[1]
-        prec = handleXML.findText(pxml, 'dataTypePrecision')
-        if prec is None:
-            prec = handleXML.findText(pxml, 'precision') # in struct-type attributes
-        scale = handleXML.findText(pxml, 'dataTypeScale')
-        if scale is None:
-            scale = handleXML.findText(pxml, 'scale') #in struct-type attributes
-        pdoma.doma_num_fract_digits = 0 if scale is None else int(scale)
-        pdoma.doma_num_total_digits = 0 if prec is None else int(prec)
-        pdoma.doma_num_round_value = None
-        unitofmeasure = handleXML.findText(pxml, 'unitOfMeasure')
-        if unitofmeasure is not None: pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
-    # fi
-
-    pdoma.insert()
-
-    if (lov is not None) & (lov != {}):
-        for idx, key in enumerate(lovs.keys(), start=1):
-            deva = DefaultValue()
-            deva.deva_value = key
-            deva.deva_doma_id = pdoma.doma_id
-            deva.deva_sort_order = idx
-            deva.deva_uc = pdoma.doma_uc
-            deva.deva_dc = pdoma.doma_dc
-            deva.deva_displ = lovs[key]
-            deva.insert()
-        # for
-    # fi
-
-
-def do1domainfile(pfilename):
-    global interfacedomains
-    interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
-    domains = handleXML.parseXML(pfilename=pfilename)
-    root = domains.getroot()
-
-    for dom in root.findall('domains/Domain'):
-        doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=handleXML.findField(dom, "id"))
-        doma.doma_name = handleXML.findField(dom, "name")
-        doma.doma_descr = handleXML.findText(dom, 'comment')
-        doma.doma_origin = Domain.DOMAIN
-        liesunsfuelldoma(pdoma=doma, pxml=dom)
-
-        intfname = interfacename(handleXML.findField(root, 'fileName'))
-        if intfname is not None:
-            interfacedomains[doma.doma_id] = intfname
-    # for
     return
 
 def transferDomains():
-    do1domainfile(pfilename=parameters.odmDefDomainsfilePath())
+    daty_id= Datatype(pname="unknown"
+             , pbasetype=Datatype.STRING
+             , psrcname=Externalref.SOURCE_EAXML, pscrid="DATYunknown"
+             ).insert()
 
-    doxmlfiles(pdirec=parameters.odmdomainsdirec()
-               , ptransfer=do1domainfile
-               , ppattern=r'.*\.{}'.format('xml')
-               ,pmandatorydirec=False)
-
-    dostructtypes()
-# end transferDomains
-
-def hex2int(phex):
-    return None if (phex is None) else int(phex, 16)
-
-
-def int2hex(pint):
-    if (pint is None): return pint
-    lint = pint if (type(pint) == int) else int(pint)
-    retval = hex(lint & 0xfffffff)
-    retval = retval[3:]
-    return retval
-
-
+    doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid="DOMAunknown")
+    doma.doma_name = "unknown"
+    doma.daty_id = daty_id
+    doma.doma_type = Domain.TXT
+    doma.doma_origin = Domain.DOMAIN
+    doma.insert()
+    return
 
 def transferentity(penti, pdiagid, puc, pdc):
     global entities,defcolors,classcolors
@@ -587,7 +419,7 @@ def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
 def do1diagramm(pfilename):
     # print (p_filename)
     try:
-        diagramme = handleXML.parseXML(pfilename=pfilename)
+        diagramme = parseXML(pfilename=pfilename)
     except Exception as ex:
         print("Diagram nicht lesbar: {}".format(pfilename))
         return
@@ -634,8 +466,8 @@ def transferdiagramme():
 
 # transferdiagramme
 
-def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pintfid=None):
-    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=Modelelemtype.DOMA+handleXML.findField(pattrxml, 'id'))
+def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattr,pintfid=None):
+    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=Modelelemtype.DOMA+handleXML.findField(pattr, 'id'))
     doma.doma_name = pattrname
     domatest = Domain.getbyname(pname=doma.doma_name)
     if (domatest is not None):
@@ -647,55 +479,19 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pin
         doma.doma_daty_id = Modelelement.getmodebyodmguid(psrcid=ptypeguid).mode_id
     doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
 
-    liesunsfuelldoma(pdoma=doma, pxml=pattrxml,pdatyid=doma.doma_daty_id)
+    liesunsfuelldoma(pdoma=doma, pxml=pattr,pdatyid=doma.doma_daty_id)
     return doma
 # insertderiveddomain
 
 
-def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml,pintfid = None
+def findorcreateDomain(pattrname, pfathername, pdomatype,pattr,pintfid = None
                        , pdomguid=None, pstructdomguid=None, ptypeguid=None):
-    def handleguid(pguid):
-        if pguid is None: return None
-        typeelem = Modelelement.getelementbyodmguid(psrcid=pguid)
-
-        if typeelem is None:
-            """domain not yet known"""
-            return Domain().getunknown().doma_id
-        elif isinstance(typeelem, Domain):
-            return typeelem.doma_id  # Done, domain found
-        else:
-            logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
-                                 .format(pattrname, pfathername, pguid, type(typeelem)))
-            return Domain().getunknown().doma_id
-        # fi
-    #handleguid
-
-    domaid = handleguid(pdomguid)
-    if domaid is not None: return domaid
-    domaid = handleguid(pstructdomguid)
-    if domaid is not None: return domaid
-
-    if ptypeguid is not None:
-        typeelem = Modelelement.getelementbyodmguid(psrcid=ptypeguid)
-        if typeelem is None:
-            """domain not yet known"""
-            return Domain().getunknown().doma_id
-        elif isinstance(typeelem, Datatype):
-            doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,pdomatype=pdomatype,
-                                           pattrxml=pattrxml,pintfid = pintfid)
-            return doma.doma_id
-        else:
-            logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
-                                 .format(pattrname, pfathername, ptypeguid, type(typeelem)))
-            return Domain().getunknown().doma_id
-        # fi
-    # fi
     return Domain().getunknown().doma_id
-# findorcreateDomain
+
 
 
 def do1Arc(fileName):
-    arcXML = handleXML.parseXML(pfilename=fileName).getroot()
+    arcXML = parseXML(pfilename=fileName).getroot()
     if (handleXML.findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
     arc = Arc(pname=handleXML.findField(arcXML, "name")
@@ -824,50 +620,35 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
     return
 
 
-def do1Attribute(plfnr, pattrxml,pentiId):
-    # wegen FK-PK zusätzliche Attribute werden nicht übernommen
-    if (handleXML.findText(pattrxml, 'referedAttribute') is not None):
-        return
-    vatername = Entity().getbyid(pid=pentiId).enti_name
+def do1Attribute(pattr):
+    vaterguid = handleXML.findRefGuid(pattr,"Object_ID")
+    vater = Entity().getbyextref(psrcid=vaterguid, psrcname=Externalref.SOURCE_EAXML)
+    attrname= handleXML.findColumn(pattr,"Name")
 
-    xmlname = handleXML.findField(pattrxml, 'name')
-    # strip [] am Ende des Namens
-
-    attr = Attribute(pname=removeattrmeta(xmlname), pentiid=pentiId
-                     , psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(pattrxml, 'id'))
-    attr.attr_tech_name = handleXML.findText(pattrxml, 'preferredAbbreviation')
+    attr = Attribute(pname=transferModel.removeattrmeta(attrname), pentiid=vater.enti_id
+                     , psrcname=Externalref.SOURCE_EAXML, psrcid=handleXML.findColumn(pattr, 'ea_guid'))
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_displ_name))
-    attr.attr_uc = handleXML.findText(pattrxml, 'createdBy')
-    attr.attr_dc = handleXML.findText(pattrxml, 'createdTime')
-    attr.attr_tooltip = handleXML.findText(pattrxml, 'commentInRDBMS')
-    attr.attr_doma_id = findorcreateDomain(pdomguid=handleXML.findText(pattrxml, 'domain')
-                                           , pstructdomguid=handleXML.findText(pattrxml, 'structuredType')
-                                           , ptypeguid=handleXML.findText(pattrxml, 'logicalDatatype')
+    attr.attr_uc = "filldbea"
+    attr.attr_dc = datetime.now()
+    attr.attr_doma_id = findorcreateDomain(pdomguid=handleXML.findColumn(pattr, 'Stereotype')
+                                           #, pstructdomguid=handleXML.findText(pattr, 'structuredType')
+                                           #, ptypeguid=handleXML.findText(pattr, 'logicalDatatype')
                                            , pattrname=attr.attr_displ_name
-                                           , pfathername=vatername
+                                           , pfathername=vater.enti_name
                                             ,pdomatype=Domain.DERIVED
-                                           , pattrxml=pattrxml)
-    attr.attr_descr = handleXML.findText(pattrxml, 'comment')
-    attr.attr_displ_seq = plfnr
+                                           , pattr=pattr)
+    # attr.attr_descr = handleXML.findText(pattr, 'comment')
+    #attr.attr_displ_seq = plfnr
     attr.attr_is_descriptive = 'FALSE'
-    attr.attr_is_mandatory = Boolean.bool2str(handleXML.findText(pattrxml, 'nullsAllowed') != 'true')
-    attr.attr_is_historicised = Boolean.bool2str(is_historisized(xmlname))
-    attr.attr_is_repeated = Boolean.bool2str(is_repeated(xmlname))
-    attr.attr_is_translated = Boolean.bool2str(is_langdept(xmlname))
+    attr.attr_is_mandatory = 'FALSE' #Boolean.bool2str(handleXML.findText(pattr, 'nullsAllowed') != 'true')
+    attr.attr_is_historicised = Boolean.bool2str(is_historisized(attrname))
+    attr.attr_is_repeated = Boolean.bool2str(is_repeated(attrname))
+    attr.attr_is_translated = Boolean.bool2str(is_langdept(attrname))
     attr.attr_is_encrypted = 'FALSE'
     attrId = attr.insert()
 
-    Userdefpropvalue.fillallvalues(pattrid=attrId)
-    updateUDP(pmodeid=attrId, pobj=pattrxml)
-
-    documents = getdokuref(pelem=pattrxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
-    ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=pattrxml), pmodeid=attrId)
-
-    doconstraints(pelemname=vatername + '.' + attr.attr_tech_name, pmodetype=Modelelemtype.ATTR, pmodeid=attrId, pxml=pattrxml)
-
-# do1Attribute
+    return
 
 def fillKeys(p_enti, p_entiid):
     global schluessel
@@ -992,28 +773,26 @@ def getpartyref(pelem):
     return parties
 # getpartyref
 
+def parseXML(pfilename):
+    try:
+        tree = et.parse(pfilename)
+    except Exception as err:
+        logmessages.writelog("File ({}) could not be handled".format(pfilename))
+        print (pfilename)
+        raise
+    #try
+    return tree
 
-def do1Entity(fileName):
-    global entities,classids
-    tree = handleXML.parseXML(pfilename=fileName)
-    entixml = tree.getroot()
-    #es hat noch fremde XMLS in den Verzeichnissen
-    if (handleXML.findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
 
-    "natürliche Person"
-    entiguid = handleXML.findField(entixml, 'id')
-    enti = Entity(psrcname=Externalref.SOURCE_ODM, psrcid=entiguid)
-    enti.enti_name = handleXML.findField(entixml, "name")
-    enti.enti_descr = handleXML.findText(entixml, 'comment')
-    enti.enti_tooltip = handleXML.findText(entixml, 'note')
-    enti.enti_uc = handleXML.findText(entixml, 'createdBy')
-    enti.enti_dc = handleXML.findText(entixml, 'createdTime')
-    enticategoryguid = handleXML.findText(entixml, 'typeID')
-    if enticategoryguid is not None and enticategoryguid != '':
-        if enticategoryguid in classids:
-            enti.enti_enca_id = classids[enticategoryguid]
-        else:
-            print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
+def do1Entity(pentitiy):
+    global entities
+    entiguid:str = handleXML.findColumn(pentitiy, 'ea_guid')
+    enti = Entity(psrcname=Externalref.SOURCE_EAXML, psrcid=entiguid)
+    enti.enti_name = handleXML.findColumn(pentitiy, "Name")
+    #enti.enti_descr = handleXML.findColumn(pentitiy, 'Note')
+    enti.enti_uc = handleXML.findColumn(pentitiy, 'Author')
+    enti.enti_dc = handleXML.findColumn(pentitiy, 'CreatedDate')
+    enti.enti_dm = handleXML.findColumn(pentitiy, 'ModifiedDate')
 
     i=1 #safeguard for eternal loop
     while i<10:
@@ -1033,43 +812,25 @@ def do1Entity(fileName):
         #try
     #while
 
-    entientiguid = handleXML.findText(entixml, 'hierarchicalParent')
-    entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
-
-    Userdefpropvalue.fillallvalues(pentiid=entiId)
-
-    sobj = handleXML.findText(entixml, 'synonym')
-    if (sobj is not None):
-        syns = sobj.split(',')
-        for syn in syns:
-            #syn.strip()
-            syno = Synonym(pname=syn, pentiid=entiId)
-            syno.insert()
-        # for
-    # fi
-
-    # print (entname,translate.translate(p_text=entname,p_fromlang='de',p_tolang='en'),translate.translate(p_text=entname,p_fromlang='de',p_tolang='fr'))
-
-    updateUDP(pmodeid=entiId, pobj=entixml)
-    ModelelemDocu.insertdocuref(pdocguidlist=getdokuref(pelem=entixml), pmodeid=entiId)
-    ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=entixml), pmodeid=entiId)
-
-    attrs = entixml.find('attributes')
-    if attrs is not None:
-        for idx, attr in enumerate(attrs, start=1):
-            # alle Attribute
-            # print(handleXML.findField(attr,'name'),handleXML.findField(attr,'id'))
-            do1Attribute(plfnr=idx, pattrxml=attr, pentiId=entiId)
-        # rof
-    # fi
-    fillKeys(p_enti=entixml, p_entiid=entiId)
+    #entientiguid = handleXML.findColumn(pentitiy, 'hierarchicalParent')
+    #entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
 # do1Entity
 
 
-def transferEntities():
-    # lösche die Entitäten
-    dosegfiles(pdirec=parameters.odmEntityDirec(), transferfiles=do1Entity)
-# transferEntities
+def transferEntities(proot):
+    entities = proot.find("Table[@name='t_object']")
+    for row in entities:
+        if handleXML.findColumn(row,'Object_Type') == "Class" and\
+            handleXML.findColumn(row, 'Stereotype') == "Entity":
+            do1Entity(row)
+    return
+
+def transferAttributes(proot):
+    attributes = proot.find("Table[@name='t_attribute']")
+    for row in attributes:
+        if handleXML.findColumn(row, 'Stereotype') == "Attribute":
+            do1Attribute(row)
+    return
 
 def doSubentities():
     global entities
@@ -1110,7 +871,7 @@ def abbildTyp(ptyp):
 
 
 def do1Relation(fileName):
-    tree = handleXML.parseXML(pfilename=fileName)
+    tree = parseXML(pfilename=fileName)
     relaxml = tree.getroot()
     documents = getdokuref(pelem=relaxml)
 
@@ -1172,7 +933,7 @@ def do1Relation(fileName):
         #for idx, attr in enumerate(attrs, start=1):
         #    # alle Attribute
         #    # print((handleXML.findField(attr,'name'),handleXML.findField(attr,'id')))
-        #    do1Attribute(plfnr=idx, pattrxml=attr, prelaId=rela.rela_id)
+        #    do1Attribute(plfnr=idx, pattr=attr, prelaId=rela.rela_id)
         ## endfor
     # fi
 # do1Relation
@@ -1184,7 +945,7 @@ def transferRelations():
 
 
 def do1UDPFile(pfileName):
-    tree = handleXML.parseXML(pfilename=pfileName)
+    tree = parseXML(pfilename=pfileName)
     root = tree.getroot()
     filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
     ludpTheme = filename
@@ -1305,9 +1066,6 @@ def insertlanguages():
         , 'es': ['Español', 'esp']
         , 'it': ['Italiano', 'ita']
                  }
-    # (spra_iso_name, spra_iso_code2, spra_iso_code3
-    # , spra_ist_textsprache, spra_spra_id, spra_uc
-    # , spra_dc
     deflang = parameters.dbDefaultLang()
     for key, value in languages.items():
         Language(pname=value[0], piso2=key, piso3=value[1]).insert()
@@ -1316,22 +1074,46 @@ def insertlanguages():
     Language.setmodellang(pmodellang=deflang)
     Language.setallreplacementlang()
 
-def insertmelts():
-    Modelelemtype.fillmelt()
+def loeschmodell():
+    transferRelational.loeschmodell()
+    ModelelementProperty.delete()
+    Userdefprop.delete()
+    Userdefpropvalue.delete()
+    BusinessruleElement.delete()
+    BusinessRule.delete()
+    Keyelement.delete()
+    Key.delete()
+    Relation.delete()
+    Arc.delete()
+    Attribute.delete()
+    Synonym.delete()
+    Entity.delete()
+    ModelelemOrgu.delete()
+    OragnisationalUnit.delete()
+    ModelelemDocu.delete()
+    Document.delete()
+    Externalref.delete()
+    Modelelement.delete()
+    Diagram.delete()
+    DefaultValue.delete()
+    DomaingroupMember.delete()
+    Domain.delete()
+    Linesegment.delete()
+    Relationrep.delete()
+    Elementrep.delete()
+    Diagram.delete()
+    MeltDiat.delete()
+    Datatype.delete()
+    Modelelemtype.delete()
+    Diagramtype.delete()
+    PhysicalUnit.delete()
+    Storageformat.delete()
+    Project.delete()
+    Languagetext.delete()
+    Language.delete()
+# loeschmodell
 
-def insertdiagtypes():
-    diatid = Diagramtype(pname=Diagramtype.ENTITY).insert()
-    MeltDiat(pdiatid=diatid,pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)).insert()
-    MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA)).insert()
-    MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
-    diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
-
-def insertBaseData():
-    insertmelts()
-    insertdiagtypes()
-# insertBaseData
-
-def loadcolors(color:Color, elem):
+def loadcolors(color:transferModel.Color, elem):
     for fo in elem.findall('fonts/font_object'):
         if ((handleXML.findField(fo, 'fo_type') == 'Title')
                 or (handleXML.findField(fo, 'fo_type') == 'Titel')):  # es könnte auch Deutsch sein
@@ -1345,7 +1127,7 @@ def loadcolors(color:Color, elem):
 
 def loaddefaultcolors():
     global defcolors,classcolors,classids
-    settings = handleXML.parseXML(pfilename=parameters.odmsettingsfile())
+    settings = parseXML(pfilename=parameters.odmsettingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
 
@@ -1390,7 +1172,7 @@ def loaddefaultcolors():
 # loaddefaultcolors
 
 def filllanguages():
-    Languagetext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
+    Languagetext.insertlang_texts(pudpthema=None)
     #copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
@@ -1403,25 +1185,22 @@ def fillelementdisplays():
     return
 
 
-def transferproject():
-    proj = handleXML.parseXML(pfilename=parameters.odmIMDirec() + parameters.modelName() + parameters.odmIMExtension())
-    root = proj.getroot()
-    comm = handleXML.findText(root, 'comment')
-    if comm is None:
-        defspra = parameters.dbDefaultLang()
-        sprachen = parameters.dbLanguages()
-    else:
-        defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1)
-        sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1)
-    # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
+def transferproject(proot):
+
+    package = proot.find("Table[@name='t_package']")
+    assert (len(package) == 1)
+    packrow = package.find("Row")
+
+    defspra = parameters.dbDefaultLang()
+    sprachen = parameters.dbLanguages()
     proj = Project()
-    proj.proj_name = handleXML.findField(root, 'name')
-    proj.proj_uc = handleXML.findText(root, 'createdBy')
-    proj.proj_dc = handleXML.findText(root, 'createdTime')
+    proj.proj_name = handleXML.findColumn(packrow,'Name')
+    proj.proj_uc = "fillDBea"
+    proj.proj_dc = handleXML.findColumn(packrow,'CreatedDate')
+    proj.proj_dm = handleXML.findColumn(packrow,'ModifiedDate')
     proj.proj_languages = sprachen
     proj.proj_curr_lang = defspra
     proj.insert()
-
     if defspra is not None:
         defspra = defspra.lower()
         defspraid = Language.spraidlookup(piso=defspra)
@@ -1434,149 +1213,22 @@ def transferproject():
             parameters.dbDefaultLang(defspra)
             parameters.dbDefaultLangID(defspraid)
     # fi
+    return
 # transferproject
 
-def do1Document(fileName):
-    global docuparents
-    tree = handleXML.parseXML(pfilename=fileName)
-    root = tree.getroot()
-    id =handleXML.findField(root, 'id')
-    docu = Document(psrcname=Externalref.SOURCE_ODM,psrcid=id)
-    docu.docu_name = handleXML.findField(root, "name")
-    type= handleXML.findText(root, 'type')
-    if type is not None and type != '':
-        docu.docu_stfo_id = Storageformat.getorcreate(pname=type).stfo_id
-    docu.docu_reference = handleXML.findText(root, 'reference')
-    pd = handleXML.findText(root, 'parentDocument')
-    if (pd is not None and pd != ''):
-        docuparents [id]= handleXML.findText(root, 'parentDocument')
-    docu.insert()
+def transferEAModel(**kwargs):
+    """überträgt das ganze EA Modell aus einem XML in die DB"""
+    infile = handleXML.searchfile(pfilename=kwargs["pinput"],pdefaultdirec=parameters.baseDirec())
+    eaxml = handleXML.parseXML(pfilename=infile)
+    earoot = eaxml.getroot()
 
-def do1Orgunit(fileName):
-    global orguparents,contacts
-
-    tree = handleXML.parseXML(pfilename=fileName)
-    root = tree.getroot()
-    srcid =handleXML.findField(root, 'id')
-    orgu = OragnisationalUnit(psrcname=Externalref.SOURCE_ODM,psrcid=srcid)
-    orgu.orgu_name = handleXML.findField(root, "name")
-    orgu.orgu_uc = handleXML.findText(root, "createdBy")
-    orgu.orgu_dc = handleXML.findText(root, "createdTime")
-    orgu.orgu_descr = handleXML.findText(root, "comment")
-    pd = handleXML.findText(root, 'parentParty')
-    if (pd is not None and pd != ''):
-        orguparents [srcid] = pd
-    conts = root.findall('contacts/contact')
-    for cont in conts:
-        orgu.orgu_mail = contacts[cont.text]['email']
-        orgu.orgu_telefon = contacts[cont.text]['phone']
-        break #currently only 1 contact per orgunit
-    orgu.insert()
-
-docuparents ={}
-def transferDocuments():
-    global docuparents
-    docuparents = {}
-    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document,pmandatoryfile=False)
-    Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
-
-orguparents ={}
-def transferorgunits():
-    global orguparents
-    orguparents = {}
-    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit,pmandatoryfile=False)
-    OragnisationalUnit.updparents(psrcname=Externalref.SOURCE_ODM,pparents=orguparents)
-
-
-def removeemptyudp():
-    """remove all UDP's which are empty (containing '.' or '' or null as value"""
-    Userdefpropvalue.removeemptyUDP(('.',''))
-
-def removefixedudp():
-    """remove all UDP's which are pa rt of our model"""
-    modeludps = [(parameters.odmUDPElemdisplFileName(), val) for val in Modelelement.ODMattrmapping.values()]
-    for lang in Language.select():
-        for name in Languagetext.ODMtranslAttributes:
-            modeludps.append(
-                (parameters.odmUDPTranslFileName(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
-        #for
-    #for
-
-    Userdefprop.removemodelUDP(modeludps)
-    return
-
-def removeattrmeta(pstr):
-    return re.sub(r' ?\[[LNT]+\]','',pstr)
-
-emails = {}
-def do1email(fileName):
-    global emails
-    tree = handleXML.parseXML(pfilename=fileName)
-    root = tree.getroot()
-    emails [handleXML.findField(root, 'id')] = {'name' : handleXML.findField(root, "name")
-                                       ,'descr': handleXML.findText(root, "comment")
-                                       ,'uc' : handleXML.findText(root, "createdBy")
-                                        ,'dc' : handleXML.findText(root, "createdTime")
-                                        ,'email' : handleXML.findText(root, "emailAddress")
-                                      }
-#do1email
-phones = {}
-def do1phone(fileName):
-    global phones
-    tree = handleXML.parseXML(pfilename=fileName)
-    root = tree.getroot()
-    phones[handleXML.findField(root, 'id')] = {'name' : handleXML.findField(root, "name")
-                                       ,'descr': handleXML.findText(root, "comment")
-                                       ,'uc' : handleXML.findText(root, "createdBy")
-                                        ,'dc' : handleXML.findText(root, "createdTime")
-                                        ,'phoneno' : handleXML.findText(root, "phoneNumber")
-                                        , 'phnetype': handleXML.findText(root, "phoneType")
-                                       }
-#do1phone
-contacts = {}
-def do1contact(fileName):
-    global contacts,emails,phones
-    tree = handleXML.parseXML(pfilename=fileName)
-    root = tree.getroot()
-    phone,mail = "",""
-
-    ems = root.findall("emails/email")
-    for em in ems:
-        e = emails
-        mail = emails[em.text]['email']
-        break #currently we take only the first
-    phs = root.findall("phones/phone")
-    for ph in phs:
-        phone = phones[ph.text]['phoneno']
-        break    #currently we take only the first
-    id = handleXML.findField(root, 'id')
-    contacts[id] = {'name' : handleXML.findField(root, "name")
-                                       ,'descr': handleXML.findField(root, "comment")
-                                        ,'email' : mail
-                                        ,'phone': phone
-                                       ,'uc' : handleXML.findField(root, "createdBy")
-                                        ,'dc' : handleXML.findField(root, "createdTime")
-                                       }
-#do1contact
-
-def transferODMModel(**kwargs):
-    global interfacedomains
-    """provisional Element internal buffers"""
-    businfodirec = parameters.odmIMDirec() + parameters.modelName() + '/businessinfo/'
-    dosegfiles(pdirec=businfodirec+'email/',transferfiles=do1email,pmandatoryfile=False)
-    dosegfiles(pdirec=businfodirec+'phone/',transferfiles=do1phone,pmandatoryfile=False)
-    dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact,pmandatoryfile=False)
-
-    """überträgt das ganze ODM Modell in die DB"""
-    insertlanguages()
-    transferproject()
-    transferTypes()
-    transferDocuments()
-    transferorgunits()
+    transferModel.insertlanguages()
+    transferproject(proot=earoot)
+    transferEntities(proot=earoot)
     transferDomains()
-    transferUDP()
-    loaddefaultcolors()
-    transferEntities()
+    transferAttributes(proot=earoot)
+    filllanguages()
+    return
     transferRelations()
     transferArcs()
     doSubentities()
@@ -1588,7 +1240,6 @@ def transferODMModel(**kwargs):
     Domain.fixdomaininterfaces(interfacedomains)
     BusinessRule.setburuelements()
     removeemptyudp()
-    filllanguages()
     fillelementdisplays()
     removefixedudp()
 # end transferODMModel

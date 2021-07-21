@@ -1,0 +1,365 @@
+{
+   "model": {
+      "name": "riddle",
+      "type": "logical",
+      "language": "en",
+      "uc": "fillDBea",
+      "dc": "2021-06-29 17:32:29",
+      "um": null,
+      "dm": "2021-06-29 17:32:29"
+   },
+   "languages": {
+      "en": {
+         "name": "English",
+         "iso3": "eng",
+         "modellanguage": true,
+         "replacementlang": null
+      }
+   },
+   "entities": {
+      "ENTI3": {
+         "name": {
+            "en": "Airport"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:48:46",
+         "um": null,
+         "dm": "2021-06-29 17:48:49",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{1FDCDC17-0587-4f38-AFB1-3ED0159DA4A7}",
+               "2021-07-21 15:26:02.950092"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [
+            "ATTR8"
+         ],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": []
+      },
+      "ENTI2": {
+         "name": {
+            "en": "Leg"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:46:55",
+         "um": null,
+         "dm": "2021-06-29 17:47:09",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{17FB5FB5-9389-4852-A17F-69CC44782683}",
+               "2021-07-21 15:26:02.949087"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": []
+      },
+      "ENTI4": {
+         "name": {
+            "en": "Pilot"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:23",
+         "um": null,
+         "dm": "2021-06-29 17:39:34",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{7AD59C4D-AA70-4019-9E4C-4F03A266D39D}",
+               "2021-07-21 15:26:02.951085"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": []
+      },
+      "ENTI1": {
+         "name": {
+            "en": "Plane"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:27",
+         "um": null,
+         "dm": "2021-06-29 17:39:44",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{15D14A8B-908A-4714-9424-DA0437161DF6}",
+               "2021-07-21 15:26:02.948049"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": []
+      },
+      "ENTI5": {
+         "name": {
+            "en": "Trip"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 18:10:07",
+         "um": null,
+         "dm": "2021-06-29 18:10:13",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{C01627F8-35E3-4085-A148-728AC88C96B6}",
+               "2021-07-21 15:26:02.952036"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": []
+      }
+   },
+   "domains": {
+      "DOMA7": {
+         "name": {
+            "en": "unknown"
+         },
+         "descr": {
+            "en": null
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "sys",
+         "um": null,
+         "dc": "2021-07-21 15:26:02.953459",
+         "dm": null,
+         "maxlng": null,
+         "syntaxrule": null,
+         "usedinattrs+": [
+            "ATTR8"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "EAXML": [
+               "DOMAunknown",
+               "2021-07-21 15:26:02.954259"
+            ]
+         },
+         "referencedby": []
+      }
+   },
+   "attributes": {
+      "ATTR8": {
+         "techname": "IATA_CODE",
+         "name": {
+            "en": "IATA Code"
+         },
+         "seq": null,
+         "entity": "ENTI3",
+         "domain": "DOMA7",
+         "basedatatype+": null,
+         "type+": "TXT",
+         "descriptive": false,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": null
+         },
+         "uc": "filldbea",
+         "dc": "2021-07-21 15:26:02.955396",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "EAXML": [
+               "{CB0F96CF-C29B-4f9a-8B72-FFE959450E46}",
+               "2021-07-21 15:26:02.956600"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": []
+      }
+   },
+   "relations": {},
+   "arcs": {},
+   "keys": {},
+   "documents": {},
+   "orgunits": {},
+   "categories": {},
+   "systems": {},
+   "tables": {},
+   "columns": {},
+   "diagrams": {},
+   "userdefprops": {},
+   "physicalunits": {},
+   "datatypes": {
+      "DATY6": {
+         "name": "unknown",
+         "basetype": "STRING",
+         "uc": "fillDB",
+         "dc": "2021-07-21",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "EAXML": [
+               "DATYunknown",
+               "2021-07-21 15:26:02.953044"
+            ]
+         }
+      }
+   },
+   "storageformats": {},
+   "_imprint_": {
+      "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/ea-interface/BOPTeatest/DB/riddle.db",
+      "created": "2021-07-21 15:26:02.986995",
+      "Modelversion": "1.5",
+      "hashvalue": -1776356341642893846,
+      "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
+   }
+}

@@ -7,7 +7,7 @@ import createDB
 def filldbmain(callarg, createnewdb=False):
     fillmergedb(callarg=callarg,createnewdb=createnewdb,transferfunction=transferModel.transferODMModel)
 
-def fillmergedb(callarg,transferfunction, createnewdb=False):
+def fillmergedb(callarg,transferfunction, createnewdb=False,**kwargs):
     if createnewdb:
         createDB.createDB(par1=callarg,pforcecreate=True)
         dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON');
@@ -18,17 +18,17 @@ def fillmergedb(callarg,transferfunction, createnewdb=False):
         dbConnect.setversion() #newly created view in infra
         transferModel.insertBaseData()
     #fi
-    transferfunction()
-    odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+    transferfunction(**kwargs)
+    loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
-    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName()+"_loaded")
+    loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName()+"_loaded")
     if createnewdb:
-        pass
+        loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
         dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON');
-        newversion =odmjson.jsmodel['_imprint_']["Modelversion"]
+        newversion =loadedjson.jsmodel['_imprint_']["Modelversion"]
         if newversion != dbConnect.getversion():
             logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
                                      .format(parameters.dbFilePath(),dbConnect.getversion()
@@ -36,13 +36,12 @@ def fillmergedb(callarg,transferfunction, createnewdb=False):
             raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion()
                                              ,newversion))
 
-        mergedbs.mergeodm2db(podmjson=odmjson)
+        mergedbs.mergeodm2db(podmjson=loadedjson)
         """generate json from merged DB"""
-        odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         dbConnect.closeDB()
+        newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     #fi
-    #print current db as json file
-    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     return
 
 def main(p_param1):
