@@ -513,7 +513,7 @@ def writexls(pfilename: str,pmodel,plang):
 #     global schnittstellen
 #     global tabentimap
 #
-#     createFile(pfilename=parameters.odmModelName() + '_tabenti.csv')
+#     createFile(pfilename=parameters.modelName() + '_tabenti.csv')
 #     write('\ufeff')
 #     topheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + CSVSEP.join(e[0] for e in entities.values())
 #     writeln(topheader)
@@ -528,7 +528,7 @@ def writexls(pfilename: str,pmodel,plang):
 
 
 # def listcolattr():
-#     createFile(pfilename=parameters.odmModelName() + '_colattr.csv')
+#     createFile(pfilename=parameters.modelName() + '_colattr.csv')
 #     write('\ufeff')
 #     topheader = CSVSEP + CSVSEP + 'Entity' + CSVSEP
 #     subheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + 'Column' + CSVSEP
@@ -635,7 +635,7 @@ def main(pdirec, plang):
     parameters.initparam(p_callarg=pdirec)
     logmessages.initlog('createMapping')
 
-    print("listmapping", parameters.odmBaseDirec(), parameters.odmModelName())
+    print("listmapping", parameters.baseDirec(), parameters.modelName())
 
     if plang is not None:
         Languagetext.reportLang(plang.lower())
@@ -646,11 +646,11 @@ def main(pdirec, plang):
     #filllists(plang=Languagetext.reportLang())
     model = listWebdoku.createJSON.sql2json()
     dbConnect.myDbConn.close()
-    writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
+    writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
     writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
     logmessages.showmessages("Model {}: mappinglist form database {}\n  => created in file {}"
-                             .format(parameters.odmModelName(), parameters.dbFilePath()
-                               , parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx'))
+                             .format(parameters.modelName(), parameters.dbFilePath()
+                               , parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx'))
 
 
 # main

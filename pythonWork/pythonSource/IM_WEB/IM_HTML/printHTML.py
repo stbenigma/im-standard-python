@@ -157,7 +157,7 @@ def setWebDirec(p_webdirec):
     global libSourceDirec, imagedirec, cssdirec, icondirec,jsdirec,jinadirec
 
     webDirectory = parameters.nvl(p_webdirec, parameters.webDirec());
-    webFileName = parameters.odmModelName();
+    webFileName = parameters.modelName();
     imagedirec = webDirectory + 'image/';
     cssdirec = webDirectory + "css/";
     icondirec = webDirectory + "icons/";

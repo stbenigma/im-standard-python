@@ -102,9 +102,9 @@ class ParameterTest(unittest.TestCase):
                 f.write("gugus")
             #one Modell, nonexistent  param file, everything default
             parameters.initparam(p_callarg= basedirec + '/')
-            self.assertEqual(parameters.odmModelName(),'TEST_DMD',msg="falscher modellname")
+            self.assertEqual(parameters.modelName(),'TEST_DMD',msg="falscher modellname")
             self.assertEqual(parameters.odmIMDirec(),direc ,msg="falsches IM-Verzeichnis")
-            self.assertEqual(parameters.odmBaseDirec(),basedirec+ '/',msg="falsches base-Verzeichnis")
+            self.assertEqual(parameters.baseDirec(),basedirec+ '/',msg="falsches base-Verzeichnis")
             self.assertEqual(parameters.dbDirect(), basedirec + '/' +  parameters.dbDefaultDirect()
                             ,msg="falsches DBverzeichnis")
             self.assertEqual(parameters.dbFilePath(), basedirec + '/' +  parameters.dbDefaultDirect() + 'TEST_DMD'+parameters.dbFileExtension()
@@ -122,12 +122,12 @@ class ParameterTest(unittest.TestCase):
                 f.write('odmIMDirec = "{}"\n'.format(direc))
                 f.write('#model name\n')
                 f.write('#default: single .dmd file in <odmIMDirec> or <odmIMDirec>/IM or <odmIMDirec>/github/IM\n')
-                f.write('#odmModelName = "{}"\n'.format('TEST_DMD'))
+                f.write('#modelName = "{}"\n'.format('TEST_DMD'))
                 f.write('[DB]]\n')
                 f.write('#default language of model in DB\n')
                 f.write('dbDefaultLang =  "de"\n')
             parameters.initparam(p_callarg= basedirec + '/')
-            self.assertEqual(parameters.odmBaseDirec(),basedirec +'/',msg="falsches base Direc")
+            self.assertEqual(parameters.baseDirec(),basedirec +'/',msg="falsches base Direc")
             self.assertEqual(parameters.odmIMDirec(),basedirec +'/' +parameters.odmIMDefaultDirec()
                         ,msg="falsches IM Direc")
             self.assertEqual(parameters.dbDefaultLang(),'de',msg="falsche Language {} {}")
@@ -138,10 +138,10 @@ class ParameterTest(unittest.TestCase):
                 f.write('[ODM]]\n')
                 f.write('#base directory for all model data (with ending /)\n')
                 f.write('#odmIMDirec = ""\n'.format('direc'))  #freischalten für zu exception
-                f.write('#odmBaseDirec = "{}"\n'.format('basedirec')) #freischalten für zu exception
+                f.write('#baseDirec = "{}"\n'.format('basedirec')) #freischalten für zu exception
                 f.write('#model name\n')
                 f.write('#default: single .dmd file in <odmIMDirec> or <odmIMDirec>/IM or <odmIMDirec>/github/IM\n')
-                f.write('odmModelName = "{}"\n'.format('TEST_DMDxx'))  #freischalten für zu exception
+                f.write('modelName = "{}"\n'.format('TEST_DMDxx'))  #freischalten für zu exception
                 f.write('[DB]]\n')
                 f.write('#default language of model in DB\n')
                 f.write('dbDefaultLang =  "de"\n')

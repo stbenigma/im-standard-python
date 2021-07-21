@@ -1,5 +1,5 @@
 # -*- coding: latin-1 -*-
-from IM_DB import logmessages,dbErstelleTables,createDB
+from IM_DB import logmessages,dbCreateStructure
 from IM_ODM import transferModel,mergedbs,createJSON
 from IM_JSON import *
 import createDB
@@ -14,7 +14,7 @@ def fillmergedb(callarg,transferfunction, createnewdb=False):
     else:
         memoryfilepath = ":memory:"
         dbConnect.openDB(pfilepath=memoryfilepath, pfks='ON')
-        dbErstelleTables.applysqlscript(parameters.sqlfilepath());
+        dbCreateStructure.applysqlscript(parameters.sqlfilepath());
         dbConnect.setversion() #newly created view in infra
         transferModel.insertBaseData()
     #fi
@@ -22,7 +22,7 @@ def fillmergedb(callarg,transferfunction, createnewdb=False):
     odmjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
-    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName()+"_loaded")
+    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName()+"_loaded")
     if createnewdb:
         pass
     else:
@@ -42,7 +42,7 @@ def fillmergedb(callarg,transferfunction, createnewdb=False):
         dbConnect.closeDB()
     #fi
     #print current db as json file
-    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.odmModelName())
+    odmjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     return
 
 def main(p_param1):
@@ -52,13 +52,13 @@ def main(p_param1):
 
     try:
         filldbmain(callarg=p_param1, createnewdb=not createDB.existsDB(parameters.dbFilePath()))
-        filename = parameters.odmModelName()
+        filename = parameters.modelName()
         filepath = parameters.dbDirect()
         createJSON.createJSON(pfilepath=filepath, pfilename=filename)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),
-                               parameters.odmModelName()))
+                               parameters.modelName()))
 #  main
 
 if __name__ == '__main__':

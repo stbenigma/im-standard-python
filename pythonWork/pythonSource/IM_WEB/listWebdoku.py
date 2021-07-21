@@ -108,7 +108,7 @@ def main(pdirec, plang):
     dbConnect.myDbConn.close()
 
     logmessages.showmessages("web-files from database {} for model {} created"
-                             .format(parameters.dbFilePath(),parameters.odmModelName()))
+                             .format(parameters.dbFilePath(),parameters.modelName()))
 #main
 
 if __name__ == '__main__':

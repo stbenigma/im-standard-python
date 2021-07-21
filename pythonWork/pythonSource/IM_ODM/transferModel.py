@@ -1471,7 +1471,7 @@ def fillelementdisplays():
 
 
 def transferproject():
-    proj = parseXML(pfilename=parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension())
+    proj = parseXML(pfilename=parameters.odmIMDirec() + parameters.modelName() + parameters.odmIMExtension())
     root = proj.getroot()
     comm = findText(root, 'comment')
     if comm is None:
@@ -1629,7 +1629,7 @@ def do1contact(fileName):
 def transferODMModel():
     global interfacedomains
     """provisional Element internal buffers"""
-    businfodirec = parameters.odmIMDirec() + parameters.odmModelName() + '/businessinfo/'
+    businfodirec = parameters.odmIMDirec() + parameters.modelName() + '/businessinfo/'
     dosegfiles(pdirec=businfodirec+'email/',transferfiles=do1email,pmandatoryfile=False)
     dosegfiles(pdirec=businfodirec+'phone/',transferfiles=do1phone,pmandatoryfile=False)
     dosegfiles(pdirec=businfodirec+'contact/',transferfiles=do1contact,pmandatoryfile=False)

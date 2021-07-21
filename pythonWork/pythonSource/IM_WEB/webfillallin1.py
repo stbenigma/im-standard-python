@@ -33,15 +33,15 @@ def main(pdirec, plang,pforceoverwrite = False):
     printHTML.setWebDirec(p_webdirec=None)
 
     listWebdoku.listwebmain(plang=Languagetext.reportLang())
-    jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.odmModelName())
+    jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
     dbConnect.closeDB()
 
-#    listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.odmModelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
+#    listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
 #    listmapping.writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
 
 
     logmessages.showmessages("model {}: created and filled database ({})\n   created json, webdocu and mapping excel"
-                             .format(parameters.odmModelName(), parameters.dbFilePath()))
+                             .format(parameters.modelName(), parameters.dbFilePath()))
 
 
 if __name__ == '__main__':
