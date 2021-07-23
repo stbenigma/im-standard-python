@@ -85,7 +85,6 @@ def excel2db():
 
 workbook = None
 def main(pparam1, pinfile):
-    global workbook
     parameters.initparam(p_callarg=pparam1)
     logmessages.initlog('importEXCEL')
     filename = parameters.odmModelName()
