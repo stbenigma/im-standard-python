@@ -30,36 +30,49 @@ def writesheets(pwb,pjsmodel:JSModel):
     for sys in systems.values():
         ws = pwb.create_sheet(sys["name"])
         ws.column_dimensions['A'].width = 20
-        ws.column_dimensions['B'].width = 50
+        ws.column_dimensions['B'].width = 70
+        ws.column_dimensions['C'].width = 30
+        ws.column_dimensions['D'].width = 60
         tables = [pjsmodel.getbyid(tab) for tab in sys["tables+"]]
         tables = sorted(tables,key=lambda tab:tab["name"])
         rowidx, colidx = 1, 1
         ws.cell(column=colidx, row=rowidx, value='Table')
         ws.cell(column=colidx + 1, row=rowidx, value='Column')
+        ws.cell(column=colidx + 2, row=rowidx, value='Entity/Relation')
+        ws.cell(column=colidx + 3, row=rowidx, value='Attribute')
         rowidx += 1
-        maxcolidx = 3
         for tab in tables:
             colidx = 1
-            ws.cell(column=colidx, row=rowidx, value=tab["name"])
-            colidx += 2
-            for map in tab['entitiesmapped']:
-                ws.cell(column=colidx,row=rowidx,value=pjsmodel.getbyid(map)["name"]["de"])
-                colidx += 1
-            for map in tab['relationsmapped']:
-                ws.cell(column=colidx,row=rowidx,value=pjsmodel.getbyid(map)["name"])
-                colidx += 1
-            for col in range(maxcolidx,colidx):
-                ws.column_dimensions[utils.get_column_letter(col)].width = 30
-            maxcolidx= max(maxcolidx,colidx-1)
+            if len(tab['entitiesmapped'])+len(tab['relationsmapped']) == 0:
+                #no entity write only table and columns
+                ws.cell(column=colidx, row=rowidx, value=tab["name"])
+                rowidx += 1
+            else:
+                for map in tab['entitiesmapped']:
+                    ws.cell(column=colidx, row=rowidx, value=tab["name"])
+                    ws.cell(column=colidx+2,row=rowidx,value=pjsmodel.getbyid(map)["name"]["de"])
+                    rowidx += 1
+                for map in tab['relationsmapped']:
+                    ws.cell(column=colidx, row=rowidx, value=tab["name"])
+                    ws.cell(column=colidx+2,row=rowidx,value=pjsmodel.getbyid(map)["name"])
+                    rowidx += 1
+            #fi
 
-            rowidx += 1
             columns = [pjsmodel.getbyid(col) for col in tab["columns+"]]
             columns = sorted(columns,key=lambda col:col["name"])
-            colidx = 2
-            #ws.merge_cells(start_row=2, start_column=1, end_row=4, end_column=4)
             for col in columns:
-                ws.cell(column=colidx, row=rowidx, value=col["name"])
-                rowidx += 1
+                colidx = 1
+                if len(col["attributesmapped"]) == 0:
+                    ws.cell(column=colidx+1, row=rowidx, value=col["name"])
+                    rowidx += 1
+                else:
+                    for attrid in col["attributesmapped"]:
+                        attr = pjsmodel.getbyid(attrid)
+                        ws.cell(column=colidx+1, row=rowidx, value=col["name"])
+                        ws.cell(column=colidx+2, row=rowidx, value=pjsmodel.getbyid(attr["entity"])["name"]["de"])
+                        ws.cell(column=colidx+3, row=rowidx, value=attr["name"]["de"])
+                        rowidx += 1
+
             #for
         # for
     # for
