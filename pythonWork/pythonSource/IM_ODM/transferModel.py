@@ -11,9 +11,21 @@ from mystring import nvl
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
 
+def hex2int(phex):
+    return None if (phex is None) else int(phex, 16)
+
+def int2hex(pint):
+    if (pint is None): return pint
+    lint = pint if (type(pint) == int) else int(pint)
+    retval = hex(lint & 0xfffffff)
+    retval = retval[2:8]
+    return retval
 
 class Color:
-    def __init__(self, foregcolor, backgcolor, fontcolor, fontname, fontsize, fontstyle):
+    BLACK = 0
+    WHITE = -1
+    BLUE = hex2int("602de8")
+    def __init__(self, foregcolor=None, backgcolor=None, fontcolor=None, fontname=None, fontsize=None, fontstyle=None):
         self.backgcolor = backgcolor
         self.foregcolor = foregcolor
         self.fontcolor = fontcolor
@@ -277,17 +289,6 @@ def transferDomains():
     dostructtypes()
 # end transferDomains
 
-def hex2int(phex):
-    return None if (phex is None) else int(phex, 16)
-
-
-def int2hex(pint):
-    if (pint is None): return pint
-    lint = pint if (type(pint) == int) else int(pint)
-    retval = hex(lint & 0xfffffff)
-    retval = retval[3:]
-    return retval
-
 
 
 def transferentity(penti, pdiagid, puc, pdc):
@@ -445,8 +446,6 @@ def connector(pidx, pmaxidx, psource, ptarget):
         return ptarget
     return None
 
-
-# conmector
 def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
     for c in pconnectors:
         type = handleXML.findField(c, 'otype')

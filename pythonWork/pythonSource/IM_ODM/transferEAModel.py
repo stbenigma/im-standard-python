@@ -2,117 +2,245 @@ import math
 import os
 import re
 import xml.etree.ElementTree as et
-import handleXML
 from datetime import datetime
-from IM_DB import dbConnect, parameters, logmessages
+
+import handleXML
+from IM_DB import parameters, logmessages
 from IM_OBJECTS import *
-from IM_ODM import transferRelational,transferModel
-from mystring import nvl
+from IM_ODM import transferModel
 
-
-""" entry of keys found in entites
- [Key, (listof attr and relationship guids)]
+"""Example XML of ea"""
+"""<?xml version="1.0" encoding="windows-1252"?>
+<Package name="riddle" guid="{68389B05-EBA4-4e57-954C-DFBC51443B65}">
+	<Table name="t_package">
+		<Row>
+			<Column name="Package_ID" value="3"/>
+			<Column name="Name" value="riddle"/>
+			<Column name="Parent_ID" value="1"/>
+			<Column name="CreatedDate" value="2021-06-29 17:32:29"/>
+			<Column name="ModifiedDate" value="2021-06-29 17:32:29"/>
+			<Column name="ea_guid" value="{68389B05-EBA4-4e57-954C-DFBC51443B65}"/>
+			<Column name="IsControlled" value="FALSE"/>
+			<Column name="Version" value="1.0"/>
+			<Column name="Protected" value="FALSE"/>
+			<Column name="UseDTD" value="FALSE"/>
+			<Column name="LogXML" value="FALSE"/>
+			<Column name="PackageFlags" value="isModel=1;VICON=3;"/>
+			<Extension/>
+		</Row>
+	</Table>
+	<Table name="t_object">
+		<Row>
+			<Column name="Object_ID" value="28"/>
+			<Column name="Object_Type" value="Class"/>
+			<Column name="Diagram_ID" value="0"/>
+			<Column name="Name" value="Plane"/>
+			<Column name="Author" value="bue"/>
+			<Column name="Version" value="1.0"/>
+			<Column name="Package_ID" value="3"/>
+			<Column name="Stereotype" value="Entity"/>
+			<Column name="NType" value="0"/>
+			<Column name="Complexity" value="1"/>
+			<Column name="Effort" value="0"/>
+			<Column name="Backcolor" value="-1"/>
+			<Column name="BorderStyle" value="0"/>
+			<Column name="BorderWidth" value="2"/>
+			<Column name="Fontcolor" value="-1"/>
+			<Column name="Bordercolor" value="-1"/>
+			<Column name="CreatedDate" value="2021-06-29 17:33:27"/>
+			<Column name="ModifiedDate" value="2021-06-29 17:39:44"/>
+			<Column name="Status" value="Proposed"/>
+			<Column name="Abstract" value="0"/>
+			<Column name="Tagged" value="0"/>
+			<Column name="PDATA2" value="Java"/>
+			<Column name="PDATA4" value="0"/>
+			<Column name="GenType" value="Java"/>
+			<Column name="Phase" value="1.0"/>
+			<Column name="Scope" value="Public"/>
+			<Column name="Classifier" value="0"/>
+			<Column name="ea_guid" value="{15D14A8B-908A-4714-9424-DA0437161DF6}"/>
+			<Column name="ParentID" value="0"/>
+			<Column name="IsRoot" value="FALSE"/>
+			<Column name="IsLeaf" value="FALSE"/>
+			<Column name="IsSpec" value="FALSE"/>
+			<Column name="IsActive" value="FALSE"/>
+			<Extension Package_ID="{68389B05-EBA4-4e57-954C-DFBC51443B65}"/>
+		</Row>
+	</Table>
+	<Table name="t_objectproperties">
+		<Row>
+			<Column name="PropertyID" value="17"/>
+			<Column name="Object_ID" value="27"/>
+			<Column name="Property" value="x_image"/>
+			<Column name="Value" value="&lt;Image type=&quot;EAShapeScript 1.0&quot; xmlns:dt=&quot;urn:schemas-microsoft-com:datatypes&quot; dt:dt=&quot;bin.base64&quot;&gt;UEsDBBQAAAAIAJh1zlJKjJOkbwAAAKQAAAAHABEAc3RyLmRhdFVUDQAHPGvHYDxrx2A8a8dg&#xA;PY0xDoJAEEVfK4l3MFtBQqEVhfEwKARNFAiLsTDe3ccGLf7M3533ZyJXakZadjx0N3rebMnY&#xA;6AZimje6l8R"/>
+			<Column name="Notes" value="Default: &lt;Image type=&quot;EAShapeScript 1.0&quot; xmlns:dt=&quot;urn:schemas-microsoft-com:datatypes&quot; dt:dt=&quot;bin.base64&quot;&gt;UEsDBBQAAAAIAJh1zlJKjJOkbwAAAKQAAAAHABEAc3RyLmRhdFVUDQAHPGvHYDxrx2A8a8dg&#xA;PY0xDoJAEEVfK4l3MFtBQqEVhfEwKARNFAiLsTDe3ccGLf7M3533ZyJXakZadjx0N3rebMnY&#xA;6AZimje6l8RJBWYmniYCx5WcfF38r8103NO2nD1l0sG69Mpa/DOjqeXaLN9LB6+0nN3c6X/c&#xA;R30BUEsBAhcLFAAAAAgAmHXOUkqMk6RvAAAApAAAAAcACQAAAAAAAAAAAACAAAAAAHN0ci5k&#xA;YXRVVAUABzxrx2BQSwUGAAAAAAEAAQA+AAAApQAAAAAA&lt;/Image&gt;&#xA;&#xA;"/>
+			<Column name="ea_guid" value="{FA900ABA-C315-bec3-8A5A-B395CBF2C769}"/>
+			<Extension Object_ID="{7AD59C4D-AA70-4019-9E4C-4F03A266D39D}"/>
+		</Row>
+	</Table>
+	<Table name="t_attribute">
+		<Row>
+			<Column name="Object_ID" value="31"/>
+			<Column name="Name" value="IATA Code"/>
+			<Column name="Scope" value="Public"/>
+			<Column name="Stereotype" value="Attribute"/>
+			<Column name="Containment" value="Not Specified"/>
+			<Column name="IsStatic" value="0"/>
+			<Column name="IsCollection" value="0"/>
+			<Column name="IsOrdered" value="0"/>
+			<Column name="AllowDuplicates" value="0"/>
+			<Column name="LowerBound" value="1"/>
+			<Column name="UpperBound" value="1"/>
+			<Column name="Derived" value="0"/>
+			<Column name="ID" value="8"/>
+			<Column name="Pos" value="0"/>
+			<Column name="Length" value="0"/>
+			<Column name="Const" value="0"/>
+			<Column name="Classifier" value="29"/>
+			<Column name="Type" value="Airport Codes"/>
+			<Column name="ea_guid" value="{CB0F96CF-C29B-4f9a-8B72-FFE959450E46}"/>
+			<Column name="StyleEx" value="volatile=0;union=0;"/>
+			<Extension Object_ID="{1FDCDC17-0587-4f38-AFB1-3ED0159DA4A7}" Classifier="{7320D192-A2DF-463e-9FF6-A1E3A7987E33}"/>
+		</Row>
+	</Table>
+	<Table name="t_connector">
+		<Row>
+			<Column name="Connector_ID" value="24"/>
+			<Column name="Direction" value="Unspecified"/>
+			<Column name="Connector_Type" value="Association"/>
+			<Column name="SourceCard" value="*"/>
+			<Column name="SourceAccess" value="Public"/>
+			<Column name="DestCard" value="1"/>
+			<Column name="DestAccess" value="Public"/>
+			<Column name="SourceRole" value="land on"/>
+			<Column name="SourceContainment" value="Unspecified"/>
+			<Column name="SourceIsAggregate" value="0"/>
+			<Column name="SourceIsOrdered" value="0"/>
+			<Column name="DestContainment" value="Unspecified"/>
+			<Column name="DestIsAggregate" value="0"/>
+			<Column name="DestIsOrdered" value="0"/>
+			<Column name="Start_Object_ID" value="30"/>
+			<Column name="End_Object_ID" value="31"/>
+			<Column name="Btm_Mid_Label" value=" &#xA;´Relationª"/>
+			<Column name="Start_Edge" value="3"/>
+			<Column name="End_Edge" value="1"/>
+			<Column name="PtStartX" value="227"/>
+			<Column name="PtStartY" value="-117"/>
+			<Column name="PtEndX" value="236"/>
+			<Column name="PtEndY" value="-211"/>
+			<Column name="SeqNo" value="0"/>
+			<Column name="HeadStyle" value="0"/>
+			<Column name="LineStyle" value="0"/>
+			<Column name="RouteStyle" value="1"/>
+			<Column name="IsBold" value="0"/>
+			<Column name="LineColor" value="-1"/>
+			<Column name="Stereotype" value="Relation"/>
+			<Column name="VirtualInheritance" value="0"/>
+			<Column name="PDATA5" value="SX=-30;SY=6;EX=-43;EY=6;"/>
+			<Column name="DiagramID" value="0"/>
+			<Column name="ea_guid" value="{11649298-B3E9-4707-9447-F12045A7E622}"/>
+			<Column name="SourceIsNavigable" value="FALSE"/>
+			<Column name="DestIsNavigable" value="FALSE"/>
+			<Column name="IsRoot" value="FALSE"/>
+			<Column name="IsLeaf" value="FALSE"/>
+			<Column name="IsSpec" value="FALSE"/>
+			<Column name="SourceChangeable" value="none"/>
+			<Column name="DestChangeable" value="none"/>
+			<Column name="SourceTS" value="instance"/>
+			<Column name="DestTS" value="instance"/>
+			<Column name="IsSignal" value="FALSE"/>
+			<Column name="IsStimulus" value="FALSE"/>
+			<Column name="Target2" value="6619235"/>
+			<Column name="SourceStyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+			<Column name="DestStyle" value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+			<Extension Start_Object_ID="{17FB5FB5-9389-4852-A17F-69CC44782683}" End_Object_ID="{1FDCDC17-0587-4f38-AFB1-3ED0159DA4A7}"/>
+		</Row>
+	</Table>
+	<Table name="t_diagram">
+		<Row>
+			<Column name="Diagram_ID" value="3"/>
+			<Column name="Package_ID" value="3"/>
+			<Column name="ParentID" value="0"/>
+			<Column name="Diagram_Type" value="Logical"/>
+			<Column name="Name" value="riddle"/>
+			<Column name="Version" value="1.0"/>
+			<Column name="Author" value="bue"/>
+			<Column name="ShowDetails" value="0"/>
+			<Column name="AttPub" value="TRUE"/>
+			<Column name="AttPri" value="TRUE"/>
+			<Column name="AttPro" value="TRUE"/>
+			<Column name="Orientation" value="P"/>
+			<Column name="cx" value="850"/>
+			<Column name="cy" value="1098"/>
+			<Column name="Scale" value="100"/>
+			<Column name="CreatedDate" value="2021-06-29 17:33:03"/>
+			<Column name="ModifiedDate" value="2021-06-30 11:29:19"/>
+			<Column name="ShowForeign" value="TRUE"/>
+			<Column name="ShowBorder" value="TRUE"/>
+			<Column name="ShowPackageContents" value="TRUE"/>
+			<Column name="PDATA" value="HideRel=0;ShowTags=0;ShowReqs=0;ShowCons=0;OpParams=1;ShowSN=0;ScalePI=0;PPgs.cx=0;PPgs.cy=0;PSize=1;ShowIcons=1;SuppCN=0;HideProps=0;HideParents=0;UseAlias=0;HideAtts=0;HideOps=1;HideStereo=1;HideEStereo=1;ShowRec=1;ShowRes=0;ShowShape=1;FormName=;"/>
+			<Column name="Locked" value="FALSE"/>
+			<Column name="ea_guid" value="{31F9B6EA-8455-42d6-9FDF-9D5F74D13FB4}"/>
+			<Column name="Swimlanes" value="locked=false;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;"/>
+			<Column name="StyleEx" value="ExcludeRTF=0;DocAll=0;HideQuals=0;AttPkg=1;ShowTests=0;ShowMaint=0;SuppressFOC=1;MatrixActive=0;SwimlanesActive=1;KanbanActive=0;MatrixLineWidth=1;MatrixLineClr=0;MatrixLocked=0;TConnectorNotation=Information Engineering;TExplicitNavigability=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;MDGDgm=IM::Information Model View;STBLDgm=;ShowNotes=0;VisibleAttributeDetail=0;ShowOpRetType=1;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;SuppressedCompartments=;Theme=:119;SaveTag=7405149A;"/>
+			<Extension Package_ID="{68389B05-EBA4-4e57-954C-DFBC51443B65}"/>
+		</Row>
+	</Table>
+	<Table name="t_diagramobjects">
+		<Row>
+			<Column name="Diagram_ID" value="3"/>
+			<Column name="Object_ID" value="27"/>
+			<Column name="RectTop" value="-240"/>
+			<Column name="RectLeft" value="20"/>
+			<Column name="RectRight" value="146"/>
+			<Column name="RectBottom" value="-310"/>
+			<Column name="Sequence" value="8"/>
+			<Column name="ObjectStyle" value="DUID=4181B32B;HideIcon=0;LWth=2;"/>
+			<Column name="Instance_ID" value="24"/>
+			<Extension Diagram_ID="{31F9B6EA-8455-42d6-9FDF-9D5F74D13FB4}" Object_ID="{7AD59C4D-AA70-4019-9E4C-4F03A266D39D}"/>
+		</Row>
+	</Table>
+	<Table name="t_diagramlinks">
+		<Row>
+			<Column name="DiagramID" value="3"/>
+			<Column name="ConnectorID" value="21"/>
+			<Column name="Geometry" value="SX=0;SY=0;EX=0;EY=0;EDGE=3;$LLB=CX=7:CY=15:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LLT=CX=53:CY=14:OX=-9:OY=1:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LMT=CX=75:CY=14:OX=0:OY=0:HDN=1:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LMB=CX=47:CY=14:OX=0:OY=0:HDN=1:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=CX=27:CY=14:OX=84:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRB=CX=7:CY=15:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;IRHS=;ILHS=;"/>
+			<Column name="Style" value="Mode=3;EOID=4181B32B;SOID=BEA48B85;Color=-1;LWidth=0;"/>
+			<Column name="Hidden" value="FALSE"/>
+			<Column name="Instance_ID" value="15"/>
+			<Extension DiagramID="{31F9B6EA-8455-42d6-9FDF-9D5F74D13FB4}" ConnectorID="{8E978A5E-BA5C-4e3b-AFE6-44AEBBEB23EA}"/>
+		</Row>
+	</Table>
+	<Table name="t_xref">
+		<Row>
+			<Column name="XrefID" value="{CB0C747D-2C31-4ad9-864A-81920056C3A0}"/>
+			<Column name="Name" value="Stereotypes"/>
+			<Column name="Type" value="connector property"/>
+			<Column name="Visibility" value="Public"/>
+			<Column name="Partition" value="0"/>
+			<Column name="Description" value="@STEREO;Name=Relation;FQName=IM::Relation;@ENDSTEREO;"/>
+			<Column name="Client" value="{11649298-B3E9-4707-9447-F12045A7E622}"/>
+			<Column name="Supplier" value="&lt;none&gt;"/>
+		</Row>
+	</Table>
+</Package>
 """
-schluessel = []
-
-""" Classification type colors
- classguid : Color
-"""
-classcolors = dict()
-""" Classification id's
- classguid : id
-"""
-classids = dict()
-
-""" default colors
- {elementtypename : Color}
-"""
-defcolors = dict()
 
 """List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
-   {entityguid: (entity, superentitityguid, [subentity ids], categoryguid)}
+   {entityguid: {"entity":, "color":, "superentitityguid":, "subentities":[ids], "categoryguid":}}
 """
 entities = dict()
+"""List of Relations 
+   {relationguid: {"rela":, "disp. attributer":, ...}}
+"""
+relations = dict()
 
-
-def nameflags(pstr: str, pflag: str) -> bool:
-    """checks [NLT] at end of names (my erd-Extension)"""
-    if (pstr is None): return False
-    lmatch = "\[.{0,2}" + pflag + ".{0,2}\]"
-    return True if re.search(lmatch, pstr) else False
-
-
-def is_historisized(pstr: str) -> bool:
-    return nameflags(pstr=pstr, pflag='T')
-
-
-def is_langdept(pstr: str) -> bool:
-    return nameflags(pstr=pstr, pflag='L')
-
-
-def is_repeated(pstr: str) -> bool:
-    return nameflags(pstr=pstr, pflag='N')
-
-"""List of not yet finished domain
-    {id of unfinished domain : guid of type it is supposed to be}"""
-unkndomains = {}
-def do1structtype(filename):
-    global unkndomains
-    structdomains = parseXML(pfilename=filename)
-    structdom = structdomains.getroot()
-    if (handleXML.findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
-    # print (handleXML.findField(structdom,"name"))
-    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=handleXML.findField(structdom, "id"))
-    doma.doma_name = handleXML.findField(structdom, "name")
-    doma.doma_descr = handleXML.findText(structdom, "comment")
-    doma.doma_uc = handleXML.findText(structdom, "createdBy")
-    doma.doma_dc = handleXML.findText(structdom, "createdTime")
-    doma.doma_type = Domain.GRP
-    doma.doma_origin = Domain.DOMAIN
-
-    doma.insert()
-
-    elements = structdom.findall("attributes/Attribute")
-    for el in elements:
-        # print (doma.doma_name,handleXML.findField(el,"name"),handleXML.findText(el,'type'))
-        dgrmsrcid =handleXML.findField(el, 'id')
-        dgrm = DomaingroupMember(psrcname=Externalref.SOURCE_ODM, psrcid=dgrmsrcid)
-        dgrm.dgrm_doma_id_group = doma.doma_id
-        dgrm.dgrm_name = handleXML.findField(el, "name")
-        dgrm.dgrm_descr = handleXML.findText(el, "comment")
-        dgrm.dgrm_uc = handleXML.findText(el, "createdBy")
-        dgrm.dgrm_dc = handleXML.findText(el, "createdTime")
-        dgrm.dgrm_is_mandatory = Boolean.bool2str(Boolean.str2bool(handleXML.findText(el, "mandatory")))
-
-        """in struct types the "type" is either datatype or structtype or domain """
-        reftypeguid = handleXML.findText(el, 'type')
-        reftype = Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM,psrcid=reftypeguid)
-        unknowndoma = True
-        if isinstance(reftype,Domain):
-            dgrm.dgrm_doma_id_member = reftype.doma_id
-            unknowndoma = False
-        elif isinstance(reftype,Datatype):
-            dgrm.dgrm_doma_id_member = findorcreateDomain(ptypeguid=reftypeguid
-                           , pattrname=dgrm.dgrm_name
-                           , pfathername=doma.doma_name
-                           , pdomatype=Domain.DOMAIN
-                           , pattr=el)
-            unknowndoma = False
-        else :
-            """type has not yet been parsed or does not exist at all or is type I haven't considered
-                remember for update"""
-            dgrm.dgrm_doma_id_member = Domain.getunknown().doma_id
-            unknowndoma = True
-        dgrm.insert()
-        if unknowndoma: unkndomains[dgrm.dgrm_id] = reftypeguid
-    # for
-    return
 
 def transferDomains():
-    daty_id= Datatype(pname="unknown"
-             , pbasetype=Datatype.STRING
-             , psrcname=Externalref.SOURCE_EAXML, pscrid="DATYunknown"
-             ).insert()
+    daty_id = Datatype(pname="unknown"
+                       , pbasetype=Datatype.STRING
+                       , psrcname=Externalref.SOURCE_EAXML, pscrid="DATYunknown"
+                       ).insert()
 
     doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid="DOMAunknown")
     doma.doma_name = "unknown"
@@ -122,143 +250,6 @@ def transferDomains():
     doma.insert()
     return
 
-def transferentity(penti, pdiagid, puc, pdc):
-    global entities,defcolors,classcolors
-
-    entiodm = handleXML.findField(penti, 'oid')
-    enti = Entity().getbyODMref(psrcid=entiodm)
-    hiddenelements = penti.find("hiddenElements")
-    if hiddenelements is not None:
-        elemtext = handleXML.findField(hiddenelements, "elements")
-    else:
-        elemtext = ""
-    hiddenattrs = elemtext.split(' ')
-    hiddenattrs2 = []
-    for e in hiddenattrs:
-        if e != "":
-            attr = Attribute().getbyODMref(psrcid=e)
-            if attr is not None: hiddenattrs2.append(attr.attr_id)
-    attrs = Attribute.select(pwhere=("attr_enti_id = ?", enti.enti_id), porderby="attr_displ_seq")
-    attrids = [a.attr_id for a in attrs]
-    attrids = list(set(attrids) - set(hiddenattrs2))
-
-    layout = penti.find('bounds')
-    defcol = defcolors['Entity']  # defaults zum Ergänzen
-    if (handleXML.findText(penti, 'useDefaultColor') == 'false'):
-        backgcolor = handleXML.findText(penti, 'backgroundColor')
-        foregcolor = handleXML.findText(penti, 'foregroundColor')
-        # print (backgroundc,foregroundc)
-        font = penti.find('fonts/FontObject[foType ="Title"]')
-        # deutsche ODMnutzuer schreiben Titel in die Konfig....
-        if font is None: font = penti.find('fonts/FontObject[foType ="Titel"]')
-        # fontname,fontsize,fontstyle):
-        fontcolor = nvl(handleXML.findText(font, 'colorRGB'),defcol.fontcolor)
-        fontstyle = nvl(handleXML.findText(font, 'fontStyle') ,defcol.fontstyle)
-        fontsize = nvl(handleXML.findText(font, 'fontSize') , defcol.fontsize)
-        col = Color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None, fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
-    else:
-        # check wether entity belongs to category
-        enticatguid = None if entiodm is None else entities[entiodm][3]
-        #print (enti.enti_name,enti.getscrid(),enticatguid)
-        if (enticatguid is None):
-            col = defcolors['Entity']
-        else:
-            try:
-                col = classcolors[enticatguid]
-            except Exception as e:
-                col = defcolors['Entity']
-        # fi
-    # fi
-
-    index = 0
-    entix = int(handleXML.findField(layout, 'x'))
-    entiy = int(handleXML.findField(layout, 'y'))
-    entiwidth = int(handleXML.findField(layout, 'width'))
-    entiheight = int(handleXML.findField(layout, 'height'))
-    # if there are several copies on a diagramm, repeat the insert with new index und insert succeeds
-    while True:
-        eler = Elementrep()
-        eler.eler_mode_id = enti.enti_id
-        eler.eler_diag_id = pdiagid
-        eler.eler_index = index
-        eler.eler_position_x = entix
-        eler.eler_position_y = entiy
-        eler.eler_width = entiwidth
-        eler.eler_height = entiheight
-        eler.eler_opacity = 100
-        eler.eler_color = int2hex(col.backgcolor)
-        eler.eler_marginwidth = None
-        eler.eler_marginopacity = 100
-        eler.eler_margincolor = int2hex(col.foregcolor)
-        eler.eler_fontsize = col.fontsize
-        eler.eler_fontcolor = int2hex(col.fontcolor)
-        eler.eler_uc = puc
-        eler.eler_dc = pdc
-        try:
-            eler.insert(pdoerrhdlng=False)
-            attrx = int(entix) + 26  # x1,x2=16,26 y=30
-            attry = int(entiy) + 30
-            attrwidth = int(entiwidth) - 36
-            attrheight = 13
-            for aid in attrids:
-                atteler = Elementrep()
-                atteler.eler_mode_id = aid
-                atteler.eler_diag_id = pdiagid
-                atteler.eler_index = eler.eler_index
-                atteler.eler_position_x = attrx
-                atteler.eler_position_y = attry
-                atteler.eler_width = attrwidth
-                atteler.eler_height = attrheight
-                atteler.eler_opacity = 100
-                atteler.eler_color = int2hex(col.backgcolor)
-                atteler.eler_marginwidth = None
-                atteler.eler_marginopacity = 100
-                atteler.eler_margincolor = int2hex(col.foregcolor)
-                atteler.eler_fontsize = col.fontsize
-                atteler.eler_fontcolor = int2hex(col.fontcolor)
-                atteler.eler_uc = puc
-                atteler.eler_dc = pdc
-                try:
-                    atteler.insert()
-                except UniqueKeyException as err:
-                    raise err
-                except Exception as e:
-                    logmessages.writelog("Attr-representation")
-                    logmessages.writelog(str(e))
-                    logmessages.writelog(atteler.tostring())
-                    raise e
-                attry += attrheight
-                # Maximal bis zur Grösse der Entität
-                if ((attry - entiy) > (entiheight - 10)): break
-            # for
-            break  # no more looping for copies of element on diagramm
-
-        except UniqueKeyException as err:
-            index += 1
-            if index > 100: #emergency stop
-                raise err
-        except Exception as ex:
-            logmessages.writelog("Entity-representation")
-            logmessages.writelog(str(ex))
-            logmessages.writelog(eler.tostring())
-            raise ex
-    # while
-
-# transferentity
-
-def transferdiaobj(pobjects, pdiagid, puc, pdc):
-    for o in pobjects:
-        type = handleXML.findField(o, 'otype')
-        if (type == 'Image'):
-            pass
-        elif (type == 'Entity'):
-            transferentity(penti=o, pdiagid=pdiagid, puc=puc, pdc=pdc)
-        elif (type == 'Note'):
-            pass
-        # fi
-
-
-# transferdiaobj
 
 def linetype(pidx, pmaxidx, psourcelt, ptargetlt):
     if (pidx < ((pmaxidx - 1) / 2)):
@@ -266,8 +257,9 @@ def linetype(pidx, pmaxidx, psourcelt, ptargetlt):
     else:
         return ptargetlt
     # fi
-# linetype
 
+
+# linetype
 
 def connector(pidx, pmaxidx, psource, ptarget):
     # ist kein Segment sondern in Punkt. es macht nur 1 oder M Sinn
@@ -278,113 +270,8 @@ def connector(pidx, pmaxidx, psource, ptarget):
     return None
 
 
-# conmector
-def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
-    for c in pconnectors:
-        type = handleXML.findField(c, 'otype')
-        if (type == 'Relation'):
-            relaguid = handleXML.findField(c, "oid")
-            rela = Relation().getbyODMref(psrcid=relaguid)
-            linewidth = handleXML.findText(c, 'lineWidth')
-            sourcelabel = c.find('sourceLabel/labelBounds')
-            sttex = handleXML.findField(sourcelabel, 'x')
-            sttey = handleXML.findField(sourcelabel, 'y')
-            sttew = handleXML.findField(sourcelabel, 'width')
-            stteh = handleXML.findField(sourcelabel, 'height')
-            targetlabel = c.find('targetLabel/labelBounds')
-            entex = handleXML.findField(targetlabel, 'x')
-            entey = handleXML.findField(targetlabel, 'y')
-            entew = handleXML.findField(targetlabel, 'width')
-            enteh = handleXML.findField(targetlabel, 'height')
 
-            """Labels können negative Starts haben, verschiebe sie in den positiven Bereich"""
-            if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
-            if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
-
-            sourcelinetype = Linesegment.SOLID if rela.getmandatoryfromto() else Linesegment.DASHED
-            targetlinetype = Linesegment.SOLID if rela.getmandatorytofrom() else Linesegment.DASHED
-
-            """ sollte ich nicht mehr brauchen, da ich originalrichtung übernehme
-            if (False):
-                #if (rela[0][3] == 'TRUE'):  # switch source and target
-                sourcecard, targetcard = targetcard, sourcecard
-                sourcelinetype, targetlinetype = targetlinetype, sourcelinetype
-                sttex, entex = entex, sttex
-                sttey, entey = entey, sttey
-                sttew, entew = entew, sttew
-                stteh, enteh = enteh, stteh
-            # fi"""
-
-            relr = Relationrep()
-            relr.relr_diag_id = pdiagid
-            relr.relr_mode_id = rela.rela_id
-            relr.relr_linewidth = linewidth
-            relr.relr_linecolor = None
-            relr.relr_lineopacity = 100
-            relr.relr_startedge = None
-            relr.relr_startposition = None
-            relr.relr_start_connector = rela.rela_maptype_to_from
-            relr.relr_starttext_angle = None
-            relr.relr_starttext_distance = None
-            relr.relr_starttext_x = sttex
-            relr.relr_starttext_y = sttey
-            relr.relr_starttext_width = sttew
-            relr.relr_starttext_height = stteh
-            relr.relr_endedge = None
-            relr.relr_endposition = None
-            relr.relr_end_connector = rela.rela_maptype_from_to
-            relr.relr_endtext_angle = None
-            relr.relr_endtext_distance = None
-            relr.relr_endtext_x = entex
-            relr.relr_endtext_y = entey
-            relr.relr_endtext_width = entew
-            relr.relr_endtext_height = enteh
-            relr.relr_fontcolor = None
-            relr.relr_fontsize = 10
-            relr.relr_uc = puc
-            relr.relr_dc = pdc
-            relr.insert()
-
-            points = c.findall('points/point')
-            points = [{'x': int(handleXML.findField(p, 'x')), 'y': int(handleXML.findField(p, 'y'))} for p in points]
-            if len(points) == 2:
-                """1-elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
-                midpos = lambda x1, x2: round((x1 - x2) / 2 + x2)
-                points.insert(1, {'x': midpos(points[0]['x'], points[1]['x']),
-                                  'y': midpos(points[0]['y'], points[1]['y'])})
-            # fi
-
-            linesegs = []
-            prevlise = None
-            for idx, point in enumerate(points):
-                lise = Linesegment()
-                lise.lise_x = point['x']
-                lise.lise_y = point['y']
-                lise.lise_seq = idx
-                lise.lise_relr_id = relr.relr_id
-                lise.lise_linetype = linetype(pidx=idx, pmaxidx=len(points)
-                                            , psourcelt=sourcelinetype, ptargetlt=targetlinetype)
-                lise.lise_uc = puc
-                lise.lise_dc = pdc
-                if len(linesegs) > 0:
-                    """ ab dem 2. Punkt wird im vorherigen Punkt der Winkel zum nächsten hinzugefügt"""
-                    calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
-                    prevlise.lise_angle = calcwinkel(lise.lise_y, prevlise.lise_y, lise.lise_x, prevlise.lise_x)
-                prevlise = lise
-                linesegs.append(lise)
-            # for
-            for lise in linesegs:
-                lise.insert()
-        else:
-            pass
-        # fi
-# transferdiaconnect
-
-def transferdiaarc(parcs, pdiagid, puc, pdc):
-    pass
-
-
-def doxmlfiles(pdirec, ptransfer, ppattern=r".*",pmandatorydirec = True):
+def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
     try:
         listdir = os.listdir(pdirec)
     except Exception as ex:
@@ -397,10 +284,12 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*",pmandatorydirec = True):
             ptransfer(pdirec + file)
         # fi
     # for
+
+
 # doxmlfiles
 
 
-def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
+def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
     try:
         listdir = os.listdir(pdirec)
     except Exception as ex:
@@ -413,242 +302,173 @@ def dosegfiles(pdirec, transferfiles,pmandatoryfile=True):
             doxmlfiles(pdirec=pdirec + el + '/'
                        , ptransfer=transferfiles
                        , ppattern=r'{}.xml'.format(GUIDPATTERN))
-# dosegfiles
+        # fi
+    # for
+    return
 
 
-def do1diagramm(pfilename):
-    # print (p_filename)
-    try:
-        diagramme = parseXML(pfilename=pfilename)
-    except Exception as ex:
-        print("Diagram nicht lesbar: {}".format(pfilename))
-        return
-    dia = diagramme.getroot()
-    diag = Diagram(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(dia, 'id'))
-    diag.diag_name = handleXML.findField(dia, 'name')
-    if (diag.diag_name == 'Logical'):
-        return
+def do1entitydiag(pdiagxml):
+    global relations
+    diagguid = handleXML.findColumn(pdiagxml, 'ea_guid')
+    diag = Diagram(psrcname=Externalref.SOURCE_EAXML, psrcid=diagguid)
+    diag.diag_name = handleXML.findColumn(pdiagxml, 'Name')
     diag.diag_diat_id = Diagramtype.getbyname(pname=Diagramtype.ENTITY).diat_id
-    # print(handleXML.findField(dia,'name'), handleXML.findField(dia,'id'))
 
-    if (handleXML.findText(dia, 'showLegend') == 'true'):
-        legende = dia.find("objectViews/OView[@otype='Legend']")
-        bounds = legende.find("bounds")
-        diag.diag_legendx = handleXML.findField(bounds, 'x')
-        diag.diag_legendy = handleXML.findField(bounds, 'y')
-    else:
-        diag.diag_legendx = None
-        diag.diag_legendy = None
-    # fi
-    diag.diag_uc = handleXML.findText(dia, 'createdBy')
-    diag.diag_dc = handleXML.findText(dia, 'createdTime')
-    diag.diag_um = handleXML.findText(dia, 'modifiedBy')
-    diag.insert()
-    objects = dia.findall('objectViews/OView')
-    if (len(objects) > 0):
-        transferdiaobj(pobjects=objects, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
-    connectors = dia.findall('connectors/Connector')
-    if (len(connectors) > 0):
-        transferdiaconnect(pconnectors=connectors, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
-    arcsXML = dia.findall('arcs/Arc')
-    if (len(arcsXML) > 0):
-        transferdiaarc(parcs=arcsXML, pdiagid=diag.diag_id, puc=diag.diag_uc, pdc=diag.diag_dc)
-    # print (dianame,len(objects),len(connectors),len(arcs))
+    diag.diag_legendx = 0
+    diag.diag_legendy = 0
+    diag.diag_uc = handleXML.findColumn(pdiagxml, 'Author')
+    diag.diag_dc = handleXML.findColumn(pdiagxml, 'CreatedDate')
+    diag.diag_um = handleXML.findColumn(pdiagxml, 'ModifiedDate')
+    diagid = diag.insert()
+    return
 
 
-# do1diagramm
+def do1diaglink(pdiaglinkxml):
+    diagguid = handleXML.findRefGuid(pdiaglinkxml, 'DiagramID')
+    diag = Diagram().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=diagguid)
+    if diag is None:
+        logmessages.writelog("Diagram {} not found".format(diagguid))
+        return
+    objguid = handleXML.findRefGuid(pdiaglinkxml, 'ConnectorID')
+    rela = Relation().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=objguid)
+    if rela is None:
+        logmessages.writelog("Object {} not found for diagram {}".format(objguid, diagguid))
+        return
 
-def transferdiagramme():
-    doxmlfiles(pdirec=parameters.odmentisubviewdirec()
-               , ptransfer=do1diagramm
-               , ppattern=r'{}.xml'.format(GUIDPATTERN))
+    linewidth = 3
+    edge = lambda e: 'N' if (e=="0" or e=="1") else 'W' if e=="2" else 'S' if e=="3" else 'O' if e=="4" else 'x'
+
+    relr = Relationrep()
+    relr.relr_diag_id = diag.diag_id
+    relr.relr_mode_id = rela.rela_id
+    relr.relr_linewidth = linewidth
+    relr.relr_linecolor = "ffffff" #transferModel.int2hex(relations[objguid]["linecolor"])
+    relr.relr_lineopacity = 100
+    relr.relr_startedge = edge(relations[objguid]["Start_Edge"])
+    relr.relr_startposition = None
+    relr.relr_start_connector = rela.rela_maptype_to_from
+    relr.relr_starttext_angle = None
+    relr.relr_starttext_distance = None
+    relr.relr_starttext_x = 0
+    relr.relr_starttext_y = 10
+    relr.relr_starttext_width = 30
+    relr.relr_starttext_height = 5
+    relr.relr_endedge = edge(relations[objguid]["End_Edge"])
+    relr.relr_endposition = None
+    relr.relr_end_connector = rela.rela_maptype_from_to
+    relr.relr_endtext_angle = None
+    relr.relr_endtext_distance = None
+    relr.relr_endtext_x = 30
+    relr.relr_endtext_y = 40
+    relr.relr_endtext_width = 30
+    relr.relr_endtext_height = 5
+    relr.relr_fontcolor = "ffffff"
+    relr.relr_fontsize = 10
+    relr.relr_uc = "fillDBea"
+    relr.relr_dc = datetime.today()
+    relr.insert()
+
+    geometry = handleXML.findColumn(pdiaglinkxml,"Geometry")
+    nvlsearch = lambda x : x.group(0) if x is not None else None
+    sx = nvlsearch(re.search("SX=(\d+);",geometry))
+    sy = nvlsearch(re.search("SY=(\d+);",geometry))
+    ex = nvlsearch(re.search("EX=(\d+);",geometry))
+    ey = nvlsearch(re.search("EY=(\d+);",geometry))
+    edge = nvlsearch(re.search("EDGE=(\d+);",geometry))
+    print (rela.rela_name,relr.relr_startedge,sx,sy,ex,ey,edge)
+    print(relations[objguid])
+    print (geometry)
+    return
 
 
-# transferdiagramme
+def do1diagobj(pdiagobjxml):
+    diagguid = handleXML.findRefGuid(pdiagobjxml, 'Diagram_ID')
+    diag = Diagram().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=diagguid)
+    if diag is None:
+        logmessages.writelog("Diagram {} not found".format(diagguid))
+        return
+    objguid = handleXML.findRefGuid(pdiagobjxml, 'Object_ID')
+    obj = Entity().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=objguid)
+    if obj is None:
+        logmessages.writelog("Object {} not found for diagram {}".format(objguid, diagguid))
+        return
 
-def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattr,pintfid=None):
-    doma = Domain(psrcname=Externalref.SOURCE_ODM,psrcid=Modelelemtype.DOMA+handleXML.findField(pattr, 'id'))
-    doma.doma_name = pattrname
-    domatest = Domain.getbyname(pname=doma.doma_name)
-    if (domatest is not None):
-        # es gibt ihn schon, füge den Vaternamen dazu
-        doma.doma_name = pattrname + '-' + pvatername
-    doma.doma_origin = pdomatype
-    doma.doma_intf_id = pintfid
-    if nvl(ptypeguid) != '':
-        doma.doma_daty_id = Modelelement.getmodebyodmguid(psrcid=ptypeguid).mode_id
-    doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
+    # Diagram and Object found
+    entix = int(handleXML.findColumn(pdiagobjxml, 'RectLeft'))
+    entiy = -int(handleXML.findColumn(pdiagobjxml, 'RectTop'))
+    r = int(handleXML.findColumn(pdiagobjxml, 'RectRight'))
+    b = int(handleXML.findColumn(pdiagobjxml, 'RectBottom'))
+    entiwidth = int(handleXML.findColumn(pdiagobjxml, 'RectRight')) - entix
+    entiheight = -int(handleXML.findColumn(pdiagobjxml, 'RectBottom')) - entiy
+    eler = Elementrep()
+    eler.eler_mode_id = obj.enti_id
+    eler.eler_diag_id = diag.diag_id
+    eler.eler_index = 0
+    eler.eler_position_x = entix
+    eler.eler_position_y = entiy
+    eler.eler_width = entiwidth
+    eler.eler_height = entiheight
+    eler.eler_opacity = 100
+    col = entities[objguid]["color"]
+    eler.eler_color = transferModel.int2hex(col.backgcolor)
+    eler.eler_marginwidth = None
+    eler.eler_marginopacity = 100
+    eler.eler_margincolor = transferModel.int2hex(col.foregcolor)
+    eler.eler_fontsize = col.fontsize
+    eler.eler_fontcolor = transferModel.int2hex(col.fontcolor)
+    eler.eler_uc = "fillDBea"
+    eler.eler_dc = datetime.today()
+    eler.insert()
+    return
 
-    liesunsfuelldoma(pdoma=doma, pxml=pattr,pdatyid=doma.doma_daty_id)
-    return doma
-# insertderiveddomain
+def transferobjtypes(proot, pobjtype, ptransferfunc, **restrictions):
+    objs = proot.find("Table[@name='{}']".format(pobjtype))
+    for obj in objs:
+        # check, that all restrictions for objecttype are met
+        restrictionmet = True
+        for type, value in restrictions.items():
+            restrictionmet = restrictionmet and (handleXML.findColumn(obj, type) == value)
+
+        if restrictionmet:
+            ptransferfunc(obj)
+    return
 
 
-def findorcreateDomain(pattrname, pfathername, pdomatype,pattr,pintfid = None
+def findorcreateDomain(pattrname, pfathername, pdomatype, pattr, pintfid=None
                        , pdomguid=None, pstructdomguid=None, ptypeguid=None):
     return Domain().getunknown().doma_id
 
 
-
-def do1Arc(fileName):
-    arcXML = parseXML(pfilename=fileName).getroot()
-    if (handleXML.findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
-
-    arc = Arc(pname=handleXML.findField(arcXML, "name")
-              , pentiid=Entity().getIDbyODMref(psrcid=handleXML.findText(arcXML, 'entity'))
-              , puc=handleXML.findText(arcXML, 'createdBy')
-              , pdc=handleXML.findText(arcXML, 'createdTime')
-              ,psrcname=Externalref.SOURCE_ODM,psrcid=handleXML.findField(arcXML, "id"))
-    arcid = arc.insert()
-
-    """map all relations to this arc"""
-    relations = arcXML.findall('relations/relationID')
-    relids = ','.join("'{}'".format(r.text) for r in relations)
-    # DEBUG Arc 2x auf Beziehung
-    #    if handleXML.findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
-    #        print(handleXML.findField(arcXML, "id"), handleXML.findField(arcXML, "name"), handleXML.findText(arcXML, 'entity'))
-    Relation.setarcinrela(prelids=relids,parcid=arcid)
-# do1Arc
-
-def transferArcs():
-    dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
-    Relation.setrelatypes()
-# transferArcs
-
-def updateUDP(pmodeid, pobj):
-    udps = []
-    """<propertyMap>
-        <property name="EXT_ATTR_ID" value="."/>
-        <property name="EXT_SORT_ORDER" value="13.0"/>
-        </propertyMap>
-    """
-    props = pobj.find('propertyMap')
-    if (props is not None):
-        for prop in props:
-            try:
-                udpr  = Userdefprop.getbyname(pname=handleXML.findField(prop, 'name'))
-                # print('      ', handleXML.findField(prop,'name'), handleXML.findField(prop,'value'), bdegId)
-                val = handleXML.findField(prop, 'value')
-                if udpr.udpr_name.endswith('_ATTR_NAME'):
-                    val = removeattrmeta(val)
-                udps.append((val, pmodeid, udpr.udpr_id))
-            except Exception as e:
-                """dynamische Properties lassen wir aus"""
-                pass
-        # for
-    # fi
-    # look for comments in the notesfield of the element
-    note = handleXML.findText(pobj, 'notes')
-    if (note is not None):
-        prop = re.finditer(r'\[(([A-Z]{2})[^[]+)\[\n([^]]*)\][A-Z]{2}[^]]+\]', note, re.DOTALL)
-        # liefert group1 name,group2 sprache, group3 text
-        for i, p in enumerate(prop):
-            # print (i,p.group(0),'\n1:',p.group(1),'\n2:',p.group(2),'\n3:',p.group(3))
-            udpr = Userdefprop.getbyname(pname=p.group(1))
-            # print('      ', handleXML.findField(prop,'name'), handleXML.findField(prop,'value'), bdegId)
-            udps.append((p.group(3).rstrip(), pmodeid, udpr.udpr_id))
-        # for
-    # fi
-
-    if len(udps) > 0:
-        # print (udps)
-        Userdefpropvalue.updvalues(prows=udps)
-    # fi
-    return
-
-def getcheckconstraint(pxml):
-    """within attributedefinition
-        <constraintName>My Constr Name</constraintName>
-        <useDomainConstraints>false</useDomainConstraints>  -- missing = true, if there is a domain
-    in attribute and domains
-        <checkConstraint>
-            <implementationDef dbType="Generic Constraint" definition="abcde"/>
-        </checkConstraint>
-
-    """
-    constrname = handleXML.findText(pxml, "constraintName")
-    constrxml = pxml.find("checkConstraint")
-    useDomainConstr = Boolean.str2bool(nvl(handleXML.findText(pxml, 'useDomainConstraints'), 'true'))
-    if constrxml is None: return
-    rules = [(handleXML.findField(impldef, 'dbType'), handleXML.findField(impldef, 'definition')) for impldef in constrxml]
-    if (len(rules) == 0): return
-    descr = '\n'.join("dbtype={}    rule={}".format(r[0], r[1]) for r in rules)
-    buru = BusinessRule()
-    buru.buru_name = constrname
-    buru.buru_descr = descr
-    buru.buru_rule = rules[0][1]  # first solution, take the first rule in the list
-    buru.buru_type = BusinessRule.BURU_TYPE_CHECK
-    buru.buru_errormsg = 'Rule {} violated. {}'.format(constrname, buru.buru_rule)
-    return buru
-
-def getformula(pelemname, pmodetype, pmodeid, pxml):
-    """
-    <formulaDesc>bisdat - vondat</formulaDesc>
-    <sourceType>Aggregate</sourceType>
-    <sourceType>Derived</sourceType>
-
-    """
-    formula = handleXML.findText(pxml,"formulaDesc")
-    sourctype = handleXML.findText(pxml,"sourceType")
-    if formula is None: return
-    buru = BusinessRule()
-    buru.buru_descr = "Function: {} formula: {}".format(sourctype,formula)
-    buru.buru_rule = formula
-    buru.buru_type = BusinessRule.BURU_TYPE_CALC
-    return buru
-
-def doconstraints(pelemname, pmodetype, pmodeid, pxml):
-    buru = getcheckconstraint(pxml)
-    if buru and pmodetype == Modelelemtype.ATTR:
-        buru.buru_name = nvl(buru.buru_name,pelemname)
-        buru.buru_impact = 'REFUSE'
-        buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-        buruid = buru.insert()
-        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid)
-        bure.insert()
-    #fi
-
-    buru = getformula(pelemname, pmodetype, pmodeid, pxml)
-    if buru and pmodetype == Modelelemtype.ATTR:
-        buru.buru_name = nvl(buru.buru_name,pelemname)
-        buru.buru_impact = 'denormalised (calcualated) Value'
-        buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-        buruid = buru.insert()
-        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid,pwriteable=True)
-        bure.insert()
-    #fi
-    return
-
-
-def do1Attribute(pattr):
-    vaterguid = handleXML.findRefGuid(pattr,"Object_ID")
+def do1Attribute(pattrxml):
+    vaterguid = handleXML.findRefGuid(pattrxml, "Object_ID")
     vater = Entity().getbyextref(psrcid=vaterguid, psrcname=Externalref.SOURCE_EAXML)
-    attrname= handleXML.findColumn(pattr,"Name")
+    attrname = handleXML.findColumn(pattrxml, "Name")
 
     attr = Attribute(pname=transferModel.removeattrmeta(attrname), pentiid=vater.enti_id
-                     , psrcname=Externalref.SOURCE_EAXML, psrcid=handleXML.findColumn(pattr, 'ea_guid'))
+                     , psrcname=Externalref.SOURCE_EAXML, psrcid=handleXML.findColumn(pattrxml, 'ea_guid'))
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_displ_name))
     attr.attr_uc = "filldbea"
     attr.attr_dc = datetime.now()
-    attr.attr_doma_id = findorcreateDomain(pdomguid=handleXML.findColumn(pattr, 'Stereotype')
-                                           #, pstructdomguid=handleXML.findText(pattr, 'structuredType')
-                                           #, ptypeguid=handleXML.findText(pattr, 'logicalDatatype')
+    attr.attr_doma_id = findorcreateDomain(pdomguid=handleXML.findColumn(pattrxml, 'Stereotype')
+                                           # , pstructdomguid=handleXML.findText(pattrxml, 'structuredType')
+                                           # , ptypeguid=handleXML.findText(pattrxml, 'logicalDatatype')
                                            , pattrname=attr.attr_displ_name
                                            , pfathername=vater.enti_name
-                                            ,pdomatype=Domain.DERIVED
-                                           , pattr=pattr)
-    # attr.attr_descr = handleXML.findText(pattr, 'comment')
-    #attr.attr_displ_seq = plfnr
+                                           , pdomatype=Domain.DERIVED
+                                           , pattr=pattrxml)
+    # attr.attr_descr = handleXML.findText(pattrxml, 'comment')
+    # attr.attr_displ_seq = plfnr
     attr.attr_is_descriptive = 'FALSE'
-    attr.attr_is_mandatory = 'FALSE' #Boolean.bool2str(handleXML.findText(pattr, 'nullsAllowed') != 'true')
-    attr.attr_is_historicised = Boolean.bool2str(is_historisized(attrname))
-    attr.attr_is_repeated = Boolean.bool2str(is_repeated(attrname))
-    attr.attr_is_translated = Boolean.bool2str(is_langdept(attrname))
+    attr.attr_is_mandatory = 'FALSE'  # Boolean.bool2str(handleXML.findText(pattrxml, 'nullsAllowed') != 'true')
+    attr.attr_is_historicised = Boolean.bool2str(transferModel.is_historisized(attrname))
+    attr.attr_is_repeated = Boolean.bool2str(transferModel.is_repeated(attrname))
+    attr.attr_is_translated = Boolean.bool2str(transferModel.is_langdept(attrname))
     attr.attr_is_encrypted = 'FALSE'
     attrId = attr.insert()
 
     return
+
 
 def fillKeys(p_enti, p_entiid):
     global schluessel
@@ -666,7 +486,7 @@ def fillKeys(p_enti, p_entiid):
             if (kr is not None):
                 keyrefs = kr.split(',')
                 # print(idx, handleXML.findField(enti,'name'), handleXML.findField(key,'id'), handleXML.findField(enti,'id'), keyrefs)
-                keys = Key(psrcid=handleXML.findField(key, 'id'),psrcname=Externalref.SOURCE_ODM)
+                keys = Key(psrcid=handleXML.findField(key, 'id'), psrcname=Externalref.SOURCE_ODM)
                 keys.keys_name = handleXML.findField(key, 'name')
                 keys.keys_uc = handleXML.findText(key, 'createdBy')
                 keys.keys_dc = handleXML.findText(key, 'createdTime')
@@ -698,7 +518,9 @@ def transferKeys():
                 kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
                 kele.kele_attr_id = None
                 if kele.kele_rela_id is None:
-                    logmessages.writelog("key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(ke,key.keys_name,Entity().getbyid(key.keys_enti_id).getname()))
+                    logmessages.writelog(
+                        "key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(
+                            ke, key.keys_name, Entity().getbyid(key.keys_enti_id).getname()))
                     continue
             else:
                 kele.kele_rela_id = None
@@ -708,496 +530,103 @@ def transferKeys():
     # for
 
 
-def getdokuref(pelem, pstruct=False):
-    documents = None
-    if pstruct:
-        """
-        <documents>
-        <Document id="7EBDC037-8728-C627-4B33-CEDF979E7C13"/>
-        </documents>
-        """
-        docs = pelem.find('documents')
-        if docs is not None:
-            documents = []
-            for idx, doc in enumerate(docs, start=1):
-                # alle referenzierten Dokumente
-                docguid = handleXML.findField(doc, 'id')
-                # print(docguid)
-                documents.append(docguid)
-            # for
-            documents = tuple(documents)
-        # fi
-    else:
-        """<documents usedDucuments="701E5525-A8EE-3C6F-E78B-28B04D93F93D"/>
-        """
-        docs = handleXML.findField(pelem.find("documents"), 'usedDucuments')
-        if (docs is not None):
-            documents = tuple(docs.split(' '))
-    # fi
-    # print(documents)
-    return documents
-# getdokuref
-
-def getpartyref(pelem):
-    parties = []
-    """
-    <responsibleParties>
-    <party>7EBDC037-8728-C627-4B33-CEDF979E7C13</party>
-    </responsibleParties>
-    """
-    """ in relational_models
-    <responsibleParties>
-    <Party id="B7591938-640A-FC73-0F8D-22E92BFFB269"/>
-    <Party id="ACDA33C9-C352-DEC9-2424-A8B256602462"/>
-    </responsibleParties>
-    """
-    elemparties = pelem.findall('responsibleParties/party')
-    if len(elemparties) > 0:
-        parties = []
-        for party in elemparties:
-            # alle referenzierten Dokumente
-            parties.append(party.text)
-        # for
-        parties = tuple(parties)
-    else:
-        elemparties = pelem.findall('responsibleParties/Party')
-        if elemparties is not None:
-            parties = []
-            for party in elemparties:
-                # alle referenzierten Dokumente
-                parties.append(handleXML.findField(party,"id"))
-            # for
-            parties = tuple(parties)
-        #fi
-    # fi
-    return parties
-# getpartyref
-
 def parseXML(pfilename):
     try:
         tree = et.parse(pfilename)
     except Exception as err:
         logmessages.writelog("File ({}) could not be handled".format(pfilename))
-        print (pfilename)
+        print(pfilename)
         raise
-    #try
+    # try
     return tree
 
 
 def do1Entity(pentitiy):
     global entities
-    entiguid:str = handleXML.findColumn(pentitiy, 'ea_guid')
+    entiguid: str = handleXML.findColumn(pentitiy, 'ea_guid')
     enti = Entity(psrcname=Externalref.SOURCE_EAXML, psrcid=entiguid)
     enti.enti_name = handleXML.findColumn(pentitiy, "Name")
-    #enti.enti_descr = handleXML.findColumn(pentitiy, 'Note')
+    # enti.enti_descr = handleXML.findColumn(pentitiy, 'Note')
     enti.enti_uc = handleXML.findColumn(pentitiy, 'Author')
     enti.enti_dc = handleXML.findColumn(pentitiy, 'CreatedDate')
     enti.enti_dm = handleXML.findColumn(pentitiy, 'ModifiedDate')
 
-    i=1 #safeguard for eternal loop
-    while i<10:
-        try:
-            entiId = enti.insert()
-            break
-        except Exception as e:
-            logmessages.writelog("in Entity {}: {} ".format(entiguid, enti.enti_name))
-            logmessages.writelog(e.__str__())
-            logmessages.writelog(e.__str__())
-            #Entities can have duplicate names (merging in github)
-            if re.match(r"UNIQUE constraint failed: ENTITIES.ENTI_NAME",e.__str__()):
-                rela.rela_name += "v{}".format(str(i))
-                i += 1
-            else: raise Exception("Insert-error in entities: see logfile")
-            if (i == 10): raise Exception("Key-error in entities: see logfile")
-        #try
-    #while
+    entiId = enti.insert()
 
-    #entientiguid = handleXML.findColumn(pentitiy, 'hierarchicalParent')
-    #entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
-# do1Entity
-
-
-def transferEntities(proot):
-    entities = proot.find("Table[@name='t_object']")
-    for row in entities:
-        if handleXML.findColumn(row,'Object_Type') == "Class" and\
-            handleXML.findColumn(row, 'Stereotype') == "Entity":
-            do1Entity(row)
+    color = transferModel.Color(foregcolor=transferModel.Color.WHITE
+                                , backgcolor=transferModel.hex2int("c3f062")
+                                , fontcolor=transferModel.Color.BLUE
+                                , fontname=None
+                                , fontsize=10
+                                , fontstyle=None
+                                )
+    entities[entiguid] = {"entity": enti, "color": color}
     return
 
-def transferAttributes(proot):
-    attributes = proot.find("Table[@name='t_attribute']")
-    for row in attributes:
-        if handleXML.findColumn(row, 'Stereotype') == "Attribute":
-            do1Attribute(row)
-    return
 
-def doSubentities():
-    global entities
-    #fill all subentity-id-lists
-    for guid in entities:
-        entientiguid = entities[guid][1]
-        enti = entities[guid][0]
-        if entientiguid is not None:
-            # hat eine superentity, fülle in seine idliste
-            entities[entientiguid][2].append(enti.enti_id)
-        #fi
-    #for
-
-    #get all superentity guids
-    guids = set(val[1] for val in entities.values())
-    guids.discard(None)
-
-    """create an arc for every superentity"""
-    for superentiguid in guids:
-        superenti = entities[superentiguid][0]
-        subentiids = entities[superentiguid][2]
-        arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
-                     , puc=superenti.enti_uc, pdc=superenti.enti_dc)
-        arc.insert()
-        Relation.insertisa(parc=arc,pentiids=subentiids)
-    #for
-
-
-def abbildTyp(ptyp):
-    if (ptyp == '1'):
-        return '1'
-    elif (ptyp == '*'):
-        return 'M'
-    else:
-        return None
-    # fi
-# abbildTyp
-
-
-def do1Relation(fileName):
-    tree = parseXML(pfilename=fileName)
-    relaxml = tree.getroot()
-    documents = getdokuref(pelem=relaxml)
-
-    relaguid = handleXML.findField(relaxml, 'id')
-    rela = Relation(psrcname=Externalref.SOURCE_ODM,psrcid=relaguid)
-    rela.rela_name = handleXML.findField(relaxml, 'name')
-    rela.rela_assoc_from_to = handleXML.findText(relaxml, 'nameOnSource')
-    rela.rela_hist_from_to = Boolean.bool2str(is_historisized(rela.rela_assoc_from_to))
-    rela.rela_assoc_to_from = handleXML.findText(relaxml, 'nameOnTarget')
-    rela.rela_hist_to_from = Boolean.bool2str(is_historisized(rela.rela_assoc_to_from))
-    rela.rela_maptype_from_to = Relation.ONE if (handleXML.findText(relaxml, 'sourceCardinality') == '1') else Relation.MANY
-    rela.rela_maptype_to_from = Relation.ONE if (handleXML.findText(relaxml, 'targetCardinalityString') == '1') else Relation.MANY
-    rela.rela_mandatory_from_to = Boolean.strnegbool(handleXML.findText(relaxml, 'optionalSource'))
-    rela.rela_mandatory_to_from = Boolean.strnegbool(handleXML.findText(relaxml, 'optionalTarget'))
-    rela.rela_type = rela.simpleType()
-    rela.rela_uc = handleXML.findText(relaxml, 'createdBy')
-    rela.rela_dc = handleXML.findText(relaxml, 'createdTime')
-
-    sourceentiguid = handleXML.findText(relaxml, 'sourceEntity')
-    targetentiguid = handleXML.findText(relaxml, 'targetEntity')
-    rela.rela_enti_id_from = Externalref.getODMmodeid(psrcid=sourceentiguid)
-    rela.rela_enti_id_to = Externalref.getODMmodeid(psrcid=targetentiguid)
-    if (rela.rela_enti_id_from is None or rela.rela_enti_id_to is None):
-        logmessages.writelog(
-            "in Relation {}: Entity Id {} or {} not found. Datenleichen von Relation mit gelöschten Entities".
-                format(relaguid,sourceentiguid, targetentiguid))
+def do1Relation(prelaxml):
+    global relations
+    relaguid = handleXML.findColumn(prelaxml, 'ea_guid')
+    srcentiguid = handleXML.findRefGuid(prelaxml, "Start_Object_ID")
+    srcenti = Entity().getbyextref(psrcid=srcentiguid, psrcname=Externalref.SOURCE_EAXML)
+    dstentiguid = handleXML.findRefGuid(prelaxml, "End_Object_ID")
+    dstenti = Entity().getbyextref(psrcid=dstentiguid, psrcname=Externalref.SOURCE_EAXML)
+    if srcenti is None or dstenti is None:
+        logmessages.writelog("Relation ({relaid}): Source ({srcenti}) or dest-entity ({dstenti}) does not exist"
+                             .format(relaid=relaguid, srcenti=srcentiguid, dstenti=dstentiguid))
         return
-    # fi
+    relaname = "RELA-" + handleXML.findColumn(prelaxml, "Connector_ID")
 
-    i=1 #safeguard for eternal loop
-    while i<10:
-        try:
-            rela.insert()
-            break
-        except UniqueKeyException as e:
-            #ODM can have duplicate names for exception. Add digit to name
-            logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
-            logmessages.writelog(e.__str__())
-            #relations can have duplicate names (merging in github)
-            rela.rela_name += "v{}".format(str(i))
-            i += 1
-            if (i == 10): raise Exception("Key-error in relations: see logfile")
-        except Exception as e:
-            logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
-            logmessages.writelog(e.__str__())
-            raise e
-        #try
-    #while
-    Userdefpropvalue.fillallvalues(prelaid=rela.rela_id)
+    rela = Relation(psrcname=Externalref.SOURCE_EAXML, psrcid=relaguid)
+    rela.rela_name = relaname
+    rela.rela_assoc_from_to = handleXML.findColumn(prelaxml, 'SourceRole')
+    rela.rela_hist_from_to = Boolean.bool2str(transferModel.is_historisized(rela.rela_assoc_from_to))
+    rela.rela_assoc_to_from = handleXML.findColumn(prelaxml, 'DestRole')
+    rela.rela_hist_to_from = Boolean.bool2str(transferModel.is_historisized(rela.rela_assoc_to_from))
+    srccard = handleXML.findColumn(prelaxml, "SourceCard")
+    dstcard = handleXML.findColumn(prelaxml, "DestCard")
+    rela.rela_maptype_from_to = Relation.ONE if (srccard in ('1', '0..1')) else Relation.MANY
+    rela.rela_maptype_to_from = Relation.ONE if (dstcard in ('1', '0..1')) else Relation.MANY
+    rela.rela_mandatory_from_to = Boolean.bool2str(srccard in ('1', '*'))
+    rela.rela_mandatory_to_from = Boolean.bool2str(srccard in ('1', '*'))
+    rela.rela_type = rela.simpleType()
+    rela.rela_uc = "filldbea"
+    rela.rela_dc = datetime.now()
 
-    updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
-    ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=relaxml), pmodeid=rela.rela_id)
+    rela.rela_enti_id_from = srcenti.enti_id
+    rela.rela_enti_id_to = dstenti.enti_id
+    rela.insert()
 
-    attrs = relaxml.find('attributes')
-    if attrs is not None:
-        """Relationattributes are not handled"""
-        logmessages.writelog("Relationattributes are not handled (Relation {})".format(rela.rela_name))
-        #for idx, attr in enumerate(attrs, start=1):
-        #    # alle Attribute
-        #    # print((handleXML.findField(attr,'name'),handleXML.findField(attr,'id')))
-        #    do1Attribute(plfnr=idx, pattr=attr, prelaId=rela.rela_id)
-        ## endfor
-    # fi
-# do1Relation
+    relations[relaguid] = {"rela": rela
+        , "linecolor": 0
+        , "Start_Edge": handleXML.findColumn(prelaxml, "Start_Edge")
+        , "End_Edge": handleXML.findColumn(prelaxml, "End_Edge")
+        , "PtStartX": handleXML.findColumn(prelaxml, "PtStartX")
+        , "PtStartY": handleXML.findColumn(prelaxml, "PtStartY")
+        , "PtEndX": handleXML.findColumn(prelaxml, "PtEndX")
+        , "PtEndY": handleXML.findColumn(prelaxml, "PtEndY")
+                           }
+    return
 
-def transferRelations():
-    # lösche die Beziehungen
-    dosegfiles(pdirec=parameters.odmRelationDirec(), transferfiles=do1Relation)
-    dbConnect.myDbConn.commit()
-
-
-def do1UDPFile(pfileName):
-    tree = parseXML(pfilename=pfileName)
-    root = tree.getroot()
-    filename= re.match("^[^.]*",os.path.split(pfileName)[1])[0]
-    ludpTheme = filename
-    lgroups = {'': '-'}  # für ungruppierte properties
-    for groups in root.findall('udp_groups'):
-        for child in groups:
-            # print(handleXML.findField(child,'name'))
-            lgroups[handleXML.findField(child, 'id')] = handleXML.findField(child, 'name')
-        # for
-    # for
-
-    # die speziellen Properties (translation of comments in notes manuell einfüllen
-    if (ludpTheme == parameters.odmUDPTranslFileName()):
-        for lgrpkey, lgrpvalue in lgroups.items():
-            if lgrpkey != '':
-                udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgrpvalue,pname=lgrpvalue + '_ENTI_COMMENT')
-                udpr.udpr_descr = "created for comments, solved in notes because of multiline strings"
-                udprid = udpr.insert()
-
-                metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)
-                                            ,pudprid=udprid).insert()
-
-                udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgrpvalue,pname=lgrpvalue + '_ATTR_COMMENT')
-                udpr.udpr_descr = "created for comments, solved in notes because of multiline strings"
-
-                udprid = udpr.insert()
-
-                metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)
-                                            ,pudprid=udprid).insert()
-            # fi
-        # for
-    # fi
-
-    props = root.find('properties')
-    for prop in props.findall('property'):
-        group = handleXML.findField(prop, 'group_id')
-        propname = handleXML.findField(prop, 'name')
-        propdisplayname = handleXML.findField(prop, 'dispalay_name')
-        proptype = handleXML.findField(prop, 'type')
-        propdefault = handleXML.findField(prop, 'default_value')
-        proptext = handleXML.findText(prop, 'description')
-        udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgroups[group],pname=propname)
-        udpr.udpr_descr = proptext
-        udpr.udpr_defaultvalue = propdefault
-        udprid = udpr.insert()
-
-        obj = prop.findall('objects/object')
-        for o in obj:
-            """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" Color="-1" / >"""
-            lMelt = Modelelemtype.type2melt(re.split("\.", handleXML.findField(o, 'class'))[6])
-            if lMelt != "":
-                lmeltid = Modelelemtype.getidbyshortname(lMelt)
-                try:
-                    metpid = ModelelementProperty(pmeltid=lmeltid,pudprid=udprid).insert()
-                except Exception as err:
-                    print(err)
-                    logmessages.writelog(
-                        "mapping type '{}' for UDP {}:{}:{} not found".format(lmeltid, ludpTheme, group, propname))
-                    logmessages.writelog(err)
-                    pass
-            # fi
-
-        # print (ludp)
-        lov = prop.find('list_of_values')
-        # Currently no Domains for UDP's and therefore no LOVs in UDPs
-        # if False and (lov is not None):
-        #     wrtbId = dbInserts.insertLovWrtb(pName=ludpTheme + '_' + propname)
-        #
-        #     # end insertLovWrtb
-        #
-        #     items = lov.findall('item')
-        #     for val in items:
-        #         # print (handleXML.findField(val,'value'),handleXML.findField(val,'default'))
-        #         deva = DefaultValue()
-        #         deva.deva_value = handleXML.findField(val, 'value')
-        #         deva.deva_doma_id = wrtbId
-        #         deva.deva_anzeige = handleXML.findField(val, 'value')
-        #         deva.deva_uc = 'system'
-        #         deva.deva_dc = date.today().__str__()
-        #         try:
-        #             deva.insert(pdoerrhdlng=False)
-        #         except (sqlite3.IntegrityError):
-        #             logmessages.writelog("duplicate entry in Vorgabewerte theme:'{}' property:'{}' value:'{}'"
-        #                                  .format(ludpTheme, propname, deva.deva_value))
-        #
-        #     # for
-        #     Userdefprop.setdomid(pdomid=wrtbId, pudpid=udprid)
-        # # fi
-    # for
-# do1UDPFile
-
-def dofiles(pdirec, pfileregexp, ptransferfunc):
-    for file in os.listdir(parameters.odmFilesDirec()):
-        filename, file_extension = os.path.splitext(file)
-        if (pfileregexp.filename):
-            filepath = parameters.odmIMDirec() + file
-            # print (filepath)
-            ptransferfunc(filepath)
-        # fi
-    # endfor
-
-
-# dofiles
-
-def transferUDP():
-    doxmlfiles(pdirec=parameters.odmFilesDirec()
-               , ptransfer=do1UDPFile
-               , ppattern=r'.*\.{}'.format(UDPEXTENSION))
-
-    dbConnect.myDbConn.commit()
-# transferUDP
-
-
-def insertlanguages():
-    languages = {'de': ['Deutsch', 'deu']
-        , 'en': ['English', 'eng']
-        , 'fr': ['Français', 'fra']
-        , 'es': ['Español', 'esp']
-        , 'it': ['Italiano', 'ita']
-                 }
-    deflang = parameters.dbDefaultLang()
-    for key, value in languages.items():
-        Language(pname=value[0], piso2=key, piso3=value[1]).insert()
-
-    if not deflang in languages: deflang = 'de'
-    Language.setmodellang(pmodellang=deflang)
-    Language.setallreplacementlang()
-
-def loeschmodell():
-    transferRelational.loeschmodell()
-    ModelelementProperty.delete()
-    Userdefprop.delete()
-    Userdefpropvalue.delete()
-    BusinessruleElement.delete()
-    BusinessRule.delete()
-    Keyelement.delete()
-    Key.delete()
-    Relation.delete()
-    Arc.delete()
-    Attribute.delete()
-    Synonym.delete()
-    Entity.delete()
-    ModelelemOrgu.delete()
-    OragnisationalUnit.delete()
-    ModelelemDocu.delete()
-    Document.delete()
-    Externalref.delete()
-    Modelelement.delete()
-    Diagram.delete()
-    DefaultValue.delete()
-    DomaingroupMember.delete()
-    Domain.delete()
-    Linesegment.delete()
-    Relationrep.delete()
-    Elementrep.delete()
-    Diagram.delete()
-    MeltDiat.delete()
-    Datatype.delete()
-    Modelelemtype.delete()
-    Diagramtype.delete()
-    PhysicalUnit.delete()
-    Storageformat.delete()
-    Project.delete()
-    Languagetext.delete()
-    Language.delete()
-# loeschmodell
-
-def loadcolors(color:transferModel.Color, elem):
-    for fo in elem.findall('fonts/font_object'):
-        if ((handleXML.findField(fo, 'fo_type') == 'Title')
-                or (handleXML.findField(fo, 'fo_type') == 'Titel')):  # es könnte auch Deutsch sein
-            color.fontcolor = handleXML.findField(fo, 'font_color')
-            color.fontname = handleXML.findField(fo, 'font_name')
-            color.fontsize = handleXML.findField(fo, 'font_size')
-            color.fontstyle = handleXML.findField(fo, 'font_style')
-        # fi
-    # for
-# loadcolors
-
-def loaddefaultcolors():
-    global defcolors,classcolors,classids
-    settings = parseXML(pfilename=parameters.odmsettingsfile())
-    root = settings.getroot()
-    classif = root.find('classification_types')
-
-    for ty in classif:
-        catname = handleXML.findField(ty,'name')
-        category = EntityCategory(pname=catname.strip())
-        classid = category.insert()
-        classguid = handleXML.findField(ty, 'id')
-        classids[classguid] = classid
-
-        # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
-        color = Color(handleXML.findField(ty, 'fgcolor'), handleXML.findField(ty, 'color'), None, None, None, None)
-        loadcolors(color=color, elem=ty)
-        classcolors[classguid] = color
-        elui = ElementUI()
-        elui.elui_enca_id = classid
-        elui.elui_color = int2hex(color.foregcolor)
-        elui.elui_margincolor = int2hex(color.backgcolor)
-        elui.elui_fontsize = color.fontsize
-        elui.elui_fontcolor = int2hex(color.fontcolor)
-        elui.insert()
-    # for
-
-    default = root.find('default_fonts_and_colors')
-    for de in default:
-        classname = handleXML.findField(de, 'classname')
-        color= Color(handleXML.findField(de, 'foreground')
-                                , handleXML.findField(de, 'background')
-                                , None, None, None, None)
-        loadcolors(color = color, elem=de)
-        defcolors[classname] = color
-        if classname == "Entity":
-            categoryid = EntityCategory(pname=classname).insert()
-            elui = ElementUI()
-            elui.elui_enca_id = categoryid
-            elui.elui_color = int2hex(color.foregcolor)
-            elui.elui_margincolor = int2hex(color.backgcolor)
-            elui.elui_fontsize = color.fontsize
-            elui.elui_fontcolor = int2hex(color.fontcolor)
-            elui.insert()
-    # for
-# loaddefaultcolors
 
 def filllanguages():
     Languagetext.insertlang_texts(pudpthema=None)
-    #copy comma-list-synonym into synoyms
+    # copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
     Languagetext.filldefaulttext(parameters.dbDefaultLangID())
     Language.deleteunused()
     return
 
-def fillelementdisplays():
-    Modelelement.insertudpelems(pudpthema=parameters.odmUDPElemdisplFileName())
-    return
 
-
-def transferproject(proot):
-
-    package = proot.find("Table[@name='t_package']")
-    assert (len(package) == 1)
-    packrow = package.find("Row")
-
+def transfer1project(pprojxml):
     defspra = parameters.dbDefaultLang()
     sprachen = parameters.dbLanguages()
     proj = Project()
-    proj.proj_name = handleXML.findColumn(packrow,'Name')
+    proj.proj_name = handleXML.findColumn(pprojxml, 'Name')
     proj.proj_uc = "fillDBea"
-    proj.proj_dc = handleXML.findColumn(packrow,'CreatedDate')
-    proj.proj_dm = handleXML.findColumn(packrow,'ModifiedDate')
+    proj.proj_dc = handleXML.findColumn(pprojxml, 'CreatedDate')
+    proj.proj_dm = handleXML.findColumn(pprojxml, 'ModifiedDate')
     proj.proj_languages = sprachen
     proj.proj_curr_lang = defspra
     proj.insert()
@@ -1214,32 +643,52 @@ def transferproject(proot):
             parameters.dbDefaultLangID(defspraid)
     # fi
     return
-# transferproject
+
 
 def transferEAModel(**kwargs):
     """überträgt das ganze EA Modell aus einem XML in die DB"""
-    infile = handleXML.searchfile(pfilename=kwargs["pinput"],pdefaultdirec=parameters.baseDirec())
+    infile = handleXML.searchfile(pfilename=kwargs["pinput"], pdefaultdirec=parameters.baseDirec())
     eaxml = handleXML.parseXML(pfilename=infile)
     earoot = eaxml.getroot()
 
     transferModel.insertlanguages()
-    transferproject(proot=earoot)
-    transferEntities(proot=earoot)
+    transferobjtypes(proot=earoot, pobjtype='t_package'
+                     , ptransferfunc=transfer1project
+                     )
+    transferobjtypes(proot=earoot, pobjtype='t_object'
+                     , ptransferfunc=do1Entity
+                     , Object_Type="Class"
+                     , Stereotype="Entity")
+
     transferDomains()
-    transferAttributes(proot=earoot)
+    transferobjtypes(proot=earoot, pobjtype='t_attribute'
+                     , ptransferfunc=do1Attribute
+                     , Stereotype="Attribute")
+    transferobjtypes(proot=earoot, pobjtype='t_connector'
+                     , ptransferfunc=do1Relation
+                     , Stereotype="Relation")
     filllanguages()
+    transferobjtypes(proot=earoot, pobjtype='t_diagram'
+                     , ptransferfunc=do1entitydiag
+                     , Diagram_Type="Logical")
+    transferobjtypes(proot=earoot, pobjtype='t_diagramobjects'
+                     , ptransferfunc=do1diagobj
+                     )
+    transferobjtypes(proot=earoot, pobjtype='t_diagramlinks'
+                     , ptransferfunc=do1diaglink
+                     )
+    # transferdiagattrs()
+
     return
-    transferRelations()
-    transferArcs()
-    doSubentities()
-    transferKeys()
-    transferdiagramme()
-    transferRelational.transfer()
-    Datatype.deleteunused()
-    Column.fillextid()
-    Domain.fixdomaininterfaces(interfacedomains)
-    BusinessRule.setburuelements()
-    removeemptyudp()
-    fillelementdisplays()
-    removefixedudp()
-# end transferODMModel
+    # transferArcs()
+    # doSubentities()
+    # transferKeys()
+    # transferRelational.transfer()
+    # Datatype.deleteunused()
+    # Column.fillextid()
+    # Domain.fixdomaininterfaces(interfacedomains)
+    # BusinessRule.setburuelements()
+    # removeemptyudp()
+    # fillelementdisplays()
+    # removefixedudp()
+# end transferEAModel
