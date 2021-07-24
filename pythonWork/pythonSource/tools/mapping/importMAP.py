@@ -1,5 +1,7 @@
 import sys,os
-from IM_DB import parameters,logmessages
+
+from IM_DB import parameters,logmessages,dbConnect
+from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Interface
 from openpyxl import load_workbook
 
 def importintf(pws):
@@ -29,8 +31,21 @@ def importintf(pws):
     return tabs
 
 def mergeintodb(pintfname,ptabs):
-    for tab in ptabs:
-        print (pintfname,tab,ptabs[tab])
+    intf = Interface.getbyuk(intf_name=pintfname)
+    if not intf:
+        logmessages.writelog("Interface {} not found.".format(pintfname))
+        return
+    for tabname,tabmap in ptabs.items():
+        #print (pintfname,tabname,tabmap)
+        if tabmap["crud"] == 'NEW':
+            #insert new table into db
+            tabl = Table()
+        else:
+            #search table in DB
+            pass
+        #fi
+    #for
+    return
 
 def main(param1,pxls):
     parameters.initparam(p_callarg=param1)
@@ -47,11 +62,13 @@ def main(param1,pxls):
     #fi
     try:
         workbook = load_workbook(filename=infile)
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(),pfks="ON")
         for ws in workbook.worksheets:
             if ws.title== 'Overview': continue
             interface = importintf(ws)
             mergeintodb(pintfname=ws.title,ptabs=interface)
         #for
+        dbConnect.closeDB()
     except Exception as exp:
         print (exp)
     finally:

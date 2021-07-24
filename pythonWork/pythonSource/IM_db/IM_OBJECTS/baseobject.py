@@ -3,8 +3,6 @@ import sqlite3
 from IM_DB import dbDML, dbDDL,logmessages
 from datetime import datetime
 
-
-
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'

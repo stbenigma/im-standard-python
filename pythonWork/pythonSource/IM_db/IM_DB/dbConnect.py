@@ -11,14 +11,14 @@ actualdbversion = {}
 
 def openDBbasic(pfilepath, pfks='OFF'):
     """ öffnet die DB pfad/Name """
-    global myDbConn
     try:
         locconn = sqlite3.connect(pfilepath)
-        myDbConn = locconn
+        setdbcon(locconn)
         setversion()
     except Exception as exp:
         raise exp
-    myDbConn.execute("PRAGMA foreign_keys = {}".format(pfks))
+    getdbcon().execute("PRAGMA foreign_keys = {}".format(pfks))
+    return
 
 def opendDB4DDL(pfilepath, pfks="OFF"):
     """ erstellt eine Datenbank im Pfad mit diesem Namen """
@@ -29,22 +29,30 @@ def openDB(pfilepath, pfks='OFF'):
     checkversion()
 
 def closeDB():
-    global myDbConn
-    myDbConn.close()
-    myDBConn = None
+    getdbcon().close()
+    setdbcon(None)
+    return
 
 
 def isopenDB():
-    return myDbConn is not None
+    return getdbcon() is not None
 
 
 def getDBname():
-    global myDbConn
-    cursor = myDbConn.cursor()
+
+    cursor = getdbcon().cursor()
     cursor.execute("PRAGMA database_list;")
     curr_table = cursor.fetchall()
     return curr_table[0][2]
 
+def setdbcon(pconn):
+    global myDbConn
+    myDbConn = pconn
+    return
+
+def getdbcon():
+    global myDbConn
+    return myDbConn
 
 def readversion(pconn):
     cursor = pconn.cursor()
@@ -59,15 +67,16 @@ def readversion(pconn):
             }
 
 def checkversion():
-    actversion, expversion = readversion(myDbConn)['version'], expecteddbversion()
+    actversion, expversion = readversion(getdbcon())['version'], expecteddbversion()
     if actversion is not None and (actversion != expversion):
         raise Exception("DB-Versions expected {}, DB-version found {}"
                         .format(expversion, actversion))
+    return
 
 
 def setversion():
-    global actualdbversion, myDbConn
-    actualdbversion = readversion(myDbConn)
+    global actualdbversion
+    actualdbversion = readversion(getdbcon())
     return
 
 
