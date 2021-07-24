@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<UMLProfile profiletype="uml2">
+	<Documentation id="E6D010B6-7" name="IM" version="0.1" notes="first version for preview. bue 13.07.2021 "/>
+	<Content>
+		<Stereotypes>
+			<Stereotype name="Arc" metatype="Arc" notes="" cx="0" cy="0" bgcolor="8421504" fontcolor="-1" bordercolor="-1" borderwidth="1" hideicon="0">
+				<stereotypedrelationships>
+					<stereotypedrelationship stereotype="IM::Relation" constraint="IM::Entity"/>
+				</stereotypedrelationships>
+				<Image type="EAShapeScript 1.0" xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="bin.base64">UEsDBBQAAAAIABRY3lJ0SIDEaAAAANYAAAAHABEAc3RyLmRhdFVUDQAH2k7cYNpO3GDaTtxg
+dY7LDkBQDETPlsQ/3CWJBWtfI1whnvFYiX83LisiTWeadqbtQk3OhMXQq2oY2Anw8VhY1ZmF
+k3iVMiQic1PzxMzIJk+pylJIFZIQu0yFb77xvcW6Df9XKv3VKXKnu/667rbyfT2H8gRQSwEC
+FwsUAAAACAAUWN5SdEiAxGgAAADWAAAABwAJAAAAAAAAAAAAAIAAAAAAc3RyLmRhdFVUBQAH
+2k7cYFBLBQYAAAAAAQABAD4AAACeAAAAAAA=</Image>
+				<AppliesTo>
+					<Apply type="Constraint">
+						<Property name="_HideUmlLinks" value="True"/>
+					</Apply>
+					<Apply type="Synchronization">
+						<Property name="_HideUmlLinks" value="True"/>
+					</Apply>
+				</AppliesTo>
+			</Stereotype>
+			<Stereotype name="Attribute" metatype="Attribute" notes="" cx="0" cy="0" bgcolor="55295" fontcolor="-1" bordercolor="-1" borderwidth="1" hideicon="0">
+				<AppliesTo>
+					<Apply type="Attribute">
+						<Property name="isActive" value=""/>
+					</Apply>
+				</AppliesTo>
+			</Stereotype>
+			<Stereotype name="Connectors" alias="Connectors" notes="Connectors used for information modeling" cx="0" cy="0" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+				<AppliesTo>
+					<Apply type="ToolboxPage"/>
+				</AppliesTo>
+				<TaggedValues>
+					<Tag name="IM::Relation(UML::Association)" type="Classifier:IM::Relation(UML::Association)" description="" unit="Relation" values="" default=""/>
+				</TaggedValues>
+			</Stereotype>
+			<Stereotype name="Domain" metatype="Domain" notes="" cx="0" cy="0" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+				<AppliesTo>
+					<Apply type="Enumeration"/>
+				</AppliesTo>
+			</Stereotype>
+			<Stereotype name="Elements" alias="Elements" notes="Elements used for information modeling" cx="0" cy="0" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+				<AppliesTo>
+					<Apply type="ToolboxPage"/>
+				</AppliesTo>
+				<TaggedValues>
+					<Tag name="IM::Arc(UML::Constraint)" type="Classifier:IM::Arc(UML::Constraint)" description="" unit="Arc" values="" default=""/>
+					<Tag name="IM::Arc(UML::Synchronization)" type="Classifier:IM::Arc(UML::Synchronization)" description="" unit="Arc" values="" default=""/>
+					<Tag name="IM::Attribute(UML::Attribute)" type="Attribute" description="" unit="" values="" default="Attribute"/>
+					<Tag name="IM::Domain(UML::Enumeration)" type="Classifier:IM::Domain(UML::Enumeration)" description="" unit="Arc" values="" default=""/>
+					<Tag name="IM::Entity(UML::Class)" type="Classifier:IM::Entity(UML::Class)" description="" unit="Entity" values="" default=""/>
+				</TaggedValues>
+			</Stereotype>
+			<Stereotype name="Entity" metatype="Entity" notes="" cx="0" cy="0" bgcolor="16775408" fontcolor="-1" bordercolor="-1" borderwidth="2" hideicon="0">
+				<stereotypedrelationships>
+					<stereotypedrelationship stereotype="IM::Relation" constraint="IM::Arc;IM::Entity"/>
+				</stereotypedrelationships>
+				<AppliesTo>
+					<Apply type="Class">
+						<Property name="_HideUmlLinks" value="True"/>
+						<Property name="_OpInh" value="0"/>
+						<Property name="_OpPkg" value="0"/>
+						<Property name="_OpPri" value="0"/>
+						<Property name="_OpPro" value="0"/>
+						<Property name="_OpPub" value="0"/>
+						<Property name="isActive" value=""/>
+					</Apply>
+				</AppliesTo>
+				<TaggedValues>
+					<Tag name="x_image" type="int" description="" unit="" values="" default="&lt;Image type=&quot;EAShapeScript 1.0&quot; xmlns:dt=&quot;urn:schemas-microsoft-com:datatypes&quot; dt:dt=&quot;bin.base64&quot;&gt;UEsDBBQAAAAIAJh1zlJKjJOkbwAAAKQAAAAHABEAc3RyLmRhdFVUDQAHPGvHYDxrx2A8a8dg&#xA;PY0xDoJAEEVfK4l3MFtBQqEVhfEwKARNFAiLsTDe3ccGLf7M3533ZyJXakZadjx0N3rebMnY&#xA;6AZimje6l8RJBWYmniYCx5WcfF38r8103NO2nD1l0sG69Mpa/DOjqeXaLN9LB6+0nN3c6X/c&#xA;R30BUEsBAhcLFAAAAAgAmHXOUkqMk6RvAAAApAAAAAcACQAAAAAAAAAAAACAAAAAAHN0ci5k&#xA;YXRVVAUABzxrx2BQSwUGAAAAAAEAAQA+AAAApQAAAAAA&lt;/Image&gt;&#xA;"/>
+				</TaggedValues>
+				<Constraints>
+					<Constraint name="true == true" type="Pre-condition" description="" weight="1"/>
+				</Constraints>
+			</Stereotype>
+			<Stereotype name="Information Model View" notes="" cx="0" cy="0" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+				<AppliesTo>
+					<Apply type="Diagram_Logical">
+						<Property name="alias" value="Information Model"/>
+						<Property name="isActive" value=""/>
+						<Property name="pdata" value="HideEStereo=1;HideStereo=1;HideOps=1;"/>
+						<Property name="toolbox" value="IM Toolbox"/>
+						<Property name="toolboxPage" value="Elements=1;Connectors=1"/>
+					</Apply>
+				</AppliesTo>
+			</Stereotype>
+			<Stereotype name="Relation" metatype="Relation" notes="" cx="0" cy="0" bgcolor="-1" fontcolor="-1" bordercolor="-1" borderwidth="-1" hideicon="0">
+				<AppliesTo>
+					<Apply type="Association">
+						<Property name="_direction" value="Unspecified"/>
+						<Property name="compositionKind" value="none"/>
+					</Apply>
+				</AppliesTo>
+			</Stereotype>
+		</Stereotypes>
+		<TaggedValueTypes/>
+		<ViewDefinitions>
+			<View name="Information Model" notes="This view restricts the tool to display only valid IM elements.">
+				<appliesto/>
+			</View>
+		</ViewDefinitions>
+		<Metamodel/>
+	</Content>
+</UMLProfile>

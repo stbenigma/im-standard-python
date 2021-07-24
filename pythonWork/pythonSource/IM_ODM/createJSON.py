@@ -60,13 +60,13 @@ def main(param1):
     else:
         parameters.initparam(p_callarg=param1)
         logmessages.initlog('createJSON')
-        filename = parameters.odmModelName()
+        filename = parameters.modelName()
         filepath = parameters.dbDirect()
         try:
             createJSON(pfilepath=filepath, pfilename=filename)
         finally:
             logmessages.showmessages("JSON file {} for model {} created"
-                                        .format(filepath + jsonfilename(filename), parameters.odmModelName()))
+                                        .format(filepath + jsonfilename(filename), parameters.modelName()))
     # fi
 #  main
 

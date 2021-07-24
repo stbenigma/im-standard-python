@@ -87,7 +87,7 @@ workbook = None
 def main(pparam1, pinfile):
     parameters.initparam(p_callarg=pparam1)
     logmessages.initlog('importEXCEL')
-    filename = parameters.odmModelName()
+    filename = parameters.modelName()
     filepath = parameters.dbDirect()
     if os.path.isfile(pinfile):
         infile = pinfile
@@ -104,7 +104,7 @@ def main(pparam1, pinfile):
                            , createnewdb=not createDB.existsDB(parameters.dbFilePath()))
     finally:
         logmessages.showmessages("XLSX file {} imported for model {}"
-                                 .format(infile, parameters.odmModelName()))
+                                 .format(infile, parameters.modelName()))
     return
 
 if __name__ == '__main__':

@@ -80,7 +80,7 @@ def attr2js(pattr):
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
             , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getdevstatus()
             , Externalref.getsrcinfo(pmodeid=pattr.attr_id), [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
-            #, businessrules2js(pburuid=pattr.attr_id)
+            #, businessrules2js(pburuid=pattrxml.attr_id)
                 , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)]\
                     +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=pattr.attr_id)]
                 ,  userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))

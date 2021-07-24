@@ -4,9 +4,11 @@ from pathlib import Path
 import json
 
 """ Sammlung aller Parameter für die Verwaltung der Datenbank und aller Tools"""
-MODELNAME:str = 'odmmodelname'
+ODMMODELNAME:str = 'odmmodelname'  #to be removed
+MODELNAME:str = 'modelname'
 ODMIMDIREC:str = 'odmimdirec'
-ODMBASEDIREC:str = 'odmbasedirec'
+ODMBASEDIREC:str = 'odmbasedirec'  #to be removed
+BASEDIREC:str = 'basedirec'
 DBDEFAULTLANG:str = 'dbdefaultlang'
 DBLANGUAGES:str = 'dblanguages'
 LOGFILEDIREC:str = 'logfiledirec'
@@ -34,7 +36,7 @@ parameter = {'dbtype': SQLITE
             , DBDEFAULTLANG: 'de'
             , DBLANGUAGES : 'de,en'
             , 'dbdefaultlangid': None
-            , ODMBASEDIREC: None
+            , BASEDIREC: None
             ,'localbasedirec': None
             , ODMIMDIREC: None
             , 'odmimdefaultdirec': 'IM/'
@@ -123,10 +125,16 @@ def dbDefaultLangID(newval=None):
     else:
         parameter['dbdefaultlangid'] = newval
 def odmBaseDirec(newval=None):
+    print("obsolete, please use parameters.baseDirec")
     if newval is None:
-        return parameter[ODMBASEDIREC]
+        return parameter[BASEDIREC]
     else:
-        parameter[ODMBASEDIREC] = newval
+        parameter[BASEDIREC] = newval
+def baseDirec(newval=None):
+    if newval is None:
+        return parameter[BASEDIREC]
+    else:
+        parameter[BASEDIREC] = newval
 def odmIMDirec(newval=None):
     if newval is None:
         return parameter[ODMIMDIREC]
@@ -142,7 +150,13 @@ def odmIMExtension(newval=None):
         return parameter['odmimextension']
     else:
         parameter['odmimextension'] = newval
-def odmModelName(newval=None):
+def odmModelName(newval=None):  #to be removed
+    print("obsolete, please use parameters.modelName")
+    if newval is None:
+        return parameter[MODELNAME]
+    else:
+        parameter[MODELNAME] = newval
+def modelName(newval=None):
     if newval is None:
         return parameter[MODELNAME]
     else:
@@ -150,7 +164,7 @@ def odmModelName(newval=None):
 
 def odmsettingsfile(newval=None):
     if newval is None:
-        filepath=odmIMDirec()+odmModelName()+'/'+parameter['odmsettingsfile']
+        filepath=odmIMDirec()+modelName()+'/'+parameter['odmsettingsfile']
         if not os.path.exists(filepath):
             filepath = odmIMDirec() + odmKonfDirec() + parameter['odmsettingsfile']
         return filepath
@@ -158,7 +172,7 @@ def odmsettingsfile(newval=None):
         parameter['odmsettingsfile'] = newval
 def odmentisubviewdirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmentisubviewdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmentisubviewdirec']
     else:
         parameter['odmentisubviewdirec'] = newval
 def odmKonfDirec(newval=None):
@@ -183,12 +197,12 @@ def localbasedirec(newval=None):
         parameter['localbasedirec'] = newval
 def odmdocumentdirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmdocumentdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmdocumentdirec']
     else:
         parameter['odmdocumentdirec'] = newval
 def odmorgunitdirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmorgunitdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmorgunitdirec']
     else:
         parameter['odmorgunitdirec'] = newval
 def odmDefDomainsfilePath(newval=None):
@@ -203,28 +217,28 @@ def odmTypesFile(newval=None):
         parameter['odmtypesfile'] = newval
 def odmFilesDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmfilesdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmfilesdirec']
     else:
         parameter['odmfilesdirec'] = newval
 def odmstructypesdir(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmstructypesdir']
+        return odmIMDirec()+modelName()+'/'+parameter['odmstructypesdir']
     else:
         parameter['odmstructypesdir'] = newval
 
 def odmEntityDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmentitydirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmentitydirec']
     else:
         parameter['odmentitydirec'] = newval
 def odmRelationDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmrelationdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmrelationdirec']
     else:
         parameter['odmrelationdirec'] = newval
 def odmArcDirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmarcdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmarcdirec']
     else:
         parameter['odmarcdirec'] = newval
 def odmUDPTranslFileName(newval=None):
@@ -241,7 +255,7 @@ def odmUDPElemdisplFileName(newval=None):
 
 def odmmappingdirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmmappingdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmmappingdirec']
     else:
         parameter['odmmappingdirec'] = newval
 def odmUDPMappingFileName(newval=None):
@@ -277,7 +291,7 @@ def odmtabledirec(newval=None):
         parameter['odmtabledirec'] = newval
 def odmdomainsdirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmdomainsdirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmdomainsdirec']
     else:
         parameter['odmdomainsdirec'] = newval
 def odmsubviewsdirec(newval=None):
@@ -292,7 +306,7 @@ def odmfkdirec(newval=None):
         parameter['odmfkdirec'] = newval
 def odmreldirec(newval=None):
     if newval is None:
-        return odmIMDirec()+odmModelName()+'/'+parameter['odmreldirec']
+        return odmIMDirec()+modelName()+'/'+parameter['odmreldirec']
     else:
         parameter['odmreldirec'] = newval
 
@@ -342,14 +356,14 @@ def liesparamfile(p_filepath):
             val = paramfile[sect][param].strip('"'+"'")
             #print (param,paramfile[sect][param],val)
             #Grundparameter sind speziell
-            if param ==ODMBASEDIREC:
-                if odmBaseDirec() is None:
-                    odmBaseDirec(newval=val)
+            if param in (ODMBASEDIREC,BASEDIREC):  #ODMBASEDIREC to be removed
+                if baseDirec() is None:
+                    baseDirec(newval=val)
                 else:
                     #wurde schon gesetzt, muss gleich sein
                     if (val is not None)\
-                        and (val != odmBaseDirec()):
-                        raise Exception("Base-direc mismatch '{}' and '{}'".format (val, odmBaseDirec()))
+                        and (val != baseDirec()):
+                        raise Exception("Base-direc mismatch '{}' and '{}'".format (val, baseDirec()))
                     #fi
                 #fi
             elif param == DBDEFAULTLANG:
@@ -367,15 +381,15 @@ def liesparamfile(p_filepath):
                             "IM-Direc mismatch '{}' and '{}'".format(val, odmIMDirec()))
                     #fi
                 #fi
-            elif param ==MODELNAME:
-                if odmModelName() is None:
-                    odmModelName(newval=val)
+            elif param in (ODMMODELNAME,MODELNAME): #ODMMODELNAME to be removed
+                if modelName() is None:
+                    modelName(newval=val)
                 else:
                     # wurde schon gesetzt, muss gleich sein
                     if (val is not None) \
-                            and (val != odmModelName()):
+                            and (val != modelName()):
                         raise Exception(
-                            "Model name mismatch '{}' and '{}'".format(val, odmModelName()))
+                            "Model name mismatch '{}' and '{}'".format(val, modelName()))
                     #fi
                 #fi
             else:
@@ -386,21 +400,21 @@ def liesparamfile(p_filepath):
     """
     basedirec is special, default  is the directory of the loaded parameter file 
     """
-    if odmBaseDirec() is None:
-        odmBaseDirec(newval=os.path.dirname(os.path.realpath(p_filepath))+'/')
+    if baseDirec() is None:
+        baseDirec(newval=os.path.dirname(os.path.realpath(p_filepath))+'/')
 
 
 #liesparamfile
 
 def filldefaultparams():
     if localbasedirec() is None:
-        localbasedirec(newval=odmBaseDirec())
+        localbasedirec(newval=baseDirec())
     if odmIMDirec() is None:
-        odmIMDirec(newval=odmBaseDirec() + odmIMDefaultDirec())
+        odmIMDirec(newval=baseDirec() + odmIMDefaultDirec())
     if dbDirect() is None:
         dbDirect(newval=localbasedirec()+dbDefaultDirect())
     if dbFilePath() is None:
-        dbFilePath(newval=dbDirect()+odmModelName()+dbFileExtension())
+        dbFilePath(newval=dbDirect()+modelName()+dbFileExtension())
     if odmDefDomainsfilePath() is None:
         odmDefDomainsfilePath(newval=odmIMDirec() + odmKonfDirec() + odmdefdomainsfile())
     if webDirec() is None:
@@ -408,9 +422,7 @@ def filldefaultparams():
     if logfiledirec() is None:
         logfiledirec(localbasedirec())
     if logfilepath() is None:
-        logfilepath(logfiledirec()+odmModelName()+'.log')
-
-
+        logfilepath(logfiledirec()+modelName()+'.log')
 #filldefaultparams
 
 def suche1file(p_direc,p_pattern='.*'):
@@ -455,7 +467,7 @@ def suchemodelname(p_direc):
     return (imdirectory,immodelname)
 #suchemodelname
 
-def initparam(p_callarg):
+def initparam(p_callarg,pfileonly=False):
     global parameter
 
     my_file = Path(p_callarg)
@@ -468,15 +480,19 @@ def initparam(p_callarg):
         #Verzeichnis gegeben, suche ein Modell und dann ein Parameterfile
         (imdirec,modelname) = suchemodelname(p_direc=p_callarg)
         odmIMDirec(newval=imdirec)
-        odmBaseDirec(newval=imdirec[0:len(imdirec)-len(odmIMDefaultDirec())] if (imdirec.split('/')[-2]+'/' == odmIMDefaultDirec()) else imdirec)
-        odmModelName(newval=modelname)
+        baseDirec(newval=imdirec[0:len(imdirec)-len(odmIMDefaultDirec())] if (imdirec.split('/')[-2]+'/' == odmIMDefaultDirec()) else imdirec)
+        modelName(newval=modelname)
         paramfile = p_callarg + modelname + paramFileExension
     else:
         print (my_file)
-        raise Exception("parameter is neither file nor directory")
+        if pfileonly:
+            raise Exception("parameter is no file")
+        else:
+            raise Exception("parameter is neither file nor directory")
+
     if os.path.exists(paramfile):
         liesparamfile(p_filepath = paramfile)
-    elif ((odmIMDirec() is None) or (odmModelName() is None)):
+    elif ((odmIMDirec() is None) or (modelName() is None) or pfileonly):
         #check for minimal information
         raise Exception('No parameter file and no model found in "{}"'.format(p_callarg))
     #fi
