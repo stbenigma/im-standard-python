@@ -1,9 +1,9 @@
 import os
 import xml.etree.ElementTree as ET
 
-from IM_DB import parameters, dbInserts, logmessages
+from IM_DB import dbInserts
 from IM_OBJECTS import *
-from IM_ODM import transferModel
+from IM_ODM import transferModel,handleXML
 from IM_DB import  parameters,logmessages
 
 
@@ -30,17 +30,17 @@ def do1column(plfnr, pcolxml, ptablid):
 </propertyMap>
 </Column>
 """
-    colu = Column(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(pcolxml, 'id'))
-    colu.colu_column_name = transferModel.findField(pcolxml, 'name')
+    colu = Column(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(pcolxml, 'id'))
+    colu.colu_column_name = handleXML.findField(pcolxml, 'name')
     colu.colu_format = None
-    colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(parameters.nvl(transferModel.findText(pcolxml,'nullsAllowed'),'true')))
-    colu.colu_descr = transferModel.findText(pcolxml, 'comment')
+    colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(parameters.nvl(handleXML.findText(pcolxml,'nullsAllowed'),'true')))
+    colu.colu_descr = handleXML.findText(pcolxml, 'comment')
     colu.colu_tabl_id = ptablid
-    colu.colu_uc = transferModel.findText(pcolxml, 'createdBy')
-    colu.colu_dc = transferModel.findText(pcolxml, 'createdTime')
+    colu.colu_uc = handleXML.findText(pcolxml, 'createdBy')
+    colu.colu_dc = handleXML.findText(pcolxml, 'createdTime')
     colu.colu_ext_system_id = None
-    daty_odm = transferModel.findText(pcolxml, 'logicalDatatype')
-    daty_wrtb_odm = transferModel.findText(pcolxml, 'domain')
+    daty_odm = handleXML.findText(pcolxml, 'logicalDatatype')
+    daty_wrtb_odm = handleXML.findText(pcolxml, 'domain')
     tabl = Table().getbyid(ptablid)
     colu.colu_doma_id = \
         transferModel.findorcreateDomain(pdomguid=daty_wrtb_odm
@@ -68,12 +68,12 @@ def do1table(pfilename):
     global globalschnid
     tablexml = ET.parse(pfilename).getroot()
     #print (tablexml.get('name'),tablexml.get('id'),sep=' | ')
-    tabl = table.Table(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(tablexml, "id"))
-    tabl.tabl_name = transferModel.findField(tablexml, "name")
-    tabl.tabl_uc = transferModel.findText(tablexml, 'createdBy')
-    tabl.tabl_dc = transferModel.findText(tablexml, 'createdTime')
+    tabl = table.Table(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(tablexml, "id"))
+    tabl.tabl_name = handleXML.findField(tablexml, "name")
+    tabl.tabl_uc = handleXML.findText(tablexml, 'createdBy')
+    tabl.tabl_dc = handleXML.findText(tablexml, 'createdTime')
     tabl.tabl_intf_id = globalschnid
-    tabl.tabl_descr = transferModel.findText(tablexml, "comment")
+    tabl.tabl_descr = handleXML.findText(tablexml, "comment")
     tabl.insert()
 
     dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
@@ -103,11 +103,11 @@ def transfertables(pschndirec):
 def do1interface(pfilename):
     global globalschnid
     intfxml = ET.parse(pfilename).getroot()
-    intf = interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=transferModel.findField(intfxml, 'id'))
-    intf.intf_name = transferModel.findField(intfxml, 'name')
-    intf.intf_descr = transferModel.findText(intfxml, 'comment')
-    intf.intf_uc = transferModel.findText(intfxml, 'createdBy')
-    intf.intf_dc = transferModel.findText(intfxml, 'createdTime')
+    intf = interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(intfxml, 'id'))
+    intf.intf_name = handleXML.findField(intfxml, 'name')
+    intf.intf_descr = handleXML.findText(intfxml, 'comment')
+    intf.intf_uc = handleXML.findText(intfxml, 'createdBy')
+    intf.intf_dc = handleXML.findText(intfxml, 'createdTime')
     intf.insert()
 
     #Dokumente an dieser Interface
@@ -158,12 +158,12 @@ class Odmmapping:
     """
 
     def __init__(self,cmxml):
-        self.mapid = transferModel.findField(cmxml, 'id')
-        self.itype = noneint(transferModel.findField(cmxml, 'iT')) #weiss noch nicht, was das ist
-        self.logid = transferModel.findField(cmxml, 'lID')
-        self.logtype = noneint(transferModel.findField(cmxml, 'lT'))
-        self.relid = transferModel.findField(cmxml, 'rID')
-        self.reltype = noneint(transferModel.findField(cmxml, 'rT'))
+        self.mapid = handleXML.findField(cmxml, 'id')
+        self.itype = noneint(handleXML.findField(cmxml, 'iT')) #weiss noch nicht, was das ist
+        self.logid = handleXML.findField(cmxml, 'lID')
+        self.logtype = noneint(handleXML.findField(cmxml, 'lT'))
+        self.relid = handleXML.findField(cmxml, 'rID')
+        self.reltype = noneint(handleXML.findField(cmxml, 'rT'))
         self.columnselection = Odmmapping.selections(cmxml,'columnsSelection')
         self.attrselection = Odmmapping.selections(cmxml, 'attributesSelection')
         self.keyselection = Odmmapping.selections(cmxml, 'keysSelection')
@@ -172,19 +172,19 @@ class Odmmapping:
         cntmapxml = cmxml.find('containedMappings')
         self.cntmappings = []
         if cntmapxml is not None:
-            self.cntmappings = [{'id': transferModel.findField(mg, 'id')
-                                , 'itype': noneint(transferModel.findField(mg, 'iT'))
-                                , 'lID': transferModel.findField(mg, 'lID')
-                                , 'ltype': noneint(transferModel.findField(mg, 'lT'))
-                                , 'rID': transferModel.findField(mg, 'rID')
-                                , 'rtype': noneint (transferModel.findField(mg, 'rT'))
+            self.cntmappings = [{'id': handleXML.findField(mg, 'id')
+                                , 'itype': noneint(handleXML.findField(mg, 'iT'))
+                                , 'lID': handleXML.findField(mg, 'lID')
+                                , 'ltype': noneint(handleXML.findField(mg, 'lT'))
+                                , 'rID': handleXML.findField(mg, 'rID')
+                                , 'rtype': noneint (handleXML.findField(mg, 'rT'))
                                  }
                                 for mg in cntmapxml]
         # fi
 
     @staticmethod
     def selections(pxml,pname):
-        sel = transferModel.findText(pxml, pname)
+        sel = handleXML.findText(pxml, pname)
         return sel.split(',') if sel is not None else []
     #selections
 
@@ -193,12 +193,12 @@ class Odmmapping:
 def doattrmapping(pcolmappings):
     for colmap in pcolmappings:
         """        if cntmapxml is not None:
-            self.cntmappings = [{'id': transferModel.findField(mg, 'id')
-                                , 'itype': noneint(transferModel.findField(mg, 'iT'))
-                                , 'lID': transferModel.findField(mg, 'lID')
-                                , 'ltype': noneint(transferModel.findField(mg, 'lT'))
-                                , 'rID': transferModel.findField(mg, 'rID')
-                                , 'rtype': noneint (transferModel.findField(mg, 'rT'))
+            self.cntmappings = [{'id': handleXML.findField(mg, 'id')
+                                , 'itype': noneint(handleXML.findField(mg, 'iT'))
+                                , 'lID': handleXML.findField(mg, 'lID')
+                                , 'ltype': noneint(handleXML.findField(mg, 'lT'))
+                                , 'rID': handleXML.findField(mg, 'rID')
+                                , 'rtype': noneint (handleXML.findField(mg, 'rT'))
                                  }
                                 for mg in cntmapxml]"""
         if (colmap["rtype"] ==  Odmmapping.RELKEYTYPE and colmap['ltype'] == Odmmapping.KEYTYPE):
