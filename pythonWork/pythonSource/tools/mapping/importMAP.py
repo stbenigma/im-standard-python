@@ -1,7 +1,7 @@
 import sys,os
-
+from datetime import datetime
 from IM_DB import parameters,logmessages,dbConnect
-from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Interface
+from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Interface,UniqueKeyException
 from openpyxl import load_workbook
 
 def importintf(pws):
@@ -15,10 +15,10 @@ def importintf(pws):
         assert crud in (None,"NEW","DELMAP"), "illegal Value for CRUD '{}'".format(crud)
         if tab is not None:
             curtab = tab
-            if tab not in tabs: tabs[tab]={"entis":[],"cols":{},"crud":crud}
-            if  ent is not None:
+            if tab not in tabs: tabs[tab]={"entis":[],"cols":{},"crud":crud if crud == 'NEW' else None}
+            if ent is not None:
                 #add table mapping
-                tabs[tab]["entis"].append(ent)
+                tabs[tab]["entis"].append((ent,crud if crud == "DELMAP" else None))
         else:
             if curtab is None : continue
             #do columnmappings
@@ -30,7 +30,30 @@ def importintf(pws):
     #for
     return tabs
 
+def inserttablemap(ptabid,pentiid=None,prelaid=None):
+    tema = TablEntiMap()
+    tema.tema_tabl_id = ptabid
+    tema.tema_enti_id = pentiid
+    tema.tema_rela_id = prelaid
+    try:
+        tema.insert(pdoerrhdlng=False)
+        return 1
+    except Exception as e:
+        if type(e) != UniqueKeyException:
+            logmessages.writelog("could not insert table-map tabl_id={}, enti_id={}, rela_id={}"
+                                 .format(ptabid, pentiid, prelaid))
+        return 0
+    #try
+    return
+
+def printstatline(pname,*args):
+    l = pname.ljust(25)
+    l += ''.join(str(a).ljust(12) for a in args)
+    print (l)
+    return
+
 def mergeintodb(pintfname,ptabs):
+    tablinsert,tablmapinsert,tablmapdelete = 0,0,0
     intf = Interface.getbyuk(intf_name=pintfname)
     if not intf:
         logmessages.writelog("Interface {} not found.".format(pintfname))
@@ -40,17 +63,55 @@ def mergeintodb(pintfname,ptabs):
         if tabmap["crud"] == 'NEW':
             #insert new table into db
             tabl = Table()
+            tabl.tabl_name = tabname
+            tabl.tabl_intf_id = intf.intf_id
+            tabl.tabl_dc = datetime.today()
+            tabl.tabl_uc = "Excel-Map-Import"
+            try:
+                tabl.insert(pdoerrhdlng=False)
+                tablinsert += 1
+            except Exception as e:
+                if e == UniqueKeyException:
+                    print("NEW table {} already exists.".format(tabname))
+                    logmessages.writelog("NEW table {} already exists.".format(tabname))
+                else:
+                    logmessages.writelog("table {} could not be created.".format(tabname))
+                    logmessages.writelog("{}".format(e))
+
         else:
             #search table in DB
-            pass
+            tabl = Table.getbyuk(tabl_name=tabname,tabl_intf_id = intf.intf_id)
         #fi
-    #for
+        for map in tabmap["entis"]:
+            mapname,crud = map[0],map[1]
+            enti = Entity.getbyuk(enti_name=mapname)
+            if enti is None:
+                rela = Relation.getbyuk(rela_name =mapname)
+                if rela is None:
+                    logmessages.writelog("Entity {} .".format(mapname))
+                else:
+                    if crud == 'DELMAP':
+                        tablmapdelete += TablEntiMap.delete(
+                            pwhere="tema_tabl_id ={tablid} and tema_rela_id = {relaid}"
+                            .format(tablid=tabl.tabl_id, relaid=rela.rela_id))
+                    else:
+                        tablmapinsert += inserttablemap(ptabid=tabl.tabl_id,prelaid=rela.rela_id)
+            else:
+                if crud == 'DELMAP':
+                    tablmapdelete += TablEntiMap.delete(
+                        pwhere="tema_tabl_id ={tablid} and tema_enti_id = {entiid}"
+                        .format(tablid=tabl.tabl_id, entiid=enti.enti_id))
+                else:
+                    tablmapinsert += inserttablemap(ptabid=tabl.tabl_id, pentiid=enti.enti_id)
+        #for
+    # for
+    printstatline(pintfname,tablinsert,tablmapinsert,tablmapdelete,0,0,0)
     return
 
 def main(param1,pxls):
     parameters.initparam(p_callarg=param1)
     logmessages.initlog('importEXCEL')
-    filename = parameters.odmModelName()
+    filename = parameters.modelName()
     filepath = parameters.dbDirect()
     if os.path.isfile(pxls):
         infile = pxls
@@ -63,16 +124,19 @@ def main(param1,pxls):
     try:
         workbook = load_workbook(filename=infile)
         dbConnect.openDB(pfilepath=parameters.dbFilePath(),pfks="ON")
+        printstatline("Interface","tab-insert","tab-mapins","tab-mapdel","col-ins","col-mapins","col-mapdel")
         for ws in workbook.worksheets:
             if ws.title== 'Overview': continue
             interface = importintf(ws)
             mergeintodb(pintfname=ws.title,ptabs=interface)
         #for
+        dbConnect.getdbcon().commit()
         dbConnect.closeDB()
     except Exception as exp:
         print (exp)
     finally:
         print ("file {} imported into model {}".format(infile,filename))
+        logmessages.showmessages()
         return
 
 if __name__ == '__main__':

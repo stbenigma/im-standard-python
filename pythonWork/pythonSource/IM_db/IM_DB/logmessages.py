@@ -38,4 +38,5 @@ def showmessages(pmsg: str = None):
             if pmsg is None: print("{}:\n".format(myfilename))
             print("  => {} log entr{} written to {}"
                   .format(logcount.__str__(), 'y' if logcount == 1 else 'ies', logfile.name))
+    return
 # showmessages

@@ -419,8 +419,6 @@ class MultilangBaseobject(Baseobject):
         # try
 
         return retval
-
-
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref
