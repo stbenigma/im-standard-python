@@ -1,50 +1,132 @@
 import sys,os
 from datetime import datetime
 from IM_DB import parameters,logmessages,dbConnect
-from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Interface,UniqueKeyException
+from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Attribute,Interface,UniqueKeyException,Boolean,Domain
 from openpyxl import load_workbook
 
 def importintf(pws):
     tabs = {}
-    """tabs= {<tabname>:{"entis":[entitiy,],"cols":{<colname>:[(entity,attribute,None|DELMAP),]},"crud":None|NEW}}"""
+    """copy excel-sheet into a json-structure"""
+    """tabs= {<tabname>:{"entis":[(entitiy,None|DELMAP),],"cols":{<colname>:[(entity,attribute,None|DELMAP),]}}"""
     curtab = None
     for rowidx,row in enumerate(pws):
         if rowidx == 0:continue
         tab,col,ent,attr = row[0].value,row[1].value,row[2].value,row[3].value,
         crud = row[4].value if len (row)> 4 else None
-        assert crud in (None,"NEW","DELMAP"), "illegal Value for CRUD '{}'".format(crud)
+        assert crud in (None,"DELMAP"), "illegal Value for CRUD '{}'".format(crud)
         if tab is not None:
-            curtab = tab
-            if tab not in tabs: tabs[tab]={"entis":[],"cols":{},"crud":crud if crud == 'NEW' else None}
+            curtab = tab #use for empty tab-entry with columns
+            if tab not in tabs: tabs[tab]={"entis":[],"cols":{},"crud":crud}
             if ent is not None:
                 #add table mapping
-                tabs[tab]["entis"].append((ent,crud if crud == "DELMAP" else None))
+                tabs[tab]["entis"].append((ent,crud))
         else:
             if curtab is None : continue
             #do columnmappings
             cols = tabs[curtab]["cols"]
             if col not in cols: cols[col]=[]
-            if attr is None or ent is None: continue
             cols[col].append((ent,attr,crud))
         #fi
     #for
     return tabs
 
 def inserttablemap(ptabid,pentiid=None,prelaid=None):
-    tema = TablEntiMap()
-    tema.tema_tabl_id = ptabid
-    tema.tema_enti_id = pentiid
-    tema.tema_rela_id = prelaid
-    try:
-        tema.insert(pdoerrhdlng=False)
-        return 1
-    except Exception as e:
-        if type(e) != UniqueKeyException:
-            logmessages.writelog("could not insert table-map tabl_id={}, enti_id={}, rela_id={}"
-                                 .format(ptabid, pentiid, prelaid))
-        return 0
-    #try
-    return
+    tema= TablEntiMap.getbyuk(tema_tabl_id=ptabid,tema_enti_id=pentiid)\
+            if pentiid is not None else \
+        TablEntiMap.getbyuk(tema_tabl_id=ptabid, tema_rela_id=prelaid)
+    if tema is not None:
+        retval = 0 #mapping exists, skip
+    else:
+        tema = TablEntiMap()
+        tema.tema_tabl_id = ptabid
+        tema.tema_enti_id = pentiid
+        tema.tema_rela_id = prelaid
+        try:
+            tema.insert(pdoerrhdlng=False)
+            retval= 1
+        except Exception as e:
+            if type(e) != UniqueKeyException:
+                logmessages.writelog("could not insert table-map tabl_id={}, enti_id={}, rela_id={}"
+                                     .format(ptabid, pentiid, prelaid))
+            retval= 0
+        #try
+    return retval
+
+def insertcolumap(pcoluid,pattrid):
+    coam = ColAttrMap.getbyuk(coam_attr_id=pattrid,coam_colu_id=pcoluid,coam_direction = ColAttrMap.INBOUND,coam_seq = 1)
+    if coam is not None:
+        retval = 0 #mapping exists, skip
+    else:
+        coam = ColAttrMap()
+        coam.coam_colu_id = pcoluid
+        coam.coam_attr_id = pattrid
+        coam.coam_direction = ColAttrMap.INBOUND
+        coam.coam_seq = 1
+        try:
+            coam.insert(pdoerrhdlng=False)
+            retval= 1
+        except Exception as e:
+            if type(e) != UniqueKeyException:
+                logmessages.writelog("could not insert column_attr_map colu_id={}, attr_id={}"
+                                     .format(pcoluid, pattrid))
+            retval= 0
+        #try
+    #fi
+    return retval
+
+
+# def insertnewtable(ptabname,pintfid):
+#     tabl = Table()
+#     tabl.tabl_name = ptabname
+#     tabl.tabl_intf_id = pintfid
+#     tabl.tabl_dc = datetime.today()
+#     tabl.tabl_uc = "Excel-Map-Import"
+#     try:
+#         tabl.insert(pdoerrhdlng=False)
+#         retval = 1
+#     except Exception as e:
+#         if e == UniqueKeyException:
+#             print("NEW table {} already exists.".format(ptabname))
+#             logmessages.writelog("NEW table {} already exists.".format(ptabname))
+#             retval= 0
+#         else:
+#             logmessages.writelog("table {} could not be created.".format(ptabname))
+#             logmessages.writelog("{}".format(e))
+#             retval= 0
+#     return retval
+# def insertnewcolumn(pcolname, ptablid):
+#     col = Column()
+#     col.colu_column_name = pcolname
+#     col.colu_tabl_id = ptablid
+#     col.colu_mandatory = Boolean.bool2str(False)
+#     col.colu_doma_id = Domain.getunknown().doma_id
+#     col.colu_dc = datetime.today()
+#     col.colu_uc = "Excel-Map-Import"
+#     try:
+#         col.insert()
+#         retval = 1
+#     except Exception as e:
+#         if e == UniqueKeyException:
+#             print("NEW column {}.{} already exists.".format(tabname, col.colu_column_name))
+#             logmessages.writelog("NEW column {}.{} already exists.".format(tabname, colname))
+#             retval = 0
+#         else:
+#             logmessages.writelog("column {}.{} could not be created.".format(tabname, colname))
+#             logmessages.writelog("{}".format(e))
+#             retval = 0
+#     return retval
+
+def getmapid(pname):
+    entiid,relaid = None,None
+    enti = Entity.getbyuk(enti_name=pname)
+    if enti is None:
+        rela = Relation.getbyuk(rela_name=pname)
+        if rela is None:
+            logmessages.writelog("Entity or Relation {} not found.".format(pname))
+        else:
+            relaid = rela.rela_id
+    else: entiid =enti.enti_id
+    return entiid,relaid
 
 def printstatline(pname,*args):
     l = pname.ljust(25)
@@ -53,59 +135,72 @@ def printstatline(pname,*args):
     return
 
 def mergeintodb(pintfname,ptabs):
-    tablinsert,tablmapinsert,tablmapdelete = 0,0,0
+    tablmapinsert,tablmapdelete,columapinsert,columapdelete = 0,0,0,0
     intf = Interface.getbyuk(intf_name=pintfname)
     if not intf:
         logmessages.writelog("Interface {} not found.".format(pintfname))
         return
     for tabname,tabmap in ptabs.items():
         #print (pintfname,tabname,tabmap)
-        if tabmap["crud"] == 'NEW':
-            #insert new table into db
-            tabl = Table()
-            tabl.tabl_name = tabname
-            tabl.tabl_intf_id = intf.intf_id
-            tabl.tabl_dc = datetime.today()
-            tabl.tabl_uc = "Excel-Map-Import"
-            try:
-                tabl.insert(pdoerrhdlng=False)
-                tablinsert += 1
-            except Exception as e:
-                if e == UniqueKeyException:
-                    print("NEW table {} already exists.".format(tabname))
-                    logmessages.writelog("NEW table {} already exists.".format(tabname))
-                else:
-                    logmessages.writelog("table {} could not be created.".format(tabname))
-                    logmessages.writelog("{}".format(e))
-
-        else:
-            #search table in DB
-            tabl = Table.getbyuk(tabl_name=tabname,tabl_intf_id = intf.intf_id)
-        #fi
+        # search table in DB
+        tabl = Table.getbyuk(tabl_name=tabname, tabl_intf_id=intf.intf_id)
+        if tabl is None:
+            logmessages.writelog("table {} does not exists.".format(tabname))
+            continue
+            
         for map in tabmap["entis"]:
-            mapname,crud = map[0],map[1]
-            enti = Entity.getbyuk(enti_name=mapname)
-            if enti is None:
-                rela = Relation.getbyuk(rela_name =mapname)
-                if rela is None:
-                    logmessages.writelog("Entity {} .".format(mapname))
-                else:
-                    if crud == 'DELMAP':
-                        tablmapdelete += TablEntiMap.delete(
-                            pwhere="tema_tabl_id ={tablid} and tema_rela_id = {relaid}"
-                            .format(tablid=tabl.tabl_id, relaid=rela.rela_id))
-                    else:
-                        tablmapinsert += inserttablemap(ptabid=tabl.tabl_id,prelaid=rela.rela_id)
-            else:
-                if crud == 'DELMAP':
+            mapname,enticrud = map[0],map[1]
+            entiid,relaid = getmapid(pname=mapname)
+            if entiid is not None or relaid is not None:
+                if enticrud == 'DELMAP':
+                    nvlnull=lambda x:x if x is not None else "NULL"
                     tablmapdelete += TablEntiMap.delete(
-                        pwhere="tema_tabl_id ={tablid} and tema_enti_id = {entiid}"
-                        .format(tablid=tabl.tabl_id, entiid=enti.enti_id))
+                        pwhere="""tema_tabl_id ={tablid} 
+                                    and (tema_enti_id = {entiid} or tema_rela_id = {relaid})"""
+                            .format(tablid=tabl.tabl_id, entiid=nvlnull(entiid),relaid=nvlnull(relaid)))
                 else:
-                    tablmapinsert += inserttablemap(ptabid=tabl.tabl_id, pentiid=enti.enti_id)
+                    tablmapinsert += inserttablemap(ptabid=tabl.tabl_id, pentiid=entiid,prelaid=relaid)
+                #fi
+            #fi
+        #for
+
+        for colname,colmap in tabmap["cols"].items():
+            #print (pintfname,tabname,colname,colmap)
+            col = Column.getbyuk(colu_tabl_id=tabl.tabl_id, colu_column_name=colname)
+            if col is None:
+                logmessages.writelog("column {}.{} does not exists.".format(tabname, colname))
+                continue
+
+            for attrmap in colmap:
+                entiname, attrname, colcrud = attrmap[0],attrmap[1],attrmap[2]
+                #print (colname,entiname, attrname, colcrud)
+                if entiname is None and attrname is None:
+                    continue
+                enti = Entity.getbyuk(enti_name=entiname)
+                entiid = enti.enti_id if enti is not None else None
+                attr = Attribute.getbyuk(attr_displ_name=attrname, attr_enti_id=entiid)
+                attrid = None
+                if attr is None:
+                    logmessages.writelog("Column {}.{}: unknown attribute {}.{}"
+                                         .format(tabname,colname,entiname,attrname))
+                    continue
+                else:
+                    if attr.attr_enti_id == entiid:
+                        attrid = attr.attr_id
+                    else:
+                        logmessages.writelog("Attribute {} does not belong to entity {}".format(attrname,entiname))
+                #fi
+                if colcrud == "DELMAP":
+                    #remove mapping to attribute
+                    columapdelete += ColAttrMap.delete(
+                        pwhere="coam_attr_id ={attrid} and coam_colu_id = {coluid}"
+                            .format(attrid=attrid, coluid=col.colu_id))
+                else:
+                    columapinsert += insertcolumap(pattrid=attrid, pcoluid=col.colu_id)
+            #for
         #for
     # for
-    printstatline(pintfname,tablinsert,tablmapinsert,tablmapdelete,0,0,0)
+    printstatline(pintfname,tablmapinsert,tablmapdelete,columapinsert,columapdelete)
     return
 
 def main(param1,pxls):
@@ -124,7 +219,7 @@ def main(param1,pxls):
     try:
         workbook = load_workbook(filename=infile)
         dbConnect.openDB(pfilepath=parameters.dbFilePath(),pfks="ON")
-        printstatline("Interface","tab-insert","tab-mapins","tab-mapdel","col-ins","col-mapins","col-mapdel")
+        printstatline("Interface","tab-mapins","tab-mapdel","col-mapins","col-mapdel")
         for ws in workbook.worksheets:
             if ws.title== 'Overview': continue
             interface = importintf(ws)
@@ -133,7 +228,8 @@ def main(param1,pxls):
         dbConnect.getdbcon().commit()
         dbConnect.closeDB()
     except Exception as exp:
-        print (exp)
+        print ("Merge-Exception:",exp)
+        raise exp
     finally:
         print ("file {} imported into model {}".format(infile,filename))
         logmessages.showmessages()
