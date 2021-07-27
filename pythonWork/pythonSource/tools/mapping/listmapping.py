@@ -2,11 +2,9 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db/IM_DB')
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
-from IM_OBJECTS import Domain
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../../IM_db')
 from IM_JSON import JSModel
+from IM_OBJECTS import Domain
 from mystring import nvl
 from openpyxl import Workbook, styles
 
