@@ -6,10 +6,9 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 from IM_DB import *
 from IM_OBJECTS import *
+from IM_JSON import JSModel
 from mystring import nvl
-from openpyxl import Workbook
-from openpyxl.styles import Alignment
-import listWebdoku
+from openpyxl import Workbook, styles
 
 fileCSV = None
 EOL: str = '\n'
@@ -42,7 +41,7 @@ def setcell(pws, pcolumn, prow, pvalue
     cell = pws.cell(column=pcolumn, row=prow, value=pvalue)
     if (phorizontal is not None or pvertical is not None \
             or ptext_rotation is not None or pwrap_text is not None):
-        cell.alignment = Alignment(horizontal=phorizontal
+        cell.alignment = styles.Alignment(horizontal=phorizontal
                                    , vertical=pvertical
                                    , text_rotation=ptext_rotation
                                    , wrap_text=pwrap_text
@@ -50,9 +49,10 @@ def setcell(pws, pcolumn, prow, pvalue
     # if
     """ Alignement horizontal  ?left?, ?centerContinuous?, ?center?, ?distributed?, ?fill?, ?justify?, ?right?, ?general?"""
 
+
 # setcell
 
-def writesheettabent(pwb: Workbook,pmodel,plang):
+def writesheettabent(pwb: Workbook, pmodel, plang):
     ws = pwb.create_sheet("Table to Entity mapping")
     rowidx, colidx = 1, 1
     ws.cell(column=colidx, row=rowidx, value='Interface')
@@ -60,27 +60,27 @@ def writesheettabent(pwb: Workbook,pmodel,plang):
     ws.cell(column=colidx, row=rowidx, value='Table')
     colidx += 1
 
-    cntcolidx,cntrowidx = colidx,rowidx+1
+    cntcolidx, cntrowidx = colidx, rowidx + 1
     xcounts = {}
-    setcell(pws=ws,prow=rowidx+1,pcolumn=colidx,pvalue='Count',phorizontal='right')
+    setcell(pws=ws, prow=rowidx + 1, pcolumn=colidx, pvalue='Count', phorizontal='right')
     colidx += 1
-    for idx, enti in enumerate(pmodel['entities'].values()):
-        xcounts[colidx+idx] = 0
+    for idx, enti in enumerate(pmodel.getelements('entities').values()):
+        xcounts[colidx + idx] = 0
         setcell(pws=ws, pcolumn=idx + colidx, prow=rowidx, pvalue=enti['name'][plang]
                 , ptext_rotation=90)
     # for
     rowidx += 2
-    for sval in pmodel['systems'].values():
-        for tkey in sval['tables']:
-            table = pmodel['tables'][tkey]
-            xcount,colidx = 0,1
+    for sval in pmodel.getelements('systems').values():
+        for tkey in sval['tables+']:
+            table = pmodel.getbyid(tkey)
+            xcount, colidx = 0, 1
             setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=sval['name'])
             colidx += 1
             ws.cell(column=colidx, row=rowidx, value=table['name'])
-            colidx += 2 #platz für counter
-            for entiid in pmodel['entities'].keys():
+            colidx += 2  # platz für counter
+            for entiid in pmodel.getelements('entities').keys():
                 if (entiid in table['entitiesmapped']):
-                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue='X'
+                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=table["CRUD"]
                             , phorizontal="center", pvertical="center")
                     xcount += 1
                     xcounts[colidx] += 1
@@ -93,7 +93,7 @@ def writesheettabent(pwb: Workbook,pmodel,plang):
             rowidx += 1
         # for
     # for
-    for key,value in xcounts.items():
+    for key, value in xcounts.items():
         if (value > 0):
             setcell(pws=ws, prow=cntrowidx, pcolumn=key, pvalue=value, phorizontal='right')
     rowidx += 1
@@ -101,12 +101,12 @@ def writesheettabent(pwb: Workbook,pmodel,plang):
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 35
     ws.column_dimensions['C'].width = 7
-    for idx in range(4, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+    for idx in range(4, colidx): ws.column_dimensions[colnum_string(idx)].width = 5
 
 
 # writesheettabent
 
-def writesheetentitab(pwb: Workbook,pmodel,plang):
+def writesheetentitab(pwb: Workbook, pmodel, plang):
     ws = pwb.create_sheet("Entity to Table mapping")
 
     rowidx, colidx = 1, 1
@@ -114,14 +114,14 @@ def writesheetentitab(pwb: Workbook,pmodel,plang):
     ws.cell(column=colidx, row=rowidx + 1, value='Entity')
     colidx += 1
 
-    cntcolidx,cntrowidx = colidx,rowidx + 2
-    setcell(pws=ws,prow=rowidx + 2,pcolumn=colidx,pvalue='Count',phorizontal='right')
+    cntcolidx, cntrowidx = colidx, rowidx + 2
+    setcell(pws=ws, prow=rowidx + 2, pcolumn=colidx, pvalue='Count', phorizontal='right')
     xcounts = {}
     colidx += 1
-    for sval in pmodel['systems'].values():
+    for sval in pmodel.getelements("systems").values():
         ws.cell(column=colidx, row=rowidx, value=sval['name'])
-        for tkey in sval['tables']:
-            setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue=pmodel['tables'][tkey]['name']
+        for tkey in sval['tables+']:
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue=pmodel.getbyid(tkey)['name']
                     , ptext_rotation=90)
             xcounts[colidx] = 0
             colidx += 1
@@ -129,17 +129,17 @@ def writesheetentitab(pwb: Workbook,pmodel,plang):
     # for
     rowidx += 3
 
-    for entiid,enti in pmodel['entities'].items():
-        xcount,colidx = 0,1
+    for entiid, enti in pmodel.getelements("entities").items():
+        xcount, colidx = 0, 1
         setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti['name'][plang])
-        colidx += 2 #platz für counter
+        colidx += 2  # platz für counter
 
-        for sval in pmodel['systems'].values():
-            for tkey in sval['tables']:
-                if (entiid in pmodel['tables'][tkey]['entitiesmapped']):
-                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue='X')
+        for sval in pmodel.getelements("systems").values():
+            for tkey in sval['tables+']:
+                if (entiid in pmodel.getbyid(tkey)['entitiesmapped']):
+                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=pmodel.getbyid(tkey)["CRUD"])
                     xcounts[colidx] += 1
-                    xcount +=1
+                    xcount += 1
                 # if
                 colidx += 1
             # for
@@ -149,17 +149,19 @@ def writesheetentitab(pwb: Workbook,pmodel,plang):
                     , pvalue=xcount, phorizontal='right')
         rowidx += 1
     # for
-    for key,value in xcounts.items():
+    for key, value in xcounts.items():
         if (value > 0):
             setcell(pws=ws, prow=cntrowidx, pcolumn=key, pvalue=value, phorizontal='right')
     rowidx += 1
 
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 7
-    for idx in range(3, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+    for idx in range(3, colidx): ws.column_dimensions[colnum_string(idx)].width = 5
+
+
 # writesheetentitab
 
-def writesheetcolattr(pwb: Workbook,pmodel,plang):
+def writesheetcolattr(pwb: Workbook, pmodel, plang):
     ws = pwb.create_sheet("Columns to Attributes mapping")
 
     rowidx, colidx = 1, 1
@@ -168,10 +170,10 @@ def writesheetcolattr(pwb: Workbook,pmodel,plang):
     ws.cell(column=colidx + 1, row=rowidx + 1, value='Table')
     ws.cell(column=colidx + 2, row=rowidx + 1, value='Column')
     colidx += 3
-    for enti in pmodel['entities'].values():
+    for enti in pmodel.getelements("entities").values():
         ws.cell(column=colidx, row=rowidx, value=enti['name'][plang])
         for attr in enti['attributes']:
-            cell = ws.cell(column=colidx, row=rowidx + 1, value=pmodel['attributes'][attr]['name'][plang])
+            cell = ws.cell(column=colidx, row=rowidx + 1, value=pmodel.getbyid(attr)['name'][plang])
             cell.alignment = Alignment(horizontal='general'
                                        , vertical='bottom'
                                        , text_rotation=90
@@ -182,20 +184,20 @@ def writesheetcolattr(pwb: Workbook,pmodel,plang):
     # for
     rowidx += 2
 
-    for skey,sval in pmodel['systems'].items():
-        for tkey in sval['tables']:
+    for skey, sval in pmodel.getelements("systems").items():
+        for tkey in sval['tables+']:
             colidx = 1
-            tabl = pmodel['tables'][tkey]
+            tabl = pmodel.getbyid(tkey)
             for ckey in tabl['columns']:
                 ws.cell(column=colidx, row=rowidx, value=sval['name'])
                 colidx += 1
                 ws.cell(column=colidx, row=rowidx, value=tabl['name'])
                 colidx += 1
-                ws.cell(column=colidx, row=rowidx, value=pmodel['columns'][ckey]['name'])
+                ws.cell(column=colidx, row=rowidx, value=pmodel.getbyid(ckey)['name'])
                 colidx += 1
-                for enti in pmodel['entities'].values():
+                for enti in pmodel.getelements("entities").values():
                     for attrid in enti['attributes']:
-                        attrcols = pmodel['attributes'][attrid]['columnsmapped']
+                        attrcols = pmodel.getbyid(attrid)['columnsmapped']
                         if (skey in attrcols.keys()) and (ckey in attrcols[skey]):
                             ws.cell(column=colidx, row=rowidx, value='X')
                         # if
@@ -211,14 +213,16 @@ def writesheetcolattr(pwb: Workbook,pmodel,plang):
     ws.column_dimensions['B'].width = 35
     ws.column_dimensions['C'].width = 35
     for idx in range(4, colidx): ws.column_dimensions[colnum_string(idx)].width = 3
+
+
 # writesheetcolattr
 
-def valmiteol(pval,padd):
+def valmiteol(pval, padd):
     eoladd = '' if (pval == '') else EOL
     return pval + eoladd + padd
 
 
-def writesheetattrcol(pwb: Workbook,pmodel,plang):
+def writesheetattrcol(pwb: Workbook, pmodel, plang):
     ws = pwb.create_sheet("Attributes to Columns mapping")
 
     rowidx, colidx = 1, 1
@@ -226,84 +230,71 @@ def writesheetattrcol(pwb: Workbook,pmodel,plang):
     ws.cell(column=colidx, row=rowidx + 1, value='Entity')
     ws.cell(column=colidx + 1, row=rowidx + 1, value='Attribute')
     colidx += 2
-    for skey,sval in pmodel['systems'].items():
+    for skey, sval in pmodel.getelements("systems").items():
         ws.cell(column=colidx, row=rowidx, value=sval['name'])
         setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Table")
         colidx += 1
         setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Column")
+        colidx += 1
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="RW")
         colidx += 1
         setcell(pws=ws, pcolumn=colidx, prow=rowidx + 1, pvalue="Ext-ID")
         colidx += 1
     # for
     rowidx += 2
 
-    for entiid, enti in pmodel['entities'].items():
+    attrsort = [[key,pmodel.getbyid(val["entity"])["name"][plang],val['name'][plang]] for key,val in pmodel.getelements("attributes").items()]
+    attrsort = sorted(attrsort,key=lambda x:x[1]+"-"+x[2])
+    for attr in attrsort:
+        attrid,entiname,attrname=attr[0],attr[1],attr[2]
         colidx = 1
-
-        """Entity Table Mapping """
-        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti['name'][plang])
-        colidx += 2  # Attribute überspringen
-
-        for sval in pmodel['systems'].values():
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=entiname
+                , pwrap_text=True)
+        colidx += 1
+        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=attrname
+                , pwrap_text=True)
+        colidx += 1
+        for sval in pmodel.getelements("systems").values():
+            valuecol = ''
             valuetab = ''
-            for tabkey in sval['tables']:
-                if (tabkey in enti['tablesmapped']):
-                    valuetab = valmiteol(valuetab ,pmodel['tables'][tqabkey]['name'])
-                # if
+            valuerw = ''
+            valueid = ''
+            for tkey in sval['tables+']:
+                tabl = pmodel.getbyid(tkey)
+                for ckey in tabl['columns+']:
+                    colu = pmodel.getbyid(ckey)
+                    if (attrid in colu['attributesmapped']):
+                        valuetab = valmiteol(pval=valuetab, padd=tabl['name'])
+                        valuecol = valmiteol(pval=valuecol, padd=colu['name'])
+                        valuerw = valmiteol(pval=valuerw, padd=nvl(colu['R/W']))
+                        valueid = valmiteol(pval=valueid, padd=nvl(colu['interface_col_id']))
+                    # if
+                # for
+                if (valuecol != ''):
+                    setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
+                            , pwrap_text=True)
+                    setcell(pws=ws, pcolumn=colidx + 1, prow=rowidx, pvalue=valuecol
+                            , pwrap_text=True)
+                    setcell(pws=ws, pcolumn=colidx + 2, prow=rowidx, pvalue=valuerw
+                            , pwrap_text=True)
+                    setcell(pws=ws, pcolumn=colidx + 3, prow=rowidx, pvalue=valueid
+                            , pwrap_text=True)
+                    headcell = ws.cell(column=colidx, row=3)
+                    headcell.alignment = styles.Alignment(text_rotation=0, wrap_text=True)
             # for
-            if valuetab != '':
-                setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
-                                , pwrap_text=True)
-            colidx += 3  # skip column and ID col
+            colidx += 4
         # for
         rowidx += 1
-
-        for attrid in enti['attributes']:
-            colidx = 1
-            attr = pmodel['attributes'][attrid]
-            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=enti['name'][plang]
-                    , pwrap_text=True)
-            colidx += 1
-            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=attr['name'][plang]
-                    , pwrap_text=True)
-            colidx += 1
-            for sval in pmodel['systems'].values():
-                valuecol = ''
-                valuetab = ''
-                valueid = ''
-                for tkey in sval['tables']:
-                    tabl = pmodel['tables'][tkey]
-                    for ckey in tabl['columns']:
-                        colu = pmodel['columns'][ckey]
-                        if (attrid in colu['attributes-mapped']):
-                            valuetab = valmiteol(pval=valuetab,padd=tabl['name'])
-                            valuecol = valmiteol(pval=valuecol,padd=colu['name'])
-                            valueid = valmiteol(pval=valueid,padd=nvl(colu['interface_col_id']))
-                        # if
-                    # for
-                    if (valuecol != ''):
-                        setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valuetab
-                                , pwrap_text=True)
-                        setcell(pws=ws, pcolumn=colidx+1, prow=rowidx, pvalue=valuecol
-                                , pwrap_text=True)
-                        setcell(pws=ws, pcolumn=colidx+2, prow=rowidx, pvalue=valueid
-                                , pwrap_text=True)
-                        headcell = ws.cell(column=colidx, row=2)
-                        headcell.alignment = Alignment(text_rotation=0, wrap_text=True)
-                # for
-                colidx += 3
-            # for
-            rowidx += 1
-        # for
     # for
 
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 35
     for idx in range(3, colidx):
-        width = 35
+        """3 4 .5 6 7   8 .9 10 11"""
+        width = 35 if idx % 4 != 1 else 5
         ws.column_dimensions[colnum_string(idx)].width = width
     # for
-# writesheetattrcol
+    return
 
 def writesheetattrcolold(pwb: Workbook):
     ws = pwb.create_sheet("Attributes to Columns mapping")
@@ -360,19 +351,23 @@ def writesheetattrcolold(pwb: Workbook):
         width = 5 if (ws.cell(column=idx, row=2).alignment.text_rotation == 90) else 25
         ws.column_dimensions[colnum_string(idx)].width = width
     # for
-# writesheetattrcolold
+    return
 
 def writesheetinterface(pwb, pintfid, pmodel, plang):
-    intf = pmodel['systems'][pintfid]
-    ws = pwb.active
+    intf = pmodel.getbyid(pintfid)
+    ws = pwb.create_sheet(intf["name"])
 
     rowidx, colidx = 1, 1
     ws.cell(column=colidx, row=rowidx, value=intf['name'])
     ws.cell(column=colidx, row=rowidx + 1, value='tableName')
     colidx += 1
+    ws.cell(column=colidx, row=rowidx + 1, value='tableCRUD')
+    colidx += 1
     ws.cell(column=colidx, row=rowidx + 1, value='columnName')
     colidx += 1
-    ws.cell(column=colidx, row=rowidx + 1, value='attr-ID')
+    ws.cell(column=colidx, row=rowidx + 1, value='columnRW')
+    colidx += 1
+    ws.cell(column=colidx, row=rowidx + 1, value='column-ID')
     colidx += 1
     ws.cell(column=colidx, row=rowidx + 1, value='domain')
     colidx += 1
@@ -392,270 +387,172 @@ def writesheetinterface(pwb, pintfid, pmodel, plang):
     ws.cell(column=colidx, row=rowidx + 1, value='attrName')
     rowidx += 2
 
-    for tabid in intf['tables']:
-        tabl = pmodel['tables'][tabid]
+    for tabid in intf['tables+']:
+        tabl = pmodel.getbyid(tabid)
         firstrowidx = rowidx
-        for colid in tabl['columns']:
-            colu = pmodel['columns'][colid]
-            valueenti,valueattr = '',''
-            for attrid in colu['attributes-mapped']:
-                attr = pmodel['attributes'][attrid]
-                enti = pmodel['entities'][attr['entity']]
+        for colid in tabl['columns+']:
+            colu = pmodel.getbyid(colid)
+            valueenti, valueattr = '', ''
+            for attrid in colu['attributesmapped']:
+                attr = pmodel.getbyid(attrid)
+                enti = pmodel.getbyid(attr['entity'])
                 valueenti = valmiteol(pval=valueenti, padd=enti['name'][plang])
                 valueattr = valmiteol(pval=valueattr, padd=attr['name'][plang])
             # for
             colidx = 1
             ws.cell(column=colidx, row=rowidx, value=tabl['name'])
             colidx += 1
-            setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=colu['name'],pwrap_text=True)
+            ws.cell(column=colidx, row=rowidx, value=tabl['CRUD'])
+            colidx += 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=colu['name'], pwrap_text=True)
+            colidx += 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=colu['R/W'])
             colidx += 1
             ws.cell(column=colidx, row=rowidx, value=colu['interface_col_id'])
-            colidx +=1
-            doma = pmodel['domains'][colu['domain']]
-            ws.cell(column=colidx, row=rowidx, value=doma['name'][plang] if doma['origin']== Domain.DOMAIN else None)
-            colidx +=1
+            colidx += 1
+            doma = pmodel.getbyid(colu['domain'])
+            ws.cell(column=colidx, row=rowidx, value=doma['name'][plang] if doma['origin'] == Domain.DOMAIN else None)
+            colidx += 1
             ws.cell(column=colidx, row=rowidx, value=colu['datatype'])
-            colidx +=1
-            #ws.cell(column=colidx, row=rowidx, value=colu['mandatory'])
-            colidx +=1
-            #ws.cell(column=colidx, row=rowidx, value=colu['default Value'])
-            colidx +=1
-            setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=colu['descr'],pwrap_text=True)
-            colidx +=1
-            #setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=colu['rules'],pwrap_text=True)
-            colidx +=1
-            setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=valueenti,pwrap_text=True)
-            colidx +=1
-            setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=valueattr,pwrap_text=True)
+            colidx += 1
+            # ws.cell(column=colidx, row=rowidx, value=colu['mandatory'])
+            colidx += 1
+            # ws.cell(column=colidx, row=rowidx, value=colu['default Value'])
+            colidx += 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=colu['descr'], pwrap_text=True)
+            colidx += 1
+            # setcell(pws=ws,pcolumn=colidx, prow=rowidx, pvalue=colu['rules'],pwrap_text=True)
+            colidx += 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valueenti, pwrap_text=True)
+            colidx += 1
+            setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=valueattr, pwrap_text=True)
             rowidx += 1
         # for
         if firstrowidx == rowidx:
             """no columns written write the entity-Mappings if present"""
             valueenti = ''
             for entiid in tabl['entitiesmapped']:
-                enti = pmodel['entities'][entiid]
+                enti = pmodel.getbyid(entiid)
                 valueenti = valmiteol(pval=valueenti, padd=enti['name'][plang])
-            #for
-            ws.cell(column=1, row=rowidx, value=tabl['name'])
-            setcell(pws=ws,pcolumn=10 , prow=rowidx, pvalue=valueenti,pwrap_text=True)
+            # for
+            colidx = 1
+            ws.cell(column=colidx, row=rowidx, value=tabl['name'])
+            colidx += 1
+            ws.cell(column=colidx, row=rowidx, value=tabl['CRUD'])
+            colidx += 1
+            setcell(pws=ws, pcolumn=12, prow=rowidx, pvalue=valueenti, pwrap_text=True)
             rowidx += 1
-        #if
-    #for
+        # if
+    # for
     ch = 'A'
     ws.column_dimensions[ch].width = 35
-    ch = chr(ord(ch)+1)
-    ws.column_dimensions[ch].width = 40
-    ch = chr(ord(ch)+1)
-    ws.column_dimensions[ch].width = 20
-    ch = chr(ord(ch)+1)
-    ws.column_dimensions[ch].width = 20
-    ch = chr(ord(ch)+1)
-    ws.column_dimensions[ch].width = 20
-    ch = chr(ord(ch)+1)
+    ch = chr(ord(ch) + 1)
     ws.column_dimensions[ch].width = 10
-    ch = chr(ord(ch)+1)
+    ch = chr(ord(ch) + 1)
+    ws.column_dimensions[ch].width = 40
+    ch = chr(ord(ch) + 1)
+    ws.column_dimensions[ch].width = 10
+    ch = chr(ord(ch) + 1)
     ws.column_dimensions[ch].width = 20
-    ch = chr(ord(ch)+1)
+    ch = chr(ord(ch) + 1)
+    ws.column_dimensions[ch].width = 20
+    ch = chr(ord(ch) + 1)
+    ws.column_dimensions[ch].width = 20
+    ch = chr(ord(ch) + 1)
+    ws.column_dimensions[ch].width = 10
+    ch = chr(ord(ch) + 1)
+    ws.column_dimensions[ch].width = 20
+    ch = chr(ord(ch) + 1)
     ws.column_dimensions[ch].width = 35
-    ch = chr(ord(ch)+1)
+    ch = chr(ord(ch) + 1)
     ws.column_dimensions[ch].width = 35
-    ch = chr(ord(ch)+1)
+    ch = chr(ord(ch) + 1)
     ws.column_dimensions[ch].width = 35
-    ch = chr(ord(ch)+1)
+    ch = chr(ord(ch) + 1)
     ws.column_dimensions[ch].width = 35
+    return
 
-# writesheetinterface
-
-def writexls(pfilename: str,pmodel,plang):
+def writexls(pfilename: str, pmodel, plang):
     wb = Workbook()
-
-    writesheettabent(pwb=wb,pmodel=pmodel,plang=plang)
-    writesheetentitab(pwb=wb,pmodel=pmodel,plang=plang)
-    writesheetattrcol(pwb=wb,pmodel=pmodel,plang=plang)
+    writesheettabent(pwb=wb, pmodel=pmodel, plang=plang)
+    writesheetentitab(pwb=wb, pmodel=pmodel, plang=plang)
+    writesheetattrcol(pwb=wb, pmodel=pmodel, plang=plang)
     #    writesheetcolattr(pwb=wb)
     wb.remove(wb.worksheets[0])
     wb.save(filename=pfilename)
-# writexls
-
-# def createFile(pfilename):
-#     global fileCSV
-#     csvfile = parameters.webDirec() + pfilename
-#     if os.path.exists(csvfile):
-#         os.remove(csvfile)
-#     fileCSV = open(csvfile, 'w')
-#
-#
-# # createFile
-
-# def closefile():
-#     global fileCSV
-#     fileCSV.close()
-#
-#
-# # closefile
-
-# def write(*args, **kwargs):
-#     global fileCSV
-#     sep = kwargs['sep'] if 'sep' in kwargs else ''
-#     str = sep.join(arg for arg in args)
-#     fileCSV.write(str)
-#
-#
-# def writeln(*args, **kwargs):
-#     write(*args, **kwargs)
-#     write(EOL)
+    return
 
 
-# def listtabenti():
-#     global entities
-#     global attributes
-#     global tables
-#     global schnittstellen
-#     global tabentimap
-#
-#     createFile(pfilename=parameters.modelName() + '_tabenti.csv')
-#     write('\ufeff')
-#     topheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + CSVSEP.join(e[0] for e in entities.values())
-#     writeln(topheader)
-#     for skey, sval in schnittstellen.items():
-#         for tkey, tval in sval.items():
-#             writeln(skey, tval[0], CSVSEP.join(tables[tkey][3]), sep=CSVSEP)
-#     print("Erstellt: {}".format(fileCSV.name))
-#     closefile()
-#
-#
-# # listtabenti
+def writeoverview(pwb, pmodel):
+    systems = pmodel.getelements('INTF')
+    cols = pmodel.getelements('COLU')
+    ws = pwb.create_sheet("Overview")
+    ws.column_dimensions['A'].width = 30
+    ws.column_dimensions['B'].width = 15
+    ws.column_dimensions['c'].width = 15
+    rowidx, colidx = 1, 1
+    ws.cell(column=colidx, row=rowidx, value='System')
+    ws.cell(column=colidx + 1, row=rowidx, value='tablecount')
+    ws.cell(column=colidx + 2, row=rowidx, value='columncount')
+    for syskey, sys in systems.items():
+        rowidx += 1
+        c = ws.cell(column=1, row=2)
+        c.alignment = styles.Alignment(horizontal='general'
+                                       , vertical='bottom'
+                                       , text_rotation=0,
+                                       wrap_text=False,
+                                       shrink_to_fit=False,
+                                       indent=0)
+        ws.cell(column=colidx, row=rowidx, value=sys['name'])
+        ws.cell(column=colidx + 1, row=rowidx, value=len(sys["tables+"]))
+        ws.cell(column=colidx + 2, row=rowidx
+                , value=len([c["name"] for c in cols.values() if c["interface-id+"] == syskey]))
+    # for
+    return
 
 
-# def listcolattr():
-#     createFile(pfilename=parameters.modelName() + '_colattr.csv')
-#     write('\ufeff')
-#     topheader = CSVSEP + CSVSEP + 'Entity' + CSVSEP
-#     subheader = 'Interface' + CSVSEP + 'Table' + CSVSEP + 'Column' + CSVSEP
-#     for enti in entities.values():
-#         attrs = enti[2]
-#         topheader += enti[0] + CSVSEP + CSVSEP.join('' for at in attrs)[:-1]
-#         subheader += CSVSEP + CSVSEP.join(at[0] for at in attrs.values())
-#     writeln(topheader)
-#     writeln(subheader)
-#     for skey, sval in schnittstellen.items():
-#         for tkey, tval in sval.items():
-#             for ckey, cval in tval[1].items():
-#                 writeln(skey, tval[0], cval[0], CSVSEP.join(columns[ckey][3]), sep=CSVSEP)
-#     print("Erstellt: {}".format(fileCSV.name))
-#     closefile()
-#
-#
-# # listcolattr
-
-
-def writeintfxls(pfilepath: str,pmodel,plang):
-
+def writeintfxls(pfilename: str, pmodel, plang):
     #    writesheetcolattr(pwb=wb)
-    for intfid,intf in pmodel['systems'].items():
-        wb = Workbook()
+    wb = Workbook()
+    writeoverview(pwb=wb, pmodel=pmodel)
+    writesheettabent(pwb=wb, pmodel=pmodel, plang=plang)
+    writesheetentitab(pwb=wb, pmodel=pmodel, plang=plang)
+    writesheetattrcol(pwb=wb, pmodel=pmodel, plang=plang)
+
+
+    for intfid, intf in pmodel.getelements('systems').items():
         writesheetinterface(pwb=wb, pintfid=intfid, pmodel=pmodel, plang=plang)
-        wb.save(filename=pfilepath+ intf['name']  + '.xlsx')
-# writexls
+    wb.remove(wb.worksheets[0])
+    wb.save(filename=pfilename)
+    return
 
 def istintabentimap(tabid, entiid):
     return (tabid in tabentimap) and (entiid in tabentimap[tabid])
 
-
-# istintabentimap
-
 def istincolattrmap(colid, attrid):
     return (colid in colattrmap) and (attrid in colattrmap[colid])
-
-
-# istincolattrmap
 
 def stripeol(str):
     retval = re.sub("\n+", "\n", str)
     retval = retval.strip(EOL)
     return retval
-# stripeol
 
 
+def main(pjsonfile, plang):
+    JSONEXTENSION = '.json'
+    jsmodel = JSModel.readfromfile(pfilename=pjsonfile)
+    lang = plang if plang is not None else jsmodel.jsmodel["model"]["language"]
+    filename = pjsonfile[:-len(JSONEXTENSION)] + '_datamodels'
+    fileext = '.xlsx'
 
-# def filllists(plang):
-#     entities = {enti.enti_id: [enti.enti_name
-#         , {tem[0]: [t for t in tem[1].keys()]
-#            for tem in TablEntiMap.tablelist(pentiid=enti.enti_id)}
-#         , {attr.attr_id: [attr.attr_displ_name, attr.attr_tech_name]
-#            for attr in enti.getattributes()}
-#                                ]
-#                 for enti in Entity.select()}
-#     attributes = {attr.attr_id: [attr.attr_displ_name, attr.attr_tech_name, attr.attr_enti_id] for attr
-#                   in Attribute.select()}
-#     tables = {tabl.tabl_id: [tabl.tabl_name
-#         , Interface().getbyid(tabl.tabl_intf_id).getname()
-#         , {c.colu_id: c.colu_column_name for c in tabl.getcolumns()}
-#                              ]
-#               for tabl in Table.select()}
-#
-#     columns = {scha.colu_id: [scha.colu_column_name, scha.colu_tabl_id, scha.colu_ext_system_id]
-#                for scha in Column.select()}
-#     schnittstellen = {schn.intf_name:
-#                           {tabl.tabl_id: [tabl.tabl_name
-#                                         , {c.colu_id: [c.colu_column_name, c.colu_ext_system_id]
-#                                             for c in tabl.getcolumns()
-#                                            }
-#                                         ] for tabl in Table.selectbyschnid(schn.intf_id)
-#                            }
-#                       for schn in Interface.select()}
-#     tabentimap = TablEntiMap.extendedtabentimap()
-#     for tkey, tval in tables.items():
-#         matentry = lambda tabid, entiid: 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
-#         maps = [matentry(tkey, e) for e in entities.keys()]
-#         tval.append(maps)
-#     # for
-#     for ekey, eval in entities.items():
-#         matentry = lambda tabid, entiid: 'X' if (tabid in tabentimap) and (entiid in tabentimap[tabid]) else ''
-#         maps = [matentry(tkey, ekey) for tkey in tables.keys()]
-#         eval.append(maps)
-#     # for
-#     colattrmap = ColAttrMap.colattrmap()
-#     for colid, cval in columns.items():
-#         matentry = lambda colid, attrid: 'X' if (istincolattrmap(colid, attrid)) else ''
-#         maps = [matentry(colid, attrid) for attrid in attributes.keys()]
-#         cval.append(maps)
-#     # for
-#
-#
-# #    print (len(entities),entities)
-# #    print(len(attributes),attributes)
-# #    print (len(tables),tables)
-# #    print (len(schnittstellen),schnittstellen)
-# #    print (len(mapping),mapping)
-# #    print(len(colattrmap),colattrmap)
-# # filllists
-
-def main(pdirec, plang):
-    parameters.initparam(p_callarg=pdirec)
-    logmessages.initlog('createMapping')
-
-    print("listmapping", parameters.baseDirec(), parameters.modelName())
-
-    if plang is not None:
-        Languagetext.reportLang(plang.lower())
-    else:
-        Languagetext.reportLang(parameters.dbDefaultLang())
-
-    dbConnect.openDB(pfilepath=parameters.dbFilePath());
-    #filllists(plang=Languagetext.reportLang())
-    model = listWebdoku.createJSON.sql2json()
-    dbConnect.myDbConn.close()
-    writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
-    writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
-    logmessages.showmessages("Model {}: mappinglist form database {}\n  => created in file {}"
-                             .format(parameters.modelName(), parameters.dbFilePath()
-                               , parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx'))
-
-
-# main
+    #    writexls(pfilename= filename + fileext,pmodel=model,plang=lang)
+    writeintfxls(pfilename=filename + fileext, pmodel=jsmodel, plang=lang)
+    print("Model {}: \n  => created in file {}"
+          .format(jsmodel.jsmodel["model"]["name"]
+                  , filename + fileext))
+    return
 
 if __name__ == '__main__':
-    direc = sys.argv[1]
+    jsonfile = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv) > 2) else None
-    main(pdirec=direc, plang=lang)
+    main(pjsonfile=jsonfile, plang=lang)
