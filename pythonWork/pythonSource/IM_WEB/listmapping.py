@@ -3,9 +3,9 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db/IM_DB')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
-from IM_DB import *
-from IM_OBJECTS import *
+from IM_OBJECTS import Domain
 from IM_JSON import JSModel
 from mystring import nvl
 from openpyxl import Workbook, styles
@@ -42,10 +42,10 @@ def setcell(pws, pcolumn, prow, pvalue
     if (phorizontal is not None or pvertical is not None \
             or ptext_rotation is not None or pwrap_text is not None):
         cell.alignment = styles.Alignment(horizontal=phorizontal
-                                   , vertical=pvertical
-                                   , text_rotation=ptext_rotation
-                                   , wrap_text=pwrap_text
-                                   )
+                                          , vertical=pvertical
+                                          , text_rotation=ptext_rotation
+                                          , wrap_text=pwrap_text
+                                          )
     # if
     """ Alignement horizontal  ?left?, ?centerContinuous?, ?center?, ?distributed?, ?fill?, ?justify?, ?right?, ?general?"""
 
@@ -243,10 +243,11 @@ def writesheetattrcol(pwb: Workbook, pmodel, plang):
     # for
     rowidx += 2
 
-    attrsort = [[key,pmodel.getbyid(val["entity"])["name"][plang],val['name'][plang]] for key,val in pmodel.getelements("attributes").items()]
-    attrsort = sorted(attrsort,key=lambda x:x[1]+"-"+x[2])
+    attrsort = [[key, pmodel.getbyid(val["entity"])["name"][plang], val['name'][plang]] for key, val in
+                pmodel.getelements("attributes").items()]
+    attrsort = sorted(attrsort, key=lambda x: x[1] + "-" + x[2])
     for attr in attrsort:
-        attrid,entiname,attrname=attr[0],attr[1],attr[2]
+        attrid, entiname, attrname = attr[0], attr[1], attr[2]
         colidx = 1
         setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=entiname
                 , pwrap_text=True)
@@ -290,11 +291,12 @@ def writesheetattrcol(pwb: Workbook, pmodel, plang):
     ws.column_dimensions['A'].width = 35
     ws.column_dimensions['B'].width = 35
     for idx in range(3, colidx):
+        colwidth = {0: 35, 1: 5, 2: 15, 3: 35}
         """3 4 .5 6 7   8 .9 10 11"""
-        width = 35 if idx % 4 != 1 else 5
-        ws.column_dimensions[colnum_string(idx)].width = width
+        ws.column_dimensions[colnum_string(idx)].width = colwidth[idx % 4]
     # for
     return
+
 
 def writesheetattrcolold(pwb: Workbook):
     ws = pwb.create_sheet("Attributes to Columns mapping")
@@ -352,6 +354,7 @@ def writesheetattrcolold(pwb: Workbook):
         ws.column_dimensions[colnum_string(idx)].width = width
     # for
     return
+
 
 def writesheetinterface(pwb, pintfid, pmodel, plang):
     intf = pmodel.getbyid(pintfid)
@@ -472,6 +475,7 @@ def writesheetinterface(pwb, pintfid, pmodel, plang):
     ws.column_dimensions[ch].width = 35
     return
 
+
 def writexls(pfilename: str, pmodel, plang):
     wb = Workbook()
     writesheettabent(pwb=wb, pmodel=pmodel, plang=plang)
@@ -485,15 +489,23 @@ def writexls(pfilename: str, pmodel, plang):
 
 def writeoverview(pwb, pmodel):
     systems = pmodel.getelements('INTF')
+    entis = pmodel.getelements('ENTI')
+    relas = pmodel.getelements('RELA')
+    attrs = pmodel.getelements('ATTR')
+    tabs = pmodel.getelements('TABL')
     cols = pmodel.getelements('COLU')
     ws = pwb.create_sheet("Overview")
     ws.column_dimensions['A'].width = 30
     ws.column_dimensions['B'].width = 15
-    ws.column_dimensions['c'].width = 15
+    ws.column_dimensions['C'].width = 15
+    ws.column_dimensions['D'].width = 15
+    ws.column_dimensions['E'].width = 15
     rowidx, colidx = 1, 1
     ws.cell(column=colidx, row=rowidx, value='System')
-    ws.cell(column=colidx + 1, row=rowidx, value='tablecount')
-    ws.cell(column=colidx + 2, row=rowidx, value='columncount')
+    ws.cell(column=colidx + 1, row=rowidx, value='Tables')
+    ws.cell(column=colidx + 2, row=rowidx, value='Enti/Rela mapped')
+    ws.cell(column=colidx + 3, row=rowidx, value='Columns')
+    ws.cell(column=colidx + 4, row=rowidx, value='Attributes mapped')
     for syskey, sys in systems.items():
         rowidx += 1
         c = ws.cell(column=1, row=2)
@@ -506,8 +518,26 @@ def writeoverview(pwb, pmodel):
         ws.cell(column=colidx, row=rowidx, value=sys['name'])
         ws.cell(column=colidx + 1, row=rowidx, value=len(sys["tables+"]))
         ws.cell(column=colidx + 2, row=rowidx
+                , value=sum([len(t["entitiesmapped"]) + len(t["relationsmapped"]) for t in tabs.values() if
+                             t["interface-id"] == syskey]))
+        ws.cell(column=colidx + 3, row=rowidx
                 , value=len([c["name"] for c in cols.values() if c["interface-id+"] == syskey]))
+        ws.cell(column=colidx + 4, row=rowidx
+                , value=sum([len(c["attributesmapped"]) for c in cols.values() if c["interface-id+"] == syskey]))
     # for
+    rowidx += 2
+    ws.cell(column=colidx, row=rowidx, value='Information Model')
+    ws.cell(column=colidx + 1, row=rowidx, value='Entities/Relations')
+    ws.cell(column=colidx + 2, row=rowidx, value='Tables mapped')
+    ws.cell(column=colidx + 3, row=rowidx, value='Attrbutes')
+    ws.cell(column=colidx + 4, row=rowidx, value='Columns-Mapped')
+    rowidx += 1
+    ws.cell(column=colidx + 1, row=rowidx, value=len(entis))
+    ws.cell(column=colidx + 2, row=rowidx, value=sum([len(e["tablesmapped+"]) for e in entis.values()])
+                                                 + sum([len(e["tablesmapped+"]) for e in relas.values()]))
+    ws.cell(column=colidx + 3, row=rowidx, value=len(attrs))
+    ws.cell(column=colidx + 4, row=rowidx, value=sum([len(a["columnsmapped+"]) for a in attrs.values()]))
+
     return
 
 
@@ -519,18 +549,20 @@ def writeintfxls(pfilename: str, pmodel, plang):
     writesheetentitab(pwb=wb, pmodel=pmodel, plang=plang)
     writesheetattrcol(pwb=wb, pmodel=pmodel, plang=plang)
 
-
     for intfid, intf in pmodel.getelements('systems').items():
         writesheetinterface(pwb=wb, pintfid=intfid, pmodel=pmodel, plang=plang)
     wb.remove(wb.worksheets[0])
     wb.save(filename=pfilename)
     return
 
+
 def istintabentimap(tabid, entiid):
     return (tabid in tabentimap) and (entiid in tabentimap[tabid])
 
+
 def istincolattrmap(colid, attrid):
     return (colid in colattrmap) and (attrid in colattrmap[colid])
+
 
 def stripeol(str):
     retval = re.sub("\n+", "\n", str)
@@ -551,6 +583,7 @@ def main(pjsonfile, plang):
           .format(jsmodel.jsmodel["model"]["name"]
                   , filename + fileext))
     return
+
 
 if __name__ == '__main__':
     jsonfile = sys.argv[1]

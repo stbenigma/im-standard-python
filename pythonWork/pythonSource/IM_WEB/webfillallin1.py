@@ -27,14 +27,14 @@ def main(pdirec, plang,pforceoverwrite = False):
 
     fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
 
-    dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
+    openDB(parameters.dbFilePath(), pfks='ON')
     jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     printHTML.setmodel(jsmodel)
     printHTML.setWebDirec(p_webdirec=None)
 
     listWebdoku.listwebmain(plang=Languagetext.reportLang())
     jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
-    dbConnect.closeDB()
+    closeDB()
 
 #    listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
 #    listmapping.writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
