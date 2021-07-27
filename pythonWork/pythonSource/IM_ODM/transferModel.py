@@ -1135,12 +1135,15 @@ def doSubentities():
 
     """create an arc for every superentity"""
     for superentiguid in guids:
-        superenti = entities[superentiguid][0]
-        subentiids = entities[superentiguid][2]
-        arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
-                     , puc=superenti.enti_uc, pdc=superenti.enti_dc)
-        arc.insert()
-        Relation.insertisa(parc=arc,pentiids=subentiids)
+        superentity = entities.get(superentiguid)
+        if superentity: # skip arc if superentity reference is broken
+            superenti = superentity[0]
+            subentiids = superentity[superentiguid][2]
+            arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
+                      , puc=superenti.enti_uc, pdc=superenti.enti_dc)
+            arc.insert()
+            Relation.insertisa(parc=arc,pentiids=subentiids)
+        #fi
     #for
 
 
