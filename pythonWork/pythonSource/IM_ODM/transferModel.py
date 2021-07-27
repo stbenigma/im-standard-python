@@ -1090,8 +1090,12 @@ def doSubentities():
         entientiguid = entities[guid][1]
         enti = entities[guid][0]
         if entientiguid is not None:
+            target = entities.get(entientiguid)
+        if target:
             # hat eine superentity, fülle in seine idliste
-            entities[entientiguid][2].append(enti.enti_id)
+            target[2].append(enti.enti_id)
+        else:
+            logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {enti}")
         #fi
     #for
 
