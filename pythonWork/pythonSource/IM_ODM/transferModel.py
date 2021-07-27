@@ -1091,11 +1091,11 @@ def doSubentities():
         enti = entities[guid][0]
         if entientiguid is not None:
             target = entities.get(entientiguid)
-        if target:
-            # hat eine superentity, fülle in seine idliste
-            target[2].append(enti.enti_id)
-        else:
-            logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {enti}")
+            if target is not None:
+                # hat eine superentity, fülle in seine idliste
+                target[2].append(enti.enti_id)
+            else:
+                logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {enti}")
         #fi
     #for
 
