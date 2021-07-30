@@ -642,7 +642,7 @@ def main(pdirec, plang):
     else:
         Languagetext.reportLang(parameters.dbDefaultLang())
 
-    dbConnect.openDB(p_filepath=parameters.dbFilePath());
+    dbConnect.openDB(pfilepath=parameters.dbFilePath());
     #filllists(plang=Languagetext.reportLang())
     model = listWebdoku.createJSON.sql2json()
     dbConnect.myDbConn.close()

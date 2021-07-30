@@ -55,11 +55,11 @@ def main(pjsonin, pdbout):
     jsmodel = JSModel.readfromfile(pfilename=pjsonin)
 
     if pdbout is None:
-        dbConnect.openDB(p_filepath=":memory:",fks='ON');
+        dbConnect.openDB(pfilepath=":memory:", pfks='ON');
     else:
         dbConnect.openDB(pdbout, 'ON');
 
-    dbErstelleTables.erstelleInfra(parameters.sqlfilepath());
+    dbErstelleTables.applysqlscript(parameters.sqlfilepath());
     transferModel.insertBaseData(pwithlangs=False)
 
     try:

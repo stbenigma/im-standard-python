@@ -4792,7 +4792,7 @@ function printNameMapping (){
 				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
-			function printline(fw, line) {
+			function printlinesvg(fw, line) {
 				for (zi = 0; zi < line.length; zi++) {
 					field = line[zi]
 					if (zi > 0) {
@@ -4816,7 +4816,7 @@ function printNameMapping (){
 				for (ie = 0; ie < entry.length; ie++) {
 					line = entry[ie]
 						// es ist eine Liste von Zeilen
-					printline(fw, line)
+					printlinesvg(fw, line)
 				}
 			}
 
@@ -5806,7 +5806,7 @@ function printNameMapping (){
 				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
-			function printline(fw, line) {
+			function printlinesvg(fw, line) {
 //				for (zi = 0; zi < line.length; zi++) {
 //					field = line[zi]
 				forEach(line,
@@ -5835,7 +5835,7 @@ function printNameMapping (){
 				for (ie = 0; ie < entry.length; ie++) {
 					line = entry[ie]
 						// es ist eine Liste von Zeilen
-					printline(fw, line)
+					printlinesvg(fw, line)
 				}
 			}
 
@@ -8695,7 +8695,7 @@ function initzoomlevel(){
 				if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 				return retval
 			}
-			function printline(fw, line) {
+			function printlinesvg(fw, line) {
 //				for (zi = 0; zi < line.length; zi++) {
 //					field = line[zi]
 				forEach(line,
@@ -8724,7 +8724,7 @@ function initzoomlevel(){
 				for (ie = 0; ie < entry.length; ie++) {
 					line = entry[ie]
 						// es ist eine Liste von Zeilen
-					printline(fw, line)
+					printlinesvg(fw, line)
 				}
 			}
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2021-07-20T12:02:15.557Z" agent="5.0 (Macintosh; Intel Mac OS X 11_4_0) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.6.13 Chrome/89.0.4389.128 Electron/12.0.7 Safari/537.36" etag="25mQkM6mx7LJW4tu3GDx" version="14.6.13" type="device">
+  <diagram id="-IuDeWdp_pBGzQphX35I" name="Seite-1">
+    <mxGraphModel dx="3592" dy="3662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ct_x_fueRCHBXW9Sjaz1-1" value="Kunde" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-826" y="-1079" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ct_x_fueRCHBXW9Sjaz1-3" value="Produkt" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-516" y="-1169" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ct_x_fueRCHBXW9Sjaz1-5" value="" style="endArrow=oval;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;startArrow=ERmany;startFill=0;endFill=0;rounded=0;" parent="1" source="ct_x_fueRCHBXW9Sjaz1-1" target="ct_x_fueRCHBXW9Sjaz1-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-716" y="-1059" as="sourcePoint" />
+            <mxPoint x="-556" y="-1059" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-736" y="-1139" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ct_x_fueRCHBXW9Sjaz1-6" value="verkauft an" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;rotation=0;" parent="ct_x_fueRCHBXW9Sjaz1-5" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="77" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ct_x_fueRCHBXW9Sjaz1-7" value="kauft" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;rotation=-50;" parent="ct_x_fueRCHBXW9Sjaz1-5" connectable="0" vertex="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="30" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

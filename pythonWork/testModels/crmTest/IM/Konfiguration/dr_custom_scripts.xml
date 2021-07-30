@@ -5533,7 +5533,7 @@ for (var vv=0;vv<views.length;vv++){
 							if (retval.match(/\n/)) {retval = EXCELESCCHAR + retval + EXCELESCCHAR}
 							return retval
 						}
-						function printline(fw, line) {
+						function printlinesvg(fw, line) {
 			//				for (zi = 0; zi < line.length; zi++) {
 			//					field = line[zi]
 							forEach(line,
@@ -5562,7 +5562,7 @@ for (var vv=0;vv<views.length;vv++){
 							for (ie = 0; ie < entry.length; ie++) {
 								line = entry[ie]
 									// es ist eine Liste von Zeilen
-								printline(fw, line)
+								printlinesvg(fw, line)
 							}
 						}
 
