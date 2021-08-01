@@ -231,12 +231,12 @@ from IM_ODM import transferModel
 """
 entities = dict()
 """List of Relations 
-   {relationguid: {"rela":, "disp. attributer":, ...}}
+   {relationguid: {"rela":, "srcentiguid": ,"dstentiguid","....":}}
 """
 relations = dict()
 
 
-def transferDomains():
+def initDomains():
     daty_id = Datatype(pname="unknown"
                        , pbasetype=Datatype.STRING
                        , psrcname=Externalref.SOURCE_EAXML, pscrid="DATYunknown"
@@ -325,12 +325,12 @@ def do1entitydiag(pdiagxml):
 
 def do1diaglink(pdiaglinkxml):
     diagguid = handleXML.findRefGuid(pdiaglinkxml, 'DiagramID')
-    diag = Diagram().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=diagguid)
+    diag = Diagram().getbyEAref(psrcid=diagguid)
     if diag is None:
         logmessages.writelog("Diagram {} not found".format(diagguid))
         return
     objguid = handleXML.findRefGuid(pdiaglinkxml, 'ConnectorID')
-    rela = Relation().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=objguid)
+    rela = Relation().getbyEAref(psrcid=objguid)
     if rela is None:
         logmessages.writelog("Object {} not found for diagram {}".format(objguid, diagguid))
         return
@@ -383,12 +383,12 @@ def do1diaglink(pdiaglinkxml):
 
 def do1diagobj(pdiagobjxml):
     diagguid = handleXML.findRefGuid(pdiagobjxml, 'Diagram_ID')
-    diag = Diagram().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=diagguid)
+    diag = Diagram().getbyEAref(psrcid=diagguid)
     if diag is None:
         logmessages.writelog("Diagram {} not found".format(diagguid))
         return
     objguid = handleXML.findRefGuid(pdiagobjxml, 'Object_ID')
-    obj = Entity().getbyextref(psrcname=Externalref.SOURCE_EAXML, psrcid=objguid)
+    obj = Entity().getbyEAref(psrcid=objguid)
     if obj is None:
         logmessages.writelog("Object {} not found for diagram {}".format(objguid, diagguid))
         return
@@ -422,13 +422,12 @@ def do1diagobj(pdiagobjxml):
     return
 
 def transferobjtypes(proot, pobjtype, ptransferfunc, **restrictions):
-    objs = proot.find("Table[@name='{}']".format(pobjtype))
+    objs = proot.find(f"Table[@name='{pobjtype}']")
     for obj in objs:
         # check, that all restrictions for objecttype are met
         restrictionmet = True
         for type, value in restrictions.items():
             restrictionmet = restrictionmet and (handleXML.findColumn(obj, type) == value)
-
         if restrictionmet:
             ptransferfunc(obj)
     return
@@ -441,7 +440,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype, pattr, pintfid=None
 
 def do1Attribute(pattrxml):
     vaterguid = handleXML.findRefGuid(pattrxml, "Object_ID")
-    vater = Entity().getbyextref(psrcid=vaterguid, psrcname=Externalref.SOURCE_EAXML)
+    vater = Entity().getbyEAref(psrcid=vaterguid)
     attrname = handleXML.findColumn(pattrxml, "Name")
 
     attr = Attribute(pname=transferModel.removeattrmeta(attrname), pentiid=vater.enti_id
@@ -457,7 +456,7 @@ def do1Attribute(pattrxml):
                                            , pfathername=vater.enti_name
                                            , pdomatype=Domain.DERIVED
                                            , pattr=pattrxml)
-    # attr.attr_descr = handleXML.findText(pattrxml, 'comment')
+    attr.attr_descr = handleXML.findText(pattrxml, 'Note')
     # attr.attr_displ_seq = plfnr
     attr.attr_is_descriptive = 'FALSE'
     attr.attr_is_mandatory = 'FALSE'  # Boolean.bool2str(handleXML.findText(pattrxml, 'nullsAllowed') != 'true')
@@ -546,7 +545,7 @@ def do1Entity(pentitiy):
     entiguid: str = handleXML.findColumn(pentitiy, 'ea_guid')
     enti = Entity(psrcname=Externalref.SOURCE_EAXML, psrcid=entiguid)
     enti.enti_name = handleXML.findColumn(pentitiy, "Name")
-    # enti.enti_descr = handleXML.findColumn(pentitiy, 'Note')
+    enti.enti_descr = handleXML.findColumn(pentitiy, 'Note')
     enti.enti_uc = handleXML.findColumn(pentitiy, 'Author')
     enti.enti_dc = handleXML.findColumn(pentitiy, 'CreatedDate')
     enti.enti_dm = handleXML.findColumn(pentitiy, 'ModifiedDate')
@@ -563,18 +562,85 @@ def do1Entity(pentitiy):
     entities[entiguid] = {"entity": enti, "color": color}
     return
 
+def do1LOV(plovvalue):
+    deva = DefaultValue()
+    deva.deva_value=handleXML.findColumn(plovvalue,"Name")
+    deva.deva_descr=handleXML.findColumn(plovvalue,"Note")
+    deva.deva_uc="filldbea"
+    deva.deva_dc=datetime.today()
+    deva.deva_sort_order =handleXML.findColumn(plovvalue,"Pos")
+    domaguid=handleXML.findRefGuid(plovvalue,"Object_ID")
+    doma = Domain().getbyEAref(psrcid=domaguid)
+    if doma is None:
+        logmessages.writelog(f"Domain {domaguid }for domainvalue {deva.deva_name} not found")
+    else:
+        deva.deva_doma_id = doma.doma_id
+        deva.insert()
+    return
+
+def do1Domain(pdomain):
+    domaguid: str = handleXML.findColumn(pdomain, 'ea_guid')
+    doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid=domaguid)
+    doma.doma_name = handleXML.findColumn(pdomain, "Name")
+    doma.doma_origin = Domain.DOMAIN
+    doma.doma_type = Domain.LOV
+    doma.doma_descr = handleXML.findColumn(pdomain, 'Note')
+    doma.doma_uc = handleXML.findColumn(pdomain, 'Author')
+    doma.doma_dc = handleXML.findColumn(pdomain, 'CreatedDate')
+    doma.doma_dm = handleXML.findColumn(pdomain, 'ModifiedDate')
+
+    domaId = doma.insert()
+    return
+
+def do1Arc(parc):
+    global relations
+    arcguid : str = handleXML.findColumn(parc, 'ea_guid')
+    arc = Arc(psrcname=Externalref.SOURCE_EAXML, psrcid=arcguid)
+    arc.arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID")
+    arc.arcs_uc = handleXML.findColumn(parc, 'Author')
+    arc.arcs_dc = handleXML.findColumn(parc, 'CreatedDate')
+    arc.arcs_dm = handleXML.findColumn(parc, 'ModifiedDate')
+
+    arcbase =  [(relaguid, rela) for relaguid,rela in relations.items() if (rela["isArc"] and (rela["srcentiguid"]== arcguid or rela["dstentiguid"]== arcguid))]
+    if len(arcbase) != 1:
+        logmessages.writelog(f"Arc {arcguid} has not exactly one arc-relationship")
+        return
+    #fi
+    arcbase = arcbase[0]
+    srcentiguid,dstentiguid = arcbase[1]["srcentiguid"],arcbase[1]["dstentiguid"]
+    arcentiguid=srcentiguid if dstentiguid == arcguid else dstentiguid
+    arcenti=Entity().getbyEAref(psrcid=arcentiguid)
+    if arcenti is None:
+        logmessages.writelog(f"Arc {arcguid} not connected to knwon entity {arcentiguid}")
+        return
+
+    arc.arcs_enti_id = arcenti.enti_id
+    arcID = arc.insert()
+
+    arcrelas = {relaguid: rela for relaguid,rela in relations.items() if (not rela["isArc"] and (rela["srcentiguid"]== arcguid or rela["dstentiguid"]== arcguid))}
+    for relaguid,arcrela in arcrelas.items():
+        srcentiguid, dstentiguid = arcrela["srcentiguid"], arcrela["dstentiguid"]
+        otherentiguid = srcentiguid if dstentiguid == arcguid else dstentiguid
+        otherenti = Entity().getbyEAref(psrcid=otherentiguid)
+        if otherenti is None:
+            logmessages.writelog(f"Arc {arcguid} not connected to known entity {otherentiguid}")
+            continue
+
+        rela = arcrela["rela"]
+        rela.rela_arc_id_from = arcID if srcentiguid == arcguid else None
+        rela.rela_arc_id_to = arcID if dstentiguid == arcguid else None
+        rela.rela_enti_id_from = arcenti.enti_id if srcentiguid == arcguid else otherenti.enti_id
+        rela.rela_enti_id_to = arcenti.enti_id if srcentiguid != arcguid else otherenti.enti_id
+        rela.insert()
+    return
 
 def do1Relation(prelaxml):
     global relations
     relaguid = handleXML.findColumn(prelaxml, 'ea_guid')
     srcentiguid = handleXML.findRefGuid(prelaxml, "Start_Object_ID")
-    srcenti = Entity().getbyextref(psrcid=srcentiguid, psrcname=Externalref.SOURCE_EAXML)
+    srcenti = Entity().getbyEAref(psrcid=srcentiguid)
     dstentiguid = handleXML.findRefGuid(prelaxml, "End_Object_ID")
-    dstenti = Entity().getbyextref(psrcid=dstentiguid, psrcname=Externalref.SOURCE_EAXML)
-    if srcenti is None or dstenti is None:
-        logmessages.writelog("Relation ({relaid}): Source ({srcenti}) or dest-entity ({dstenti}) does not exist"
-                             .format(relaid=relaguid, srcenti=srcentiguid, dstenti=dstentiguid))
-        return
+    dstenti = Entity().getbyEAref(psrcid=dstentiguid)
     relaname = "RELA-" + handleXML.findColumn(prelaxml, "Connector_ID")
 
     rela = Relation(psrcname=Externalref.SOURCE_EAXML, psrcid=relaguid)
@@ -585,19 +651,30 @@ def do1Relation(prelaxml):
     rela.rela_hist_to_from = Boolean.bool2str(transferModel.is_historisized(rela.rela_assoc_to_from))
     srccard = handleXML.findColumn(prelaxml, "SourceCard")
     dstcard = handleXML.findColumn(prelaxml, "DestCard")
-    rela.rela_maptype_from_to = Relation.ONE if (srccard in ('1', '0..1')) else Relation.MANY
-    rela.rela_maptype_to_from = Relation.ONE if (dstcard in ('1', '0..1')) else Relation.MANY
+    rela.rela_maptype_from_to = None if srccard is None else Relation.ONE if (srccard in ('1', '0..1')) else Relation.MANY
+    rela.rela_maptype_to_from = None if dstcard is None else Relation.ONE if (dstcard in ('1', '0..1')) else Relation.MANY
     rela.rela_mandatory_from_to = Boolean.bool2str(srccard in ('1', '*'))
     rela.rela_mandatory_to_from = Boolean.bool2str(srccard in ('1', '*'))
     rela.rela_type = rela.simpleType()
     rela.rela_uc = "filldbea"
     rela.rela_dc = datetime.now()
 
-    rela.rela_enti_id_from = srcenti.enti_id
-    rela.rela_enti_id_to = dstenti.enti_id
-    rela.insert()
+    isArc = handleXML.findColumn(prelaxml, 'Stereotype') == "Arc"
+    if not isArc and (srccard is None or dstcard is None):
+        logmessages.writelog(
+            f"Relationship from {srcenti.enti_name if srcenti is not None else 'Arc'} to {dstenti.enti_name if dstenti is not None else 'Arc'} must have cardinalities on both ends.")
+        return
+
+    # postpone relations to ARCS
+    if srcenti is not None and dstenti is not None:
+        rela.rela_enti_id_from = srcenti.enti_id
+        rela.rela_enti_id_to = dstenti.enti_id
+        rela.insert()
+    #fi
 
     relations[relaguid] = {"rela": rela
+        ,"srcentiguid":srcentiguid,"dstentiguid":dstentiguid
+        ,"isArc":isArc
         , "linecolor": 0
         , "Start_Edge": handleXML.findColumn(prelaxml, "Start_Edge")
         , "End_Edge": handleXML.findColumn(prelaxml, "End_Edge")
@@ -652,6 +729,7 @@ def transferEAModel(**kwargs):
     earoot = eaxml.getroot()
 
     transferModel.insertlanguages()
+    initDomains()
     transferobjtypes(proot=earoot, pobjtype='t_package'
                      , ptransferfunc=transfer1project
                      )
@@ -660,13 +738,25 @@ def transferEAModel(**kwargs):
                      , Object_Type="Class"
                      , Stereotype="Entity")
 
-    transferDomains()
+    transferobjtypes(proot=earoot, pobjtype='t_object'
+                     , ptransferfunc=do1Domain
+                     , Stereotype="Domain")
+    transferobjtypes(proot=earoot, pobjtype='t_attribute'
+                     , ptransferfunc=do1LOV
+                     , Stereotype="enum")
+
     transferobjtypes(proot=earoot, pobjtype='t_attribute'
                      , ptransferfunc=do1Attribute
                      , Stereotype="Attribute")
     transferobjtypes(proot=earoot, pobjtype='t_connector'
                      , ptransferfunc=do1Relation
                      , Stereotype="Relation")
+    transferobjtypes(proot=earoot, pobjtype='t_connector'
+                     , ptransferfunc=do1Relation
+                     , Stereotype="Arc")
+    transferobjtypes(proot=earoot, pobjtype='t_object'
+                     , ptransferfunc=do1Arc
+                     , Stereotype="Arc")
     filllanguages()
     transferobjtypes(proot=earoot, pobjtype='t_diagram'
                      , ptransferfunc=do1entitydiag
