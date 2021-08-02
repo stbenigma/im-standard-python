@@ -55,9 +55,23 @@ classids = dict()
 defcolors = dict()
 
 """List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
-   {entityguid: (entity, superentitityguid, [subentity ids], categoryguid)}
+   {entityguid: {"entity":, "color":, "superentitityguid":, "subentities":[ids], "categoryguid":}}
 """
 entities = dict()
+def getentitykeys():
+    global entities
+    return entities.keys()
+def setentity(pguid,**kwargs):
+    global entities
+    if pguid not in entities: entities[pguid]={}
+    for key,val in kwargs.items():
+        entities[pguid][key]=val
+def getentity(pguid,pvalue=None):
+    global entities
+    if pvalue is None:
+        return entities[pguid]
+    else:
+        return entities[pguid][pvalue]
 
 """domains in non-default file are IM or interface (relationale model) dependent.
     fix interface-id of Domains at end of transfer.
@@ -292,7 +306,7 @@ def transferDomains():
 
 
 def transferentity(penti, pdiagid, puc, pdc):
-    global entities,defcolors,classcolors
+    global defcolors,classcolors
 
     entiodm = handleXML.findField(penti, 'oid')
     enti = Entity().getbyODMref(psrcid=entiodm)
@@ -327,7 +341,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         col = Color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None, fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
     else:
         # check wether entity belongs to category
-        enticatguid = None if entiodm is None else entities[entiodm][3]
+        enticatguid = None if entiodm is None else getentity(entiodm,"categoryguid")
         #print (enti.enti_name,enti.getscrid(),enticatguid)
         if (enticatguid is None):
             col = defcolors['Entity']
@@ -993,7 +1007,7 @@ def getpartyref(pelem):
 
 
 def do1Entity(fileName):
-    global entities,classids
+    global classids
     tree = handleXML.parseXML(pfilename=fileName)
     entixml = tree.getroot()
     #es hat noch fremde XMLS in den Verzeichnissen
@@ -1033,7 +1047,8 @@ def do1Entity(fileName):
     #while
 
     entientiguid = handleXML.findText(entixml, 'hierarchicalParent')
-    entities[entiguid] = (enti,entientiguid,[],enticategoryguid)
+    setentity(entiguid,entity=enti, color=None, superentitityguid=entientiguid, subentities=[]
+              , categoryguid=enticategoryguid)
 
     Userdefpropvalue.fillallvalues(pentiid=entiId)
 
@@ -1071,25 +1086,26 @@ def transferEntities():
 # transferEntities
 
 def doSubentities():
-    global entities
     #fill all subentity-id-lists
-    for guid in entities:
-        entientiguid = entities[guid][1]
-        enti = entities[guid][0]
+
+    for guid in getentitykeys():
+        val = getentity(guid)
+        entientiguid = getentity(guid,"superentitityguid")
+        enti = getentity(guid,"entity")
         if entientiguid is not None:
             # hat eine superentity, fülle in seine idliste
-            entities[entientiguid][2].append(enti.enti_id)
+            getentity(entientiguid,"subentities").append(enti.enti_id)
         #fi
     #for
 
     #get all superentity guids
-    guids = set(val[1] for val in entities.values())
-    guids.discard(None)
+    superentiguids = set(getentity(key,"superentitityguid") for key in getentitykeys())
+    superentiguids.discard(None)
 
     """create an arc for every superentity"""
-    for superentiguid in guids:
-        superenti = entities[superentiguid][0]
-        subentiids = entities[superentiguid][2]
+    for superentiguid in superentiguids:
+        superenti = getentity(superentiguid,"entity")
+        subentiids = getentity(superentiguid,"subentities")
         arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
                      , puc=superenti.enti_uc, pdc=superenti.enti_dc)
         arc.insert()
