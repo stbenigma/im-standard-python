@@ -1,5 +1,5 @@
 # -*- coding: latin-1 -*-
-from IM_DB import logmessages,dbErstelleTables,createDB
+from IM_DB import logmessages
 from IM_ODM import transferModel,mergedbs,createJSON
 from IM_JSON import *
 import createDB

@@ -2,7 +2,7 @@
 
 import sqlite3
 
-from parameters import expecteddbversion
+from .parameters import expecteddbversion
 
 """ Datenbank erstellen bzw. dazu connecten """
 

@@ -95,8 +95,8 @@ def transferTypes():
     for typ in root.findall('logicaltype'):
         Datatype(pname=findField(typ, 'name')
                  , pbasetype=Datatype.baseType(findText(typ, 'mapping'))
-                ,psrcname=Externalref.SOURCE_ODM,pscrid=findField(typ, 'objectid')
-                ).insert()
+                 ,psrcname=Externalref.SOURCE_ODM,pscrid=findField(typ, 'objectid')
+                 ).insert()
     # endfor
 
 """List of not yet finished domain
@@ -139,10 +139,10 @@ def do1structtype(filename):
             unknowndoma = False
         elif isinstance(reftype,Datatype):
             dgrm.dgrm_doma_id_member = findorcreateDomain(ptypeguid=reftypeguid
-                           , pattrname=dgrm.dgrm_name
-                           , pfathername=doma.doma_name
-                           , pdomatype=Domain.DOMAIN
-                           , pattrxml=el)
+                                                          , pattrname=dgrm.dgrm_name
+                                                          , pfathername=doma.doma_name
+                                                          , pdomatype=Domain.DOMAIN
+                                                          , pattrxml=el)
             unknowndoma = False
         else :
             """type has not yet been parsed or does not exist at all or is type I haven't considered
@@ -185,7 +185,7 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
     else:
         pdoma.doma_daty_id = daty.daty_id
         pdoma.doma_type = Domain.TXT if (daty.daty_basetype is None) \
-                                    else Domain.basetype2domatype(pdatybasetype=daty.daty_basetype)
+            else Domain.basetype2domatype(pdatybasetype=daty.daty_basetype)
 
     lov = pxml.find('listOfValues')
     if (lov is not None) and (lov != {}):
@@ -312,13 +312,6 @@ def transferentity(penti, pdiagid, puc, pdc):
 
     entiodm = findField(penti, 'oid')
     enti = Entity().getbyODMref(psrcid=entiodm)
-    if not enti:
-        import logging
-        logging.getLogger('transfermodel').warning('Unable to find entity {0} referenced on diagram {1}\n{2}'.format(
-            entiodm, pdiagid, et.tostring(penti)))
-        return False
-    assert enti, "Cannot find entity with ID>{}<\n{}".format(entiodm, penti)
-
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = findField(hiddenelements, "elements")
@@ -477,10 +470,6 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         if (type == 'Relation'):
             relaguid = findField(c, "oid")
             rela = Relation().getbyODMref(psrcid=relaguid)
-            if not rela:
-                import logging
-                logging.getLogger('transfermodel').warning('Missing relation {}'.format(relaguid))
-                continue
             linewidth = findText(c, 'lineWidth')
             sourcelabel = c.find('sourceLabel/labelBounds')
             sttex = findField(sourcelabel, 'x')
@@ -559,7 +548,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 lise.lise_seq = idx
                 lise.lise_relr_id = relr.relr_id
                 lise.lise_linetype = linetype(pidx=idx, pmaxidx=len(points)
-                                            , psourcelt=sourcelinetype, ptargetlt=targetlinetype)
+                                              , psourcelt=sourcelinetype, ptargetlt=targetlinetype)
                 lise.lise_uc = puc
                 lise.lise_dc = pdc
                 if len(linesegs) > 0:
@@ -710,7 +699,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype,pattrxml,pintfid = None
             return Domain().getunknown().doma_id
         elif isinstance(typeelem, Datatype):
             doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,pdomatype=pdomatype,
-                                           pattrxml=pattrxml,pintfid = pintfid)
+                                       pattrxml=pattrxml,pintfid = pintfid)
             return doma.doma_id
         else:
             logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
@@ -874,7 +863,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
                                            , ptypeguid=findText(pattrxml, 'logicalDatatype')
                                            , pattrname=attr.attr_displ_name
                                            , pfathername=vatername
-                                            ,pdomatype=Domain.DERIVED
+                                           ,pdomatype=Domain.DERIVED
                                            , pattrxml=pattrxml)
     attr.attr_descr = findText(pattrxml, 'comment')
     attr.attr_displ_seq = plfnr
@@ -1033,11 +1022,8 @@ def parseXML(pfilename):
 
 
 def do1Entity(fileName):
-    global entities, classids
-    try:
-        tree = parseXML(pfilename=fileName)
-    except et.ParseError as e:
-        raise Exception('Cannot parse {}'.format(fileName), e)
+    global entities,classids
+    tree = parseXML(pfilename=fileName)
     entixml = tree.getroot()
     #es hat noch fremde XMLS in den Verzeichnissen
     if (findField(entixml, "class") != "oracle.dbtools.crest.model.design.logical.Entity"): return
@@ -1055,7 +1041,7 @@ def do1Entity(fileName):
         if enticategoryguid in classids:
             enti.enti_enca_id = classids[enticategoryguid]
         else:
-            print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
+            logmessages.writelog("Classid {} not found in {} ({})".format(enticategoryguid, enti.enti_name, len(classids)))
 
     i=1 #safeguard for eternal loop
     while i<10:
@@ -1125,7 +1111,7 @@ def doSubentities():
                 # hat eine superentity, fülle in seine idliste
                 target[2].append(enti.enti_id)
             else:
-                logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {enti}")
+                logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {guid}")
         #fi
     #for
 
@@ -1136,9 +1122,9 @@ def doSubentities():
     """create an arc for every superentity"""
     for superentiguid in guids:
         superentity = entities.get(superentiguid)
-        if superentity: # skip arc if superentity reference is broken
+        if superentity is not None: # skip arc if superentity reference is broken
             superenti = superentity[0]
-            subentiids = superentity[superentiguid][2]
+            subentiids = superentity[2]
             arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
                       , puc=superenti.enti_uc, pdc=superenti.enti_dc)
             arc.insert()
@@ -1254,7 +1240,7 @@ def do1UDPFile(pfileName):
                 udprid = udpr.insert()
 
                 metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)
-                                            ,pudprid=udprid).insert()
+                                              ,pudprid=udprid).insert()
 
                 udpr = Userdefprop(ptheme=ludpTheme,pgroup=lgrpvalue,pname=lgrpvalue + '_ATTR_COMMENT')
                 udpr.udpr_descr = "created for comments, solved in notes because of multiline strings"
@@ -1262,7 +1248,7 @@ def do1UDPFile(pfileName):
                 udprid = udpr.insert()
 
                 metpid = ModelelementProperty(pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)
-                                            ,pudprid=udprid).insert()
+                                              ,pudprid=udprid).insert()
             # fi
         # for
     # fi
@@ -1461,8 +1447,8 @@ def loaddefaultcolors():
     for de in default:
         classname = findField(de, 'classname')
         color= Color(findField(de, 'foreground')
-                                , findField(de, 'background')
-                                , None, None, None, None)
+                     , findField(de, 'background')
+                     , None, None, None, None)
         loadcolors(color = color, elem=de)
         defcolors[classname] = color
         if classname == "Entity":
@@ -1522,7 +1508,6 @@ def transferproject():
             parameters.dbDefaultLang(defspra)
             parameters.dbDefaultLangID(defspraid)
     # fi
-    assert parameters.dbDefaultLangID, "Unable to determine default language"
 # transferproject
 
 def do1Document(fileName):
@@ -1603,10 +1588,10 @@ def do1email(fileName):
     tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     emails [findField(root, 'id')] = {'name' : findField(root, "name")
-                                       ,'descr': findText(root, "comment")
-                                       ,'uc' : findText(root, "createdBy")
-                                        ,'dc' : findText(root, "createdTime")
-                                        ,'email' : findText(root, "emailAddress")
+        ,'descr': findText(root, "comment")
+        ,'uc' : findText(root, "createdBy")
+        ,'dc' : findText(root, "createdTime")
+        ,'email' : findText(root, "emailAddress")
                                       }
 #do1email
 phones = {}
@@ -1615,12 +1600,12 @@ def do1phone(fileName):
     tree = parseXML(pfilename=fileName)
     root = tree.getroot()
     phones[findField(root, 'id')] = {'name' : findField(root, "name")
-                                       ,'descr': findText(root, "comment")
-                                       ,'uc' : findText(root, "createdBy")
-                                        ,'dc' : findText(root, "createdTime")
-                                        ,'phoneno' : findText(root, "phoneNumber")
-                                        , 'phnetype': findText(root, "phoneType")
-                                       }
+        ,'descr': findText(root, "comment")
+        ,'uc' : findText(root, "createdBy")
+        ,'dc' : findText(root, "createdTime")
+        ,'phoneno' : findText(root, "phoneNumber")
+        , 'phnetype': findText(root, "phoneType")
+                                     }
 #do1phone
 contacts = {}
 def do1contact(fileName):
@@ -1640,12 +1625,12 @@ def do1contact(fileName):
         break    #currently we take only the first
     id = findField(root, 'id')
     contacts[id] = {'name' : findField(root, "name")
-                                       ,'descr': findField(root, "comment")
-                                        ,'email' : mail
-                                        ,'phone': phone
-                                       ,'uc' : findField(root, "createdBy")
-                                        ,'dc' : findField(root, "createdTime")
-                                       }
+        ,'descr': findField(root, "comment")
+        ,'email' : mail
+        ,'phone': phone
+        ,'uc' : findField(root, "createdBy")
+        ,'dc' : findField(root, "createdTime")
+                    }
 #do1contact
 
 def transferODMModel():

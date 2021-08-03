@@ -220,13 +220,13 @@ def printentisvg(pcell:EntityCell, pposx, pposy):
             {text} </text></a>
             </g>
             """
-    entiboxsvg = entity.format(fill='white', stroke='blue'
+    entiboxsvg = entitysvg.format(fill='white', stroke='blue'
                                , fillopa=80, stropa=80
                                , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
                                , id=pcell.getentiid()
                                ,textfill='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
                                , text=nvl(pcell.getentiname())[:MAXENTICHARS])
-    return entibox
+    return entiboxsvg
 
 
 def printrelasvg (pcell:EntityCell,pposx,pposy):
