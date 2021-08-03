@@ -1,3 +1,4 @@
+import math
 import os
 import re
 import xml.etree.ElementTree as et
@@ -118,6 +119,17 @@ def movediaglegend():
     return
 
 
+def inslineseg(prelrid,pseq,px,py,pmandatory,pangle):
+    lineseg = Linesegment()
+    lineseg.lise_relr_id = prelrid
+    lineseg.lise_seq = pseq
+    lineseg.lise_x = px
+    lineseg.lise_y = py
+    lineseg.lise_linetype = Linesegment.SOLID if pmandatory else Linesegment.DASHED
+    lineseg.lise_angle = pangle
+    lineseg.insert()
+    return
+
 def do1diaglink(pdiaglinkxml):
     diagguid = handleXML.findRefGuid(pdiaglinkxml, 'DiagramID')
     diag = Diagram().getbyEAref(psrcid=diagguid)
@@ -161,11 +173,29 @@ def do1diaglink(pdiaglinkxml):
     relr.relr_endtext_y = 40
     relr.relr_endtext_width = 30
     relr.relr_endtext_height = 5
-    relr.relr_fontcolor = "ffffff"
+    relr.relr_fontcolor = "000000"
     relr.relr_fontsize = 10
     relr.relr_uc = "fillDBea"
     relr.relr_dc = datetime.today()
-    relr.insert()
+    relrID= relr.insert()
+
+
+    seqNr =0
+    startX=int(getrelation(objguid,"PtStartX"))
+    startY=-int(getrelation(objguid,"PtStartY"))
+    endX=int(getrelation(objguid,"PtEndX"))
+    endY=-int(getrelation(objguid,"PtEndY"))
+    inslineseg(prelrid=relrID,pseq=seqNr,px=startX
+               ,py=startY
+               ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
+    seqNr+=1
+    inslineseg(prelrid=relrID,pseq=seqNr,px=startX + (endX-startX)/2
+               ,py=startY + (endY-startY)/2
+               ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
+    seqNr+=1
+    inslineseg(prelrid=relrID,pseq=seqNr,px=endX
+               ,py=endY
+               ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
 
     geometry = handleXML.findColumn(pdiaglinkxml, "Geometry")
     nvlsearch = lambda x: x.group(0) if x is not None else None
