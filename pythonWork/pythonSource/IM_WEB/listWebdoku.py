@@ -93,25 +93,41 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     #for
 #listwebmain
 
-def main(pdirec, plang):
+def main(pdirec, plang, pinputtype="DB"):
     parameters.initparam(p_callarg=pdirec)
     logmessages.initlog('createHTML')
-
     printHTML.setWebDirec(p_webdirec=None)
+    modelname = parameters.modelName()
+    if pinputtype == "DB":
+        dbConnect.openDB(pfilepath= parameters.dbFilePath());
+        deflang = Language.liesdeflangiso2()
+        if deflang is not None: parameters.dbDefaultLang(deflang)
+        jsonmodel = JSModel(sql2json(pdbname=parameters.dbFilePath()))
+    elif pinputtype == "JSON":
+        jsonfilepath = parameters.dbDirect()+modelname+".json"
+        jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
+        deflang = jsonmodel.modellanguage()
+        modelname = jsonmodel.jsmodel["model"]["name"]
+    else:
+        raise Exception(f"illegal call parameter {pinputtype}")
+    #fi
 
-    dbConnect.openDB(pfilepath= parameters.dbFilePath());
-    deflang = Language.liesdeflangiso2()
-    if deflang is not None : parameters.dbDefaultLang(deflang)
-    printHTML.setmodel(JSModel(sql2json(pdbname=parameters.dbFilePath())))
+    if deflang is not None: parameters.dbDefaultLang(deflang)
+
+    printHTML.setmodel(jsonmodel)
     listwebmain(plang=plang)
 
-    dbConnect.myDbConn.close()
-
-    logmessages.showmessages("web-files from database {} for model {} created"
+    if pinputtype == "DB":
+        dbConnect.myDbConn.close()
+        logmessages.showmessages("web-files from database {} for model {} created"
                              .format(parameters.dbFilePath(),parameters.modelName()))
+    elif pinputtype == "JSON":
+        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {modelname} created")
+
 #main
 
 if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv)>2) else None
-    main(pdirec=direc, plang=lang)
+    type = sys.argv[3] if (len(sys.argv)>2) else "DB"
+    main(pdirec=direc, plang=lang, pinputtype=type)
