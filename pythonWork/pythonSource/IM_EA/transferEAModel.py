@@ -143,11 +143,11 @@ def do1diaglink(pdiaglinkxml):
         return
 
     linewidth = 3
-    edge = lambda e: 'N' if (
-                e == "0" or e == "1") else 'W' \
-                    if e == "2" else 'S' \
-                        if e == "3" else 'O' \
-                            if e == "4" else 'x'
+    edge = lambda e: 'N' if (e == "0" or e == "1") \
+                    else 'W' if e == "2" \
+                        else 'S' if e == "3"\
+                        else 'O' if e == "4" \
+                            else 'x'
 
     relr = Relationrep()
     relr.relr_diag_id = diag.diag_id
@@ -181,29 +181,31 @@ def do1diaglink(pdiaglinkxml):
 
 
     seqNr =0
-    startX=int(getrelation(objguid,"PtStartX"))
-    startY=-int(getrelation(objguid,"PtStartY"))
-    endX=int(getrelation(objguid,"PtEndX"))
-    endY=-int(getrelation(objguid,"PtEndY"))
+    geometry = handleXML.findColumn(pdiaglinkxml, "Geometry")
+    nvlsearch = lambda x: x.group(1) if x is not None else None
+    entirefft = Elementrep().getbyuk(eler_diag_id=diag.diag_id,eler_mode_id=Relation().getbyid(relr.relr_mode_id).rela_enti_id_from)
+    entireftf = Elementrep().getbyuk(eler_diag_id=diag.diag_id,eler_mode_id=Relation().getbyid(relr.relr_mode_id).rela_enti_id_to)
+    sx = int(nvlsearch(re.search("SX=([\d-]+);", geometry)))
+    sy = int(nvlsearch(re.search("SY=([\d-]+);", geometry)))
+    ex = int(nvlsearch(re.search("EX=([\d-]+);", geometry)))
+    ey = int(nvlsearch(re.search("EY=([\d-]+);", geometry)))
+    edge = nvlsearch(re.search("EDGE=(\d+);", geometry))
+    startX= max(entirefft.eler_position_x + sx,0)
+    startY=-min(int(getrelation(objguid,"PtStartY")),0)
+    endX=max(entireftf.eler_position_x + ex,0)
+    endY=-min(int(getrelation(objguid,"PtEndY")),0)
     inslineseg(prelrid=relrID,pseq=seqNr,px=startX
                ,py=startY
                ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
     seqNr+=1
     inslineseg(prelrid=relrID,pseq=seqNr,px=startX + (endX-startX)/2
                ,py=startY + (endY-startY)/2
-               ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
+               ,pmandatory=rela.getmandatoryfromto(),pangle=math.pi / 2)
     seqNr+=1
     inslineseg(prelrid=relrID,pseq=seqNr,px=endX
                ,py=endY
-               ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
+               ,pmandatory=rela.getmandatoryfromto(),pangle=math.pi / 2)
 
-    geometry = handleXML.findColumn(pdiaglinkxml, "Geometry")
-    nvlsearch = lambda x: x.group(0) if x is not None else None
-    sx = nvlsearch(re.search("SX=(\d+);", geometry))
-    sy = nvlsearch(re.search("SY=(\d+);", geometry))
-    ex = nvlsearch(re.search("EX=(\d+);", geometry))
-    ey = nvlsearch(re.search("EY=(\d+);", geometry))
-    edge = nvlsearch(re.search("EDGE=(\d+);", geometry))
     return
 
 

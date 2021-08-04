@@ -1,0 +1,2910 @@
+
+ 
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Model</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="image/imicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/IM.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div class="header" id="TopBar">
+		<p4>foryouandyourcustomers</p4>
+		<p4>Model</p4>
+		<p5>2021-08-04 15:03:06.154398</p5>
+		<img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+	</div>
+	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+		<img class="icon-filter" alt="filter" src="icons/search.svg">
+	</button>
+	<div class="container" id="sidebar">
+		<div id="toc_list">
+			<div class="form-wrapper">
+				<form autocomplete="off">
+					<div class="form-group">
+						<label class="form-label" for="first">search key</label>
+						<input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+						<img id="searchclear" class="icon-times" src="icons/cross.svg">
+						<img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
+					</div>
+				</form>
+			</div>
+			<p6>Hits:</p6>
+			<output id="count"></output>
+			<div class="contentView">
+
+				<!--entites-->       
+				<div class="panel-body" id="EntitesL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barenti">
+							<label class="label0">Entities</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barenti">
+						
+						<ol class="tree" id="EntitesList">
+							 
+							<li class="obj"><a href="#ENTI6" target="_self">Airport</a>
+							 
+							<li class="obj"><a href="#ENTI8" target="_self">Freight plane</a>
+							 
+							<li class="obj"><a href="#ENTI5" target="_self">Leg</a>
+							 
+							<li class="obj"><a href="#ENTI3" target="_self">Pilot</a>
+							 
+							<li class="obj"><a href="#ENTI4" target="_self">Plane</a>
+							 
+							<li class="obj"><a href="#ENTI7" target="_self">Trip</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+				<!--attributes-->
+				<div class="panel-body" id="AttrsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barattr">
+							<label class="label0">Attributes</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barattr">
+						
+						<ol class="tree" id="AttrsList">
+							
+							
+							
+							<li class="obj"><a href="#ATTR12" target="_self">IATA Code (Airport)</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+				
+				<!--domains-->       
+				
+				<div class="panel-body" id="DomainsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardoma">
+							<label class="label0">Domains</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardoma">
+						
+						<ol class="tree" id="DomainList">
+							
+							<li class="obj"><a href="#DOMA11" target="_self">Airport Codes</a> 
+							
+							<li class="obj"><a href="#DOMA2" target="_self">unknown</a> 
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--Documents-->       
+				
+
+				<!--OrgUnits-->       
+				
+
+				<!--diagrams-->       
+				
+				<div class="panel-body" id="DiagramL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardiag">
+							<label class="label0">Diagrams</label>
+							<img class="icon-minus" alt="minus" src="icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardiag">
+						
+					<ol class="tree" id="DiagramList">
+						
+							<li class="obj"><a href="#DIAG17" target="_self">riddle</a> 
+						
+					</ol>
+				
+					</div>
+				</div>
+				
+				
+				<!--Systems-->       
+				
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="wrapper">
+		<div class="top-container">
+			<p3 class="descr">
+		    
+				This website contains the complete content 
+				of the <p2 class="IM">Information model Model</p2> from foryouandyourcustomers.
+				This page was created with software from <p2 class="fyayc">foryouandyourcustomers</p2>.
+		    
+			</p3>
+			<br>
+			
+			
+
+		</div>
+		<br><hr>
+		
+				<!--Entities-->       
+		
+		
+		
+		<div class="entity" id="ENTI6">
+			<div class="describtion">
+				 <span>
+						<p>Entity</p>
+						<h1>Airport
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			    
+					<th style="width:20%"><div id="ENTI6-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 90" width="450.0" height="90">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI6" >
+            <text id="boxENTI6" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Airport </text></a>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(185.0,35.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+             </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI5" >
+            <text id="boxENTI5" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Leg </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 45.0 L180.0 45.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(185.0,65.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            source of </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,65.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI5" >
+            <text id="boxENTI5" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Leg </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 75.0 L180.0 75.0" />
+                </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M180.0 25.0 L180.0 75.0" />
+                </g>
+            
+        </svg>
+    
+</div></th>
+				  
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ENTI6main">
+				   
+
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Synonyms</th>									
+									<th>Superentities</th>
+									<th>Subentities</th>
+									<th>Roles</th>
+									<th>Classification</th>
+									<th>Zoom levels</th>
+									<th>Dev. Status</th>
+									<th>on diagram(s)</th>
+									<th> updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+
+									<td class="attribute"></td>
+									<td class="attribute">None - None</td>
+									<td class="attribute">DEV</td> 
+									<td class="attribute">
+										
+										
+										
+										<a href="#DIAG17" target="_self">riddle</a>
+										
+									</td>
+									<td class="attribute">bue, 2021-06-29 17:48:46</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--attributes-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI6attr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI6attr">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Domain</th>
+										<th>Type</th>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									
+									
+									
+									<tr>
+										<td><a href="#ATTR12" target="_self">IATA Code</a></td>
+										<td> 
+											
+											
+											<a href="#DOMA11" target="_self">Airport Codes</a>
+											
+											
+										</td>
+										<td>LOV</td>
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--keys-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI6keys">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Key</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI6keys">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Attribute(s)</th>
+										<th>relationship(s)</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+				    <!-- relationships-->
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI6rela">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Relationships</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI6rela">
+						
+						<div id="ENTI6-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 90" width="450.0" height="90">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI6" >
+            <text id="boxENTI6" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Airport </text></a>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(185.0,35.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+             </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI5" >
+            <text id="boxENTI5" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Leg </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 45.0 L180.0 45.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(185.0,65.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            source of </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,65.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI5" >
+            <text id="boxENTI5" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Leg </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 75.0 L180.0 75.0" />
+                </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M180.0 25.0 L180.0 75.0" />
+                </g>
+            
+        </svg>
+    
+</div>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Entity-1</th>
+										<th></th>
+										<th>Relationship</th>
+										<th></th>
+										<th>Entity-2</th>
+										<th>Arc</th>
+										<th>Key</th>
+									</tr>
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-24</td>
+											<td>Airport</td>
+											<td>-&gt;</td>
+											<td>None</td>
+											<td>1..N</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>1</td>
+											<td>&lt;-</td>
+											<td>land on</td>
+											<td><a href="#ENTI5" target="_self">Leg</a></td>
+											</tr>
+										
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-25</td>
+											<td>Airport</td>
+											<td>-&gt;</td>
+											<td>source of</td>
+											<td>1..N</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>1</td>
+											<td>&lt;-</td>
+											<td>departure from</td>
+											<td><a href="#ENTI5" target="_self">Leg</a></td>
+											</tr>
+										
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ENTI6main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="ENTI8">
+			<div class="describtion">
+				 <span>
+						<p>Entity</p>
+						<h1>Freight plane
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			    
+					<th style="width:20%"><div id="ENTI8-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 30" width="450.0" height="30">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L150.0 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI8" >
+            <text id="boxENTI8" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Freight plane </text></a>
+            </g>
+            
+        </svg>
+    
+</div></th>
+				  
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ENTI8main">
+				   
+
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Synonyms</th>									
+									<th>Superentities</th>
+									<th>Subentities</th>
+									<th>Roles</th>
+									<th>Classification</th>
+									<th>Zoom levels</th>
+									<th>Dev. Status</th>
+									<th>on diagram(s)</th>
+									<th> updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+			
+			<a href="#ENTI4" target="_self">Plane</a>
+			
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+
+									<td class="attribute"></td>
+									<td class="attribute">None - None</td>
+									<td class="attribute">DEV</td> 
+									<td class="attribute">
+										
+										
+										
+										<a href="#DIAG17" target="_self">riddle</a>
+										
+									</td>
+									<td class="attribute">stb, 2021-08-01 12:40:51</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--attributes-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI8attr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI8attr">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Domain</th>
+										<th>Type</th>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--keys-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI8keys">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Key</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI8keys">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Attribute(s)</th>
+										<th>relationship(s)</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+				    <!-- relationships-->
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI8rela">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Relationships</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI8rela">
+						
+						<div id="ENTI8-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 30" width="450.0" height="30">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L150.0 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI8" >
+            <text id="boxENTI8" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Freight plane </text></a>
+            </g>
+            
+        </svg>
+    
+</div>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Entity-1</th>
+										<th></th>
+										<th>Relationship</th>
+										<th></th>
+										<th>Entity-2</th>
+										<th>Arc</th>
+										<th>Key</th>
+									</tr>
+									
+									
+										
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ENTI8main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="ENTI5">
+			<div class="describtion">
+				 <span>
+						<p>Entity</p>
+						<h1>Leg
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%">Description in entiy  LEG</th>
+			      
+			    
+					<th style="width:20%"><div id="ENTI5-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 90" width="450.0" height="90">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI6" >
+            <text id="boxENTI6" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Airport </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            departure from </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI6" >
+            <text id="boxENTI6" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Airport </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 45.0 L240 45.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            land on </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,65.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI5" >
+            <text id="boxENTI5" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Leg </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 65.0" />
+                </g>
+            
+        </svg>
+    
+</div></th>
+				  
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ENTI5main">
+				   
+
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Synonyms</th>									
+									<th>Superentities</th>
+									<th>Subentities</th>
+									<th>Roles</th>
+									<th>Classification</th>
+									<th>Zoom levels</th>
+									<th>Dev. Status</th>
+									<th>on diagram(s)</th>
+									<th> updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+
+									<td class="attribute"></td>
+									<td class="attribute">None - None</td>
+									<td class="attribute">DEV</td> 
+									<td class="attribute">
+										
+										
+										
+										<a href="#DIAG17" target="_self">riddle</a>
+										
+									</td>
+									<td class="attribute">bue, 2021-06-29 17:46:55</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--attributes-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI5attr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI5attr">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Domain</th>
+										<th>Type</th>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--keys-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI5keys">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Key</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI5keys">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Attribute(s)</th>
+										<th>relationship(s)</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+				    <!-- relationships-->
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI5rela">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Relationships</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI5rela">
+						
+						<div id="ENTI5-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 90" width="450.0" height="90">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI6" >
+            <text id="boxENTI6" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Airport </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            departure from </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI6" >
+            <text id="boxENTI6" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Airport </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 45.0 L240 45.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            land on </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,65.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI5" >
+            <text id="boxENTI5" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Leg </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 65.0" />
+                </g>
+            
+        </svg>
+    
+</div>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Entity-1</th>
+										<th></th>
+										<th>Relationship</th>
+										<th></th>
+										<th>Entity-2</th>
+										<th>Arc</th>
+										<th>Key</th>
+									</tr>
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-24</td>
+											<td>Leg</td>
+											<td>-&gt;</td>
+											<td>land on</td>
+											<td>1</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>1..N</td>
+											<td>&lt;-</td>
+											<td>None</td>
+											<td><a href="#ENTI6" target="_self">Airport</a></td>
+											</tr>
+										
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-25</td>
+											<td>Leg</td>
+											<td>-&gt;</td>
+											<td>departure from</td>
+											<td>1</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>1..N</td>
+											<td>&lt;-</td>
+											<td>source of</td>
+											<td><a href="#ENTI6" target="_self">Airport</a></td>
+											</tr>
+										
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ENTI5main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="ENTI3">
+			<div class="describtion">
+				 <span>
+						<p>Entity</p>
+						<h1>Pilot
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			    
+					<th style="width:20%"><div id="ENTI3-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 60" width="450.0" height="60">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            pilots </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI3" >
+            <text id="boxENTI3" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Pilot </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 35.0" />
+                </g>
+            
+        </svg>
+    
+</div></th>
+				  
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ENTI3main">
+				   
+
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Synonyms</th>									
+									<th>Superentities</th>
+									<th>Subentities</th>
+									<th>Roles</th>
+									<th>Classification</th>
+									<th>Zoom levels</th>
+									<th>Dev. Status</th>
+									<th>on diagram(s)</th>
+									<th> updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+
+									<td class="attribute"></td>
+									<td class="attribute">None - None</td>
+									<td class="attribute">DEV</td> 
+									<td class="attribute">
+										
+										
+										
+										<a href="#DIAG17" target="_self">riddle</a>
+										
+									</td>
+									<td class="attribute">bue, 2021-06-29 17:33:23</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--attributes-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI3attr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI3attr">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Domain</th>
+										<th>Type</th>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--keys-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI3keys">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Key</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI3keys">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Attribute(s)</th>
+										<th>relationship(s)</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+				    <!-- relationships-->
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI3rela">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Relationships</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI3rela">
+						
+						<div id="ENTI3-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 60" width="450.0" height="60">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            pilots </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI3" >
+            <text id="boxENTI3" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Pilot </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 35.0" />
+                </g>
+            
+        </svg>
+    
+</div>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Entity-1</th>
+										<th></th>
+										<th>Relationship</th>
+										<th></th>
+										<th>Entity-2</th>
+										<th>Arc</th>
+										<th>Key</th>
+									</tr>
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-21</td>
+											<td>Pilot</td>
+											<td>-&gt;</td>
+											<td>pilots</td>
+											<td>0..1</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>0..1</td>
+											<td>&lt;-</td>
+											<td>is piloted by</td>
+											<td><a href="#ENTI4" target="_self">Plane</a></td>
+											</tr>
+										
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ENTI3main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="ENTI4">
+			<div class="describtion">
+				 <span>
+						<p>Entity</p>
+						<h1>Plane
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			    
+					<th style="width:20%"><div id="ENTI4-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 90" width="450.0" height="90">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI3" >
+            <text id="boxENTI3" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Pilot </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            is piloted by </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI8" >
+            <text id="boxENTI8" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Freight plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 45.0 L270.0 45.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(185.0,65.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+             </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,65.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI7" >
+            <text id="boxENTI7" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Trip </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 75.0 L180.0 75.0" />
+                </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 35.0" />
+                </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M180.0 55.0 L180.0 75.0" />
+                </g>
+            
+        </svg>
+    
+</div></th>
+				  
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ENTI4main">
+				   
+
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Synonyms</th>									
+									<th>Superentities</th>
+									<th>Subentities</th>
+									<th>Roles</th>
+									<th>Classification</th>
+									<th>Zoom levels</th>
+									<th>Dev. Status</th>
+									<th>on diagram(s)</th>
+									<th> updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+			
+			<a href="#ENTI8" target="_self">Freight plane</a>
+			
+									</td>
+									<td class="attribute">
+										
+									</td>
+
+									<td class="attribute"></td>
+									<td class="attribute">None - None</td>
+									<td class="attribute">DEV</td> 
+									<td class="attribute">
+										
+										
+										
+										<a href="#DIAG17" target="_self">riddle</a>
+										
+									</td>
+									<td class="attribute">bue, 2021-06-29 17:33:27</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--attributes-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI4attr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI4attr">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Domain</th>
+										<th>Type</th>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--keys-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI4keys">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Key</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI4keys">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Attribute(s)</th>
+										<th>relationship(s)</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+				    <!-- relationships-->
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI4rela">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Relationships</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI4rela">
+						
+						<div id="ENTI4-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 90" width="450.0" height="90">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI3" >
+            <text id="boxENTI3" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Pilot </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            is piloted by </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI8" >
+            <text id="boxENTI8" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Freight plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 45.0 L270.0 45.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(185.0,65.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+             </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(300.0,65.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI7" >
+            <text id="boxENTI7" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Trip </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M300.0 75.0 L180.0 75.0" />
+                </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 35.0" />
+                </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M180.0 55.0 L180.0 75.0" />
+                </g>
+            
+        </svg>
+    
+</div>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Entity-1</th>
+										<th></th>
+										<th>Relationship</th>
+										<th></th>
+										<th>Entity-2</th>
+										<th>Arc</th>
+										<th>Key</th>
+									</tr>
+									
+									
+										
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-21</td>
+											<td>Plane</td>
+											<td>-&gt;</td>
+											<td>is piloted by</td>
+											<td>0..1</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>0..1</td>
+											<td>&lt;-</td>
+											<td>pilots</td>
+											<td><a href="#ENTI3" target="_self">Pilot</a></td>
+											</tr>
+										
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-26</td>
+											<td>Plane</td>
+											<td>-&gt;</td>
+											<td>None</td>
+											<td>0..N</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>0..1</td>
+											<td>&lt;-</td>
+											<td>None</td>
+											<td><a href="#ENTI7" target="_self">Trip</a></td>
+											</tr>
+										
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ENTI4main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="entity" id="ENTI7">
+			<div class="describtion">
+				 <span>
+						<p>Entity</p>
+						<h1>Trip
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			    
+					<th style="width:20%"><div id="ENTI7-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 60" width="450.0" height="60">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+             </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI7" >
+            <text id="boxENTI7" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Trip </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 35.0" />
+                </g>
+            
+        </svg>
+    
+</div></th>
+				  
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ENTI7main">
+				   
+
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Synonyms</th>									
+									<th>Superentities</th>
+									<th>Subentities</th>
+									<th>Roles</th>
+									<th>Classification</th>
+									<th>Zoom levels</th>
+									<th>Dev. Status</th>
+									<th>on diagram(s)</th>
+									<th> updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+									<td class="attribute">
+										
+									</td>
+
+									<td class="attribute"></td>
+									<td class="attribute">None - None</td>
+									<td class="attribute">DEV</td> 
+									<td class="attribute">
+										
+										
+										
+										<a href="#DIAG17" target="_self">riddle</a>
+										
+									</td>
+									<td class="attribute">bue, 2021-06-29 18:10:07</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--attributes-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI7attr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI7attr">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Domain</th>
+										<th>Type</th>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--keys-->       
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI7keys">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Key</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI7keys">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Attribute(s)</th>
+										<th>relationship(s)</th>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+				    <!-- relationships-->
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#ENTI7rela">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Relationships</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="ENTI7rela">
+						
+						<div id="ENTI7-container">
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1" viewBox="0 0 450.0 60" width="450.0" height="60">
+        <defs id="dmw_defs" >
+        </defs>
+    <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(0,5.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI4" >
+            <text id="boxENTI4" x="6" y="13" fill="blue" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Plane </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M120 15.0 L240 15.0" />
+                </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,5.0)" >
+            <text id="" x="2" y="4" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+             </text>
+            </g>
+            <g  fill="white" stroke="blue" fill-opacity="80" stroke-opacity="80" 
+            transform="translate(150.0,35.0)" >
+            <rect x="0" y="0" width="120" height="20" rx="10" ry="10" /><a href="#ENTI7" >
+            <text id="boxENTI7" x="6" y="13" fill="black" font-weight="bold"  fill-opacity="1.0" font-size="9" stroke="none">
+            Trip </text></a>
+            </g>
+            <g stroke-linecap="butt" >
+              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="1" 
+                    d="M240 15.0 L240 35.0" />
+                </g>
+            
+        </svg>
+    
+</div>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<th>Entity-1</th>
+										<th></th>
+										<th>Relationship</th>
+										<th></th>
+										<th>Entity-2</th>
+										<th>Arc</th>
+										<th>Key</th>
+									</tr>
+									
+									
+										
+											
+											
+											
+											
+												
+												
+											
+											<tr>
+											<td>RELA-26</td>
+											<td>Trip</td>
+											<td>-&gt;</td>
+											<td>None</td>
+											<td>0..1</td>
+												
+		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+	
+											<td></td>
+												
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+										   </tr>
+									   		<tr>
+											<td></td>
+													
+		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+	
+											<td>0..N</td>
+											<td>&lt;-</td>
+											<td>None</td>
+											<td><a href="#ENTI4" target="_self">Plane</a></td>
+											</tr>
+										
+									
+								</tbody>
+							</table>
+						</div> 
+					
+					</div>
+					
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ENTI7main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+				<!--Attributes-->       
+		
+		
+		
+		
+		
+		<div class="entity" id="ATTR12">
+			<div class="describtion">
+				 <span>
+						<p>Attribut</p>
+						<h1>IATA Code
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">Entität  </span><a href="#ENTI6" target="_self">Airport</a></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="ATTR12main">
+				   
+
+					<h2>Information</h2>
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>Technical Name</th>
+										<th>Domain</th>
+										<th>Datatype</th>
+										<th>Tooltip</th>
+										<th>Zoom levels</th>
+										<th>Dev. Status</th>
+										<th> updated</th>
+									</tr>
+									<tr>
+										<td class="attribute">IATA_CODE</td>
+										<td class="attribute">
+											
+											
+											
+											<a href="#DOMA11" target="_self">Airport Codes</a>
+											
+											
+										</td>
+										<td class="attribute">LOV</td>
+										<td class="attribute">None</td>
+										<td class="attribute">None - None</td>
+										<td class="attribute">DEV</td> 
+										<td class="attribute">filldbea, 2021-08-04 14:56:18.446127</td>
+									</tr>
+									<tr>
+										<th>Mandatory attribute </th>
+										<th>Key</th>
+										<th>descriptor</th>
+										<th>translated</th>
+										<th>repeated</th>
+										<th>historicized</th>
+										<th>encrypted</th>
+									</tr>
+									<tr>
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+											
+		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+	
+									</tr>								</tbody>
+							</table>
+						</div> 
+						
+					<!--referencedby-->
+					
+					
+					<!--user defined properties-->
+					
+					
+					<!--mappings-->       
+					
+
+					<!--translations-->       
+					
+					
+					
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#ATTR12main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+				<!--domains-->
+		
+		
+		
+
+		<div class="entity" id="DOMA11">
+			<div class="describtion">
+				 <span>
+						<p>Domain</p>
+						<h1>Airport Codes
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%">Description in enumeration , domain</th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="DOMA11main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Datatype</th>
+									
+										<th>Max. length</th>
+										<th>Syntax rule</th>
+									
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">List of values</td>
+									
+									<td class="attribute"></td>
+									<td class="attribute"></td>
+									
+									<td class="attribute">bue, 2021-06-29 17:33:40</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					
+						<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#DOMA11valuelist">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>List of values</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="DOMA11valuelist">
+						
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+								<tr>
+									<th>Nr</th>
+									<th>Value</th>
+									<th>Display</th>
+									<th>Description</th>
+								</tr>
+								
+								<tr>
+									<td class="attribute">0</td>
+									<td class="attribute">ZHR</td>
+									<td class="attribute">None</td>
+									<td class="attribute"></td>
+								</tr>
+								
+								<tr>
+									<td class="attribute">1</td>
+									<td class="attribute">BSL</td>
+									<td class="attribute">None</td>
+									<td class="attribute"></td>
+								</tr>
+								
+								<tr>
+									<td class="attribute">2</td>
+									<td class="attribute">STR</td>
+									<td class="attribute">None</td>
+									<td class="attribute"></td>
+								</tr>
+								
+								<tr>
+									<td class="attribute">3</td>
+									<td class="attribute">MUC</td>
+									<td class="attribute">None</td>
+									<td class="attribute"></td>
+								</tr>
+								
+								<tr>
+									<td class="attribute">4</td>
+									<td class="attribute">FDH</td>
+									<td class="attribute">None</td>
+									<td class="attribute"></td>
+								</tr>
+								
+								</tbody>
+							</table>
+						</div>
+						
+					</div>
+					
+
+					<!--used in domainGroups-->
+										
+					
+					<!--used in attrs-->
+					
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#DOMA11inattr">
+							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<label class="label1"><h3>Used for attributes</h3></label>				
+						</div>
+					</div>
+					<div class="collapse" id="DOMA11inattr">
+						
+						<div class="table-responsive">
+						<table class="table borderless" >
+							<tbody>
+								<tr>
+									<th>Entity</th>
+									<th>Attributes</th>
+								</tr>
+								
+								
+								
+								<tr>
+									<td>Airport</td>
+									<td><a href="#ATTR12" target="_self">IATA Code</a></td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+					
+					</div>
+					
+
+					<!--used in columns-->
+					
+
+					<!--references-->
+					
+
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#DOMA11main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+
+		<div class="entity" id="DOMA2">
+			<div class="describtion">
+				 <span>
+						<p>Domain</p>
+						<h1>unknown
+						
+						</h1>
+						<p1><span style="text-transform:uppercase">  </span></p1>
+			<table style="width:100%">
+			  <tr>
+			  	<th style="width:70%"></th>
+			      
+			      
+			  </tr>
+			</table>
+				</span>
+			</div>
+			
+			<div class="panel-body">
+				<div class="collapse" id="DOMA2main">
+				   
+					<h2>Information</h2>
+					<div class="table-responsive">
+						<table class="table borderless">
+							<tbody>
+								<tr>
+									<th>Datatype</th>
+									
+										<th>Max. length</th>
+										<th>Syntax rule</th>
+									
+									<th>updated</th>
+								</tr>
+								<tr>
+									<td class="attribute">Text</td>
+									
+									<td class="attribute"></td>
+									<td class="attribute"></td>
+									
+									<td class="attribute">sys, 2021-08-04 14:56:18.428603</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					
+
+					<!--used in domainGroups-->
+										
+					
+					<!--used in attrs-->
+					
+
+					<!--used in columns-->
+					
+
+					<!--references-->
+					
+
+		
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#DOMA2main">
+					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<label class="label1">more</label>
+				</div>
+			</div>
+		</div>
+		
+
+		<!--Documents-->
+		
+		
+		<!--organisational units-->
+		
+
+
+		<!--diagrams-->
+		
+			
+				<div id="DIAG17-container">
+					<h3 id="DIAG17">riddle</h3>
+					<div class="diagram">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1"  width="516" height="338">
+                <defs id="dmw_defs" >
+                </defs><g  fill="rgb(255,255,255)" stroke="rgb(0,0,0)" 
+                fill-opacity="1.0" stroke-opacity="1.0" 
+                clip-path="url(#clipPathlegend)" 
+                transform="translate(2,1)" >
+                
+<rect x="0" y="0" width="263" height="126" />
+<text x="10" y="14" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Diagram:
+</text>
+<text x="86" y="14" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+riddle
+</text>
+<line x1="0" y1="19" x2="261" y2="19" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="32" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Author:
+</text>
+<text x="86" y="32" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+bue
+</text>
+<line x1="0" y1="37" x2="261" y2="37" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="50" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Created on::
+</text>
+<text x="86" y="50" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+2021-06-29 17:33:03
+</text>
+<line x1="0" y1="55" x2="261" y2="55" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="68" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Modified on:
+</text>
+<text x="86" y="68" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+
+</text>
+<line x1="0" y1="73" x2="261" y2="73" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="86" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Modified by:
+</text>
+<text x="86" y="86" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+2021-08-01 12:46:31
+</text>
+<line x1="0" y1="91" x2="261" y2="91" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="104" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Model:
+</text>
+<text x="86" y="104" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+None
+</text>
+<line x1="0" y1="109" x2="261" y2="109" fill="none" stroke="rgb(0,0,0)"/>
+<text x="10" y="122" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Modeltype:
+</text>
+<text x="86" y="122" fill="rgb(0,0,255)" fill-opacity="1.0" font-size="10" stroke="none">
+Logical
+</text>
+</g>
+<g  fill="rgb(195,240,98)" stroke="rgb(255,255,255)" fill-opacity="1.0" stroke-opacity="1.0" 
+        transform="translate(20,240)" >
+        <rect x="0" y="0" width="126" height="70" rx="10" ry="10" /><a href="#ENTI3" >
+        <text id="DIAG17-ENTI3" x="20" y="13" fill="rgb(96,45,232)" font-weight="bold"  fill-opacity="1.0" font-size="11" stroke="none">
+            Pilot </text></a>
+        </g><g  fill="rgb(195,240,98)" stroke="rgb(255,255,255)" fill-opacity="1.0" stroke-opacity="1.0" 
+        transform="translate(27,27)" >
+        <rect x="0" y="0" width="112" height="89" rx="10" ry="10" /><a href="#ENTI4" >
+        <text id="DIAG17-ENTI4" x="20" y="13" fill="rgb(96,45,232)" font-weight="bold"  fill-opacity="1.0" font-size="11" stroke="none">
+            Plane </text></a>
+        </g><g  fill="rgb(195,240,98)" stroke="rgb(255,255,255)" fill-opacity="1.0" stroke-opacity="1.0" 
+        transform="translate(346,46)" >
+        <rect x="0" y="0" width="147" height="69" rx="10" ry="10" /><a href="#ENTI5" >
+        <text id="DIAG17-ENTI5" x="20" y="13" fill="rgb(96,45,232)" font-weight="bold"  fill-opacity="1.0" font-size="11" stroke="none">
+            Leg </text></a>
+        </g><g  fill="rgb(195,240,98)" stroke="rgb(255,255,255)" fill-opacity="1.0" stroke-opacity="1.0" 
+        transform="translate(369,258)" >
+        <rect x="0" y="0" width="147" height="80" rx="10" ry="10" /><a href="#ENTI6" >
+        <text id="DIAG17-ENTI6" x="20" y="13" fill="rgb(96,45,232)" font-weight="bold"  fill-opacity="1.0" font-size="11" stroke="none">
+            Airport </text></a>
+        </g><g  fill="rgb(195,240,98)" stroke="rgb(255,255,255)" fill-opacity="1.0" stroke-opacity="1.0" 
+        transform="translate(194,46)" >
+        <rect x="0" y="0" width="90" height="70" rx="10" ry="10" /><a href="#ENTI7" >
+        <text id="DIAG17-ENTI7" x="20" y="13" fill="rgb(96,45,232)" font-weight="bold"  fill-opacity="1.0" font-size="11" stroke="none">
+            Trip </text></a>
+        </g><g  fill="rgb(195,240,98)" stroke="rgb(255,255,255)" fill-opacity="1.0" stroke-opacity="1.0" 
+        transform="translate(49,62)" >
+        <rect x="0" y="0" width="69" height="37" rx="10" ry="10" /><a href="#ENTI8" >
+        <text id="DIAG17-ENTI8" x="20" y="13" fill="rgb(96,45,232)" font-weight="bold"  fill-opacity="1.0" font-size="11" stroke="none">
+            Freight plane </text></a>
+        </g><g stroke-linecap="butt" >
+                <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="8,8"  d="M27 117 L23.5 178" />
+            <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="8,8"  d="M23.5 178 L20 239" />
+            </g>
+               <g stroke-linecap="butt" >
+                <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="none"  d="M391 117 L397 164" />
+            <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="none"  d="M397 164 L403 211" />
+            <path stroke-opacity="1.0" stroke-width="1" stroke-dasharray="none" 
+                        d="M409.31 210.19 l-7.12 -5.51 -5.51 7.12" 
+                        fill="none"  
+                        stroke="rgb(0,0,0)" />
+            </g>
+               <g stroke-linecap="butt" >
+                <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="none"  d="M302 117 L314 164" />
+            <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="none"  d="M314 164 L326 211" />
+            <path stroke-opacity="1.0" stroke-width="1" stroke-dasharray="none" 
+                        d="M332.17 209.43 l-7.74 -4.59 -4.59 7.74" 
+                        fill="none"  
+                        stroke="rgb(0,0,0)" />
+            </g>
+               <g stroke-linecap="butt" >
+                <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="8,8"  d="M83 0 L116.5 0" />
+            <path stroke-opacity="1.0" stroke-width="1" stroke-dasharray="none" 
+                        d="M83.0 6.36 l6.36 -6.36 -6.36 -6.36" 
+                        fill="none"  
+                        stroke="rgb(0,0,0)" />
+            <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="1.0"  stroke-width="1" 
+            stroke-dasharray="8,8"  d="M116.5 0 L150 0" />
+            </g>
+               <g ><text x="32" y="127" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    is
+    </text>
+    </g>
+<g ><text x="32" y="139" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    piloted
+    </text>
+    </g>
+<g ><text x="32" y="151" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    by
+    </text>
+    </g>
+<g ><text x="25" y="229" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    pilots
+    </text>
+    </g>
+<g ><text x="396" y="127" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    land
+    </text>
+    </g>
+<g ><text x="396" y="139" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    on
+    </text>
+    </g>
+<g ><text x="307" y="127" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    departure
+    </text>
+    </g>
+<g ><text x="307" y="139" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    from
+    </text>
+    </g>
+<g ><text x="331" y="184" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    source
+    </text>
+    </g>
+<g ><text x="331" y="196" fill="rgb(0,0,0)" fill-opacity="1.0" font-size="10" stroke="none">
+    of
+    </text>
+    </g>
+</svg>
+					<div class="print-button-container">
+						<button class="print-button" onclick="printElem(this)">print</button>
+					</div>
+					</div>
+				</div>
+			
+		
+	</div>
+
+    <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeM0">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeM1">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script>
+      // Quick and simple export target #table_id into a csv
+function download_table_as_csv(table_id) {
+    // Select rows from table_id
+    var rows = document.querySelectorAll('table#' + table_id + ' tr');
+    // Construct csv
+    var csv = [];
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll('td, th');
+        for (var j = 0; j < cols.length; j++) {
+            // Clean innertext to remove multiple spaces and jumpline (break csv)
+            var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+            // Escape double-quote with double-double-quote (see https://stackoverflow.com/questions/17808511/properly-escape-a-double-quote-in-csv)
+            data = data.replace(/"/g, '""');
+            // Push escaped string
+            row.push('"' + data + '"');
+        }
+        csv.push(row.join(';'));
+    }
+    var csv_string = csv.join('\n');
+    // Download it
+    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+    var link = document.createElement('a');
+    link.style.display = 'none';
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv_string));
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+//Code for filtering input
+function $x(pNd) {
+    var lThis;
+    switch (typeof(pNd)) {
+        case 'string':
+            lThis = document.getElementById(pNd);
+            break;
+        case 'object':
+            lThis = pNd;
+            break;
+        default:
+            return false;
+            break;
+    }
+    return (lThis.nodeType == 1) ? lThis : false;
+}
+
+var gRegex = false;
+var gHeight = 0;
+
+function $d_Find(pThis, pString, pTags, pClass) {
+    if (!pTags) {
+        pTags = 'DIV';
+    }
+    pThis = $x(pThis);
+    if (pThis) {
+        var d = pThis.getElementsByTagName(pTags);
+        pThis.style.display = "none";
+        if (!gRegex) {
+            gRegex = new RegExp("test");
+        }
+        var c = 0; // Counter for results
+        //var e = 0; //
+        var rowCount = 0;
+        gRegex.compile(pString, "i");
+        for (var i = 0, len = d.length; i < len; i++) {
+            if (gRegex.test(d[i].innerHTML)) {
+                d[i].style.display = "table-row";
+                d[i].style.visiblilty = "visible";
+                d[i].style.height = gHeight;
+                c++; // 
+            } else {
+                if (gHeight == 0) gHeight = d[i].style.height;
+                d[i].style.height = '0';
+                d[i].style.display = "none";
+                d[i].style.visiblilty = "hidden";
+            }
+
+        }
+        pThis.style.display = "block";
+    }
+
+    // Code for automatic expanding after results < 30 
+    if (c <= 30) {
+        $('#bar1').collapse('show');
+        $('#bar2').collapse('show');
+        $('#bar3').collapse('show');
+    } else {
+        $('#bar1').collapse('hide');
+        $('#bar2').collapse('hide');
+        $('#bar3').collapse('hide');
+    }
+
+    document.getElementById("count").innerHTML = c;
+    return;
+}
+
+//placeholder animation
+$('input').focus(function() {
+    $(this).parents('.form-group').addClass('focused');
+});
+
+$('input').blur(function() {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+        $("#searcher").show();
+        $(this).removeClass('filled');
+        $(this).parents('.form-group').removeClass('focused');
+    } else {
+        $(this).addClass('filled');
+    }
+})
+
+//serchclearer (clears input in searchbar)
+$(document).ready(function() {
+    $("#first").keyup(function() {
+        $("#searchclear").toggle(Boolean($(this).val()));
+        $("#searcher").hide();
+    });
+    $("#searchclear").toggle(Boolean($("#first").val()));
+    $("#searchclear").click(function() {
+        $("#searcher").show();
+        $("#first").val('').focus();
+        $(this).hide();
+    });
+});
+
+//content view for sidebar(desktop) and modal (mobile)
+document.getElementById("btnF").addEventListener("click", function() {
+
+    $("body").css("overflow", "hidden");
+
+    var tree = document.createDocumentFragment();
+    var div = document.getElementById("toc_list");
+
+    tree.appendChild(div);
+
+    document.getElementById("modalContent").appendChild(tree);
+});
+
+document.getElementById("closeM0").addEventListener("click", function() {
+    $("body").css("overflow", "auto");
+
+    var tree = document.createDocumentFragment();
+    var div = document.getElementById("toc_list");
+
+    tree.appendChild(div);
+
+    document.getElementById("sidebar").appendChild(tree);
+});
+
+document.getElementById("closeM1").addEventListener("click", function() {
+    $("body").css("overflow", "auto");
+
+    var tree = document.createDocumentFragment();
+    var div = document.getElementById("toc_list");
+
+    tree.appendChild(div);
+
+    document.getElementById("sidebar").appendChild(tree);
+});
+
+
+$('a[href^="#"]').on('click', function(e) {
+
+    window.location.hash = "-------";
+
+    e.preventDefault();
+    var target = $(this).attr('href');
+    var $target = $(target);
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+    }, 900, 'swing', function() {
+        $tblshow();
+        window.location.hash = target;
+    });
+});
+
+function $tblshow() {
+
+    //locating the clicked table
+    var url = window.location.href;
+    var sID = url.substring(url.indexOf('#') + 1);
+
+    //collapsing table
+    temp = (sID + ' > div > .collapse');
+    $('#' + temp).collapse('show');
+
+
+    //checking if its using the right data
+    console.log("URL: " + url + " \n ");
+    console.log("ID der Table: " + sID + " \n ");
+    console.log("Suchid: " + temp);
+
+}
+
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 700) {
+            $('#btnTop').fadeIn();
+        } else {
+            $('#btnTop').fadeOut();
+        }
+    });
+    // scroll content to top by clicking on button
+    $('#btnTop').click(function() {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+});
+</script>  
+	
+</body>
+</html>

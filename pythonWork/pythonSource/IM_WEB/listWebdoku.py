@@ -129,5 +129,5 @@ def main(pdirec, plang, pinputtype="DB"):
 if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv)>2) else None
-    type = sys.argv[3] if (len(sys.argv)>2) else "DB"
+    type = sys.argv[3] if (len(sys.argv)>3) else "DB"
     main(pdirec=direc, plang=lang, pinputtype=type)

@@ -708,7 +708,7 @@
 			<Column name="Connector_Type" value="Association"/>
 			<Column name="SourceCard" value="*"/>
 			<Column name="SourceAccess" value="Public"/>
-			<Column name="DestCard" value="1"/>
+			<Column name="DestCard" value="0..1"/>
 			<Column name="DestAccess" value="Public"/>
 			<Column name="SourceRole" value="departure from"/>
 			<Column name="SourceContainment" value="Unspecified"/>
@@ -724,7 +724,7 @@
 			<Column name="Btm_Mid_Label" value=" &#10;«Relation»"/>
 			<Column name="Start_Edge" value="3"/>
 			<Column name="End_Edge" value="1"/>
-			<Column name="PtStartX" value="282"/>
+ 			<Column name="PtStartX" value="282"/>
 			<Column name="PtStartY" value="-117"/>
 			<Column name="PtEndX" value="283"/>
 			<Column name="PtEndY" value="-211"/>
@@ -932,7 +932,6 @@
 			<Column name="RouteStyle" value="3"/>
 			<Column name="IsBold" value="0"/>
 			<Column name="LineColor" value="-1"/>
-			<Column name="Stereotype" value="Arc"/>
 			<Column name="PDATA5" value="SX=0;SY=0;EX=0;EY=0;"/>
 			<Column name="DiagramID" value="0"/>
 			<Column name="ea_guid" value="{45B213BF-EBD0-4939-B38A-42670B9ABF6D}"/>
