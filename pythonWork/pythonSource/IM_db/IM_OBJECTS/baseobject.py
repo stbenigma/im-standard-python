@@ -3,8 +3,6 @@ import sqlite3
 from IM_DB import dbDML, dbDDL,logmessages
 from datetime import datetime
 
-
-
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
@@ -429,8 +427,6 @@ class MultilangBaseobject(Baseobject):
         # try
 
         return retval
-
-
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref

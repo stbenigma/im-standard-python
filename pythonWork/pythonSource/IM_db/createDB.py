@@ -14,7 +14,7 @@ def createnewDB():
     dbCreateStructure.applysqlscript(psqlfilepath=parameters.sqlfilepath());
     transferModel.insertBaseData()
     dbConnect.setversion()
-    if dbConnect.getversion() != dbConnect.expecteddbversion():
+    if dbConnect.getversion() != parameters.expecteddbversion():
         applyupgrades()
     dbConnect.closeDB()
     logmessages.showmessages("database {} version {} for model {} created"

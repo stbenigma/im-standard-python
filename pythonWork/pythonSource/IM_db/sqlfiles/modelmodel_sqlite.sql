@@ -894,10 +894,12 @@ create table tabl_enti_maps
 		constraint tema_enti_fk
 			references ENTITIES (enti_id) on delete cascade ,
 	tema_rela_id integer
-		constraint tema_rela_fk
-			references RELATIONS (rela_id) on delete cascade ,
-	constraint tema_un
-		unique (tema_tabl_id, tema_enti_id, tema_rela_id),
+	constraint tema_rela_fk
+		references RELATIONS (rela_id) on delete cascade ,
+	constraint tema_unenti
+		unique (tema_tabl_id, tema_enti_id),
+	constraint tema_unrela
+		unique (tema_tabl_id, tema_rela_id),
 	constraint tema_ck
 		check ((tema_enti_id is not null and tema_rela_id is null )
       	        		  or (tema_enti_id is null and tema_rela_id is not null))

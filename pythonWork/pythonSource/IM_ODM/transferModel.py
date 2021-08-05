@@ -1,11 +1,10 @@
 import math
-import os
-import re
-import handleXML
+import os, re
 from IM_DB import dbConnect, parameters, logmessages
 from IM_OBJECTS import *
-from IM_ODM import transferRelational
+from IM_ODM import transferRelational,handleXML
 from mystring import nvl
+
 
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
