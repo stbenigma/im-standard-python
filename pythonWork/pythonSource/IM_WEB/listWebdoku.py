@@ -32,14 +32,16 @@ def printhtmlrender(pfilename, planguage, pmodel, pintfid=None):
         diags =sorted([{"id":key
                  ,"name": value["name"]
                 ,"svg": printdiagHTML.getsvgtext(pdiagelem=value,pdiaganker=key,plang=planguage)
+                , "pdf": printdiagHTML.pdffilename(pname=value["name"], plang=planguage)
                         } for key, value in pmodel.jsmodel["diagrams"].items()
                                                     if (value["type"] == "Entity")]
                 , key=lambda x: x["name"].upper())
     else:
         diags = [{"id": pintfid
                 , "name": pmodel.getbyid(pintfid)["name"]
-                , "svg": printRelHTML.interfacediagram(pintf=pmodel.getbyid(pintfid))}
-                 ]
+                , "svg": printRelHTML.interfacediagram(pintf=pmodel.getbyid(pintfid))
+               , "pdf": printdiagHTML.pdffilename(pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
+        ]
     #fi
     html = jinjawebmodel.rendermodel(pcurlang=planguage,pmodel=pmodel,pintfid=pintfid,pdiagrams=diags,phtmlfilelist=printHTML.htmlfilelist)
     printHTML.fhtml.write(html)

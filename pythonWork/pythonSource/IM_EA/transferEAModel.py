@@ -181,19 +181,29 @@ def do1diaglink(pdiaglinkxml):
 
 
     seqNr =0
-    geometry = handleXML.findColumn(pdiaglinkxml, "Geometry")
-    nvlsearch = lambda x: x.group(1) if x is not None else None
     entirefft = Elementrep().getbyuk(eler_diag_id=diag.diag_id,eler_mode_id=Relation().getbyid(relr.relr_mode_id).rela_enti_id_from)
     entireftf = Elementrep().getbyuk(eler_diag_id=diag.diag_id,eler_mode_id=Relation().getbyid(relr.relr_mode_id).rela_enti_id_to)
-    sx = int(nvlsearch(re.search("SX=([\d-]+);", geometry)))
-    sy = int(nvlsearch(re.search("SY=([\d-]+);", geometry)))
-    ex = int(nvlsearch(re.search("EX=([\d-]+);", geometry)))
-    ey = int(nvlsearch(re.search("EY=([\d-]+);", geometry)))
-    edge = nvlsearch(re.search("EDGE=(\d+);", geometry))
-    startX= max(entirefft.eler_position_x + sx,0)
-    startY=-min(int(getrelation(objguid,"PtStartY")),0)
-    endX=max(entireftf.eler_position_x + ex,0)
-    endY=-min(int(getrelation(objguid,"PtEndY")),0)
+    #geometry = handleXML.findColumn(pdiaglinkxml, "Geometry")
+    # nvlsearch = lambda x: x.group(1) if x is not None else None
+    # sx = int(nvlsearch(re.search("SX=([\d-]+);", geometry)))
+    # sy = int(nvlsearch(re.search("SY=([\d-]+);", geometry)))
+    # ex = int(nvlsearch(re.search("EX=([\d-]+);", geometry)))
+    # ey = int(nvlsearch(re.search("EY=([\d-]+);", geometry)))
+    # edge = nvlsearch(re.search("EDGE=(\d+);", geometry))
+
+    startX = entirefft.eler_position_x + (entirefft.eler_width/2 if relr.relr_startedge in (Relationrep.SOUTH,Relationrep.NORTH)\
+                                         else entirefft.eler_width  if relr.relr_startedge in (Relationrep.EAST)\
+                                         else 0)
+    startY=entirefft.eler_position_y + (entirefft.eler_height/2 if relr.relr_startedge in (Relationrep.EAST,Relationrep.WEST)\
+                                         else entirefft.eler_height  if relr.relr_startedge in (Relationrep.SOUTH)\
+                                        else 0)
+    endX= entireftf.eler_position_x + (entireftf.eler_width/2 if relr.relr_endedge in (Relationrep.SOUTH,Relationrep.NORTH)\
+                                         else entireftf.eler_width  if relr.relr_endedge in (Relationrep.EAST)\
+                                         else 0)
+    endY=entireftf.eler_position_y + (entireftf.eler_height/2 if relr.relr_endedge in (Relationrep.EAST,Relationrep.WEST)\
+                                         else entireftf.eler_height  if relr.relr_endedge in (Relationrep.SOUTH)\
+                                        else 0)
+
     inslineseg(prelrid=relrID,pseq=seqNr,px=startX
                ,py=startY
                ,pmandatory=rela.getmandatorytofrom(),pangle=math.pi / 2)
