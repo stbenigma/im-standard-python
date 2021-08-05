@@ -3,6 +3,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../tools')
 from IM_DB import parameters, dbConnect, logmessages
 from IM_HTML import printHTML
 from IM_ODM import fillDB
@@ -10,6 +11,7 @@ import listWebdoku
 from IM_JSON import sql2json,JSModel
 from IM_OBJECTS import Languagetext
 from createDB import existsDB
+from tools import createMapExcel,createAllMapping
 
 
 def main(pdirec, plang,pforceoverwrite = False):
@@ -27,17 +29,17 @@ def main(pdirec, plang,pforceoverwrite = False):
 
     fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
 
-    openDB(parameters.dbFilePath(), pfks='ON')
+    dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
     jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     printHTML.setmodel(jsmodel)
     printHTML.setWebDirec(p_webdirec=None)
 
     listWebdoku.listwebmain(plang=Languagetext.reportLang())
     jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
-    closeDB()
+    dbConnect.closeDB()
 
-#    listmapping.writexls(pfilename=parameters.webDirec() + 'Mappingtables_' + parameters.modelName() + '.xlsx',pmodel=model,plang=Languagetext.reportLang())
-#    listmapping.writeintfxls(pfilepath=parameters.webDirec(),pmodel=model,plang=Languagetext.reportLang())
+    createAllMapping(pjsonfile=parameters.dbDirect() + parameters.modelName() + '.json',plang=Languagetext.reportLang())
+    createMapExcel(pjsonfile=parameters.dbDirect()+ parameters.modelName() + '.json')
 
 
     logmessages.showmessages("model {}: created and filled database ({})\n   created json, webdocu and mapping excel"

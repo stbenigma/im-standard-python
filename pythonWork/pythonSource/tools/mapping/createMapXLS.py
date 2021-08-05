@@ -1,7 +1,7 @@
 import sys
 from openpyxl import Workbook, styles
 from IM_JSON import JSModel
-from listmapping import writeoverview
+from mapping import writeoverview
 
 # utils.get_column_letter(pidx)
 val2str = lambda v: '' if v is None else str(v) if type(v) in (int, float) else v
@@ -72,14 +72,14 @@ def createExcel(pfilename: str, pjsmodel):
     return
 
 
-def main(param1):
+def createMapExcel(pjsonfile):
     JSONEXTENSION = '.json'
-    jsmodel = JSModel.readfromfile(pfilename=param1)
-    filename = param1[:-len(JSONEXTENSION)] + '_MAP'
+    jsmodel = JSModel.readfromfile(pfilename=pjsonfile)
+    filename = pjsonfile[:-len(JSONEXTENSION)] + '_MAP'
     fileext = '.xlsx'
     createExcel(pfilename=filename + fileext, pjsmodel=jsmodel)
     print("Excel {} created".format(filename + fileext))
 
 
 if __name__ == '__main__':
-    main(param1=None if len(sys.argv) == 1 else sys.argv[1])
+    createMapExcel(pjsonfile=None if len(sys.argv) == 1 else sys.argv[1])

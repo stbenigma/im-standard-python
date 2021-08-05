@@ -568,7 +568,7 @@ def stripeol(str):
     return retval
 
 
-def main(pjsonfile, plang):
+def createAllMapping(pjsonfile, plang):
     JSONEXTENSION = '.json'
     jsmodel = JSModel.readfromfile(pfilename=pjsonfile)
     lang = plang if plang is not None else jsmodel.jsmodel["model"]["language"]
@@ -586,4 +586,4 @@ def main(pjsonfile, plang):
 if __name__ == '__main__':
     jsonfile = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv) > 2) else None
-    main(pjsonfile=jsonfile, plang=lang)
+    createAllMapping(pjsonfile=jsonfile, plang=lang)
