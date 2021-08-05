@@ -1,8 +1,7 @@
 import sys
-
 from openpyxl import Workbook, styles
-
 from IM_JSON import JSModel
+from listmapping import writeoverview
 
 # utils.get_column_letter(pidx)
 val2str = lambda v: '' if v is None else str(v) if type(v) in (int, float) else v
@@ -11,28 +10,8 @@ val2str = lambda v: '' if v is None else str(v) if type(v) in (int, float) else 
 def writesheets(pwb, pjsmodel: JSModel):
     systems = pjsmodel.getelements('INTF')
     cols = pjsmodel.getelements('COLU')
-    ws = pwb.create_sheet("Overview")
-    ws.column_dimensions['A'].width = 30
-    ws.column_dimensions['B'].width = 15
-    ws.column_dimensions['c'].width = 15
-    rowidx, colidx = 1, 1
-    ws.cell(column=colidx, row=rowidx, value='System')
-    ws.cell(column=colidx + 1, row=rowidx, value='tablecount')
-    ws.cell(column=colidx + 2, row=rowidx, value='columncount')
-    for syskey,sys in systems.items():
-        rowidx += 1
-        c = ws.cell(column=1, row=2)
-        c.alignment = styles.Alignment(horizontal='general'
-                                       , vertical='bottom'
-                                       , text_rotation=0,
-                                       wrap_text=False,
-                                       shrink_to_fit=False,
-                                       indent=0)
-        ws.cell(column=colidx, row=rowidx, value=sys['name'])
-        ws.cell(column=colidx + 1, row=rowidx, value=len(sys["tables+"]))
-        ws.cell(column=colidx + 2, row=rowidx
-                , value=len([c["name"] for c in cols.values() if c["interface-id+"] == syskey]))
-    # for
+    writeoverview(pwb=pwb,pmodel=pjsmodel)
+
     for sys in systems.values():
         ws = pwb.create_sheet(sys["name"])
         ws.column_dimensions['A'].width = 20

@@ -46,8 +46,7 @@ def inserttablemap(ptabid,pentiid=None,prelaid=None):
             retval= 1
         except Exception as e:
             if type(e) != UniqueKeyException:
-                logmessages.writelog("could not insert table-map tabl_id={}, enti_id={}, rela_id={}"
-                                     .format(ptabid, pentiid, prelaid))
+                logmessages.writelog("could not insert table-map tabl_id={ptabid}, enti_id={pentiid}, rela_id={prelaid}")
             retval= 0
         #try
     return retval
@@ -67,54 +66,11 @@ def insertcolumap(pcoluid,pattrid):
             retval= 1
         except Exception as e:
             if type(e) != UniqueKeyException:
-                logmessages.writelog("could not insert column_attr_map colu_id={}, attr_id={}"
-                                     .format(pcoluid, pattrid))
+                logmessages.writelog(f"could not insert column_attr_map colu_id={pcoluid}, attr_id={pattrid}")
             retval= 0
         #try
     #fi
     return retval
-
-
-# def insertnewtable(ptabname,pintfid):
-#     tabl = Table()
-#     tabl.tabl_name = ptabname
-#     tabl.tabl_intf_id = pintfid
-#     tabl.tabl_dc = datetime.today()
-#     tabl.tabl_uc = "Excel-Map-Import"
-#     try:
-#         tabl.insert(pdoerrhdlng=False)
-#         retval = 1
-#     except Exception as e:
-#         if e == UniqueKeyException:
-#             print("NEW table {} already exists.".format(ptabname))
-#             logmessages.writelog("NEW table {} already exists.".format(ptabname))
-#             retval= 0
-#         else:
-#             logmessages.writelog("table {} could not be created.".format(ptabname))
-#             logmessages.writelog("{}".format(e))
-#             retval= 0
-#     return retval
-# def insertnewcolumn(pcolname, ptablid):
-#     col = Column()
-#     col.colu_column_name = pcolname
-#     col.colu_tabl_id = ptablid
-#     col.colu_mandatory = Boolean.bool2str(False)
-#     col.colu_doma_id = Domain.getunknown().doma_id
-#     col.colu_dc = datetime.today()
-#     col.colu_uc = "Excel-Map-Import"
-#     try:
-#         col.insert()
-#         retval = 1
-#     except Exception as e:
-#         if e == UniqueKeyException:
-#             print("NEW column {}.{} already exists.".format(tabname, col.colu_column_name))
-#             logmessages.writelog("NEW column {}.{} already exists.".format(tabname, colname))
-#             retval = 0
-#         else:
-#             logmessages.writelog("column {}.{} could not be created.".format(tabname, colname))
-#             logmessages.writelog("{}".format(e))
-#             retval = 0
-#     return retval
 
 def getmapid(pname):
     entiid,relaid = None,None
@@ -137,15 +93,15 @@ def printstatline(pname,*args):
 def mergeintodb(pintfname,ptabs):
     tablmapinsert,tablmapdelete,columapinsert,columapdelete = 0,0,0,0
     intf = Interface.getbyuk(intf_name=pintfname)
-    if not intf:
-        logmessages.writelog("Interface {} not found.".format(pintfname))
+    if intf is None:
+        logmessages.writelog(f"Interface {pintfname} not found.")
         return
     for tabname,tabmap in ptabs.items():
         #print (pintfname,tabname,tabmap)
         # search table in DB
         tabl = Table.getbyuk(tabl_name=tabname, tabl_intf_id=intf.intf_id)
         if tabl is None:
-            logmessages.writelog("table {} does not exists.".format(tabname))
+            logmessages.writelog(f"table {tabname} does not exists.")
             continue
             
         for map in tabmap["entis"]:
@@ -155,9 +111,9 @@ def mergeintodb(pintfname,ptabs):
                 if enticrud == 'DELMAP':
                     nvlnull=lambda x:x if x is not None else "NULL"
                     tablmapdelete += TablEntiMap.delete(
-                        pwhere="""tema_tabl_id ={tablid} 
+                        pwhere=f"""tema_tabl_id ={tabl.tabl_id} 
                                     and (tema_enti_id = {entiid} or tema_rela_id = {relaid})"""
-                            .format(tablid=tabl.tabl_id, entiid=nvlnull(entiid),relaid=nvlnull(relaid)))
+                    )
                 else:
                     tablmapinsert += inserttablemap(ptabid=tabl.tabl_id, pentiid=entiid,prelaid=relaid)
                 #fi
@@ -168,7 +124,7 @@ def mergeintodb(pintfname,ptabs):
             #print (pintfname,tabname,colname,colmap)
             col = Column.getbyuk(colu_tabl_id=tabl.tabl_id, colu_column_name=colname)
             if col is None:
-                logmessages.writelog("column {}.{} does not exists.".format(tabname, colname))
+                logmessages.writelog(f"column {tabname}.{colname} does not exists.")
                 continue
 
             for attrmap in colmap:
@@ -221,7 +177,7 @@ def main(param1,pxls):
         dbConnect.openDB(pfilepath=parameters.dbFilePath(),pfks="ON")
         printstatline("Interface","tab-mapins","tab-mapdel","col-mapins","col-mapdel")
         for ws in workbook.worksheets:
-            if ws.title== 'Overview': continue
+            if ws.title == 'Overview': continue
             interface = importintf(ws)
             mergeintodb(pintfname=ws.title,ptabs=interface)
         #for

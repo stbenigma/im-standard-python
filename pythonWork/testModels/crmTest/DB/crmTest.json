@@ -5,8 +5,8 @@
       "language": "de",
       "uc": "stb",
       "dc": "2019-05-06 07:48:12 UTC",
-      "um": null,
-      "dm": null
+      "um": "sys",
+      "dm": "2021-08-05 12:33:09.191210"
    },
    "languages": {
       "de": {
@@ -30295,7 +30295,9 @@
             "TABL727",
             "TABL726",
             "TABL733",
-            "TABL732"
+            "TABL732",
+            "TABL1063",
+            "TABL1064"
          ],
          "domains+": []
       }
@@ -30314,7 +30316,7 @@
          "minzoomlevel": null,
          "maxzoomlevel": null,
          "devstatus": "DEV",
-         "CRUD": "RU",
+         "CRUD": "R",
          "columns+": [
             "COLU297",
             "COLU299",
@@ -30409,7 +30411,7 @@
          "minzoomlevel": null,
          "maxzoomlevel": null,
          "devstatus": "DEV",
-         "CRUD": "CRU",
+         "CRUD": "R",
          "columns+": [
             "COLU312",
             "COLU314",
@@ -35679,6 +35681,78 @@
             "DOCU69",
             "DOCU71"
          ]
+      },
+      "TABL1063": {
+         "name": "abc",
+         "interface-name+": "TestMapping",
+         "interface-id": "INTF725",
+         "prefix": null,
+         "descr": null,
+         "uc": "IMPORTXLS",
+         "dc": "2021-07-27 17:45:47.953532",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "CRUD": "R",
+         "columns+": [],
+         "userdefprops": {
+            "datamapping": {
+               "PENTA": {
+                  "UDPR30": {
+                     "name": "PENTA TabName",
+                     "value": null
+                  }
+               },
+               "PIM": {
+                  "UDPR25": {
+                     "name": "PIM TabName",
+                     "value": null
+                  }
+               }
+            }
+         },
+         "entitiesmapped": [],
+         "relationsmapped": [],
+         "sourceref": {},
+         "referencedby": []
+      },
+      "TABL1064": {
+         "name": "def",
+         "interface-name+": "TestMapping",
+         "interface-id": "INTF725",
+         "prefix": null,
+         "descr": "Dies ist ein Text der \nl\u00e4nger sein kann",
+         "uc": "IMPORTXLS",
+         "dc": "2021-07-27 17:45:47.956229",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "CRUD": "R",
+         "columns+": [],
+         "userdefprops": {
+            "datamapping": {
+               "PENTA": {
+                  "UDPR30": {
+                     "name": "PENTA TabName",
+                     "value": null
+                  }
+               },
+               "PIM": {
+                  "UDPR25": {
+                     "name": "PIM TabName",
+                     "value": null
+                  }
+               }
+            }
+         },
+         "entitiesmapped": [],
+         "relationsmapped": [],
+         "sourceref": {},
+         "referencedby": []
       }
    },
    "columns": {
@@ -47863,7 +47937,7 @@
          "format": null,
          "domain": "DOMA97",
          "descr": null,
-         "interface_col_id": "ATT999",
+         "interface_col_id": null,
          "uc": "stb",
          "dc": "2021-02-08 08:42:20 UTC",
          "um": null,
@@ -48032,7 +48106,7 @@
          "format": null,
          "domain": "DOMA97",
          "descr": null,
-         "interface_col_id": "ATTR001",
+         "interface_col_id": null,
          "uc": "stb",
          "dc": "2019-11-10 03:26:56 UTC",
          "um": null,
@@ -57849,9 +57923,9 @@
    },
    "_imprint_": {
       "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/DB/crmTest.db",
-      "created": "2021-07-26 10:47:36.898830",
+      "created": "2021-08-05 12:33:13.960915",
       "Modelversion": "1.5",
-      "hashvalue": 4714784748591509344,
+      "hashvalue": -5704975063986417892,
       "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
    }
 }
