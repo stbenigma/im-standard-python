@@ -263,12 +263,20 @@
 			{% for diag in webmodel.diagrams %}
 				<div id="{{ diag.id }}-container">
 					<h3 id="{{ diag.id }}">{{ diag.name }}</h3>
-					<div class="diagram">
-						{{ diag.svg|safe }}
-					<div class="print-button-container">
-						<button class="print-button" onclick="printElem(this)">print</button>
-					</div>
-					</div>
+					{% if diag.svg %}
+						<div class="diagram">
+							{{ diag.svg|safe }}
+							<div class="print-button-container">
+								<button class="print-button" onclick="printElem(this)">print</button>
+							</div>
+						</div>
+					{% elif diag.pdf %}
+						<iframe src="{{ diag.pdf }}" height="600" width="1800">
+							<div class="print-button-container">
+								<button class="print-button" onclick="printElem(this)">print</button>
+							</div>
+						</iframe>
+					{% endif %}
 				</div>
 			{% endfor %}
 		{% endif %}

@@ -802,7 +802,9 @@ create table linesegments
 		unique (lise_relr_id, lise_seq),
 	constraint ck_lise_linetype
 		check (lise_linetype IN('DADO','DASHED','DOTTED','SOLID')),
-	constraint ck_relr_relr_fontcolor
+	constraint ck_lyse_x
+		check (lise_x BETWEEN 0 AND 999999),
+	constraint ck_lyse_y
 		check (lise_y BETWEEN 0 AND 999999)
 );
 
