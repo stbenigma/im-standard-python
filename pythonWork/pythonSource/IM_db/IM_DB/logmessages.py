@@ -15,7 +15,7 @@ def initlog(pfunc):
     logfile.write("{}  {}: Model={}  DB={}\n"
                   .format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
                           ,pfunc
-                          ,parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension()
+                          ,parameters.odmIMDirec() + parameters.modelName() + parameters.odmIMExtension()
                           ,parameters.dbFilePath()))
 # initlog
 

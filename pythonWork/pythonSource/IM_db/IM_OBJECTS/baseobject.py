@@ -308,7 +308,15 @@ class Baseobject:
     def getIDbyODMref(self, psrcid):
         return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
 
-#    def getsprachvals(self):
+
+    def getbyEAref(self, psrcid):
+        return self.getbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
+
+
+    def getIDbyEAref(self, psrcid):
+        return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
+
+    #    def getsprachvals(self):
 #        raise NotImplementedError("Must override getsprachvals")
 
     def getukvaluepairs(self):

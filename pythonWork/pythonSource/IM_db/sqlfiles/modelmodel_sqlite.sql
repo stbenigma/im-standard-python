@@ -802,7 +802,9 @@ create table linesegments
 		unique (lise_relr_id, lise_seq),
 	constraint ck_lise_linetype
 		check (lise_linetype IN('DADO','DASHED','DOTTED','SOLID')),
-	constraint ck_relr_relr_fontcolor
+	constraint ck_lyse_x
+		check (lise_x BETWEEN 0 AND 999999),
+	constraint ck_lyse_y
 		check (lise_y BETWEEN 0 AND 999999)
 );
 
@@ -1102,6 +1104,6 @@ CREATE VIEW SUPERENTI AS
           join rel on rela_superenti_id = superentity.ENTI_ID
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
 
-create view dbversion as select '1.3' as version, datetime() as installedtime;
+create view dbversion as select '1.5' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

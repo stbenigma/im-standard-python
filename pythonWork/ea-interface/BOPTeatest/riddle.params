@@ -1,0 +1,43 @@
+[EAXML]
+#base directory for all modeler data (with ending /)
+#default directory in which this paramfile is stored
+#basedirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/ea-interface/BOPTeatest/"
+
+#base directory for all local (non versioned) results of model extract (with ending /)
+#default = eabasedirec
+#localbasedirec 
+
+#model name
+modelname = "riddle"
+
+[DB]
+#default language of model in DB
+dbdefaultlang = "en"
+
+#comma separated languages to be maintained, choose from de, en, fr, es
+#default entry in comment of Model
+dblanguages = "en"
+
+#default directory for DB-file (below <localbasedirec>)
+#dbdefaultdirec = "DB/"
+
+#default extension for DB-file
+#default .db
+#dbfileextension = 
+
+#complete pathinformation (path-filename-extension) of DB-file
+#default: <localbasedirec> + <dbdefaultdirec> + <eamodelname> + <dbfileextension>
+#dbfilepath = 
+
+[WEB]
+#default directory for web-source output
+#default Web/
+#webdefaultdirec = 
+
+#directory for web-source output
+#default <localbasedirec> + <webdefaultdirec>
+#webdirec =
+
+#filename of logo in Webpage (path <webdirec>/image/)
+#default logo.png
+#logofilename = 

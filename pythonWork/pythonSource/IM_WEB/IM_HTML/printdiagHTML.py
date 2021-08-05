@@ -451,22 +451,28 @@ def putrefinsvg(ptext,pdiagid,plang):
 
     return retval
 
-def svgfilename(pname,plang=None):
+def checkforfile(pname,ptype,plang=None):
     retval = None
-    if (plang is not None):
-        svgfn = parameters.webDirec() + "/image/" + pname + "_" + plang + ".svg"
-        if os.path.exists(svgfn): retval = svgfn
+    if plang is not None:
+        filepath = parameters.webDirec() + "image/" + pname + "_"  + plang + "." + ptype
+        if os.path.exists(filepath):
+            retval = filepath
     #fi
-    if retval is None: #try filename without language marker
-        svgfn = parameters.webDirec() + "/image/" + pname + ".svg"
-        if os.path.exists(svgfn):
-            retval = svgfn
-        else:
-            retval = None
-        #fi
-    #fi
+    if retval is None:
+        """check for file without language_marker"""
+        filepath = parameters.webDirec() + "image/" + pname + "." + ptype
+        if os.path.exists(filepath):
+            retval = filepath
+
     return retval
 
+def svgfilename(pname,plang=None):
+    return checkforfile(pname = pname,plang = plang,ptype = "svg")
+def pdffilename(pname,plang=None):
+    retval = None
+    if checkforfile(pname = pname,plang = plang,ptype = "pdf") is not None:
+        retval = "image/"+pname+"."+"pdf"
+    return retval
 
 def getsvgfromfile(pname, plang=None):
     retval = None
@@ -482,6 +488,8 @@ def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
     retval = getsvgfromfile(pname=pdiagelem["name"],plang=plang)
     if retval is not None:
         retval = putrefinsvg(ptext=retval, pdiagid=pdiaganker, plang=plang)
+    elif pdffilename(pname=pdiagelem["name"],plang=plang) is not None:
+        retval = None
     else:
         """render diagram"""
         retval = """<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
