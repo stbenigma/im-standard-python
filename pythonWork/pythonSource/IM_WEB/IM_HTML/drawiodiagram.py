@@ -17,8 +17,10 @@ drawio_diagram_base = """<?xml version="1.0" encoding="UTF-8"?>
 </mxfile>"""
 
 
-def create_diagram(diagram_key: str, model: JSModel, language, base=drawio_diagram_base) -> etree:
-    """Create a draw.io diagram from the corresponding node in the jsmodel"""
+def create_diagram(diagram_key: str, model: JSModel, translator, base=drawio_diagram_base) -> etree:
+    """Create a draw.io diagram from the corresponding node in the jsmodel
+    :parameter translator implements gettext() as in the gettext module and tr() to translate SSOT fields
+    """
     assert model is not None, f"Expecting a valid model"
     diagram = model.getbyid(diagram_key)
     parser = etree.XMLParser(remove_blank_text=True)
@@ -27,8 +29,8 @@ def create_diagram(diagram_key: str, model: JSModel, language, base=drawio_diagr
 
     xml_node = dom.find('.//root')
 
-    add_entities(diagram, model, language, xml_node)
-    add_relations(diagram, model, language, xml_node)
+    add_entities(diagram, model, translator, xml_node)
+    add_relations(diagram, model, translator, xml_node)
 
     return dom
 
@@ -40,7 +42,7 @@ def sort_by_subtype_level(diagram_entities: [], model: JSModel) -> []:
 entity_style = "rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=top;"
 
 
-def add_entities(diagram, model: JSModel, language, root: etree):
+def add_entities(diagram, model: JSModel, translator, root: etree):
     for element in sort_by_subtype_level(diagram['elements']['entity'], model):
         enti_key = element['element']
         enti = model.getbyid(enti_key)
@@ -48,15 +50,15 @@ def add_entities(diagram, model: JSModel, language, root: etree):
         # create the container
         uo = etree.Element('UserObject')
         uo.set('id', enti_key)
-        uo.set('label', enti['name'][language])
+        uo.set('label', translator.tr(enti['name']))
         uo.set('link', 'ssot:' + enti_key)
-        description = enti.get('descr', {}).get(language)
+        description = translator.tr(enti.get('descr'))
         if description is not None and len(description) > 0:
             uo.set(gettext("Beschreibung"), description)
 
         synonyms = enti['synonyms']
         if synonyms is not None and len(synonyms) > 0:
-            syn_list = map(lambda s: s.get(language), synonyms.values())
+            syn_list = map(lambda s: translator.tr(s), synonyms.values())
             synonym_str = ', '.join(syn_list)
             uo.set(gettext("Synonyme"), synonym_str)
 
@@ -85,7 +87,7 @@ def add_entities(diagram, model: JSModel, language, root: etree):
 connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;edgeStyle=orthogonalEdgeStyle;"
 
 
-def add_relations(diagram, model: JSModel, lang, parent):
+def add_relations(diagram, model: JSModel, translator, parent):
     for key, relation in diagram['relationships'].items():
         linekeys = relation['linesegments'].keys()
         segments_sorted = sorted(linekeys, key=lambda e: int(e))
@@ -126,10 +128,10 @@ def add_relations(diagram, model: JSModel, lang, parent):
         connector.append(geo)
         parent.append(connector)
 
-        labeltext = relation_ssot['from-to'].get('assoc').get(lang)
+        labeltext = translator.tr(relation_ssot['from-to'].get('assoc'))
         add_label(relation, 'start', labeltext, f"{key}-from", parent)
 
-        labeltext = relation_ssot['to-from'].get('assoc').get(lang)
+        labeltext = translator.tr(relation_ssot['to-from'].get('assoc'))
         add_label(relation, 'end', labeltext, f"{key}-to", parent)
 
 
@@ -145,7 +147,7 @@ def map_line_end(cardinality: str, mandatory: bool = False) -> str:
 def add_label(relation, end: str, labeltext: str, key: str, parent):
     if labeltext is not None and len(labeltext) > 0:
         start_label = etree.Element('mxCell', value=labeltext, parent="1", vertex="1",
-                                    style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#FFFFFF;")
+                                    style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#D0D0D0;")
         start_label.set('id', key)
 
         start_label_box = etree.Element('mxGeometry', x=str(int(relation[f'{end}text_x']) + 2),

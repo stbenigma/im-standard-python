@@ -232,13 +232,13 @@ def printentisvg(pcell:EntityCell, pposx, pposy):
 def printrelasvg (pcell:EntityCell,pposx,pposy):
     textsvg = """<g  fill="{fill}" stroke="{stroke}" fill-opacity="{fillopa}" stroke-opacity="{stropa}" 
             transform="translate({posx},{posy})" >
-            <text id="{}" x="2" y="4" fill="{textfill}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            <text id="{id}" x="2" y="4" fill="{textfill}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
             {text} </text>
             </g>
             """
-    textbox = textsvg.format(fill='white', stroke='blue'
+    textbox = textsvg.format(id=pcell.getentiid(), fill='white', stroke='blue'
                                 , fillopa=80, stropa=80
-                                , posx=pposx,posy=pposy,id='',textfill='black',fontsize=FONTSIZE
+                                , posx=pposx, posy=pposy,textfill='black',fontsize=FONTSIZE
                                 , text=nvl(pcell.getassoc())[:MAXRELACHARS])
 
     return textbox

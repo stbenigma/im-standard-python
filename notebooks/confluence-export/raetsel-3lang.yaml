@@ -1,4 +1,5 @@
-confluence:
+# If the confluence: key is missing, the publisher works in offline mode
+xconfluence:
   apiurl: 'https://fyayc-sandbox.atlassian.net'
   space: 'QUIZ'
   rootpage : 'Dokumentation'
@@ -6,8 +7,9 @@ confluence:
   password: 'v1AD9yqDlmnHJAjYc8mh599B'
   cooldown: 0.01
 
-# Abort processing if pages with same title exist outside of the specified document root
-cautious: true
+  # Abort processing if pages with same title exist outside of the specified document root
+  cautious: false
+
 
 # datasource
 #source: /Users/bue/dev/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.json
