@@ -13,5 +13,26 @@
       </p>
     </ac:layout-cell>
   </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <p>
+        {% set diag = page['diagram'] %}
+        <ac:structured-macro ac:name="drawio" ac:schema-version="1"
+                             ac:macro-id="57ff23e8-c8cf-47b7-b07b-adfe09c58699">
+          <ac:parameter ac:name="border">false</ac:parameter>
+          <ac:parameter ac:name="diagramName">{{diag['file']}}</ac:parameter>
+          <ac:parameter ac:name="simpleViewer">false</ac:parameter>
+          <ac:parameter ac:name="width"/>
+          <ac:parameter ac:name="links">blank</ac:parameter>
+          <ac:parameter ac:name="tbstyle">inline</ac:parameter>
+          <!-- ac:parameter ac:name="pageId">153154358</ac:parameter -->
+          <ac:parameter ac:name="diagramDisplayName">{{util.translate(diagram['name'])}}</ac:parameter>
+          <ac:parameter ac:name="lbox">true</ac:parameter>
+          <!--<ac:parameter ac:name="diagramWidth">610</ac:parameter>-->
+          <ac:parameter ac:name=""/>
+        </ac:structured-macro>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
   {% include 'footer.templ.html' %}
 </ac:layout>

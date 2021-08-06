@@ -418,10 +418,8 @@ def generate_svg_content(penviron):
 """
 def generate_drawio_content(penviron:EntityEnvironment):
 
-    diagramhead ="""
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="Electron" modified="{date}T{time}Z" agent="5.0 (Macintosh; Intel Mac OS X 11_4_0) 
-AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.6.13 Chrome/89.0.4389.128 Electron/12.0.7 Safari/537.36" 
+    diagramhead ="""<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="{date}T{time}Z" agent="curl/7.1" 
 etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
   <diagram id="{id}" name="{name}">
     <mxGraphModel dx="{dx}" dy="{dy}" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1"
@@ -435,7 +433,7 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
     </mxGraphModel>
   </diagram>
 </mxfile>
-    """
+"""
 
     if penviron is None:
         print ("Penviron is None: ")
