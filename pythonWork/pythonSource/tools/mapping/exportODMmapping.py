@@ -33,7 +33,7 @@ def docolumnmap(pjson, pelem,pentid, pcolid):
     colguid=getguid(colu)
     if colguid is None:
         print(f"Column {pcolid} is not in model")
-        nonodmcolumns +=1
+        nonodmcolumns.append(colu["colu_name"])
         return
 
     contmapp = pelem.find("containedMappings")
@@ -92,10 +92,10 @@ def createXML(pjson,pintf):
             for relaid in tabl["relationsmapped"]:
                 dotablmaprela(pjson=pjson,pelem=mappings,prelaid=relaid,ptablguid=tablguid,pcolumns=tabl["columns+"])
         else:
-            nonodmtables +=1
+            nonodmtables.append(tabl['name'])
             print(f"Table {tabl['name']} is not in model")
 
-    print (prettify(xml))
+    #print (prettify(xml))
     return prettify(xml)
 
 def export1Map(pimdirec,pintfname):
@@ -110,7 +110,7 @@ def export1Map(pimdirec,pintfname):
     if expintf is None:
         print(f"Interface {pintfname} not found in model {parameters.modelName()}")
         return
-    intfguid = getguid(intf)
+    intfguid = getguid(expintf)
     if intfguid is None:
         print(f"Interface {pintfname}: is not in model {parameters.modelName()}")
         return
