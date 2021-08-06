@@ -20,30 +20,37 @@
     </ac:layout-cell>
   </ac:layout-section>
 
-  <ac:layout-section ac:type="two_right_sidebar">
+  <ac:layout-section ac:type="single">
     <ac:layout-cell>
-      <h1>{{ gettext('Supertypes') }}</h1>
-      <ul>{% for supertype in entity['supertypes'] %}
-        <li>{{ util.soft_link(supertype) }}</li>
-        {% endfor %}</ul>
-      <h1>{{ gettext('Subtypes') }}</h1>
-    </ac:layout-cell>
-    <ac:layout-cell>
+      <p>
       {% set diag = page['diagram'] %}
-      <ac:structured-macro ac:name="drawio" ac:schema-version="1"
-                           ac:macro-id="57ff23e8-c8cf-47b7-b07b-adfe09c58699">
+      <ac:structured-macro ac:macro-id="92435ac3-d978-4f8b-97dd-3ae1edd47bd8" ac:name="inc-drawio" ac:schema-version="1">
         <ac:parameter ac:name="border">false</ac:parameter>
         <ac:parameter ac:name="diagramName">{{diag['file']}}</ac:parameter>
+        <ac:parameter ac:name="includedDiagram">1</ac:parameter>
         <ac:parameter ac:name="simpleViewer">false</ac:parameter>
         <ac:parameter ac:name="width"/>
         <ac:parameter ac:name="links">blank</ac:parameter>
-        <ac:parameter ac:name="tbstyle">inline</ac:parameter>
-        <!-- ac:parameter ac:name="pageId">153154358</ac:parameter -->
+        <ac:parameter ac:name="tbstyle">top</ac:parameter>
         <ac:parameter ac:name="diagramDisplayName">Environment Graph for {{util.translate(entity['name'])}}</ac:parameter>
         <ac:parameter ac:name="lbox">true</ac:parameter>
-        <!--<ac:parameter ac:name="diagramWidth">610</ac:parameter>-->
         <ac:parameter ac:name=""/>
       </ac:structured-macro>
+      </p>
+      <p>
+        {% if entity['supertypes+']|length > 0 %}
+        <h2>{{ gettext('Supertypes') }}</h2>
+        <ul>{% for supertype in entity['supertypes+'] %}
+          <li>{{ util.soft_link(supertype) }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        {% if entity['subtypes+']|length > 0 %}
+        <h2>{{ gettext('Subtypes') }}</h2>
+        <ul>{% for subtype in entity['subtypes+'] %}
+          <li>{{ util.soft_link(subtype) }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </p>
     </ac:layout-cell>
   </ac:layout-section>
 
@@ -116,7 +123,7 @@
         <tr>
           <th>{{ gettext('Diagram') }}</th>
         </tr>
-        {% for diagram in entity['diagrams'] %}
+        {% for diagram in entity['diagrams+'] %}
         <tr>
           <td>{{ util.soft_link(diagram) }}</td>
         </tr>

@@ -207,7 +207,7 @@ def printentidio(pcell:EntityCell,pposx,pposy):
         </UserObject>
         """
     entibox = entitydio.format(id=pcell.getentiid(), name=nvl(pcell.getentiname())[:MAXENTICHARS]
-                               ,link="" if pcell.gettype()==EntityCell.CENTER else 'link=""'
+                               ,link="" if pcell.gettype()==EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"'
                                , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
                                )
     return entibox
