@@ -1092,8 +1092,12 @@ def doSubentities():
         entientiguid = getentity(guid,"superentitityguid")
         enti = getentity(guid,"entity")
         if entientiguid is not None:
-            # hat eine superentity, fülle in seine idliste
-            getentity(entientiguid,"subentities").append(enti.enti_id)
+            target = getentity(entientiguid,"subentities")
+            if target is not None:
+                # hat eine superentity, fülle in seine idliste
+                target.append(enti.enti_id)
+            else:
+                logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {guid}")
         #fi
     #for
 
@@ -1102,13 +1106,16 @@ def doSubentities():
     superentiguids.discard(None)
 
     """create an arc for every superentity"""
-    for superentiguid in superentiguids:
-        superenti = getentity(superentiguid,"entity")
-        subentiids = getentity(superentiguid,"subentities")
-        arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
-                     , puc=superenti.enti_uc, pdc=superenti.enti_dc)
-        arc.insert()
-        Relation.insertisa(parc=arc,pentiids=subentiids)
+    for superentiguid in guids:
+        superentity = entities.get(superentiguid)
+        if superentity is not None: # skip arc if superentity reference is broken
+            superenti = getentity(superentiguid,"entity")
+            subentiids = getentity(superentiguid,"subentities")
+            arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
+                      , puc=superenti.enti_uc, pdc=superenti.enti_dc)
+            arc.insert()
+            Relation.insertisa(parc=arc,pentiids=subentiids)
+        #fi
     #for
 
 

@@ -81,7 +81,7 @@ def relarep2js(prelarep):
          ]
     if prelarep is None:
         retval = fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] \
-                                                   + [{"0":lineseg2js(plineseg=None)}])
+                                                   + [[lineseg2js(plineseg=None)]])
     else:
 
         retval =  {'linewidth': prelarep.relr_linewidth
@@ -111,7 +111,7 @@ def relarep2js(prelarep):
         , 'dc': prelarep.relr_dc
         , 'um': prelarep.relr_um
         , 'dm': prelarep.relr_dm
-        , 'linesegments': {l.lise_seq: lineseg2js(plineseg=l) for l in prelarep.getlinesegments()}
+        , 'linesegments': [lineseg2js(plineseg=l) for l in prelarep.getlinesegments()]
             }
     return retval
 
@@ -132,9 +132,9 @@ def lineseg2js(plineseg):
     return retval
 
 def lineseg2sql(presult:Mergeresult,prelrid, plinesegs):
-    """               "linesegments": {"0": {"x": 276,...},}
+    """               "linesegments": [{"x": 276,...},]
     """
-    for jidx,jelem in plinesegs.items():
+    for jidx,jelem in enumerate(plinesegs):
         lise = Linesegment()
         lise.lise_seq = jidx
         lise.lise_relr_id = prelrid

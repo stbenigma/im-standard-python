@@ -125,7 +125,7 @@ def printrela(plist):
         """lise_x,lise_y,lise_konnektor,lise_linientyp"""
         points = line['linesegments']
         retval += relastart
-        for idx,point in points.items():
+        for idx,point in enumerate(points):
             if idx == len(points)-1: break #letzter Punkt ist endx/y
             startx=point['x']
             starty=point['y']

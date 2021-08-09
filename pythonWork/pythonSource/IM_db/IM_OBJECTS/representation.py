@@ -72,7 +72,9 @@ class Relationrep(Baseobject):
 
 
     def getlinesegments(self):
-        return Linesegment.select(pwhere=("lise_relr_id = ?", self.relr_id))
+        return Linesegment.select(pwhere=("lise_relr_id = ?", self.relr_id),porderby="lise_seq")
+
+
 # relationrep
 
 class Linesegment(Baseobject):
