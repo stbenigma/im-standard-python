@@ -67,7 +67,7 @@ def readversion(pconn):
             }
 
 def checkversion():
-    actversion, expversion = readversion(getdbcon())['version'], parameters.expecteddbversion()
+    actversion, expversion = readversion(getdbcon())['version'], expecteddbversion()
     if actversion is not None and (actversion != expversion):
         raise Exception("DB-Versions expected {}, DB-version found {}"
                         .format(expversion, actversion))

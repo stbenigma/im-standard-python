@@ -19,6 +19,10 @@
             <th>System</th>
             <td>{{ util.soft_link(table['interface-id']) }}</td>
           </tr>
+          <tr>
+            <th>CRUD</th>
+            <td>{{ table['CRUD'] }}</td>
+          </tr>
         </table>
       </p>
     </ac:layout-cell>
@@ -86,6 +90,27 @@
     </ac:layout-cell>
   </ac:layout-section>
 
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>{{ gettext('Mapping') }}</h1>
+      <p>
+        {% if table['entitiesmapped']|length > 0 or table['relationsmapped']|length > 0 %}
+        <ul>
+          {% for enti_key in table['entitiesmapped'] %}
+          <li>{{ util.soft_link(enti_key) }}</li>
+          {% endfor %}
+          {% for rela_key in table['relationsmapped'] %}
+          <li>{{ util.soft_link(rela_key) }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+      {{ gettext('This table is not mapped') }}
+      {% endif %}
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <h1>{{ gettext('Documents') }}</h1>
@@ -94,5 +119,6 @@
         {% endfor %}</ul>
     </ac:layout-cell>
   </ac:layout-section>
+
   {% include 'footer.templ.html' %}
 </ac:layout>

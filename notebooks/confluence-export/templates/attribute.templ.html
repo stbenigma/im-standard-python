@@ -9,6 +9,11 @@
       <table class="relative-table" style="width: 100%;">
         <tbody>
           <tr>
+            <th>{{ gettext('Tooltip') }}</th>
+            <td>{{attribute['tooltip']}}</td>
+            <td></td>
+          </tr>
+          <tr>
             <th>{{ gettext('Type') }}</th>
             <td>{{attribute['basedatatype+']}}</td>
             <td></td>
@@ -61,7 +66,14 @@
               {% endif %}
             </td>
             <td></td>
-            </tr>
+          </tr>
+          <tr>
+            <th>{{ gettext('Development status') }}</th>
+            <td>
+              {{ attribute['devstatus'] }}
+            </td>
+            <td><td>{{ gettext("Development maturity of this attribute") }}</td></td>
+          </tr>
         </tbody>
       </table>
     </ac:layout-cell>

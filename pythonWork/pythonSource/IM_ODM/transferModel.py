@@ -1097,7 +1097,7 @@ def doSubentities():
                 assert target is not None, f"Expecting a valid target entity"
                 target.append(enti.enti_id)
             except KeyError:
-                logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {guid}"
+                logmessages.writelog(f"Cannot find superentity {entientiguid} to link with {guid}")
         #fi
     #for
 
@@ -1106,7 +1106,7 @@ def doSubentities():
     superentiguids.discard(None)
 
     """create an arc for every superentity"""
-    for superentiguid in guids:
+    for superentiguid in superentiguids:
         superentity = entities.get(superentiguid)
         if superentity is not None: # skip arc if superentity reference is broken
             superenti = getentity(superentiguid,"entity")

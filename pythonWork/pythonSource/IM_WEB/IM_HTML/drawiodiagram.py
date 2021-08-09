@@ -1,6 +1,7 @@
 from lxml import etree
 from io import BytesIO
 from gettext import gettext
+import logging
 
 from IM_db.IM_JSON import JSModel
 
@@ -89,12 +90,11 @@ connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;edg
 
 def add_relations(diagram, model: JSModel, translator, parent):
     for key, relation in diagram['relationships'].items():
-        linekeys = relation['linesegments'].keys()
-        segments_sorted = sorted(linekeys, key=lambda e: int(e))
-        assert len(segments_sorted) > 2, f"Expecting at least 2 points"
-        start = relation['linesegments'][segments_sorted[0]]
-        end = relation['linesegments'][segments_sorted[-1]]
-        elbows = segments_sorted[1:-1]
+        segments = relation['linesegments']
+        assert len(segments) > 2, f"Expecting at least 2 points"
+        start = segments[0]
+        end = segments[-1]
+        elbows = segments[1:-1]
 
         connector = etree.Element('mxCell', edge="1", parent="1", width="50", height="50")
         connector.set('id', key)
@@ -129,10 +129,12 @@ def add_relations(diagram, model: JSModel, translator, parent):
         parent.append(connector)
 
         labeltext = translator.tr(relation_ssot['from-to'].get('assoc'))
-        add_label(relation, 'start', labeltext, f"{key}-from", parent)
+        if add_label(relation, 'start', labeltext, f"{key}-from", parent) is None:
+            logging.warning(f"Missing coordinates for label '{labeltext}' on start of relation {key}")
 
         labeltext = translator.tr(relation_ssot['to-from'].get('assoc'))
-        add_label(relation, 'end', labeltext, f"{key}-to", parent)
+        if add_label(relation, 'end', labeltext, f"{key}-to", parent) is None:
+            logging.warning(f"Missing coordinates for label '{labeltext}' on end of relation {key}")
 
 
 def map_line_end(cardinality: str, mandatory: bool = False) -> str:
@@ -144,17 +146,20 @@ def map_line_end(cardinality: str, mandatory: bool = False) -> str:
     return 'none'
 
 
-def add_label(relation, end: str, labeltext: str, key: str, parent):
+def add_label(relation, end: str, labeltext: str, key: str, parent) -> etree.Element:
     if labeltext is not None and len(labeltext) > 0:
-        start_label = etree.Element('mxCell', value=labeltext, parent="1", vertex="1",
-                                    style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#D0D0D0;")
-        start_label.set('id', key)
+        if relation.get(f'{end}text_x'):
+            start_label = etree.Element('mxCell', value=labeltext, parent="1", vertex="1",
+                                        style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#D0D0D0;")
+            start_label.set('id', key)
 
-        start_label_box = etree.Element('mxGeometry', x=str(int(relation[f'{end}text_x']) + 2),
-                                        y=str(int(relation[f'{end}text_y']) + 2),
-                                        width=str(int(relation[f'{end}text_width']) - 4),
-                                        height=str(int(relation[f'{end}text_height'] - 4)))
-        start_label_box.set('as', 'geometry')
+            start_label_box = etree.Element('mxGeometry', x=str(int(relation[f'{end}text_x']) + 2),
+                                            y=str(int(relation[f'{end}text_y']) + 2),
+                                            width=str(int(relation[f'{end}text_width']) - 4),
+                                            height=str(int(relation[f'{end}text_height'] - 4)))
+            start_label_box.set('as', 'geometry')
 
-        start_label.append(start_label_box)
-        parent.append(start_label)
+            start_label.append(start_label_box)
+            parent.append(start_label)
+
+            return start_label
