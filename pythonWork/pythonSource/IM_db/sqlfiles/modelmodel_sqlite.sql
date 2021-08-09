@@ -802,7 +802,9 @@ create table linesegments
 		unique (lise_relr_id, lise_seq),
 	constraint ck_lise_linetype
 		check (lise_linetype IN('DADO','DASHED','DOTTED','SOLID')),
-	constraint ck_relr_relr_fontcolor
+	constraint ck_lyse_x
+		check (lise_x BETWEEN 0 AND 999999),
+	constraint ck_lyse_y
 		check (lise_y BETWEEN 0 AND 999999)
 );
 
@@ -892,10 +894,12 @@ create table tabl_enti_maps
 		constraint tema_enti_fk
 			references ENTITIES (enti_id) on delete cascade ,
 	tema_rela_id integer
-		constraint tema_rela_fk
-			references RELATIONS (rela_id) on delete cascade ,
-	constraint tema_un
-		unique (tema_tabl_id, tema_enti_id, tema_rela_id),
+	constraint tema_rela_fk
+		references RELATIONS (rela_id) on delete cascade ,
+	constraint tema_unenti
+		unique (tema_tabl_id, tema_enti_id),
+	constraint tema_unrela
+		unique (tema_tabl_id, tema_rela_id),
 	constraint tema_ck
 		check ((tema_enti_id is not null and tema_rela_id is null )
       	        		  or (tema_enti_id is null and tema_rela_id is not null))
@@ -1102,6 +1106,6 @@ CREATE VIEW SUPERENTI AS
           join rel on rela_superenti_id = superentity.ENTI_ID
         join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
 
-create view dbversion as select '1.4' as version, datetime() as installedtime;
+create view dbversion as select '1.5' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

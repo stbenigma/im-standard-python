@@ -15,7 +15,7 @@ def initlog(pfunc):
     logfile.write("{}  {}: Model={}  DB={}\n"
                   .format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
                           ,pfunc
-                          ,parameters.odmIMDirec() + parameters.odmModelName() + parameters.odmIMExtension()
+                          ,parameters.odmIMDirec() + parameters.modelName() + parameters.odmIMExtension()
                           ,parameters.dbFilePath()))
 # initlog
 
@@ -42,4 +42,5 @@ def showmessages(pmsg: str = None):
             if pmsg is None: print("{}:\n".format(myfilename))
             print("  => {} log entr{} written to {}"
                   .format(logcount.__str__(), 'y' if logcount == 1 else 'ies', logfile.name))
+    return
 # showmessages

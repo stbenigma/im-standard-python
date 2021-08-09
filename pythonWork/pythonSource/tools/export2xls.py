@@ -53,7 +53,7 @@ def createExcel(pfilename: str):
 def main(param1):
     parameters.initparam(p_callarg=param1)
     logmessages.initlog('createEXCEL')
-    filename = parameters.odmModelName()
+    filename = parameters.modelName()
     filepath = parameters.dbDirect()
     try:
         dbConnect.openDB(pfilepath=parameters.dbFilePath());
@@ -61,7 +61,7 @@ def main(param1):
         dbConnect.closeDB()
     finally:
         logmessages.showmessages("XLSX file {} for model {} created"
-                                 .format(filepath + excelfilename(filename), parameters.odmModelName()))
+                                 .format(filepath + excelfilename(filename), parameters.modelName()))
     return
 if __name__ == '__main__':
     main(param1=None if len(sys.argv) == 1 else sys.argv[1])

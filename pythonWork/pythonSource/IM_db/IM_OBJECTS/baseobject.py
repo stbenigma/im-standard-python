@@ -3,8 +3,6 @@ import sqlite3
 from IM_DB import dbDML, dbDDL,logmessages
 from datetime import datetime
 
-
-
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
@@ -308,7 +306,15 @@ class Baseobject:
     def getIDbyODMref(self, psrcid):
         return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
 
-#    def getsprachvals(self):
+
+    def getbyEAref(self, psrcid):
+        return self.getbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
+
+
+    def getIDbyEAref(self, psrcid):
+        return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
+
+    #    def getsprachvals(self):
 #        raise NotImplementedError("Must override getsprachvals")
 
     def getukvaluepairs(self):
@@ -421,8 +427,6 @@ class MultilangBaseobject(Baseobject):
         # try
 
         return retval
-
-
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref
