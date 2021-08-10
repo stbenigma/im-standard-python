@@ -1106,7 +1106,7 @@ def doSubentities():
     superentiguids.discard(None)
 
     """create an arc for every superentity"""
-    for superentiguid in guids:
+    for superentiguid in superentiguids:
         superentity = entities.get(superentiguid)
         if superentity is not None: # skip arc if superentity reference is broken
             superenti = getentity(superentiguid,"entity")
@@ -1378,13 +1378,13 @@ def loaddefaultcolors():
         classids[classguid] = classid
 
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
-        color = Color(handleXML.findField(ty, 'fgcolor'), handleXML.findField(ty, 'color'), None, None, None, None)
+        color = Color(foregcolor=handleXML.findField(ty, 'fgcolor'), backgcolor= handleXML.findField(ty, 'color'))
         loadcolors(color=color, elem=ty)
         classcolors[classguid] = color
         elui = ElementUI()
         elui.elui_enca_id = classid
-        elui.elui_color = int2hex(color.foregcolor)
-        elui.elui_margincolor = int2hex(color.backgcolor)
+        elui.elui_color = int2hex(color.backgcolor)
+        elui.elui_margincolor = int2hex(color.foregcolor)
         elui.elui_fontsize = color.fontsize
         elui.elui_fontcolor = int2hex(color.fontcolor)
         elui.insert()

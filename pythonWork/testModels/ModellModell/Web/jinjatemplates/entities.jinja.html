@@ -15,6 +15,7 @@
 									<th>{{ webmodel.gettransltext('Superentitäten') }}</th>
 									<th>{{ webmodel.gettransltext('Subentitäten') }}</th>
 									<th>{{ webmodel.gettransltext('Rollen') }}</th>
+									<th>{{ webmodel.gettransltext('Klassifikation') }}</th>
 									<th>Zoom levels</th>
 									<th>Dev. Status</th>
 									<th>{{ webmodel.gettransltext('auf Diagramm(en)') }}</th>
@@ -36,7 +37,8 @@
 									<td class="attribute">
 										{{ blocks.elementlist(webmodel=webmodel, elems=elem["roles+"]) }}
 									</td>
-									
+
+									<td class="attribute">{{ webmodel.getelem(elem['category'])["name"] }}</td>
 									<td class="attribute">{{ '{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']) }}</td>
 									<td class="attribute">{{ getnvl(elem['devstatus']) }}</td> {# Modelelement.longdevstatus( #}
 									<td class="attribute">
@@ -221,7 +223,8 @@
 											{% for tablid in val %}
 											{% set tabl = webmodel.getelem(tablid)%}
 											{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-											{{ webmodel.getreflink(name= tabl["name"],destid=tablid,destintfid = intfid)|safe }}
+											{{ webmodel.getreflink(name= tabl["name"],destid=tablid,destintfid = intfid) |safe
+											     + " (" +tabl["CRUD"] +")" }} {# + " ({})".format(''.join(mapping)) #}
 											{% endfor %}
 										</td>
 									</tr>
