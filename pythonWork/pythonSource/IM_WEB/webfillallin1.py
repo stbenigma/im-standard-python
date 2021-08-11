@@ -30,12 +30,13 @@ def main(pdirec, plang,pforceoverwrite = False):
     fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
 
     dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
-    jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
+    #jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
+    jsmodel = JSModel.readfromfile(parameters.dbDirect()+parameters.modelName()+".json")
     printHTML.setmodel(jsmodel)
     printHTML.setWebDirec(p_webdirec=None)
 
     listWebdoku.listwebmain(plang=Languagetext.reportLang())
-    jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
+    #jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
     dbConnect.closeDB()
 
     createAllMapping(pjsonfile=parameters.dbDirect() + parameters.modelName() + '.json',plang=Languagetext.reportLang())
