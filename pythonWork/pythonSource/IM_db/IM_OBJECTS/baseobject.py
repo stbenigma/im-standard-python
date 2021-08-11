@@ -57,7 +57,7 @@ class Baseobject:
 
     def setdefaultval(self, pcolname, pvalue):
         col = self.fullcolname(pcolname.lower())
-        if col in self._columnlist:
+        if col in self._columnlist.keys():
             if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
 
     def __init__(self, psrcname=None, pscrid=None):
@@ -69,13 +69,13 @@ class Baseobject:
 
 
     def __emptyclass(self):
-        for col in self._columnlist:
+        for col in self._columnlist.keys():
             self.setcolvalue(pcolname=col,pvalue=None)
     # emptyclass
 
     def _semanticcols(self):
         """Return list of columns without standard management columns"""
-        return list(set(self._columnlist).difference((self.fullcolname(n) for n in ['id', 'uc', 'um', 'dc', 'dm'])))
+        return list(set(self._columnlist.keys()).difference((self.fullcolname(n) for n in ['id', 'uc', 'um', 'dc', 'dm'])))
 
     def semanticequal(self,pbrother,pequalexceptlist=[]):
         """ true, if all semantic elements are equal. Managing attributes (id, uc,dc etc.) are excluded"""
@@ -94,14 +94,15 @@ class Baseobject:
         return "{} ({}) has no name".format(self._prefix,self.getid())
 
     def toarray(self):
-        return [self.__dict__[col] for col in self._columnlist]
+        return [self.__dict__[col] for col in self._columnlist.keys()]
 
     def totuple(self):
         return tuple(self.toarray())
 
     def _fromarray(self, parr):
-        for key, val in enumerate(parr):
-            self.__dict__[self._columnlist[key]] =val
+        for cnt, val in enumerate(parr):
+            collist = {colvalue[0]:colname for colname, colvalue in self._columnlist.items()}
+            self.__dict__[collist[cnt]] =val
         return self
 
     def getid(self):
@@ -162,7 +163,7 @@ class Baseobject:
         self.setcolvalue(pcolname='dm',pvalue=now)
         self.setdefaultval(pcolname='um', pvalue=Baseobject.defaultCreator)
 
-        updcollist = self._columnlist.copy()
+        updcollist = self._columnlist.keys()
         updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
         lsql = """update {} """.format(self._tablename)
         lsql += """\nset {}""".format('\n,'.join(col +" = ?" for col in updcollist))
@@ -191,27 +192,31 @@ class Baseobject:
         sql = "PRAGMA table_info({})".format(ptablename)
         try:
             cols = dbDML.select(sql)
-            retval = [c[1].lower() for c in cols]
+            defval = lambda val: None if val is None else val.strip("'").strip('"')
+            retval = {c[1].lower(): [c[0],defval(c[4])] for c in cols}
         except:
-            retval = []
+            retval = {}
         return retval
 
     def setdefaultvalues(self):
-        sql = "PRAGMA table_info({})".format(self._tablename)
-        cols = dbDML.select(sql)
-        for c in cols:
-            defval= c[4]
-            if defval is None: continue
-            defval = defval.strip("'")
-            defval = defval.strip('"')
-            colname = c[1].lower()
-            self.setcolvalue(pcolname=colname,pvalue=defval)
-        #for
+        for colname,colvalue in self._columnlist.items():
+            self.setcolvalue(pcolname=colname, pvalue=colvalue)
         return
+        # sql = "PRAGMA table_info({})".format(self._tablename)
+        # cols = dbDML.select(sql)
+        # for c in cols:
+        #     defval= c[4]
+        #     if defval is None: continue
+        #     defval = defval.strip("'")
+        #     defval = defval.strip('"')
+        #     colname = c[1].lower()
+        #     self.setcolvalue(pcolname=colname,pvalue=defval)
+        # #for
+        #return
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
-        lretval += "\n".join("{} = '{}'".format(col, self.colvalue(col)) for col in self._columnlist)
+        lretval += "\n".join("{} = '{}'".format(col, self.colvalue(col)) for col in self._columnlist.keys())
         return lretval
 
     def getbyid(self, pid):
@@ -396,8 +401,7 @@ class Baseobject:
 
     @classmethod
     def columnsliststring(cls, pplaceholder=False):
-        return ','.join('?' if pplaceholder else col for col in cls._columnlist)
-
+        return ','.join('?' if pplaceholder else col for col in cls._columnlist.keys())
 
 # Baseobject
 
