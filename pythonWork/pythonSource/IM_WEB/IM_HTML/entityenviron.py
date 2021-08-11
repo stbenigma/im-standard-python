@@ -119,7 +119,7 @@ class EntityEnvironment():
         elif ptype == EntityCell.CENTER:
             vidx, hidx = 0, 'center'
         else:
-            assert false, "illegal type '{}'".format(ptype)
+            assert False, "illegal type '{}'".format(ptype)
 
         for cell in pcells:
             self.fillcell(pvidx=vidx, phidx=hidx,pcell=cell)
@@ -150,7 +150,7 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang):
     #for
     return retval
 
-def createentienvironment(pentiid,pjson:JSModel,pmodellang):
+def createentienvironment(pentiid, pjson: JSModel, pmodellang):
 
     """creates an EntityEnvironment for the given entity found in the json-structure"""
     entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
@@ -198,15 +198,15 @@ MAXRELACHARS = 16
 MAXENTICHARS = 21
 
 
-def printentidio(pcell:EntityCell,pposx,pposy):
+def printentidio(pcell:EntityCell, pposx, pposy, unique: str = ''):
     entitydio =\
-    """<UserObject label="{name}" {link} id="{id}">
+    """<UserObject label="{name}" {link} id="{id}{unique}">
         <mxCell style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
           <mxGeometry x="{posx}" y="{posy}" width="{width}" height="{height}" as="geometry" />
         </mxCell>
         </UserObject>
         """
-    entibox = entitydio.format(id=pcell.getentiid(), name=nvl(pcell.getentiname())[:MAXENTICHARS]
+    entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS]
                                ,link="" if pcell.gettype()==EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"'
                                , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
                                )
@@ -463,7 +463,7 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
         cellright = penviron.getcell(phidx='right', pvidx=vkey)
 
         if cellleft.gettype() == EntityCell.SUPER:
-            drawiotext += printentidio(pcell=cellleft,pposx=entistartx,pposy=entistarty)
+            drawiotext += printentidio(pcell=cellleft,pposx=entistartx,pposy=entistarty, unique=f'-s{vkey}')
             lenx = entistartx+CELLWIDTH-ENTIWIDTH
             if vkey != 0:
                 lenx -= LINESHORTEN
@@ -472,7 +472,7 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
             superlineendy = linestarty
 
         elif cellcenter.gettype() == EntityCell.PARENT:
-            drawiotext += printentidio(pcell=cellcenter,pposx=entistartx,pposy=entistarty)
+            drawiotext += printentidio(pcell=cellcenter,pposx=entistartx,pposy=entistarty, unique=f'-p{vkey}')
             linelength = ENTIWIDTH
             drawiotext += printlinedio(psrcid=cellcenter.getentiid(),pstartx=entistartx+ENTIWIDTH, pstarty=linestarty
                                        , plenx=linelength, pleny=0
@@ -483,7 +483,7 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
         # fi
         entistartx += CELLWIDTH
         if cellcenter.gettype() == EntityCell.CENTER:
-            drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
+            drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty, unique=f'-ce{vkey}')
             superlinestarty = linestarty
             rolelineendy = linestarty
             childlinestarty = entistarty + ENTIHEIGHT
@@ -493,14 +493,14 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
         # fi
         entistartx += CELLWIDTH
         if cellright.gettype() == EntityCell.ROLE:
-            drawiotext += printentidio(pcell=cellright, pposx=entistartx, pposy=entistarty)
+            drawiotext += printentidio(pcell=cellright, pposx=entistartx, pposy=entistarty, unique=f'-r{vkey}')
             lenx = CELLWIDTH-ENTIWIDTH
             if vkey != 0:
                 lenx -= LINESHORTEN
             drawiotext += printlinedio(psrcid=cellright.getentiid(),pstartx=entistartx, pstarty=linestarty, plenx=-lenx, pleny=0)
             rolelinestarty = nvl(rolelinestarty,linestarty)
         elif cellcenter.gettype() == EntityCell.CHILD:
-            drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
+            drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty, unique=f'-c{vkey}')
             linelength = ENTIWIDTH
             drawiotext += printlinedio(psrcid=cellcenter.getentiid(),pstartx=entistartx - ENTIWIDTH , pstarty=linestarty
                                        , plenx=linelength, pleny=0
