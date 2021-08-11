@@ -1074,7 +1074,11 @@ def do1Entity(fileName):
         for syn in syns:
             #syn.strip()
             syno = Synonym(pname=syn, pentiid=entiId)
-            syno.insert()
+            try:
+                syno.insert()
+            except Exception as e:
+                print(e)
+                raise e
         # for
     # fi
 
@@ -1425,6 +1429,7 @@ def loaddefaultcolors():
             elui.elui_fontcolor = int2hex(color.fontcolor)
             elui.insert()
     # for
+    return
 # loaddefaultcolors
 
 def filllanguages():

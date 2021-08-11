@@ -82,7 +82,7 @@ class Modelelemtype(Baseobject):
             , "Attribute": Modelelemtype.ATTR
             , "Relation": Modelelemtype.RELA
             , "Table": Modelelemtype.TABL
-            , "Column": Modelelemtype.INTF
+            , "Column": Modelelemtype.COLU
             , "Arcs": Modelelemtype.ARCS
             , "FKIndexAssociation": ""
                  }
