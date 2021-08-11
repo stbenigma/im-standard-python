@@ -20,7 +20,7 @@ class BusinessRule(MultilangBaseobject):
 
     def __init__(self, psrcname=None, psrcid=None):
 
-        if (len(BusinessRule._columnlist) == 0): BusinessRule._columnlist = Baseobject.gettablecolumns(BusinessRule._tablename)
+
         super().__init__( multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
                                           'buru_errormsg': Languagetext.ATTR_TOOLTIP}
                          , pscrid=psrcid
@@ -59,7 +59,7 @@ class BusinessruleElement(Baseobject):
     def __init__(self, pburuid=None,pwriteable=False
                  ,pattrid=None,pentiid=None,prelaid=None,pdevaid=None,ptablid=None,pcoluid=None):
 
-        if (len(BusinessruleElement._columnlist) == 0): BusinessruleElement._columnlist = Baseobject.gettablecolumns(BusinessruleElement._tablename)
+
         super().__init__()
         self.bure_buru_id = pburuid
         self.bure_attr_id = pattrid

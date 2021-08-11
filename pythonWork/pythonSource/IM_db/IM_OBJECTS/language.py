@@ -10,7 +10,7 @@ class Language(Baseobject):
     _defaultorderby = "lang_iso_code2"
 
     def __init__(self,pname=None,piso2=None,piso3=None):
-        if (len(Language._columnlist) == 0): Language._columnlist = Baseobject.gettablecolumns(Language._tablename)
+
         super().__init__()
         self.lang_iso_name = pname
         self.lang_iso_code2 = piso2

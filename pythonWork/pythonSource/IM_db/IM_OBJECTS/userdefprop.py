@@ -12,7 +12,7 @@ class Userdefprop(Baseobject):
     _columnlist: list = []
 
     def __init__(self,ptheme=None,pgroup=None,pname=None):
-        if (len(Userdefprop._columnlist) == 0): Userdefprop._columnlist = Baseobject.gettablecolumns(Userdefprop._tablename)
+
         super().__init__()
         self.udpr_theme = ptheme
         self.udpr_group = pgroup
@@ -96,7 +96,7 @@ class Userdefpropvalue(Baseobject):
     _columnlist: list = []
 
     def __init__(self,pmodeid=None,pudprid =None,pvalue=None):
-        if (len(Userdefpropvalue._columnlist) == 0): Userdefpropvalue._columnlist = Baseobject.gettablecolumns(Userdefpropvalue._tablename)
+
         super().__init__()
         self.udpv_value = pvalue
         self.udpv_mode_id = pmodeid

@@ -13,7 +13,7 @@ class Elementrep(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(Elementrep._columnlist) == 0): Elementrep._columnlist = Baseobject.gettablecolumns(Elementrep._tablename)
+
         super().__init__()
         eler_index = 0
         eler_uc = 'system'
@@ -65,7 +65,7 @@ class Relationrep(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(Relationrep._columnlist) == 0): Relationrep._columnlist = Baseobject.gettablecolumns(Relationrep._tablename)
+
         super().__init__()
         relr_uc = 'system'
         relr_dc = date.today()
@@ -90,7 +90,7 @@ class Linesegment(Baseobject):
     _defaultorderby = "lise_seq"
 
     def __init__(self):
-        if (len(Linesegment._columnlist) == 0): Linesegment._columnlist = Baseobject.gettablecolumns(Linesegment._tablename)
+
         super().__init__()
         lise_uc = 'system'
         lise_dc = date.today()

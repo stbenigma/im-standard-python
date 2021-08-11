@@ -16,7 +16,7 @@ class Attribute(MultilangBaseobject):
     def __init__(self, pname=None, pentiid=None
                     ,psrcname=None, psrcid=None):
 
-        if (len(Attribute._columnlist) == 0): Attribute._columnlist = Baseobject.gettablecolumns(Attribute._tablename)
+
         super().__init__( multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
                                           'attr_descr': Languagetext.ATTR_COMMENT,
                                           'attr_tooltip': Languagetext.ATTR_TOOLTIP}

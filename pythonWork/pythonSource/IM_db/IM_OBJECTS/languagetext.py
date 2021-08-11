@@ -35,8 +35,6 @@ class Languagetext(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(
-            Languagetext._tablename)
         super().__init__()
 
     @staticmethod
