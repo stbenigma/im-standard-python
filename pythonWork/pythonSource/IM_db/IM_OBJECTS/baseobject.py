@@ -163,7 +163,7 @@ class Baseobject:
         self.setcolvalue(pcolname='dm',pvalue=now)
         self.setdefaultval(pcolname='um', pvalue=Baseobject.defaultCreator)
 
-        updcollist = self._columnlist.keys()
+        updcollist = list(self._columnlist.keys())
         updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
         lsql = """update {} """.format(self._tablename)
         lsql += """\nset {}""".format('\n,'.join(col +" = ?" for col in updcollist))
@@ -200,7 +200,7 @@ class Baseobject:
 
     def setdefaultvalues(self):
         for colname,colvalue in self._columnlist.items():
-            self.setcolvalue(pcolname=colname, pvalue=colvalue)
+            self.setcolvalue(pcolname=colname, pvalue=colvalue[1])
         return
         # sql = "PRAGMA table_info({})".format(self._tablename)
         # cols = dbDML.select(sql)
