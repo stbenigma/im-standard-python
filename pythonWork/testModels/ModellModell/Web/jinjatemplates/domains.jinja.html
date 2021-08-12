@@ -4,7 +4,7 @@
 		{% set doma = webmodel.getelem (domaid) %}
 
 		{% call blocks.mainblock(type="Domain", id=domaid
-								, name=webmodel.getlangstr(doma["name"]), descr=lf2htmlbr(webmodel.getlangstr(doma["descr"]))
+								, name=webmodel.getlangstr(doma["name"]), descr=webmodel.getlangstr(doma["descr"])
 							, lbc=domaid ~ "main" ) %}
 					<h2>Information</h2>
 					<div class="table-responsive">

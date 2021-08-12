@@ -18,6 +18,7 @@ def openDBbasic(pfilepath, pfks='OFF'):
     except Exception as exp:
         raise exp
     getdbcon().execute("PRAGMA foreign_keys = {}".format(pfks))
+    getdbcon().execute("PRAGMA main.cache_size = -2000")
     return
 
 def opendDB4DDL(pfilepath, pfks="OFF"):

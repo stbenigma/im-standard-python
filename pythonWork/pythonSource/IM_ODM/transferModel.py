@@ -213,13 +213,15 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
     # endif
 
     # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
-
+    deriveddomaname = f"DER-{pdoma.doma_type}_"
     if (pdoma.doma_type == Domain.BIN):
         pdoma.doma_bin_contenttype = Domain.IMAGE  # 'FILM','GRAPH','TEXT','TON'
         pdoma.doma_bin_spfo_id = None
+        deriveddomaname += f"{nvl(pdoma.doma_bin_contenttype,'')}"
     elif (pdoma.doma_type == Domain.LOV):
         zahl = re.search('\A\d+', nvl(handleXML.findText(pxml, 'dataTypeSize')))
         pdoma.doma_txt_maxlng = None if zahl is None else zahl.group()
+        deriveddomaname = None
     elif (pdoma.doma_type == Domain.TXT):
         #            print(re.search('\A\d* ','123 ab').group())
         zahl = re.search('\A\d+', nvl(handleXML.findText(pxml, 'dataTypeSize')))
@@ -236,10 +238,15 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
                 buru.insert()
             # fi
         # fi
+        if pdoma.doma_txt_syntaxrule is not None:
+            deriveddomaname = None
+        else:
+            deriveddomaname += f"{nvl(pdoma.doma_txt_maxlng,'')}"
     elif (pdoma.doma_type == Domain.DAT):
         pdoma.doma_dat_minvalue = range[0]
         pdoma.doma_dat_maxvalue = range[1]
         pdoma.doma_dat_granularity = Domain.MINUTE
+        deriveddomaname += f"{nvl(pdoma.doma_dat_granularity,'')}_{nvl(pdoma.doma_dat_minvalue,'')}_{nvl(pdoma.doma_dat_maxvalue,'')}"
     elif (pdoma.doma_type == Domain.NUM):
         pdoma.doma_num_minvalue = range[0]
         pdoma.doma_num_maxvalue = range[1]
@@ -254,22 +261,32 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
         pdoma.doma_num_round_value = None
         unitofmeasure = handleXML.findText(pxml, 'unitOfMeasure')
         if unitofmeasure is not None: pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
-    # fi
+        deriveddomaname += f"{nvl(pdoma.doma_num_total_digits,'')}_{nvl(pdoma.doma_num_fract_digits,'')}_{nvl(pdoma.doma_num_minvalue,'')}_{nvl(pdoma.doma_num_maxvalue,'')}_{nvl(pdoma.doma_num_round_value,'')}"
 
-    pdoma.insert()
+    # fi
+    if deriveddomaname is not None and pdoma.doma_origin == Domain.DERIVED:
+        doma = Domain.getbyname(pname=deriveddomaname)
+        if (doma is None):
+            pdoma.doma_name = deriveddomaname
+            pdoma.insert()
+            doma = pdoma
+    else:
+        pdoma.insert()
+        doma = pdoma
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
             deva = DefaultValue()
             deva.deva_value = key
-            deva.deva_doma_id = pdoma.doma_id
+            deva.deva_doma_id = doma.doma_id
             deva.deva_sort_order = idx
-            deva.deva_uc = pdoma.doma_uc
-            deva.deva_dc = pdoma.doma_dc
+            deva.deva_uc = doma.doma_uc
+            deva.deva_dc = doma.doma_dc
             deva.deva_displ = lovs[key]
             deva.insert()
         # for
     # fi
+    return doma
 
 
 def do1domainfile(pfilename):
@@ -283,7 +300,7 @@ def do1domainfile(pfilename):
         doma.doma_name = handleXML.findField(dom, "name")
         doma.doma_descr = handleXML.findText(dom, 'comment')
         doma.doma_origin = Domain.DOMAIN
-        liesunsfuelldoma(pdoma=doma, pxml=dom)
+        doma = liesunsfuelldoma(pdoma=doma, pxml=dom)
 
         intfname = interfacename(handleXML.findField(root, 'fileName'))
         if intfname is not None:
@@ -659,7 +676,7 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype,pattrxml,pin
         doma.doma_daty_id = Modelelement.getmodebyodmguid(psrcid=ptypeguid).mode_id
     doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
 
-    liesunsfuelldoma(pdoma=doma, pxml=pattrxml,pdatyid=doma.doma_daty_id)
+    doma = liesunsfuelldoma(pdoma=doma, pxml=pattrxml,pdatyid=doma.doma_daty_id)
     return doma
 # insertderiveddomain
 
@@ -1378,13 +1395,13 @@ def loaddefaultcolors():
         classids[classguid] = classid
 
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
-        color = Color(handleXML.findField(ty, 'fgcolor'), handleXML.findField(ty, 'color'), None, None, None, None)
+        color = Color(foregcolor=handleXML.findField(ty, 'fgcolor'), backgcolor= handleXML.findField(ty, 'color'))
         loadcolors(color=color, elem=ty)
         classcolors[classguid] = color
         elui = ElementUI()
         elui.elui_enca_id = classid
-        elui.elui_color = int2hex(color.foregcolor)
-        elui.elui_margincolor = int2hex(color.backgcolor)
+        elui.elui_color = int2hex(color.backgcolor)
+        elui.elui_margincolor = int2hex(color.foregcolor)
         elui.elui_fontsize = color.fontsize
         elui.elui_fontcolor = int2hex(color.fontcolor)
         elui.insert()

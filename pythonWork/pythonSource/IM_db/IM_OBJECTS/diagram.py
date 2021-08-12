@@ -12,7 +12,7 @@ class Diagram(Baseobject):
     _defaultorderby = "upper(diag_name)"
 
     def __init__(self, psrcname=None, psrcid=None):
-        if (len(Diagram._columnlist) == 0): Diagram._columnlist = Baseobject.gettablecolumns(Diagram._tablename)
+
         super().__init__(pscrid=psrcid
                          , psrcname=psrcname
                          )
@@ -81,7 +81,7 @@ class Diagramtype(Baseobject):
 
 
     def __init__(self,pname=None):
-        if (len(Diagramtype._columnlist) == 0): Diagramtype._columnlist = Baseobject.gettablecolumns(Diagramtype._tablename)
+
         super().__init__()
         self.diat_name = pname
         self.diat_uc = 'system'
@@ -105,7 +105,7 @@ class MeltDiat(Baseobject):
 
     def __init__(self,pmeltid=None,pdiatid=None):
         _columnlist = []
-        if (len(MeltDiat._columnlist) == 0): MeltDiat._columnlist = Baseobject.gettablecolumns(MeltDiat._tablename)
+
         super().__init__()
         self.medi_melt_id = pmeltid
         self.medi_diat_id = pdiatid

@@ -106,6 +106,14 @@ class JSModel:
         except:
             return plabel
 
+    def getentitycolor(self,pentiid,pcolortype):
+        enti = self.getbyid(pentiid)
+        if enti is None: return None
+        catg = self.getbyid(enti["category"])
+        if catg is None: return None
+        return catg["ui"][pcolortype]
+
+
     def getdefaultlang(self):
         return self.jsmodel["model"]["language"]
 

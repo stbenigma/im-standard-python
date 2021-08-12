@@ -18,7 +18,7 @@ class Datatype(Baseobject):
     __srcid = None
 
     def __init__(self,pname=None,pbasetype=None,psrcname=None,pscrid=None):
-        if (len(Datatype._columnlist) == 0): Datatype._columnlist = Baseobject.gettablecolumns(Datatype._tablename)
+
         super().__init__(pscrid=pscrid
                         ,psrcname=psrcname)
         self.daty_name = pname

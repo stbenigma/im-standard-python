@@ -29,7 +29,7 @@ class Modelelemtype(Baseobject):
     _columnlist = []
 
     def __init__(self, pshortname=None, pname=None):
-        if (len(Modelelemtype._columnlist) == 0): Modelelemtype._columnlist = Baseobject.gettablecolumns(Modelelemtype._tablename)
+
         super().__init__()
         self.melt_shortname = pshortname
         self.melt_name = pname
@@ -103,7 +103,7 @@ class Modelelement(Baseobject):
     _columnlist: list = []
 
     def __init__(self, pid=None,pmeltshortname=None):
-        if (len(Modelelement._columnlist) == 0): Modelelement._columnlist = Baseobject.gettablecolumns(Modelelement._tablename)
+
         super().__init__()
         self.mode_type = pmeltshortname
         self.mode_id = pid
@@ -248,7 +248,7 @@ class ModelelementProperty(Baseobject):
     _defaultorderby = "metp_id"
 
     def __init__(self, pmeltid=None,pudprid=None):
-        if (len(ModelelementProperty._columnlist) == 0): ModelelementProperty._columnlist = Baseobject.gettablecolumns(ModelelementProperty._tablename)
+
         super().__init__()
         self.metp_melt_id = pmeltid
         self.metp_udpr_id = pudprid

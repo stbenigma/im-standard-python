@@ -14,8 +14,6 @@ class TablEntiMap(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(TablEntiMap._columnlist) == 0): TablEntiMap._columnlist = Baseobject.gettablecolumns(
-            TablEntiMap._tablename)
         super().__init__()
 
     @staticmethod

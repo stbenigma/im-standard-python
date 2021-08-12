@@ -9,7 +9,7 @@ class Storageformat(Baseobject):
     _defaultorderby = "stfo_id"
 
     def __init__(self,pname=None,pdescr=None):
-        if (len(Storageformat._columnlist) == 0): Storageformat._columnlist = Baseobject.gettablecolumns(Storageformat._tablename)
+
         super().__init__()
         self.stfo_name = pname
         self.stfo_descr = pdescr
@@ -48,7 +48,7 @@ class PhysicalUnit(Baseobject):
 
 
     def __init__(self,):
-        if (len(PhysicalUnit._columnlist) == 0): PhysicalUnit._columnlist = Baseobject.gettablecolumns(PhysicalUnit._tablename)
+
         super().__init__()
         self.phyu_uc = 'fillDB'
         self.phyu_dc = date.today()

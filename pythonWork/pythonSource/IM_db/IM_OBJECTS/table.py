@@ -11,7 +11,7 @@ class Table(Baseobject):
     _defaultorderby = "tabl_name"
 
     def __init__(self,psrcname=None, psrcid=None):
-        if (len(Table._columnlist) == 0): Table._columnlist = Baseobject.gettablecolumns(Table._tablename)
+
         super().__init__(pscrid=psrcid
                          , psrcname=psrcname)
 
