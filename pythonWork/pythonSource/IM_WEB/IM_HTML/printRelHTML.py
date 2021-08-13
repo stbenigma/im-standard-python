@@ -1,7 +1,7 @@
 import os,re
 import sys
 sys.path.append(os.getcwd())
-from IM_HTML import printHTML,printdiagHTML
+from . import printHTML, printdiagHTML
 from IM_DB import parameters
 
 

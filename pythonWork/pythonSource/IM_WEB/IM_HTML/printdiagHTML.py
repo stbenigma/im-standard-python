@@ -1,4 +1,4 @@
-from IM_HTML import printHTML
+from . import printHTML
 import math
 import os,re
 from IM_DB import parameters 
