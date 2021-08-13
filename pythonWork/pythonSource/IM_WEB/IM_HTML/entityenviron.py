@@ -2,11 +2,21 @@ from IM_JSON import JSModel
 from . import hex2rbg
 from datetime import datetime
 from uuid import uuid4
+from matplotlib import colors
 
-"""defines the classes and functions to implement an entity-environment representation"""
-nvl = lambda str,default='': str if str is not None else default
+nvl = lambda value, default='': value if value is not None else default
+
+
+def parse_color(color):
+    if isinstance(color, str):
+        if color.startswith('rgb('):
+            return [int(component) / 255 for component in color[4:-1].split(',')]
+        elif color.startswith('#'):
+            return colors.to_rgba(color)
+    return None
 
 class EntityCell():
+    """defines the classes and functions to implement an entity-environment representation"""
     CENTER = 'center'
     ROLE = 'role'
     SUPER = 'super'
@@ -18,8 +28,8 @@ class EntityCell():
         self.setentiname(pentiname)
         self.setassoc(passoc)
         self.settype(nvl(ptype))
-        self.setbgcolor(nvl(pbgcolor,"rgb(255,255,255)"))
-        self.setfontcolor(nvl(pfontcolor,"rgb(0,0,0)"))
+        self.setbgcolor(nvl(parse_color(pbgcolor), (1,1,1,1)))
+        self.setfontcolor(nvl(parse_color(pfontcolor), (0,0,0,1)))
 
     def getentiid(self):
         return self._entiid
@@ -238,17 +248,21 @@ def printenti(pcell:EntityCell,pposx,pposy):
                                , nvl(pcell.getentiname())[:MAXENTICHARS])
     return entibox
 
-def printentidio(pcell:EntityCell, pposx, pposy, unique: str = ''):
+
+def printentidio(pcell: EntityCell, pposx, pposy, unique: str = ''):
     entitydio = \
         """<UserObject label="{name}" {link} id="{id}{unique}">
-            <mxCell style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+            <mxCell style="rounded=1;whiteSpace=wrap;html=1;align=left;{style}" parent="1" vertex="1">
               <mxGeometry x="{posx}" y="{posy}" width="{width}" height="{height}" as="geometry" />
             </mxCell>
             </UserObject>
             """
-    entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS]
-                               ,link="" if pcell.gettype()==EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"'
-                               , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
+
+    style = f'fillcolor={colors.to_hex(pcell.getbgcolor())};'
+    entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS],
+                               style=style,
+                               link="" if pcell.gettype() == EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"',
+                               posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
                                )
     return entibox
 
