@@ -2,6 +2,7 @@ from lxml import etree
 from io import BytesIO
 from gettext import gettext
 import logging
+from matplotlib import colors
 
 from IM_db.IM_JSON import JSModel
 
@@ -40,6 +41,13 @@ def sort_by_subtype_level(diagram_entities: [], model: JSModel) -> []:
     return sorted(diagram_entities, key=lambda e: int(model.getbyid(e['element'])['subtypellevel+']))
 
 
+def to_color(color):
+    """Convert color sting in hex to color tuple"""
+    if isinstance(color, str):
+        return colors.to_rgba('#' + color)
+    return color
+
+
 entity_style = "rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=top;"
 
 
@@ -63,15 +71,22 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
             synonym_str = ', '.join(syn_list)
             uo.set(gettext("Synonyme"), synonym_str)
 
-        fillcolor = '#' + element.get('ui', {}).get('color', "FFFFFF")
-        # fill = spectra.html('#' + fillcolor)
+        style = entity_style
 
-        # supertypes = enti.get('supertypes+', [])
-        # if len(supertypes) > 0 and len(visible.intersection(supertypes)) > 0:
-        #    # print(f"Brightening up {enti_key}")
-        #    fill = fill.brighten(amount=5)
 
-        cell = etree.Element("mxCell", id=enti_key + '-cell', style=entity_style + f"fillColor={fillcolor};",
+        #stroke_color = '#' + element.get('ui', {}).get('color', "FFFFFF")
+
+        color = to_color(element.get('ui', {}).get('color', 'FFFFFF'))
+        nesting_level = int(enti.get('subtypellevel+', 0) + 1)
+        hsv_color = colors.rgb_to_hsv(color[0:3])
+        factor = 0.3 if hsv_color[1] > 0.5 else -0.25
+ #       adjusted = 1 - (nesting_level * factor) * (1 - hsv_color[1] / nesting_level)
+        adjusted_saturation = hsv_color[1] / nesting_level
+        lighter = colors.hsv_to_rgb((hsv_color[0], adjusted_saturation, hsv_color[2]))
+        #print(f"Hue intial {hsv_color[1]} vs {adjusted_saturation}. RGB intial {color} vs lighter {lighter}")
+        style = ''.join([style, 'fillColor=', colors.to_hex(lighter), ';'])
+
+        cell = etree.Element("mxCell", id=enti_key + '-cell', style=style,
                              parent='1', vertex='1')
 
         box = etree.Element("mxGeometry", x=str(element['pos_x']), y=str(element['pos_y']),

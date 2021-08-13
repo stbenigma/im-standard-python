@@ -258,7 +258,7 @@ def printentidio(pcell: EntityCell, pposx, pposy, unique: str = ''):
             </UserObject>
             """
 
-    style = f'fillcolor={colors.to_hex(pcell.getbgcolor())};'
+    style = f'fillColor={colors.to_hex(pcell.getbgcolor())};'
     entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS],
                                style=style,
                                link="" if pcell.gettype() == EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"',
