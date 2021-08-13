@@ -1388,9 +1388,22 @@ def loaddefaultcolors():
     classif = root.find('classification_types')
 
     for ty in classif:
-        catname = handleXML.findField(ty,'name')
-        category = EntityCategory(pname=catname.strip())
-        classid = category.insert()
+        catname = handleXML.findField(ty,'name').strip()
+        category = EntityCategory(pname=catname)
+        #handle duplicate names due to stripping of blanks
+        idx = 0
+        while True:
+            try:
+                classid = category.insert()
+                break  #all fine, leave the loop
+            except UniqueKeyException as err:
+                idx += 1
+                category.enca_name = catname + 'v' + str(idx)
+            except Exception as e:
+                raise err
+            #try
+        #loop
+
         classguid = handleXML.findField(ty, 'id')
         classids[classguid] = classid
 
