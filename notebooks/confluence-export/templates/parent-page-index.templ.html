@@ -21,6 +21,11 @@
         </ac:structured-macro>
       </p>
       {% endif %}
+      {% if page['child-count'] == 0 %}
+      <p>
+        <ac:emoticon ac:name="information" />&nbsp;{{ gettext('This section is empty.') }}
+      </p>
+      {% endif %}
     </ac:layout-cell>
     <ac:layout-cell>
       {% include 'international.templ.html' %}
