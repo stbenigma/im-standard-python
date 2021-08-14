@@ -20,8 +20,6 @@ def fillmergedb(callarg,transferfunction, createnewdb=False,**kwargs):
     #fi
     transferfunction(**kwargs)
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-    debugeloadntis=Entity.select(pwhere="enti_id in (464,383,381)")
-    debugeloadrelas=Relation.select(pwhere="rela_id in (496,540,543,505,499)")
     dbConnect.closeDB()
 
     loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName()+"_loaded")
@@ -30,8 +28,6 @@ def fillmergedb(callarg,transferfunction, createnewdb=False,**kwargs):
     else:
         """merge created DB into existing one"""
         dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON');
-        debugenewtis = Entity.select(pwhere="enti_id in (464,383,381)")
-        debugenewrelas = Relation.select(pwhere="rela_id in (496,540,543,505,499)")
 
         newversion =loadedjson.jsmodel['_imprint_']["Modelversion"]
         if newversion != dbConnect.getversion():
