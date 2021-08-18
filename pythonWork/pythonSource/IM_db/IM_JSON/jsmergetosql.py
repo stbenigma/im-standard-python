@@ -26,10 +26,10 @@ class Mergeresult:
         self.warnings = []
 
     def update(self,pmerge):
-        self.insertcnt += pmerge.insertcnt
-        self.updatecnt += pmerge.updatecnt
-        self.deleterefcnt += pmerge.deleterefcnt
-        self.deletecnt += pmerge.deletecnt
+        self.addinscnt(pmerge.insertcnt)
+        self.addupdcnt(pmerge.updatecnt)
+        self.adddelrefcnt(pmerge.deleterefcnt)
+        self.adddelrefcnt(pmerge.deletecnt)
         self.errors += pmerge.errors
         self.warnings += pmerge.warnings
 
@@ -42,6 +42,14 @@ class Mergeresult:
     def markwarning(self,pstr):
         self.warnings.append(str)
 
+    def adddelcnt(self,cnt):
+        self.deletecnt += cnt
+    def addinscnt(self,cnt):
+        self.insertcnt += cnt
+    def addupdcnt(self,cnt):
+        self.updatecnt += cnt
+    def adddelrefcnt(self,cnt):
+        self.deleterefcnt += cnt
 
 
 class Extsourceref:
@@ -132,7 +140,7 @@ def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcre
                         Externalref.delete(pwhere=("extr_source_name = ? and extr_source_id = ?",
                                                     Externalref.SOURCE_ODM, dbsrcid))
                         removedrefs.append(key)
-                        presult.deleterefcnt += 1
+                        presult.adddelrefcnt(1)
                     else:
                         """odm found. already treated in fromo dm2db"""
                         pass
@@ -247,7 +255,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             obj.setid(dbsrcref.dbid) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
-                            presult.updatecnt += 1
+                            presult.addupdcnt(1)
                             del odmelements[key] #omit in next loop
                         except Exception as e:
                             newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,obj.getid(),e))
@@ -281,7 +289,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             if lwithextsrcref:
                                 """update lastupd and add extr scr id as it may have changed or is new"""
                                 Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=ukref.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
-                            presult.updatecnt += 1
+                            presult.addupdcnt(1)
                             del odmelements[key]  # omit in next loop
                         except Exception as e:
                             newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,ukref.getid(),e))
