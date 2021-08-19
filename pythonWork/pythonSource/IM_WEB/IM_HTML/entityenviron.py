@@ -257,8 +257,16 @@ def printentidio(pcell: EntityCell, pposx, pposy, unique: str = ''):
             </mxCell>
             </UserObject>
             """
+    fill_color = pcell.getbgcolor()
+    font_color = pcell.getfontcolor()
 
-    style = f'fillColor={colors.to_hex(pcell.getbgcolor())};'
+    # fix contrast if colors are dud
+    fill_hsv = colors.rgb_to_hsv(fill_color)
+    font_hsv = colors.rgb_to_hsv(fill_color)
+    if abs(fill_hsv[2] - font_hsv[2]) < .1:
+        font_color = (1,1,1,1) if fill_hsv[2] < .5 else (0,0,0,1)
+
+    style = f'fillColor={colors.to_hex(fill_color)};fontColor={colors.to_hex(font_color)};'
     entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS],
                                style=style,
                                link="" if pcell.gettype() == EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"',
