@@ -173,7 +173,7 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
         for synoid, jsyno in jelem["synonyms"].items():
             syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
-            syno.syno_id = jsguid2id(synoid)
+            #syno.syno_id = jsguid2id(synoid)
             try:
                 syno.insert()
                 inscnt += 1
