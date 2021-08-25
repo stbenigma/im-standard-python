@@ -61,15 +61,20 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         uo.set('id', enti_key)
         uo.set('label', translator.tr(enti['name']))
         uo.set('link', 'ssot:' + enti_key)
+
+        # Add mouseover values: https://drawio.freshdesk.com/support/solutions/articles/16000067813-edit-and-display-shape-metadata
+        # Tooltip (https://www.diagrams.net/doc/faq/tooltips) is an alternative, but does not support Key Value display as do attributes
+        uo.set("a_" + gettext("Name"), translator.tr(enti['name']))
+
         description = translator.tr(enti.get('descr'))
         if description is not None and len(description) > 0:
-            uo.set(gettext("Beschreibung"), description)
+            uo.set("b_" + gettext("Beschreibung"), description)
 
         synonyms = enti['synonyms']
         if synonyms is not None and len(synonyms) > 0:
             syn_list = map(lambda s: translator.tr(s), synonyms.values())
             synonym_str = ', '.join(syn_list)
-            uo.set(gettext("Synonyme"), synonym_str)
+            uo.set("c_" + gettext("Synonyme"), synonym_str)
 
         style = entity_style
 
