@@ -418,19 +418,17 @@ def printelements(pdiag, pdiaganker,plang):
 #printelements
 
 def putrefinsvg(ptext,pdiagid,plang):
-    imagehtml = """<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
-                .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
-    deflang = printHTML.getmodel().jsmodel["model"]["language"]
-
+    MAXDESCR=300
     retval = ptext
     for entiid,entival in printHTML.getmodel().getelements(pelemtype='ENTI').items():
         try:
             odmref = entival["sourceref"]["ODM"][0]
         except:
             continue
-
-        entisearch = re.search(r'<g.*"translate\((\d+),(\d+)\)".*\n<rect.*width="(\d+)".*rx="(\d+)".*\n.*<text id="{}-{}"[\d\D]*?</g>'
-                            .format(re.escape(odmref[:8]),re.escape(odmref[-12:])), retval)
+        diagodm=re.escape(odmref[:8])
+        entiodm=re.escape(odmref[-12:])
+        entisearch = re.search(r'<g.*"translate\((\d+),(\d+)\)".*\n<rect.*width="(\d+)".*rx="(\d+)".*\n.*<text id="{diagodm}-{entiodm}"[\d\D]*?</g>'
+                            .format(diagodm=diagodm,entiodm=entiodm), retval)
         if entisearch is None:
             continue
         entistr = entisearch.group()
@@ -440,7 +438,12 @@ def putrefinsvg(ptext,pdiagid,plang):
 
         newenti = entistr
         #replace id by diagid-entiid
-        newenti = re.sub('"{}-{}"'.format(re.escape(odmref[:8]),re.escape(odmref[-12:])), '"{}-{}"'.format(re.escape(pdiagid),re.escape(entiid)), newenti)
+        newenti = re.sub(f'"{diagodm}-{entiodm}"', f'"{re.escape(pdiagid)}-{re.escape(entiid)}"', newenti)
+        #add title to rect
+        entidescr = entival["descr"][plang]
+        entidescr = " " if entidescr is None else entidescr[:MAXDESCR]
+        newenti = re.sub('/>.*\n<text id=', '>{}</rect><text id="'.format("<title>{}</title>".format(entidescr)), newenti)
+        newenti = re.sub('(<text id="[\d\D]+?</text>)', r'\1{}'.format("<title>{}</title>".format(entidescr)), newenti)
         #add <a href= to enti
         newenti = re.sub('<text id="', '<a href="#{}"><text id="'.format(re.escape(entiid)), newenti)
         newenti = re.sub(r'(<text id="[\d\D]+?</text>)', r'\1</a>', newenti)
@@ -449,6 +452,11 @@ def putrefinsvg(ptext,pdiagid,plang):
             attrval = printHTML.getelement(attrid)
             newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang])),
                              r'<a href="#{}">\1</a>'.format(re.escape(attrid)), newenti)
+            attrdescr = attrval["descr"][plang]
+            attrdescr = " " if attrdescr in (None,"") else attrdescr[:MAXDESCR]
+            newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang]))
+                             ,r'\1{}'.format("<title>{}</title>".format(attrdescr)),
+                             newenti)
         #add image if exists
         filename = printHTML.iconsrc(pjsenti=entival,pdefaultlang=printHTML.getmodel().getdefaultlang())
         if filename != "":
