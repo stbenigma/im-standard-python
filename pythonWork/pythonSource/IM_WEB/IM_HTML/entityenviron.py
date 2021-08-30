@@ -11,9 +11,10 @@ class EntityCell():
     PARENT = 'parent'
     CHILD = 'child'
 
-    def __init__(self,ptype=None,pentiid=None,pentiname=None,passoc=None,pbgcolor=None,pfontcolor=None):
+    def __init__(self,ptype=None,pentiid=None,pentiname=None,passoc=None,pbgcolor=None,pfontcolor=None,pdescr=None):
         self.setentiid(pentiid)
         self.setentiname(pentiname)
+        self.setentidescr(pdescr)
         self.setassoc(passoc)
         self.settype(nvl(ptype))
         self.setbgcolor(nvl(pbgcolor,"rgb(255,255,255)"))
@@ -42,6 +43,12 @@ class EntityCell():
 
     def settype(self,ptype):
         self._type = ptype
+
+    def getentidescr(self):
+        return self._entidescr
+
+    def setentidescr(self,pentidescr):
+        self._entidescr = pentidescr
 
     def getentiname(self):
         return self._entiname
@@ -177,11 +184,13 @@ def createentienvironment(pentiid,pjson:JSModel,pmodellang):
     entienvir = EntityEnvironment(pentiid=pentiid,pentiname=entities[pentiid]['name'][pmodellang]
                          ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid,pcolortype="color")))
     enties = [EntityCell(ptype=EntityCell.ROLE,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
+                         ,pdescr=entities[entiid]['descr'][pmodellang]
                          ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid,pcolortype="color"))
                          ) for entiid in entities[pentiid]['roles+'] + entities[pentiid]['subtypes+']]
     entienvir.togrid(pcells=enties, ptype=EntityCell.ROLE)
 
     enties = [EntityCell(ptype=EntityCell.SUPER,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
+                         ,pdescr=entities[entiid]['descr'][pmodellang]
                          ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid,pcolortype="color"))
                          ) for entiid in entities[pentiid]['supertypes+']]
     entienvir.togrid(pcells=enties, ptype=EntityCell.SUPER)
@@ -206,22 +215,26 @@ CELLWIDTH = ENTIWIDTH *5/4
 LINESHORTEN = 20
 MAXRELACHARS = 16
 MAXENTICHARS = 21
+MAXDESCRCHARS = 300
 
 
 def printenti(pcell:EntityCell,pposx,pposy):
-    entistart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-            transform="translate({},{})" >
-            <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-            <text id="box{}" x="6" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
+    entistart = """<g  fill="{color}" stroke="{stroke}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
+            transform="translate({posx},{posy})" >
+            <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect>
+            <a href="#{ref}" >
+            <text id="box{ref}" x="6" y="13" fill="{fillcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            {name} </text>{title}
+            </a>
             </g>
             """
-    entibox = entistart.format(pcell.getbgcolor(), 'blue'
-                               , 0.3, 0.8
-                               , pposx, pposy, ENTIWIDTH, ENTIHEIGHT
-                               , pcell.getentiid(), pcell.getentiid()
-                               ,'black' if pcell.gettype()== EntityCell.CENTER else 'blue', FONTSIZE
-                               , nvl(pcell.getentiname())[:MAXENTICHARS])
+    entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
+                               , fopacity=0.3, sopacity=0.8
+                               , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
+                               , ref=pcell.getentiid() #, pcell.getentiid()
+                               ,fillcolor='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
+                               , name=nvl(pcell.getentiname())[:MAXENTICHARS]
+                               ,title="<title>{descr}</title>".format(descr=' ' if pcell.getentidescr() in (None,'') else pcell.getentidescr()[:MAXDESCRCHARS]))
     return entibox
 
 def printrela(pcell:EntityCell,pposx,pposy):

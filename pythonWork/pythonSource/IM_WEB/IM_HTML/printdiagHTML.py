@@ -82,14 +82,18 @@ def hex2rbg(phex):
         raise
     return "rgb({},{},{})".format(r,g,b)
 #hex2rbg
-def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False):
-    showtext= """<text x="{}" y="{}" fill="{}" fill-opacity="1.0" font-size="{}" stroke="none">
-    {}
+def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False,pdescr=None):
+    MAXATTRDESCR=300
+    showtext= """<text x="{posx}" y="{posy}" fill="{color}" fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+    {text}{title}
     </text>
     """
     retval = ""
     if pstandalone: retval += "<g >"
-    retval += showtext.format(px, py,pfillcolor,pfontsize, ptext)
+    retval += showtext.format(posx=px, posy=py,color=pfillcolor,fontsize=pfontsize, text=ptext
+                              ,title="" if pstandalone\
+                                else "<title>{}</title>".format(" " if pdescr is None\
+                                                                        else pdescr[:MAXATTRDESCR]))
     if pstandalone: retval += "</g>\n"
     return retval
 #printtext
@@ -362,29 +366,33 @@ def printarcs(plist):
 getelement = lambda e:printHTML.getmodel().getbyid(e)
 
 def printelements(pdiag, pdiaganker,plang):
-    entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-        transform="translate({},{})" >
-        <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-        <text id="{}" x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
-        """
-    entiende="""</g>"""
+    entistart ="""<g  fill="{color}" stroke="{margcolor}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
+        transform="translate({posx},{posy})" >
+        <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect><a href="#{ref}" >
+        <text id="{textref}" x="20" y="13" fill="{fontcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            {name} </text>{title}</a>
+        </g>"""
     imagehtml=""""<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
         .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
 
     retval = ""
+    MAXDESCRCHARS = 300
     for eler in pdiag['elements']['entity']:
         elerui=eler["ui"]
-        retval += entistart.format(hex2rbg(elerui['color']), hex2rbg(elerui['margincolor'])
-                                               , round(elerui['opacity']/100,2), round(elerui['marginopacity']/100,2)
-                                               , eler['pos_x'], eler['pos_y'], elerui['width'], elerui['height']
-                                               , eler['element']
-                                               , pdiaganker + '-' + eler['element']
-                                               , hex2rbg(elerui['fontcolor'])
-                                               , 11  #vorläufig mal fix verdrahtet e[9], font size
-                                               , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index'])))
+        entidescr = getelement(eler['element'])['descr'][plang]
+        if entidescr is None:
+            entidescr = ' '
+        else: entidescr = entidescr[: MAXDESCRCHARS]
+        retval += entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
+                                               , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
+                                               , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
+                                               , ref=eler['element']
+                                               , textref=pdiaganker + '-' + eler['element']
+                                               , fontcolor=hex2rbg(elerui['fontcolor'])
+                                               , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
+                                               , name=getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
+                                                ,title="" if entidescr is None else f"<title>{entidescr}</title>")
 
-        retval += entiende
         iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']),pdefaultlang=printHTML.getmodel().getdefaultlang())
         if iconsrc != "":
             retval += imagehtml.format(iconsrc
@@ -400,6 +408,7 @@ def printelements(pdiag, pdiaganker,plang):
         aelem = getelement(attr['element'])
         retval += printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
                   , pfillcolor=hex2rbg(attrui['fontcolor']), pfontsize=attrui['fontsize']
+                 ,pdescr=aelem['descr'][plang]
                   )
     # for
     retval += printrela(plist=pdiag['relationships'])
