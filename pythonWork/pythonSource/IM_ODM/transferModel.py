@@ -840,7 +840,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = buru.insert()
-        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid)
         bure.insert()
     #fi
 
@@ -850,7 +850,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = buru.insert()
-        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid,pwriteable=True)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid,pwriteable=True)
         bure.insert()
     #fi
     return

@@ -1,7 +1,7 @@
 from IM_DB import dbDML
 from .baseobject import Baseobject
+import IM_OBJECTS
 from datetime import date
-from mystring import nvl
 from .modelelement import Modelelemtype
 
 
@@ -112,29 +112,36 @@ class Userdefpropvalue(Baseobject):
         return
 
     @staticmethod
-    def fillallvalues(pentiid=None,pattrid=None,prelaid=None):
-        dbDML.exec("""insert into UDP_VALUES (
-                udpv_value,udpv_mode_id,UDPV_UDPR_ID,udpv_uc,udpv_dc)
-                select UDPR_DEFAULTVALUE,mode_id,UDPR_ID,uc,dc
-                from (select enti_id as mode_id,enti_uc as uc, enti_dc as dc
-                    from entities
-                    where enti_id = ?
-                    union all
-                    select attr_id as mode_id, attr_uc as uc,attr_dc as dc
-                    from attributes
-                    where attr_id = ?
-                    union all
-                    select rela_id as mode_id,rela_uc as uc,rela_dc as dc
-                    from RELATIONS
-                    where rela_id = ?
-                    )
-                cross join (select UDPR_ID,UDPR_DEFAULTVALUE
-                             from modelelem_type
-                             join MODELEMTYPE_PROPERTIES on METP_MELT_ID = melt_id
-                             join USER_DEFINED_PROPERTIES on UDPR_ID = METP_UDPR_ID
-                             where melt_shortname = ?)
-            """,nvl(pentiid,-1),nvl(pattrid,-1),nvl(prelaid,-1)
-                ,Modelelemtype.ENTI if pentiid is not None else Modelelemtype.ATTR if pattrid is not None else Modelelemtype.RELA)
+    def fillallvalues(pentiid=None, pattrid=None, prelaid=None,ptablid=None,pcoluid=None):
+        def fillvalues(pid, ptablename, pprefix):
+            sql = f"""insert into UDP_VALUES (
+                    udpv_value,udpv_mode_id,UDPV_UDPR_ID,udpv_uc,udpv_dc)
+                    select UDPR_DEFAULTVALUE,{pprefix}_id as mode_id,UDPR_ID
+                            ,{pprefix}_uc as uc, {pprefix}_dc as dc
+                      from {ptablename}
+                     cross join (select UDPR_ID,UDPR_DEFAULTVALUE
+                                 from modelelem_type
+                                 join MODELEMTYPE_PROPERTIES on METP_MELT_ID = melt_id
+                                 join USER_DEFINED_PROPERTIES on UDPR_ID = METP_UDPR_ID
+                                 where melt_shortname = '{pprefix}')
+                    where {pprefix}_id = ?
+                    """
+            dbDML.exec(sql, pid)
+            return
+
+        if pentiid is not None:
+            fillvalues(pid=pentiid,ptablename=IM_OBJECTS.Entity._tablename,pprefix=Modelelemtype.ENTI)
+        elif pattrid is not None:
+            fillvalues(pid=pattrid, ptablename=IM_OBJECTS.Attribute._tablename, pprefix=Modelelemtype.ATTR)
+        elif prelaid is not None:
+            fillvalues(pid=prelaid, ptablename=IM_OBJECTS.Relation._tablename, pprefix=Modelelemtype.RELA)
+        elif ptablid is not None:
+            fillvalues(pid=ptablid, ptablename=IM_OBJECTS.Table._tablename, pprefix=Modelelemtype.TABL)
+        elif pcoluid is not None:
+            fillvalues(pid=pcoluid,ptablename=IM_OBJECTS.Column._tablename,pprefix=Modelelemtype.COLU)
+        else:
+            None
+        return
 
     @staticmethod
     def updvalues(prows):

@@ -18,7 +18,6 @@ class Boolean:
         else:
             raise Exception('Ungültiger Wert für Boolean "{}"'.format(pstr))
 
-    # str2bool
     @classmethod
     def bool2str(cls,bool):
         return cls.TRUE if bool else cls.FALSE
@@ -26,8 +25,6 @@ class Boolean:
     @classmethod
     def strnegbool(cls,pstr):
         return cls.bool2str(not cls.str2bool(pstr))
-    # strNegBool
-
 
 # Boolean
 

@@ -1,7 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
 
-from IM_DB import dbInserts
 from IM_OBJECTS import *
 from IM_ODM import transferModel,handleXML
 from IM_DB import  parameters,logmessages
@@ -56,7 +55,7 @@ def do1column(plfnr, pcolxml, ptablid):
         colu.colu_type_string = Domain().getbyid(colu.colu_doma_id).typestring()
     colu.insert()
 
-    dbInserts.insertUdpColumn(pcoluId=colu.colu_id)
+    Userdefpropvalue.fillallvalues(pcoluid=colu.colu_id)
     transferModel.updateUDP(pmodeid=colu.colu_id, pobj=pcolxml)
     colu.fillextid()
     documents = transferModel.getdokuref(pelem= pcolxml)
@@ -76,7 +75,7 @@ def do1table(pfilename):
     tabl.tabl_descr = handleXML.findText(tablexml, "comment")
     tabl.insert()
 
-    dbInserts.insertUdpTable(ptablId=tabl.tabl_id)
+    Userdefpropvalue.fillallvalues(ptablid=tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
     ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=tabl.tabl_id)

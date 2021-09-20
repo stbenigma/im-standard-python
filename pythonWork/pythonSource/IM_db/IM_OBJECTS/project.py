@@ -9,7 +9,6 @@ class Project(Baseobject):
     _columnlist:list = []
 
     def __init__(self):
-
         super().__init__()
 
 
