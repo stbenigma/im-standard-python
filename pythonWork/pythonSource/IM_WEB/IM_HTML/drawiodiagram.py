@@ -78,7 +78,6 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
 
         style = entity_style
 
-
         #stroke_color = '#' + element.get('ui', {}).get('color', "FFFFFF")
 
         color = to_color(element.get('ui', {}).get('color', 'FFFFFF'))
@@ -88,8 +87,10 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
  #       adjusted = 1 - (nesting_level * factor) * (1 - hsv_color[1] / nesting_level)
         adjusted_saturation = hsv_color[1] / nesting_level
         lighter = colors.hsv_to_rgb((hsv_color[0], adjusted_saturation, hsv_color[2]))
+        # alpha blend
+        lighter = (*lighter, .23)
         #print(f"Hue intial {hsv_color[1]} vs {adjusted_saturation}. RGB intial {color} vs lighter {lighter}")
-        style = ''.join([style, 'fillColor=', colors.to_hex(lighter), ';'])
+        style = ''.join([style, 'fillColor=', colors.to_hex(lighter, keep_alpha=True), ';'])
 
         cell = etree.Element("mxCell", id=enti_key + '-cell', style=style,
                              parent='1', vertex='1')
