@@ -28,5 +28,59 @@ drop table tabl_enti_maps;
 alter table tabl_enti_maps_tmp rename to tabl_enti_maps;
 -- END alter unique key
 
+-- change to mode-id-reference add unique key with NULL to 2 unique keys without
+create table businessrule_elements_tmp
+    (
+     bure_id integer not null primary key autoincrement,
+     bure_buru_id numeric (10) not null ,
+     bure_mode_id numeric (10) not null ,
+     bure_writeable varchar (5) not null constraint ck__businessr__bure___10216507 check ( bure_writeable='TRUE' or bure_writeable='FALSE' ) ,
+     bure_uc varchar (30) not null ,
+     bure_dc datetime (8) not null ,
+     bure_um varchar (30) null ,
+     bure_dm datetime (8) null ,
+ 	constraint bure_uk
+ 		unique (bure_buru_id,bure_mode_id),
+	constraint bure_mode_fk foreign key
+    (bure_mode_id)
+    references modelelement(mode_id)
+);
+
+insert into businessrule_elements_tmp (bure_id, bure_buru_id, bure_mode_id, bure_writeable, bure_uc, bure_dc , bure_um, bure_dm) 
+		select bure_id, bure_buru_id, bure_mode_id, bure_writeable, bure_uc, bure_dc , bure_um, bure_dm from businessrule_elements;
+drop table businessrule_elements;
+alter table businessrule_elements_tmp rename to businessrule_elements;
+-- END alter unique key
+
+-- new table
+create table example 
+    (
+     expl_id integer (10) not null primary key, 
+     expl_value varchar (4000) not null , 
+     expl_enti_id numeric (10) , 
+     expl_attr_id numeric (10) , 
+     expl_uc varchar (30) not null , 
+     expl_dc varchar(30) not null , 
+     expl_um varchar (30) , 
+     expl_dm varchar(30)
+	 ,constraint fkarc_8 check ( 
+	 	        (  (expl_enti_id is not null) and 
+	 	         (expl_attr_id is null) ) or 
+	 	        (  (expl_attr_id is not null) and 
+	 	         (expl_enti_id is null) )  
+			 )
+	,constraint expl_enti_uk unique  (expl_value, expl_enti_id)
+	,constraint expl_attr_uk unique  (expl_value, expl_attr_id)
+	,constraint expl_attr_fk foreign key (expl_attr_id) 
+		references attributes (attr_id ) 
+		on delete cascade
+	,constraint expl_enti_fk foreign key ( expl_enti_id) 
+		references entities (enti_id ) 
+		on delete cascade
+	,constraint expl_mode_fk foreign key (expl_id) 
+		references modelelement (mode_id ) 
+    );
+-- end new table
+
 drop view dbversion;
 create view dbversion as select '1.5' as version, datetime() as installedtime;

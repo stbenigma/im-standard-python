@@ -70,10 +70,13 @@ def setentity(pguid,**kwargs):
         entities[pguid][key]=val
 def getentity(pguid,pvalue=None):
     global entities
-    if pvalue is None:
-        return entities[pguid]
+    if pguid in entities:
+        if pvalue is None:
+            return entities[pguid]
+        else:
+            return entities[pguid][pvalue]
     else:
-        return entities[pguid][pvalue]
+        return None
 
 """domains in non-default file are IM or interface (relationale model) dependent.
     fix interface-id of Domains at end of transfer.
@@ -840,7 +843,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = buru.insert()
-        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid)
         bure.insert()
     #fi
 
@@ -850,7 +853,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = buru.insert()
-        bure = BusinessruleElement(pburuid=buruid, pattrid=pmodeid,pwriteable=True)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid,pwriteable=True)
         bure.insert()
     #fi
     return
@@ -1048,6 +1051,7 @@ def do1Entity(fileName):
             print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
 
     i=1 #safeguard for eternal loop
+    origentiname = enti.enti_name
     while i<10:
         try:
             entiId = enti.insert()
@@ -1058,7 +1062,7 @@ def do1Entity(fileName):
             logmessages.writelog(e.__str__())
             #Entities can have duplicate names (merging in github)
             if re.match(r"UNIQUE constraint failed: ENTITIES.ENTI_NAME",e.__str__()):
-                rela.rela_name += "v{}".format(str(i))
+                enti.enti_name = origentiname + "v{}".format(str(i))
                 i += 1
             else: raise Exception("Insert-error in entities: see logfile")
             if (i == 10): raise Exception("Key-error in entities: see logfile")
@@ -1077,7 +1081,11 @@ def do1Entity(fileName):
         for syn in syns:
             #syn.strip()
             syno = Synonym(pname=syn, pentiid=entiId)
-            syno.insert()
+            try:
+                syno.insert()
+            except Exception as e:
+                print(e)
+                raise e
         # for
     # fi
 
@@ -1182,6 +1190,7 @@ def do1Relation(fileName):
     # fi
 
     i=1 #safeguard for eternal loop
+    origrelaname=rela.rela_name
     while i<10:
         try:
             rela.insert()
@@ -1191,7 +1200,7 @@ def do1Relation(fileName):
             logmessages.writelog("in Relation {}: {} ".format(relaguid, rela.rela_name))
             logmessages.writelog(e.__str__())
             #relations can have duplicate names (merging in github)
-            rela.rela_name += "v{}".format(str(i))
+            rela.rela_name = origrelaname +  "v{}".format(str(i))
             i += 1
             if (i == 10): raise Exception("Key-error in relations: see logfile")
         except Exception as e:
@@ -1441,6 +1450,7 @@ def loaddefaultcolors():
             elui.elui_fontcolor = int2hex(color.fontcolor)
             elui.insert()
     # for
+    return
 # loaddefaultcolors
 
 def filllanguages():

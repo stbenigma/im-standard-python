@@ -1,386 +1,386 @@
-create table LANGUAGES
+create table languages
 (
-	LANG_ID INTEGER not null
+	lang_id integer not null
 		primary key autoincrement,
-	LANG_ISO_NAME VARCHAR(60)
-		constraint LANG_ISO_NAME_UN
+	lang_iso_name varchar(60)
+		constraint lang_iso_name_un
 			unique,
-	LANG_ISO_CODE2 CHAR(2) not null
-		constraint LANG_ISO_CODE2_UN
+	lang_iso_code2 char(2) not null
+		constraint lang_iso_code2_un
 			unique,
-	LANG_ISO_CODE3 CHAR(3) not null
-		constraint LANG_ISO_CODE3_UN
+	lang_iso_code3 char(3) not null
+		constraint lang_iso_code3_un
 			unique,
-	LANG_IS_TEXT_LANG VARCHAR(5) not null,
-	LANG_IS_BASE_LANG VARCHAR(5) not null,
-	LANG_LANG_ID integer
-		references LANGUAGES (lang_id)
+	lang_is_text_lang varchar(5) not null,
+	lang_is_base_lang varchar(5) not null,
+	lang_lang_id integer
+		references languages (lang_id)
 			on delete set null,
-	LANG_UC VARCHAR(30),
-	LANG_DC VARCHAR(30) not null,
-	LANG_UM VARCHAR(30),
-	LANG_DM VARCHAR(30),
-	check (LANG_IS_BASE_LANG IN ('FALSE', 'TRUE')),
-	check (LANG_IS_TEXT_LANG IN ('FALSE', 'TRUE')),
-	constraint LANG_ISO2_CHK
-		check (LANG_ISO_CODE2 = lower(LANG_ISO_CODE2)),
-	constraint LANG_ISO3_CHK
-		check (LANG_ISO_CODE3 = lower(LANG_ISO_CODE3))
+	lang_uc varchar(30),
+	lang_dc varchar(30) not null,
+	lang_um varchar(30),
+	lang_dm varchar(30),
+	check (lang_is_base_lang in ('FALSE', 'TRUE')),
+	check (lang_is_text_lang in ('FALSE', 'TRUE')),
+	constraint lang_iso2_chk
+		check (lang_iso_code2 = lower(lang_iso_code2)),
+	constraint lang_iso3_chk
+		check (lang_iso_code3 = lower(lang_iso_code3))
 );
 
-create table MODELELEM_TYPE
+create table modelelem_type
 (
-	MELT_ID INTEGER not null
+	melt_id integer not null
 		primary key autoincrement,
-	MELT_SHORTNAME VARCHAR(4) not null
-		constraint MELT_UN
+	melt_shortname varchar(4) not null
+		constraint melt_un
 			unique,
-	MELT_NAME VARCHAR(60) not null
-		constraint MELT_UN2
+	melt_name varchar(60) not null
+		constraint melt_un2
 			unique,
-	MELT_UC VARCHAR(30),
-	MELT_DC VARCHAR(30) not null,
-	MELT_UM VARCHAR(30),
-	MELT_DM VARCHAR(30),
-	check (MELT_SHORTNAME IN ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
+	melt_uc varchar(30),
+	melt_dc varchar(30) not null,
+	melt_um varchar(30),
+	melt_dm varchar(30),
+	check (melt_shortname in ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
                                 , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
                                 ,'DGRM','DIAG'))
 );
 
-create table MODELELEMENT
+create table modelelement
 (
-	MODE_ID INTEGER not null
+	mode_id integer not null
 		primary key autoincrement,
-	MODE_TYPE VARCHAR(4) not null,
-	MODE_MELT_ID integer not null
-		references MODELELEM_TYPE (melt_id),
-    MODE_MIN_ZOOM_LEVEL numeric(1) NULL CHECK ( MODE_MIN_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
-    MODE_MAX_ZOOM_LEVEL numeric(1)  NULL CHECK ( MODE_MAX_ZOOM_LEVEL BETWEEN 0 AND 4 ) ,
-    MODE_DEV_STATUS VARCHAR (4) NULL DEFAULT "DEV" CHECK ( MODE_DEV_STATUS IN ("DEV", "REL", "TEST") ),
-	check (MODE_TYPE IN ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
+	mode_type varchar(4) not null,
+	mode_melt_id integer not null
+		references modelelem_type (melt_id),
+    mode_min_zoom_level numeric(1) null check ( mode_min_zoom_level between 0 and 4 ) ,
+    mode_max_zoom_level numeric(1)  null check ( mode_max_zoom_level between 0 and 4 ) ,
+    mode_dev_status varchar (4) null default "DEV" check ( mode_dev_status in ("DEV", "REL", "TEST") ),
+	check (mode_type in ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
                             , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU","KEYS","DATY","DGRM","DIAG"))
 );
 
-create table DATATYPES
+create table datatypes
 (
-	DATY_ID INTEGER not null
+	daty_id integer not null
 		primary key
-		references MODELELEMENT (mode_id)
+		references modelelement (mode_id)
 			on delete cascade,
-	DATY_NAME VARCHAR(60) not null
-		constraint DATI_UN unique,
-	DATY_BASETYPE VARCHAR(60) not null,
-	DATY_UC VARCHAR(30),
-	DATY_DC VARCHAR(30) not null,
-	DATY_UM VARCHAR(30),
-	DATY_DM VARCHAR(30),
-	constraint DATY_BASETYPE_CK
-		check (DATY_BASETYPE IN ('BINARY', 'NUMERIC', 'STRING', 'DATETIME'))
+	daty_name varchar(60) not null
+		constraint dati_un unique,
+	daty_basetype varchar(60) not null,
+	daty_uc varchar(30),
+	daty_dc varchar(30) not null,
+	daty_um varchar(30),
+	daty_dm varchar(30),
+	constraint daty_basetype_ck
+		check (daty_basetype in ('BINARY', 'NUMERIC', 'STRING', 'DATETIME'))
 );
 
-CREATE TABLE ENTITY_CATEGORIES
+create table entity_categories
     (
-     ENCA_ID integer NOT NULL
+     enca_id integer not null
         primary key,
-     ENCA_NAME VARCHAR (60) NOT NULL
+     enca_name varchar (60) not null
         constraint enca_uk unique ,
-     ENCA_UC VARCHAR (30) NOT NULL ,
-     ENCA_DC DATETIME NOT NULL ,
-     ENCA_UM VARCHAR (30) NULL ,
-     ENCA_DM DATETIME NULL
+     enca_uc varchar (30) not null ,
+     enca_dc datetime not null ,
+     enca_um varchar (30) null ,
+     enca_dm datetime null
 );
 
-create table ENTITIES
+create table entities
 (
-	ENTI_ID integer not null
+	enti_id integer not null
 		primary key
-		references MODELELEMENT (mode_id)
+		references modelelement (mode_id)
 			on delete cascade,
-	ENTI_NAME VARCHAR(60) not null
-		constraint ENTI_NAME_UK
+	enti_name varchar(60) not null
+		constraint enti_name_uk
 			unique,
-    ENTI_ENCA_ID NUMERIC (10) NULL
-        references ENTITY_CATEGORIES (enca_id),
-	ENTI_SHORT_NAME VARCHAR(15),
-	ENTI_PREFIX VARCHAR(5),
-	ENTI_TOOLTIP VARCHAR(4000),
-	ENTI_DESCR VARCHAR(4000),
-	ENTI_EXP_TUPLECNT VARCHAR(500),
-	ENTI_UC VARCHAR(30),
-	ENTI_DC VARCHAR(30) not null,
-	ENTI_UM VARCHAR(30),
-	ENTI_DM VARCHAR(30)
+    enti_enca_id numeric (10) null
+        references entity_categories (enca_id),
+	enti_short_name varchar(15),
+	enti_prefix varchar(5),
+	enti_tooltip varchar(4000),
+	enti_descr varchar(4000),
+	enti_exp_tuplecnt varchar(500),
+	enti_uc varchar(30),
+	enti_dc varchar(30) not null,
+	enti_um varchar(30),
+	enti_dm varchar(30)
 );
 
-create table ARCS
+create table arcs
 (
-	ARCS_ID INTEGER not null
+	arcs_id integer not null
 		primary key autoincrement
-		references MODELELEMENT (mode_id)
+		references modelelement (mode_id)
 			on delete cascade,
-	ARCS_NAME VARCHAR(60) not null,
-	ARCS_ENTI_ID integer not null
-		references ENTITIES (enti_id)
+	arcs_name varchar(60) not null,
+	arcs_enti_id integer not null
+		references entities (enti_id)
 			on delete cascade,
-	ARCS_UC VARCHAR(30),
-	ARCS_DC VARCHAR(30) not null,
-	ARCS_UM VARCHAR(30),
-	ARCS_DM VARCHAR(30),
-	constraint ARCS_UK
-		unique (ARCS_ENTI_ID, ARCS_NAME)
+	arcs_uc varchar(30),
+	arcs_dc varchar(30) not null,
+	arcs_um varchar(30),
+	arcs_dm varchar(30),
+	constraint arcs_uk
+		unique (arcs_enti_id, arcs_name)
 );
 
-create table EXTERNAL_REFS
+create table external_refs
 (
-	EXTR_ID INTEGER not null
+	extr_id integer not null
 		primary key autoincrement,
-	EXTR_SOURCE_NAME VARCHAR(60) not null,
-	EXTR_SOURCE_ID VARCHAR(100) not null,
-	EXTR_MODE_ID integer not null
-		references MODELELEMENT (mode_id)
+	extr_source_name varchar(60) not null,
+	extr_source_id varchar(100) not null,
+	extr_mode_id integer not null
+		references modelelement (mode_id)
 			on delete cascade,
-	EXTR_LAST_UPDATE VARCHAR(30) NOT NULL,
-	constraint EXTR_UK
-		unique (EXTR_SOURCE_NAME, EXTR_MODE_ID),
-	constraint EXTR_UK_ID
-		unique (EXTR_SOURCE_NAME, EXTR_SOURCE_ID)
+	extr_last_update varchar(30) not null,
+	constraint extr_uk
+		unique (extr_source_name, extr_mode_id),
+	constraint extr_uk_id
+		unique (extr_source_name, extr_source_id)
 );
 
-create table KEYS
+create table keys
 (
-	KEYS_ID INTEGER not null
+	keys_id integer not null
 		primary key autoincrement,
-	KEYS_NAME VARCHAR(60) not null,
-	KEYS_ENTI_ID integer not null
-		references ENTITIES (enti_id)
+	keys_name varchar(60) not null,
+	keys_enti_id integer not null
+		references entities (enti_id)
 			on delete cascade,
-	KEYS_UC VARCHAR(30) not null,
-	KEYS_DC VARCHAR(30) not null,
-	KEYS_UM VARCHAR(30),
-	KEYS_DM VARCHAR(30),
-	constraint KEYS_UK
-		unique (KEYS_ENTI_ID, KEYS_NAME)
+	keys_uc varchar(30) not null,
+	keys_dc varchar(30) not null,
+	keys_um varchar(30),
+	keys_dm varchar(30),
+	constraint keys_uk
+		unique (keys_enti_id, keys_name)
 );
 
-create table LANG_TEXTS
+create table lang_texts
 (
-	LGTX_ID INTEGER not null
+	lgtx_id integer not null
 		primary key autoincrement,
-	LGTX_ATTRNAME VARCHAR(60) not null,
-	LGTX_TEXT VARCHAR(4000),
-	LGTX_LANG_ID integer not null
-		references LANGUAGES (lang_id),
-	LGTX_MODE_ID integer not null
-		references MODELELEMENT (mode_id)
+	lgtx_attrname varchar(60) not null,
+	lgtx_text varchar(4000),
+	lgtx_lang_id integer not null
+		references languages (lang_id),
+	lgtx_mode_id integer not null
+		references modelelement (mode_id)
 			on delete cascade,
-	LGTX_UC VARCHAR(30),
-	LGTX_DC VARCHAR(30) not null,
-	LGTX_UM VARCHAR(30),
-	LGTX_DM VARCHAR(30),
-	constraint LGTX_UK
-		unique (LGTX_LANG_ID, LGTX_MODE_ID, LGTX_ATTRNAME)
+	lgtx_uc varchar(30),
+	lgtx_dc varchar(30) not null,
+	lgtx_um varchar(30),
+	lgtx_dm varchar(30),
+	constraint lgtx_uk
+		unique (lgtx_lang_id, lgtx_mode_id, lgtx_attrname)
 );
 
-create table PHYSICAL_UNIT
+create table physical_unit
 (
-	PHYU_ID INTEGER not null
+	phyu_id integer not null
 		primary key autoincrement,
-	PHYU_SI_UNIT VARCHAR(10),
-	PHYU_NAME VARCHAR(60) not null
-		constraint PHYU_UK_NAME
+	phyu_si_unit varchar(10),
+	phyu_name varchar(60) not null
+		constraint phyu_uk_name
 			unique,
-	PHYU_DESCR VARCHAR(4000),
-	PHYU_UC VARCHAR(30) not null,
-	PHYU_DC VARCHAR(30) not null,
-	PHYU_UM VARCHAR(30),
-	PHYU_DM VARCHAR(30)
+	phyu_descr varchar(4000),
+	phyu_uc varchar(30) not null,
+	phyu_dc varchar(30) not null,
+	phyu_um varchar(30),
+	phyu_dm varchar(30)
 );
 
-create table RELATIONS
+create table relations
 (
-	RELA_ID integer not null
+	rela_id integer not null
 		primary key
-		references MODELELEMENT (mode_id)
+		references modelelement (mode_id)
 			on delete cascade,
-	RELA_NAME VARCHAR(60) not null
-		constraint RELA_UK_NAME
+	rela_name varchar(60) not null
+		constraint rela_uk_name
 			unique,
-	RELA_TYPE VARCHAR(4) not null,
-	RELA_ENTI_ID_FROM integer not null
-		references ENTITIES (enti_id),
-	RELA_ARCS_ID_FROM integer
-		references ARCS (arcs_id),
-	RELA_ASSOC_FROM_TO VARCHAR(4000),
-	RELA_MAPTYPE_FROM_TO CHAR(1) not null,
-	RELA_MANDATORY_FROM_TO VARCHAR(5) not null,
-	RELA_HIST_FROM_TO VARCHAR(5) not null,
-	RELA_ENTI_ID_TO integer not null
-		references ENTITIES (enti_id),
-	RELA_ARCS_ID_TO integer
-		references ARCS (arcs_id),
-	RELA_ASSOC_TO_FROM VARCHAR(100),
-	RELA_MAPTYPE_TO_FROM CHAR(1) not null,
-	RELA_MANDATORY_TO_FROM VARCHAR(5) not null,
-	RELA_HIST_TO_FROM VARCHAR(4000) not null,
-	RELA_UC VARCHAR(30),
-	RELA_DC VARCHAR(30) not null,
-	RELA_UM VARCHAR(30),
-	RELA_DM VARCHAR(30),
-	check (RELA_HIST_FROM_TO IN('FALSE','TRUE')),
-	check (RELA_HIST_TO_FROM IN('FALSE','TRUE')),
-	check (RELA_MANDATORY_FROM_TO IN('FALSE','TRUE')),
-	check (RELA_MANDATORY_TO_FROM IN('FALSE','TRUE')),
-	check (RELA_MAPTYPE_FROM_TO IN ('1', 'M')),
-	check (RELA_MAPTYPE_TO_FROM IN ('1', 'M')),
+	rela_type varchar(4) not null,
+	rela_enti_id_from integer not null
+		references entities (enti_id),
+	rela_arcs_id_from integer
+		references arcs (arcs_id),
+	rela_assoc_from_to varchar(4000),
+	rela_maptype_from_to char(1) not null,
+	rela_mandatory_from_to varchar(5) not null,
+	rela_hist_from_to varchar(5) not null,
+	rela_enti_id_to integer not null
+		references entities (enti_id),
+	rela_arcs_id_to integer
+		references arcs (arcs_id),
+	rela_assoc_to_from varchar(100),
+	rela_maptype_to_from char(1) not null,
+	rela_mandatory_to_from varchar(5) not null,
+	rela_hist_to_from varchar(4000) not null,
+	rela_uc varchar(30),
+	rela_dc varchar(30) not null,
+	rela_um varchar(30),
+	rela_dm varchar(30),
+	check (rela_hist_from_to in('FALSE','TRUE')),
+	check (rela_hist_to_from in('FALSE','TRUE')),
+	check (rela_mandatory_from_to in('FALSE','TRUE')),
+	check (rela_mandatory_to_from in('FALSE','TRUE')),
+	check (rela_maptype_from_to in ('1', 'M')),
+	check (rela_maptype_to_from in ('1', 'M')),
 	check (RELA_TYPE IN ('1:1', 'ISAR', 'ISAS', 'M:1', 'M:N')),
-	constraint RELA_MAPTYPE_CHK
-		check ((RELA_TYPE = 'ISAR'
-  AND RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-  AND (RELA_MANDATORY_FROM_TO = 'TRUE'
-  	  OR
-  	  RELA_MANDATORY_TO_FROM = 'TRUE'
+	constraint rela_maptype_chk
+		check ((rela_type = 'ISAR'
+  and rela_maptype_from_to = '1'
+  and rela_maptype_to_from = '1'
+  and (rela_mandatory_from_to = 'TRUE'
+  	  or
+  	  rela_mandatory_to_from = 'TRUE'
   	  )
-) OR
-(RELA_TYPE = 'ISAS'
-  AND RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-  AND RELA_MANDATORY_FROM_TO = 'TRUE'
-  AND RELA_MANDATORY_TO_FROM = 'TRUE'
-  AND (RELA_ARCS_ID_FROM IS NOT NULL
-  		OR
-	   RELA_ARCS_ID_TO IS NOT NULL
+) or
+(rela_type = 'ISAS'
+  and rela_maptype_from_to = '1'
+  and rela_maptype_to_from = '1'
+  and rela_mandatory_from_to = 'TRUE'
+  and rela_mandatory_to_from = 'TRUE'
+  and (rela_arcs_id_from is not null
+  		or
+	   rela_arcs_id_to is not null
 	  )
-) OR
-(RELA_TYPE = '1:1'
-  AND RELA_MAPTYPE_FROM_TO = '1'
-  AND RELA_MAPTYPE_TO_FROM = '1'
-) OR
-(RELA_TYPE ='M:1'
-  AND (
-  	(RELA_MAPTYPE_FROM_TO = '1'
- 	 AND RELA_MAPTYPE_TO_FROM = 'M'
+) or
+(rela_type = '1:1'
+  and rela_maptype_from_to = '1'
+  and rela_maptype_to_from = '1'
+) or
+(rela_type ='M:1'
+  and (
+  	(rela_maptype_from_to = '1'
+ 	 and rela_maptype_to_from = 'M'
   	) OR
-  	(RELA_MAPTYPE_FROM_TO = 'M'
-  	 AND RELA_MAPTYPE_TO_FROM = '1'
+  	(rela_maptype_from_to = 'M'
+  	 and rela_maptype_to_from = '1'
 	)
   )
-) OR
-(RELA_TYPE = 'M:N'
-  AND RELA_MAPTYPE_TO_FROM = 'M'
-  AND RELA_MAPTYPE_FROM_TO = 'M'
+) or
+(rela_type = 'M:N'
+  and rela_maptype_to_from = 'M'
+  and rela_maptype_from_to = 'M'
 ))
 );
 
-create table STORAGE_FORMATS
+create table storage_formats
 (
-	STFO_ID INTEGER not null
+	stfo_id integer not null
 		primary key autoincrement,
-	STFO_NAME VARCHAR(60) not null
-		constraint STFO_UN
+	stfo_name varchar(60) not null
+		constraint stfo_un
 			unique,
-	STFO_DESCR VARCHAR(4000),
-	STFO_UC VARCHAR(30) not null,
-	STFO_DC VARCHAR(30) not null,
-	STFO_UM VARCHAR(30),
-	STFO_DM VARCHAR(30)
+	stfo_descr varchar(4000),
+	stfo_uc varchar(30) not null,
+	stfo_dc varchar(30) not null,
+	stfo_um varchar(30),
+	stfo_dm varchar(30)
 );
 
-create table DOCUMENTS
+create table documents
 (
-	DOCU_ID INTEGER not null
+	docu_id integer not null
 		primary key
-		references MODELELEMENT (mode_id),
-	DOCU_NAME VARCHAR(60) not null CONSTRAINT DOCU_UK UNIQUE,
-	DOCU_STFO_ID integer
-		references STORAGE_FORMATS (STFO_ID),
-	DOCU_REFERENCE VARCHAR(500),
-	DOCU_CONTENT IMAGE,
-	DOCU_DOCU_ID integer
-		references DOCUMENTS (docu_id)
+		references modelelement (mode_id),
+	docu_name varchar(60) not null constraint docu_uk unique,
+	docu_stfo_id integer
+		references storage_formats (stfo_id),
+	docu_reference varchar(500),
+	docu_content image,
+	docu_docu_id integer
+		references documents (docu_id)
 );
 
-create table MODE_DOCU
+create table mode_docu
 (
-	MODO_ID INTEGER not null
+	modo_id integer not null
 		primary key autoincrement,
-	MODO_MODE_ID integer not null
-		references MODELELEMENT (mode_id)
+	modo_mode_id integer not null
+		references modelelement (mode_id)
 			on delete cascade,
-	MODO_DOCU_ID integer not null
-		references DOCUMENTS (DOCU_ID)
+	modo_docu_id integer not null
+		references documents (docu_id)
 			on delete cascade,
-	constraint MODO_UK
-		unique (MODO_MODE_ID, MODO_DOCU_ID)
+	constraint modo_uk
+		unique (modo_mode_id, modo_docu_id)
 );
 
-create table SYNONYMS
+create table synonyms
 (
-	SYNO_ID INTEGER not null
+	syno_id integer not null
 		primary key
-		references MODELELEMENT (mode_id)
+		references modelelement (mode_id)
 			on delete cascade,
-	SYNO_NAME VARCHAR(60) not null,
-	SYNO_ENTI_ID integer not null
-		references ENTITIES (ENTI_ID)
+	syno_name varchar(60) not null,
+	syno_enti_id integer not null
+		references entities (enti_id)
 			on delete cascade,
-	SYNO_UC VARCHAR(30),
-	SYNO_DC VARCHAR(30) not null,
-	SYNO_UM VARCHAR(30),
-	SYNO_DM VARCHAR(30),
-	constraint SYNO_UK unique (SYNO_ENTI_ID,SYNO_NAME)
+	syno_uc varchar(30),
+	syno_dc varchar(30) not null,
+	syno_um varchar(30),
+	syno_dm varchar(30),
+	constraint syno_uk unique (syno_enti_id,syno_name)
 );
 
-create table USER_DEFINED_PROPERTIES
+create table user_defined_properties
 (
-	UDPR_ID INTEGER not null
+	udpr_id integer not null
 		primary key autoincrement,
-	UDPR_THEME VARCHAR(60) not null,
-	UDPR_GROUP VARCHAR(60),
-	UDPR_NAME VARCHAR(60) not null,
-	UDPR_DESCR VARCHAR(4000),
-    UDPR_DEFAULTVALUE VARCHAR (4000) ,
-	UDPR_UC VARCHAR(30) not null,
-	UDPR_DC VARCHAR(30) not null,
-	UDPR_UM VARCHAR(30),
-	UDPR_DM VARCHAR(30),
-	constraint UDPR_UN
-		unique (UDPR_THEME, UDPR_NAME)
+	udpr_theme varchar(60) not null,
+	udpr_group varchar(60),
+	udpr_name varchar(60) not null,
+	udpr_descr varchar(4000),
+    udpr_defaultvalue varchar (4000) ,
+	udpr_uc varchar(30) not null,
+	udpr_dc varchar(30) not null,
+	udpr_um varchar(30),
+	udpr_dm varchar(30),
+	constraint udpr_un
+		unique (udpr_theme, udpr_name)
 );
 
-create table MODELEMTYPE_PROPERTIES
+create table modelemtype_properties
 (
-	METP_ID INTEGER not null
+	metp_id integer not null
 		primary key autoincrement,
-	METP_MELT_ID integer not null
-		references MODELELEM_TYPE (MELT_ID)
+	metp_melt_id integer not null
+		references modelelem_type (melt_id)
             on delete cascade,
-	METP_UDPR_ID integer not null
-		references USER_DEFINED_PROPERTIES (UDPR_ID)
+	metp_udpr_id integer not null
+		references user_defined_properties (udpr_id)
             on delete cascade,
-	METP_OPTIONAL VARCHAR(5) not null,
-	constraint METP_UN
-		unique (METP_MELT_ID, METP_UDPR_ID),
-	check (METP_OPTIONAL IN ('FALSE', 'TRUE'))
+	metp_optional varchar(5) not null,
+	constraint metp_un
+		unique (metp_melt_id, metp_udpr_id),
+	check (metp_optional in ('FALSE', 'TRUE'))
 );
 
-create table UDP_VALUES
+create table udp_values
 (
-	UDPV_ID INTEGER not null
+	udpv_id integer not null
 		primary key autoincrement,
-	UDPV_VALUE VARCHAR(4000),
-	UDPV_MODE_ID integer not null
-		references MODELELEMENT (mode_id)
+	udpv_value varchar(4000),
+	udpv_mode_id integer not null
+		references modelelement (mode_id)
 			on delete cascade,
-	UDPV_UDPR_ID integer not null
-		references USER_DEFINED_PROPERTIES (UDPR_ID)
+	udpv_udpr_id integer not null
+		references user_defined_properties (udpr_id)
             on delete cascade,
-	UDPV_UC VARCHAR(30) not null,
-	UDPV_DC VARCHAR(30) not null,
-	UDPV_UM VARCHAR(30),
-	UDPV_DM VARCHAR(30),
-	constraint UDPV_UN
-		unique (UDPV_MODE_ID, UDPV_UDPR_ID)
+	udpv_uc varchar(30) not null,
+	udpv_dc varchar(30) not null,
+	udpv_um varchar(30),
+	udpv_dm varchar(30),
+	constraint udpv_un
+		unique (udpv_mode_id, udpv_udpr_id)
 );
 
 create table diagramtypes
@@ -444,9 +444,9 @@ create table elementreps
 	eler_dm varchar(30),
 	constraint eler_un
 		unique (eler_diag_id, eler_mode_id, eler_index),
-	check (eler_fontsize BETWEEN 1 AND 999),
-	check (eler_marginopacity BETWEEN 0 AND 100),
-	check (eler_opacity BETWEEN 0 AND 100),
+	check (eler_fontsize between 1 and 999),
+	check (eler_marginopacity between 0 and 100),
+	check (eler_opacity between 0 and 100),
 	check (length(eler_color)= 6),
 	check (length(eler_fontcolor)= 6),
 	check (length(eler_margincolor)= 6)
@@ -454,180 +454,182 @@ create table elementreps
 
 create table interfaces
 (
-	intf_ID integer
+	intf_id integer
 		primary key autoincrement
-		references MODELELEMENT (MODE_ID),
-	intf_NAME VARCHAR(60) not null
-		constraint intf_UN
+		references modelelement (mode_id),
+	intf_name varchar(60) not null
+		constraint intf_un
 			unique,
-	intf_DESCR VARCHAR(4000),
-	intf_UC VARCHAR(30) not null,
-	intf_DC VARCHAR(30) not null,
-	intf_UM VARCHAR(30),
-	intf_DM VARCHAR(30)
+	intf_descr varchar(4000),
+	intf_uc varchar(30) not null,
+	intf_dc varchar(30) not null,
+	intf_um varchar(30),
+	intf_dm varchar(30)
 );
 
-create table DOMAINS
+create table domains
 (
-	DOMA_ID integer not null
+	doma_id integer not null
 		primary key
-		references MODELELEMENT (MODE_ID)
+		references modelelement (mode_id)
 			on delete cascade,
-	DOMA_NAME VARCHAR(60) not null
-		constraint DOMA_NAME_UK
+	doma_name varchar(60) not null
+		constraint doma_name_uk
 			unique,
-	DOMA_DESCR VARCHAR(4000),
-	DOMA_TYPE VARCHAR(4) not null,
-	DOMA_ORIGIN VARCHAR(6) not null,
-	DOMA_INTF_ID integer
-		constraint DOMA_INTF_FK
-			references interfaces (INTF_ID),
-	DOMA_DATY_ID integer
-		references DATATYPES (daty_id) ,
-	DOMA_DAT_MINVALUE VARCHAR(30),
-	DOMA_DAT_MAXVALUE VARCHAR(30),
-	DOMA_DAT_GRANULARITY VARCHAR(15),
-	DOMA_TXT_MAXLNG NUMERIC(28),
-	DOMA_TXT_SYNTAXRULE VARCHAR(4000),
-	DOMA_NUM_MAXVALUE NUMERIC(30,10),
-	DOMA_NUM_MINVALUE NUMERIC(30,10),
-	DOMA_NUM_TOTAL_DIGITS NUMERIC(3),
-	DOMA_NUM_FRACT_DIGITS NUMERIC(3) ,
-	DOMA_NUM_ROUND_VALUE NUMERIC(7,3),
-	DOMA_NUM_PHYU_ID integer
-		references PHYSICAL_UNIT (PHYU_ID),
-	DOMA_BIN_CONTENTTYPE VARCHAR(30),
-	DOMA_BIN_STFO_ID integer
-		references STORAGE_FORMATS (STFO_ID),
-	DOMA_UC VARCHAR(30) not null,
-	DOMA_DC VARCHAR(30) not null,
-	DOMA_UM VARCHAR(30),
-	DOMA_DM VARCHAR(30),
-	check (DOMA_BIN_CONTENTTYPE IN ('DRAWING', 'FILM', 'IMAGE', 'OTHER', 'SOUND', 'TEXT')),
-	check (DOMA_DAT_GRANULARITY IN ('DAY', 'HOUR', 'MILlISECOND', 'MINUTE', 'MONTH', 'QUARTER', 'SECOND', 'SEMESTER', 'WEEK', 'YEAR')),
-	check (DOMA_ORIGIN IN ('DER', 'DOM')),
-	check (DOMA_TYPE IN ('BIN', 'DAT', 'GRP', 'LOV', 'NUM', 'TXT')),
-	constraint DOMA_ExDep1
-		check (DOMA_TYPE != 'BIN'
- OR ( DOMA_BIN_CONTENTTYPE IS NOT NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL
-	 AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL
-	 AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)),
-	constraint DOMA_ExDep2
-		check (DOMA_TYPE != 'DAT'
- OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL
-	 AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL
-	 AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NOT NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)),
-	constraint DOMA_ExDep3
-		check (DOMA_TYPE != 'GRP'
- OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)),
-	constraint DOMA_ExDep4
-		check (DOMA_TYPE != 'LOV'
- OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL)),
-	constraint DOMA_ExDep5
-		check (DOMA_TYPE != 'NUM'
- OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NOT NULL AND DOMA_NUM_TOTAL_DIGITS IS NOT NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL AND DOMA_TXT_SYNTAXRULE IS NULL AND DOMA_TXT_MAXLNG IS NULL)),
-	constraint DOMA_ExDep6
-		check (DOMA_TYPE != 'TXT'
- OR ( DOMA_BIN_CONTENTTYPE IS NULL AND DOMA_BIN_STFO_ID IS NULL AND DOMA_NUM_FRACT_DIGITS IS NULL AND DOMA_NUM_MAXVALUE IS NULL AND DOMA_NUM_MINVALUE IS NULL AND DOMA_NUM_PHYU_ID IS NULL AND DOMA_NUM_ROUND_VALUE IS NULL AND DOMA_NUM_TOTAL_DIGITS IS NULL AND DOMA_DAT_GRANULARITY IS NULL AND DOMA_DAT_MAXVALUE IS NULL AND DOMA_DAT_MINVALUE IS NULL))
+	doma_descr varchar(4000),
+	doma_type varchar(4) not null,
+	doma_origin varchar(6) not null,
+	doma_intf_id integer
+		constraint doma_intf_fk
+			references interfaces (intf_id),
+	doma_daty_id integer
+		references datatypes (daty_id) ,
+	doma_dat_minvalue varchar(30),
+	doma_dat_maxvalue varchar(30),
+	doma_dat_granularity varchar(15),
+	doma_txt_maxlng numeric(28),
+	doma_txt_syntaxrule varchar(4000),
+	doma_num_maxvalue numeric(30,10),
+	doma_num_minvalue numeric(30,10),
+	doma_num_total_digits numeric(3),
+	doma_num_fract_digits numeric(3) ,
+	doma_num_round_value numeric(7,3),
+	doma_num_phyu_id integer
+		references physical_unit (phyu_id),
+	doma_bin_contenttype varchar(30),
+	doma_bin_stfo_id integer
+		references storage_formats (stfo_id),
+	doma_uc varchar(30) not null,
+	doma_dc varchar(30) not null,
+	doma_um varchar(30),
+	doma_dm varchar(30),
+	check (doma_bin_contenttype in ('DRAWING', 'FILM', 'IMAGE', 'OTHER', 'SOUND', 'TEXT')),
+	check (doma_dat_granularity IN ('DAY', 'HOUR', 'MILlISECOND', 'MINUTE', 'MONTH', 'QUARTER', 'SECOND', 'SEMESTER', 'WEEK', 'YEAR')),
+	check (doma_origin IN ('DER', 'DOM')),
+	check (doma_type IN ('BIN', 'DAT', 'GRP', 'LOV', 'NUM', 'TXT')),
+	constraint doma_exdep1
+		check (doma_type != 'BIN'
+ or ( doma_bin_contenttype is not null and doma_num_fract_digits is null and doma_num_maxvalue is null and doma_num_minvalue is null
+	 and doma_num_phyu_id is null and doma_num_round_value is null and doma_num_total_digits is null and doma_dat_granularity is null
+	 and doma_dat_maxvalue is null and doma_dat_minvalue is null and doma_txt_syntaxrule is null and doma_txt_maxlng is null)),
+	constraint doma_exdep2
+		check (doma_type != 'DAT'
+ or ( doma_bin_contenttype is null and doma_bin_stfo_id is null and doma_num_fract_digits is null
+	 and doma_num_maxvalue is null and doma_num_minvalue is null and doma_num_phyu_id is null and doma_num_round_value is null
+	 and doma_num_total_digits is null and doma_dat_granularity is not null and doma_txt_syntaxrule is null and doma_txt_maxlng is null)),
+	constraint doma_exdep3
+		check (doma_type != 'GRP'
+ or ( doma_bin_contenttype is null and doma_bin_stfo_id is null and doma_num_fract_digits is null and doma_num_maxvalue is null and doma_num_minvalue is null and doma_num_phyu_id is null and doma_num_round_value is null and doma_num_total_digits is null and doma_dat_granularity is null and doma_dat_maxvalue is null and doma_dat_minvalue is null and doma_txt_syntaxrule is null and doma_txt_maxlng is null)),
+	constraint doma_exdep4
+		check (doma_type != 'LOV'
+ or ( doma_bin_contenttype is null and doma_bin_stfo_id is null and doma_num_fract_digits is null and doma_num_maxvalue is null and doma_num_minvalue is null and doma_num_phyu_id is null and doma_num_round_value is null and doma_num_total_digits is null and doma_dat_granularity is null and doma_dat_maxvalue is null and doma_dat_minvalue is null and doma_txt_syntaxrule is null)),
+	constraint doma_exdep5
+		check (doma_type != 'NUM'
+ or ( doma_bin_contenttype is null and doma_bin_stfo_id is null and doma_num_fract_digits is not null and doma_num_total_digits is not null and doma_dat_granularity is null and doma_dat_maxvalue is null and doma_dat_minvalue is null and doma_txt_syntaxrule is null and doma_txt_maxlng is null)),
+	constraint doma_exdep6
+		check (doma_type != 'TXT'
+ or ( doma_bin_contenttype is null and doma_bin_stfo_id is null and doma_num_fract_digits is null and doma_num_maxvalue is null and doma_num_minvalue is null and doma_num_phyu_id is null and doma_num_round_value is null and doma_num_total_digits is null and doma_dat_granularity is null and doma_dat_maxvalue is null and doma_dat_minvalue is null))
 );
 
-create table ATTRIBUTES
+create table attributes
 (
-	ATTR_ID integer not null
+	attr_id integer not null
 		primary key
-		references MODELELEMENT (mode_id)			on delete cascade,
-	ATTR_ENTI_ID integer not null		references ENTITIES (ENTI_ID),
-	ATTR_DOMA_ID integer not null		references DOMAINS (DOMA_ID),
-	ATTR_TECH_NAME VARCHAR(60) not null,
-	ATTR_DISPL_NAME VARCHAR(4000),
-	ATTR_DISPL_SEQ NUMERIC(5),
-	ATTR_TOOLTIP VARCHAR(4000),
-	ATTR_DESCR VARCHAR(4000),
-	ATTR_IS_DESCRIPTIVE VARCHAR(5) not null,
-	ATTR_IS_MANDATORY VARCHAR(5) not null,
-	ATTR_IS_HISTORICISED VARCHAR(5) not null,
-	ATTR_IS_REPEATED VARCHAR(5) not null,
-	ATTR_IS_TRANSLATED VARCHAR(5) not null,
-	ATTR_IS_ENCRYPTED VARCHAR(5) not null,
-	ATTR_UC VARCHAR(30),
-	ATTR_DC VARCHAR(30) not null,
-	ATTR_UM VARCHAR(30),
-	ATTR_DM VARCHAR(30),
-	constraint ATTR_UK	unique (ATTR_TECH_NAME, ATTR_ENTI_ID),
-	constraint ATTR_UK2	unique (ATTR_DISPL_NAME, ATTR_ENTI_ID),
-	check (ATTR_IS_DESCRIPTIVE IN('FALSE','TRUE')),
-	check (ATTR_IS_ENCRYPTED IN('FALSE','TRUE')),
-	check (ATTR_IS_HISTORICISED IN('FALSE','TRUE')),
-	check (ATTR_IS_MANDATORY IN('FALSE','TRUE')),
-	check (ATTR_IS_REPEATED IN('FALSE','TRUE')),
-	check (ATTR_IS_TRANSLATED IN('FALSE','TRUE'))
+		references modelelement (mode_id)			on delete cascade,
+	attr_enti_id integer not null		references entities (enti_id),
+	attr_doma_id integer not null		references domains (doma_id),
+	attr_tech_name varchar(60) not null,
+	attr_displ_name varchar(4000),
+	attr_displ_seq numeric(5),
+	attr_tooltip varchar(4000),
+	attr_descr varchar(4000),
+	attr_is_descriptive varchar(5) not null,
+	attr_is_mandatory varchar(5) not null,
+	attr_is_historicised varchar(5) not null,
+	attr_is_repeated varchar(5) not null,
+	attr_is_translated varchar(5) not null,
+	attr_is_encrypted varchar(5) not null,
+	attr_uc varchar(30),
+	attr_dc varchar(30) not null,
+	attr_um varchar(30),
+	attr_dm varchar(30),
+	constraint attr_uk	unique (attr_tech_name, attr_enti_id),
+	constraint attr_uk2	unique (attr_displ_name, attr_enti_id),
+	check (attr_is_descriptive in('FALSE','TRUE')),
+	check (attr_is_encrypted in('FALSE','TRUE')),
+	check (attr_is_historicised in('FALSE','TRUE')),
+	check (attr_is_mandatory in('FALSE','TRUE')),
+	check (attr_is_repeated in('FALSE','TRUE')),
+	check (attr_is_translated in('FALSE','TRUE'))
 );
 
-create table DEFAULT_VALUES
+create table default_values
 (
-	DEVA_ID INTEGER not null
+	deva_id integer not null
 		primary key autoincrement,
-	DEVA_DOMA_ID integer not null
-		references DOMAINS (DOMA_ID)
+	deva_doma_id integer not null
+		references domains (doma_id)
 			on delete cascade,
-	DEVA_VALUE VARCHAR(100) not null,
-	DEVA_SORT_ORDER NUMERIC(3),
-	DEVA_DISPL VARCHAR(4000),
-	DEVA_DESCR VARCHAR(4000),
-	DEVA_UC VARCHAR(30),
-	DEVA_DC VARCHAR(30) not null,
-	DEVA_UM VARCHAR(30),
-	DEVA_DM VARCHAR(30),
-	constraint DEVA_UK
-		unique (DEVA_DOMA_ID, DEVA_VALUE)
+	deva_value varchar(100) not null,
+	deva_sort_order numeric(3),
+	deva_displ varchar(4000),
+	deva_descr varchar(4000),
+	deva_uc varchar(30),
+	deva_dc varchar(30) not null,
+	deva_um varchar(30),
+	deva_dm varchar(30),
+	constraint deva_uk
+		unique (deva_doma_id, deva_value)
 );
 
-create table DOMAINGROUP_MEMBERS
+create table domaingroup_members
 (
-	DGRM_ID INTEGER not null
+	dgrm_id integer not null
 		primary key autoincrement
-		references MODELELEMENT (mode_id)
+		references modelelement (mode_id)
 			on delete cascade,
-	DGRM_NAME VARCHAR(4000) not null,
-	DGRM_DESCR VARCHAR(4000),
-	DGRM_IS_MANDATORY VARCHAR(5) not null,
-	DGRM_DOMA_ID_GROUP integer not null
-		references DOMAINS (DOMA_ID),
-	DGRM_DOMA_ID_MEMBER integer not null
-		references DOMAINS (DOMA_ID),
-	DGRM_UC VARCHAR(30) not null,
-	DGRM_DC VARCHAR(30) not null,
-	DGRM_UM VARCHAR(30),
-	DGRM_DM VARCHAR(30),
-	constraint DGRM_DOMA_UK
-		unique (DGRM_DOMA_ID_GROUP, DGRM_NAME),
-	check (DGRM_IS_MANDATORY IN ('FALSE', 'TRUE'))
+	dgrm_name varchar(4000) not null,
+	dgrm_descr varchar(4000),
+	dgrm_is_mandatory varchar(5) not null,
+	dgrm_doma_id_group integer not null
+		references domains (doma_id),
+	dgrm_doma_id_member integer not null
+		references domains (doma_id),
+	dgrm_uc varchar(30) not null,
+	dgrm_dc varchar(30) not null,
+	dgrm_um varchar(30),
+	dgrm_dm varchar(30),
+	constraint dgrm_doma_uk
+		unique (dgrm_doma_id_group, dgrm_name),
+	check (dgrm_is_mandatory in ('FALSE', 'TRUE'))
 );
 
-create table KEY_ELEMENTS
+create table key_elements
 (
-	KELE_ID INTEGER not null
+	kele_id integer not null
 		primary key autoincrement,
-	KELE_KEYS_ID integer not null
-		references KEYS (KEYS_ID)
+	kele_keys_id integer not null
+		references keys (keys_id)
 			on delete cascade,
-	KELE_ATTR_ID integer
-		references ATTRIBUTES (ATTR_ID)
+	kele_attr_id integer
+		references attributes (attr_id)
 			on delete cascade,
-	KELE_RELA_ID integer
-		references RELATIONS (RELA_ID)
+	kele_rela_id integer
+		references relations (rela_id)
 			on delete cascade,
-	KELE_UC VARCHAR(30) not null,
-	KELE_DC VARCHAR(30) not null,
-	KELE_UM VARCHAR(30),
-	KELE_DM VARCHAR(30),
-	constraint KELE_UN
-		unique (KELE_KEYS_ID, KELE_ATTR_ID, KELE_RELA_ID),
-	constraint FKArc_8
-		check (( (KELE_RELA_ID IS NOT NULL) AND
-		   (KELE_ATTR_ID IS NULL)
-	     ) OR (  (KELE_ATTR_ID IS NOT NULL) AND
-                 (KELE_RELA_ID IS NULL) ))
+	kele_uc varchar(30) not null,
+	kele_dc varchar(30) not null,
+	kele_um varchar(30),
+	kele_dm varchar(30),
+	constraint kele_attr_un
+		unique (kele_keys_id, kele_attr_id),
+		constraint kele_rela_un
+			unique (kele_keys_id, kele_rela_id),
+	constraint fkarc_8
+		check (( (kele_rela_id is not null) and
+		   (kele_attr_id is null)
+	     ) or (  (kele_attr_id is not null) and
+                 (kele_rela_id is null) ))
 );
 
 create table melt_diats
@@ -802,10 +804,8 @@ create table linesegments
 		unique (lise_relr_id, lise_seq),
 	constraint ck_lise_linetype
 		check (lise_linetype IN('DADO','DASHED','DOTTED','SOLID')),
-	constraint ck_lyse_x
-		check (lise_x BETWEEN 0 AND 999999),
-	constraint ck_lyse_y
-		check (lise_y BETWEEN 0 AND 999999)
+    CONSTRAINT ck_lise_x CHECK(lise_x BETWEEN 0 AND 999999) ,
+	constraint ck_lise_y check (lise_y BETWEEN 0 AND 999999)
 );
 
 create table tables
@@ -905,206 +905,123 @@ create table tabl_enti_maps
       	        		  or (tema_enti_id is null and tema_rela_id is not null))
 );
 
-CREATE TABLE BUSINESS_RULES
+create table business_rules
     (
-     BURU_ID integer NOT NULL primary key autoincrement
-    		constraint BURU_MODE_FK
-			references MODELELEMENT (mode_ID),
-     BURU_NAME VARCHAR (60) NOT NULL ,
-     BURU_RULE VARCHAR (4000) NOT NULL ,
-     BURU_DESCR VARCHAR (4000) NULL ,
-     BURU_IMPACT VARCHAR (4000) NULL ,
-     BURU_TYPE VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1293BD5E CHECK ( BURU_TYPE='TRIGGER' OR BURU_TYPE='CHECK' OR BURU_TYPE='CALC' ) ,
-     BURU_LEVEL VARCHAR (10) NOT NULL CONSTRAINT CK__BUSINESS___BURU___1387E197 CHECK ( BURU_LEVEL='TUPL' OR BURU_LEVEL='ENTI' OR BURU_LEVEL='DB' OR BURU_LEVEL='ATTR' ) ,
-     BURU_ERRORMSG VARCHAR (100) ,
-     BURU_UC VARCHAR (30) NOT NULL ,
-     BURU_DC DATETIME (8) NOT NULL ,
-     BURU_UM VARCHAR (30) NULL ,
-     BURU_DM DATETIME (8) NULL
+     buru_id integer not null primary key autoincrement
+    		constraint buru_mode_fk
+			references modelelement (mode_id),
+     buru_name varchar (60) not null ,
+     buru_rule varchar (4000) not null ,
+     buru_descr varchar (4000) null ,
+     buru_impact varchar (4000) null ,
+     buru_type varchar (10) not null constraint ck__business___buru___1293bd5e check ( buru_type='TRIGGER' or buru_type='CHECK' or buru_type='CALC' ) ,
+     buru_level varchar (10) not null constraint ck__business___buru___1387e197 check ( buru_level='TUPL' or buru_level='ENTI' or buru_level='DB' or buru_level='ATTR' ) ,
+     buru_errormsg varchar (100) ,
+     buru_uc varchar (30) not null ,
+     buru_dc varchar(30) not null ,
+     buru_um varchar (30) null ,
+     buru_dm varchar(30) null
     );
 
-CREATE TABLE BUSINESSRULE_ELEMENTS
+create table businessrule_elements
     (
-     BURE_ID integer NOT NULL primary key autoincrement,
-     BURE_BURU_ID NUMERIC (10) NOT NULL ,
-     BURE_WRITEABLE VARCHAR (5) NOT NULL CONSTRAINT CK__BUSINESSR__BURE___10216507 CHECK ( BURE_WRITEABLE='TRUE' OR BURE_WRITEABLE='FALSE' ) ,
-     BURE_ATTR_ID NUMERIC (10) NULL ,
-     BURE_ENTI_ID NUMERIC (10) NULL ,
-     BURE_RELA_ID NUMERIC (10) NULL ,
-     BURE_DEVA_ID NUMERIC (10) NULL ,
-     BURE_TABL_ID NUMERIC (10) NULL ,
-     BURE_COLU_ID NUMERIC (10) NULL ,
-     BURE_UC VARCHAR (30) NOT NULL ,
-     BURE_DC DATETIME (8) NOT NULL ,
-     BURE_UM VARCHAR (30) NULL ,
-     BURE_DM DATETIME (8) NULL ,
-	 CONSTRAINT FKArc_1 CHECK (
-        (  (BURE_ENTI_ID IS NOT NULL) AND
-         (BURE_TABL_ID IS NULL)  AND
-         (BURE_RELA_ID IS NULL)  AND
-         (BURE_ATTR_ID IS NULL)  AND
-         (BURE_COLU_ID IS NULL)  AND
-         (BURE_DEVA_ID IS NULL) ) OR
-        (  (BURE_TABL_ID IS NOT NULL) AND
-         (BURE_ENTI_ID IS NULL)  AND
-         (BURE_RELA_ID IS NULL)  AND
-         (BURE_ATTR_ID IS NULL)  AND
-         (BURE_COLU_ID IS NULL)  AND
-         (BURE_DEVA_ID IS NULL) ) OR
-        (  (BURE_RELA_ID IS NOT NULL) AND
-         (BURE_ENTI_ID IS NULL)  AND
-         (BURE_TABL_ID IS NULL)  AND
-         (BURE_ATTR_ID IS NULL)  AND
-         (BURE_COLU_ID IS NULL)  AND
-         (BURE_DEVA_ID IS NULL) ) OR
-        (  (BURE_ATTR_ID IS NOT NULL) AND
-         (BURE_ENTI_ID IS NULL)  AND
-         (BURE_TABL_ID IS NULL)  AND
-         (BURE_RELA_ID IS NULL)  AND
-         (BURE_COLU_ID IS NULL)  AND
-         (BURE_DEVA_ID IS NULL) ) OR
-        (  (BURE_COLU_ID IS NOT NULL) AND
-         (BURE_ENTI_ID IS NULL)  AND
-         (BURE_TABL_ID IS NULL)  AND
-         (BURE_RELA_ID IS NULL)  AND
-         (BURE_ATTR_ID IS NULL)  AND
-         (BURE_DEVA_ID IS NULL) ) OR
-        (  (BURE_DEVA_ID IS NOT NULL) AND
-         (BURE_ENTI_ID IS NULL)  AND
-         (BURE_TABL_ID IS NULL)  AND
-         (BURE_RELA_ID IS NULL)  AND
-         (BURE_ATTR_ID IS NULL)  AND
-         (BURE_COLU_ID IS NULL) ) OR
-        (  (BURE_ENTI_ID IS NULL)  AND
-         (BURE_TABL_ID IS NULL)  AND
-         (BURE_RELA_ID IS NULL)  AND
-         (BURE_ATTR_ID IS NULL)  AND
-         (BURE_COLU_ID IS NULL)  AND
-         (BURE_DEVA_ID IS NULL) )  ),
-		 CONSTRAINT BURE_ATTR_FK FOREIGN KEY
-    (
-     BURE_ATTR_ID
-    )
-    REFERENCES ATTRIBUTES
-    (
-     ATTR_ID
-    )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-	CONSTRAINT BURE_BURU_FK FOREIGN KEY
-    (
-     BURE_BURU_ID
-    )
-    REFERENCES BUSINESS_RULES
-    (
-     BURU_ID
-    )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION ,
-	 CONSTRAINT BURE_DEVA_FK FOREIGN KEY
-    (
-     BURE_DEVA_ID
-    )
-    REFERENCES DEFAULT_VALUES
-    (
-     DEVA_ID
-    )
-    ON DELETE CASCADE
-	  ON UPDATE NO ACTION,
-	  CONSTRAINT BURE_ENTI_FK FOREIGN KEY
-    (
-     BURE_ENTI_ID
-    )
-    REFERENCES ENTITIES
-    (
-     ENTI_ID
-    )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-	CONSTRAINT BURE_RELA_FK FOREIGN KEY
-    (
-     BURE_RELA_ID
-    )
-    REFERENCES RELATIONS
-    (
-     RELA_ID
-    )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-	 CONSTRAINT BURU_COLU_FK FOREIGN KEY
-    (
-     BURE_COLU_ID
-    )
-    REFERENCES COLUMNS
-    ( 
-     COLU_ID 
-    ) 
-    ON DELETE CASCADE 
-    ON UPDATE NO ACTION,
- CONSTRAINT BURU_TABL_FK FOREIGN KEY 
-    ( 
-     BURE_TABL_ID
-    ) 
-    REFERENCES TABLES 
-    ( 
-     TABL_ID 
-    ) 
-    ON DELETE CASCADE 
-    ON UPDATE NO ACTION 
+     bure_id integer not null primary key autoincrement,
+     bure_buru_id numeric (10) not null ,
+     bure_mode_id numeric (10) not null ,
+     bure_writeable varchar (5) not null constraint ck__businessr__bure___10216507 check ( bure_writeable='TRUE' or bure_writeable='FALSE' ) ,
+     bure_uc varchar (30) not null ,
+     bure_dc varchar(30) not null ,
+     bure_um varchar (30) null ,
+     bure_dm varchar(30) ,
+ 	constraint bure_uk
+ 		unique (bure_buru_id,bure_mode_id),
+	constraint bure_mode_fk foreign key (bure_mode_id)
+    references modelelement(mode_id)
 );
 
-CREATE TABLE ELEMENT_UI
+create table element_ui
     (
-     ELUI_ID integer NOT NULL primary key ,
-     ELUI_MELT_ID NUMERIC (10) NULL
-            references MODELELEM_TYPE (MELT_ID) on delete cascade ,
-     ELUI_ENCA_ID NUMERIC (10) NULL
-            references ENTITY_CATEGORIES (ENCA_ID) on delete cascade ,
-     ELUI_WIDTH NUMERIC (4) NULL ,
-     ELUI_HEIGHT NUMERIC (4) NULL ,
-     ELUI_OPACITY NUMERIC (3) NULL DEFAULT (100) CONSTRAINT CK__ELEMENTRE__ELER___3CF40B7E CHECK ( ELUI_OPACITY>=(0) AND ELUI_OPACITY<=(100) ) ,
-     ELUI_COLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__ELEMENTRE__ELER___3EDC53F0 CHECK ( length(ELUI_COLOR) = 6 ) ,
-     ELUI_MARGINWIDTH NUMERIC (3,1) NULL DEFAULT (1) ,
-     ELUI_MARGINOPACITY NUMERIC (3) NULL DEFAULT (100) CONSTRAINT CK__ELEMENTRE__ELER___41B8C09B CHECK ( ELUI_MARGINOPACITY>=(0) AND ELUI_MARGINOPACITY<=(100) ) ,
-     ELUI_MARGINCOLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__ELEMENTRE__ELER___43A1090D CHECK ( length(ELUI_MARGINCOLOR) = 6 ) ,
-     ELUI_FONTSIZE NUMERIC (3) NULL CONSTRAINT CK__ELEMENTRE__ELER___44952D46 CHECK ( ELUI_FONTSIZE>=(1) AND ELUI_FONTSIZE<=(999) ) ,
-     ELUI_FONTCOLOR VARCHAR (6) NULL DEFAULT '000000' CONSTRAINT CK__ELEMENTRE__ELER___467D75B8 CHECK ( length(ELUI_FONTCOLOR) = 6 )
-    ,CONSTRAINT FKArc_3 CHECK (
-        (  (ELUI_MELT_ID IS NOT NULL) AND
-         (ELUI_ENCA_ID IS NULL) ) OR
-        (  (ELUI_ENCA_ID IS NOT NULL) AND
-         (ELUI_MELT_ID IS NULL) )
+     elui_id integer not null primary key ,
+     elui_melt_id numeric (10) null
+            references modelelem_type (melt_id) on delete cascade ,
+     elui_enca_id numeric (10) null
+            references entity_categories (enca_id) on delete cascade ,
+     elui_width numeric (4) null ,
+     elui_height numeric (4) null ,
+     elui_opacity numeric (3) null default (100) constraint ck__elementre__eler___3cf40b7e check ( elui_opacity>=(0) and elui_opacity<=(100) ) ,
+     elui_color varchar (6) null default '000000' constraint ck__elementre__eler___3edc53f0 check ( length(elui_color) = 6 ) ,
+     elui_marginwidth numeric (3,1) null default (1) ,
+     elui_marginopacity numeric (3) null default (100) constraint ck__elementre__eler___41b8c09b check ( elui_marginopacity>=(0) and elui_marginopacity<=(100) ) ,
+     elui_margincolor varchar (6) null default '000000' constraint ck__elementre__eler___43a1090d check ( length(elui_margincolor) = 6 ) ,
+     elui_fontsize numeric (3) null constraint ck__elementre__eler___44952d46 check ( elui_fontsize>=(1) and elui_fontsize<=(999) ) ,
+     elui_fontcolor varchar (6) null default '000000' constraint ck__elementre__eler___467d75b8 check ( length(elui_fontcolor) = 6 )
+    ,constraint fkarc_3 check (
+        (  (elui_melt_id is not null) and
+         (elui_enca_id is null) ) or
+        (  (elui_enca_id is not null) and
+         (elui_melt_id is null) )
         )
-    ,CONSTRAINT ELUI_UK_ROLE UNIQUE  (ELUI_MELT_ID, ELUI_ENCA_ID)
+    ,constraint elui_uk_role unique  (elui_melt_id, elui_enca_id)
     );
 
-CREATE VIEW SUPERENTI AS
+	create table example 
+	    (
+	     expl_id integer (10) not null primary key, 
+	     expl_value varchar (4000) not null , 
+	     expl_enti_id numeric (10) , 
+	     expl_attr_id numeric (10) , 
+	     expl_uc varchar (30) not null , 
+	     expl_dc varchar(30) not null , 
+	     expl_um varchar (30) , 
+	     expl_dm varchar(30)
+		 ,constraint fkarc_8 check ( 
+		 	        (  (expl_enti_id is not null) and 
+		 	         (expl_attr_id is null) ) or 
+		 	        (  (expl_attr_id is not null) and 
+		 	         (expl_enti_id is null) )  
+				 )
+		,constraint expl_enti_uk unique  (expl_value, expl_enti_id)
+		,constraint expl_attr_uk unique  (expl_value, expl_attr_id)
+		,constraint expl_attr_fk foreign key (expl_attr_id) 
+			references attributes (attr_id ) 
+			on delete cascade
+		,constraint expl_enti_fk foreign key ( expl_enti_id) 
+			references entities (enti_id ) 
+			on delete cascade
+		,constraint expl_mode_fk foreign key (expl_id) 
+			references modelelement (mode_id ) 
+	    );
+
+create view superenti as
         with rel as (select rela_type
                , case
-                     when RELA_MANDATORY_TO_FROM = 'TRUE' then RELA_ENTI_ID_FROM
-                     else RELA_ENTI_ID_TO end as rela_superenti_id
+                     when rela_mandatory_to_from = 'TRUE' then rela_enti_id_from
+                     else rela_enti_id_to end as rela_superenti_id
                , case
-                     when RELA_MANDATORY_FROM_TO = 'TRUE' then RELA_ENTI_ID_FROM
-                     else RELA_ENTI_ID_TO end as rela_subenti_id
+                     when rela_mandatory_from_to = 'TRUE' then rela_enti_id_from
+                     else rela_enti_id_to end as rela_subenti_id
                  from relations
                 where rela_type = 'ISAR'
                 )
     select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
         ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-          from ENTITIES superentity
-            join ARCS on ARCS_ENTI_ID = superentity.enti_id
+          from entities superentity
+            join arcs on arcs_enti_id = superentity.enti_id
             join relations
-                  on  ((rela_arcs_id_from  = ARCS_ID and RELA_ENTI_ID_from = superentity.ENTI_ID)
-                   or (rela_arcs_id_to  = ARCS_ID and RELA_ENTI_ID_to = superentity.ENTI_ID))
-                     and RELA_TYPE =  'ISAS'
-           left  join ENTITIES subentity on  (subentity.ENTI_ID =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
-                or (subentity.ENTI_ID =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
+                  on  ((rela_arcs_id_from  = arcs_id and rela_enti_id_from = superentity.enti_id)
+                   or (rela_arcs_id_to  = arcs_id and rela_enti_id_to = superentity.enti_id))
+                     and rela_type =  'ISAS'
+           left  join entities subentity on  (subentity.enti_id =  rela_enti_id_to and rela_arcs_id_from = arcs_id )
+                or (subentity.enti_id =  rela_enti_id_from and rela_arcs_id_to = arcs_id )
     union all
         select rela_type,superentity.enti_id as superenti_id, superentity.enti_name as super_enti_name
         ,subentity.enti_id as subenti_id, subentity.enti_name as sub_enti_name
-          from ENTITIES superentity
-          join rel on rela_superenti_id = superentity.ENTI_ID
-        join ENTITIES subentity on subentity.ENTI_ID = rela_subenti_id;
+          from entities superentity
+          join rel on rela_superenti_id = superentity.enti_id
+        join entities subentity on subentity.enti_id = rela_subenti_id;
+
+
+
 
 create view dbversion as select '1.5' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

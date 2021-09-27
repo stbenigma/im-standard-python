@@ -23,13 +23,14 @@ class EntityCell():
     PARENT = 'parent'
     CHILD = 'child'
 
-    def __init__(self,ptype=None,pentiid=None,pentiname=None,passoc=None,pbgcolor=None,pfontcolor=None):
+    def __init__(self,ptype=None,pentiid=None,pentiname=None,passoc=None,pbgcolor=None,pfontcolor=None,pdescr=None):
         self.setentiid(pentiid)
         self.setentiname(pentiname)
+        self.setentidescr(pdescr)
         self.setassoc(passoc)
         self.settype(nvl(ptype))
-        self.setbgcolor(nvl(parse_color(pbgcolor), (1,1,1,1)))
-        self.setfontcolor(nvl(parse_color(pfontcolor), (0,0,0,1)))
+        self.setbgcolor(nvl(pbgcolor,"rgb(255,255,255)"))
+        self.setfontcolor(nvl(pfontcolor,"rgb(0,0,0)"))
 
     def getentiid(self):
         return self._entiid
@@ -54,6 +55,12 @@ class EntityCell():
 
     def settype(self,ptype):
         self._type = ptype
+
+    def getentidescr(self):
+        return self._entidescr
+
+    def setentidescr(self,pentidescr):
+        self._entidescr = pentidescr
 
     def getentiname(self):
         return self._entiname
@@ -178,6 +185,7 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang,pentities):
     #for
     return retval
 
+
 def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
     """creates an EntityEnvironment for the given entity found in the json-structure"""
@@ -188,11 +196,13 @@ def createentienvironment(pentiid,pjson:JSModel,pmodellang):
     entienvir = EntityEnvironment(pentiid=pentiid,pentiname=entities[pentiid]['name'][pmodellang]
                          ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid,pcolortype="color")))
     enties = [EntityCell(ptype=EntityCell.ROLE,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
+                         ,pdescr=entities[entiid]['descr'][pmodellang]
                          ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid,pcolortype="color"))
                          ) for entiid in entities[pentiid]['roles+'] + entities[pentiid]['subtypes+']]
     entienvir.togrid(pcells=enties, ptype=EntityCell.ROLE)
 
     enties = [EntityCell(ptype=EntityCell.SUPER,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
+                         ,pdescr=entities[entiid]['descr'][pmodellang]
                          ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid,pcolortype="color"))
                          ) for entiid in entities[pentiid]['supertypes+']]
     entienvir.togrid(pcells=enties, ptype=EntityCell.SUPER)
@@ -209,43 +219,34 @@ def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
     return entienvir
 
-def enti2svg():
-    entistart = """
-    <g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-            transform="translate({},{})" >
-        <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-        <text id="{}" x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-        {} </text></a>
-    """
-    entiende = """</g>"""
-
-    entisvg = entistart
-    entisvg += entiende
-    return entisvg
-
-ENTIWIDTH = 240
+ENTIWIDTH = 120
 ENTIHEIGHT = 20
 FONTSIZE = 9
 CELLHEIGHT = 30
-CELLWIDTH = ENTIWIDTH * 5/4
+CELLWIDTH = ENTIWIDTH *5/4
 LINESHORTEN = 20
 MAXRELACHARS = 16
 MAXENTICHARS = 21
+MAXDESCRCHARS = 300
+
 
 def printenti(pcell:EntityCell,pposx,pposy):
-    entistart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-            transform="translate({},{})" >
-            <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-            <text id="box{}" x="6" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
+    entistart = """<g  fill="{color}" stroke="{stroke}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
+            transform="translate({posx},{posy})" >
+            <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect>
+            <a href="#{ref}" >
+            <text id="box{ref}" x="6" y="13" fill="{fillcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            {name} </text>{title}
+            </a>
             </g>
             """
-    entibox = entistart.format('white', 'blue'
-                               , 80, 80
-                               , pposx, pposy, ENTIWIDTH, ENTIHEIGHT
-                               , pcell.getentiid(), pcell.getentiid()
-                               ,'black' if pcell.gettype()== EntityCell.CENTER else 'blue', FONTSIZE
-                               , nvl(pcell.getentiname())[:MAXENTICHARS])
+    entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
+                               , fopacity=0.3, sopacity=0.8
+                               , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
+                               , ref=pcell.getentiid() #, pcell.getentiid()
+                               ,fillcolor='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
+                               , name=nvl(pcell.getentiname())[:MAXENTICHARS]
+                               ,title="<title>{descr}</title>".format(descr=' ' if pcell.getentidescr() in (None,'') else pcell.getentidescr()[:MAXDESCRCHARS]))
     return entibox
 
 
@@ -422,156 +423,6 @@ def generate_svg_content(penviron):
 
     svgtext += diagramfoot
     return svgtext
-
-"""
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="Electron" modified="2021-07-20T11:52:28.047Z" agent="5.0 (Macintosh; Intel Mac OS X 11_4_0) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.6.13 Chrome/89.0.4389.128 Electron/12.0.7 Safari/537.36" etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
-  <diagram id="-IuDeWdp_pBGzQphX35I" name="Seite-1">
-    <mxGraphModel dx="527" dy="475" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="ct_x_fueRCHBXW9Sjaz1-1" value="Kunde" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="130" y="200" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="ct_x_fueRCHBXW9Sjaz1-3" value="Produkt" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="440" y="110" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="ct_x_fueRCHBXW9Sjaz1-5" value="" style="endArrow=oval;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;startArrow=ERmany;startFill=0;endFill=0;rounded=0;" parent="1" source="ct_x_fueRCHBXW9Sjaz1-1" target="ct_x_fueRCHBXW9Sjaz1-3" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="240" y="220" as="sourcePoint" />
-            <mxPoint x="400" y="220" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="220" y="140" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ct_x_fueRCHBXW9Sjaz1-6" value="verkauft an" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;rotation=0;" parent="ct_x_fueRCHBXW9Sjaz1-5" connectable="0" vertex="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="77" y="-10" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ct_x_fueRCHBXW9Sjaz1-7" value="kauft" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;rotation=-50;" parent="ct_x_fueRCHBXW9Sjaz1-5" connectable="0" vertex="1">
-          <mxGeometry x="-1" relative="1" as="geometry">
-            <mxPoint x="30" y="-10" as="offset" />
-          </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
-"""
-def generate_drawio_content(penviron:EntityEnvironment):
-
-    diagramhead ="""<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="Electron" modified="{date}T{time}Z" agent="curl/7.1" 
-etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
-  <diagram id="{id}" name="{name}">
-    <mxGraphModel dx="{dx}" dy="{dy}" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1"
-    pageScale="1" pageWidth="{width}" pageHeight="{height}" math="0" shadow="0">
-    <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-    """
-    diagramfoot ="""
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
-"""
-
-    if penviron is None:
-        print ("Penviron is None: ")
-        return None
-    minvidx,maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
-
-    rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
-    rectwidth = 3 * CELLWIDTH
-    centercell = penviron.getcell(pvidx=0,phidx="center")
-    drawiotext = diagramhead.format(date=datetime.now().strftime("%Y-%m-%d"),time=datetime.now().strftime("%H:%M:%S.%s")
-                                    ,id=centercell.getentiid(),name=centercell.getentiname()
-                                    ,dx=0,dy=0
-                                    ,width=rectwidth, height=rectheight)
-
-    entistarty = (CELLHEIGHT - ENTIHEIGHT) / 2
-    parentlinestarty,parentlineendy=None,None
-    rolelinestarty,rolelineendy = None,None
-    childlinestarty,childlineendy = None,None
-    superlinestarty,superlineendy = None,None
-    for vkey in range(minvidx, maxvidx + 1):
-        entistartx = 0
-        linestarty = entistarty + (ENTIHEIGHT / 2)
-        relastarty = linestarty - 10
-
-        cellleft = penviron.getcell(phidx='left', pvidx=vkey)
-        cellcenter = penviron.getcell(phidx='center', pvidx=vkey)
-        cellright = penviron.getcell(phidx='right', pvidx=vkey)
-
-        if cellleft.gettype() == EntityCell.SUPER:
-            drawiotext += printentidio(pcell=cellleft,pposx=entistartx,pposy=entistarty, unique=f'-s{vkey}')
-            lenx = entistartx+CELLWIDTH-ENTIWIDTH
-            if vkey != 0:
-                lenx -= LINESHORTEN
-            drawiotext += printlinedio(psrcid=cellleft.getentiid(),pstartx=entistartx+ENTIWIDTH, pstarty=linestarty
-                                       , plenx=lenx, pleny=0)
-            superlineendy = linestarty
-
-        elif cellcenter.gettype() == EntityCell.PARENT:
-            drawiotext += printentidio(pcell=cellcenter,pposx=entistartx,pposy=entistarty, unique=f'-p{vkey}')
-            linelength = ENTIWIDTH
-            drawiotext += printlinedio(psrcid=cellcenter.getentiid(),pstartx=entistartx+ENTIWIDTH, pstarty=linestarty
-                                       , plenx=linelength, pleny=0
-                                       ,prelatext=cellcenter.getassoc())
-            parentlinestarty = nvl(parentlinestarty,linestarty)
-        else:
-            pass
-        # fi
-        entistartx += CELLWIDTH
-        if cellcenter.gettype() == EntityCell.CENTER:
-            drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty, unique=f'-ce{vkey}')
-            superlinestarty = linestarty
-            rolelineendy = linestarty
-            childlinestarty = entistarty + ENTIHEIGHT
-            parentlineendy = entistarty
-        else:
-            pass
-        # fi
-        entistartx += CELLWIDTH
-        if cellright.gettype() == EntityCell.ROLE:
-            drawiotext += printentidio(pcell=cellright, pposx=entistartx, pposy=entistarty, unique=f'-r{vkey}')
-            lenx = CELLWIDTH-ENTIWIDTH
-            if vkey != 0:
-                lenx -= LINESHORTEN
-            drawiotext += printlinedio(psrcid=cellright.getentiid(),pstartx=entistartx, pstarty=linestarty, plenx=-lenx, pleny=0)
-            rolelinestarty = nvl(rolelinestarty,linestarty)
-        elif cellcenter.gettype() == EntityCell.CHILD:
-            drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty, unique=f'-c{vkey}')
-            linelength = ENTIWIDTH
-            drawiotext += printlinedio(psrcid=cellcenter.getentiid(),pstartx=entistartx - ENTIWIDTH , pstarty=linestarty
-                                       , plenx=linelength, pleny=0
-                                       ,prelatext=cellcenter.getassoc())
-            childlineendy = linestarty
-        else:
-            pass
-        # fi
-        entistarty += CELLHEIGHT
-    #for
-    # print vertical lines
-    if superlineendy is not None and (superlineendy-superlinestarty > 0):
-        drawiotext += printlinedio(psrcid="",pstartx=CELLWIDTH - LINESHORTEN, pstarty=superlinestarty
-                                   , plenx=0, pleny=superlineendy-superlinestarty)
-    if parentlinestarty is not None and (parentlineendy - parentlinestarty > 0):
-        drawiotext += printlinedio(psrcid="",pstartx=2 * ENTIWIDTH, pstarty=parentlinestarty
-                                   , plenx=0, pleny=parentlineendy - parentlinestarty)
-    if childlineendy is not None and (childlineendy - childlinestarty > 0):
-        drawiotext += printlinedio(psrcid="",pstartx=2 * CELLWIDTH - ENTIWIDTH, pstarty=childlinestarty
-                                   , plenx=0, pleny=childlineendy - childlinestarty)
-    if rolelinestarty is not None and (rolelineendy - rolelinestarty > 0):
-        drawiotext += printlinedio(psrcid="",pstartx=(2 * CELLWIDTH) - (LINESHORTEN / 2), pstarty=rolelinestarty
-                                   , plenx=0, pleny= rolelineendy - rolelinestarty)
-
-    drawiotext += diagramfoot
-    return drawiotext
 
 from IM_OBJECTS import Modelelemtype,Relation
 

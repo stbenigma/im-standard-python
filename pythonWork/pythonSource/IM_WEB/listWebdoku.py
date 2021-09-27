@@ -95,7 +95,7 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     #for
 #listwebmain
 
-def main(pdirec, plang, pinputtype="DB"):
+def main(pdirec, plang, pinputtype="JSON"):
     parameters.initparam(p_callarg=pdirec)
     logmessages.initlog('createHTML')
     printHTML.setWebDirec(p_webdirec=None)

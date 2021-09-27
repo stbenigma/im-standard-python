@@ -18,7 +18,6 @@ class Boolean:
         else:
             raise Exception('Ungültiger Wert für Boolean "{}"'.format(pstr))
 
-    # str2bool
     @classmethod
     def bool2str(cls,bool):
         return cls.TRUE if bool else cls.FALSE
@@ -26,8 +25,6 @@ class Boolean:
     @classmethod
     def strnegbool(cls,pstr):
         return cls.bool2str(not cls.str2bool(pstr))
-    # strNegBool
-
 
 # Boolean
 
@@ -160,7 +157,7 @@ class Baseobject:
 
     def updatedb(self, pdoerrhdlng=True):
         now = datetime.today()
-        self.setcolvalue(pcolname='dm',pvalue=now)
+        self.setdefaultval(pcolname='dm',pvalue=now)
         self.setdefaultval(pcolname='um', pvalue=Baseobject.defaultCreator)
 
         updcollist = list(self._columnlist.keys())
@@ -221,13 +218,13 @@ class Baseobject:
 
     def getbyid(self, pid):
         if pid is None: return None
-        data = self.select(pwhere=("{}=?".format(self._idcolname), pid))
+        data = self.select(pwhere=(f"{self._idcolname}=?", pid))
         if (len(data) > 1):
-            logmessages.writelog("{}: nonunique ID={}'".format(self._tablename, pid))
-            raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
+            logmessages.writelog(f"{self._tablename}: nonunique ID={pid}'")
+            raise Exception(f'{self._tablename}: nonunique ID={pid}')
         elif (len(data) == 0):
-            logmessages.writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
-            raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
+            logmessages.writelog(f"{self._tablename}: nonexistent ID={pid} '")
+            raise Exception(f'{self._tablename}: nonexistent ID={pid}')
         else:
             self = data[0]
         return self

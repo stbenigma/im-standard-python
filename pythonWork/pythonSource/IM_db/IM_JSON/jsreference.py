@@ -71,8 +71,8 @@ def udps2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
             except Exception as err:
                 presult.markdberror(perr=err,pelem=list(jselem))
         #for
-        presult.insertcnt += max(0,(inscnt-delcnt))
-        presult.deletecnt += max(0,(delcnt-inscnt))
+        presult.addinscnt(max(0,(inscnt-delcnt)))
+        presult.adddelcnt(max(0,(delcnt-inscnt)))
     #for
     return
 
@@ -117,8 +117,8 @@ def udpvs2sql(presult, pmodeid, pudps):
             #for
         #for
     #for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
+    presult.addinscnt(max(0,(inscnt-delcnt)))
+    presult.adddelcnt(max(0,(delcnt-inscnt)))
     return
 
 def documents2js(pemtpymodel):
@@ -192,8 +192,8 @@ def insreferences(presult:Mergeresult, pmodeid, prefs):
             presult.markdberror(perr=err, pelem=[refid,pmodeid])
             continue
     # for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
+    presult.addinscnt(max(0,(inscnt-delcnt)))
+    presult.adddelcnt(max(0,(delcnt-inscnt)))
     return
 
 def references(pmode=None):

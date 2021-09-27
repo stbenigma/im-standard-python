@@ -253,8 +253,8 @@ def inskeyelements(presult:Mergeresult, pkey: Key, pkeles):
                  , prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
         inscnt += 1
     #for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
+    presult.addinscnt(max(0,(inscnt-delcnt)))
+    presult.adddelcnt(max(0,(delcnt-inscnt)))
     return
 
 def js2keys(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):

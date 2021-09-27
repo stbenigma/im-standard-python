@@ -173,7 +173,7 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
         for synoid, jsyno in jelem["synonyms"].items():
             syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
-            syno.syno_id = jsguid2id(synoid)
+            #syno.syno_id = jsguid2id(synoid)
             try:
                 syno.insert()
                 inscnt += 1
@@ -183,8 +183,8 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             """synonyms and their lang-texts are alreday deleted"""
             insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
-        presult.insertcnt += max(0, (inscnt - delcnt))
-        presult.deletecnt += max(0, (delcnt - inscnt))
+        presult.addinscnt(max(0, (inscnt - delcnt)))
+        presult.adddelcnt(max(0, (delcnt - inscnt)))
 
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])

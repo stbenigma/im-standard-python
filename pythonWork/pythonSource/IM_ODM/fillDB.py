@@ -28,6 +28,7 @@ def fillmergedb(callarg,transferfunction, createnewdb=False,**kwargs):
     else:
         """merge created DB into existing one"""
         dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON');
+
         newversion =loadedjson.jsmodel['_imprint_']["Modelversion"]
         if newversion != dbConnect.getversion():
             logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
