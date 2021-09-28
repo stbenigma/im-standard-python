@@ -51,8 +51,46 @@ def to_color(color):
 entity_style = "rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=top;"
 
 
+def prefix_attribute_name():
+    """Default generator for attribute prefixes"""
+    value = 48
+    while True:
+        yield f"A{chr(value)}_"
+        value += 1
+
+
+def prefix_none():
+    """Default generator for attribute prefixes"""
+    while True:
+        yield f""
+
+
+def html_tooltip(entity, translator) -> str:
+    """Create a rich text tooltip according to """
+    tooltip_text = [f"""<h1>{translator.tr(entity['name'])}</h1>"""]
+
+    description = translator.tr(entity.get('descr'))
+    if description is not None and len(description) > 0:
+        tooltip_text.append(f"<p>{description}<p>")
+
+    synonyms = entity['synonyms']
+    if synonyms is not None and len(synonyms) > 0:
+        syn_list = map(lambda s: translator.tr(s), synonyms.values())
+        synonym_str = ', '.join(syn_list)
+        tooltip_text.append(f"<h2>{translator.tr('Synonyms')}</h2><p>{synonym_str}</p>")
+
+    tt = translator.tr(entity.get('tooltip'))
+    if tt is not None and len(tt) > 0:
+        tooltip_text.append(f"<h2>{translator.tr('Tooltip')}</h2><p>{tt}</p>")
+
+    return ''.join(tooltip_text)
+
+
 def add_entities(diagram, model: JSModel, translator, root: etree):
     for element in sort_by_subtype_level(diagram['elements']['entity'], model):
+
+        prefix_generator = prefix_none()
+
         enti_key = element['element']
         enti = model.getbyid(enti_key)
 
@@ -63,33 +101,48 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         uo.set('link', 'ssot:' + enti_key)
 
         # Add mouseover values: https://drawio.freshdesk.com/support/solutions/articles/16000067813-edit-and-display-shape-metadata
+        # Tooltip support embedded html: ... tooltip="&lt;h1&gt;Beschreibung&lt;/h1&gt;"
         # Tooltip (https://www.diagrams.net/doc/faq/tooltips) is an alternative, but does not support Key Value display as do attributes
-        uo.set("a_" + gettext("Name"), translator.tr(enti['name']))
+        uo.set(next(prefix_generator) + gettext("Name"), translator.tr(enti['name']))
 
         description = translator.tr(enti.get('descr'))
         if description is not None and len(description) > 0:
-            uo.set("b_" + gettext("Beschreibung"), description)
+            uo.set(next(prefix_generator) + gettext("Beschreibung"), description)
 
         synonyms = enti['synonyms']
         if synonyms is not None and len(synonyms) > 0:
             syn_list = map(lambda s: translator.tr(s), synonyms.values())
             synonym_str = ', '.join(syn_list)
-            uo.set("c_" + gettext("Synonyme"), synonym_str)
+            uo.set(next(prefix_generator) + gettext("Synonyme"), synonym_str)
+
+        tooltip_content = html_tooltip(enti, translator)
+        if tooltip_content and len(tooltip_content) > 0:
+            #tooltip_content += f"<hr><a href=\"ssot:{enti_key}\">{translator.tr('Details')}</a>"
+            uo.set('tooltip', tooltip_content)
+
+        tags = []
+        category = enti.get('category')
+        if category and len(category) > 0:
+            tags.append(category)
+        roles = enti.get('roles+')
+        if roles and len(roles) > 0:
+            tags.extend(roles)
+        if len(tags) > 0:
+            uo.set('tags', ' '.join(tags))
 
         style = entity_style
-
         #stroke_color = '#' + element.get('ui', {}).get('color', "FFFFFF")
 
         color = to_color(element.get('ui', {}).get('color', 'FFFFFF'))
         nesting_level = int(enti.get('subtypellevel+', 0) + 1)
         hsv_color = colors.rgb_to_hsv(color[0:3])
-        factor = 0.3 if hsv_color[1] > 0.5 else -0.25
- #       adjusted = 1 - (nesting_level * factor) * (1 - hsv_color[1] / nesting_level)
         adjusted_saturation = hsv_color[1] / nesting_level
         lighter = colors.hsv_to_rgb((hsv_color[0], adjusted_saturation, hsv_color[2]))
+
         # alpha blend
-        lighter = (*lighter, .23)
-        #print(f"Hue intial {hsv_color[1]} vs {adjusted_saturation}. RGB intial {color} vs lighter {lighter}")
+        #lighter = (*lighter, .23)
+
+        #print(f"Nesting {nesting_level} of entity {translator.tr(enti['name'])} changes saturation from {hsv_color[1]} to {adjusted_saturation} and {lighter}")
         style = ''.join([style, 'fillColor=', colors.to_hex(lighter, keep_alpha=True), ';'])
 
         cell = etree.Element("mxCell", id=enti_key + '-cell', style=style,
@@ -171,7 +224,7 @@ def add_label(relation, end: str, labeltext: str, key: str, parent) -> etree.Ele
     if labeltext is not None and len(labeltext) > 0:
         if relation.get(f'{end}text_x'):
             start_label = etree.Element('mxCell', value=labeltext, parent="1", vertex="1",
-                                        style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#D0D0D0;")
+                                        style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#F0F0F0;")
             start_label.set('id', key)
 
             start_label_box = etree.Element('mxGeometry', x=str(int(relation[f'{end}text_x']) + 2),
