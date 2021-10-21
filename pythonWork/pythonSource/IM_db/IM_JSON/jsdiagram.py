@@ -81,7 +81,7 @@ def relarep2js(prelarep):
          ]
     if prelarep is None:
         retval = fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] \
-                                                   + [{"0":lineseg2js(plineseg=None)}])
+                                                   + [[lineseg2js(plineseg=None)]])
     else:
 
         retval =  {'linewidth': prelarep.relr_linewidth
@@ -111,7 +111,7 @@ def relarep2js(prelarep):
         , 'dc': prelarep.relr_dc
         , 'um': prelarep.relr_um
         , 'dm': prelarep.relr_dm
-        , 'linesegments': {l.lise_seq: lineseg2js(plineseg=l) for l in prelarep.getlinesegments()}
+        , 'linesegments': [lineseg2js(plineseg=l) for l in prelarep.getlinesegments()]
             }
     return retval
 
@@ -132,9 +132,9 @@ def lineseg2js(plineseg):
     return retval
 
 def lineseg2sql(presult:Mergeresult,prelrid, plinesegs):
-    """               "linesegments": {"0": {"x": 276,...},}
+    """               "linesegments": [{"x": 276,...},]
     """
-    for jidx,jelem in plinesegs.items():
+    for jidx,jelem in enumerate(plinesegs):
         lise = Linesegment()
         lise.lise_seq = jidx
         lise.lise_relr_id = prelrid
@@ -226,7 +226,7 @@ def diagrams2js(pemptymodel,pmodelname):
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
             d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
             ,Diagramtype().getbyid(d.diag_diat_id).getname()
-            , d.diagwidth()
+            , d.diagwidth()+50 #leave room for icon in entity
             , d.diagheight()
             , d.diag_uc
             ,  d.diag_dc
@@ -294,8 +294,8 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
             elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
             inscnt += len(jelemreps)
         #for
-        presult.insertcnt += max(0,(inscnt - delcnt))
-        presult.deletecnt += max(0,(delcnt - inscnt))
+        presult.addinscnt(max(0,(inscnt - delcnt)))
+        presult.adddelcnt(max(0,(delcnt - inscnt)))
 
         inscnt = 0
         delcnt = Relationrep.delete(pwhere=("relr_diag_id = ?", newdiagid))
@@ -307,8 +307,8 @@ def diagrams2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
             relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=keytransl(jrelaid), prelarep=jrelarep)
             inscnt += 1
         #for
-        presult.insertcnt += max(0,(inscnt - delcnt))
-        presult.deletecnt += max(0,(delcnt - inscnt))
+        presult.addinscnt(max(0,(inscnt - delcnt)))
+        presult.adddelcnt(max(0,(delcnt - inscnt)))
 
         insreferences(presult=presult, pmodeid=newdiagid, prefs=jelem['referencedby'])
         inssourceref(presult=presult,pmodeid=newdiagid, psources=jelem["sourceref"])

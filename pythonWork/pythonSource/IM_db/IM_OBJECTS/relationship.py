@@ -17,7 +17,7 @@ class Arc(Baseobject):
     _defaultorderby = "arcs_id"
 
     def __init__(self, pname=None, pentiid=None, puc=None, pdc=None, psrcname=None, psrcid=None):
-        if (len(Arc._columnlist) == 0): Arc._columnlist = Baseobject.gettablecolumns(Arc._tablename)
+
         super().__init__( psrcname=psrcname
                          , pscrid=psrcid)
         self.arcs_name = pname
@@ -101,7 +101,7 @@ class Relation(MultilangBaseobject):
     _defaultorderby = "rela_name"
 
     def __init__(self, psrcname=None, psrcid=None):
-        if (len(Relation._columnlist) == 0): Relation._columnlist = Baseobject.gettablecolumns(Relation._tablename)
+
         super().__init__( multilangcols={'rela_assoc_from_to': Languagetext.RELA_TEXT_FROM
                                         , 'rela_assoc_to_from': Languagetext.RELA_TEXT_TO}
                          , psrcname=psrcname
@@ -153,9 +153,9 @@ class Relation(MultilangBaseobject):
         return retval
 
     def to_cardstr(self):
-        return self._minmaxcardinality(pfromto=False)
-    def from_cardstr(self):
         return self._minmaxcardinality(pfromto=True)
+    def from_cardstr(self):
+        return self._minmaxcardinality(pfromto=False)
 
     def _minmaxcardinality(self, pfromto):
         maptype = self.rela_maptype_from_to if pfromto else self.rela_maptype_to_from

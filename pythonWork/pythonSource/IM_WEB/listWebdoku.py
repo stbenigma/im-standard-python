@@ -32,14 +32,16 @@ def printhtmlrender(pfilename, planguage, pmodel, pintfid=None):
         diags =sorted([{"id":key
                  ,"name": value["name"]
                 ,"svg": printdiagHTML.getsvgtext(pdiagelem=value,pdiaganker=key,plang=planguage)
+                , "pdf": printdiagHTML.pdffilename(pname=value["name"], plang=planguage)
                         } for key, value in pmodel.jsmodel["diagrams"].items()
                                                     if (value["type"] == "Entity")]
                 , key=lambda x: x["name"].upper())
     else:
         diags = [{"id": pintfid
                 , "name": pmodel.getbyid(pintfid)["name"]
-                , "svg": printRelHTML.interfacediagram(pintf=pmodel.getbyid(pintfid))}
-                 ]
+                , "svg": printRelHTML.interfacediagram(pintf=pmodel.getbyid(pintfid))
+               , "pdf": printdiagHTML.pdffilename(pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
+        ]
     #fi
     html = jinjawebmodel.rendermodel(pcurlang=planguage,pmodel=pmodel,pintfid=pintfid,pdiagrams=diags,phtmlfilelist=printHTML.htmlfilelist)
     printHTML.fhtml.write(html)
@@ -71,17 +73,20 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
 
+    langpart = lambda l : '_' + l
     for lang in langs:
         lang = lang.lower()
         Languagetext.reportLang(lang)
-        langfilename = printHTML.webFileName + '_' + Languagetext.reportLang() + '.html'
+        #omit language in name for non translated models
+        langfilename = printHTML.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.html"
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=model)
     # for
+    #prepare for relational models
     Languagetext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model
-    printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
+    printHTML.htmlfilelist[0] = printHTML.webFileName + f"{'' if len(langs) == 1 else langpart(parameters.dbDefaultLang())}.html"
 
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else parameters.dbDefaultLang()
@@ -93,25 +98,41 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     #for
 #listwebmain
 
-def main(pdirec, plang):
+def main(pdirec, plang, pinputtype="JSON"):
     parameters.initparam(p_callarg=pdirec)
     logmessages.initlog('createHTML')
-
     printHTML.setWebDirec(p_webdirec=None)
+    modelname = parameters.modelName()
+    if pinputtype == "DB":
+        dbConnect.openDB(pfilepath= parameters.dbFilePath());
+        deflang = Language.liesdeflangiso2()
+        if deflang is not None: parameters.dbDefaultLang(deflang)
+        jsonmodel = JSModel(sql2json(pdbname=parameters.dbFilePath()))
+    elif pinputtype == "JSON":
+        jsonfilepath = parameters.dbDirect()+modelname+".json"
+        jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
+        deflang = jsonmodel.modellanguage()
+        modelname = jsonmodel.jsmodel["model"]["name"]
+    else:
+        raise Exception(f"illegal call parameter {pinputtype}")
+    #fi
 
-    dbConnect.openDB(pfilepath= parameters.dbFilePath());
-    deflang = Language.liesdeflangiso2()
-    if deflang is not None : parameters.dbDefaultLang(deflang)
-    printHTML.setmodel(JSModel(sql2json(pdbname=parameters.dbFilePath())))
+    if deflang is not None: parameters.dbDefaultLang(deflang)
+
+    printHTML.setmodel(jsonmodel)
     listwebmain(plang=plang)
 
-    dbConnect.myDbConn.close()
+    if pinputtype == "DB":
+        dbConnect.myDbConn.close()
+        logmessages.showmessages("web-files from database {} for model {} created"
+                             .format(parameters.dbFilePath(),parameters.modelName()))
+    elif pinputtype == "JSON":
+        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {modelname} created")
 
-    logmessages.showmessages("web-files from database {} for model {} created"
-                             .format(parameters.dbFilePath(),parameters.odmModelName()))
 #main
 
 if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv)>2) else None
-    main(pdirec=direc, plang=lang)
+    type = sys.argv[3] if (len(sys.argv)>3) else "JSON"
+    main(pdirec=direc, plang=lang, pinputtype=type)

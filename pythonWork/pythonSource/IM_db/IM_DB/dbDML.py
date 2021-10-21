@@ -6,7 +6,7 @@ import sqlite3
 from IM_DB import logmessages, dbConnect
 
 def select(psql,*args):
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
 
     try:
         cursor.execute(psql,args)
@@ -22,7 +22,7 @@ def select(psql,*args):
 
 
 def execute(psql, *args):
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
 
     try:
         cursor.execute(psql, args)
@@ -39,7 +39,7 @@ def execute(psql, *args):
 # end select
 
 def lookup(psql):
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
 
     try:
         cursor.execute(psql)
@@ -60,7 +60,7 @@ def lookup(psql):
 # lookup
 
 def delete(psql, *args):
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
     try:
         rows = cursor.execute(psql,args).rowcount
     except sqlite3.Error as e:
@@ -68,13 +68,13 @@ def delete(psql, *args):
         logmessages.writelog(args)
         logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
-    dbConnect.myDbConn.commit()
+    dbConnect.getdbcon().commit()
     return rows
 # delete
 
 def insert(psql, rec):
     # print (psql,rec)
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
 
     try:
         if (type(rec) is list):
@@ -100,7 +100,7 @@ def insert(psql, rec):
         logmessages.writelog("insert: unexpected SQL-error: \t{}".format(str(e)))
         raise e
     id = cursor.lastrowid
-    dbConnect.myDbConn.commit()
+    dbConnect.getdbcon().commit()
     return id
 # insert
 
@@ -113,7 +113,7 @@ def insertmany(psql, rec):
 def exec(psql, *args):
     # print (psql)
     # return
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
     try:
         cursor.execute(psql, args)
     except sqlite3.Error as e:
@@ -124,7 +124,7 @@ def exec(psql, *args):
             logmessages.writelog(psql)
             logmessages.writelog("exec: unexpected SQL-error: \t%s" % e)
             raise e
-    dbConnect.myDbConn.commit()
+    dbConnect.getdbcon().commit()
 # end exec
 
 """translates None into NULL, string into 'string' """
@@ -137,7 +137,7 @@ def dbval(pval):
 def execmany(psql, recs):
     # print (psql)
     # return
-    cursor = dbConnect.myDbConn.cursor()
+    cursor = dbConnect.getdbcon().cursor()
     try:
         cursor.executemany(psql, recs)
     except sqlite3.Error as e:
@@ -147,7 +147,7 @@ def execmany(psql, recs):
             logmessages.writelog(psql)
             logmessages.writelog("execmany: unexpected SQL-error: \t%s" % e)
             raise e
-    dbConnect.myDbConn.commit()
+    dbConnect.getdbcon().commit()
 # execmany
 
 def valuepairs2sqlexpr(**colvalues):

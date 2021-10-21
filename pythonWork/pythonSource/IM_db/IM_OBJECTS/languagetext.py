@@ -19,12 +19,13 @@ class Languagetext(Baseobject):
     ENTI_SYNONYM: str = 'ENTI_SYNONYM'
     BURU_NAME: str = 'BURU_NAME'
     BURU_ERRORMSG: str = 'BURU_ERRORMSG'
+    EXPL_VALUE: str = 'EXPL_VALUE'
     ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
         , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
         , ENTI_SYNONYM
         , RELA_TEXT_TO, RELA_TEXT_FROM
         , DOMA_NAME, DOMA_DESCR
-        , BURU_NAME, BURU_ERRORMSG
+        , BURU_NAME, BURU_ERRORMSG,EXPL_VALUE
                            ]
 
     __greportLang: str = None
@@ -35,80 +36,87 @@ class Languagetext(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(Languagetext._columnlist) == 0): Languagetext._columnlist = Baseobject.gettablecolumns(
-            Languagetext._tablename)
         super().__init__()
 
     @staticmethod
     def filldefaulttext(plang):
         """füllt sämtliche übersetzten Elemente in die lang_texts der Defaultsprache ein.
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
-           Synonyms have been handled beforehand (they are in a comma-separated list...)
+           Synonyms and exampleshave been handled beforehand (they are in a comma-separated list...)
         """
         assert plang, "No language provided"
-        dbDML.exec("""insert into lang_texts 
+        """select to get all multilanguage fields we know of. Has to be changed, if in a MultiLangbaseobject
+            a multilangcolumns changes"""
+        multilangfields = """select 'ENTI_NAME' mlt_attrname, enti_name mlt_text
+                                ,enti_id mlt_id,enti_uc mlt_uc,enti_dc mlt_dc
+                                    from entities 
+                                    union all
+                                   select 'ENTI_COMMENT' attrname, enti_descr text 
+                                        ,enti_id,enti_uc,enti_dc
+                                    from entities                     
+                                    union all
+                                   select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
+                                        ,enti_id,enti_uc,enti_dc
+                                    from entities                     
+                                    union all
+                                   select 'ATTR_COMMENT' attrname, attr_descr text 
+                                        ,attr_id,attr_uc,attr_dc
+                                    from attributes     
+                                    union all
+                                   select 'ATTR_TOOLTIP' attrname, attr_tooltip text 
+                                        ,attr_id,attr_uc,attr_dc
+                                    from attributes     
+                                    union all                
+                                   select 'ATTR_NAME' attrname, attr_displ_name text 
+                                        ,attr_id,attr_uc,attr_dc
+                                    from attributes  
+                                    union all                
+                                   select 'RELA_TEXT_FROM' attrname, rela_assoc_from_to text 
+                                        ,rela_id,rela_uc,rela_dc
+                                    from relations  
+                                    union all                
+                                   select 'RELA_TEXT_TO' attrname, rela_assoc_to_from text 
+                                        ,rela_id,rela_uc,rela_dc
+                                    from relations
+                                    union all 
+                                   select 'DOMA_NAME' attrname, doma_name text 
+                                        ,doma_id,doma_uc,doma_dc
+                                    from DOMAINS
+                                    union all  
+                                   select 'DOMA_DESCR' attrname, doma_descr text 
+                                        ,doma_id,doma_uc,doma_dc
+                                    from DOMAINS
+                                    union all  
+                                   select 'BURU_NAME' attrname, buru_name text 
+                                        ,buru_id,buru_uc,buru_dc
+                                    from business_rules  
+                                    union all  
+                                   select 'BURU_ERRORMSG' attrname, buru_errormsg text 
+                                        ,buru_id,buru_uc,buru_dc
+                                    from business_rules 
+                                    """
+        """correct possible inconsistencies where the original field is NULL but the udp translated value is not
+            remove all lang_texts (inserted by insertlang_texts) having empty original values"""
+        dbDML.exec(f"""delete from lang_texts
+                    where(lgtx_attrname, lgtx_mode_id)
+                        in (select mlt_attrname, mlt_id
+                                from ({multilangfields})
+                                where mlt_text is Null
+                                )""")
+        dbDML.exec(f"""insert into lang_texts 
                     (lgtx_attrname,  lgtx_text
                    ,lgtx_mode_id, lgtx_uc, lgtx_dc
                    , lgtx_lang_id)
-                  select * from 
-                    (select 'ENTI_NAME' attrname, enti_name text 
-                        ,enti_id,enti_uc,enti_dc
-                    from entities 
-                    union all
-                   select 'ENTI_COMMENT' attrname, enti_descr text 
-                        ,enti_id,enti_uc,enti_dc
-                    from entities                     
-                    union all
-                   select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
-                        ,enti_id,enti_uc,enti_dc
-                    from entities                     
-                    union all
-                   select 'ATTR_COMMENT' attrname, attr_descr text 
-                        ,attr_id,attr_uc,attr_dc
-                    from attributes     
-                    union all
-                   select 'ATTR_TOOLTIP' attrname, attr_tooltip text 
-                        ,attr_id,attr_uc,attr_dc
-                    from attributes     
-                    union all                
-                   select 'ATTR_NAME' attrname, attr_displ_name text 
-                        ,attr_id,attr_uc,attr_dc
-                    from attributes  
-                    union all                
-                   select 'RELA_TEXT_FROM' attrname, rela_assoc_from_to text 
-                        ,rela_id,rela_uc,rela_dc
-                    from relations  
-                    union all                
-                   select 'RELA_TEXT_TO' attrname, rela_assoc_to_from text 
-                        ,rela_id,rela_uc,rela_dc
-                    from relations
-                    union all 
-                   select 'DOMA_NAME' attrname, doma_name text 
-                        ,doma_id,doma_uc,doma_dc
-                    from DOMAINS
-                    union all  
-                   select 'DOMA_DESCR' attrname, doma_descr text 
-                        ,doma_id,doma_uc,doma_dc
-                    from DOMAINS
-                    union all  
-                   select 'BURU_NAME' attrname, buru_name text 
-                        ,buru_id,buru_uc,buru_dc
-                    from business_rules  
-                    union all  
-                   select 'BURU_ERRORMSG' attrname, buru_errormsg text 
-                        ,buru_id,buru_uc,buru_dc
-                    from business_rules  
-                )
-                cross join (select {} as lang_id)
-                   """.format(plang))
-
-    # filldefaulttext
+                  select mlt_attrname,  mlt_text, mlt_id, mlt_uc, mlt_dc,lang_id 
+                  from ({multilangfields})
+                cross join (select {plang} as lang_id)
+                   """)
+        return
 
     @staticmethod
     def insertlang_texts(pudpthema):
-        """übertrage alle lang_texts (ausser in der Default Language aus UDP in die lang_texts
+        """übertrage alle lang_texts (ausser in der Default Language aus UDP (siehe filldefaulttext) in die lang_texts
         """
-
         lsql = """insert  into lang_texts (lgtx_attrname, lgtx_text, lgtx_lang_id, lgtx_mode_id, lgtx_uc, lgtx_dc)
             select attrname,udpv_value,lang_id,udpv_mode_id,udpv_uc,udpv_dc
             from (select udpv_value,
@@ -131,8 +139,7 @@ class Languagetext(Baseobject):
         cross join languages 
         where lang_is_base_lang = 'TRUE'"""
         dbDML.exec(lsql)
-
-    # insertlang_texts
+        return
 
     @staticmethod
     def getlang_texts(pattrname, pmodeid):
@@ -171,6 +178,7 @@ class Languagetext(Baseobject):
                      ,'auf Diagramm(en)': {'en': 'on diagram(s)', 'fr': 'sur ce diagramme(s)'}
                      ,'Autor': {'en': 'Author', 'fr': 'Auteur'}
                      ,'Beschreibung': {'en': 'Description', 'fr': 'Déscription'}
+                     ,'Beispiele': {'en': 'Examples', 'fr': 'Exemples'}
                      ,'Beziehung': {'en': 'Relationship', 'fr': 'Relation'}
                      ,'Beziehung(en)': {'en': 'relationship(s)', 'fr': 'Relation(s)'}
                      ,'Beziehungen': {'en': 'Relationships', 'fr': 'Relations'}

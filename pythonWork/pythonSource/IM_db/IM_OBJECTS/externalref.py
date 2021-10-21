@@ -4,6 +4,8 @@ from datetime import datetime
 
 class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
+    SOURCE_EAXML:str='EAXML'
+
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
     _idcolname: str = _prefix + '_id'
@@ -12,7 +14,7 @@ class Externalref(Baseobject):
 
 
     def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
-        if (len(Externalref._columnlist) == 0): Externalref._columnlist = Baseobject.gettablecolumns(Externalref._tablename)
+
         super().__init__()
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid

@@ -3,8 +3,6 @@ import sqlite3
 from IM_DB import dbDML, dbDDL,logmessages
 from datetime import datetime
 
-
-
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
@@ -20,7 +18,6 @@ class Boolean:
         else:
             raise Exception('Ungültiger Wert für Boolean "{}"'.format(pstr))
 
-    # str2bool
     @classmethod
     def bool2str(cls,bool):
         return cls.TRUE if bool else cls.FALSE
@@ -28,8 +25,6 @@ class Boolean:
     @classmethod
     def strnegbool(cls,pstr):
         return cls.bool2str(not cls.str2bool(pstr))
-    # strNegBool
-
 
 # Boolean
 
@@ -59,7 +54,7 @@ class Baseobject:
 
     def setdefaultval(self, pcolname, pvalue):
         col = self.fullcolname(pcolname.lower())
-        if col in self._columnlist:
+        if col in self._columnlist.keys():
             if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
 
     def __init__(self, psrcname=None, pscrid=None):
@@ -71,13 +66,13 @@ class Baseobject:
 
 
     def __emptyclass(self):
-        for col in self._columnlist:
+        for col in self._columnlist.keys():
             self.setcolvalue(pcolname=col,pvalue=None)
     # emptyclass
 
     def _semanticcols(self):
         """Return list of columns without standard management columns"""
-        return list(set(self._columnlist).difference((self.fullcolname(n) for n in ['id', 'uc', 'um', 'dc', 'dm'])))
+        return list(set(self._columnlist.keys()).difference((self.fullcolname(n) for n in ['id', 'uc', 'um', 'dc', 'dm'])))
 
     def semanticequal(self,pbrother,pequalexceptlist=[]):
         """ true, if all semantic elements are equal. Managing attributes (id, uc,dc etc.) are excluded"""
@@ -96,14 +91,15 @@ class Baseobject:
         return "{} ({}) has no name".format(self._prefix,self.getid())
 
     def toarray(self):
-        return [self.__dict__[col] for col in self._columnlist]
+        return [self.__dict__[col] for col in self._columnlist.keys()]
 
     def totuple(self):
         return tuple(self.toarray())
 
     def _fromarray(self, parr):
-        for key, val in enumerate(parr):
-            self.__dict__[self._columnlist[key]] =val
+        for cnt, val in enumerate(parr):
+            collist = {colvalue[0]:colname for colname, colvalue in self._columnlist.items()}
+            self.__dict__[collist[cnt]] =val
         return self
 
     def getid(self):
@@ -161,10 +157,10 @@ class Baseobject:
 
     def updatedb(self, pdoerrhdlng=True):
         now = datetime.today()
-        self.setcolvalue(pcolname='dm',pvalue=now)
+        self.setdefaultval(pcolname='dm',pvalue=now)
         self.setdefaultval(pcolname='um', pvalue=Baseobject.defaultCreator)
 
-        updcollist = self._columnlist.copy()
+        updcollist = list(self._columnlist.keys())
         updcollist.remove(self._idcolname) #ID will never be changed, it is the where-condition
         lsql = """update {} """.format(self._tablename)
         lsql += """\nset {}""".format('\n,'.join(col +" = ?" for col in updcollist))
@@ -193,38 +189,42 @@ class Baseobject:
         sql = "PRAGMA table_info({})".format(ptablename)
         try:
             cols = dbDML.select(sql)
-            retval = [c[1].lower() for c in cols]
+            defval = lambda val: None if val is None else val.strip("'").strip('"')
+            retval = {c[1].lower(): [c[0],defval(c[4])] for c in cols}
         except:
-            retval = []
+            retval = {}
         return retval
 
     def setdefaultvalues(self):
-        sql = "PRAGMA table_info({})".format(self._tablename)
-        cols = dbDML.select(sql)
-        for c in cols:
-            defval= c[4]
-            if defval is None: continue
-            defval = defval.strip("'")
-            defval = defval.strip('"')
-            colname = c[1].lower()
-            self.setcolvalue(pcolname=colname,pvalue=defval)
-        #for
+        for colname,colvalue in self._columnlist.items():
+            self.setcolvalue(pcolname=colname, pvalue=colvalue[1])
         return
+        # sql = "PRAGMA table_info({})".format(self._tablename)
+        # cols = dbDML.select(sql)
+        # for c in cols:
+        #     defval= c[4]
+        #     if defval is None: continue
+        #     defval = defval.strip("'")
+        #     defval = defval.strip('"')
+        #     colname = c[1].lower()
+        #     self.setcolvalue(pcolname=colname,pvalue=defval)
+        # #for
+        #return
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
-        lretval += "\n".join("{} = '{}'".format(col, self.colvalue(col)) for col in self._columnlist)
+        lretval += "\n".join("{} = '{}'".format(col, self.colvalue(col)) for col in self._columnlist.keys())
         return lretval
 
     def getbyid(self, pid):
         if pid is None: return None
-        data = self.select(pwhere=("{}=?".format(self._idcolname), pid))
+        data = self.select(pwhere=(f"{self._idcolname}=?", pid))
         if (len(data) > 1):
-            logmessages.writelog("{}: nonunique ID={}'".format(self._tablename, pid))
-            raise Exception('{}: nonunique ID={}'.format(self._tablename, pid))
+            logmessages.writelog(f"{self._tablename}: nonunique ID={pid}'")
+            raise Exception(f'{self._tablename}: nonunique ID={pid}')
         elif (len(data) == 0):
-            logmessages.writelog("{}: nonexistent ID={} '".format(self._tablename, pid))
-            raise Exception('{}: nonexistent ID={}'.format(self._tablename, pid))
+            logmessages.writelog(f"{self._tablename}: nonexistent ID={pid} '")
+            raise Exception(f'{self._tablename}: nonexistent ID={pid}')
         else:
             self = data[0]
         return self
@@ -308,7 +308,15 @@ class Baseobject:
     def getIDbyODMref(self, psrcid):
         return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
 
-#    def getsprachvals(self):
+
+    def getbyEAref(self, psrcid):
+        return self.getbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
+
+
+    def getIDbyEAref(self, psrcid):
+        return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
+
+    #    def getsprachvals(self):
 #        raise NotImplementedError("Must override getsprachvals")
 
     def getukvaluepairs(self):
@@ -369,19 +377,17 @@ class Baseobject:
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])
 
-        retval = None
+        wherecond = lambda arg: "" if arg is None else " where {}".format(arg if type(arg) is str else arg[0])
         try:
             modedelcnt = 0
             if cls._modelemtype is not None:
                 subselect = "select {} from {}".format(cls._idcolname, cls._tablename)
-                values = []
                 if pwhere is not None:
-                    subselect += " where {}".format(pwhere[0])
+                    subselect += wherecond(pwhere)
                 modedelcnt = Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
             #fi
             lsql = """delete from {} {}""" \
-                .format(cls._tablename
-                        , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0]))
+                .format(cls._tablename, wherecond(pwhere))
             elemdelcnt = dbDML.delete(lsql,*arguments)
             retval = elemdelcnt + modedelcnt #cascade delete from MODE has to be counted as well
         except Exception as err:
@@ -390,8 +396,7 @@ class Baseobject:
 
     @classmethod
     def columnsliststring(cls, pplaceholder=False):
-        return ','.join('?' if pplaceholder else col for col in cls._columnlist)
-
+        return ','.join('?' if pplaceholder else col for col in cls._columnlist.keys())
 
 # Baseobject
 
@@ -421,8 +426,6 @@ class MultilangBaseobject(Baseobject):
         # try
 
         return retval
-
-
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref

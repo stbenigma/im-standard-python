@@ -1,0 +1,1154 @@
+{
+   "model": {
+      "name": "Model",
+      "type": "logical",
+      "language": "en",
+      "uc": "fillDBea",
+      "dc": "2012-04-17 00:00:00",
+      "um": null,
+      "dm": "2012-04-17 00:00:00"
+   },
+   "languages": {
+      "en": {
+         "name": "English",
+         "iso3": "eng",
+         "modellanguage": true,
+         "replacementlang": null
+      }
+   },
+   "entities": {
+      "ENTI6": {
+         "name": {
+            "en": "Airport"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:48:46",
+         "um": null,
+         "dm": "2021-06-29 17:48:49",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{1FDCDC17-0587-4f38-AFB1-3ED0159DA4A7}",
+               "2021-08-11 10:54:19.336295"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [
+            "ATTR12"
+         ],
+         "relations+": [
+            "RELA14",
+            "RELA15"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG17"
+         ]
+      },
+      "ENTI8": {
+         "name": {
+            "en": "Freight plane"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 1,
+         "uc": "stb",
+         "dc": "2021-08-01 12:40:51",
+         "um": null,
+         "dm": "2021-08-01 12:45:06",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{BC6C3F48-608D-44cb-B701-A0EB12D545F5}",
+               "2021-08-11 10:54:19.338047"
+            ]
+         },
+         "supertypes+": [
+            "ENTI4"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA10"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG17"
+         ]
+      },
+      "ENTI5": {
+         "name": {
+            "en": "Leg"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Description in entiy  LEG"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:46:55",
+         "um": null,
+         "dm": "2021-07-31 16:18:31",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{17FB5FB5-9389-4852-A17F-69CC44782683}",
+               "2021-08-11 10:54:19.335402"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA14",
+            "RELA15"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG17"
+         ]
+      },
+      "ENTI3": {
+         "name": {
+            "en": "Pilot"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:23",
+         "um": null,
+         "dm": "2021-06-29 17:39:34",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{7AD59C4D-AA70-4019-9E4C-4F03A266D39D}",
+               "2021-08-11 10:54:19.333538"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA13"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG17"
+         ]
+      },
+      "ENTI4": {
+         "name": {
+            "en": "Plane"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:27",
+         "um": null,
+         "dm": "2021-06-29 17:39:44",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{15D14A8B-908A-4714-9424-DA0437161DF6}",
+               "2021-08-11 10:54:19.334518"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [
+            "ENTI8"
+         ],
+         "attributes+": [],
+         "relations+": [
+            "RELA10",
+            "RELA13",
+            "RELA16"
+         ],
+         "keys+": [],
+         "inarcs+": [
+            "ARCS9"
+         ],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG17"
+         ]
+      },
+      "ENTI7": {
+         "name": {
+            "en": "Trip"
+         },
+         "shortname": null,
+         "descr": {
+            "en": null
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": null,
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "bue",
+         "dc": "2021-06-29 18:10:07",
+         "um": null,
+         "dm": "2021-06-29 18:10:13",
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "sourceref": {
+            "EAXML": [
+               "{C01627F8-35E3-4085-A148-728AC88C96B6}",
+               "2021-08-11 10:54:19.337170"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA16"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG17"
+         ]
+      }
+   },
+   "domains": {
+      "DOMA11": {
+         "name": {
+            "en": "Airport Codes"
+         },
+         "descr": {
+            "en": "Description in enumeration , domain"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "LOV",
+         "displdatatype+": {
+            "en": "List of values"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "bue",
+         "um": null,
+         "dc": "2021-06-29 17:33:40",
+         "dm": "2021-07-31 16:18:15",
+         "maxlng": null,
+         "values": [
+            {
+               "value": "ZHR",
+               "sort": 0,
+               "displ": null,
+               "descr": null,
+               "uc": "filldbea",
+               "dc": "2021-08-11 10:54:19.341267",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "BSL",
+               "sort": 1,
+               "displ": null,
+               "descr": null,
+               "uc": "filldbea",
+               "dc": "2021-08-11 10:54:19.341985",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "STR",
+               "sort": 2,
+               "displ": null,
+               "descr": null,
+               "uc": "filldbea",
+               "dc": "2021-08-11 10:54:19.342556",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "MUC",
+               "sort": 3,
+               "displ": null,
+               "descr": null,
+               "uc": "filldbea",
+               "dc": "2021-08-11 10:54:19.343143",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "FDH",
+               "sort": 4,
+               "displ": null,
+               "descr": null,
+               "uc": "filldbea",
+               "dc": "2021-08-11 10:54:19.343689",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "usedinattrs+": [
+            "ATTR12"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "EAXML": [
+               "{7320D192-A2DF-463e-9FF6-A1E3A7987E33}",
+               "2021-08-11 10:54:19.340875"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA2": {
+         "name": {
+            "en": "unknown"
+         },
+         "descr": {
+            "en": null
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "sys",
+         "um": null,
+         "dc": "2021-08-11 10:54:19.329328",
+         "dm": null,
+         "maxlng": null,
+         "syntaxrule": null,
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "EAXML": [
+               "DOMAunknown",
+               "2021-08-11 10:54:19.330092"
+            ]
+         },
+         "referencedby": []
+      }
+   },
+   "attributes": {
+      "ATTR12": {
+         "techname": "IATA_CODE",
+         "name": {
+            "en": "IATA Code"
+         },
+         "seq": null,
+         "entity": "ENTI6",
+         "domain": "DOMA11",
+         "basedatatype+": null,
+         "type+": "LOV",
+         "descriptive": false,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": null
+         },
+         "uc": "filldbea",
+         "dc": "2021-08-11 10:54:19.344745",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "EAXML": [
+               "{CB0F96CF-C29B-4f9a-8B72-FFE959450E46}",
+               "2021-08-11 10:54:19.345825"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": []
+      }
+   },
+   "relations": {
+      "RELA10": {
+         "name": "Plane_subtype_Freight plane",
+         "type": "ISAS",
+         "from-to": {
+            "enti": "ENTI8",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI4",
+            "arc": "ARCS9",
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {},
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:27",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA13": {
+         "name": "RELA-21",
+         "type": "1:1",
+         "from-to": {
+            "enti": "ENTI4",
+            "arc": null,
+            "assoc": {
+               "en": "is piloted by"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "to-from": {
+            "enti": "ENTI3",
+            "arc": null,
+            "assoc": {
+               "en": "pilots"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "EAXML": [
+               "{8E978A5E-BA5C-4e3b-AFE6-44AEBBEB23EA}",
+               "2021-08-11 10:54:19.347227"
+            ]
+         },
+         "uc": "filldbea",
+         "dc": "2021-08-11 10:54:19.346639",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA14": {
+         "name": "RELA-24",
+         "type": "M:1",
+         "from-to": {
+            "enti": "ENTI5",
+            "arc": null,
+            "assoc": {
+               "en": "land on"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI6",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1..N"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "EAXML": [
+               "{11649298-B3E9-4707-9447-F12045A7E622}",
+               "2021-08-11 10:54:19.348655"
+            ]
+         },
+         "uc": "filldbea",
+         "dc": "2021-08-11 10:54:19.348065",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA15": {
+         "name": "RELA-25",
+         "type": "M:1",
+         "from-to": {
+            "enti": "ENTI5",
+            "arc": null,
+            "assoc": {
+               "en": "departure from"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI6",
+            "arc": null,
+            "assoc": {
+               "en": "source of"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1..N"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "EAXML": [
+               "{8D2D7434-63C6-4986-91D5-DADA125D3D06}",
+               "2021-08-11 10:54:19.350036"
+            ]
+         },
+         "uc": "filldbea",
+         "dc": "2021-08-11 10:54:19.349422",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA16": {
+         "name": "RELA-26",
+         "type": "M:1",
+         "from-to": {
+            "enti": "ENTI4",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..N"
+         },
+         "to-from": {
+            "enti": "ENTI7",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "EAXML": [
+               "{7F9088D3-2B7B-48f8-A476-6E650D2E7E61}",
+               "2021-08-11 10:54:19.351373"
+            ]
+         },
+         "uc": "filldbea",
+         "dc": "2021-08-11 10:54:19.350801",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      }
+   },
+   "arcs": {
+      "ARCS9": {
+         "name": "Plane_subtype",
+         "entity": "ENTI4",
+         "relations": [
+            "RELA10"
+         ],
+         "sourceref": {},
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:27",
+         "um": null,
+         "dm": null
+      }
+   },
+   "keys": {},
+   "documents": {},
+   "orgunits": {},
+   "categories": {},
+   "systems": {},
+   "tables": {},
+   "columns": {},
+   "diagrams": {
+      "DIAG17": {
+         "name": "riddle",
+         "legend": {
+            "x": 0,
+            "y": 0,
+            "model": "Model"
+         },
+         "type": "Entity",
+         "width": 516,
+         "height": 338,
+         "uc": "bue",
+         "dc": "2021-06-29 17:33:03",
+         "um": "2021-08-01 12:46:31",
+         "dm": null,
+         "elements": {
+            "attribute": [],
+            "entity": [
+               {
+                  "element": "ENTI3",
+                  "index": 0,
+                  "pos_x": 20,
+                  "pos_y": 240,
+                  "uc": "fillDBea",
+                  "dc": "2021-08-11 10:54:19.355968",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 126,
+                     "height": 70,
+                     "opacity": 100,
+                     "color": "c3f062",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "602de8"
+                  }
+               },
+               {
+                  "element": "ENTI4",
+                  "index": 0,
+                  "pos_x": 27,
+                  "pos_y": 27,
+                  "uc": "fillDBea",
+                  "dc": "2021-08-11 10:54:19.356646",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 112,
+                     "height": 89,
+                     "opacity": 100,
+                     "color": "c3f062",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "602de8"
+                  }
+               },
+               {
+                  "element": "ENTI5",
+                  "index": 0,
+                  "pos_x": 346,
+                  "pos_y": 46,
+                  "uc": "fillDBea",
+                  "dc": "2021-08-11 10:54:19.357465",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 147,
+                     "height": 69,
+                     "opacity": 100,
+                     "color": "c3f062",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "602de8"
+                  }
+               },
+               {
+                  "element": "ENTI6",
+                  "index": 0,
+                  "pos_x": 369,
+                  "pos_y": 258,
+                  "uc": "fillDBea",
+                  "dc": "2021-08-11 10:54:19.358065",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 147,
+                     "height": 80,
+                     "opacity": 100,
+                     "color": "c3f062",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "602de8"
+                  }
+               },
+               {
+                  "element": "ENTI7",
+                  "index": 0,
+                  "pos_x": 194,
+                  "pos_y": 46,
+                  "uc": "fillDBea",
+                  "dc": "2021-08-11 10:54:19.358666",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 90,
+                     "height": 70,
+                     "opacity": 100,
+                     "color": "c3f062",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "602de8"
+                  }
+               },
+               {
+                  "element": "ENTI8",
+                  "index": 0,
+                  "pos_x": 49,
+                  "pos_y": 62,
+                  "uc": "fillDBea",
+                  "dc": "2021-08-11 10:54:19.359704",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 69,
+                     "height": 37,
+                     "opacity": 100,
+                     "color": "c3f062",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "602de8"
+                  }
+               }
+            ]
+         },
+         "relationships": {
+            "RELA13": {
+               "linewidth": 3,
+               "linecolor": "ffffff",
+               "lineopacity": 100,
+               "startedge": "S",
+               "startposition": null,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 0,
+               "starttext_y": 10,
+               "starttext_width": 30,
+               "starttext_height": 5,
+               "endedge": "N",
+               "endposition": null,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 30,
+               "endtext_y": 40,
+               "endtext_width": 30,
+               "endtext_height": 5,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "fillDBea",
+               "dc": "2021-08-11 10:54:19.360508",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 83,
+                     "y": 116,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.361553",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 83,
+                     "y": 178,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.361902",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 83,
+                     "y": 240,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.362204",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA14": {
+               "linewidth": 3,
+               "linecolor": "ffffff",
+               "lineopacity": 100,
+               "startedge": "S",
+               "startposition": null,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 0,
+               "starttext_y": 10,
+               "starttext_width": 30,
+               "starttext_height": 5,
+               "endedge": "N",
+               "endposition": null,
+               "end_connector": "M",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 30,
+               "endtext_y": 40,
+               "endtext_width": 30,
+               "endtext_height": 5,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "fillDBea",
+               "dc": "2021-08-11 10:54:19.362834",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 419.5,
+                     "y": 115,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.363638",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 431,
+                     "y": 186.5,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.363945",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 442.5,
+                     "y": 258,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.364235",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA15": {
+               "linewidth": 3,
+               "linecolor": "ffffff",
+               "lineopacity": 100,
+               "startedge": "S",
+               "startposition": null,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 0,
+               "starttext_y": 10,
+               "starttext_width": 30,
+               "starttext_height": 5,
+               "endedge": "N",
+               "endposition": null,
+               "end_connector": "M",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 30,
+               "endtext_y": 40,
+               "endtext_width": 30,
+               "endtext_height": 5,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "fillDBea",
+               "dc": "2021-08-11 10:54:19.364867",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 419.5,
+                     "y": 115,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.365633",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 431,
+                     "y": 186.5,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.365943",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 442.5,
+                     "y": 258,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.366231",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA16": {
+               "linewidth": 3,
+               "linecolor": "ffffff",
+               "lineopacity": 100,
+               "startedge": "N",
+               "startposition": null,
+               "start_connector": "M",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 0,
+               "starttext_y": 10,
+               "starttext_width": 30,
+               "starttext_height": 5,
+               "endedge": "N",
+               "endposition": null,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 30,
+               "endtext_y": 40,
+               "endtext_width": 30,
+               "endtext_height": 5,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "fillDBea",
+               "dc": "2021-08-11 10:54:19.366863",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 83,
+                     "y": 27,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.367626",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 161,
+                     "y": 36.5,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.367909",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 239,
+                     "y": 46,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "sys",
+                     "dc": "2021-08-11 10:54:19.368208",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            }
+         },
+         "arcs": {},
+         "referencedby": [],
+         "sourceref": {
+            "EAXML": [
+               "{31F9B6EA-8455-42d6-9FDF-9D5F74D13FB4}",
+               "2021-08-11 10:54:19.355200"
+            ]
+         }
+      }
+   },
+   "userdefprops": {},
+   "physicalunits": {},
+   "datatypes": {
+      "DATY1": {
+         "name": "unknown",
+         "basetype": "STRING",
+         "uc": "fillDB",
+         "dc": "2021-08-11",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "EAXML": [
+               "DATYunknown",
+               "2021-08-11 10:54:19.328911"
+            ]
+         }
+      }
+   },
+   "storageformats": {},
+   "_imprint_": {
+      "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/ea-interface/BOPTeatest/DB/riddle.db",
+      "created": "2021-08-11 10:54:19.393231",
+      "Modelversion": "1.5",
+      "hashvalue": -5020686062333208182,
+      "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
+   }
+}

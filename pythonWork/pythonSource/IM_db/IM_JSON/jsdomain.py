@@ -34,8 +34,8 @@ def domaingroupmembers2sql(presult:Mergeresult,pgrpdomaid,pelements):
         except Exception as err:
             presult.markdberror(perr=err, pelem=list(jelem))
     #for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
+    presult.addinscnt(max(0,(inscnt-delcnt)))
+    presult.adddelcnt(max(0,(delcnt-inscnt)))
     return
 
 def js2deva(pdomaid,pelem):
@@ -68,8 +68,8 @@ def defaultvalues2sql(presult:Mergeresult, pdomaid, pvalues):
         except Exception as err:
             presult.markdberror(perr=err, pelem=val)
     #for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
+    presult.addinscnt(max(0,(inscnt-delcnt)))
+    presult.adddelcnt(max(0,(delcnt-inscnt)))
     return
 
 

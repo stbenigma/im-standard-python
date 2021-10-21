@@ -112,6 +112,6 @@ def colattrmaps2sql(presult:Mergeresult, pcoluid, pattrs):
             continue
         #try
     #for
-    presult.insertcnt += max(0,(inscnt-delcnt))
-    presult.deletecnt += max(0,(delcnt-inscnt))
+    presult.addinscnt(max(0,(inscnt-delcnt)))
+    presult.adddelcnt(max(0,(delcnt-inscnt)))
     return

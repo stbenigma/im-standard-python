@@ -10,7 +10,7 @@ class Interface(Baseobject):
     _defaultorderby = 'intf_name'
 
     def __init__(self, psrcname=None, psrcid=None):
-        if (len(Interface._columnlist) == 0): Interface._columnlist = Baseobject.gettablecolumns(Interface._tablename)
+
         super().__init__(pscrid=psrcid
                          , psrcname=psrcname)
 

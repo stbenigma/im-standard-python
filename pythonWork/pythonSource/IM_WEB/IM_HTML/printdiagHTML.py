@@ -7,7 +7,6 @@ LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
 DEFAULT_LINEWIDTH: int = 1
 ICONSIZE: int = 40
-FONTPIXEL: int = 5
 
 
 def printlegend(pdata,pwidth,pheigh,px,py):
@@ -82,14 +81,18 @@ def hex2rbg(phex):
         raise
     return "rgb({},{},{})".format(r,g,b)
 #hex2rbg
-def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False):
-    showtext= """<text x="{}" y="{}" fill="{}" fill-opacity="1.0" font-size="{}" stroke="none">
-    {}
+def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False,pdescr=None):
+    MAXATTRDESCR=300
+    showtext= """<text x="{posx}" y="{posy}" fill="{color}" fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+    {text}{title}
     </text>
     """
     retval = ""
     if pstandalone: retval += "<g >"
-    retval += showtext.format(px, py,pfillcolor,pfontsize, ptext)
+    retval += showtext.format(posx=px, posy=py,color=pfillcolor,fontsize=pfontsize, text=ptext
+                              ,title="" if pstandalone\
+                                else "<title>{}</title>".format(" " if pdescr is None\
+                                                                        else pdescr[:MAXATTRDESCR]))
     if pstandalone: retval += "</g>\n"
     return retval
 #printtext
@@ -125,7 +128,7 @@ def printrela(plist):
         """lise_x,lise_y,lise_konnektor,lise_linientyp"""
         points = line['linesegments']
         retval += relastart
-        for idx,point in points.items():
+        for idx,point in enumerate(points):
             if idx == len(points)-1: break #letzter Punkt ist endx/y
             startx=point['x']
             starty=point['y']
@@ -162,84 +165,34 @@ def printrela(plist):
     return retval
 #printrela
 
-def textpos(pangle,px,py,ptextlen,pstart,plines):
-    if ((pstart and (pangle >= 0) and (pangle < math.pi / 2)) 
-       or (not pstart and (pangle >= math.pi / 2))):
-        #line goes vertical North
-        x = px + 5
-        y = py - (5 * (plines+1))
-    elif ((pstart and (pangle >= math.pi / 2) and (pangle < math.pi))
-         or(not pstart and (pangle < 0))):
-        #line goes vertical south
-        x = px + 5
-        y = py + 10
-    elif (pstart and (pangle >= math.pi)
-         or (not pstart and (pangle >= 0) and (pangle < math.pi / 2))):
-        #line goes horizontal west
-        x = px - 5 - ptextlen
-        y = py + 10
-    else:
-        #horinzonal east
-        x = px + 5
-        y = py - 5
+def print1text(ptext,px,py,pwidth,pcolor,psize):
+    FONTPIXEL: int = 5
+    textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
+    retval = ""
+    if ptext is not None:
+        words = ptext.split(' ')
+        posx,posy = int(px),int(py)
+        idx,t = 0,words[0]
+        while idx < len(words):
+            idx += 1
+            while idx < len(words) and textlength(t + words[idx]) < pwidth:
+                t = t + " " + words[idx]
+                idx += 1
+            # while
+            retval += printtext(px=px, py=posy, ptext=t
+                                , pfillcolor=hex2rbg(pcolor), pfontsize=psize
+                                , pstandalone=True)
+            if idx < len(words): t = words[idx]
+            posy += 12
+        # while    
     # fi
-    return (x,y)
-#textpos
+    return retval
 
 def printtexte(plist,plang):
-    """beda_starttext_x,beda_starttext_y
-       ,beda_starttext_breite,beda_starttext_hoehe
-        ,beda_endtext_x,beda_endtext_y
-        ,beda_endtext_breite,beda_endtext_hoehe
-       ,beda_schriftfarbe,beda_schriftgroesse
-       ,sfrom.sptx_text fromname
-       ,sto.sptx_text toname
-        ,beda_id
-       ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft"""
     retval= ""
     for relaanker,relaelem in plist.items():
-        starttext=getelement(relaanker)['from-to']['assoc'][plang]
-        fontcolor = relaelem['fontcolor']
-        fontsize = relaelem['fontsize']
-        endtext=getelement(relaanker)['to-from']['assoc'][plang]
-
-        #find the starting-/endingpoints of the first / last linesegment = touchoint with entity.
-        linesegs = relaelem['linesegments']
-        if len(linesegs)== 0: continue
-        linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
-        lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
-
-        #assume fixed length font
-        textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
-        if starttext is not None:
-            #if line is vertically oriented split text in shorter elements
-            if ((((linestartangle >= math.pi / 2) and (linestartangle < math.pi )) or (linestartangle < 0))):
-                s = starttext.split(' ')
-            else:
-                s =[starttext]
-
-            posx, posy = textpos(pangle=linestartangle, px=linestartx, py=linestarty, ptextlen=textlength(starttext),
-                                 pstart=True,plines=len(s))
-            for t in s:
-                retval += printtext(px=posx, py=posy, ptext=t
-                  , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
-                  ,pstandalone=True)
-                posy += 12 
-                
-        if endtext is not None:
-            if ((((lineendangle >= math.pi / 2) and (lineendangle < math.pi )) or (lineendangle < 0))):
-                s = endtext.split(' ')
-            else:
-                s =[endtext]
-            posx,posy = textpos(pangle=lineendangle,px=lineendx,py=lineendy,ptextlen=textlength(endtext)
-                                ,pstart=False,plines=len(s))
-            if lineendangle > 0:
-                posy -= 12 *(len(s)-1)
-            for t in s:
-                retval += printtext(px=posx, py=posy, ptext=t
-                          , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
-                          , pstandalone=True)
-                posy += 12 
+        retval += print1text(ptext=getelement(relaanker)['from-to']['assoc'][plang],px=relaelem["starttext_x"],py=relaelem["starttext_y"],pwidth=relaelem["starttext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
+        retval += print1text(ptext=getelement(relaanker)['to-from']['assoc'][plang],px=relaelem["endtext_x"],py=relaelem["endtext_y"],pwidth=relaelem["endtext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
     #for
     return retval
 #printtexte
@@ -362,29 +315,33 @@ def printarcs(plist):
 getelement = lambda e:printHTML.getmodel().getbyid(e)
 
 def printelements(pdiag, pdiaganker,plang):
-    entistart ="""<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-        transform="translate({},{})" >
-        <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-        <text id="{}" x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
-        """
-    entiende="""</g>"""
+    entistart ="""<g  fill="{color}" stroke="{margcolor}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
+        transform="translate({posx},{posy})" >
+        <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect><a href="#{ref}" >
+        <text id="{textref}" x="20" y="13" fill="{fontcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            {name} </text>{title}</a>
+        </g>"""
     imagehtml=""""<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
         .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
 
     retval = ""
+    MAXDESCRCHARS = 300
     for eler in pdiag['elements']['entity']:
         elerui=eler["ui"]
-        retval += entistart.format(hex2rbg(elerui['color']), hex2rbg(elerui['margincolor'])
-                                               , round(elerui['opacity']/100,2), round(elerui['marginopacity']/100,2)
-                                               , eler['pos_x'], eler['pos_y'], elerui['width'], elerui['height']
-                                               , eler['element']
-                                               , pdiaganker + '-' + eler['element']
-                                               , hex2rbg(elerui['fontcolor'])
-                                               , 11  #vorläufig mal fix verdrahtet e[9], font size
-                                               , getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index'])))
+        entidescr = getelement(eler['element'])['descr'][plang]
+        if entidescr is None:
+            entidescr = ' '
+        else: entidescr = entidescr[: MAXDESCRCHARS]
+        retval += entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
+                                               , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
+                                               , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
+                                               , ref=eler['element']
+                                               , textref=pdiaganker + '-' + eler['element']
+                                               , fontcolor=hex2rbg(elerui['fontcolor'])
+                                               , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
+                                               , name=getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
+                                                ,title="" if entidescr is None else f"<title>{entidescr}</title>")
 
-        retval += entiende
         iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']),pdefaultlang=printHTML.getmodel().getdefaultlang())
         if iconsrc != "":
             retval += imagehtml.format(iconsrc
@@ -400,6 +357,7 @@ def printelements(pdiag, pdiaganker,plang):
         aelem = getelement(attr['element'])
         retval += printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
                   , pfillcolor=hex2rbg(attrui['fontcolor']), pfontsize=attrui['fontsize']
+                 ,pdescr=aelem['descr'][plang]
                   )
     # for
     retval += printrela(plist=pdiag['relationships'])
@@ -409,19 +367,17 @@ def printelements(pdiag, pdiaganker,plang):
 #printelements
 
 def putrefinsvg(ptext,pdiagid,plang):
-    imagehtml = """<image href = "image/{}.png" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
-                .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
-    deflang = printHTML.getmodel().jsmodel["model"]["language"]
-
+    MAXDESCR=300
     retval = ptext
     for entiid,entival in printHTML.getmodel().getelements(pelemtype='ENTI').items():
         try:
             odmref = entival["sourceref"]["ODM"][0]
         except:
             continue
-
-        entisearch = re.search(r'<g.*"translate\((\d+),(\d+)\)".*\n<rect.*width="(\d+)".*rx="(\d+)".*\n.*<text id="{}-{}"[\d\D]*?</g>'
-                            .format(re.escape(odmref[:8]),re.escape(odmref[-12:])), retval)
+        diagodm=re.escape(odmref[:8])
+        entiodm=re.escape(odmref[-12:])
+        entisearch = re.search(r'<g.*"translate\((\d+),(\d+)\)".*\n<rect.*width="(\d+)".*rx="(\d+)".*\n.*<text id="{diagodm}-{entiodm}"[\d\D]*?</g>'
+                            .format(diagodm=diagodm,entiodm=entiodm), retval)
         if entisearch is None:
             continue
         entistr = entisearch.group()
@@ -431,7 +387,12 @@ def putrefinsvg(ptext,pdiagid,plang):
 
         newenti = entistr
         #replace id by diagid-entiid
-        newenti = re.sub('"{}-{}"'.format(re.escape(odmref[:8]),re.escape(odmref[-12:])), '"{}-{}"'.format(re.escape(pdiagid),re.escape(entiid)), newenti)
+        newenti = re.sub(f'"{diagodm}-{entiodm}"', f'"{re.escape(pdiagid)}-{re.escape(entiid)}"', newenti)
+        #add title to rect
+        entidescr = entival["descr"][plang]
+        entidescr = " " if entidescr is None else entidescr[:MAXDESCR]
+        newenti = re.sub('/>.*\n<text id=', '>{}</rect><text id="'.format("<title>{}</title>".format(entidescr)), newenti)
+        newenti = re.sub('(<text id="[\d\D]+?</text>)', r'\1{}'.format("<title>{}</title>".format(entidescr)), newenti)
         #add <a href= to enti
         newenti = re.sub('<text id="', '<a href="#{}"><text id="'.format(re.escape(entiid)), newenti)
         newenti = re.sub(r'(<text id="[\d\D]+?</text>)', r'\1</a>', newenti)
@@ -440,6 +401,11 @@ def putrefinsvg(ptext,pdiagid,plang):
             attrval = printHTML.getelement(attrid)
             newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang])),
                              r'<a href="#{}">\1</a>'.format(re.escape(attrid)), newenti)
+            attrdescr = attrval["descr"][plang]
+            attrdescr = " " if attrdescr in (None,"") else attrdescr[:MAXDESCR]
+            newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang]))
+                             ,r'\1{}'.format("<title>{}</title>".format(attrdescr)),
+                             newenti)
         #add image if exists
         filename = printHTML.iconsrc(pjsenti=entival,pdefaultlang=printHTML.getmodel().getdefaultlang())
         if filename != "":
@@ -451,22 +417,28 @@ def putrefinsvg(ptext,pdiagid,plang):
 
     return retval
 
-def svgfilename(pname,plang=None):
+def checkforfile(pname,ptype,plang=None):
     retval = None
-    if (plang is not None):
-        svgfn = parameters.webDirec() + "/image/" + pname + "_" + plang + ".svg"
-        if os.path.exists(svgfn): retval = svgfn
+    if plang is not None:
+        filepath = parameters.webDirec() + "image/" + pname + "_"  + plang + "." + ptype
+        if os.path.exists(filepath):
+            retval = filepath
     #fi
-    if retval is None: #try filename without language marker
-        svgfn = parameters.webDirec() + "/image/" + pname + ".svg"
-        if os.path.exists(svgfn):
-            retval = svgfn
-        else:
-            retval = None
-        #fi
-    #fi
+    if retval is None:
+        """check for file without language_marker"""
+        filepath = parameters.webDirec() + "image/" + pname + "." + ptype
+        if os.path.exists(filepath):
+            retval = filepath
+
     return retval
 
+def svgfilename(pname,plang=None):
+    return checkforfile(pname = pname,plang = plang,ptype = "svg")
+def pdffilename(pname,plang=None):
+    retval = None
+    if checkforfile(pname = pname,plang = plang,ptype = "pdf") is not None:
+        retval = "image/"+pname+"."+"pdf"
+    return retval
 
 def getsvgfromfile(pname, plang=None):
     retval = None
@@ -482,6 +454,8 @@ def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
     retval = getsvgfromfile(pname=pdiagelem["name"],plang=plang)
     if retval is not None:
         retval = putrefinsvg(ptext=retval, pdiagid=pdiaganker, plang=plang)
+    elif pdffilename(pname=pdiagelem["name"],plang=plang) is not None:
+        retval = None
     else:
         """render diagram"""
         retval = """<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 

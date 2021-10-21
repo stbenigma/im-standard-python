@@ -13,7 +13,7 @@ class Document(Baseobject):
     _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
-        if (len(Document._columnlist) == 0): Document._columnlist = Baseobject.gettablecolumns(Document._tablename)
+
         super().__init__(pscrid=psrcid
                          ,psrcname=psrcname
                          )
@@ -130,7 +130,7 @@ class ModelelemDocu(Baseobject):
     _columnlist:list = []
 
     def __init__(self,pmodeid = None,pdocuid=None):
-        if (len(ModelelemDocu._columnlist) == 0): ModelelemDocu._columnlist = Baseobject.gettablecolumns(ModelelemDocu._tablename)
+
         super().__init__()
         self.modo_mode_id = pmodeid
         self.modo_docu_id = pdocuid

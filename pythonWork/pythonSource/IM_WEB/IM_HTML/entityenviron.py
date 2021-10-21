@@ -1,4 +1,5 @@
 from IM_JSON import JSModel
+from IM_HTML import hex2rbg
 
 """defines the classes and functions to implement an entity-environment representation"""
 nvl = lambda str,default='': str if str is not None else default
@@ -10,11 +11,14 @@ class EntityCell():
     PARENT = 'parent'
     CHILD = 'child'
 
-    def __init__(self,ptype=None,pentiid=None,pentiname=None,passoc=None):
+    def __init__(self,ptype=None,pentiid=None,pentiname=None,passoc=None,pbgcolor=None,pfontcolor=None,pdescr=None):
         self.setentiid(pentiid)
         self.setentiname(pentiname)
+        self.setentidescr(pdescr)
         self.setassoc(passoc)
         self.settype(nvl(ptype))
+        self.setbgcolor(nvl(pbgcolor,"rgb(255,255,255)"))
+        self.setfontcolor(nvl(pfontcolor,"rgb(0,0,0)"))
 
     def getentiid(self):
         return self._entiid
@@ -22,11 +26,29 @@ class EntityCell():
     def setentiid(self,pentiid):
         self._entiid = pentiid
 
+    def getbgcolor(self):
+        return self._bgcolor
+
+    def setbgcolor(self,pbgcolor):
+        self._bgcolor = pbgcolor
+
+    def getfontcolor(self):
+        return self._fontcolor
+
+    def setfontcolor(self,pfontcolor):
+        self._fontcolor = pfontcolor
+
     def gettype(self):
         return self._type
 
     def settype(self,ptype):
         self._type = ptype
+
+    def getentidescr(self):
+        return self._entidescr
+
+    def setentidescr(self,pentidescr):
+        self._entidescr = pentidescr
 
     def getentiname(self):
         return self._entiname
@@ -61,9 +83,9 @@ class EntityEnvironment():
           ,1 : {}
           ,...}
     """
-    def __init__(self,pentiid,pentiname):
+    def __init__(self,pentiid,pentiname,pbgcolor):
         self._grid = dict()
-        self.fillcell (pvidx=0,phidx='center',pcell=EntityCell(ptype=EntityCell.CENTER,pentiid=pentiid,pentiname=pentiname))
+        self.fillcell (pvidx=0,phidx='center',pcell=EntityCell(ptype=EntityCell.CENTER,pentiid=pentiid,pentiname=pentiname,pbgcolor=pbgcolor))
         return
 
     def fillcell(self,pvidx,phidx,pcell:EntityCell):
@@ -126,9 +148,11 @@ class EntityEnvironment():
         # for
         return
 
-def related(pentiid,prelated,pjson,pcardinality,pmodellang):
+def hexcolor(pcolor):
+    return hex2rbg(nvl(pcolor,"000000"))
+
+def related(pentiid,prelated,pjson,pcardinality,pmodellang,pentities):
     retval = []
-    entities:dict = pjson.getelements(pelemtype=Modelelemtype.ENTI,pfiltered=False)
     for relaid in prelated:
         rela = pjson.getelements(pelemtype=Modelelemtype.RELA,pfiltered=False)[relaid]
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
@@ -144,9 +168,11 @@ def related(pentiid,prelated,pjson,pcardinality,pmodellang):
             continue # not my relation or I am not a child or I am recursive
         #fi
         retval.append(EntityCell(ptype=EntityCell.PARENT if pcardinality == Relation.ONE else EntityCell.CHILD
-                                 ,pentiid=parentid, pentiname=entities[parentid]['name'][pmodellang],passoc=assoc))
+                             ,pentiid=parentid, pentiname=pentities[parentid]['name'][pmodellang],passoc=assoc
+                                 ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=parentid,pcolortype="color"))))
     #for
     return retval
+
 
 def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
@@ -155,36 +181,31 @@ def createentienvironment(pentiid,pjson:JSModel,pmodellang):
 
     if not pentiid in entities.keys(): return None #non existing entity is Nothing
 
-    entienvir = EntityEnvironment(pentiid=pentiid,pentiname=entities[pentiid]['name'][pmodellang])
-    enties = [EntityCell(ptype=EntityCell.ROLE,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]) for entiid in entities[pentiid]['roles+'] + entities[pentiid]['subtypes+']]
+    entienvir = EntityEnvironment(pentiid=pentiid,pentiname=entities[pentiid]['name'][pmodellang]
+                         ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid,pcolortype="color")))
+    enties = [EntityCell(ptype=EntityCell.ROLE,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
+                         ,pdescr=entities[entiid]['descr'][pmodellang]
+                         ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid,pcolortype="color"))
+                         ) for entiid in entities[pentiid]['roles+'] + entities[pentiid]['subtypes+']]
     entienvir.togrid(pcells=enties, ptype=EntityCell.ROLE)
 
-    enties = [EntityCell(ptype=EntityCell.SUPER,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]) for entiid in entities[pentiid]['supertypes+']]
+    enties = [EntityCell(ptype=EntityCell.SUPER,pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
+                         ,pdescr=entities[entiid]['descr'][pmodellang]
+                         ,pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid,pcolortype="color"))
+                         ) for entiid in entities[pentiid]['supertypes+']]
     entienvir.togrid(pcells=enties, ptype=EntityCell.SUPER)
 
     """handle Parents (I am ONE, parent is MANY)"""
-    parents = related(pentiid=pentiid,prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.ONE, pmodellang=pmodellang)
+    parents = related(pentiid=pentiid,prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.ONE, pmodellang=pmodellang
+                      ,pentities=entities)
     entienvir.togrid(pcells=parents, ptype=EntityCell.PARENT)
 
     """handle children (I am MANY, Child is ONE or MANY)"""
-    children = related(pentiid=pentiid,prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.MANY, pmodellang=pmodellang)
+    children = related(pentiid=pentiid,prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.MANY, pmodellang=pmodellang
+                      ,pentities=entities)
     entienvir.togrid(pcells=children, ptype=EntityCell.CHILD)
 
     return entienvir
-
-def enti2svg():
-    entistart = """
-    <g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-            transform="translate({},{})" >
-        <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-        <text id="{}" x="20" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-        {} </text></a>
-    """
-    entiende = """</g>"""
-
-    entisvg = entistart
-    entisvg += entiende
-    return entisvg
 
 ENTIWIDTH = 120
 ENTIHEIGHT = 20
@@ -194,22 +215,26 @@ CELLWIDTH = ENTIWIDTH *5/4
 LINESHORTEN = 20
 MAXRELACHARS = 16
 MAXENTICHARS = 21
+MAXDESCRCHARS = 300
 
 
 def printenti(pcell:EntityCell,pposx,pposy):
-    entistart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-            transform="translate({},{})" >
-            <rect x="0" y="0" width="{}" height="{}" rx="10" ry="10" /><a href="#{}" >
-            <text id="box{}" x="6" y="13" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text></a>
+    entistart = """<g  fill="{color}" stroke="{stroke}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
+            transform="translate({posx},{posy})" >
+            <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect>
+            <a href="#{ref}" >
+            <text id="box{ref}" x="6" y="13" fill="{fillcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            {name} </text>{title}
+            </a>
             </g>
             """
-    entibox = entistart.format('white', 'blue'
-                               , 80, 80
-                               , pposx, pposy, ENTIWIDTH, ENTIHEIGHT
-                               , pcell.getentiid(), pcell.getentiid()
-                               ,'black' if pcell.gettype()== EntityCell.CENTER else 'blue', FONTSIZE
-                               , nvl(pcell.getentiname())[:MAXENTICHARS])
+    entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
+                               , fopacity=0.3, sopacity=0.8
+                               , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
+                               , ref=pcell.getentiid() #, pcell.getentiid()
+                               ,fillcolor='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
+                               , name=nvl(pcell.getentiname())[:MAXENTICHARS]
+                               ,title="<title>{descr}</title>".format(descr=' ' if pcell.getentidescr() in (None,'') else pcell.getentidescr()[:MAXDESCRCHARS]))
     return entibox
 
 def printrela(pcell:EntityCell,pposx,pposy):
@@ -260,7 +285,7 @@ def generate_svg_content(penviron):
     svgtext = diagramhead.format(width=rectwidth, height=rectheight)
 
     entistarty = (CELLHEIGHT - ENTIHEIGHT) / 2
-    parentlinestarty,parentlineendy=None,None
+    parentlinestarty,parentlineendy = None,None
     rolelinestarty,rolelineendy = None,None
     childlinestarty,childlineendy = None,None
     superlinestarty,superlineendy = None,None

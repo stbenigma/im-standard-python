@@ -14,12 +14,12 @@ def createnewDB():
     dbCreateStructure.applysqlscript(psqlfilepath=parameters.sqlfilepath());
     transferModel.insertBaseData()
     dbConnect.setversion()
-    if dbConnect.getversion() != dbConnect.expecteddbversion():
+    if dbConnect.getversion() != parameters.expecteddbversion():
         applyupgrades()
     dbConnect.closeDB()
     logmessages.showmessages("database {} version {} for model {} created"
                          .format(parameters.dbFilePath(), dbConnect.getversion()
-                                 , parameters.odmModelName())
+                                 , parameters.modelName())
                          )
 
 
@@ -66,7 +66,7 @@ def upgradeDB():
     applyupgrades()
     logmessages.showmessages("database {} for model {} upgraded to version {}"
                          .format(parameters.dbFilePath()
-                                 , parameters.odmModelName()
+                                 , parameters.modelName()
                                  , dbConnect.getversion())
                          )
     dbConnect.closeDB()

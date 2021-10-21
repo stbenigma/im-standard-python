@@ -12,7 +12,7 @@ class OragnisationalUnit(Baseobject):
     _columnlist:list = []
 
     def __init__(self,psrcname=None,psrcid=None):
-        if (len(OragnisationalUnit._columnlist) == 0): OragnisationalUnit._columnlist = Baseobject.gettablecolumns(OragnisationalUnit._tablename)
+
         super().__init__(pscrid=psrcid
                          ,psrcname=psrcname
                          )
@@ -97,7 +97,7 @@ class ModelelemOrgu(Baseobject):
     _columnlist:list = []
 
     def __init__(self,pmodeid=None,porguid = None):
-        if (len(ModelelemOrgu._columnlist) == 0): ModelelemOrgu._columnlist = Baseobject.gettablecolumns(ModelelemOrgu._tablename)
+
         super().__init__()
         self.moou_mode_id = pmodeid
         self.moou_orgu_id = porguid

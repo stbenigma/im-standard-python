@@ -9,7 +9,6 @@ class Project(Baseobject):
     _columnlist:list = []
 
     def __init__(self):
-        if (len(Project._columnlist) == 0): Project._columnlist = Baseobject.gettablecolumns(Project._tablename)
         super().__init__()
 
 

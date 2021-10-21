@@ -18,7 +18,7 @@ class Column(Baseobject):
     _defaultorderby = "colu_column_name"
 
     def __init__(self, psrcname=None, psrcid=None):
-        if (len(Column._columnlist) == 0): Column._columnlist = Baseobject.gettablecolumns(Column._tablename)
+
         super().__init__( pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -144,7 +144,7 @@ class ColAttrMap(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-        if (len(ColAttrMap._columnlist) == 0): ColAttrMap._columnlist = Baseobject.gettablecolumns(ColAttrMap._tablename)
+
         super().__init__()
         self.coam_read = Boolean.TRUE
         self.coam_update = Boolean.FALSE

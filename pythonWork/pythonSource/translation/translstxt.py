@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 from IM_ODM import odmParam
-from IM_DB import dbParam,dbConnect,dbDML,dbLookup,parameters
+from IM_DB import dbParam,dbConnect,dbDML,parameters
 from mydeepl import translate
 from datetime import date
 
@@ -22,7 +22,7 @@ def translateNewText():
     for i,row in enumerate(rowslist,start=1):
         if i> 10: break
         #print (row,row[0][5:])
-        newval = '**'+translate.translate(p_text=row[0][5:],p_fromlang=parameters.dbDefaultlang(),p_tolang=dbLookup.sprachen(row[2],'spra_iso_code2'))
+        newval = '**'+translate.translate(p_text=row[0][5:],p_fromlang=parameters.dbDefaultlang(),p_tolang=)
         #print (row[0][5:],newval,row[1])
         row[0] = newval
     print (rowslist)

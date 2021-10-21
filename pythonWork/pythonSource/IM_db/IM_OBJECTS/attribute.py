@@ -3,6 +3,7 @@ from .languagetext import Languagetext
 from .domain import Domain
 from .key import Key
 from .modelelement import Modelelemtype,Modelelement
+from .examples import Example
 
 class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
@@ -16,7 +17,7 @@ class Attribute(MultilangBaseobject):
     def __init__(self, pname=None, pentiid=None
                     ,psrcname=None, psrcid=None):
 
-        if (len(Attribute._columnlist) == 0): Attribute._columnlist = Baseobject.gettablecolumns(Attribute._tablename)
+
         super().__init__( multilangcols={'attr_displ_name': Languagetext.ATTR_NAME,
                                           'attr_descr': Languagetext.ATTR_COMMENT,
                                           'attr_tooltip': Languagetext.ATTR_TOOLTIP}
@@ -58,6 +59,10 @@ class Attribute(MultilangBaseobject):
                                     (select kele_keys_id 
                                     from key_elements 
                                     where kele_attr_id = ?)""", self.attr_id))
+
+    def getexamples(self):
+        return Example.getexamples(pmodeid=self.getid())
+
 
 # Attribute
 from .key import Keyelement

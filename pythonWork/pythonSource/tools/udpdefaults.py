@@ -7,8 +7,6 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 from IM_DB import parameters
 
 
-# vorgesehene Property-Listen je Element
-# key = PropertyName   value = default Value
 entityDict = {}
 tableDict = {}
 attrDict = {}

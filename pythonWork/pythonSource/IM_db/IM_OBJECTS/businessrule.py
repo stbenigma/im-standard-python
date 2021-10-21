@@ -20,7 +20,7 @@ class BusinessRule(MultilangBaseobject):
 
     def __init__(self, psrcname=None, psrcid=None):
 
-        if (len(BusinessRule._columnlist) == 0): BusinessRule._columnlist = Baseobject.gettablecolumns(BusinessRule._tablename)
+
         super().__init__( multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
                                           'buru_errormsg': Languagetext.ATTR_TOOLTIP}
                          , pscrid=psrcid
@@ -56,29 +56,14 @@ class BusinessruleElement(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self, pburuid=None,pwriteable=False
-                 ,pattrid=None,pentiid=None,prelaid=None,pdevaid=None,ptablid=None,pcoluid=None):
-
-        if (len(BusinessruleElement._columnlist) == 0): BusinessruleElement._columnlist = Baseobject.gettablecolumns(BusinessruleElement._tablename)
+    def __init__(self, pburuid=None,pwriteable=False,pmodeid=None):
         super().__init__()
         self.bure_buru_id = pburuid
-        self.bure_attr_id = pattrid
-        self.bure_enti_id = pentiid
-        self.bure_rela_id = prelaid
-        self.bure_deva_id = pdevaid
-        self.bure_tabl_id = ptablid
-        self.bure_colu_id = pcoluid
-        self.bure_id = pburuid
+        self.bure_mode_id = pmodeid
         self.bure_writeable = Boolean.bool2str(pwriteable)
 
     def getelement(self):
-        return Modelelement.getelement(pmodeid=self.bure_attr_id if self.bure_attr_id is not None else
-                                               self .bure_enti_id if self.bure_enti_id is not None else
-                                               self.bure_rela_id if self.bure_rela_id is not None else
-                                               self.bure_deva_id if self.bure_deva_id is not None else
-                                               self.bure_tabl_id if self.bure_tabl_id is not None else
-                                               self.bure_colu_id if self.bure_colu_id is not None else
-                                              None)
+        return Modelelement.getelement(pmodeid=self.bure_mode_id)
 
     def getparent(self) -> BusinessRule :
         buru = BusinessRule().getbyid(pid=self.bure_buru_id)
@@ -86,13 +71,7 @@ class BusinessruleElement(Baseobject):
 
     @classmethod
     def getburuelements(cls,pmodeid):
-        bures = cls.select(pwhere=("""(bure_attr_id = ?
-                                                    or bure_enti_id = ?
-                                                    or bure_rela_id = ?
-                                                    or bure_deva_id = ?
-                                                    or bure_tabl_id = ?
-                                                    or bure_colu_id = ?)
-                                                    """, pmodeid,pmodeid,pmodeid,pmodeid,pmodeid,pmodeid))
+        bures = cls.select(pwhere=("""(bure_mode_id = ?)""", pmodeid))
         return bures
 # BusinessruleELement
 

@@ -10,7 +10,7 @@ class Key(Baseobject):
     _defaultorderby = "keys_id"
 
     def __init__(self, psrcname=None, psrcid=None):
-        if (len(Key._columnlist) == 0): Key._columnlist = Baseobject.gettablecolumns(Key._tablename)
+
         super().__init__(psrcname=psrcname
                          , pscrid=psrcid)
 
@@ -34,7 +34,7 @@ class Keyelement(Baseobject):
     _defaultorderby = "kele_id"
 
     def __init__(self):
-        if (len(Keyelement._columnlist) == 0): Keyelement._columnlist = Baseobject.gettablecolumns(Keyelement._tablename)
+
         super().__init__()
 
 

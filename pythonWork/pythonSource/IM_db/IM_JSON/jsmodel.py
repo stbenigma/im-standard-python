@@ -23,6 +23,8 @@ def make_hash(pmodel):
 
     new_model = copy.deepcopy(pmodel)
     for k, v in new_model.items():
+        #exclude non-fix dict entries
+        if k in ("dc","dm","uc","um","_imprint_"):continue
         new_model[k] = make_hash(v)
     return hash(tuple(frozenset(sorted(new_model.items()))))
 

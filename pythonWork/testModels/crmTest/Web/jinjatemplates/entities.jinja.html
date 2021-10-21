@@ -100,7 +100,24 @@
 						</div> 
 					{% endcall %}
 					
-					<!--keys-->       
+					<!--examples-->
+					{% if elem["examples"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Beispiele"), lbc=elemid ~ "expl") %}
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									{% for expl in elem["examples"][webmodel.getcurlanguage()] %}
+									<tr>
+										<td>{{ expl | safe}} </td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					{% endcall %}
+					{% endif %}
+
+					<!--keys-->
 					{% call blocks.subblock(header=webmodel.gettransltext("Schlüssel"), lbc=elemid ~ "keys") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
@@ -238,7 +255,7 @@
 					<!--translations-->       
 					{% set otherlangs = webmodel.getlanguages(all=False) %}
 					{% if (otherlangs|count) > 0 %}
-					{% set synonyms = elem["synonyms"].values()%}
+					{% set synonyms = elem["synonyms"].values() %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Übersetzungen"), lbc=elemid ~ "transl") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
@@ -261,7 +278,7 @@
 											<td>
 												{% for syn in synonyms %}
 												{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-												{{ syn[lang]}}
+													{{ syn[lang] }}
 												{% endfor %}
 											</td>
 										{% endfor %}
@@ -270,6 +287,12 @@
 										<td>{{ webmodel.gettransltext('Beschreibung') }}</td>
 										{% for lang in otherlangs %}
 											<td>{{ getnvl(elem["descr"][lang]) }}</td>
+										{% endfor %}
+									</tr>
+									<tr>
+										<td>{{ webmodel.gettransltext('Beispiele') }}</td>
+										{% for lang in otherlangs %}
+											<td>{{ '\n'.join(getnvl(elem["examples"][lang]))|nvl|formattext|safe }}</td>
 										{% endfor %}
 									</tr>
 								</tbody>

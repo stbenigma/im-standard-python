@@ -22,6 +22,7 @@ class Modelelemtype(Baseobject):
     PHYU: str = 'PHYU'
     STFO: str = 'STFO'
     UDPR: str = 'UDPR'
+    EXPL: str = 'EXPL'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
@@ -29,7 +30,7 @@ class Modelelemtype(Baseobject):
     _columnlist = []
 
     def __init__(self, pshortname=None, pname=None):
-        if (len(Modelelemtype._columnlist) == 0): Modelelemtype._columnlist = Baseobject.gettablecolumns(Modelelemtype._tablename)
+
         super().__init__()
         self.melt_shortname = pshortname
         self.melt_name = pname
@@ -61,6 +62,7 @@ class Modelelemtype(Baseobject):
         Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document').insert()
         Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember').insert()
         Modelelemtype(pshortname=Modelelemtype.DIAG, pname='Diagram').insert()
+        Modelelemtype(pshortname=Modelelemtype.EXPL, pname='Example').insert()
 
     @staticmethod
     def getidbyshortname(pshortname):
@@ -82,7 +84,7 @@ class Modelelemtype(Baseobject):
             , "Attribute": Modelelemtype.ATTR
             , "Relation": Modelelemtype.RELA
             , "Table": Modelelemtype.TABL
-            , "Column": Modelelemtype.INTF
+            , "Column": Modelelemtype.COLU
             , "Arcs": Modelelemtype.ARCS
             , "FKIndexAssociation": ""
                  }
@@ -103,7 +105,7 @@ class Modelelement(Baseobject):
     _columnlist: list = []
 
     def __init__(self, pid=None,pmeltshortname=None):
-        if (len(Modelelement._columnlist) == 0): Modelelement._columnlist = Baseobject.gettablecolumns(Modelelement._tablename)
+
         super().__init__()
         self.mode_type = pmeltshortname
         self.mode_id = pid
@@ -248,7 +250,7 @@ class ModelelementProperty(Baseobject):
     _defaultorderby = "metp_id"
 
     def __init__(self, pmeltid=None,pudprid=None):
-        if (len(ModelelementProperty._columnlist) == 0): ModelelementProperty._columnlist = Baseobject.gettablecolumns(ModelelementProperty._tablename)
+
         super().__init__()
         self.metp_melt_id = pmeltid
         self.metp_udpr_id = pudprid
