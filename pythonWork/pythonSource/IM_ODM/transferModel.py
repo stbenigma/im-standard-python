@@ -521,7 +521,11 @@ def findedgepos(px,py,pdiagid,pentiid):
         pos = round(100 * (px - borders["left"]) / (borders["right"] - borders["left"]))
         retval =  (Linesegment.SOUTH,pos)
     else:
-        assert False, f"startx={startx} starty={starty}, borders={borders}"
+        enti=Entity().getbyid(pentiid)
+        diag=Diagram().getbyid(pdiagid)
+        logmessages.writelog(f"Entity {enti.enti_name} position {borders} on diagram {diag.diag_name} does not meet relation ends: py={px} py={py}")
+        #dummy starting point
+        retval = (Linesegment.NORTH,py)
     return retval
 
 
