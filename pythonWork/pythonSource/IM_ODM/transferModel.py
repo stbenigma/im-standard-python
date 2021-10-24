@@ -500,11 +500,15 @@ def connector(pidx, pmaxidx, psource, ptarget):
 def findedgepos(px,py,pdiagid,pentiid):
     def entiborders(pdiagid, pentiid):
         retval = {'top': None, 'bottom': None, 'left': None, 'right': None}
-        entirep = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid)[0]  # expect max. 1
-        retval['top'] = entirep.eler_position_y
-        retval['bottom'] = entirep.eler_position_y + entirep.eler_height
-        retval['left'] = entirep.eler_position_x
-        retval['right'] = entirep.eler_position_x + entirep.eler_width
+        diagmode = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid)
+        if len(diagmode)==0:
+            logmessages.writelog(f"Entity should be on diagram")
+        else:
+            entirep = diagmode[0]  # expect max. 1
+            retval['top'] = entirep.eler_position_y
+            retval['bottom'] = entirep.eler_position_y + entirep.eler_height
+            retval['left'] = entirep.eler_position_x
+            retval['right'] = entirep.eler_position_x + entirep.eler_width
         return retval
 
     borders = entiborders(pdiagid=pdiagid, pentiid=pentiid)
@@ -525,7 +529,7 @@ def findedgepos(px,py,pdiagid,pentiid):
         diag=Diagram().getbyid(pdiagid)
         logmessages.writelog(f"Entity {enti.enti_name} position {borders} on diagram {diag.diag_name} does not meet relation ends: py={px} py={py}")
         #dummy starting point
-        retval = (Linesegment.NORTH,py)
+        retval = (Linesegment.NORTH,0)
     return retval
 
 
@@ -1719,32 +1723,34 @@ def adjustlabelpositions():
         xoffset = 4
         if pstart:
             px, py = prelr.relr_starttext_x, prelr.relr_starttext_y
+            height,width=nvl(prelr.relr_starttext_height,20),nvl(prelr.relr_starttext_width,40)
             if (prelr.relr_startedge == Linesegment.NORTH):
-                px += xoffset
-                py = pentiref.eler_position_y - prelr.relr_starttext_height - NORTHoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_startposition)
+                py = pentiref.eler_position_y - height - NORTHoffset
             elif (prelr.relr_startedge == Linesegment.SOUTH):
-                px += xoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_startposition)
                 py = pentiref.eler_position_y + pentiref.eler_height + SOUTHoffset
             elif (prelr.relr_startedge == Linesegment.EAST):
                 px = pentiref.eler_position_x + pentiref.eler_width + xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_startposition) - EASToffset
             elif (prelr.relr_startedge == Linesegment.WEST):
-                px = pentiref.eler_position_x - prelr.relr_starttext_width - xoffset
+                px = pentiref.eler_position_x - width - xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_startposition) + (3*EASToffset)
             #fi
         else:
             px, py = prelr.relr_endtext_x, prelr.relr_endtext_y
+            height,width=nvl(prelr.relr_endtext_height,20),nvl(prelr.relr_endtext_width,40)
             if not pstart and (prelr.relr_endedge == Linesegment.NORTH):
-                px += xoffset
-                py = pentiref.eler_position_y - prelr.relr_endtext_height - NORTHoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_endposition)
+                py = pentiref.eler_position_y - height - NORTHoffset
             elif not pstart and (prelr.relr_endedge == Linesegment.SOUTH):
-                px += xoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_endposition)
                 py = pentiref.eler_position_y + pentiref.eler_height  + SOUTHoffset
             elif (prelr.relr_endedge == Linesegment.EAST):
                 px = pentiref.eler_position_x + pentiref.eler_width + xoffset
                 py = abspos(pentiref.eler_position_y, pentiref.eler_height, prelr.relr_endposition) - EASToffset
             elif (prelr.relr_endedge == Linesegment.WEST):
-                px = pentiref.eler_position_x - prelr.relr_endtext_width - xoffset
+                px = pentiref.eler_position_x - width - xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_endposition) + (3*EASToffset)
             # fi
         # fi
