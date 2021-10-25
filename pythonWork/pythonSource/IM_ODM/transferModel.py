@@ -1796,7 +1796,7 @@ def transferODMModel(**kwargs):
     transferdiagramme()
     transferRelational.transfer()
     #do some fixing and cleaning up
-    adjustlabelpositions()
+    #adjustlabelpositions()
     Datatype.deleteunused()
     Column.fillextid()
     Domain.fixdomaininterfaces(interfacedomains)

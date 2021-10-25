@@ -1,16 +1,10 @@
 import json
 import os,shutil,re
 
-import logmessages
 from IM_ODM import fillDB
+from IM_WEB import listWebdoku
 from IM_DB import parameters
 from difflib import unified_diff
-
-TESTMODEL1 = "/testmodel-1"
-TESTMODEL2 = "/testmodel-2"
-CRMTEST = "/crmTest"
-MODELMODEL = "/ModellModell"
-
 
 def emptyloadingfiles(pmodelpath):
     try: os.remove(parameters.logfilepath())
@@ -136,13 +130,66 @@ def testloading1model(pcallarg):
         raise e
     return
 
-def main():
-    curpath=os.getcwd()
+def quicktest(pmodel):
+    """just run a filldb to check wether it runs through without errors.
+        remove all generated files to make sure, it is created with the correct db-version
+    """
+    parameters.initparam(p_callarg=pmodel)
+    modelname=parameters.modelName()
+    parameters.dbFilePath()
+
+    #Clear environment for test
+    emptyloadingfiles(pmodelpath=pmodel)
+
+    #fill database from ODM for the first time
+    try:
+        fillDB.main(pmodel)
+        print(f"============ Test {pmodel} for model {modelname} OK ============")
+    except Exception as e:
+        print(f"============ Test {pmodel} for model {modelname} FAILED ============")
+        raise e
+    return
+
+def main(plocaltestdirec,pmodelnames):
+    curpath=os.getcwd()+'/'
+    localtestdirec = '' if plocaltestdirec is None else plocaltestdirec
+    modeldirecs ={
+        #'official' online testmodels
+        'testmodel-1': curpath + 'testmodel-1'
+        ,'testmodel-2   ': curpath + 'testmodel-2'
+        , 'crmTest': curpath + 'crmTest'
+    }
+    # additional/private testmodels, locally stored
+    privatemodeldirecs = [plocaltestdirec + m for m in pmodelnames]
     print ("============ Test Loading ODM->SSOT  ============")
-    testloading1model(curpath + TESTMODEL1)
+    testloading1model(modeldirecs['testmodel-1'])
     print ("============ Loading ODM->SSOT run without differences ============")
+
+    if len(privatemodeldirecs) > 0:
+        print ("====================================================")
+        print("============ Test load ODM quickrun local models  ============")
+    failedcnt =0
+    for pm in privatemodeldirecs:
+        print(f"============ ODM-Load Test {pm}  ============")
+        try:
+            quicktest (pm)
+        except:
+            failedcnt += 1
+    print("============ Test load ODM quickrun local models ended ============")
+
+    for pm in privatemodeldirecs:
+        print(f"============ HTML-Test {pm}  ============")
+        try:
+            listWebdoku.main(pdirec=pm,pinputtype='JSON',plang=None)
+        except:
+            failedcnt += 1
+    print("============ Test HTML generation quickrun local models ended ============")
+
+    assert failedcnt == 0,"error in local testmodels"
     return
 
 if __name__ == '__main__':
-    main()
+    import sys
+    main(plocaltestdirec=None if len(sys.argv) <= 1 else sys.argv[1]
+         ,pmodelnames =sys.argv[2:])
 
