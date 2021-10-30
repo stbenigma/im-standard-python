@@ -1,10 +1,13 @@
 import json
-import os,shutil,re
+import os
+import re
+import shutil
+from difflib import unified_diff
 
+from IM_DB import parameters
 from IM_ODM import fillDB
 from IM_WEB import listWebdoku
-from IM_DB import parameters
-from difflib import unified_diff
+
 
 def emptyloadingfiles(pmodelpath):
     try: os.remove(parameters.logfilepath())
@@ -151,7 +154,7 @@ def quicktest(pmodel):
     return
 
 def main(plocaltestdirec,pmodelnames):
-    curpath=os.getcwd()+'/'
+    curpath=os.getcwd() + '/testmodels/'
     localtestdirec = '' if plocaltestdirec is None else plocaltestdirec
     modeldirecs ={
         #'official' online testmodels
