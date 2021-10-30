@@ -13,36 +13,36 @@
 
 #we need current directory of calling file in case it is started in finder with double click
 MYDIR=$(dirname "$0")
-oldscript=LAST_modelmodel_sqlite.sql
-olddb=LAST_emptydb.db
-oldschema=LAST_schema.sql
-newscript=modelmodel_sqlite.sql
+lastscript=LAST_modelmodel_sqlite.sql
+olddb=OLD_emptydb.db
+oldschema=OLD_schema.sql
+currentscript=modelmodel_sqlite.sql
 newdb=NEW_emptydb.db
 newschema=NEW_schema.sql
 
 #test wether old sqldb can be created
 rm -f $MYDIR/$olddb
-sqlite3 $MYDIR/$olddb <$oldscript
+sqlite3 $MYDIR/$olddb <$lastscript
 status=$?
 if [[ $status -ne 0 ]]
 then
-	echo "********** creation of database for $oldscript failed **********"
+	echo "********** creation of database for $lastscript failed **********"
 	exit $status
 fi
-echo "=> creation of database from $oldscript successful"
+echo "=> creation of database from $lastscript successful"
 
 #test wether new sqldb can be created
 rm -f $MYDIR/$newdb
-sqlite3 $MYDIR/$newdb <$newscript
+sqlite3 $MYDIR/$newdb <$currentscript
 status=$?
 if [[ $status -ne 0 ]]
 then
-	echo "********** creation of database for $newscript failed **********"
+	echo "********** creation of database for $currentscript failed **********"
 	exit $status
 fi
-echo "=> creation of database from $newscript successful"
+echo "=> creation of database from $currentscript successful"
 
-rm -f $oldschema $newschema
+rm -f $oldschema $newschema schemadiff.txt schemaupgradediff.txt
 sqlite3 $MYDIR/$olddb .schema >$oldschema
 sqlite3 $MYDIR/$newdb .schema >$newschema
 diff $oldschema $newschema >schemadiff.txt
@@ -73,9 +73,7 @@ echo =============================================================
 echo ==== check schemaupgradediff.txt and verify differences =====
 echo =============================================================
 
+rm -f $MYDIR/$olddb $MYDIR/$newdb $MYDIR/$oldschema $MYDIR/$newschema
 
-
-
-#rm -f $MYDIR/$olddb $MYDIR/$newdb $MYDIR/$oldschema $MYDIR/$newschema
-
+read  -p "press enter to close" 
 

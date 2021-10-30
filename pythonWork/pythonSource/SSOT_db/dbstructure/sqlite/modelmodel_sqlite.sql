@@ -3,20 +3,17 @@ create table languages
 	lang_id integer not null
 		primary key autoincrement,
 	lang_iso_name varchar(60)
-		constraint lang_iso_name_un
-			unique,
+		constraint lang_iso_name_un unique,
 	lang_iso_code2 char(2) not null
-		constraint lang_iso_code2_un
-			unique,
+		constraint lang_iso_code2_un unique,
 	lang_iso_code3 char(3) not null
-		constraint lang_iso_code3_un
-			unique,
+		constraint lang_iso_code3_un unique,
 	lang_is_text_lang varchar(5) not null,
 	lang_is_base_lang varchar(5) not null,
 	lang_lang_id integer
 		references languages (lang_id)
 			on delete set null,
-	lang_uc varchar(30),
+	lang_uc varchar(30) not null,
 	lang_dc varchar(30) not null,
 	lang_um varchar(30),
 	lang_dm varchar(30),
@@ -33,12 +30,10 @@ create table modelelem_type
 	melt_id integer not null
 		primary key autoincrement,
 	melt_shortname varchar(4) not null
-		constraint melt_un
-			unique,
+		constraint melt_un unique,
 	melt_name varchar(60) not null
-		constraint melt_un2
-			unique,
-	melt_uc varchar(30),
+		constraint melt_un2 unique,
+	melt_uc varchar(30) not null,
 	melt_dc varchar(30) not null,
 	melt_um varchar(30),
 	melt_dm varchar(30),
@@ -71,7 +66,7 @@ create table datatypes
 	daty_name varchar(60) not null
 		constraint dati_un unique,
 	daty_basetype varchar(60) not null,
-	daty_uc varchar(30),
+	daty_uc varchar(30) not null,
 	daty_dc varchar(30) not null,
 	daty_um varchar(30),
 	daty_dm varchar(30),
@@ -86,9 +81,9 @@ create table entity_categories
      enca_name varchar (60) not null
         constraint enca_uk unique ,
      enca_uc varchar (30) not null ,
-     enca_dc datetime not null ,
+     enca_dc varchar (30) not null ,
      enca_um varchar (30) null ,
-     enca_dm datetime null
+     enca_dm varchar (30) null
 );
 
 create table entities
@@ -98,16 +93,15 @@ create table entities
 		references modelelement (mode_id)
 			on delete cascade,
 	enti_name varchar(60) not null
-		constraint enti_name_uk
-			unique,
+		constraint enti_name_uk unique,
     enti_enca_id numeric (10) null
         references entity_categories (enca_id),
-	enti_short_name varchar(15),
-	enti_prefix varchar(5),
+	enti_short_name varchar(60),
+	enti_prefix varchar(60),
 	enti_tooltip varchar(4000),
 	enti_descr varchar(4000),
-	enti_exp_tuplecnt varchar(500),
-	enti_uc varchar(30),
+	enti_exp_tuplecnt varchar(100),
+	enti_uc varchar(30) not null,
 	enti_dc varchar(30) not null,
 	enti_um varchar(30),
 	enti_dm varchar(30)
@@ -123,12 +117,11 @@ create table arcs
 	arcs_enti_id integer not null
 		references entities (enti_id)
 			on delete cascade,
-	arcs_uc varchar(30),
+	arcs_uc varchar(30) not null,
 	arcs_dc varchar(30) not null,
 	arcs_um varchar(30),
 	arcs_dm varchar(30),
-	constraint arcs_uk
-		unique (arcs_enti_id, arcs_name)
+	constraint arcs_uk unique (arcs_enti_id, arcs_name)
 );
 
 create table external_refs
@@ -141,10 +134,8 @@ create table external_refs
 		references modelelement (mode_id)
 			on delete cascade,
 	extr_last_update varchar(30) not null,
-	constraint extr_uk
-		unique (extr_source_name, extr_mode_id),
-	constraint extr_uk_id
-		unique (extr_source_name, extr_source_id)
+	constraint extr_uk unique (extr_source_name, extr_mode_id),
+	constraint extr_uk_id unique (extr_source_name, extr_source_id)
 );
 
 create table keys
@@ -159,8 +150,7 @@ create table keys
 	keys_dc varchar(30) not null,
 	keys_um varchar(30),
 	keys_dm varchar(30),
-	constraint keys_uk
-		unique (keys_enti_id, keys_name)
+	constraint keys_uk unique (keys_enti_id, keys_name)
 );
 
 create table lang_texts
@@ -174,22 +164,21 @@ create table lang_texts
 	lgtx_mode_id integer not null
 		references modelelement (mode_id)
 			on delete cascade,
-	lgtx_uc varchar(30),
+	lgtx_uc varchar(30) not null,
 	lgtx_dc varchar(30) not null,
 	lgtx_um varchar(30),
 	lgtx_dm varchar(30),
-	constraint lgtx_uk
-		unique (lgtx_lang_id, lgtx_mode_id, lgtx_attrname)
+	constraint lgtx_uk unique (lgtx_lang_id, lgtx_mode_id, lgtx_attrname)
 );
 
 create table physical_unit
 (
 	phyu_id integer not null
 		primary key autoincrement,
-	phyu_si_unit varchar(10),
+	phyu_si_unit varchar(10)
+		constraint phyu_uk_siunit unique,
 	phyu_name varchar(60) not null
-		constraint phyu_uk_name
-			unique,
+		constraint phyu_uk_name unique,
 	phyu_descr varchar(4000),
 	phyu_uc varchar(30) not null,
 	phyu_dc varchar(30) not null,
@@ -204,13 +193,13 @@ create table relations
 		references modelelement (mode_id)
 			on delete cascade,
 	rela_name varchar(60) not null
-		constraint rela_uk_name
-			unique,
+		constraint rela_uk_name unique,
 	rela_type varchar(4) not null,
 	rela_enti_id_from integer not null
 		references entities (enti_id),
 	rela_arcs_id_from integer
-		references arcs (arcs_id),
+		references arcs (arcs_id)
+			on delete set null,
 	rela_assoc_from_to varchar(4000),
 	rela_maptype_from_to char(1) not null,
 	rela_mandatory_from_to varchar(5) not null,
@@ -218,12 +207,13 @@ create table relations
 	rela_enti_id_to integer not null
 		references entities (enti_id),
 	rela_arcs_id_to integer
-		references arcs (arcs_id),
+		references arcs (arcs_id)
+			on delete set null,
 	rela_assoc_to_from varchar(100),
 	rela_maptype_to_from char(1) not null,
 	rela_mandatory_to_from varchar(5) not null,
 	rela_hist_to_from varchar(4000) not null,
-	rela_uc varchar(30),
+	rela_uc varchar(30) not null,
 	rela_dc varchar(30) not null,
 	rela_um varchar(30),
 	rela_dm varchar(30),
@@ -278,8 +268,7 @@ create table storage_formats
 	stfo_id integer not null
 		primary key autoincrement,
 	stfo_name varchar(60) not null
-		constraint stfo_un
-			unique,
+		constraint stfo_un unique,
 	stfo_descr varchar(4000),
 	stfo_uc varchar(30) not null,
 	stfo_dc varchar(30) not null,
@@ -291,12 +280,13 @@ create table documents
 (
 	docu_id integer not null
 		primary key
-		references modelelement (mode_id),
+		references modelelement (mode_id)
+			on delete cascade,
 	docu_name varchar(60) not null constraint docu_uk unique,
 	docu_stfo_id integer
 		references storage_formats (stfo_id),
 	docu_reference varchar(500),
-	docu_content image,
+	docu_content blob,
 	docu_docu_id integer
 		references documents (docu_id)
 );
@@ -311,8 +301,7 @@ create table mode_docu
 	modo_docu_id integer not null
 		references documents (docu_id)
 			on delete cascade,
-	constraint modo_uk
-		unique (modo_mode_id, modo_docu_id)
+	constraint modo_uk unique (modo_mode_id, modo_docu_id)
 );
 
 create table synonyms
@@ -325,7 +314,7 @@ create table synonyms
 	syno_enti_id integer not null
 		references entities (enti_id)
 			on delete cascade,
-	syno_uc varchar(30),
+	syno_uc varchar(30) not null,
 	syno_dc varchar(30) not null,
 	syno_um varchar(30),
 	syno_dm varchar(30),
@@ -345,8 +334,7 @@ create table user_defined_properties
 	udpr_dc varchar(30) not null,
 	udpr_um varchar(30),
 	udpr_dm varchar(30),
-	constraint udpr_un
-		unique (udpr_theme, udpr_name)
+	constraint udpr_un unique (udpr_theme, udpr_name)
 );
 
 create table modelemtype_properties
@@ -355,13 +343,12 @@ create table modelemtype_properties
 		primary key autoincrement,
 	metp_melt_id integer not null
 		references modelelem_type (melt_id)
-            on delete cascade,
+			on delete cascade,
 	metp_udpr_id integer not null
 		references user_defined_properties (udpr_id)
-            on delete cascade,
+			on delete cascade,
 	metp_optional varchar(5) not null,
-	constraint metp_un
-		unique (metp_melt_id, metp_udpr_id),
+	constraint metp_un unique (metp_melt_id, metp_udpr_id),
 	check (metp_optional in ('FALSE', 'TRUE'))
 );
 
@@ -375,13 +362,12 @@ create table udp_values
 			on delete cascade,
 	udpv_udpr_id integer not null
 		references user_defined_properties (udpr_id)
-            on delete cascade,
+			on delete cascade,
 	udpv_uc varchar(30) not null,
 	udpv_dc varchar(30) not null,
 	udpv_um varchar(30),
 	udpv_dm varchar(30),
-	constraint udpv_un
-		unique (udpv_mode_id, udpv_udpr_id)
+	constraint udpv_un unique (udpv_mode_id, udpv_udpr_id)
 );
 
 create table diagramtypes
@@ -389,8 +375,7 @@ create table diagramtypes
 	diat_id integer
 		primary key autoincrement,
 	diat_name varchar(100) not null
-		constraint diat_un
-			unique,
+		constraint diat_un unique,
 	diat_uc varchar(30) not null,
 	diat_dc varchar(30) not null,
 	diat_um varchar(30),
@@ -404,8 +389,7 @@ create table diagrams
 		references MODELELEMENT (mode_id)
 			on delete cascade,
 	diag_name varchar(60) not null
-		constraint diag__un
-			unique,
+		constraint diag__un unique,
 	diag_diat_id integer not null
 		references diagramtypes (diat_id),
 	diag_legendx integer,
@@ -423,7 +407,7 @@ create table elementreps
 	eler_mode_id integer not null
 		constraint eler_mode_fk
 			references MODELELEMENT (mode_id)
-				on delete cascade,
+			on delete cascade,
 	eler_diag_id integer not null
 		references diagrams (diag_id)
 			on delete cascade,
@@ -443,8 +427,7 @@ create table elementreps
 	eler_dc varchar(30) not null,
 	eler_um varchar(30),
 	eler_dm varchar(30),
-	constraint eler_un
-		unique (eler_diag_id, eler_mode_id, eler_index),
+	constraint eler_un unique (eler_diag_id, eler_mode_id, eler_index),
 	check (eler_fontsize between 1 and 999),
 	check (eler_marginopacity between 0 and 100),
 	check (eler_opacity between 0 and 100),
@@ -457,10 +440,10 @@ create table interfaces
 (
 	intf_id integer
 		primary key autoincrement
-		references modelelement (mode_id),
+		references modelelement (mode_id)
+			on delete cascade,
 	intf_name varchar(60) not null
-		constraint intf_un
-			unique,
+		constraint intf_un unique,
 	intf_descr varchar(4000),
 	intf_uc varchar(30) not null,
 	intf_dc varchar(30) not null,
@@ -475,8 +458,7 @@ create table domains
 		references modelelement (mode_id)
 			on delete cascade,
 	doma_name varchar(60) not null
-		constraint doma_name_uk
-			unique,
+		constraint doma_name_uk unique,
 	doma_descr varchar(4000),
 	doma_type varchar(4) not null,
 	doma_origin varchar(6) not null,
@@ -550,7 +532,7 @@ create table attributes
 	attr_is_repeated varchar(5) not null,
 	attr_is_translated varchar(5) not null,
 	attr_is_encrypted varchar(5) not null,
-	attr_uc varchar(30),
+	attr_uc varchar(30) not null,
 	attr_dc varchar(30) not null,
 	attr_um varchar(30),
 	attr_dm varchar(30),
@@ -575,12 +557,11 @@ create table default_values
 	deva_sort_order numeric(3),
 	deva_displ varchar(4000),
 	deva_descr varchar(4000),
-	deva_uc varchar(30),
+	deva_uc varchar(30) not null,
 	deva_dc varchar(30) not null,
 	deva_um varchar(30),
 	deva_dm varchar(30),
-	constraint deva_uk
-		unique (deva_doma_id, deva_value)
+	constraint deva_uk unique (deva_doma_id, deva_value)
 );
 
 create table domaingroup_members
@@ -593,15 +574,14 @@ create table domaingroup_members
 	dgrm_descr varchar(4000),
 	dgrm_is_mandatory varchar(5) not null,
 	dgrm_doma_id_group integer not null
-		references domains (doma_id),
+		references domains (doma_id) on delete cascade,
 	dgrm_doma_id_member integer not null
 		references domains (doma_id),
 	dgrm_uc varchar(30) not null,
 	dgrm_dc varchar(30) not null,
 	dgrm_um varchar(30),
 	dgrm_dm varchar(30),
-	constraint dgrm_doma_uk
-		unique (dgrm_doma_id_group, dgrm_name),
+	constraint dgrm_doma_uk unique (dgrm_doma_id_group, dgrm_name),
 	check (dgrm_is_mandatory in ('FALSE', 'TRUE'))
 );
 
@@ -622,10 +602,8 @@ create table key_elements
 	kele_dc varchar(30) not null,
 	kele_um varchar(30),
 	kele_dm varchar(30),
-	constraint kele_attr_un
-		unique (kele_keys_id, kele_attr_id),
-		constraint kele_rela_un
-			unique (kele_keys_id, kele_rela_id),
+	constraint kele_attr_un unique (kele_keys_id, kele_attr_id),
+	constraint kele_rela_un unique (kele_keys_id, kele_rela_id),
 	constraint fkarc_8
 		check (( (kele_rela_id is not null) and
 		   (kele_attr_id is null)
@@ -643,13 +621,12 @@ create table melt_diats
 	medi_melt_id integer not null
 		constraint modi_melt_fk
 			references MODELELEM_TYPE (melt_id)
-				on delete cascade,
+			on delete cascade,
 	medi_uc varchar(30) not null,
 	medi_dc varchar(30) not null,
 	medi_um varchar(30),
 	medi_dm varchar(30),
-	constraint medi__un
-		unique (medi_diat_id, medi_melt_id)
+	constraint medi__un unique (medi_diat_id, medi_melt_id)
 );
 
 create table organisationalunits
@@ -658,16 +635,16 @@ create table organisationalunits
 		primary key
 		constraint orgu_mode_fk
 			references MODELELEMENT (mode_id)
-				on delete cascade,
+			on delete cascade,
 	orgu_name VARCHAR(60) not null
-		constraint orgu_name_un
-			unique,
+		constraint orgu_name_un unique,
 	orgu_descr VARCHAR(4000),
 	orgu_mail VARCHAR(200),
 	orgu_telefon VARCHAR(30),
 	orgu_address VARCHAR(4000),
 	orgu_orgu_id NUMBER(10)
-		references organisationalunits (orgu_id),
+		references organisationalunits (orgu_id)
+			on delete set null,
 	orgu_uc varchar(30) not null,
 	orgu_dc varchar(30) not null,
 	orgu_um varchar(30),
@@ -681,7 +658,7 @@ create table mode_orgu
 	moou_mode_id integer not null
 		constraint moou_mode_fk
 			references MODELELEMENT (mode_id)
-				on delete cascade,
+			on delete cascade,
 	moou_orgu_id integer not null
 		references organisationalunits (orgu_id)
 			on delete cascade
@@ -692,8 +669,7 @@ create table projects
 	proj_id integer
 		primary key autoincrement,
 	proj_name VARCHAR(60) not null
-		constraint proj__un
-			unique,
+		constraint proj__un unique,
 	proj_languages VARCHAR(60),
 	proj_curr_lang VARCHAR2(2),
 	proj_uc VARCHAR(30) not null,
@@ -707,14 +683,15 @@ create table relationreps
 	relr_id integer
 		primary key autoincrement,
 	relr_diag_id integer not null
-		references diagrams (diag_id),
+		references diagrams (diag_id)
+			on delete cascade,
 	relr_mode_id integer not null
 		constraint relr_mode_fk
 			references MODELELEMENT (mode_id)
-				on delete cascade,
+			on delete cascade,
 	relr_linewidth integer default 1 not null,
-	relr_linecolor varchar(6),
-	relr_lineopacity integer,
+	relr_linecolor varchar(6) default '000000' ,
+	relr_lineopacity integer default 100,
 	relr_startedge varchar(1),
 	relr_startposition integer,
 	relr_start_connector VARCHAR2(1),
@@ -739,8 +716,7 @@ create table relationreps
 	relr_dc varchar(30) not null,
 	relr_um varchar(30),
 	relr_dm varchar(30),
-	constraint relr_un
-		unique (relr_diag_id, relr_mode_id),
+	constraint relr_un unique (relr_diag_id, relr_mode_id),
 	check (relr_end_connector IN ('1','M')),
 	check (relr_start_connector IN ('1','M')),
 	constraint relr_eab_chk
@@ -754,11 +730,11 @@ create table relationreps
 	constraint relr_ep_chk
 		check (relr_endposition BETWEEN 0.0 AND 100.0),
 	constraint relr_ewi_chk
-		check (relr_endtext_angle BETWEEN - 179 AND 180),
+		check (relr_endtext_angle BETWEEN -3.1415926535898 AND 3.141592653589793),
 	constraint relr_ex_chk
-		check (relr_endtext_x BETWEEN -9999 AND 999999),
+		check (relr_endtext_x BETWEEN 0 AND 999999),
 	constraint relr_ey_chk
-		check (relr_endtext_y BETWEEN -9999 AND 999999),
+		check (relr_endtext_y BETWEEN 0 AND 999999),
 	constraint relr_ldk_chk
 		check (relr_lineopacity BETWEEN 0 AND 100),
 	constraint relr_lf_chk
@@ -778,11 +754,11 @@ create table relationreps
 	constraint relr_stp_chk
 		check (relr_startposition BETWEEN 0.0 AND 100.0),
 	constraint relr_stwi_chk
-		check (relr_starttext_angle BETWEEN - 179 AND 180),
+		check (relr_starttext_angle BETWEEN -3.1415926535898 AND 3.141592653589793),
 	constraint relr_stx_chk
-		check (relr_starttext_x BETWEEN -9999 AND 999999),
+		check (relr_starttext_x BETWEEN 0 AND 999999),
 	constraint relr_sty_chk
-		check (relr_starttext_y BETWEEN -9999 AND 999999)
+		check (relr_starttext_y BETWEEN 0 AND 999999)
 );
 
 create table linesegments
@@ -795,16 +771,17 @@ create table linesegments
 			on delete cascade,
 	lise_x integer not null,
 	lise_y integer not null,
-	lise_linetype VARCHAR2(6),
+	lise_linetype VARCHAR2(6) default 'SOLID',
 	lise_angle integer,
 	lise_uc varchar(30) not null,
 	lise_dc varchar(30) not null,
 	lise_um varchar(30),
 	lise_dm varchar(30),
-	constraint lise__un
-		unique (lise_relr_id, lise_seq),
+	constraint lise__un unique (lise_relr_id, lise_seq),
 	constraint ck_lise_linetype
 		check (lise_linetype IN('DADO','DASHED','DOTTED','SOLID')),
+	constraint lise_angle_chk
+			check (lise_angle BETWEEN -3.1415926535898 AND 3.141592653589793),
     CONSTRAINT ck_lise_x CHECK(lise_x BETWEEN 0 AND 999999) ,
 	constraint ck_lise_y check (lise_y BETWEEN 0 AND 999999)
 );
@@ -814,7 +791,8 @@ create table tables
 	tabl_id integer
 		primary key autoincrement
 		constraint TABL_MODE_FK
-			references MODELELEMENT (mode_ID),
+			references MODELELEMENT (mode_id)
+			on delete cascade,
 	tabl_name varchar(60) not null,
 	tabl_intf_id integer not null
 		references interfaces (intf_ID),
@@ -828,8 +806,7 @@ create table tables
 	tabl_dc varchar(30) not null,
 	tabl_um varchar(30),
 	tabl_dm varchar(30),
-	constraint TABL_UN
-		unique (tabl_intf_id, tabl_name)
+	constraint TABL_UN unique (tabl_intf_id, tabl_name)
 );
 
 create table columns
@@ -837,7 +814,8 @@ create table columns
 	colu_id integer
 		primary key
 		constraint colu_mode_fk
-			references MODELELEMENT (mode_id),
+			references MODELELEMENT (mode_id)
+			on delete cascade,
 	colu_column_name varchar(60) not null,
 	colu_mandatory varchar(5) not null,
 	colu_format varchar(200),
@@ -856,8 +834,7 @@ create table columns
 	colu_dc varchar(30) not null,
 	colu_um varchar(30),
 	colu_dm varchar(30),
-	constraint colu_uk
-		unique (colu_tabl_id, colu_column_name),
+	constraint colu_uk unique (colu_tabl_id, colu_column_name),
 	check (colu_mandatory in ('TRUE', 'FALSE'))
 );
 
@@ -876,9 +853,8 @@ create table colu_attr_map
 	coam_attr_id integer not null
 		constraint coam_attr_fk
 			references ATTRIBUTES (attr_id)
-				on delete cascade,
-	constraint coam_un
-		unique (coam_direction, coam_colu_id, coam_attr_id, coam_seq),
+			on delete cascade,
+	constraint coam_un unique (coam_direction, coam_colu_id, coam_attr_id, coam_seq),
 	check (coam_direction in ('INBOUND', 'OUTBOUND')),
 	check (coam_seq > 0),
 	check (coam_triggertype in ('MANUELL', 'PERIODE', 'ZPKT'))
@@ -895,12 +871,10 @@ create table tabl_enti_maps
 		constraint tema_enti_fk
 			references ENTITIES (enti_id) on delete cascade ,
 	tema_rela_id integer
-	constraint tema_rela_fk
-		references RELATIONS (rela_id) on delete cascade ,
-	constraint tema_unenti
-		unique (tema_tabl_id, tema_enti_id),
-	constraint tema_unrela
-		unique (tema_tabl_id, tema_rela_id),
+		constraint tema_rela_fk
+			references RELATIONS (rela_id) on delete cascade ,
+	constraint tema_unenti unique (tema_tabl_id, tema_enti_id),
+	constraint tema_unrela unique (tema_tabl_id, tema_rela_id),
 	constraint tema_ck
 		check ((tema_enti_id is not null and tema_rela_id is null )
       	        		  or (tema_enti_id is null and tema_rela_id is not null))
@@ -910,8 +884,9 @@ create table business_rules
     (
      buru_id integer not null primary key autoincrement
     		constraint buru_mode_fk
-			references modelelement (mode_id),
-     buru_name varchar (60) not null ,
+			references modelelement (mode_id)
+			on delete cascade,
+     buru_name varchar (60) not null constraint buru_un unique,
      buru_rule varchar (4000) not null ,
      buru_descr varchar (4000) null ,
      buru_impact varchar (4000) null ,
@@ -934,10 +909,11 @@ create table businessrule_elements
      bure_dc varchar(30) not null ,
      bure_um varchar (30) null ,
      bure_dm varchar(30) ,
- 	constraint bure_uk
- 		unique (bure_buru_id,bure_mode_id),
+ 	constraint bure_uk unique (bure_buru_id,bure_mode_id),
 	constraint bure_mode_fk foreign key(bure_mode_id)
-    references modelelement (mode_id)
+		references modelelement (mode_id),
+	constraint bure_buru_fk foreign key(bure_buru_id)
+		references business_rules (buru_id) on delete cascade
 );
 
 create table element_ui
@@ -949,12 +925,12 @@ create table element_ui
             references entity_categories (enca_id) on delete cascade ,
      elui_width numeric (4) null ,
      elui_height numeric (4) null ,
-     elui_opacity numeric (3) null default (100) constraint ck__elementre__eler___3cf40b7e check ( elui_opacity>=(0) and elui_opacity<=(100) ) ,
+     elui_opacity numeric (3) null default (100) constraint ck__elementre__eler___3cf40b7e check ( elui_opacity>=0 and elui_opacity<=100 ) ,
      elui_color varchar (6) null default '000000' constraint ck__elementre__eler___3edc53f0 check ( length(elui_color) = 6 ) ,
      elui_marginwidth numeric (3,1) null default (1) ,
-     elui_marginopacity numeric (3) null default (100) constraint ck__elementre__eler___41b8c09b check ( elui_marginopacity>=(0) and elui_marginopacity<=(100) ) ,
+     elui_marginopacity numeric (3) null default (100) constraint ck__elementre__eler___41b8c09b check ( elui_marginopacity>=0 and elui_marginopacity<=100 ) ,
      elui_margincolor varchar (6) null default '000000' constraint ck__elementre__eler___43a1090d check ( length(elui_margincolor) = 6 ) ,
-     elui_fontsize numeric (3) null constraint ck__elementre__eler___44952d46 check ( elui_fontsize>=(1) and elui_fontsize<=(999) ) ,
+     elui_fontsize numeric (3) null constraint ck__elementre__eler___44952d46 check ( elui_fontsize>=1 and elui_fontsize<=999 ) ,
      elui_fontcolor varchar (6) null default '000000' constraint ck__elementre__eler___467d75b8 check ( length(elui_fontcolor) = 6 )
     ,constraint fkarc_3 check (
         (  (elui_melt_id is not null) and
@@ -962,14 +938,15 @@ create table element_ui
         (  (elui_enca_id is not null) and
          (elui_melt_id is null) )
         )
-    ,constraint elui_uk_role unique  (elui_melt_id, elui_enca_id)
+	    ,constraint elui_uxk_melt unique  (elui_melt_id)
+	    ,constraint elui_uk_enca unique  (elui_enca_id)
     );
 
 	create table examples 
 	    (
 	     expl_id integer (10) not null primary key
 			references modelelement (mode_id)
- 			on delete cascade,
+			on delete cascade,
 	     expl_value varchar (4000) not null , 
 	     expl_enti_id numeric (10) , 
 	     expl_attr_id numeric (10) , 
