@@ -27,7 +27,7 @@ POSTGRES:str = 'postgres'
 
 paramFileExension:str = ".params"
 parameter = {'dbtype': SQLITE
-    , 'sqlpath': os.path.dirname(os.path.abspath(__file__)) + "/../sqlfiles/"
+    , 'sqlpath': os.path.dirname(os.path.abspath(__file__)) + "/../../SSOT_db/dbstructure/sqlite/"
     , 'sqlfilename': 'modelmodel_' + SQLITE
     , 'dbfilepath': None
     , 'dbdirec': None

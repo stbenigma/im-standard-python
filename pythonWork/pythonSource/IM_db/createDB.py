@@ -1,5 +1,7 @@
 # -*- coding: latin-1 -*-
-import os,sys,re
+import os
+import re
+import sys
 
 from IM_DB import parameters, dbConnect, dbCreateStructure, logmessages
 from IM_ODM import transferModel
@@ -51,7 +53,7 @@ def applyupgrades():
     upgrfiles.sort() #order is important as upgrades follow each other sequentally
     for upgrfile in upgrfiles:
         if version(upgrfile) <= actversion: continue
-        if version(upgrfile) > dbConnect.expecteddbversion(): break
+        if version(upgrfile) > parameters.expecteddbversion(): break
         applyversionfile(psqlfilepath=parameters.sqlpath()+ "/" + upgrfile)
     #for
     dbConnect.setversion()
@@ -60,7 +62,7 @@ def upgradeDB():
     #get list of upgrade-files
     dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
     actversion = dbConnect.getversion()
-    if actversion == dbConnect.expecteddbversion():
+    if actversion == parameters.expecteddbversion():
         print ("DB {} is up to date: version {}".format(parameters.dbFilePath(),actversion))
         return
     applyupgrades()
