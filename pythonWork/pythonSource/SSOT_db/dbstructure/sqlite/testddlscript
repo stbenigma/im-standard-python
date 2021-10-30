@@ -1,0 +1,81 @@
+#!/bin/bash
+#stb, foryouandyourcustomers.
+#tests a sql script to create a new sqlite DB in the current directory
+
+#CALL:  testscript n.m
+#applies the version n.m (modelmode_sqlite_n.m.sql) to the last database script
+
+#setup
+#there exists 
+# a file  LAST_modelmodel_sqlite.sql containing the DDL for the last version of the DB
+# a file  modelmodel_sqlite.sql containing the new DDL for the DB
+# a file  modelmodel_sqlite_n.m.sql for the parameter n.m containing the delta to the last 
+
+#we need current directory of calling file in case it is started in finder with double click
+MYDIR=$(dirname "$0")
+oldscript=LAST_modelmodel_sqlite.sql
+olddb=LAST_emptydb.db
+oldschema=LAST_schema.sql
+newscript=modelmodel_sqlite.sql
+newdb=NEW_emptydb.db
+newschema=NEW_schema.sql
+
+#test wether old sqldb can be created
+rm -f $MYDIR/$olddb
+sqlite3 $MYDIR/$olddb <$oldscript
+status=$?
+if [[ $status -ne 0 ]]
+then
+	echo "********** creation of database for $oldscript failed **********"
+	exit $status
+fi
+echo "=> creation of database from $oldscript successful"
+
+#test wether new sqldb can be created
+rm -f $MYDIR/$newdb
+sqlite3 $MYDIR/$newdb <$newscript
+status=$?
+if [[ $status -ne 0 ]]
+then
+	echo "********** creation of database for $newscript failed **********"
+	exit $status
+fi
+echo "=> creation of database from $newscript successful"
+
+rm -f $oldschema $newschema
+sqlite3 $MYDIR/$olddb .schema >$oldschema
+sqlite3 $MYDIR/$newdb .schema >$newschema
+diff $oldschema $newschema >schemadiff.txt
+echo ====================================================== 
+echo ==== check schemadiff.txt and verify differences =====
+echo ====================================================== 
+
+diffsql=modelmodel_sqlite_$1.sql
+if test -f "$diffsql"; then
+	echo "=> apply upgrade sql $diffsql"
+else
+	echo "******** upgradefile  $diffsql  not found *******"
+	exit 1
+fi
+#apply diff file to old db
+sqlite3 $MYDIR/$olddb <$diffsql
+status=$?
+if [[ $status -ne 0 ]]
+then
+	echo "********** upgrade sql $diffsql failed **********"
+	exit $status
+fi
+echo "=> upgrade sql $diffsql applied successful"
+
+sqlite3 $MYDIR/$olddb .schema >$oldschema
+diff $oldschema $newschema >schemaupgradediff.txt
+echo =============================================================
+echo ==== check schemaupgradediff.txt and verify differences =====
+echo =============================================================
+
+
+
+
+#rm -f $MYDIR/$olddb $MYDIR/$newdb $MYDIR/$oldschema $MYDIR/$newschema
+
+
