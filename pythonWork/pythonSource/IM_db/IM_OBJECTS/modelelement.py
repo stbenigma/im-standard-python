@@ -22,6 +22,7 @@ class Modelelemtype(Baseobject):
     PHYU: str = 'PHYU'
     STFO: str = 'STFO'
     UDPR: str = 'UDPR'
+    EXPL: str = 'EXPL'
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
@@ -61,6 +62,7 @@ class Modelelemtype(Baseobject):
         Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document').insert()
         Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember').insert()
         Modelelemtype(pshortname=Modelelemtype.DIAG, pname='Diagram').insert()
+        Modelelemtype(pshortname=Modelelemtype.EXPL, pname='Example').insert()
 
     @staticmethod
     def getidbyshortname(pshortname):

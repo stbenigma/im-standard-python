@@ -3,6 +3,7 @@ from .languagetext import Languagetext
 from .domain import Domain
 from .key import Key
 from .modelelement import Modelelemtype,Modelelement
+from .examples import Example
 
 class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
@@ -58,6 +59,10 @@ class Attribute(MultilangBaseobject):
                                     (select kele_keys_id 
                                     from key_elements 
                                     where kele_attr_id = ?)""", self.attr_id))
+
+    def getexamples(self):
+        return Example.getexamples(pmodeid=self.getid())
+
 
 # Attribute
 from .key import Keyelement

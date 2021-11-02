@@ -39,7 +39,7 @@ def attr2js(pattr):
             , 'descriptive', 'mandatory'
             , 'historicised', 'repeated'
             , 'translated', 'encrypted'
-            , 'tooltip', 'descr'
+            , 'examples','tooltip', 'descr'
             , 'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
         , 'sourceref', 'keys+'
@@ -56,7 +56,7 @@ def attr2js(pattr):
                                      ,'',''
                                     ,'',''
                                     ,'',''
-                                    , multilangtext(), multilangtext()
+                                    , jentity.examples(None),multilangtext(), multilangtext()
                                      ,'','','','',0,4,'DEV'
                                      , sourceref(), reflist()
                                      #, businessrules2js()
@@ -75,6 +75,7 @@ def attr2js(pattr):
             , Boolean.str2bool(pattr.attr_is_descriptive),Boolean.str2bool(pattr.attr_is_mandatory)
             , Boolean.str2bool(pattr.attr_is_historicised), Boolean.str2bool(pattr.attr_is_repeated)
             , Boolean.str2bool(pattr.attr_is_translated),  Boolean.str2bool(pattr.attr_is_encrypted)
+            , jsentity.examples(pexpls=pattr.getexamples())
             , multilangtext(pattr.attr_tooltip_l)
             , multilangtext(pattr.attr_descr_l)
             , pattr.attr_uc, pattr.attr_dc,  pattr.attr_um, pattr.attr_dm
@@ -146,6 +147,11 @@ def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
          "repeated": false,
          "translated": false,
          "encrypted": false,
+         "examples": {
+            "de": null,
+            "en": null,
+            "fr": null
+         },
          "tooltip": {
             "de": null,
             "en": null,
@@ -168,6 +174,11 @@ def attributes2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         maxzoomlevel = jelem['maxzoomlevel']
         devstatus = jelem['devstatus']
         Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+
+        """Examples have in ODM no guid. Delete them and fill new synonyms"""
+        jsentity.mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage()
+                      , presult=presult, pattrid=attrid)
+
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_NAME, ptexts=jelem['name'])

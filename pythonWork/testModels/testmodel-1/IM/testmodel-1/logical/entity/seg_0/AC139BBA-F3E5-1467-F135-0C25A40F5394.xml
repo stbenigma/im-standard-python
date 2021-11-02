@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AC139BBA-F3E5-1467-F135-0C25A40F5394" name="Child Entity1">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:37:45 UTC</createdTime>
+<comment><![CDATA[Child entity,  Subtype 
+Displayed on all zoom levels (0-2)
+]]></comment>
+<ownerDesignName>testmodel-1</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<typeID>F8749794-DC84-2528-3E2D-43499E774857</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>EE445642-FC73-9FC3-7ABD-8F5274F1E8EA</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="First Appearance" id="002B1F8B-69CC-4418-F5E8-AA5292EDDDED">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:38:38 UTC</createdTime>
+<comment><![CDATA[First time Child was seen
+
+Beispiel:
+1. Beispiel Attribute first appearance]]></comment>
+<ownerDesignName>testmodel-1</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>0AD80E26-0F5C-D068-29EA-4740A04582AE</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

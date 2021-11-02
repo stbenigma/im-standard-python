@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="633B9A76-27F4-9757-BDBB-9094311C97B0" name="role Entity">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:50:23 UTC</createdTime>
+<ownerDesignName>testmodel-1</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<typeID>F8749794-DC84-2528-3E2D-43499E774857</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Count" id="188FBFA4-ED5B-5C7E-E5DC-E5BDF1C1A26E">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:54:18 UTC</createdTime>
+<comment><![CDATA[How many..., non descriptive attribute]]></comment>
+<generatorID>508E5A69-FDFC-1A2D-5CEB-83E3133AEF20</generatorID>
+<ownerDesignName>testmodel-1</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<referedAttribute>53ED3002-BD9C-4CBD-D8E5-3C363A99B1AA</referedAttribute>
+<use>0</use>
+<domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+</Entity>

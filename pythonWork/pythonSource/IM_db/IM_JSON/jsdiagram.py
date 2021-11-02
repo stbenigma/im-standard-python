@@ -226,7 +226,7 @@ def diagrams2js(pemptymodel,pmodelname):
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model,pentries=[
             d.diag_name, legend2js(pdiag=d,pmodelname=pmodelname)
             ,Diagramtype().getbyid(d.diag_diat_id).getname()
-            , d.diagwidth()
+            , d.diagwidth()+50 #leave room for icon in entity
             , d.diagheight()
             , d.diag_uc
             ,  d.diag_dc

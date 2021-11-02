@@ -5,6 +5,7 @@ from .languagetext import Languagetext
 from .language import Language
 from .modelelement import Modelelemtype,Modelelement
 from .userdefprop import Userdefpropvalue,Userdefprop
+from .examples import Example
 import IM_OBJECTS
 
 class ElementUI(Baseobject):
@@ -100,8 +101,6 @@ class Entity(MultilangBaseobject):
         # fi
         return self._synonyms
 
-
-
     def getkeys(self):
         return Key.select(pwhere=('keys_enti_id = ?', self.getid())
                                   , porderby='keys_name')
@@ -120,7 +119,9 @@ class Entity(MultilangBaseobject):
             self._attributes = Attribute.select(pwhere=('attr_enti_id = ?', self.getid()))
         # fi
         return self._attributes
-    #getschluessel
+
+    def getexamples(self):
+        return Example.getexamples(pmodeid=self.getid())
 
     def getsubtypelevel(self):
         subtypelevel = dbDML.select("""

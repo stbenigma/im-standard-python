@@ -153,9 +153,9 @@ class Relation(MultilangBaseobject):
         return retval
 
     def to_cardstr(self):
-        return self._minmaxcardinality(pfromto=False)
-    def from_cardstr(self):
         return self._minmaxcardinality(pfromto=True)
+    def from_cardstr(self):
+        return self._minmaxcardinality(pfromto=False)
 
     def _minmaxcardinality(self, pfromto):
         maptype = self.rela_maptype_from_to if pfromto else self.rela_maptype_to_from

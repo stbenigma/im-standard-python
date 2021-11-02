@@ -1,9 +1,9 @@
-from datetime import date
-from .relationship import Relation
-from .baseobject import Baseobject
-from .modelelement import Modelelement,Modelelemtype
-from .entity import Entity
+from math import pi
 from .attribute import Attribute
+from .baseobject import Baseobject
+from .entity import Entity
+from .modelelement import Modelelement
+from .relationship import Relation
 
 
 class Elementrep(Baseobject):
@@ -13,49 +13,47 @@ class Elementrep(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-
         super().__init__()
         eler_index = 0
-        eler_uc = 'system'
-        eler_dc = date.today()
-
-
 
     """what is displayed on bottom (0) and what in higer positions"""
+
     def displorder(self):
         elem = Modelelement.getelement(self.eler_mode_id)
-        if isinstance(elem,Entity):
+        if isinstance(elem, Entity):
             return elem.getsubtypelevel()
-        elif isinstance(elem,Attribute):
+        elif isinstance(elem, Attribute):
             return elem.attr_displ_seq
-        else: return 0
-    #displorder
-
-
-
+        else:
+            return 0
 
     @classmethod
-    def getbydiagmode(pdiagid, pmodeid,pidx=None):
-        elers = cls.select(pwhere=("""eler_diag_id = ? 
-                                              and eler_mode_id = ?
-                                              and eler_index = ?""",
-                                    pdiagid, pmodeid, pidx if pidx is not None else 'eler_index'))
+    def getbydiagmode(cls,pdiagid, pmodeid, pidx=None):
+        if pidx is None:
+            where =("""eler_diag_id = ? 
+                        and eler_mode_id = ?""",
+                                   pdiagid, pmodeid)
+        else:
+            where = ("""eler_diag_id = ? 
+                        and eler_mode_id = ?
+                       and (eler_index = ?)"""
+                     ,pdiagid, pmodeid, pidx)
+        #fi
+        elers = cls.select(pwhere=where)
         if elers is None:
             return []
         elif (pidx is None):
-            #may be several
+            # may be several
             return elers
         else:
-            #can only be one
+            # can only be one
             return elers[0]
-    #getbydiagmode
+    # getbydiagmode
+
+
 # elementrep
 
 class Relationrep(Baseobject):
-    NORTH = 'N'
-    EAST = 'O'
-    SOUTH = 'S'
-    WEST = 'W'
     ONE = Relation.ONE
     MANY = Relation.MANY
 
@@ -65,22 +63,35 @@ class Relationrep(Baseobject):
     _columnlist: list = []
 
     def __init__(self):
-
         super().__init__()
-        relr_uc = 'system'
-        relr_dc = date.today()
-
 
     def getlinesegments(self):
-        return Linesegment.select(pwhere=("lise_relr_id = ?", self.relr_id),porderby="lise_seq")
+        return Linesegment.select(pwhere=("lise_relr_id = ?", self.relr_id), porderby="lise_seq")
+
+    # direction (NEWS) in with the relationship starts from the from element
+    def startingdirection(self):
+        linesegs = self.getlinesegments()
+        return linesegs[0].direction()
+
+    # direction (NEWS) in with the relationship ends on the toelement
+    def endingdirection(self):
+        linesegs = self.getlinesegments()
+        return linesegs[len(linesegs) - 2].reversedirection()
+
+    def getrela(self):
+        return Relation().getbyid(pid=self.relr_mode_id)
 
 
 # relationrep
 
 class Linesegment(Baseobject):
+    NORTH = 'N'
+    EAST = 'O'
+    SOUTH = 'S'
+    WEST = 'W'
     DADO = "DADO"
     DASHED = "DASHED"
-    DOTTED= "DOTTED"
+    DOTTED = "DOTTED"
     SOLID = "SOLID"
 
     _tablename: str = 'linesegments'
@@ -90,10 +101,24 @@ class Linesegment(Baseobject):
     _defaultorderby = "lise_seq"
 
     def __init__(self):
-
         super().__init__()
-        lise_uc = 'system'
-        lise_dc = date.today()
 
+    def direction(self):
+        if pi / 4 <= self.lise_angle < 3 * pi / 4:
+            return Linesegment.NORTH
+        elif -pi / 4 <= self.lise_angle < pi / 4:
+            return Linesegment.EAST
+        elif -3 * pi / 4 <= self.lise_angle < -pi / 4:
+            return Linesegment.SOUTH
+        elif (3 * pi / 4 <= self.lise_angle <= pi) \
+                or (-pi < self.lise_angle < -3 * pi / 4):
+            return Linesegment.WEST
+        assert False, f"winkel {self.lise_angle} nicht im Bereich"
 
+    def reversedirection(self):
+        direc = self.direction()
+        return Linesegment.NORTH if direc == Linesegment.SOUTH else \
+            Linesegment.SOUTH if direc == Linesegment.NORTH else \
+                Linesegment.WEST if direc == Linesegment.EAST else \
+                    Linesegment.EAST
 # linesegment

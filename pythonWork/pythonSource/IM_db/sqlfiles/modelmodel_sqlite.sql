@@ -44,7 +44,7 @@ create table modelelem_type
 	melt_dm varchar(30),
 	check (melt_shortname in ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
                                 , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
-                                ,'DGRM','DIAG'))
+                                ,'DGRM','DIAG','EXPL'))
 );
 
 create table modelelement
@@ -58,7 +58,8 @@ create table modelelement
     mode_max_zoom_level numeric(1)  null check ( mode_max_zoom_level between 0 and 4 ) ,
     mode_dev_status varchar (4) null default "DEV" check ( mode_dev_status in ("DEV", "REL", "TEST") ),
 	check (mode_type in ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
-                            , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU","KEYS","DATY","DGRM","DIAG"))
+                            , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU"
+							,"KEYS","DATY","DGRM","DIAG","EXPL"))
 );
 
 create table datatypes
@@ -935,8 +936,8 @@ create table businessrule_elements
      bure_dm varchar(30) ,
  	constraint bure_uk
  		unique (bure_buru_id,bure_mode_id),
-	constraint bure_mode_fk foreign key (bure_mode_id)
-    references modelelement(mode_id)
+	constraint bure_mode_fk foreign key(bure_mode_id)
+    references modelelement (mode_id)
 );
 
 create table element_ui
@@ -964,9 +965,11 @@ create table element_ui
     ,constraint elui_uk_role unique  (elui_melt_id, elui_enca_id)
     );
 
-	create table example 
+	create table examples 
 	    (
-	     expl_id integer (10) not null primary key, 
+	     expl_id integer (10) not null primary key
+			references modelelement (mode_id)
+ 			on delete cascade,
 	     expl_value varchar (4000) not null , 
 	     expl_enti_id numeric (10) , 
 	     expl_attr_id numeric (10) , 
@@ -988,8 +991,6 @@ create table element_ui
 		,constraint expl_enti_fk foreign key ( expl_enti_id) 
 			references entities (enti_id ) 
 			on delete cascade
-		,constraint expl_mode_fk foreign key (expl_id) 
-			references modelelement (mode_id ) 
 	    );
 
 create view superenti as

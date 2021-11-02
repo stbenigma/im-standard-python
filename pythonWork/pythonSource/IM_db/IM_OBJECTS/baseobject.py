@@ -377,19 +377,17 @@ class Baseobject:
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])
 
-        retval = None
+        wherecond = lambda arg: "" if arg is None else " where {}".format(arg if type(arg) is str else arg[0])
         try:
             modedelcnt = 0
             if cls._modelemtype is not None:
                 subselect = "select {} from {}".format(cls._idcolname, cls._tablename)
-                values = []
                 if pwhere is not None:
-                    subselect += " where {}".format(pwhere[0])
+                    subselect += wherecond(pwhere)
                 modedelcnt = Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
             #fi
             lsql = """delete from {} {}""" \
-                .format(cls._tablename
-                        , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0]))
+                .format(cls._tablename, wherecond(pwhere))
             elemdelcnt = dbDML.delete(lsql,*arguments)
             retval = elemdelcnt + modedelcnt #cascade delete from MODE has to be counted as well
         except Exception as err:

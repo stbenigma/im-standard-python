@@ -7,7 +7,6 @@ LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
 DEFAULT_LINEWIDTH: int = 1
 ICONSIZE: int = 40
-FONTPIXEL: int = 5
 
 
 def printlegend(pdata,pwidth,pheigh,px,py):
@@ -166,84 +165,34 @@ def printrela(plist):
     return retval
 #printrela
 
-def textpos(pangle,px,py,ptextlen,pstart,plines):
-    if ((pstart and (pangle >= 0) and (pangle < math.pi / 2)) 
-       or (not pstart and (pangle >= math.pi / 2))):
-        #line goes vertical North
-        x = px + 5
-        y = py - (5 * (plines+1))
-    elif ((pstart and (pangle >= math.pi / 2) and (pangle < math.pi))
-         or(not pstart and (pangle < 0))):
-        #line goes vertical south
-        x = px + 5
-        y = py + 10
-    elif (pstart and (pangle >= math.pi)
-         or (not pstart and (pangle >= 0) and (pangle < math.pi / 2))):
-        #line goes horizontal west
-        x = px - 5 - ptextlen
-        y = py + 10
-    else:
-        #horinzonal east
-        x = px + 5
-        y = py - 5
+def print1text(ptext,px,py,pwidth,pcolor,psize):
+    FONTPIXEL: int = 5
+    textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
+    retval = ""
+    if ptext is not None:
+        words = ptext.split(' ')
+        posx,posy = int(px),int(py)
+        idx,t = 0,words[0]
+        while idx < len(words):
+            idx += 1
+            while idx < len(words) and textlength(t + words[idx]) < pwidth:
+                t = t + " " + words[idx]
+                idx += 1
+            # while
+            retval += printtext(px=px, py=posy, ptext=t
+                                , pfillcolor=hex2rbg(pcolor), pfontsize=psize
+                                , pstandalone=True)
+            if idx < len(words): t = words[idx]
+            posy += 12
+        # while    
     # fi
-    return (x,y)
-#textpos
+    return retval
 
 def printtexte(plist,plang):
-    """beda_starttext_x,beda_starttext_y
-       ,beda_starttext_breite,beda_starttext_hoehe
-        ,beda_endtext_x,beda_endtext_y
-        ,beda_endtext_breite,beda_endtext_hoehe
-       ,beda_schriftfarbe,beda_schriftgroesse
-       ,sfrom.sptx_text fromname
-       ,sto.sptx_text toname
-        ,beda_id
-       ,beda_liniefarbe,beda_linienbreite,beda_liniedeckkraft"""
     retval= ""
     for relaanker,relaelem in plist.items():
-        starttext=getelement(relaanker)['from-to']['assoc'][plang]
-        fontcolor = relaelem['fontcolor']
-        fontsize = relaelem['fontsize']
-        endtext=getelement(relaanker)['to-from']['assoc'][plang]
-
-        #find the starting-/endingpoints of the first / last linesegment = touchoint with entity.
-        linesegs = relaelem['linesegments']
-        if len(linesegs)== 0: continue
-        linestartx,linestarty,linestartangle = linesegs[0]['x'],linesegs[0]['y'],linesegs[0]['angle']
-        lineendx,lineendy,lineendangle = linesegs[len(linesegs)-1]['x'],linesegs[len(linesegs)-1]['y'],linesegs[len(linesegs)-2]['angle']
-
-        #assume fixed length font
-        textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
-        if starttext is not None:
-            #if line is vertically oriented split text in shorter elements
-            if ((((linestartangle >= math.pi / 2) and (linestartangle < math.pi )) or (linestartangle < 0))):
-                s = starttext.split(' ')
-            else:
-                s =[starttext]
-
-            posx, posy = textpos(pangle=linestartangle, px=linestartx, py=linestarty, ptextlen=textlength(starttext),
-                                 pstart=True,plines=len(s))
-            for t in s:
-                retval += printtext(px=posx, py=posy, ptext=t
-                  , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
-                  ,pstandalone=True)
-                posy += 12 
-                
-        if endtext is not None:
-            if ((((lineendangle >= math.pi / 2) and (lineendangle < math.pi )) or (lineendangle < 0))):
-                s = endtext.split(' ')
-            else:
-                s =[endtext]
-            posx,posy = textpos(pangle=lineendangle,px=lineendx,py=lineendy,ptextlen=textlength(endtext)
-                                ,pstart=False,plines=len(s))
-            if lineendangle > 0:
-                posy -= 12 *(len(s)-1)
-            for t in s:
-                retval += printtext(px=posx, py=posy, ptext=t
-                          , pfillcolor=hex2rbg(fontcolor), pfontsize=fontsize
-                          , pstandalone=True)
-                posy += 12 
+        retval += print1text(ptext=getelement(relaanker)['from-to']['assoc'][plang],px=relaelem["starttext_x"],py=relaelem["starttext_y"],pwidth=relaelem["starttext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
+        retval += print1text(ptext=getelement(relaanker)['to-from']['assoc'][plang],px=relaelem["endtext_x"],py=relaelem["endtext_y"],pwidth=relaelem["endtext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
     #for
     return retval
 #printtexte

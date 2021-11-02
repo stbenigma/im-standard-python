@@ -60,36 +60,6 @@ def isIconstr(w):
     else:
         return False
 
-# def list2href(p_list, ptype):
-#     """Verandelt eine kommagetrennte Liste von nnn:xxxx in einen String von kommagetrennten  HREF-Webeinträgen"""
-#     if p_list is None: return None
-#     list = p_list.split(",")
-#     elem = []
-#     for el in list:
-#         el1  = el.split(':')
-#         elem.append(href(pref=
-#             web_sql.entiAnker(el1[0]) if ptype == 'ENTI' else
-#             web_sql.dokuAnker(el1[0]) if ptype == 'DOKU' else
-#             el1[0]
-#         , panz=el1[1]))
-#     return ', '.join(elem)
-# #list2href
-
-# def entidiag(pwebenti):
-#     doppelanker = "{}-{}"
-#     diaglist = WebDiagram.contentlist(pentiid=pwebenti.enti_id)
-#     if (len(diaglist) == 0):
-#         return ''
-#     diagstring = ', '.join(href(ref=doppelanker.format(diag.webanker().anker(), pwebenti.webanker().anker())
-#                                 , anz=diag.getname()) for diag in diaglist)
-#     return diagstring
-# # entidiag
-
-#def hasiconfiles():
-    # iconmaster = [key for key,val in getmodel().getelements(pelemtype=Modelelemtype.DOCU).items()
-    #                         if val["name"]== parameters.iconmasterdocumentname()]
-    # return len(iconmaster) == 1
-
 def iconsrc(pjsenti,pdefaultlang):
     icon = pjsenti["icon"]
     if icon['type']== 'FYAYCICON':
@@ -181,16 +151,14 @@ def createlib():
         shutil.copytree(libSourceDirec + 'image', imagedirec)
     if not os.path.exists(jinadirec):
         shutil.copytree(libSourceDirec + 'jinjatemplates', jinadirec)
-
-
-# createlib
+    return
 
 def copyimages():
     global imagedirec
     """copy all file from the modeler-image directory into the web-image directory"""
     if os.path.exists(parameters.odmFilesDirec()+'images'):
         copy_tree(parameters.odmFilesDirec()+'images', imagedirec)
-# copyimages
+    return
 
 def createFile(pfilename):
     global fhtml
@@ -198,13 +166,12 @@ def createFile(pfilename):
     if os.path.exists(webfile):
         os.remove(webfile)
     fhtml = open(webfile, 'w')
+    return
 
 
 # createFile
 def closefile():
     global fhtml
     fhtml.close()
-
-
-# closefile
+    return
 

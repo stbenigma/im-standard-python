@@ -1,0 +1,11 @@
+#!/bin/bash
+MYDIR=$(dirname "$0")
+echo =========================  test testmodel-1 ========================= 
+$MYDIR/fillallinone testmodel-1
+echo =========================  test testmodel-2 ========================= 
+$MYDIR/fillallinone testmodel-2
+echo =========================  test crmTest ========================= 
+$MYDIR/fillallinone crmTest
+echo =========================  test ModellModell ========================= 
+$MYDIR/fillallinone ModellModell
+read -p "press enter to close"

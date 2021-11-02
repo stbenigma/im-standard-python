@@ -1,24 +1,9 @@
-import re
-
 from IM_JSON import JSModel
-from . import hex2rbg
-from datetime import datetime
-from uuid import uuid4
-from matplotlib import colors
 
-nvl = lambda value, default='': value if value is not None else default
-
-
-def parse_color(color):
-    if isinstance(color, str):
-        if color.startswith('rgb('):
-            return [int(component) / 255 for component in color[4:-1].split(',')]
-        elif color.startswith('#'):
-            return colors.to_rgba(color)
-    return None
+"""defines the classes and functions to implement an entity-environment representation"""
+nvl = lambda str,default='': str if str is not None else default
 
 class EntityCell():
-    """defines the classes and functions to implement an entity-environment representation"""
     CENTER = 'center'
     ROLE = 'role'
     SUPER = 'super'
@@ -242,44 +227,12 @@ def printenti(pcell:EntityCell,pposx,pposy):
             </a>
             </g>
             """
-    entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
-                               , fopacity=0.3, sopacity=0.8
-                               , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
-                               , ref=pcell.getentiid() #, pcell.getentiid()
-                               ,fillcolor='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
-                               , name=nvl(pcell.getentiname())[:MAXENTICHARS]
-                               ,title="<title>{descr}</title>".format(descr=' ' if pcell.getentidescr() in (None,'') else pcell.getentidescr()[:MAXDESCRCHARS]))
-    return entibox
-
-
-def printentidio(pcell: EntityCell, pposx, pposy, unique: str = ''):
-    entitydio = \
-        """<UserObject label="{name}" {link} id="{id}{unique}">
-            <mxCell style="rounded=1;whiteSpace=wrap;html=1;align=left;{style}" parent="1" vertex="1">
-              <mxGeometry x="{posx}" y="{posy}" width="{width}" height="{height}" as="geometry" />
-            </mxCell>
-            </UserObject>
-            """
-    fill_color = pcell.getbgcolor()
-    font_color = pcell.getfontcolor()
-
-    pattern = re.compile(r'rgb\(([0-9]+),([0-9]+),([0-9]+)\)')
-    matcher = pattern.match(fill_color)
-    if matcher:
-        fill_color = (1/256*int(matcher.group(1)), 1/256*int(matcher.group(2)), 1/256*int(matcher.group(3)) )
-
-    # fix contrast if colors are dud
-    fill_hsv = colors.rgb_to_hsv(fill_color)
-    font_hsv = colors.rgb_to_hsv(fill_color)
-    if abs(fill_hsv[2] - font_hsv[2]) < .1:
-        font_color = (1,1,1,1) if fill_hsv[2] < .5 else (0,0,0,1)
-
-    style = f'fillColor={colors.to_hex(fill_color)};fontColor={colors.to_hex(font_color)};'
-    entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS],
-                               style=style,
-                               link="" if pcell.gettype() == EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"',
-                               posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
-                               )
+    entibox = entistart.format('white', 'blue'
+                               , 80, 80
+                               , pposx, pposy, ENTIWIDTH, ENTIHEIGHT
+                               , pcell.getentiid(), pcell.getentiid()
+                               ,'black' if pcell.gettype()== EntityCell.CENTER else 'blue', FONTSIZE
+                               , nvl(pcell.getentiname())[:MAXENTICHARS])
     return entibox
 
 def printrela(pcell:EntityCell,pposx,pposy):

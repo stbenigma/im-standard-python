@@ -41,9 +41,8 @@ create table businessrule_elements_tmp
      bure_dm datetime (8) null ,
  	constraint bure_uk
  		unique (bure_buru_id,bure_mode_id),
-	constraint bure_mode_fk foreign key
-    (bure_mode_id)
-    references modelelement(mode_id)
+	constraint bure_mode_fk foreign key (bure_mode_id)
+    references modelelement (mode_id)
 );
 
 insert into businessrule_elements_tmp (bure_id, bure_buru_id, bure_mode_id, bure_writeable, bure_uc, bure_dc , bure_um, bure_dm) 
@@ -53,9 +52,11 @@ alter table businessrule_elements_tmp rename to businessrule_elements;
 -- END alter unique key
 
 -- new table
-create table example 
+create table examples 
     (
-     expl_id integer (10) not null primary key, 
+     expl_id integer (10) not null primary key
+		references modelelement (mode_id)
+		on delete cascade,
      expl_value varchar (4000) not null , 
      expl_enti_id numeric (10) , 
      expl_attr_id numeric (10) , 
@@ -77,10 +78,50 @@ create table example
 	,constraint expl_enti_fk foreign key ( expl_enti_id) 
 		references entities (enti_id ) 
 		on delete cascade
-	,constraint expl_mode_fk foreign key (expl_id) 
-		references modelelement (mode_id ) 
     );
 -- end new table
+
+-- add type to modelelement_type
+create table modelelem_type_tmp
+(
+	melt_id integer not null
+		primary key autoincrement,
+	melt_shortname varchar(4) not null
+		constraint melt_un
+			unique,
+	melt_name varchar(60) not null
+		constraint melt_un2
+			unique,
+	melt_uc varchar(30),
+	melt_dc varchar(30) not null,
+	melt_um varchar(30),
+	melt_dm varchar(30),
+	check (melt_shortname in ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
+                                , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
+                                ,'DGRM','DIAG','EXPL'))
+);
+insert into modelelem_type_tmp select * from modelelem_type;
+drop table modelelem_type;
+alter table modelelem_type_tmp rename to modelelem_type;
+
+create table modelelement_tmp
+(
+	mode_id integer not null
+		primary key autoincrement,
+	mode_type varchar(4) not null,
+	mode_melt_id integer not null
+		references modelelem_type (melt_id),
+    mode_min_zoom_level numeric(1) null check ( mode_min_zoom_level between 0 and 4 ) ,
+    mode_max_zoom_level numeric(1)  null check ( mode_max_zoom_level between 0 and 4 ) ,
+    mode_dev_status varchar (4) null default "DEV" check ( mode_dev_status in ("DEV", "REL", "TEST") ),
+	check (mode_type in ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
+                            , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU"
+							,"KEYS","DATY","DGRM","DIAG","EXPL"))
+);
+insert into modelelement_tmp select from modelelement;
+drop table modelelement;
+alter table modelelement_tmp rename to modelelement_tmp;
+-- end add Type
 
 drop view dbversion;
 create view dbversion as select '1.5' as version, datetime() as installedtime;

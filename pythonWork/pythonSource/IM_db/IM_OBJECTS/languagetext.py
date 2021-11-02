@@ -19,12 +19,13 @@ class Languagetext(Baseobject):
     ENTI_SYNONYM: str = 'ENTI_SYNONYM'
     BURU_NAME: str = 'BURU_NAME'
     BURU_ERRORMSG: str = 'BURU_ERRORMSG'
+    EXPL_VALUE: str = 'EXPL_VALUE'
     ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
         , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
         , ENTI_SYNONYM
         , RELA_TEXT_TO, RELA_TEXT_FROM
         , DOMA_NAME, DOMA_DESCR
-        , BURU_NAME, BURU_ERRORMSG
+        , BURU_NAME, BURU_ERRORMSG,EXPL_VALUE
                            ]
 
     __greportLang: str = None
@@ -41,7 +42,7 @@ class Languagetext(Baseobject):
     def filldefaulttext(plang):
         """füllt sämtliche übersetzten Elemente in die lang_texts der Defaultsprache ein.
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
-           Synonyms have been handled beforehand (they are in a comma-separated list...)
+           Synonyms and exampleshave been handled beforehand (they are in a comma-separated list...)
         """
         assert plang, "No language provided"
         """select to get all multilanguage fields we know of. Has to be changed, if in a MultiLangbaseobject
@@ -92,7 +93,8 @@ class Languagetext(Baseobject):
                                     union all  
                                    select 'BURU_ERRORMSG' attrname, buru_errormsg text 
                                         ,buru_id,buru_uc,buru_dc
-                                    from business_rules """
+                                    from business_rules 
+                                    """
         """correct possible inconsistencies where the original field is NULL but the udp translated value is not
             remove all lang_texts (inserted by insertlang_texts) having empty original values"""
         dbDML.exec(f"""delete from lang_texts
@@ -101,7 +103,6 @@ class Languagetext(Baseobject):
                                 from ({multilangfields})
                                 where mlt_text is Null
                                 )""")
-
         dbDML.exec(f"""insert into lang_texts 
                     (lgtx_attrname,  lgtx_text
                    ,lgtx_mode_id, lgtx_uc, lgtx_dc
@@ -110,14 +111,12 @@ class Languagetext(Baseobject):
                   from ({multilangfields})
                 cross join (select {plang} as lang_id)
                    """)
-
-    # filldefaulttext
+        return
 
     @staticmethod
     def insertlang_texts(pudpthema):
         """übertrage alle lang_texts (ausser in der Default Language aus UDP (siehe filldefaulttext) in die lang_texts
         """
-
         lsql = """insert  into lang_texts (lgtx_attrname, lgtx_text, lgtx_lang_id, lgtx_mode_id, lgtx_uc, lgtx_dc)
             select attrname,udpv_value,lang_id,udpv_mode_id,udpv_uc,udpv_dc
             from (select udpv_value,
@@ -140,8 +139,7 @@ class Languagetext(Baseobject):
         cross join languages 
         where lang_is_base_lang = 'TRUE'"""
         dbDML.exec(lsql)
-
-    # insertlang_texts
+        return
 
     @staticmethod
     def getlang_texts(pattrname, pmodeid):
@@ -180,6 +178,7 @@ class Languagetext(Baseobject):
                      ,'auf Diagramm(en)': {'en': 'on diagram(s)', 'fr': 'sur ce diagramme(s)'}
                      ,'Autor': {'en': 'Author', 'fr': 'Auteur'}
                      ,'Beschreibung': {'en': 'Description', 'fr': 'Déscription'}
+                     ,'Beispiele': {'en': 'Examples', 'fr': 'Exemples'}
                      ,'Beziehung': {'en': 'Relationship', 'fr': 'Relation'}
                      ,'Beziehung(en)': {'en': 'relationship(s)', 'fr': 'Relation(s)'}
                      ,'Beziehungen': {'en': 'Relationships', 'fr': 'Relations'}

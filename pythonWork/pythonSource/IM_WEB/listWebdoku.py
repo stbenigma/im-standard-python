@@ -73,17 +73,20 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     for key,value in schnlist.items():
         printHTML.htmlfilelist[key] = value['name']+ '.html'
 
+    langpart = lambda l : '_' + l
     for lang in langs:
         lang = lang.lower()
         Languagetext.reportLang(lang)
-        langfilename = printHTML.webFileName + '_' + Languagetext.reportLang() + '.html'
+        #omit language in name for non translated models
+        langfilename = printHTML.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.html"
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
         printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=model)
     # for
+    #prepare for relational models
     Languagetext.reportLang(parameters.dbDefaultLang())
     #backjumps from relational webpage goes to default-lang-model
-    printHTML.htmlfilelist[0] = printHTML.webFileName + '_' + parameters.dbDefaultLang() + '.html'
+    printHTML.htmlfilelist[0] = printHTML.webFileName + f"{'' if len(langs) == 1 else langpart(parameters.dbDefaultLang())}.html"
 
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else parameters.dbDefaultLang()

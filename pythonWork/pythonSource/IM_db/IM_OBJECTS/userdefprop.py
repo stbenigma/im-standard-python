@@ -138,7 +138,7 @@ class Userdefpropvalue(Baseobject):
         elif ptablid is not None:
             fillvalues(pid=ptablid, ptablename=IM_OBJECTS.Table._tablename, pprefix=Modelelemtype.TABL)
         elif pcoluid is not None:
-            fillvalues(pid=pcoluid,ptablename=IM_OBJECTS.Column._tablename,pprefix=Modelelemtype.COLU)
+            fillvalues(pid=pcoluid, ptablename=IM_OBJECTS.Column._tablename, pprefix=Modelelemtype.COLU)
         else:
             None
         return

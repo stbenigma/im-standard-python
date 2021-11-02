@@ -191,16 +191,16 @@ def do1diaglink(pdiaglinkxml):
     # ey = int(nvlsearch(re.search("EY=([\d-]+);", geometry)))
     # edge = nvlsearch(re.search("EDGE=(\d+);", geometry))
 
-    startX = entirefft.eler_position_x + (entirefft.eler_width/2 if relr.relr_startedge in (Relationrep.SOUTH,Relationrep.NORTH)\
+    startX = entirefft.eler_position_x + (entirefft.eler_width/2 if relr.relr_startedge in (Linesegment.SOUTH,Linesegment.NORTH)\
                                          else entirefft.eler_width  if relr.relr_startedge in (Relationrep.EAST)\
                                          else 0)
-    startY=entirefft.eler_position_y + (entirefft.eler_height/2 if relr.relr_startedge in (Relationrep.EAST,Relationrep.WEST)\
+    startY=entirefft.eler_position_y + (entirefft.eler_height/2 if relr.relr_startedge in (Linesegment.EAST,Linesegment.WEST)\
                                          else entirefft.eler_height  if relr.relr_startedge in (Relationrep.SOUTH)\
                                         else 0)
-    endX= entireftf.eler_position_x + (entireftf.eler_width/2 if relr.relr_endedge in (Relationrep.SOUTH,Relationrep.NORTH)\
+    endX= entireftf.eler_position_x + (entireftf.eler_width/2 if relr.relr_endedge in (Linesegment.SOUTH,Linesegment.NORTH)\
                                          else entireftf.eler_width  if relr.relr_endedge in (Relationrep.EAST)\
                                          else 0)
-    endY=entireftf.eler_position_y + (entireftf.eler_height/2 if relr.relr_endedge in (Relationrep.EAST,Relationrep.WEST)\
+    endY=entireftf.eler_position_y + (entireftf.eler_height/2 if relr.relr_endedge in (Linesegment.EAST,Linesegment.WEST)\
                                          else entireftf.eler_height  if relr.relr_endedge in (Relationrep.SOUTH)\
                                         else 0)
 

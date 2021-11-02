@@ -232,6 +232,7 @@ class Domain(MultilangBaseobject):
         for filename in interfaces:
             if filename is None: continue
             intf = Interface().getbyuk(intf_name=interfacename(filename))
+            #it is either an interface (relational model) or None (= IM)
             intfid = None if intf is None else intf.intf_id
             intf2id[filename] = intfid
         #for

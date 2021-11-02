@@ -27,52 +27,53 @@ POSTGRES:str = 'postgres'
 
 paramFileExension:str = ".params"
 parameter = {'dbtype': SQLITE
-             ,'sqlpath': os.path.dirname(os.path.abspath(__file__))+"/../sqlfiles/"
-            , 'sqlfilename': 'modelmodel_'+SQLITE
-            ,'dbfilepath': None
-            , 'dbdirec' : None
-            , 'dbfileextension' : '.db'
-            , 'dbdefaultdirec':'DB/'
-            , DBDEFAULTLANG: 'de'
-            , DBLANGUAGES : 'de,en'
-            , 'dbdefaultlangid': None
-            , BASEDIREC: None
-            ,'localbasedirec': None
-            , ODMIMDIREC: None
-            , 'odmimdefaultdirec': 'IM/'
-            , 'odmimextension': '.dmd'
-            , MODELNAME: None
-            , 'odmkonfdirec': 'Konfiguration/'
-            , 'odmdefdomainsfile': 'defaultdomains.xml'
-            , 'odmsettingsfile': 'dl_settings.xml'
-            , 'odmdefdomainsfilepath': None
-            , 'odmtypesfile': 'types.xml'
-            , 'odmstructypesdir':  "datatypes/structuredtype/"
-            , 'odmfilesdirec': 'files/'
-            , 'odmentitydirec': 'logical/entity/'
-            , 'odmrelationdirec': 'logical/relation/'
-            , 'odmentisubviewdirec': 'logical/subviews/'
-            , 'odmarcdirec': 'logical/arc/'
-            , 'odmdocumentdirec': 'businessinfo/document/'
-            , 'odmorgunitdirec': 'businessinfo/party/'
-            , 'odmudptranslfilename': 'translation'
-            , 'odmudpmappingfilename': 'datamapping'
-            , 'odmudpelemdisplfilename': 'elementdisplay'
-            , 'odmmappingdirec': 'mapping/'
-            , 'odmudpfileextension':'.udposdm'
-            , 'odmvcsdirec' : 'gitHub/'
-            , 'webdirec': None
-            , 'webdefaultdirec': 'Web/'
-            , 'logofilename': None
-            , 'odmreldirec': 'rel/'
-            , 'odmtabledirec': 'table/'
-            , 'odmdomainsdirec': 'domains/'
-            , 'odmsubviewsdirec': 'subviews/'
-            , 'odmfkdirec': 'foreignkey/'
-            , LOGFILEDIREC: None
-            , LOGFILEPATH: None
-            , 'iconmasterdocumentname': "ENTITY-ICONS"
-}
+    , 'sqlpath': os.path.dirname(os.path.abspath(__file__)) + "/../sqlfiles/"
+    , 'sqlfilename': 'modelmodel_' + SQLITE
+    , 'dbfilepath': None
+    , 'dbdirec': None
+    , 'dbfileextension': '.db'
+    , 'dbdefaultdirec': 'DB/'
+    , DBDEFAULTLANG: 'de'
+    , DBLANGUAGES: 'de'
+    , 'dbdefaultlangid': None
+    , BASEDIREC: None
+    , 'localbasedirec': None
+    , ODMIMDIREC: None
+    , 'odmimdefaultdirec': 'IM/'
+    , 'odmimextension': '.dmd'
+    , MODELNAME: None
+    , 'odmkonfdirec': 'Konfiguration/'
+    , 'odmdefdomainsfile': 'defaultdomains.xml'
+    , 'odmsettingsfile': 'dl_settings.xml'
+    , 'odmdefdomainsfilepath': None
+    , 'odmtypesfile': 'types.xml'
+    , 'odmstructypesdir': "datatypes/structuredtype/"
+    , 'odmfilesdirec': 'files/'
+    , 'odmentitydirec': 'logical/entity/'
+    , 'odmrelationdirec': 'logical/relation/'
+    , 'odmentisubviewdirec': 'logical/subviews/'
+    , 'odmarcdirec': 'logical/arc/'
+    , 'odmdocumentdirec': 'businessinfo/document/'
+    , 'odmorgunitdirec': 'businessinfo/party/'
+    , 'odmudptranslfilename': 'translation'
+    , 'odmudpmappingfilename': 'datamapping'
+    , 'odmudpelemdisplfilename': 'elementdisplay'
+    , 'odmmappingdirec': 'mapping/'
+    , 'odmudpfileextension': '.udposdm'
+    , 'odmvcsdirec': 'gitHub/'
+    , 'webdirec': None
+    , 'webdefaultdirec': 'Web/'
+    , 'logofilename': None
+    , 'odmreldirec': 'rel/'
+    , 'odmtabledirec': 'table/'
+    , 'odmdomainsdirec': 'domains/'
+    , 'odmsubviewsdirec': 'subviews/'
+    , 'odmfkdirec': 'foreignkey/'
+    , LOGFILEDIREC: None
+    , LOGFILEPATH: None
+    , 'iconmasterdocumentname': "ENTITY-ICONS"
+             }
+
 def nvl(p_val1,p_val2=''):
     return p_val1 if p_val1 is not None else p_val2
 
@@ -80,89 +81,107 @@ def nvl2(pval,pvalnull,pvalnnull):
     return pvalnull if pval is None else pvalnnull
 
 def logfilepath(newval:str=None):
+    global parameter
     if newval is None:
         return parameter[LOGFILEPATH]
     else:
         parameter[LOGFILEPATH] = newval
 def logfiledirec(newval:str=None):
+    global parameter
     if newval is None:
         return parameter[LOGFILEDIREC]
     else:
         parameter[LOGFILEDIREC] = newval
 def dbFilePath(newval=None):
+    global parameter
     if newval is None:
         return parameter['dbfilepath']
     else:
         parameter['dbfilepath'] = newval
 def dbDirect(newval=None):
+    global parameter
     if newval is None:
         return parameter['dbdirec']
     else:
         parameter['dbdirec'] = newval
 def dbFileExtension(newval=None):
+    global parameter
     if newval is None:
         return parameter['dbfileextension']
     else:
         parameter['dbfileextension'] = newval
 def dbDefaultDirect(newval=None):
+    global parameter
     if newval is None:
         return parameter['dbdefaultdirec']
     else:
         parameter['dbdefaultdirec'] = newval
 def dbDefaultLang(newval=None):
+    global parameter
     if newval is None:
         return parameter[DBDEFAULTLANG]
     else:
         parameter[DBDEFAULTLANG] = newval
 def dbLanguages(newval=None):
+    global parameter
     if newval is None:
         return parameter[DBLANGUAGES]
     else:
         parameter[DBLANGUAGES] = newval
+        return
 def dbDefaultLangID(newval=None):
+    global parameter
     if newval is None:
         return parameter['dbdefaultlangid']
     else:
         parameter['dbdefaultlangid'] = newval
 def odmBaseDirec(newval=None):
+    global parameter
     print("obsolete, please use parameters.baseDirec")
     if newval is None:
         return parameter[BASEDIREC]
     else:
         parameter[BASEDIREC] = newval
 def baseDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter[BASEDIREC]
     else:
         parameter[BASEDIREC] = newval
 def odmIMDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter[ODMIMDIREC]
     else:
         parameter[ODMIMDIREC] = newval
 def odmIMDefaultDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmimdefaultdirec']
     else:
         parameter['odmimdefaultdirec'] = newval
 def odmIMExtension(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmimextension']
     else:
         parameter['odmimextension'] = newval
 def odmModelName(newval=None):  #to be removed
+    global parameter
     print("obsolete, please use parameters.modelName")
     if newval is None:
         return parameter[MODELNAME]
     else:
         parameter[MODELNAME] = newval
 def modelName(newval=None):
+    global parameter
     if newval is None:
         return parameter[MODELNAME]
     else:
         parameter[MODELNAME] = newval
 
 def odmsettingsfile(newval=None):
+    global parameter
     if newval is None:
         filepath=odmIMDirec()+modelName()+'/'+parameter['odmsettingsfile']
         if not os.path.exists(filepath):
@@ -171,164 +190,195 @@ def odmsettingsfile(newval=None):
     else:
         parameter['odmsettingsfile'] = newval
 def odmentisubviewdirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmentisubviewdirec']
     else:
         parameter['odmentisubviewdirec'] = newval
 def odmKonfDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmkonfdirec']
     else:
         parameter['odmkonfdirec'] = newval
 def odmVCSDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmvcsdirec']
     else:
         parameter['odmvcsdirec'] = newval
 def odmdefdomainsfile(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmdefdomainsfile']
     else:
         parameter['odmdefdomainsfile'] = newval
 def localbasedirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['localbasedirec']
     else:
         parameter['localbasedirec'] = newval
 def odmdocumentdirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmdocumentdirec']
     else:
         parameter['odmdocumentdirec'] = newval
 def odmorgunitdirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmorgunitdirec']
     else:
         parameter['odmorgunitdirec'] = newval
 def odmDefDomainsfilePath(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmdefdomainsfilepath']
     else:
         parameter['odmdefdomainsfilepath'] = newval
 def odmTypesFile(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmtypesfile']
     else:
         parameter['odmtypesfile'] = newval
 def odmFilesDirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmfilesdirec']
     else:
         parameter['odmfilesdirec'] = newval
 def odmstructypesdir(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmstructypesdir']
     else:
         parameter['odmstructypesdir'] = newval
 
 def odmEntityDirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmentitydirec']
     else:
         parameter['odmentitydirec'] = newval
 def odmRelationDirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmrelationdirec']
     else:
         parameter['odmrelationdirec'] = newval
 def odmArcDirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmarcdirec']
     else:
         parameter['odmarcdirec'] = newval
 def odmUDPTranslFileName(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmudptranslfilename']
     else:
         parameter['odmudptranslfilename'] = newval
 
 def odmUDPElemdisplFileName(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmudpelemdisplfilename']
     else:
         parameter['odmudpelemdisplfilename'] = newval
 
 def odmmappingdirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmmappingdirec']
     else:
         parameter['odmmappingdirec'] = newval
 def odmUDPMappingFileName(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmudpmappingfilename']
     else:
         parameter['odmudpmappingfilename'] = newval
 def odmUDPFileExtension(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmudpfileextension']
     else:
         parameter['odmudpfileextension'] = newval
 def webDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['webdirec']
     else:
         parameter['webdirec'] = newval
 def webDefaultDirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['webdefaultdirec']
     else:
         parameter['webdefaultdirec'] = newval
 def logoFileName(newval=None):
+    global parameter
     if newval is None:
         return parameter['logofilename']
     else:
         parameter['logofilename'] = newval
 
 def odmtabledirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmtabledirec']
     else:
         parameter['odmtabledirec'] = newval
 def odmdomainsdirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmdomainsdirec']
     else:
         parameter['odmdomainsdirec'] = newval
 def odmsubviewsdirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmsubviewsdirec']
     else:
         parameter['odmsubviewsdirec'] = newval
 def odmfkdirec(newval=None):
+    global parameter
     if newval is None:
         return parameter['odmfkdirec']
     else:
         parameter['odmfkdirec'] = newval
 def odmreldirec(newval=None):
+    global parameter
     if newval is None:
         return odmIMDirec()+modelName()+'/'+parameter['odmreldirec']
     else:
         parameter['odmreldirec'] = newval
 
 def dbtype(newval=None):
+    global parameter
     if newval is None:
         return parameter['dbtype']
     else:
         parameter['dbtype'] = newval
     return
 def sqlpath(newval=None):
+    global parameter
     if newval is None:
         return parameter['sqlpath']
     else:
         parameter['sqlpath'] = newval
     return
 def sqlfilename(newval=None):
+    global parameter
     if newval is None:
         return parameter['sqlfilename']
     else:
         parameter['sqlfilename'] = newval
     return
 def iconmasterdocumentname(newval=None):
+    global parameter
     if newval is None:
         return parameter['iconmasterdocumentname']
     else:
