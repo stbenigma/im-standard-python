@@ -54,8 +54,6 @@ def parseXML(pfilename):
         raise
     #try
     return tree
-<<<<<<< HEAD
-=======
 
 
 def extractlngcomments(ptext):
@@ -113,4 +111,3 @@ def separateExamples(pstr:str):
     examples = [s.strip() for s in commentstruct[1:]]
 
     return (descr,examples)
->>>>>>> origin/toolversion-2.4
