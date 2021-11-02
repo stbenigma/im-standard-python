@@ -14,9 +14,12 @@ def hex2int(phex):
 def int2hex(pint):
     if (pint is None): return pint
     lint = pint if (type(pint) == int) else int(pint)
-    retval = hex(lint & 0xfffffff)
-    retval = retval[2:8]
-    return retval
+    rgba = hex(lint & 0xffffff) #AARRGGBB
+    hex_value = rgba.replace('0x', '') # strip 0xFF
+    digits = len(hex_value)
+    if digits < 6:
+        return hex_value.zfill(6)
+    return hex_value
 
 class Color:
     BLACK = 0
@@ -521,7 +524,7 @@ def findedgepos(px,py,pdiagid,pentiid):
         pos = round(100 * (px - borders["left"]) / (borders["right"] - borders["left"]))
         retval =  (Linesegment.SOUTH,pos)
     else:
-        assert False, f"startx={startx} starty={starty}, borders={borders}"
+        assert False, f"Unknown border marker {px}"
     return retval
 
 
