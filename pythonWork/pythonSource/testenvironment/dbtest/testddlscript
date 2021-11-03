@@ -13,67 +13,85 @@
 
 #we need current directory of calling file in case it is started in finder with double click
 MYDIR=$(dirname "$0")
-lastscript=LAST_modelmodel_sqlite.sql
+#where are the database DDL files
+DBDIR=$MYDIR/../../SSOT_db/dbstructure/sqlite
+cd $MYDIR
+if [ -z "$1" ]; then
+	read -p "enter version [n.m] of upgradefile: " version
+else
+	version=$1
+fi
+#database ddl files to be testes
+lastscript=$DBDIR/LAST_modelmodel_sqlite.sql
+currentscript=$DBDIR/modelmodel_sqlite.sql
+upgradescript=$DBDIR/modelmodel_sqlite_$version.sql
+
+#locaL files for testing purposes
 olddb=OLD_emptydb.db
 oldschema=OLD_schema.sql
-currentscript=modelmodel_sqlite.sql
 newdb=NEW_emptydb.db
 newschema=NEW_schema.sql
+schemadiff=schemadiff.txt
+schemaupgradediff=schemaupgradediff.txt
 
 #test wether old sqldb can be created
-rm -f $MYDIR/$olddb
-sqlite3 $MYDIR/$olddb <$lastscript
+rm -f $olddb
+sqlite3 $olddb <$lastscript
 status=$?
 if [[ $status -ne 0 ]]
 then
 	echo "********** creation of database for $lastscript failed **********"
+	read  -p "press enter to close" 	
 	exit $status
 fi
 echo "=> creation of database from $lastscript successful"
 
 #test wether new sqldb can be created
-rm -f $MYDIR/$newdb
-sqlite3 $MYDIR/$newdb <$currentscript
+rm -f $newdb
+sqlite3 $newdb <$currentscript
 status=$?
 if [[ $status -ne 0 ]]
 then
 	echo "********** creation of database for $currentscript failed **********"
+	read  -p "press enter to close" 	
 	exit $status
 fi
 echo "=> creation of database from $currentscript successful"
 
-rm -f $oldschema $newschema schemadiff.txt schemaupgradediff.txt
-sqlite3 $MYDIR/$olddb .schema >$oldschema
-sqlite3 $MYDIR/$newdb .schema >$newschema
+rm -f $oldschema $newschema $schemadiff $schemaupgradediff
+sqlite3 $olddb .schema >$oldschema
+sqlite3 $newdb .schema >$newschema
 diff $oldschema $newschema >schemadiff.txt
 echo ====================================================== 
-echo ==== check schemadiff.txt and verify differences =====
+echo ==== check $schemadiff and verify differences =====
 echo ====================================================== 
 
-diffsql=modelmodel_sqlite_$1.sql
-if test -f "$diffsql"; then
-	echo "=> apply upgrade sql $diffsql"
+
+if test -f "$upgradescript"; then
+	echo "=> apply upgrade sql $upgradescript"
 else
-	echo "******** upgradefile  $diffsql  not found *******"
+	echo "******** upgradefile  $upgradescript  not found *******"
+	read  -p "press enter to close" 	
 	exit 1
 fi
 #apply diff file to old db
-sqlite3 $MYDIR/$olddb <$diffsql
+sqlite3 $olddb <$upgradescript
 status=$?
 if [[ $status -ne 0 ]]
 then
-	echo "********** upgrade sql $diffsql failed **********"
+	echo "********** upgrade sql $upgradescript failed **********"
+	read  -p "press enter to close" 	
 	exit $status
 fi
-echo "=> upgrade sql $diffsql applied successful"
+echo "=> upgrade sql $upgradescript applied successful"
 
-sqlite3 $MYDIR/$olddb .schema >$oldschema
+sqlite3 $olddb .schema >$oldschema
 diff $oldschema $newschema >schemaupgradediff.txt
 echo =============================================================
-echo ==== check schemaupgradediff.txt and verify differences =====
+echo ==== check $schemaupgradediff and verify differences =====
 echo =============================================================
 
-rm -f $MYDIR/$olddb $MYDIR/$newdb $MYDIR/$oldschema $MYDIR/$newschema
+rm -f $olddb $newdb $oldschema $newschema
 
 read  -p "press enter to close" 
 

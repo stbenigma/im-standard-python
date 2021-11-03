@@ -1,4 +1,4 @@
-# Concept for DB-Model installation
+# Concept for DB-Model installation and upgrade
 
 ## SQLITE
 
@@ -8,10 +8,10 @@ Versions (referred to as <version> below) of the database structure are in the f
 Versions of databasestructure strictly follow each other (in the sequence of ordered (string) <version> ).
 This means version upgrades can and must be applied in the order of ordered file-names.
 
-Every sql-script changing the database structure contains a version-View
+Every sql-script changing the database structure contains a version-View to mark the database
 * create view dbversion as select '<version>' as version, datetime() as installedtime;
 	
-If the script is applied to a existing DB we need to drop the view beforehand
+If the script is applied to an existing DB we need to drop the view beforehand
 * drop view dbversion
 
 The current SQL-script for a complete database structure is in the file
@@ -27,6 +27,9 @@ All version upgrades (upgrades to <version>) are in the file.
     * create new version-View
 
 For data migration which cannot be done with SQL alone, we have to add a concept of python code inclusion.
+
+Create a new DB from scratch:
+* apply modelmode_sqlite.sql 
 
 Algorithm for upgrades:
 * get actual version of DB
