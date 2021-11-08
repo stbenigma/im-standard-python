@@ -333,14 +333,14 @@ def printelements(pdiag, pdiaganker,plang):
             entidescr = ' '
         else: entidescr = entidescr[: MAXDESCRCHARS]
         retval += entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
-                                               , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
-                                               , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
-                                               , ref=eler['element']
-                                               , textref=pdiaganker + '-' + eler['element']
-                                               , fontcolor=hex2rbg(elerui['fontcolor'])
-                                               , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
-                                               , name=getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
-                                                ,title="" if entidescr is None else f"<title>{entidescr}</title>")
+                                           , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
+                                           , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
+                                           , ref=eler['element']
+                                           , textref=pdiaganker + '-' + eler['element']
+                                           , fontcolor=hex2rbg(elerui['fontcolor'])
+                                           , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
+                                           , name=getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
+                                            ,title="" if entidescr is None else f"<title>{entidescr}</title>")
 
         iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']),pdefaultlang=printHTML.getmodel().getdefaultlang())
         if iconsrc != "":

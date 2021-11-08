@@ -17,7 +17,7 @@ def rendermodel(pmodel:JSModel,pcurlang,pintfid=None,phtmlfilelist={},pdiagrams=
                                               , key=lambda x: x[1].upper())
                        , documents=sorted([[key, "{} ({})".format(value["name"],str(value['referencecnt+']))] for key, value in pmodel.jsmodel["documents"].items()]
                                         , key=lambda x: x[1].upper())
-                     , orgunits=sorted([[key, "{} ({})".format(value["name"], str(value['referencecnt+']))] for key, value in
+                        , orgunits=sorted([[key, "{} ({})".format(value["name"], str(value['referencecnt+']))] for key, value in
                                                     pmodel.jsmodel["orgunits"].items()]
                                                 , key=lambda x: x[1].upper())
                         , systems=sorted([[key, value["name"]] for key, value in pmodel.jsmodel["systems"].items()]
