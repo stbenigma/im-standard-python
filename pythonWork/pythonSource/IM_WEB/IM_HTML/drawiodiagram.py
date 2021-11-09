@@ -117,7 +117,7 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
 
         tooltip_content = html_tooltip(enti, translator)
         if tooltip_content and len(tooltip_content) > 0:
-            #tooltip_content += f"<hr><a href=\"ssot:{enti_key}\">{translator.tr('Details')}</a>"
+            # tooltip_content += f"<hr><a href=\"ssot:{enti_key}\">{translator.tr('Details')}</a>"
             uo.set('tooltip', tooltip_content)
 
         tags = []
@@ -131,7 +131,7 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
             uo.set('tags', ' '.join(tags))
 
         style = entity_style
-        #stroke_color = '#' + element.get('ui', {}).get('color', "FFFFFF")
+        # stroke_color = '#' + element.get('ui', {}).get('color', "FFFFFF")
 
         color = to_color(element.get('ui', {}).get('color', 'FFFFFF'))
         nesting_level = int(enti.get('subtypellevel+', 0) + 1)
@@ -140,9 +140,9 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         lighter = colors.hsv_to_rgb((hsv_color[0], adjusted_saturation, hsv_color[2]))
 
         # alpha blend
-        #lighter = (*lighter, .23)
+        # lighter = (*lighter, .23)
 
-        #print(f"Nesting {nesting_level} of entity {translator.tr(enti['name'])} changes saturation from {hsv_color[1]} to {adjusted_saturation} and {lighter}")
+        # print(f"Nesting {nesting_level} of entity {translator.tr(enti['name'])} changes saturation from {hsv_color[1]} to {adjusted_saturation} and {lighter}")
         style = ''.join([style, 'fillColor=', colors.to_hex(lighter, keep_alpha=True), ';'])
 
         cell = etree.Element("mxCell", id=enti_key + '-cell', style=style,
@@ -157,66 +157,110 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         root.append(uo)
 
 
+def relation_to_line(segments: [], key: str):
+    cell = etree.Element('mxCell', edge="1", parent="1", width="50", height="50")
+    cell.set('id', key)
+
+    geo = etree.Element('mxGeometry', width='50', height='50', relative='1')
+    geo.set('as', 'geometry')
+    start = segments[0]
+
+    source_point = etree.Element('mxPoint', x=str(start['x']), y=str(start['y']))
+    source_point.set('as', 'sourcePoint')
+    geo.append(source_point)
+
+    end = segments[-1]
+    target_point = etree.Element('mxPoint', x=str(end['x']), y=str(end['y']))
+    target_point.set('as', 'targetPoint')
+    geo.append(target_point)
+
+    logging.debug(f"Line with {len(segments)} segments {start['x']}/{start['y']} to {end['x']}/{end['y']}")
+
+    if len(segments) > 2:
+        elbows = etree.Element('Array')
+        elbows.set('as', 'points')
+        for point in segments[1:-2]:
+            elbow = etree.Element('mxPoint', x=str(point['x']), y=str(point['y']))
+            elbows.append(elbow)
+        geo.append(elbows)
+
+    cell.append(geo)
+    return cell
+
+
 # orthogonalEdgeStyle
 # elbowEdgeStyle
 connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;edgeStyle=orthogonalEdgeStyle;"
 
 
+# Lines can consist of multiple styles (linetype = SOLID|DASHED)
+# The change from one type to the other requires to break the line in two segments
+#
 def add_relations(diagram, model: JSModel, translator, parent):
     for key, relation in diagram['relationships'].items():
         segments = relation['linesegments']
-        assert len(segments) > 2, f"Expecting at least 2 points"
+        assert len(segments) > 1, f"Expecting at least 2 points"
         start = segments[0]
-        end = segments[-1]
+
         elbows = segments[1:-1]
 
-        connector = etree.Element('mxCell', edge="1", parent="1", width="50", height="50")
-        connector.set('id', key)
-        geo = etree.Element('mxGeometry', width='50', height='50', relative='1')
-        geo.set('as', 'geometry')
+        line_type = segments[0]['linetype']
+        if 'DASHED' == line_type:
+            start_dashing = '1;dashPattern=1 1'
+        else:
+            start_dashing = '0'
 
-        start_node = etree.Element('mxPoint', x=str(start['x']), y=str(start['y']))
-        start_node.set('as', 'sourcePoint')
-        geo.append(start_node)
+        change_point = -1
+        index = 1
+        for segment in segments[1:]:
+            next_type = segment['linetype']
+            if line_type != next_type:
+                assert change_point < 0, f"The line style alters multiple times. Last change seen on position {change_point}"
+                change_point = index
+                if 'DASHED' == next_type:
+                    end_dashing = '1;dashPattern=1 1;'
+                else:
+                    end_dashing = '0'
+                break
+            index += 1
 
-        end_node = etree.Element('mxPoint', x=str(end['x']), y=str(end['y']))
-        end_node.set('as', 'targetPoint')
-        geo.append(end_node)
-
-        if len(elbows) > 0:
-            elbows = etree.Element('Array')
-            elbows.set('as', 'points')
-            for linesegment in elbows:
-                segment = relation['linesegments'][linesegment]
-                elbow = etree.Element('mxPoint', x=str(segment['x']), y=str(segment('y')))
-                elbows.append(elbow)
-
-            geo.append(elbows)
-
-        # Set end's
+        # Read cardinality
         relation_ssot = model.getbyid(key)
+        assert relation_ssot is not None, "Cannot look up relation {key}"
         start_type = map_line_end(relation['start_connector'], relation_ssot['from-to'].get('mandatory'))
-        end_type = map_line_end(relation['end_connector'])
-        connector.set('style', connector_style + f'startArrow={start_type};endArrow={end_type};')
+        end_type = map_line_end(relation['end_connector'], relation_ssot['to-from'].get('mandatory'))
 
-        connector.append(geo)
-        parent.append(connector)
+        if change_point < 1:
+            # just one line
+            line = relation_to_line(segments, key)
+            line.set('style', connector_style + f"dashed={start_dashing};startArrow={start_type};endArrow={end_type};")
+            parent.append(line)
+        else:
+            logging.debug(f"Found line change on position {change_point} in line with {len(elbows)} elbows")
+            front = relation_to_line(segments[:change_point], key)
+            front.set('style', connector_style + f"dashed={start_dashing};startArrow={start_type};endArrow=none")
+            parent.append(front)
 
-        labeltext = translator.tr(relation_ssot['from-to'].get('assoc'))
-        if add_label(relation, 'start', labeltext, f"{key}-from", parent) is None:
-            logging.warning(f"Missing coordinates for label '{labeltext}' on start of relation {key}")
+            back = relation_to_line(segments[change_point - 1:], key + 'tail')
+            back.set('style', connector_style + f"dashed={end_dashing};endArrow={end_type};startArrow=none")
+            parent.append(back)
 
-        labeltext = translator.tr(relation_ssot['to-from'].get('assoc'))
-        if add_label(relation, 'end', labeltext, f"{key}-to", parent) is None:
-            logging.warning(f"Missing coordinates for label '{labeltext}' on end of relation {key}")
+        front_label_text = translator.tr(relation_ssot['from-to'].get('assoc'))
+        if add_label(relation, 'start', front_label_text, f"{key}-from", parent) is None:
+            logging.warning(f"Missing coordinates for label '{front_label_text}' on start of relation {key}")
+
+        tail_label_text = translator.tr(relation_ssot['to-from'].get('assoc'))
+        if add_label(relation, 'end', tail_label_text, f"{key}-to", parent) is None:
+            logging.warning(f"Missing coordinates for label '{tail_label_text}' on end of relation {key}")
 
 
 def map_line_end(cardinality: str, mandatory: bool = False) -> str:
-    """Map cardinalities from JSModel encoding to drawio encoding"""
+    """
+    Map cardinalities from JSModel encoding to drawio encoding.
+    Mandatory is encoded in the line style (solid = mandatory, dashed=optional) therefore not used here
+    """
     if 'M' == cardinality:
-        return 'ERoneToMany' if mandatory else 'ERmany'
-    elif '1' == cardinality:
-        return 'ERzeroToOne' if mandatory else 'ERone'
+        return 'ERmany'
     return 'none'
 
 
