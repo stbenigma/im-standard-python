@@ -75,3 +75,42 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
             }
         }
     }
+
+    segements = [
+        {
+            "x": 13382,
+            "y": 6535,
+            "linetype": "DASHED",
+            "angle": 3.141592653589793,
+            "uc": "SNE4FE",
+            "dc": "2020-11-16 07:03:01 UTC",
+            "um": None,
+            "dm": None
+        },
+        {
+            "x": 13169,
+            "y": 6535,
+            "linetype": "SOLID",
+            "angle": 3.141592653589793,
+            "uc": "SNE4FE",
+            "dc": "2020-11-16 07:03:01 UTC",
+            "um": None,
+            "dm": None
+        },
+        {
+            "x": 12956,
+            "y": 6535,
+            "linetype": "SOLID",
+            "angle": None,
+            "uc": "SNE4FE",
+            "dc": "2020-11-16 07:03:01 UTC",
+            "um": None,
+            "dm": None
+        }
+    ]
+
+
+    def test_add_relations_semi(self):
+        self.diagram['relationships']['RELA1111']['linesegments'] = self.segements
+        drawiodiagram.add_relations(self.diagram, JSModel(self.test_model), self.translator, self.root)
+        print(tostring(self.root))

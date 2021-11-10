@@ -179,7 +179,7 @@ def relation_to_line(segments: [], key: str):
     if len(segments) > 2:
         elbows = etree.Element('Array')
         elbows.set('as', 'points')
-        for point in segments[1:-2]:
+        for point in segments[1:-1]:
             elbow = etree.Element('mxPoint', x=str(point['x']), y=str(point['y']))
             elbows.append(elbow)
         geo.append(elbows)
@@ -188,9 +188,10 @@ def relation_to_line(segments: [], key: str):
     return cell
 
 
-# orthogonalEdgeStyle
+
 # elbowEdgeStyle
-connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;edgeStyle=orthogonalEdgeStyle;"
+# edgeStyle=orthogonalEdgeStyle;
+connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;rounded=0;"
 
 
 # Lines can consist of multiple styles (linetype = SOLID|DASHED)
@@ -206,7 +207,7 @@ def add_relations(diagram, model: JSModel, translator, parent):
 
         line_type = segments[0]['linetype']
         if 'DASHED' == line_type:
-            start_dashing = '1;dashPattern=1 1'
+            start_dashing = '1' #;dashPattern=1 1'
         else:
             start_dashing = '0'
 
@@ -218,7 +219,7 @@ def add_relations(diagram, model: JSModel, translator, parent):
                 assert change_point < 0, f"The line style alters multiple times. Last change seen on position {change_point}"
                 change_point = index
                 if 'DASHED' == next_type:
-                    end_dashing = '1;dashPattern=1 1;'
+                    end_dashing = '1' #;dashPattern=1 1;'
                 else:
                     end_dashing = '0'
                 break
@@ -237,11 +238,11 @@ def add_relations(diagram, model: JSModel, translator, parent):
             parent.append(line)
         else:
             logging.debug(f"Found line change on position {change_point} in line with {len(elbows)} elbows")
-            front = relation_to_line(segments[:change_point], key)
+            front = relation_to_line(segments[:change_point+1], key)
             front.set('style', connector_style + f"dashed={start_dashing};startArrow={start_type};endArrow=none")
             parent.append(front)
 
-            back = relation_to_line(segments[change_point - 1:], key + 'tail')
+            back = relation_to_line(segments[change_point:], key + 'tail')
             back.set('style', connector_style + f"dashed={end_dashing};endArrow={end_type};startArrow=none")
             parent.append(back)
 
