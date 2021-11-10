@@ -1,8 +1,9 @@
 import unittest
-from transferModel import int2hex, hex2int
+from IM_ODM.transferModel import int2hex, hex2int
 
 
 class ODMColorCodingFunctions(unittest.TestCase):
+
     def test_int2hex255(self):
         self.assertEqual("0000ff", int2hex(0xff0000ff))  # add assertion here
 
@@ -29,6 +30,7 @@ class ODMColorCodingFunctions(unittest.TestCase):
         values = [0xffffffff, -1, 0, 1, 255, 0x00ff00, 0x00ff0000, 0xafafafaf]
         for value in values:
             self.assertEqual(value & 0xffffff, hex2int(int2hex(value)))
+
 
 if __name__ == '__main__':
     unittest.main()
