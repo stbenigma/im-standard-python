@@ -56,6 +56,22 @@ defcolors = dict()
 """
 entities = dict()
 duplicateentityvids = [] #vid of duplicate of entities on diagrams. to be ignored in relationships
+"""domains in non-default file are IM or interface (relationale model) dependent.
+    fix interface-id of Domains at end of transfer.
+    {doma_id : filename of domainfile}
+ """
+interfacedomains = dict()
+"""List of not yet finished domain
+    {id of unfinished domain : guid of type it is supposed to be}"""
+unkndomains = {}
+
+
+docuparents ={}
+orguparents ={}
+emails = {}
+phones = {}
+contacts = {}
+
 
 #to be called bevore maind fillDB
 def initglobals():
@@ -86,12 +102,6 @@ def getentity(pguid,pvalue=None):
     else:
         return None
 
-"""domains in non-default file are IM or interface (relationale model) dependent.
-    fix interface-id of Domains at end of transfer.
-    {doma_id : filename of domainfile}
- """
-interfacedomains = dict()
-
 def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
     if (pstr is None): return False
@@ -121,9 +131,6 @@ def transferTypes():
                 ).insert()
     # endfor
 
-"""List of not yet finished domain
-    {id of unfinished domain : guid of type it is supposed to be}"""
-unkndomains = {}
 def do1structtype(filename):
     global unkndomains
     structdomains = handleXML.parseXML(pfilename=filename)
@@ -567,10 +574,12 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 entew = handleXML.findField(targetlabel, 'width')
                 enteh = handleXML.findField(targetlabel, 'height')
             #fi
-
             """Labels können negative Starts haben, verschiebe sie in den positiven Bereich"""
+            if sttex is not None and int(sttex) < 0: sttex, entex = 0, int(entex) - int(sttex)
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
-            if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
+            if entex is not None and int(entex) < 0: entex, sttex = 0, int(sttex) - int(entey)
+            if entey is not None and int(entey) < 0: entey, sttey = 0, int(sttex) - int(entex)
+
 
             sourcelinetype = Linesegment.SOLID if rela.getmandatoryfromto() else Linesegment.DASHED
             targetlinetype = Linesegment.SOLID if rela.getmandatorytofrom() else Linesegment.DASHED
@@ -959,7 +968,13 @@ def do1Attribute(plfnr, pattrxml,pentiId):
                                     ,pname="ATTR_COMMENT")
     #store examples for default language
 
-    attrId = attr.insert()
+    try:
+        attrId = attr.insert()
+        dom = Domain().getbyid(attr.attr_doma_id)
+    except Exception as e:
+        ent = Entity().getbyid(attr.attr_enti_id)
+        dom = Domain.select()
+        print (e)
     Example.fillexamples(pattrid=attrId, plngs=parameters.dbLanguages().split(',')
                          ,pdeflngexpls=examples,plngexpls=lngexamples)
 
@@ -1627,14 +1642,12 @@ def do1Orgunit(fileName):
         break #currently only 1 contact per orgunit
     orgu.insert()
 
-docuparents ={}
 def transferDocuments():
     global docuparents
     docuparents = {}
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document,pmandatoryfile=False)
     Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
-orguparents ={}
 def transferorgunits():
     global orguparents
     orguparents = {}
@@ -1662,7 +1675,6 @@ def removefixedudp():
 def removeattrmeta(pstr):
     return re.sub(r' ?\[[LNT]+\]','',pstr)
 
-emails = {}
 def do1email(fileName):
     global emails
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1673,8 +1685,7 @@ def do1email(fileName):
                                         ,'dc' : handleXML.findText(root, "createdTime")
                                         ,'email' : handleXML.findText(root, "emailAddress")
                                       }
-#do1email
-phones = {}
+    return
 def do1phone(fileName):
     global phones
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1686,8 +1697,7 @@ def do1phone(fileName):
                                         ,'phoneno' : handleXML.findText(root, "phoneNumber")
                                         , 'phnetype': handleXML.findText(root, "phoneType")
                                        }
-#do1phone
-contacts = {}
+    return
 def do1contact(fileName):
     global contacts,emails,phones
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1711,6 +1721,7 @@ def do1contact(fileName):
                                        ,'uc' : handleXML.findField(root, "createdBy")
                                         ,'dc' : handleXML.findField(root, "createdTime")
                                        }
+    return
 #do1contact
 
 def adjustlabelpositions():

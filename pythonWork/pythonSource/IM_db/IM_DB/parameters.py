@@ -24,9 +24,10 @@ def expecteddbversion():
 SQLITE:str = 'sqlite'
 SQLSERVER:str = 'sql-server'
 POSTGRES:str = 'postgres'
+PARAMFILEEXTENSION:str = ".params"
 
-paramFileExension:str = ".params"
-parameter = {'dbtype': SQLITE
+def parameterdefaults():
+    return {'dbtype': SQLITE
     , 'sqlpath': os.path.dirname(os.path.abspath(__file__)) + "/../../SSOT_db/dbstructure/sqlite/"
     , 'sqlfilename': 'modelmodel_' + SQLITE
     , 'dbfilepath': None
@@ -73,6 +74,7 @@ parameter = {'dbtype': SQLITE
     , LOGFILEPATH: None
     , 'iconmasterdocumentname': "ENTITY-ICONS"
              }
+parameter : parameterdefaults()
 
 def nvl(p_val1,p_val2=''):
     return p_val1 if p_val1 is not None else p_val2
@@ -452,8 +454,7 @@ def liesparamfile(p_filepath):
     """
     if baseDirec() is None:
         baseDirec(newval=os.path.dirname(os.path.realpath(p_filepath))+'/')
-
-
+    return
 #liesparamfile
 
 def filldefaultparams():
@@ -473,6 +474,7 @@ def filldefaultparams():
         logfiledirec(localbasedirec())
     if logfilepath() is None:
         logfilepath(logfiledirec()+modelName()+'.log')
+    return
 #filldefaultparams
 
 def suche1file(p_direc,p_pattern='.*'):
@@ -519,10 +521,10 @@ def suchemodelname(p_direc):
 
 def initparam(p_callarg,pfileonly=False):
     global parameter
-
+    parameter = parameterdefaults()
     my_file = Path(p_callarg)
     if my_file.is_file():
-        #file gegeben, lies dieses
+        #file gegeben, lies diesesb
         paramfile = p_callarg
     elif my_file.is_dir():
         if (p_callarg[-1] != '/'):
@@ -532,7 +534,7 @@ def initparam(p_callarg,pfileonly=False):
         odmIMDirec(newval=imdirec)
         baseDirec(newval=imdirec[0:len(imdirec)-len(odmIMDefaultDirec())] if (imdirec.split('/')[-2]+'/' == odmIMDefaultDirec()) else imdirec)
         modelName(newval=modelname)
-        paramfile = p_callarg + modelname + paramFileExension
+        paramfile = p_callarg + modelname + PARAMFILEEXTENSION
     else:
         print (my_file)
         if pfileonly:
@@ -547,4 +549,5 @@ def initparam(p_callarg,pfileonly=False):
         raise Exception('No parameter file and no model found in "{}"'.format(p_callarg))
     #fi
     filldefaultparams()
+    return
 #end initparam

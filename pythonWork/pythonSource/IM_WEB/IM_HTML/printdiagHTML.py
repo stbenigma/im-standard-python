@@ -347,7 +347,6 @@ def printelements(pdiag, pdiaganker,plang):
             retval += imagehtml.format(iconsrc
                                                ,eler['pos_x']+elerui['width']-ICONSIZE/2,
                                                 eler['pos_y'] - ICONSIZE/2)
-
     #for
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
     for attr in pdiag['elements']['attribute']:

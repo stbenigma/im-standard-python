@@ -53,7 +53,6 @@ def cleaneddiffs(pfile1,pfile2,ptype):
 def testloading1model(pcallarg):
     parameters.initparam(p_callarg=pcallarg)
     modelname=parameters.modelName()
-    parameters.dbFilePath()
 
     #load reference files to compare to as json and as text
     #loadedjsonref = loadjsonfile(pcallarg+f"/ref_{modelname}_loaded.json")
@@ -98,9 +97,14 @@ def testloading1model(pcallarg):
 
 
     except Exception as e:
-        print (loadeddiff)
-        print (mergeddiff)
-        print (logdiff)
+        def lineprint(plist):
+            for l in plist:
+                print(l)
+            #for
+            return
+        lineprint (loadeddiff)
+        lineprint (mergeddiff)
+        lineprint (logdiff)
         raise e
 
     #fill database from same ODM for the second time (nonempty DB->test merge as well)
@@ -137,9 +141,6 @@ def quicktest(pmodel):
     """just run a filldb to check wether it runs through without errors.
         remove all generated files to make sure, it is created with the correct db-version
     """
-    parameters.initparam(p_callarg=pmodel)
-    modelname=parameters.modelName()
-    parameters.dbFilePath()
 
     #Clear environment for test
     emptyloadingfiles(pmodelpath=pmodel)
@@ -147,9 +148,13 @@ def quicktest(pmodel):
     #fill database from ODM for the first time
     try:
         fillDB.main(pmodel)
-        print(f"============ Test {pmodel} for model {modelname} OK ============")
+        modelname = parameters.modelName()
+        print(f"============ Test {pmodel} for model {modelname} OK ============\n")
     except Exception as e:
-        print(f"============ Test {pmodel} for model {modelname} FAILED ============")
+        modelname = parameters.modelName()
+        print(pmodel)
+        print(e)
+        print(f"=*=*=*=*=*=*=*=*=*=*=*= Test {pmodel} for model {modelname} FAILED =*=*=*=*=*=*=*=*=*=*=*=\n")
         raise e
     return
 
@@ -169,26 +174,26 @@ def main(plocaltestdirec,pmodelnames):
     print ("============ Loading ODM->SSOT run without differences ============")
 
     if len(privatemodeldirecs) > 0:
-        print ("====================================================")
+        print ("============================================================================================================================")
         print("============ Test load ODM quickrun local models  ============")
     failedcnt =0
     for pm in privatemodeldirecs:
         print(f"============ ODM-Load Test {pm}  ============")
         try:
             quicktest (pm)
-        except:
+        except Exception as e:
             failedcnt += 1
     print("============ Test load ODM quickrun local models ended ============")
 
-    for pm in privatemodeldirecs:
-        print(f"============ HTML-Test {pm}  ============")
-        try:
-            listWebdoku.main(pdirec=pm,pinputtype='JSON',plang=None)
-        except:
-            failedcnt += 1
-    print("============ Test HTML generation quickrun local models ended ============")
+    # for pm in privatemodeldirecs:
+    #     print(f"============ HTML-Test {pm}  ============")
+    #     try:
+    #         listWebdoku.main(pdirec=pm,pinputtype='JSON',plang=None)
+    #     except:
+    #         failedcnt += 1
+    # print("============ Test HTML generation quickrun local models ended ============")
 
-    assert failedcnt == 0,"error in local testmodels"
+    assert (failedcnt == 0),"error in local testmodels"
     return
 
 if __name__ == '__main__':
