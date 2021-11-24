@@ -524,7 +524,11 @@ def findedgepos(px,py,pdiagid,pentiid):
         pos = round(100 * (px - borders["left"]) / (borders["right"] - borders["left"]))
         retval =  (Linesegment.SOUTH,pos)
     else:
-        assert False, f"Unknown border marker {px}"
+        enti=Entity().getbyid(pentiid)
+        diag=Diagram().getbyid(pdiagid)
+        logmessages.writelog(f"Entity {enti.enti_name} position {borders} on diagram {diag.diag_name} does not meet relation ends: py={px} py={py}")
+        #dummy starting point
+        retval = (Linesegment.NORTH,0)
     return retval
 
 
@@ -562,10 +566,12 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 entew = handleXML.findField(targetlabel, 'width')
                 enteh = handleXML.findField(targetlabel, 'height')
             #fi
-
             """Labels können negative Starts haben, verschiebe sie in den positiven Bereich"""
+            if sttex is not None and int(sttex) < 0: sttex, entex = 0, int(entex) - int(sttex)
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
-            if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
+            if entex is not None and int(entex) < 0: entex, sttex = 0, int(sttex) - int(entey)
+            if entey is not None and int(entey) < 0: entey, sttey = 0, int(sttex) - int(entex)
+
 
             sourcelinetype = Linesegment.SOLID if rela.getmandatoryfromto() else Linesegment.DASHED
             targetlinetype = Linesegment.SOLID if rela.getmandatorytofrom() else Linesegment.DASHED
@@ -954,7 +960,13 @@ def do1Attribute(plfnr, pattrxml,pentiId):
                                     ,pname="ATTR_COMMENT")
     #store examples for default language
 
-    attrId = attr.insert()
+    try:
+        attrId = attr.insert()
+        dom = Domain().getbyid(attr.attr_doma_id)
+    except Exception as e:
+        ent = Entity().getbyid(attr.attr_enti_id)
+        dom = Domain.select()
+        print (e)
     Example.fillexamples(pattrid=attrId, plngs=parameters.dbLanguages().split(',')
                          ,pdeflngexpls=examples,plngexpls=lngexamples)
 
@@ -1622,14 +1634,12 @@ def do1Orgunit(fileName):
         break #currently only 1 contact per orgunit
     orgu.insert()
 
-docuparents ={}
 def transferDocuments():
     global docuparents
     docuparents = {}
     dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document,pmandatoryfile=False)
     Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
-orguparents ={}
 def transferorgunits():
     global orguparents
     orguparents = {}
@@ -1657,7 +1667,6 @@ def removefixedudp():
 def removeattrmeta(pstr):
     return re.sub(r' ?\[[LNT]+\]','',pstr)
 
-emails = {}
 def do1email(fileName):
     global emails
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1668,8 +1677,7 @@ def do1email(fileName):
                                         ,'dc' : handleXML.findText(root, "createdTime")
                                         ,'email' : handleXML.findText(root, "emailAddress")
                                       }
-#do1email
-phones = {}
+    return
 def do1phone(fileName):
     global phones
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1681,8 +1689,7 @@ def do1phone(fileName):
                                         ,'phoneno' : handleXML.findText(root, "phoneNumber")
                                         , 'phnetype': handleXML.findText(root, "phoneType")
                                        }
-#do1phone
-contacts = {}
+    return
 def do1contact(fileName):
     global contacts,emails,phones
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1706,6 +1713,7 @@ def do1contact(fileName):
                                        ,'uc' : handleXML.findField(root, "createdBy")
                                         ,'dc' : handleXML.findField(root, "createdTime")
                                        }
+    return
 #do1contact
 
 def adjustlabelpositions():
@@ -1718,32 +1726,34 @@ def adjustlabelpositions():
         xoffset = 4
         if pstart:
             px, py = prelr.relr_starttext_x, prelr.relr_starttext_y
+            height,width=nvl(prelr.relr_starttext_height,20),nvl(prelr.relr_starttext_width,40)
             if (prelr.relr_startedge == Linesegment.NORTH):
-                px += xoffset
-                py = pentiref.eler_position_y - prelr.relr_starttext_height - NORTHoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_startposition)
+                py = pentiref.eler_position_y - height - NORTHoffset
             elif (prelr.relr_startedge == Linesegment.SOUTH):
-                px += xoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_startposition)
                 py = pentiref.eler_position_y + pentiref.eler_height + SOUTHoffset
             elif (prelr.relr_startedge == Linesegment.EAST):
                 px = pentiref.eler_position_x + pentiref.eler_width + xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_startposition) - EASToffset
             elif (prelr.relr_startedge == Linesegment.WEST):
-                px = pentiref.eler_position_x - prelr.relr_starttext_width - xoffset
+                px = pentiref.eler_position_x - width - xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_startposition) + (3*EASToffset)
             #fi
         else:
             px, py = prelr.relr_endtext_x, prelr.relr_endtext_y
+            height,width=nvl(prelr.relr_endtext_height,20),nvl(prelr.relr_endtext_width,40)
             if not pstart and (prelr.relr_endedge == Linesegment.NORTH):
-                px += xoffset
-                py = pentiref.eler_position_y - prelr.relr_endtext_height - NORTHoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_endposition)
+                py = pentiref.eler_position_y - height - NORTHoffset
             elif not pstart and (prelr.relr_endedge == Linesegment.SOUTH):
-                px += xoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_endposition)
                 py = pentiref.eler_position_y + pentiref.eler_height  + SOUTHoffset
             elif (prelr.relr_endedge == Linesegment.EAST):
                 px = pentiref.eler_position_x + pentiref.eler_width + xoffset
                 py = abspos(pentiref.eler_position_y, pentiref.eler_height, prelr.relr_endposition) - EASToffset
             elif (prelr.relr_endedge == Linesegment.WEST):
-                px = pentiref.eler_position_x - prelr.relr_endtext_width - xoffset
+                px = pentiref.eler_position_x - width - xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_endposition) + (3*EASToffset)
             # fi
         # fi
@@ -1789,7 +1799,7 @@ def transferODMModel(**kwargs):
     transferdiagramme()
     transferRelational.transfer()
     #do some fixing and cleaning up
-    adjustlabelpositions()
+    #adjustlabelpositions()
     Datatype.deleteunused()
     Column.fillextid()
     Domain.fixdomaininterfaces(interfacedomains)

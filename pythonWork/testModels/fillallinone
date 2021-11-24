@@ -1,6 +1,0 @@
-#!/bin/bash
-CURRDIR=$(dirname "$0")
-#currently productive source
-SOURCEPATH=$CURRDIR/../pythonSource
-echo $SOURCEPATH
-python $SOURCEPATH/IM_WEB/webfillallin1.py $CURRDIR/$1 de FORCE

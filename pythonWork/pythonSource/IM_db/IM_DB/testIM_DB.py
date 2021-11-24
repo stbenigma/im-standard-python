@@ -115,7 +115,7 @@ class ParameterTest(unittest.TestCase):
                             ,msg="falscher domainfilepath ")
 
             #Test mit Parameterfile implizit gerufen
-            paramfile = basedirec +'/' + 'TEST_DMD' + parameters.paramFileExension
+            paramfile = basedirec +'/' + 'TEST_DMD' + parameters.PARAMFILEEXTENSION
             with open(paramfile, 'w+') as f:
                 f.write('[ODM]]\n')
                 f.write('#base directory for all model data (with ending /)\n')
@@ -133,7 +133,7 @@ class ParameterTest(unittest.TestCase):
             self.assertEqual(parameters.dbDefaultLang(),'de',msg="falsche Language {} {}")
             os.remove(paramfile)
 
-            paramfile = basedirec +'/' + 'TEST_DMD' + parameters.paramFileExension
+            paramfile = basedirec +'/' + 'TEST_DMD' + parameters.PARAMFILEEXTENSION
             with open(paramfile, 'w+') as f:
                 f.write('[ODM]]\n')
                 f.write('#base directory for all model data (with ending /)\n')

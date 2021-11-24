@@ -1,0 +1,4 @@
+959c959
+< CREATE VIEW dbversion as select '1.6' as version, datetime() as installedtime
+---
+> CREATE VIEW dbversion as select '1.5' as version, datetime() as installedtime

@@ -40,7 +40,7 @@ class Elementrep(Baseobject):
                      ,pdiagid, pmodeid, pidx)
         #fi
         elers = cls.select(pwhere=where)
-        if elers is None:
+        if elers is None or len(elers)==0:
             return []
         elif (pidx is None):
             # may be several
