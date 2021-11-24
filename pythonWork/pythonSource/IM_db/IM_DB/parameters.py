@@ -481,7 +481,7 @@ def suche1file(p_direc,p_pattern='.*'):
     lretval = None
     dmdfiles = []
     try:
-        dmdfiles = [f for f in os.listdir(p_direc) if re.match(p_pattern + re.escape(odmIMExtension()), f)]
+        dmdfiles = [f for f in os.listdir(p_direc) if re.match(p_pattern + re.escape(odmIMExtension()) + '$', f)]
     except:
         pass
     #fi

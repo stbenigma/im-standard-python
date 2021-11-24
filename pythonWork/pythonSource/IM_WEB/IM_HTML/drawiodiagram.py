@@ -200,6 +200,9 @@ connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;rou
 def add_relations(diagram, model: JSModel, translator, parent):
     for key, relation in diagram['relationships'].items():
         segments = relation['linesegments']
+        if len(segments) < 2:
+            logging.warning(f"Expecting at least two points per segment")
+            continue
         assert len(segments) > 1, f"Expecting at least 2 points"
         start = segments[0]
 

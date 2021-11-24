@@ -503,7 +503,12 @@ def connector(pidx, pmaxidx, psource, ptarget):
 def findedgepos(px,py,pdiagid,pentiid):
     def entiborders(pdiagid, pentiid):
         retval = {'top': None, 'bottom': None, 'left': None, 'right': None}
-        entirep = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid)[0]  # expect max. 1
+        hits = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid) # expect max. 1
+        if len(hits) < 1:
+            logmessages.writelog(f"Unable to find entity {pentiid} on diagram {pdiagid} (x:{px}, y:{py})")
+            return retval
+
+        entirep = hits[0] # expect max. 1
         retval['top'] = entirep.eler_position_y
         retval['bottom'] = entirep.eler_position_y + entirep.eler_height
         retval['left'] = entirep.eler_position_x
