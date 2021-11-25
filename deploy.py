@@ -38,14 +38,22 @@ notebook_to_python(script_file, exporter, target)
 logging.info(f"Generated {target} from {script_file}")
 
 
-
+def accept(path: str):
+    file = os.path.basename(path)
+    if '/venv/' in path: return False
+    if file is None: return False
+    if file.endswith('.py'): return True
+    if 'modelmodel_sqlite.sql' in file: return True
+    if 'versions.json' in file: return True
+    return False
 
 def zipdir(path, ziph, content_root):
     # ziph is zipfile handle
     for root, dirs, files in os.walk(path):
         for file in files:
             path = os.path.join(root, file)
-            ziph.write(path, os.path.relpath(path, content_root))
+            if accept(path):
+                ziph.write(path, os.path.relpath(path, content_root))
 
 
 package_name = 'model2diagram'
@@ -55,7 +63,7 @@ archive = os.path.join('.', package_name + '.zip')
 with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as zipfile:
     zipfile.write('generator.py')
     zipfile.write('run.bat')
-    zipdir('tools', zipfile, '.')
+    zipdir('pythonWork', zipfile, '.')
 
 logging.info(f"Compiled archive {archive}")
 
