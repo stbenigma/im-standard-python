@@ -63,25 +63,32 @@ duplicateentityvids = [] #vid of duplicate of entities on diagrams. to be ignore
 interfacedomains = dict()
 """List of not yet finished domain
     {id of unfinished domain : guid of type it is supposed to be}"""
-unkndomains = {}
+unkndomains = dict()
 
-
-docuparents ={}
-orguparents ={}
-emails = {}
-phones = {}
-contacts = {}
+docuparents =dict()
+orguparents =dict()
+emails = dict()
+phones = dict()
+contacts = dict()
 
 
 #to be called bevore maind fillDB
 def initglobals():
-    global schluessel,classcolors,classids,defcolors,entities,duplicateentityvids
+    global schluessel,classcolors,classids,defcolors,entities,duplicateentityvids\
+        ,interfacedomains ,unkndomains ,docuparents,orguparents,emails ,phones ,contacts
     schluessel = []
-    classcolors = dict()
-    classids = dict()
-    defcolors = dict()
-    entities = dict()
+    classcolors = {}
+    classids = {}
+    defcolors = {}
+    entities = {}
     duplicateentityvids = []
+    interfacedomains = {}
+    unkndomains = {}
+    docuparents ={}
+    orguparents ={}
+    emails = {}
+    phones = {}
+    contacts = {}
 
 
 def getentitykeys():
@@ -975,6 +982,7 @@ def do1Attribute(plfnr, pattrxml,pentiId):
         ent = Entity().getbyid(attr.attr_enti_id)
         dom = Domain.select()
         print (e)
+        raise e  #Problem with multientrance  Domains are out of sync
     Example.fillexamples(pattrid=attrId, plngs=parameters.dbLanguages().split(',')
                          ,pdeflngexpls=examples,plngexpls=lngexamples)
 
