@@ -15,7 +15,7 @@ def int2hex(pint):
     if (pint is None): return pint
     lint = pint if (type(pint) == int) else int(pint)
     retval = hex(lint & 0xfffffff)
-    retval = retval[2:8]
+    retval = retval[3:9]
     return retval
 
 class Color:
@@ -50,6 +50,7 @@ classids = dict()
  {elementtypename : Color}
 """
 defcolors = dict()
+ENTITYDEFAULTCLASSNAME = "Entity"
 
 """List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
    {entityguid: {"entity":, "color":, "superentitityguid":, "subentities":[ids], "categoryguid":}}
@@ -354,9 +355,9 @@ def transferDomains():
 def transferentity(penti, pdiagid, puc, pdc):
     global defcolors,classcolors,duplicateentityvids
 
-    entiodm = handleXML.findField(penti, 'oid')
-    entivid = handleXML.findField(penti, 'vid') #ID of entity on this diagram
-    enti = Entity().getbyODMref(psrcid=entiodm)
+    entiguidodm = handleXML.findField(penti, 'oid')
+    entiguidvid = handleXML.findField(penti, 'vid') #ID of entity on this diagram
+    enti = Entity().getbyODMref(psrcid=entiguidodm)
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = handleXML.findField(hiddenelements, "elements")
@@ -388,7 +389,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         col = Color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None, fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
     else:
         # check wether entity belongs to category
-        enticatguid = None if entiodm is None else getentity(entiodm,"categoryguid")
+        enticatguid = getentity(entiguidodm,"categoryguid") if entiguidodm is not None else None
         #print (enti.enti_name,enti.getscrid(),enticatguid)
         if (enticatguid is None):
             col = defcolors['Entity']
@@ -464,7 +465,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             break  # no more looping for copies of element on diagram
         except UniqueKeyException as err:
             #issue45: don't copy duplicate entities on diagram, write logentry instead
-            duplicateentityvids.append(entivid)
+            duplicateentityvids.append(entiguidvid)
             logmessages.writelog(f"Copy of entity \"{enti.enti_name}\" on diagram \"{Diagram().getbyid(pdiagid).diag_name}\" is ignored")
             break
             #index += 1
@@ -1154,6 +1155,10 @@ def do1Entity(fileName):
             enti.enti_enca_id = classids[enticategoryguid]
         else:
             print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
+        #fi
+    else:
+        enti.enti_enca_id = classids[ENTITYDEFAULTCLASSNAME]
+    #fi
 
     enti.enti_descr,examples  = handleXML.separateExamples(enti.enti_descr)
     """Translations come from notes"""
@@ -1519,7 +1524,7 @@ def loaddefaultcolors():
         idx = 0
         while True:
             try:
-                classid = category.insert()
+                categoryid = category.insert()
                 break  #all fine, leave the loop
             except UniqueKeyException as err:
                 idx += 1
@@ -1530,14 +1535,14 @@ def loaddefaultcolors():
         #loop
 
         classguid = handleXML.findField(ty, 'id')
-        classids[classguid] = classid
+        classids[classguid] = categoryid
 
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
         color = Color(foregcolor=handleXML.findField(ty, 'fgcolor'), backgcolor= handleXML.findField(ty, 'color'))
         loadcolors(color=color, elem=ty)
         classcolors[classguid] = color
         elui = ElementUI()
-        elui.elui_enca_id = classid
+        elui.elui_enca_id = categoryid
         elui.elui_color = int2hex(color.backgcolor)
         elui.elui_margincolor = int2hex(color.foregcolor)
         elui.elui_fontsize = color.fontsize
@@ -1553,8 +1558,9 @@ def loaddefaultcolors():
                                 , None, None, None, None)
         loadcolors(color = color, elem=de)
         defcolors[classname] = color
-        if classname == "Entity":
+        if classname == ENTITYDEFAULTCLASSNAME:
             categoryid = EntityCategory(pname=classname).insert()
+            classids[classname] = categoryid
             elui = ElementUI()
             elui.elui_enca_id = categoryid
             elui.elui_color = int2hex(color.foregcolor)
