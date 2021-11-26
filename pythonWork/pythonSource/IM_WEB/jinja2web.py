@@ -1,12 +1,12 @@
 from datetime import datetime
 import re
-from markdown import markdown,Markdown
-import logmessages
+from markdown import markdown
 from IM_HTML import printHTML,entityenviron
-from IM_DB import parameters
+from SSOT_infra import parameters, logmessages
 from IM_JSON import JSModel,jsguid2type
 from IM_OBJECTS import Languagetext
-from jinja2 import FileSystemLoader,Environment,Markup
+from jinja2 import FileSystemLoader,Environment
+
 
 class Webmodel():
     def __init__(self,pcurlang,pjsmodel:JSModel,pintfid,phtmlfilelist):
@@ -205,7 +205,7 @@ def formattext(pstr:str):
 
 
 def model2html(pwebmodel:Webmodel):
-    jinjadirec = parameters.webDirec()+"jinjatemplates"
+    jinjadirec = parameters.webDirec() + "jinjatemplates"
     #jinjadirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"
     t = Environment(loader=FileSystemLoader(jinjadirec),autoescape=True)
     if pwebmodel.getintfid() is not None:
@@ -217,7 +217,7 @@ def model2html(pwebmodel:Webmodel):
     try:
         templ = t.get_template(templatename)
     except:
-        logmessages.writelog("jinja template {} in {} not found".format(templatename,jinjadirec))
+        logmessages.writelog("jinja template {} in {} not found".format(templatename, jinjadirec))
         raise
     #try
 
@@ -228,7 +228,7 @@ def model2html(pwebmodel:Webmodel):
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:
-        logmessages.writelog("Error in jinja template {}/{}".format(jinjadirec,templatename))
+        logmessages.writelog("Error in jinja template {}/{}".format(jinjadirec, templatename))
         logmessages.writelog(str(e))
         raise e
     #try

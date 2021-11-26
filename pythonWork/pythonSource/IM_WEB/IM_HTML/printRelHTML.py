@@ -2,7 +2,7 @@ import os,re
 import sys
 sys.path.append(os.getcwd())
 from IM_HTML import printHTML,printdiagHTML
-from IM_DB import parameters
+from SSOT_infra import parameters
 
 
 def nvl(s, default=''):

@@ -3,7 +3,9 @@
 import re
 import sqlite3
 
-from IM_DB import logmessages, dbConnect
+from IM_DB import dbConnect
+from SSOT_infra import logmessages
+
 
 def select(psql,*args):
     cursor = dbConnect.getdbcon().cursor()

@@ -2,7 +2,7 @@ import dbDDL
 import dbDML
 from IM_DB import dbConnect
 from dbDDL import gettablelist
-from IM_DB import parameters,logmessages
+from SSOT_infra import parameters, logmessages
 import sys
 from openpyxl import Workbook
 

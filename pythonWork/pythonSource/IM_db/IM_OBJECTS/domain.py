@@ -1,11 +1,10 @@
-from IM_DB import *
 from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
 from .interface import Interface
 from .languagetext import Languagetext
 from .modelelement import Modelelemtype
 from .physicals import Storageformat
-
+from SSOT_infra import nvl,nvl2
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'
@@ -64,44 +63,44 @@ class Domain(MultilangBaseobject):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Max. Länge'), Languagetext.transl('Syntaxregel'),
                 Languagetext.transl('geändert'))
-            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_txt_maxlng), parameters.nvl(self.doma_txt_syntaxrule),
-                          parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
-            typestring += parameters.nvl2(self.doma_txt_maxlng,''," ({})".format(self.doma_txt_maxlng))
+            infovalues = (nvl(self.doma_type), nvl(self.doma_txt_maxlng), nvl(self.doma_txt_syntaxrule),
+                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += nvl2(self.doma_txt_maxlng, '', " ({})".format(self.doma_txt_maxlng))
         elif (self.doma_type == Domain.BIN):
             stf = Storageformat().getbyid(self.doma_bin_stfo_id)
             stfname = stf.getname() if stf is not None else ''
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('Inhaltstyp'), Languagetext.transl('Format'),
                            Languagetext.transl('geändert'))
             infovalues = (
-                parameters.nvl(self.doma_type), self.displcontenttype(), stfname,
-                parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc)
+                nvl(self.doma_type), self.displcontenttype(), stfname,
+                nvl(self.doma_uc) + ',' + nvl(self.doma_dc)
             )
             typestring += " ({}, {})".format(self.displcontenttype(),stfname)
         elif (self.doma_type == Domain.GRP):
             infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
-            infovalues = (self.doma_type, parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
+            infovalues = (self.doma_type, nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
         elif (self.doma_type == Domain.NUM):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
             , Languagetext.transl('Rundungseinh.'), Languagetext.transl('Einheit'), Languagetext.transl('Min. Wert'),
                 Languagetext.transl('Max. Wwert')
             , Languagetext.transl('geändert'))
-            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_num_total_digits), parameters.nvl(self.doma_num_fract_digits),
-                          parameters.nvl(self.doma_num_round_value), parameters.nvl(self.doma_num_phyu_id)
-                          , parameters.nvl(self.doma_num_minvalue), parameters.nvl(self.doma_num_maxvalue)
-                          , parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
-            typestring += " ({}{}{}{})".format(parameters.nvl(self.doma_num_total_digits)
-                                                 , parameters.nvl2(self.doma_num_fract_digits,'', ',{}'.format(self.doma_num_fract_digits))
-                                                 , parameters.nvl2(self.doma_num_minvalue,'', '  >= {}'.format(self.doma_num_minvalue))
-                                                 , parameters.nvl2(self.doma_num_maxvalue,'', '  <= {}'.format(self.doma_num_maxvalue)))
+            infovalues = (nvl(self.doma_type), nvl(self.doma_num_total_digits), nvl(self.doma_num_fract_digits),
+                          nvl(self.doma_num_round_value), nvl(self.doma_num_phyu_id)
+                          , nvl(self.doma_num_minvalue), nvl(self.doma_num_maxvalue)
+                          , nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += " ({}{}{}{})".format(nvl(self.doma_num_total_digits)
+                                               , nvl2(self.doma_num_fract_digits, '', ',{}'.format(self.doma_num_fract_digits))
+                                               , nvl2(self.doma_num_minvalue, '', '  >= {}'.format(self.doma_num_minvalue))
+                                               , nvl2(self.doma_num_maxvalue, '', '  <= {}'.format(self.doma_num_maxvalue)))
         elif (self.doma_type == Domain.DAT):
             infoheaders = (
                 Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
                 Languagetext.transl('Granularität')
             , Languagetext.transl('geändert'))
-            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_dat_minvalue), parameters.nvl(self.doma_dat_maxvalue),
-                          parameters.nvl(self.displgranul()),
-                          parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
+            infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minvalue), nvl(self.doma_dat_maxvalue),
+                          nvl(self.displgranul()),
+                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
             typestring += " ({}{}{})".format(
                 '' if self.doma_dat_granularity is None else ('  Granularity = {}'.format(self.doma_dat_granularity))
                 , '' if self.doma_dat_minvalue is None else '  >= {}'.format(self.doma_dat_minvalue)

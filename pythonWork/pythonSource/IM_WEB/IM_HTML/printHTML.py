@@ -3,7 +3,7 @@ import re
 import shutil
 from distutils.dir_util import copy_tree
 
-from IM_DB import parameters
+from SSOT_infra import parameters
 from IM_OBJECTS import *
 import html
 from IM_JSON import JSModel
@@ -39,14 +39,14 @@ fhtml = None
 
 
 def filehref(pref, panz, plang, pself=False,pimg=None):
-    img =  parameters.nvl2(pimg,'','<img class="icon-check" src="icons/{}">'.format(pimg))
+    img =  parameters.nvl2(pimg, '', '<img class="icon-check" src="icons/{}">'.format(pimg))
     return """<a href="{}{}" target="_{}" >{}{}</a>""" \
-        .format(webFileName + '_' + plang.lower() + '.html',  parameters.nvl2(pref,"","#") , 'self' if pself else 'blank',panz, img)
+        .format(webFileName + '_' + plang.lower() + '.html', parameters.nvl2(pref, "", "#"), 'self' if pself else 'blank', panz, img)
 
 
 def href(ref, anz, htmlfile='',pself=False):
     if anz is None: return ''
-    sep = '#' if parameters.nvl(ref) !='' else ''
+    sep = '#' if parameters.nvl(ref) != '' else ''
     return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile, sep, ref
                                                           , '_self' if ((htmlfile == '') or pself) else  '_blank'
                                                           , html.escape(anz))
@@ -81,7 +81,7 @@ def iconsrc(pjsenti,pdefaultlang):
     #search for filename with extensions in image directory
     for ext in ('png','jpg','jpeg','gif'):
         fullfilename = "{}/{}.{}".format('image',filename,ext).lower()
-        if os.path.isfile(parameters.webDirec()+ fullfilename):
+        if os.path.isfile(parameters.webDirec() + fullfilename):
             return fullfilename
     return ''
 
@@ -156,8 +156,8 @@ def createlib():
 def copyimages():
     global imagedirec
     """copy all file from the modeler-image directory into the web-image directory"""
-    if os.path.exists(parameters.odmFilesDirec()+'images'):
-        copy_tree(parameters.odmFilesDirec()+'images', imagedirec)
+    if os.path.exists(parameters.odmFilesDirec() + 'images'):
+        copy_tree(parameters.odmFilesDirec() + 'images', imagedirec)
     return
 
 def createFile(pfilename):

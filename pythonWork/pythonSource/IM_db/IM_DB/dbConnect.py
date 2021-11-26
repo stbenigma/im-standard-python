@@ -2,7 +2,7 @@
 
 import sqlite3
 
-from IM_DB import parameters
+from SSOT_infra import parameters
 
 """ Datenbank erstellen bzw. dazu connecten """
 

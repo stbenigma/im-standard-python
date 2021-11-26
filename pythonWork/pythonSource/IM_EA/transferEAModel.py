@@ -5,7 +5,7 @@ import xml.etree.ElementTree as et
 from datetime import datetime
 
 import handleXML
-from IM_DB import parameters, logmessages
+from SSOT_infra import parameters, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferModel
 

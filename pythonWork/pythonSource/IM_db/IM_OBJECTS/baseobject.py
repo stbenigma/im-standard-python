@@ -1,6 +1,7 @@
 import sqlite3
 
-from IM_DB import dbDML, dbDDL,logmessages
+from IM_DB import dbDML, dbDDL
+from SSOT_infra import logmessages
 from datetime import datetime
 
 class Boolean:

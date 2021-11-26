@@ -3,7 +3,8 @@ import os
 import re
 import sys
 
-from IM_DB import parameters, dbConnect, dbCreateStructure, logmessages
+from IM_DB import dbConnect, dbCreateStructure
+from SSOT_infra import parameters, logmessages
 from IM_ODM import transferModel
 
 
@@ -20,9 +21,9 @@ def createnewDB():
         applyupgrades()
     dbConnect.closeDB()
     logmessages.showmessages("database {} version {} for model {} created"
-                         .format(parameters.dbFilePath(), dbConnect.getversion()
+                             .format(parameters.dbFilePath(), dbConnect.getversion()
                                  , parameters.modelName())
-                         )
+                             )
 
 
 def version(pfilename):
@@ -54,7 +55,7 @@ def applyupgrades():
     for upgrfile in upgrfiles:
         if version(upgrfile) <= actversion: continue
         if version(upgrfile) > parameters.expecteddbversion(): break
-        applyversionfile(psqlfilepath=parameters.sqlpath()+ "/" + upgrfile)
+        applyversionfile(psqlfilepath=parameters.sqlpath() + "/" + upgrfile)
     #for
     dbConnect.setversion()
 
@@ -63,14 +64,14 @@ def upgradeDB():
     dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
     actversion = dbConnect.getversion()
     if actversion == parameters.expecteddbversion():
-        print ("DB {} is up to date: version {}".format(parameters.dbFilePath(),actversion))
+        print ("DB {} is up to date: version {}".format(parameters.dbFilePath(), actversion))
         return
     applyupgrades()
     logmessages.showmessages("database {} for model {} upgraded to version {}"
-                         .format(parameters.dbFilePath()
+                             .format(parameters.dbFilePath()
                                  , parameters.modelName()
                                  , dbConnect.getversion())
-                         )
+                             )
     dbConnect.closeDB()
 
 
