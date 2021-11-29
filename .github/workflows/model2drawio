@@ -40,6 +40,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        file: model2drawio.zip
+        file: model2diagram.zip
         draft: true
         tag_name: model2drawio-${{github.ref_name}}
