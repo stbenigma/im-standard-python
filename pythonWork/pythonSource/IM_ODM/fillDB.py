@@ -55,6 +55,8 @@ def main(p_param1):
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
         createJSON.createJSON(pfilepath=filepath, pfilename=filename)
+    except Exception as e:
+        raise e # for debugging purposes (breaktpoint on exception)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),

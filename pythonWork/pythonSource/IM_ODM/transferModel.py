@@ -59,6 +59,22 @@ defcolors = dict()
 """
 entities = dict()
 duplicateentityvids = [] #vid of duplicate of entities on diagrams. to be ignored in relationships
+"""domains in non-default file are IM or interface (relationale model) dependent.
+    fix interface-id of Domains at end of transfer.
+    {doma_id : filename of domainfile}
+ """
+interfacedomains = dict()
+"""List of not yet finished domain
+    {id of unfinished domain : guid of type it is supposed to be}"""
+unkndomains = {}
+
+
+docuparents ={}
+orguparents ={}
+emails = {}
+phones = {}
+contacts = {}
+
 
 #to be called bevore maind fillDB
 def initglobals():
@@ -89,12 +105,6 @@ def getentity(pguid,pvalue=None):
     else:
         return None
 
-"""domains in non-default file are IM or interface (relationale model) dependent.
-    fix interface-id of Domains at end of transfer.
-    {doma_id : filename of domainfile}
- """
-interfacedomains = dict()
-
 def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
     if (pstr is None): return False
@@ -124,9 +134,6 @@ def transferTypes():
                 ).insert()
     # endfor
 
-"""List of not yet finished domain
-    {id of unfinished domain : guid of type it is supposed to be}"""
-unkndomains = {}
 def do1structtype(filename):
     global unkndomains
     structdomains = handleXML.parseXML(pfilename=filename)
@@ -503,16 +510,15 @@ def connector(pidx, pmaxidx, psource, ptarget):
 def findedgepos(px,py,pdiagid,pentiid):
     def entiborders(pdiagid, pentiid):
         retval = {'top': None, 'bottom': None, 'left': None, 'right': None}
-        hits = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid) # expect max. 1
-        if len(hits) < 1:
-            logmessages.writelog(f"Unable to find entity {pentiid} on diagram {pdiagid} (x:{px}, y:{py})")
-            return retval
-
-        entirep = hits[0] # expect max. 1
-        retval['top'] = entirep.eler_position_y
-        retval['bottom'] = entirep.eler_position_y + entirep.eler_height
-        retval['left'] = entirep.eler_position_x
-        retval['right'] = entirep.eler_position_x + entirep.eler_width
+        diagmode = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid)
+        if len(diagmode)==0:
+            logmessages.writelog(f"Entity should be on diagram")
+        else:
+            entirep = diagmode[0]  # expect max. 1
+            retval['top'] = entirep.eler_position_y
+            retval['bottom'] = entirep.eler_position_y + entirep.eler_height
+            retval['left'] = entirep.eler_position_x
+            retval['right'] = entirep.eler_position_x + entirep.eler_width
         return retval
 
     borders = entiborders(pdiagid=pdiagid, pentiid=pentiid)
