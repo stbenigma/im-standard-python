@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 
 from IM_OBJECTS import *
 from IM_ODM import transferModel,handleXML
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import parameters, logmessages,nvl
 
 globalschnid:int = None
 
@@ -32,7 +32,7 @@ def do1column(plfnr, pcolxml, ptablid):
     colu.colu_column_name = handleXML.findField(pcolxml, 'name')
     colu.colu_format = None
     colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(
-        parameters.nvl(handleXML.findText(pcolxml, 'nullsAllowed'), 'true')))
+        nvl(handleXML.findText(pcolxml, 'nullsAllowed'), 'true')))
     colu.colu_descr = handleXML.findText(pcolxml, 'comment')
     colu.colu_tabl_id = ptablid
     colu.colu_uc = handleXML.findText(pcolxml, 'createdBy')

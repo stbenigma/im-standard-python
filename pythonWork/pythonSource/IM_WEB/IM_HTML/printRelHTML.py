@@ -2,11 +2,11 @@ import os,re
 import sys
 sys.path.append(os.getcwd())
 from IM_HTML import printHTML,printdiagHTML
-from SSOT_infra import parameters
+from SSOT_infra import parameters,nvl
 
 
 def nvl(s, default=''):
-    return parameters.nvl(s, default)
+    return nvl(s, default)
 
 getelement = lambda e:printHTML.getmodel().getbyid(e)
 

@@ -356,7 +356,7 @@ class Baseobject:
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])
 
-        data = dbDML.execute(lsql, *arguments)
+        data = dbDML.select(lsql, *arguments)
         retval = []
         for d in data:
             obj = cls()._fromarray(d)

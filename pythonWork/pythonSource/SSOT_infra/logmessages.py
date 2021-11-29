@@ -35,7 +35,7 @@ def writelog(pline: str):
 
 def showmessages(pmsg: str = None):
     """
-    if there are any logentries or a pmsg,
+    if there are any log-entries or a pmsg,
     writes a showmessages to the console
     """
 

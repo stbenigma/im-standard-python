@@ -32,7 +32,7 @@ def writesheets(pwb):
             ws.cell(column=colidx, row=rowidx, value=col)
             colidx += 1
         #for
-        data = dbDML.select(psql="select * from {}".format(tab))
+        data = dbDML.select(psql=f"select * from {tab}")
         for row in data:
             rowidx += 1
             colidx = 2

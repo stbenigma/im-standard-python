@@ -5,7 +5,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../../IM_db')
 from IM_JSON import JSModel
 from IM_OBJECTS import Domain
-from mystring import nvl
+from SSOT_infra import nvl
 from openpyxl import Workbook, styles
 
 fileCSV = None

@@ -4,7 +4,7 @@ from IM_DB import dbConnect
 from SSOT_infra import parameters, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferRelational,handleXML
-from mystring import nvl
+from SSOT_infra import nvl
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'

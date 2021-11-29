@@ -239,7 +239,6 @@ def ins1kele(presult:Mergeresult, pkey: Key, pattrid, prelaid):
     try:
         kele.insert()
     except Exception as err:
-        from mystring import nvl
         presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
     return
 
