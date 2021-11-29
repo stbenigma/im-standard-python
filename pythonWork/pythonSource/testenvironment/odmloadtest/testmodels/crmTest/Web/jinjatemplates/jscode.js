@@ -204,6 +204,39 @@ function $tblshow() {
 	}
 }
 
+function initSVGZoom() {
+	shifted = false;
+	
+    /* shows example for Diagramm: Kunde
+       Every <svg> needs a specific id for reference purposes / or multi zoom-svg's 
+       can created by a reference class name for instance.
+    */
+
+	panZoomClientDiagram = svgPanZoom('#client-diagram', {
+		panEnabled: true,
+		controlIconsEnabled: true,
+		mouseWheelZoomEnabled: true,
+		zoomEnabled: false,
+		onZoom: function(e){
+			if(e < 0.85) {
+				$('#client-diagram a[href*="#ATTR"]').hide();
+			} else {
+				$('#client-diagram a[href*="#ATTR"]').show();
+			}
+		}
+	});
+
+	$(document).on('keyup keydown', function(e){
+		shifted = e.shiftKey;
+
+		if(shifted) {
+			panZoomClientDiagram.enableZoom();
+		} else {
+			panZoomClientDiagram.disableZoom();
+		}
+	} );
+}
+
 $(document).ready(function() {
     $(window).scroll(function() {
         if ($(this).scrollTop() > 700) {
@@ -221,5 +254,6 @@ $(document).ready(function() {
     });
 
     $tblshow();
+    initSVGZoom();
 });
 </script>  
