@@ -5,6 +5,7 @@ from .languagetext import Languagetext
 from .modelelement import Modelelemtype
 from .physicals import Storageformat
 from SSOT_infra import nvl,nvl2
+from IM_DB import dbDML
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'
@@ -238,7 +239,7 @@ class Domain(MultilangBaseobject):
         domainterfaces = [(intf2id[filename],domaid) for domaid,filename in pinterfacedomains.items()]
         if len(domainterfaces) > 0:
             dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=domainterfaces)
-# Domain
+        return
 
 class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'

@@ -113,11 +113,6 @@ def logfilepath(newval: str = None):
     """
 
     return getsetparam(pparamname=LOGFILEPATH, pnewval=newval)
-    if newval is None:
-        return parameter[LOGFILEPATH]
-    else:
-        parameter[LOGFILEPATH] = newval
-        return
 
 
 def logfiledirec(newval: str = None):
@@ -125,12 +120,7 @@ def logfiledirec(newval: str = None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter[LOGFILEDIREC]
-    else:
-        parameter[LOGFILEDIREC] = newval
-        return
+    return getsetparam(pparamname=LOGFILEDIREC,pnewval=newval)
 
 
 def dbFilePath(newval=None):
@@ -139,12 +129,7 @@ def dbFilePath(newval=None):
     """
 
     return getsetparam(pparamname='dbfilepath',pnewval=newval)
-    global parameter
-    if newval is None:
-        return parameter['dbfilepath']
-    else:
-        parameter['dbfilepath'] = newval
-        return
+
 
 
 def dbDirect(newval=None):
@@ -153,24 +138,14 @@ def dbDirect(newval=None):
     """
 
     return getsetparam(pparamname='dbdirec', pnewval=newval)
-    global parameter
-    if newval is None:
-        return parameter['dbdirec']
-    else:
-        parameter['dbdirec'] = newval
-        return
+
 
 def dbFileExtension(newval=None):
     """returns the parameterset value if functionparameter is None
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter['dbfileextension']
-    else:
-        parameter['dbfileextension'] = newval
-        return
+    return getsetparam(pparamname='dbfileextension',pnewval=newval)
 
 
 def dbDefaultDirect(newval=None):
@@ -178,12 +153,7 @@ def dbDefaultDirect(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter['dbdefaultdirec']
-    else:
-        parameter['dbdefaultdirec'] = newval
-        return
+    return getsetparam(pparamname='dbdefaultdirec',pnewval=newval)
 
 
 def dbDefaultLang(newval=None):
@@ -191,12 +161,7 @@ def dbDefaultLang(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter[DBDEFAULTLANG]
-    else:
-        parameter[DBDEFAULTLANG] = newval
-        return
+    return getsetparam(pparamname=DBDEFAULTLANG,pnewval=newval)
 
 
 def dbLanguages(newval=None):
@@ -204,12 +169,7 @@ def dbLanguages(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter[DBLANGUAGES]
-    else:
-        parameter[DBLANGUAGES] = newval
-        return
+    return getsetparam(pparamname=DBLANGUAGES,pnewval=newval)
 
 
 def dbDefaultLangID(newval=None):
@@ -217,26 +177,7 @@ def dbDefaultLangID(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter['dbdefaultlangid']
-    else:
-        parameter['dbdefaultlangid'] = newval
-        return
-
-
-def odmBaseDirec(newval=None):
-    """returns the parameterset value if functionparameter is None
-    sets the the parameterset value if it is not None
-    """
-
-    global parameter
-    print("obsolete, please use parameters.baseDirec")
-    if newval is None:
-        return parameter[BASEDIREC]
-    else:
-        parameter[BASEDIREC] = newval
-        return
+    return getsetparam(pparamname='dbdefaultlangid',pnewval=newval)
 
 
 def baseDirec(newval=None):
@@ -244,12 +185,7 @@ def baseDirec(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter[BASEDIREC]
-    else:
-        parameter[BASEDIREC] = newval
-        return
+    return getsetparam(pparamname=BASEDIREC,pnewval=newval)
 
 
 def odmIMDirec(newval=None):
@@ -257,12 +193,7 @@ def odmIMDirec(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter[ODMIMDIREC]
-    else:
-        parameter[ODMIMDIREC] = newval
-        return
+    return getsetparam(pparamname=ODMIMDIREC,pnewval=newval)
 
 
 def odmIMDefaultDirec(newval=None):
@@ -270,37 +201,15 @@ def odmIMDefaultDirec(newval=None):
     sets the the parameterset value if it is not None
     """
 
-    global parameter
-    if newval is None:
-        return parameter['odmimdefaultdirec']
-    else:
-        parameter['odmimdefaultdirec'] = newval
-        return
+    return getsetparam(pparamname='odmimdefaultdirec',pnewval=newval)
 
 
 def odmIMExtension(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmimextension']
-    else:
-        parameter['odmimextension'] = newval
-
-
-def odmModelName(newval=None):  # to be removed
-    global parameter
-    print("obsolete, please use parameters.modelName")
-    if newval is None:
-        return parameter[MODELNAME]
-    else:
-        parameter[MODELNAME] = newval
+    return getsetparam(pparamname='odmimextension',pnewval=newval)
 
 
 def modelName(newval=None):
-    global parameter
-    if newval is None:
-        return parameter[MODELNAME]
-    else:
-        parameter[MODELNAME] = newval
+    return getsetparam(pparamname=MODELNAME,pnewval=newval)
 
 
 def odmsettingsfile(newval=None):
@@ -323,35 +232,19 @@ def odmentisubviewdirec(newval=None):
 
 
 def odmKonfDirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmkonfdirec']
-    else:
-        parameter['odmkonfdirec'] = newval
+    return getsetparam(pparamname='odmkonfdirec',pnewval=newval)
 
 
 def odmVCSDirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmvcsdirec']
-    else:
-        parameter['odmvcsdirec'] = newval
+    return getsetparam(pparamname='odmvcsdirec',pnewval=newval)
 
 
 def odmdefdomainsfile(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmdefdomainsfile']
-    else:
-        parameter['odmdefdomainsfile'] = newval
+    return getsetparam(pparamname='odmdefdomainsfile',pnewval=newval)
 
 
 def localbasedirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['localbasedirec']
-    else:
-        parameter['localbasedirec'] = newval
+    return getsetparam(pparamname='localbasedirec',pnewval=newval)
 
 
 def odmdocumentdirec(newval=None):
@@ -371,19 +264,11 @@ def odmorgunitdirec(newval=None):
 
 
 def odmDefDomainsfilePath(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmdefdomainsfilepath']
-    else:
-        parameter['odmdefdomainsfilepath'] = newval
+    return getsetparam(pparamname='odmdefdomainsfilepath',pnewval=newval)
 
 
 def odmTypesFile(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmtypesfile']
-    else:
-        parameter['odmtypesfile'] = newval
+    return getsetparam(pparamname='odmtypesfile',pnewval=newval)
 
 
 def odmFilesDirec(newval=None):
@@ -427,19 +312,11 @@ def odmArcDirec(newval=None):
 
 
 def odmUDPTranslFileName(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmudptranslfilename']
-    else:
-        parameter['odmudptranslfilename'] = newval
+    return getsetparam(pparamname='odmudptranslfilename',pnewval=newval)
 
 
 def odmUDPElemdisplFileName(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmudpelemdisplfilename']
-    else:
-        parameter['odmudpelemdisplfilename'] = newval
+    return getsetparam(pparamname='odmudpelemdisplfilename',pnewval=newval)
 
 
 def odmmappingdirec(newval=None):
@@ -451,51 +328,27 @@ def odmmappingdirec(newval=None):
 
 
 def odmUDPMappingFileName(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmudpmappingfilename']
-    else:
-        parameter['odmudpmappingfilename'] = newval
+    return getsetparam(pparamname='odmudpmappingfilename',pnewval=newval)
 
 
 def odmUDPFileExtension(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmudpfileextension']
-    else:
-        parameter['odmudpfileextension'] = newval
+    return getsetparam(pparamname='odmudpfileextension',pnewval=newval)
 
 
 def webDirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['webdirec']
-    else:
-        parameter['webdirec'] = newval
+    return getsetparam(pparamname='webdirec',pnewval=newval)
 
 
 def webDefaultDirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['webdefaultdirec']
-    else:
-        parameter['webdefaultdirec'] = newval
+    return getsetparam(pparamname='webdefaultdirec',pnewval=newval)
 
 
 def logoFileName(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['logofilename']
-    else:
-        parameter['logofilename'] = newval
+    return getsetparam(pparamname='logofilename',pnewval=newval)
 
 
 def odmtabledirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmtabledirec']
-    else:
-        parameter['odmtabledirec'] = newval
+    return getsetparam(pparamname='odmtabledirec',pnewval=newval)
 
 
 def odmdomainsdirec(newval=None):
@@ -507,20 +360,11 @@ def odmdomainsdirec(newval=None):
 
 
 def odmsubviewsdirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmsubviewsdirec']
-    else:
-        parameter['odmsubviewsdirec'] = newval
+    return getsetparam(pparamname='odmsubviewsdirec',pnewval=newval)
 
 
 def odmfkdirec(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['odmfkdirec']
-    else:
-        parameter['odmfkdirec'] = newval
-
+    return getsetparam(pparamname='odmfkdirec',pnewval=newval)
 
 def odmreldirec(newval=None):
     global parameter
@@ -531,39 +375,19 @@ def odmreldirec(newval=None):
 
 
 def dbtype(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['dbtype']
-    else:
-        parameter['dbtype'] = newval
-    return
+    return getsetparam(pparamname='dbtype',pnewval=newval)
 
 
 def sqlpath(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['sqlpath']
-    else:
-        parameter['sqlpath'] = newval
-    return
+    return getsetparam(pparamname='sqlpath',pnewval=newval)
 
 
 def sqlfilename(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['sqlfilename']
-    else:
-        parameter['sqlfilename'] = newval
-    return
+    return getsetparam(pparamname='sqlfilename',pnewval=newval)
 
 
 def iconmasterdocumentname(newval=None):
-    global parameter
-    if newval is None:
-        return parameter['iconmasterdocumentname']
-    else:
-        parameter['iconmasterdocumentname'] = newval
-    return
+    return getsetparam(pparamname='iconmasterdocumentname',pnewval=newval)
 
 
 def sqlfilepath():
