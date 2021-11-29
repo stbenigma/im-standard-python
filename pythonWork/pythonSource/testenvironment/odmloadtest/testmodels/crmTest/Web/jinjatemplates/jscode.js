@@ -165,34 +165,43 @@ document.getElementById("closeM1").addEventListener("click", function() {
 $('a[href^="#"]').on('click', function(e) {
 
     window.location.hash = "-------";
-
+	
     e.preventDefault();
+	var windowTarget = $(this).attr('target');
     var target = $(this).attr('href');
     var $target = $(target);
-    $('html, body').stop().animate({
+
+	if(windowTarget == '_blank') {
+		var url = window.location.pathname + target;
+		window.open(url,'_blank');
+
+	} else {
+		$('html, body').stop().animate({
         'scrollTop': $target.offset().top
-    }, 900, 'swing', function() {
-        $tblshow();
-        window.location.hash = target;
-    });
+		}, 900, 'swing', function() {
+			$tblshow();
+			window.location.hash = target;
+		});
+	} 
 });
 
 function $tblshow() {
-
     //locating the clicked table
     var url = window.location.href;
-    var sID = url.substring(url.indexOf('#') + 1);
 
-    //collapsing table
-    temp = (sID + ' > div > .collapse');
-    $('#' + temp).collapse('show');
+	if(url.indexOf('#') !== -1) {
+		var sID = url.substring(url.indexOf('#') + 1);
 
+		//collapsing table
+		temp = (sID + ' > div > .collapse');
+		
+		$('#' + temp).collapse('show');
 
-    //checking if its using the right data
-    console.log("URL: " + url + " \n ");
-    console.log("ID der Table: " + sID + " \n ");
-    console.log("Suchid: " + temp);
-
+		//checking if its using the right data
+		console.log("URL: " + url + " \n ");
+		console.log("ID der Table: " + sID + " \n ");
+		console.log("Suchid: " + temp);
+	}
 }
 
 $(document).ready(function() {
@@ -210,5 +219,7 @@ $(document).ready(function() {
         }, 400);
         return false;
     });
+
+    $tblshow();
 });
 </script>  
