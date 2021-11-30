@@ -1,8 +1,10 @@
+from IM_HTML import printHTML, printdiagHTML
+
 import os,re
 import sys
+
+# TODO check if needed
 sys.path.append(os.getcwd())
-from IM_HTML import printHTML,printdiagHTML
-from IM_DB import parameters
 
 
 def nvl(s, default=''):

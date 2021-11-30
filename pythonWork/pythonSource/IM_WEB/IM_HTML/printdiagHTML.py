@@ -1,7 +1,7 @@
 from . import printHTML
 import math
 import os,re
-from SSOT_infra import parameters,nvl
+from SSOT_infra import parameters, nvl
 
 LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128

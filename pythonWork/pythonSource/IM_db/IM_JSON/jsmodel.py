@@ -1,3 +1,5 @@
+import logging
+
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
 from IM_DB import dbConnect
@@ -32,9 +34,13 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel = {}
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_PROJ)] = proj2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_LANG)] = langs2js(pemptymodel)
+    logging.info("Adding entities")
     jsmodel[JSModel.elemtype2label(Modelelemtype.ENTI)] = entities2js(pemptymodel)
+    logging.info("Adding domains")
     jsmodel[JSModel.elemtype2label(Modelelemtype.DOMA)] = domains2js(pemptymodel)
+    logging.info("Adding attributes")
     jsmodel[JSModel.elemtype2label(Modelelemtype.ATTR)] = attributes2js(pemptymodel)
+    logging.info("Adding relations")
     jsmodel[JSModel.elemtype2label(Modelelemtype.RELA)] = relations2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ARCS)] = arcs2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.KEYS)] = keys2js(pemptymodel)
@@ -43,9 +49,13 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.ORGU)] = orgUnits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_CATG)] = categories2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel)
+    logging.info("Adding tables")
     jsmodel[JSModel.elemtype2label(Modelelemtype.TABL)] = tables2js(pemptymodel)
+    logging.info("Adding columns")
     jsmodel[JSModel.elemtype2label(Modelelemtype.COLU)] = columns2js(pemptymodel)
+    logging.info("Adding diagrams")
     jsmodel[JSModel.elemtype2label(Modelelemtype.DIAG)] = diagrams2js(pemptymodel=pemptymodel, pmodelname=jsmodel['model']['name'])
+    logging.info("Adding user defined properties")
     jsmodel[JSModel.elemtype2label(Modelelemtype.UDPR)] = udps2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.PHYU)] = physicalunits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.DATY)] = datatypes2js(pemptymodel)

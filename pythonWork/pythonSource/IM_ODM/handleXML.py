@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as et
-from IM_DB import logmessages,nvl
+from SSOT_infra import logmessages, nvl
 from pathlib import Path
 import re
 
