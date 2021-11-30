@@ -5,8 +5,9 @@ on: [push]
 jobs:
   build-linux:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
+#    strategy:
+#      max-parallel: 5
+#      matrix: ''
 
     steps:
     - uses: actions/checkout@v2
@@ -52,9 +53,9 @@ jobs:
         tag_name: model2drawio-${{github.ref_name}}
 
     - name: Test with pytest
-        run: |
-          conda install pytest
-          pytest
+      run: |
+        conda install pytest
+        pytest
 
     # Integration test prerequisites
     - name: Clone reference model repository
