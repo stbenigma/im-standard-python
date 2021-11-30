@@ -551,8 +551,11 @@ def findedgepos(px,py,pdiagid,pentiid):
         #dummy starting point
         retval = (Linesegment.NORTH,0)
     if retval[1] > 100.0:
-        logging.warning(f"Position is outside valid boundaries (0-100): {retval[1]}. px:{px}, py:{py}, {retval}, {pdiagid}, {pentiid}")
+        logging.warning(f"Position {retval[1]} is outside valid boundaries (0-100). px:{px}, py:{py}, {retval}, {pdiagid}, {pentiid}")
         retval = (retval[0], 100.0)
+    if retval[1] < 0.0:
+        logging.warning(f"Position {retval[1]} is outside valid boundaries (0-100). px:{px}, py:{py}, {retval}, {pdiagid}, {pentiid}")
+        retval = (retval[0], 0.0)
     return retval
 
 
