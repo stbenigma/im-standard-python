@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import os
+import re
+
 from nbconvert import PythonExporter
 from traitlets.config import Config
 import nbformat as nbf
@@ -55,13 +57,37 @@ def zipdir(path, ziph, content_root):
             if accept(path):
                 ziph.write(path, os.path.relpath(path, content_root))
 
+from subprocess import check_output, CalledProcessError
+git_tag = 'dev'
 
-package_name = 'model2diagram'
+try:
+    git_tag = check_output(['git', 'describe', '--always']).decode().strip()
+except CalledProcessError as e:
+    logging.warning(f"Cannot read git status")
 
+version = 'master'
+
+with open(target, 'r') as src:
+    expression = re.compile(r'notebook_version\s*=\s*"([^"]+)"')
+    for line in src.readlines():
+        match = expression.match(line)
+        if match:
+            version = match.group(1)
+
+package_name = f'model2diagram-{version}'
 archive = os.path.join('.', package_name + '.zip')
 
+from datetime import datetime
+now = datetime.now()
+stamp = now.strftime("%Y-%m-%d %H:%M:%S")
+
+version_file_name = 'version.json'
+with open(version_file_name, 'w') as vfile:
+    vfile.write(f'{{ "version": "{version}", "git": "{git_tag}", timestamp: "{stamp}" }}\n')
+
 with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as zipfile:
-    zipfile.write('generator.py')
+    zipfile.write(target)
+    zipfile.write(version_file_name)
     zipfile.write('run.bat')
     zipdir('pythonWork', zipfile, '.')
 

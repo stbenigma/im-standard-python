@@ -52,9 +52,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        file: model2diagram.zip
-        draft: true
-        tag_name: model2drawio-${{github.ref_name}}
+        file: model2diagram-*.zip
+        draft: false
+        overwrite: true
 
     - name: Test with pytest
       run: |
