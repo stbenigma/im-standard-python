@@ -36,10 +36,11 @@ jobs:
 
     # Integration test prerequisites
     - name: Clone reference model repository
-        uses: actions/checkout@v2
-        with:
-          repository: foryouandyourcustomers/fyyccim-refmodels
-          path: testdata/fyyccim-refmodels
+      uses: actions/checkout@v2
+      with:
+        repository: foryouandyourcustomers/fyyccim-refmodels
+        path: testdata/fyyccim-refmodels
+
     - name: Build deployment package
       run: |
         python deploy.py
