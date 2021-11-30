@@ -1,4 +1,5 @@
-from IM_DB import dbDML,logmessages
+from IM_DB import dbDML
+from SSOT_infra import logmessages
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype,Modelelement
 from .externalref import Externalref
@@ -111,7 +112,7 @@ class ModelelemOrgu(Baseobject):
             moou.moou_orgu_id = Externalref.getODMmodeid(psrcid=orguguid)
             if moou.moou_orgu_id is None:
                 #GUID no longer exists
-                logmessages.writelog("Org-Unit ({}) referenced in model-element id={} does not exist".format(orguguid,pmodeid))
+                logmessages.writelog("Org-Unit ({}) referenced in model-element id={} does not exist".format(orguguid, pmodeid))
                 return
             moou.moou_mode_id = pmodeid
             moou.insert()

@@ -1,7 +1,6 @@
 # -*- coding: latin-1 -*-
-from IM_DB import logmessages
+from SSOT_infra import logmessages
 from IM_EA import transferEAModel
-from IM_JSON import *
 from IM_ODM import fillDB, createJSON
 
 

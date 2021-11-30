@@ -1,7 +1,7 @@
 from . import printHTML
 import math
 import os,re
-from IM_DB import parameters 
+from SSOT_infra import parameters,nvl
 
 LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
@@ -37,7 +37,7 @@ def printlegend(pdata,pwidth,pheigh,px,py):
 """
     retval = ""
     starty=14
-    retval += legenhead.format(parameters.nvl(px,0)+2,parameters.nvl(py,0)+1)
+    retval += legenhead.format(nvl(px, 0) + 2, nvl(py, 0) + 1)
     retval += legendentry1.format(pwidth-100,pheigh-2
                                     ,starty,'Diagram'
                                     ,starty,pdata[0])
@@ -167,7 +167,7 @@ def printrela(plist):
 
 def print1text(ptext,px,py,pwidth,pcolor,psize):
     FONTPIXEL: int = 5
-    textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
+    textlength = lambda s: len(nvl(s)) * FONTPIXEL
     retval = ""
     if ptext is not None:
         words = ptext.split(' ')
@@ -419,7 +419,7 @@ def putrefinsvg(ptext,pdiagid,plang):
 def checkforfile(pname,ptype,plang=None):
     retval = None
     if plang is not None:
-        filepath = parameters.webDirec() + "image/" + pname + "_"  + plang + "." + ptype
+        filepath = parameters.webDirec() + "image/" + pname + "_" + plang + "." + ptype
         if os.path.exists(filepath):
             retval = filepath
     #fi
@@ -463,9 +463,9 @@ def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
                 </defs>""".format(pdiagelem["width"],pdiagelem["height"])
         if ('legend' in pdiagelem.keys()):
             # es hat eine Legende
-            retval += printlegend(pdata=[pdiagelem['name'], parameters.nvl(pdiagelem['uc']), parameters.nvl(pdiagelem['dc']),
-                                          parameters.nvl(pdiagelem['dm'])
-                , parameters.nvl(pdiagelem['um']), ptitel, 'Logical']
+            retval += printlegend(pdata=[pdiagelem['name'], nvl(pdiagelem['uc']), nvl(pdiagelem['dc']),
+                                         nvl(pdiagelem['dm'])
+                , nvl(pdiagelem['um']), ptitel, 'Logical']
                                    , pwidth=LEGENDWIDTH, pheigh=LEGENDHEIGHT
                                    , px=pdiagelem['legend']['x'], py=pdiagelem['legend']['y'])
         # fi

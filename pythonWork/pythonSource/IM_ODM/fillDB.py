@@ -1,5 +1,6 @@
 # -*- coding: latin-1 -*-
-from IM_DB import logmessages,dbCreateStructure
+from IM_DB import dbCreateStructure
+from SSOT_infra import logmessages,parameters
 from IM_ODM import transferModel,mergedbs,createJSON
 from IM_JSON import *
 import createDB
@@ -22,7 +23,7 @@ def fillmergedb(callarg,transferfunction, createnewdb=False,**kwargs):
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
-    loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName()+"_loaded")
+    loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName() + "_loaded")
     if createnewdb:
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
@@ -32,8 +33,8 @@ def fillmergedb(callarg,transferfunction, createnewdb=False,**kwargs):
         newversion =loadedjson.jsmodel['_imprint_']["Modelversion"]
         if newversion != dbConnect.getversion():
             logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
-                                     .format(parameters.dbFilePath(),dbConnect.getversion()
-                                             ,newversion))
+                                     .format(parameters.dbFilePath(), dbConnect.getversion()
+                                             , newversion))
             raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion()
                                              ,newversion))
 
@@ -60,7 +61,7 @@ def main(p_param1):
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),
-                               parameters.modelName()))
+                                         parameters.modelName()))
 #  main
 
 if __name__ == '__main__':

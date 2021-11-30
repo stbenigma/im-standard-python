@@ -1,7 +1,6 @@
-from datetime import datetime
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
-from IM_DB import parameters,dbConnect
+from IM_DB import dbConnect
 
 
 def lastupd():

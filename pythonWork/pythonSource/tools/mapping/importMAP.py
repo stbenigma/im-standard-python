@@ -1,7 +1,7 @@
 import sys,os
-from datetime import datetime
-from IM_DB import parameters,logmessages,dbConnect
-from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Attribute,Interface,UniqueKeyException,Boolean,Domain
+from IM_DB import dbConnect
+from SSOT_infra import parameters, logmessages
+from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Attribute,Interface,UniqueKeyException
 from openpyxl import load_workbook
 
 def importintf(pws):
@@ -144,7 +144,7 @@ def mergeintodb(pintfname,ptabs):
                     if attr.attr_enti_id == entiid:
                         attrid = attr.attr_id
                     else:
-                        logmessages.writelog("Attribute {} does not belong to entity {}".format(attrname,entiname))
+                        logmessages.writelog("Attribute {} does not belong to entity {}".format(attrname, entiname))
                 #fi
                 if colcrud == "DELMAP":
                     #remove mapping to attribute
@@ -174,7 +174,7 @@ def main(param1,pxls):
     #fi
     try:
         workbook = load_workbook(filename=infile)
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(),pfks="ON")
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks="ON")
         printstatline("Interface","tab-mapins","tab-mapdel","col-mapins","col-mapdel")
         for ws in workbook.worksheets:
             if ws.title == 'Overview': continue

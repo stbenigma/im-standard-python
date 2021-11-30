@@ -1,12 +1,12 @@
 import os,re
 import sys
 sys.path.append(os.getcwd())
-from . import printHTML, printdiagHTML
+from IM_HTML import printHTML,printdiagHTML
 from IM_DB import parameters
 
 
 def nvl(s, default=''):
-    return parameters.nvl(s, default)
+    return nvl(s, default)
 
 getelement = lambda e:printHTML.getmodel().getbyid(e)
 

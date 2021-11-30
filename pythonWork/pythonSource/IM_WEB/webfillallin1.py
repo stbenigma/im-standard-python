@@ -4,11 +4,12 @@ import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../tools')
-from IM_DB import parameters, dbConnect, logmessages
+from IM_DB import dbConnect
+from SSOT_infra import parameters, logmessages
 from IM_HTML import printHTML
 from IM_ODM import fillDB
 import listWebdoku
-from IM_JSON import sql2json,JSModel
+from IM_JSON import JSModel
 from IM_OBJECTS import Languagetext
 from createDB import existsDB
 from tools import createMapExcel,createAllMapping
@@ -24,14 +25,14 @@ def main(pdirec, plang,pforceoverwrite = False):
 
 
 
-    os.makedirs(parameters.webDirec(),exist_ok=True)
-    os.makedirs(parameters.dbDirect(),exist_ok=True)
+    os.makedirs(parameters.webDirec(), exist_ok=True)
+    os.makedirs(parameters.dbDirect(), exist_ok=True)
 
     fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
 
     dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
     #jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
-    jsmodel = JSModel.readfromfile(parameters.dbDirect()+parameters.modelName()+".json")
+    jsmodel = JSModel.readfromfile(parameters.dbDirect() + parameters.modelName() + ".json")
     printHTML.setmodel(jsmodel)
     printHTML.setWebDirec(p_webdirec=None)
 
@@ -39,8 +40,8 @@ def main(pdirec, plang,pforceoverwrite = False):
     #jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
     dbConnect.closeDB()
 
-    createAllMapping(pjsonfile=parameters.dbDirect() + parameters.modelName() + '.json',plang=Languagetext.reportLang())
-    createMapExcel(pjsonfile=parameters.dbDirect()+ parameters.modelName() + '.json')
+    createAllMapping(pjsonfile=parameters.dbDirect() + parameters.modelName() + '.json', plang=Languagetext.reportLang())
+    createMapExcel(pjsonfile=parameters.dbDirect() + parameters.modelName() + '.json')
 
 
     logmessages.showmessages("model {}: created and filled database ({})\n   created json, webdocu and mapping excel"

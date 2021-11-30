@@ -4,9 +4,8 @@ import re
 import shutil
 from difflib import unified_diff
 
-from IM_DB import parameters
+from SSOT_infra import parameters
 from IM_ODM import fillDB
-from IM_WEB import listWebdoku
 
 
 def emptyloadingfiles(pmodelpath):
@@ -52,7 +51,7 @@ def cleaneddiffs(pfile1,pfile2,ptype):
 
 def testloading1model(pcallarg):
     parameters.initparam(p_callarg=pcallarg)
-    modelname=parameters.modelName()
+    modelname= parameters.modelName()
 
     #load reference files to compare to as json and as text
     #loadedjsonref = loadjsonfile(pcallarg+f"/ref_{modelname}_loaded.json")
@@ -66,8 +65,8 @@ def testloading1model(pcallarg):
 
     #fill database from ODM for the first time
     fillDB.main(pcallarg)
-    loadedjson = loadjsonfile(parameters.dbDirect()+f"{modelname}_loaded.json")
-    mergedjson = loadjsonfile(parameters.dbDirect()+f"{modelname}.json")
+    loadedjson = loadjsonfile(parameters.dbDirect() + f"{modelname}_loaded.json")
+    mergedjson = loadjsonfile(parameters.dbDirect() + f"{modelname}.json")
     loadedjsontxt = loadjsonfile(pfilepath=parameters.dbDirect() + f"{modelname}_loaded.json", ptext=True)
     mergedjsontxt = loadjsonfile(pfilepath=parameters.dbDirect() + f"{modelname}.json", ptext=True)
     logtext = loadjsonfile(pfilepath=pcallarg+f"/{modelname}.log",ptext=True)

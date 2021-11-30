@@ -1,9 +1,10 @@
 import math
 import os, re
-from IM_DB import dbConnect, parameters, logmessages
+from IM_DB import dbConnect
+from SSOT_infra import parameters, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferRelational,handleXML
-from mystring import nvl
+from SSOT_infra import nvl
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
@@ -193,7 +194,7 @@ def do1structtype(filename):
 """
 def dostructtypes():
     global unkndomains
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype,pmandatoryfile=False)
+    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype, pmandatoryfile=False)
 
     """update group domains as their types may now be available"""
     for key,val in unkndomains.items():
@@ -316,7 +317,7 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     #return none if domainfile is defaultdomainfile, name otherwise
-    interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
+    interfacename = lambda name: None if (name == parameters.odmdefdomainsfile()[:-4]) else name
 
     domains = handleXML.parseXML(pfilename=pfilename)
     root = domains.getroot()
@@ -1040,7 +1041,7 @@ def transferKeys():
                 kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
                 kele.kele_attr_id = None
                 if kele.kele_rela_id is None:
-                    logmessages.writelog("key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(ke,key.keys_name,Entity().getbyid(key.keys_enti_id).getname()))
+                    logmessages.writelog("key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(ke, key.keys_name, Entity().getbyid(key.keys_enti_id).getname()))
                     continue
             else:
                 kele.kele_rela_id = None
@@ -1648,13 +1649,13 @@ def do1Orgunit(fileName):
 def transferDocuments():
     global docuparents
     docuparents = {}
-    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document,pmandatoryfile=False)
+    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document, pmandatoryfile=False)
     Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
 def transferorgunits():
     global orguparents
     orguparents = {}
-    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit,pmandatoryfile=False)
+    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit, pmandatoryfile=False)
     OragnisationalUnit.updparents(psrcname=Externalref.SOURCE_ODM,pparents=orguparents)
 
 

@@ -4,7 +4,7 @@ from IM_JSON import *
 from IM_OBJECTS import *
 from dbDML import valuepairs2sqlexpr
 from copy import copy
-from IM_DB import parameters
+from SSOT_infra import parameters
 
 """{odmjsid: keytrans,}  jsid MMMMxxxx (RELA1442)"""
 idTranslate= dict()

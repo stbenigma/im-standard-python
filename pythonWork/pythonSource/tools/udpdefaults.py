@@ -1,11 +1,9 @@
 # Your very first script
 import xml.etree.ElementTree as ET
 import re
-import os
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
-from IM_DB import parameters
-
+from SSOT_infra import parameters
 
 entityDict = {}
 tableDict = {}
@@ -14,7 +12,7 @@ relationDict = {}
 columnDict = {}
 
 def  getPropList(p_udpfilename):
-    tree = ET.parse(parameters.odmFilesDirec()+p_udpfilename+'.udposdm')
+    tree = ET.parse(parameters.odmFilesDirec() + p_udpfilename + '.udposdm')
     root = tree.getroot()
     #print(parameters.odmFilesDirec()+p_udpfilename+'.udposdm',root)
     for child in root:
@@ -120,8 +118,8 @@ def main(par1,par2):
     #print(parameters.odmIMDirec(),parameters.odmFilesDirec())
     getPropList(p_udpfilename=par2)
     #print(entityDict,attrDict,relationDict)
-    dofiles(p_direc=parameters.odmEntityDirec(),p_dict=entityDict,p_attr=True)
-    dofiles(p_direc=parameters.odmRelationDirec(),p_dict=relationDict)
+    dofiles(p_direc=parameters.odmEntityDirec(), p_dict=entityDict, p_attr=True)
+    dofiles(p_direc=parameters.odmRelationDirec(), p_dict=relationDict)
 
 
 if __name__ == '__main__':

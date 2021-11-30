@@ -2,7 +2,8 @@
 import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
-from IM_DB import dbConnect, logmessages,parameters
+from IM_DB import dbConnect
+from SSOT_infra import parameters, logmessages,nvl
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
 from IM_OBJECTS import *
 from IM_JSON import JSModel,sql2json
@@ -12,15 +13,15 @@ from IM_WEB import jinjawebmodel
 def formatDatentyp(w):
     dt = anzDatentyp(w[0])
     return(
-    "{}   ({}) {} {}" .format(dt, w[3], parameters.nvl(w[1])+ parameters.nvl2(w[1],'',' - ')
-                    , parameters.nvl(w[2]), parameters.nvl(w[11]), parameters.nvl(w[6])) if w[0] == 'ZPKT'\
+    "{}   ({}) {} {}" .format(dt, w[3], nvl(w[1]) + nvl2(w[1], '', ' - ')
+                              , nvl(w[2]), nvl(w[11]), nvl(w[6])) if w[0] == 'ZPKT'\
         else '{}  ({}:{})   {}  {}'\
-                .format(dt, parameters.nvl(w[8]), parameters.nvl(w[9]), parameters.nvl(w[7]).__str__() + parameters.nvl2(w[7],'',' - ')
-            , parameters.nvl(w[10]))     if w[0] == 'NUM'\
+                .format(dt, nvl(w[8]), nvl(w[9]), nvl(w[7]).__str__() + nvl2(w[7], '', ' - ')
+                        , nvl(w[10]))     if w[0] == 'NUM'\
         else '{}  ({}) {}'\
-            .format(dt, parameters.nvl(w[4]), 'CHECK: ' + parameters.nvl(w[5], ''))   if w[0] == 'TEXT'\
+            .format(dt, nvl(w[4]), 'CHECK: ' + nvl(w[5], ''))   if w[0] == 'TEXT'\
         else '{}  ({})'\
-                 .format(dt, parameters.nvl(w[4])) if w[0] == 'LOV'\
+                 .format(dt, nvl(w[4])) if w[0] == 'LOV'\
         else dt
     )
 #formatDatentyp
@@ -109,7 +110,7 @@ def main(pdirec, plang, pinputtype="JSON"):
         if deflang is not None: parameters.dbDefaultLang(deflang)
         jsonmodel = JSModel(sql2json(pdbname=parameters.dbFilePath()))
     elif pinputtype == "JSON":
-        jsonfilepath = parameters.dbDirect()+modelname+".json"
+        jsonfilepath = parameters.dbDirect() + modelname + ".json"
         jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
         deflang = jsonmodel.modellanguage()
         modelname = jsonmodel.jsmodel["model"]["name"]
@@ -125,7 +126,7 @@ def main(pdirec, plang, pinputtype="JSON"):
     if pinputtype == "DB":
         dbConnect.myDbConn.close()
         logmessages.showmessages("web-files from database {} for model {} created"
-                             .format(parameters.dbFilePath(),parameters.modelName()))
+                                 .format(parameters.dbFilePath(), parameters.modelName()))
     elif pinputtype == "JSON":
         logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {modelname} created")
 
