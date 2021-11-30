@@ -11,14 +11,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
+
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        # Using 3.9 as the default for github conda image -> faster
+        python-version: 3.9
+
     - name: Add conda to system path
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+
     - name: Show current conda environment configuration
       run: |
         conda env export --name base
