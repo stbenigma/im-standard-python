@@ -43,6 +43,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: foryouandyourcustomers/fyyccim-refmodels
+        token: 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
         path: testdata/fyyccim-refmodels
 
     - name: Build deployment package
