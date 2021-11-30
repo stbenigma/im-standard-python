@@ -1,7 +1,9 @@
 name: base
 channels:
+  - defaults
   - conda-forge
-#  - defaults
+channel_priority: strict
+allow_conda_downgrades: true
 dependencies:
   - python=3.8
   - ipython
