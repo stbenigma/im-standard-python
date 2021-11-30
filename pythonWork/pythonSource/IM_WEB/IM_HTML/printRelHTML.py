@@ -1,4 +1,4 @@
-from IM_HTML import printHTML, printdiagHTML
+from . import printHTML, printdiagHTML
 
 import os,re
 import sys
