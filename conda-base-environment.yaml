@@ -1,16 +1,17 @@
 name: base
-channels:
-  - conda-forge
-  - defaults
+#channels:
+#  - conda-forge
+#  - defaults
 dependencies:
   - python=3.8
-  - jupyter
+  - ipython
   - deprecated
   - requests-oauthlib
   - nbstripout
   - papermill
   - openpyxl
   - lxml
+  - tqdm
   - colorama
   - jsonschema
   - matplotlib

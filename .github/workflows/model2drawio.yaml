@@ -28,16 +28,31 @@ jobs:
 #        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 #        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
 #        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Test with pytest
       run: |
         conda install pytest
         pytest
-    - name: Test run generator
-      run: |
-        python generator.py --version
+
+    # Integration test prerequisites
+    - name: Clone reference model repository
+        uses: actions/checkout@v2
+        with:
+          repository: foryouandyourcustomers/fyyccim-refmodels
+          path: testdata/fyyccim-refmodels
     - name: Build deployment package
       run: |
         python deploy.py
+
+    # Run integration test
+    - name: Test run generator
+      run: |
+        python generator.py --version
+
+    - name: Integration test run with CRM model
+      run: |
+        python generator.py --model testdata/fyyccim-refmodels/CRM/IM
+
     - name: Upload packed deployment to github
       uses: xresloader/upload-to-github-release@v1.3.2
       env:
