@@ -246,12 +246,13 @@ def printenti(pcell: EntityCell, pposx, pposy):
             </a>
             </g>
             """
-    entibox = entistart.format('white', 'blue'
-                               , 80, 80
-                               , pposx, pposy, ENTIWIDTH, ENTIHEIGHT
-                               , pcell.getentiid(), pcell.getentiid()
-                               , 'black' if pcell.gettype() == EntityCell.CENTER else 'blue', FONTSIZE
-                               , nvl(pcell.getentiname())[:MAXENTICHARS])
+    entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
+                               , fopacity=0.3, sopacity=0.8
+                               , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
+                               , ref=pcell.getentiid() #, pcell.getentiid()
+                               ,fillcolor='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
+                               , name=nvl(pcell.getentiname())[:MAXENTICHARS]
+                               ,title="<title>{descr}</title>".format(descr=' ' if pcell.getentidescr() in (None,'') else pcell.getentidescr()[:MAXDESCRCHARS]))
     return entibox
 
 
