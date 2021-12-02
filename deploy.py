@@ -9,7 +9,7 @@ import logging
 import zipfile
 
 
-script_file = 'generator.ipynb'
+script_file = 'notebooks/mig/generator.ipynb'
 
 
 def notebook_to_python(source, exporter, destination):
