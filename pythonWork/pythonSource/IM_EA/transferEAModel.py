@@ -1,6 +1,7 @@
 import math
 import os
 import re
+import xml.dom.minidom
 import xml.etree.ElementTree as et
 from datetime import datetime
 
@@ -9,6 +10,8 @@ from SSOT_infra import parameters, logmessages
 from IM_OBJECTS import *
 from IM_ODM import transferModel
 
+XMIVERSION = "2.1"
+XMIPREFIX = f"{{http://schema.omg.org/spec/XMI/{XMIVERSION}}}"
 
 """List of Relations 
    {relationguid: {"rela":, "srcentiguid": ,"dstentiguid","....":}}
@@ -260,13 +263,13 @@ def do1diagobj(pdiagobjxml):
     return
 
 
-def transferobjtypes(proot, pobjtype, ptransferfunc, **restrictions):
-    objs = proot.find(f"Table[@name='{pobjtype}']")
+def transferobjtypes(proot, ptransferfunc, **restrictions):
+    objs = proot.find("elements")
     for obj in objs:
         # check, that all restrictions for objecttype are met
         restrictionmet = True
         for type, value in restrictions.items():
-            restrictionmet = restrictionmet and (handleXML.findColumn(obj, type) == value)
+            restrictionmet = restrictionmet and (handleXML.findField(obj, XMIPREFIX+"type") == f"uml:{value}")
         if restrictionmet:
             ptransferfunc(obj)
     return
@@ -577,57 +580,59 @@ def transfer1project(pprojxml):
     return
 
 def transferEAModel(**kwargs):
+
     """überträgt das ganze EA Modell aus einem XML in die DB"""
     infile = handleXML.searchfile(pfilename=kwargs["pinput"], pdefaultdirec=parameters.baseDirec())
     eaxml = handleXML.parseXML(pfilename=infile)
     earoot = eaxml.getroot()
 
+    fileversion = handleXML.findField(earoot,f'{XMIPREFIX}version')
+    assert (fileversion == XMIVERSION), f"File has version {fileversion} (expected {XMIVERSION})"
+
+    for element in earoot:
+        if element.tag.endswith('Model'):
+            pass
+        if element.tag.endswith('Extension'):
+            modelroot = element
+
     transferModel.insertlanguages()
     initDomains()
-    transferobjtypes(proot=earoot, pobjtype='t_package'
+    transferobjtypes(proot=modelroot
                      , ptransferfunc=transfer1project
+                     ,Type = "Package"
                      )
-    transferobjtypes(proot=earoot, pobjtype='t_object'
+    transferobjtypes(proot=modelroot
                      , ptransferfunc=do1Entity
-                     , Object_Type="Class"
-                     , Stereotype="Entity")
+                     , Type="Class")
     transferModel.doSubentities()
 
-    transferobjtypes(proot=earoot, pobjtype='t_object'
+    transferobjtypes(proot=modelroot
                      , ptransferfunc=do1Domain
                      , Stereotype="Domain")
 
-    transferobjtypes(proot=earoot, pobjtype='t_attribute'
+    transferobjtypes(proot=modelroot
                      , ptransferfunc=do1LOV
-                     , Stereotype="enum")
+                     , Stereotype="Enumeration")
 
-    transferobjtypes(proot=earoot, pobjtype='t_attribute'
-                     , ptransferfunc=do1Attribute
-                     , Stereotype="Attribute")
-
-    transferobjtypes(proot=earoot, pobjtype='t_connector'
+    transferobjtypes(proot=modelroot
                      , ptransferfunc=do1Relation
-                     , Stereotype="Relation")
+                     , Type="")
 
-    transferobjtypes(proot=earoot, pobjtype='t_connector'
-                     , ptransferfunc=do1Relation
-                     , Stereotype="Arc")
-
-    transferobjtypes(proot=earoot, pobjtype='t_object'
+    transferobjtypes(proot=modelroot
                      , ptransferfunc=do1Arc
-                     , Stereotype="Arc")
+                     , Type="Constraint")
 
     filllanguages()
 
-    transferobjtypes(proot=earoot, pobjtype='t_diagram'
+    transferobjtypes(proot=modelroot, pobjtype='t_diagram'
                      , ptransferfunc=do1entitydiag
                      , Diagram_Type="Logical")
 
-    transferobjtypes(proot=earoot, pobjtype='t_diagramobjects'
+    transferobjtypes(proot=modelroot, pobjtype='t_diagramobjects'
                      , ptransferfunc=do1diagobj
                      )
 
-    transferobjtypes(proot=earoot, pobjtype='t_diagramlinks'
+    transferobjtypes(proot=modelroot, pobjtype='t_diagramlinks'
                      , ptransferfunc=do1diaglink
                      )
     movediaglegend()
