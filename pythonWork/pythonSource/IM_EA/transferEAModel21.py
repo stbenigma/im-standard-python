@@ -558,10 +558,11 @@ def transfer1project(pprojxml):
     defspra = parameters.dbDefaultLang()
     sprachen = parameters.dbLanguages()
     proj = Project()
-    proj.proj_name = handleXML.findColumn(pprojxml, 'Name')
+    proj.proj_name = handleXML.findField(pprojxml, 'name')
     proj.proj_uc = "fillDBea"
-    proj.proj_dc = handleXML.findColumn(pprojxml, 'CreatedDate')
-    proj.proj_dm = handleXML.findColumn(pprojxml, 'ModifiedDate')
+    times = pprojxml.find('times')
+    proj.proj_dc = handleXML.findField(times, 'created')
+    proj.proj_dm = handleXML.findField(times, 'modified')
     proj.proj_languages = sprachen
     proj.proj_curr_lang = defspra
     proj.insert()
@@ -591,13 +592,13 @@ def transferEAModel(**kwargs):
 
     for element in earoot:
         if element.tag.endswith('Model'):
-            pass
+            modele = element
         if element.tag.endswith('Extension'):
-            modelroot = element
+            extension = element
 
     transferModel.insertlanguages()
     initDomains()
-    transferobjtypes(proot=modelroot
+    transferobjtypes(proot=extension
                      , ptransferfunc=transfer1project
                      ,Type = "Package"
                      )
