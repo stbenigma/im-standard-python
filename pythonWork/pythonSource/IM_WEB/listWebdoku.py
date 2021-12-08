@@ -3,7 +3,7 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/..')
 from IM_DB import dbConnect
-from SSOT_infra import parameters, logmessages,nvl
+from SSOT_infra import parameters, logmessages,nvl,settransldomain
 from IM_HTML import printHTML, printRelHTML,printdiagHTML
 from IM_OBJECTS import *
 from IM_JSON import JSModel,sql2json
@@ -82,6 +82,8 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
         langfilename = printHTML.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.html"
         print ("create web-files for language {} in file {}".format(lang,printHTML.webDirectory + langfilename))
         printHTML.htmlfilelist[0] = langfilename
+        #Switch language domain to current lang
+        settransldomain(lang)
         printhtmlrender(pfilename=langfilename, planguage=lang, pmodel=model)
     # for
     #prepare for relational models
@@ -92,6 +94,7 @@ def listwebmain(plang,pfilter=(None,'TEST','REL')):
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else parameters.dbDefaultLang()
     Languagetext.reportLang(lang)
+    settransldomain(lang)
     for anker,element in schnlist.items():
         langfilename = printHTML.htmlfilelist[anker]
         print ("create web-files for system {} in file {}".format(element['name'],printHTML.webDirectory + langfilename))

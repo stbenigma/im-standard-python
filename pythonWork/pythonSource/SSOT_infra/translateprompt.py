@@ -3,6 +3,7 @@ import os
 
 LOCALES_DIREC = os.path.dirname(os.path.realpath(__file__)) + '/locales' # "'./SSOT_infra/locales'"
 DOMAIN = "prompts"
+ORIGINAL_LANG = 'de'
 
 transldomain = None #currently active lang domain defaults to de
 
@@ -17,13 +18,11 @@ def transl(ptext,plang=None):
        ptext if no domain is set
         """
     retval = None
-    if transldomain is None:
+    if transldomain is None or plang == ORIGINAL_LANG:
         retval = ptext
     elif plang is not None:
-        if plang == 'de': retval = ptext
-        else:
-            localdomain = setlocaltransldomain(plang)
-            retval = localdomain.gettext(ptext)
+        localdomain = setlocaltransldomain(plang)
+        retval = localdomain.gettext(ptext)
     else:
         retval = transldomain.gettext(ptext)
     return retval

@@ -4,7 +4,7 @@ from .interface import Interface
 from .languagetext import Languagetext
 from .modelelement import Modelelemtype
 from .physicals import Storageformat
-from SSOT_infra import nvl,nvl2,transl
+from SSOT_infra import nvl,nvl2
 from IM_DB import dbDML
 
 class Domain(MultilangBaseobject):
@@ -62,30 +62,30 @@ class Domain(MultilangBaseobject):
         typestring = '' if daty is None else daty.daty_name
         if (self.doma_type in (Domain.TXT, Domain.LOV)):
             infoheaders = (
-                transl('Datentyp'), transl('Max. Länge'), transl('Syntaxregel'),
-                transl('geändert'))
+                'Datentyp', 'Max. Länge', 'Syntaxregel',
+                'geändert')
             infovalues = (nvl(self.doma_type), nvl(self.doma_txt_maxlng), nvl(self.doma_txt_syntaxrule),
                           nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
             typestring += nvl2(self.doma_txt_maxlng, '', " ({})".format(self.doma_txt_maxlng))
         elif (self.doma_type == Domain.BIN):
             stf = Storageformat().getbyid(self.doma_bin_stfo_id)
             stfname = stf.getname() if stf is not None else ''
-            infoheaders = (transl('Datentyp'), transl('Inhaltstyp'), transl('Format'),
-                           transl('geändert'))
+            infoheaders = ('Datentyp', 'Inhaltstyp', 'Format',
+                           'geändert')
             infovalues = (
                 nvl(self.doma_type), self.displcontenttype(), stfname,
                 nvl(self.doma_uc) + ',' + nvl(self.doma_dc)
             )
             typestring += " ({}, {})".format(self.displcontenttype(),stfname)
         elif (self.doma_type == Domain.GRP):
-            infoheaders = (transl('Datentyp'), transl('geändert'))
+            infoheaders = ('Datentyp', 'geändert')
             infovalues = (self.doma_type, nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
         elif (self.doma_type == Domain.NUM):
             infoheaders = (
-                transl('Datentyp'), transl('Vorkommast.'), transl('Nachkommast.')
-            , transl('Rundungseinh.'), transl('Einheit'), transl('Min. Wert'),
-                transl('Max. Wwert')
-            , transl('geändert'))
+                'Datentyp', 'Vorkommast.', 'Nachkommast.'
+            , 'Rundungseinh.', 'Einheit', 'Min. Wert',
+                'Max. Wwert'
+            , 'geändert')
             infovalues = (nvl(self.doma_type), nvl(self.doma_num_total_digits), nvl(self.doma_num_fract_digits),
                           nvl(self.doma_num_round_value), nvl(self.doma_num_phyu_id)
                           , nvl(self.doma_num_minvalue), nvl(self.doma_num_maxvalue)
@@ -96,9 +96,9 @@ class Domain(MultilangBaseobject):
                                                , nvl2(self.doma_num_maxvalue, '', '  <= {}'.format(self.doma_num_maxvalue)))
         elif (self.doma_type == Domain.DAT):
             infoheaders = (
-                transl('Datentyp'), transl('Min. Wert'), transl('Max. Wwert'),
-                transl('Granularität')
-            , transl('geändert'))
+                'Datentyp', 'Min. Wert', 'Max. Wwert',
+                'Granularität'
+            , 'geändert')
             infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minvalue), nvl(self.doma_dat_maxvalue),
                           nvl(self.displgranul()),
                           nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
@@ -166,52 +166,52 @@ class Domain(MultilangBaseobject):
     # getunknown
 
     @staticmethod
-    def _displdatatype(dt,plang=None):
-        anzDT = {Domain.BIN: transl('Binär', plang=plang)
-            , Domain.GRP: transl('Gruppenattribut', plang=plang)
-            , Domain.LOV: transl('Werteliste', plang=plang)
-            , Domain.NUM: transl('Numerisch', plang=plang)
-            , Domain.TXT: transl('Text', plang=plang)
-            , Domain.DAT: transl('Zeitpunkt', plang=plang)}
+    def _displdatatype(dt):
+        anzDT = {Domain.BIN: 'Binär'
+            , Domain.GRP: 'Gruppenattribut'
+            , Domain.LOV: 'Werteliste'
+            , Domain.NUM: 'Numerisch'
+            , Domain.TXT: 'Text'
+            , Domain.DAT: 'Zeitpunkt'}
         return anzDT[dt]
     # anzDatentyp
 
-    def displdatatype(self,plang=None):
-        return Domain._displdatatype(self.doma_type,plang=plang)
+    def displdatatype(self):
+        return Domain._displdatatype(self.doma_type)
 
-    def displcontenttype(self,plang=None):
+    def displcontenttype(self):
         return Domain._displcontenttype(self.doma_bin_contenttype)
 
     @staticmethod
-    def _displcontenttype(dt,plang=None):
-        anzDT = {Domain.DRAWING: transl('Bild', plang=plang)
-            , Domain.FILM: transl('Film', plang=plang)
-            , Domain.IMAGE: transl('Grafik', plang=plang)
-            , Domain.TEXT: transl('Text', plang=plang)
-            , Domain.SOUND: transl('Ton', plang=plang)
+    def _displcontenttype(dt):
+        anzDT = {Domain.DRAWING: 'Bild'
+            , Domain.FILM: 'Film'
+            , Domain.IMAGE: 'Grafik'
+            , Domain.TEXT: 'Text'
+            , Domain.SOUND: 'Ton'
                  }
         if dt in anzDT.keys():
             return anzDT[dt]
         else:
-            return transl('Andere', plang=plang)
+            return 'Andere'
     # displcontenttype
 
-    def displgranul(self,plang=None):
-        return None if self.doma_dat_granularity is None else Domain._displgranul(dt=self.doma_dat_granularity,plang=plang)
+    def displgranul(self):
+        return None if self.doma_dat_granularity is None else Domain._displgranul(dt=self.doma_dat_granularity)
 
     @staticmethod
-    def _displgranul(dt,plang=None):
+    def _displgranul(dt):
         anzDT = {
-            Domain.YEAR: transl('Jahr', plang=plang),
-            Domain.MILlISECOND: transl('Millisekunde', plang=plang),
-            Domain.MINUTE: transl('Minute', plang=plang),
-            Domain.MONTH: transl('Monat', plang=plang),
-            Domain.QUARTER: transl('Quartal', plang=plang),
-            Domain.SECOND: transl('Sekunde', plang=plang),
-            Domain.SEMESTER: transl('Semester', plang=plang),
-            Domain.HOUR: transl('Stunde', plang=plang),
-            Domain.DAY: transl('Tag', plang=plang),
-            Domain.WEEK: transl('Woche', plang=plang)
+            Domain.YEAR: 'Jahr',
+            Domain.MILlISECOND: 'Millisekunde',
+            Domain.MINUTE: 'Minute',
+            Domain.MONTH: 'Monat',
+            Domain.QUARTER: 'Quartal',
+            Domain.SECOND: 'Sekunde',
+            Domain.SEMESTER: 'Semester',
+            Domain.HOUR: 'Stunde',
+            Domain.DAY: 'Tag',
+            Domain.WEEK: 'Woche'
         }
         return anzDT[dt]
     # displgranul

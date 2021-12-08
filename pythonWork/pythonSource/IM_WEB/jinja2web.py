@@ -48,7 +48,7 @@ class Webmodel():
             self.__setattr__(key.lower(),val)
 
     def gettransltext(self,str):
-        retval = Languagetext.transl(pname=str,plang=self.getcurlanguage())
+        retval = transl(str)
         return retval
 
     def getlangstr(self,str,default=None):
@@ -64,7 +64,7 @@ class Webmodel():
         return retval
 
     def displelemtype(self,typ):
-        return printHTML.type2name(ptyp=typ[:4],plang=self.getcurlanguage)
+        return printHTML.type2name(ptyp=typ[:4])
 
     def getelem(self,id):
         retval = self.jsmodel.getbyid(id)

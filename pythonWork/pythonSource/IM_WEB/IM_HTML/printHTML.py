@@ -92,25 +92,25 @@ def origindomains(pintfid):
                                                 and value['interface-id'] == pintfid)}
 
 
-def type2name(ptyp,plang):
+def type2name(ptyp):
     if ptyp == Modelelemtype.ENTI:
-        return Languagetext.transl('Entität', plang)
+        return transl('Entität')
     elif ptyp == Modelelemtype.ATTR:
-        return Languagetext.transl('Attribut', plang)
+        return transl('Attribut')
     elif ptyp == Modelelemtype.DOMA:
-        return Languagetext.transl('Wertebereich', plang)
+        return transl('Wertebereich')
     elif ptyp == Modelelemtype.DIAG:
-        return Languagetext.transl('Diagramm', plang)
+        return transl('Diagramm')
     elif ptyp == Modelelemtype.TABL:
-        return Languagetext.transl('Tabelle', plang)
+        return transl('Tabelle')
     elif ptyp == Modelelemtype.DOCU:
-        return Languagetext.transl('Dokument', plang)
+        return transl('Dokument')
     elif ptyp == Modelelemtype.ORGU:
-        return Languagetext.transl('Organisatioseinheit', plang)
+        return transl('Organisatioseinheit')
     elif ptyp == Modelelemtype.INTF:
-        return Languagetext.transl('System', plang)
+        return transl('System')
     elif ptyp == Modelelemtype.COLU:
-        return Languagetext.transl('Column', plang)
+        return transl('Column')
     else:
         return ptyp
     #fi
