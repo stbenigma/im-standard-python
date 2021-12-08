@@ -6,7 +6,7 @@ import re
 """EA-Specific"""
 def findColumn(set, name):
     try:
-        return findField(set.find("Column[@name='{}']".format(name)), 'value')
+        return findField(set.find(f"Column[@name='{name}']"), 'value')
     except Exception as ex:
         raise ex
 

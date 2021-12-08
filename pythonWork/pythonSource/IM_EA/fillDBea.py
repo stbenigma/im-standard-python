@@ -1,22 +1,29 @@
 # -*- coding: latin-1 -*-
-from SSOT_infra import logmessages
-from IM_EA import transferEAModel
+from SSOT_infra import logmessages,parameters
+from IM_EA import transferEAModel21,transferEAModelNative
 from IM_ODM import fillDB, createJSON
 
 
-def filldbmain(callarg, pintputfile, createnewdb=False):
+def filldbmain(callarg, pintputfile, ptransffunc,createnewdb=False):
     fillDB.fillmergedb(callarg=callarg, createnewdb=createnewdb
-                       , transferfunction=transferEAModel.transferEAModel
+                       , transferfunction=ptransffunc
                        , pinput=pintputfile)
 
 
-def main(p_param1, pxmlfile):
+def main(p_param1, pxmlfile,ptransffuncversion):
     """Main program for fillDBea"""
     parameters.initparam(p_callarg=p_param1)
     logmessages.initlog('fillDBea')
+    assert ptransffuncversion in ('2.1','native')\
+        ,f"{ptransffuncversion} is unsupported version for load file from EA. ('2.1','native')"
 
     try:
-        filldbmain(callarg=p_param1, pintputfile=pxmlfile, createnewdb=True)
+        if ptransffuncversion == 'native':
+            transffunc = transferEAModelNative.transferEAModel
+        else:
+            transffunc = transferEAModel21.transferEAModel
+        #fi
+        filldbmain(callarg=p_param1, pintputfile=pxmlfile,ptransffunc=transffunc, createnewdb=True)
         # not createDB.existsDB(parameters.dbFilePath()))
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
@@ -32,4 +39,7 @@ def main(p_param1, pxmlfile):
 if __name__ == '__main__':
     import sys
 
-    main(p_param1=sys.argv[1], pxmlfile=sys.argv[2])
+    param1=sys.argv[1] if len(sys.argv)>1 else None
+    xmlfile=sys.argv[2] if len(sys.argv)>2 else None
+    transffuncversion=sys.argv[3] if len(sys.argv)>3 else "2.1"
+    main(p_param1=param1, pxmlfile=xmlfile,ptransffuncversion=transffuncversion)
