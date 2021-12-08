@@ -18,11 +18,11 @@ def transl(ptext,plang=None):
        ptext if no domain is set
         """
     retval = None
-    if transldomain is None or plang == ORIGINAL_LANG:
-        retval = ptext
-    elif plang is not None:
+    if plang is not None and plang != ORIGINAL_LANG:
         localdomain = setlocaltransldomain(plang)
         retval = localdomain.gettext(ptext)
+    elif transldomain is None or plang == ORIGINAL_LANG:
+            retval = ptext
     else:
         retval = transldomain.gettext(ptext)
     return retval
