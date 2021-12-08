@@ -2,9 +2,8 @@ from datetime import datetime
 import re
 from markdown import markdown
 from IM_HTML import printHTML,entityenviron
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import parameters, logmessages,transl
 from IM_JSON import JSModel,jsguid2type
-from IM_OBJECTS import Languagetext
 from jinja2 import FileSystemLoader,Environment
 
 

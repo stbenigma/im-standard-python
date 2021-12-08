@@ -7,3 +7,4 @@ Version file of current release
 """
 
 from .nvl import nvl, nvl2  # publish low level functions directly in Module
+from .translateprompt import transl,settransldomain,resettransldomain

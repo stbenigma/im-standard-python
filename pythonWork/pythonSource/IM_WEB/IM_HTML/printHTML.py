@@ -3,7 +3,7 @@ import re
 import shutil
 from distutils.dir_util import copy_tree
 
-from SSOT_infra import parameters,nvl2,nvl
+from SSOT_infra import parameters,nvl2,nvl,transl
 from IM_OBJECTS import *
 import html
 from IM_JSON import JSModel

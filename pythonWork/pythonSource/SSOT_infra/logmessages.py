@@ -4,7 +4,6 @@ from SSOT_infra import parameters
 
 logcount: int = 0
 logfile = None
-logtap = None
 
 """functions to handle a logfile
 """
@@ -32,9 +31,6 @@ def writelog(pline: str):
         logcount += 1
         logfile.write("\t{}\n".format(pline))
 
-    global logtap
-    if logtap:
-        logtap(pline)
     return
 
 def showmessages(pmsg: str = None):
