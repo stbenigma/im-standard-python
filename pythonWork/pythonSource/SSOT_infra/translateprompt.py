@@ -1,5 +1,6 @@
 import gettext
 import os
+import logging
 
 LOCALES_DIREC = os.path.dirname(os.path.realpath(__file__)) + '/locales' # "'./SSOT_infra/locales'"
 DOMAIN = "prompts"
@@ -8,6 +9,7 @@ ORIGINAL_LANG = 'de'
 transldomain = None #currently active lang domain defaults to de
 
 def setlocaltransldomain(plang):
+    logging.debug(f"Initializing translation from folder '{LOCALES_DIREC}'")
     return gettext.translation(DOMAIN, localedir=LOCALES_DIREC, languages=[plang, 'en'])
 
 def transl(ptext,plang=None):
