@@ -5,70 +5,76 @@ on: [push]
 jobs:
   build-linux:
     runs-on: ubuntu-latest
-#    strategy:
-#      max-parallel: 5
-#      matrix: ''
+    #    strategy:
+    #      max-parallel: 5
+    #      matrix: ''
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        # Using 3.9 as the default for github conda image -> faster
-        python-version: 3.9
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          # Using 3.9 as the default for github conda image -> faster
+          python-version: 3.9
 
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
+      - name: Install GNU gettext
+        # msgfmt is required by some unittests
+        run: sudo apt install gettext
 
-    - name: Show current conda environment configuration
-      run: |
-        conda env export --name base
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
 
-    - name: Install dependencies
-      run: |
-        conda env update --file conda-base-environment.yaml --name base
-#    - name: Lint with flake8
-#      run: |
-#        conda install flake8
-#        # stop the build if there are Python syntax errors or undefined names
-#        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-#        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-#        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Show current conda environment configuration
+        run: |
+          conda env export --name base
 
-    - name: Build deployment package
-      run: |
-        python deploy.py
+      - name: Install dependencies
+        run: |
+          conda env update --file conda-base-environment.yaml --name base
+      #    - name: Lint with flake8
+      #      run: |
+      #        conda install flake8
+      #        # stop the build if there are Python syntax errors or undefined names
+      #        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      #        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+      #        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-      # Run integration test
-    - name: Test run generator
-      run: |
-        python generator.py --version
+      - name: Build deployment package
+        run: |
+          python deploy.py
 
-    - name: Upload packed deployment to github
-      uses: xresloader/upload-to-github-release@v1.3.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        file: model2diagram-*.zip
-        draft: false
-        overwrite: true
+        # Run integration test
+      - name: Test run generator
+        run: |
+          python generator.py --version
 
-    - name: Test with pytest
-      run: |
-        conda install pytest
-        pytest
+      - name: Upload packed deployment to github
+        uses: xresloader/upload-to-github-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: model2diagram-*.zip
+          draft: false
+          overwrite: true
 
-    # Integration test prerequisites
-    - name: Clone reference model repository
-      uses: actions/checkout@v2
-      with:
-        repository: foryouandyourcustomers/fyyccim-refmodels
-        token: "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"
-        path: testdata/fyyccim-refmodels
+      - name: Install pytest
+        run: |
+          conda install pytest
 
-    - name: Integration test run with CRM model
-      run: |
-        python generator.py --model testdata/fyyccim-refmodels/CRM/IM
+      - name: Run unittests with pytest
+        run: pytest
+
+      # Integration test prerequisites
+      - name: Clone reference model repository
+        uses: actions/checkout@v2
+        with:
+          repository: foryouandyourcustomers/fyyccim-refmodels
+          token: "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"
+          path: testdata/fyyccim-refmodels
+
+      - name: Integration test run with CRM model
+        run: |
+          python generator.py --model testdata/fyyccim-refmodels/CRM/IM
