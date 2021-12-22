@@ -1,4 +1,4 @@
-from IM_DB import parameters,logmessages
+from SSOT_infra import parameters, logmessages
 from .baseobject import MultilangBaseobject,UniqueKeyException
 from .modelelement import Modelelemtype
 from .languagetext import Languagetext

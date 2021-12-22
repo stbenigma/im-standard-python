@@ -1,19 +1,24 @@
-from datetime import datetime
 import re
-from markdown import markdown,Markdown
-import logmessages
-from IM_HTML import printHTML,entityenviron
-from IM_DB import parameters
-from IM_JSON import JSModel,jsguid2type
-from IM_OBJECTS import Languagetext
-from jinja2 import FileSystemLoader,Environment,Markup
+import os
+import logging
+from datetime import datetime
+from markdown import markdown
+
+from IM_WEB.IM_HTML import entityenviron, HTMLExport
+from SSOT_infra import logmessages
+from IM_JSON import JSModel, jsguid2type
+from jinja2 import FileSystemLoader, Environment
+from SSOT_infra.translateprompt import transl
+
 
 class Webmodel():
-    def __init__(self,pcurlang,pjsmodel:JSModel,pintfid,phtmlfilelist):
+
+    def __init__(self, export: HTMLExport, pcurlang:str, pjsmodel:JSModel, pintfid, phtmlfilelist):
         self.curlanguage = pcurlang
         self.jsmodel:JSModel = pjsmodel
         self.intferfaceid = pintfid
         self.htmlfilelist = phtmlfilelist
+        self.export = export
 
     def getintfid(self):
         return self.intferfaceid
@@ -48,8 +53,8 @@ class Webmodel():
         for key,val in kwargs.items():
             self.__setattr__(key.lower(),val)
 
-    def gettransltext(self,str):
-        retval = Languagetext.transl(pname=str,plang=self.getcurlanguage())
+    def gettransltext(self, str):
+        retval = transl(str, plang=self.getcurlanguage())
         return retval
 
     def getlangstr(self,str,default=None):
@@ -65,7 +70,7 @@ class Webmodel():
         return retval
 
     def displelemtype(self,typ):
-        return printHTML.type2name(ptyp=typ[:4],plang=self.getcurlanguage)
+        return self.export.type2name(ptyp=typ[:4],plang=self.getcurlanguage())
 
     def getelem(self,id):
         retval = self.jsmodel.getbyid(id)
@@ -94,7 +99,9 @@ class Webmodel():
                     ,'_self' if curintfid == destintfid else '_blank'
                     ,name)
         except Exception as err:
-            pass
+            logging.warning(f"Cannot format link to {destid}")
+            return ""
+
         return retval
 
     def collecttablemappings(self,pelem):
@@ -169,9 +176,8 @@ class Webmodel():
             retval = {}
         return retval
 
-    def getentiicon(self,entielem):
-        m = printHTML.getmodel()
-        return printHTML.iconsrc(pjsenti=entielem,pdefaultlang=self.getdeflanguage())
+    def getentiicon(self, entielem):
+        return self.export.iconsrc(pjsenti=entielem,pdefaultlang=self.getdeflanguage())
 
     def getentienviron(self,entiid):
         return entityenviron.entienviro2svg(pentiid=entiid
@@ -205,9 +211,9 @@ def formattext(pstr:str):
 
 
 def model2html(pwebmodel:Webmodel):
-    jinjadirec = parameters.webDirec()+"jinjatemplates"
-    #jinjadirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/html-lib/jinjatemplates"
-    t = Environment(loader=FileSystemLoader(jinjadirec),autoescape=True)
+    template_folder = pwebmodel.export.jinadirec
+    assert os.path.isdir(template_folder), f"Missing jinja templates folder {template_folder}"
+    t = Environment(loader=FileSystemLoader(template_folder),autoescape=True)
     if pwebmodel.getintfid() is not None:
         templatename = "interface.jinja.html"
     else:
@@ -217,7 +223,7 @@ def model2html(pwebmodel:Webmodel):
     try:
         templ = t.get_template(templatename)
     except:
-        logmessages.writelog("jinja template {} in {} not found".format(templatename,jinjadirec))
+        logmessages.writelog("jinja template {} in {} not found".format(templatename, pwebmodel.export.jinadirec))
         raise
     #try
 
@@ -228,7 +234,7 @@ def model2html(pwebmodel:Webmodel):
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:
-        logmessages.writelog("Error in jinja template {}/{}".format(jinjadirec,templatename))
+        logmessages.writelog("Error in jinja template {}/{}".format(pwebmodel.export.jinadirec, templatename))
         logmessages.writelog(str(e))
         raise e
     #try

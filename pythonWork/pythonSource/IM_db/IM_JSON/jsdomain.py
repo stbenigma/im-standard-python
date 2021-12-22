@@ -1,5 +1,6 @@
 from IM_JSON import *
 from IM_OBJECTS import *
+from SSOT_infra import transl
 
 
 def domaingroupmembers(pdomaid):
@@ -154,7 +155,7 @@ def domain2js(pdoma):
                             ,None if pdoma.doma_intf_id is None else Interface().getbyid(pdoma.doma_intf_id).getname()
                                 ,None if pdoma.doma_daty_id is None else Datatype().getbyid(pdoma.doma_daty_id).daty_name
                             ,pdoma.doma_type
-                            ,multilangtext({l.lang_iso_code2: pdoma.displdatatype(l.lang_iso_code2) for l in Language.select()})
+                            ,multilangtext({l.lang_iso_code2: transl(pdoma.displdatatype(),l.lang_iso_code2) for l in Language.select()})
                             ,pdoma.typestring(),jsguid(Modelelemtype.DATY, pdoma.doma_daty_id)
                              ,pdoma.doma_uc,pdoma.doma_um,pdoma.doma_dc,pdoma.doma_dm
                              ,pdoma.doma_num_minvalue if pdoma.doma_type == Domain.NUM else pdoma.doma_dat_minvalue
@@ -164,7 +165,7 @@ def domain2js(pdoma):
                              ,None if pdoma.doma_num_phyu_id is None else PhysicalUnit().getbyid(pdoma.doma_num_phyu_id).phyu_name
                                   ,jsguid(Modelelemtype.PHYU,pdoma.doma_num_phyu_id)
                             ,pdoma.doma_txt_maxlng ,pdoma.doma_txt_syntaxrule
-                             ,pdoma.doma_dat_granularity,multilangtext({l.lang_iso_code2: pdoma.displgranul(l.lang_iso_code2) for l in Language.select()})
+                             ,pdoma.doma_dat_granularity,multilangtext({l.lang_iso_code2: transl(pdoma.displgranul(),l.lang_iso_code2) for l in Language.select()})
                               ,pdoma.doma_bin_contenttype,pdoma.displcontenttype()
                              ,None if pdoma.doma_bin_stfo_id is None else Storageformat().getbyid(pdoma.doma_bin_stfo_id).stfo_name
                                 ,jsguid(Modelelemtype.STFO,pdoma.doma_bin_stfo_id)

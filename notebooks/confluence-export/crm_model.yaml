@@ -6,10 +6,13 @@ confluence:
   password: 'v1AD9yqDlmnHJAjYc8mh599B'
   # sleep time in seconds between element interactions. larger models have around 5000 elements
   # x 2 (read, write)  => 2.5h sleep time for one run
-  cooldown: 1.0
+  cooldown: 0.01
+
+# Abort processing if pages with same title exist outside of the specified document root
+cautious: true
 
 # datasource
-json: testdata/IM_CRM_FYAYC.json
+source: testdata/IM_CRM_FYAYC.json
 
 # translations to publish
 # first language listed here is not placed in a language subfolder
@@ -31,7 +34,6 @@ content:
     labels:
       - domain
       - IM
-      - generated
 
   documents:
     title: Documents [TOC]
@@ -39,8 +41,6 @@ content:
     labels:
       - document
       - IM
-      - generated
-
 
   diagrams:
     title: Diagrams [TOC]
@@ -48,7 +48,6 @@ content:
     labels:
       - diagram
       - IM
-      - generated
 
   systems:
     title: Systems [TOC]
@@ -56,7 +55,6 @@ content:
     labels:
       - system
       - DM
-      - generated
 
     content:
       tables:
@@ -64,7 +62,7 @@ content:
         template: table.templ.html
         manual-documentation:
           template: children.templ.html
-          title-postfix: ' - Table-Doc'
+          title-format: '{parent_title} - Table-Documentation'
           labels:
             - table
             - DM
@@ -73,7 +71,6 @@ content:
         labels:
           - table
           - DM
-          - generated
 
         content:
           columns:
@@ -81,7 +78,6 @@ content:
             template: column.templ.html
             manual-documentation:
               template: manual-documentation.templ.html
-              title-postfix: ' - Column-Doc'
               labels:
                 - column
                 - DM
@@ -90,7 +86,6 @@ content:
             labels:
               - column
               - DM
-              - generated
 
   entities:
     title: Entities [TOC]
@@ -98,7 +93,6 @@ content:
     labels:
       - entity
       - IM
-      - generated
 
     content:
       attributes:
@@ -107,4 +101,3 @@ content:
         labels:
           - attribute
           - IM
-          - generated

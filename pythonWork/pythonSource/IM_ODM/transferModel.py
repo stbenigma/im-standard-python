@@ -1,9 +1,11 @@
+import logging
 import math
 import os, re
-from IM_DB import dbConnect, parameters, logmessages
+from IM_DB import dbConnect
+from SSOT_infra import parameters, logmessages
 from IM_OBJECTS import *
-from IM_ODM import transferRelational,handleXML
-from mystring import nvl
+from IM_ODM import transferRelational, handleXML
+from SSOT_infra import nvl
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
@@ -14,9 +16,12 @@ def hex2int(phex):
 def int2hex(pint):
     if (pint is None): return pint
     lint = pint if (type(pint) == int) else int(pint)
-    retval = hex(lint & 0xfffffff)
-    retval = retval[2:8]
-    return retval
+    rgba = hex(lint & 0xffffff) #AARRGGBB
+    hex_value = rgba.replace('0x', '') # strip 0xFF
+    digits = len(hex_value)
+    if digits < 6:
+        return hex_value.zfill(6)
+    return hex_value
 
 class Color:
     BLACK = 0
@@ -50,22 +55,46 @@ classids = dict()
  {elementtypename : Color}
 """
 defcolors = dict()
+ENTITYDEFAULTCLASSNAME = "Entity"
 
 """List of entities die erst bearbeitet werden können, wenn alle entities geladen sind
    {entityguid: {"entity":, "color":, "superentitityguid":, "subentities":[ids], "categoryguid":}}
 """
 entities = dict()
 duplicateentityvids = [] #vid of duplicate of entities on diagrams. to be ignored in relationships
+"""domains in non-default file are IM or interface (relationale model) dependent.
+    fix interface-id of Domains at end of transfer.
+    {doma_id : filename of domainfile}
+ """
+interfacedomains = dict()
+"""List of not yet finished domain
+    {id of unfinished domain : guid of type it is supposed to be}"""
+unkndomains = dict()
+
+docuparents =dict()
+orguparents =dict()
+emails = dict()
+phones = dict()
+contacts = dict()
+
 
 #to be called bevore maind fillDB
 def initglobals():
-    global schluessel,classcolors,classids,defcolors,entities,duplicateentityvids
+    global schluessel,classcolors,classids,defcolors,entities,duplicateentityvids\
+        ,interfacedomains ,unkndomains ,docuparents,orguparents,emails ,phones ,contacts
     schluessel = []
-    classcolors = dict()
-    classids = dict()
-    defcolors = dict()
-    entities = dict()
+    classcolors = {}
+    classids = {}
+    defcolors = {}
+    entities = {}
     duplicateentityvids = []
+    interfacedomains = {}
+    unkndomains = {}
+    docuparents ={}
+    orguparents ={}
+    emails = {}
+    phones = {}
+    contacts = {}
 
 
 def getentitykeys():
@@ -85,12 +114,6 @@ def getentity(pguid,pvalue=None):
             return entities[pguid][pvalue]
     else:
         return None
-
-"""domains in non-default file are IM or interface (relationale model) dependent.
-    fix interface-id of Domains at end of transfer.
-    {doma_id : filename of domainfile}
- """
-interfacedomains = dict()
 
 def nameflags(pstr: str, pflag: str) -> bool:
     """checks [NLT] at end of names (my erd-Extension)"""
@@ -121,9 +144,6 @@ def transferTypes():
                 ).insert()
     # endfor
 
-"""List of not yet finished domain
-    {id of unfinished domain : guid of type it is supposed to be}"""
-unkndomains = {}
 def do1structtype(filename):
     global unkndomains
     structdomains = handleXML.parseXML(pfilename=filename)
@@ -183,7 +203,7 @@ def do1structtype(filename):
 """
 def dostructtypes():
     global unkndomains
-    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype,pmandatoryfile=False)
+    dosegfiles(pdirec=parameters.odmstructypesdir(), transferfiles=do1structtype, pmandatoryfile=False)
 
     """update group domains as their types may now be available"""
     for key,val in unkndomains.items():
@@ -306,7 +326,7 @@ def liesunsfuelldoma(pdoma, pxml,pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     #return none if domainfile is defaultdomainfile, name otherwise
-    interfacename = lambda name: None if (name  == parameters.odmdefdomainsfile()[:-4]) else name
+    interfacename = lambda name: None if (name == parameters.odmdefdomainsfile()[:-4]) else name
 
     domains = handleXML.parseXML(pfilename=pfilename)
     root = domains.getroot()
@@ -340,9 +360,9 @@ def transferDomains():
 def transferentity(penti, pdiagid, puc, pdc):
     global defcolors,classcolors,duplicateentityvids
 
-    entiodm = handleXML.findField(penti, 'oid')
-    entivid = handleXML.findField(penti, 'vid') #ID of entity on this diagram
-    enti = Entity().getbyODMref(psrcid=entiodm)
+    entiguidodm = handleXML.findField(penti, 'oid')
+    entiguidvid = handleXML.findField(penti, 'vid') #ID of entity on this diagram
+    enti = Entity().getbyODMref(psrcid=entiguidodm)
     hiddenelements = penti.find("hiddenElements")
     if hiddenelements is not None:
         elemtext = handleXML.findField(hiddenelements, "elements")
@@ -374,7 +394,7 @@ def transferentity(penti, pdiagid, puc, pdc):
         col = Color(foregcolor=foregcolor, backgcolor=backgcolor, fontname=None, fontcolor=fontcolor, fontsize=fontsize, fontstyle=fontstyle)
     else:
         # check wether entity belongs to category
-        enticatguid = None if entiodm is None else getentity(entiodm,"categoryguid")
+        enticatguid = getentity(entiguidodm,"categoryguid") if entiguidodm is not None else None
         #print (enti.enti_name,enti.getscrid(),enticatguid)
         if (enticatguid is None):
             col = defcolors['Entity']
@@ -450,7 +470,7 @@ def transferentity(penti, pdiagid, puc, pdc):
             break  # no more looping for copies of element on diagram
         except UniqueKeyException as err:
             #issue45: don't copy duplicate entities on diagram, write logentry instead
-            duplicateentityvids.append(entivid)
+            duplicateentityvids.append(entiguidvid)
             logmessages.writelog(f"Copy of entity \"{enti.enti_name}\" on diagram \"{Diagram().getbyid(pdiagid).diag_name}\" is ignored")
             break
             #index += 1
@@ -500,11 +520,15 @@ def connector(pidx, pmaxidx, psource, ptarget):
 def findedgepos(px,py,pdiagid,pentiid):
     def entiborders(pdiagid, pentiid):
         retval = {'top': None, 'bottom': None, 'left': None, 'right': None}
-        entirep = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid)[0]  # expect max. 1
-        retval['top'] = entirep.eler_position_y
-        retval['bottom'] = entirep.eler_position_y + entirep.eler_height
-        retval['left'] = entirep.eler_position_x
-        retval['right'] = entirep.eler_position_x + entirep.eler_width
+        diagmode = Elementrep.getbydiagmode(pdiagid=pdiagid, pmodeid=pentiid)
+        if len(diagmode)==0:
+            logmessages.writelog(f"Entity should be on diagram")
+        else:
+            entirep = diagmode[0]  # expect max. 1
+            retval['top'] = entirep.eler_position_y
+            retval['bottom'] = entirep.eler_position_y + entirep.eler_height
+            retval['left'] = entirep.eler_position_x
+            retval['right'] = entirep.eler_position_x + entirep.eler_width
         return retval
 
     borders = entiborders(pdiagid=pdiagid, pentiid=pentiid)
@@ -521,7 +545,17 @@ def findedgepos(px,py,pdiagid,pentiid):
         pos = round(100 * (px - borders["left"]) / (borders["right"] - borders["left"]))
         retval =  (Linesegment.SOUTH,pos)
     else:
-        assert False, f"startx={startx} starty={starty}, borders={borders}"
+        enti=Entity().getbyid(pentiid)
+        diag=Diagram().getbyid(pdiagid)
+        logmessages.writelog(f"Entity {enti.enti_name} position {borders} on diagram {diag.diag_name} does not meet relation ends: py={px} py={py}")
+        #dummy starting point
+        retval = (Linesegment.NORTH,0)
+    if retval[1] > 100.0:
+        logging.warning(f"Position {retval[1]} is outside valid boundaries (0-100). px:{px}, py:{py}, {retval}, {pdiagid}, {pentiid}")
+        retval = (retval[0], 100.0)
+    if retval[1] < 0.0:
+        logging.warning(f"Position {retval[1]} is outside valid boundaries (0-100). px:{px}, py:{py}, {retval}, {pdiagid}, {pentiid}")
+        retval = (retval[0], 0.0)
     return retval
 
 
@@ -531,6 +565,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         type = handleXML.findField(c, 'otype')
         if (type == 'Relation'):
             relaguid = handleXML.findField(c, "oid")
+
             rela = Relation().getbyODMref(psrcid=relaguid)
             sourceentivid= handleXML.findField(c,"vid_source")
             targetentivid= handleXML.findField(c,"vid_target")
@@ -539,6 +574,11 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 logmessages.writelog(f"relationship \"{rela.rela_name}\" to duplicate entities on diagram \"{Diagram().getbyid(pdiagid).diag_name}\" is ignored")
                 continue
             #fi
+
+            points = c.findall('points/point')
+            if len(points) < 2:
+                logging.warning(f"Skipping pointless 😹 relation {sourceentivid} <-> {targetentivid} (OID:{relaguid})")
+            continue
 
             linewidth = handleXML.findText(c, 'lineWidth')
             if rela.rela_assoc_from_to is None:
@@ -559,10 +599,12 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                 entew = handleXML.findField(targetlabel, 'width')
                 enteh = handleXML.findField(targetlabel, 'height')
             #fi
-
             """Labels können negative Starts haben, verschiebe sie in den positiven Bereich"""
+            if sttex is not None and int(sttex) < 0: sttex, entex = 0, int(entex) - int(sttex)
             if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
-            if sttey is not None and int(sttey) < 0: sttey, entey = 0, int(entey) - int(sttey)
+            if entex is not None and int(entex) < 0: entex, sttex = 0, int(sttex) - int(entey)
+            if entey is not None and int(entey) < 0: entey, sttey = 0, int(sttex) - int(entex)
+
 
             sourcelinetype = Linesegment.SOLID if rela.getmandatoryfromto() else Linesegment.DASHED
             targetlinetype = Linesegment.SOLID if rela.getmandatorytofrom() else Linesegment.DASHED
@@ -596,7 +638,6 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             relr.relr_uc = puc
             relr.relr_dc = pdc
 
-            points = c.findall('points/point')
             points = [{'x': int(handleXML.findField(p, 'x')), 'y': int(handleXML.findField(p, 'y'))} for p in points]
             if len(points) == 2:
                 """1-elementige Linien werden um einen Mittelpunkt ergänzt wegen -- oder solid"""
@@ -951,7 +992,14 @@ def do1Attribute(plfnr, pattrxml,pentiId):
                                     ,pname="ATTR_COMMENT")
     #store examples for default language
 
-    attrId = attr.insert()
+    try:
+        attrId = attr.insert()
+        dom = Domain().getbyid(attr.attr_doma_id)
+    except Exception as e:
+        ent = Entity().getbyid(attr.attr_enti_id)
+        dom = Domain.select()
+        print (e)
+        raise e  #Problem with multientrance  Domains are out of sync
     Example.fillexamples(pattrid=attrId, plngs=parameters.dbLanguages().split(',')
                          ,pdeflngexpls=examples,plngexpls=lngexamples)
 
@@ -1014,7 +1062,7 @@ def transferKeys():
                 kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
                 kele.kele_attr_id = None
                 if kele.kele_rela_id is None:
-                    logmessages.writelog("key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(ke,key.keys_name,Entity().getbyid(key.keys_enti_id).getname()))
+                    logmessages.writelog("key-element {} for key {} in entity {} is probably attribute group member and will be ignored ".format(ke, key.keys_name, Entity().getbyid(key.keys_enti_id).getname()))
                     continue
             else:
                 kele.kele_rela_id = None
@@ -1123,6 +1171,10 @@ def do1Entity(fileName):
             enti.enti_enca_id = classids[enticategoryguid]
         else:
             print ("classid {} in {} not found".format(enticategoryguid, enti.enti_name))
+        #fi
+    else:
+        enti.enti_enca_id = classids[ENTITYDEFAULTCLASSNAME]
+    #fi
 
     enti.enti_descr,examples  = handleXML.separateExamples(enti.enti_descr)
     """Translations come from notes"""
@@ -1448,21 +1500,6 @@ def insertlanguages():
     Language.setmodellang(pmodellang=deflang)
     Language.setallreplacementlang()
 
-def insertmelts():
-    Modelelemtype.fillmelt()
-
-def insertdiagtypes():
-    diatid = Diagramtype(pname=Diagramtype.ENTITY).insert()
-    MeltDiat(pdiatid=diatid,pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)).insert()
-    MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA)).insert()
-    MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
-    diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
-
-def insertBaseData():
-    insertmelts()
-    insertdiagtypes()
-# insertBaseData
-
 def loadcolors(color:Color, elem):
     for fo in elem.findall('fonts/font_object'):
         if ((handleXML.findField(fo, 'fo_type') == 'Title')
@@ -1488,7 +1525,7 @@ def loaddefaultcolors():
         idx = 0
         while True:
             try:
-                classid = category.insert()
+                categoryid = category.insert()
                 break  #all fine, leave the loop
             except UniqueKeyException as err:
                 idx += 1
@@ -1499,14 +1536,14 @@ def loaddefaultcolors():
         #loop
 
         classguid = handleXML.findField(ty, 'id')
-        classids[classguid] = classid
+        classids[classguid] = categoryid
 
         # foregcolor, backgcolor,fontcolor,fontname,fontsize,fontstyle):
         color = Color(foregcolor=handleXML.findField(ty, 'fgcolor'), backgcolor= handleXML.findField(ty, 'color'))
         loadcolors(color=color, elem=ty)
         classcolors[classguid] = color
         elui = ElementUI()
-        elui.elui_enca_id = classid
+        elui.elui_enca_id = categoryid
         elui.elui_color = int2hex(color.backgcolor)
         elui.elui_margincolor = int2hex(color.foregcolor)
         elui.elui_fontsize = color.fontsize
@@ -1522,8 +1559,9 @@ def loaddefaultcolors():
                                 , None, None, None, None)
         loadcolors(color = color, elem=de)
         defcolors[classname] = color
-        if classname == "Entity":
+        if classname == ENTITYDEFAULTCLASSNAME:
             categoryid = EntityCategory(pname=classname).insert()
+            classids[classname] = categoryid
             elui = ElementUI()
             elui.elui_enca_id = categoryid
             elui.elui_color = int2hex(color.foregcolor)
@@ -1619,18 +1657,16 @@ def do1Orgunit(fileName):
         break #currently only 1 contact per orgunit
     orgu.insert()
 
-docuparents ={}
 def transferDocuments():
     global docuparents
     docuparents = {}
-    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document,pmandatoryfile=False)
+    dosegfiles(pdirec=parameters.odmdocumentdirec(), transferfiles=do1Document, pmandatoryfile=False)
     Document.updparents(psrcname=Externalref.SOURCE_ODM,pparents=docuparents)
 
-orguparents ={}
 def transferorgunits():
     global orguparents
     orguparents = {}
-    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit,pmandatoryfile=False)
+    dosegfiles(pdirec=parameters.odmorgunitdirec(), transferfiles=do1Orgunit, pmandatoryfile=False)
     OragnisationalUnit.updparents(psrcname=Externalref.SOURCE_ODM,pparents=orguparents)
 
 
@@ -1654,7 +1690,6 @@ def removefixedudp():
 def removeattrmeta(pstr):
     return re.sub(r' ?\[[LNT]+\]','',pstr)
 
-emails = {}
 def do1email(fileName):
     global emails
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1665,8 +1700,7 @@ def do1email(fileName):
                                         ,'dc' : handleXML.findText(root, "createdTime")
                                         ,'email' : handleXML.findText(root, "emailAddress")
                                       }
-#do1email
-phones = {}
+    return
 def do1phone(fileName):
     global phones
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1678,8 +1712,7 @@ def do1phone(fileName):
                                         ,'phoneno' : handleXML.findText(root, "phoneNumber")
                                         , 'phnetype': handleXML.findText(root, "phoneType")
                                        }
-#do1phone
-contacts = {}
+    return
 def do1contact(fileName):
     global contacts,emails,phones
     tree = handleXML.parseXML(pfilename=fileName)
@@ -1703,6 +1736,7 @@ def do1contact(fileName):
                                        ,'uc' : handleXML.findField(root, "createdBy")
                                         ,'dc' : handleXML.findField(root, "createdTime")
                                        }
+    return
 #do1contact
 
 def adjustlabelpositions():
@@ -1715,32 +1749,34 @@ def adjustlabelpositions():
         xoffset = 4
         if pstart:
             px, py = prelr.relr_starttext_x, prelr.relr_starttext_y
+            height,width=nvl(prelr.relr_starttext_height,20),nvl(prelr.relr_starttext_width,40)
             if (prelr.relr_startedge == Linesegment.NORTH):
-                px += xoffset
-                py = pentiref.eler_position_y - prelr.relr_starttext_height - NORTHoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_startposition)
+                py = pentiref.eler_position_y - height - NORTHoffset
             elif (prelr.relr_startedge == Linesegment.SOUTH):
-                px += xoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_startposition)
                 py = pentiref.eler_position_y + pentiref.eler_height + SOUTHoffset
             elif (prelr.relr_startedge == Linesegment.EAST):
                 px = pentiref.eler_position_x + pentiref.eler_width + xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_startposition) - EASToffset
             elif (prelr.relr_startedge == Linesegment.WEST):
-                px = pentiref.eler_position_x - prelr.relr_starttext_width - xoffset
+                px = pentiref.eler_position_x - width - xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_startposition) + (3*EASToffset)
             #fi
         else:
             px, py = prelr.relr_endtext_x, prelr.relr_endtext_y
+            height,width=nvl(prelr.relr_endtext_height,20),nvl(prelr.relr_endtext_width,40)
             if not pstart and (prelr.relr_endedge == Linesegment.NORTH):
-                px += xoffset
-                py = pentiref.eler_position_y - prelr.relr_endtext_height - NORTHoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_endposition)
+                py = pentiref.eler_position_y - height - NORTHoffset
             elif not pstart and (prelr.relr_endedge == Linesegment.SOUTH):
-                px += xoffset
+                px = xoffset + px if px is not None else abspos(pentiref.eler_position_x,pentiref.eler_width,prelr.relr_endposition)
                 py = pentiref.eler_position_y + pentiref.eler_height  + SOUTHoffset
             elif (prelr.relr_endedge == Linesegment.EAST):
                 px = pentiref.eler_position_x + pentiref.eler_width + xoffset
                 py = abspos(pentiref.eler_position_y, pentiref.eler_height, prelr.relr_endposition) - EASToffset
             elif (prelr.relr_endedge == Linesegment.WEST):
-                px = pentiref.eler_position_x - prelr.relr_endtext_width - xoffset
+                px = pentiref.eler_position_x - width - xoffset
                 py = abspos(pentiref.eler_position_y,pentiref.eler_height,prelr.relr_endposition) + (3*EASToffset)
             # fi
         # fi
@@ -1786,7 +1822,7 @@ def transferODMModel(**kwargs):
     transferdiagramme()
     transferRelational.transfer()
     #do some fixing and cleaning up
-    adjustlabelpositions()
+    #adjustlabelpositions()
     Datatype.deleteunused()
     Column.fillextid()
     Domain.fixdomaininterfaces(interfacedomains)

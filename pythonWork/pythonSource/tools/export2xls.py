@@ -2,7 +2,7 @@ import dbDDL
 import dbDML
 from IM_DB import dbConnect
 from dbDDL import gettablelist
-from IM_DB import parameters,logmessages
+from SSOT_infra import parameters, logmessages
 import sys
 from openpyxl import Workbook
 
@@ -32,7 +32,7 @@ def writesheets(pwb):
             ws.cell(column=colidx, row=rowidx, value=col)
             colidx += 1
         #for
-        data = dbDML.select(psql="select * from {}".format(tab))
+        data = dbDML.select(psql=f"select * from {tab}")
         for row in data:
             rowidx += 1
             colidx = 2

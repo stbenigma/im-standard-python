@@ -15,13 +15,6 @@ def langs2js(pemptymodel):
                                              )
                  for l in Language.select()
                  }
-        # langs = {l.lang_iso_code2: {'name': l.lang_iso_name
-        # , 'iso3': l.lang_iso_code3
-        # , 'modellanguage': Boolean.str2bool(l.lang_is_base_lang)
-        # , 'replacementlang': None if l.lang_lang_id is None else Language().getbyid(l.lang_lang_id).lang_iso_code2
-        #                         }
-        #      for l in Language.select()
-        #      }
     # fi
     return langs
 # languages

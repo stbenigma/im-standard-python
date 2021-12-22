@@ -1,0 +1,1529 @@
+{
+	"model": {
+		"modelId": 2990,
+		"name": "Kunden",
+		"description": "Alle Entitäten rund um Kunden und ihre Interaktionen ",
+		"createdAt": "2021-04-01T06:42:24.722Z",
+		"updatedAt": "2021-08-24T08:10:44.636Z",
+		"level": "conceptual",
+		"progressStatus": "work-in-progress",
+		"entities": [
+			{
+				"name": "Adresse",
+				"id": "5c3dbfe9-9cbc-4a24-99b6-bef80a9a32a1",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Postalische (geografisch existierende oder virtuell z.B. als Postfach) an dem etwas steht oder stattfindet.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Adressnutzung",
+				"id": "70c075a8-bba0-47df-9e1a-2a2dc29bbbc4",
+				"metadata": {
+					"Examples": "Lieferadresse für Firma X ist Bahnhofstrasse 22, 1234 Irgendwo\nRechtliche Sitzadresse   für Firma y ist Bahnhofstrasse 22, 1234 Irgendwo",
+					"Synonyms": "",
+					"Description": "Verbindung von adressierbarer Einheit mit Adresse mit Angabe des Type (Zwecks) der Adressnutzung",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Nutzungtyp",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": "Wozu (für welche Prozesse, Aktivitäten) wird die Adresse verwendet. \nRechnungstellung, Anlieferung, Rechtliche Adresse, Wohnadresse..."
+						},
+						"created_at": "2021-04-14T12:56:32.144502+00:00",
+						"id": "fe71ab3c-3f80-4af5-8f2e-07b25c7b6f1a"
+					}
+				]
+			},
+			{
+				"name": " B2B Verkauf",
+				"id": "5073eaf2-5784-4c9a-b695-ee197476419d",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Verkäufe von  an Vertragspartner, die die Artikel nicht selber verwenden sondern weiter verkaufen.\nB2B Verkäufe von anderen Firmen (auch Töcher von AGRAVIS) sind nicht in dieser Gruppe enthalten. ",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": " Mitarbeiter Verkauf",
+				"id": "c73c1a3e-895e-48d4-a0dc-246ecb172268",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Diese Entität ist ein Spezialfall.  verkauf (aktueller Wissensstand) nur an Vertragspartner.\nEinzige Ausnahme Verkäufe an Mitarbeiter",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": " Verkauf",
+				"id": "ab3c3f61-a455-40a4-bec7-b742ca8554d2",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Verkauf  der  von  AG durchgeführt wird..\n\nDient er Abgrenzung von Verkäufen von anderen Einheiten (Töchter, Wiederverkäufer), deren Daten wir in AGARAVIS ggf. führen (dürfe)\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Anderer Standort",
+				"id": "b8866aac-4346-4a7f-8c2d-7a4e80a5c89a",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Weitere Typen von Standorten (die nicht wichtig genug sind um namentlich im Modell aufgeführt zu werden)",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Standorttyp",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-16T10:02:26.909042+00:00",
+						"id": "53c4fea8-2c87-4f5f-a93c-59d95f62ac97"
+					}
+				]
+			},
+			{
+				"name": "Andere Verkaufsvertragspartner",
+				"id": "60308639-a267-49f2-9b94-42cc181e0c7c",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Verkaufsvertragspartner, deren Typ (noch) nicht namentlich genannt ",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Anonymer Endverbraucher",
+				"id": "dd0081a9-4a7e-43da-9e3f-4a5292b9d408",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "B2B Lieferung",
+				"id": "c45f6a68-2678-430f-939d-5c0c5ef643bd",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Lieferung von von  an einen Vertragspartner",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "B2B Webshop",
+				"id": "8ea51935-b58c-4a9d-b682-226368fe5958",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "ZU KLÄREN\nBraucht es diese Entität. z.B. für ein Wiederverkäufer-Portal, das durch die  betrieben wird.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "B2C Lieferung",
+				"id": "1c7bfbd6-1dee-4ff0-80f7-6ece2f3196dd",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Lieferung von Artikeln an einen Endverbraucher.\n beliefert (mit Ausnahme von Mitarbeitern) keine Endverbraucher direkt.\nEs kann aber sein, dass diese Daten (mit Einverständnis der Beteiligten) bei  verwaltet werden.\n\nBeispielsweise wenn identifizierbare  (z.B. durch Serie-, oder Lizenz-Nummer) Artikel geliefert werden braucht  u.U. Informationen zur Lieferung.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "B2C Verkauf",
+				"id": "582507da-e363-47a0-9a65-02d7ffadfec6",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Verkauf von Artikeln an einen Endverbraucher.\nVerkäufe an AGRAVIS-Mitarbeiter sind von dieser Gruppe ausgenommen.\n macht (bisher) keine B2C Verkäufe. Es ist aber möglich, dass Daten zu diesen Verkäufen (mit Einwilligung der Beteiligten) bei  verwaltet werden.\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "B2C Webshop",
+				"id": "f20000fd-57fc-43a8-9943-754014ee141f",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Webshops für Endverbraucher werden als eigenständige juristische Einheiten geführt. \n\n betreibt keinen Webshop über den Artikel direkt an Endverbraucher verkauft werden.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Bauernhof",
+				"id": "0fe39c0d-24da-4f62-a9f5-442637f1688b",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Unter einem Bauernhof versteht man einen kleinstrukturierten landwirtschaftlichen, oft land- und forstwirtschaftlichen Betrieb, respektive auch die Hofstelle mit Wohn- und Wirtschaftsgebäuden dieses Betriebes als klassische Siedlungsform (Gehöft). (wikipedia)",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Börse",
+				"id": "42ac9560-1ae6-4d74-a4e0-f374e5b00059",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Endkunde",
+				"id": "070ed8ec-5fea-4728-a3ed-ac7c48a06da8",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Instanz die die Ware erhält.\n\nTebel: Klärt, Endkunden kann VEP sein, aber auch nicht.\n\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Genossenschaft",
+				"id": "096ec2be-066a-4ceb-afef-03ff5b54a9ef",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Eine juristische Einheit mit der Rechtsform Genossenschaft.\n\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Geschäftsfähige Einheit",
+				"id": "5e81832c-e0b3-46ee-9266-06a7a4c299f8",
+				"metadata": {
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "gewerblicher Endverbraucher",
+				"id": "b1428691-7829-4077-b68b-f5e6ec690cc3",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Derjenige der die Ware bekommt (und nutzt), aber eben nicht nur eine natürliche Person sondern z.B. ein Handwerker.\nz.B. Handwerker, Landwirt, Werkstätten\n",
+					"Source systems": "",
+					"Administrated by": "Manns"
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Händler",
+				"id": "80170daf-e78d-4963-ac32-e00fda6e98e4",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Juristische Person",
+				"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Gesellschaftsform",
+						"order": 2,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T13:00:23.455293+00:00",
+						"id": "645ef6bc-64ed-4f12-b131-066f2b171627"
+					},
+					{
+						"name": "Name",
+						"order": 1,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T13:00:23.455293+00:00",
+						"id": "9778fe2d-a4fe-486a-8f14-4de4641bf7e7"
+					},
+					{
+						"name": "Register-Nr",
+						"order": 2,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T13:00:04.112516+00:00",
+						"id": "ac7d9a8e-9f6e-47ac-a9a5-7644c531cf6e"
+					}
+				]
+			},
+			{
+				"name": "Kontaktperson",
+				"id": "c9727a8c-f606-4fb5-82c6-845363597573",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Person die für eine juristischen Einheit eine Rolle spielt.\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Telefon Nr",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-16T10:36:45.148998+00:00",
+						"id": "e736bf5a-7c12-41da-9b54-1a65fccd4d97"
+					},
+					{
+						"name": "eMail",
+						"order": 1,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-16T10:36:49.831501+00:00",
+						"id": "65697610-23ca-4379-80b4-0c057319750b"
+					}
+				]
+			},
+			{
+				"name": "Kundenbereich",
+				"id": "59ac9905-87cc-4686-af21-bf293d3419c9",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "KEINE ENTITÄT: Platzhalter für die Farblegende",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Kundenportal",
+				"id": "2c88d1b9-490f-4d0c-a504-25261a239588",
+				"metadata": {
+					"Examples": "B2B Agrarshop -> myfarmvis b2b Shop (neuer name)",
+					"Synonyms": "",
+					"Description": "Beinhaltet den b2b shop ",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Lager",
+				"id": "fbc49534-903f-4f03-b169-a117c4723f44",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Typ von Standort eines Unternehmens",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Land",
+				"id": "d5707222-f95d-449e-93b3-b05472d2ce77",
+				"metadata": {
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Landwirtschaftlicher Betrieb",
+				"id": "87a37267-5c28-4fd3-86b2-e1656afc72b1",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Gesellschaft, die Landwirtschaft betreibt.\nGbR = Gesellschaft bürgerlichen Rechts, oder GmbH",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Lieferant",
+				"id": "9176dd03-5a4a-44a7-975d-50c7a3e46fc4",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Lieferung",
+				"id": "3ab2a45a-316c-4039-9f0a-82598bd1dc9a",
+				"metadata": {
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Marktplatz",
+				"id": "f18ba0d5-73fa-41cf-b59f-b885ce12844c",
+				"metadata": {
+					"Examples": "eBay, Amazon\n",
+					"Synonyms": "",
+					"Description": "Plattform, über die Artikel verkauft werden. können.\n\nHeutige workaround-Lösung: Markplätze erhalten einen \"Dummy\"-Vertrag, damit Verkäufe darüber verbucht werden können\n\nBei Verkäufen über Marktplätze ist der Endkunde oft nicht bekannt. \nZU KLÄREN: wie / wo wird die Lieferadresse verwaltet?\n\nATStore24 tritt als Händler auf dem Marktplatz eBay auf. ",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Mitarbeiter",
+				"id": "8de204c5-71f1-4658-b903-93518cc8df45",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Person, die für eine juristische Einheit tätig.\n\nZU KLÄREN",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Natürliche Person",
+				"id": "5d4c8b93-1d71-4ce2-b949-5389fcca9f87",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Name",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T12:59:04.938186+00:00",
+						"id": "2ec0f81b-478d-4254-8c1a-a533ef4846c5"
+					},
+					{
+						"name": "Geschlecht",
+						"order": 2,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T12:59:11.393964+00:00",
+						"id": "bcb9e23f-19c8-40ce-925a-a30b230f7446"
+					},
+					{
+						"name": "Vorname",
+						"order": 1,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T12:59:08.550981+00:00",
+						"id": "a8a8083b-47b2-4740-bf9e-648fcc6a9e85"
+					},
+					{
+						"name": "Privat TelefonNr",
+						"order": 4,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T12:59:31.681934+00:00",
+						"id": "e07a75c2-943b-425b-b8a1-81a20d48ec2b"
+					},
+					{
+						"name": "Privat email-Adresse",
+						"order": 3,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T12:59:41.402804+00:00",
+						"id": "80ff0c85-5ebe-48cf-bf60-e43a91bb6cfa"
+					}
+				]
+			},
+			{
+				"name": "Noch nicht zugeordnet",
+				"id": "aaaf45f2-f9ca-400a-ab99-5ba47257d881",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "KEINE ENTITÄT: Platzhalter für die Farblegende",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Personenrolle",
+				"id": "30130cee-380a-4f6f-b15f-0c7b00e03763",
+				"metadata": {
+					"Examples": "Geschäftsführer\nVerkäufer\nProduktmanager\nBackoffice\nPförtner",
+					"Synonyms": "",
+					"Description": "Rolle, die eine Person in einer Firma einnehmen kann.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "privater Endverbraucher",
+				"id": "bd15e874-8046-4ade-b3a5-85ec8f8aba6b",
+				"metadata": {
+					"Examples": " ",
+					"Synonyms": "",
+					"Description": "Privatperson z.B. die Gummistiefel im Geschäft an der Kasse kauft.\nMeist Anonym (aus Systemsicht)\nKann aber ggf. über Kundenkarte identifiziert werden.\nGrössere Beträge oder rechtliche Einschränkungen führen dazu, dass ein privater VEP wird.\n\nFür jedes Raiffeisenmarkt-Kassensystem gibt es einen 'anonymen VEP' als Workaround für \"unbekannter Kunde\"\nDamit auch an unbekannte Verkauft werden kann.\n\nHolzpellet Endkunde: Als (eine Art) Endkunde hinterlegt, aber kein VEP. Nur als Lieferadresse bekannt.\nSpezialfall von gewerblicher Endverbaucher, der kein VEP ist. \n\nZU KLÄREN Klare Abgrenzung  von Endkunde, privater und gewerblicher Endverbraucher",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Produktbereich",
+				"id": "556ba42f-ae14-48ca-a4ae-47b3a3b5503c",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "KEIN ENTITÄT: Platzhalter für die Farblegende",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Raiffeisenmarkt",
+				"id": "e561bd30-af6d-4324-b649-0b3a8b8d8da4",
+				"metadata": {
+					"Examples": "Raiffeisen-Markt Katzenelnbogen\nRaiffeisen Emstetten",
+					"Synonyms": "Filiale, VEP-Filiale",
+					"Description": "Eine Filiale eines AGRAVIS-Vertragspartners.\n\nEs bestehen Abmachung (Vertragsdetails) zwischen  AG und VEP-Filialen. Rechtlich werden Verträge aber mit dem Vertragspartner geschlossen, nicht mit dessen Standort(en) (=Filialen)\nZU KLÄREN\n\nHäufig einer Genossenschaft angehörig.\nAusnahmen, die nicht einer Genossenschaft angehören:\nAgrarcenten der  die in GmbH's organisiert sind.\nRaiffeisen-Markt Katzenelnbogen\nRaiffeisen Emstetten ist keine Genossenschaft (GmbH). Drittkunden im Osten\n\nRaiffeisen-Märkte der Grosshandelskunden kennen wir nicht. Die gehören den Genossenschaften.\nNur die  Raiffeisenmärkte kennen wir.\n\nEs gibt in der heutigen Lösung für jeden Wiederverkäufer eine Filiale 0 (Null). \nZU KLÄREN was deren Bedeutung ist\n\n",
+					"Source systems": "",
+					"Administrated by": "Phillips"
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Sachkundenachweis",
+				"id": "7607f269-00f2-4e6a-864b-b15d920b37df",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Nachweis, Zertifikat, Ausbildungsbestätigung, die belegt, dass eine Person über Kenntnisse verfügt.\nVerwendet z.B. beim Einsatz oder Verkauf von Geräten, Gefahrenstoffen etc.\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Sprache",
+				"id": "50e92add-6aff-4001-807c-f167b8f22726",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Standort",
+				"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "Filiale",
+					"Description": "Lokalität (Gebäude, Gebiet, Platz, ...) an dem eine geschäftsfähige Einheit etwas tut oder lagert",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Standorttyp",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": "Art des Standortes (Lager, Filiale, Firmensitz, ...)"
+						},
+						"created_at": "2021-04-16T10:03:20.533749+00:00",
+						"id": "04962b14-06fd-442a-874e-8099c87808a7"
+					}
+				]
+			},
+			{
+				"name": "Verkauf",
+				"id": "c4392c76-0be3-4a72-a7bd-d46018959abf",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Vertrag zwischen 2 Beteiligten, bei dem Verkaufsartikel zu bestimmten Bedingungen von einem Lieferanten zu einem Empfänger gehen.\nDie Differenzierung welche Art Verkauf (B2C, B2B, intern) ist wichtig für rechtliche, zolltechnische und finanzielle Belange.\nWelche Daten welcher Verkäufe bei  letztendlich verwaltet werden (dürfen) ist noch ZU KLÄREN.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Verkaufsartikel",
+				"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Die verkaufbare Ware",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "contract",
+				"attributes": [
+					{
+						"name": "einzeln verkaufbar (J/N))",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "Boolean",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": "Gibt an, ob der Artikel allein oder nur als Bestandteil eines Kits/Lots/Bundles verkauft werden darf"
+						},
+						"created_at": "2021-04-08T06:20:04.414216+00:00",
+						"id": "a2b3d710-d459-4134-8010-68c1b6ee3f3c"
+					}
+				]
+			},
+			{
+				"name": "Verkaufsvertragspartner",
+				"id": "5383bf2f-7694-4354-84d0-244d57a5938b",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "VEP",
+					"Description": " verkauft ausschliesslich an Vertragspartner.\n\nVEP = Vertragspartner (IRIS hat den Begriff geprägt)",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Vertragspartner",
+				"id": "96c1ffb8-f35a-4180-850c-6a51c3c6345a",
+				"metadata": {
+					"Examples": " Philipps",
+					"Synonyms": "VEP (IRIS-Begriff), ",
+					"Description": "Jeder Kunde und jeder Partner der eine Geschäftsbeziehung eingehen kann.\nKonkret kann  einem Vertragspartner: Rechnung stellen, Rechnung bekommen.\n\nVEP = Vertragspartner (IRIS hat den Begriff geprägt) \nJeder Kunde und jeder Partner der eine Geschäftsbeziehung eingehen kann.\n\nKonkret kann  einem Vertragspartner: Rechnung stellen, Rechnung bekommen.",
+					"Source systems": "",
+					"Administrated by": "Roer-Link"
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Wiederverkäufer",
+				"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+				"metadata": {
+					"Examples": "Kintrup: Ist ein Wiederverkäufer\nWebshop ist Grosshandelskunde Equovis\nAgrarshop ist Grosshandelskunde: AT-Store 24",
+					"Synonyms": "Grosshandelskunde",
+					"Description": "Partner, der Artikel von  weiter verkauft",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			}
+		],
+		"relationships": [
+			{
+				"sourceEntity": {
+					"name": "privater Endverbraucher",
+					"id": "bd15e874-8046-4ade-b3a5-85ec8f8aba6b",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Natürliche Person",
+					"id": "5d4c8b93-1d71-4ce2-b949-5389fcca9f87",
+					"endType": "one"
+				},
+				"description": [
+					"oder"
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "B2B Lieferung",
+					"id": "c45f6a68-2678-430f-939d-5c0c5ef643bd",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"startType": "many"
+				},
+				"targetEntity": {
+					"name": "Verkauf",
+					"id": "c4392c76-0be3-4a72-a7bd-d46018959abf",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": " B2B Verkauf",
+					"id": "5073eaf2-5784-4c9a-b695-ee197476419d",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Wiederverkäufer",
+					"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+					"endType": "one-optional"
+				},
+				"description": [
+					"geht an"
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Natürliche Person",
+					"id": "5d4c8b93-1d71-4ce2-b949-5389fcca9f87",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Kontaktperson",
+					"id": "c9727a8c-f606-4fb5-82c6-845363597573",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Mitarbeiter",
+					"id": "8de204c5-71f1-4658-b903-93518cc8df45",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Juristische Person",
+					"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Adresse",
+					"id": "5c3dbfe9-9cbc-4a24-99b6-bef80a9a32a1",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Adressnutzung",
+					"id": "70c075a8-bba0-47df-9e1a-2a2dc29bbbc4",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": " Mitarbeiter Verkauf",
+					"id": "c73c1a3e-895e-48d4-a0dc-246ecb172268",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Mitarbeiter",
+					"id": "8de204c5-71f1-4658-b903-93518cc8df45",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Vertragspartner",
+					"id": "96c1ffb8-f35a-4180-850c-6a51c3c6345a",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Geschäftsfähige Einheit",
+					"id": "5e81832c-e0b3-46ee-9266-06a7a4c299f8",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "B2C Verkauf",
+					"id": "582507da-e363-47a0-9a65-02d7ffadfec6",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Endkunde",
+					"id": "070ed8ec-5fea-4728-a3ed-ac7c48a06da8",
+					"endType": "one-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Vertragspartner",
+					"id": "96c1ffb8-f35a-4180-850c-6a51c3c6345a",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Adresse",
+					"id": "5c3dbfe9-9cbc-4a24-99b6-bef80a9a32a1",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Land",
+					"id": "d5707222-f95d-449e-93b3-b05472d2ce77",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Personenrolle",
+					"id": "30130cee-380a-4f6f-b15f-0c7b00e03763",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Kontaktperson",
+					"id": "c9727a8c-f606-4fb5-82c6-845363597573",
+					"endType": "many"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lieferung",
+					"id": "3ab2a45a-316c-4039-9f0a-82598bd1dc9a",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Verkauf",
+					"id": "c4392c76-0be3-4a72-a7bd-d46018959abf",
+					"endType": "many"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Adressnutzung",
+					"id": "70c075a8-bba0-47df-9e1a-2a2dc29bbbc4",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Genossenschaft",
+					"id": "096ec2be-066a-4ceb-afef-03ff5b54a9ef",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Geschäftsfähige Einheit",
+					"id": "5e81832c-e0b3-46ee-9266-06a7a4c299f8",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "gewerblicher Endverbraucher",
+					"id": "b1428691-7829-4077-b68b-f5e6ec690cc3",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Andere Verkaufsvertragspartner",
+					"id": "60308639-a267-49f2-9b94-42cc181e0c7c",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Vertragspartner",
+					"id": "96c1ffb8-f35a-4180-850c-6a51c3c6345a",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Adressnutzung",
+					"id": "70c075a8-bba0-47df-9e1a-2a2dc29bbbc4",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Kontaktperson",
+					"id": "c9727a8c-f606-4fb5-82c6-845363597573",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "privater Endverbraucher",
+					"id": "bd15e874-8046-4ade-b3a5-85ec8f8aba6b",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "B2C Lieferung",
+					"id": "1c7bfbd6-1dee-4ff0-80f7-6ece2f3196dd",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "privater Endverbraucher",
+					"id": "bd15e874-8046-4ade-b3a5-85ec8f8aba6b",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Andere Verkaufsvertragspartner",
+					"id": "60308639-a267-49f2-9b94-42cc181e0c7c",
+					"endType": "one-optional"
+				},
+				"description": [
+					"oder"
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Wiederverkäufer",
+					"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "B2C Verkauf",
+					"id": "582507da-e363-47a0-9a65-02d7ffadfec6",
+					"endType": "many-optional"
+				},
+				"description": [
+					"durchgeführt von"
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Sachkundenachweis",
+					"id": "7607f269-00f2-4e6a-864b-b15d920b37df",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Natürliche Person",
+					"id": "5d4c8b93-1d71-4ce2-b949-5389fcca9f87",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Geschäftsfähige Einheit",
+					"id": "5e81832c-e0b3-46ee-9266-06a7a4c299f8",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Adressnutzung",
+					"id": "70c075a8-bba0-47df-9e1a-2a2dc29bbbc4",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Juristische Person",
+					"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Juristische Person",
+					"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Juristische Person",
+					"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Kontaktperson",
+					"id": "c9727a8c-f606-4fb5-82c6-845363597573",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Natürliche Person",
+					"id": "5d4c8b93-1d71-4ce2-b949-5389fcca9f87",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Mitarbeiter",
+					"id": "8de204c5-71f1-4658-b903-93518cc8df45",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Geschäftsfähige Einheit",
+					"id": "5e81832c-e0b3-46ee-9266-06a7a4c299f8",
+					"startType": "many"
+				},
+				"targetEntity": {
+					"name": "Genossenschaft",
+					"id": "096ec2be-066a-4ceb-afef-03ff5b54a9ef",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lieferung",
+					"id": "3ab2a45a-316c-4039-9f0a-82598bd1dc9a",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "many"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "privater Endverbraucher",
+					"id": "bd15e874-8046-4ade-b3a5-85ec8f8aba6b",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Anonymer Endverbraucher",
+					"id": "dd0081a9-4a7e-43da-9e3f-4a5292b9d408",
+					"endType": "one-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Raiffeisenmarkt",
+					"id": "e561bd30-af6d-4324-b649-0b3a8b8d8da4",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Lager",
+					"id": "fbc49534-903f-4f03-b169-a117c4723f44",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkauf",
+					"id": "c4392c76-0be3-4a72-a7bd-d46018959abf",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "B2C Verkauf",
+					"id": "582507da-e363-47a0-9a65-02d7ffadfec6",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Endkunde",
+					"id": "070ed8ec-5fea-4728-a3ed-ac7c48a06da8",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Landwirtschaftlicher Betrieb",
+					"id": "87a37267-5c28-4fd3-86b2-e1656afc72b1",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Lieferung",
+					"id": "3ab2a45a-316c-4039-9f0a-82598bd1dc9a",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "B2B Lieferung",
+					"id": "c45f6a68-2678-430f-939d-5c0c5ef643bd",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Vertragspartner",
+					"id": "96c1ffb8-f35a-4180-850c-6a51c3c6345a",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Lieferant",
+					"id": "9176dd03-5a4a-44a7-975d-50c7a3e46fc4",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Anderer Standort",
+					"id": "b8866aac-4346-4a7f-8c2d-7a4e80a5c89a",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Wiederverkäufer",
+					"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Marktplatz",
+					"id": "f18ba0d5-73fa-41cf-b59f-b885ce12844c",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Endkunde",
+					"id": "070ed8ec-5fea-4728-a3ed-ac7c48a06da8",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Andere Verkaufsvertragspartner",
+					"id": "60308639-a267-49f2-9b94-42cc181e0c7c",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsvertragspartner",
+					"id": "5383bf2f-7694-4354-84d0-244d57a5938b",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Endkunde",
+					"id": "070ed8ec-5fea-4728-a3ed-ac7c48a06da8",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Vertragspartner",
+					"id": "96c1ffb8-f35a-4180-850c-6a51c3c6345a",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Verkaufsvertragspartner",
+					"id": "5383bf2f-7694-4354-84d0-244d57a5938b",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Wiederverkäufer",
+					"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Händler",
+					"id": "80170daf-e78d-4963-ac32-e00fda6e98e4",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsvertragspartner",
+					"id": "5383bf2f-7694-4354-84d0-244d57a5938b",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Wiederverkäufer",
+					"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Standort",
+					"id": "01dfad70-5b50-4c88-ad58-c2b1abc4a750",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Bauernhof",
+					"id": "0fe39c0d-24da-4f62-a9f5-442637f1688b",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Geschäftsfähige Einheit",
+					"id": "5e81832c-e0b3-46ee-9266-06a7a4c299f8",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Natürliche Person",
+					"id": "5d4c8b93-1d71-4ce2-b949-5389fcca9f87",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Wiederverkäufer",
+					"id": "1b1f72f7-aede-4056-b327-26c84eb066c2",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "B2C Webshop",
+					"id": "f20000fd-57fc-43a8-9943-754014ee141f",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Lieferung",
+					"id": "3ab2a45a-316c-4039-9f0a-82598bd1dc9a",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "B2C Lieferung",
+					"id": "1c7bfbd6-1dee-4ff0-80f7-6ece2f3196dd",
+					"endType": "subType"
+				},
+				"description": "[]"
+			}
+		]
+	}
+}

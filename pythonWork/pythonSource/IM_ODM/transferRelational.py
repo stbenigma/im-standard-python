@@ -3,8 +3,7 @@ import xml.etree.ElementTree as ET
 
 from IM_OBJECTS import *
 from IM_ODM import transferModel,handleXML
-from IM_DB import  parameters,logmessages
-
+from SSOT_infra import parameters, logmessages,nvl
 
 globalschnid:int = None
 
@@ -32,7 +31,8 @@ def do1column(plfnr, pcolxml, ptablid):
     colu = Column(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(pcolxml, 'id'))
     colu.colu_column_name = handleXML.findField(pcolxml, 'name')
     colu.colu_format = None
-    colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(parameters.nvl(handleXML.findText(pcolxml,'nullsAllowed'),'true')))
+    colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(
+        nvl(handleXML.findText(pcolxml, 'nullsAllowed'), 'true')))
     colu.colu_descr = handleXML.findText(pcolxml, 'comment')
     colu.colu_tabl_id = ptablid
     colu.colu_uc = handleXML.findText(pcolxml, 'createdBy')
@@ -94,7 +94,7 @@ def do1table(pfilename):
 #do1table
 
 def transfertables(pschndirec):
-    tablesdirec = pschndirec +'/' +parameters.odmtabledirec()
+    tablesdirec = pschndirec +'/' + parameters.odmtabledirec()
     transferModel.dosegfiles(pdirec=tablesdirec
                              , transferfiles=do1table)
 #transfertables
@@ -206,7 +206,7 @@ def doattrmapping(pcolmappings):
         colu = Externalref.getODMmodeid(psrcid=colmap['rID'])
         if ((colu is None) or (attrid is None)):
             logmessages.writelog ("Column-Reference ({}:{}) or Attribute Reference ({}:{}) not found"
-                                 .format(colmap['rtype'],colmap['rID'],colmap['ltype'],colmap['lID']))
+                                  .format(colmap['rtype'],colmap['rID'],colmap['ltype'],colmap['lID']))
             continue
         #fi
 
@@ -260,10 +260,10 @@ def do1mapping(pfilename):
                 doattrmapping(pcolmappings=odmmap.cntmappings)
         else:
             logmessages.writelog('Mapping funktioniert nicht. ({}) :   '.format(element)
-                             + 'Logic: type = {}   guid = {}'.format(odmmap.logtype, odmmap.logid)
-                             + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
-                             + '    file: {}'.format(pfilename)
-                             )
+                                 + 'Logic: type = {}   guid = {}'.format(odmmap.logtype, odmmap.logid)
+                                 + '    relational: type = {}   guid = {}'.format(odmmap.reltype, odmmap.relid)
+                                 + '    file: {}'.format(pfilename)
+                                 )
     #for
 #do1mapping
 
