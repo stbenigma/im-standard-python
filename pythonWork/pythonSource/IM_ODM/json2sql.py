@@ -1,9 +1,8 @@
 # -*- coding: latin-1 -*-
 import sys
 
-from IM_DB import dbErstelleTables
 from IM_JSON import *
-from IM_ODM import transferModel
+from SSOT_db import createnewDB
 
 errcnt: int = 0
 warncnt: int = 0
@@ -22,8 +21,6 @@ def error(pmsg, pelem=None):
     if pelem is not None: print("     ", pelem)
     errcnt += 1
     raise Exception("error")
-
-
 # error
 
 def warning(pmsg):
@@ -55,12 +52,9 @@ def main(pjsonin, pdbout):
     jsmodel = JSModel.readfromfile(pfilename=pjsonin)
 
     if pdbout is None:
-        dbConnect.openDB(pfilepath=":memory:", pfks='ON');
+        createnewDB(pdbfilepath=":memory:")
     else:
         dbConnect.openDB(pdbout, 'ON');
-
-    dbErstelleTables.applysqlscript(parameters.sqlfilepath());
-    transferModel.insertBaseData(pwithlangs=False)
 
     try:
         fillsql(pmodel=jsmodel)

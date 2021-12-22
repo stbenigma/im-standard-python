@@ -1,11 +1,11 @@
-from IM_DB import *
 from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
 from .interface import Interface
 from .languagetext import Languagetext
 from .modelelement import Modelelemtype
 from .physicals import Storageformat
-
+from SSOT_infra import nvl,nvl2
+from IM_DB import dbDML
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'
@@ -62,46 +62,46 @@ class Domain(MultilangBaseobject):
         typestring = '' if daty is None else daty.daty_name
         if (self.doma_type in (Domain.TXT, Domain.LOV)):
             infoheaders = (
-                Languagetext.transl('Datentyp'), Languagetext.transl('Max. Länge'), Languagetext.transl('Syntaxregel'),
-                Languagetext.transl('geändert'))
-            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_txt_maxlng), parameters.nvl(self.doma_txt_syntaxrule),
-                          parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
-            typestring += parameters.nvl2(self.doma_txt_maxlng,''," ({})".format(self.doma_txt_maxlng))
+                'Datentyp', 'Max. Länge', 'Syntaxregel',
+                'geändert')
+            infovalues = (nvl(self.doma_type), nvl(self.doma_txt_maxlng), nvl(self.doma_txt_syntaxrule),
+                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += nvl2(self.doma_txt_maxlng, '', " ({})".format(self.doma_txt_maxlng))
         elif (self.doma_type == Domain.BIN):
             stf = Storageformat().getbyid(self.doma_bin_stfo_id)
             stfname = stf.getname() if stf is not None else ''
-            infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('Inhaltstyp'), Languagetext.transl('Format'),
-                           Languagetext.transl('geändert'))
+            infoheaders = ('Datentyp', 'Inhaltstyp', 'Format',
+                           'geändert')
             infovalues = (
-                parameters.nvl(self.doma_type), self.displcontenttype(), stfname,
-                parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc)
+                nvl(self.doma_type), self.displcontenttype(), stfname,
+                nvl(self.doma_uc) + ',' + nvl(self.doma_dc)
             )
             typestring += " ({}, {})".format(self.displcontenttype(),stfname)
         elif (self.doma_type == Domain.GRP):
-            infoheaders = (Languagetext.transl('Datentyp'), Languagetext.transl('geändert'))
-            infovalues = (self.doma_type, parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
+            infoheaders = ('Datentyp', 'geändert')
+            infovalues = (self.doma_type, nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
         elif (self.doma_type == Domain.NUM):
             infoheaders = (
-                Languagetext.transl('Datentyp'), Languagetext.transl('Vorkommast.'), Languagetext.transl('Nachkommast.')
-            , Languagetext.transl('Rundungseinh.'), Languagetext.transl('Einheit'), Languagetext.transl('Min. Wert'),
-                Languagetext.transl('Max. Wwert')
-            , Languagetext.transl('geändert'))
-            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_num_total_digits), parameters.nvl(self.doma_num_fract_digits),
-                          parameters.nvl(self.doma_num_round_value), parameters.nvl(self.doma_num_phyu_id)
-                          , parameters.nvl(self.doma_num_minvalue), parameters.nvl(self.doma_num_maxvalue)
-                          , parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
-            typestring += " ({}{}{}{})".format(parameters.nvl(self.doma_num_total_digits)
-                                                 , parameters.nvl2(self.doma_num_fract_digits,'', ',{}'.format(self.doma_num_fract_digits))
-                                                 , parameters.nvl2(self.doma_num_minvalue,'', '  >= {}'.format(self.doma_num_minvalue))
-                                                 , parameters.nvl2(self.doma_num_maxvalue,'', '  <= {}'.format(self.doma_num_maxvalue)))
+                'Datentyp', 'Vorkommast.', 'Nachkommast.'
+            , 'Rundungseinh.', 'Einheit', 'Min. Wert',
+                'Max. Wwert'
+            , 'geändert')
+            infovalues = (nvl(self.doma_type), nvl(self.doma_num_total_digits), nvl(self.doma_num_fract_digits),
+                          nvl(self.doma_num_round_value), nvl(self.doma_num_phyu_id)
+                          , nvl(self.doma_num_minvalue), nvl(self.doma_num_maxvalue)
+                          , nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
+            typestring += " ({}{}{}{})".format(nvl(self.doma_num_total_digits)
+                                               , nvl2(self.doma_num_fract_digits, '', ',{}'.format(self.doma_num_fract_digits))
+                                               , nvl2(self.doma_num_minvalue, '', '  >= {}'.format(self.doma_num_minvalue))
+                                               , nvl2(self.doma_num_maxvalue, '', '  <= {}'.format(self.doma_num_maxvalue)))
         elif (self.doma_type == Domain.DAT):
             infoheaders = (
-                Languagetext.transl('Datentyp'), Languagetext.transl('Min. Wert'), Languagetext.transl('Max. Wwert'),
-                Languagetext.transl('Granularität')
-            , Languagetext.transl('geändert'))
-            infovalues = (parameters.nvl(self.doma_type), parameters.nvl(self.doma_dat_minvalue), parameters.nvl(self.doma_dat_maxvalue),
-                          parameters.nvl(self.displgranul()),
-                          parameters.nvl(self.doma_uc) + ',' + parameters.nvl(self.doma_dc))
+                'Datentyp', 'Min. Wert', 'Max. Wwert',
+                'Granularität'
+            , 'geändert')
+            infovalues = (nvl(self.doma_type), nvl(self.doma_dat_minvalue), nvl(self.doma_dat_maxvalue),
+                          nvl(self.displgranul()),
+                          nvl(self.doma_uc) + ',' + nvl(self.doma_dc))
             typestring += " ({}{}{})".format(
                 '' if self.doma_dat_granularity is None else ('  Granularity = {}'.format(self.doma_dat_granularity))
                 , '' if self.doma_dat_minvalue is None else '  >= {}'.format(self.doma_dat_minvalue)
@@ -166,52 +166,52 @@ class Domain(MultilangBaseobject):
     # getunknown
 
     @staticmethod
-    def _displdatatype(dt,plang=None):
-        anzDT = {Domain.BIN: Languagetext.transl('Binär', plang=plang)
-            , Domain.GRP: Languagetext.transl('Gruppenattribut', plang=plang)
-            , Domain.LOV: Languagetext.transl('Werteliste', plang=plang)
-            , Domain.NUM: Languagetext.transl('Numerisch', plang=plang)
-            , Domain.TXT: Languagetext.transl('Text', plang=plang)
-            , Domain.DAT: Languagetext.transl('Zeitpunkt', plang=plang)}
+    def _displdatatype(dt):
+        anzDT = {Domain.BIN: 'Binär'
+            , Domain.GRP: 'Gruppenattribut'
+            , Domain.LOV: 'Werteliste'
+            , Domain.NUM: 'Numerisch'
+            , Domain.TXT: 'Text'
+            , Domain.DAT: 'Zeitpunkt'}
         return anzDT[dt]
     # anzDatentyp
 
-    def displdatatype(self,plang=None):
-        return Domain._displdatatype(self.doma_type,plang=plang)
+    def displdatatype(self):
+        return Domain._displdatatype(self.doma_type)
 
-    def displcontenttype(self,plang=None):
+    def displcontenttype(self):
         return Domain._displcontenttype(self.doma_bin_contenttype)
 
     @staticmethod
-    def _displcontenttype(dt,plang=None):
-        anzDT = {Domain.DRAWING: Languagetext.transl('Bild', plang=plang)
-            , Domain.FILM: Languagetext.transl('Film', plang=plang)
-            , Domain.IMAGE: Languagetext.transl('Grafik', plang=plang)
-            , Domain.TEXT: Languagetext.transl('Text', plang=plang)
-            , Domain.SOUND: Languagetext.transl('Ton', plang=plang)
+    def _displcontenttype(dt):
+        anzDT = {Domain.DRAWING: 'Bild'
+            , Domain.FILM: 'Film'
+            , Domain.IMAGE: 'Grafik'
+            , Domain.TEXT: 'Text'
+            , Domain.SOUND: 'Ton'
                  }
         if dt in anzDT.keys():
             return anzDT[dt]
         else:
-            return Languagetext.transl('Andere', plang=plang)
+            return 'Andere'
     # displcontenttype
 
-    def displgranul(self,plang=None):
-        return None if self.doma_dat_granularity is None else Domain._displgranul(dt=self.doma_dat_granularity,plang=plang)
+    def displgranul(self):
+        return None if self.doma_dat_granularity is None else Domain._displgranul(dt=self.doma_dat_granularity)
 
     @staticmethod
-    def _displgranul(dt,plang=None):
+    def _displgranul(dt):
         anzDT = {
-            Domain.YEAR: Languagetext.transl('Jahr', plang=plang),
-            Domain.MILlISECOND: Languagetext.transl('Millisekunde', plang=plang),
-            Domain.MINUTE: Languagetext.transl('Minute', plang=plang),
-            Domain.MONTH: Languagetext.transl('Monat', plang=plang),
-            Domain.QUARTER: Languagetext.transl('Quartal', plang=plang),
-            Domain.SECOND: Languagetext.transl('Sekunde', plang=plang),
-            Domain.SEMESTER: Languagetext.transl('Semester', plang=plang),
-            Domain.HOUR: Languagetext.transl('Stunde', plang=plang),
-            Domain.DAY: Languagetext.transl('Tag', plang=plang),
-            Domain.WEEK: Languagetext.transl('Woche', plang=plang)
+            Domain.YEAR: 'Jahr',
+            Domain.MILlISECOND: 'Millisekunde',
+            Domain.MINUTE: 'Minute',
+            Domain.MONTH: 'Monat',
+            Domain.QUARTER: 'Quartal',
+            Domain.SECOND: 'Sekunde',
+            Domain.SEMESTER: 'Semester',
+            Domain.HOUR: 'Stunde',
+            Domain.DAY: 'Tag',
+            Domain.WEEK: 'Woche'
         }
         return anzDT[dt]
     # displgranul
@@ -239,7 +239,7 @@ class Domain(MultilangBaseobject):
         domainterfaces = [(intf2id[filename],domaid) for domaid,filename in pinterfacedomains.items()]
         if len(domainterfaces) > 0:
             dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?",recs=domainterfaces)
-# Domain
+        return
 
 class DomaingroupMember(Baseobject):
     _tablename: str = 'domaingroup_members'

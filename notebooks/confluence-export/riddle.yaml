@@ -1,0 +1,99 @@
+confluence:
+  apiurl: 'https://fyayc-sandbox.atlassian.net'
+  space: 'RIDDLE'
+  rootpage : 'Root Page'
+  username: 'fyayc-sandbox@gmx.net'
+  password: 'v1AD9yqDlmnHJAjYc8mh599B'
+  cooldown: 0.01
+
+# Abort processing if pages with same title exist outside of the specified document root
+cautious: true
+
+# datasource
+source: testdata/riddle.json
+
+# translations to publish
+# first language listed here is not placed in a language subfolder
+# and titles will not be suffixed
+languages:
+  - 'en'
+
+locale: ./locale
+
+# output structure
+content:
+
+  domains:
+    title: Domains [TOC]
+    template: domain.templ.html
+    filter: "'DER' in item.get('origin','') == False"
+    labels:
+      - domain
+      - IM
+
+  documents:
+    title: Documents [TOC]
+    template: document.templ.html
+    labels:
+      - document
+      - IM
+
+  diagrams:
+    title: Diagrams [TOC]
+    template: diagram.templ.html
+    labels:
+      - diagram
+      - IM
+
+  systems:
+    title: Systems [TOC]
+    template: system.templ.html
+    labels:
+      - system
+      - DM
+
+    content:
+      tables:
+        title: Tables [TOC]
+        template: table.templ.html
+        manual-documentation:
+          template: children.templ.html
+          title-format: '{parent_title} - Documentation'
+          labels:
+            - table
+            - DM
+            - documentation
+            - manual
+        labels:
+          - table
+          - DM
+
+        content:
+          columns:
+            title: Columns [TOC]
+            template: column.templ.html
+            manual-documentation:
+              template: manual-documentation.templ.html
+              labels:
+                - column
+                - DM
+                - manual
+                - documentation
+            labels:
+              - column
+              - DM
+
+  entities:
+    title: Entities [TOC]
+    template: entity.templ.html
+    labels:
+      - entity
+      - IM
+
+    content:
+      attributes:
+        title: Attributes [TOC]
+        template: attribute.templ.html
+        labels:
+          - attribute
+          - IM

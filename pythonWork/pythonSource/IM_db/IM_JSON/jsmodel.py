@@ -1,7 +1,6 @@
-from datetime import datetime
 from IM_JSON import *
 from IM_OBJECTS import Project, Modelelemtype
-from IM_DB import parameters,dbConnect
+from IM_DB import dbConnect
 
 
 def lastupd():
@@ -55,14 +54,11 @@ def sql2json(pdbname, pemptymodel=False):
     modelhash = make_hash(jsmodel)
     jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:"
         , "created": str(datetime.today())
-        ,"Modelversion" : "" if pemptymodel else dbConnect.getversion()
+        , "Modelversion" : "" if pemptymodel else dbConnect.getversion()
         , "hashvalue": modelhash
-        ,
-                            "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
+        , "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
     return jsmodel
 
-
-# sql2json
 
 def proj2js(pemptymodel: bool):
     model = ['name', 'type', 'language', 'uc', 'dc', 'um', 'dm']
@@ -82,7 +78,6 @@ def proj2js(pemptymodel: bool):
     #fi
     return fillmodel(pmodel=model, pentries=entries)
 
-# proj2js
 
 def js2proj(pkey, pelem,pmodellang=None):
     proj = Project()

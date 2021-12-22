@@ -5,6 +5,7 @@ from datetime import datetime
 class Externalref(Baseobject):
     SOURCE_ODM:str='ODM'
     SOURCE_EAXML:str='EAXML'
+    SOURCE_ELLIE:str='ELLIE'
 
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'

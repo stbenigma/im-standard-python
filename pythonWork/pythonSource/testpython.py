@@ -1,7 +1,19 @@
-from IM_OBJECTS import Languagetext
 
+import os
+from  SSOT_infra import transl,settransldomain,resettransldomain
+print (transl("Entität"))
+settransldomain("fr")
+print (transl("Entität"))
+settransldomain("es")
+print (transl("Entität"))
 
-neu = {key: {'en': val,'fr':Languagetext.translNameFR[key]} for key,val in Languagetext.translNameEN.items()}
-print (neu)
+#el = gettext.bindtextdomain('prompts', './SSOT_infra/locales')
+#el = gettext.translation('prompts', localedir='./SSOT_infra/locales', languages=['fr','en'])
+#el.install()
+#_ = el.gettext # Greek
+#print (_("Entität"),el.gettext("Zeitpunkt"))
+
+#locale_folder = config.get('locale', './locale')
+# el = gettext.bindtextdomain('prompts', locale_folder)
 
 

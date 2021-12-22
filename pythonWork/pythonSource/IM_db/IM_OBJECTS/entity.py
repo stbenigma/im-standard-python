@@ -234,6 +234,3 @@ class Synonym(MultilangBaseobject):
                     lgtx.insert()
 from .key import Key
 from .attribute import Attribute
-
-
-

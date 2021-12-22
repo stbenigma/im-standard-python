@@ -71,7 +71,7 @@ def attr2js(pattr):
                            ,pentries=[ pattr.attr_tech_name,multilangtext( pattr.attr_displ_name_l)
             ,  pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id)
             ,  jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),  None if doma.doma_daty_id is None else Datatype().getbyid(doma.doma_daty_id).daty_name
-            ,  doma.doma_type,  None if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP) else domaingroupmembers(pdomaid=pattr.attr_doma_id)
+            ,  doma.doma_type,  None if (doma.doma_type != Domain.GRP) else domaingroupmembers(pdomaid=pattr.attr_doma_id)
             , Boolean.str2bool(pattr.attr_is_descriptive),Boolean.str2bool(pattr.attr_is_mandatory)
             , Boolean.str2bool(pattr.attr_is_historicised), Boolean.str2bool(pattr.attr_is_repeated)
             , Boolean.str2bool(pattr.attr_is_translated),  Boolean.str2bool(pattr.attr_is_encrypted)
@@ -92,7 +92,7 @@ def attr2js(pattr):
                            )
             , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=pattr.attr_id)])
                 ])
-        if (Domain().getbyid(pattr.attr_doma_id).doma_type != Domain.GRP):
+        if (doma.doma_type != Domain.GRP):
             del retval['memberattrs+']
     # fi
     return retval
@@ -239,7 +239,6 @@ def ins1kele(presult:Mergeresult, pkey: Key, pattrid, prelaid):
     try:
         kele.insert()
     except Exception as err:
-        from mystring import nvl
         presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
     return
 

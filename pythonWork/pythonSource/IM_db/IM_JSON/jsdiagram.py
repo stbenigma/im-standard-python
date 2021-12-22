@@ -1,5 +1,5 @@
 from IM_JSON import *
-from mystring import nvl
+from SSOT_infra import nvl
 import math
 
 def elemrep2js(peler, panker):

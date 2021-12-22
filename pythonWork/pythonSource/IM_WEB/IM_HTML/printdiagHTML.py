@@ -1,7 +1,9 @@
-from IM_HTML import printHTML
 import math
 import os,re
-from IM_DB import parameters 
+import logging
+
+from .printHTML import HTMLExport
+from SSOT_infra import parameters, nvl
 
 LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
@@ -37,7 +39,7 @@ def printlegend(pdata,pwidth,pheigh,px,py):
 """
     retval = ""
     starty=14
-    retval += legenhead.format(parameters.nvl(px,0)+2,parameters.nvl(py,0)+1)
+    retval += legenhead.format(nvl(px, 0) + 2, nvl(py, 0) + 1)
     retval += legendentry1.format(pwidth-100,pheigh-2
                                     ,starty,'Diagram'
                                     ,starty,pdata[0])
@@ -167,9 +169,12 @@ def printrela(plist):
 
 def print1text(ptext,px,py,pwidth,pcolor,psize):
     FONTPIXEL: int = 5
-    textlength = lambda s: len(parameters.nvl(s)) * FONTPIXEL
+    textlength = lambda s: len(nvl(s)) * FONTPIXEL
     retval = ""
-    if ptext is not None:
+    if ptext is not None and px is not None:
+        if px is None:
+            logging.warning(f"Label {ptext} has no coordinates px: {px}, py: {py}")
+            return retval
         words = ptext.split(' ')
         posx,posy = int(px),int(py)
         idx,t = 0,words[0]
@@ -188,11 +193,11 @@ def print1text(ptext,px,py,pwidth,pcolor,psize):
     # fi
     return retval
 
-def printtexte(plist,plang):
+def printtexte(export: HTMLExport, plist,plang):
     retval= ""
     for relaanker,relaelem in plist.items():
-        retval += print1text(ptext=getelement(relaanker)['from-to']['assoc'][plang],px=relaelem["starttext_x"],py=relaelem["starttext_y"],pwidth=relaelem["starttext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
-        retval += print1text(ptext=getelement(relaanker)['to-from']['assoc'][plang],px=relaelem["endtext_x"],py=relaelem["endtext_y"],pwidth=relaelem["endtext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
+        retval += print1text(ptext=export.getelement(relaanker)['from-to']['assoc'][plang],px=relaelem["starttext_x"],py=relaelem["starttext_y"],pwidth=relaelem["starttext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
+        retval += print1text(ptext=export.getelement(relaanker)['to-from']['assoc'][plang],px=relaelem["endtext_x"],py=relaelem["endtext_y"],pwidth=relaelem["endtext_width"],pcolor=relaelem['fontcolor'],psize=relaelem['fontsize'])
     #for
     return retval
 #printtexte
@@ -293,13 +298,13 @@ def print1arc(parc,pcolor):
     return retval
 #print1arc
 
-def printarcs(plist):
+def printarcs(export: HTMLExport, plist):
     colors = ["blue","yellow","purple","green","red","black"]
     """select arcs_id,beda_id"""
     retval = ""
     idx = 0
     lastenti = None
-    arcs = [(getelement(arc)["entity"], arc) for arc in sorted(plist.keys(), key=lambda k: getelement(k)["entity"])]
+    arcs = [(export.getelement(arc)["entity"], arc) for arc in sorted(plist.keys(), key=lambda k: export.getelement(k)["entity"])]
     for arc in arcs:
         if lastenti != arc[0]:
             lastenti = arc[0]
@@ -312,9 +317,8 @@ def printarcs(plist):
     return retval
 #printarcs
 
-getelement = lambda e:printHTML.getmodel().getbyid(e)
 
-def printelements(pdiag, pdiaganker,plang):
+def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
     entistart ="""<g  fill="{color}" stroke="{margcolor}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
         transform="translate({posx},{posy})" >
         <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect><a href="#{ref}" >
@@ -328,48 +332,47 @@ def printelements(pdiag, pdiaganker,plang):
     MAXDESCRCHARS = 300
     for eler in pdiag['elements']['entity']:
         elerui=eler["ui"]
-        entidescr = getelement(eler['element'])['descr'][plang]
+        entidescr = export.getelement(eler['element'])['descr'][plang]
         if entidescr is None:
             entidescr = ' '
         else: entidescr = entidescr[: MAXDESCRCHARS]
         retval += entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
-                                               , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
-                                               , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
-                                               , ref=eler['element']
-                                               , textref=pdiaganker + '-' + eler['element']
-                                               , fontcolor=hex2rbg(elerui['fontcolor'])
-                                               , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
-                                               , name=getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
-                                                ,title="" if entidescr is None else f"<title>{entidescr}</title>")
+                                           , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
+                                           , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
+                                           , ref=eler['element']
+                                           , textref=pdiaganker + '-' + eler['element']
+                                           , fontcolor=hex2rbg(elerui['fontcolor'])
+                                           , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
+                                           , name=export.getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
+                                            ,title="" if entidescr is None else f"<title>{entidescr}</title>")
 
-        iconsrc = printHTML.iconsrc(pjsenti=getelement(eler['element']),pdefaultlang=printHTML.getmodel().getdefaultlang())
+        iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),pdefaultlang=export.getmodel().getdefaultlang())
         if iconsrc != "":
             retval += imagehtml.format(iconsrc
                                                ,eler['pos_x']+elerui['width']-ICONSIZE/2,
                                                 eler['pos_y'] - ICONSIZE/2)
-
     #for
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
     for attr in pdiag['elements']['attribute']:
         attrui = attr["ui"]
         x = attr['pos_x']
         y = attr['pos_y']
-        aelem = getelement(attr['element'])
-        retval += printtext(px=x, py=y, ptext=printHTML.href(ref=attr['element'], anz=aelem['name'][plang])
+        aelem = export.getelement(attr['element'])
+        retval += printtext(px=x, py=y, ptext=export.href(ref=attr['element'], anz=aelem['name'][plang])
                   , pfillcolor=hex2rbg(attrui['fontcolor']), pfontsize=attrui['fontsize']
                  ,pdescr=aelem['descr'][plang]
                   )
     # for
     retval += printrela(plist=pdiag['relationships'])
-    retval += printtexte(plist=pdiag['relationships'],plang=plang)
-    retval += printarcs(plist=pdiag['arcs'])
+    retval += printtexte(export, plist=pdiag['relationships'],plang=plang)
+    retval += printarcs(export=export, plist=pdiag['arcs'])
     return retval
 #printelements
 
-def putrefinsvg(ptext,pdiagid,plang):
+def putrefinsvg(export: HTMLExport, ptext,pdiagid,plang):
     MAXDESCR=300
     retval = ptext
-    for entiid,entival in printHTML.getmodel().getelements(pelemtype='ENTI').items():
+    for entiid,entival in export.getmodel().getelements(pelemtype='ENTI').items():
         try:
             odmref = entival["sourceref"]["ODM"][0]
         except:
@@ -398,7 +401,7 @@ def putrefinsvg(ptext,pdiagid,plang):
         newenti = re.sub(r'(<text id="[\d\D]+?</text>)', r'\1</a>', newenti)
 
         for attrid in entival["attributes+"]:
-            attrval = printHTML.getelement(attrid)
+            attrval = export.getelement(attrid)
             newenti = re.sub(r'(<text x=".*\n\s*{}\s*\n</text>)'.format(re.escape(attrval["name"][plang])),
                              r'<a href="#{}">\1</a>'.format(re.escape(attrid)), newenti)
             attrdescr = attrval["descr"][plang]
@@ -407,7 +410,7 @@ def putrefinsvg(ptext,pdiagid,plang):
                              ,r'\1{}'.format("<title>{}</title>".format(attrdescr)),
                              newenti)
         #add image if exists
-        filename = printHTML.iconsrc(pjsenti=entival,pdefaultlang=printHTML.getmodel().getdefaultlang())
+        filename = export.iconsrc(pjsenti=entival,pdefaultlang=export.getmodel().getdefaultlang())
         if filename != "":
             newenti += '\n<image href="{}" width="40px" height="40px" class ="entity-image" x="{}px" y="{}px"></image>' \
                         .format(filename,xstart + xwidth - (ICONSIZE/2), ystart - (ICONSIZE/2))
@@ -420,7 +423,7 @@ def putrefinsvg(ptext,pdiagid,plang):
 def checkforfile(pname,ptype,plang=None):
     retval = None
     if plang is not None:
-        filepath = parameters.webDirec() + "image/" + pname + "_"  + plang + "." + ptype
+        filepath = parameters.webDirec() + "image/" + pname + "_" + plang + "." + ptype
         if os.path.exists(filepath):
             retval = filepath
     #fi
@@ -450,7 +453,7 @@ def getsvgfromfile(pname, plang=None):
     #fi
     return retval
 
-def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
+def getsvgtext(export: HTMLExport, plang,pdiaganker,pdiagelem,ptitel=None):
     retval = getsvgfromfile(pname=pdiagelem["name"],plang=plang)
     if retval is not None:
         retval = putrefinsvg(ptext=retval, pdiagid=pdiaganker, plang=plang)
@@ -462,15 +465,15 @@ def getsvgtext( plang,pdiaganker,pdiagelem,ptitel=None):
                 version="1.1"  width="{}" height="{}">
                 <defs id="dmw_defs" >
                 </defs>""".format(pdiagelem["width"],pdiagelem["height"])
-        if ('legend' in pdiagelem.keys()):
+        if ('legend' in pdiagelem.keys() and pdiagelem['legend']['x'] is not None and pdiagelem['legend']['y'] is not None ):
             # es hat eine Legende
-            retval += printlegend(pdata=[pdiagelem['name'], parameters.nvl(pdiagelem['uc']), parameters.nvl(pdiagelem['dc']),
-                                          parameters.nvl(pdiagelem['dm'])
-                , parameters.nvl(pdiagelem['um']), ptitel, 'Logical']
+            retval += printlegend(pdata=[pdiagelem['name'], nvl(pdiagelem['uc']), nvl(pdiagelem['dc']),
+                                         nvl(pdiagelem['dm'])
+                , nvl(pdiagelem['um']), ptitel, 'Logical']
                                    , pwidth=LEGENDWIDTH, pheigh=LEGENDHEIGHT
                                    , px=pdiagelem['legend']['x'], py=pdiagelem['legend']['y'])
         # fi
-        retval += printelements(pdiag=pdiagelem, pdiaganker=pdiaganker, plang=plang)
+        retval += printelements(export=export, pdiag=pdiagelem, pdiaganker=pdiaganker, plang=plang)
         retval += """</svg>"""
     # fi
     return retval

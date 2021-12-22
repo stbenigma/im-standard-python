@@ -90,8 +90,19 @@ def main(pjson, plang):
 
 #main
 
+def maindraw(pjson, plang):
+    jsmodel = JSModel.readfromfile(pfilename=pjson)
+    model =jsmodel.getelements(pelemtype=JSModel.ELEMTYPE_PROJ)
+    modellang = model["language"] if plang is None else plang
+    for idx, entiid in enumerate(jsmodel.getelements(pelemtype=Modelelemtype.ENTI).keys()):
+        enti =jsmodel.getelements(pelemtype=Modelelemtype.ENTI)[entiid]
+        if enti["name"]["de"]!= "Land": continue
+        entienvir = entityenviron.createentienvironment(pentiid=entiid,pjson=jsmodel,pmodellang=modellang)
+        print (entityenviron.generate_drawio_content(penviron=entienvir))
+    return
 if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv)>2) else None
-    main(pjson=direc, plang=lang)
+    #main(pjson=direc, plang=lang)
+    maindraw(pjson=direc, plang=lang)
 

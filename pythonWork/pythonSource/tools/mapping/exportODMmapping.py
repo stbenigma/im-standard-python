@@ -1,5 +1,5 @@
 import sys,os
-import parameters
+from SSOT_infra import parameters
 from IM_JSON import JSModel
 from xml.etree import ElementTree as ET
 from xml.dom import minidom
@@ -101,7 +101,7 @@ def createXML(pjson,pintf):
 def export1Map(pimdirec,pintfname):
     global nonodmtables,nonodmcolumns,odmtablecnt,odmcolumncnt
     parameters.initparam(p_callarg=pimdirec)
-    jsfilename=parameters.dbDirect()+parameters.modelName()+".json"
+    jsfilename= parameters.dbDirect() + parameters.modelName() + ".json"
     jsmodel = JSModel.readfromfile(pfilename=jsfilename)
     expintf = None
     for intf in [intf for intf in jsmodel.getelements("systems").values() ]:

@@ -1,0 +1,57 @@
+<!-- this is the Confluence page content template for IM:entity to be rendered using jinja2 -->
+{% set orgunit = item %}
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      <h1>{{ gettext('Organisational Unit %(name)s [Information Model]', name=util.translate(orgunit['name'])) }}</h1>
+      <p>{{ util.translate_text(orgunit['descr']) }}</p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      {% include 'international.templ.html' %}
+      <p>
+        {{ util.icon(key) }}
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      {% if orgunit.get('parent') %}
+      <h2>{{ gettext('Parent') }}</h2>
+      <p>{{ util.soft_link(supertype) }}</p>
+      {% endif %}
+
+      {% if orgunit.get('mail') %}
+      <h2>{{ gettext('Mail') }}</h2>
+      <p>{{ orgunit['mail'] }}</p>
+      {% endif %}
+
+      {% if orgunit.get('address') %}
+      <h2>{{ gettext('address') }}</h2>
+      <p>{{ orgunit['address'] }}</p>
+      {% endif %}
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>{{ gettext('References') }}</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>{{ gettext('Name') }}</th>
+          <th>{{ gettext('Type') }}</th>
+        </tr>
+        {% for key in orgunit['references+'] %}
+        <tr>
+          <td>{{ util.soft_link(key) }}</td>
+          <td>{{ gettext(util.type_name_from_key(key)) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+  {% include 'footer.templ.html' %}
+</ac:layout>

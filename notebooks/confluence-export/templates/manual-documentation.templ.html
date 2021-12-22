@@ -1,8 +1,29 @@
 <p>
     <span style="color: rgb(193,199,208);">
-      <ac:structured-macro ac:macro-id="ec4ce343-8199-4232-be43-bbe29fddeb09" ac:name="status" ac:schema-version="1">
-        <ac:parameter ac:name="title">TODO</ac:parameter>
-      </ac:structured-macro> <span
-            style="letter-spacing: 0.0px;">Hier folgt die manuell gepflegte Dokumentation ....</span>
+        <ac:structured-macro ac:macro-id="ec4ce343-8199-4232-be43-bbe29fddeb09" ac:name="status" ac:schema-version="1">
+            <ac:parameter ac:name="title">TODO</ac:parameter>
+        </ac:structured-macro>
+        <span style="letter-spacing: 0.0px;">{{ gettext("The manually maintained documentation follows here ...") }}</span>
     </span>
+</p>
+<p><br/></p>
+<p><ac:placeholder>{{ gettext("This page will not be modified automatically after creation. You are free in form and content as this page will not be processed automatically.") }}</ac:placeholder></p>
+<p>
+<ac:structured-macro ac:name="details" ac:schema-version="1" ac:macro-id="549c87d1-a2ed-4f06-a2bf-116cf8e5bb1a">
+    <ac:parameter ac:name="hidden">true</ac:parameter>
+    <ac:rich-text-body>
+        <table>
+            <tbody>
+            <tr>
+                <th>Status</th>
+                <td>TODO</td>
+            </tr>
+            <tr>
+                <th>Parent</th>
+                <td>{{ key }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </ac:rich-text-body>
+</ac:structured-macro>
 </p>

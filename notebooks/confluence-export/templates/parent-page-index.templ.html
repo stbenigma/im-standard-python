@@ -1,0 +1,44 @@
+<!-- this is the Confluence page content template for root nodes to be rendered using jinja2 -->
+<ac:layout>
+  {% include 'header.templ.html' %}
+  <ac:layout-section ac:type="two_right_sidebar">
+    <ac:layout-cell>
+      {% if page['child-count'] > 100 %}
+      <h1>{{ gettext('Top 100 pages in section %(title)s', title=page['name']) }}</h1>
+      <p>
+        <ac:structured-macro ac:macro-id="4103a36d-5c90-4592-b52a-be0b15308c65" ac:name="children" ac:schema-version="2">
+          <ac:parameter ac:name="depth">1</ac:parameter>
+          <ac:parameter ac:name="sort">title</ac:parameter>
+          <ac:parameter ac:name="first">100</ac:parameter>
+        </ac:structured-macro>
+      </p>
+      {% else %}
+      <h1>{{ gettext('Content of section %(title)s', title=page['name']) }}</h1>
+      <p>
+        <ac:structured-macro ac:macro-id="4103a36d-5c90-4592-b52a-be0b15308c65" ac:name="children" ac:schema-version="2">
+          <ac:parameter ac:name="depth">1</ac:parameter>
+          <ac:parameter ac:name="sort">title</ac:parameter>
+        </ac:structured-macro>
+      </p>
+      {% endif %}
+      {% if page['child-count'] == 0 %}
+      <p>
+        <ac:emoticon ac:name="information" />&nbsp;{{ gettext('This section is empty.') }}
+      </p>
+      {% endif %}
+    </ac:layout-cell>
+    <ac:layout-cell>
+      {% include 'international.templ.html' %}
+      <p style="text-align: right;">
+        <img width="50px" align="right" src="http://res.cloudinary.com/foryouandyourcustomers/image/upload/fyayc_icon_library/svg/0526.svg" />
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+
+   <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      {% include 'footer.templ.html' %}
+    </ac:layout-cell>
+  </ac:layout-section>
+
+</ac:layout>

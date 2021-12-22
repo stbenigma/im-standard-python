@@ -1,6 +1,7 @@
 import sqlite3
 
-from IM_DB import dbDML, dbDDL,logmessages
+from IM_DB import dbDML, dbDDL
+from SSOT_infra import logmessages
 from datetime import datetime
 
 class Boolean:
@@ -292,6 +293,7 @@ class Baseobject:
         mode = self._getmode()
         return None if mode is None else mode.mode_dev_status
 
+
     def getbyextref(self, psrcid, psrcname):
         if self._modelemtype is None: return None
         mode = Modelelement.getmodebyextref(psrcname=psrcname, psrcid=psrcid)
@@ -355,7 +357,7 @@ class Baseobject:
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])
 
-        data = dbDML.execute(lsql, *arguments)
+        data = dbDML.select(lsql, *arguments)
         retval = []
         for d in data:
             obj = cls()._fromarray(d)

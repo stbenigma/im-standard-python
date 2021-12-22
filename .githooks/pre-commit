@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+for script in .githooks/pre-commit-*; do
+  echo "Executing script ${script}"
+  bash -c "$script"
+done
+

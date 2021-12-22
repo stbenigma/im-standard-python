@@ -21,6 +21,9 @@ msgstr ""
 msgid "Synonyms"
 msgstr "Synonyme"
 
+msgid "Entities"
+msgstr "Entitäten"
+
 #: templates/entity.templ.html:24
 msgid "Attributes"
 msgstr "Attribute"
@@ -28,6 +31,9 @@ msgstr "Attribute"
 #: templates/entity.templ.html:46
 msgid "Relations"
 msgstr "Beziehungen"
+
+msgid "Entity"
+msgstr "Entität"
 
 #: templates/entity.templ.html:57
 msgid "Type"
@@ -39,15 +45,25 @@ msgstr "Kardinalität"
 
 #: templates/entity.templ.html:59 templates/entity.templ.html:61
 msgid "Relation"
-msgstr ""
+msgstr "Relation"
 
 #: templates/entity.templ.html:63
 msgid "Linked entity"
-msgstr ""
+msgstr "Verknüpfte Entität"
 
 #: templates/entity.templ.html:85
 msgid "Supertypes"
 msgstr "Supertypen"
+
+msgid "Subtypes"
+msgstr "Subtypen"
+
+# for Columns
+msgid "Basetype"
+msgstr "Basistyp"
+
+msgid "Interface Name"
+msgstr "Interface Name"
 
 #: templates/entity.templ.html:94
 msgid "Diagrams"
@@ -57,7 +73,133 @@ msgstr "Diagramme"
 msgid "Diagram"
 msgstr "Diagramm"
 
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Documents"
+msgstr "Dokumente"
+
+msgid "Data Lineage"
+msgstr "Datenfluss (Data Lineage)"
+
+msgid "Systems"
+msgstr "Systeme"
+
+msgid "Domains"
+msgstr "Domänen"
+
+msgid "Tables"
+msgstr "Tabellen"
+
+msgid "Columns"
+msgstr "Spalten"
+
+msgid "Repeated"
+msgstr "Wiederholt"
+
+msgid "Encrypted"
+msgstr "Verschlüsselt"
+
+msgid "Historicised"
+msgstr "Historisiert"
+
+msgid "Translated"
+msgstr "Übersetzt"
+
+msgid "Note"
+msgstr "Hinweis"
+
+msgid "Imprint"
+msgstr "Impressum"
+
+msgid "Document references"
+msgstr "Dokumentreferenzen"
+
+msgid "Content of section %(title)s"
+msgstr "Inhalt der Sektion %(title)s"
+
+msgid "This table is not mapped."
+msgstr "Diese Tabelle ist nicht gemappt."
+
 #: templates/entity.templ.html:7
 #, python-brace-format
 msgid "Entity %(name)s [Information Model]"
 msgstr "Entität %(name)s [Informationsmodell]"
+
+msgid "Attribute %(name)s [Information Model]"
+msgstr "Attribut %(name)s [Informationsmodell]"
+
+msgid "System %(name)s [Datamodel]"
+msgstr "System %(name)s [Datenmodell]"
+
+msgid "Table %(name)s [Datamodel]"
+msgstr "Tabelle %(name)s [Datenmodell]"
+
+msgid "Column %(name)s [Datamodel]"
+msgstr "Spalte %(name)s [Datenmodell]"
+
+msgid "Domain %(name)s"
+msgstr "Domäne %(name)s"
+
+msgid "Linked attributes"
+msgstr "Verknüpfte Attribute"
+
+msgid "Linked columns"
+msgstr "Verknüpfte Spalten"
+
+msgid "The attribute is linked with the following columns:"
+msgstr "Das Attribut ist mit folgenden Spalten verknüpft:"
+
+msgid "The manually maintained documentation follows here ..."
+msgstr "Hier folgt die manuell gepflegte Dokumentation ...."
+
+msgid "{parent_title} - Documentation"
+msgstr "{parent_title} - Dokumentation"
+
+msgid "this subpage"
+msgstr "dieser Subseite"
+
+msgid "The following section contains the manual documentation. This content is maintained on %(link)s."
+msgstr "Der folgende Abschnitt enthält die manuelle Dokumentation. Der Inhalt wird auf %(link)s gepflegt."
+
+msgid "The following attributes of the Information Model are linked with this column:"
+msgstr "Folgende Attribute des Informationsmodells sind mit dieser Spalte verbunden:"
+
+msgid "Columns linked with the same IM attributes:"
+msgstr "Folgende Spalten sind mit denselben IM Attributen verbunden:"
+
+msgid "This column is linked with the following documents:"
+msgstr "Diese Spalte ist mit folgenden Dokumenten verknüpft:"
+
+msgid "# Columns"
+msgstr "Anzahl Spalten"
+
+msgid "Mandatory"
+msgstr "Pflichtfeld"
+
+msgid "Descriptive"
+msgstr "Beschreibend"
+
+msgid "Development status"
+msgstr "Entwicklungszustand"
+
+msgid "Whether the attribute is used for descriptive purposes"
+msgstr "Ob das Attribut nur beschreibend ist"
+
+msgid "The attribute value is subject to translation"
+msgstr "Das Attribut wird übersetzt"
+
+msgid "The history for this attribute's value is preserved"
+msgstr "Der Attributwert wird historisiert"
+
+msgid "This attribute is repeated multiple times"
+msgstr "Das Attribut ist wiederholt"
+
+msgid "This attribute is encrypted"
+msgstr "Der Attributwert ist verschlüsselt"
+
+msgid "Development maturity of this attribute"
+msgstr "Entwicklungszustand dieses Attributes"
+
+msgid "This section is empty."
+msgstr "Diese Sektion ist leer."

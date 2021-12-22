@@ -1,8 +1,15 @@
-from IM_JSON import JSModel,jsguid2type
+from IM_WEB.IM_HTML import HTMLExport
+from IM_JSON import JSModel
 from IM_WEB import jinja2web
 
-def rendermodel(pmodel:JSModel,pcurlang,pintfid=None,phtmlfilelist={},pdiagrams=[]):
-    webmodel = jinja2web.Webmodel(pcurlang=pcurlang,pjsmodel=pmodel,pintfid=pintfid,phtmlfilelist=phtmlfilelist)
+
+def rendermodel(export: HTMLExport, pmodel: JSModel, pcurlang, pintfid=None, phtmlfilelist=None, pdiagrams=None):
+    if phtmlfilelist is None:
+        phtmlfilelist = {}
+    if pdiagrams is None:
+        pdiagrams = []
+    webmodel = jinja2web.Webmodel(export=export, pcurlang=pcurlang, pjsmodel=pmodel, pintfid=pintfid,
+                                  phtmlfilelist=phtmlfilelist)
     modelname = pmodel.getelements("model")["name"]
     if pintfid is None:
         webmodel.setelements(metainfo = {"title" : modelname
@@ -14,10 +21,10 @@ def rendermodel(pmodel:JSModel,pcurlang,pintfid=None,phtmlfilelist={},pdiagrams=
                                              ,key=lambda x:x[1].upper())
                         , domains=sorted([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["domains"].items()
                                                     if (value["interface-id"] is None and value["origin"] == "DOM")]
-                                              , key=lambda x: x[1].upper())
+                                              , key=lambda x: x[1].upper() if x[1] is not None else '')
                        , documents=sorted([[key, "{} ({})".format(value["name"],str(value['referencecnt+']))] for key, value in pmodel.jsmodel["documents"].items()]
                                         , key=lambda x: x[1].upper())
-                     , orgunits=sorted([[key, "{} ({})".format(value["name"], str(value['referencecnt+']))] for key, value in
+                        , orgunits=sorted([[key, "{} ({})".format(value["name"], str(value['referencecnt+']))] for key, value in
                                                     pmodel.jsmodel["orgunits"].items()]
                                                 , key=lambda x: x[1].upper())
                         , systems=sorted([[key, value["name"]] for key, value in pmodel.jsmodel["systems"].items()]
