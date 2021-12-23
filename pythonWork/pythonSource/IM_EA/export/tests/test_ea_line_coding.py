@@ -1,3 +1,4 @@
+import re
 import unittest
 
 """
@@ -30,8 +31,12 @@ Bounding box around the line
 
 class LineCoding(unittest.TestCase):
 
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+    def test_extract_waypoints(self):
+        pattern = re.compile(r"Path=([^$]+)\$")
+        match = pattern.search("ILHS=;Path=234:-112$;\"")
+        self.assertIsNotNone(match)
+        self.assertEqual(1, len(match.groups()))
+        self.assertEqual("234:-112", match.group(1))
 
 
 if __name__ == '__main__':
