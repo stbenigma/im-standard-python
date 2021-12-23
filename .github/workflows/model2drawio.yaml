@@ -1,13 +1,13 @@
 name: Build model2drawio distribution from Jupyter Notebook
 
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-linux:
     runs-on: ubuntu-latest
-    #    strategy:
-    #      max-parallel: 5
-    #      matrix: ''
 
     steps:
     - uses: actions/checkout@v2
@@ -18,31 +18,14 @@ jobs:
         # Using 3.9 as the default for github conda image -> faster
         python-version: 3.9
 
-    - name: Install GNU gettext
-      # msgfmt is required by some unittests
-      run: sudo apt install gettext
-
     - name: Add conda to system path
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
 
-    - name: Show current conda environment configuration
-      run: |
-        conda env export --name base
-
     - name: Install dependencies
       run: |
         conda env update --file conda-base-environment.yaml --name base
-
-    - name: Lint with flake8
-      run: |
-        conda install flake8
-        flake8 . --max-line-length=120 --count --max-complexity=10 --statistics --exit-zero
-    #        # stop the build if there are Python syntax errors or undefined names
-    #        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-    #        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-    #        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Build deployment package
       run: |
@@ -62,47 +45,3 @@ jobs:
         draft: false
         overwrite: true
         tags: true
-
-    - name: Test with pytest
-      run: |
-        conda install pytest
-        pytest -m "not integration"
-
-    # Integration test prerequisites
-    - name: Clone reference model repository
-      uses: actions/checkout@v2
-      with:
-        repository: foryouandyourcustomers/fyyccim-refmodels
-        token: "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"
-        path: testdata/fyyccim-refmodels
-
-    - name: Integration test run with riddle model (check out branch 'riddle')
-      run: |
-        git -C testdata/fyyccim-refmodels fetch -v
-        git -C testdata/fyyccim-refmodels checkout -f riddle
-        python generator.py --dont-merge --model testdata/fyyccim-refmodels/riddle/IM
-
-    - name: Integration test run with raetsel-3lang model
-      run: |
-        python generator.py --dont-merge --model testdata/fyyccim-refmodels/raetsel-3lang/IM
-
-    - name: Integration test run with CRM model
-      run: |
-        git -C testdata/fyyccim-refmodels checkout -f master
-        python generator.py --dont-merge --model testdata/fyyccim-refmodels/CRM/IM
-
-    - name: Integration test run with PIM model
-      run: |
-        python generator.py --dont-merge --model testdata/fyyccim-refmodels/PIM/IM
-
-    - name: Integration test run with PIM model
-      run: |
-        python generator.py --dont-merge --model testdata/fyyccim-refmodels/PIM/IM
-
-    - name: Integration test run with BOEB model
-      run: |
-        git -C testdata/fyyccim-refmodels checkout -f BOEB-IM
-        python generator.py --dont-merge --model testdata/fyyccim-refmodels/BOEB/IM
-
-    - name: Execute integration tests
-      run: pytest -m "integration"
