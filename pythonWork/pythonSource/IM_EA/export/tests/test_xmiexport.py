@@ -8,7 +8,7 @@ from lxml import etree
 import pytest
 
 from IM_EA.export.xmiexport import XMIBuilder
-from IM_db import JSModel
+from IM_db.IM_JSON import JSModel
 
 DEFAULT_SSOT = 'testdata/fyyccim-refmodels/CRM/DB/IM_CRM_FYAYC.json'
 

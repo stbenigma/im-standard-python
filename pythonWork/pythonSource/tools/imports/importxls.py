@@ -4,9 +4,9 @@ import sys
 
 import openpyxl
 
-from IM_DB import openDB, closeDB
+from IM_db.IM_DB import  openDB, closeDB
 from SSOT_infra import parameters, logmessages
-from IM_OBJECTS import Interface, Table,Column,Domain,Boolean
+from IM_db.IM_OBJECTS import  Interface, Table,Column,Domain,Boolean
 
 SOURCENAME = "IMPORTXLS"
 

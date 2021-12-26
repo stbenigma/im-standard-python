@@ -1,4 +1,4 @@
-from IM_DB import dbDML,dbDDL
+from IM_db.IM_DB import  dbDML
 from datetime import date
 from .baseobject import Baseobject,MultilangBaseobject
 from .languagetext import Languagetext
@@ -6,7 +6,7 @@ from .language import Language
 from .modelelement import Modelelemtype,Modelelement
 from .userdefprop import Userdefpropvalue,Userdefprop
 from .examples import Example
-import IM_OBJECTS
+import IM_db.IM_OBJECTS
 
 class ElementUI(Baseobject):
     _tablename:str = 'element_ui'
@@ -80,7 +80,7 @@ class Entity(MultilangBaseobject):
 
     def getchildren(self,ptype=None):
         """ptype None-> ALL, ISAS,'ISAR"""
-        if ptype in (IM_OBJECTS.Relation.ISASUBTYPE,IM_OBJECTS.Relation.ISAROLE):
+        if ptype in (IM_db.IM_OBJECTS.Relation.ISASUBTYPE,IM_db.IM_OBJECTS.Relation.ISAROLE):
             relatype = ptype
         else:
             relatype = "%"

@@ -6,7 +6,7 @@ from distutils.dir_util import copy_tree
 
 from SSOT_infra import parameters, nvl2, nvl, transl
 import html
-from IM_JSON import JSModel
+from IM_db.IM_JSON import  JSModel
 from IM_db.IM_OBJECTS import Modelelemtype, Domain
 
 class HTMLExport:

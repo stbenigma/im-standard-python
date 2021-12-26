@@ -1,6 +1,6 @@
 import sys
 from openpyxl import Workbook, styles
-from IM_JSON import JSModel
+from IM_db.IM_JSON import  JSModel
 from mapping import writeoverview
 
 # utils.get_column_letter(pidx)

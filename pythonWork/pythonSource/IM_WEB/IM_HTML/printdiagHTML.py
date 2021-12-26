@@ -456,7 +456,7 @@ def getsvgfromfile(pname, plang=None):
 def getsvgtext(export: HTMLExport, plang,pdiaganker,pdiagelem,ptitel=None):
     retval = getsvgfromfile(pname=pdiagelem["name"],plang=plang)
     if retval is not None:
-        retval = putrefinsvg(ptext=retval, pdiagid=pdiaganker, plang=plang)
+        retval = putrefinsvg(export=export,ptext=retval, pdiagid=pdiaganker, plang=plang)
     elif pdffilename(pname=pdiagelem["name"],plang=plang) is not None:
         retval = None
     else:

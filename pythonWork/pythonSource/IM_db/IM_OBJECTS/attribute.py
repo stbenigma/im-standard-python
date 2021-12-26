@@ -1,9 +1,10 @@
-from .baseobject import Baseobject, MultilangBaseobject
+from .baseobject import  MultilangBaseobject
 from .languagetext import Languagetext
 from .domain import Domain
 from .key import Key
 from .modelelement import Modelelemtype,Modelelement
 from .examples import Example
+import IM_db.IM_OBJECTS
 
 class Attribute(MultilangBaseobject):
     _tablename: str = 'attributes'
@@ -45,7 +46,7 @@ class Attribute(MultilangBaseobject):
         return self.getmodellelement().mode_id
 
     def getparent(self):
-        return IM_OBJECTS.Entity().getbyid(self.attr_enti_id)
+        return IM_db.IM_OBJECTS.Entity().getbyid(self.attr_enti_id)
 
     def isinkey(self):
         return Keyelement.isinkey(pattrid=self.attr_id)

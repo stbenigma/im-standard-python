@@ -1,5 +1,5 @@
-from IM_OBJECTS import Key, Relation, Modelelemtype, Boolean, Arc,Externalref,Languagetext
-from IM_JSON import *
+from IM_db.IM_OBJECTS import  Key, Relation, Modelelemtype, Boolean, Arc,Externalref,Languagetext
+from IM_db.IM_JSON import  *
 
 def relaend2js(prelaend=None):
     model = ['enti'

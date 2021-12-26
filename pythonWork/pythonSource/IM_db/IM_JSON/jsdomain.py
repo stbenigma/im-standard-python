@@ -1,5 +1,5 @@
-from IM_JSON import *
-from IM_OBJECTS import *
+from IM_db.IM_JSON import  *
+from IM_db.IM_OBJECTS import  *
 from SSOT_infra import transl
 
 

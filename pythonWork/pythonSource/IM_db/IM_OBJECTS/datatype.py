@@ -2,7 +2,7 @@ from .baseobject import Baseobject
 import re
 from datetime import date
 from .modelelement import Modelelemtype
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 
 class Datatype(Baseobject):
     BINARY:str='BINARY'

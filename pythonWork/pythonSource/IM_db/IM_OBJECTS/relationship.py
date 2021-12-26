@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 from .baseobject import Baseobject, MultilangBaseobject
 from .baseobject import Boolean
 from .modelelement import Modelelemtype
 from .languagetext import Languagetext
-import IM_OBJECTS
+import IM_db.IM_OBJECTS
 
 
 class Arc(Baseobject):
@@ -33,7 +33,7 @@ class Arc(Baseobject):
         return Relation.select(pwhere=("rela_arcs_id_from = ? or rela_arcs_id_to = ?", self.arcs_id,self.arcs_id))
 
     def getentity(self):
-        return IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
+        return IM_db.IM_OBJECTS.Entity().getbyid(self.arcs_enti_id)
 
     def getarcselem(self,pdiagid):
         data = dbDML.select("""with lseg as (select linesegments.*
@@ -130,9 +130,9 @@ class Relation(MultilangBaseobject):
     def getassoctofrom(self,plang=None):
         return self._getsprachval(colname='rela_assoc_to_from',plang=plang)
     def getfromentity(self):
-        return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_from)
+        return IM_db.IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_from)
     def gettoentity(self):
-        return IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_to)
+        return IM_db.IM_OBJECTS.Entity().getbyid(pid=self.rela_enti_id_to)
     def getanyarcid(self):
         return self.rela_arcs_id_from if self.rela_arcs_id_to is None else self.rela_arcs_id_to
 
@@ -222,7 +222,7 @@ where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
     @staticmethod
     def insertisa(parc, pentiids):
         for entiid in pentiids:
-            enti = IM_OBJECTS.Entity().getbyid(entiid)
+            enti = IM_db.IM_OBJECTS.Entity().getbyid(entiid)
             rela = Relation()
             rela.rela_type = Relation.ISASUBTYPE
             rela.rela_enti_id_from = enti.enti_id

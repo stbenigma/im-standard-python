@@ -1,6 +1,6 @@
 # -*- coding: latin-1 -*-
 from IM_ODM import odmParam
-from IM_DB import dbConnect,dbDML
+from IM_db.IM_DB import  dbConnect,dbDML
 from SSOT_infra import parameters
 from mydeepl import translate
 from datetime import date

@@ -1,7 +1,7 @@
 from datetime import datetime
-from IM_JSON import *
-from IM_OBJECTS import Languagetext, Language, Boolean
-from IM_DB import dbConnect
+from IM_db.IM_JSON import  *
+from IM_db.IM_OBJECTS import  Languagetext, Language, Boolean
+from IM_db.IM_DB import  dbConnect
 
 def langs2js(pemptymodel):
     model = ['name', 'iso3', 'modellanguage', 'replacementlang']

@@ -4,13 +4,13 @@ import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../tools')
-from IM_DB import dbConnect
+from IM_db.IM_DB import  dbConnect
 from SSOT_infra import parameters, logmessages
 from IM_HTML import printHTML
 from IM_ODM import fillDB
 import listWebdoku
-from IM_JSON import JSModel
-from IM_OBJECTS import Languagetext
+from IM_db.IM_JSON import  JSModel
+from IM_db.IM_OBJECTS import  Languagetext
 from SSOT_db.createDB import existsDB
 from tools import createMapExcel,createAllMapping
 

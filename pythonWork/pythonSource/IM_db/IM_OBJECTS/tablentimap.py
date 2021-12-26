@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 from .baseobject import Baseobject, Boolean
 from .entity import Entity
 from .relationship import Relation

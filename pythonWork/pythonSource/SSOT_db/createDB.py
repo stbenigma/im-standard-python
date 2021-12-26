@@ -4,9 +4,8 @@ import os
 import re
 import sys
 from pathlib import Path
-
-from IM_DB import dbConnect, dbDDL
-from IM_OBJECTS import MeltDiat, Modelelemtype, Diagramtype
+from IM_db.IM_DB import  dbConnect, dbDDL
+from IM_db.IM_OBJECTS import  MeltDiat, Modelelemtype, Diagramtype
 from SSOT_infra import parameters, logmessages, nvl
 
 

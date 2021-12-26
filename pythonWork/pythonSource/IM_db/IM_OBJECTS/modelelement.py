@@ -1,6 +1,6 @@
 from datetime import date
 from .baseobject import Baseobject, Boolean
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 
 class Modelelemtype(Baseobject):
     ENTI: str = 'ENTI'

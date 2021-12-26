@@ -3,7 +3,7 @@
 import re
 import sqlite3
 
-from IM_DB import dbConnect
+from IM_db.IM_DB import  dbConnect
 
 def concursor(pconn):
     """

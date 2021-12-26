@@ -1,6 +1,6 @@
 import sys,os
 from SSOT_infra import parameters
-from IM_JSON import JSModel
+from IM_db.IM_JSON import  JSModel
 from xml.etree import ElementTree as ET
 from xml.dom import minidom
 

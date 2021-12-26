@@ -1,6 +1,6 @@
-from IM_JSON import *
-from IM_OBJECTS import Project, Modelelemtype
-from IM_DB import dbConnect
+from IM_db.IM_JSON import  *
+from IM_db.IM_OBJECTS import  Project, Modelelemtype
+from IM_db.IM_DB import  dbConnect
 
 
 def lastupd():

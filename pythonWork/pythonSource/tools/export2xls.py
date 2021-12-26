@@ -1,6 +1,6 @@
 import dbDDL
 import dbDML
-from IM_DB import dbConnect
+from IM_db.IM_DB import  dbConnect
 from dbDDL import gettablelist
 from SSOT_infra import parameters, logmessages
 import sys

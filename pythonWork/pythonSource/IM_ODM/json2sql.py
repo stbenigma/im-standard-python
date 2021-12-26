@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 import sys
 
-from IM_JSON import *
+from IM_db.IM_JSON import  *
 from SSOT_db import createnewDB
 
 errcnt: int = 0

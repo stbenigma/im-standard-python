@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../../IM_db')
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 from WEB_OBJECTS import *
 
 def pointlist(pliseid):

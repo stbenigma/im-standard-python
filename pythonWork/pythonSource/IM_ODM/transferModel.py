@@ -1,9 +1,9 @@
 import logging
 import math
 import os, re
-from IM_DB import dbConnect
+from IM_db.IM_DB import  dbConnect
 from SSOT_infra import parameters, logmessages
-from IM_OBJECTS import *
+from IM_db.IM_OBJECTS import  *
 from IM_ODM import transferRelational, handleXML
 from SSOT_infra import nvl
 

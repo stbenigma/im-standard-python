@@ -1,6 +1,6 @@
 
-from IM_JSON import *
-from IM_OBJECTS import Interface,Modelelemtype,Table,OragnisationalUnit,Document,Externalref,Domain
+from IM_db.IM_JSON import  *
+from IM_db.IM_OBJECTS import  Interface,Modelelemtype,Table,OragnisationalUnit,Document,Externalref,Domain
 
 def systems2js(pemptymodel):
     model = ['name','interface-id+'

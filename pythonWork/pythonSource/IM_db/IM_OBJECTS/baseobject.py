@@ -1,6 +1,6 @@
 import sqlite3
 
-from IM_DB import dbDML, dbDDL
+from IM_db.IM_DB import  dbDML, dbDDL
 from SSOT_infra import logmessages
 from datetime import datetime
 

@@ -1,6 +1,6 @@
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 from .baseobject import Baseobject
-import IM_OBJECTS
+import IM_db.IM_OBJECTS
 from datetime import date
 from .modelelement import Modelelemtype
 
@@ -130,15 +130,15 @@ class Userdefpropvalue(Baseobject):
             return
 
         if pentiid is not None:
-            fillvalues(pid=pentiid,ptablename=IM_OBJECTS.Entity._tablename,pprefix=Modelelemtype.ENTI)
+            fillvalues(pid=pentiid,ptablename=IM_db.IM_OBJECTS.Entity._tablename,pprefix=Modelelemtype.ENTI)
         elif pattrid is not None:
-            fillvalues(pid=pattrid, ptablename=IM_OBJECTS.Attribute._tablename, pprefix=Modelelemtype.ATTR)
+            fillvalues(pid=pattrid, ptablename=IM_db.IM_OBJECTS.Attribute._tablename, pprefix=Modelelemtype.ATTR)
         elif prelaid is not None:
-            fillvalues(pid=prelaid, ptablename=IM_OBJECTS.Relation._tablename, pprefix=Modelelemtype.RELA)
+            fillvalues(pid=prelaid, ptablename=IM_db.IM_OBJECTS.Relation._tablename, pprefix=Modelelemtype.RELA)
         elif ptablid is not None:
-            fillvalues(pid=ptablid, ptablename=IM_OBJECTS.Table._tablename, pprefix=Modelelemtype.TABL)
+            fillvalues(pid=ptablid, ptablename=IM_db.IM_OBJECTS.Table._tablename, pprefix=Modelelemtype.TABL)
         elif pcoluid is not None:
-            fillvalues(pid=pcoluid, ptablename=IM_OBJECTS.Column._tablename, pprefix=Modelelemtype.COLU)
+            fillvalues(pid=pcoluid, ptablename=IM_db.IM_OBJECTS.Column._tablename, pprefix=Modelelemtype.COLU)
         else:
             None
         return

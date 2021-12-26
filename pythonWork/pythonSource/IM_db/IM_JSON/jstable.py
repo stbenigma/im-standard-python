@@ -1,4 +1,4 @@
-from IM_JSON import *
+from IM_db.IM_JSON import  *
 
 def tables2js(pemptymodel):
     model = ['name', 'interface-name+'

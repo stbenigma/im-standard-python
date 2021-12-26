@@ -1,4 +1,4 @@
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 from SSOT_infra import logmessages
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype,Modelelement

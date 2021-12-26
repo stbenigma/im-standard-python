@@ -5,7 +5,7 @@ from .languagetext import Languagetext
 from .modelelement import Modelelemtype
 from .physicals import Storageformat
 from SSOT_infra import nvl,nvl2
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 
 class Domain(MultilangBaseobject):
     DERIVED: str = 'DER'

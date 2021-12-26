@@ -2,8 +2,8 @@ from lxml import etree
 from uuid import uuid4
 from dateutil import parser as dateparser
 
-from IM_JSON import JSModel
-from IM_OBJECTS import Modelelemtype
+from IM_db.IM_JSON import  JSModel
+from IM_db.IM_OBJECTS import  Modelelemtype
 
 ROOT_FRAME = """<?xml version="1.0" encoding="windows-1252"?>
 <xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.1"

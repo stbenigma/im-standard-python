@@ -1,7 +1,7 @@
 import re
 
-from IM_JSON import *
-from IM_OBJECTS import *
+from IM_db.IM_JSON import  *
+from IM_db.IM_OBJECTS import  *
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}

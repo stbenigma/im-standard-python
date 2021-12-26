@@ -4,9 +4,9 @@ from datetime import datetime
 from numpy import array
 from matplotlib import colors
 
-from IM_JSON import JSModel
+from IM_db.IM_JSON import  JSModel
 from .printdiagHTML import hex2rbg
-from IM_OBJECTS import Modelelemtype, Relation
+from IM_db.IM_OBJECTS import  Modelelemtype, Relation
 
 """defines the classes and functions to implement an entity-environment representation"""
 nvl = lambda str, default='': str if str is not None else default

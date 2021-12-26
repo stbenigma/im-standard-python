@@ -3,10 +3,10 @@ import sys
 import os
 import logging
 
-from IM_DB import dbConnect
+from IM_db.IM_DB import  dbConnect
 from SSOT_infra import parameters, logmessages
-from IM_OBJECTS import *
-from IM_JSON import JSModel, sql2json
+from IM_db.IM_OBJECTS import  *
+from IM_db.IM_JSON import  JSModel, sql2json
 from IM_WEB import jinjawebmodel
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport

@@ -1,7 +1,7 @@
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype
 from datetime import date
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 
 class Diagram(Baseobject):
     _tablename:str = 'diagrams'

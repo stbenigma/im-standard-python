@@ -3,7 +3,7 @@ import os
 
 from SSOT_infra import logmessages,parameters
 from IM_ODM import transferModel, mergedbs
-from IM_JSON import *
+from IM_db.IM_JSON import  *
 from SSOT_db import existsDB,createnewDB
 
 

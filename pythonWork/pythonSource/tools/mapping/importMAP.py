@@ -1,7 +1,7 @@
 import sys,os
-from IM_DB import dbConnect
+from IM_db.IM_DB import  dbConnect
 from SSOT_infra import parameters, logmessages
-from IM_OBJECTS import Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Attribute,Interface,UniqueKeyException
+from IM_db.IM_OBJECTS import  Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Attribute,Interface,UniqueKeyException
 from openpyxl import load_workbook
 
 def importintf(pws):

@@ -6,7 +6,7 @@ from datetime import datetime
 
 import handleXML
 from SSOT_infra import parameters, logmessages
-from IM_OBJECTS import *
+from IM_db.IM_OBJECTS import  *
 from IM_ODM import transferModel
 
 XMIVERSION = "2.1"

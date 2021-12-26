@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from IM_OBJECTS import Modelelemtype,Boolean
+from IM_db.IM_OBJECTS import  Modelelemtype,Boolean
 
 
 
@@ -110,7 +110,7 @@ class JSModel:
         enti = self.getbyid(pentiid)
         if enti is None: return None
         catg = self.getbyid(enti["category"])
-        if catg is None: return None
+        if catg is None or len(catg["ui"]) == 0 : return None
         return catg["ui"][pcolortype]
 
 

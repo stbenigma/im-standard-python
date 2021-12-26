@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 
 from SSOT_infra import nvl
-from IM_OBJECTS import *
+from IM_db.IM_OBJECTS import  *
 from IM_db import IM_JSON
 
 

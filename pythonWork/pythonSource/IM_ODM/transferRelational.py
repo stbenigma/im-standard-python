@@ -1,7 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 
-from IM_OBJECTS import *
+from IM_db.IM_OBJECTS import  *
 from IM_ODM import transferModel,handleXML
 from SSOT_infra import parameters, logmessages,nvl
 

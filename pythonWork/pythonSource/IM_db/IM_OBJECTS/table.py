@@ -1,6 +1,6 @@
 from .baseobject import Baseobject
 from .modelelement import Modelelement,Modelelemtype
-from IM_DB import dbDML
+from IM_db.IM_DB import  dbDML
 
 class Table(Baseobject):
     _tablename:str = 'tables'
