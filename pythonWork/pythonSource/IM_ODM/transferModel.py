@@ -578,7 +578,7 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
             points = c.findall('points/point')
             if len(points) < 2:
                 logging.warning(f"Skipping pointless 😹 relation {sourceentivid} <-> {targetentivid} (OID:{relaguid})")
-            continue
+                continue
 
             linewidth = handleXML.findText(c, 'lineWidth')
             if rela.rela_assoc_from_to is None:
