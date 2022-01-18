@@ -83,12 +83,14 @@ create table relationreps_tmp
 	constraint relr_sty_chk
 		check (relr_starttext_y BETWEEN 0 AND 999999)
 );
+PRAGMA ignore_check_constraints = 0;
 update relationreps
 	set relr_endedge = 'E'
 	where relr_endedge = 'O';
 update relationreps
 	set relr_startedge = 'E'
 	where relr_startedge = 'O';	
+PRAGMA ignore_check_constraints = 1;
 insert into relationreps_tmp select * from relationreps;
 drop table relationreps;
 alter table relationreps_tmp rename to relationreps;
