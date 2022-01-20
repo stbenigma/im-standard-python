@@ -1,12 +1,14 @@
 # -*- coding: latin-1 -*-
-import getopt
+import argparse
 import os
 import re
 import sys
 from pathlib import Path
-from IM_db.IM_DB import  dbConnect, dbDDL
-from IM_db.IM_OBJECTS import  MeltDiat, Modelelemtype, Diagramtype
-from SSOT_infra import parameters, logmessages, nvl
+
+from SSOT_db.SQL_INFRA import dbConnect
+from SSOT_db.SQL_INFRA import dbDDL
+from SSOT_db.IM_OBJECTS import MeltDiat, Modelelemtype, Diagramtype, Language
+from SSOT_infra import parameters, logmessages, argparseparent
 
 
 def applysqlscript(psqlfilepath):
@@ -23,11 +25,22 @@ def insertdiagtypes():
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ENTI)).insert()
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.RELA)).insert()
     MeltDiat(pdiatid=diatid, pmeltid=Modelelemtype.getidbyshortname(pshortname=Modelelemtype.ATTR)).insert()
-    diatid = Diagramtype(pname=Diagramtype.RELATIONAL).insert()
+    Diagramtype(pname=Diagramtype.RELATIONAL).insert()
+    return
+
+
+def insertlanguages():
+    for key, value in parameters.SUPPORTEDLANGUAGES.items():
+        if key in parameters.dbLanguages():
+            Language(pname=value[0], piso2=key, piso3=value[1]).insert()
+
+    Language.setmodellang(pmodellang=parameters.dbDefaultLang())
+    Language.setallreplacementlang()
     return
 
 
 def insertBaseData():
+    insertlanguages()
     Modelelemtype.fillmelt()
     insertdiagtypes()
     return
@@ -46,8 +59,8 @@ def createnewDB(pdbfilepath):
     """
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='OFF');
-    applysqlscript(psqlfilepath=parameters.sqlfilepath());
+    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='OFF')
+    applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
     if dbConnect.getversion() != parameters.expecteddbversion():
@@ -77,113 +90,122 @@ def getlistofupgrfiles(psqlpath):
 
 def applyupgrades():
     actversion = dbConnect.getversion()
+    if actversion is None or not dbConnect.isopenDB():
+        raise Exception(f"Database '{dbConnect.getDBname()}' not open")
+
     upgrfiles = getlistofupgrfiles(psqlpath=parameters.sqlpath())
     upgrfiles.sort()  # order is important as upgrades follow each other sequentally
     for upgrfile in upgrfiles:
-        if version(upgrfile) <= actversion: continue
-        if version(upgrfile) > parameters.expecteddbversion(): break
-        applysqlscript(psqlfilepath=parameters.sqlpath() + "/" + upgrfile)
+        if version(upgrfile) <= actversion:
+            continue
+        if version(upgrfile) > parameters.expecteddbversion():
+            break
+        applysqlscript(psqlfilepath=os.path.join(parameters.sqlpath(), upgrfile))
     # for
     dbConnect.setversion()
+    return
 
 
 def upgradeDB():
     # get list of upgrade-files
     dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
     actversion = dbConnect.getversion()
-    if actversion == parameters.expecteddbversion():
+    if actversion is None:
+        raise Exception(f"Database '{parameters.dbFilePath()}' does not contain version information.")
+    elif actversion == parameters.expecteddbversion():
         print("DB {} is up to date: version {}".format(parameters.dbFilePath(), actversion))
-        return
-    applyupgrades()
+    else:
+        applyupgrades()
+        logmessages.showmessages(
+            f"database {parameters.dbFilePath()} for model {parameters.modelName()}" +
+            f" upgraded to version {dbConnect.getversion()}")
+    #fi
     dbConnect.closeDB()
+    return
 
 
-def createDB(par1, pforcecreate=False, pupgrade=False, pdbtype=parameters.SQLITE):
+def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
+             pmodellang=None, planguages=None, plogfilepath=None):
     """create new or upgrade existing database
-        par1 directory containing paramfile or model or paramfile-path
-        pforcecreate => True: force new db, False: error, if db exists
+        pparamfile  => paramfilepath
         pupgrade => upgrade existing database
         pdbtype => type of db to generate
+        pmodelname
+        pdestination => Filepath of dbfile to be created
      """
-    parameters.initparam(p_callarg=par1)
-    logmessages.initlog('CreateDB')
-
-    if pdbtype == parameters.SQLITE:
-        if existsDB(parameters.dbFilePath()):
-            if pforcecreate:
-                os.remove(parameters.dbFilePath())
-            elif pupgrade:
-                pass
-            else:
-                raise Exception(f"********* {pdbtype}-DB-File {parameters.dbFilePath()} already exists, cannot create it")
-            # fi
-        elif not os.path.isdir(parameters.dbDirect()):
-            """if there is not dbdirectory, create one"""
-            os.mkdir(parameters.dbDirect())
-        # fi
-        # here we have to create or upgrade a DB
-        if pupgrade:
-            upgradeDB()
-            dbConnect.closeDB()
-            logmessages.showmessages(
-                f"database {parameters.dbFilePath()} for model {parameters.modelName()} upgraded to version {dbConnect.getversion()}")
-        else:
-            createnewDB(pdbfilepath=parameters.dbFilePath())
-            dbConnect.closeDB()
-            logmessages.showmessages(
-                f"database {parameters.dbFilePath()} version {dbConnect.getversion()} for model {parameters.modelName()} created")
-        # fi
+    assert (pparamfile is not None or pmodelname is not None), "Parameter file or modelname must be given"
+    if pparamfile is not None:
+        basedirec = os.path.abspath(os.path.dirname(pparamfile))
+    else:
+        # modelname given, take current directory as basedirec
+        basedirec = os.getcwd()
     # fi
+    parameters.initparam(pbasedirec=basedirec, pparamfile=pparamfile, pmodelname=pmodelname, pdbfile=pdestination,
+                         pmodellang=pmodellang, planguages=planguages, plogfilepath=plogfilepath)
+    try:
+        logmessages.initlog('CreateDB')
+
+        if pdbtype == parameters.SQLITE:
+            if existsDB(parameters.dbFilePath()) and not pupgrade:
+                raise Exception(
+                    f"********* {pdbtype}-DB-File {parameters.dbFilePath()} already exists, cannot create it")
+            elif not os.path.isdir(parameters.dbDirect()):
+                """if there is not dbdirectory, create one"""
+                os.mkdir(parameters.dbDirect())
+            # fi
+            # here we have to create or upgrade a DB
+            if pupgrade:
+                if existsDB(pfilepath=parameters.dbFilePath()):
+                    upgradeDB()
+                else:
+                    raise Exception(f"No DB found to upgrade. {parameters.dbFilePath()}")
+            else:
+                createnewDB(pdbfilepath=parameters.dbFilePath())
+                dbConnect.closeDB()
+                logmessages.showmessages(
+                    f"database {parameters.dbFilePath()} version {dbConnect.getversion()} " +
+                    f"for model {parameters.modelName()} created")
+            # fi
+        # fi
+    finally:
+        logmessages.closelog()
+    return
 
 
-# end main
+def main(psysargs):
+    parser = argparse.ArgumentParser(description='Create or upgrade SSOT-DB', parents=[argparseparent.parentparser()])
+    parser.add_argument('--destination', '-d', dest="destination",
+                        help=f"Path of databasefile. Default ./{parameters.SSOTDBDIREC}" +
+                             f"/<modelname>{parameters.SSOTDBEXTENSION})")
+    parser.add_argument('--upgrade', '-u', action='store_true', dest='upgrade',
+                        help="Upgrade existing database to latest version.")
+    argparse.Namespace()
+
+    if (len(psysargs) > 0) and ('.py' in psysargs[0]) and ('ipykernel' not in psysargs[0]):
+        arguments: argparse.Namespace = parser.parse_args(psysargs[1:])
+        myargs = arguments.__dict__
+    else:
+        # in jupyter environment
+        """set myargs with arguments """
+    # fi
+    if 'version' in myargs and myargs['version']:
+        argparseparent.showversion()
+        exit(0)
+    argparseparent.checkmodelandparam(parguments=myargs)
+    argparseparent.fillssotdefaults(pcurrentdir=os.getcwd(), parguments=myargs)
+
+    if myargs['modelname'] is not None:
+        if myargs['destination'] is None:
+            myargs['destination'] = os.path.join(pcurrentdir, parameters.SSOTDBDIREC,
+                                                 myargs['modelname'] + parameters.SSOTDBEXTENSION)
+
+    # do only testing of parameterpassing while in unittest
+    if not arguments.unittest:
+        createDB(pparamfile=myargs['paramfile'], pupgrade=myargs['upgrade'], pdbtype=myargs['dbtype'],
+                 pmodelname=myargs['modelname'],
+                 pdestination=myargs['destination'], pmodellang=myargs['modellanguage'], planguages=myargs['languages'],
+                 plogfilepath=myargs['logfile'])
+
 
 if __name__ == '__main__':
-    """create new or upgrade existing database
-    
-        usage: {sys.argv[0]} [-f|-u|-p] directory
-          -p,--paramfile=  paramfile
-          -f,--force: force creation of new database
-          -u,--upgrade: upgrade existing database 
-          -t,--dbtype= SQLITE 
-     """
-
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], 'p:fut:', ['upgrade', 'force', 'paramfile=', 'dbtype='])
-    except getopt.error as msg:
-        print(msg)
-        print(f"""usage: {sys.argv[0]} [-f|-u|-p] directory
-          -p,--paramfile=  paramfile
-          -f,--force: force creation of new database
-          -u,--upgrade: upgrade existing database 
-          -t,--dbtype= SQLITE
-          """)
-        sys.exit(2)
-    # try
-    direc: str = args[0]
-    force, upgrade = False, False
-    paramfile = None
-    dbtype = parameters.SQLITE
-
-    for o, a in opts:
-        if o in ('-f', '--force'):
-            force = True
-        if o in ('-u', '--upgrade'):
-            upgrade = True
-        if o in ('-p', '--paramfile'):
-            paramfile = a
-        if o in ('-t', '--dbtype'):
-            if a.lower() in (parameters.SQLITE):
-                dbtype = a.lower()
-            else:
-                print()
-                print(f"""usage: {sys.argv[0]} [-f|-u|-p] directory
-                  -p,--paramfile=  paramfile
-                  -f,--force: force creation of new database
-                  -u,--upgrade: upgrade existing database 
-                  -t,--dbtype= SQLITE
-                  """)
-
-    # for
-    param1 = direc + ('' if direc.endswith('/') else '/') + nvl(paramfile)
-    createDB(par1=param1, pforcecreate=force, pupgrade=upgrade, pdbtype=dbtype)
+    main(sys.argv)

@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1C4216B4-5249-D5DC-FCFD-781E3928D8F9" name="Employer">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:44:44 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="21A1C9EA-C450-C81C-905A-7FF64A455510">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:45:01 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="C647334B-74F6-DC2F-859B-0ED0B74B535D">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:45:23 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CompanyID" id="B48722AB-92FB-5B6E-DB6B-79B162BEC056">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:45:39 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

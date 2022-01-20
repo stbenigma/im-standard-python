@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_24" directorySegmentName="seg_0" id="CBEBEFD2-890B-D586-DB49-14AA9B838836">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-22 08:24:17 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>erfüllt von</nameOnSource>
+<nameOnTarget>erfüllt</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>84E56FAB-251C-8920-49FA-0BE7F1C75905</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E1455130-5348-4334-7A73-BBDB38EEF58F</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

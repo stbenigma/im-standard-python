@@ -5,7 +5,7 @@ import shutil
 from difflib import unified_diff
 
 from SSOT_infra import parameters
-from IM_ODM import fillDB
+from LOAD_MODELS.LOAD_ODM import fillDB
 
 
 def emptyloadingfiles(pmodelpath):
@@ -50,7 +50,7 @@ def cleaneddiffs(pfile1,pfile2,ptype):
     return retval
 
 def testloading1model(pcallarg):
-    parameters.initparam(p_callarg=pcallarg)
+    parameters.initparam(pparamfile=pcallarg)
     modelname= parameters.modelName()
 
     #load reference files to compare to as json and as text

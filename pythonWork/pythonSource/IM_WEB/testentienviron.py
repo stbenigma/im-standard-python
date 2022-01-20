@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 import sys,os
-from IM_db.IM_OBJECTS import  Modelelemtype
-from IM_db.IM_JSON import  JSModel
+from SSOT_db.IM_OBJECTS import  Modelelemtype
+from SSOT_db.IM_JSON import  JSModel
 from IM_HTML import entityenviron
 
 

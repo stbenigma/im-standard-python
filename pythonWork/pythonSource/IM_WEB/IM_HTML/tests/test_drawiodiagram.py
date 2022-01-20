@@ -1,13 +1,26 @@
+import json
+import logging
 import unittest
+from pathlib import Path
+
+import pytest
 from lxml.etree import Element, tostring
-from IM_db.IM_JSON import JSModel
+
+from IM_WEB.IM_HTML.drawiodiagram import create_diagram
+from SSOT_db.IM_JSON import JSModel
 from IM_WEB.IM_HTML import drawiodiagram
+
+from SSOT_infra.tests.integration import IntegrationTest,RIDDLE,testmodels_dir
+from SSOT_infra.tests.test_translateprompt import update_gettext_ressources
 
 
 class MockTranslator:
 
-    def tr(self, value):
-        return value
+    @classmethod
+    def tr(cls, value):
+        if type(value) == dict and len(value) > 0:
+            return list(value.values())[0]
+        return ''  # fallback
 
 
 class TestDrawIoDiagramGeneration(unittest.TestCase):
@@ -20,25 +33,26 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
                 'RELA1111': self.diagram,
             }
         }
+        update_gettext_ressources()
 
     def test_add_relations_semi(self):
-        self.diagram['relationships']['RELA1111']['linesegments'].append(
-            {
-                "x": 1784,
-                "y": 2434,
-                "linetype": "SOLID",
-                "angle": None,
-                "uc": "SNE4FE",
-                "dc": "2021-03-10 14:47:16 UTC",
-            }
-        )
-        drawiodiagram.add_relations(self.diagram, JSModel(self.test_model), self.translator, self.root)
+        segment = {
+            "x": 1784,
+            "y": 2434,
+            "linetype": "SOLID",
+            "angle": None,
+            "uc": "SNE4FE",
+            "dc": "2021-03-10 14:47:16 UTC",
+        }
+        # noinspection PyTypeChecker
+        self.diagram['relationships']['RELA1111']['linesegments'].append(segment)
+        drawiodiagram.add_relations(self.diagram,
+                                    JSModel(self.test_model), self.translator, self.root)
         print(tostring(self.root))
 
     def test_add_relation_single(self):
-        #        diag = deepcopy(self.diagram)
-        #        del diag['relationships']['RELA1111']['linesegments'][-1]
-        drawiodiagram.add_relations(self.diagram, JSModel(self.test_model), self.translator, self.root)
+        drawiodiagram.add_relations(self.diagram,
+                                    JSModel(self.test_model), self.translator, self.root)
         print(tostring(self.root))
 
     diagram = {
@@ -76,11 +90,11 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
         }
     }
 
-    segements = [
+    segments = [
         {
             "x": 13382,
             "y": 6535,
-            "linetype": "DASHED",
+            "linetype": "SOLID",
             "angle": 3.141592653589793,
             "uc": "SNE4FE",
             "dc": "2020-11-16 07:03:01 UTC",
@@ -100,7 +114,7 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
         {
             "x": 12956,
             "y": 6535,
-            "linetype": "SOLID",
+            "linetype": "DASHED",
             "angle": None,
             "uc": "SNE4FE",
             "dc": "2020-11-16 07:03:01 UTC",
@@ -109,8 +123,48 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
         }
     ]
 
-
-    def test_add_relations_semi(self):
-        self.diagram['relationships']['RELA1111']['linesegments'] = self.segements
+    def test_relation_dashed_undashed(self):
+        # noinspection PyTypedDict
+        self.diagram['relationships']['RELA1111']['linesegments'] = self.segments
         drawiodiagram.add_relations(self.diagram, JSModel(self.test_model), self.translator, self.root)
         print(tostring(self.root))
+
+
+class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
+
+    @pytest.fixture(autouse=True)
+    def init(self, tmp_path):
+        self.temp_folder = Path(tmp_path)
+
+    def setUp(self) -> None:
+        super().setUp()
+        update_gettext_ressources()
+
+    def test_riddle_xmi(self):
+        ssot_file = testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
+        if not ssot_file.exists():
+            logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
+        with open(ssot_file, 'r') as src:
+            model = json.load(src)
+        self.assertTrue(len(model['diagrams']) > 0)
+        js_model = JSModel(pmodel=model)
+        for diagram_key in model['diagrams'].keys():
+            xml = create_diagram(diagram_key, js_model, MockTranslator())
+            self.assertTrue(len(list(xml.iter())) > 0)
+            outfile = self.temp_folder / f"{RIDDLE}-{diagram_key}.drawio"
+            xml.write(str(outfile), pretty_print=True)
+            print(f"Wrote diagram {diagram_key} to {outfile}")
+
+    @pytest.mark.integration
+    def test_CRM_xmi(self):
+        ssot_file = self.project_root / 'testdata' / 'fyyccim-refmodels' / 'CRM' / 'DB' / 'IM_CRM_FYAYC.json'
+        if not ssot_file.exists():
+            logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
+        with open(ssot_file, 'r') as src:
+            model = json.load(src)
+        self.assertTrue(len(model['diagrams']) > 0)
+
+        for diagram_key in model['diagrams'].keys():
+            js_model = JSModel(pmodel=model)
+            xml = create_diagram(diagram_key, js_model, MockTranslator())
+            self.assertTrue(len(list(xml.iter())) > 0)

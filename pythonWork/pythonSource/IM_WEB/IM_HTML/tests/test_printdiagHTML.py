@@ -2,7 +2,7 @@ import unittest
 
 from IM_WEB.IM_HTML.printHTML import HTMLExport
 from IM_WEB.IM_HTML.printdiagHTML import printelements
-from IM_db.IM_JSON import JSModel
+from SSOT_db.IM_JSON import JSModel
 
 
 class MockTranslator:

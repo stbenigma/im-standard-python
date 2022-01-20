@@ -4,9 +4,9 @@ import sys
 
 import openpyxl
 
-from IM_db.IM_DB import  openDB, closeDB
+from SSOT_db.SQL_INFRA import  openDB, closeDB
 from SSOT_infra import parameters, logmessages
-from IM_db.IM_OBJECTS import  Interface, Table,Column,Domain,Boolean
+from SSOT_db.IM_OBJECTS import  Interface, Table,Column,Domain,Boolean
 
 SOURCENAME = "IMPORTXLS"
 
@@ -123,7 +123,7 @@ def excel2db(pwb):
 
 def main(pparam1, pinfile):
     global workbook
-    parameters.initparam(p_callarg=pparam1)
+    parameters.initparam(pparamfile=pparam1)
     logmessages.initlog('importDMxls')
     filedirec = parameters.dbDirect()
     if os.path.isfile(pinfile):

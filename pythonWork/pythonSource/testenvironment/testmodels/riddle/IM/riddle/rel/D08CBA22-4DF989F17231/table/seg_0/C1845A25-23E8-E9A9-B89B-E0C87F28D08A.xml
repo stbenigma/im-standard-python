@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C1845A25-23E8-E9A9-B89B-E0C87F28D08A" name="AIRCRAFT">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:26 UTC</createdTime>
+<generatorID>E1455130-5348-4334-7A73-BBDB38EEF58F</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<ordsAlias>artikel</ordsAlias>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IDENTITY" id="6F8730A7-DFC2-3E05-DE03-336FDD8EA280">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="CALLSIGN" id="793F45A1-D165-EACA-EC56-5DA292191636">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<generatorID>66289518-2847-AE81-B41A-F5D8F6F95B1C</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

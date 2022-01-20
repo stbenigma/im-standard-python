@@ -1025,6 +1025,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.5' as version, datetime() as installedtime;
+create view dbversion as select '1.6' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

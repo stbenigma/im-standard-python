@@ -1,7 +1,18 @@
 **/*.git
+
+#ODM-local files
 **/*.localz
 **/*.local
+
+#MAC-os
 **/*.DS_Store
+
+#Testenvironment, generated files
+/pythonWork/pythonSource/testenvironment/**/*.db
+/pythonWork/pythonSource/testenvironment/**/Web/*.html
+/pythonWork/pythonSource/testenvironment/**/*.json
+/pythonWork/pythonSource/testenvironment/**/*.csv
+/pythonWork/pythonSource/testenvironment/**/*.xlsx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -90,6 +101,7 @@ ipython_config.py
 
 # pyenv
 .python-version
+.idea/
 
 # pipenv
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
@@ -131,13 +143,20 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Created content
 /content
 
 # Sokrates code analyzer
-_sokrates/*
+/_sokrates/
 
 # Subrepository
 /testdata/fyyccim-refmodels/
 
 /pythonWork/pythonSource/testenvironment/**/DB/
 /pythonWork/pythonSource/testenvironment/**/Web/
+
+# Files generated when running tests. See pytest.ini
+**/unittest-tmp-dir/
+
+# Logfiles
+/log/

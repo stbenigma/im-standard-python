@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="90BE5AED-8B42-E8D0-BA93-79A3368011BC" name="PlaneType">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:46:02 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="11F78E79-5DB2-C050-C479-8E8B1BC62485">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:46:15 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TypeName" id="58EB7C37-4F54-196F-CACF-64DB7F4D9E05">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:46:31 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="38A69FCA-9D18-5315-A00E-4D91A361F114" name="PlaneType_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:46:15 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="11F78E79-5DB2-C050-C479-8E8B1BC62485"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -4,26 +4,24 @@ import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../tools')
-from IM_db.IM_DB import  dbConnect
+from SSOT_db.SQL_INFRA import  dbConnect
 from SSOT_infra import parameters, logmessages
 from IM_HTML import printHTML
-from IM_ODM import fillDB
+from LOAD_MODELS.LOAD_ODM import fillDB
 import listWebdoku
-from IM_db.IM_JSON import  JSModel
-from IM_db.IM_OBJECTS import  Languagetext
+from SSOT_db.IM_JSON import  JSModel
+from SSOT_db.IM_OBJECTS import  Languagetext
 from SSOT_db.createDB import existsDB
 from tools import createMapExcel,createAllMapping
 
 
 def main(pdirec, plang,pforceoverwrite = False):
-    parameters.initparam(p_callarg=pdirec)
+    parameters.initparam(pparamfile=pdirec)
     if plang is None:
         Languagetext.reportLang(parameters.dbDefaultLang())
     else:
         Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')
-
-
 
     os.makedirs(parameters.webDirec(), exist_ok=True)
     os.makedirs(parameters.dbDirect(), exist_ok=True)

@@ -1,0 +1,107 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F57DD05D-63BA-6CA1-F8E4-BF9B77B5D755" name="Plane">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<comment><![CDATA[Thing that is capable to fly.]]></comment>
+<generatorID>E1455130-5348-4334-7A73-BBDB38EEF58F</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Call_sign" id="5074530F-E593-470F-9AB2-BE711635E34C">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<generatorID>2C912527-F61E-727B-CD15-015E00F57364</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Year_of_construction" id="AE4FA5AF-060F-03E3-7DA5-0CADE9DC44FB">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<generatorID>4051FC82-FED4-04EA-5186-87DAB9B082C2</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Plane_ID" id="79D68445-9439-D9C4-3C47-B305E654D3C9">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Airport_ID" id="07836927-B432-943A-E495-28B5DE10BCF9">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="31AACE1A-74D9-92F8-CB02-C38A43D12746" referredColumn="7974558C-6A20-BD63-5D4C-206EDBDC337F"/>
+</associations>
+</Column>
+<Column name="P_ID" id="A1BD7C54-0A19-BB78-4B09-81B1AF6FABB5">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2623837C-0D0F-9F9A-50F9-763A1A870845" name="Plane_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="79D68445-9439-D9C4-3C47-B305E654D3C9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="33AF4C27-A8BA-990E-8B61-92889C348928" name="Plane__IDX">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>CE11A456-CC9A-7273-D56F-44CFF5B04A06</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="A1BD7C54-0A19-BB78-4B09-81B1AF6FABB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5730F5DE-A732-FBE2-37F0-02FB2DD7BCF5" name="Plane_Airport_FK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<generatorID>ACB71C95-0452-54E2-F303-13D395D971A7</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="07836927-B432-943A-E495-28B5DE10BCF9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

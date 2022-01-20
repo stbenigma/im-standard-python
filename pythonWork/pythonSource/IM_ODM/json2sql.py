@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 import sys
 
-from IM_db.IM_JSON import  *
+from SSOT_db.IM_JSON import  *
 from SSOT_db import createnewDB
 
 errcnt: int = 0
@@ -64,7 +64,7 @@ def main(pjsonin, pdbout):
 
     #Test output
     if True:
-        controljson = JSModel(pmodel=sql2json(pmodelname=jsmodel.jsmodel['model']['name'],pdbname=dbConnect.getDBname()))
+        controljson = JSModel(pmodel=sql2json(pmodelname=jsmodel.jsmodel['model']['name'], pdbname=dbConnect.getDBname()))
         controljson.printmodel(pfilename='checkjson', pfilepath='/Users/stb/Downloads/')
         print ('/Users/stb/Downloads/checkjson.json created')
 

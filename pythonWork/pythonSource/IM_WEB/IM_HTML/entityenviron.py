@@ -1,12 +1,11 @@
 import re
 from uuid import uuid4
 from datetime import datetime
-from numpy import array
 from matplotlib import colors
 
-from IM_db.IM_JSON import  JSModel
+from SSOT_db.IM_JSON import JSModel
 from .printdiagHTML import hex2rbg
-from IM_db.IM_OBJECTS import  Modelelemtype, Relation
+from SSOT_db.IM_OBJECTS import Modelelemtype, Relation
 
 """defines the classes and functions to implement an entity-environment representation"""
 nvl = lambda str, default='': str if str is not None else default
@@ -249,10 +248,12 @@ def printenti(pcell: EntityCell, pposx, pposy):
     entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
                                , fopacity=0.3, sopacity=0.8
                                , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
-                               , ref=pcell.getentiid() #, pcell.getentiid()
-                               ,fillcolor='black' if pcell.gettype()== EntityCell.CENTER else 'blue', fontsize=FONTSIZE
+                               , ref=pcell.getentiid()  # , pcell.getentiid()
+                               , fillcolor='black' if pcell.gettype() == EntityCell.CENTER else 'blue',
+                               fontsize=FONTSIZE
                                , name=nvl(pcell.getentiname())[:MAXENTICHARS]
-                               ,title="<title>{descr}</title>".format(descr=' ' if pcell.getentidescr() in (None,'') else pcell.getentidescr()[:MAXDESCRCHARS]))
+                               , title="<title>{descr}</title>".format(
+            descr=' ' if pcell.getentidescr() in (None, '') else pcell.getentidescr()[:MAXDESCRCHARS]))
     return entibox
 
 

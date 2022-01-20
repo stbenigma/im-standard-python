@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="20CBF157-515C-9EC1-8A64-4727227E6D15" name="Pilot">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:30:57 UTC</createdTime>
+<comment><![CDATA[Person capable of flying an airplane.]]></comment>
+<ownerDesignName>riddle</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+<item key="B59E9FE2-0CFD-D1E7-2BD0-216CFD8B7EED" value="false"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>P</shortName>
+<synonym>Captain</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="LicenseNumber" id="466DB5E6-F1A4-3836-ED29-45FBB951170F">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:41:11 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="false"/>
+<item key="B59E9FE2-0CFD-D1E7-2BD0-216CFD8B7EED" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

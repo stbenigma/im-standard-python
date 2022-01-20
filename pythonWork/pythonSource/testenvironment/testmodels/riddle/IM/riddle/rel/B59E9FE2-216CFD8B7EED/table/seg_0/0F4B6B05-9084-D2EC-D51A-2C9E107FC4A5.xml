@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0F4B6B05-9084-D2EC-D51A-2C9E107FC4A5" name="Flight">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<comment><![CDATA[Air journey usually conducted by the same crew.]]></comment>
+<generatorID>300A0765-2497-CC2A-9A49-6A68627D7568</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Flight_ID" id="BE7D15BB-767A-4AC1-096E-0A2A4B4A553D">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="Plane_ID" id="0FFB8CC8-7788-66ED-5AED-2FEE1937909D">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="112BAB78-E684-3A51-89F1-6F9B2FD5D97D" referredColumn="79D68445-9439-D9C4-3C47-B305E654D3C9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6C3B00FE-5EF1-71C0-F009-CE3BCC29377B" name="Flight_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="BE7D15BB-767A-4AC1-096E-0A2A4B4A553D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92048045-63B4-7291-1C17-C4353AA33BC3" name="Flight_Plane_FK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<generatorID>C040ACAA-CCFB-3397-9299-9285F5897B8A</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0FFB8CC8-7788-66ED-5AED-2FEE1937909D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

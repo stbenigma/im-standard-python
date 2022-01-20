@@ -2,9 +2,12 @@ from lxml import etree
 from io import BytesIO
 from gettext import gettext
 import logging
+
+from lxml.etree import XMLSyntaxError
+from xml.sax.saxutils import escape
 from matplotlib import colors
 
-from IM_db.IM_JSON import JSModel
+from SSOT_db.IM_JSON import JSModel
 
 drawio_diagram_base = """<?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="Electron" modified="2021-07-20T12:02:15.557Z" agent="curl/7.1" etag="25mQkM6mx7LJW4tu3GDx" version="14.6.13" type="device">
@@ -26,8 +29,13 @@ def create_diagram(diagram_key: str, model: JSModel, translator, base=drawio_dia
     assert model is not None, f"Expecting a valid model"
     diagram = model.getbyid(diagram_key)
     parser = etree.XMLParser(remove_blank_text=True)
-    xml_source = base.format(name=diagram['name'], width=str(diagram['width']), height=str(diagram['height']))
-    dom = etree.parse(BytesIO(xml_source.encode('utf-8')), parser)
+    xml_source = base.format(name=escape(diagram['name']), width=str(diagram['width']), height=str(diagram['height']))
+    try:
+        dom = etree.parse(BytesIO(xml_source.encode('utf-8')), parser)
+    except XMLSyntaxError as e:
+        logging.error(f"Unable to load {xml_source}. {e}")
+        return None
+
 
     xml_node = dom.find('.//root')
 
@@ -49,14 +57,6 @@ def to_color(color):
 
 
 entity_style = "rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=top;"
-
-
-def prefix_attribute_name():
-    """Default generator for attribute prefixes"""
-    value = 48
-    while True:
-        yield f"A{chr(value)}_"
-        value += 1
 
 
 def prefix_none():
@@ -188,7 +188,6 @@ def relation_to_line(segments: [], key: str):
     return cell
 
 
-
 # elbowEdgeStyle
 # edgeStyle=orthogonalEdgeStyle;
 connector_style = "html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;jumpStyle=none;rounded=0;"
@@ -204,15 +203,15 @@ def add_relations(diagram, model: JSModel, translator, parent):
             logging.warning(f"Expecting at least two points per segment")
             continue
         assert len(segments) > 1, f"Expecting at least 2 points"
-        start = segments[0]
 
         elbows = segments[1:-1]
 
         line_type = segments[0]['linetype']
         if 'DASHED' == line_type:
-            start_dashing = '1' #;dashPattern=1 1'
+            start_dashing = '1'  # ;dashPattern=1 1'
         else:
             start_dashing = '0'
+        end_dashing = start_dashing
 
         change_point = -1
         index = 1
@@ -222,7 +221,7 @@ def add_relations(diagram, model: JSModel, translator, parent):
                 assert change_point < 0, f"The line style alters multiple times. Last change seen on position {change_point}"
                 change_point = index
                 if 'DASHED' == next_type:
-                    end_dashing = '1' #;dashPattern=1 1;'
+                    end_dashing = '1'  # ;dashPattern=1 1;'
                 else:
                     end_dashing = '0'
                 break
@@ -241,7 +240,7 @@ def add_relations(diagram, model: JSModel, translator, parent):
             parent.append(line)
         else:
             logging.debug(f"Found line change on position {change_point} in line with {len(elbows)} elbows")
-            front = relation_to_line(segments[:change_point+1], key)
+            front = relation_to_line(segments[:change_point + 1], key)
             front.set('style', connector_style + f"dashed={start_dashing};startArrow={start_type};endArrow=none")
             parent.append(front)
 

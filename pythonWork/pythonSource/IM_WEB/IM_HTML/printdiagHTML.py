@@ -423,13 +423,13 @@ def putrefinsvg(export: HTMLExport, ptext,pdiagid,plang):
 def checkforfile(pname,ptype,plang=None):
     retval = None
     if plang is not None:
-        filepath = parameters.webDirec() + "image/" + pname + "_" + plang + "." + ptype
+        filepath = os.path.join(parameters.webDirec(), "image" , pname + "_" + plang + "." + ptype)
         if os.path.exists(filepath):
             retval = filepath
     #fi
     if retval is None:
         """check for file without language_marker"""
-        filepath = parameters.webDirec() + "image/" + pname + "." + ptype
+        filepath = os.path.join(parameters.webDirec(),  "image" , pname + "." + ptype)
         if os.path.exists(filepath):
             retval = filepath
 

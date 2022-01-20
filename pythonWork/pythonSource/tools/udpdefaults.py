@@ -114,7 +114,7 @@ def dofiles(p_direc,p_dict,p_attr=False):
 
 # Main Programm
 def main(par1,par2):
-    parameters.initparam(p_callarg=par1)
+    parameters.initparam(pparamfile=par1)
     #print(parameters.odmIMDirec(),parameters.odmFilesDirec())
     getPropList(p_udpfilename=par2)
     #print(entityDict,attrDict,relationDict)

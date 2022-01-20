@@ -3,8 +3,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../../IM_db')
-from IM_db.IM_JSON import  JSModel
-from IM_db.IM_OBJECTS import  Domain
+from SSOT_db.IM_JSON import  JSModel
+from SSOT_db.IM_OBJECTS import  Domain
 from SSOT_infra import nvl
 from openpyxl import Workbook, styles
 

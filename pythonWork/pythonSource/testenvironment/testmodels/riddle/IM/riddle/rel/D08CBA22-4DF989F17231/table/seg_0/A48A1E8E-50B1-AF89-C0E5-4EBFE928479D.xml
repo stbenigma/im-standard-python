@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A48A1E8E-50B1-AF89-C0E5-4EBFE928479D" name="FLIGHT">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<comment><![CDATA[Gruppierung von allen Entitäten, die zur Beschreibung und Verwaltung von Artikel-Attributen benötigt werden.]]></comment>
+<generatorID>A8435A7A-CDCC-3040-1442-D0936F45ABE2</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<ordsAlias>attributverwendung</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="0A192FAC-68F0-B8A6-9E06-104280FFD857">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVW_ATVW_ID</notNullConstraintName>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="AIRLINE_CODE" id="4B7424AF-D5BA-E09D-3E80-FAA8586578C0">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<comment><![CDATA[Ist das Attribut in dieser Verwendung ein Pflichtattribut, d.h. es darf nicht leer sein.]]></comment>
+<generatorID>77660323-65FF-44E5-9D93-BC4C6D93884E</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<constraintName>CK_ATVW_ATVW_IST_PFLICHT</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>TRUE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<abbreviation>ATVW_IST_PFLICHT</abbreviation>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVW_ATVW_IST_PFLICHT</notNullConstraintName>
+</Column>
+<Column name="SEATS" id="C0D66A2D-8BF1-BCBA-E48B-EC803D949530">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVW_ATVW_ATTR_ID</notNullConstraintName>
+</Column>
+<Column name="AVAILABLE" id="B7E58D1F-30B6-3A53-7CB3-27875D767758">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATVW_ATVW_ATWG_ID</notNullConstraintName>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8B317E03-490A-A233-0F15-C56BA9AEBEFA" name="ATVW_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="0A192FAC-68F0-B8A6-9E06-104280FFD857"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F845073C-37D0-65DC-E2B5-06DD94CCA76C" name="ATVW_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:26:22 UTC</createdTime>
+<generatorID>B25B0D12-3CE0-108D-D89C-FCF92D3397CF</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0D66A2D-8BF1-BCBA-E48B-EC803D949530"/>
+<colUsage columnID="B7E58D1F-30B6-3A53-7CB3-27875D767758"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A492AF24-19E0-DC1E-FDB8-B3E43917B583" name="ATVW_ATVW_ATTR_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0D66A2D-8BF1-BCBA-E48B-EC803D949530"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A096F5D8-1BC3-6563-C6AC-7BF3110D3615" name="ATVW_ATVW_ATWG_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B7E58D1F-30B6-3A53-7CB3-27875D767758"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

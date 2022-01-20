@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1B63E175-C6EE-7CD7-EDB9-412770744A3F" name="Airport">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<comment><![CDATA[Facility to start and land planes.
+]]></comment>
+<generatorID>3D038507-77A5-01DA-2373-9EADB1AD98BD</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IATACode" id="D06234E7-6740-CDAE-494F-6D3C32BE235B">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<generatorID>C394B504-BEAE-61C2-BE9F-4915A6C11207</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Airport_ID" id="7974558C-6A20-BD63-5D4C-206EDBDC337F">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E72B0424-A2E5-8BF2-5035-5D49B78EA4ED" name="Airport_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7974558C-6A20-BD63-5D4C-206EDBDC337F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

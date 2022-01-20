@@ -1,4 +1,5 @@
 from datetime import datetime
+from pathlib import Path
 
 from SSOT_infra import parameters
 from SSOT_infra.translateprompt import plural
@@ -9,7 +10,6 @@ logfile = None
 
 def nop_trap(str):
     pass
-
 
 logtrap = nop_trap
 
@@ -25,7 +25,9 @@ def initlog(pmodulename: str):
         """
     global logcount, logfile, logtrap
     logcount = 0
-    logfile = open(parameters.logfilepath(), 'a+')
+    logpath = Path(parameters.logfilepath())
+    logpath.parent.mkdir(exist_ok=True)
+    logfile = open(logpath, 'a+')
     log_line = "{}  {}: Model={}  DB={}\n".format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
                                                   , pmodulename
                                                   ,
@@ -33,7 +35,6 @@ def initlog(pmodulename: str):
                                                   , parameters.dbFilePath())
     logfile.write(log_line)
     logtrap(log_line)
-
     return
 
 
@@ -49,8 +50,13 @@ def writelog(pline: str):
     if logfile is not None and not logfile.closed:
         logcount += 1
         logfile.write("\t{}\n".format(pline))
-
     return
+
+def closelog():
+    global logfile
+    if logfile is not None:
+        logfile.close()
+        logfile = None
 
 
 def showmessages(pmsg: str = None):
@@ -65,6 +71,6 @@ def showmessages(pmsg: str = None):
         print(f"{myfilename}:")
         if pmsg is not None: print(f" => {pmsg}")
         if logcount > 0:
-            logfile.close()
             print(f"  => {logcount.__str__()} log entr{plural('y', logcount)} written to {logfile.name}")
+        closelog()
     return

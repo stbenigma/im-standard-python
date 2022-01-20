@@ -1,0 +1,60 @@
+name: Packaging
+# Build model2drawio distribution from Jupyter Notebook
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          # Using 3.9 as the default for github conda image -> faster
+          python-version: 3.9
+
+      - name: Install GNU gettext
+        # msgfmt is required by some unittests
+        run: sudo apt install gettext
+
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          conda env update --file conda-base-environment.yaml --name base
+
+      - name: Build deployment package
+        run: |
+          python pythonWork/pythonSource/tools/deploy.py --verbose
+
+      # Run smoke test
+      - name: Smoke-test generator
+        run: |
+          python generator.py --version
+
+      # Unpack the archive and run the generator
+      - name: Verify package
+        run: |
+          mkdir target
+          cd target
+          unzip '../model2diagram-*.zip'
+          python generator.py -f --all -m ../pythonWork/pythonSource/testenvironment/riddle/IM
+
+      - name: Upload packed deployment to github
+        uses: xresloader/upload-to-github-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: model2diagram-*.zip
+          draft: false
+          overwrite: true
+          tags: true

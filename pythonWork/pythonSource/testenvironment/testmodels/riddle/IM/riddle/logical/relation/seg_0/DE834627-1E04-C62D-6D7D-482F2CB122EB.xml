@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Geog Einheit Sprache" directorySegmentName="seg_0" id="DE834627-1E04-C62D-6D7D-482F2CB122EB">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:30:57 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>verwendet in</nameOnSource>
+<nameOnTarget>verwendet</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>D32DE94D-50D6-BF54-D0D6-0EA34DDD9493</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>0A43F002-2313-B2C6-B5AE-6A455F3161AB</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

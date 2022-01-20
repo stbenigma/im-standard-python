@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="52B309F2-BFD8-3A12-9D8F-E00E3338BA1B" name="ATWG_ARTI">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<abbreviation>ATAR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ATAR_ID" id="14F51A6B-F602-CA8C-0DE9-8D95FA491619">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:19:03 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATAR_ATAR_ID</notNullConstraintName>
+</Column>
+<Column name="ATAR_ATWG_ID" id="7E26FE03-65EF-536E-4CF2-0D053D6FA072">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATAR_ATAR_ATWG_ID</notNullConstraintName>
+</Column>
+<Column name="ATAR_ARTI_ID" id="49545DB5-ED25-AD28-A9EA-5FF53E020146">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:58:43 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATAR_ATAR_ARTI_ID</notNullConstraintName>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2492BEDC-91A3-D50E-9185-8875AC5CB608" name="ATAR_PK">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 12:37:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14F51A6B-F602-CA8C-0DE9-8D95FA491619"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FF52D41F-00DF-6EF6-8965-A8674D5BF62B" name="ATAR_UN">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:19:33 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49545DB5-ED25-AD28-A9EA-5FF53E020146"/>
+<colUsage columnID="7E26FE03-65EF-536E-4CF2-0D053D6FA072"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CDCE7163-2253-1780-14E3-D2D4C6049E62" name="ATAR_ATAR_ATWG_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E26FE03-65EF-536E-4CF2-0D053D6FA072"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BFAD33FB-20B5-0E59-0134-18AAD173AE9A" name="ATAR_ATAR_ARTI_ID_IDX">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 13:32:41 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49545DB5-ED25-AD28-A9EA-5FF53E020146"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

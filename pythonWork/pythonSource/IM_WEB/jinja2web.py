@@ -6,7 +6,7 @@ from markdown import markdown
 
 from IM_WEB.IM_HTML import entityenviron, HTMLExport
 from SSOT_infra import logmessages
-from IM_db.IM_JSON import  JSModel, jsguid2type
+from SSOT_db.IM_JSON import  JSModel, jsguid2type
 from jinja2 import FileSystemLoader, Environment
 from SSOT_infra.translateprompt import transl
 
@@ -54,7 +54,7 @@ class Webmodel():
             self.__setattr__(key.lower(),val)
 
     def gettransltext(self, str):
-        retval = transl(str, plang=self.getcurlanguage())
+        retval = transl(str)
         return retval
 
     def getlangstr(self,str,default=None):

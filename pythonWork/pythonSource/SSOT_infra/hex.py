@@ -1,14 +1,15 @@
 def hex2int(phex):
     return None if (phex is None) else int(phex, 16)
 
-def int2hex(pint,lng=6):
-    if (pint is None): return pint
-    lint = pint if (type(pint) == int) else int(pint)
-    retval = hex(lint & 0xfffffff)
-    retval = str(retval)[2:2+lng]
-    if len(retval)!= lng:
-        print (lint)
-        print (hex(lint & 0xfffffff))
-        print (retval)
-        raise Exception()
-    return retval
+
+def int2hex(pint):
+    if pint is None: return None
+    if type(pint) == str:
+        # TODO move to str2hex
+        pint = int(pint)
+    rgba = hex(pint & 0xffffff)  # AARRGGBB
+    hex_value = rgba.replace('0x', '')  # strip 0xFF
+    digits = len(hex_value)
+    if digits < 6:
+        return hex_value.zfill(6)
+    return hex_value

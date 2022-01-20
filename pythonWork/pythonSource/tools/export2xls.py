@@ -1,6 +1,6 @@
 import dbDDL
 import dbDML
-from IM_db.IM_DB import  dbConnect
+from SSOT_db.SQL_INFRA import  dbConnect
 from dbDDL import gettablelist
 from SSOT_infra import parameters, logmessages
 import sys
@@ -51,7 +51,7 @@ def createExcel(pfilename: str):
     return
 
 def main(param1):
-    parameters.initparam(p_callarg=param1)
+    parameters.initparam(pparamfile=param1)
     logmessages.initlog('createEXCEL')
     filename = parameters.modelName()
     filepath = parameters.dbDirect()

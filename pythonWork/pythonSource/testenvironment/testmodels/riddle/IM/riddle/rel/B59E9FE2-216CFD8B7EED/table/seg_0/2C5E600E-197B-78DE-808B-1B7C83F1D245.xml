@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2C5E600E-197B-78DE-808B-1B7C83F1D245" name="Private">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<comment><![CDATA[Private person owning or renting a plane in a non organisational context.]]></comment>
+<generatorID>0DFDBD1E-824F-22C2-0E27-E6949CEC6C8B</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Private_ID" id="28D8E534-728F-11EC-F9E6-A2C84E6946A9">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="P_ID" id="6BDF4D7E-7D51-A4E6-92FB-D619043A6D44">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C71E5B82-6B41-2F48-08D3-8E45096794ED" name="Private_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="28D8E534-728F-11EC-F9E6-A2C84E6946A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54543B40-0ABF-66A1-D507-41E8140F5E41" name="Private__IDX">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>283AE031-79DC-221B-E51D-2B3F8DAAD167</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="6BDF4D7E-7D51-A4E6-92FB-D619043A6D44"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="plane_stationing" directorySegmentName="seg_0" id="ACB71C95-0452-54E2-F303-13D395D971A7">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-22 08:47:24 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+<item key="B59E9FE2-0CFD-D1E7-2BD0-216CFD8B7EED" value="false"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<identifying>false</identifying>
+<nameOnSource>stationed</nameOnSource>
+<nameOnTarget>hosts</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E1455130-5348-4334-7A73-BBDB38EEF58F</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>3D038507-77A5-01DA-2373-9EADB1AD98BD</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

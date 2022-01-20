@@ -1,5 +1,5 @@
 from IM_WEB.IM_HTML import HTMLExport
-from IM_db.IM_JSON import  JSModel
+from SSOT_db.IM_JSON import  JSModel
 from IM_WEB import jinja2web
 
 
@@ -18,8 +18,8 @@ def rendermodel(export: HTMLExport, pmodel: JSModel, pcurlang, pintfid=None, pht
                        ,entities = sorted([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["entities"].items()]
                                           ,key=lambda x:x[1].upper())
                        ,attributes = sorted ([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["attributes"].items()]
-                                             ,key=lambda x:x[1].upper())
-                        , domains=sorted([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["domains"].items()
+                                             ,key=lambda x:x[1].upper()),
+                        domains=sorted([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["domains"].items()
                                                     if (value["interface-id"] is None and value["origin"] == "DOM")]
                                               , key=lambda x: x[1].upper() if x[1] is not None else '')
                        , documents=sorted([[key, "{} ({})".format(value["name"],str(value['referencecnt+']))] for key, value in pmodel.jsmodel["documents"].items()]

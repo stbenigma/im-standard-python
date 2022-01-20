@@ -1,0 +1,4004 @@
+{
+   "model": {
+      "name": "testmodel-1",
+      "type": "logical",
+      "language": "en",
+      "uc": "stb",
+      "dc": "2021-10-05 08:01:24 UTC",
+      "um": "sys",
+      "dm": "2022-01-06 19:01:50.800335"
+   },
+   "languages": {
+      "en": {
+         "name": "English",
+         "iso3": "eng",
+         "modellanguage": true,
+         "replacementlang": null
+      }
+   },
+   "entities": {
+      "ENTI107": {
+         "name": {
+            "en": "Child Entity 2-1"
+         },
+         "shortname": null,
+         "descr": {
+            "en": ""
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG8",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:44:37 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "BB21F608-081A-10C7-4CAA-C9BCA032C3F1",
+               "2022-01-06 19:01:50.338812"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [
+            "ENTI98"
+         ],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA127",
+            "RELA121"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI111": {
+         "name": {
+            "en": "Child Entity 2-2"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Mit Classifikation aber eigenem Farbformnat."
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG8",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:45:12 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "C17A94B7-A795-922C-9B2C-502C9C7916F4",
+               "2022-01-06 19:01:50.343826"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [
+            "ENTI98"
+         ],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA126"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI99": {
+         "name": {
+            "en": "Child Entity1"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Child entity,  Subtype \nDisplayed on all zoom levels (0-2)"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 1,
+         "uc": "stb",
+         "dc": "2021-10-05 08:37:45 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "AC139BBA-F3E5-1467-F135-0C25A40F5394",
+               "2022-01-06 19:01:50.327893"
+            ]
+         },
+         "supertypes+": [
+            "ENTI103"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [
+            "ATTR100"
+         ],
+         "relations+": [
+            "RELA130",
+            "RELA122"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI108": {
+         "name": {
+            "en": "Child Entity2"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Child entity,  Subtype \nDisplayed on zoom levels (0-2)"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 1,
+         "uc": "stb",
+         "dc": "2021-10-05 08:40:07 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "2A7B0AAE-1E72-6C59-FF3D-4983C08AC222",
+               "2022-01-06 19:01:50.340084"
+            ]
+         },
+         "supertypes+": [
+            "ENTI103"
+         ],
+         "roles+": [
+            "ENTI91",
+            "ENTI118",
+            "ENTI102"
+         ],
+         "subtypes+": [],
+         "attributes+": [
+            "ATTR109"
+         ],
+         "relations+": [
+            "RELA131",
+            "RELA119",
+            "RELA120",
+            "RELA123",
+            "RELA125"
+         ],
+         "keys+": [
+            "KEYS110"
+         ],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI117": {
+         "name": {
+            "en": "Child Entity3"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Child entity,  Subtype \nDisplayed on all zoom levels (0-2)"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG8",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 1,
+         "uc": "stb",
+         "dc": "2021-10-05 08:41:42 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "1741A293-9F5D-E514-FB1A-3BC9E42B0C8F",
+               "2022-01-06 19:01:50.351931"
+            ]
+         },
+         "supertypes+": [
+            "ENTI103"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA132",
+            "RELA121"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI103": {
+         "name": {
+            "en": "Master Entity"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Master entity with 3 children with attributes and classifications\nDisplayed on all zoom levels (0-4)\nsingle attribute Unique key"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": "FILE",
+            "reference": "f_icon_377_object_handshake"
+         },
+         "synonyms": {},
+         "examples": {
+            "en": [
+               "1. Beispiel Master entitty",
+               "2. Beispiel Master Entitit. dieses ist sehr lang dieses ist sehr lang dieses ist sehr lang dieses ist sehr lang dieses ist sehr lang dieses ist sehr lang dieses ist sehr lang dieses ist sehr lang"
+            ]
+         },
+         "sourceref": {
+            "ODM": [
+               "EE445642-FC73-9FC3-7ABD-8F5274F1E8EA",
+               "2022-01-06 19:01:50.333703"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [
+            "ENTI99",
+            "ENTI108",
+            "ENTI117"
+         ],
+         "attributes+": [
+            "ATTR106"
+         ],
+         "relations+": [
+            "RELA130",
+            "RELA131",
+            "RELA132"
+         ],
+         "keys+": [],
+         "inarcs+": [
+            "ARCS129"
+         ],
+         "referencedby": [
+            "DOCU68"
+         ],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI98": {
+         "name": {
+            "en": "Master Entity2"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Master Entity with 2 children (via relationship)"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG8",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:42:47 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": "FILE",
+            "reference": "40 Channel Landscape"
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "7B59FC33-0A1F-F195-8B51-5A95A6DC0BDB",
+               "2022-01-06 19:01:50.326233"
+            ]
+         },
+         "supertypes+": [
+            "ENTI107",
+            "ENTI111"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA127",
+            "RELA126",
+            "RELA122"
+         ],
+         "keys+": [],
+         "inarcs+": [
+            "ARCS128"
+         ],
+         "referencedby": [
+            "DOCU70"
+         ],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI91": {
+         "name": {
+            "en": "Multi UK Entity"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Role Entity"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:48:20 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": "FILE",
+            "reference": "f_icon_377_object_handshake"
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "1DB72D71-7BE0-FEF9-3571-E614A5109406",
+               "2022-01-06 19:01:50.311087"
+            ]
+         },
+         "supertypes+": [
+            "ENTI108"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [
+            "ATTR92",
+            "ATTR93",
+            "ATTR94"
+         ],
+         "relations+": [
+            "RELA119"
+         ],
+         "keys+": [
+            "KEYS95",
+            "KEYS96"
+         ],
+         "inarcs+": [],
+         "referencedby": [
+            "DOCU70",
+            "DOCU68"
+         ],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI112": {
+         "name": {
+            "en": "Recursive entity"
+         },
+         "shortname": null,
+         "descr": {
+            "en": ""
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:52:51 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "54D530C7-314B-5D0D-3B23-33F91027670B",
+               "2022-01-06 19:01:50.345123"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [
+            "ATTR113",
+            "ATTR114",
+            "ATTR116"
+         ],
+         "relations+": [
+            "RELA125",
+            "RELA124"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI97": {
+         "name": {
+            "en": "Single Entity"
+         },
+         "shortname": null,
+         "descr": {
+            "en": "Single entity with no attributes an no classification attached to it.\nDisplayed in the default color\nDisplayed on all zoom levels (0-4)"
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG9",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:25:18 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "EB1D7D7D-06EB-E40B-B0B6-A2DFF2E41B5D",
+               "2022-01-06 19:01:50.325011"
+            ]
+         },
+         "supertypes+": [],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI118": {
+         "name": {
+            "en": "role Entity"
+         },
+         "shortname": null,
+         "descr": {
+            "en": ""
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:50:23 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "633B9A76-27F4-9757-BDBB-9094311C97B0",
+               "2022-01-06 19:01:50.353283"
+            ]
+         },
+         "supertypes+": [
+            "ENTI108"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA123"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ENTI102": {
+         "name": {
+            "en": "role Entity 2"
+         },
+         "shortname": null,
+         "descr": {
+            "en": ""
+         },
+         "tooltip": {
+            "en": null
+         },
+         "category": "CATG7",
+         "exptuple#": null,
+         "prefix": null,
+         "subtypellevel+": 0,
+         "uc": "stb",
+         "dc": "2021-10-05 08:51:09 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "icon": {
+            "type": null,
+            "reference": null
+         },
+         "synonyms": {},
+         "examples": {},
+         "sourceref": {
+            "ODM": [
+               "21A306AE-DB1D-04D1-2592-3327DD2B3CD4",
+               "2022-01-06 19:01:50.332492"
+            ]
+         },
+         "supertypes+": [
+            "ENTI108"
+         ],
+         "roles+": [],
+         "subtypes+": [],
+         "attributes+": [],
+         "relations+": [
+            "RELA120"
+         ],
+         "keys+": [],
+         "inarcs+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "tablesmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      }
+   },
+   "domains": {
+      "DOMA78": {
+         "name": {
+            "en": "Boolean"
+         },
+         "descr": {
+            "en": "Logical Value"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "VARCHAR",
+         "type": "LOV",
+         "displdatatype+": {
+            "en": "List of values"
+         },
+         "datatypestr+": "VARCHAR (5)",
+         "datatypeid": "DATY62",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-05-17 14:58:19 UTC",
+         "dm": null,
+         "maxlng": 5,
+         "values": [
+            {
+               "value": "FALSE",
+               "sort": 1,
+               "displ": "false",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-05-17 14:58:19 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "TRUE",
+               "sort": 2,
+               "displ": "true",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-05-17 14:58:19 UTC",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "usedinattrs+": [
+            "ATTR93"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [
+            "DOMA83"
+         ],
+         "sourceref": {
+            "ODM": [
+               "7F06A64B-0C00-1355-F863-DBD9FDE5B848",
+               "2022-01-06 19:01:50.280127"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA115": {
+         "name": {
+            "en": "DER-NUM_2_0_1_99_"
+         },
+         "descr": {
+            "en": "generiertes Domain f\u00fcr Datentyp f\u00fcr Attribute Recursive entity.Normal Attribute, logical"
+         },
+         "origin": "DER",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "NUMERIC",
+         "type": "NUM",
+         "displdatatype+": {
+            "en": "Numeric"
+         },
+         "datatypestr+": "NUMERIC (2,0  >= 1  <= 99)",
+         "datatypeid": "DATY34",
+         "uc": "stb",
+         "um": null,
+         "dc": "2021-10-05 08:58:02 UTC",
+         "dm": null,
+         "minvalue": 1,
+         "maxvalue": 99,
+         "totaldigits": 2,
+         "fractdigits": 0,
+         "roundvalue": null,
+         "unit": null,
+         "unitid": null,
+         "usedinattrs+": [
+            "ATTR116"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "DOMAF71A25DF-1D3A-9E2B-9970-5CA27326816E",
+               "2022-01-06 19:01:50.349528"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA77": {
+         "name": {
+            "en": "Date"
+         },
+         "descr": {
+            "en": "Point in time to the day"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "Date",
+         "type": "DAT",
+         "displdatatype+": {
+            "en": "Point in time"
+         },
+         "datatypestr+": "Date (  Granularity = MINUTE)",
+         "datatypeid": "DATY14",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-05-17 14:57:41 UTC",
+         "dm": null,
+         "minvalue": null,
+         "maxvalue": null,
+         "granularity": "MINUTE",
+         "granularitytext+": {
+            "en": "Minute"
+         },
+         "format+": null,
+         "formatid": null,
+         "usedinattrs+": [
+            "ATTR92"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "631FC893-D28E-5FE4-89DB-473C78BB2B2A",
+               "2022-01-06 19:01:50.278973"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA79": {
+         "name": {
+            "en": "Description"
+         },
+         "descr": {
+            "en": "Text as description of some element"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "VARCHAR",
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "VARCHAR (2000)",
+         "datatypeid": "DATY62",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-05-17 14:50:40 UTC",
+         "dm": null,
+         "maxlng": 2000,
+         "syntaxrule": null,
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "C3DAFABD-5133-27CA-E0E5-B039A45135D6",
+               "2022-01-06 19:01:50.281787"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA76": {
+         "name": {
+            "en": "Name"
+         },
+         "descr": {
+            "en": "Sequence of characters to name  something"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "VARCHAR",
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "VARCHAR (60)",
+         "datatypeid": "DATY62",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-05-17 14:50:10 UTC",
+         "dm": null,
+         "maxlng": 60,
+         "syntaxrule": null,
+         "usedinattrs+": [
+            "ATTR106"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "57EF5654-BB1B-99CD-E31A-A47A05AD3EE6",
+               "2022-01-06 19:01:50.277875"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA72": {
+         "name": {
+            "en": "Number Granularity"
+         },
+         "descr": {
+            "en": "Rounding indication for a number: Formula for time granularity (TG) application: round( x / TG) * TG"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "NUMERIC",
+         "type": "NUM",
+         "displdatatype+": {
+            "en": "Numeric"
+         },
+         "datatypestr+": "NUMERIC (15,6  >= 0)",
+         "datatypeid": "DATY34",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-06-02 08:45:36 UTC",
+         "dm": null,
+         "minvalue": 0,
+         "maxvalue": null,
+         "totaldigits": 15,
+         "fractdigits": 6,
+         "roundvalue": null,
+         "unit": null,
+         "unitid": null,
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "16723A86-5E8B-B50D-F81D-ECBEEF3E8261",
+               "2022-01-06 19:01:50.270225"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA71": {
+         "name": {
+            "en": "Point in time [sec]"
+         },
+         "descr": {
+            "en": "Point in time in down to Seconds"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "Timestamp",
+         "type": "DAT",
+         "displdatatype+": {
+            "en": "Point in time"
+         },
+         "datatypestr+": "Timestamp (  Granularity = MINUTE)",
+         "datatypeid": "DATY57",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-05-17 16:19:03 UTC",
+         "dm": null,
+         "minvalue": null,
+         "maxvalue": null,
+         "granularity": "MINUTE",
+         "granularitytext+": {
+            "en": "Minute"
+         },
+         "format+": null,
+         "formatid": null,
+         "usedinattrs+": [
+            "ATTR100"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "0AD80E26-0F5C-D068-29EA-4740A04582AE",
+               "2022-01-06 19:01:50.269152"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA74": {
+         "name": {
+            "en": "Quantity"
+         },
+         "descr": {
+            "en": "Any integer number >=0"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "unknown",
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "unknown",
+         "datatypeid": "DATY1",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-05-22 08:01:15 UTC",
+         "dm": null,
+         "maxlng": null,
+         "syntaxrule": null,
+         "usedinattrs+": [
+            "ATTR109"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [
+            "DOMA87"
+         ],
+         "sourceref": {
+            "ODM": [
+               "4371DA6A-2A2E-094E-B223-F78464D5EDE8",
+               "2022-01-06 19:01:50.272562"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA82": {
+         "name": {
+            "en": "SDO_GEOMETRY"
+         },
+         "descr": {
+            "en": null
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "GRP",
+         "displdatatype+": {
+            "en": "Group Attribut"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "stb",
+         "um": null,
+         "dc": "2021-10-05 08:01:24 UTC",
+         "dm": null,
+         "elements": [],
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "47E390DE-0671-C4B1-8428-0F45CBEE18F8",
+               "2022-01-06 19:01:50.285036"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA83": {
+         "name": {
+            "en": "Struct Type 1"
+         },
+         "descr": {
+            "en": "Structured Type"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "GRP",
+         "displdatatype+": {
+            "en": "Group Attribut"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "stb",
+         "um": null,
+         "dc": "2021-10-05 08:55:51 UTC",
+         "dm": null,
+         "elements": [
+            {
+               "name": "SubAttr2",
+               "mandatory": false,
+               "domain": "DOMA78",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:56:10 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "name": "subAttr1",
+               "mandatory": false,
+               "domain": "DOMA80",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:56:01 UTC",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "usedinattrs+": [
+            "ATTR114"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [
+            "DOMA87"
+         ],
+         "sourceref": {
+            "ODM": [
+               "2D3E418B-0666-65C2-FB25-5B9C19B43786",
+               "2022-01-06 19:01:50.286094"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA87": {
+         "name": {
+            "en": "StructType_2"
+         },
+         "descr": {
+            "en": null
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "GRP",
+         "displdatatype+": {
+            "en": "Group Attribut"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "stb",
+         "um": null,
+         "dc": "2021-10-05 08:56:36 UTC",
+         "dm": null,
+         "elements": [
+            {
+               "name": "Attribute_2",
+               "mandatory": false,
+               "domain": "DOMA74",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:57:03 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "name": "Attribute_3",
+               "mandatory": false,
+               "domain": "DOMA75",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:57:09 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "name": "subattr1",
+               "mandatory": false,
+               "domain": "DOMA83",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:56:49 UTC",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "usedinattrs+": [
+            "ATTR113"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "C7BC8A51-9983-7650-B81E-AF676BFF4AE7",
+               "2022-01-06 19:01:50.290770"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA81": {
+         "name": {
+            "en": "Surrogate key"
+         },
+         "descr": {
+            "en": "Systemgenerated, business-semantic-less Key"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "NUMERIC",
+         "type": "NUM",
+         "displdatatype+": {
+            "en": "Numeric"
+         },
+         "datatypestr+": "NUMERIC (15,0)",
+         "datatypeid": "DATY34",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-06-02 10:05:23 UTC",
+         "dm": null,
+         "minvalue": null,
+         "maxvalue": null,
+         "totaldigits": 15,
+         "fractdigits": 0,
+         "roundvalue": null,
+         "unit": null,
+         "unitid": null,
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA",
+               "2022-01-06 19:01:50.283872"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA75": {
+         "name": {
+            "en": "Time Granularity"
+         },
+         "descr": {
+            "en": "Granularity (rounding level) for time points"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "VARCHAR",
+         "type": "LOV",
+         "displdatatype+": {
+            "en": "List of values"
+         },
+         "datatypestr+": "VARCHAR (10)",
+         "datatypeid": "DATY62",
+         "uc": "stb",
+         "um": null,
+         "dc": "2018-06-02 08:40:42 UTC",
+         "dm": null,
+         "maxlng": 10,
+         "values": [
+            {
+               "value": "DAY",
+               "sort": 1,
+               "displ": "Day",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "HALFHOUR",
+               "sort": 2,
+               "displ": "Half Hour",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "HOUR",
+               "sort": 3,
+               "displ": "Hour",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "MILISEC",
+               "sort": 4,
+               "displ": "Milisecond",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "MINUTE",
+               "sort": 5,
+               "displ": "Minute",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "MONTH",
+               "sort": 6,
+               "displ": "Month",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "QUARTER",
+               "sort": 7,
+               "displ": "Quarter (3 month)",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "SECOND",
+               "sort": 8,
+               "displ": "Second",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "SEMESTER",
+               "sort": 9,
+               "displ": "Semester",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "WEEK",
+               "sort": 10,
+               "displ": "Week",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "value": "YEAR",
+               "sort": 11,
+               "displ": "Year",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2018-06-02 08:40:42 UTC",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "usedinattrs+": [
+            "ATTR94"
+         ],
+         "usedincols+": [],
+         "usedingrps+": [
+            "DOMA87"
+         ],
+         "sourceref": {
+            "ODM": [
+               "5595B09A-F334-06B9-E641-60634C73D28B",
+               "2022-01-06 19:01:50.273616"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA80": {
+         "name": {
+            "en": "Unknown"
+         },
+         "descr": {
+            "en": null
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "unknown",
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "unknown",
+         "datatypeid": "DATY1",
+         "uc": "fyayc",
+         "um": null,
+         "dc": "2018-04-24 10:58:28 UTC",
+         "dm": null,
+         "maxlng": null,
+         "syntaxrule": null,
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [
+            "DOMA83"
+         ],
+         "sourceref": {
+            "ODM": [
+               "DOM3000004",
+               "2022-01-06 19:01:50.282838"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA86": {
+         "name": {
+            "en": "XMLTYPE"
+         },
+         "descr": {
+            "en": null
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": null,
+         "type": "GRP",
+         "displdatatype+": {
+            "en": "Group Attribut"
+         },
+         "datatypestr+": "",
+         "datatypeid": null,
+         "uc": "stb",
+         "um": null,
+         "dc": "2021-10-05 08:01:24 UTC",
+         "dm": null,
+         "elements": [],
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1",
+               "2022-01-06 19:01:50.289705"
+            ]
+         },
+         "referencedby": []
+      },
+      "DOMA73": {
+         "name": {
+            "en": "email Address"
+         },
+         "descr": {
+            "en": "Email address with regexp check"
+         },
+         "origin": "DOM",
+         "interface-id": null,
+         "interface+": null,
+         "basedatatype+": "String",
+         "type": "TXT",
+         "displdatatype+": {
+            "en": "Text"
+         },
+         "datatypestr+": "String (500)",
+         "datatypeid": "DATY67",
+         "uc": "stb",
+         "um": null,
+         "dc": "2021-01-26 11:47:26 UTC",
+         "dm": null,
+         "maxlng": 500,
+         "syntaxrule": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
+         "usedinattrs+": [],
+         "usedincols+": [],
+         "usedingrps+": [],
+         "sourceref": {
+            "ODM": [
+               "392458B0-D8CC-29BB-06F9-5456F4669028",
+               "2022-01-06 19:01:50.271494"
+            ]
+         },
+         "referencedby": []
+      }
+   },
+   "attributes": {
+      "ATTR92": {
+         "techname": "ATTRIBUTE1",
+         "name": {
+            "en": "Attribute1"
+         },
+         "seq": 1,
+         "entity": "ENTI91",
+         "domain": "DOMA77",
+         "basedatatype+": "Date",
+         "type+": "DAT",
+         "descriptive": false,
+         "mandatory": true,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:48:36 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "516D6D31-9499-0623-86CD-09B535D4EB3C",
+               "2022-01-06 19:01:50.314059"
+            ]
+         },
+         "keys+": [
+            "KEYS95",
+            "KEYS96"
+         ],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR93": {
+         "techname": "ATTRIBUTE2",
+         "name": {
+            "en": "Attribute2"
+         },
+         "seq": 2,
+         "entity": "ENTI91",
+         "domain": "DOMA78",
+         "basedatatype+": "VARCHAR",
+         "type+": "LOV",
+         "descriptive": false,
+         "mandatory": true,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:48:47 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "4213B1CA-CC28-8A26-8D75-5B5107D6B6A2",
+               "2022-01-06 19:01:50.315568"
+            ]
+         },
+         "keys+": [
+            "KEYS95"
+         ],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR94": {
+         "techname": "ATTRIBUTE4",
+         "name": {
+            "en": "Attribute4"
+         },
+         "seq": 3,
+         "entity": "ENTI91",
+         "domain": "DOMA75",
+         "basedatatype+": "VARCHAR",
+         "type+": "LOV",
+         "descriptive": false,
+         "mandatory": true,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:48:55 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "22D91AAD-5149-C235-3759-87748D3E036A",
+               "2022-01-06 19:01:50.317032"
+            ]
+         },
+         "keys+": [
+            "KEYS96"
+         ],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR100": {
+         "techname": "FIRST_APPEARANCE",
+         "name": {
+            "en": "First Appearance"
+         },
+         "seq": 1,
+         "entity": "ENTI99",
+         "domain": "DOMA71",
+         "basedatatype+": "Timestamp",
+         "type+": "DAT",
+         "descriptive": false,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {
+            "en": [
+               "1. Beispiel Attribute first appearance"
+            ]
+         },
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": "First time Child was seen"
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:38:38 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "002B1F8B-69CC-4418-F5E8-AA5292EDDDED",
+               "2022-01-06 19:01:50.329557"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR106": {
+         "techname": "NAME",
+         "name": {
+            "en": "Name"
+         },
+         "seq": 1,
+         "entity": "ENTI103",
+         "domain": "DOMA76",
+         "basedatatype+": "VARCHAR",
+         "type+": "TXT",
+         "descriptive": false,
+         "mandatory": true,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": "Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2"
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:36:08 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "1EDFCF52-99BE-C55B-22E3-D41F32D7AFC0",
+               "2022-01-06 19:01:50.337458"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR109": {
+         "techname": "COUNT",
+         "name": {
+            "en": "Count"
+         },
+         "seq": 1,
+         "entity": "ENTI108",
+         "domain": "DOMA74",
+         "basedatatype+": "unknown",
+         "type+": "TXT",
+         "descriptive": false,
+         "mandatory": true,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": "How many..., non descriptive attribute\nleeres Beispiel"
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:40:07 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "53ED3002-BD9C-4CBD-D8E5-3C363A99B1AA",
+               "2022-01-06 19:01:50.341525"
+            ]
+         },
+         "keys+": [
+            "KEYS110"
+         ],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR113": {
+         "techname": "STRUCT_ATTRIBUTE2",
+         "name": {
+            "en": "Struct-Attribute2"
+         },
+         "seq": 1,
+         "entity": "ENTI112",
+         "domain": "DOMA87",
+         "basedatatype+": null,
+         "type+": "GRP",
+         "memberattrs+": [
+            {
+               "name": "Attribute_2",
+               "mandatory": false,
+               "domain": "DOMA74",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:57:03 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "name": "Attribute_3",
+               "mandatory": false,
+               "domain": "DOMA75",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:57:09 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "name": "subattr1",
+               "mandatory": false,
+               "domain": "DOMA83",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:56:49 UTC",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "descriptive": false,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:57:35 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "B83F9D2F-1A61-D608-B4BF-5CB2739A0B82",
+               "2022-01-06 19:01:50.346467"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR114": {
+         "techname": "STRUCT_ATTR_1",
+         "name": {
+            "en": "Struct Attr 1"
+         },
+         "seq": 2,
+         "entity": "ENTI112",
+         "domain": "DOMA83",
+         "basedatatype+": null,
+         "type+": "GRP",
+         "memberattrs+": [
+            {
+               "name": "SubAttr2",
+               "mandatory": false,
+               "domain": "DOMA78",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:56:10 UTC",
+               "um": null,
+               "dm": null
+            },
+            {
+               "name": "subAttr1",
+               "mandatory": false,
+               "domain": "DOMA80",
+               "descr": null,
+               "uc": "stb",
+               "dc": "2021-10-05 08:56:01 UTC",
+               "um": null,
+               "dm": null
+            }
+         ],
+         "descriptive": false,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:57:49 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "37E26AF2-886E-1A3E-6279-754BC44990EB",
+               "2022-01-06 19:01:50.347928"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      },
+      "ATTR116": {
+         "techname": "NORMAL_ATTRIBUTE__LOGICAL",
+         "name": {
+            "en": "Normal Attribute, logical"
+         },
+         "seq": 3,
+         "entity": "ENTI112",
+         "domain": "DOMA115",
+         "basedatatype+": "NUMERIC",
+         "type+": "NUM",
+         "descriptive": false,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": null
+         },
+         "descr": {
+            "en": ""
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:58:02 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "sourceref": {
+            "ODM": [
+               "F71A25DF-1D3A-9E2B-9970-5CA27326816E",
+               "2022-01-06 19:01:50.350522"
+            ]
+         },
+         "keys+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG133"
+         ]
+      }
+   },
+   "relations": {
+      "RELA130": {
+         "name": "Master Entity_subtype_Child Entity1",
+         "type": "ISAS",
+         "from-to": {
+            "enti": "ENTI99",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI103",
+            "arc": "ARCS129",
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {},
+         "uc": "stb",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA131": {
+         "name": "Master Entity_subtype_Child Entity2",
+         "type": "ISAS",
+         "from-to": {
+            "enti": "ENTI108",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI103",
+            "arc": "ARCS129",
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {},
+         "uc": "stb",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA132": {
+         "name": "Master Entity_subtype_Child Entity3",
+         "type": "ISAS",
+         "from-to": {
+            "enti": "ENTI117",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI103",
+            "arc": "ARCS129",
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {},
+         "uc": "stb",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA127": {
+         "name": "Relation_1",
+         "type": "ISAR",
+         "from-to": {
+            "enti": "ENTI107",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "to-from": {
+            "enti": "ENTI98",
+            "arc": "ARCS128",
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "AC4AB93D-B789-E1E3-8888-0F26F25D0CCC",
+               "2022-01-06 19:01:50.371721"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:45:04 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA126": {
+         "name": "Relation_2",
+         "type": "ISAR",
+         "from-to": {
+            "enti": "ENTI111",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "to-from": {
+            "enti": "ENTI98",
+            "arc": "ARCS128",
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "0B734027-31D6-30D3-C8C6-0DCD0AE533E9",
+               "2022-01-06 19:01:50.370351"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:45:26 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA121": {
+         "name": "Relation_3",
+         "type": "M:N",
+         "from-to": {
+            "enti": "ENTI107",
+            "arc": null,
+            "assoc": {
+               "en": "belongs to"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..N"
+         },
+         "to-from": {
+            "enti": "ENTI117",
+            "arc": null,
+            "assoc": {
+               "en": "knows about"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1..N"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "CF487C0E-449B-5BB8-8B39-208F6AF5B8DE",
+               "2022-01-06 19:01:50.364556"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:46:45 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA122": {
+         "name": "Relation_4",
+         "type": "M:1",
+         "from-to": {
+            "enti": "ENTI98",
+            "arc": null,
+            "assoc": {
+               "en": "goes with"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..N"
+         },
+         "to-from": {
+            "enti": "ENTI99",
+            "arc": null,
+            "assoc": {
+               "en": "follows"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "7A0A38F5-97D4-7200-DDDF-C89D4E4C513B",
+               "2022-01-06 19:01:50.365648"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:47:17 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA119": {
+         "name": "Relation_5",
+         "type": "ISAR",
+         "from-to": {
+            "enti": "ENTI91",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI108",
+            "arc": null,
+            "assoc": {
+               "en": null
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "BC5ADB54-2BB1-77F8-5BA3-F356BBE0C84C",
+               "2022-01-06 19:01:50.358308"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:50:11 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA120": {
+         "name": "Relation_777",
+         "type": "ISAR",
+         "from-to": {
+            "enti": "ENTI108",
+            "arc": null,
+            "assoc": {
+               "en": "is"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "to-from": {
+            "enti": "ENTI102",
+            "arc": null,
+            "assoc": {
+               "en": "duplicate name"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "B55C27E1-B8EC-E30D-85FD-455DB94B1302",
+               "2022-01-06 19:01:50.363401"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:51:30 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA123": {
+         "name": "Relation_777v1",
+         "type": "ISAR",
+         "from-to": {
+            "enti": "ENTI108",
+            "arc": null,
+            "assoc": {
+               "en": "is"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "to-from": {
+            "enti": "ENTI118",
+            "arc": null,
+            "assoc": {
+               "en": "duplicate name"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "508E5A69-FDFC-1A2D-5CEB-83E3133AEF20",
+               "2022-01-06 19:01:50.366895"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:51:24 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA125": {
+         "name": "Relation_8",
+         "type": "M:1",
+         "from-to": {
+            "enti": "ENTI108",
+            "arc": null,
+            "assoc": {
+               "en": "eats"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI112",
+            "arc": null,
+            "assoc": {
+               "en": "eaten by"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..N"
+         },
+         "isinkeys+": [
+            "KEYS110"
+         ],
+         "sourceref": {
+            "ODM": [
+               "A49895D8-915D-0BEA-A740-F9A20ABE4AB9",
+               "2022-01-06 19:01:50.369108"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:53:33 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA124": {
+         "name": "Relation_9",
+         "type": "M:1",
+         "from-to": {
+            "enti": "ENTI112",
+            "arc": null,
+            "assoc": {
+               "en": "is of"
+            },
+            "maptype": "M",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..N"
+         },
+         "to-from": {
+            "enti": "ENTI112",
+            "arc": null,
+            "assoc": {
+               "en": "builds"
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": false,
+            "cardstr+": "0..1"
+         },
+         "isinkeys+": [],
+         "sourceref": {
+            "ODM": [
+               "F3167504-5F55-0C08-422F-1820A94EE1BF",
+               "2022-01-06 19:01:50.367984"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:54:28 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "devstatus": "DEV",
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      }
+   },
+   "arcs": {
+      "ARCS128": {
+         "name": "Arc_1",
+         "entity": "ENTI98",
+         "relations": [
+            "RELA127",
+            "RELA126"
+         ],
+         "sourceref": {
+            "ODM": [
+               "C7B785A5-4840-219A-0E89-D39189F423C5",
+               "2022-01-06 19:01:50.373177"
+            ]
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:46:15 UTC",
+         "um": null,
+         "dm": null
+      },
+      "ARCS129": {
+         "name": "Master Entity_subtype",
+         "entity": "ENTI103",
+         "relations": [
+            "RELA130",
+            "RELA131",
+            "RELA132"
+         ],
+         "sourceref": {},
+         "uc": "stb",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "um": null,
+         "dm": null
+      }
+   },
+   "keys": {
+      "KEYS95": {
+         "name": "UK1",
+         "entity": "ENTI91",
+         "uc": "stb",
+         "dc": "2021-10-05 08:49:21 UTC",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "0560F38C-0701-E6B7-B114-0DC5B1C511DA",
+               "2022-01-06 19:01:50.318287"
+            ]
+         },
+         "key-elements": {
+            "attributes": [
+               "ATTR92",
+               "ATTR93"
+            ],
+            "relations": []
+         }
+      },
+      "KEYS96": {
+         "name": "UniqueKey2",
+         "entity": "ENTI91",
+         "uc": "stb",
+         "dc": "2021-10-05 08:49:40 UTC",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "86148B5D-1DD2-B15C-3573-E4B4A4C0CDAA",
+               "2022-01-06 19:01:50.319189"
+            ]
+         },
+         "key-elements": {
+            "attributes": [
+               "ATTR94",
+               "ATTR92"
+            ],
+            "relations": []
+         }
+      },
+      "KEYS110": {
+         "name": "Key_1",
+         "entity": "ENTI108",
+         "uc": "stb",
+         "dc": "2021-10-05 08:54:10 UTC",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "D5598753-6F28-E1D7-00D1-467254B634E5",
+               "2022-01-06 19:01:50.342819"
+            ]
+         },
+         "key-elements": {
+            "attributes": [
+               "ATTR109"
+            ],
+            "relations": [
+               "RELA125"
+            ]
+         }
+      }
+   },
+   "documents": {
+      "DOCU68": {
+         "name": "f_icon_377_object_handshake",
+         "reference": "f_icon_377_object_handshake",
+         "content": null,
+         "format+": "png",
+         "formatid": "STFO1",
+         "parent": "DOCU69",
+         "sourceref": {
+            "ODM": [
+               "311DC210-16D2-5982-489E-052929AB265A",
+               "2022-01-06 19:01:50.260490"
+            ]
+         },
+         "referencecnt+": "2",
+         "references+": [
+            "ENTI91",
+            "ENTI103"
+         ]
+      },
+      "DOCU69": {
+         "name": "ENTITY-ICONS",
+         "reference": null,
+         "content": null,
+         "format+": null,
+         "formatid": null,
+         "parent": null,
+         "sourceref": {
+            "ODM": [
+               "749AE8BE-3965-B4A7-D960-0C3097ED3469",
+               "2022-01-06 19:01:50.261451"
+            ]
+         },
+         "referencecnt+": "0",
+         "references+": []
+      },
+      "DOCU70": {
+         "name": "Bild1",
+         "reference": "40 Channel Landscape",
+         "content": null,
+         "format+": "PNG",
+         "formatid": "STFO2",
+         "parent": "DOCU69",
+         "sourceref": {
+            "ODM": [
+               "E035088F-56BA-B7E7-ADB4-B684B0194348",
+               "2022-01-06 19:01:50.262898"
+            ]
+         },
+         "referencecnt+": "2",
+         "references+": [
+            "ENTI91",
+            "ENTI98"
+         ]
+      }
+   },
+   "orgunits": {},
+   "categories": {
+      "CATG1": {
+         "name": "Fact",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.300239",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "fffe2c",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG2": {
+         "name": "Dimension",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.301008",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "fe4d0f",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG3": {
+         "name": "Logging",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.301573",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "fe4e4e",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG4": {
+         "name": "Summary",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.302125",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "fcff4c",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG5": {
+         "name": "Temporary",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.302665",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "ffffff",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG6": {
+         "name": "External",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.303201",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "ff4fff",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG7": {
+         "name": "Classification1",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.303760",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "f00ccc",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "ffffff",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG8": {
+         "name": "Classification2",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.304284",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "fff89e",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "f0000f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      },
+      "CATG9": {
+         "name": "Entity",
+         "uc": "sys",
+         "dc": "2022-01-06 19:01:50.304848",
+         "um": null,
+         "dm": null,
+         "ui": {
+            "width": null,
+            "height": null,
+            "opacity": 100,
+            "color": "f0000f",
+            "marginwidth": 1,
+            "marginopacity": 100,
+            "margincolor": "fa4e1f",
+            "fontsize": 10,
+            "fontcolor": "f0000f"
+         }
+      }
+   },
+   "systems": {
+      "INTF134": {
+         "name": "Relational_1",
+         "interface-id+": "INTF134",
+         "descr": null,
+         "uc": "stb",
+         "dc": "2021-10-05 08:01:29 UTC",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "90A6DE35-7D20-FAE2-43F5-8338615FF552",
+               "2022-01-06 19:01:50.414315"
+            ]
+         },
+         "referencedby": [],
+         "tables+": [],
+         "domains+": []
+      }
+   },
+   "tables": {},
+   "columns": {},
+   "diagrams": {
+      "DIAG133": {
+         "name": "Main-View",
+         "legend": {
+            "x": 10,
+            "y": 10,
+            "model": "testmodel-1"
+         },
+         "type": "Entity",
+         "width": 1041,
+         "height": 701,
+         "uc": "stb",
+         "dc": "2021-10-05 08:02:04 UTC",
+         "um": "stb",
+         "dm": null,
+         "elements": {
+            "attribute": [
+               {
+                  "element": "ATTR92",
+                  "index": 0,
+                  "pos_x": 856,
+                  "pos_y": 280,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 125,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR100",
+                  "index": 0,
+                  "pos_x": 426,
+                  "pos_y": 300,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 105,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR106",
+                  "index": 0,
+                  "pos_x": 416,
+                  "pos_y": 250,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 285,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR109",
+                  "index": 0,
+                  "pos_x": 586,
+                  "pos_y": 300,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 105,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR113",
+                  "index": 0,
+                  "pos_x": 636,
+                  "pos_y": 560,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 122,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR93",
+                  "index": 0,
+                  "pos_x": 856,
+                  "pos_y": 293,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 125,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR114",
+                  "index": 0,
+                  "pos_x": 636,
+                  "pos_y": 573,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 122,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR94",
+                  "index": 0,
+                  "pos_x": 856,
+                  "pos_y": 306,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 125,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ATTR116",
+                  "index": 0,
+                  "pos_x": 636,
+                  "pos_y": 586,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 122,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               }
+            ],
+            "entity": [
+               {
+                  "element": "ENTI91",
+                  "index": 0,
+                  "pos_x": 830,
+                  "pos_y": 250,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 161,
+                     "height": 91,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI97",
+                  "index": 0,
+                  "pos_x": 140,
+                  "pos_y": 210,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 170,
+                     "height": 110,
+                     "opacity": 100,
+                     "color": "fa4e1f",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "f0000f",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI98",
+                  "index": 0,
+                  "pos_x": 150,
+                  "pos_y": 420,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 170,
+                     "height": 110,
+                     "opacity": 100,
+                     "color": "fff89e",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "f0000f",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI102",
+                  "index": 0,
+                  "pos_x": 830,
+                  "pos_y": 400,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 151,
+                     "height": 41,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI103",
+                  "index": 0,
+                  "pos_x": 390,
+                  "pos_y": 220,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 321,
+                     "height": 221,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI107",
+                  "index": 0,
+                  "pos_x": 270,
+                  "pos_y": 570,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 161,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "fff89e",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "f0000f",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI111",
+                  "index": 0,
+                  "pos_x": 270,
+                  "pos_y": 640,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 161,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "fffff9",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "f0000f",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI112",
+                  "index": 0,
+                  "pos_x": 610,
+                  "pos_y": 530,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 158,
+                     "height": 107,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI118",
+                  "index": 0,
+                  "pos_x": 840,
+                  "pos_y": 350,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 151,
+                     "height": 41,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI99",
+                  "index": 0,
+                  "pos_x": 400,
+                  "pos_y": 270,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 141,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI108",
+                  "index": 0,
+                  "pos_x": 560,
+                  "pos_y": 270,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 141,
+                     "height": 51,
+                     "opacity": 100,
+                     "color": "f00ccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               },
+               {
+                  "element": "ENTI117",
+                  "index": 0,
+                  "pos_x": 410,
+                  "pos_y": 360,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 141,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "fff89e",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "f0000f",
+                     "fontsize": 10,
+                     "fontcolor": "f0000f"
+                  }
+               }
+            ]
+         },
+         "relationships": {
+            "RELA126": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "W",
+               "startposition": 49,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": null,
+               "starttext_y": null,
+               "starttext_width": null,
+               "starttext_height": null,
+               "endedge": "S",
+               "endposition": 24,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": null,
+               "endtext_y": null,
+               "endtext_width": null,
+               "endtext_height": null,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 270,
+                     "y": 670,
+                     "linetype": "DASHED",
+                     "angle": 3.141592653589793,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 190,
+                     "y": 670,
+                     "linetype": "SOLID",
+                     "angle": -1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 190,
+                     "y": 530,
+                     "linetype": "SOLID",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA123": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "E",
+               "startposition": 59,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 711,
+               "starttext_y": 280,
+               "starttext_width": 30,
+               "starttext_height": 20,
+               "endedge": "W",
+               "endposition": 49,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 750,
+               "endtext_y": 373,
+               "endtext_width": 84,
+               "endtext_height": 30,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 701,
+                     "y": 300,
+                     "linetype": "DASHED",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 780,
+                     "y": 300,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 780,
+                     "y": 370,
+                     "linetype": "SOLID",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 840,
+                     "y": 370,
+                     "linetype": "SOLID",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA122": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "N",
+               "startposition": 41,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 220,
+               "starttext_y": 390,
+               "starttext_width": 62,
+               "starttext_height": 16,
+               "endedge": "W",
+               "endposition": 66,
+               "end_connector": "M",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 344,
+               "endtext_y": 290,
+               "endtext_width": 50,
+               "endtext_height": 20,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 220,
+                     "y": 420,
+                     "linetype": "DASHED",
+                     "angle": -1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 220,
+                     "y": 370,
+                     "linetype": "DASHED",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 350,
+                     "y": 370,
+                     "linetype": "SOLID",
+                     "angle": -1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 350,
+                     "y": 310,
+                     "linetype": "SOLID",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 400,
+                     "y": 310,
+                     "linetype": "SOLID",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA125": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "S",
+               "startposition": 67,
+               "start_connector": "M",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 655,
+               "starttext_y": 365,
+               "starttext_width": 36,
+               "starttext_height": 30,
+               "endedge": "N",
+               "endposition": 28,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 655,
+               "endtext_y": 510,
+               "endtext_width": 57,
+               "endtext_height": 14,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 655,
+                     "y": 321,
+                     "linetype": "SOLID",
+                     "angle": 1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 655,
+                     "y": 426,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 655,
+                     "y": 530,
+                     "linetype": "DASHED",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA127": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "W",
+               "startposition": 66,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": null,
+               "starttext_y": null,
+               "starttext_width": null,
+               "starttext_height": null,
+               "endedge": "S",
+               "endposition": 47,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": null,
+               "endtext_y": null,
+               "endtext_width": null,
+               "endtext_height": null,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 270,
+                     "y": 610,
+                     "linetype": "DASHED",
+                     "angle": 3.141592653589793,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 230,
+                     "y": 610,
+                     "linetype": "SOLID",
+                     "angle": -1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 230,
+                     "y": 530,
+                     "linetype": "SOLID",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA120": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "E",
+               "startposition": 59,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 711,
+               "starttext_y": 280,
+               "starttext_width": 23,
+               "starttext_height": 20,
+               "endedge": "W",
+               "endposition": 49,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 770,
+               "endtext_y": 423,
+               "endtext_width": 54,
+               "endtext_height": 30,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 701,
+                     "y": 300,
+                     "linetype": "DASHED",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 780,
+                     "y": 300,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 780,
+                     "y": 420,
+                     "linetype": "SOLID",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 830,
+                     "y": 420,
+                     "linetype": "SOLID",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA119": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "W",
+               "startposition": 55,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": null,
+               "starttext_y": null,
+               "starttext_width": null,
+               "starttext_height": null,
+               "endedge": "E",
+               "endposition": 59,
+               "end_connector": "1",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": null,
+               "endtext_y": null,
+               "endtext_width": null,
+               "endtext_height": null,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 830,
+                     "y": 300,
+                     "linetype": "SOLID",
+                     "angle": 3.141592653589793,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 780,
+                     "y": 300,
+                     "linetype": "DASHED",
+                     "angle": 3.141592653589793,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 701,
+                     "y": 300,
+                     "linetype": "DASHED",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA121": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "E",
+               "startposition": 33,
+               "start_connector": "M",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 441,
+               "starttext_y": 560,
+               "starttext_width": 66,
+               "starttext_height": 30,
+               "endedge": "S",
+               "endposition": 50,
+               "end_connector": "M",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 480,
+               "endtext_y": 457,
+               "endtext_width": 77,
+               "endtext_height": 30,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 431,
+                     "y": 590,
+                     "linetype": "DASHED",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 480,
+                     "y": 590,
+                     "linetype": "SOLID",
+                     "angle": -1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 480,
+                     "y": 421,
+                     "linetype": "SOLID",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            },
+            "RELA124": {
+               "linewidth": 1,
+               "linecolor": null,
+               "lineopacity": 100,
+               "startedge": "E",
+               "startposition": 60,
+               "start_connector": "1",
+               "starttext_angle": null,
+               "starttext_distance": null,
+               "starttext_x": 788,
+               "starttext_y": 588,
+               "starttext_width": 36,
+               "starttext_height": 21,
+               "endedge": "S",
+               "endposition": 55,
+               "end_connector": "M",
+               "endtext_angle": null,
+               "endtext_distance": null,
+               "endtext_x": 697,
+               "endtext_y": 651,
+               "endtext_width": 44,
+               "endtext_height": 30,
+               "fontcolor": "000000",
+               "fontsize": 10,
+               "uc": "stb",
+               "dc": "2021-10-05 08:02:04 UTC",
+               "um": null,
+               "dm": null,
+               "linesegments": [
+                  {
+                     "x": 768,
+                     "y": 594,
+                     "linetype": "DASHED",
+                     "angle": 0,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 788,
+                     "y": 594,
+                     "linetype": "DASHED",
+                     "angle": 1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 788,
+                     "y": 664,
+                     "linetype": "DASHED",
+                     "angle": 3.141592653589793,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 697,
+                     "y": 664,
+                     "linetype": "DASHED",
+                     "angle": -1.5707963267948966,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  },
+                  {
+                     "x": 697,
+                     "y": 637,
+                     "linetype": "DASHED",
+                     "angle": null,
+                     "uc": "stb",
+                     "dc": "2021-10-05 08:02:04 UTC",
+                     "um": null,
+                     "dm": null
+                  }
+               ]
+            }
+         },
+         "arcs": {
+            "ARCS128": {
+               "circles": [
+                  [
+                     230.0,
+                     550.0
+                  ],
+                  [
+                     190.0,
+                     550.0
+                  ]
+               ]
+            }
+         },
+         "referencedby": [],
+         "sourceref": {
+            "ODM": [
+               "B46607BF-CEAC-400D-8361-7773E9838FC0",
+               "2022-01-06 19:01:50.382550"
+            ]
+         }
+      }
+   },
+   "userdefprops": {},
+   "physicalunits": {},
+   "datatypes": {
+      "DATY1": {
+         "name": "unknown",
+         "basetype": "STRING",
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "LOGDT017",
+               "2022-01-06 19:01:50.199258"
+            ]
+         }
+      },
+      "DATY14": {
+         "name": "Date",
+         "basetype": "DATETIME",
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "LOGDT007",
+               "2022-01-06 19:01:50.210531"
+            ]
+         }
+      },
+      "DATY34": {
+         "name": "NUMERIC",
+         "basetype": "NUMERIC",
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "LOGDT019",
+               "2022-01-06 19:01:50.227966"
+            ]
+         }
+      },
+      "DATY57": {
+         "name": "Timestamp",
+         "basetype": "DATETIME",
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "LOGDT015",
+               "2022-01-06 19:01:50.249697"
+            ]
+         }
+      },
+      "DATY62": {
+         "name": "VARCHAR",
+         "basetype": "STRING",
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "LOGDT024",
+               "2022-01-06 19:01:50.254304"
+            ]
+         }
+      },
+      "DATY67": {
+         "name": "String",
+         "basetype": "STRING",
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "sourceref": {
+            "ODM": [
+               "A3A3C77D-0366-9768-FF89-1C25E56881C8",
+               "2022-01-06 19:01:50.258483"
+            ]
+         }
+      }
+   },
+   "storageformats": {
+      "STFO1": {
+         "name": "png",
+         "descr": null,
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "usedindocuments+": [
+            "DOCU68"
+         ],
+         "usedindomains+": []
+      },
+      "STFO2": {
+         "name": "PNG",
+         "descr": null,
+         "uc": "fillDB",
+         "dc": "2022-01-06",
+         "um": null,
+         "dm": null,
+         "usedindocuments+": [
+            "DOCU70"
+         ],
+         "usedindomains+": []
+      }
+   },
+   "_imprint_": {
+      "database": "/Users/bue/dev/fyyccim-tools-master/pythonWork/pythonSource/testenvironment/testmodels/testmodel-1/DB/testmodel-1.db",
+      "created": "2022-01-06 19:01:50.886001",
+      "Modelversion": "1.6",
+      "hashvalue": -6914173888768667983,
+      "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
+   }
+}

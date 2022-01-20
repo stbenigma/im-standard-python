@@ -164,8 +164,8 @@
 											{% if doma["origin"] == 'DER' %}
 											{{ webmodel.getlangstr(doma["name"]) }}
 											{% else %}
-											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid
-														, curintfid=webmodel.getelemintfid(elemid)
+											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]), destid=domaid,
+														curintfid=webmodel.getelemintfid(elemid)
 														 ,destintfid=webmodel.getelemintfid(domaid)) |safe }}
 											{% endif %}
 											{% endif %}

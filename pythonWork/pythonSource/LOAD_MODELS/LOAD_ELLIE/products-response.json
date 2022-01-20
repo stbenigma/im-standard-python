@@ -1,0 +1,981 @@
+{
+	"model": {
+		"modelId": 2989,
+		"name": "Produkte",
+		"description": "Alle Entitäten rund um Produkte und deren Angebote",
+		"createdAt": "2021-04-01T06:41:54.328Z",
+		"updatedAt": "2021-12-17T10:05:42.058Z",
+		"level": "conceptual",
+		"progressStatus": "work-in-progress",
+		"entities": [
+			{
+				"name": "Datenbestand",
+				"id": "f1476a4b-aeab-4f77-8b63-76761b57f37d",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Dienstleistungstyp",
+				"id": "929e8940-22cb-4594-b55a-ee784d27daae",
+				"metadata": {
+					"Examples": "Laboruntersuchung, Bodenproben nehmen, Beratung, Schulung, Reparatur, Inbetriebnahme, Installation",
+					"Synonyms": "Immaterielles Gut",
+					"Description": "Dienstleistungen werden verkauft und manchmal auch verschenkt.\nDienstleistungen werden in der Regel nicht weiterverkauft.\nBeratung kann bezogen und weiterverrechnet werden.",
+					"Source systems": "",
+					"Administrated by": "Astrid Manns, ..."
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Display",
+				"id": "fbcf0399-0599-4066-b218-9ca4ce9a2e44",
+				"metadata": {
+					"Examples": "Saatgutdisplay mit vielen unterschiedlichen Briefchen. Werden primär von Grosshändlern bestellt.",
+					"Synonyms": "",
+					"Description": "Kann ganz unterschiedliche Artikel enthalten.\nGrosshändler bestellt Display bei AGRAVIS.\nz.B: Pflanzensamen\nBeim Display schreibt die  die Rechnung auf dem Display. (mit Wertanteil der Einzelteilen)\nStückelung des Displays wird an die Kunden weitergegeben. .\n\nVerpackung ist nicht zwingend.\n\nZU KLÄREN Displays werden nur an Grosshändler, Märkte verkauft.\n     Können Displays mehrere Produkte enthalten? ",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Dynamisches Kit",
+				"id": "00e02a1d-773e-42e7-938b-26db16bac817",
+				"metadata": {
+					"Examples": "Reitausrüstung für Kinder (Jacke + Hose + Socke)",
+					"Synonyms": "",
+					"Description": "Kombination von ausgewählten Produkten.\nDie einzelnen Artikel(-varianten) je Produkt können gewählt werden. z.B. Grösse der Socken\n\nAlternativer Namesvorschlag : Produkt-Kit  ",
+					"Source systems": "",
+					"Administrated by": "Christoph Roer-Link"
+				},
+				"type": "contract",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Einkaufsbundle",
+				"id": "50803bcb-1689-45ef-be38-5c5cc0864728",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Ersatzteil",
+				"id": "daf22531-3d51-4ec1-a5bd-4e2083646a08",
+				"metadata": {
+					"Examples": "Benzinpumpe, Kupplung, Stromkabel, Kontrolllampe, Rad",
+					"Synonyms": "",
+					"Description": "Artikel, der normalerweise nur Sinn macht als Ersatz für den typgleichen oder ähnlichen Artikel, der in einem Gerät, einer Maschine eingebaut ist.\n(Abgrenzung zum Zubehör: Der Artikel zu dem ein Ersatzteil passt ist ohne dieses nur bedingt einsatzfähig)",
+					"Source systems": "",
+					"Administrated by": "Meinolf Ernst"
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Fertigungserzeugnis",
+				"id": "d1d70efb-2440-4cba-b1ff-69f07e241f9f",
+				"metadata": {
+					"Examples": "Mineralfutter",
+					"Synonyms": "",
+					"Description": "Etwas das  selber herstellt oder veredelt. Also eine Wertschöpfung bei  stattfindet. \n\n Unklar: Ist immer dasselbe Produkt?",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Gefahrstoff",
+				"id": "bfeda991-dc18-4d7d-a8fd-0e4753d8a3db",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Gerät",
+				"id": "2bd346c0-845a-4c2e-994c-2f24146c611f",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Immaterieller Artikel",
+				"id": "592e7653-7be9-4bb3-acbe-98822c2ef114",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "Virtueller Artikel, Intangible Article",
+					"Description": "Artikel der nicht als physisches Objekt existiert oder gehandelt wird.\n\nACHTUNG: Der eigentliche immaterielle Artikel (Lizenz = Nutzungsrecht, Vertrag = Vereinbarung zwischen 2 Partnern) ist nicht zu verwechseln mit seiner physischen Repräsentanz (Lizenzschlüssel, Vertragsdokument, etc. )",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Juristische Person",
+				"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+					{
+						"name": "Name",
+						"order": 1,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T13:00:23.455293+00:00",
+						"id": "9778fe2d-a4fe-486a-8f14-4de4641bf7e7"
+					},
+					{
+						"name": "Register-Nr",
+						"order": 1,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T13:00:04.112516+00:00",
+						"id": "ac7d9a8e-9f6e-47ac-a9a5-7644c531cf6e"
+					},
+					{
+						"name": "Gesellschaftsform",
+						"order": 2,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-14T13:00:23.455293+00:00",
+						"id": "645ef6bc-64ed-4f12-b131-066f2b171627"
+					}
+				]
+			},
+			{
+				"name": "Kundenbereich",
+				"id": "59ac9905-87cc-4686-af21-bf293d3419c9",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "KEINE ENTITÄT: Platzhalter für die Farblegende",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Leasing",
+				"id": "d160b8ea-b0b2-4ffe-9282-340ddabb5748",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Lizenztyp",
+				"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+				"metadata": {
+					"Examples": "Softwarelizenz, Markenlizenz, ",
+					"Synonyms": "",
+					"Description": "Nutzungsrecht für irgend etwas (Marke, Zugang zu einem Service, Software, Datenbestand, Giftstoff, App-Funktionalität etc.).\nDas Nutzungsrecht wird von  an Lizenznehmer gewährt.\n\nProduktexklusivität: Die Exklusivrechte liegen bei AGRAVIS. Muss nicht zwingen ein Eigenmarken Artikel sein. Die Exklusivität kann auslaufen (Gültigkeitsperiode). Wird als Lizenz zum Verkauf eines Produktes bzw. einer Marke gelöst.\n\nZU KLÄREN: Lizenzen für Produkte: z.B. Verkauf von Mähdreschern, Verkauf / Einsatz von speziellen (Gift-)Stoffen?\n\n als Lizenznehmer wird mit einem anderen Lizenztyp gelöst",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+					{
+						"name": "Gültigkeitsperiode",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": ""
+						},
+						"created_at": "2021-04-09T07:36:02.171056+00:00",
+						"id": "fd5fa0f6-113c-4605-9f16-8fe8d63fc19c"
+					}
+				]
+			},
+			{
+				"name": "Lot",
+				"id": "2d0dff35-ccaf-4204-9342-be08c4451830",
+				"metadata": {
+					"Examples": "Im Bekleidungsbereich: Sportschuh RennFix (41x1, 42x1, 43x2, 44x2, 45x1)\n    T-Shirt Superfit (Grün-S x5, Grün-M x10, Grün-L x5, Grün XL -3, Rot-S x5 ...",
+					"Synonyms": "",
+					"Description": "Sammlung von Artikeln desselben Produkts in unterschiedlicher Stückelung. \nBeim Lot schreibt die  die Rechnung auf den Einzelteilen.\n\nZU KLÄREN: Werden Lot als Ganzes B2B oder auch B2C verkauft?\n",
+					"Source systems": "",
+					"Administrated by": "Silke Philipps"
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Marke",
+				"id": "bc322066-c039-4d5b-b0df-1c8774ddda18",
+				"metadata": {
+					"Examples": "Gartenkraft, Gärtnerglück, AGRiPET, BASF",
+					"Synonyms": "",
+					"Description": "Marken-/Fremdmarkenartikel wird festgestellt über den Besitzer der Marke.\nMarkenrechte liegen beim Unternehmen AGRAVIS.  Das heisst es selber produziert oder  lässt produzieren.\nMarkenrechte liegen nicht beim Unternehmen AGRAVIS.\n\nWird ein Artikel unter zwei Marken verkauft, so sind es zwei Artikel, (meist mit unterschiedlicher Verpackung). => Ein Artikel kann nur unter  einer Marke verkauft werden.\n\nZU KLÄREN: Ist eine Marke die einem Tochterunternehmen von  gehört eine Eigenmarke?\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Mehrfachartikel",
+				"id": "39f3f90e-bc11-4830-a575-09f30b4a64e5",
+				"metadata": {
+					"Examples": "Mineralstoff als 5kG Eimer, 50kg Palette, 1t Big Pack). \nEinzelschraube, 100er Pack Schrauben.\n1 Lt Mineralwasser, 6 1Lt-Flaschen Mineralwasser mit Folie zusammengeschweisst",
+					"Synonyms": "",
+					"Description": "Ein und derselbe (einzeln verkaufter) Artikel in grösseren Verpackungseinheiten, die eine eigene Artikel-nummer (mit Preis, Bestellbarkeit etc.) erhalten",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "contract",
+				"attributes": [
+					{
+						"name": "Menge",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "Numeric",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": "Anzahl der Artikel die gemsiname als 1 Artikel verkauft werden"
+						},
+						"created_at": "2021-04-08T06:27:49.572071+00:00",
+						"id": "a6778573-e102-469a-91f4-e3b017bc1e08"
+					}
+				]
+			},
+			{
+				"name": "Miete",
+				"id": "56e20108-7eff-4d6e-9048-106d8721d4f9",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Multiartikel",
+				"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Noch nicht zugeordnet",
+				"id": "aaaf45f2-f9ca-400a-ab99-5ba47257d881",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "KEINE ENTITÄT: Platzhalter für die Farblegende",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Physische Handelsware",
+				"id": "e5ea35a5-5835-45b1-82d5-be29271264bc",
+				"metadata": {
+					"Examples": "Heizöl, Diesel, Ersatzteile für Landmaschinen",
+					"Synonyms": "",
+					"Description": "Ein Artikel das  einkauft und verkauft, ohne es zwischenzeitlich zu wertschöpfend verändern. \nSiehe auch Fertigungserzeugnis. Handelswaren sind bewegliche Waren.\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Physischer Artikel",
+				"id": "54aa28a4-2b26-46ce-8684-797ef589ce31",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Preis",
+				"id": "63659039-6245-4070-a92d-37c8244fe662",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Produkt",
+				"id": "a5eb0761-16c2-4d2e-8263-950fabf364df",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "contract",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Produktbereich",
+				"id": "556ba42f-ae14-48ca-a4ae-47b3a3b5503c",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "KEIN ENTITÄT: Platzhalter für die Farblegende",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Saatgut",
+				"id": "6507cffb-37c8-4321-89d9-3dfd555c49d9",
+				"metadata": {
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Software",
+				"id": "9d554dc3-7d97-444f-b217-5c378e7cff72",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Sorte",
+				"id": "139b1526-2973-485a-98e8-78e7641430d6",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "Pflanzensorte",
+					"Description": "Eine Sorte einer Pflanze ist ein Begriff mit dem Varianten von Zier- oder Nutzpflanzenarten unterschieden werden. Die Sorte muss sich durch verschiedene Merkmale (Größe, Farbe, Menge und Musterung) von anderen Sorten der gleichen Art unterscheiden.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Statisches Kit",
+				"id": "3b3b371c-5219-4c1a-b1d7-b0f7e97a758a",
+				"metadata": {
+					"Examples": "Rolly-Toy Trecker + Hänger, Pflanzenschutz-Pack mit zwei Komponenten im Karton.\nRasenmäher mit Auffangkorb, Ladegerät und 2 Ersatzmesser",
+					"Synonyms": "Kit",
+					"Description": "Artikel die in exakt dieser Kombination verkauft werden. \n(Wird zu 99% unter einer Nummer so eingekauft.)\n\nDas Kit wird als Ganzes verkauft. Alle Artikeln müssen gekauft werden.\nEin Kit hat manchmal einen Basisartikel (siehe Beispiel Rasenmäher)\n\nEin Kit wurde für einen bestimmten Zweck (Funktionalität, ergänzende Eigenschaften, kulturelle Abhängigkeit (\"Wurst + Senf + Bier\" ) zusammengestellt\n\nZU KLÄREN : klare Abgrenzung zu Verkaufsbundle\n\nAlternativer Namesvorschlag : Artikel-Kit ",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "contract",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Verbrauchsmaterial",
+				"id": "1fb3d391-7946-48fb-a13d-5f43193e83f3",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Verkaufsartikel",
+				"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+				"metadata": {
+					"Examples": "",
+					"Synonyms": "",
+					"Description": "Die verkaufbare Ware",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "contract",
+				"attributes": [
+					{
+						"name": "einzeln verkaufbar (J/N))",
+						"order": 0,
+						"metadata": {
+							"Notes": "",
+							"Data type": "Boolean",
+							"Constraints": "",
+							"Source table": "",
+							"Source column": "",
+							"Source system": "",
+							"description": "Gibt an, ob der Artikel allein oder nur als Bestandteil eines Kits/Lots/Bundles verkauft werden darf"
+						},
+						"created_at": "2021-04-08T06:20:04.414216+00:00",
+						"id": "a2b3d710-d459-4134-8010-68c1b6ee3f3c"
+					}
+				]
+			},
+			{
+				"name": "Verkaufsbundle",
+				"id": "64a31455-59d8-4b20-b577-45c263a46e64",
+				"metadata": {
+					"Examples": "Tierfutter + Kessel",
+					"Synonyms": "",
+					"Description": "Kombination ausgewählter Artikel. Primär im B2C Geschäft. Erlaubt Verkaufsförderung: Rabattierung, .... \n\nHat meist keine(?) eigene Artikelnummer. Artikel des Bundles können auch weggelassen werden (Abwahl durch Kunde). \n\nManchmal werden Bundles vom Produktmanagement ins Sortiment übernommen.\n\nZU KLÄREN: sind Verkaufsbundle ohne Bezug zu einer Artikelnummer erwünscht oder eine aktuelle Sonderlösung\n     Abgrenzung zum Statischen Kit\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Verpackung",
+				"id": "fbf0bf70-63aa-4589-8669-5320d981ec32",
+				"metadata": {
+					"Examples": "Paletten, Gebinde",
+					"Synonyms": "Pfandgebinde, Transportverpackung",
+					"Description": "Verpackungen sind im Kontext 'verpflichtende Rücknahme' (Altölentsorgung) und Pfand relevant.",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Werbeartikel",
+				"id": "d504aba9-f4f4-4801-8907-5d4bb66279a0",
+				"metadata": {
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			},
+			{
+				"name": "Zubehör",
+				"id": "4f14885b-3bfb-43a0-b4a5-c280ebb5a643",
+				"metadata": {
+					"Examples": "Abdeckplatte\nStromkabel für andere Steckerart\nWerkzeug zum auswechseln von Rasenmähermesser",
+					"Synonyms": "",
+					"Description": "Artikel, der normalerweise nur Sinn macht als Ergänzung zu einem anderen Artikel. \n(Abgrenzung zum Ersatzteil: Der Artikel zu dem ein Zubehör passt kann auch ohne dieses genutzt werden.)\n",
+					"Source systems": "",
+					"Administrated by": ""
+				},
+				"type": "transaction-header",
+				"attributes": [
+
+				]
+			}
+		],
+		"relationships": [
+			{
+				"sourceEntity": {
+					"name": "Multiartikel",
+					"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "many"
+				},
+				"description": [
+					"ist in",
+					"enthält"
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Physischer Artikel",
+					"id": "54aa28a4-2b26-46ce-8684-797ef589ce31",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lizenztyp",
+					"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Marke",
+					"id": "bc322066-c039-4d5b-b0df-1c8774ddda18",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Mehrfachartikel",
+					"id": "39f3f90e-bc11-4830-a575-09f30b4a64e5",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Ersatzteil",
+					"id": "daf22531-3d51-4ec1-a5bd-4e2083646a08",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "many"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Immaterieller Artikel",
+					"id": "592e7653-7be9-4bb3-acbe-98822c2ef114",
+					"endType": "one-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Ersatzteil",
+					"id": "daf22531-3d51-4ec1-a5bd-4e2083646a08",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lizenztyp",
+					"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Produkt",
+					"id": "a5eb0761-16c2-4d2e-8263-950fabf364df",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Marke",
+					"id": "bc322066-c039-4d5b-b0df-1c8774ddda18",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Zubehör",
+					"id": "4f14885b-3bfb-43a0-b4a5-c280ebb5a643",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lizenztyp",
+					"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Software",
+					"id": "9d554dc3-7d97-444f-b217-5c378e7cff72",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lizenztyp",
+					"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Sorte",
+					"id": "139b1526-2973-485a-98e8-78e7641430d6",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Marke",
+					"id": "bc322066-c039-4d5b-b0df-1c8774ddda18",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Juristische Person",
+					"id": "32a013e5-5c13-425d-b5f4-30860aca63fb",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Zubehör",
+					"id": "4f14885b-3bfb-43a0-b4a5-c280ebb5a643",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "many"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Produkt",
+					"id": "a5eb0761-16c2-4d2e-8263-950fabf364df",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Dynamisches Kit",
+					"id": "00e02a1d-773e-42e7-938b-26db16bac817",
+					"endType": "one-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Produkt",
+					"id": "a5eb0761-16c2-4d2e-8263-950fabf364df",
+					"startType": "many"
+				},
+				"targetEntity": {
+					"name": "Dynamisches Kit",
+					"id": "00e02a1d-773e-42e7-938b-26db16bac817",
+					"endType": "many-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Produkt",
+					"id": "a5eb0761-16c2-4d2e-8263-950fabf364df",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lizenztyp",
+					"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Datenbestand",
+					"id": "f1476a4b-aeab-4f77-8b63-76761b57f37d",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Lot",
+					"id": "2d0dff35-ccaf-4204-9342-be08c4451830",
+					"startType": "many-optional"
+				},
+				"targetEntity": {
+					"name": "Produkt",
+					"id": "a5eb0761-16c2-4d2e-8263-950fabf364df",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Multiartikel",
+					"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+					"startType": "one-optional"
+				},
+				"targetEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"endType": "one"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Verkaufsartikel",
+					"id": "aa9ad038-dea4-4945-8cb7-79f88eb803c8",
+					"startType": "one"
+				},
+				"targetEntity": {
+					"name": "Mehrfachartikel",
+					"id": "39f3f90e-bc11-4830-a575-09f30b4a64e5",
+					"endType": "one-optional"
+				},
+				"description": [
+
+				]
+			},
+			{
+				"sourceEntity": {
+					"name": "Physischer Artikel",
+					"id": "54aa28a4-2b26-46ce-8684-797ef589ce31",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Physische Handelsware",
+					"id": "e5ea35a5-5835-45b1-82d5-be29271264bc",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Multiartikel",
+					"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Lot",
+					"id": "2d0dff35-ccaf-4204-9342-be08c4451830",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Multiartikel",
+					"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Display",
+					"id": "fbcf0399-0599-4066-b218-9ca4ce9a2e44",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Multiartikel",
+					"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Verkaufsbundle",
+					"id": "64a31455-59d8-4b20-b577-45c263a46e64",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Multiartikel",
+					"id": "1ecc3252-1a9c-4d02-8987-7c4f8bf415af",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Statisches Kit",
+					"id": "3b3b371c-5219-4c1a-b1d7-b0f7e97a758a",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Immaterieller Artikel",
+					"id": "592e7653-7be9-4bb3-acbe-98822c2ef114",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Dienstleistungstyp",
+					"id": "929e8940-22cb-4594-b55a-ee784d27daae",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Immaterieller Artikel",
+					"id": "592e7653-7be9-4bb3-acbe-98822c2ef114",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Lizenztyp",
+					"id": "e769400f-193a-4534-9b93-96d17cc8bb3b",
+					"endType": "subType"
+				},
+				"description": "[]"
+			},
+			{
+				"sourceEntity": {
+					"name": "Physischer Artikel",
+					"id": "54aa28a4-2b26-46ce-8684-797ef589ce31",
+					"startType": "superType"
+				},
+				"targetEntity": {
+					"name": "Fertigungserzeugnis",
+					"id": "d1d70efb-2440-4cba-b1ff-69f07e241f9f",
+					"endType": "subType"
+				},
+				"description": "[]"
+			}
+		]
+	}
+}

@@ -1,33 +1,34 @@
 # -*- coding: latin-1 -*-
-import sys
-import os
+import argparse
 import logging
+import os
+import sys
 
-from IM_db.IM_DB import  dbConnect
-from SSOT_infra import parameters, logmessages
-from IM_db.IM_OBJECTS import  *
-from IM_db.IM_JSON import  JSModel, sql2json
 from IM_WEB import jinjawebmodel
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
+from SSOT_db.IM_JSON import JSModel
+from SSOT_db.IM_OBJECTS import *
+from SSOT_infra import parameters, logmessages, argparseparent,settransldomain
 
 
 def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=None):
-    with export.createFile(pfilename=pfilename) as f:
+    settransldomain(plang=planguage)
+    with export.createFile(pfilename=pfilename):
         if pintfid is None:
-            diags = sorted([{"id": key
-                                , "name": value["name"]
-                                , "svg": printdiagHTML.getsvgtext(export=export, pdiagelem=value, pdiaganker=key,
-                                                                  plang=planguage)
-                                , "pdf": printdiagHTML.pdffilename(pname=value["name"], plang=planguage)
-                             } for key, value in pmodel.jsmodel["diagrams"].items()
-                            if (value["type"] == "Entity")]
-                           , key=lambda x: x["name"].upper())
+            diags = sorted([{"id": dkey,
+                             "name": dvalue["name"],
+                             "svg": printdiagHTML.getsvgtext(export=export, pdiagelem=dvalue, pdiaganker=dkey,
+                                                             plang=planguage),
+                             "pdf": printdiagHTML.pdffilename(pname=dvalue["name"], plang=planguage)
+                             } for dkey, dvalue in pmodel.jsmodel["diagrams"].items()
+                            if (dvalue["type"] == "Entity")],
+                           key=lambda x: x["name"].upper())
         else:
-            diags = [{"id": pintfid
-                         , "name": pmodel.getbyid(pintfid)["name"]
-                         , "svg": printRelHTML.interfacediagram(export=export, pintf=pmodel.getbyid(pintfid))
-                         , "pdf": printdiagHTML.pdffilename(pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
+            diags = [{"id": pintfid,
+                      "name": pmodel.getbyid(pintfid)["name"],
+                      "svg": printRelHTML.interfacediagram(export=export, pintf=pmodel.getbyid(pintfid)),
+                      "pdf": printdiagHTML.pdffilename(pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
                      ]
         # fi
         html = jinjawebmodel.rendermodel(export=export, pcurlang=planguage, pmodel=pmodel, pintfid=pintfid,
@@ -35,36 +36,24 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
                                          phtmlfilelist=export.htmlfilelist)
         export.fhtml.write(html)
         export.closefile()
+    return
 
 
-# printhtmlrenderfile
+def listwebmain(export: HTMLExport, pfilter=(None, 'TEST', 'REL')):
+    def langpart(plang):
+        return '_' + plang
 
-def listwebmain(export: HTMLExport, plang, pfilter=(None, 'TEST', 'REL')):
     export.createlib()
     export.copyimages()
     model = export.getmodel()
     model.setstatusfilter(pfilter)
-    defaultlang = model.jsmodel["model"]["language"]
+    parameters.dbDefaultLang(model.modellanguage())
     langs = model.jsmodel["languages"].keys()
-    if (plang is None or (plang.lower() == 'all')):
-        # all languages, with default from db
-        parameters.dbDefaultLang(defaultlang)
-    else:
-        # only one language chosen
-        if plang in langs:
-            # chosen language is default language (for references from system-files)
-            parameters.dbDefaultLang(plang.lower())
-        else:
-            raise Exception(
-                f"""******* '{plang}' is invalid language for model '{model.jsmodel["model"]["name"]}'. Valid languages are '{",".join(langs)}'""")
-    # fi
-
     # erstelle die Liste der HTML Files für HREF's
     schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
-    for key, value in schnlist.items():
-        export.htmlfilelist[key] = value['name'] + '.html'
+    for skey, svalue in schnlist.items():
+        export.htmlfilelist[skey] = svalue['name'] + '.html'
 
-    langpart = lambda l: '_' + l
     for lang in langs:
         lang = lang.lower()
         Languagetext.reportLang(lang)
@@ -91,48 +80,104 @@ def listwebmain(export: HTMLExport, plang, pfilter=(None, 'TEST', 'REL')):
                                                                                      langfilename)))
         printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model, pintfid=anker)
     # for
+    return
 
 
-# listwebmain
+def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, ):
+    assert (pparamfile is not None or (
+                pjsonfilepath is not None and pwebdirec is not None)), f"paramfile or source and dest must begiven"
 
-def main(pdirec, plang, pinputtype="JSON"):
-    parameters.initparam(p_callarg=pdirec)
-    logmessages.initlog('createHTML')
-    exporter = HTMLExport()
-    exporter.setWebDirec(p_webdirec=None)
-    modelname = parameters.modelName()
-    if pinputtype == "DB":
-        dbConnect.openDB(pfilepath=parameters.dbFilePath())
-        deflang = Language.liesdeflangiso2()
-        if deflang is not None: parameters.dbDefaultLang(deflang)
-        jsonmodel = JSModel(sql2json(pdbname=parameters.dbFilePath()))
-        jsonfilepath = '<none>'
-    elif pinputtype == "JSON":
-        jsonfilepath = parameters.dbDirect() + modelname + ".json"
-        jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
-        deflang = jsonmodel.modellanguage()
-        modelname = jsonmodel.jsmodel["model"]["name"]
+    if pparamfile is not None:
+        basedirec = os.path.abspath(os.path.dirname(pparamfile))
     else:
-        raise Exception(f"illegal call parameter {pinputtype}")
+        # modelname given, take current directory as basedirec
+        basedirec = os.getcwd()
     # fi
 
-    if deflang is not None: parameters.dbDefaultLang(deflang)
+    if pjsonfilepath is not None:
+        jsonmodel = JSModel.readfromfile(pfilename=pjsonfilepath)
+        modelname = jsonmodel.modelname()
+    else:
+        jsonmodel = None
+        modelname = pmodelname
 
-    exporter.setmodel(jsonmodel)
-    listwebmain(exporter, plang=plang)
+    parameters.initparam(pbasedirec=basedirec, pparamfile=pparamfile, pmodelname=modelname, plogfilepath=plogfilepath,
+                         pwebdirec=pwebdirec)
 
-    if pinputtype == "DB":
-        dbConnect.myDbConn.close()
-        logmessages.showmessages("web-files from database {} for model {} created"
-                                 .format(parameters.dbFilePath(), parameters.modelName()))
-    elif pinputtype == "JSON":
-        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {modelname} created")
+    logmessages.initlog('createHTML')
+    try:
+        exporter = HTMLExport()
+        exporter.setWebDirec(p_webdirec=None)
+        jsonfilepath = pjsonfilepath
+        if jsonfilepath is None:
+            jsonfilepath = os.path.join(parameters.dbDirect(), parameters.modelName() + ".json")
+            jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
+        elif parameters.modelName() != jsonmodel.modelname():
+            raise Exception(f"Modelnames parameter:{parameters.modelName()}" +
+                            f" and jsonfile:{jsonmodel.modelname()} do not match")
+        deflang = jsonmodel.modellanguage()
+
+        if deflang is not None:
+            parameters.dbDefaultLang(deflang)
+
+        exporter.setmodel(jsonmodel)
+        listwebmain(exporter)
+
+    finally:
+        logmessages.showmessages(f"web-files from jsonfile {pjsonfilepath} for model {parameters.modelName()} created")
 
 
-# main
+def main(psysargs):
+    parser = argparse.ArgumentParser(description='Generate html-pages for model')
+    parser.add_argument('--paramfile', '-p', dest='paramfile',
+                        help=f"Parameterfile for modelenvironent. Default: " +
+                             f"./<modelname>{parameters.PARAMFILEEXTENSION}")
+    parser.add_argument('--modelname', '-m', dest="modelname")
+    parser.add_argument('jsonfile', nargs='?',
+                        help=f"Path of the jsonfile to be converted. Default ./{parameters.SSOTDBDIREC}" +
+                             f"/<modelname>{parameters.JSONEXTENSION})")
+    parser.add_argument('--destination', '-d', dest="destination",
+                        help=f"Directory to write the generated files to . Default ./{parameters.WEBDEFAULTDIREC}")
+    parser.add_argument('--logfile', '-log', dest='logfile',
+                        help=f"Path for logfile. Default: ./<modelname>{parameters.LOGFILEEXTENSION}")
+    parser.add_argument('--version', '-v', action='store_true')
+    parser.add_argument('--unittest', action='store_true', dest='unittest',
+                        help=argparse.SUPPRESS)  # for testing purposes only
+
+    argparse.Namespace()
+
+    if (len(psysargs) > 0) and ('.py' in psysargs[0]) and ('ipykernel' not in psysargs[0]):
+        arguments: argparse.Namespace = parser.parse_args(psysargs[1:])
+        myargs = arguments.__dict__
+    else:
+        # in jupyter environment
+        """set myargs with arguments """
+        myargs = {}
+    # fi
+    if myargs['version']:
+        argparseparent.showversion()
+        exit(0)
+
+    currentdir = os.getcwd()
+    argparseparent.fillssotdefaults(pcurrentdir=currentdir, parguments=myargs)
+    if myargs['modelname'] is not None:
+        if myargs['jsonfile'] is None:
+            myargs['jsonfile'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
+                                              myargs['modelname'] + parameters.JSONEXTENSION)
+    # fi
+    if myargs['destination'] is None:
+        myargs['destination'] = os.path.join(currentdir, parameters.WEBDEFAULTDIREC)
+
+    if myargs['jsonfile'] is None and myargs['modelname'] is None and myargs['paramfile'] is None:
+        print(f"Either modelname or jsonfile must be given.")
+        exit(1)
+
+    # do only testing of parameterpassing while in unittest
+    if not myargs["unittest"]:
+        webmain(pparamfile=myargs['paramfile'], pjsonfilepath=myargs['jsonfile'], pwebdirec=myargs['destination'],
+                plogfilepath=myargs['logfile'], pmodelname=myargs['modelname'])
+    return
+
 
 if __name__ == '__main__':
-    direc = sys.argv[1]
-    lang = sys.argv[2] if (len(sys.argv) > 2) else None
-    type = sys.argv[3] if (len(sys.argv) > 3) else "JSON"
-    main(pdirec=direc, plang=lang, pinputtype=type)
+    main(sys.argv)

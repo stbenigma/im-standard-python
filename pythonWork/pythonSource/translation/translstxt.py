@@ -1,6 +1,7 @@
 # -*- coding: latin-1 -*-
 from IM_ODM import odmParam
-from IM_db.IM_DB import  dbConnect,dbDML
+from SSOT_db.SQL_INFRA import  dbConnect
+from SSOT_db.SQL_INFRA import dbDML
 from SSOT_infra import parameters
 from mydeepl import translate
 from datetime import date
@@ -40,7 +41,7 @@ def translateNewText():
                and sptx_spra_id = ?
                and sptx_attrname = ?
                """ . format('--',date.today().__str__())
-    dbDML.execmany(l_sql,rowslist)
+    dbDML.execmany(l_sql, rowslist)
     l_sql = """select count(*) from sprachtexte where sptx_text like '*'||'{}'||'*%'""".format(str.upper(
         parameters.dbDefaultlang()))
     result = dbDML.select(l_sql)

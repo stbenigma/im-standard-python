@@ -3,17 +3,9 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
-import json
-from IM_db.IM_DB import  dbConnect
+from SSOT_db.SQL_INFRA import  dbConnect
 from SSOT_infra import parameters, logmessages
-from IM_db.IM_JSON import  sql2json, jsonfilename, JSModel
-
-
-def getJSONfile(pfilename):
-    with open(pfilename, 'r') as handle:
-        model = json.load(handle)
-    return model
-
+from SSOT_db.IM_JSON import  sql2json, jsonfilename, JSModel
 
 def createJSON(pfilepath, pfilename):
     dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
@@ -64,7 +56,7 @@ def main(param1):
         print("empty JSON file {} created"
               .format(filepath + jsonfilename(filename)))
     else:
-        parameters.initparam(p_callarg=param1)
+        parameters.initparam(pparamfile=param1)
         logmessages.initlog('createJSON')
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
@@ -80,5 +72,4 @@ def main(param1):
 
 if __name__ == '__main__':
     import sys
-
     main(param1=None if len(sys.argv) == 1 else sys.argv[1])

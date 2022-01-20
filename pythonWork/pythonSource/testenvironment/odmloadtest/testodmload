@@ -1,5 +1,0 @@
-#!/bin/bash
-MYDIR=$(dirname "$0")
-echo "=== Test all odm-loads for testmodels"
-python $MYDIR/odmload_testmodels.py $MYDIR/testmodels testmodel-1
-read -p "press enter to close"

@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EDDDE544-6CF5-7F3D-AE17-C0E8A333E569" name="Staff">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:43:04 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="7E3FE279-F17F-0E6A-1FEE-F8A0901168A3">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:43:43 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="8650969B-AE03-E687-7629-A07D90008431">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:43:59 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EmployerREF" id="4531F2E6-9DE6-6A12-42C6-2D9863207067">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:44:27 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E0EFE295-A387-CE78-595C-C704C86D5CF8" name="Staff_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 05:43:43 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E3FE279-F17F-0E6A-1FEE-F8A0901168A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

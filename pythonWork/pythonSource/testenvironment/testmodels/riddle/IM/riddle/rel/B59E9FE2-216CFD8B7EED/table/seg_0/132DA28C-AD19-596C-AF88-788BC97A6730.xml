@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="132DA28C-AD19-596C-AF88-788BC97A6730" name="Pilot">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<comment><![CDATA[Person capable of flying an airplane.]]></comment>
+<generatorID>20CBF157-515C-9EC1-8A64-4727227E6D15</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<abbreviation>P</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="P_ID" id="6692C20A-7F76-E4AB-EBC5-0C43C234DEC5">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="LicenseNumber" directorySegmentName="seg_0" id="9499A2F7-C312-1C41-A00B-F3A925077439">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 09:45:47 UTC</createdTime>
+<generatorID>466DB5E6-F1A4-3836-ED29-45FBB951170F</generatorID>
+<ownerDesignName>riddle</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Employee_ID" id="D7E00108-CEFC-FCF2-8CF8-2140932CD841">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Private_ID" id="FB95A55A-2A50-EB6F-9D2B-37B3BBAFA15B">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Plane_ID" id="386E3D4C-B4E8-477B-5288-004A0A525A9F">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8EE93422-3A37-71B0-5B52-19E6157E9F42" name="P_PK">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="6692C20A-7F76-E4AB-EBC5-0C43C234DEC5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="081282D1-6C40-9D71-8DCE-E723E829FAE1" name="P__IDX">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>832404CD-A788-9403-58C9-245C0E9631ED</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="D7E00108-CEFC-FCF2-8CF8-2140932CD841"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="861254B9-97DA-5CC3-E001-9DF4285B9C55" name="P__IDXv1">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>283AE031-79DC-221B-E51D-2B3F8DAAD167</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="FB95A55A-2A50-EB6F-9D2B-37B3BBAFA15B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86E9412C-5C3C-A57A-4299-6854464ECA4C" name="P__IDXv2">
+<createdBy>bue</createdBy>
+<createdTime>2022-01-11 08:00:53 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>CE11A456-CC9A-7273-D56F-44CFF5B04A06</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="386E3D4C-B4E8-477B-5288-004A0A525A9F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

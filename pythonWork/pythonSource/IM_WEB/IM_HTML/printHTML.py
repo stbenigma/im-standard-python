@@ -1,13 +1,14 @@
+import html
 import os
 import re
-from pathlib import Path
 import shutil
 from distutils.dir_util import copy_tree
+from pathlib import Path
 
+from SSOT_db.IM_JSON import JSModel
+from SSOT_db.IM_OBJECTS import Modelelemtype, Domain
 from SSOT_infra import parameters, nvl2, nvl, transl
-import html
-from IM_db.IM_JSON import  JSModel
-from IM_db.IM_OBJECTS import Modelelemtype, Domain
+
 
 class HTMLExport:
 
@@ -29,7 +30,6 @@ class HTMLExport:
         self.barcounter = 0
         self.fhtml = None
 
-
     def getelement(self, js_element_id: str):
         return self.model.getbyid(js_element_id)
 
@@ -47,11 +47,12 @@ class HTMLExport:
                     img)
 
     def href(self, ref, anz, htmlfile='', pself=False):
-        if anz is None: return ''
+        if anz is None:
+            return ''
         sep = '#' if nvl(ref) != '' else ''
-        return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile, sep, ref
-                                                                , '_self' if ((htmlfile == '') or pself) else '_blank'
-                                                                , html.escape(anz))
+        return """<a href="{}{}{}" target="{}">{}</a>""".format(htmlfile, sep, ref,
+                                                                '_self' if ((htmlfile == '') or pself) else '_blank',
+                                                                html.escape(anz))
 
     def isIconstr(self, w):
         if (w is None) or (type(w) != str):
@@ -81,8 +82,8 @@ class HTMLExport:
 
         # search for filename with extensions in image directory
         for ext in ('png', 'jpg', 'jpeg', 'gif'):
-            fullfilename = "{}/{}.{}".format('image', filename, ext).lower()
-            if os.path.isfile(parameters.webDirec() + fullfilename):
+            fullfilename = "{}.{}".format(filename, ext).lower()
+            if os.path.isfile(os.path.join(parameters.webDirec(), 'image', fullfilename)):
                 return fullfilename
         return ''
 
@@ -92,7 +93,7 @@ class HTMLExport:
                 if (value['origin'] == Domain.DOMAIN
                     and value['interface-id'] == pintfid)}
 
-    def type2name(self, ptyp, plang = None):
+    def type2name(self, ptyp, plang=None):
         if ptyp == Modelelemtype.ENTI:
             return transl('Entität', plang)
         elif ptyp == Modelelemtype.ATTR:
@@ -118,12 +119,13 @@ class HTMLExport:
     def searchlogo(self, p_imagedirec):
         retval = ''
         for ext in ('png', 'jpg', 'svg'):
-            if os.path.isfile(p_imagedirec + 'logo.' + ext): retval = 'logo.' + ext
+            if os.path.isfile(os.path.join (p_imagedirec , 'logo.' + ext)):
+                retval = 'logo.' + ext
         return retval
 
     def setWebDirec(self, p_webdirec):
 
-        self.webDirectory = nvl(p_webdirec, parameters.webDirec())
+        self.webDirectory = Path(nvl(p_webdirec, parameters.webDirec()))
         self.webFileName = parameters.modelName()
         self.imagedirec = os.path.join(self.webDirectory, 'image')
         self.cssdirec = os.path.join(self.webDirectory, 'css')
@@ -135,7 +137,8 @@ class HTMLExport:
         lib_path_tokens = this_file.parts[:-2]
         self.libSourceDirec = os.path.join(*lib_path_tokens, 'html-lib')
         assert os.path.exists(self.libSourceDirec), f"Unable to find {self.libSourceDirec}"
-        if (parameters.logoFileName() is None): parameters.logoFileName(self.searchlogo(self.imagedirec));
+        if (parameters.logoFileName() is None):
+            parameters.logoFileName(self.searchlogo(self.imagedirec))
 
     def createlib(self):
         if not os.path.exists(self.cssdirec):
@@ -152,12 +155,12 @@ class HTMLExport:
 
     def copyimages(self):
         """copy all file from the modeler-image directory into the web-image directory"""
-        image_src = os.path.join(parameters.odmFilesDirec(), 'images')
+        image_src = parameters.odmFilesDirec() + 'images'
         if os.path.exists(image_src):
             copy_tree(image_src, self.imagedirec)
 
-    def createFile(self, pfilename):
-        webfile = self.webDirectory + pfilename
+    def createFile(self, pfilename: Path):
+        webfile = os.path.join(self.webDirectory, pfilename)
         if os.path.exists(webfile):
             os.remove(webfile)
         self.fhtml = open(webfile, 'w')

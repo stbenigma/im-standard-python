@@ -2,77 +2,101 @@ import glob
 import logging
 import os.path
 import unittest
-from pathlib import Path
 import json
-from lxml import etree
+
 import pytest
+from lxml import etree
 
 from IM_EA.export.xmiexport import XMIBuilder
-from IM_db.IM_JSON import JSModel
+from SSOT_db.IM_JSON import JSModel
+from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir
 
-DEFAULT_SSOT = 'testdata/fyyccim-refmodels/CRM/DB/IM_CRM_FYAYC.json'
+MODEL_REPOSITORY = 'testdata/fyyccim-refmodels'
 
 
 class EAExportTest(unittest.TestCase):
 
-    def setUp(self) -> None:
-        if not os.path.isfile(DEFAULT_SSOT):
-            current = Path(os.path.normpath(__file__))
-            dirs = list(current.parts)
-            print(dirs)
-            base = dirs.index('pythonWork')
-
-            path = list(dirs[0:base])
-            self.project_base_path = os.path.join(*path)
-
-            path.extend(os.path.split(DEFAULT_SSOT))
-            print(f"SSOT path = {'/'.join(path)}")
-            self.crm_ssot = os.path.join('/', *path)
-        else:
-            self.crm_ssot = DEFAULT_SSOT
-            self.project_base_path = os.getcwd()
-
     def test_blank(self):
         empty_model = EmptyModel()
-        exporter = XMIBuilder('en')
-        tree = exporter.model_to_basic_xmi(empty_model)
+        exporter = XMIBuilder(empty_model, 'en')
+        tree = exporter.model_to_basic_xmi()
         self.assertIsNotNone(tree)  # add assertion here
         print(f"Resulting XMI: {etree.tostring(tree)}")
 
+
+class IntegrationTestXMIExport(IntegrationTest):
+
+    def setUp(self) -> None:
+        super().setUp()
+
     @pytest.mark.integration
-    def test_crm(self):
-        json_model = self.load_model(self.crm_ssot)
-        model = JSModel(pmodel=json_model)
+    def test_crm_xmi(self):
+        json_model, model = self.load_crm_model()
         entities = json_model['entities']
 
-        exporter = XMIBuilder('en')
-        tree = exporter.model_to_basic_xmi(model)
+        exporter = XMIBuilder(model, 'en')
+        tree = exporter.model_to_basic_xmi()
 
-        destination = 'crm-2.1.xmi'
+        destination = self.base_path / 'crm-basic-2.1.xmi'
         et = etree.ElementTree(tree)
-        et.write(destination, pretty_print=True)
-        print(f"Wrote {os.path.abspath(destination)}")
+        et.write(str(destination), pretty_print=True)
+        print(f"Wrote {destination.resolve()}")
 
-        classes = tree.xpath('.//packagedElement[@xmi:type = "uml:Class"]', namespaces=tree.nsmap)
+        classes = tree.xpath('.//packagedElement[@xmi:type = "uml:Class"]',
+                             namespaces=tree.nsmap)
+        assert len(entities) == len(classes)
+
+    def test_riddle_xmi(self):
+        json_model, model = self.load_riddle_model()
+        entities = json_model['entities']
+
+        exporter = XMIBuilder(model, 'en')
+        tree = exporter.model_to_basic_xmi()
+        exporter.model_to_ea_extension()
+
+        destination = self.base_path / f'{RIDDLE}.xmi'
+        et = etree.ElementTree(tree)
+        et.write(str(destination), pretty_print=True)
+        print(f"Wrote {destination.resolve()}")
+
+        classes = tree.xpath('.//packagedElement[@xmi:type = "uml:Class"]',
+                             namespaces=tree.nsmap)
         assert len(entities) == len(classes)
 
     @pytest.mark.integration
     def test_crm_extended(self):
-        json_model = self.load_model(self.crm_ssot)
-        model = JSModel(pmodel=json_model)
+        json_model, model = self.load_crm_model()
         entities = json_model['entities']
 
-        exporter = XMIBuilder('en')
-        tree = exporter.model_to_basic_xmi(model)
-        exporter.model_to_ea_extension(model)
+        exporter = XMIBuilder(model, 'en')
+        tree = exporter.model_to_basic_xmi()
+        exporter.model_to_ea_extension()
 
-        destination = 'crm-2.1-ea.xmi'
+        destination = self.base_path / 'crm.xmi'
         et = etree.ElementTree(tree)
-        et.write(destination, pretty_print=True)
-        print(f"Wrote {os.path.abspath(destination)}")
+        et.write(str(destination), pretty_print=True)
+        print(f"Wrote {destination.resolve()}")
 
-        classes = tree.xpath('.//packagedElement[@xmi:type = "uml:Class"]', namespaces=tree.nsmap)
+        classes = tree.xpath('.//packagedElement[@xmi:type = "uml:Class"]',
+                             namespaces=tree.nsmap)
         assert len(entities) == len(classes)
+
+    def load_crm_model(self) -> (json, JSModel):
+        json_model = self.load_model(self.project_root / MODEL_REPOSITORY /
+                                     'CRM/DB/IM_CRM_FYAYC.json')
+        model = JSModel(pmodel=json_model)
+        return json_model, model
+
+    def load_riddle_model(self) -> (json, JSModel):
+        json_model = self.load_model(testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json'))
+        model = JSModel(pmodel=json_model)
+        return json_model, model
+
+    def load_raetsel3lang_model(self) -> (json, JSModel):
+        json_model = self.load_model(self.project_root / MODEL_REPOSITORY /
+                                     'raetsel3lang/DB/raetsel3lang.json')
+        model = JSModel(pmodel=json_model)
+        return json_model, model
 
     def find_ssot_in_folder(self, root_folder: str):
         pattern = os.path.abspath(root_folder) + '/testdata/**/*.json'
@@ -91,28 +115,28 @@ class EAExportTest(unittest.TestCase):
             except Exception as e:
                 logging.info(f"{ssot} is not a valid SSOT", e)
                 sources.remove(ssot)
-        print(f"Working with {sources}")
+        print(f"Working with:\n{(',' + os.linesep).join(sources)}")
         return sources
 
     @pytest.mark.integration
-    def test_all_in_folder(self):
+    def test_zzz_finally_process_all_models_found_in_testdata_folder(self):
         success = True
         errors = []
-        models = self.find_ssot_in_folder(self.project_base_path)
+        models = self.find_ssot_in_folder(self.project_root)
         for ssot in list(models):
-            print(f"Processing {ssot}")
             try:
                 json_model = self.load_model(ssot)
                 model = JSModel(pmodel=json_model)
+                name = json_model['model']['name']
+                print(f"Processing '{name}' {ssot}")
+                exporter = XMIBuilder(model, 'de')
+                tree = exporter.model_to_basic_xmi()
+                exporter.model_to_ea_extension()
 
-                exporter = XMIBuilder('de')
-                tree = exporter.model_to_basic_xmi(model)
-                exporter.model_to_ea_extension(model)
-
-                destination = 'test_all_in_folder.xmi'
+                destination = self.base_path / (name + '.xmi')
                 et = etree.ElementTree(tree)
-                et.write(destination, pretty_print=True)
-                print(f"Wrote {os.path.abspath(destination)}")
+                et.write(str(destination), pretty_print=True)
+                print(f"Wrote {destination.resolve()}")
                 models.remove(ssot)
             except Exception as e:
                 success = False
@@ -120,7 +144,8 @@ class EAExportTest(unittest.TestCase):
         self.assertTrue(success, f"{len(models)} failed. Errors: {errors}")
 
     def load_model(self, model_json_file: str):
-        self.assertTrue(os.path.isfile(model_json_file), f"JSON source not found {model_json_file}")
+        self.assertTrue(os.path.isfile(model_json_file),
+                        f"JSON source not found {model_json_file}")
         with open(model_json_file, 'r') as src:
             json_model = json.load(src)
         return json_model
@@ -150,7 +175,3 @@ def verify_ssot(json: dict) -> bool:
             return False
 
     return True
-
-
-if __name__ == '__main__':
-    unittest.main()

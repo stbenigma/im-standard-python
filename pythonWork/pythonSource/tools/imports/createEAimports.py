@@ -1,6 +1,6 @@
 import sys
-from openpyxl import Workbook, styles
-from IM_db.IM_JSON import  JSModel
+from openpyxl import Workbook
+from SSOT_db.IM_JSON import  JSModel
 
 # utils.get_column_letter(pidx)
 val2str = lambda v: '' if v is None else str(v) if type(v) in (int, float) else v
