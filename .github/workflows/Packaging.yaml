@@ -47,7 +47,7 @@ jobs:
           mkdir target
           cd target
           unzip '../model2diagram-*.zip'
-          python generator.py -f --all -m ../pythonWork/pythonSource/testenvironment/riddle/IM
+          python generator.py -f --all -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
 
       - name: Upload packed deployment to github
         uses: xresloader/upload-to-github-release@v1.3.2
