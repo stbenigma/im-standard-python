@@ -1,10 +1,11 @@
 name: Packaging
 # Build model2drawio distribution from Jupyter Notebook
 
-on:
-  push:
-    tags:
-      - '*'
+on: [push]
+#on:
+#  push:
+#    tags:
+#      - '*'
 
 jobs:
   build-linux:
@@ -39,22 +40,22 @@ jobs:
       # Run smoke test
       - name: Smoke-test generator
         run: |
-          python generator.py --version
+          python dist/generator.py --version
 
       # Unpack the archive and run the generator
       - name: Verify package
         run: |
-          mkdir target
-          cd target
-          unzip '../model2diagram-*.zip'
-          python generator.py -f --all -m ../pythonWork/pythonSource/testenvironment/riddle/IM
+          mkdir tmp
+          cd tmp
+          unzip '../dist/model2diagram-*.zip'
+          python generator.py -f --all -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
 
       - name: Upload packed deployment to github
         uses: xresloader/upload-to-github-release@v1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: model2diagram-*.zip
+          file: dist/model2diagram-*.zip
           draft: false
           overwrite: true
           tags: true

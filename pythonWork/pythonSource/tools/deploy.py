@@ -11,14 +11,17 @@ from nbconvert import PythonExporter
 from traitlets.config import Config
 import nbformat as nbf
 import zipfile
+import logging
 
 arguments = argparse.Namespace(verbose=True)
 
+DEFAULT_DIST_FOLDER = './dist'
 
 def log(msg):
     """Poor man's logging"""
     global arguments
     if arguments.verbose:
+        logging.info(msg)
         print(msg)
 
 
@@ -36,12 +39,19 @@ def main(basefolder: Path, argv: []):
     global arguments
     strip_cells_with_tags = ("test", "visual", "debug")
 
-    parser = argparse.ArgumentParser(description='Build generator and deployment package')
+    parser = argparse.ArgumentParser(description="Build generator and deployment package")
     parser.add_argument('--verbose', '-v', action='store_true', dest='verbose')
+    parser.add_argument('--output', '-o', dest='output', default=DEFAULT_DIST_FOLDER, help="Output folder for distribution")
     parser.add_argument('notebook', metavar='notebook.ipynb', type=str,
                         default='notebooks/mig/generator.ipynb',
                         nargs='?', help="Source Jupyter Notebook")
     arguments = parser.parse_args(argv)
+
+    destination_folder = Path(arguments.output)
+    if not destination_folder.is_absolute():
+        destination_folder = basefolder / arguments.output
+    destination_folder.mkdir(exist_ok=True)
+    logging.info(f"Distribution to {destination_folder.resolve()}")
 
     script_file = arguments.notebook
 
@@ -58,20 +68,16 @@ def main(basefolder: Path, argv: []):
 
     filename = os.path.basename(script_file)
     noext, _ = os.path.splitext(filename)
-    target = basefolder / (noext + '.py')
+    target = destination_folder / (noext + '.py')
 
     log(f"Converting {script_file} to plain python")
     notebook_to_python(script_file, exporter, target)
     log(f"Wrote {os.path.abspath(target)}. Removed cells with tags {strip_cells_with_tags}")
 
-    # prepare translation files
-    base = Path(__file__).parent.parent / 'SSOT_infra' / 'locales'
-    sources = list(base.rglob('**/*.po'))
-    for po_source in sources:
-        pre, ext = os.path.splitext(po_source)
-        mo_target = pre + '.mo'
-        subprocess.check_output(['msgfmt', '-o', mo_target, po_source])
-    log(f"Updated {len(sources)} translations {sources}")
+    target.chmod(0o755)
+
+    logging.info("Updating locale message catalogs (*.mo)")
+    generate_translations()
 
     git_tag = 'dev'
 
@@ -90,7 +96,7 @@ def main(basefolder: Path, argv: []):
                 version = match.group(1)
 
     package_name = f'model2diagram-{version}'
-    archive = basefolder / (package_name + '.zip')
+    archive = destination_folder / (package_name + '.zip')
 
     now = datetime.now()
     stamp = now.strftime("%Y-%m-%d %H:%M:%S")
@@ -110,10 +116,21 @@ def main(basefolder: Path, argv: []):
         zip.write(target, target.relative_to(target.parent))
         zip.write(version_file_name, version_file_name.relative_to(basefolder))
         zip.write(windows_runner, windows_runner.relative_to(basefolder))
-        zipdir(tools, zip, tools)
+        zipdir(tools, zip, basefolder)
 
     log(f"Packed up archive {archive}")
     return archive
+
+
+def generate_translations():
+    # prepare translation files
+    base = Path(__file__).parent.parent / 'SSOT_infra' / 'locales'
+    sources = list(base.rglob('**/*.po'))
+    for po_source in sources:
+        pre, ext = os.path.splitext(po_source)
+        mo_target = pre + '.mo'
+        subprocess.check_output(['msgfmt', '-o', mo_target, po_source])
+    log(f"Updated {len(sources)} translations {sources}")
 
 
 def accept(path: str):
@@ -125,6 +142,7 @@ def accept(path: str):
     if len(Path(path).parts) < 2: return False # skip python files in root
     if file_path.match('**/tests/*.py'): return False  # skip unittests
     if file_path.match('**/testenvironment/**/*.*'): return False  # skip testdata
+    if file_path.match('**/"unittest-tmp-dir/**/*.*'): return False
 
     if file.endswith('.py'): return True  # source files
     if file.endswith('.mo'): return True  # gettext message catalog

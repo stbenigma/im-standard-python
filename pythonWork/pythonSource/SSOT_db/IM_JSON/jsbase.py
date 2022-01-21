@@ -3,6 +3,7 @@ import logging
 import os
 import sqlite3
 from threading import local
+from SSOT_infra import nvl
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
 
@@ -50,16 +51,16 @@ def examples2js(pexpls: list = None):
         return {'en': ['']}
     else:
         """    {"de": ["Lager",]
-                   "en": |"Stock",|,
+                   "en": ["Stock",]
                 },
         """
         retval = {}
         for expl in pexpls:
             for lang, value in expl.expl_value_l.items():
                 if lang in retval:
-                    retval[lang].append(value)
+                    retval[lang].append(nvl(value))
                 else:
-                    retval[lang] = [value]
+                    retval[lang] = [nvl(value)]
         return retval
 
 
