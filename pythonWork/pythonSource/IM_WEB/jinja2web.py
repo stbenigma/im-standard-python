@@ -10,10 +10,9 @@ from SSOT_db.IM_JSON import  JSModel, jsguid2type
 from jinja2 import FileSystemLoader, Environment
 from SSOT_infra.translateprompt import transl
 
+class Webmodel:
 
-class Webmodel():
-
-    def __init__(self, export: HTMLExport, pcurlang:str, pjsmodel:JSModel, pintfid, phtmlfilelist):
+    def __init__(self, export: HTMLExport, pcurlang: str, pjsmodel: JSModel, pintfid, phtmlfilelist):
         self.curlanguage = pcurlang
         self.jsmodel:JSModel = pjsmodel
         self.intferfaceid = pintfid
@@ -188,8 +187,7 @@ def getnvl(val,default = ""):
     return default if val is None else val
 
 
-
-def formattext(pstr:str):
+def formattext(pstr):
     MARKDOWN:str = '<text/markdown>'
     #check wether we have markdown in the string
     if type(pstr) != str:

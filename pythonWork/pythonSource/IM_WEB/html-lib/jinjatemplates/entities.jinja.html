@@ -292,7 +292,7 @@
 									<tr>
 										<td>{{ webmodel.gettransltext('Beispiele') }}</td>
 										{% for lang in otherlangs %}
-											<td>{{ '\n'.join(getnvl(elem["examples"][lang]))|nvl|formattext|safe }}</td>
+											<td>{{ '\n'.join(elem["examples"][lang])|nvl|formattext|safe }}</td>
 										{% endfor %}
 									</tr>
 								</tbody>

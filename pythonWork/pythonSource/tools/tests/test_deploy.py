@@ -58,7 +58,7 @@ class TestDeploy(unittest.TestCase):
             result = subprocess.check_output(
                 ['python', str(generator_script),
                  '--languages', 'en',
-                 '--tools-path', str(self.temp_folder.resolve()),
+                 '--tools-path', str((resolve_project_root() / 'pythonWork' / 'pythonSource').resolve()),
                  '-m', str(testmodels_dir() / 'riddle' / 'IM')])
             print(result.decode())
         finally:
