@@ -165,8 +165,6 @@ def main(psysargs):
             myargs['jsonfile'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
                                               myargs['modelname'] + parameters.JSONEXTENSION)
     # fi
-    if myargs['destination'] is None:
-        myargs['destination'] = os.path.join('.' , parameters.WEBDEFAULTDIREC)
 
     if myargs['jsonfile'] is None and myargs['modelname'] is None and myargs['paramfile'] is None:
         print(f"Either modelname or jsonfile must be given.")
