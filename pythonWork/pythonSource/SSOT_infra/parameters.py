@@ -513,7 +513,7 @@ def filldefaultparams():
     if odmDefDomainsfilePath() is None:
         odmDefDomainsfilePath(newval=os.path.join(odmKonfDirec(), odmdefdomainsfile()))
     if webDirec() is None:
-        webDirec(newval=os.path.join(baseDirec(), webDefaultDirec()))
+        webDirec(newval=webDefaultDirec())
     if logfiledirec() is None:
         if logfilepath() is None:
             logfiledirec(newval=baseDirec())
