@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_777v1" directorySegmentName="seg_0" id="508E5A69-FDFC-1A2D-5CEB-83E3133AEF20">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:51:24 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<sourcePk>D5598753-6F28-E1D7-00D1-467254B634E5</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>is</nameOnSource>
+<nameOnTarget>duplicate name</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>2A7B0AAE-1E72-6C59-FF3D-4983C08AC222</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>633B9A76-27F4-9757-BDBB-9094311C97B0</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="*EN* is"/>
+<property name="DE_RELA_TEXT_TO" value="*EN* duplicate name"/>
+<property name="EN_RELA_TEXT_FROM" value="is"/>
+<property name="EN_RELA_TEXT_TO" value="duplicate name"/>
+<property name="FR_RELA_TEXT_FROM" value="*EN* is"/>
+<property name="FR_RELA_TEXT_TO" value="*EN* duplicate name"/>
+</propertyMap>
+</Relation>

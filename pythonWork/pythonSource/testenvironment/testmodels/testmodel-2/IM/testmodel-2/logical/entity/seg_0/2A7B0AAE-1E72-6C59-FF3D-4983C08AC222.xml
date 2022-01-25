@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A7B0AAE-1E72-6C59-FF3D-4983C08AC222" name="Child Entity2">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:40:07 UTC</createdTime>
+<comment><![CDATA[Child entity,  Subtype 
+Displayed on zoom levels (0-2)]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+*EN* Child entity,  Subtype 
+Displayed on zoom levels (0-2)
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*EN* Child entity,  Subtype 
+Displayed on zoom levels (0-2)
+]FR_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Child entity,  Subtype 
+Displayed on zoom levels (0-2)
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<typeID>F8749794-DC84-2528-3E2D-43499E774857</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>EE445642-FC73-9FC3-7ABD-8F5274F1E8EA</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="*EN* Child Entity2"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Child Entity2"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*EN* Child Entity2"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Count" id="53ED3002-BD9C-4CBD-D8E5-3C363A99B1AA">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:40:07 UTC</createdTime>
+<comment><![CDATA[How many..., non descriptive attribute
+leeres Beispiel
+Beispiel:]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+*EN* How many..., non descriptive attribute
+leeres Beispiel
+Beispiel:
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+*EN* How many..., non descriptive attribute
+leeres Beispiel
+Beispiel:
+]FR_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+How many..., non descriptive attribute
+leeres Beispiel
+Beispiel:
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<use>0</use>
+<domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*EN* Count"/>
+<property name="EN_ATTR_NAME" value="Count"/>
+<property name="FR_ATTR_NAME" value="*EN* Count"/>
+<property name="isdescriptive" value="FALSE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D5598753-6F28-E1D7-00D1-467254B634E5" name="Key_1">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:54:10 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<newElementsIDs>53ED3002-BD9C-4CBD-D8E5-3C363A99B1AA,A49895D8-915D-0BEA-A740-F9A20ABE4AB9</newElementsIDs>
+<usedAttributes>
+<attributeRef>53ED3002-BD9C-4CBD-D8E5-3C363A99B1AA</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

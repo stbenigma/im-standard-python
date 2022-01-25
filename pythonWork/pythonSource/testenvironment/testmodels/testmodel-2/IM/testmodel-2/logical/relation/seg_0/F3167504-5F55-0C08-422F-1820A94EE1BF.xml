@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_9" directorySegmentName="seg_0" id="F3167504-5F55-0C08-422F-1820A94EE1BF">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:54:28 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>*is of</nameOnSource>
+<nameOnTarget>*builds</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>54D530C7-314B-5D0D-3B23-33F91027670B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>54D530C7-314B-5D0D-3B23-33F91027670B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="*ist von"/>
+<property name="DE_RELA_TEXT_TO" value="*bildet"/>
+<property name="EN_RELA_TEXT_FROM" value="*is of"/>
+<property name="EN_RELA_TEXT_TO" value="*builds"/>
+<property name="FR_RELA_TEXT_FROM" value="*est de"/>
+<property name="FR_RELA_TEXT_TO" value="*crée"/>
+</propertyMap>
+</Relation>
