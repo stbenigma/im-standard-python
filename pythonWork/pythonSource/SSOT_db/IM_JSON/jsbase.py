@@ -250,6 +250,7 @@ def warn_missing_translation(din: dict, dout: dict) -> None:
     if len(diff) > 0:
         languages = dict(filter(lambda i: i[1] is None, din.items()))
         logging.warning(f"Patching missing translation for {languages.keys()} in {context.ctx}")
+    return
 
 
 def multilangtext(ptext: dict = None):
@@ -257,8 +258,9 @@ def multilangtext(ptext: dict = None):
     if ptext is None:
         return {'en': ''}
     else:
-        result = {k: (v if v is not None else '') for k, v in ptext.items()}
-        warn_missing_translation(ptext, result)
+        result = {k: nvl(v) for k, v in ptext.items()}
+        ### Multilang-Texte werden im select behandelt.
+        # warn_missing_translation(ptext, result)
         return result
 
 
