@@ -1,9 +1,10 @@
 import sys
 from openpyxl import Workbook
 from SSOT_db.IM_JSON import  JSModel
-from mapping import writeoverview
 
 # utils.get_column_letter(pidx)
+from tools.mapping import writeoverview
+
 val2str = lambda v: '' if v is None else str(v) if type(v) in (int, float) else v
 
 

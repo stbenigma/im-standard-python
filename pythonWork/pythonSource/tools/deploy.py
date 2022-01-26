@@ -185,6 +185,7 @@ def accept(path: str):
     # include
     if file.endswith('.py'): return True  # source files
     if file.endswith('.mo'): return True  # gettext message catalog
+    if file_path.match('**/dbstructure/sqlite/*.*'): return True
 
     if file_path.match('**/IM_WEB/html-lib/**/*.*'): return True
 
@@ -208,4 +209,6 @@ def zipdir(path, ziph, content_root, path_filter=accept):
 
 
 if __name__ == '__main__':
-    main(Path.cwd(), sys.argv[1:])
+    result = main(Path.cwd(), sys.argv[1:])
+    with zipfile.ZipFile(result, 'r') as archive:
+        print(f"Distribution bundle {result.resolve()} created containing {len(archive.filelist)} files")

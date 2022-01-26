@@ -95,33 +95,37 @@ def applyupgrades():
 
     upgrfiles = getlistofupgrfiles(psqlpath=parameters.sqlpath())
     upgrfiles.sort()  # order is important as upgrades follow each other sequentally
+    applied = []
     for upgrfile in upgrfiles:
         if version(upgrfile) <= actversion:
             continue
         if version(upgrfile) > parameters.expecteddbversion():
             break
         applysqlscript(psqlfilepath=os.path.join(parameters.sqlpath(), upgrfile))
+        applied.append(upgrfile)
     # for
     dbConnect.setversion()
-    return
+    return applied
 
 
 def upgradeDB():
     # get list of upgrade-files
     dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
     actversion = dbConnect.getversion()
+    applied = []
     if actversion is None:
         raise Exception(f"Database '{parameters.dbFilePath()}' does not contain version information.")
     elif actversion == parameters.expecteddbversion():
         print("DB {} is up to date: version {}".format(parameters.dbFilePath(), actversion))
     else:
-        applyupgrades()
+        applied = applyupgrades()
         logmessages.showmessages(
             f"database {parameters.dbFilePath()} for model {parameters.modelName()}" +
             f" upgraded to version {dbConnect.getversion()}")
     #fi
     dbConnect.closeDB()
-    return
+    return applied
+    return applied
 
 
 def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
@@ -179,7 +183,6 @@ def main(psysargs):
                              f"/<modelname>{parameters.SSOTDBEXTENSION})")
     parser.add_argument('--upgrade', '-u', action='store_true', dest='upgrade',
                         help="Upgrade existing database to latest version.")
-    argparse.Namespace()
 
     if (len(psysargs) > 0) and ('.py' in psysargs[0]) and ('ipykernel' not in psysargs[0]):
         arguments: argparse.Namespace = parser.parse_args(psysargs[1:])
@@ -187,6 +190,8 @@ def main(psysargs):
     else:
         # in jupyter environment
         """set myargs with arguments """
+        arguments = argparse.Namespace({})
+        myargs = arguments.__dict__
     # fi
     if 'version' in myargs and myargs['version']:
         argparseparent.showversion()
@@ -196,7 +201,7 @@ def main(psysargs):
 
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(pcurrentdir, parameters.SSOTDBDIREC,
+            myargs['destination'] = os.path.join(os.getcwd(), parameters.SSOTDBDIREC,
                                                  myargs['modelname'] + parameters.SSOTDBEXTENSION)
 
     # do only testing of parameterpassing while in unittest
