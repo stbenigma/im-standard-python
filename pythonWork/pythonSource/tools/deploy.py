@@ -211,4 +211,4 @@ def zipdir(path, ziph, content_root, path_filter=accept):
 if __name__ == '__main__':
     result = main(Path.cwd(), sys.argv[1:])
     with zipfile.ZipFile(result, 'r') as archive:
-        print(f"Distribution bundle {result.resolve()} created containing {len(archive.filelist)} files")
+        print(f"{len(archive.filelist)} files packed into distribution bundle {result.resolve()}")

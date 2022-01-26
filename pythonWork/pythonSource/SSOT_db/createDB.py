@@ -125,7 +125,6 @@ def upgradeDB():
     #fi
     dbConnect.closeDB()
     return applied
-    return applied
 
 
 def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
