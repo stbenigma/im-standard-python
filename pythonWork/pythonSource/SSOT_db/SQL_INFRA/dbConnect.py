@@ -24,7 +24,7 @@ def openDBbasic(pfilepath, pfks='OFF'):
         raise exp
     getdbcon().execute(f"PRAGMA foreign_keys = {pfks}")
     getdbcon().execute("PRAGMA main.cache_size = -2000")
-    return
+    return locconn
 
 
 def opendDB4DDL(pfilepath, pfks="OFF"):
