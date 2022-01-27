@@ -38,6 +38,15 @@ class TESTFILLDB(unittest.TestCase):
         #create db for a second time => merge
         fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
 
+        # create db for testmodel2crmtest with Paramfile
+        testmodelname = testsrc.TESTMODEL2
+        testpath = testsrc.testmodels_dir() / testmodelname
+        dbdirpath = testpath / 'DB'
+        dbfilepath = dbdirpath / (testmodelname + '.db')
+        logfilepath = testpath / "logfiles" / "speciallog.log"
+        paramfile = testpath / ( testmodelname + '.params')
+        fillDB.filldbmain(pparamfile=paramfile)
+
         # create db for crmtest with Paramfile
         testmodelname = testsrc.CRMTEST
         testpath = testsrc.testmodels_dir() / testmodelname

@@ -5,12 +5,8 @@
 <comment><![CDATA[Child entity,  Subtype 
 Displayed on all zoom levels (0-2)]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-*EN* Child entity,  Subtype 
-Displayed on all zoom levels (0-2)
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*EN* Child entity,  Subtype 
-Displayed on all zoom levels (0-2)
 ]FR_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
 Child entity,  Subtype 
@@ -31,13 +27,11 @@ Displayed on all zoom levels (0-2)
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>ESynonym</synonym>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="*EN* Child Entity1"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Child Entity1"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
 <property name="FR_ENTI_NAME" value="*EN* Child Entity1"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
 <property name="maxzoomlevel" value="4"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
@@ -49,6 +43,7 @@ Displayed on all zoom levels (0-2)
 
 Beispiel:
 1. Beispiel Attribute first appearance]]></comment>
+<commentInRDBMS><![CDATA[Tooltip Eonly]]></commentInRDBMS>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Das Kind wurde zum ersten Mal gesehen
 
