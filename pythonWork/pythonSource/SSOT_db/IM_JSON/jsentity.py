@@ -3,6 +3,7 @@ from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytra
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
     tabreflist, JSModel, jsguid2id
+from tqdm.auto import tqdm
 
 import re
 
@@ -139,7 +140,7 @@ def entities2js(pemptymodel):
                                    , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                     Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
-                               ) for e in Entity.select()
+                               ) for e in tqdm(Entity.select())
                  }
 
     return entis

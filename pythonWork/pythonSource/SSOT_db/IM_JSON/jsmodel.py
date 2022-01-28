@@ -5,6 +5,7 @@ from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
 from datetime import datetime
 import copy
+import logging
 
 
 def lastupd():
@@ -35,8 +36,11 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel = {}
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_PROJ)] = proj2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_LANG)] = langs2js(pemptymodel)
+    logging.info("Processing entities")
     jsmodel[JSModel.elemtype2label(Modelelemtype.ENTI)] = entities2js(pemptymodel)
+    logging.info("Processing domains")
     jsmodel[JSModel.elemtype2label(Modelelemtype.DOMA)] = domains2js(pemptymodel)
+    logging.info("Processing attributes")
     jsmodel[JSModel.elemtype2label(Modelelemtype.ATTR)] = attributes2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.RELA)] = relations2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ARCS)] = arcs2js(pemptymodel)
@@ -48,8 +52,10 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.TABL)] = tables2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.COLU)] = columns2js(pemptymodel)
+    logging.info("Processing diagrams")
     jsmodel[JSModel.elemtype2label(Modelelemtype.DIAG)] = diagrams2js(pemptymodel=pemptymodel,
                                                                       pmodelname=jsmodel['model']['name'])
+    logging.info("Processing user defined properties")
     jsmodel[JSModel.elemtype2label(Modelelemtype.UDPR)] = udps2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.PHYU)] = physicalunits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.DATY)] = datatypes2js(pemptymodel)
@@ -61,6 +67,7 @@ def sql2json(pdbname, pemptymodel=False):
                             "Modelversion": "" if pemptymodel else dbConnect.getversion(),
                             "hashvalue": modelhash,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
+    logging.info("JSModel generated")
     return jsmodel
 
 
