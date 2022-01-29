@@ -38,14 +38,34 @@ class TESTFILLDB(unittest.TestCase):
         #create db for a second time => merge
         fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
 
-        # create db for testmodel2crmtest with Paramfile
+        # create db for testmodel2 with Paramfile
         testmodelname = testsrc.TESTMODEL2
         testpath = testsrc.testmodels_dir() / testmodelname
         dbdirpath = testpath / 'DB'
         dbfilepath = dbdirpath / (testmodelname + '.db')
+        jsonfilepath = dbdirpath / (testmodelname + '.json')
         logfilepath = testpath / "logfiles" / "speciallog.log"
         paramfile = testpath / ( testmodelname + '.params')
         fillDB.filldbmain(pparamfile=paramfile)
+        #check handling of translations
+        import json
+        with open(jsonfilepath) as jsonFile:
+            jmodel = json.load(jsonFile)
+            checkentity = None
+            for e in jmodel["entities"].values():
+                if e["name"]["en"] == "Child Entity1":
+                    checkentity = e
+            self.assertIsNotNone(checkentity,f"Testcase 'Child Entity1' is not present in {testmodelname}")
+            synos =list(checkentity["synonyms"].values())
+            self.assertEqual(synos[0]["de"],"*en* ESynonym")
+            self.assertEqual(synos[0]["fr"],"*en* ESynonym")
+            self.assertEqual(checkentity["descr"]["de"],"*en* Child entity,  Subtype \nDisplayed on all zoom levels (0-2)")
+            self.assertEqual(checkentity["descr"]["fr"],"*en* Child entity,  Subtype \nDisplayed on all zoom levels (0-2)")
+            attr = jmodel["attributes"][checkentity["attributes+"][0]]
+            self.assertEqual(attr["techname"],"FIRST_APPEARANCE","wrong testcase attribute")
+            self.assertEqual(attr["tooltip"]["de"],"*en* Tooltip Eonly")
+            self.assertEqual(attr["tooltip"]["fr"],"*en* Tooltip Eonly")
+            jsonFile.close()
 
         # create db for crmtest with Paramfile
         testmodelname = testsrc.CRMTEST
