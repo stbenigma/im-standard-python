@@ -124,7 +124,7 @@ def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None
         listwebmain(exporter)
 
     finally:
-        logmessages.showmessages(f"web-files from jsonfile {pjsonfilepath} for model {parameters.modelName()} created")
+        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {parameters.modelName()} created into {parameters.webDirec()}")
 
 
 def main(psysargs):
@@ -165,8 +165,6 @@ def main(psysargs):
             myargs['jsonfile'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
                                               myargs['modelname'] + parameters.JSONEXTENSION)
     # fi
-    if myargs['destination'] is None:
-        myargs['destination'] = os.path.join(currentdir, parameters.WEBDEFAULTDIREC)
 
     if myargs['jsonfile'] is None and myargs['modelname'] is None and myargs['paramfile'] is None:
         print(f"Either modelname or jsonfile must be given.")

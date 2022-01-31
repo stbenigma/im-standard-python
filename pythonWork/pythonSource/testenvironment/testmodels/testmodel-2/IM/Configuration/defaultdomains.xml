@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="defaultdomains">
+<domains>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Point in time [sec]" id="0AD80E26-0F5C-D068-29EA-4740A04582AE">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 16:19:03 UTC</createdTime>
+<comment><![CDATA[Point in time in down to Seconds]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<unitOfMeasure>Second</unitOfMeasure>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Number Granularity" id="16723A86-5E8B-B50D-F81D-ECBEEF3E8261">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:45:36 UTC</createdTime>
+<comment><![CDATA[Rounding indication for a number: Formula for time granularity (TG) application: round( x / TG) * TG]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>6</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="email Address" id="392458B0-D8CC-29BB-06F9-5456F4669028">
+<createdBy>stb</createdBy>
+<createdTime>2021-01-26 11:47:26 UTC</createdTime>
+<comment><![CDATA[Email address with regexp check]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<checkConstraint>
+<implementationDef dbType="Generic Constraint" definition="REGEXP:[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}"/>
+</checkConstraint>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Quantity" id="4371DA6A-2A2E-094E-B223-F78464D5EDE8">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-22 08:01:15 UTC</createdTime>
+<comment><![CDATA[Any integer number >=0]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Time Granularity" id="5595B09A-F334-06B9-E641-60634C73D28B">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 08:40:42 UTC</createdTime>
+<comment><![CDATA[Granularity (rounding level) for time points]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<listOfValues>
+<valueDef value="DAY" description="Day"/>
+<valueDef value="HALFHOUR" description="Half Hour"/>
+<valueDef value="HOUR" description="Hour"/>
+<valueDef value="MILISEC" description="Milisecond"/>
+<valueDef value="MINUTE" description="Minute"/>
+<valueDef value="MONTH" description="Month"/>
+<valueDef value="QUARTER" description="Quarter (3 month)"/>
+<valueDef value="SECOND" description="Second"/>
+<valueDef value="SEMESTER" description="Semester"/>
+<valueDef value="WEEK" description="Week"/>
+<valueDef value="YEAR" description="Year"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Name" id="57EF5654-BB1B-99CD-E31A-A47A05AD3EE6">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 14:50:10 UTC</createdTime>
+<comment><![CDATA[Sequence of characters to name  something]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>60</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Date" id="631FC893-D28E-5FE4-89DB-473C78BB2B2A">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 14:57:41 UTC</createdTime>
+<comment><![CDATA[Point in time to the day]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean" id="7F06A64B-0C00-1355-F863-DBD9FDE5B848">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 14:58:19 UTC</createdTime>
+<comment><![CDATA[Logical Value]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<listOfValues>
+<valueDef value="FALSE" description="false"/>
+<valueDef value="TRUE" description="true"/>
+</listOfValues>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Description" id="C3DAFABD-5133-27CA-E0E5-B039A45135D6">
+<createdBy>stb</createdBy>
+<createdTime>2018-05-17 14:50:40 UTC</createdTime>
+<comment><![CDATA[Text as description of some element]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>2000</dataTypeSize>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Unknown" id="DOM3000004">
+<createdBy>fyayc</createdBy>
+<createdTime>2018-04-24 10:58:28 UTC</createdTime>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT017</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Surrogate key" id="EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA">
+<createdBy>stb</createdBy>
+<createdTime>2018-06-02 10:05:23 UTC</createdTime>
+<comment><![CDATA[Systemgenerated, business-semantic-less Key]]></comment>
+<ownerDesignName>System</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>15</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>defaultdomains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
+</Domain>
+</domains>
+</DomainFile>

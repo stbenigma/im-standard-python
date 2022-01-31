@@ -1,13 +1,15 @@
 import logging
 import math
-import os, re
+import os
+import re
 import xml.etree.ElementTree as et
-from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra import parameters, logmessages
-from SSOT_db.IM_OBJECTS import *
+
 from LOAD_MODELS.LOAD_INFRA import handleXML
 from LOAD_MODELS.LOAD_ODM import transferRelational
+from SSOT_db.IM_OBJECTS import *
+from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import nvl, hex2int, int2hex
+from SSOT_infra import parameters, logmessages
 
 GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 UDPEXTENSION: str = 'udposdm'
@@ -25,10 +27,8 @@ class Color:
         self.fontname = fontname
         self.fontsize = fontsize
         self.fontstyle = fontstyle
-    # end __init__
+        return
 
-
-# Color
 
 """ entry of keys found in entites
  [Key, (listof attr and relationship guids)]
@@ -1301,9 +1301,6 @@ def do1Entity(fileName):
     return
 
 
-# do1Entity
-
-
 def transferEntities():
     global schluessel
     # lösche die globalen Elemente
@@ -1316,10 +1313,17 @@ def doSubentities():
     # fill all subentity-id-lists
 
     for guid in getentitykeys():
-        val = getentity(guid)
         entientiguid = getentity(guid, "superentitityguid")
         enti = getentity(guid, "entity")
         if entientiguid is not None:
+            #set hierarchical (underlay) enti-id
+            parententi = getentity(entientiguid, "entity")
+            if parententi is None:
+                logmessages.writelog(f"Parententity {entientiguid} does not exists")
+            else:
+                enti.enti_underlay_enti_id = parententi.enti_id
+                enti.updatedb()
+
             target = getentity(entientiguid, "subentities")
             if target is not None:
                 # hat eine superentity, fülle in seine idliste
@@ -1373,9 +1377,9 @@ def do1Relation(fileName):
     rela.rela_assoc_to_from = handleXML.findText(relaxml, 'nameOnTarget')
     rela.rela_hist_to_from = Boolean.bool2str(is_historisized(rela.rela_assoc_to_from))
     rela.rela_maptype_from_to = Relation.ONE if (
-                handleXML.findText(relaxml, 'targetCardinalityString') == '1') else Relation.MANY
+            handleXML.findText(relaxml, 'targetCardinalityString') == '1') else Relation.MANY
     rela.rela_maptype_to_from = Relation.ONE if (
-                handleXML.findText(relaxml, 'sourceCardinality') == '1') else Relation.MANY
+            handleXML.findText(relaxml, 'sourceCardinality') == '1') else Relation.MANY
     rela.rela_mandatory_from_to = Boolean.strnegbool(handleXML.findText(relaxml, 'optionalSource'))
     rela.rela_mandatory_to_from = Boolean.strnegbool(handleXML.findText(relaxml, 'optionalTarget'))
     rela.rela_type = rela.simpleType()
@@ -1490,7 +1494,7 @@ def do1UDPFile(pfileName):
         obj = prop.findall('objects/object')
         for o in obj:
             """"< object class ="oracle.dbtools.crest.model.design.relational.Column" visible="false" Color="-1" / >"""
-            lMelt = Modelelemtype.type2melt(handleXML.findField(o, 'class'))
+            lMelt = Modelelemtype.type2melt(handleXML.findField(o, 'class').split('.')[-1])
             ##was ist das ???re.split("../../IM_ODM", handleXML.findField(o, 'class'))[6])
             if lMelt != "":
                 lmeltid = Modelelemtype.getidbyshortname(lMelt)
@@ -1531,9 +1535,8 @@ def do1UDPFile(pfileName):
         #     Userdefprop.setdomid(pdomid=wrtbId, pudpid=udprid)
         # # fi
     # for
+    return
 
-
-# do1UDPFile
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
     for file in os.listdir(parameters.odmFilesDirec()):
@@ -1544,9 +1547,8 @@ def dofiles(pdirec, pfileregexp, ptransferfunc):
             ptransferfunc(filepath)
         # fi
     # endfor
+    return
 
-
-# dofiles
 
 def transferUDP():
     doxmlfiles(pdirec=parameters.odmFilesDirec()
@@ -1554,10 +1556,7 @@ def transferUDP():
                , ppattern=r'.*\.{}'.format(UDPEXTENSION))
 
     dbConnect.myDbConn.commit()
-
-
-# transferUDP
-
+    return
 
 def loadcolors(color: Color, elem):
     for fo in elem.findall('fonts/font_object'):
@@ -1569,9 +1568,7 @@ def loadcolors(color: Color, elem):
             color.fontstyle = handleXML.findField(fo, 'font_style')
         # fi
     # for
-
-
-# loadcolors
+    return
 
 def loaddefaultcolors():
     global defcolors, classcolors, classids
@@ -1634,8 +1631,6 @@ def loaddefaultcolors():
     return
 
 
-# loaddefaultcolors
-
 def filllanguages():
     Languagetext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
     # copy comma-list-synonym into synoyms
@@ -1652,15 +1647,13 @@ def fillelementdisplays():
 
 
 def transferproject():
-    dmd_file = os.path.join(parameters.odmIMDirec(), parameters.modelName() + parameters.odmIMExtension())
-    proj = handleXML.parseXML(pfilename=dmd_file)
+    proj = handleXML.parseXML(
+        pfilename=os.path.join(parameters.odmIMDirec(), parameters.modelName() + parameters.odmIMExtension()))
     root = proj.getroot()
     comm = handleXML.findText(root, 'comment')
     if comm is None:
         defspra = parameters.dbDefaultLang()
         sprachen = parameters.dbLanguages()
-        logging.warning(f"No language information found in {dmd_file}."
-                        f" Using '{defspra}' from '{sprachen}'")
     else:
         defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1)
         sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1)
@@ -1669,8 +1662,8 @@ def transferproject():
     proj.proj_name = handleXML.findField(root, 'name')
     proj.proj_uc = handleXML.findText(root, 'createdBy')
     proj.proj_dc = handleXML.findText(root, 'createdTime')
-    proj.proj_languages = sprachen
-    proj.proj_curr_lang = defspra
+    proj.proj_languages = sprachen.lower()
+    proj.proj_curr_lang = defspra.lower()
     proj.insert()
 
     if defspra is not None:
@@ -1691,7 +1684,7 @@ def transferproject():
     # fi
 
 
-# transferproject
+return
 
 def do1Document(fileName):
     global docuparents
@@ -1708,6 +1701,8 @@ def do1Document(fileName):
     if (pd is not None and pd != ''):
         docuparents[id] = handleXML.findText(root, 'parentDocument')
     docu.insert()
+    return
+
 
 
 def do1Orgunit(fileName):
@@ -1730,6 +1725,7 @@ def do1Orgunit(fileName):
         orgu.orgu_telefon = contacts[cont.text]['phone']
         break  # currently only 1 contact per orgunit
     orgu.insert()
+    return
 
 
 def transferDocuments():
@@ -1737,22 +1733,23 @@ def transferDocuments():
     docuparents = {}
     dosegfiles(pdirec=parameters.odmdocumentDirec(), transferfiles=do1Document, pmandatoryfile=False)
     Document.updparents(psrcname=Externalref.SOURCE_ODM, pparents=docuparents)
-
+    return
 
 def transferorgunits():
     global orguparents
     orguparents = {}
     dosegfiles(pdirec=parameters.odmorgunitDirec(), transferfiles=do1Orgunit, pmandatoryfile=False)
     OragnisationalUnit.updparents(psrcname=Externalref.SOURCE_ODM, pparents=orguparents)
+    return
 
 
 def removeemptyudp():
     """remove all UDP's which are empty (containing '.' or '' or null as value"""
     Userdefpropvalue.removeemptyUDP(('.', ''))
-
+    return
 
 def removefixedudp():
-    """remove all UDP's which are pa rt of our model"""
+    """remove all UDP's which are part of our model"""
     modeludps = [(parameters.odmUDPElemdisplFileName(), val) for val in Modelelement.ODMattrmapping.values()]
     for lang in Language.select():
         for name in Languagetext.ODMtranslAttributes:
@@ -1822,7 +1819,6 @@ def do1contact(fileName):
     return
 
 
-# do1contact
 
 def adjustlabelpositions():
     abspos = lambda start, length, proz: start + round(length * proz / 100)

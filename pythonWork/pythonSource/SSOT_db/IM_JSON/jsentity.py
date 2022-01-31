@@ -67,6 +67,7 @@ def entities2js(pemptymodel):
         , 'descr', 'tooltip'
         , 'category'
         , 'exptuple#', 'prefix'
+        , 'supertypeentity'
         , 'subtypellevel+'
         , 'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
@@ -84,7 +85,7 @@ def entities2js(pemptymodel):
                                                                pentries=[multilangtext(None), ''
                                                                    , multilangtext(None), multilangtext(None)
                                                                    , '', '', ''
-                                                                   , ''
+                                                                   , '',''
                                                                    , '', '', '', ''
                                                                    , 0, 4, 'DEV'
                                                                    , entityicon()
@@ -106,7 +107,7 @@ def entities2js(pemptymodel):
                                    , multilangtext(e.enti_descr_l), multilangtext(e.enti_tooltip_l)
                                    , jsguid(JSModel.ELEMTYPE_CATG, e.enti_enca_id)
                                    , e.enti_exp_tuplecnt, e.enti_prefix
-                                   , e.getsubtypelevel()
+                                   , jsguid(Modelelemtype.ENTI, e.enti_underlay_enti_id),e.getsubtypelevel()
                                    , e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm
                                    , e.getminzoomlevel(), e.getmaxzoomlevel(), e.getdevstatus()
                                    , entityicon(penti=e)
@@ -157,6 +158,7 @@ def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     enti.enti_name = pelem['name'][pmodellang]
     enti.enti_short_name = pelem['shortname']
     enti.enti_prefix = pelem['prefix']
+    enti.enti_underlay_enti_id = jsguid2id(pelem['supertypeentity'])
     enti.enti_enca_id = jsguid2id(pelem['category'])
     enti.enti_tooltip = pelem['tooltip'][pmodellang]
     enti.enti_descr = pelem['descr'][pmodellang]

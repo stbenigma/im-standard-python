@@ -1,8 +1,9 @@
+from datetime import date
+
+from SSOT_db import IM_OBJECTS
 from SSOT_db.SQL_INFRA import dbDML
 from .baseobject import Baseobject
-from datetime import date
 from .modelelement import Modelelemtype
-from SSOT_db import IM_OBJECTS
 
 
 class Userdefprop(Baseobject):
@@ -11,7 +12,7 @@ class Userdefprop(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self,ptheme=None,pgroup=None,pname=None):
+    def __init__(self, ptheme=None, pgroup=None, pname=None):
 
         super().__init__()
         self.udpr_theme = ptheme
@@ -20,16 +21,17 @@ class Userdefprop(Baseobject):
         self.udpr_uc = 'sys'
         self.udpr_dc = date.today()
 
-    def getname(self,plang=None):
+    def getname(self, plang=None):
         return self.udpr_name
-    def getdescr(self,plang=None):
+
+    def getdescr(self, plang=None):
         return self.udpr_descr
 
-    def getqualifiedname(self,plang = None):
-        return "{} ({})".format(self.getname(plang=plang),self.udpr_group)
+    def getqualifiedname(self, plang=None):
+        return "{} ({})".format(self.getname(plang=plang), self.udpr_group)
 
     @classmethod
-    def getbyname(cls,pname):
+    def getbyname(cls, pname):
         return cls.getbyuk(UDPR_NAME=pname)
 
     @staticmethod
@@ -44,14 +46,15 @@ class Userdefprop(Baseobject):
         return data
 
     @staticmethod
-    def grouplist(pudptheme=None,pmelttype=None):
+    def grouplist(pudptheme=None, pmelttype=None):
         """[(theme,group)] """
         data = dbDML.select("""select  distinct udpr_theme,udpr_group
                         from user_defined_properties 
                         join MODELEMTYPE_PROPERTIES on metp_udpr_id = udpr_id
                         join MODELELEM_TYPE on melt_id = metp_melt_id  
                        where udpr_theme like '{}' and melt_shortname like '{}'
-                    order by udpr_theme,udpr_group""".format('%' if pudptheme is None else pudptheme,'%' if pmelttype is None else pmelttype))
+                    order by udpr_theme,udpr_group""".format('%' if pudptheme is None else pudptheme,
+                                                             '%' if pmelttype is None else pmelttype))
         return data
 
     @staticmethod
@@ -76,15 +79,16 @@ class Userdefprop(Baseobject):
         #             where lower(UDPR_THEME) = lower(?) and lower(udpr_name) = lower(?)"""
         # dbDML.execmany(psql=lsql,recs=modeludps)
 
-        lsql= """delete from USER_DEFINED_PROPERTIES 
+        lsql = """delete from USER_DEFINED_PROPERTIES 
                     where (lower(UDPR_THEME),lower(udpr_name)) = (lower(?) ,lower(?))"""
         try:
             dbDML.execmany(psql=lsql, recs=modeludps)
         except Exception as e:
             print(lsql)
-            print (modeludps)
-            print (e)
+            print(modeludps)
+            print(e)
         return
+
 
 # Userdefprop
 
@@ -95,24 +99,21 @@ class Userdefpropvalue(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self,pmodeid=None,pudprid =None,pvalue=None):
+    def __init__(self, pmodeid=None, pudprid=None, pvalue=None):
 
         super().__init__()
         self.udpv_value = pvalue
         self.udpv_mode_id = pmodeid
         self.udpv_udpr_id = pudprid
-        self.udpv_uc = 'SYS'
-        self.udpv_dc = date.today()
 
     @staticmethod
     def removeemptyUDP(pempties):
-
-        pempties
-        Userdefpropvalue.delete(pwhere=("udpv_value is null or udpv_value in ({})".format(','.join('?' for e in pempties) ), *pempties))
+        Userdefpropvalue.delete(
+            pwhere=("udpv_value is null or udpv_value in ({})".format(','.join('?'.rjust( len(pempties),'?'))), *pempties))
         return
 
     @staticmethod
-    def fillallvalues(pentiid=None, pattrid=None, prelaid=None,ptablid=None,pcoluid=None):
+    def fillallvalues(pentiid=None, pattrid=None, prelaid=None, ptablid=None, pcoluid=None):
         def fillvalues(pid, ptablename, pprefix):
             sql = f"""insert into UDP_VALUES (
                     udpv_value,udpv_mode_id,UDPV_UDPR_ID,udpv_uc,udpv_dc)
@@ -130,7 +131,7 @@ class Userdefpropvalue(Baseobject):
             return
 
         if pentiid is not None:
-            fillvalues(pid=pentiid,ptablename=IM_OBJECTS.Entity._tablename,pprefix=Modelelemtype.ENTI)
+            fillvalues(pid=pentiid, ptablename=IM_OBJECTS.Entity._tablename, pprefix=Modelelemtype.ENTI)
         elif pattrid is not None:
             fillvalues(pid=pattrid, ptablename=IM_OBJECTS.Attribute._tablename, pprefix=Modelelemtype.ATTR)
         elif prelaid is not None:
@@ -140,7 +141,7 @@ class Userdefpropvalue(Baseobject):
         elif pcoluid is not None:
             fillvalues(pid=pcoluid, ptablename=IM_OBJECTS.Column._tablename, pprefix=Modelelemtype.COLU)
         else:
-            None
+            pass
         return
 
     @staticmethod
@@ -151,28 +152,26 @@ class Userdefpropvalue(Baseobject):
                             where udpv_mode_id = ?
                             and udpv_udpr_id = ?
                         """, recs=prows)
-    # updvalues
+        return
 
     @staticmethod
-    def udpvalue(pudprid,pmodeid):
+    def udpvalue(pudprid, pmodeid):
         udpv = Userdefpropvalue.select(pwhere=("udpv_udpr_id = ? and udpv_mode_id= ?", pudprid, pmodeid))
         if udpv is None or len(udpv) == 0: return None
         return udpv[0].udpv_value
 
     @staticmethod
-    def udpvalues(ptheme, pgroup, pmodeid,pmeltype):
+    def udpvalues(ptheme, pgroup, pmodeid, pmeltype):
         """[(udpr_name,udpv_value)]"""
         data = dbDML.select("""select udpr_name, case when udpv_value is NULL then '' else udpv_value end val 
                 from user_defined_properties 
                 join MODELEMTYPE_PROPERTIES on METP_UDPR_ID = UDPR_ID
                 join modelelem_type on melt_id = metp_melt_id
                  left join udp_values on udpv_udpr_id = udpr_id 
-                     and udpv_mode_id = {}
+                     and udpv_mode_id = ?
                 where udpr_theme = ? and udpr_group like ?
                   and MELT_SHORTNAME = ?  
                 order by udpr_theme,udpr_group,udpr_name
                 """, pmodeid, ptheme, '%' if pgroup == '*' else pgroup, pmeltype)
         return data
-    # udpvalues
 
-# Userdefpropvalue

@@ -246,28 +246,21 @@ def fillmodel(pmodel, pentries):
 
 
 def warn_missing_translation(din: dict, dout: dict) -> None:
-    try:
-        from SSOT_infra import parameters
-        lang = parameters.parameter.dbLanguages()
-        if len(lang) < 4:
-            # no need for warnings in untranslated model
-            return
+    diff = set(dout.values()).difference(set(din.values()))
+    if len(diff) > 0:
+        languages = dict(filter(lambda i: i[1] is None, din.items()))
+        logging.warning(f"Patching missing translation for {languages.keys()} in {context.ctx}")
+    return
 
-        diff = set(dout.values()).difference(set(din.values()))
-        if len(diff) > 0:
-            languages = dict(filter(lambda i: i[1] is None, din.items()))
-            logging.warning(f"Patching missing translation for {languages.keys()} in {context}")
-    except:
-        # silently swallow issues with logging
-        pass
 
 def multilangtext(ptext: dict = None):
     """ None = emptymodel"""
     if ptext is None:
         return {'en': ''}
     else:
-        result = {k: (v if v is not None else '') for k, v in ptext.items()}
-        warn_missing_translation(ptext, result)
+        result = {k: nvl(v) for k, v in ptext.items()}
+        ### Multilang-Texte werden im select behandelt.
+        # warn_missing_translation(ptext, result)
         return result
 
 

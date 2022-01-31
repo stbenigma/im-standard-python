@@ -82,7 +82,7 @@ def getlistofupgrfiles(psqlpath):
     # try
     retval = []
     for el in listdir:
-        if re.match(r"modelmodel_sqlite_\d+\.\d+\.sql", el):
+        if re.match(r"modelmodel_sqlite_\d+\.\d+(\.\d+)?\.sql", el):
             retval.append(el)
     # for
     return retval
@@ -94,7 +94,7 @@ def applyupgrades():
         raise Exception(f"Database '{dbConnect.getDBname()}' not open")
 
     upgrfiles = getlistofupgrfiles(psqlpath=parameters.sqlpath())
-    upgrfiles.sort()  # order is important as upgrades follow each other sequentally
+    upgrfiles.sort(key=lambda s:s[:-4])  # order is important as upgrades follow each other sequentally
     applied = []
     for upgrfile in upgrfiles:
         if version(upgrfile) <= actversion:
@@ -182,6 +182,7 @@ def main(psysargs):
                              f"/<modelname>{parameters.SSOTDBEXTENSION})")
     parser.add_argument('--upgrade', '-u', action='store_true', dest='upgrade',
                         help="Upgrade existing database to latest version.")
+    argparse.Namespace()
 
     if (len(psysargs) > 0) and ('.py' in psysargs[0]) and ('ipykernel' not in psysargs[0]):
         arguments: argparse.Namespace = parser.parse_args(psysargs[1:])
@@ -198,9 +199,10 @@ def main(psysargs):
     argparseparent.checkmodelandparam(parguments=myargs)
     argparseparent.fillssotdefaults(pcurrentdir=os.getcwd(), parguments=myargs)
 
+    currentdir = os.getcwd()
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(os.getcwd(), parameters.SSOTDBDIREC,
+            myargs['destination'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
                                                  myargs['modelname'] + parameters.SSOTDBEXTENSION)
 
     # do only testing of parameterpassing while in unittest
