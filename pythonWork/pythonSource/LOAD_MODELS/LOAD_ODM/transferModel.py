@@ -1682,9 +1682,7 @@ def transferproject():
             parameters.dbDefaultLang(defspra)
             parameters.dbDefaultLangID(defspraid)
     # fi
-
-
-return
+    return
 
 def do1Document(fileName):
     global docuparents
