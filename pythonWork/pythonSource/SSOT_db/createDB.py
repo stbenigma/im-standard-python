@@ -4,6 +4,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from packaging import version
 
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.SQL_INFRA import dbDDL
@@ -68,8 +69,8 @@ def createnewDB(pdbfilepath):
     return
 
 
-def version(pfilename):
-    searchversion = re.search(r"\d+\.\d+", pfilename)
+def extract_version(pfilename):
+    searchversion = re.search(r"\d+\.\d+(.\d+)?", pfilename)
     return searchversion[0] if searchversion else None
 
 
@@ -97,9 +98,10 @@ def applyupgrades():
     upgrfiles.sort(key=lambda s:s[:-4])  # order is important as upgrades follow each other sequentally
     applied = []
     for upgrfile in upgrfiles:
-        if version(upgrfile) <= actversion:
+        ev = version.parse(extract_version(upgrfile))
+        if ev <= version.parse(actversion):
             continue
-        if version(upgrfile) > parameters.expecteddbversion():
+        if ev > version.parse(parameters.expecteddbversion()):
             break
         applysqlscript(psqlfilepath=os.path.join(parameters.sqlpath(), upgrfile))
         applied.append(upgrfile)
