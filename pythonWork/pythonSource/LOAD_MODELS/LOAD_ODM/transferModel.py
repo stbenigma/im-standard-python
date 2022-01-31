@@ -27,10 +27,8 @@ class Color:
         self.fontname = fontname
         self.fontsize = fontsize
         self.fontstyle = fontstyle
-    # end __init__
+        return
 
-
-# Color
 
 """ entry of keys found in entites
  [Key, (listof attr and relationship guids)]
@@ -1303,9 +1301,6 @@ def do1Entity(fileName):
     return
 
 
-# do1Entity
-
-
 def transferEntities():
     global schluessel
     # lösche die globalen Elemente
@@ -1318,10 +1313,17 @@ def doSubentities():
     # fill all subentity-id-lists
 
     for guid in getentitykeys():
-        val = getentity(guid)
         entientiguid = getentity(guid, "superentitityguid")
         enti = getentity(guid, "entity")
         if entientiguid is not None:
+            #set hierarchical (underlay) enti-id
+            parententi = getentity(entientiguid, "entity")
+            if parententi is None:
+                logmessages.writelog(f"Parententity {entientiguid} does not exists")
+            else:
+                enti.enti_underlay_enti_id = parententi.enti_id
+                enti.updatedb()
+
             target = getentity(entientiguid, "subentities")
             if target is not None:
                 # hat eine superentity, fülle in seine idliste

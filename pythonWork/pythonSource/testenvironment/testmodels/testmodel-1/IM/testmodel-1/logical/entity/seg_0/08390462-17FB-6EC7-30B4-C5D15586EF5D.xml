@@ -1,24 +1,20 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BB21F608-081A-10C7-4CAA-C9BCA032C3F1" name="subentitynonoverlay1">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="08390462-17FB-6EC7-30B4-C5D15586EF5D" name="realsubenti2-lev1">
 <createdBy>stb</createdBy>
-<createdTime>2021-10-05 08:44:37 UTC</createdTime>
-<comment><![CDATA[
-]]></comment>
+<createdTime>2022-01-29 11:19:21 UTC</createdTime>
+<comment><![CDATA[non overlapping subentity of Master Entity2
+Overlapping Subentity level1 of external subentity extsubentitylev2-2 which is external subentity of  real subentity realsubenti_lev2 (of Master Entity)]]></comment>
 <ownerDesignName>testmodel-1</ownerDesignName>
 <engineerTo>
 <item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
 </engineerTo>
-<typeID>B01958DD-D314-435C-565F-8B3C33F8C4DD</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
 <growthPercent>0</growthPercent>
 <growthType>Year</growthType>
+<hierarchicalParent>F8B60272-F573-507D-5DED-FDC2F4FA928A</hierarchicalParent>
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<propertyMap>
-<property name="maxzoomlevel" value="3"/>
-<property name="minzoomlevel" value="0"/>
-</propertyMap>
 </Entity>
