@@ -6,6 +6,7 @@ import unittest
 from LOAD_MODELS.LOAD_ODM import fillDB
 from IM_WEB import listWebdoku
 from SSOT_infra.tests.test_translateprompt import TestTranslation
+from SSOT_db import createDB
 import SSOT_infra.tests.integration as testsrc
 
 
@@ -27,14 +28,17 @@ class TestListWebDocumentation(unittest.TestCase):
         assert os.path.isdir(testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
         if not os.path.exists(testsrc.testmodels_dir() / testsrc.TESTMODEL1/ 'DB' / (testsrc.TESTMODEL1 + '.json')):
             os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL1)
+            createDB(pupgrade=True,pmodelname=testsrc.TESTMODEL1)
             fillDB.filldbmain(pmodelname=testsrc.TESTMODEL1)
 
         if not os.path.exists(testsrc.testmodels_dir() / testsrc.TESTMODEL2/ 'DB' / (testsrc.TESTMODEL2 + '.json')):
             os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL2)
+            createDB(pupgrade=True,pparamfile=testsrc.testmodels_dir() / testsrc.TESTMODEL2/ (testsrc.TESTMODEL2+ ".params"))
             fillDB.filldbmain(pparamfile=testsrc.testmodels_dir() / testsrc.TESTMODEL2/ (testsrc.TESTMODEL2+ ".params"))
 
         if not os.path.exists(testsrc.testmodels_dir() / testsrc.CRMTEST/ 'DB' / (testsrc.CRMTEST + '.json')):
             os.chdir(testsrc.testmodels_dir() / testsrc.CRMTEST)
+            createDB(pupgrade=True,pparamfile=testsrc.testmodels_dir() / testsrc.CRMTEST/ (testsrc.CRMTEST+ ".params"))
             fillDB.filldbmain(pparamfile=testsrc.testmodels_dir() / testsrc.CRMTEST/ (testsrc.CRMTEST+ ".params"))
         return
 
