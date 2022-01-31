@@ -105,10 +105,10 @@ jobs:
         python dist/generator.py --model testdata/fyyccim-refmodels/raetsel-3lang/IM
 
     - name: Integration test run with raetse-3lang 1.6 schema DB -> upgrade
-        run: |
-          git -C testdata/fyyccim-refmodels checkout -f master
-          cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
-          python dist/generator.py --model testdata/fyyccim-refmodels/raetsel-3lang/IM
+      run: |
+        git -C testdata/fyyccim-refmodels checkout -f master
+        cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
+        python dist/generator.py --model testdata/fyyccim-refmodels/raetsel-3lang/IM
 
     - name: Execute integration tests
       run: pytest -m "integration"
