@@ -1,20 +1,13 @@
 [ODM]
-#base directory for all modeler data (with ending /)
-#default directory in which this paramfile is stored
-#odmbasedirec = "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/testModels/crmTest/"
-
 #model name
 modelname = testmodel-2
 
 #directory containing odm-configuration-files (below odmIMDirec)
-odmkonfdirec= IM/Configuration
+odmkonfdirec= "Configuration"
 
 #base directory for odm-model-files
 #default <odmBaseDirec>/IM
 #odmimdirec = 
-
-#name of user defined property-File containing translations udp"s
-odmudptranslfilename = translation
 
 [DB]
 #default language of model in DB
@@ -30,7 +23,7 @@ dblanguages = de,en,fr
 [WEB]
 #directory for web-source output
 #default <basedirec>/Web
-#webdirec =
+webdirec = ./Web
 
 #filepath for logfile
 logfilepath = "./logfiles/speciallog.log"

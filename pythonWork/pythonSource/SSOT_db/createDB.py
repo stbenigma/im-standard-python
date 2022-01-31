@@ -69,7 +69,7 @@ def createnewDB(pdbfilepath):
 
 
 def version(pfilename):
-    searchversion = re.search(r"\d+\.\d+", pfilename)
+    searchversion = re.search(r"\d+(\.\d+)+", pfilename)
     return searchversion[0] if searchversion else None
 
 
@@ -82,7 +82,7 @@ def getlistofupgrfiles(psqlpath):
     # try
     retval = []
     for el in listdir:
-        if re.match(r"modelmodel_sqlite_\d+\.\d+\.sql", el):
+        if re.match(r"modelmodel_sqlite_\d+\.\d+(\.\d+)?\.sql", el):
             retval.append(el)
     # for
     return retval
@@ -94,7 +94,7 @@ def applyupgrades():
         raise Exception(f"Database '{dbConnect.getDBname()}' not open")
 
     upgrfiles = getlistofupgrfiles(psqlpath=parameters.sqlpath())
-    upgrfiles.sort()  # order is important as upgrades follow each other sequentally
+    upgrfiles.sort(key=lambda s:s[:-4])  # order is important as upgrades follow each other sequentally
     for upgrfile in upgrfiles:
         if version(upgrfile) <= actversion:
             continue
@@ -194,9 +194,10 @@ def main(psysargs):
     argparseparent.checkmodelandparam(parguments=myargs)
     argparseparent.fillssotdefaults(pcurrentdir=os.getcwd(), parguments=myargs)
 
+    currentdir = os.getcwd()
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(pcurrentdir, parameters.SSOTDBDIREC,
+            myargs['destination'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
                                                  myargs['modelname'] + parameters.SSOTDBEXTENSION)
 
     # do only testing of parameterpassing while in unittest

@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EE445642-FC73-9FC3-7ABD-8F5274F1E8EA" name="Master Entity">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:31:18 UTC</createdTime>
+<comment><![CDATA[Master entity with 3 children with attributes and classifications
+Displayed on all zoom levels (0-4)
+single attribute Unique key
+
+Beispiele:
+1. Example: Master entity
+2. Example: Master Entity]]></comment>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+Master-Entität mit 3 Kindern mit Attributen und Klassifizierungen
+Wird auf allen Zoomstufen angezeigt (0-4)
+einzelnes Attribut Eindeutiger Schlüssel
+
+Beispiele:
+1. Beispiel Master-Entität
+2. Beispiel Master-Entität.
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+*Entité maître avec 3 enfants avec attributs et classifications
+Affiché sur tous les niveaux de zoom (0-4)
+attribut unique Clé unique
+
+Beispiele :
+1. exemple: Entité maître
+2. exemple: Entité maître
+]FR_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+Master entity with 3 children with attributes and classifications
+Displayed on all zoom levels (0-4)
+single attribute Unique key
+
+Beispiele:
+1. Example: Master entity
+2. Example: Master Entity
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<typeID>F8749794-DC84-2528-3E2D-43499E774857</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<synonym>Main Entity</synonym>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="Hauptentität"/>
+<property name="DE_ENTI_SYNONYM" value="Vaterentität"/>
+<property name="EN_ENTI_NAME" value="Master Entity"/>
+<property name="EN_ENTI_SYNONYM" value="Main Entity"/>
+<property name="FR_ENTI_NAME" value="Entité principale"/>
+<property name="FR_ENTI_SYNONYM" value="Entité maître"/>
+<property name="maxzoomlevel" value="4"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+<documents usedDucuments="311DC210-16D2-5982-489E-052929AB265A"/>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Name" id="1EDFCF52-99BE-C55B-22E3-D41F32D7AFC0">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:36:08 UTC</createdTime>
+<comment><![CDATA[Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2]]></comment>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+Beschreibendes, obligatorisches Attribut mit Bereich, angezeigt auf Zoomstufe 0-2
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+Attribut descriptif, obligatoire avec domaine, affiché au niveau de zoom 0-2
+]FR_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57EF5654-BB1B-99CD-E31A-A47A05AD3EE6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="Name"/>
+<property name="EN_ATTR_NAME" value="Name"/>
+<property name="FR_ATTR_NAME" value="Nom"/>
+<property name="isdescriptive" value="TRUE"/>
+<property name="maxzoomlevel" value="2"/>
+<property name="minzoomlevel" value="0"/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

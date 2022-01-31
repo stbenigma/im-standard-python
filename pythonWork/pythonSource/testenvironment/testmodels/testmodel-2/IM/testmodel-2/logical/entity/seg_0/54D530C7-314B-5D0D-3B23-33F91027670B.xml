@@ -1,0 +1,240 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="54D530C7-314B-5D0D-3B23-33F91027670B" name="Recursive entity">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:52:51 UTC</createdTime>
+<notes><![CDATA[[DE_ENTI_COMMENT[
+
+]DE_ENTI_COMMENT]
+[FR_ENTI_COMMENT[
+
+]FR_ENTI_COMMENT]
+[EN_ENTI_COMMENT[
+
+]EN_ENTI_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<typeID>F8749794-DC84-2528-3E2D-43499E774857</typeID>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<propertyMap>
+<property name="DE_ENTI_NAME" value="*EN* Recursive entity"/>
+<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_NAME" value="Recursive entity"/>
+<property name="EN_ENTI_SYNONYM" value=""/>
+<property name="FR_ENTI_NAME" value="*EN* Recursive entity"/>
+<property name="FR_ENTI_SYNONYM" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Struct-Attribute2" id="B83F9D2F-1A61-D608-B4BF-5CB2739A0B82">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:35 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>C7BC8A51-9983-7650-B81E-AF676BFF4AE7</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*EN* Struct-Attribute2"/>
+<property name="EN_ATTR_NAME" value="Struct-Attribute2"/>
+<property name="FR_ATTR_NAME" value="*EN* Struct-Attribute2"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Struct Attr 1" id="37E26AF2-886E-1A3E-6279-754BC44990EB">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:49 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>2D3E418B-0666-65C2-FB25-5B9C19B43786</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*EN* Struct Attr 1"/>
+<property name="EN_ATTR_NAME" value="Struct Attr 1"/>
+<property name="FR_ATTR_NAME" value="*EN* Struct Attr 1"/>
+</propertyMap>
+</Attribute>
+<Attribute name="Normal Attribute, logical" id="F71A25DF-1D3A-9E2B-9970-5CA27326816E">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:58:02 UTC</createdTime>
+<notes><![CDATA[[DE_ATTR_COMMENT[
+
+]DE_ATTR_COMMENT]
+[FR_ATTR_COMMENT[
+
+]FR_ATTR_COMMENT]
+[EN_ATTR_COMMENT[
+
+]EN_ATTR_COMMENT]
+]]></notes>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<defaultValue>42</defaultValue>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<propertyMap>
+<property name="DE_ATTR_NAME" value="*EN* Normal Attribute, logical"/>
+<property name="EN_ATTR_NAME" value="Normal Attribute, logical"/>
+<property name="FR_ATTR_NAME" value="*EN* Normal Attribute, logical"/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>99</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+</attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="Struct-Attribute2.subattr1" directorySegmentName="seg_0" id="C2A9B5EA-BC5F-506D-13C1-27AF07639AC7">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:48 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>B83F9D2F-1A61-D608-B4BF-5CB2739A0B82</parentObject>
+<structAttributeID>E2A28134-81D5-CDD4-CF9C-2DED41D56FBC</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>2D3E418B-0666-65C2-FB25-5B9C19B43786</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Struct-Attribute2.subattr1.subAttr1" directorySegmentName="seg_0" id="05A1D163-303D-61AF-D3E3-76AFE8223222">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:48 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>C2A9B5EA-BC5F-506D-13C1-27AF07639AC7</parentObject>
+<structAttributeID>BEDF50DA-28C7-DC03-72F9-149575951760</structAttributeID>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Struct-Attribute2.subattr1.SubAttr2" directorySegmentName="seg_0" id="C0C682D6-D13A-CC13-B887-23D6546C6937">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:48 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>C2A9B5EA-BC5F-506D-13C1-27AF07639AC7</parentObject>
+<structAttributeID>AD5F013C-32D1-3864-23BF-A863A1F52A73</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Struct-Attribute2.Attribute_2" directorySegmentName="seg_0" id="EB106944-A235-8EF2-83E4-E89C346D1C3D">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:48 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>B83F9D2F-1A61-D608-B4BF-5CB2739A0B82</parentObject>
+<structAttributeID>B9856932-14D3-5F8A-1030-8714BFED8657</structAttributeID>
+<use>0</use>
+<domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0</beginValue>
+</rangeDef>
+</listOfRanges>
+</nestedAttribute>
+<nestedAttribute name="Struct-Attribute2.Attribute_3" directorySegmentName="seg_0" id="F3F5A992-530C-7C8E-ED34-739EBF81DD19">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:57:48 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>B83F9D2F-1A61-D608-B4BF-5CB2739A0B82</parentObject>
+<structAttributeID>4D02A711-F9D6-BACB-3FF1-A290DD79D7F1</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<domain>5595B09A-F334-06B9-E641-60634C73D28B</domain>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Struct Attr 1.subAttr1" directorySegmentName="seg_0" id="11FE14AB-9A41-9329-E160-7D4EFFBA504D">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:58:02 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>37E26AF2-886E-1A3E-6279-754BC44990EB</parentObject>
+<structAttributeID>BEDF50DA-28C7-DC03-72F9-149575951760</structAttributeID>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="Struct Attr 1.SubAttr2" directorySegmentName="seg_0" id="1CE96F88-D7AE-931E-FCAC-F350FC68C323">
+<createdBy>stb</createdBy>
+<createdTime>2021-10-05 08:58:02 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>37E26AF2-886E-1A3E-6279-754BC44990EB</parentObject>
+<structAttributeID>AD5F013C-32D1-3864-23BF-A863A1F52A73</structAttributeID>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
+<ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
+</nestedAttribute>
+</nestedAttributes>
+</Entity>

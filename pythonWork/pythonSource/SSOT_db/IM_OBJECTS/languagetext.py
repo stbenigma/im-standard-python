@@ -25,7 +25,7 @@ class Languagetext(Baseobject):
         , ENTI_SYNONYM
         , RELA_TEXT_TO, RELA_TEXT_FROM
         , DOMA_NAME, DOMA_DESCR
-        , BURU_NAME, BURU_ERRORMSG,EXPL_VALUE
+        , BURU_NAME, BURU_ERRORMSG, EXPL_VALUE
                            ]
 
     __greportLang: str = None
@@ -101,7 +101,7 @@ class Languagetext(Baseobject):
                     where(lgtx_attrname, lgtx_mode_id)
                         in (select mlt_attrname, mlt_id
                                 from ({multilangfields})
-                                where mlt_text is Null
+                                where mlt_text is Null or mlt_text = ""
                                 )""")
         dbDML.exec(f"""insert into lang_texts 
                     (lgtx_attrname,  lgtx_text
@@ -152,10 +152,10 @@ class Languagetext(Baseobject):
         select lang.lang_iso_code2,
             case when lgtxori.lgtx_text is not NULL
                 then lgtxori.lgtx_text
-                else case when lgtxdef.lgtx_text is not NULL 
-                        then "*" || langlang.lang_iso_code2 || "* " || lgtxdef.lgtx_text
-                        else lgtxdef.lgtx_text
-                      end
+                else case when lgtxdef.lgtx_text is NULL or lgtxdef.lgtx_text = ""  
+                        then lgtxdef.lgtx_text
+                        else "*" || langlang.lang_iso_code2 || "* " || lgtxdef.lgtx_text 
+                      end 
                 end text
         from languages lang
         left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID
@@ -179,14 +179,12 @@ class Languagetext(Baseobject):
         """.format(pmodeid, pattrname, plang))
         return data[0][0] if (len(data) > 0) else ''
 
-    # translist
-
     @staticmethod
     def reportLang(newval=None):
-        if (newval is None):
+        if newval is None:
             return Languagetext.__greportLang
         else:
             Languagetext.__greportLang = newval
-    # reportLang
+        return
 
 # Languagetext

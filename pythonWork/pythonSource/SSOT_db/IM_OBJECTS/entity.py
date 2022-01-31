@@ -125,18 +125,20 @@ class Entity(MultilangBaseobject):
         return Example.getexamples(pmodeid=self.getid())
 
     def getsubtypelevel(self):
-        subtypelevel = dbDML.select("""
-            with recursive enti as
-            ( select 0 entilev, enti_id
+        #restrict recursion to max 99 subentities for eternal loop
+        subtypelevel = dbDML.select(
+            """with recursive enti (entilev, entiid,parentid,name) as
+            ( select 0 entilev, enti_id,enti_underlay_enti_id,enti_name
             from entities
-            where not exists (select 1 from superenti where rela_type = 'ISAS' AND subenti_id = enti_id)
+            where enti_underlay_enti_id is NULL
             union all
-            select enti.entilev + 1, subenti_id
-            from superenti
-            join enti on enti_id = superenti_id
+            select enti.entilev + 1,enti_id,enti_underlay_enti_id,enti_name
+            from entities
+            join  enti on enti.entiid =  enti_underlay_enti_id
+                      and enti.entilev < 100
             )
-            select entilev from enti
-            where enti_id = {}
+            select * from enti
+            where entiid = {}
             """.format(self.enti_id))
         return subtypelevel[0][0]
 
@@ -144,7 +146,7 @@ class Entity(MultilangBaseobject):
     def mappingto(ptablid):
         lsqle = """select 0 intf_id, 'Logisches Modell' intf_name, group_concat(enti_id,',')
         	from  tabl_enti_maps as mastermap
-	        left join entitaeten on enti_id = mastermap.tema_enti_id
+	        left join entities on enti_id = mastermap.tema_enti_id
 	        where  mastermap.tema_tabl_id = {}
 	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
         lsqlt = """select tabl_intf_id,intf_name,group_concat(tabl_id,',')
@@ -168,7 +170,7 @@ class Entity(MultilangBaseobject):
         for d in data:
             entis = []
             for e in d[2].split(','):
-                ename = dbDML.select("select enti_name from entitaeten where enti_id = {}".format(e))
+                ename = dbDML.select("select enti_name from entities where enti_id = {}".format(e))
                 entis.append((ename[0][0], 'ENTI' + str(e)))
             retval.append([d[0], d[1], entis])
         data = dbDML.select(lsqlt)
@@ -202,7 +204,7 @@ class Synonym(MultilangBaseobject):
         return '' if retval is None else retval
 
     def getparent(self):
-        return Entity.getbyid(self.syno_enti_id)
+        return Entity().getbyid(self.syno_enti_id)
 
     # getparent
 

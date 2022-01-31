@@ -97,6 +97,8 @@ create table entities
 			unique,
     enti_enca_id numeric (10) null
         references entity_categories (enca_id),
+    enti_underlay_enti_id numeric (10) null
+        references entities (enti_id),
 	enti_short_name varchar(60),
 	enti_prefix varchar(60),
 	enti_tooltip varchar(4000),
@@ -1025,6 +1027,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.6' as version, datetime() as installedtime;
+create view dbversion as select '1.6.1' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
