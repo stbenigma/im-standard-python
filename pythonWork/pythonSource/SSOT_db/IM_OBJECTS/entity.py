@@ -125,6 +125,7 @@ class Entity(MultilangBaseobject):
         return Example.getexamples(pmodeid=self.getid())
 
     def getsubtypelevel(self):
+        #restrict recursion to max 99 subentities for eternal loop
         subtypelevel = dbDML.select(
             """with recursive enti (entilev, entiid,parentid,name) as
             ( select 0 entilev, enti_id,enti_underlay_enti_id,enti_name
@@ -134,6 +135,7 @@ class Entity(MultilangBaseobject):
             select enti.entilev + 1,enti_id,enti_underlay_enti_id,enti_name
             from entities
             join  enti on enti.entiid =  enti_underlay_enti_id
+                      and enti.entilev < 100
             )
             select * from enti
             where entiid = {}
