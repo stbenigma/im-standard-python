@@ -1,14 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EE445642-FC73-9FC3-7ABD-8F5274F1E8EA" name="Master Entity">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EE445642-FC73-9FC3-7ABD-8F5274F1E8EA" name="Hauptentität">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:31:18 UTC</createdTime>
-<comment><![CDATA[Master entity with 3 children with attributes and classifications
-Displayed on all zoom levels (0-4)
-single attribute Unique key
+<comment><![CDATA[Master-Entität mit 3 Kindern mit Attributen und Klassifizierungen
+Wird auf allen Zoomstufen angezeigt (0-4)
+einzelnes Attribut Eindeutiger Schlüssel
 
 Beispiele:
-1. Example: Master entity
-2. Example: Master Entity]]></comment>
+1. Beispiel Master-Entität
+2. Beispiel Master-Entität.]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
 Master-Entität mit 3 Kindern mit Attributen und Klassifizierungen
 Wird auf allen Zoomstufen angezeigt (0-4)
@@ -50,7 +50,7 @@ Beispiele:
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<synonym>Main Entity</synonym>
+<synonym>Vaterentität</synonym>
 <propertyMap>
 <property name="DE_ENTI_NAME" value="Hauptentität"/>
 <property name="DE_ENTI_SYNONYM" value="Vaterentität"/>
@@ -66,7 +66,7 @@ Beispiele:
 <Attribute name="Name" id="1EDFCF52-99BE-C55B-22E3-D41F32D7AFC0">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:36:08 UTC</createdTime>
-<comment><![CDATA[Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2]]></comment>
+<comment><![CDATA[Beschreibendes, obligatorisches Attribut mit Bereich, angezeigt auf Zoomstufe 0-2]]></comment>
 <notes><![CDATA[[DE_ATTR_COMMENT[
 Beschreibendes, obligatorisches Attribut mit Bereich, angezeigt auf Zoomstufe 0-2
 ]DE_ATTR_COMMENT]
@@ -74,7 +74,7 @@ Beschreibendes, obligatorisches Attribut mit Bereich, angezeigt auf Zoomstufe 0-
 Attribut descriptif, obligatoire avec domaine, affiché au niveau de zoom 0-2
 ]FR_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
-Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2
+Descriptive, mandatory Attribute with domain, showed on zoom level 0-2
 ]EN_ATTR_COMMENT]
 ]]></notes>
 <ownerDesignName>testmodel-2</ownerDesignName>

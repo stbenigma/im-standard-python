@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="54D530C7-314B-5D0D-3B23-33F91027670B" name="Recursive entity">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="54D530C7-314B-5D0D-3B23-33F91027670B" name="Rekursive Entität">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:52:51 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
@@ -26,15 +26,15 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="*EN* Recursive entity"/>
+<property name="DE_ENTI_NAME" value="Rekursive Entität"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Recursive entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*EN* Recursive entity"/>
+<property name="FR_ENTI_NAME" value="Entité récursive"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Struct-Attribute2" id="B83F9D2F-1A61-D608-B4BF-5CB2739A0B82">
+<Attribute name="Struktur-Attribut2" id="B83F9D2F-1A61-D608-B4BF-5CB2739A0B82">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:35 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -57,12 +57,12 @@
 <structuredType>C7BC8A51-9983-7650-B81E-AF676BFF4AE7</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="*EN* Struct-Attribute2"/>
-<property name="EN_ATTR_NAME" value="Struct-Attribute2"/>
-<property name="FR_ATTR_NAME" value="*EN* Struct-Attribute2"/>
+<property name="DE_ATTR_NAME" value="Struktur-Attribut2"/>
+<property name="EN_ATTR_NAME" value="Structure-Attribute2"/>
+<property name="FR_ATTR_NAME" value="Attribut de structure2"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Struct Attr 1" id="37E26AF2-886E-1A3E-6279-754BC44990EB">
+<Attribute name="Struktur Attribut 1" id="37E26AF2-886E-1A3E-6279-754BC44990EB">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:49 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -85,12 +85,12 @@
 <structuredType>2D3E418B-0666-65C2-FB25-5B9C19B43786</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="*EN* Struct Attr 1"/>
-<property name="EN_ATTR_NAME" value="Struct Attr 1"/>
-<property name="FR_ATTR_NAME" value="*EN* Struct Attr 1"/>
+<property name="DE_ATTR_NAME" value="Struktur Attribut 1"/>
+<property name="EN_ATTR_NAME" value="Structure Attribute 1"/>
+<property name="FR_ATTR_NAME" value="Attribut de structure 1"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Normal Attribute, logical" id="F71A25DF-1D3A-9E2B-9970-5CA27326816E">
+<Attribute name="Normales Attribut, logisch" id="F71A25DF-1D3A-9E2B-9970-5CA27326816E">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:58:02 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -115,9 +115,9 @@
 <defaultValue>42</defaultValue>
 <ownDataTypeParameters>,2,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="*EN* Normal Attribute, logical"/>
+<property name="DE_ATTR_NAME" value="Normales Attribut, logisch"/>
 <property name="EN_ATTR_NAME" value="Normal Attribute, logical"/>
-<property name="FR_ATTR_NAME" value="*EN* Normal Attribute, logical"/>
+<property name="FR_ATTR_NAME" value="Attribut normal, logique"/>
 </propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -128,7 +128,7 @@
 </Attribute>
 </attributes>
 <nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<nestedAttribute name="Struct-Attribute2.subattr1" directorySegmentName="seg_0" id="C2A9B5EA-BC5F-506D-13C1-27AF07639AC7">
+<nestedAttribute name="Struktur-Attribut2.subattr1" directorySegmentName="seg_0" id="C2A9B5EA-BC5F-506D-13C1-27AF07639AC7">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:48 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -143,7 +143,7 @@
 <structuredType>2D3E418B-0666-65C2-FB25-5B9C19B43786</structuredType>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Struct-Attribute2.subattr1.subAttr1" directorySegmentName="seg_0" id="05A1D163-303D-61AF-D3E3-76AFE8223222">
+<nestedAttribute name="Struktur-Attribut2.subattr1.subAttr1" directorySegmentName="seg_0" id="05A1D163-303D-61AF-D3E3-76AFE8223222">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:48 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -156,7 +156,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Struct-Attribute2.subattr1.SubAttr2" directorySegmentName="seg_0" id="C0C682D6-D13A-CC13-B887-23D6546C6937">
+<nestedAttribute name="Struktur-Attribut2.subattr1.SubAttr2" directorySegmentName="seg_0" id="C0C682D6-D13A-CC13-B887-23D6546C6937">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:48 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -172,7 +172,7 @@
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>5 CHAR,,</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Struct-Attribute2.Attribute_2" directorySegmentName="seg_0" id="EB106944-A235-8EF2-83E4-E89C346D1C3D">
+<nestedAttribute name="Struktur-Attribut2.Attribute_2" directorySegmentName="seg_0" id="EB106944-A235-8EF2-83E4-E89C346D1C3D">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:48 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -191,7 +191,7 @@
 </rangeDef>
 </listOfRanges>
 </nestedAttribute>
-<nestedAttribute name="Struct-Attribute2.Attribute_3" directorySegmentName="seg_0" id="F3F5A992-530C-7C8E-ED34-739EBF81DD19">
+<nestedAttribute name="Struktur-Attribut2.Attribute_3" directorySegmentName="seg_0" id="F3F5A992-530C-7C8E-ED34-739EBF81DD19">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:57:48 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -207,7 +207,7 @@
 <domain>5595B09A-F334-06B9-E641-60634C73D28B</domain>
 <ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Struct Attr 1.subAttr1" directorySegmentName="seg_0" id="11FE14AB-9A41-9329-E160-7D4EFFBA504D">
+<nestedAttribute name="Struktur Attribut 1.Struktur Attr 1.subAttr1" directorySegmentName="seg_0" id="11FE14AB-9A41-9329-E160-7D4EFFBA504D">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:58:02 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -220,7 +220,7 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="Struct Attr 1.SubAttr2" directorySegmentName="seg_0" id="1CE96F88-D7AE-931E-FCAC-F350FC68C323">
+<nestedAttribute name="Struktur Attribut 1.Struktur Attr 1.SubAttr2" directorySegmentName="seg_0" id="1CE96F88-D7AE-931E-FCAC-F350FC68C323">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:58:02 UTC</createdTime>
 <ownerDesignName>testmodel-2</ownerDesignName>

@@ -1,23 +1,21 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C17A94B7-A795-922C-9B2C-502C9C7916F4" name="Kind-Entität 2-2">
-<createdBy>stb</createdBy>
-<createdTime>2021-10-05 08:45:12 UTC</createdTime>
-<comment><![CDATA[Mit Klassifizierung aber eigenem Farbformat.]]></comment>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1E380AB2-DDA8-9A5D-42CA-F1D768078BC4" name="Zusätzliche Einheit">
+<createdBy>Lea</createdBy>
+<createdTime>2022-02-15 08:02:22 UTC</createdTime>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-Mit Klassifizierung aber eigenem Farbformat.
+
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*Avec une classification, mais avec une couleur propre.
+
 ]FR_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*Mit Classifikation aber eigenem Farbformnat.
+
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>testmodel-2</ownerDesignName>
 <engineerTo>
 <item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
 </engineerTo>
-<typeID>B01958DD-D314-435C-565F-8B3C33F8C4DD</typeID>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
 <fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
@@ -27,13 +25,11 @@ Mit Klassifizierung aber eigenem Farbformat.
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="Kind-Entität 2-2"/>
+<property name="DE_ENTI_NAME" value="Zusätzliche Einheit"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
-<property name="EN_ENTI_NAME" value="Child Entity 2-2"/>
+<property name="EN_ENTI_NAME" value="Additional entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="Entité enfant 2-2"/>
+<property name="FR_ENTI_NAME" value="Entité supplémentaire"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
-<property name="maxzoomlevel" value="3"/>
-<property name="minzoomlevel" value="0"/>
 </propertyMap>
 </Entity>

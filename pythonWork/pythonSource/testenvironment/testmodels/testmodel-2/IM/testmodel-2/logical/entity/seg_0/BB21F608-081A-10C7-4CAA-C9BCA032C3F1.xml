@@ -1,16 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BB21F608-081A-10C7-4CAA-C9BCA032C3F1" name="Child Entity 2-1">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="BB21F608-081A-10C7-4CAA-C9BCA032C3F1" name="Kind-Entität 2-1">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:44:37 UTC</createdTime>
-<comment><![CDATA[*DE* *EN*]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-*EN*
+
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*EN*
+
 ]FR_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
-*DE* *EN*
+
 ]EN_ENTI_COMMENT]
 ]]></notes>
 <ownerDesignName>testmodel-2</ownerDesignName>
@@ -26,13 +25,14 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>kleine Entität</synonym>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="*EN* Child Entity 2-1"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="DE_ENTI_NAME" value="Kind-Entität 2-1"/>
+<property name="DE_ENTI_SYNONYM" value="kleine Entität"/>
 <property name="EN_ENTI_NAME" value="Child Entity 2-1"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*EN* Child Entity 2-1"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_SYNONYM" value="**small entity"/>
+<property name="FR_ENTI_NAME" value="Entité enfant 2-1"/>
+<property name="FR_ENTI_SYNONYM" value="**petite entité"/>
 <property name="maxzoomlevel" value="3"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>

@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_12" directorySegmentName="seg_0" id="696F1831-7149-9EE5-C234-6E4BA5E9C7B5">
+<createdBy>Lea</createdBy>
+<createdTime>2022-02-15 08:03:12 UTC</createdTime>
+<ownerDesignName>testmodel-2</ownerDesignName>
+<engineerTo>
+<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>fügt hinzu</nameOnSource>
+<nameOnTarget>hinzugefügt von</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>1E380AB2-DDA8-9A5D-42CA-F1D768078BC4</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>21A306AE-DB1D-04D1-2592-3327DD2B3CD4</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<propertyMap>
+<property name="DE_RELA_TEXT_FROM" value="fügt hinzu"/>
+<property name="DE_RELA_TEXT_TO" value="hinzugefügt von"/>
+<property name="EN_RELA_TEXT_FROM" value="adds"/>
+<property name="EN_RELA_TEXT_TO" value="added by"/>
+<property name="FR_RELA_TEXT_FROM" value="ajoute"/>
+<property name="FR_RELA_TEXT_TO" value="ajouté par"/>
+</propertyMap>
+</Relation>

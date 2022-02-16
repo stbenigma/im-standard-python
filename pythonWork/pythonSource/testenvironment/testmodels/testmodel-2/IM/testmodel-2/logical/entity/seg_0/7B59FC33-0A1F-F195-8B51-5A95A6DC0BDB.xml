@@ -1,13 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7B59FC33-0A1F-F195-8B51-5A95A6DC0BDB" name="Master Entity2">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7B59FC33-0A1F-F195-8B51-5A95A6DC0BDB" name="Master-Entität2">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:42:47 UTC</createdTime>
-<comment><![CDATA[Master Entity with 2 children (via relationship)]]></comment>
+<comment><![CDATA[Master-Entität mit 2 Kindern (über Beziehung)]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-*EN* Master Entity with 2 children (via relationship)
+Master-Entität mit 2 Kindern (über Beziehung)
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*EN* Master Entity with 2 children (via relationship)
+**Entité maître avec 2 enfants (via relation)
 ]FR_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
 Master Entity with 2 children (via relationship)
@@ -26,13 +26,14 @@ Master Entity with 2 children (via relationship)
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<synonym>übergeordnete Entität</synonym>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="*EN* Master Entity2"/>
-<property name="DE_ENTI_SYNONYM" value=""/>
+<property name="DE_ENTI_NAME" value="Master-Entität2"/>
+<property name="DE_ENTI_SYNONYM" value="übergeordnete Entität"/>
 <property name="EN_ENTI_NAME" value="Master Entity2"/>
-<property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*EN* Master Entity2"/>
-<property name="FR_ENTI_SYNONYM" value=""/>
+<property name="EN_ENTI_SYNONYM" value="**parent entity"/>
+<property name="FR_ENTI_NAME" value="Entité maîtresse2"/>
+<property name="FR_ENTI_SYNONYM" value="**entité supérieure"/>
 <property name="maxzoomlevel" value="3"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
