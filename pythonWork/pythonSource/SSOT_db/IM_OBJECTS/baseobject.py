@@ -1,7 +1,7 @@
 import sqlite3
 
 from SSOT_db.SQL_INFRA import dbDDL, dbDML
-from SSOT_infra import logmessages
+from SSOT_infra import logmessages,nvl
 from datetime import datetime
 
 class Boolean:
@@ -78,7 +78,7 @@ class Baseobject:
     def semanticequal(self,pbrother,pequalexceptlist=[]):
         """ true, if all semantic elements are equal. Managing attributes (id, uc,dc etc.) are excluded"""
         for sc in self._semanticcols():
-            if (sc not in pequalexceptlist) and (self.colvalue(sc) != pbrother.colvalue(sc)):
+            if (sc not in pequalexceptlist) and (nvl(self.colvalue(sc)) != nvl(pbrother.colvalue(sc))):
                 return False
         return True
 
@@ -128,7 +128,8 @@ class Baseobject:
                       , self.columnsliststring(pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
-            if self.getid() is None: self.setid(id)  # autocolumns zurücklesen
+            if self.getid() is None:
+                self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 try:
@@ -289,9 +290,9 @@ class Baseobject:
         mode = self._getmode()
         return None if mode is None else mode.mode_max_zoom_level
 
-    def getdevstatus(self):
+    def getpublstatus(self):
         mode = self._getmode()
-        return None if mode is None else mode.mode_dev_status
+        return None if mode is None else mode.mode_publ_status
 
 
     def getbyextref(self, psrcid, psrcname):

@@ -19,6 +19,7 @@
 <propertyMap>
 <property name="maxzoomlevel" value="3"/>
 <property name="minzoomlevel" value="0"/>
+<property name="publ_status" value="DRAFT"/>
 </propertyMap>
 <documents usedDucuments="311DC210-16D2-5982-489E-052929AB265A E035088F-56BA-B7E7-ADB4-B684B0194348"/>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
@@ -33,6 +34,9 @@
 <logicalDatatype>LOGDT007</logicalDatatype>
 <domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="publ_status" value="GTOP"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Attribute2" id="4213B1CA-CC28-8A26-8D75-5B5107D6B6A2">
 <createdBy>stb</createdBy>
@@ -45,6 +49,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="publ_status" value="GTOP"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Attribute4" id="22D91AAD-5149-C235-3759-87748D3E036A">
 <createdBy>stb</createdBy>
@@ -57,6 +64,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>5595B09A-F334-06B9-E641-60634C73D28B</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="publ_status" value="GTOP"/>
+</propertyMap>
 </Attribute>
 <Attribute name="Count" id="2566C592-C583-98B1-98EC-2C005C7D39A4">
 <createdBy>stb</createdBy>
@@ -71,6 +81,9 @@
 <use>0</use>
 <domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="publ_status" value="GTOP"/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0</beginValue>

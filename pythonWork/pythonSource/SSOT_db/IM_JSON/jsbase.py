@@ -99,7 +99,7 @@ class JSModel:
         self._errors = []
         self._warnings = []
         self.languages = {}  # langid:iso2
-        self._statusfilter = (None, 'DEV', 'TEST', 'REL')
+        self._statusfilter = (None, 'DRAFT', 'GTOP', 'PUBL')
 
     def getelements(self, pelemtype, pfiltered=True):
         """returns dict of top level Elements filtered by statusfilter"""
@@ -115,11 +115,11 @@ class JSModel:
         assert (elemkey in self.jsmodel), "key {} not found in json-model".format(elemkey)
         """get all elements, if filtered make sure it is 
             a) not a dict, 
-            b) has no devstatus or 
-            c) its devstatus is in my statusfilter"""
+            b) has no publstatus or 
+            c) its publstatus is in my statusfilter"""
         elems = {key: value for key, value in self.jsmodel[elemkey].items()
                  if (not pfiltered or (type(value) != dict) or
-                     ('devstatus' not in value) or (value['devstatus'] in self._statusfilter))}
+                     ('publstatus' not in value) or (value['publstatus'] in self._statusfilter))}
         return elems
 
     def setstatusfilter(self, pfilter):

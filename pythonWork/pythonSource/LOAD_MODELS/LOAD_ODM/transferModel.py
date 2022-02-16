@@ -141,6 +141,7 @@ def transferTypes():
                  , psrcname=Externalref.SOURCE_ODM, pscrid=handleXML.findField(typ, 'objectid')
                  ).insert()
     # endfor
+    return
 
 
 def do1structtype(filename):
@@ -252,6 +253,7 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
         range = (None, None)
     # endif
 
+    buruID = None
     # noch nicht übernommenm< defaultValue > a @ b.ch < / defaultValue >
     deriveddomaname = f"DER-{pdoma.doma_type}_"
     if (pdoma.doma_type == Domain.BIN):
@@ -275,7 +277,7 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
                 buru.buru_name = nvl(buru.buru_name, pdoma.doma_name + '_CHK')
                 buru.buru_impact = 'REFUSE'
                 buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-                buru.insert()
+                buruID = BusinessRule.searchorinsertburu(buru)
             # fi
         # fi
         if pdoma.doma_txt_syntaxrule is not None:
@@ -310,9 +312,15 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
             pdoma.doma_name = deriveddomaname
             pdoma.insert()
             doma = pdoma
+            # if domain has a business rule, add it to this domain.
+            if buruID is not None:
+                BusinessruleElement(pburuid=buruID, pmodeid=doma.doma_id).insert()
     else:
         pdoma.insert()
         doma = pdoma
+        # if domain has a business rule, add it to this domain.
+        if buruID is not None:
+            BusinessruleElement(pburuid=buruID, pmodeid=doma.doma_id).insert()
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
@@ -702,9 +710,9 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
         else:
             pass
         # fi
+    # endfor
+    return
 
-
-# transferdiaconnect
 
 def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
@@ -723,9 +731,7 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
             ptransfer(os.path.join(pdirec, file))
         # fi
     # for
-
-
-# doxmlfiles
+    return
 
 
 def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
@@ -741,9 +747,8 @@ def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
             doxmlfiles(pdirec=os.path.join(pdirec, el)
                        , ptransfer=transferfiles
                        , ppattern=r'{}.xml'.format(GUIDPATTERN))
-
-
-# dosegfiles
+    # efor
+    return
 
 
 def do1diagramm(pfilename):
@@ -787,15 +792,12 @@ def do1diagramm(pfilename):
     return
 
 
-# do1diagramm
-
 def transferdiagramme():
     doxmlfiles(pdirec=parameters.odmentisubviewDirec()
                , ptransfer=do1diagramm
                , ppattern=r'{}.xml'.format(GUIDPATTERN))
+    return
 
-
-# transferdiagramme
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, pintfid=None):
     doma = Domain(psrcname=Externalref.SOURCE_ODM, psrcid=Modelelemtype.DOMA + handleXML.findField(pattrxml, 'id'))
@@ -812,9 +814,6 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, p
 
     doma = liesunsfuelldoma(pdoma=doma, pxml=pattrxml, pdatyid=doma.doma_daty_id)
     return doma
-
-
-# insertderiveddomain
 
 
 def findorcreateDomain(pattrname, pfathername, pdomatype, pattrxml, pintfid=None
@@ -860,9 +859,6 @@ def findorcreateDomain(pattrname, pfathername, pdomatype, pattrxml, pintfid=None
     return Domain().getunknown().doma_id
 
 
-# findorcreateDomain
-
-
 def do1Arc(fileName):
     arcXML = handleXML.parseXML(pfilename=fileName).getroot()
     if (handleXML.findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
@@ -881,16 +877,14 @@ def do1Arc(fileName):
     #    if handleXML.findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
     #        print(handleXML.findField(arcXML, "id"), handleXML.findField(arcXML, "name"), handleXML.findText(arcXML, 'entity'))
     Relation.setarcinrela(prelids=relids, parcid=arcid)
+    return
 
-
-# do1Arc
 
 def transferArcs():
     dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
     Relation.setrelatypes()
+    return
 
-
-# transferArcs
 
 def updateUDP(pmodeid, pobj):
     udps = []
@@ -952,7 +946,7 @@ def getcheckconstraint(pxml):
     if constrxml is None: return
     rules = [(handleXML.findField(impldef, 'dbType'), handleXML.findField(impldef, 'definition')) for impldef in
              constrxml]
-    if (len(rules) == 0): return
+    if (len(rules) == 0): return None
     descr = '\n'.join("dbtype={}    rule={}".format(r[0], r[1]) for r in rules)
     buru = BusinessRule()
     buru.buru_name = constrname
@@ -986,7 +980,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_name = nvl(buru.buru_name, pelemname)
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-        buruid = buru.insert()
+        buruid = BusinessRule.searchorinsertburu(buru)
         bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid)
         bure.insert()
     # fi
@@ -996,7 +990,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_name = nvl(buru.buru_name, pelemname)
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
-        buruid = buru.insert()
+        buruid = BusinessRule.searchorinsertburu(buru)
         bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pwriteable=True)
         bure.insert()
     # fi
@@ -1062,9 +1056,8 @@ def do1Attribute(plfnr, pattrxml, pentiId):
 
     doconstraints(pelemname=vatername + '.' + attr.attr_tech_name, pmodetype=Modelelemtype.ATTR, pmodeid=attrId,
                   pxml=pattrxml)
+    return
 
-
-# do1Attribute
 
 def fillKeys(p_enti, p_entiid):
     global schluessel
@@ -1316,7 +1309,7 @@ def doSubentities():
         entientiguid = getentity(guid, "superentitityguid")
         enti = getentity(guid, "entity")
         if entientiguid is not None:
-            #set hierarchical (underlay) enti-id
+            # set hierarchical (underlay) enti-id
             parententi = getentity(entientiguid, "entity")
             if parententi is None:
                 logmessages.writelog(f"Parententity {entientiguid} does not exists")
@@ -1558,6 +1551,7 @@ def transferUDP():
     dbConnect.myDbConn.commit()
     return
 
+
 def loadcolors(color: Color, elem):
     for fo in elem.findall('fonts/font_object'):
         if ((handleXML.findField(fo, 'fo_type') == 'Title')
@@ -1569,6 +1563,7 @@ def loadcolors(color: Color, elem):
         # fi
     # for
     return
+
 
 def loaddefaultcolors():
     global defcolors, classcolors, classids
@@ -1655,25 +1650,29 @@ def transferproject():
         defspra = parameters.dbDefaultLang()
         sprachen = parameters.dbLanguages()
     else:
-        defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1)
-        sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1)
+        defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1).lower()
+        sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1).lower()
+        assert defspra == parameters.dbDefaultLang(), \
+            f"Model default language in parameter ('{parameters.dbDefaultLang()}') and project comment ('{defspra}') mismatch"
+        assert set(sprachen.split(',')) ==  set(parameters.dbLanguages().split(',')), \
+            f"Model languages in parameter ({parameters.dbLanguages()}) and project comment ({sprachen}) mismatch"
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
     proj = Project()
     proj.proj_name = handleXML.findField(root, 'name')
     proj.proj_uc = handleXML.findText(root, 'createdBy')
     proj.proj_dc = handleXML.findText(root, 'createdTime')
-    proj.proj_languages = sprachen.lower()
-    proj.proj_curr_lang = defspra.lower()
+    proj.proj_languages = sprachen
+    proj.proj_curr_lang = defspra
     proj.insert()
 
     if defspra is not None:
-        defspra = defspra.lower()
+        defspra = defspra
         defspraid = Language.spraidlookup(piso=defspra)
         # setze die Defaultsprache aus dem Modell
         if defspraid is None:
-            e = ValueError("Model requires '{0}' as default language. "
-                           "But '{0}' is not in the processed languages list: '{1}'"
-                           .format(defspra, parameters.dbLanguages()))
+            e = ValueError(f"""Model requires '{defspra}' as default language. 
+                           "But '{defspra}' is not in the processed languages list: '{parameters.dbLanguages()}'"""
+                           )
             e.defspra = defspra
             raise e
         else:
@@ -1683,6 +1682,7 @@ def transferproject():
             parameters.dbDefaultLangID(defspraid)
     # fi
     return
+
 
 def do1Document(fileName):
     global docuparents
@@ -1700,7 +1700,6 @@ def do1Document(fileName):
         docuparents[id] = handleXML.findText(root, 'parentDocument')
     docu.insert()
     return
-
 
 
 def do1Orgunit(fileName):
@@ -1733,6 +1732,7 @@ def transferDocuments():
     Document.updparents(psrcname=Externalref.SOURCE_ODM, pparents=docuparents)
     return
 
+
 def transferorgunits():
     global orguparents
     orguparents = {}
@@ -1745,6 +1745,7 @@ def removeemptyudp():
     """remove all UDP's which are empty (containing '.' or '' or null as value"""
     Userdefpropvalue.removeemptyUDP(('.', ''))
     return
+
 
 def removefixedudp():
     """remove all UDP's which are part of our model"""
@@ -1815,7 +1816,6 @@ def do1contact(fileName):
         , 'dc': handleXML.findField(root, "createdTime")
                     }
     return
-
 
 
 def adjustlabelpositions():
@@ -1912,9 +1912,9 @@ def transferODMModel(**kwargs):
     Datatype.deleteunused()
     Column.fillextid()
     Domain.fixdomaininterfaces(interfacedomains)
-    BusinessRule.setburuelements()
     removeemptyudp()
     filllanguages()
     fillelementdisplays()
+    Languagetext.fillnontranslatedtexts(['DOMA'])
     removefixedudp()
 # end transferODMModel

@@ -29,14 +29,14 @@ def exec(psql, *args):
 
     cursor = dbConnect.getdbcon().cursor()
     try:
-        cursor.execute(psql, args)
+        rows = cursor.execute(psql, args)
     except sqlite3.Error as e:
         print('Failed to execute {} {}'.format(psql, str(args)))
         logmessages.writelog(psql)
         logmessages.writelog(f"exec: unexpected SQL-error: \t{str(e)}")
         raise e
     dbConnect.getdbcon().commit()
-    return
+    return rows
 
 def delete(psql, *args):
     """execute a sql delete statement

@@ -1,6 +1,6 @@
 # The toolsuite around Information Modeling and the Information Cadastre
 
-[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg?branch=TOOVERSION-2.7)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-80%25-seagreen)
+[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-82%25-seagreen)
 
 The tools provided by
 <a href="https://foryouandyourcustomers.com" style="color: #F79724; text-decoration: underline;text-decoration-style: dotted;">
@@ -20,8 +20,19 @@ of your domain of work.
 
 ### The Information Cadastre
 
-The <span style="font-family:FreeSet">Information Cadastre</span> organises the organisation arount the Informaton
+The <span style="font-family:FreeSet">Information Cadastre</span> organises the organisation around the Information
 Model.
 
 - It supports the method 'information modeling' and publishing its results with various tools.
 - It provides guidance in how to set up the work and governance around the Information Model.
+
+# Tooling
+[invoke](https://www.pyinvoke.org/) is the tool to bootstrap and execute various tasks.
+See `invoke --help` for a list of tasks.
+
+## Bootstrapping and installation
+Bootstrap your Anaconda environment:
+
+```conda env update --file conda-base-environment.yaml```
+
+```invoke translate```

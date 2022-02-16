@@ -54,7 +54,7 @@ def main(pjsonin, pdbout):
     if pdbout is None:
         createnewDB(pdbfilepath=":memory:")
     else:
-        dbConnect.openDB(pdbout, 'ON');
+        dbConnect.openDB(pdbout, '1');
 
     try:
         fillsql(pmodel=jsmodel)

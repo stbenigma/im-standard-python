@@ -97,6 +97,8 @@ create table entities
 			unique,
     enti_enca_id numeric (10) null
         references entity_categories (enca_id),
+    enti_underlay_enti_id numeric (10) null
+        references entities (enti_id),
 	enti_short_name varchar(60),
 	enti_prefix varchar(60),
 	enti_tooltip varchar(4000),
@@ -816,9 +818,9 @@ create table tables
 		references interfaces (intf_ID),
 	tabl_prefix varchar(60),
 	tabl_descr varchar(4000),
-    tabl_create varchar (5) not null default 'FALSE' check ( tabl_create in ('FALSE', 'TRUE') ) ,
-    tabl_read varchar (5) not null default 'TRUE' check ( tabl_read in ('FALSE', 'TRUE') ) ,
-    tabl_update varchar (5) not null default 'FALSE' check ( tabl_update in ('FALSE', 'TRUE') ) ,
+    tabl_create varchar (5) not null default 'FALSE' check ( tabl_create in ('FALSE', 'TRUE') ) , 
+    tabl_read varchar (5) not null default 'TRUE' check ( tabl_read in ('FALSE', 'TRUE') ) , 
+    tabl_update varchar (5) not null default 'FALSE' check ( tabl_update in ('FALSE', 'TRUE') ) , 
     tabl_delete varchar (5) not null default 'FALSE' check ( tabl_delete in ('FALSE', 'TRUE') ) ,
 	tabl_uc varchar(30) not null,
 	tabl_dc varchar(30) not null,
@@ -841,8 +843,8 @@ create table columns
 	colu_ext_system_id varchar(100),
 	colu_descr varchar(4000),
 	colu_type_string varchar(200),
-    colu_read VARCHAR (5) NOT NULL DEFAULT 'TRUE' CHECK ( colu_read IN ('FALSE', 'TRUE') ) ,
-    colu_update VARCHAR (5) NOT NULL DEFAULT 'FALSE' CHECK ( colu_update IN ('FALSE', 'TRUE') ),
+    colu_read VARCHAR (5) NOT NULL DEFAULT 'TRUE' CHECK ( colu_read IN ('FALSE', 'TRUE') ) , 
+    colu_update VARCHAR (5) NOT NULL DEFAULT 'FALSE' CHECK ( colu_update IN ('FALSE', 'TRUE') ), 
 	colu_tabl_id integer not null
 		constraint colu_tabl_fk
 			references tables (tabl_id),
@@ -966,31 +968,31 @@ create table element_ui
 	    ,constraint elui_uk_enca unique  (elui_enca_id)
     );
 
-	create table examples
+	create table examples 
 	    (
 	     expl_id integer (10) not null primary key
 			references modelelement (mode_id)
 		on delete cascade,
-	     expl_value varchar (4000) not null ,
-	     expl_enti_id numeric (10) ,
-	     expl_attr_id numeric (10) ,
-	     expl_uc varchar (30) not null ,
-	     expl_dc varchar(30) not null ,
-	     expl_um varchar (30) ,
+	     expl_value varchar (4000) not null , 
+	     expl_enti_id numeric (10) , 
+	     expl_attr_id numeric (10) , 
+	     expl_uc varchar (30) not null , 
+	     expl_dc varchar(30) not null , 
+	     expl_um varchar (30) , 
 	     expl_dm varchar(30)
-		 ,constraint fkarc_8 check (
-		 	        (  (expl_enti_id is not null) and
-		 	         (expl_attr_id is null) ) or
-		 	        (  (expl_attr_id is not null) and
-		 	         (expl_enti_id is null) )
+		 ,constraint fkarc_8 check ( 
+		 	        (  (expl_enti_id is not null) and 
+		 	         (expl_attr_id is null) ) or 
+		 	        (  (expl_attr_id is not null) and 
+		 	         (expl_enti_id is null) )  
 				 )
 		,constraint expl_enti_uk unique  (expl_value, expl_enti_id)
 		,constraint expl_attr_uk unique  (expl_value, expl_attr_id)
-		,constraint expl_attr_fk foreign key (expl_attr_id)
-			references attributes (attr_id )
+		,constraint expl_attr_fk foreign key (expl_attr_id) 
+			references attributes (attr_id ) 
 			on delete cascade
-		,constraint expl_enti_fk foreign key ( expl_enti_id)
-			references entities (enti_id )
+		,constraint expl_enti_fk foreign key ( expl_enti_id) 
+			references entities (enti_id ) 
 			on delete cascade
 	    );
 
@@ -1025,6 +1027,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.6' as version, datetime() as installedtime;
+create view dbversion as select '1.6.1' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

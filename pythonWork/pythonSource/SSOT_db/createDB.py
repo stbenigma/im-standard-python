@@ -60,17 +60,18 @@ def createnewDB(pdbfilepath):
     """
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='OFF')
+    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='0')
     applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
     if dbConnect.getversion() != parameters.expecteddbversion():
         applyupgrades()
+    dbConnect.checkson() #enable all constraints
     return
 
 
 def extract_version(pfilename):
-    searchversion = re.search(r"\d+\.\d+(.\d+)?", pfilename)
+    searchversion = re.search(r"\d+.\d+(.\d+)?", pfilename)
     return searchversion[0] if searchversion else None
 
 
@@ -83,7 +84,7 @@ def getlistofupgrfiles(psqlpath):
     # try
     retval = []
     for el in listdir:
-        if re.match(r"modelmodel_sqlite_\d+\.\d+(\.\d+)?\.sql", el):
+        if re.match(r"modelmodel_sqlite_\d+.\d+(.\d+)?\.sql", el):
             retval.append(el)
     # for
     return retval
@@ -192,7 +193,7 @@ def main(psysargs):
     else:
         # in jupyter environment
         """set myargs with arguments """
-        arguments = argparse.Namespace({})
+        arguments = argparse.Namespace()
         myargs = arguments.__dict__
     # fi
     if 'version' in myargs and myargs['version']:

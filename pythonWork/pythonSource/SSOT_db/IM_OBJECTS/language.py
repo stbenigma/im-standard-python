@@ -29,7 +29,13 @@ class Language(Baseobject):
         if (len(lDefLangs) == 0): return None
         if (len(lDefLangs) > 1): raise Exception("More than one model-Language defined")
         return lDefLangs[0]
-    #getdefaultlang
+
+    @staticmethod
+    def getlanguagecodes():
+        lDefLangs = Language.select(porderby="lang_iso_code2")
+        langs = [lang.lang_iso_code2 for lang in lDefLangs]
+        return langs
+
 
     def getreplacementlang(self):
         return Language.select(pwhere=('lang_id=?', self.lang_lang_id))[0]

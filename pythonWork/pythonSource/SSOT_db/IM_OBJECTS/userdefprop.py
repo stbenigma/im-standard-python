@@ -79,6 +79,17 @@ class Userdefprop(Baseobject):
         #             where lower(UDPR_THEME) = lower(?) and lower(udpr_name) = lower(?)"""
         # dbDML.execmany(psql=lsql,recs=modeludps)
 
+        lsql = """delete from udp_values 
+                    where udpv_udpr_id in (select udpr_id from user_defined_properties
+                                            where (lower(UDPR_THEME),lower(udpr_name)) 
+                                                   = (lower(?) ,lower(?)) )"""
+        try:
+            dbDML.execmany(psql=lsql, recs=modeludps)
+        except Exception as e:
+            print(lsql)
+            print(modeludps)
+            print(e)
+
         lsql = """delete from USER_DEFINED_PROPERTIES 
                     where (lower(UDPR_THEME),lower(udpr_name)) = (lower(?) ,lower(?))"""
         try:

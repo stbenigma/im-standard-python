@@ -207,17 +207,22 @@ def formattext(pstr):
             return pstr
     #fi
 
-
+"""
+templateLoader = jinja2.FileSystemLoader(searchpath="./")
+templateEnv = jinja2.Environment(loader=templateLoader)
+TEMPLATE_FILE = "template.html"
+template = templateEnv.get_template(TEMPLATE_FILE)
+outputText = template.render()  # this is where to put args to the template renderer
+"""
 def model2html(pwebmodel:Webmodel):
     template_folder = pwebmodel.export.jinadirec
     assert os.path.isdir(template_folder), f"Missing jinja templates folder {template_folder}"
-    t = Environment(loader=FileSystemLoader(template_folder),autoescape=True)
+    t = Environment(loader=FileSystemLoader(searchpath=template_folder),autoescape=True)
     if pwebmodel.getintfid() is not None:
         templatename = "interface.jinja.html"
     else:
         templatename = "informationmodel.jinja.html"
     #fi
-
     try:
         templ = t.get_template(templatename)
     except:

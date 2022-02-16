@@ -1,6 +1,8 @@
-from .baseobject import Baseobject, MultilangBaseobject,Boolean
+from .baseobject import Baseobject, MultilangBaseobject, Boolean
 from .languagetext import Languagetext
-from .modelelement import Modelelement,Modelelemtype
+from .modelelement import Modelelement, Modelelemtype
+from SSOT_infra import logmessages
+
 
 class BusinessRule(MultilangBaseobject):
     BURU_TYPE_TRIGGER = 'TRIGGER'
@@ -19,10 +21,8 @@ class BusinessRule(MultilangBaseobject):
     _defaultorderby = "buru_name"
 
     def __init__(self, psrcname=None, psrcid=None):
-
-
-        super().__init__( multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
-                                          'buru_errormsg': Languagetext.ATTR_TOOLTIP}
+        super().__init__(multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
+                                        'buru_errormsg': Languagetext.ATTR_TOOLTIP}
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -38,15 +38,24 @@ class BusinessRule(MultilangBaseobject):
     def getmodellelement(self):
         return Modelelement.getbyelemid(pattrid=self.buru_id)
 
-
-
-    @staticmethod
-    def setburuelements():
-        """
-        analyse businesrules and link the buru too the elements mentionend in them.
-        for domains copy buru to all attributes marked as "use domain constraint"
-        """
-        return
+    def searchorinsertburu(self):
+        """searches for a buru with this name
+            if it exists, return its id
+            if not insert pburu and return this id
+            if a found buru is not identical to pburu, write a log message, but return the found BR anyway
+            """
+        locburu = self.getbyuk(buru_name=self.buru_name)
+        if locburu is None:
+            #does not yet exist insert it
+            buruid = self.insert()
+        else:
+            buruid = locburu.buru_id
+            #check for identical definition and log error if not
+            if not self.semanticequal(locburu):
+                logmessages.writelog(f"""Business Rule "{self.buru_name}" already exists """+
+                                     """ but with different definition. It is replaced by the exisiting one""")
+        #fi
+        return buruid
 
 # BusinessRule
 
@@ -56,7 +65,7 @@ class BusinessruleElement(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self, pburuid=None,pwriteable=False,pmodeid=None):
+    def __init__(self, pburuid=None, pwriteable=False, pmodeid=None):
         super().__init__()
         self.bure_buru_id = pburuid
         self.bure_mode_id = pmodeid
@@ -65,18 +74,12 @@ class BusinessruleElement(Baseobject):
     def getelement(self):
         return Modelelement.getelement(pmodeid=self.bure_mode_id)
 
-    def getparent(self) -> BusinessRule :
+    def getparent(self) -> BusinessRule:
         buru = BusinessRule().getbyid(pid=self.bure_buru_id)
         return buru
 
     @classmethod
-    def getburuelements(cls,pmodeid):
+    def getburuelements(cls, pmodeid):
         bures = cls.select(pwhere=("""(bure_mode_id = ?)""", pmodeid))
         return bures
 # BusinessruleELement
-
-
-
-
-
-

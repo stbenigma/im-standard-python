@@ -10,7 +10,6 @@ LEGENDHEIGHT: int = 128
 DEFAULT_LINEWIDTH: int = 1
 ICONSIZE: int = 40
 
-
 def printlegend(pdata,pwidth,pheigh,px,py):
 
     legenhead = """<g  fill="rgb(255,255,255)" stroke="rgb(0,0,0)" 
@@ -461,10 +460,10 @@ def getsvgtext(export: HTMLExport, plang,pdiaganker,pdiagelem,ptitel=None):
         retval = None
     else:
         """render diagram"""
-        retval = """<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                version="1.1"  width="{}" height="{}">
+        retval = f"""<svg id="{pdiaganker}-SVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                version="1.1"  width="{pdiagelem["width"]}" height="{pdiagelem["height"]}">
                 <defs id="dmw_defs" >
-                </defs>""".format(pdiagelem["width"],pdiagelem["height"])
+                </defs>"""
         if ('legend' in pdiagelem.keys() and pdiagelem['legend']['x'] is not None and pdiagelem['legend']['y'] is not None ):
             # es hat eine Legende
             retval += printlegend(pdata=[pdiagelem['name'], nvl(pdiagelem['uc']), nvl(pdiagelem['dc']),

@@ -5,6 +5,8 @@ import re
 
 def putrefinsvg(export: HTMLExport, ptext, pintf):
     retval = ptext
+    retval  = re.sub(r'<svg xmlns="http://www.w3.org/2000/svg"',
+                     r'<svg id="{}-SVG" xmlns="http://www.w3.org/2000/svg"'.format(pintf["interface-id+"]), retval)
     for tabid in pintf["tables+"]:
         tabl = export.getelement(tabid)
         try:

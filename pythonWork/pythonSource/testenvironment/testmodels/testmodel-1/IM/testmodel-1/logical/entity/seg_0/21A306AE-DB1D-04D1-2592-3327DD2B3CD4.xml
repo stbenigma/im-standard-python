@@ -15,6 +15,9 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="publ_status" value="DRAFT"/>
+</propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="Count" id="47F408A2-E528-260E-A2BF-F78912631C07">
 <createdBy>stb</createdBy>
@@ -29,6 +32,9 @@
 <use>0</use>
 <domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="publ_status" value="GTOP"/>
+</propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0</beginValue>

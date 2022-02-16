@@ -174,7 +174,7 @@ def main(param1,pxls):
     #fi
     try:
         workbook = load_workbook(filename=infile)
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks="ON")
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks="1")
         printstatline("Interface","tab-mapins","tab-mapdel","col-mapins","col-mapdel")
         for ws in workbook.worksheets:
             if ws.title == 'Overview': continue

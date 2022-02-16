@@ -1,5 +1,6 @@
 from SSOT_db.SQL_INFRA import dbDML
 from .baseobject import Baseobject
+import re
 
 
 class Languagetext(Baseobject):
@@ -187,4 +188,35 @@ class Languagetext(Baseobject):
             Languagetext.__greportLang = newval
         return
 
+    @staticmethod
+    def fillnontranslatedtexts(ptypes):
+        """all non translated texts for the modelelementtype in ptypes
+        are copied into non-default-language
+        so we accept the defaltlanguage text as the proper text for any language
+        """
+        types = re.sub(r"(\w+)",r"'\1'",",".join(ptypes))
+        """get all langtexts from the default-language
+            for all mode_types in the given list
+            multiply them with non-default languages
+            if they do not yet exists in the new language
+            insert them into lang_texts
+        """
+        lsql = f"""insert into lang_texts
+                (lgtx_attrname ,lgtx_text,lgtx_lang_id,lgtx_mode_id,lgtx_uc,lgtx_dc)
+                select lgtx_attrname ,lgtx_text,new_lang_id,lgtx_mode_id,lgtx_uc,lgtx_dc
+                from lang_texts lgt
+                join modelelement on lgt.lgtx_mode_id = modelelement.mode_id
+                        and mode_type in ({types})
+                join languages as baselang on lgt.lgtx_lang_id = baselang.lang_id
+                                and  baselang.lang_is_base_lang = 'TRUE'
+                cross join (select lang_id as new_lang_id 
+                            from languages 
+                            where lang_is_base_lang = 'FALSE')
+                where not exists(select 1 from lang_texts comp
+                    where comp.lgtx_mode_id = lgt.lgtx_mode_id
+                    and comp.lgtx_attrname = lgt.lgtx_attrname
+                    and comp.lgtx_lang_id = new_lang_id)
+"""
+        cnt = dbDML.exec(psql=lsql)
+        return
 # Languagetext

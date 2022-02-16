@@ -2,6 +2,7 @@
 <udp_library>
 	<udp_groups>
 		<group name="zoomlevel" id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" />
+		<group name="printlevel" id="3B8B1A0F-E04A-B3AC-18EE-B43F1EC1A761" />
 	</udp_groups>
 	<properties>
 		<property name="minzoomlevel" dispalay_name="Minimal Zoom Level" type="Number" group_id="9349CE74-2F47-B9E5-A332-69E5AF2255FF" default_value="0">
@@ -32,6 +33,26 @@ FALSE -&amp;amp;gt; Attribute is not important for understanding]]>
 			<objects>
 				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
 			</objects>
+		</property>
+		<property name="publ_status" dispalay_name="" type="List" group_id="3B8B1A0F-E04A-B3AC-18EE-B43F1EC1A761" default_value="DRAFT">
+		<description>
+			<![CDATA[DRAFT:  Development phase, first release
+GTOP: in test or QA process, Good TO Print
+PUBL: Published]]>
+		</description>
+			<objects>
+				<object class="oracle.dbtools.crest.model.design.logical.Attribute" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Column" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Entity" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.logical.Relation" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.Table" visible="false" color="-1"/>
+				<object class="oracle.dbtools.crest.model.design.relational.TableView" visible="false" color="-1"/>
+			</objects>
+			<list_of_values>
+				<item value="DRAFT" default="true"/>
+				<item value="GTOP" default="false"/>
+				<item value="PUBL" default="false"/>
+			</list_of_values>
 		</property>
 	</properties>
 </udp_library>
