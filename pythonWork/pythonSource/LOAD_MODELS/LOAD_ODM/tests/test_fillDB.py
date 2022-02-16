@@ -134,19 +134,19 @@ class TESTFILLDB(unittest.TestCase):
         # check handling of translations
         with open(jsonfilepath) as jsonFile:
             jmodel = json.load(jsonFile)
-            checkentityID,checkentity = getbyfield(jmodel, "entities", "Child Entity1", plang="en")[0]
+            checkentityID,checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]
             self.assertIsNotNone(checkentity, f"Testcase 'Child Entity1' is not present in {testmodelname}")
             synos = list(checkentity["synonyms"].values())
-            self.assertEqual(synos[0]["de"], "*en* ESynonym")
-            self.assertEqual(synos[0]["fr"], "*en* ESynonym")
-            self.assertEqual(checkentity["descr"]["de"],
-                             "*en* Child entity,  Subtype \nDisplayed on all zoom levels (0-2)")
+            self.assertEqual(synos[0]["en"], "*de* DSynonym")
+            self.assertEqual(synos[0]["fr"], "*de* DSynonym")
+            self.assertEqual(checkentity["descr"]["en"],
+                             "Child entity,  Subtype \nDisplayed on all zoom levels (0-2)")
             self.assertEqual(checkentity["descr"]["fr"],
-                             "*en* Child entity,  Subtype \nDisplayed on all zoom levels (0-2)")
+                             "*de* Untergeordnete Entität, Untertyp\nWird auf allen Zoomstufen angezeigt (0-2)")
             attr = jmodel["attributes"][checkentity["attributes+"][0]]
-            self.assertEqual(attr["techname"], "FIRST_APPEARANCE", "wrong testcase attribute")
-            self.assertEqual(attr["tooltip"]["de"], "*en* Tooltip Eonly")
-            self.assertEqual(attr["tooltip"]["fr"], "*en* Tooltip Eonly")
+            self.assertEqual(attr["techname"], "ERSTE_ERSCHEINUNG", "wrong testcase attribute")
+            self.assertEqual(attr["tooltip"]["en"], "*de* Tooltip Eonly")
+            self.assertEqual(attr["tooltip"]["fr"], "*de* Tooltip Eonly")
             jsonFile.close()
 
         # create db for crmtest with Paramfile
