@@ -5,7 +5,7 @@ def tables2js(pemptymodel):
         'interface-id', 'prefix',
         'descr',
         'uc', 'dc', 'um', 'dm',
-        'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        'minzoomlevel', 'maxzoomlevel', 'publstatus'
         ,'CRUD',
         'columns+', 'userdefprops',
         'entitiesmapped', 'relationsmapped',
@@ -13,7 +13,7 @@ def tables2js(pemptymodel):
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(9)]
-                                                                                       + [0, 4, 'DEV'
+                                                                                       + [0, 4, 'DRAFT'
                                                                                           ,crudstr(),
                                                                                            reflist(),userdefprops()
                                                                                            ,[jsguid(Modelelemtype.ENTI, '0000')],
@@ -27,7 +27,7 @@ def tables2js(pemptymodel):
                           , jsguid(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid())
                           , t.tabl_prefix, t.tabl_descr
                           , t.tabl_uc, t.tabl_dc, t.tabl_um, t.tabl_dm
-                          , t.getminzoomlevel(), t.getmaxzoomlevel(), t.getdevstatus()
+                          , t.getminzoomlevel(), t.getmaxzoomlevel(), t.getpublstatus()
                           , crudstr(pcreate=t.tabl_create,pread=t.tabl_read,pupdate=t.tabl_update,pdelete=t.tabl_delete)
                           , [jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
                           , udpv2js(pmodeid=t.tabl_id, pmodelemtype=Modelelemtype.TABL)
@@ -67,9 +67,9 @@ def tables2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.TABL).items():
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
-        devstatus = jelem['devstatus']
+        publstatus = jelem['publstatus']
         newtablid = keytransl(jid)
-        Modelelement.upddisplelements(pmodeid=newtablid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        Modelelement.upddisplelements(pmodeid=newtablid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
         insreferences(presult=presult, pmodeid=newtablid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newtablid, psources=jelem["sourceref"])
         instablemapping(presult=presult, ptablid=newtablid,

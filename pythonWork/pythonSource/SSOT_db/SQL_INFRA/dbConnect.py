@@ -13,7 +13,7 @@ myDbConn: sqlite3.Connection = None
 actualdbversion = {}
 
 
-def openDBbasic(pfilepath, pfks='OFF'):
+def openDBbasic(pfilepath, pfks='0'):
     """ opens the db pfilepath
     """
     try:
@@ -24,17 +24,17 @@ def openDBbasic(pfilepath, pfks='OFF'):
         raise exp
     getdbcon().execute(f"PRAGMA foreign_keys = {pfks}")
     getdbcon().execute("PRAGMA main.cache_size = -2000")
-    return
+    return locconn
 
 
-def opendDB4DDL(pfilepath, pfks="OFF"):
+def opendDB4DDL(pfilepath, pfks="0"):
     """ creates a database and opens it.
      by default checking is off as I want to do DDL
      """
     openDBbasic(pfilepath, pfks=pfks)
 
 
-def openDB(pfilepath, pfks='OFF'):
+def openDB(pfilepath, pfks='0'):
     """opens the database pfilepath
     pfks OFF -> no checks enabled (for DDL)
         on -> checks enabled (for DML)
@@ -51,6 +51,8 @@ def closeDB():
     setdbcon(None)
     return
 
+def checkson():
+    getdbcon().execute(f"PRAGMA foreign_keys = 1")
 
 def isopenDB():
     """if the global db for my environment open?

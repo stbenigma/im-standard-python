@@ -8,7 +8,7 @@ from SSOT_infra import parameters, logmessages
 from SSOT_db.IM_JSON import  sql2json, jsonfilename, JSModel
 
 def createJSON(pfilepath, pfilename):
-    dbConnect.openDB(parameters.dbFilePath(), pfks='ON')
+    dbConnect.openDB(parameters.dbFilePath(), pfks='1')
     jsmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
     jsmodel.printmodel(pfilepath=pfilepath, pfilename=pfilename)

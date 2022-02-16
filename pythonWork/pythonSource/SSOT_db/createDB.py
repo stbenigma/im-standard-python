@@ -4,6 +4,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from packaging import version
 
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.SQL_INFRA import dbDDL
@@ -59,17 +60,18 @@ def createnewDB(pdbfilepath):
     """
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='OFF')
+    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='0')
     applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
     if dbConnect.getversion() != parameters.expecteddbversion():
         applyupgrades()
+    dbConnect.checkson() #enable all constraints
     return
 
 
-def version(pfilename):
-    searchversion = re.search(r"\d+(\.\d+)+", pfilename)
+def extract_version(pfilename):
+    searchversion = re.search(r"\d+.\d+(.\d+)?", pfilename)
     return searchversion[0] if searchversion else None
 
 
@@ -82,7 +84,7 @@ def getlistofupgrfiles(psqlpath):
     # try
     retval = []
     for el in listdir:
-        if re.match(r"modelmodel_sqlite_\d+\.\d+(\.\d+)?\.sql", el):
+        if re.match(r"modelmodel_sqlite_\d+.\d+(.\d+)?\.sql", el):
             retval.append(el)
     # for
     return retval
@@ -95,33 +97,37 @@ def applyupgrades():
 
     upgrfiles = getlistofupgrfiles(psqlpath=parameters.sqlpath())
     upgrfiles.sort(key=lambda s:s[:-4])  # order is important as upgrades follow each other sequentally
+    applied = []
     for upgrfile in upgrfiles:
-        if version(upgrfile) <= actversion:
+        ev = version.parse(extract_version(upgrfile))
+        if ev <= version.parse(actversion):
             continue
-        if version(upgrfile) > parameters.expecteddbversion():
+        if ev > version.parse(parameters.expecteddbversion()):
             break
         applysqlscript(psqlfilepath=os.path.join(parameters.sqlpath(), upgrfile))
+        applied.append(upgrfile)
     # for
     dbConnect.setversion()
-    return
+    return applied
 
 
 def upgradeDB():
     # get list of upgrade-files
     dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
     actversion = dbConnect.getversion()
+    applied = []
     if actversion is None:
         raise Exception(f"Database '{parameters.dbFilePath()}' does not contain version information.")
     elif actversion == parameters.expecteddbversion():
         print("DB {} is up to date: version {}".format(parameters.dbFilePath(), actversion))
     else:
-        applyupgrades()
+        applied = applyupgrades()
         logmessages.showmessages(
             f"database {parameters.dbFilePath()} for model {parameters.modelName()}" +
             f" upgraded to version {dbConnect.getversion()}")
     #fi
     dbConnect.closeDB()
-    return
+    return applied
 
 
 def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
@@ -187,6 +193,8 @@ def main(psysargs):
     else:
         # in jupyter environment
         """set myargs with arguments """
+        arguments = argparse.Namespace()
+        myargs = arguments.__dict__
     # fi
     if 'version' in myargs and myargs['version']:
         argparseparent.showversion()

@@ -5,8 +5,8 @@ from IM_ODM import createJSON
 from LOAD_MODELS.LOAD_ODM import fillDB
 
 
-def filldbmain(callarg, pintputfile, ptransffunc,createnewdb=False):
-    fillDB.fillmergedb(pdestination=callarg, createnewdb=createnewdb
+def filldbmain(callarg, pintputfile, ptransffunc):
+    fillDB.fillmergedb(pdestination=callarg
                        , transferfunction=ptransffunc
                        , pinput=pintputfile)
 

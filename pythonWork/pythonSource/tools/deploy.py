@@ -1,8 +1,11 @@
 #!/usr/bin/python3
+import json
 import os
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 import argparse
 from datetime import datetime
@@ -16,6 +19,7 @@ import logging
 arguments = argparse.Namespace(verbose=True)
 
 DEFAULT_DIST_FOLDER = './dist'
+
 
 def log(msg):
     """Poor man's logging"""
@@ -35,13 +39,43 @@ def notebook_to_python(source, exporter, destination):
     return source, meta
 
 
+def hardcode_version(version: str, pattern: str, subject) -> int:
+    """
+    Replace label
+    :param version:
+    :param pattern:
+    :param subject:
+    :return:
+    """
+
+    subject = Path(subject)
+    assert subject.is_file()
+
+    replaced = 0
+    with open(subject, 'r') as source:
+        fp = source
+        dst, temp_name = tempfile.mkstemp()
+        for line in fp.readlines():
+            rewrite = re.sub(pattern, version, line)
+            if rewrite != line:
+                replaced += 1
+            os.write(dst, (rewrite + os.linesep).encode())
+        os.close(dst)
+        if replaced > 0:
+            logging.debug(f"Replacing {subject} with updated content in {temp_name}")
+            shutil.move(temp_name, subject)
+            logging.info(f"Substituted {replaced} locations in {subject}")
+    return replaced
+
+
 def main(basefolder: Path, argv: []):
     global arguments
     strip_cells_with_tags = ("test", "visual", "debug")
 
     parser = argparse.ArgumentParser(description="Build generator and deployment package")
     parser.add_argument('--verbose', '-v', action='store_true', dest='verbose')
-    parser.add_argument('--output', '-o', dest='output', default=DEFAULT_DIST_FOLDER, help="Output folder for distribution")
+    parser.add_argument('--output', '-o', dest='output', default=DEFAULT_DIST_FOLDER,
+                        help="Output folder for distribution")
     parser.add_argument('notebook', metavar='notebook.ipynb', type=str,
                         default='notebooks/mig/generator.ipynb',
                         nargs='?', help="Source Jupyter Notebook")
@@ -76,6 +110,18 @@ def main(basefolder: Path, argv: []):
 
     target.chmod(0o755)
 
+    version = 'unknown version'
+    version_file = Path(basefolder) / 'pythonWork' /\
+                   'pythonSource' / 'SSOT_infra' / 'versions.json'
+    if version_file.is_file():
+        with open(version_file, 'r') as src:
+            version = json.load(src)
+            version_mark = f"{version['TOOLVERSION']} (Schema {version['DBVERSION']})"
+    else:
+        logging.warning(f"Cannot read version file {version_file.resolve()}")
+
+    hardcode_version("VERSION_TAG = '" + version_mark + "'", r"VERSION_TAG\s*=\s*['\"].+['\"]", target)
+
     logging.info("Updating locale message catalogs (*.mo)")
     generate_translations()
 
@@ -86,26 +132,17 @@ def main(basefolder: Path, argv: []):
     except CalledProcessError as e:
         print(f"Warning: Cannot read git repository status")
 
-    version = 'master'
-
-    with open(target, 'r') as src:
-        expression = re.compile(r'notebook_version\s*=\s*"([^"]+)"')
-        for line in src.readlines():
-            match = expression.match(line)
-            if match:
-                version = match.group(1)
-
-    package_name = f'model2diagram-{version}'
+    package_name = f"model2diagram-{version['TOOLVERSION']}"
     archive = destination_folder / (package_name + '.zip')
 
     now = datetime.now()
     stamp = now.strftime("%Y-%m-%d %H:%M:%S")
-    version_string = f'{{ "version": "{version}", "git": "{git_tag}", timestamp: "{stamp}" }}'
+    version_string = f'{{ "version": "{version["TOOLVERSION"]}", "schema": "{version["DBVERSION"]}", "git": "{git_tag}", timestamp: "{stamp}" }}'
 
     log("Version " + version_string)
 
-    version_file_name = basefolder / 'version.json'
-    with open(version_file_name, 'w') as vfile:
+    stamp_file = destination_folder / 'stamp.json'
+    with open(stamp_file, 'w') as vfile:
         vfile.write(version_string + '\n')
 
     windows_runner = basefolder / 'run.bat'
@@ -114,7 +151,7 @@ def main(basefolder: Path, argv: []):
 
     with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as zip:
         zip.write(target, target.relative_to(target.parent))
-        zip.write(version_file_name, version_file_name.relative_to(basefolder))
+        zip.write(stamp_file, stamp_file.relative_to(stamp_file.parent))
         zip.write(windows_runner, windows_runner.relative_to(basefolder))
         zipdir(tools, zip, basefolder)
 
@@ -137,20 +174,25 @@ def accept(path: str):
     file = os.path.basename(path)
     file_path = Path(path).resolve()
 
+    # exclude
     if '/venv/' in path: return False
     if file is None: return False
-    if len(Path(path).parts) < 2: return False # skip python files in root
+    if len(Path(path).parts) < 2: return False  # skip python files in root
     if file_path.match('**/tests/*.py'): return False  # skip unittests
     if file_path.match('**/testenvironment/**/*.*'): return False  # skip testdata
-    if file_path.match('**/"unittest-tmp-dir/**/*.*'): return False
+    if "unittest-tmp-dir" in map(lambda part: str(part), file_path.parts): return False
 
+    # include
     if file.endswith('.py'): return True  # source files
     if file.endswith('.mo'): return True  # gettext message catalog
-    if file_path.match('**/IM_WEB/html-lib/**/*.*'):
-        return True
+    if file_path.match('**/dbstructure/sqlite/*.*'): return True
+
+    if file_path.match('**/IM_WEB/html-lib/**/*.*'): return True
+
     if 'modelmodel_sqlite.sql' in file: return True
     if 'versions.json' in file: return True
 
+    # none -> exclude
     return False
 
 
@@ -167,4 +209,6 @@ def zipdir(path, ziph, content_root, path_filter=accept):
 
 
 if __name__ == '__main__':
-    main(Path.cwd(), sys.argv[1:])
+    result = main(Path.cwd(), sys.argv[1:])
+    with zipfile.ZipFile(result, 'r') as archive:
+        print(f"{len(archive.filelist)} files packed into distribution bundle {result.resolve()}")

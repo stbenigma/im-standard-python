@@ -15,7 +15,7 @@ def columns2js(pemptymodel):
         ,'descr'
        ,'interface_col_id'
         ,'uc', 'dc', 'um', 'dm',
-        'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        'minzoomlevel', 'maxzoomlevel', 'publstatus'
         ,'R/W',
         'attributesmapped',
         'userdefprops',
@@ -24,7 +24,7 @@ def columns2js(pemptymodel):
     ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.COLU, '0000') : fillmodel(pmodel=model,pentries=['' for i in range(17)]
-                                                                        +[0,4,'DEV',rwstr()
+                                                                        +[0,4,'DRAFT',rwstr()
                                                                         ,reflist(plist=[Modelelemtype.ATTR+"0000"]),userdefprops(),
                                                                         sourceref(),reflist()
                                                                           ])}
@@ -44,7 +44,7 @@ def columns2js(pemptymodel):
         ,c.colu_descr
        ,c.colu_ext_system_id,
         c.colu_uc, c.colu_dc, c.colu_um,  c.colu_dm,
-            c.getminzoomlevel(), c.getmaxzoomlevel(), c.getdevstatus()
+            c.getminzoomlevel(), c.getmaxzoomlevel(), c.getpublstatus()
             ,rwstr(pread=c.colu_read,pwrite=c.colu_update),
              reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in
                                 ColAttrMap.getattrlist(pcoluid=c.colu_id)]),
@@ -83,8 +83,8 @@ def columns2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
         newcoluid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
-        devstatus = jelem['devstatus']
-        Modelelement.upddisplelements(pmodeid=newcoluid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        publstatus = jelem['publstatus']
+        Modelelement.upddisplelements(pmodeid=newcoluid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
 
         colattrmaps2sql(presult=presult, pcoluid=newcoluid, pattrs=jelem['attributesmapped'])
         insreferences(presult=presult,pmodeid=newcoluid,prefs=jelem['referencedby'])

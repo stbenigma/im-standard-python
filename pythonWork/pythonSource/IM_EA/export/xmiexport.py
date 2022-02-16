@@ -473,9 +473,9 @@ $DES;$CLT={{{str(uuid4())}}}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;""")
         project.set('keywords', key)
 
         status = 'Proposed'
-        devstatus = entity.get('devstatus')
-        if devstatus is not None:
-            if devstatus.upper() == 'DEV':
+        publstatus = entity.get('publstatus')
+        if publstatus is not None:
+            if publstatus.upper() == 'DRAFT':
                 status = 'Implemented'
         project.set('status', status)
 

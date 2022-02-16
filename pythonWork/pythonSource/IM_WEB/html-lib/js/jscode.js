@@ -1,5 +1,5 @@
-<script>
-      // Quick and simple export target #table_id into a csv
+
+// Quick and simple export target #table_id into a csv
 function download_table_as_csv(table_id) {
     // Select rows from table_id
     var rows = document.querySelectorAll('table#' + table_id + ' tr');
@@ -83,13 +83,21 @@ function $d_Find(pThis, pString, pTags, pClass) {
 
     // Code for automatic expanding after results < 30 
     if (c <= 30) {
-        $('#bar1').collapse('show');
-        $('#bar2').collapse('show');
-        $('#bar3').collapse('show');
+        $('#barenti').collapse('show');
+        $("#barattr").collapse('show');
+        $("#bardoma").collapse('show');
+        $("#bardiag").collapse('show');
+        $("#barintf").collapse('show');
+        $("#bardocu").collapse('show');
+        $("#barorgu").collapse('show');
     } else {
-        $('#bar1').collapse('hide');
-        $('#bar2').collapse('hide');
-        $('#bar3').collapse('hide');
+        $('#barenti').collapse('hide');
+        $("#barattr").collapse('hide');
+        $("#bardoma").collapse('hide');
+        $("#bardiag").collapse('hide');
+        $("#barintf").collapse('hide');
+        $("#bardocu").collapse('hide');
+        $("#barorgu").collapse('hide');
     }
 
     document.getElementById("count").innerHTML = c;
@@ -124,10 +132,9 @@ $(document).ready(function() {
         $("#first").val('').focus();
         $(this).hide();
     });
-});
 
-//content view for sidebar(desktop) and modal (mobile)
-document.getElementById("btnF").addEventListener("click", function() {
+	//content view for sidebar(desktop) and modal (mobile)
+	document.getElementById("btnF").addEventListener("click", function() {
 
     $("body").css("overflow", "hidden");
 
@@ -137,9 +144,9 @@ document.getElementById("btnF").addEventListener("click", function() {
     tree.appendChild(div);
 
     document.getElementById("modalContent").appendChild(tree);
-});
+	});
 
-document.getElementById("closeM0").addEventListener("click", function() {
+	document.getElementById("closeM0").addEventListener("click", function() {
     $("body").css("overflow", "auto");
 
     var tree = document.createDocumentFragment();
@@ -148,9 +155,9 @@ document.getElementById("closeM0").addEventListener("click", function() {
     tree.appendChild(div);
 
     document.getElementById("sidebar").appendChild(tree);
-});
+	});
 
-document.getElementById("closeM1").addEventListener("click", function() {
+	document.getElementById("closeM1").addEventListener("click", function() {
     $("body").css("overflow", "auto");
 
     var tree = document.createDocumentFragment();
@@ -159,10 +166,10 @@ document.getElementById("closeM1").addEventListener("click", function() {
     tree.appendChild(div);
 
     document.getElementById("sidebar").appendChild(tree);
-});
+	});
 
 
-$('a[href^="#"]').on('click', function(e) {
+	$('a[href^="#"]').on('click', function(e) {
 
     window.location.hash = "-------";
 	
@@ -183,6 +190,22 @@ $('a[href^="#"]').on('click', function(e) {
 			window.location.hash = target;
 		});
 	} 
+	});
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 700) {
+            $('#btnTop').fadeIn();
+        } else {
+            $('#btnTop').fadeOut();
+        }
+    });
+    // scroll content to top by clicking on button
+    $('#btnTop').click(function() {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+	
 });
 
 function $tblshow() {
@@ -203,57 +226,4 @@ function $tblshow() {
 		console.log("Suchid: " + temp);
 	}
 }
-
-function initSVGZoom() {
-	shifted = false;
-	
-    /* shows example for Diagramm: Kunde
-       Every <svg> needs a specific id for reference purposes / or multi zoom-svg's 
-       can created by a reference class name for instance.
-    */
-
-	panZoomClientDiagram = svgPanZoom('#client-diagram', {
-		panEnabled: true,
-		controlIconsEnabled: true,
-		mouseWheelZoomEnabled: true,
-		zoomEnabled: false,
-		onZoom: function(e){
-			if(e < 0.85) {
-				$('#client-diagram a[href*="#ATTR"]').hide();
-			} else {
-				$('#client-diagram a[href*="#ATTR"]').show();
-			}
-		}
-	});
-
-	$(document).on('keyup keydown', function(e){
-		shifted = e.shiftKey;
-
-		if(shifted) {
-			panZoomClientDiagram.enableZoom();
-		} else {
-			panZoomClientDiagram.disableZoom();
-		}
-	} );
-}
-
-$(document).ready(function() {
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 700) {
-            $('#btnTop').fadeIn();
-        } else {
-            $('#btnTop').fadeOut();
-        }
-    });
-    // scroll content to top by clicking on button
-    $('#btnTop').click(function() {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 400);
-        return false;
-    });
-
-    $tblshow();
-    initSVGZoom();
-});
-</script>  
+ 

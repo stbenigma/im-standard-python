@@ -76,15 +76,16 @@ class HTMLExport:
             filename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', filename.lower())
         # fi
         # filename found search in image
-        if os.path.isfile(filename):
+        filepath = os.path.join(parameters.webDirec(), 'image', filename)
+        if os.path.isfile(filepath):
             # absolute path, return it
-            return filename
+            return filepath
 
         # search for filename with extensions in image directory
         for ext in ('png', 'jpg', 'jpeg', 'gif'):
-            fullfilename = "{}.{}".format(filename, ext).lower()
-            if os.path.isfile(os.path.join(parameters.webDirec(), 'image', fullfilename)):
-                return fullfilename
+            fullfilepath = "{}.{}".format(filepath, ext).lower()
+            if os.path.isfile(fullfilepath):
+                return fullfilepath
         return ''
 
     def origindomains(self, pintfid):

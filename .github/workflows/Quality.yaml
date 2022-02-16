@@ -35,6 +35,7 @@ jobs:
 
     - name: Show current conda environment configuration
       run: |
+        conda env list
         conda env export --name base
 
     - name: Install dependencies
@@ -66,7 +67,15 @@ jobs:
 
     - name: Integration test run with riddle model located within same git repo
       run: |
-        python dist/generator.py --dont-merge --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
+        # eventually skip this?
+        echo "Update SPOD"
+        python dist/generator.py --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM --all
+        rm pythonWork/pythonSource/testenvironment/testmodels/riddle/DB/riddle.db
+        echo "Create SPOD from scratch"
+        python dist/generator.py --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM --all
+        sqlite3 pythonWork/pythonSource/testenvironment/testmodels/riddle/DB/riddle.db "select count(*) from entities"
+        echo "Update SPOD"
+        python dist/generator.py --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM --all
 
       # Integration test prerequisites
     - name: Clone reference model repository using fycops token
@@ -78,25 +87,41 @@ jobs:
 
     - name: Integration test run with raetsel-3lang model
       run: |
-        python dist/generator.py --dont-merge --model testdata/fyyccim-refmodels/raetsel-3lang/IM
+        rm -f testdata/fyyccim-refmodels/raetsel-3lang/DB/*
+        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
 
     - name: Integration test run with CRM model
       run: |
-        python dist/generator.py --dont-merge --model testdata/fyyccim-refmodels/CRM/IM
+        rm -f testdata/fyyccim-refmodels/CRM/DB/*
+        python dist/generator.py --profile --languages=de,en,fr --model testdata/fyyccim-refmodels/CRM/IM --all
 
     - name: Integration test run with PIM model
       run: |
-        python dist/generator.py --dont-merge --languages 'en' --model testdata/fyyccim-refmodels/PIM/IM
+        rm -f testdata/fyyccim-refmodels/PIM/DB/*
+        python dist/generator.py --languages 'en' --model testdata/fyyccim-refmodels/PIM/IM --all
 
     - name: Integration test run with Health model
       run: |
-        python dist/generator.py --dont-merge --languages 'en' --model testdata/fyyccim-refmodels/Health/IM
+        rm -f testdata/fyyccim-refmodels/Health/DB/*
+        python dist/generator.py --languages 'en' --model testdata/fyyccim-refmodels/Health/IM --all
 
     - name: Integration test run with BOEB model
       run: |
         git -C testdata/fyyccim-refmodels fetch -v
         git -C testdata/fyyccim-refmodels checkout -f BOEB-IM
-        python dist/generator.py --dont-merge --languages 'en' --model testdata/fyyccim-refmodels/BOEB/IM
+        python dist/generator.py --languages 'en' --model testdata/fyyccim-refmodels/BOEB/IM --all
+
+    - name: Integration test run with raetse-3lang 1.5 schema DB -> upgrade
+      run: |
+        git -C testdata/fyyccim-refmodels checkout -f master
+        cp testdata/db-schema-versions/raetsel-3lang-1.5.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
+        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
+
+    - name: Integration test run with raetse-3lang 1.6 schema DB -> upgrade
+      run: |
+        git -C testdata/fyyccim-refmodels checkout -f master
+        cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
+        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
 
     - name: Execute integration tests
       run: pytest -m "integration"

@@ -1,6 +1,5 @@
 from SSOT_db.IM_JSON import *
 
-
 def businessrule2js(pburuid=None):
     model = ['name', 'level', 'type'
         , 'readwrite', 'rule', 'errosmsg', 'refelements'
@@ -41,7 +40,7 @@ def attr2js(pattr):
         , 'translated', 'encrypted'
         , 'examples', 'tooltip', 'descr'
         , 'uc', 'dc', 'um', 'dm'
-        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        , 'minzoomlevel', 'maxzoomlevel', 'publstatus'
         , 'sourceref', 'keys+'
              # , 'businessrules'
         , 'referencedby', 'userdefprops'
@@ -57,7 +56,7 @@ def attr2js(pattr):
                 , '', ''
                 , '', ''
                 , jentity.examples2js(None), multilangtext(), multilangtext()
-                , '', '', '', '', 0, 4, 'DEV'
+                , '', '', '', '', 0, 4, 'DRAFT'
                 , sourceref(), reflist()
                                        # , businessrules2js()
                 , reflist(), userdefprops()
@@ -82,7 +81,7 @@ def attr2js(pattr):
                 , multilangtext(pattr.attr_tooltip_l)
                 , multilangtext(pattr.attr_descr_l)
                 , pattr.attr_uc, pattr.attr_dc, pattr.attr_um, pattr.attr_dm
-                , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getdevstatus()
+                , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getpublstatus()
                 , Externalref.getsrcinfo(pmodeid=pattr.attr_id),
                                        [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
                                        # , businessrules2js(pburuid=pattrxml.attr_id)
@@ -181,8 +180,8 @@ def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         attrid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
-        devstatus = jelem['devstatus']
-        Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        publstatus = jelem['publstatus']
+        Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
 
         """Examples have in ODM no guid. Delete them and fill new synonyms"""
         jsentity.mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage()
@@ -269,9 +268,9 @@ def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
     inscnt = 0
     delcnt = Keyelement.delete(pwhere=("kele_keys_id = ?", pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
-        ins1kele(presult=presult, pkey=pkey
-                 , pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None
-                 , prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
+        ins1kele(presult=presult, pkey=pkey,
+                 pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None,
+                 prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
         inscnt += 1
     # for
     presult.addinscnt(max(0, (inscnt - delcnt)))

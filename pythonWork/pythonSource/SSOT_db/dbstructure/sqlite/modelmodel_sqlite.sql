@@ -51,7 +51,7 @@ create table modelelement
 		references modelelem_type (melt_id),
     mode_min_zoom_level numeric(1) null check ( mode_min_zoom_level between 0 and 4 ) ,
     mode_max_zoom_level numeric(1)  null check ( mode_max_zoom_level between 0 and 4 ) ,
-    mode_dev_status varchar (4) null default "DEV" check ( mode_dev_status in ("DEV", "REL", "TEST") ),
+	mode_publ_status varchar (5) null check ( mode_publ_status in ('DRAFT', 'GTOP', 'PUBL') )
 	check (mode_type in ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
                             , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU"
 							,"KEYS","DATY","DGRM","DIAG","EXPL"))
@@ -1027,6 +1027,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.6.1' as version, datetime() as installedtime;
+create view dbversion as select '1.7' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

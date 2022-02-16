@@ -1,6 +1,8 @@
 from datetime import date
-from .baseobject import Baseobject, Boolean
+
 from SSOT_db.SQL_INFRA import dbDML
+from .baseobject import Baseobject, Boolean
+from SSOT_infra import logmessages
 
 
 class Modelelemtype(Baseobject):
@@ -39,9 +41,7 @@ class Modelelemtype(Baseobject):
         self.melt_dc = date.today()
         return
 
-        return
-
-    def getname(self,plang=None):
+    def getname(self, plang=None):
         return self.melt_name
 
     @staticmethod
@@ -68,7 +68,8 @@ class Modelelemtype(Baseobject):
     @staticmethod
     def getidbyshortname(pshortname):
         melt = Modelelemtype.select(pwhere=("melt_shortname = ?", pshortname))
-        if melt is None or (len(melt)==0): return None
+        if melt is None or (len(melt) == 0):
+            return None
         return melt[0].melt_id
 
     @staticmethod
@@ -80,17 +81,20 @@ class Modelelemtype(Baseobject):
         return Modelelemtype().getbyid(Modelelemtype.getidbyshortname(pshortname))
 
     @staticmethod
-    def type2melt(type):
-        trans = {"Entity": Modelelemtype.ENTI
-            , "Attribute": Modelelemtype.ATTR
-            , "Relation": Modelelemtype.RELA
-            , "Table": Modelelemtype.TABL
-            , "Column": Modelelemtype.COLU
-            , "Arcs": Modelelemtype.ARCS
-            , "FKIndexAssociation": ""
+    def type2melt(ptype):
+        trans = {"Entity": Modelelemtype.ENTI,
+                 "Attribute": Modelelemtype.ATTR,
+                 "Relation": Modelelemtype.RELA,
+                 "Table": Modelelemtype.TABL,
+                 "Column": Modelelemtype.COLU,
+                 "Arcs": Modelelemtype.ARCS,
+                 "FKIndexAssociation": ""
                  }
-        if type in trans: return trans[type]
-        else: return ""
+        if ptype in trans:
+            return trans[ptype]
+        else:
+            return ""
+
 
 # Modelelemtype
 
@@ -105,30 +109,30 @@ class Modelelement(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self, pid=None,pmeltshortname=None):
+    def __init__(self, pid=None, pmeltshortname=None):
 
         super().__init__()
         self.mode_type = pmeltshortname
         self.mode_id = pid
-        if pmeltshortname is not None: self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
+        if pmeltshortname is not None:
+            self.mode_melt_id = Modelelemtype.getidbyshortname(pshortname=pmeltshortname)
+
     # __init__
 
     """Mapping of mode attributes to udp-names  in ODM"""
-    ODMattrmapping = {'mode_min_zoom_level': 'minzoomlevel'
-                    ,'mode_max_zoom_level': 'maxzoomlevel'
-                    ,'mode_dev_status': 'dev_status'
-                    ,'attr_is_descriptive': 'isdescriptive'}
-
-
+    ODMattrmapping = {'mode_min_zoom_level': 'minzoomlevel',
+                      'mode_max_zoom_level': 'maxzoomlevel',
+                      'mode_publ_status': 'publ_status',
+                      'attr_is_descriptive': 'isdescriptive'}
 
     @staticmethod
-    def longdevstatus(pdbvalue):
-        longstati = {'DEV':'Development'
-                     ,'TEST': 'Test'
-                     ,'REL': 'Released'}
-        if pdbvalue in longstati: return longstati[pdbvalue]
+    def longpublstatus(pdbvalue):
+        longstati = {'DRAFT': 'draft',
+                     'GTOP': 'good to print',
+                     'PUBL': 'published'}
+        if pdbvalue in longstati:
+            return longstati[pdbvalue]
         return None
-
 
     @staticmethod
     def getmodebyextref(psrcname, psrcid):
@@ -137,7 +141,7 @@ class Modelelement(Baseobject):
 
     @staticmethod
     def getmodebyodmguid(psrcid):
-        return Modelelement.getmodebyextref(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
+        return Modelelement.getmodebyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
 
     def getmyelement(self):
         if self.mode_type == Modelelemtype.SYNO:
@@ -147,7 +151,7 @@ class Modelelement(Baseobject):
         elif self.mode_type == Modelelemtype.ATTR:
             element = Attribute().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.BURU:
-            element = Buseinssrule().getbyid(self.mode_id)
+            element = BusinessRule().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.RELA:
             element = Relation().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.ENTI:
@@ -163,7 +167,7 @@ class Modelelement(Baseobject):
         elif self.mode_type == Modelelemtype.ARCS:
             element = Arc().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DGRM:
-            element = DefaultGroupMember().getbyid(self.mode_id)
+            element = DomaingroupMember().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DATY:
             element = Datatype().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.KEYS:
@@ -181,7 +185,6 @@ class Modelelement(Baseobject):
         mode = Modelelement().getbyid(pid=pmodeid)
         return None if mode is None else mode.getmyelement()
 
-
     @staticmethod
     def getelementbyextref(psrcname, psrcid):
         return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
@@ -192,31 +195,38 @@ class Modelelement(Baseobject):
 
     @staticmethod
     def insertudpelems(pudpthema):
-        """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_dev_status) aus Elementdisplay
+        """übertrage alle Felder (mode_min_zoom_level, mode_max_zoom_level, mode_publ_status) aus Elementdisplay
             in die Modelelement Felder
         """
-        subselect = lambda pcolname : """(select UDPV_VALUE
+        subselect = lambda pcolname: """(select UDPV_VALUE
                          from UDP_VALUES
                          join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
                     where lower(udpr_theme) = lower('{}')
                     and  lower(udpr_name) = lower('{}')
                      and udpv_mode_id = mode_id
-                        )""".format(pudpthema,pcolname)
+                        )""".format(pudpthema, pcolname)
 
         lsql = """update MODELELEMENT set MODE_MIN_ZOOM_LEVEL = {},
                 MODE_MAX_ZOOM_LEVEL = {},
-                MODE_DEV_STATUS = {}
+                MODE_PUBL_STATUS = {}
                 where mode_melt_id in (select metp_melt_id
                                         from MODELEMTYPE_PROPERTIES
                                         join user_defined_properties on udpr_id = metp_udpr_id
                                         where lower(udpr_theme) = lower('{}')
                                         )
-                """.format(subselect(Modelelement.ODMattrmapping['mode_min_zoom_level'])
-                          ,subselect(Modelelement.ODMattrmapping['mode_max_zoom_level'])
-                          ,subselect(Modelelement.ODMattrmapping['mode_dev_status'])
-                          ,pudpthema)
-        dbDML.exec(lsql)
-        #update the attributes "descriptive" UDP
+                """.format(subselect(Modelelement.ODMattrmapping['mode_min_zoom_level']),
+                           subselect(Modelelement.ODMattrmapping['mode_max_zoom_level']),
+                           subselect(Modelelement.ODMattrmapping['mode_publ_status']),
+                           pudpthema)
+        try:
+            dbDML.exec(lsql)
+        except Exception as e:
+            msg = """Invalid values in user defined properties """ \
+                 + """'mode_min_zoom_level','mode_max_zoom_level' or 'mode_publ_status'"""
+            print(msg)
+            logmessages.writelog(msg)
+            raise e
+        # update the attributes "descriptive" UDP
         lsql = """with udpval as (select UDPV_VALUE,udpv_mode_id
                          from UDP_VALUES
                          join USER_DEFINED_PROPERTIES on udpr_id = udpv_udpr_id
@@ -226,22 +236,28 @@ class Modelelement(Baseobject):
                     = case when (select udpv_value from udpval where udpv_mode_id =attr_id) is Null then 'FALSE'
                     else  (select udpv_value from udpval where udpv_mode_id =attr_id) end
                 """
-        dbDML.exec(lsql)
+        try:
+            dbDML.exec(lsql)
+        except Exception as e:
+            msg = """Invalid values in user defined propertiy 'isdescriptive'"""
+            print(msg)
+            logmessages.writelog(msg)
+            raise e
         return
 
     @staticmethod
-    def upddisplelements(pmodeid,pminzl,pmaxzl,pdevstat):
-        #******* to be replaced by update() in baseobject ******
-        #currently used in js2sql
+    def upddisplelements(pmodeid, pminzl, pmaxzl, ppublstat):
+        # ******* to be replaced by update() in baseobject ******
+        # currently used in js2sql
         lsql = """update modelelement
                     set mode_min_zoom_level = {}
                     ,mode_max_zoom_level = {}
-                    ,mode_dev_status = {} 
-                    where mode_id = {}""".format(dbDML.dbval(pminzl), dbDML.dbval(pmaxzl)
-                                                 , dbDML.dbval(pdevstat), pmodeid)
+                    ,mode_publ_status = {} 
+                    where mode_id = {}""".format(dbDML.dbval(pminzl), dbDML.dbval(pmaxzl),
+                                                 dbDML.dbval(ppublstat), pmodeid)
         dbDML.exec(lsql)
+        return
 
-# modelelement
 
 class ModelelementProperty(Baseobject):
     _tablename: str = 'modelemtype_properties'
@@ -250,20 +266,19 @@ class ModelelementProperty(Baseobject):
     _columnlist: list = []
     _defaultorderby = "metp_id"
 
-    def __init__(self, pmeltid=None,pudprid=None):
-
+    def __init__(self, pmeltid=None, pudprid=None):
         super().__init__()
         self.metp_melt_id = pmeltid
         self.metp_udpr_id = pudprid
         self.metp_optional = Boolean.FALSE
 
 
-
-#ModelelementProperty
+# ModelelementProperty
 from .externalref import Externalref
 from .datatype import Datatype
-from .domain import Domain
-from .entity import Entity
+from .domain import Domain, DomaingroupMember
+from .entity import Entity, Synonym
+from .businessrule import BusinessRule
 from .table import Table
 from .attribute import Attribute
 from .column import Column
@@ -272,4 +287,4 @@ from .document import Document
 from .diagram import Diagram
 from .orgunit import OragnisationalUnit
 from .key import Key
-from .relationship import Relation,Arc
+from .relationship import Relation, Arc

@@ -2,6 +2,7 @@ name: Packaging
 # Build model2drawio distribution from Jupyter Notebook
 
 on: [push]
+
 #on:
 #  push:
 #    tags:
@@ -33,6 +34,10 @@ jobs:
         run: |
           conda env update --file conda-base-environment.yaml --name base
 
+      - name: Bootstrap repository
+        run: make
+        continue-on-error: true
+
       - name: Build deployment package
         run: |
           python pythonWork/pythonSource/tools/deploy.py --verbose
@@ -48,7 +53,9 @@ jobs:
           mkdir tmp
           cd tmp
           unzip '../dist/model2diagram-*.zip'
-          python generator.py -f --all -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
+          echo "Create SPOD from ODM and generate output"
+          rm -f ../pythonWork/pythonSource/testenvironment/testmodels/riddle/DB/riddle.db
+          python generator.py --all --languages=en -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
 
       - name: Upload packed deployment to github
         uses: xresloader/upload-to-github-release@v1.3.2

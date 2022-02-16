@@ -39,7 +39,7 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
     return
 
 
-def listwebmain(export: HTMLExport, pfilter=(None, 'TEST', 'REL')):
+def listwebmain(export: HTMLExport, pfilter=(None, 'GTOP', 'PUBL')):
     def langpart(plang):
         return '_' + plang
 
@@ -67,8 +67,8 @@ def listwebmain(export: HTMLExport, pfilter=(None, 'TEST', 'REL')):
     # prepare for relational models
     Languagetext.reportLang(parameters.dbDefaultLang())
     # backjumps from relational webpage goes to default-lang-model
-    export.htmlfilelist[
-        0] = export.webFileName + f"{'' if len(langs) == 1 else langpart(parameters.dbDefaultLang())}.html"
+    export.htmlfilelist[0] \
+        = export.webFileName + f"{'' if len(langs) == 1 else langpart(parameters.dbDefaultLang())}.html"
 
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else parameters.dbDefaultLang()

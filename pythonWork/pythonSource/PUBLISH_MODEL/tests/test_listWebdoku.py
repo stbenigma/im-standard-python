@@ -15,9 +15,9 @@ class TestListWebDocumentation(unittest.TestCase):
     def purgefiles(self, ppath, ppattern):
         if not os.path.exists(ppath):
             return
-        for f in listdir(ppath):
+        for f in os.listdir(ppath):
             if re.search(ppattern, f):
-                remove(os.path.join(ppath, f))
+                os.remove(os.path.join(ppath, f))
 
     def setUp(self) -> None:
         """Prepare test models"""
@@ -26,20 +26,27 @@ class TestListWebDocumentation(unittest.TestCase):
         translation.setUp()
 
         assert os.path.isdir(testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
-        if not os.path.exists(testsrc.testmodels_dir() / testsrc.TESTMODEL1/ 'DB' / (testsrc.TESTMODEL1 + '.json')):
+        testpath = testsrc.testmodels_dir() / testsrc.TESTMODEL1
+        if not os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.json')):
             os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL1)
-            createDB(pupgrade=True,pmodelname=testsrc.TESTMODEL1)
+            if os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.db')):
+                os.chdir(testpath)
+                createDB(pupgrade=True,pmodelname=testsrc.TESTMODEL1)
             fillDB.filldbmain(pmodelname=testsrc.TESTMODEL1)
 
-        if not os.path.exists(testsrc.testmodels_dir() / testsrc.TESTMODEL2/ 'DB' / (testsrc.TESTMODEL2 + '.json')):
-            os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL2)
-            createDB(pupgrade=True,pparamfile=testsrc.testmodels_dir() / testsrc.TESTMODEL2/ (testsrc.TESTMODEL2+ ".params"))
-            fillDB.filldbmain(pparamfile=testsrc.testmodels_dir() / testsrc.TESTMODEL2/ (testsrc.TESTMODEL2+ ".params"))
+        testpath = testsrc.testmodels_dir() / testsrc.TESTMODEL2
+        if not os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL2 + '.json')):
+            os.chdir(testpath)
+            if os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.db')):
+                createDB(pupgrade=True,pparamfile=testpath / (testsrc.TESTMODEL2+ ".params"))
+            fillDB.filldbmain(pparamfile=testpath / (testsrc.TESTMODEL2+ ".params"))
 
-        if not os.path.exists(testsrc.testmodels_dir() / testsrc.CRMTEST/ 'DB' / (testsrc.CRMTEST + '.json')):
-            os.chdir(testsrc.testmodels_dir() / testsrc.CRMTEST)
-            createDB(pupgrade=True,pparamfile=testsrc.testmodels_dir() / testsrc.CRMTEST/ (testsrc.CRMTEST+ ".params"))
-            fillDB.filldbmain(pparamfile=testsrc.testmodels_dir() / testsrc.CRMTEST/ (testsrc.CRMTEST+ ".params"))
+        testpath = testsrc.testmodels_dir() / testsrc.CRMTEST
+        if not os.path.exists(testpath / 'DB' / (testsrc.CRMTEST + '.json')):
+            os.chdir(testpath)
+            if os.path.exists(testpath / 'DB' / (testsrc.CRMTEST + '.db')):
+                createDB(pupgrade=True,pparamfile=testpath / (testsrc.CRMTEST+ ".params"))
+            fillDB.filldbmain(pparamfile=testpath/ (testsrc.CRMTEST+ ".params"))
         return
 
     def test_main(self):

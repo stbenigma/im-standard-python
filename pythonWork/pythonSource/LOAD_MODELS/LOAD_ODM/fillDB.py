@@ -5,14 +5,22 @@ import sys
 from LOAD_MODELS.LOAD_ODM import transferModel
 from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import *
+from SSOT_db.IM_OBJECTS import Language
 from SSOT_db import existsDB, createnewDB
 from SSOT_infra import logmessages, parameters, argparseparent
 
 
-def fillmergedb(pdbfilepath, transferfunction, createnewdb=False, **kwargs):
+def fillmergedb(pdbfilepath, transferfunction, **kwargs):
+    createnewdb = not existsDB(pdbfilepath)
     if createnewdb:
         createnewDB(pdbfilepath=pdbfilepath)
     else:
+        #get languageparameter of current DB
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='1')
+        parameters.dbDefaultLang(newval=Language.getdefaultlang().lang_iso_code2)
+        langs = Language.getlanguagecodes()
+        parameters.dbLanguages(newval=','.join(langs))
+        dbConnect.closeDB()
         createnewDB(pdbfilepath=None)  # create in Memory
     # fi
     transferfunction(**kwargs)
@@ -24,7 +32,7 @@ def fillmergedb(pdbfilepath, transferfunction, createnewdb=False, **kwargs):
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='ON')
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='1')
 
         newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
         if newversion != dbConnect.getversion():
@@ -72,7 +80,7 @@ def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdes
     try:
         # create folder for DB files if not exists
         os.makedirs(parameters.dbDirect(), exist_ok=True)
-        fillmergedb(pdbfilepath=parameters.dbFilePath(), createnewdb=not existsDB(parameters.dbFilePath()),
+        fillmergedb(pdbfilepath=parameters.dbFilePath(),
                     transferfunction=transferModel.transferODMModel)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"

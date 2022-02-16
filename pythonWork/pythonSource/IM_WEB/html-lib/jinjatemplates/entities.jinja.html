@@ -17,7 +17,7 @@
 									<th>{{ webmodel.gettransltext('Rollen') }}</th>
 									<th>{{ webmodel.gettransltext('Klassifikation') }}</th>
 									<th>Zoom levels</th>
-									<th>Dev. Status</th>
+									<th>Publ.Status</th>
 									<th>{{ webmodel.gettransltext('auf Diagramm(en)') }}</th>
 									<th> {{ webmodel.gettransltext('geändert') }}</th>
 								</tr>
@@ -40,7 +40,7 @@
 
 									<td class="attribute">{{ webmodel.getelem(elem['category'])["name"] }}</td>
 									<td class="attribute">{{ '{} - {}'.format(elem['minzoomlevel'],elem['maxzoomlevel']) }}</td>
-									<td class="attribute">{{ getnvl(elem['devstatus']) }}</td> {# Modelelement.longdevstatus( #}
+									<td class="attribute">{{ getnvl(webmodel.gettransltext(elem['publstatus'])) }}</td> {# Modelelement.longpublstatus( #}
 									<td class="attribute">
 										{% for diagid in elem["diagrams+"] %}
 										{% set diag = webmodel.getelem(diagid) %}

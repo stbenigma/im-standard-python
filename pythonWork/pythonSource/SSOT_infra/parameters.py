@@ -288,7 +288,7 @@ def odmspecificpath(ppath):
 def odmtabledirec(newval=None):
     global parameter
     if newval is None:
-        return odmspecificpath(parameter['odmtabledirec'])
+        return parameter['odmtabledirec']
     else:
         parameter['odmtabledirec'] = newval
     return

@@ -67,7 +67,7 @@ def prefix_none():
 
 def html_tooltip(entity, translator) -> str:
     """Create a rich text tooltip according to """
-    tooltip_text = [f"""<h1>{translator.tr(entity['name'])}</h1>"""]
+    tooltip_text = [f"""<h2>{translator.tr(entity['name'])}</h2>"""]
 
     description = translator.tr(entity.get('descr'))
     if description is not None and len(description) > 0:
@@ -77,11 +77,11 @@ def html_tooltip(entity, translator) -> str:
     if synonyms is not None and len(synonyms) > 0:
         syn_list = map(lambda s: translator.tr(s), synonyms.values())
         synonym_str = ', '.join(syn_list)
-        tooltip_text.append(f"<h2>{translator.tr('Synonyms')}</h2><p>{synonym_str}</p>")
+        tooltip_text.append(f"<h3>{translator.tr('Synonyms')}</h3><p>{synonym_str}</p>")
 
     tt = translator.tr(entity.get('tooltip'))
     if tt is not None and len(tt) > 0:
-        tooltip_text.append(f"<h2>{translator.tr('Tooltip')}</h2><p>{tt}</p>")
+        tooltip_text.append(f"<h3>{translator.tr('Tooltip')}</h3><p>{tt}</p>")
 
     return ''.join(tooltip_text)
 

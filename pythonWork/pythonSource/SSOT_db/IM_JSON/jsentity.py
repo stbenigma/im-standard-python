@@ -3,6 +3,7 @@ from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytra
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
     tabreflist, JSModel, jsguid2id
+from tqdm.auto import tqdm
 
 import re
 
@@ -69,7 +70,7 @@ def entities2js(pemptymodel):
         , 'supertypeentity'
         , 'subtypellevel+'
         , 'uc', 'dc', 'um', 'dm'
-        , 'minzoomlevel', 'maxzoomlevel', 'devstatus'
+        , 'minzoomlevel', 'maxzoomlevel', 'publstatus'
         , 'icon'
         , 'synonyms', 'examples'
         , 'sourceref'
@@ -86,7 +87,7 @@ def entities2js(pemptymodel):
                                                                    , '', '', ''
                                                                    , '',''
                                                                    , '', '', '', ''
-                                                                   , 0, 4, 'DEV'
+                                                                   , 0, 4, 'DRAFT'
                                                                    , entityicon()
                                                                    , synonyms(None), examples2js(None)
                                                                    , sourceref(None)
@@ -108,7 +109,7 @@ def entities2js(pemptymodel):
                                    , e.enti_exp_tuplecnt, e.enti_prefix
                                    , jsguid(Modelelemtype.ENTI, e.enti_underlay_enti_id),e.getsubtypelevel()
                                    , e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm
-                                   , e.getminzoomlevel(), e.getmaxzoomlevel(), e.getdevstatus()
+                                   , e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus()
                                    , entityicon(penti=e)
                                    , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in
                                                       e.getsynonyms()})
@@ -140,7 +141,7 @@ def entities2js(pemptymodel):
                                    , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                     Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
-                               ) for e in Entity.select()
+                               ) for e in tqdm(Entity.select())
                  }
 
     return entis
@@ -202,7 +203,7 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         entiid = keytransl(jid)
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
-        devstatus = jelem['devstatus']
+        publstatus = jelem['publstatus']
 
         """Synonyms have in ODM no guid. Delete them and fill new synonyms"""
         inscnt = 0
@@ -225,7 +226,7 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage()
                       , presult=presult, pentiid=entiid)
 
-        Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_COMMENT, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_TOOLTIP, ptexts=jelem['tooltip'])

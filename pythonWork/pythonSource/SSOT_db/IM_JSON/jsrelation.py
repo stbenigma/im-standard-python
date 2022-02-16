@@ -24,7 +24,7 @@ def relation2js(prela):
         'from-to', 'to-from',
         'isinkeys+', 'sourceref',
         'uc', 'dc', 'um', 'dm',
-        'minzoomlevel', 'maxzoomlevel', 'devstatus',
+        'minzoomlevel', 'maxzoomlevel', 'publstatus',
         'userdefprops','referencedby'
         ,'tablesmapped+'
               ]
@@ -34,7 +34,7 @@ def relation2js(prela):
                                     relaend2js(), relaend2js(),
                                        reflist(), sourceref(),
                                       '', '','','',
-                                    0,4,'DEV',
+                                    0,4,'DRAFT',
                                     userdefprops(),reflist(),tabreflist()
                                     ]
                            )
@@ -63,7 +63,7 @@ def relation2js(prela):
                                 ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys]),
                               sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
                                ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm,
-                                prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getdevstatus()
+                                prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getpublstatus()
                                 ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
                                ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=prela.rela_id)]\
                                 +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=prela.rela_id)],
@@ -121,8 +121,8 @@ def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
-        devstatus = jelem['devstatus']
-        Modelelement.upddisplelements(pmodeid=newrelaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, pdevstat=devstatus)
+        publstatus = jelem['publstatus']
+        Modelelement.upddisplelements(pmodeid=newrelaid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
         replacelgtx(presult=presult, pmodeid=newrelaid, pattr=Languagetext.RELA_TEXT_TO, ptexts=jelem['to-from']['assoc'])
         replacelgtx(presult=presult, pmodeid=newrelaid, pattr=Languagetext.RELA_TEXT_FROM, ptexts=jelem['from-to']['assoc'])
         insreferences(presult=presult, pmodeid=newrelaid, prefs=jelem['referencedby'])
