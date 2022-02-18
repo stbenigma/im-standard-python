@@ -1,6 +1,7 @@
 import html
 import os
 import re
+import logging
 import shutil
 from distutils.dir_util import copy_tree
 from pathlib import Path
@@ -8,6 +9,10 @@ from pathlib import Path
 from SSOT_db.IM_JSON import JSModel
 from SSOT_db.IM_OBJECTS import Modelelemtype, Domain
 from SSOT_infra import parameters, nvl2, nvl, transl
+
+
+def no_hyperlink(element: dict) -> (str or None):
+    return None
 
 
 class HTMLExport:
@@ -29,6 +34,7 @@ class HTMLExport:
         """zum Zählen der lokalen Ziele für collapse"""
         self.barcounter = 0
         self.fhtml = None
+        self.custom_hyperlink_extractor = no_hyperlink
 
     def getelement(self, js_element_id: str):
         return self.model.getbyid(js_element_id)
@@ -46,7 +52,21 @@ class HTMLExport:
                     panz,
                     img)
 
+    def custom_hyperlink(self, element: dict) -> None or str:
+        result = self.custom_hyperlink_extractor(element)
+        if result is not None:
+            logging.warning(f"Using {result} for element {element}")
+        return result
+
     def href(self, ref, anz, htmlfile='', pself=False):
+
+        # if there is a custom hyperlink, use it with priority
+        element = self.getelement(ref)
+        custom_hyperlink_value = self.custom_hyperlink(element)
+        if custom_hyperlink_value is not None and len(custom_hyperlink_value) > 0:
+            logging.debug(f"Applying custom hyperlink on element {ref} '{anz}' {custom_hyperlink_value}")
+            return f"""<a href="{html.escape(custom_hyperlink_value)}">{html.escape(anz)}</a>"""
+
         if anz is None:
             return ''
         sep = '#' if nvl(ref) != '' else ''
