@@ -1,3 +1,4 @@
+import logging
 from typing import Set
 
 from lxml import etree
@@ -157,9 +158,11 @@ class XMIBuilder(object):
         diagrams_root = etree.Element('diagrams')
         ea_extension.append(diagrams_root)
         for key, diagram in self.model.getelements(pelemtype=Modelelemtype.DIAG, pfiltered=False).items():
-            diag = self.create_diagram(key, diagram)
-            diagrams_root.append(diag)
-
+            try:
+                diag = self.create_diagram(key, diagram)
+                diagrams_root.append(diag)
+            except Exception as e:
+                raise Exception(f"Failed to create diagram {key}") from e
         self.root.append(ea_extension)
         return ea_extension
 
@@ -719,7 +722,7 @@ $DES;$CLT={{{cltid}}}$CLT;$SUP=<none>$SUP;$ENDXREF;""")
                     sequence += 1
                     elements.append(element)
 
-        for key, arc in diagram['arcs'].items():
+        for a_key, arc in diagram['arcs'].items():
             element = etree.Element('element')
 
             # fake arc coordinates around circles
@@ -739,10 +742,10 @@ $DES;$CLT={{{cltid}}}$CLT;$SUP=<none>$SUP;$ENDXREF;""")
                 right=self.ea_coord(box.get_x() + box.get_width()),
                 bottom=self.ea_coord(box.get_y() + box.get_height())
             ))
-            elment_position[key] = box
-            element.set('subject', self.class_map.get(key))
+            elment_position[a_key] = box
+            element.set('subject', self.class_map.get(a_key))
             element.set('seqno', str(sequence))
-            element.set(SSOT_ID_TAG, key)
+            element.set(SSOT_ID_TAG, a_key)
             sequence += 1
             elements.append(element)
 
@@ -757,25 +760,38 @@ $DES;$CLT={{{cltid}}}$CLT;$SUP=<none>$SUP;$ENDXREF;""")
         #       Path=344:-160$436:-185$;"
         #   subject="EAID_182C295F_C77E_4e60_8565_F3500701C816"
         #   style="Mode=3;EOID=8224EF41;SOID=85BBD632;Color=-1;LWidth=0;Hidden=0;"/>
-        for key, rel in diagram['relationships'].items():
+        for r_key, rel in diagram['relationships'].items():
             segments = rel['linesegments']
-            relation = self.model.getbyid(key)
-            source_entity = elment_position[relation['from-to']['enti']]
-            target_entity = elment_position[relation['to-from']['enti']]
+            relation = self.model.getbyid(r_key)
+
+            source_entity_key = relation['from-to']['enti']
+
+            source_entity = elment_position.get(source_entity_key)
+            if source_entity is None:
+                logging.warning(f"Relation {r_key} on diagram {key} is referencing entity {source_entity_key} "
+                                f"which is not present. Ignoring relation")
+                continue
+
+            target_entity_key = relation['to-from']['enti']
+            target_entity = elment_position.get(target_entity_key)
+            if target_entity is None:
+                logging.warning(f"Relation {r_key} on diagram {key} is referencing entity {target_entity_key} "
+                                f"which is not present. Ignoring relation")
+                continue
 
             arc_key = relation['from-to'].get('arc')
             if arc_key is not None:
                 arc = diagram['arcs'][arc_key]
                 # reposition end-points for arc source
                 box = arc['box']
-                segments[0]['x'] = box['x'] + (box['width'] / 2) + int(key[-1] * 5)
+                segments[0]['x'] = box['x'] + (box['width'] / 2) + int(r_key[-1] * 5)
                 segments[0]['y'] = box['y'] + (box['height'] / 2)
                 source_entity = Rectangle((box['x'], box['y']),
                                           box['width'], box['height'])
             element = self.create_line(segments, source_entity, target_entity)
-            element.set('subject', self.relation_map.get(key))
+            element.set('subject', self.relation_map.get(r_key))
             element.set('style', "Mode=3;EOID=8224EF41;SOID=85BBD632;Color=-1;LWidth=0;Hidden=0;")
-            element.set(SSOT_ID_TAG, key)
+            element.set(SSOT_ID_TAG, r_key)
             elements.append(element)
 
         # Hide invisible relationships (Supertype <- Subtype)
