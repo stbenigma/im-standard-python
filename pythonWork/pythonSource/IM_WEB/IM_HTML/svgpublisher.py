@@ -2,7 +2,7 @@ from IM_WEB.IM_HTML import getsvgtext, HTMLExport
 from pathlib import Path
 
 
-def publish_svg_diagrams(config: HTMLExport, language: str) -> dict[str, Path]:
+def publish_svg_diagrams(config: HTMLExport, language: str) -> dict:
     assert config is not None
     assert config.model is not None
     assert config.model.jsmodel is not None
