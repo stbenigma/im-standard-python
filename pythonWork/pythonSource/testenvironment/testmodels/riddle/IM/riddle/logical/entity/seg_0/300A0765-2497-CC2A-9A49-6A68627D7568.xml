@@ -17,4 +17,23 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<propertyMap>
+<property name="TOOL" value="https://www.planemapper.com/flights"/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Number" id="A8723DD7-9E1F-FCF0-F45F-2DF057E6D962">
+<createdBy>bue</createdBy>
+<createdTime>2022-02-21 07:51:13 UTC</createdTime>
+<ownerDesignName>riddle</ownerDesignName>
+<engineerTo>
+<item key="D08CBA22-8AB1-A78D-26DE-4DF989F17231" value="true"/>
+<item key="B59E9FE2-0CFD-D1E7-2BD0-216CFD8B7EED" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="TOOL" value="https://www.flightradar24.com/data"/>
+</propertyMap>
+</Attribute>
+</attributes>
 </Entity>

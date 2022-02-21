@@ -1,7 +1,9 @@
 import math
 import os,re
 import logging
+import html
 
+from SSOT_db.IM_OBJECTS import Modelelemtype
 from .printHTML import HTMLExport
 from SSOT_infra import parameters, nvl
 
@@ -82,21 +84,28 @@ def hex2rbg(phex):
         raise
     return "rgb({},{},{})".format(r,g,b)
 #hex2rbg
-def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False,pdescr=None):
-    MAXATTRDESCR=300
-    showtext= """<text x="{posx}" y="{posy}" fill="{color}" fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+
+
+def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False, pdescr=None):
+    MAXATTRDESCR = 300
+    showtext = """<text x="{posx}" y="{posy}" fill="{color}" fill-opacity="1.0" font-size="{fontsize}" stroke="none">
     {text}{title}
     </text>
     """
     retval = ""
     if pstandalone: retval += "<g >"
-    retval += showtext.format(posx=px, posy=py,color=pfillcolor,fontsize=pfontsize, text=ptext
-                              ,title="" if pstandalone\
-                                else "<title>{}</title>".format(" " if pdescr is None\
-                                                                        else pdescr[:MAXATTRDESCR]))
+
+    description = html.escape(" " if pdescr is None else pdescr[:MAXATTRDESCR])
+
+    retval += showtext.format(posx=px, posy=py, color=pfillcolor, fontsize=pfontsize, text=ptext
+                              , title="" if pstandalone
+            else "<title>{}</title>".format(description))
     if pstandalone: retval += "</g>\n"
     return retval
-#printtext
+
+
+# printtext
+
 
 calcwinkel = lambda ey,sy,ex,sx : math.atan2(ey - sy, ex - sx)
 
@@ -318,55 +327,89 @@ def printarcs(export: HTMLExport, plist):
 
 
 def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
-    entistart ="""<g  fill="{color}" stroke="{margcolor}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
+    entistart = """<g  fill="{color}" stroke="{margcolor}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
         transform="translate({posx},{posy})" >
-        <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect><a href="#{ref}" >
+        <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect><a href="{hyperlink}" >
         <text id="{textref}" x="20" y="13" fill="{fontcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
             {name} </text>{title}</a>
         </g>"""
-    imagehtml=""""<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>"""\
-        .format('{}',ICONSIZE,ICONSIZE,'{}','{}')
+    imagehtml = """"<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>""" \
+        .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
 
     retval = ""
     MAXDESCRCHARS = 300
-    for eler in pdiag['elements']['entity']:
-        elerui=eler["ui"]
-        entidescr = export.getelement(eler['element'])['descr'][plang]
-        if entidescr is None:
-            entidescr = ' '
-        else: entidescr = entidescr[: MAXDESCRCHARS]
-        retval += entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
-                                           , fopacity=round(elerui['opacity']/100,2), sopacity=round(elerui['marginopacity']/100,2)
-                                           , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'], height=elerui['height']
-                                           , ref=eler['element']
+
+    # stack up elements in subtype-level order
+    levels = list(map(lambda e: int(e['subtypellevel+']),
+                      export.model.getelements(Modelelemtype.ENTI, pfiltered=False).values()))
+    deepest_subtype_level: int = max(levels)
+
+    # higher subtypelevels => topmost
+    for subtypelevel in range(0, deepest_subtype_level + 1):
+        for eler in pdiag['elements']['entity']:
+            entity = export.getelement(eler['element'])
+            if int(entity['subtypellevel+']) == subtypelevel:
+                elerui = eler["ui"]
+                entidescr = export.getelement(eler['element'])['descr'][plang]
+                if entidescr is None:
+                    entidescr = ' '
+                else:
+                    entidescr = entidescr[: MAXDESCRCHARS]
+
+                # fallback: element anchor
+                hyperlink = export.custom_hyperlink(entity)
+                if hyperlink is None:
+                    hyperlink = '#' + eler['element']
+                entity_svg = entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
+                                           , fopacity=round(elerui['opacity'] / 100, 2),
+                                           sopacity=round(elerui['marginopacity'] / 100, 2)
+                                           , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'],
+                                           height=elerui['height']
+                                           , hyperlink=html.escape(hyperlink)
                                            , textref=pdiaganker + '-' + eler['element']
                                            , fontcolor=hex2rbg(elerui['fontcolor'])
-                                           , fontsize=11  #vorläufig mal fix verdrahtet e[9], font size
-                                           , name=export.getelement(eler['element'])['name'][plang] + ('' if (eler['index'] == 0) else ':' + str(eler['index']))
-                                            ,title="" if entidescr is None else f"<title>{entidescr}</title>")
+                                           , fontsize=11  # vorläufig mal fix verdrahtet e[9], font size
+                                           , name=entity['name'][plang] + (
+                        '' if (eler['index'] == 0) else ':' + str(eler['index']))
+                                           , title="" if entidescr is None else f"<title>{html.escape(entidescr)}</title>")
 
-        iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),pdefaultlang=export.getmodel().getdefaultlang())
-        if iconsrc != "":
-            retval += imagehtml.format(iconsrc
-                                               ,eler['pos_x']+elerui['width']-ICONSIZE/2,
-                                                eler['pos_y'] - ICONSIZE/2)
-    #for
+                # whole entity box carries the hyperlink
+                retval += f"""<a href="{hyperlink}">{entity_svg}</a>\n"""
+
+                iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),
+                                         pdefaultlang=export.getmodel().getdefaultlang())
+                if iconsrc != "":
+                    retval += imagehtml.format(iconsrc
+                                               , eler['pos_x'] + elerui['width'] - ICONSIZE / 2,
+                                               eler['pos_y'] - ICONSIZE / 2)
+        # for
+
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
     for attr in pdiag['elements']['attribute']:
         attrui = attr["ui"]
         x = attr['pos_x']
         y = attr['pos_y']
         aelem = export.getelement(attr['element'])
-        retval += printtext(px=x, py=y, ptext=export.href(ref=attr['element'], anz=aelem['name'][plang])
-                  , pfillcolor=hex2rbg(attrui['fontcolor']), pfontsize=attrui['fontsize']
-                 ,pdescr=aelem['descr'][plang]
-                  )
+
+        hyperlink = export.href(ref=attr['element'], anz=aelem['name'][plang])
+        description = aelem['descr'][plang]
+
+        if description.startswith('http') and not hyperlink.startswith('http'):
+            logging.warning(f"Attribute {attr['element']} '{aelem['name'][plang]}' description is an URL. Using this as link.")
+            hyperlink = f"""<a href="{html.escape(description)}">{aelem['name'][plang]}</a>"""
+            description = ""
+
+        retval += printtext(px=x, py=y, ptext=hyperlink
+                            , pfillcolor=hex2rbg(attrui['fontcolor']), pfontsize=attrui['fontsize']
+                            , pdescr=description)
     # for
     retval += printrela(plist=pdiag['relationships'])
-    retval += printtexte(export, plist=pdiag['relationships'],plang=plang)
+    retval += printtexte(export, plist=pdiag['relationships'], plang=plang)
     retval += printarcs(export=export, plist=pdiag['arcs'])
     return retval
-#printelements
+
+
+# printelements
 
 def putrefinsvg(export: HTMLExport, ptext,pdiagid,plang):
     MAXDESCR=300

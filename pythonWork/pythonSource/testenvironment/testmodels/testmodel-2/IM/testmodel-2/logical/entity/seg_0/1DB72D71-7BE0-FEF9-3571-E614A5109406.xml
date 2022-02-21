@@ -1,13 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1DB72D71-7BE0-FEF9-3571-E614A5109406" name="Multi UK Entity">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1DB72D71-7BE0-FEF9-3571-E614A5109406" name="Mehrfache UK Entität">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:48:20 UTC</createdTime>
-<comment><![CDATA[Role Entity]]></comment>
+<comment><![CDATA[Rolle Entität]]></comment>
 <notes><![CDATA[[DE_ENTI_COMMENT[
-*EN* Role Entity
+Rolle Entität
 ]DE_ENTI_COMMENT]
 [FR_ENTI_COMMENT[
-*EN* Role Entity
+Entité de rôle
 ]FR_ENTI_COMMENT]
 [EN_ENTI_COMMENT[
 Role Entity
@@ -27,45 +27,18 @@ Role Entity
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <propertyMap>
-<property name="DE_ENTI_NAME" value="*EN* Multi UK Entity"/>
+<property name="DE_ENTI_NAME" value="Mehrfache UK Entität"/>
 <property name="DE_ENTI_SYNONYM" value=""/>
 <property name="EN_ENTI_NAME" value="Multi UK Entity"/>
 <property name="EN_ENTI_SYNONYM" value=""/>
-<property name="FR_ENTI_NAME" value="*EN* Multi UK Entity"/>
+<property name="FR_ENTI_NAME" value="Entités multiples du Royaume-Uni"/>
 <property name="FR_ENTI_SYNONYM" value=""/>
 <property name="maxzoomlevel" value="3"/>
 <property name="minzoomlevel" value="0"/>
 </propertyMap>
 <documents usedDucuments="311DC210-16D2-5982-489E-052929AB265A E035088F-56BA-B7E7-ADB4-B684B0194348"/>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="Attribute1" id="516D6D31-9499-0623-86CD-09B535D4EB3C">
-<createdBy>stb</createdBy>
-<createdTime>2021-10-05 08:48:36 UTC</createdTime>
-<notes><![CDATA[[DE_ATTR_COMMENT[
-
-]DE_ATTR_COMMENT]
-[FR_ATTR_COMMENT[
-
-]FR_ATTR_COMMENT]
-[EN_ATTR_COMMENT[
-
-]EN_ATTR_COMMENT]
-]]></notes>
-<ownerDesignName>testmodel-2</ownerDesignName>
-<engineerTo>
-<item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
-</engineerTo>
-<use>0</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<domain>631FC893-D28E-5FE4-89DB-473C78BB2B2A</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="DE_ATTR_NAME" value="*EN* Attribute1"/>
-<property name="EN_ATTR_NAME" value="Attribute1"/>
-<property name="FR_ATTR_NAME" value="*EN* Attribute1"/>
-</propertyMap>
-</Attribute>
-<Attribute name="Attribute2" id="4213B1CA-CC28-8A26-8D75-5B5107D6B6A2">
+<Attribute name="Attribut2" id="4213B1CA-CC28-8A26-8D75-5B5107D6B6A2">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:48:47 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -87,12 +60,12 @@ Role Entity
 <domain>7F06A64B-0C00-1355-F863-DBD9FDE5B848</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="*EN* Attribute2"/>
+<property name="DE_ATTR_NAME" value="Attribut2"/>
 <property name="EN_ATTR_NAME" value="Attribute2"/>
-<property name="FR_ATTR_NAME" value="*EN* Attribute2"/>
+<property name="FR_ATTR_NAME" value="Attribut2"/>
 </propertyMap>
 </Attribute>
-<Attribute name="Attribute4" id="22D91AAD-5149-C235-3759-87748D3E036A">
+<Attribute name="Attribut4" id="22D91AAD-5149-C235-3759-87748D3E036A">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:48:55 UTC</createdTime>
 <notes><![CDATA[[DE_ATTR_COMMENT[
@@ -114,21 +87,21 @@ Role Entity
 <domain>5595B09A-F334-06B9-E641-60634C73D28B</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="*EN* Attribute4"/>
+<property name="DE_ATTR_NAME" value="Attribut4"/>
 <property name="EN_ATTR_NAME" value="Attribute4"/>
-<property name="FR_ATTR_NAME" value="*EN* Attribute4"/>
+<property name="FR_ATTR_NAME" value="Attribut4"/>
 </propertyMap>
 </Attribute>
-<Attribute name="*DE* Count" id="2566C592-C583-98B1-98EC-2C005C7D39A4">
+<Attribute name="Zählen Sie" id="2566C592-C583-98B1-98EC-2C005C7D39A4">
 <createdBy>stb</createdBy>
 <createdTime>2021-10-05 08:54:18 UTC</createdTime>
-<comment><![CDATA[How many..., non descriptive attribute]]></comment>
+<comment><![CDATA[Wie viele..., nicht beschreibendes Attribut]]></comment>
 <generatorID>BC5ADB54-2BB1-77F8-5BA3-F356BBE0C84C</generatorID>
 <notes><![CDATA[[DE_ATTR_COMMENT[
-*EN* How many..., non descriptive attribute
+Wie viele..., nicht beschreibendes Attribut
 ]DE_ATTR_COMMENT]
 [FR_ATTR_COMMENT[
-*EN* How many..., non descriptive attribute
+Combien de..., attribut non descriptif
 ]FR_ATTR_COMMENT]
 [EN_ATTR_COMMENT[
 How many..., non descriptive attribute
@@ -143,9 +116,9 @@ How many..., non descriptive attribute
 <domain>4371DA6A-2A2E-094E-B223-F78464D5EDE8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <propertyMap>
-<property name="DE_ATTR_NAME" value="Count"/>
-<property name="EN_ATTR_NAME" value="*DE* Count"/>
-<property name="FR_ATTR_NAME" value="Count"/>
+<property name="DE_ATTR_NAME" value="Zählen Sie"/>
+<property name="EN_ATTR_NAME" value="Count"/>
+<property name="FR_ATTR_NAME" value="Comte"/>
 </propertyMap>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
@@ -162,9 +135,8 @@ How many..., non descriptive attribute
 <engineerTo>
 <item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
 </engineerTo>
-<newElementsIDs>516D6D31-9499-0623-86CD-09B535D4EB3C,4213B1CA-CC28-8A26-8D75-5B5107D6B6A2</newElementsIDs>
+<newElementsIDs>4213B1CA-CC28-8A26-8D75-5B5107D6B6A2</newElementsIDs>
 <usedAttributes>
-<attributeRef>516D6D31-9499-0623-86CD-09B535D4EB3C</attributeRef>
 <attributeRef>4213B1CA-CC28-8A26-8D75-5B5107D6B6A2</attributeRef>
 </usedAttributes>
 </identifier>
@@ -175,10 +147,9 @@ How many..., non descriptive attribute
 <engineerTo>
 <item key="90A6DE35-7D20-FAE2-43F5-8338615FF552" value="true"/>
 </engineerTo>
-<newElementsIDs>22D91AAD-5149-C235-3759-87748D3E036A,516D6D31-9499-0623-86CD-09B535D4EB3C</newElementsIDs>
+<newElementsIDs>22D91AAD-5149-C235-3759-87748D3E036A</newElementsIDs>
 <usedAttributes>
 <attributeRef>22D91AAD-5149-C235-3759-87748D3E036A</attributeRef>
-<attributeRef>516D6D31-9499-0623-86CD-09B535D4EB3C</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

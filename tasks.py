@@ -28,7 +28,8 @@ def deploy(c):
 def generator(c, model=TEST_MODEL, languages=None, skip_odm=False,
               all=False, skip_web=False,
               confluence=False, sharepoint=False,
-              sparx_ea=False):
+              sparx_ea=False,
+              link_udpr=None):
     if model == TEST_MODEL:
         languages = 'en'
     optargs = []
@@ -36,4 +37,10 @@ def generator(c, model=TEST_MODEL, languages=None, skip_odm=False,
         optargs.append(f"--languages='{languages}'")
     if skip_odm:
         optargs.append("--skip-odm")
-    c.run(f"python dist/generator.py --model='{model}' {' '.join(optargs)}")
+    if skip_web:
+        optargs.append("--skip-web")
+    if link_udpr is not None:
+        optargs.append("--link-udpr=" + link_udpr)
+    command = f"python dist/generator.py --model='{model}' {' '.join(optargs)}"
+    print(f"Starting generator with: {command}")
+    c.run(command)
