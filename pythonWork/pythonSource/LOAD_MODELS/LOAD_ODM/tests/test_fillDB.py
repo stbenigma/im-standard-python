@@ -136,7 +136,7 @@ class TESTFILLDB(unittest.TestCase):
             jmodel = json.load(jsonFile)
             checkentityID,checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]
             self.assertIsNotNone(checkentity, f"Testcase 'Child Entity1' is not present in {testmodelname}")
-            synos = list(checkentity["synonyms"].values())
+            synos = list(checkentity["synonyms"])
             self.assertEqual(synos[0]["en"], "*de* DSynonym")
             self.assertEqual(synos[0]["fr"], "*de* DSynonym")
             self.assertEqual(checkentity["descr"]["en"],
