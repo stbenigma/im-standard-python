@@ -342,44 +342,46 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
     # stack up elements in subtype-level order
     levels = list(map(lambda e: int(e['subtypellevel+']),
                       export.model.getelements(Modelelemtype.ENTI, pfiltered=False).values()))
-    deepest_subtype_level = max(levels)
+    deepest_subtype_level: int = max(levels)
 
     # higher subtypelevels => topmost
-    for subtypelevel in range(-1, deepest_subtype_level):
+    for subtypelevel in range(0, deepest_subtype_level + 1):
         for eler in pdiag['elements']['entity']:
             entity = export.getelement(eler['element'])
-            if int(entity['subtypellevel+']) != int(subtypelevel):
-                continue
-            elerui = eler["ui"]
-            entidescr = export.getelement(eler['element'])['descr'][plang]
-            if entidescr is None:
-                entidescr = ' '
-            else:
-                entidescr = entidescr[: MAXDESCRCHARS]
+            if int(entity['subtypellevel+']) == subtypelevel:
+                elerui = eler["ui"]
+                entidescr = export.getelement(eler['element'])['descr'][plang]
+                if entidescr is None:
+                    entidescr = ' '
+                else:
+                    entidescr = entidescr[: MAXDESCRCHARS]
 
-            # fallback: element anchor
-            hyperlink = export.custom_hyperlink(entity)
-            if hyperlink is None:
-                hyperlink = '#' + eler['element']
-            retval += entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
-                                       , fopacity=round(elerui['opacity'] / 100, 2),
-                                       sopacity=round(elerui['marginopacity'] / 100, 2)
-                                       , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'],
-                                       height=elerui['height']
-                                       , hyperlink=html.escape(hyperlink)
-                                       , textref=pdiaganker + '-' + eler['element']
-                                       , fontcolor=hex2rbg(elerui['fontcolor'])
-                                       , fontsize=11  # vorläufig mal fix verdrahtet e[9], font size
-                                       , name=entity['name'][plang] + (
-                    '' if (eler['index'] == 0) else ':' + str(eler['index']))
-                                       , title="" if entidescr is None else f"<title>{html.escape(entidescr)}</title>")
+                # fallback: element anchor
+                hyperlink = export.custom_hyperlink(entity)
+                if hyperlink is None:
+                    hyperlink = '#' + eler['element']
+                entity_svg = entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
+                                           , fopacity=round(elerui['opacity'] / 100, 2),
+                                           sopacity=round(elerui['marginopacity'] / 100, 2)
+                                           , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'],
+                                           height=elerui['height']
+                                           , hyperlink=html.escape(hyperlink)
+                                           , textref=pdiaganker + '-' + eler['element']
+                                           , fontcolor=hex2rbg(elerui['fontcolor'])
+                                           , fontsize=11  # vorläufig mal fix verdrahtet e[9], font size
+                                           , name=entity['name'][plang] + (
+                        '' if (eler['index'] == 0) else ':' + str(eler['index']))
+                                           , title="" if entidescr is None else f"<title>{html.escape(entidescr)}</title>")
 
-            iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),
-                                     pdefaultlang=export.getmodel().getdefaultlang())
-            if iconsrc != "":
-                retval += imagehtml.format(iconsrc
-                                           , eler['pos_x'] + elerui['width'] - ICONSIZE / 2,
-                                           eler['pos_y'] - ICONSIZE / 2)
+                # whole entity box carries the hyperlink
+                retval += f"""<a href="{hyperlink}">{entity_svg}</a>\n"""
+
+                iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),
+                                         pdefaultlang=export.getmodel().getdefaultlang())
+                if iconsrc != "":
+                    retval += imagehtml.format(iconsrc
+                                               , eler['pos_x'] + elerui['width'] - ICONSIZE / 2,
+                                               eler['pos_y'] - ICONSIZE / 2)
         # for
 
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id

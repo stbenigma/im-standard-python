@@ -1,6 +1,5 @@
 import json
 import logging
-import os
 from pathlib import Path
 
 import pytest
@@ -30,6 +29,7 @@ def udpr_to_link(element: dict) -> (str or None):
                 for key, value in g_value.items():
                     print(f"UDPR {m_key} {g_key}: {key} == {value}")
                     if 'TOOL' in value['name']:
+                        print(f"Found {value['value']} on {element}")
                         return value['value']
     return None
 
@@ -64,9 +64,9 @@ class EnvironDiagramGeneration(IntegrationTest):
             generated = publish_svg_diagrams(html_export, lang)
             self.assertTrue(len(generated) > 1)
             print(generated)
-            with open(generated['DIAG115'], 'r') as src:
+            with open(generated['DIAG116'], 'r') as src:
                 lines = src.readlines()
-                match = list(filter(lambda l: 'https://www.planeflighttracker.com' in l.lower(), lines))
+                match = list(filter(lambda l: 'https://www.planemapper.com/' in l.lower(), lines))
                 print(f"Found {len(match)} hyperlinks in {generated['DIAG115']}")
                 self.assertTrue(len(match) > 0)
 
