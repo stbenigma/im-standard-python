@@ -75,7 +75,7 @@ def html_tooltip(entity, translator) -> str:
 
     synonyms = entity['synonyms']
     if synonyms is not None and len(synonyms) > 0:
-        syn_list = map(lambda s: translator.tr(s), synonyms.values())
+        syn_list = map(lambda s: translator.tr(s), synonyms)
         synonym_str = ', '.join(syn_list)
         tooltip_text.append(f"<h3>{translator.tr('Synonyms')}</h3><p>{synonym_str}</p>")
 
@@ -111,7 +111,7 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
 
         synonyms = enti['synonyms']
         if synonyms is not None and len(synonyms) > 0:
-            syn_list = map(lambda s: translator.tr(s), synonyms.values())
+            syn_list = map(lambda s: translator.tr(s), synonyms)
             synonym_str = ', '.join(syn_list)
             uo.set(next(prefix_generator) + gettext("Synonyme"), synonym_str)
 

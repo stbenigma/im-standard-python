@@ -12,19 +12,20 @@ import re
 """
 
 
-def synonyms(psynos: dict = None):
+def synonyms(psynos: list = None):
     """ None = emptymodel"""
-    """    {
-            "SYNO1112": {
+    """    [
+            {
                "de": "Jemand",
                "en": "Contact person",
                "fr": "**Personne de contact"
             },
+            ]
     """
     if psynos is None:
-        return {"SYNO000": multilangtext(None)}
+        return [multilangtext(None)]
     else:
-        return {s: multilangtext(v) for s, v in psynos.items()}
+        return [multilangtext(s) for s in psynos]
 
 
 def entityicon(penti: Entity = None):
@@ -111,8 +112,7 @@ def entities2js(pemptymodel):
                                    , e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm
                                    , e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus()
                                    , entityicon(penti=e)
-                                   , synonyms(psynos={jsguid(Modelelemtype.SYNO, s.syno_id): s.syno_name_l for s in
-                                                      e.getsynonyms()})
+                                   , synonyms(psynos=[s.syno_name_l for s in e.getsynonyms()])
                                    , examples2js(pexpls=e.getexamples())
                                    , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
                                    , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
@@ -208,7 +208,7 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         """Synonyms have in ODM no guid. Delete them and fill new synonyms"""
         inscnt = 0
         delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
-        for synoid, jsyno in jelem["synonyms"].items():
+        for jsyno in jelem["synonyms"]:
             syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
             # syno.syno_id = jsguid2id(synoid)
             try:

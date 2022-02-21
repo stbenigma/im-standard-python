@@ -23,7 +23,7 @@
 								</tr>
 								<tr>
 									<td class="attribute">
-										{% for syno in elem["synonyms"].values() %}
+										{% for syno in elem["synonyms"] %}
 										{% if loop.index > 1 %} {{ ', ' }} {% endif %}
 										{{ webmodel.getlangstr(syno) }}
 										{% endfor %}
@@ -255,7 +255,7 @@
 					<!--translations-->       
 					{% set otherlangs = webmodel.getlanguages(all=False) %}
 					{% if (otherlangs|count) > 0 %}
-					{% set synonyms = elem["synonyms"].values() %}
+					{% set synonyms = elem["synonyms"] %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Übersetzungen"), lbc=elemid ~ "transl") %}
 						<div class="table-responsive">
 							<table class="table borderless" >
