@@ -35,8 +35,12 @@ def generator(c, model=TEST_MODEL, languages=None, skip_odm=False,
     optargs = []
     if languages is not None:
         optargs.append(f"--languages='{languages}'")
-    if skip_odm is not None:
+    if skip_odm:
         optargs.append("--skip-odm")
+    if skip_web:
+        optargs.append("--skip-web")
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
-    c.run(f"python dist/generator.py --model='{model}' {' '.join(optargs)}")
+    command = f"python dist/generator.py --model='{model}' {' '.join(optargs)}"
+    print(f"Starting generator with: {command}")
+    c.run(command)
