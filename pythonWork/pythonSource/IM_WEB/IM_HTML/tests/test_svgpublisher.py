@@ -64,7 +64,9 @@ class EnvironDiagramGeneration(IntegrationTest):
             generated = publish_svg_diagrams(html_export, lang)
             self.assertTrue(len(generated) > 1)
             print(generated)
-            with open(generated['DIAG116'], 'r') as src:
+            riddle_file = list(filter(lambda d: 'riddle-' in str(d), generated.values()))
+            self.assertEqual(1, len(riddle_file))
+            with open(riddle_file[0], 'r') as src:
                 lines = src.readlines()
                 match = list(filter(lambda l: 'https://www.planemapper.com/' in l.lower(), lines))
                 print(f"Found {len(match)} hyperlinks in {generated['DIAG115']}")
