@@ -357,7 +357,7 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
                     entidescr = entidescr[: MAXDESCRCHARS]
 
                 # fallback: element anchor
-                hyperlink = export.custom_hyperlink(entity)
+                hyperlink = html.escape(export.custom_hyperlink(entity))
                 if hyperlink is None:
                     hyperlink = '#' + eler['element']
                 entity_svg = entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
