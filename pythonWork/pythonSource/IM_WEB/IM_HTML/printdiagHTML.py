@@ -374,7 +374,7 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
                                            , title="" if entidescr is None else f"<title>{html.escape(entidescr)}</title>")
 
                 # whole entity box carries the hyperlink
-                retval += f"""<a href="{hyperlink}">{entity_svg}</a>\n"""
+                retval += f"""<a href="{html.escape(hyperlink)}">{entity_svg}</a>\n"""
 
                 iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),
                                          pdefaultlang=export.getmodel().getdefaultlang())
@@ -394,9 +394,9 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
         hyperlink = export.href(ref=attr['element'], anz=aelem['name'][plang])
         description = aelem['descr'][plang]
 
-        if description.startswith('http') and not hyperlink.startswith('http'):
+        if description.lower().startswith('http') and not hyperlink.lower().startswith('http'):
             logging.warning(f"Attribute {attr['element']} '{aelem['name'][plang]}' description is an URL. Using this as link.")
-            hyperlink = f"""<a href="{html.escape(description)}">{aelem['name'][plang]}</a>"""
+            hyperlink = f"""<a href="{html.escape(description)}"><title>{aelem['name'][plang]}</title></a>"""
             description = ""
 
         retval += printtext(px=x, py=y, ptext=hyperlink

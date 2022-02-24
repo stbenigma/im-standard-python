@@ -45,5 +45,9 @@ def testmodels_dir() -> Path:
     return testenvironment_root() / 'testmodels'
 
 
+def riddle_json() -> Path:
+    return testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
+
+
 def odmtestmodelnames():
     return [TESTMODEL1, TESTMODEL2, CRMTEST, RIDDLE]
