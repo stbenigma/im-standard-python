@@ -55,6 +55,7 @@ class HTMLExport:
     def custom_hyperlink(self, element: dict) -> None or str:
         result = self.custom_hyperlink_extractor(element)
         if result is not None:
+            result = result.strip()
             logging.debug(f"Using UDP value {result} for element {element} hyperlink")
         return result
 
