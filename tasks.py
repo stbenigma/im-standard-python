@@ -7,8 +7,13 @@ except ModuleNotFoundError:
     exit(-1)
 
 SOURCE_FOLDER = "pythonWork/pythonSource"
-TEST_MODEL = "pythonWork/pythonSource/testenvironment/testmodels/riddle/IM"
+TEST_MODEL = "pythonWork/pythonSource/testenvironment/testmodels/riddle"
+TEST_MODEL_DB = TEST_MODEL + '/DB/riddle.db'
 
+@task
+def bootstrap(c):
+    c.run('conda env update --file conda-base-environment.yaml')
+    c.run('pip run ')
 
 @task
 def translate(c):
@@ -25,9 +30,13 @@ def deploy(c):
 
 
 @task(deploy)
-def generator(c, model=TEST_MODEL, languages=None, skip_odm=False,
-              all=False, skip_web=False,
-              confluence=False, sharepoint=False,
+def generator(c, model=TEST_MODEL + '/IM',
+              languages=None,
+              skip_odm=False,
+              all=False,
+              skip_web=False,
+              confluence=False,
+              sharepoint=False,
               sparx_ea=False,
               link_udpr=None):
     if model == TEST_MODEL:
@@ -44,3 +53,12 @@ def generator(c, model=TEST_MODEL, languages=None, skip_odm=False,
     command = f"python dist/generator.py --model='{model}' {' '.join(optargs)}"
     print(f"Starting generator with: {command}")
     c.run(command)
+
+
+@task
+def dbversion(c, model=TEST_MODEL_DB):
+    dbfile = Path(model).resolve()
+    if not dbfile.is_file():
+        print(f"{dbfile} is not file")
+        exit(1)
+    c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
