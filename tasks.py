@@ -6,14 +6,17 @@ except ModuleNotFoundError:
     print("invoke module not found. Install using 'conda install invoke'")
     exit(-1)
 
-SOURCE_FOLDER = "pythonWork/pythonSource"
-TEST_MODEL = "pythonWork/pythonSource/testenvironment/testmodels/riddle"
-TEST_MODEL_DB = TEST_MODEL + '/DB/riddle.db'
+PROJECT_ROOT = Path(__file__).parent.resolve()
+SOURCE_FOLDER = PROJECT_ROOT / 'pythonWork' / 'pythonSource'
+TEST_MODEL = SOURCE_FOLDER / 'testenvironment' / 'testmodels' / 'riddle'
+TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
+
 
 @task
 def bootstrap(c):
     c.run('conda env update --file conda-base-environment.yaml')
     c.run('pip run ')
+
 
 @task
 def translate(c):
@@ -26,11 +29,12 @@ def translate(c):
 
 @task(translate)
 def deploy(c):
-    c.run(f"python {SOURCE_FOLDER}/tools/deploy.py")
+    with c.cd(PROJECT_ROOT):
+        c.run(f"python {SOURCE_FOLDER}/tools/deploy.py")
 
 
 @task(deploy)
-def generator(c, model=TEST_MODEL + '/IM',
+def generator(c, model=None,
               languages=None,
               skip_odm=False,
               all=False,
@@ -39,8 +43,10 @@ def generator(c, model=TEST_MODEL + '/IM',
               sharepoint=False,
               sparx_ea=False,
               link_udpr=None):
-    if model == TEST_MODEL:
-        languages = 'en'
+    if model is None:
+        model = TEST_MODEL / 'IM'
+        if languages is None:
+            languages = 'en'
     optargs = []
     if languages is not None:
         optargs.append(f"--languages='{languages}'")
@@ -50,13 +56,16 @@ def generator(c, model=TEST_MODEL + '/IM',
         optargs.append("--skip-web")
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
-    command = f"python dist/generator.py --model='{model}' {' '.join(optargs)}"
-    print(f"Starting generator with: {command}")
-    c.run(command)
+    command = f"python dist/generator.py --model='{model.relative_to(PROJECT_ROOT)}' {' '.join(optargs)}"
+    with c.cd(PROJECT_ROOT):
+        print(f"Starting generator with: {command} in {PROJECT_ROOT}")
+        c.run(command)
 
 
 @task
-def dbversion(c, model=TEST_MODEL_DB):
+def dbversion(c, model=None):
+    if model is None:
+        model = TEST_MODEL / 'DB' / 'riddle.db'
     dbfile = Path(model).resolve()
     if not dbfile.is_file():
         print(f"{dbfile} is not file")
