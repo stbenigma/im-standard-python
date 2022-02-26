@@ -7,7 +7,6 @@ import yaml
 from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
 from office365.sharepoint.fields.field_creation_information import FieldCreationInformation
-#from office365.sharepoint.files.file_system_object_type import FileSystemObjectType
 from office365.sharepoint.lists.list import List
 
 
@@ -20,14 +19,15 @@ from office365.sharepoint.lists.list import List
 #   "ssot": "../../../testenvironment/testmodels/riddle/DB/riddle.json"
 # }
 
-def update_structure(sharepoint_list: List, columns: [()]) -> [str]:
+def update_structure(sharepoint_list: List, columns: [()], write: bool = False) -> [str]:
     """
     Read structure
     Update structure
 
     :param sharepoint_list: Name of the list in Sharepoint
     :param columns: Columns definition. See end of this file.
-    :return:
+    :param write: Execute changes
+    :return: List of changes
     """
 
     fields = sharepoint_list.fields.get().execute_query()
@@ -51,6 +51,7 @@ def update_structure(sharepoint_list: List, columns: [()]) -> [str]:
     logging.info(message[0])
 
     for record in columns:
+        touched = False
         key = record[0]
         configuration = record[1]
         properties = configuration.get('properties', {})
@@ -70,15 +71,22 @@ def update_structure(sharepoint_list: List, columns: [()]) -> [str]:
             if len(updated) > 0:
                 message.append(f"-- Updating properties of field {key}\n{field.properties}")
                 message.extend(updated)
+                touched = True
         else:
             # create new field
-            create = FieldCreationInformation(
+            field = FieldCreationInformation(
                 title=key, field_type_kind=field_type_kind,
                 description=description_text,
             )
-            update_field_properties(properties, create)
-            sharepoint_list.fields.add(create)
+            update_field_properties(properties, field)
+            sharepoint_list.fields.add(field)
             message.append(f"Adding new field {key}")
+            touched = True
+
+        if touched and write:
+            print(f"Performing change on {key} ...")
+            field.execute_query()
+            logging.debug("done")
 
     return message
 
@@ -191,7 +199,7 @@ def collect_content(list_items: [], destination: Path) -> [(str, dict)]:
     return result
 
 
-def update_content(model: dict, mapping: dict, sp_content: dict, sp_list, commit_each: bool = False):
+def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content: dict):
     """
     values = {
         'Title': tr(entity['name']),
@@ -199,12 +207,19 @@ def update_content(model: dict, mapping: dict, sp_content: dict, sp_list, commit
         'Synonyms': tr(entity['synonyms']),
         'Key': key
     }
+
+    :param sp_content
     """
+    assert sp_list is not None
+    assert mapping is not None
+    assert isinstance(model_content, dict)
+    assert isinstance(sp_content, dict)
 
     new = []
     updated = []
     current_items = set(sp_content.keys())
-    for key, entity in model['entities'].items():
+    logging.info(f"List contains {len(current_items)} rows. New rows count {len(model_content)}.")
+    for key, entity in model_content.items():
         existing = sp_content.get(key)
 
         values = {}
@@ -245,6 +260,7 @@ def update_content(model: dict, mapping: dict, sp_content: dict, sp_list, commit
     for key in current_items:
         item = sp_content[key]
         deleted.append(item)
+        print(f"Deleting item {key}")
         item.delete_object()
 
     return new, updated, list(deleted)

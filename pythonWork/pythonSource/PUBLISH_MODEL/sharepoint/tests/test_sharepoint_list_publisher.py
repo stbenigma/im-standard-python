@@ -1,9 +1,8 @@
-import logging
 import os
 import unittest
-from pathlib import Path
 import pytest
-import yaml
+
+from PUBLISH_MODEL.sharepoint.list_publisher import *
 
 CONFIGURATION = Path(__file__).parent / 'test.yaml'
 
@@ -78,23 +77,30 @@ class TestSharepointListPublisher(unittest.TestCase):
                 content = spl.items.get().execute_query()
                 cd = collect_content(content, Path(self.temp_folder) / 'entities-0.csv')
                 content_map = dict(map(lambda e: (e[0], e[1]), cd))
-                update_content({'entities': {}}, entity_mapping, content_map, spl)
+                update_content(spl, entity_mapping, {}, content_map)
                 # ctx.clear_queries()
                 ctx.execute_query()
 
                 # Why do we have to reload to update?
                 cd = collect_content(content, Path(self.temp_folder) / 'entities-1.csv')
                 content_map = dict(map(lambda e: (e[0], e[1]), cd))
-                i, u, d = update_content(one_entry, entity_mapping, content_map, spl)
+                i, u, d = update_content(spl, entity_mapping, one_entry, content_map)
                 logging.info(f"Row summary: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
                 ctx.execute_query()
 
+                # Why do we have to reload to update?
+                cd = collect_content(content, Path(self.temp_folder) / 'entities-2.csv')
+                content_map = dict(map(lambda e: (e[0], e[1]), cd))
+                self.assertEqual(1, len(cd))
+                i, u, d = update_content(spl, entity_mapping, {}, content_map)
+                logging.info(f"Row summary: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
+                ctx.execute_query()
 
-one_entry = {"entities": {
+one_entry = {
     "ENTI0000": {
         "name": {"en": "Enti101"},
         "descr": {"en": "Zero Entity"},
         "synonyms": {"en": "Bla"},
         "diagrams+": ['DIAG000', 'DIAG001'],
     }
-}}
+}
