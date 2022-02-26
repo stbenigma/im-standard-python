@@ -9,6 +9,11 @@ CRMTEST: str = 'crmTest'
 RIDDLE: str = 'riddle'
 
 
+def testmodel1():
+    return TESTMODEL1, \
+          testmodels_dir() / TESTMODEL1, \
+         testmodels_dir() / TESTMODEL1 / 'DB' / (TESTMODEL1 + '.db')
+
 class IntegrationTest(unittest.TestCase):
 
     def setUp(self) -> None:
