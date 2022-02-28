@@ -35,8 +35,7 @@ def filter_json(pmodel: JSModel
     if ppubl_status is None and pIMdiagrams is None:
         return pmodel
 
-    assert ppubl_status is None \
-           or ppubl_status in (Modelelement.DRAFT, Modelelement.GTOP, Modelelement.PUBL)
+    assert ppubl_status in (None,Modelelement.DRAFT, Modelelement.GTOP, Modelelement.PUBL)
     assert pIMdiagrams is None or type(pIMdiagrams) == list
 
     newmodel = copy.deepcopy(pmodel)

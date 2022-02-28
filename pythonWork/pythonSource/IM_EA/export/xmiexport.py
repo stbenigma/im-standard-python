@@ -99,13 +99,13 @@ class XMIBuilder(object):
         self.package_node = self.create_package(package_name)
         self.model_node.append(self.package_node)
 
-        for key, entity in self.model.getelements(pelemtype=Modelelemtype.ENTI, pfiltered=False).items():
+        for key, entity in self.model.getelements(pelemtype=Modelelemtype.ENTI).items():
             self.add_entity(key, entity)
 
-        for key, arc in self.model.getelements(pelemtype=Modelelemtype.ARCS, pfiltered=False).items():
+        for key, arc in self.model.getelements(pelemtype=Modelelemtype.ARCS).items():
             self.add_arc(key, arc)
 
-        for key, relation in self.model.getelements(pelemtype=Modelelemtype.RELA, pfiltered=False).items():
+        for key, relation in self.model.getelements(pelemtype=Modelelemtype.RELA).items():
             self.add_relation(key, relation)
 
         # Stereotype refining elements follow the declarations
@@ -142,11 +142,11 @@ class XMIBuilder(object):
         elements_root = self.create_ea_elements(self.package_node.get('name'))
         ea_extension.append(elements_root)
 
-        for key, entity in self.model.getelements(pelemtype=Modelelemtype.ENTI, pfiltered=False).items():
+        for key, entity in self.model.getelements(pelemtype=Modelelemtype.ENTI).items():
             element_node = self.create_ea_entity(key, entity)
             elements_root.append(element_node)
 
-        for key, arc in self.model.getelements(pelemtype=Modelelemtype.ARCS, pfiltered=False).items():
+        for key, arc in self.model.getelements(pelemtype=Modelelemtype.ARCS).items():
             arc_node = self.create_ea_arc(key, arc)
             elements_root.append(arc_node)
 
@@ -157,7 +157,7 @@ class XMIBuilder(object):
 
         diagrams_root = etree.Element('diagrams')
         ea_extension.append(diagrams_root)
-        for key, diagram in self.model.getelements(pelemtype=Modelelemtype.DIAG, pfiltered=False).items():
+        for key, diagram in self.model.getelements(pelemtype=Modelelemtype.DIAG).items():
             try:
                 diag = self.create_diagram(key, diagram)
                 diagrams_root.append(diag)
@@ -703,7 +703,7 @@ $DES;$CLT={{{cltid}}}$CLT;$SUP=<none>$SUP;$ENDXREF;""")
 
         # stack up elements in subtype-level order
         levels = list(map(lambda entity: int(entity['subtypellevel+']),
-                          self.model.getelements(Modelelemtype.ENTI, pfiltered=False).values()))
+                          self.model.getelements(Modelelemtype.ENTI).values()))
         deepest_subtype_level = max(levels)
         # inverse order: process subtypes first to assign them small sequence numbers
         for subtypelevel in range(deepest_subtype_level, -1, -1):
@@ -807,7 +807,7 @@ $DES;$CLT={{{cltid}}}$CLT;$SUP=<none>$SUP;$ENDXREF;""")
         """
         all_relevant_relations = set()
         for element_key in visible_elements:
-            for relation_key, relation in self.model.getelements(Modelelemtype.RELA, pfiltered=False).items():
+            for relation_key, relation in self.model.getelements(Modelelemtype.RELA).items():
                 if relation['from-to']['enti'] == element_key or relation['to-from']['enti'] == element_key:
                     all_relevant_relations.add(relation_key)
 

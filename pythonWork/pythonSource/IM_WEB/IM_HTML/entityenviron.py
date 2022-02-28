@@ -169,7 +169,7 @@ def hexcolor(pcolor):
 def related(pentiid, prelated, pjson, pcardinality, pmodellang, pentities):
     retval = []
     for relaid in prelated:
-        rela = pjson.getelements(pelemtype=Modelelemtype.RELA, pfiltered=False)[relaid]
+        rela = pjson.getelements(pelemtype=Modelelemtype.RELA)[relaid]
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
         if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] != pentiid
                 and rela['to-from']['maptype'] == pcardinality):
@@ -191,7 +191,7 @@ def related(pentiid, prelated, pjson, pcardinality, pmodellang, pentities):
 
 def createentienvironment(pentiid, pjson: JSModel, pmodellang):
     """creates an EntityEnvironment for the given entity found in the json-structure"""
-    entities: dict = pjson.getelements(pelemtype=Modelelemtype.ENTI, pfiltered=False)
+    entities: dict = pjson.getelements(pelemtype=Modelelemtype.ENTI)
 
     if not pentiid in entities.keys(): return None  # non existing entity is Nothing
 

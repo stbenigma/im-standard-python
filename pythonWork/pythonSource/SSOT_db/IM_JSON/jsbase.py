@@ -3,11 +3,9 @@ import logging
 import os
 import sqlite3
 from threading import local
-from SSOT_infra import nvl
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
-
-
+from SSOT_infra import nvl
 
 context = local()
 
@@ -23,8 +21,6 @@ def jsguid(mtype, guid):
 def jsguid2id(guid):
     """returns the id part of a jsguid by removing the 4 leading characters (type) from a jsguid"""
     return None if guid is None else int(guid[4:])
-
-
 
 
 def jsguid2type(guid):
@@ -70,7 +66,7 @@ class JSModel:
     ELEMTYPE_CATG = 'CATG'
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities',
-        Modelelemtype.BURU: 'businessrules2js',
+        #Modelelemtype.BURU: 'businessrules2js',
         Modelelemtype.RELA: 'relations',
         Modelelemtype.ATTR: 'attributes',
         Modelelemtype.DOMA: 'domains',
@@ -99,34 +95,43 @@ class JSModel:
         self._errors = []
         self._warnings = []
         self.languages = {}  # langid:iso2
-        self._statusfilter = (None, 'DRAFT', 'GTOP', 'PUBL')
+        self._filter = None
 
     def getelements(self, pelemtype, pfiltered=True):
         """returns dict of top level Elements filtered by statusfilter"""
-        elemkey = JSModel.elemtype2label(pelemtype=pelemtype)
-        if elemkey is None:
-            """ not found, check wether pelem is already a key"""
-            if pelemtype in self.jsmodel:
-                elemkey = pelemtype
-            else:
+        if pelemtype in self.jsmodel:
+            elemtypekey = pelemtype
+        else:
+            elemtypekey = JSModel.elemtype2label(pelemtype=pelemtype)
+            if elemtypekey is None:
                 return None
             # fi
         # fi
-        assert (elemkey in self.jsmodel), "key {} not found in json-model".format(elemkey)
+        assert (elemtypekey in self.jsmodel), "key {} not found in json-model".format(elemtypekey)
         """get all elements, if filtered make sure it is 
             a) not a dict, 
             b) has no publstatus or 
-            c) its publstatus is in my statusfilter"""
-        elems = {key: value for key, value in self.jsmodel[elemkey].items()
+            c) its publstatus is in my filter"""
+        elems = {key: value for key, value in self.jsmodel[elemtypekey].items()
                  if (not pfiltered or (type(value) != dict) or
-                     ('publstatus' not in value) or (value['publstatus'] in self._statusfilter))}
+                     ('publstatus' not in value) or (value['publstatus'] in self._filter))}
         return elems
 
-    def setstatusfilter(self, pfilter):
-        self._statusfilter = pfilter
+    def setfilter(self, pfilter):
+        self._filter = pfilter
+        self._filter.setJSModel(self)
+        return
 
-    def getstatusfilter(self, pfilter):
-        return self._statusfilter
+    def getfilter(self):
+        return self._filter
+
+    """ returns the json structured with current filter applied
+    """
+    def filtered_json(self):
+        if self.getfilter() is None:
+            return self.jsmodel
+        else:
+            return self._filter.filtered_json()
 
     @staticmethod
     def readfromfile(pfilename):
@@ -211,14 +216,12 @@ class JSModel:
         if pelemstr != '':
             self._errors.append(pelemstr)
         self.incerrcnt()
-
-    # markerror
+        return
 
     def markwarning(self, pmsg):
         self._warnings.append("WARNING: {}".format(pmsg))
         self.incwrncnt()
-
-    # markwarning
+        return
 
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)

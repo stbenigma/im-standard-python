@@ -39,14 +39,13 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
     return
 
 
-def listwebmain(export: HTMLExport, pfilter=(None, 'GTOP', 'PUBL')):
+def listwebmain(export: HTMLExport):
     def langpart(plang):
         return '_' + plang
 
     export.createlib()
     export.copyimages()
     model = export.getmodel()
-    model.setstatusfilter(pfilter)
     parameters.dbDefaultLang(model.modellanguage())
     langs = model.jsmodel["languages"].keys()
     # erstelle die Liste der HTML Files für HREF's
