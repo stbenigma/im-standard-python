@@ -108,13 +108,11 @@ class JSModel:
             # fi
         # fi
         assert (elemtypekey in self.jsmodel), "key {} not found in json-model".format(elemtypekey)
-        """get all elements, if filtered make sure it is 
-            a) not a dict, 
-            b) has no publstatus or 
-            c) its publstatus is in my filter"""
-        elems = {key: value for key, value in self.jsmodel[elemtypekey].items()
-                 if (not pfiltered or (type(value) != dict) or
-                     ('publstatus' not in value) or (value['publstatus'] in self._filter))}
+        if pfiltered and self._filter is not None:
+            elems = {key: value for key, value in self.jsmodel[elemtypekey].items() if key in self._filter}
+        else:
+            elems = {key: value for key, value in self.jsmodel[elemtypekey].items()}
+
         return elems
 
     def setfilter(self, pfilter):

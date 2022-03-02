@@ -21,27 +21,27 @@ class MyTestCase(unittest.TestCase):
         gtopfilter = JSFILTER(ppublstatus=Modelelement.GTOP)
         publfilter = JSFILTER(ppublstatus=Modelelement.PUBL)
         element = {"id":0}
-        self.assertTrue(defaultfilter.publish(element))
-        self.assertTrue(gtopfilter.publish(element))
+        self.assertTrue(defaultfilter._publishable(element))
+        self.assertTrue(gtopfilter._publishable(element))
         element["publstatus"]=None
-        self.assertTrue(defaultfilter.publish(element))
-        self.assertTrue(publfilter.publish(element))
-        self.assertTrue(draftfilter.publish(element))
+        self.assertTrue(defaultfilter._publishable(element))
+        self.assertTrue(publfilter._publishable(element))
+        self.assertTrue(draftfilter._publishable(element))
         element["publstatus"]=Modelelement.DRAFT
-        self.assertTrue(defaultfilter.publish(element))
-        self.assertFalse(publfilter.publish(element))
-        self.assertFalse(gtopfilter.publish(element))
-        self.assertTrue(draftfilter.publish(element))
+        self.assertTrue(defaultfilter._publishable(element))
+        self.assertFalse(publfilter._publishable(element))
+        self.assertFalse(gtopfilter._publishable(element))
+        self.assertTrue(draftfilter._publishable(element))
         element["publstatus"]=Modelelement.GTOP
-        self.assertTrue(defaultfilter.publish(element))
-        self.assertFalse(publfilter.publish(element))
-        self.assertTrue(gtopfilter.publish(element))
-        self.assertTrue(draftfilter.publish(element))
+        self.assertTrue(defaultfilter._publishable(element))
+        self.assertFalse(publfilter._publishable(element))
+        self.assertTrue(gtopfilter._publishable(element))
+        self.assertTrue(draftfilter._publishable(element))
         element["publstatus"]=Modelelement.PUBL
-        self.assertTrue(defaultfilter.publish(element))
-        self.assertTrue(publfilter.publish(element))
-        self.assertTrue(gtopfilter.publish(element))
-        self.assertTrue(draftfilter.publish(element))
+        self.assertTrue(defaultfilter._publishable(element))
+        self.assertTrue(publfilter._publishable(element))
+        self.assertTrue(gtopfilter._publishable(element))
+        self.assertTrue(draftfilter._publishable(element))
         return
 
     def test_unchanged_model(self):
@@ -49,7 +49,7 @@ class MyTestCase(unittest.TestCase):
         assert (self.model.getfilter(), None)
         self.assertEqual(self.model.jsmodel, self.model.filtered_json())
         #check with empty (default) filter
-        self.model.setfilter(JSFILTER())
+        self.modelp.setfilter(JSFILTER())
         self.assertTrue(jsonequal(self.model.jsmodel, self.model.filtered_json()))
 
         # DAFT includes all stati, no diagramlist do no filter diagrams

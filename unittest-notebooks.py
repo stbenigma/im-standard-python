@@ -7,7 +7,7 @@ import papermill as pm
 scripts = [
     {'script': './notebooks/confluence-export/Publisher application.ipynb'},
     #    './notebooks/Sandbox/confluence-python-api/API-sandbox.ipynb',
-    #    './notebooks/confluence-export/Render and publish.ipynb',
+    #    './notebooks/confluence-export/Render and _publishable.ipynb',
     #    './notebooks/Sandbox/stbtest.ipynb',
     #    './notebooks/iconlibrary/Confluence producer.ipynb',
 ]
