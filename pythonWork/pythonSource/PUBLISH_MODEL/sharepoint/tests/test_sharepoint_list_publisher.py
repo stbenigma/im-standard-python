@@ -1,6 +1,13 @@
 import os
 import unittest
+from unittest import SkipTest
+
 import pytest
+
+try:
+    import office365
+except ModuleNotFoundError:
+    raise SkipTest("Missing module office356. Install using `pip install Office365-REST-Python-Client`")
 
 from PUBLISH_MODEL.sharepoint.list_publisher import *
 
@@ -76,25 +83,30 @@ class TestSharepointListPublisher(unittest.TestCase):
                 spl = ctx.web.lists.get_by_title(sp_list_config['title'])
                 content = spl.items.get().execute_query()
                 cd = collect_content(content, Path(self.temp_folder) / 'entities-0.csv')
-                content_map = dict(map(lambda e: (e[0], e[1]), cd))
-                update_content(spl, entity_mapping, {}, content_map)
+                content_map = dict(map(lambda e: (e[0], e[1]), []))
+                i, u, d = update_content(spl, entity_mapping, {}, content_map)
+                logging.info(f"Row summary 1: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
                 # ctx.clear_queries()
                 ctx.execute_query()
 
                 # Why do we have to reload to update?
-                cd = collect_content(content, Path(self.temp_folder) / 'entities-1.csv')
+                content1 = spl.items.get().execute_query()
+                self.assertEqual(0, len(content1))
+                cd = collect_content(content1, Path(self.temp_folder) / 'entities-1.csv')
                 content_map = dict(map(lambda e: (e[0], e[1]), cd))
                 i, u, d = update_content(spl, entity_mapping, one_entry, content_map)
-                logging.info(f"Row summary: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
+                logging.info(f"Row summary 2: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
                 ctx.execute_query()
 
                 # Why do we have to reload to update?
-                cd = collect_content(content, Path(self.temp_folder) / 'entities-2.csv')
+                content2 = spl.items.get().execute_query()
+                cd = collect_content(content2, Path(self.temp_folder) / 'entities-2.csv')
                 content_map = dict(map(lambda e: (e[0], e[1]), cd))
-                self.assertEqual(1, len(cd))
                 i, u, d = update_content(spl, entity_mapping, {}, content_map)
-                logging.info(f"Row summary: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
+                logging.info(f"Row summary 3: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
                 ctx.execute_query()
+                self.assertEqual(1, len(cd))
+
 
 one_entry = {
     "ENTI0000": {
