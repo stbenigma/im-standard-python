@@ -13,6 +13,6 @@ from .jssystem import *
 from .jstable import *
 from .jscolumn import *
 from .jsmodel import *
-from .jsfilter import JSFILTER
+from .jsfilter import FILTEREDJSModel
 
 

@@ -59,7 +59,6 @@ def examples2js(pexpls: list = None):
                     retval[lang] = [nvl(value)]
         return retval
 
-
 class JSModel:
     ELEMTYPE_LANG = 'LANG'
     ELEMTYPE_PROJ = 'PROJ'
@@ -95,9 +94,8 @@ class JSModel:
         self._errors = []
         self._warnings = []
         self.languages = {}  # langid:iso2
-        self._filter = None
 
-    def getelements(self, pelemtype, pfiltered=True):
+    def getelements(self, pelemtype):
         """returns dict of top level Elements filtered by statusfilter"""
         if pelemtype in self.jsmodel:
             elemtypekey = pelemtype
@@ -108,28 +106,9 @@ class JSModel:
             # fi
         # fi
         assert (elemtypekey in self.jsmodel), "key {} not found in json-model".format(elemtypekey)
-        if pfiltered and self._filter is not None:
-            elems = {key: value for key, value in self.jsmodel[elemtypekey].items() if key in self._filter}
-        else:
-            elems = {key: value for key, value in self.jsmodel[elemtypekey].items()}
+        elems = {key: value for key, value in self.jsmodel[elemtypekey].items()}
 
         return elems
-
-    def setfilter(self, pfilter):
-        self._filter = pfilter
-        self._filter.setJSModel(self)
-        return
-
-    def getfilter(self):
-        return self._filter
-
-    """ returns the json structured with current filter applied
-    """
-    def filtered_json(self):
-        if self.getfilter() is None:
-            return self.jsmodel
-        else:
-            return self._filter.filtered_json()
 
     @staticmethod
     def readfromfile(pfilename):
@@ -224,14 +203,13 @@ class JSModel:
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 
-
 # JSModel
 
 
-def printJSON(pmodel, pfilepath, pfilename):
+def printJSON(pmodel, pfilepath, pfilename,psorted = False):
     destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
-        jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
+        jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=sorted))
     return destination
 
 
