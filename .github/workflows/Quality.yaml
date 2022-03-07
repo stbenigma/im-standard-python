@@ -83,7 +83,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: foryouandyourcustomers/fyyccim-refmodels
-        token: ${{ secrets.FYYCCIM_REFMODELS_KEY }}
+        token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
         path: testdata/fyyccim-refmodels
 
     - name: Integration test run with raetsel-3lang model
