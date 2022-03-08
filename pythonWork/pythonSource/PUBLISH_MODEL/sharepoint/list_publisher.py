@@ -199,16 +199,32 @@ def collect_content(list_items: [], destination: Path) -> [(str, dict)]:
     return result
 
 
+def load_content(sp_list: List) -> dict:
+    """
+    Load content into list
+    :param sp_list: Sharepoint list to load
+    :return: List containing tuples of kind (item['Key'], item)
+    """
+    content = sp_list.items.get().execute_query()
+    result = {}
+    for item in content:
+        result[item.properties['Key']] = item
+    logging.info(f"Loaded {len(result)} items from list {sp_list.title}")
+    return result
+
+
 def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content: dict):
     """
-    values = {
+    mapping = {
         'Title': tr(entity['name']),
         'Description': tr(entity['descr']),
         'Synonyms': tr(entity['synonyms']),
         'Key': key
     }
-
-    :param sp_content
+    :param sp_list Share point list
+    :param mapping Mapping between model_content and sp_content
+    :param model_content SPOD list
+    :param sp_content Previously fetched sharepoint list
     """
     assert sp_list is not None
     assert mapping is not None
@@ -241,7 +257,7 @@ def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content
             except Exception as e:
                 print(f"{e}: {map_function}, mapping:{options}, tuple: {tuple}")
                 logging.warning(
-                    f"Cannot map field {key} of entity {entity} to column {tk} with function {map_function}")
+                    f"Cannot map field {tk} of entity {key}: {entity} to column {tk} with function {map_function}")
 
         assert len(values.keys()) > 0
         if not existing:
@@ -263,7 +279,7 @@ def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content
         print(f"Deleting item {key}")
         item.delete_object()
 
-    return new, updated, list(deleted)
+    return new, updated, deleted
 
 
 def update_row(item, values: dict, context: str) -> []:

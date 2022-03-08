@@ -23,14 +23,6 @@ class TestSharepointListPublisher(unittest.TestCase):
         self.caplog = caplog
 
     def setUp(self):
-        # Test will only run when library is present
-        try:
-            from PUBLISH_MODEL.sharepoint.list_publisher import login, update_structure, entity_mapping, \
-                attribute_mapping, \
-                collect_content, update_content
-        except ModuleNotFoundError:
-            self.skipTest(f"Missing sharepoint library")
-
         if not CONFIGURATION.is_file():
             self.skipTest(f"Missing configuratoin in '{CONFIGURATION.resolve()}.")
         with open(CONFIGURATION, 'r') as src:
@@ -85,7 +77,8 @@ class TestSharepointListPublisher(unittest.TestCase):
                 cd = collect_content(content, Path(self.temp_folder) / 'entities-0.csv')
                 content_map = dict(map(lambda e: (e[0], e[1]), []))
                 i, u, d = update_content(spl, entity_mapping, {}, content_map)
-                logging.info(f"Row summary 1: {len(i)} inserted, {len(u)} updated, {len(d)} deleted")
+                logging.info(f"Row summary 1: {len(i)} inserted, {len(u)} updated, {len(d)} deleted. "
+                             f"Count before {len(cd)}")
                 # ctx.clear_queries()
                 ctx.execute_query()
 
