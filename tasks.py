@@ -47,6 +47,12 @@ def generator(c, model=None,
         model = TEST_MODEL / 'IM'
         if languages is None:
             languages = 'en'
+    else:
+        model = Path(model)
+
+    if not model.is_absolute():
+        model = model.relative_to(PROJECT_ROOT).resolve()
+
     optargs = []
     if languages is not None:
         optargs.append(f"--languages='{languages}'")
@@ -56,7 +62,7 @@ def generator(c, model=None,
         optargs.append("--skip-web")
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
-    command = f"python dist/generator.py --model='{model.relative_to(PROJECT_ROOT)}' {' '.join(optargs)}"
+    command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
         print(f"Starting generator with: {command} in {PROJECT_ROOT}")
         c.run(command)
