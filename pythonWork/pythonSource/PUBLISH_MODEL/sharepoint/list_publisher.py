@@ -4,6 +4,7 @@ import logging
 import os
 from pathlib import Path
 import yaml
+from office365.sharepoint.listitems.listItem_collection import ListItemCollection
 from tqdm.autonotebook import tqdm
 
 from office365.runtime.auth.user_credential import UserCredential
@@ -233,13 +234,13 @@ def collect_content(list_items: [], destination: Path) -> [(str, dict)]:
     return result
 
 
-def load_content(sp_list: List) -> dict:
+def load_content(items: ListItemCollection) -> dict:
     """
     Load content into list
-    :param sp_list: Sharepoint list to load
+    :param items: Sharepoint list to load
     :return: List containing tuples of kind (item['Key'], item)
     """
-    content = sp_list.items.get().execute_query()
+    content = items.get().execute_query()
     result = {}
     for item in content:
         key = item.properties.get('Key')
@@ -247,7 +248,6 @@ def load_content(sp_list: List) -> dict:
             result[key] = item
         else:
             logging.warning(f"No key for item {item.properties.get('Id')} {item.properties}")
-    logging.info(f"Loaded {len(result)} items from list {sp_list.title}")
     return result
 
 
@@ -272,7 +272,7 @@ def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content
     new = []
     updated = []
     current_items = set(sp_content.keys())
-    logging.info(f"List contains {len(current_items)} rows. New rows count {len(model_content)}.")
+    logging.info(f"List '{sp_list.title}' contains {len(current_items)} rows. New rows count {len(model_content)}.")
     for key, entity in tqdm(model_content.items()):
         existing = sp_content.get(key)
 
@@ -304,6 +304,9 @@ def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content
             logging.debug(f"Adding new item {key}: {values}")
             list_item = sp_list.add_item(values)
             new.append(list_item)
+            if direct_write:
+                sp_list.execute_query()
+
         else:
             logging.debug(f"Updating item {key} {existing}: {values}")
             # update existing
