@@ -191,9 +191,11 @@ def print1text(ptext, px, py, pwidth, pcolor, psize):
     FONTPIXEL: int = 5
     textlength = lambda s: len(nvl(s)) * FONTPIXEL
     retval = ""
+
     if pwidth is None:
-        logging.warning(f"Skipping label '{ptext}' at x:{px} y:{py} as it has no width")
-        return retval
+        # No limit from SPOD
+        pwidth = 999
+
     if ptext is not None and px is not None:
         if px is None:
             logging.warning(f"Label {ptext} has no coordinates px: {px}, py: {py}")
