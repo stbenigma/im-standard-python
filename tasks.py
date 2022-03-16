@@ -29,6 +29,7 @@ def translate(c):
 
 @task(translate)
 def deploy(c):
+    print(f"Deploying generator")
     with c.cd(PROJECT_ROOT):
         c.run(f"python {SOURCE_FOLDER}/tools/deploy.py")
 
@@ -54,14 +55,28 @@ def generator(c, model=None,
         model = model.relative_to(PROJECT_ROOT).resolve()
 
     optargs = []
-    if languages is not None:
-        optargs.append(f"--languages='{languages}'")
     if skip_odm:
         optargs.append("--skip-odm")
     if skip_web:
         optargs.append("--skip-web")
+
+    # override all skip options if --all is defined
+    if all:
+        optargs.clear()
+
+    if all or confluence:
+        optargs.append("--confluence")
+    if all or sharepoint:
+        optargs.append("--sharepoint")
+    if all or sparx_ea:
+        optargs.append("--sparx-ea")
+
+    if languages is not None:
+        optargs.append(f"--languages='{languages}'")
+
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
+
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
         print(f"Starting generator with: {command} in {PROJECT_ROOT}")
