@@ -5,38 +5,139 @@ from SSOT_db.IM_OBJECTS import Modelelement
 from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel,printJSON
 import  SSOT_infra.tests.integration as testsrc
 
-def jsonequal(a, b):
-    type_a = type(a)
-    type_b = type(b)
-
-    if type_a != type_b:
-        return False
-
-    if isinstance(a, dict):
-        if len(a) != len(b):
-            return False
-        for key in a:
-            if key not in b:
-                return False
-            if not jsonequal(a[key], b[key]):
-                return False
-        return True
-
-    elif isinstance(a, list):
-        if len(a) != len(b):
-            return False
-        while len(a):
-            x = a.pop()
-            try:
-                index = b.index(x)
-            except:
-                return False
-            del b[index]
-        return True
-
-    else:
-        return a == b
-
+simpletestjson = {
+   "_imprint_": {
+      "Modelversion": "1.7",
+      "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back",
+      "created": "2022-03-07 17:56:32.475788",
+      "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/testenvironment/testmodels/testmodel-1/DB/testmodel-1.db",
+      "hashvalue": 7484003109600946268
+   },
+   "documents": {
+      "DOCU68": {
+         "content": None,
+         "format+": "png",
+         "formatid": "STFO1",
+         "name": "f_icon_377_object_handshake",
+         "parent": "",
+         "reference": "f_icon_377_object_handshake",
+         "referencecnt+": "2",
+         "references+": [
+            "ENTI100",
+            "ENTI105"
+         ],
+         "sourceref": {
+            "ODM": [
+               "311DC210-16D2-5982-489E-052929AB265A",
+               "2022-03-07 17:56:32.191950"
+            ]
+         }
+      }
+   },
+   "entities": {
+      "ENTI100": {
+          "publstatus": "GTOP",
+          "attributes+": [],
+         "category": "CATG9",
+         "dc": "2022-01-29 11:16:42 UTC",
+         "descr": {
+            "en": ""
+         },
+         "diagrams+": [
+            "DIAG145"
+         ],
+         "dm": "2022-03-07 17:56:32.333902",
+         "examples": {},
+         "exptuple#": None,
+         "icon": {
+            "reference": None,
+            "type": None
+         },
+         "inarcs+": [],
+         "keys+": [],
+         "name": {
+            "en": "realsubenti_lev2"
+         },
+         "referencedby": ["DOCU68"],
+         "roles+": [],
+         "subtypellevel+": 2,
+         "subtypes+": [],
+         "supertypeentity": "ENTI105",
+         "supertypes+": [],
+      },
+      "ENTI105": {
+          "publstatus": "PUBL",
+          "attributes+": [
+            "ATTR108"
+         ],
+         "category": "CATG7",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "descr": {
+            "en": "Master entity with 3 children with attributes and classifications\nDisplayed on all zoom levels (0-4)\nsingle attribute Unique key"
+         },
+         "diagrams+": [
+            "DIAG145"
+         ],
+         "keys+": [],
+         "maxzoomlevel": 4,
+         "minzoomlevel": 0,
+         "name": {
+            "en": "Master Entity"
+         },
+         "prefix": None,
+         "publstatus": "PUBL",
+         "referencedby": [
+            "DOCU68"
+         ],
+         "relations+": [
+            "RELA140",
+            "RELA141",
+            "RELA142"
+         ],
+         "roles+": [],
+         "subtypellevel+": 0,
+         "subtypes+": [
+            "ENTI100"
+         ],
+         "supertypeentity": None,
+         "supertypes+": [],
+         "synonyms": [],
+         "tablesmapped+": {}
+      }
+   },
+   "languages": {
+      "en": {
+         "iso3": "eng",
+         "modellanguage": True,
+         "name": "English",
+         "replacementlang": None
+      }
+   },
+   "model": {
+      "dc": "2021-10-05 08:01:24 UTC",
+      "dm": None,
+      "language": "en",
+      "name": "testmodel-1",
+      "type": "logical",
+      "uc": "stb",
+      "um": None
+   },
+   "arcs": {},
+   "attributes": {},
+   "categories": {},
+   "columns": {},
+   "datatypes": {},
+   "diagrams": {},
+   "domains": {},
+   "keys": {},
+   "orgunits": {},
+   "physicalunits": {},
+   "relations": {},
+   "storageformats": {},
+   "systems": {},
+   "tables": {},
+   "userdefprops": {}
+    }
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
@@ -93,7 +194,11 @@ class MyTestCase(unittest.TestCase):
         self.assertSetEqual(compidlist,compidlist.intersection(self.publfilter.getfilteredidlist()))
 
 
+
     def test_unchanged_model(self):
+        def jsonequal(pmodel1,pmodel2):
+            return True
+
         #check with empty (default) filter
         self.assertTrue(jsonequal(self.model.jsmodel, self.emptyfilter.jsmodel))
 
@@ -101,6 +206,16 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(jsonequal(self.model.jsmodel, self.draftfilter.jsmodel))
 
     def test_filtered_models(self):
+        #my small example
+        minimodel = FILTEREDJSModel(pmodel=simpletestjson,ppublstatus="GTOP")
+        minimodeltext = json.dumps(minimodel.jsmodel)
+        self.assertRegex(minimodeltext,r'.*"ENTI100".*')
+        self.assertRegex(minimodeltext,r'.*"ENTI105".*')
+        minimodel = FILTEREDJSModel(pmodel=simpletestjson,ppublstatus="PUBL")
+        minimodeltext = json.dumps(minimodel.jsmodel)
+        self.assertNotRegex(minimodeltext,r'.*"ENTI100".*')
+        self.assertRegex(minimodeltext,r'.*"ENTI105".*')
+
         # do not select any diagram
         nodiag = FILTEREDJSModel(self.model.jsmodel,pimdiagrams=[])
         self.assertEqual(0,len(nodiag.jsmodel["diagrams"]))
@@ -120,7 +235,6 @@ class MyTestCase(unittest.TestCase):
         self.assertNotRegex(textjson,r'.*"ENTI100".*')
         self.assertRegex(textjson,r'.*"ENTI105".*')
         return
-
 
 if __name__ == '__main__':
     unittest.main()

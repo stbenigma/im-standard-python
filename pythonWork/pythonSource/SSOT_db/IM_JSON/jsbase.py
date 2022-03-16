@@ -106,9 +106,7 @@ class JSModel:
             # fi
         # fi
         assert (elemtypekey in self.jsmodel), "key {} not found in json-model".format(elemtypekey)
-        elems = {key: value for key, value in self.jsmodel[elemtypekey].items()}
-
-        return elems
+        return self.jsmodel[elemtypekey]
 
     @staticmethod
     def readfromfile(pfilename):
