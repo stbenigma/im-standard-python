@@ -323,6 +323,8 @@ def update_content(sp_list: List, mapping: dict, model_content: dict, sp_content
         deleted.append(item)
         print(f"Deleting item {key}")
         item.delete_object()
+        if direct_write:
+            sp_list.execute_query()
 
     return new, updated, deleted
 

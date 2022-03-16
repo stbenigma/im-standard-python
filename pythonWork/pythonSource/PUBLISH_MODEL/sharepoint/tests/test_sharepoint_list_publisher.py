@@ -1,4 +1,3 @@
-import os
 import unittest
 from unittest import SkipTest
 
@@ -66,7 +65,7 @@ class TestSharepointListPublisher(unittest.TestCase):
         print(os.linesep.join(map(lambda x: x.getMessage(), self.caplog.records)))
         # perform update
 
-    def test_collect_content(self):
+    def disabled_test_collect_content(self):
         sp_conf = self.config['sharepoint']
         ctx = login(sp_conf)
         for sp_list_config in sp_conf['lists']:
