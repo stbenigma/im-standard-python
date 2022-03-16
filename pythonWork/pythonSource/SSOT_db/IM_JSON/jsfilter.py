@@ -20,7 +20,9 @@ class FILTEREDJSModel(JSModel):
         self._publstatus = ppublstatus
         self._imdiagram = pimdiagrams
         self._filteredidlist = set()
-        if self._publstatus not in (None, Modelelement.DRAFT) or self._imdiagram is not None:
+        if self._publstatus in (None, Modelelement.DRAFT) and self._imdiagram is None:
+            self._buildpublishedidlist()
+        else:
             self._buildfilteredidlist()
             self._filter_json()
 

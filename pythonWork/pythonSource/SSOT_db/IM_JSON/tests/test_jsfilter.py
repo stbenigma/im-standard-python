@@ -182,11 +182,11 @@ class MyTestCase(unittest.TestCase):
         return
 
     def test_buildidlist(self):
-        compidlist:set = {key for key in self.model.jsmodel[JSModel.elemtype2label("ENTI")].keys()}
+        compidlist:set = {key for key in self.model.getelements("ENTI").keys()}
+        draft = self.draftfilter.getfilteredidlist()
         self.assertSetEqual(compidlist,compidlist.intersection(self.draftfilter.getfilteredidlist()))
 
-        compidlist:set = {key for key,val in self.model.jsmodel[JSModel.elemtype2label("ENTI")].items()
-                          if val["publstatus"] in ("GTOP","PUBL")}
+        compidlist:set = {key for key,val in self.model.getelements("ENTI").items() if val["publstatus"] in ("GTOP","PUBL")}
         self.assertSetEqual(compidlist,compidlist.intersection(self.gtopfilter.getfilteredidlist()))
 
         compidlist:set = {key for key,val in self.model.jsmodel[JSModel.elemtype2label("ENTI")].items()
