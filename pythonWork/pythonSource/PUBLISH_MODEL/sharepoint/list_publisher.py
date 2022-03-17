@@ -81,7 +81,7 @@ def update_structure(sharepoint_list: List, columns: [()], direct_write: bool = 
                 sharepoint_list.execute_query()
             touched += 1
             fields = list(filter(lambda f: f.properties.get('EntityPropertyName') == key, sharepoint_list.fields.get().execute_query()))
-            assert len(fields) == 1
+            assert len(fields) == 1, f"Found {len(fields)} fields with name {key}"
             field = next(iter(fields))
         else:
             field = existing_fields[key]
