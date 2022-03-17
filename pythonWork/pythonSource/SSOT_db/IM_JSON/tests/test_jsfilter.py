@@ -2,6 +2,7 @@ import difflib
 import json
 import unittest
 from pathlib import Path
+from typing import Dict
 
 import pytest
 
@@ -69,7 +70,7 @@ simpletestjson = {
             "supertypeentity": "ENTI105",
             "supertypes+": [],
         },
-        "ENTI105": {
+        "ENTI118": {
             "publstatus": "PUBL",
             "attributes+": [
                 "ATTR108"
@@ -143,8 +144,15 @@ simpletestjson = {
     "userdefprops": {}
 }
 
+# We expect stable entity numbers as for now!
+MASTER_ENTITY = ('ENTI118', 'Master Entity')
+MULTI_UK_ENTITY = ('ENTI93', 'Multi UK Entity')
+REALSUBENTI_LEV2 = ('ENTI100', 'realsubenti_lev2')
+
 
 class MyTestCase(unittest.TestCase):
+
+    verification_entities = [MASTER_ENTITY, MULTI_UK_ENTITY, REALSUBENTI_LEV2]
 
     @pytest.fixture(autouse=True)
     def init(self, tmp_path):
@@ -162,8 +170,8 @@ class MyTestCase(unittest.TestCase):
         with open(json_model_file, 'r') as src:
             model_string = src.read()
             entity_dict = self.model.jsmodel['entities']
-            self.assertIsNotNone(entity_dict.get('ENTI92'), f"Missing entity 'ENTI92' in entities {entity_dict}")
-            self.assertRegex(model_string, r'.*"ENTI92":.*')
+            for element in MyTestCase.verification_entities:
+                self.ensure_enti_in_model(element[0], model_string, entity_dict, element[1])
 
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
         self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT, pmodel=self.model.jsmodel)
@@ -227,32 +235,37 @@ class MyTestCase(unittest.TestCase):
         # my small example
         minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="GTOP")
         minimodeltext = json.dumps(minimodel.jsmodel)
-        self.assertRegex(minimodeltext, r'.*"ENTI100".*')
-        self.assertRegex(minimodeltext, r'.*"ENTI105".*')
+        self.assertRegex(minimodeltext, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
+        self.assertRegex(minimodeltext, r'.*"' + MASTER_ENTITY[0] + r'".*')
         minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="PUBL")
         minimodeltext = json.dumps(minimodel.jsmodel)
-        self.assertNotRegex(minimodeltext, r'.*"ENTI100".*')
-        self.assertRegex(minimodeltext, r'.*"ENTI105".*')
+        self.assertNotRegex(minimodeltext, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
+        self.assertRegex(minimodeltext, r'.*"' + MASTER_ENTITY[0] + r'".*')
 
         # do not select any diagram
         nodiag = FILTEREDJSModel(self.model.jsmodel, pimdiagrams=[])
         self.assertEqual(0, len(nodiag.jsmodel["diagrams"]))
 
         textjson = json.dumps(self.draftfilter.jsmodel)
-        self.assertRegex(textjson, r'.*"ENTI92".*')
-        self.assertRegex(textjson, r'.*"ENTI100".*')
-        self.assertRegex(textjson, r'.*"ENTI105".*')
+        self.assertRegex(textjson, r'.*"' + MULTI_UK_ENTITY[0] + r'".*')
+        self.assertRegex(textjson, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
+        self.assertRegex(textjson, r'.*"' + MASTER_ENTITY[0] + r'".*')
 
         textjson = json.dumps(self.gtopfilter.jsmodel)
-        self.assertNotRegex(textjson, r'.*"ENTI92".*')
-        self.assertRegex(textjson, r'.*"ENTI100".*')
-        self.assertRegex(textjson, r'.*"ENTI105".*')
+        self.assertNotRegex(textjson, r'.*"' + MULTI_UK_ENTITY[0] + r'".*')
+        self.assertRegex(textjson, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
+        self.assertRegex(textjson, r'.*"' + MASTER_ENTITY[0] + r'".*')
 
         textjson = json.dumps(self.publfilter.jsmodel)
-        self.assertNotRegex(textjson, r'.*"ENTI92".*')
-        self.assertNotRegex(textjson, r'.*"ENTI100".*')
-        self.assertRegex(textjson, r'.*"ENTI105".*')
+        self.assertNotRegex(textjson, r'.*"' + MULTI_UK_ENTITY[0] + r'".*')
+        self.assertNotRegex(textjson, r'.*"' + REALSUBENTI_LEV2[0] + '".*')
+        self.assertRegex(textjson, r'.*"' + MASTER_ENTITY[0] + r'".*')
         return
+
+    def ensure_enti_in_model(self, key: str, model_string: str, entity_dict: Dict, name: str):
+        self.assertIsNotNone(entity_dict.get(key),
+                             f"Missing entity '{key}' \"{name}\" in entities {entity_dict.keys()}")
+        self.assertRegex(model_string, r'.*"' + key + r'":.*')
 
 
 if __name__ == '__main__':

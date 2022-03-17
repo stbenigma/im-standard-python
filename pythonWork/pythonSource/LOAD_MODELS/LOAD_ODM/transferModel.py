@@ -3,6 +3,7 @@ import math
 import os
 import re
 import xml.etree.ElementTree as et
+from typing import List
 
 from LOAD_MODELS.LOAD_INFRA import handleXML
 from LOAD_MODELS.LOAD_ODM import transferRelational
@@ -728,9 +729,16 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 
 
+def stable_file_list(folder: str) -> List[str]:
+    assert os.path.isdir(folder), f"Path '{folder}' is not a valid folder"
+    result = list(os.listdir(folder))
+    result.sort()
+    return result
+
+
 def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
     try:
-        listdir = os.listdir(pdirec)
+        listdir = stable_file_list(pdirec)
     except Exception as ex:
         if pmandatorydirec:
             logmessages.writelog('dosxmlfiles: directory "{}" not found.'.format(pdirec))
@@ -746,7 +754,7 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
 
 def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
     try:
-        listdir = os.listdir(pdirec)
+        listdir = stable_file_list(pdirec)
     except Exception as ex:
         if pmandatoryfile:
             logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
@@ -1542,7 +1550,7 @@ def do1UDPFile(pfileName):
 
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
-    for file in os.listdir(parameters.odmFilesDirec()):
+    for file in stable_file_list(parameters.odmFilesDirec()):
         filename, file_extension = os.path.splitext(file)
         if (pfileregexp.filename):
             filepath = parameters.odmIMDirec() + file
@@ -1664,7 +1672,7 @@ def transferproject():
         sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1).lower()
         assert defspra == parameters.dbDefaultLang(), \
             f"Model default language in parameter ('{parameters.dbDefaultLang()}') and project comment ('{defspra}') mismatch"
-        assert set(sprachen.split(',')) ==  set(parameters.dbLanguages().split(',')), \
+        assert set(sprachen.split(',')) == set(parameters.dbLanguages().split(',')), \
             f"Model languages in parameter ({parameters.dbLanguages()}) and project comment ({sprachen}) mismatch"
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
     proj = Project()
