@@ -161,7 +161,8 @@ class MyTestCase(unittest.TestCase):
 
         with open(json_model_file, 'r') as src:
             model_string = src.read()
-            self.assertIsNotNone(self.model.jsmodel['entities'].get('ENTI92'))
+            entity_dict = self.model.jsmodel['entities']
+            self.assertIsNotNone(entity_dict.get('ENTI92'), f"Missing entity 'ENTI92' in entities {entity_dict}")
             self.assertRegex(model_string, r'.*"ENTI92":.*')
 
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
