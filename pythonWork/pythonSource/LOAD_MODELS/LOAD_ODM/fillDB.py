@@ -1,6 +1,7 @@
 # -*- coding: latin-1 -*-
 import argparse
 import sys
+from pathlib import Path
 
 from LOAD_MODELS.LOAD_ODM import transferModel
 from LOAD_MODELS.LOAD_INFRA import mergedbs
@@ -86,7 +87,7 @@ def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdes
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),
                                          parameters.modelName()))
-    return
+    return Path(parameters.dbFilePath())
 
 
 def main(psysargs):

@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import unittest
 
@@ -13,7 +14,9 @@ def create_testmodel1(testmodelname, testdir, dbfilepath, new=True):
     if new and os.path.exists(dbfilepath):
         os.remove(dbfilepath)
     os.chdir(testdir)
-    fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
+    db = fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
+    assert db.is_file()
+    return db
 
 
 class TESTFILLDB(unittest.TestCase):

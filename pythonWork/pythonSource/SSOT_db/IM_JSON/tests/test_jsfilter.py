@@ -1,5 +1,6 @@
 import difflib
 import json
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -152,18 +153,21 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self):
         from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel1
+        assert self.temp_folder.is_dir(), f"Missing temporary folder {self.temp_folder.resolve()}"
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        create_testmodel1(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        self.model = JSModel.readfromfile(dbfilepath.__str__().replace("db", "json"))
+        db = create_testmodel1(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
+        json_model_file = Path(dbfilepath.parent, dbfilepath.name.removesuffix('.db') + '.json')
+        print(f"Working with clean slate db {json_model_file.resolve()}")
+        self.model = JSModel.readfromfile(str(json_model_file))
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
         self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT, pmodel=self.model.jsmodel)
         self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP, pmodel=self.model.jsmodel)
         self.publfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.model.jsmodel)
         printJSON(self.model.jsmodel, pfilepath=str(self.temp_folder), pfilename="model")
-        printJSON(self.emptyfilter.jsmodel, pfilepath=str(self.temp_folder), pfilename="jsonempty")
-        printJSON(self.draftfilter.jsmodel, pfilepath=str(self.temp_folder), pfilename="jsondraft")
-        printJSON(self.gtopfilter.jsmodel, pfilepath=str(self.temp_folder), pfilename="jsongtop")
-        printJSON(self.publfilter.jsmodel, pfilepath=str(self.temp_folder), pfilename="jsonpubl")
+        printJSON(self.emptyfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsonempty")
+        printJSON(self.draftfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsondraft")
+        printJSON(self.gtopfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsongtop")
+        printJSON(self.publfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsonpubl")
 
     def test_publish_function(self):
         element = {"id": 0}
@@ -244,6 +248,9 @@ class MyTestCase(unittest.TestCase):
         self.assertRegex(textjson, r'.*"ENTI105".*')
         return
 
+
+    def ensure_clean_slate_models(self):
+        subprocess.check_call(['git checkout '])
 
 if __name__ == '__main__':
     unittest.main()

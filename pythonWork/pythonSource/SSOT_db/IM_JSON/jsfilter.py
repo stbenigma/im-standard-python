@@ -29,8 +29,17 @@ class FILTEREDJSModel(JSModel):
     def getfilteredidlist(self) -> list:
         return self._filteredidlist
 
-    """ is the pelement publishable according to its publstats and the set filter 
-    """
+    @property
+    def filtered(self):
+        """ Returns a copy of the internal model with a 'filters' section in the header describing the applied filters
+        """
+        model_clone = copy.deepcopy(self.jsmodel)
+        model_clone['_imprint_']['filters'] = {
+            'publish_status': self._publstatus,
+            'diagrams': self._imdiagram,
+            'filtered_ids': list(self._filteredidlist),
+        }
+        return model_clone
 
     def _publishable(self, pelement):
         # no publ status set or element does not have the attribute => take it,
@@ -95,7 +104,7 @@ class FILTEREDJSModel(JSModel):
         # remove entities if diagrams are filtered, entity is not on remaining diagrams
         self._removeelement(pelemtype=Modelelemtype.ENTI,
                             pcondition=lambda elem, ref: (self._imdiagram is not None \
-                                                              and not set(elem["diagrams+"]).intersection(ref))
+                                                          and not set(elem["diagrams+"]).intersection(ref))
                             )
 
         # for entiid, enti in self.getelements(pelemtype=Modelelemtype.ENTI
@@ -157,16 +166,16 @@ class FILTEREDJSModel(JSModel):
                         pass
         return
 
-    def removeelements(self,pelements):
+    def removeelements(self, pelements):
         # list of keys of that element to be removed (= all those not in the filtereslist
         l = len(pelements)
-        for idx in range(l,0,-1): #loop ends with idx > final idx
-            if pelements[idx-1]["element"] not in self._filteredidlist:
-                del pelements[idx-1]
+        for idx in range(l, 0, -1):  # loop ends with idx > final idx
+            if pelements[idx - 1]["element"] not in self._filteredidlist:
+                del pelements[idx - 1]
         # for
         return
 
-    def removekeys(self,pelements):
+    def removekeys(self, pelements):
         # list of keys of that element to be removed (= all those not in the filtereslist
         elemstoremove = set(pelements.keys()).difference(self._filteredidlist)
         for key in elemstoremove:
@@ -191,15 +200,15 @@ class FILTEREDJSModel(JSModel):
         """
         for elemtype in self.FILTEREDTYPES:
             self._filterreferences(pelements=self.getelements(elemtype), pfilteredidlist=self._filteredidlist)
-        #for
+        # for
 
         """ for all remaining diagrams, remove elements (arcs, attributes, entities, relationships)
            which are not to be shown
         """
-        for diag in  self.getelements(Modelelemtype.DIAG).values():
+        for diag in self.getelements(Modelelemtype.DIAG).values():
             self.removekeys(pelements=diag["arcs"])
             self.removekeys(pelements=diag["relationships"])
             self.removeelements(pelements=diag["elements"]["attribute"])
             self.removeelements(pelements=diag["elements"]["entity"])
-        #for
+        # for
         return
