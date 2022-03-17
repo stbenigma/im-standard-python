@@ -1,6 +1,5 @@
 import difflib
 import json
-import subprocess
 import unittest
 from pathlib import Path
 
@@ -156,9 +155,15 @@ class MyTestCase(unittest.TestCase):
         assert self.temp_folder.is_dir(), f"Missing temporary folder {self.temp_folder.resolve()}"
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
         db = create_testmodel1(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        json_model_file = Path(dbfilepath.parent, dbfilepath.name.removesuffix('.db') + '.json')
+        json_model_file = Path(db.parent, db.name.removesuffix('.db') + '.json')
         print(f"Working with clean slate db {json_model_file.resolve()}")
         self.model = JSModel.readfromfile(str(json_model_file))
+
+        with open(json_model_file, 'r') as src:
+            model_string = src.read()
+            self.assertIsNotNone(self.model.jsmodel['entities'].get('ENTI92'))
+            self.assertRegex(model_string, r'.*"ENTI92":.*')
+
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
         self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT, pmodel=self.model.jsmodel)
         self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP, pmodel=self.model.jsmodel)
@@ -248,9 +253,6 @@ class MyTestCase(unittest.TestCase):
         self.assertRegex(textjson, r'.*"ENTI105".*')
         return
 
-
-    def ensure_clean_slate_models(self):
-        subprocess.check_call(['git checkout '])
 
 if __name__ == '__main__':
     unittest.main()
