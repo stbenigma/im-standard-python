@@ -370,7 +370,7 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
 
     # stack up elements in subtype-level order
     levels = list(map(lambda e: int(e['subtypellevel+']),
-                      export.model.getelements(Modelelemtype.ENTI, pfiltered=False).values()))
+                      export.model.getelements(Modelelemtype.ENTI).values()))
     deepest_subtype_level: int = max(levels)
 
     # higher subtypelevels => topmost

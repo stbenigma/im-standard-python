@@ -42,7 +42,7 @@ class GenerateHTML(unittest.TestCase):
         html_export = HTMLExport()
         html_export.setmodel(js_model)
         html_export.setWebDirec(str(self.temp_folder))
-        listWebdoku.listwebmain(html_export, pfilter=None)
+        listWebdoku.listwebmain(html_export)
 
     def test_integration_generate_html_riddle(self):
         project = testsrc.testmodels_dir() / 'riddle'
