@@ -7,7 +7,7 @@ import sys
 from IM_WEB import jinjawebmodel
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
-from SSOT_db.IM_JSON import JSModel
+from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel
 from SSOT_db.IM_OBJECTS import *
 from SSOT_infra import parameters, logmessages, argparseparent,settransldomain
 
@@ -82,9 +82,21 @@ def listwebmain(export: HTMLExport):
     return
 
 
-def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, ):
+def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, **kwargs ):
     assert (pparamfile is not None or (
                 pjsonfilepath is not None and pwebdirec is not None)), f"paramfile or source and dest must begiven"
+
+    status = None
+    diagrams = None
+    for key,val in kwargs.items():
+        if key == "status" :
+            status = val
+            stati= [Modelelement.GTOP,Modelelement.DRAFT,Modelelement.PUBL]
+            assert status is None or status.upper()  in stati, f"Publication status must be in {stati}"
+        elif key == "diagrams" and val is not None:
+            diagrams = [dia.strip for dia in val.split(',')]
+        #fi
+    #for
 
     if pparamfile is not None:
         basedirec = os.path.abspath(os.path.dirname(pparamfile))
@@ -119,6 +131,8 @@ def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None
         if deflang is not None:
             parameters.dbDefaultLang(deflang)
 
+        jsonmodel = FILTEREDJSModel(pmodel = jsonmodel.jsmodel,ppublstatus=status,pimdiagrams=diagrams)
+        jsonmodel.printmodel("/Users/stb/Downloads","crm")
         exporter.setmodel(jsonmodel)
         listwebmain(exporter)
 
@@ -139,6 +153,10 @@ def main(psysargs):
                         help=f"Directory to write the generated files to . Default ./{parameters.WEBDEFAULTDIREC}")
     parser.add_argument('--logfile', '-log', dest='logfile',
                         help=f"Path for logfile. Default: ./<modelname>{parameters.LOGFILEEXTENSION}")
+    parser.add_argument('--status', '-s', dest='status',
+                        help=f"Publication status (DRAFT, GTOP, PUBL). Default: None")
+    parser.add_argument('--diagrams', '-diag', dest='diagrams',
+                        help=f"List of comma seperated diagram names to be published. Default: None")
     parser.add_argument('--version', '-v', action='store_true')
     parser.add_argument('--unittest', action='store_true', dest='unittest',
                         help=argparse.SUPPRESS)  # for testing purposes only
@@ -172,7 +190,8 @@ def main(psysargs):
     # do only testing of parameterpassing while in unittest
     if not myargs["unittest"]:
         webmain(pparamfile=myargs['paramfile'], pjsonfilepath=myargs['jsonfile'], pwebdirec=myargs['destination'],
-                plogfilepath=myargs['logfile'], pmodelname=myargs['modelname'])
+                plogfilepath=myargs['logfile'], pmodelname=myargs['modelname']
+                ,status=myargs["status"],diagrams=myargs["diagrams"])
     return
 
 

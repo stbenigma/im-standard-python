@@ -121,10 +121,17 @@ class FILTEREDJSModel(JSModel):
         # remove arcs of not shown entities
         self._removeelement(pelemtype=Modelelemtype.KEYS,
                             pcondition=lambda elem, ref: elem["entity"] not in ref)
+
+        #remove tables not referenced by entities
+        #remove columns not referenced by attributes
+        #remove systems no longer having any elements
+
         # remove domains of not used by attributes
         self._removeelement(pelemtype=Modelelemtype.DOMA,
-                            pcondition=lambda elem, ref: len(elem["usedinattrs+"]) > 0 \
-                                                         and not set(elem["usedinattrs+"]).intersection(ref))
+                            pcondition=lambda elem, ref: not (set(elem["usedinattrs+"]).intersection(ref)\
+                                                              or set(elem["usedincols+"]).intersection(ref)
+                                                              )
+                                                         )
         # remove domains of not used in domaingroups (second step including removed basic domains)
         self._removeelement(pelemtype=Modelelemtype.DOMA,
                             pcondition=lambda elem, ref: len(elem["usedingrps+"]) > 0 \
