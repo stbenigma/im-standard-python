@@ -132,7 +132,7 @@ def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None
             parameters.dbDefaultLang(deflang)
 
         jsonmodel = FILTEREDJSModel(pmodel = jsonmodel.jsmodel,ppublstatus=status,pimdiagrams=diagrams)
-        jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
+        #jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
         exporter.setmodel(jsonmodel)
         listwebmain(exporter)
 
