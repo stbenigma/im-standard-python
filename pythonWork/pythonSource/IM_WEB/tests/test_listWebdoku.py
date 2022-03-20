@@ -26,6 +26,15 @@ class GenerateHTML(unittest.TestCase):
                                    '-p',
                                    'crmTest.params',
                                    '--diagrams=DUMMY,"Kunde mit Bilder"'])
+        listWebdoku.main(psysargs=['/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/listWebdoku.py',
+                                   '-p',
+                                   'crmTest.params',
+                                   '--diagrams=DUMMY'])
+        listWebdoku.main(psysargs=['/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/listWebdoku.py',
+                                   '-p',
+                                   'crmTest.params',
+                                   '-s',
+                                   'PUBL'])
 
     def test_generate_html_riddle(self):
         project = testsrc.testmodels_dir() / testsrc.RIDDLE
