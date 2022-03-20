@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import unittest
 from pathlib import Path
 
@@ -17,6 +18,14 @@ class GenerateHTML(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def init(self, tmp_path):
         self.temp_folder = Path(tmp_path)
+
+    def test_listwebdoku(self):
+        testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
+        os.chdir(testdir)
+        listWebdoku.main(psysargs=['/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/listWebdoku.py',
+                                   '-p',
+                                   'crmTest.params',
+                                   '--diagrams=DUMMY,"Kunde mit Bilder"'])
 
     def test_generate_html_riddle(self):
         project = testsrc.testmodels_dir() / testsrc.RIDDLE

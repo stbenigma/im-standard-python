@@ -141,19 +141,17 @@ simpletestjson = {
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel1
+        from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        create_testmodel1(testmodelname=testmodelname,testdir=testdir,dbfilepath=dbfilepath,new=True)
+        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
         self.model = JSModel.readfromfile(dbfilepath.__str__().replace("db","json"))
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
         self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT,pmodel=self.model.jsmodel)
         self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP,pmodel=self.model.jsmodel)
         self.publfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL,pmodel=self.model.jsmodel)
-        printJSON(self.model.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="model")
-        printJSON(self.emptyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonempty")
-        printJSON(self.draftfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsondraft")
-        printJSON(self.gtopfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsongtop")
-        printJSON(self.publfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonpubl")
+
+        testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
+        self.crmmodel = JSModel.readfromfile(dbfilepath.__str__().replace("crmTest.db","stabilescrmTest.json"))
 
 
     def test_publish_function(self):
@@ -162,7 +160,7 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(self.gtopfilter._publishable(element))
         element["publstatus"]=None
         self.assertTrue(self.emptyfilter._publishable(element))
-        self.assertTrue(self.publfilter._publishable(element))
+        self.assertFalse(self.publfilter._publishable(element))
         self.assertTrue(self.draftfilter._publishable(element))
         element["publstatus"]=Modelelement.DRAFT
         self.assertTrue(self.emptyfilter._publishable(element))
@@ -220,21 +218,63 @@ class MyTestCase(unittest.TestCase):
         nodiag = FILTEREDJSModel(self.model.jsmodel,pimdiagrams=[])
         self.assertEqual(0,len(nodiag.jsmodel["diagrams"]))
 
-        textjson = json.dumps(self.draftfilter.jsmodel)
-        self.assertRegex(textjson,r'.*"ENTI92".*')
-        self.assertRegex(textjson,r'.*"ENTI100".*')
-        self.assertRegex(textjson,r'.*"ENTI105".*')
+        try:
+            textjson = json.dumps(self.draftfilter.jsmodel)
+            self.assertRegex(textjson,r'.*"ENTI92".*')
+            self.assertRegex(textjson,r'.*"ENTI100".*')
+            self.assertRegex(textjson,r'.*"ENTI105".*')
 
-        textjson = json.dumps(self.gtopfilter.jsmodel)
-        self.assertNotRegex(textjson,r'.*"ENTI92".*')
-        self.assertRegex(textjson,r'.*"ENTI100".*')
-        self.assertRegex(textjson,r'.*"ENTI105".*')
+            textjson = json.dumps(self.gtopfilter.jsmodel)
+            self.assertNotRegex(textjson,r'.*"ENTI92".*')
+            self.assertRegex(textjson,r'.*"ENTI100".*')
+            self.assertRegex(textjson,r'.*"ENTI105".*')
 
-        textjson = json.dumps(self.publfilter.jsmodel)
-        self.assertNotRegex(textjson,r'.*"ENTI92".*')
-        self.assertNotRegex(textjson,r'.*"ENTI100".*')
-        self.assertRegex(textjson,r'.*"ENTI105".*')
+            textjson = json.dumps(self.publfilter.jsmodel)
+            self.assertNotRegex(textjson,r'.*"ENTI92".*')
+            self.assertNotRegex(textjson,r'.*"ENTI100".*')
+            self.assertRegex(textjson,r'.*"ENTI105".*')
+        except Exception as e:
+            printJSON(self.model.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="model")
+            printJSON(self.emptyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonempty")
+            printJSON(self.draftfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsondraft")
+            printJSON(self.gtopfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsongtop")
+            printJSON(self.publfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonpubl")
+            raise e
+
+        #crm does not have any publstatus set.
+        try:
+            self.crmpublfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.crmmodel.jsmodel)
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["entities"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["diagrams"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["tables"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["systems"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
+        except Exception as e:
+            printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
+            printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")
+
+        try:
+            self.crmdummyfilter = FILTEREDJSModel(pimdiagrams=["DUMMY"], pmodel=self.crmmodel.jsmodel)
+            self.assertEqual(1,len(self.crmdummyfilter.jsmodel["diagrams"]))
+            self.assertEqual(6,len(self.crmdummyfilter.jsmodel["entities"]))
+            textjson = json.dumps(self.crmdummyfilter.jsmodel)
+            self.assertNotRegex(textjson,r'.*"ENTI114".*')
+            self.assertEqual(10,len(self.crmdummyfilter.jsmodel["attributes"]))
+            self.assertEqual(18,len(self.crmdummyfilter.jsmodel["tables"]))
+            self.assertEqual(31,len(self.crmdummyfilter.jsmodel["columns"]))
+            self.assertEqual(5,len(self.crmdummyfilter.jsmodel["systems"]))
+        except Exception as e:
+            printJSON(self.crmdummyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="crmdummymodel")
+            raise e
+
+        self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY","Kunde mit xxx"],pmodel=self.crmmodel.jsmodel)
+        self.assertEqual(1,len(self.crm2diagfilter.jsmodel["diagrams"]))
+
+        self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY","Kunde mit Bilder"],pmodel=self.crmmodel.jsmodel)
+        self.assertEqual(2,len(self.crm2diagfilter.jsmodel["diagrams"]))
         return
+
 
 if __name__ == '__main__':
     unittest.main()

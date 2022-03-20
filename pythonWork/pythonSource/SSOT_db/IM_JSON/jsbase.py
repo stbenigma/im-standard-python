@@ -207,7 +207,7 @@ class JSModel:
 def printJSON(pmodel, pfilepath, pfilename,psorted = False):
     destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
-        jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=sorted))
+        jsonfile.write(json.dumps(pmodel, indent=3))
     return destination
 
 

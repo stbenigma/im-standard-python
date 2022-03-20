@@ -8,8 +8,8 @@ from SSOT_db.createDB import createDB
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 
 
-def create_testmodel1(testmodelname, testdir, dbfilepath, new=True):
-    # create model for testmodel1. no param file
+def create_testmodel(testmodelname, testdir, dbfilepath, new=True):
+    # create model for testmodel1 no param file
     if new and os.path.exists(dbfilepath):
         os.remove(dbfilepath)
     os.chdir(testdir)
@@ -27,8 +27,8 @@ class TESTFILLDB(unittest.TestCase):
 
     def test_fillmergedb(self):
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        create_testmodel1(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        create_testmodel1(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=False)
+        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
+        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=False)
 
     def test_filldb(self):
         def getbyfield(pmodel, ptype, pname, pfield='name', plang=None):

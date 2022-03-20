@@ -1,6 +1,7 @@
 import copy
 
 from SSOT_db.IM_OBJECTS import Modelelement, Modelelemtype
+from SSOT_infra import nvl
 from .jsbase import JSModel
 
 
@@ -9,7 +10,9 @@ class FILTEREDJSModel(JSModel):
     FILTEREDTYPES = (Modelelemtype.ENTI, Modelelemtype.ATTR, Modelelemtype.RELA,
                      Modelelemtype.DOCU, Modelelemtype.DOMA, Modelelemtype.DATY,
                      Modelelemtype.STFO, Modelelemtype.ORGU, Modelelemtype.ARCS,
-                     Modelelemtype.KEYS, Modelelemtype.PHYU, Modelelemtype.DIAG
+                     Modelelemtype.KEYS, Modelelemtype.PHYU, Modelelemtype.DIAG,
+                     Modelelemtype.TABL, Modelelemtype.INTF, Modelelemtype.COLU,
+                     Modelelemtype.DIAG
                      )
 
     def __init__(self, pmodel: dict, ppublstatus: str = None, pimdiagrams: list = None):
@@ -26,7 +29,7 @@ class FILTEREDJSModel(JSModel):
             self._buildfilteredidlist()
             self._filter_json()
 
-    def getfilteredidlist(self) -> list:
+    def getfilteredidlist(self) -> set:
         return self._filteredidlist
 
     """ is the pelement publishable according to its publstats and the set filter 
@@ -34,7 +37,7 @@ class FILTEREDJSModel(JSModel):
 
     def _publishable(self, pelement):
         # no publ status set or element does not have the attribute => take it,
-        if (self._publstatus is None) or ("publstatus" not in pelement):
+        if "publstatus" not in pelement:
             retval = True
         else:
             elempubstatus = pelement["publstatus"]
@@ -42,8 +45,7 @@ class FILTEREDJSModel(JSModel):
             # None or DRAFT as filter includes all
             # GTOP filter requires GTOP or PUBL element
             # PUBL filter requires PUBL element
-            retval = (elempubstatus in (None, Modelelement.PUBL)) \
-                     or (self._publstatus in (None, Modelelement.DRAFT)) \
+            retval = (self._publstatus in (None, Modelelement.DRAFT)) \
                      or (self._publstatus == Modelelement.GTOP
                          and elempubstatus in (Modelelement.GTOP,
                                                Modelelement.PUBL)
@@ -72,9 +74,9 @@ class FILTEREDJSModel(JSModel):
     """
 
     def _removeelement(self, pelemtype, pcondition):
-        for id, elem in self.getelements(pelemtype=pelemtype).items():
+        for key, elem in self.getelements(pelemtype=pelemtype).items():
             if pcondition(elem, self._filteredidlist):
-                self._filteredidlist.discard(id)
+                self._filteredidlist.discard(key)
             # fi
         # for
         return
@@ -94,57 +96,72 @@ class FILTEREDJSModel(JSModel):
         # fi
         # remove entities if diagrams are filtered, entity is not on remaining diagrams
         self._removeelement(pelemtype=Modelelemtype.ENTI,
-                            pcondition=lambda elem, ref: (self._imdiagram is not None \
-                                                              and not set(elem["diagrams+"]).intersection(ref))
+                            pcondition=lambda elem, ref: not (self._imdiagram is None
+                                                              or set(elem["diagrams+"]).intersection(ref))
                             )
-
-        # for entiid, enti in self.getelements(pelemtype=Modelelemtype.ENTI
-        #         , pfiltered=False).items():
-        #
-        #     if set(enti["diagrams+"]).intersection(filteredidlist):
-        #         filteredidlist.discard(entiid)
-        #     # fi
-        # # for
-        # assert testlist == filteredidlist
 
         # remove attributes of not shown entities
         self._removeelement(pelemtype=Modelelemtype.ATTR,
-                            pcondition=lambda elem, ref: elem["entity"] not in ref)
+                            pcondition=lambda elem, ref: not (elem["entity"] in ref
+                                                              and (self._imdiagram is None
+                                                                   or set(elem["diagrams+"]).intersection(ref))
+                                                              )
+                            )
 
         # remove relationships of not shown entities
         self._removeelement(pelemtype=Modelelemtype.RELA,
-                            pcondition=lambda elem, ref: elem["from-to"]["enti"] not in ref \
-                                                         or elem["to-from"]["enti"] not in ref)
+                            pcondition=lambda elem, ref: not (elem["from-to"]["enti"] in ref
+                                                              and elem["to-from"]["enti"] in ref))
         # remove arcs of not shown entities
         self._removeelement(pelemtype=Modelelemtype.ARCS,
-                            pcondition=lambda elem, ref: elem["entity"] not in ref)
-        # remove arcs of not shown entities
-        self._removeelement(pelemtype=Modelelemtype.KEYS,
-                            pcondition=lambda elem, ref: elem["entity"] not in ref)
+                            pcondition=lambda elem, ref: not (elem["entity"] in ref))
 
-        #remove tables not referenced by entities
-        #remove columns not referenced by attributes
-        #remove systems no longer having any elements
+        # remove keys of not shown entities
+        self._removeelement(pelemtype=Modelelemtype.KEYS,
+                            pcondition=lambda elem, ref: not (elem["entity"] in ref))
+
+        # remove tables not referenced by entities filteredonly if diagrams are filtered too
+        self._removeelement(pelemtype=Modelelemtype.TABL,
+                            pcondition=lambda elem, ref: not (self._imdiagram is None
+                                                              or (set(elem["entitiesmapped"]).intersection(ref)
+                                                                  or set(elem["relationsmapped"]).intersection(ref))
+                                                              )
+                            )
+
+        # remove columns of removed tables and not referenced by attributes
+        self._removeelement(pelemtype=Modelelemtype.COLU,
+                            pcondition=lambda elem, ref: not (elem["table-id"] in ref
+                                                              and set(elem["attributesmapped"]).intersection(ref)
+                                                              )
+                            )
+
+        # remove systems no longer having any elements or we have not filter set at all
+        self._removeelement(pelemtype=Modelelemtype.INTF,
+                            pcondition=lambda elem, ref: not ((self._imdiagram is None
+                                                               and self._publstatus is None)
+                                                              or set(elem["tables+"]).intersection(ref))
+                            )
 
         # remove domains of not used by attributes
         self._removeelement(pelemtype=Modelelemtype.DOMA,
-                            pcondition=lambda elem, ref: not (set(elem["usedinattrs+"]).intersection(ref)\
+                            pcondition=lambda elem, ref: not (set(elem["usedinattrs+"]).intersection(ref)
                                                               or set(elem["usedincols+"]).intersection(ref)
+                                                              or len(elem["usedingrps+"]) > 0
                                                               )
-                                                         )
-        # remove domains of not used in domaingroups (second step including removed basic domains)
+                            )
+        # remove domains if not used in domaingroups (second step including removed basic domains)
         self._removeelement(pelemtype=Modelelemtype.DOMA,
-                            pcondition=lambda elem, ref: len(elem["usedingrps+"]) > 0 \
-                                                         and not set(elem["usedingrps+"]).intersection(ref))
+                            pcondition=lambda elem, ref: not (len(elem["usedingrps+"]) == 0
+                                                              or set(elem["usedingrps+"]).intersection(ref)))
 
         # remove org-units not referenced by any remaining elements
         self._removeelement(pelemtype=Modelelemtype.ORGU,
-                            pcondition=lambda elem, ref: len(elem["references+"]) > 0 \
-                                                         and not set(elem["references+"]).intersection(ref))
+                            pcondition=lambda elem, ref: not (len(elem["references+"]) == 0
+                                                              or set(elem["references+"]).intersection(ref)))
         # remove documents not referenced by any remaining elements
         self._removeelement(pelemtype=Modelelemtype.DOCU,
-                            pcondition=lambda elem, ref: len(elem["references+"]) > 0 \
-                                                         and not set(elem["references+"]).intersection(ref))
+                            pcondition=lambda elem, ref: not (len(elem["references+"]) == 0
+                                                              or set(elem["references+"]).intersection(ref)))
 
         return
 
@@ -154,7 +171,9 @@ class FILTEREDJSModel(JSModel):
     def _filterreferences(pelements, pfilteredidlist):
         for elemkey, elem in pelements.items():
             for key in elem.keys():
-                if key.endswith("+") and type(elem[key]) in (set, list):
+                if ((key.endswith("+")
+                        or key in ("entitiesmapped", "relationsmapped","attributesmapped"))
+                    and type(elem[key]) in (set, list)):
                     try:
                         elem[key] = list(set(elem[key]).intersection(pfilteredidlist))
                         if key == "references+" and "referencecnt+" in elem:
@@ -164,16 +183,15 @@ class FILTEREDJSModel(JSModel):
                         pass
         return
 
-    def removeelements(self,pelements):
+    def removeelements(self, pelements):
         # list of keys of that element to be removed (= all those not in the filtereslist
-        l = len(pelements)
-        for idx in range(l,0,-1): #loop ends with idx > final idx
-            if pelements[idx-1]["element"] not in self._filteredidlist:
-                del pelements[idx-1]
+        for idx in range(len(pelements), 0, -1):  # loop ends with idx > final idx
+            if pelements[idx - 1]["element"] not in self._filteredidlist:
+                del pelements[idx - 1]
         # for
         return
 
-    def removekeys(self,pelements):
+    def removekeys(self, pelements):
         # list of keys of that element to be removed (= all those not in the filtereslist
         elemstoremove = set(pelements.keys()).difference(self._filteredidlist)
         for key in elemstoremove:
@@ -198,15 +216,25 @@ class FILTEREDJSModel(JSModel):
         """
         for elemtype in self.FILTEREDTYPES:
             self._filterreferences(pelements=self.getelements(elemtype), pfilteredidlist=self._filteredidlist)
-        #for
+        # for
 
         """ for all remaining diagrams, remove elements (arcs, attributes, entities, relationships)
            which are not to be shown
         """
-        for diag in  self.getelements(Modelelemtype.DIAG).values():
+        for diagkey, diag in self.getelements(Modelelemtype.DIAG).items():
             self.removekeys(pelements=diag["arcs"])
             self.removekeys(pelements=diag["relationships"])
             self.removeelements(pelements=diag["elements"]["attribute"])
             self.removeelements(pelements=diag["elements"]["entity"])
-        #for
+            # remove all diagrams having no more entity and not being in the diagram filterlist
+            if len(diag["elements"]["entity"]) == 0 \
+                    and diag["name"] not in nvl(self._imdiagram, []):
+                self._filteredidlist.discard(diagkey)
+        # for
+        # remove all diagrams no longer in filteredliste
+        diagkeys = list(self.getelements(Modelelemtype.DIAG).keys())
+        for key in diagkeys:
+            if key not in self._filteredidlist:
+                del self.jsmodel["diagrams"][key]
+
         return
