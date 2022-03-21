@@ -94,7 +94,7 @@ def update_structure(sharepoint_list: List, columns: [()], direct_write: bool = 
         assert current_field_type == field_type_kind, \
             f"Field type {current_field_type} (current) vs {field_type_kind} (configuration) mismatch" \
             f" on column '{key}'\n{str(field.properties).replace(',', ',' + os.linesep)}"
-        updated = update_field_properties(properties, field, parent=sharepoint_list)
+        updated = update_field_properties(properties, field, parent=sharepoint_list, direct_write=direct_write)
         if len(updated) > 0:
             logging.debug(f"Updated {len(updated)} properties of field {key}\n{field.properties}")
             message.append(f"-- Updating properties of field '{key}'")
