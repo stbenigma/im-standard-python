@@ -61,7 +61,7 @@ def elemreps2sql(presult: Mergeresult, pdiagid, pelemreps):
         try:
             eler.insert()
         except Exception as err:
-            presult.markdberror(per=err, pelem=jelem)
+            presult.markdberror(perr=err, pelem=jelem)
             continue
     # for
     return
