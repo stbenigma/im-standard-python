@@ -1,16 +1,17 @@
 import logging
-
-from SSOT_db.SQL_INFRA import dbDML
-from SSOT_db import IM_OBJECTS
 from datetime import date
+
+from SSOT_db import IM_OBJECTS
+from SSOT_db.SQL_INFRA import dbDML
+from .attribute import Attribute
 from .baseobject import Baseobject, MultilangBaseobject
-from .languagetext import Languagetext
-from .language import Language
-from .modelelement import Modelelemtype, Modelelement
-from .userdefprop import Userdefpropvalue, Userdefprop
 from .examples import Example
 from .key import Key
-from .attribute import Attribute
+from .language import Language
+from .languagetext import Languagetext
+from .modelelement import Modelelemtype, Modelelement
+from .userdefprop import Userdefpropvalue, Userdefprop
+
 
 class ElementUI(Baseobject):
     _tablename: str = 'element_ui'
@@ -52,9 +53,10 @@ class Entity(MultilangBaseobject):
     _defaultorderby = "enti_name"
 
     def __init__(self, psrcname=None, psrcid=None):
-        super().__init__(multilangcols={'enti_name': Languagetext.ENTI_NAME
-            , 'enti_descr': Languagetext.ENTI_COMMENT
-            , 'enti_tooltip': Languagetext.ENTI_TOOLTIP},
+        super().__init__(multilangcols=
+                         {'enti_name': Languagetext.ENTI_NAME,
+                          'enti_descr': Languagetext.ENTI_COMMENT,
+                          'enti_tooltip': Languagetext.ENTI_TOOLTIP},
                          pscrid=psrcid,
                          psrcname=psrcname
                          )
@@ -74,6 +76,7 @@ class Entity(MultilangBaseobject):
     def getdescr(self, plang=None):
         return self._getsprachval(colname='enti_descr', plang=plang)
 
+    @staticmethod
     def getcategory(pid):
         return Entity().getbyid(pid).enti_category_guid
 
@@ -125,7 +128,7 @@ class Entity(MultilangBaseobject):
         return Example.getexamples(pmodeid=self.getid())
 
     def getsubtypelevel(self):
-        #restrict recursion to max 99 subentities for eternal loop
+        # restrict recursion to max 99 subentities for eternal loop
         subtypelevel = dbDML.select(
             """with recursive enti (entilev, entiid,parentid,name) as
             ( select 0 entilev, enti_id,enti_underlay_enti_id,enti_name
@@ -144,12 +147,18 @@ class Entity(MultilangBaseobject):
 
     @staticmethod
     def mappingto(ptablid):
-        lsqle = """select 0 intf_id, 'Logisches Modell' intf_name, group_concat(enti_id,',')
+        """ select list of entitiy id's for the logical model (dummy values) which ar linked
+            to the given table id
+        """
+        lsqle = f"""select 0 intf_id, 'Logisches Modell' intf_name, group_concat(enti_id,',')
         	from  tabl_enti_maps as mastermap
 	        left join entities on enti_id = mastermap.tema_enti_id
-	        where  mastermap.tema_tabl_id = {}
-	        GROUP BY mastermap.tema_tabl_id""".format(ptablid)
-        lsqlt = """select tabl_intf_id,intf_name,group_concat(tabl_id,',')
+	        where  mastermap.tema_tabl_id = {ptablid}
+	        GROUP BY mastermap.tema_tabl_id"""
+        """ select list of table id's for each  model (except the model of the given table id) 
+            which are linked to an entity, the given table id is mapped to
+        """
+        lsqlt = f"""select tabl_intf_id,intf_name,group_concat(tabl_id,',')
 	        from tables subtab
 	        join interfaces on intf_id = TABL_intf_ID
 	        where tabl_id in
@@ -157,13 +166,13 @@ class Entity(MultilangBaseobject):
 	               from tabl_enti_maps tema1
 	                 join tabl_enti_maps tema2 on tema2.tema_enti_id = tema1.tema_enti_id
 	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
-	                  where tema2.tema_tabl_id = {}
+	                  where tema2.tema_tabl_id = {ptablid}
 	            )
 	            /* eigene Interface wird nicht angezeigt*/
 	           and intf_id != (select tabl_intf_id 
-	                            from tables where tabl_id = {})
+	                            from tables where tabl_id = {ptablid})
             group by tabl_intf_id,intf_name
-            """.format(ptablid, ptablid)
+            """
         retval = []
         data = dbDML.select(lsqle)
         """[(0,'name', [Entity]'), (54,'name', [Entity])]"""
@@ -178,9 +187,52 @@ class Entity(MultilangBaseobject):
         for d in data:
             retval.append([d[0], d[1], [Entity().getbyid(e) for e in d[2].split(',')]])
         return retval
+
     # maopingto
 
-
+    """ get all own and inherited attributes """
+    def getinheritedattrids(self):
+        """recursive SQL
+           attrs: get comma separated listof attributes of an entity
+           entitree: 1. select entities having subentities (=beeing super in view superenti)
+                    union  2. select all entities which have as superentity the recursive predecessor entitiy
+                           add list of attributes of this entity to the list of its predecessor
+        """
+        lsql = """with recursive entitree(superenti_id, subenti_id,  attrids)
+                   as
+                   (select superenti_id
+                         , subenti_id
+                         , ifnull((select attrlist
+                                    from attrs
+                            where attr_enti_id = superenti_id),'') AS attrids
+                    from superenti
+                    where superenti_id not in (select subenti_id from superenti)
+                    union all
+                    select sup2.superenti_id
+                         , sup2.subenti_id
+                         , ifnull(entitree.attrids,'')|| ',' ||ifnull((select attrlist
+                                    from attrs
+                            where attr_enti_id = sup2.superenti_id),'')  as attrdis
+                    from superenti sup2
+                             join entitree on sup2.superenti_id = entitree.subenti_id
+                    )
+                ,attrs as (select distinct attr_enti_id
+                                        ,group_concat(attr_id, ',')
+                                             over (partition by attr_enti_id
+                                            order by attr_displ_seq
+                                             rows between unbounded preceding
+                                                 and unbounded following) as attrlist
+                            from attributes)
+            select rtrim(attrids ,',') as attrids
+            from entitree where subenti_id = ?
+            """
+        attrs = dbDML.select(lsql,self.getid())
+        retval = []
+        if len(attrs)>0:
+            for a in attrs[0][0].split(','):
+                if a.isnumeric():
+                    retval.append(int(a))
+        return retval
 # Entity
 
 class Synonym(MultilangBaseobject):
@@ -238,3 +290,6 @@ class Synonym(MultilangBaseobject):
                     lgtx.lgtx_um = udpv.udpv_um
                     lgtx.lgtx_dm = udpv.udpv_dm
                     lgtx.insert()
+                # for
+            # for
+        return

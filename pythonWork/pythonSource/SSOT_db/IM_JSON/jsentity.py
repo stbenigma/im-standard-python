@@ -77,6 +77,7 @@ def entities2js(pemptymodel):
         , 'sourceref'
         , 'supertypes+', 'roles+'
         , 'subtypes+', 'attributes+'
+        , 'inheritedattributes+'
         , 'relations+', 'keys+'
         , 'inarcs+', 'referencedby', 'userdefprops'
         , 'tablesmapped+', 'diagrams+'
@@ -96,6 +97,7 @@ def entities2js(pemptymodel):
                                                                    , reflist(None), reflist(None)
                                                                    , reflist(None), reflist(None)
                                                                    , reflist(None), reflist(None)
+                                                                   , reflist(None)
                                                                    , userdefprops(None)
                                                                    , tabreflist(None), reflist(None)
                                                                          ]
@@ -121,6 +123,7 @@ def entities2js(pemptymodel):
                                    , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
                                                     e.getchildren(ptype=Relation.ISASUBTYPE)])
                                    , reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()])
+                                   , reflist(plist=[jsguid(Modelelemtype.ATTR, attrid) for attrid in e.getinheritedattrids()])
                                    , reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in
                                                     Relation.getbyentity(pentiid=e.enti_id)])
                                    , reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in
