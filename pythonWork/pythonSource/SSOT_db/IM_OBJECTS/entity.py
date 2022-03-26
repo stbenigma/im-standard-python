@@ -198,23 +198,31 @@ class Entity(MultilangBaseobject):
                     union  2. select all entities which have as superentity the recursive predecessor entitiy
                            add list of attributes of this entity to the list of its predecessor
         """
-        lsql = """with recursive entitree(superenti_id, subenti_id,  attrids)
+        lsql = """with recursive entitree(superenti_id, subenti_id,  attrids, level)
                    as
                    (select superenti_id
                          , subenti_id
-                         , ifnull((select attrlist
-                                    from attrs
-                            where attr_enti_id = superenti_id),'') AS attrids
+                         , ifnull(
+                            (select attrlist
+                             from attrs
+                             where attr_enti_id = superenti_id)
+                             ,'') AS attrids
+                         ,0 level
                     from superenti
                     where superenti_id not in (select subenti_id from superenti)
                     union all
                     select sup2.superenti_id
                          , sup2.subenti_id
-                         , ifnull(entitree.attrids,'')|| ',' ||ifnull((select attrlist
-                                    from attrs
-                            where attr_enti_id = sup2.superenti_id),'')  as attrdis
+                         , ifnull(entitree.attrids,'')|| ',' 
+                                  ||ifnull(
+                                     (select attrlist
+                                      from attrs
+                                     where attr_enti_id = sup2.superenti_id)
+                                      ,'')  as attrdis
+                         , entitree.level+1
                     from superenti sup2
                              join entitree on sup2.superenti_id = entitree.subenti_id
+                     where entitree.level < 99
                     )
                 ,attrs as (select distinct attr_enti_id
                                         ,group_concat(attr_id, ',')
@@ -223,12 +231,13 @@ class Entity(MultilangBaseobject):
                                              rows between unbounded preceding
                                                  and unbounded following) as attrlist
                             from attributes)
-            select rtrim(attrids ,',') as attrids
+            select rtrim(attrids ,',') as attrids,level
             from entitree where subenti_id = ?
             """
         attrs = dbDML.select(lsql,self.getid())
         retval = []
         if len(attrs)>0:
+            assert attrs[0][1] < 100, "recursive sql with loop"
             for a in attrs[0][0].split(','):
                 if a.isnumeric():
                     retval.append(int(a))
