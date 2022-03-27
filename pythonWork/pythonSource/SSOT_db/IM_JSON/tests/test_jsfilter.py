@@ -23,8 +23,8 @@ simpletestjson = {
          "reference": "f_icon_377_object_handshake",
          "referencecnt+": "2",
          "references+": [
-            "ENTI100",
-            "ENTI105"
+            "realsubenti_lev2",
+            "Master Entity"
          ],
          "sourceref": {
             "ODM": [
@@ -35,7 +35,7 @@ simpletestjson = {
       }
    },
    "entities": {
-      "ENTI100": {
+      "realsubenti_lev2": {
           "publstatus": "GTOP",
           "attributes+": [],
          "category": "CATG9",
@@ -62,10 +62,10 @@ simpletestjson = {
          "roles+": [],
          "subtypellevel+": 2,
          "subtypes+": [],
-         "supertypeentity": "ENTI105",
+         "supertypeentity": "Master Entity",
          "supertypes+": [],
       },
-      "ENTI105": {
+      "Master Entity": {
           "publstatus": "PUBL",
           "attributes+": [
             "ATTR108"
@@ -97,7 +97,7 @@ simpletestjson = {
          "roles+": [],
          "subtypellevel+": 0,
          "subtypes+": [
-            "ENTI100"
+            "realsubenti_lev2"
          ],
          "supertypeentity": None,
          "supertypes+": [],
@@ -207,12 +207,12 @@ class MyTestCase(unittest.TestCase):
         #my small example
         minimodel = FILTEREDJSModel(pmodel=simpletestjson,ppublstatus="GTOP")
         minimodeltext = json.dumps(minimodel.jsmodel)
-        self.assertRegex(minimodeltext,r'.*"ENTI100".*')
-        self.assertRegex(minimodeltext,r'.*"ENTI105".*')
+        self.assertRegex(minimodeltext,r'.*"realsubenti_lev2".*')
+        self.assertRegex(minimodeltext,r'.*"Master Entity".*')
         minimodel = FILTEREDJSModel(pmodel=simpletestjson,ppublstatus="PUBL")
         minimodeltext = json.dumps(minimodel.jsmodel)
-        self.assertNotRegex(minimodeltext,r'.*"ENTI100".*')
-        self.assertRegex(minimodeltext,r'.*"ENTI105".*')
+        self.assertNotRegex(minimodeltext,r'.*"realsubenti_lev2".*')
+        self.assertRegex(minimodeltext,r'.*"Master Entity".*')
 
         # do not select any diagram
         nodiag = FILTEREDJSModel(self.model.jsmodel,pimdiagrams=[])
@@ -220,25 +220,25 @@ class MyTestCase(unittest.TestCase):
 
         try:
             textjson = json.dumps(self.draftfilter.jsmodel)
-            self.assertRegex(textjson,r'.*"ENTI92".*')
-            self.assertRegex(textjson,r'.*"ENTI100".*')
-            self.assertRegex(textjson,r'.*"ENTI105".*')
+            self.assertRegex(textjson,r'.*"Multi UK Entity".*')
+            self.assertRegex(textjson,r'.*"realsubenti_lev2".*')
+            self.assertRegex(textjson,r'.*"Master Entity".*')
 
             textjson = json.dumps(self.gtopfilter.jsmodel)
-            self.assertNotRegex(textjson,r'.*"ENTI92".*')
-            self.assertRegex(textjson,r'.*"ENTI100".*')
-            self.assertRegex(textjson,r'.*"ENTI105".*')
+            self.assertNotRegex(textjson,r'.*"Multi UK Entity".*')
+            self.assertRegex(textjson,r'.*"realsubenti_lev2".*')
+            self.assertRegex(textjson,r'.*"Master Entity".*')
 
             textjson = json.dumps(self.publfilter.jsmodel)
-            self.assertNotRegex(textjson,r'.*"ENTI92".*')
-            self.assertNotRegex(textjson,r'.*"ENTI100".*')
-            self.assertRegex(textjson,r'.*"ENTI105".*')
+            self.assertNotRegex(textjson,r'.*"Multi UK Entity".*')
+            self.assertNotRegex(textjson,r'.*"realsubenti_lev2".*')
+            self.assertRegex(textjson,r'.*"Master Entity".*')
         except Exception as e:
-            printJSON(self.model.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="model")
-            printJSON(self.emptyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonempty")
-            printJSON(self.draftfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsondraft")
-            printJSON(self.gtopfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsongtop")
-            printJSON(self.publfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonpubl")
+            # printJSON(self.model.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="model")
+            # printJSON(self.emptyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonempty")
+            # printJSON(self.draftfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsondraft")
+            # printJSON(self.gtopfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsongtop")
+            # printJSON(self.publfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonpubl")
             raise e
 
         #crm does not have any publstatus set.
@@ -251,8 +251,9 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(0,len(self.crmpublfilter.jsmodel["systems"]))
             self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
         except Exception as e:
-            printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
-            printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")
+            #printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
+            #printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")
+            raise e
 
         try:
             self.crmdummyfilter = FILTEREDJSModel(pimdiagrams=["DUMMY"], pmodel=self.crmmodel.jsmodel)
@@ -265,7 +266,7 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(31,len(self.crmdummyfilter.jsmodel["columns"]))
             self.assertEqual(5,len(self.crmdummyfilter.jsmodel["systems"]))
         except Exception as e:
-            printJSON(self.crmdummyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="crmdummymodel")
+            #printJSON(self.crmdummyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="crmdummymodel")
             raise e
 
         self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY","Kunde mit xxx"],pmodel=self.crmmodel.jsmodel)
