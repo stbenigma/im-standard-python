@@ -6,7 +6,7 @@
 		{% set domaid = elem["domain"] %}
 		{% call blocks.mainblock(type = webmodel.gettransltext("Attribut"), id=elemid, name = webmodel.getlangstr(elem["name"])
 									, descr = webmodel.getlangstr(elem["descr"])
-									,parenttype=webmodel.getlangstr("Entität"),parentname=webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(entiid)["name"]),destid=entiid)|safe 
+									,parenttype=webmodel.gettransltext("Entität"),parentname=webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(entiid)["name"]),destid=entiid)|safe
 									, lbc=elemid ~ "main") %}
 
 					<h2>Information</h2>
