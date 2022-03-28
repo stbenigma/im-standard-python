@@ -52,7 +52,11 @@ def generator(c, model=None,
         model = Path(model)
 
     if not model.is_absolute():
-        model = model.relative_to(PROJECT_ROOT).resolve()
+        abs_rel = Path(PROJECT_ROOT, model)
+        if not abs_rel.is_dir():
+            model = model.relative_to(PROJECT_ROOT).resolve()
+        else:
+            model = abs_rel
 
     optargs = []
     if skip_odm:
