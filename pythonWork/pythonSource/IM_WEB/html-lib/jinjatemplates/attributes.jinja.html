@@ -51,7 +51,7 @@
 									</tr>
 									<tr>
 										{{ blocks.tdbool2icon(elem["mandatory"]) }}
-										{{ blocks.tdbool2icon(elem["keys+"]|count == 0) }}
+										{{ blocks.tdbool2icon(elem["keys+"]|count > 0) }}
 										{{ blocks.tdbool2icon(elem["descriptive"]) }}
 										{{ blocks.tdbool2icon(elem["translated"]) }}
 										{{ blocks.tdbool2icon(elem["repeated"]) }}

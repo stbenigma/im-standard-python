@@ -211,7 +211,7 @@
 								</td>
 								<td>{{ attr["type+"] }}</td>
 								{{ tdbool2icon(attr["mandatory"]) }}
-								{{ tdbool2icon(attr["keys+"]|count == 0) }}
+								{{ tdbool2icon(attr["keys+"]|count > 0) }}
 								{{ tdbool2icon(attr["descriptive"]) }}
 								{% if attrtype == "attributes+" %}
 									{{ tdbool2icon(attr["translated"]) }}
