@@ -1,14 +1,8 @@
-import difflib
 import json
 import unittest
-from pathlib import Path
-from typing import Dict
-
-import pytest
-
 from SSOT_db.IM_OBJECTS import Modelelement
-from SSOT_db.IM_JSON import JSModel, FILTEREDJSModel, printJSON
-import SSOT_infra.tests.integration as testsrc
+from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel,printJSON
+import  SSOT_infra.tests.integration as testsrc
 
 simpletestjson = {
     "_imprint_": {
@@ -28,8 +22,8 @@ simpletestjson = {
             "reference": "f_icon_377_object_handshake",
             "referencecnt+": "2",
             "references+": [
-                "ENTI100",
-                "ENTI105"
+                "realsubenti_lev2",
+                "Master Entity"
             ],
             "sourceref": {
                 "ODM": [
@@ -40,7 +34,7 @@ simpletestjson = {
         }
     },
     "entities": {
-        "ENTI100": {
+        "realsubenti_lev2": {
             "publstatus": "GTOP",
             "attributes+": [],
             "category": "CATG9",
@@ -67,10 +61,10 @@ simpletestjson = {
             "roles+": [],
             "subtypellevel+": 2,
             "subtypes+": [],
-            "supertypeentity": "ENTI105",
+            "supertypeentity": "Master Entity",
             "supertypes+": [],
         },
-        "ENTI118": {
+        "Master Entity": {
             "publstatus": "PUBL",
             "attributes+": [
                 "ATTR108"
@@ -102,7 +96,7 @@ simpletestjson = {
             "roles+": [],
             "subtypellevel+": 0,
             "subtypes+": [
-                "ENTI100"
+                "realsubenti_lev2"
             ],
             "supertypeentity": None,
             "supertypes+": [],
@@ -144,64 +138,40 @@ simpletestjson = {
     "userdefprops": {}
 }
 
-# We expect stable entity numbers as for now!
-MASTER_ENTITY = ('ENTI118', 'Master Entity')
-MULTI_UK_ENTITY = ('ENTI93', 'Multi UK Entity')
-REALSUBENTI_LEV2 = ('ENTI100', 'realsubenti_lev2')
-
-
 class MyTestCase(unittest.TestCase):
-
-    verification_entities = [MASTER_ENTITY, MULTI_UK_ENTITY, REALSUBENTI_LEV2]
-
-    @pytest.fixture(autouse=True)
-    def init(self, tmp_path):
-        self.temp_folder = Path(tmp_path)
-
     def setUp(self):
-        from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel1
-        assert self.temp_folder.is_dir(), f"Missing temporary folder {self.temp_folder.resolve()}"
+        from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        db = create_testmodel1(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        json_model_file = Path(db.parent, db.name.removesuffix('.db') + '.json')
-        print(f"Working with clean slate db {json_model_file.resolve()}")
-        self.model = JSModel.readfromfile(str(json_model_file))
-
-        with open(json_model_file, 'r') as src:
-            model_string = src.read()
-            entity_dict = self.model.jsmodel['entities']
-            for element in MyTestCase.verification_entities:
-                self.ensure_enti_in_model(element[0], model_string, entity_dict, element[1])
-
+        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
+        self.model = JSModel.readfromfile(dbfilepath.__str__().replace("db","json"))
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
-        self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT, pmodel=self.model.jsmodel)
-        self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP, pmodel=self.model.jsmodel)
-        self.publfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.model.jsmodel)
-        printJSON(self.model.jsmodel, pfilepath=str(self.temp_folder), pfilename="model")
-        printJSON(self.emptyfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsonempty")
-        printJSON(self.draftfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsondraft")
-        printJSON(self.gtopfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsongtop")
-        printJSON(self.publfilter.filtered, pfilepath=str(self.temp_folder), pfilename="jsonpubl")
+        self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT,pmodel=self.model.jsmodel)
+        self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP,pmodel=self.model.jsmodel)
+        self.publfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL,pmodel=self.model.jsmodel)
+
+        testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
+        self.crmmodel = JSModel.readfromfile(dbfilepath.__str__().replace("crmTest.db","stabilescrmTest.json"))
+
 
     def test_publish_function(self):
-        element = {"id": 0}
+        element = {"id":0}
         self.assertTrue(self.emptyfilter._publishable(element))
         self.assertTrue(self.gtopfilter._publishable(element))
-        element["publstatus"] = None
+        element["publstatus"]=None
         self.assertTrue(self.emptyfilter._publishable(element))
-        self.assertTrue(self.publfilter._publishable(element))
+        self.assertFalse(self.publfilter._publishable(element))
         self.assertTrue(self.draftfilter._publishable(element))
-        element["publstatus"] = Modelelement.DRAFT
+        element["publstatus"]=Modelelement.DRAFT
         self.assertTrue(self.emptyfilter._publishable(element))
         self.assertFalse(self.publfilter._publishable(element))
         self.assertFalse(self.gtopfilter._publishable(element))
         self.assertTrue(self.draftfilter._publishable(element))
-        element["publstatus"] = Modelelement.GTOP
+        element["publstatus"]=Modelelement.GTOP
         self.assertTrue(self.emptyfilter._publishable(element))
         self.assertFalse(self.publfilter._publishable(element))
         self.assertTrue(self.gtopfilter._publishable(element))
         self.assertTrue(self.draftfilter._publishable(element))
-        element["publstatus"] = Modelelement.PUBL
+        element["publstatus"]=Modelelement.PUBL
         self.assertTrue(self.emptyfilter._publishable(element))
         self.assertTrue(self.publfilter._publishable(element))
         self.assertTrue(self.gtopfilter._publishable(element))
@@ -209,63 +179,101 @@ class MyTestCase(unittest.TestCase):
         return
 
     def test_buildidlist(self):
-        compidlist: set = {key for key in self.model.getelements("ENTI").keys()}
+        compidlist:set = {key for key in self.model.getelements("ENTI").keys()}
         draft = self.draftfilter.getfilteredidlist()
-        self.assertSetEqual(compidlist, compidlist.intersection(self.draftfilter.getfilteredidlist()))
+        self.assertSetEqual(compidlist,compidlist.intersection(self.draftfilter.getfilteredidlist()))
 
-        compidlist: set = {key for key, val in self.model.getelements("ENTI").items() if
-                           val["publstatus"] in ("GTOP", "PUBL")}
-        self.assertSetEqual(compidlist, compidlist.intersection(self.gtopfilter.getfilteredidlist()))
+        compidlist:set = {key for key,val in self.model.getelements("ENTI").items() if val["publstatus"] in ("GTOP","PUBL")}
+        self.assertSetEqual(compidlist,compidlist.intersection(self.gtopfilter.getfilteredidlist()))
 
-        compidlist: set = {key for key, val in self.model.jsmodel[JSModel.elemtype2label("ENTI")].items()
-                           if val["publstatus"] in ("PUBL")}
-        self.assertSetEqual(compidlist, compidlist.intersection(self.publfilter.getfilteredidlist()))
+        compidlist:set = {key for key,val in self.model.jsmodel[JSModel.elemtype2label("ENTI")].items()
+                          if val["publstatus"] in ("PUBL")}
+        self.assertSetEqual(compidlist,compidlist.intersection(self.publfilter.getfilteredidlist()))
+
+
 
     def test_unchanged_model(self):
-        def jsonequal(pmodel1, pmodel2):
+        def jsonequal(pmodel1,pmodel2):
             return True
 
-        # check with empty (default) filter
+        #check with empty (default) filter
         self.assertTrue(jsonequal(self.model.jsmodel, self.emptyfilter.jsmodel))
 
         # DAFT includes all stati, no diagramlist do no filter diagrams
         self.assertTrue(jsonequal(self.model.jsmodel, self.draftfilter.jsmodel))
 
     def test_filtered_models(self):
-        # my small example
-        minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="GTOP")
+        #my small example
+        minimodel = FILTEREDJSModel(pmodel=simpletestjson,ppublstatus="GTOP")
         minimodeltext = json.dumps(minimodel.jsmodel)
-        self.assertRegex(minimodeltext, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
-        self.assertRegex(minimodeltext, r'.*"' + MASTER_ENTITY[0] + r'".*')
-        minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="PUBL")
+        self.assertRegex(minimodeltext,r'.*"realsubenti_lev2".*')
+        self.assertRegex(minimodeltext,r'.*"Master Entity".*')
+        minimodel = FILTEREDJSModel(pmodel=simpletestjson,ppublstatus="PUBL")
         minimodeltext = json.dumps(minimodel.jsmodel)
-        self.assertNotRegex(minimodeltext, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
-        self.assertRegex(minimodeltext, r'.*"' + MASTER_ENTITY[0] + r'".*')
+        self.assertNotRegex(minimodeltext,r'.*"realsubenti_lev2".*')
+        self.assertRegex(minimodeltext,r'.*"Master Entity".*')
 
         # do not select any diagram
-        nodiag = FILTEREDJSModel(self.model.jsmodel, pimdiagrams=[])
-        self.assertEqual(0, len(nodiag.jsmodel["diagrams"]))
+        nodiag = FILTEREDJSModel(self.model.jsmodel,pimdiagrams=[])
+        self.assertEqual(0,len(nodiag.jsmodel["diagrams"]))
 
-        textjson = json.dumps(self.draftfilter.jsmodel)
-        self.assertRegex(textjson, r'.*"' + MULTI_UK_ENTITY[0] + r'".*')
-        self.assertRegex(textjson, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
-        self.assertRegex(textjson, r'.*"' + MASTER_ENTITY[0] + r'".*')
+        try:
+            textjson = json.dumps(self.draftfilter.jsmodel)
+            self.assertRegex(textjson,r'.*"Multi UK Entity".*')
+            self.assertRegex(textjson,r'.*"realsubenti_lev2".*')
+            self.assertRegex(textjson,r'.*"Master Entity".*')
 
-        textjson = json.dumps(self.gtopfilter.jsmodel)
-        self.assertNotRegex(textjson, r'.*"' + MULTI_UK_ENTITY[0] + r'".*')
-        self.assertRegex(textjson, r'.*"' + REALSUBENTI_LEV2[0] + r'".*')
-        self.assertRegex(textjson, r'.*"' + MASTER_ENTITY[0] + r'".*')
+            textjson = json.dumps(self.gtopfilter.jsmodel)
+            self.assertNotRegex(textjson,r'.*"Multi UK Entity".*')
+            self.assertRegex(textjson,r'.*"realsubenti_lev2".*')
+            self.assertRegex(textjson,r'.*"Master Entity".*')
 
-        textjson = json.dumps(self.publfilter.jsmodel)
-        self.assertNotRegex(textjson, r'.*"' + MULTI_UK_ENTITY[0] + r'".*')
-        self.assertNotRegex(textjson, r'.*"' + REALSUBENTI_LEV2[0] + '".*')
-        self.assertRegex(textjson, r'.*"' + MASTER_ENTITY[0] + r'".*')
+            textjson = json.dumps(self.publfilter.jsmodel)
+            self.assertNotRegex(textjson,r'.*"Multi UK Entity".*')
+            self.assertNotRegex(textjson,r'.*"realsubenti_lev2".*')
+            self.assertRegex(textjson,r'.*"Master Entity".*')
+        except Exception as e:
+            # printJSON(self.model.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="model")
+            # printJSON(self.emptyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonempty")
+            # printJSON(self.draftfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsondraft")
+            # printJSON(self.gtopfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsongtop")
+            # printJSON(self.publfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonpubl")
+            raise e
+
+        #crm does not have any publstatus set.
+        try:
+            self.crmpublfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.crmmodel.jsmodel)
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["entities"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["diagrams"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["tables"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["systems"]))
+            self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
+        except Exception as e:
+            #printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
+            #printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")
+            raise e
+
+        try:
+            self.crmdummyfilter = FILTEREDJSModel(pimdiagrams=["DUMMY"], pmodel=self.crmmodel.jsmodel)
+            self.assertEqual(1,len(self.crmdummyfilter.jsmodel["diagrams"]))
+            self.assertEqual(6,len(self.crmdummyfilter.jsmodel["entities"]))
+            textjson = json.dumps(self.crmdummyfilter.jsmodel)
+            self.assertNotRegex(textjson,r'.*"ENTI114".*')
+            self.assertEqual(10,len(self.crmdummyfilter.jsmodel["attributes"]))
+            self.assertEqual(18,len(self.crmdummyfilter.jsmodel["tables"]))
+            self.assertEqual(31,len(self.crmdummyfilter.jsmodel["columns"]))
+            self.assertEqual(5,len(self.crmdummyfilter.jsmodel["systems"]))
+        except Exception as e:
+            #printJSON(self.crmdummyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="crmdummymodel")
+            raise e
+
+        self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY","Kunde mit xxx"],pmodel=self.crmmodel.jsmodel)
+        self.assertEqual(1,len(self.crm2diagfilter.jsmodel["diagrams"]))
+
+        self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY","Kunde mit Bilder"],pmodel=self.crmmodel.jsmodel)
+        self.assertEqual(2,len(self.crm2diagfilter.jsmodel["diagrams"]))
         return
-
-    def ensure_enti_in_model(self, key: str, model_string: str, entity_dict: Dict, name: str):
-        self.assertIsNotNone(entity_dict.get(key),
-                             f"Missing entity '{key}' \"{name}\" in entities {entity_dict.keys()}")
-        self.assertRegex(model_string, r'.*"' + key + r'":.*')
 
 
 if __name__ == '__main__':

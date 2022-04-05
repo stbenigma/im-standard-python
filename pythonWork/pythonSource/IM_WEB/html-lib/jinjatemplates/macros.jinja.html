@@ -173,6 +173,62 @@
 			{% endfor %}
 {%- endmacro %}
 
+{% macro  attrlist (webmodel,elem,title,attrtype) -%}
+				<h4>{{ webmodel.gettransltext(title) }}</h4>
+				<div class="table-responsive">
+					<table class="table borderless" >
+						<tbody>
+							<tr>
+								<th>{{ webmodel.gettransltext('Name') }}</th>
+								<th>{{ webmodel.gettransltext('Wertebereich') }}</th>
+								<th>{{ webmodel.gettransltext('Typ') }}</th>
+								<th>{{ webmodel.gettransltext('Pflichtattribut') }}</th>
+								<th>{{ webmodel.gettransltext('Schlüssel') }}</th>
+								<th>{{ webmodel.gettransltext('Deskriptor') }}</th>
+								{% if attrtype == "attributes+" %}
+								<th>{{ webmodel.gettransltext('übersetzt') }}</th>
+								<th>{{ webmodel.gettransltext('wiederholt') }}</th>
+								<th>{{ webmodel.gettransltext('historisiert') }}</th>
+								<th>{{ webmodel.gettransltext('verschlüsselt') }}</th>
+								{% else %}
+								<th>{{ webmodel.gettransltext('Entität') }}</th>
+								{% endif %}
+							</tr>
+							{% for attrid in elem[attrtype] %}
+							{% set attr = webmodel.getelem(attrid) %}
+							{% set domaid = attr["domain"] %}
+							{% set entiid = attr["entity"] %}
+							<tr>
+								<td>{{ webmodel.getreflink(name=webmodel.getlangstr(attr["name"]), destid=attrid) |safe}}</td>
+								<td> {% if domaid %}
+									{% set doma = webmodel.getelem(domaid) %}
+									{% if doma["origin"] == 'DER' %}
+									{{ webmodel.getlangstr(doma["name"]) }}
+									{% else %}
+									{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]),destid=domaid)|safe}}
+									{% endif %}
+									{% endif %}
+								</td>
+								<td>{{ attr["type+"] }}</td>
+								{{ tdbool2icon(attr["mandatory"]) }}
+								{{ tdbool2icon(attr["keys+"]|count > 0) }}
+								{{ tdbool2icon(attr["descriptive"]) }}
+								{% if attrtype == "attributes+" %}
+									{{ tdbool2icon(attr["translated"]) }}
+									{{ tdbool2icon(attr["repeated"]) }}
+									{{ tdbool2icon(attr["historisiert"]) }}
+									{{ tdbool2icon(attr["encrypted"]) }}
+								{% else %}
+									<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(entiid)["name"]),destid=entiid)|safe }}</td>
+								{% endif %}
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+{%- endmacro %}
+
+
 {% macro zoomfinish(diagrams) -%}
 	<script>
 		function initSVGZoom() {
