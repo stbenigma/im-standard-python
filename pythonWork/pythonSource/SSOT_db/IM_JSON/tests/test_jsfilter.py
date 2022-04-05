@@ -1,3 +1,4 @@
+import difflib
 import json
 import unittest
 from SSOT_db.IM_OBJECTS import Modelelement
@@ -5,140 +6,142 @@ from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel,printJSON
 import  SSOT_infra.tests.integration as testsrc
 
 simpletestjson = {
-    "_imprint_": {
-        "Modelversion": "1.7",
-        "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back",
-        "created": "2022-03-07 17:56:32.475788",
-        "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/testenvironment/testmodels/testmodel-1/DB/testmodel-1.db",
-        "hashvalue": 7484003109600946268
-    },
-    "documents": {
-        "DOCU68": {
-            "content": None,
-            "format+": "png",
-            "formatid": "STFO1",
-            "name": "f_icon_377_object_handshake",
-            "parent": "",
-            "reference": "f_icon_377_object_handshake",
-            "referencecnt+": "2",
-            "references+": [
-                "realsubenti_lev2",
-                "Master Entity"
-            ],
-            "sourceref": {
-                "ODM": [
-                    "311DC210-16D2-5982-489E-052929AB265A",
-                    "2022-03-07 17:56:32.191950"
-                ]
-            }
-        }
-    },
-    "entities": {
-        "realsubenti_lev2": {
-            "publstatus": "GTOP",
-            "attributes+": [],
-            "category": "CATG9",
-            "dc": "2022-01-29 11:16:42 UTC",
-            "descr": {
-                "en": ""
-            },
-            "diagrams+": [
-                "DIAG145"
-            ],
-            "dm": "2022-03-07 17:56:32.333902",
-            "examples": {},
-            "exptuple#": None,
-            "icon": {
-                "reference": None,
-                "type": None
-            },
-            "inarcs+": [],
-            "keys+": [],
-            "name": {
-                "en": "realsubenti_lev2"
-            },
-            "referencedby": ["DOCU68"],
-            "roles+": [],
-            "subtypellevel+": 2,
-            "subtypes+": [],
-            "supertypeentity": "Master Entity",
-            "supertypes+": [],
-        },
-        "Master Entity": {
-            "publstatus": "PUBL",
-            "attributes+": [
-                "ATTR108"
-            ],
-            "category": "CATG7",
-            "dc": "2021-10-05 08:31:18 UTC",
-            "descr": {
-                "en": "Master entity with 3 children with attributes and classifications\nDisplayed on all zoom levels (0-4)\nsingle attribute Unique key"
-            },
-            "diagrams+": [
-                "DIAG145"
-            ],
-            "keys+": [],
-            "maxzoomlevel": 4,
-            "minzoomlevel": 0,
-            "name": {
-                "en": "Master Entity"
-            },
-            "prefix": None,
-            "publstatus": "PUBL",
-            "referencedby": [
-                "DOCU68"
-            ],
-            "relations+": [
-                "RELA140",
-                "RELA141",
-                "RELA142"
-            ],
-            "roles+": [],
-            "subtypellevel+": 0,
-            "subtypes+": [
-                "realsubenti_lev2"
-            ],
-            "supertypeentity": None,
-            "supertypes+": [],
-            "synonyms": [],
-            "tablesmapped+": {}
-        }
-    },
-    "languages": {
-        "en": {
-            "iso3": "eng",
-            "modellanguage": True,
-            "name": "English",
-            "replacementlang": None
-        }
-    },
-    "model": {
-        "dc": "2021-10-05 08:01:24 UTC",
-        "dm": None,
-        "language": "en",
-        "name": "testmodel-1",
-        "type": "logical",
-        "uc": "stb",
-        "um": None
-    },
-    "arcs": {},
-    "attributes": {},
-    "categories": {},
-    "columns": {},
-    "datatypes": {},
-    "diagrams": {},
-    "domains": {},
-    "keys": {},
-    "orgunits": {},
-    "physicalunits": {},
-    "relations": {},
-    "storageformats": {},
-    "systems": {},
-    "tables": {},
-    "userdefprops": {}
-}
+   "_imprint_": {
+      "Modelversion": "1.7",
+      "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back",
+      "created": "2022-03-07 17:56:32.475788",
+      "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/testenvironment/testmodels/testmodel-1/DB/testmodel-1.db",
+      "hashvalue": 7484003109600946268
+   },
+   "documents": {
+      "DOCU68": {
+         "content": None,
+         "format+": "png",
+         "formatid": "STFO1",
+         "name": "f_icon_377_object_handshake",
+         "parent": "",
+         "reference": "f_icon_377_object_handshake",
+         "referencecnt+": "2",
+         "references+": [
+            "realsubenti_lev2",
+            "Master Entity"
+         ],
+         "sourceref": {
+            "ODM": [
+               "311DC210-16D2-5982-489E-052929AB265A",
+               "2022-03-07 17:56:32.191950"
+            ]
+         }
+      }
+   },
+   "entities": {
+      "realsubenti_lev2": {
+          "publstatus": "GTOP",
+          "attributes+": [],
+         "category": "CATG9",
+         "dc": "2022-01-29 11:16:42 UTC",
+         "descr": {
+            "en": ""
+         },
+         "diagrams+": [
+            "DIAG145"
+         ],
+         "dm": "2022-03-07 17:56:32.333902",
+         "examples": {},
+         "exptuple#": None,
+         "icon": {
+            "reference": None,
+            "type": None
+         },
+         "inarcs+": [],
+         "keys+": [],
+         "name": {
+            "en": "realsubenti_lev2"
+         },
+         "referencedby": ["DOCU68"],
+         "roles+": [],
+         "subtypellevel+": 2,
+         "subtypes+": [],
+         "supertypeentity": "Master Entity",
+         "supertypes+": [],
+      },
+      "Master Entity": {
+          "publstatus": "PUBL",
+          "attributes+": [
+            "ATTR108"
+         ],
+         "category": "CATG7",
+         "dc": "2021-10-05 08:31:18 UTC",
+         "descr": {
+            "en": "Master entity with 3 children with attributes and classifications\nDisplayed on all zoom levels (0-4)\nsingle attribute Unique key"
+         },
+         "diagrams+": [
+            "DIAG145"
+         ],
+         "keys+": [],
+         "maxzoomlevel": 4,
+         "minzoomlevel": 0,
+         "name": {
+            "en": "Master Entity"
+         },
+         "prefix": None,
+         "publstatus": "PUBL",
+         "referencedby": [
+            "DOCU68"
+         ],
+         "relations+": [
+            "RELA140",
+            "RELA141",
+            "RELA142"
+         ],
+         "roles+": [],
+         "subtypellevel+": 0,
+         "subtypes+": [
+            "realsubenti_lev2"
+         ],
+         "supertypeentity": None,
+         "supertypes+": [],
+         "synonyms": [],
+         "tablesmapped+": {}
+      }
+   },
+   "languages": {
+      "en": {
+         "iso3": "eng",
+         "modellanguage": True,
+         "name": "English",
+         "replacementlang": None
+      }
+   },
+   "model": {
+      "dc": "2021-10-05 08:01:24 UTC",
+      "dm": None,
+      "language": "en",
+      "name": "testmodel-1",
+      "type": "logical",
+      "uc": "stb",
+      "um": None
+   },
+   "arcs": {},
+   "attributes": {},
+   "categories": {},
+   "columns": {},
+   "datatypes": {},
+   "diagrams": {},
+   "domains": {},
+   "keys": {},
+   "orgunits": {},
+   "physicalunits": {},
+   "relations": {},
+   "storageformats": {},
+   "systems": {},
+   "tables": {},
+   "userdefprops": {}
+    }
+
 
 class MyTestCase(unittest.TestCase):
+
     def setUp(self):
         from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
@@ -189,8 +192,6 @@ class MyTestCase(unittest.TestCase):
         compidlist:set = {key for key,val in self.model.jsmodel[JSModel.elemtype2label("ENTI")].items()
                           if val["publstatus"] in ("PUBL")}
         self.assertSetEqual(compidlist,compidlist.intersection(self.publfilter.getfilteredidlist()))
-
-
 
     def test_unchanged_model(self):
         def jsonequal(pmodel1,pmodel2):
@@ -243,12 +244,14 @@ class MyTestCase(unittest.TestCase):
         #crm does not have any publstatus set.
         try:
             self.crmpublfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.crmmodel.jsmodel)
-            self.assertEqual(0,len(self.crmpublfilter.jsmodel["entities"]))
-            self.assertEqual(0,len(self.crmpublfilter.jsmodel["diagrams"]))
-            self.assertEqual(0,len(self.crmpublfilter.jsmodel["tables"]))
-            self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
-            self.assertEqual(0,len(self.crmpublfilter.jsmodel["systems"]))
-            self.assertEqual(0,len(self.crmpublfilter.jsmodel["columns"]))
+            self.assertEqual(0, len(self.crmpublfilter.jsmodel["entities"]))
+            self.assertEqual(3, len(self.crmpublfilter.jsmodel["diagrams"]),
+                             "Found diagrams " + ",".join(self.crmpublfilter.jsmodel["diagrams"].keys()) + " expected none.\n"
+                             + str(next(iter(self.crmpublfilter.jsmodel["diagrams"].values()))))
+            self.assertEqual(0, len(self.crmpublfilter.jsmodel["tables"]))
+            self.assertEqual(0, len(self.crmpublfilter.jsmodel["columns"]))
+            self.assertEqual(0, len(self.crmpublfilter.jsmodel["systems"]))
+            self.assertEqual(0, len(self.crmpublfilter.jsmodel["columns"]))
         except Exception as e:
             #printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
             #printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")
@@ -273,7 +276,6 @@ class MyTestCase(unittest.TestCase):
 
         self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY","Kunde mit Bilder"],pmodel=self.crmmodel.jsmodel)
         self.assertEqual(2,len(self.crm2diagfilter.jsmodel["diagrams"]))
-        return
 
 
 if __name__ == '__main__':
