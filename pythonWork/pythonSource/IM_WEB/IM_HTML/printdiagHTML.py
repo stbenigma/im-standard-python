@@ -341,8 +341,8 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
 
     # stack up elements in subtype-level order
     levels = list(map(lambda e: int(e['subtypellevel+']),
-                      export.model.getelements(Modelelemtype.ENTI, pfiltered=False).values()))
-    deepest_subtype_level: int = max(levels)
+                      export.model.getelements(Modelelemtype.ENTI).values()))
+    deepest_subtype_level: int = -1 if len(levels) == 0 else max(levels)
 
     # higher subtypelevels => topmost
     for subtypelevel in range(0, deepest_subtype_level + 1):
@@ -383,6 +383,7 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
                                                , eler['pos_x'] + elerui['width'] - ICONSIZE / 2,
                                                eler['pos_y'] - ICONSIZE / 2)
         # for
+    # for
 
     #  attr_id, attr_displ_name, attr_is_mandatory ,attr_is_descriptive, schluessel, mode_id
     for attr in pdiag['elements']['attribute']:
