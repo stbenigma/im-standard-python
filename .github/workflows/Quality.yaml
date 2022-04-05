@@ -77,6 +77,11 @@ jobs:
         echo "Update SPOD"
         python dist/generator.py --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM --all
 
+    - name: Integration test run with raetsel-3lang model
+      run: |
+        rm -f testdata/fyyccim-refmodels/raetsel-3lang/DB/*
+        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
+
       # Integration test prerequisites
     - name: Clone reference model repository using fycops token
       uses: actions/checkout@v2
@@ -84,14 +89,6 @@ jobs:
         repository: foryouandyourcustomers/fyyccim-refmodels
         token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
         path: testdata/fyyccim-refmodels
-
-    - name: Execute integration tests
-      run: pytest -m "integration"
-
-    - name: Integration test run with raetsel-3lang model
-      run: |
-        rm -f testdata/fyyccim-refmodels/raetsel-3lang/DB/*
-        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
 
     - name: Integration test run with CRM model
       run: |
@@ -107,6 +104,9 @@ jobs:
       run: |
         rm -f testdata/fyyccim-refmodels/Health/DB/*
         python dist/generator.py --languages 'en' --model testdata/fyyccim-refmodels/Health/IM --all
+
+    - name: Execute integration tests
+      run: pytest -m "integration"
 
     - name: Integration test run with BOEB model
       run: |
