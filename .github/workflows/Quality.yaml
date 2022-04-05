@@ -105,9 +105,6 @@ jobs:
         rm -f testdata/fyyccim-refmodels/Health/DB/*
         python dist/generator.py --languages 'en' --model testdata/fyyccim-refmodels/Health/IM --all
 
-    - name: Execute integration tests
-      run: pytest -m "integration"
-
     - name: Integration test run with BOEB model
       run: |
         git -C testdata/fyyccim-refmodels fetch -v
@@ -125,6 +122,11 @@ jobs:
         git -C testdata/fyyccim-refmodels checkout -f master
         cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
         python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
+
+    # Integration test requires generated databases in testdata/fyyccim-refmodels
+    # Therefore is runs last
+    - name: Execute integration tests
+      run: pytest -m "integration"
 
     - name: Install and run Coverage.py
       run: |
