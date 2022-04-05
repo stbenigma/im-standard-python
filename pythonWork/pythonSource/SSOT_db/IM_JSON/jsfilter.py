@@ -105,8 +105,8 @@ class FILTEREDJSModel(JSModel):
         # fi
         # remove entities if diagrams are filtered, entity is not on remaining diagrams
         self._removeelement(pelemtype=Modelelemtype.ENTI,
-                            pcondition=lambda elem, ref: (self._imdiagram is not None \
-                                                              and not set(elem["diagrams+"]).intersection(ref))
+                            pcondition=lambda elem, ref: not (self._imdiagram is None
+                                                              or set(elem["diagrams+"]).intersection(ref))
                             )
 
         # remove attributes of not shown entities
@@ -194,10 +194,9 @@ class FILTEREDJSModel(JSModel):
 
     def removeelements(self, pelements):
         # list of keys of that element to be removed (= all those not in the filtereslist
-        l = len(pelements)
-        for idx in range(l,0,-1): #loop ends with idx > final idx
-            if pelements[idx-1]["element"] not in self._filteredidlist:
-                del pelements[idx-1]
+        for idx in range(len(pelements), 0, -1):  # loop ends with idx > final idx
+            if pelements[idx - 1]["element"] not in self._filteredidlist:
+                del pelements[idx - 1]
         # for
         return
 
@@ -231,10 +230,20 @@ class FILTEREDJSModel(JSModel):
         """ for all remaining diagrams, remove elements (arcs, attributes, entities, relationships)
            which are not to be shown
         """
-        for diag in  self.getelements(Modelelemtype.DIAG).values():
+        for diagkey, diag in self.getelements(Modelelemtype.DIAG).items():
             self.removekeys(pelements=diag["arcs"])
             self.removekeys(pelements=diag["relationships"])
             self.removeelements(pelements=diag["elements"]["attribute"])
             self.removeelements(pelements=diag["elements"]["entity"])
-        #for
+            # remove all diagrams having no more entity and not being in the diagram filterlist
+            if len(diag["elements"]["entity"]) == 0 \
+                    and diag["name"] not in nvl(self._imdiagram, []):
+                self._filteredidlist.discard(diagkey)
+        # for
+        # remove all diagrams no longer in filteredliste
+        diagkeys = list(self.getelements(Modelelemtype.DIAG).keys())
+        for key in diagkeys:
+            if key not in self._filteredidlist:
+                del self.jsmodel["diagrams"][key]
+
         return

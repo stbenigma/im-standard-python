@@ -61,10 +61,12 @@ jobs:
       run: |
         python pythonWork/pythonSource/tools/deploy.py
 
-    # Run integration test
     - name: Test run generator
       run: |
         python dist/generator.py --version
+
+    - name: Execute integration tests
+      run: pytest -m "integration"
 
     - name: Integration test run with riddle model located within same git repo
       run: |
@@ -123,9 +125,6 @@ jobs:
         git -C testdata/fyyccim-refmodels checkout -f master
         cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
         python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
-
-    - name: Execute integration tests
-      run: pytest -m "integration"
 
     - name: Install and run Coverage.py
       run: |
