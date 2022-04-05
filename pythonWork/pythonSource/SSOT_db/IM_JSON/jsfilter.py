@@ -123,7 +123,8 @@ class FILTEREDJSModel(JSModel):
                                                               and elem["to-from"]["enti"] in ref))
         # remove arcs of not shown entities
         self._removeelement(pelemtype=Modelelemtype.ARCS,
-                            pcondition=lambda elem, ref: not (elem["entity"] in ref))
+                            pcondition=lambda elem, ref: not (elem["entity"] in ref
+                                                              and len(elem["relations"]) > 0))
 
         # remove keys of not shown entities
         self._removeelement(pelemtype=Modelelemtype.KEYS,
