@@ -77,18 +77,22 @@ jobs:
         echo "Update SPOD"
         python dist/generator.py --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM --all
 
-    - name: Integration test run with raetsel-3lang model
-      run: |
-        rm -f testdata/fyyccim-refmodels/raetsel-3lang/DB/*
-        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
-
-      # Integration test prerequisites
+    # Integration test prerequisites
     - name: Clone reference model repository using fycops token
       uses: actions/checkout@v2
       with:
         repository: foryouandyourcustomers/fyyccim-refmodels
         token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
         path: testdata/fyyccim-refmodels
+
+    # Integration test requires testdata/fyyccim-refmodels to be checked out
+    - name: Execute integration tests
+      run: pytest -m "integration"
+
+    - name: Integration test run with raetsel-3lang model
+      run: |
+        rm -f testdata/fyyccim-refmodels/raetsel-3lang/DB/*
+        python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
 
     - name: Integration test run with CRM model
       run: |
@@ -122,11 +126,6 @@ jobs:
         git -C testdata/fyyccim-refmodels checkout -f master
         cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
         python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
-
-    # Integration test requires generated databases in testdata/fyyccim-refmodels
-    # Therefore is runs last
-    - name: Execute integration tests
-      run: pytest -m "integration"
 
     - name: Install and run Coverage.py
       run: |
