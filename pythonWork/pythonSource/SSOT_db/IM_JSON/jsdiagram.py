@@ -341,6 +341,8 @@ def defarcs(parc, pdiagid):
         return arc
     enti = Elementrep.select(
         pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
+    if len(enti) == 0:
+        raise Exception(f"Missing parent entity {parc.arcs_enti_id} of arc {parc.getid()} on Diagram {pdiagid}")
     enti = enti[0]
     PONTDISTANCE = 20
     entiheight, entiwidth = enti.eler_height, enti.eler_width
