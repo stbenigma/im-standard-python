@@ -930,6 +930,7 @@ create table businessrule_elements
      bure_buru_id numeric (10) not null ,
      bure_mode_id numeric (10) not null ,
      bure_writeable varchar (5) not null constraint ck__businessr__bure___10216507 check ( bure_writeable='TRUE' or bure_writeable='FALSE' ) ,
+     bure_role VARCHAR (4) constraint ck__businessr__bure___10216507  check ( bure_role in ('AFCT', 'REF')), 
      bure_uc varchar (30) not null ,
      bure_dc varchar(30) not null ,
      bure_um varchar (30) null ,
@@ -1027,6 +1028,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.7' as version, datetime() as installedtime;
+create view dbversion as select '1.8' as version, datetime() as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

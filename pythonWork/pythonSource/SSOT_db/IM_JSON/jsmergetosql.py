@@ -184,7 +184,7 @@ def translatefks(pdbobj):
 
 
 def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,pequalexceptlist=[]):
-    """from ODM to DB transfer"""
+    """from json-model to DB transfer"""
     try:
         modellang = Language.getdefaultlang().lang_iso_code2
     except:
@@ -194,7 +194,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
 
     newdberrors = []
     olddberrors = None
-    odmelements = copy(podmjson.getelements(pelemtype=pelemtype))
+    newelements = copy(podmjson.getelements(pelemtype=pelemtype))
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
         Try several times, stop trying if errors stagnate"""
@@ -202,7 +202,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
     while olddberrors != newdberrors:
         loopcnt += 1
         if loopcnt > 50:
-            print ("***** fromodm2db: too many trys for element {}".format(pelemtype))
+            print ("***** fromodm2db: too many tries for element {}".format(pelemtype))
             break
 
         olddberrors = newdberrors
@@ -215,7 +215,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
         else:
             alldbsrcrefs = Extsourcerefs()
 
-        curodmelements = copy(odmelements) #to allow deletion of done elements in loop
+        curodmelements = copy(newelements) #to allow deletion of done elements in loop
         for key,elem in curodmelements.items():
             """some elements (ARCS,DOMAINS) can have ODM-ref or not (depending wether they are generated or
                user maintained
@@ -256,7 +256,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
                             presult.addupdcnt(1)
-                            del odmelements[key] #omit in next loop
+                            del newelements[key] #omit in next loop
                         except Exception as e:
                             newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,obj.getid(),e))
                     # fi
@@ -273,7 +273,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                         objid = obj.insert(pdoerrhdlng=False)
                         addfk(odmjsid=key, dbid=objid)
                         presult.insertcnt += 1
-                        del odmelements[key]  # omit in next loop
+                        del newelements[key]  # omit in next loop
                     except Exception as e:
                         newdberrors.append("""*** insert-error: ID = "{}:{}" exists with different GUID\n{}""".format(pelemtype,obj.getid(),e))
                 else:
@@ -290,7 +290,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                                 """update lastupd and add extr scr id as it may have changed or is new"""
                                 Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=ukref.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
                             presult.addupdcnt(1)
-                            del odmelements[key]  # omit in next loop
+                            del newelements[key]  # omit in next loop
                         except Exception as e:
                             newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,ukref.getid(),e))
 

@@ -34,14 +34,15 @@ def opendDB4DDL(pfilepath, pfks="0"):
     openDBbasic(pfilepath, pfks=pfks)
 
 
-def openDB(pfilepath, pfks='0'):
+def openDB(pfilepath, pfks='0',pversioncheck=True):
     """opens the database pfilepath
     pfks OFF -> no checks enabled (for DDL)
         on -> checks enabled (for DML)
     checks the version and guarantees matching with version-file
     """
     openDBbasic(pfilepath=pfilepath, pfks=pfks)
-    checkversion()
+    if pversioncheck:
+        checkversion()
 
 
 def closeDB():

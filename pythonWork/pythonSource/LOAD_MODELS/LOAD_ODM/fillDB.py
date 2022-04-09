@@ -17,7 +17,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='1')
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='1',pversioncheck=False)
         parameters.dbDefaultLang(newval=Language.getdefaultlang().lang_iso_code2)
         langs = Language.getlanguagecodes()
         parameters.dbLanguages(newval=','.join(langs))

@@ -177,7 +177,7 @@ class Baseobject:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
                 except:
-                    print ("Loggin-Error in Baseobject.insert():")
+                    print ("Loggin-Error in Baseobject.updatedb():")
                     print(str(e))
                     print (lsql)
                     print (self.totuple())
