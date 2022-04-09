@@ -48,7 +48,7 @@ class Arc(Baseobject):
             join entities earc on earc.enti_id =arcs_enti_id
             join relations on rela_arcs_id_from = arcs_id or rela_arcs_id_to = arcs_id
             join relationreps on relr_mode_id = rela_id
-            join lseg lsegstart        on relr_id = lsegstart.lise_relr_id
+            join lseg lsegstart on relr_id = lsegstart.lise_relr_id
                                 and ((lsegstart.up = 1 and RELA_ARCS_ID_from = arcs_id)
                                     or (lsegstart.down = 1 and RELA_ARCS_ID_to = arcs_id)
                                     )
@@ -63,15 +63,15 @@ class Arc(Baseobject):
     # liesarcselem
 
 
-    @staticmethod
-    def getrelaarcs(pdiagid):
-        return Arc.select(pwhere=("""arcs_id in (select case when rela_arcs_id_from is NULL 
-                                                then rela_arcs_id_to
-                                                else rela_arcs_id_from end rela_arcs_id 
-                                            from relations 
-                                            where rela_id = ?)""", prelaid))
-
-        #getrelaarcs
+    # @staticmethod
+    # def getrelaarcs(pdiagid):
+    #     return Arc.select(pwhere=("""arcs_id in (select case when rela_arcs_id_from is NULL
+    #                                             then rela_arcs_id_to
+    #                                             else rela_arcs_id_from end rela_arcs_id
+    #                                         from relations
+    #                                         where rela_id = ?)""", prelaid))
+    #
+    #     #getrelaarcs
     @staticmethod
     def getdiagarcs(pdiagid):
         return Arc.select(pwhere=("""arcs_id in (select case when rela_arcs_id_from is NULL 

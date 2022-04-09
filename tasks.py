@@ -34,7 +34,7 @@ def deploy(c):
         c.run(f"python {SOURCE_FOLDER}/tools/deploy.py")
 
 
-@task(deploy)
+@task(pre=[deploy], aliases=['gen', 'generate'])
 def generator(c, model=None,
               languages=None,
               skip_odm=False,
