@@ -1,11 +1,13 @@
-from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql
-from SSOT_db.IM_OBJECTS import *
-from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
-    tabreflist, JSModel, jsguid2id
+import re
+
 from tqdm.auto import tqdm
 
-import re
+from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
+    inssourceref, udpvs2sql
+from SSOT_db.IM_JSON.jsattribute import buruinelements
+from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
+    tabreflist, JSModel, jsguid2id
+from SSOT_db.IM_OBJECTS import *
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
@@ -64,85 +66,92 @@ def entityicon(penti: Entity = None):
 
 
 def entities2js(pemptymodel):
-    model = ['name', 'shortname'
-        , 'descr', 'tooltip'
-        , 'category'
-        , 'exptuple#', 'prefix'
-        , 'supertypeentity'
-        , 'subtypellevel+'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'minzoomlevel', 'maxzoomlevel', 'publstatus'
-        , 'icon'
-        , 'synonyms', 'examples'
-        , 'sourceref'
-        , 'supertypes+', 'roles+'
-        , 'subtypes+', 'attributes+'
-        , 'inheritedattributes+'
-        , 'relations+', 'keys+'
-        , 'inarcs+', 'referencedby', 'userdefprops'
-        , 'tablesmapped+', 'diagrams+'
+    model = ['name', 'shortname',
+             'descr', 'tooltip',
+             'category',
+             'exptuple#', 'prefix',
+             'supertypeentity',
+             'subtypellevel+',
+             'uc', 'dc', 'um', 'dm',
+             'minzoomlevel', 'maxzoomlevel', 'publstatus',
+             'icon',
+             'synonyms', 'examples',
+             'sourceref',
+             'supertypes+', 'roles+',
+             'subtypes+', 'attributes+',
+             'inheritedattributes+',
+             'relations+', 'keys+', "businessrules+",
+             'inarcs+', 'referencedby', 'userdefprops',
+             'tablesmapped+', 'diagrams+'
              ]
     if pemptymodel:
         entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
-                                                               pentries=[multilangtext(None), ''
-                                                                   , multilangtext(None), multilangtext(None)
-                                                                   , '', '', ''
-                                                                   , '',''
-                                                                   , '', '', '', ''
-                                                                   , 0, 4, 'DRAFT'
-                                                                   , entityicon()
-                                                                   , synonyms(None), examples2js(None)
-                                                                   , sourceref(None)
-                                                                   , reflist(None), reflist(None)
-                                                                   , reflist(None), reflist(None)
-                                                                   , reflist(None), reflist(None)
-                                                                   , reflist(None), reflist(None)
-                                                                   , reflist(None)
-                                                                   , userdefprops(None)
-                                                                   , tabreflist(None), reflist(None)
+                                                               pentries=[multilangtext(None), '',
+                                                                         multilangtext(None), multilangtext(None),
+                                                                         '', '', '',
+                                                                         '', '',
+                                                                         '', '', '', '',
+                                                                         0, 4, 'DRAFT',
+                                                                         entityicon(),
+                                                                         synonyms(None), examples2js(None),
+                                                                         sourceref(None),
+                                                                         reflist(None), reflist(None),
+                                                                         reflist(None), reflist(None),
+                                                                         reflist(None), reflist(None),
+                                                                         reflist(None), buruinelements(None),
+                                                                         reflist(None),
+                                                                         reflist(None),
+                                                                         userdefprops(None),
+                                                                         tabreflist(None), reflist(None)
                                                                          ]
                                                                )
                  }
     else:
         entis = {jsguid(Modelelemtype.ENTI, e.enti_id):
                      fillmodel(pmodel=model,
-                               pentries=[multilangtext(ptext=e.enti_name_l), e.enti_short_name
-                                   , multilangtext(e.enti_descr_l), multilangtext(e.enti_tooltip_l)
-                                   , jsguid(JSModel.ELEMTYPE_CATG, e.enti_enca_id)
-                                   , e.enti_exp_tuplecnt, e.enti_prefix
-                                   , jsguid(Modelelemtype.ENTI, e.enti_underlay_enti_id),e.getsubtypelevel()
-                                   , e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm
-                                   , e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus()
-                                   , entityicon(penti=e)
-                                   , synonyms(psynos=[s.syno_name_l for s in e.getsynonyms()])
-                                   , examples2js(pexpls=e.getexamples())
-                                   , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id))
-                                   , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()])
-                                   , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
-                                                    e.getchildren(ptype=Relation.ISAROLE)])
-                                   , reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
-                                                    e.getchildren(ptype=Relation.ISASUBTYPE)])
-                                   , reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()])
-                                   , reflist(plist=[jsguid(Modelelemtype.ATTR, attrid) for attrid in e.getinheritedattrids()])
-                                   , reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in
-                                                    Relation.getbyentity(pentiid=e.enti_id)])
-                                   , reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in
-                                                    Key.select(pwhere=("keys_enti_id = ?", e.enti_id))])
-                                   , reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in
-                                                    Arc.select(pwhere=("arcs_enti_id = ?", e.enti_id))])
-                                   , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=e.enti_id)] \
+                               pentries=[multilangtext(ptext=e.enti_name_l), e.enti_short_name,
+                                         multilangtext(e.enti_descr_l), multilangtext(e.enti_tooltip_l),
+                                         jsguid(JSModel.ELEMTYPE_CATG, e.enti_enca_id),
+                                         e.enti_exp_tuplecnt, e.enti_prefix,
+                                         jsguid(Modelelemtype.ENTI, e.enti_underlay_enti_id), e.getsubtypelevel(),
+                                         e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm,
+                                         e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus(),
+                                         entityicon(penti=e),
+                                         synonyms(psynos=[s.syno_name_l for s in e.getsynonyms()]),
+                                         examples2js(pexpls=e.getexamples()),
+                                         sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id)),
+                                         reflist(
+                                             plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()]),
+                                         reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
+                                                        e.getchildren(ptype=Relation.ISAROLE)]),
+                                         reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
+                                                        e.getchildren(ptype=Relation.ISASUBTYPE)]),
+                                         reflist(
+                                             plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in e.getattributes()]),
+                                         reflist(plist=[jsguid(Modelelemtype.ATTR, attrid) for attrid in
+                                                        e.getinheritedattrids()]),
+                                         reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in
+                                                        Relation.getbyentity(pentiid=e.enti_id)]),
+                                         reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in
+                                                        Key.select(pwhere=("keys_enti_id = ?", e.enti_id))]),
+                                         buruinelements(e.enti_id),
+                                         reflist(plist=[jsguid(Modelelemtype.ARCS, a.arcs_id) for a in
+                                                        Arc.select(pwhere=("arcs_enti_id = ?", e.enti_id))]),
+                                         [jsguid(Modelelemtype.DOCU, d[0]) for d in
+                                          Document.getrefdoculist(pid=e.enti_id)] \
                                          + [jsguid(Modelelemtype.ORGU, d[0]) for d in
-                                            OragnisationalUnit.getreforgulist(pid=e.enti_id)]
-                                   , userdefprops(pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI))
-                                   , tabreflist(plist={
-                                       jsguid(Modelelemtype.INTF, s.getid()):
-                                           [jsguid(Modelelemtype.TABL, t.tabl_id)
-                                            for t in TablEntiMap.gettabllist(pentiid=e.enti_id,
-                                                                             pintfid=s.getid())
-                                            ]
-                                       for s in Interface.getmapped(pentiid=e.enti_id)})
-                                   , reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
-                                                    Diagram.getdiagrams(pmodeid=e.enti_id)])
+                                            OragnisationalUnit.getreforgulist(pid=e.enti_id)],
+                                         userdefprops(
+                                             pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI)),
+                                         tabreflist(plist={
+                                             jsguid(Modelelemtype.INTF, s.getid()):
+                                                 [jsguid(Modelelemtype.TABL, t.tabl_id)
+                                                  for t in TablEntiMap.gettabllist(pentiid=e.enti_id,
+                                                                                   pintfid=s.getid())
+                                                  ]
+                                             for s in Interface.getmapped(pentiid=e.enti_id)}),
+                                         reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
+                                                        Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
                                ) for e in tqdm(Entity.select())
                  }
@@ -189,8 +198,8 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
                 presult.markdberror(perr=err, pelem=pelem)
                 continue
             """Examples and their lang-texts are alreday deleted"""
-            insertlgtx(pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE
-                       , ptexts={lang: values[idx] for lang, values in pelem["examples"].items()})
+            insertlgtx(pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
+                       ptexts={lang: values[idx] for lang, values in pelem["examples"].items()})
         # for
         presult.addinscnt(max(0, (inscnt - delcnt)))
         presult.adddelcnt(max(0, (delcnt - inscnt)))
@@ -226,8 +235,8 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         presult.addinscnt(max(0, (inscnt - delcnt)))
         presult.adddelcnt(max(0, (delcnt - inscnt)))
 
-        mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage()
-                      , presult=presult, pentiid=entiid)
+        mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
+                      presult=presult, pentiid=entiid)
 
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
         replacelgtx(presult=presult, pmodeid=entiid, pattr=Languagetext.ENTI_NAME, ptexts=jelem['name'])

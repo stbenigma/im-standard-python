@@ -133,10 +133,10 @@ def documents2js(pemtpymodel):
         , 'content', 'format+'
         , 'formatid', 'parent'
         , 'sourceref'
-        , 'referencecnt+', 'references+']
+        , 'references+']
     if pemtpymodel:
         retval = {jsguid(Modelelemtype.DOCU, "0000"):
-                      fillmodel(pmodel=model, pentries=['' for i in range(6)] + [sourceref(), '0', references()])}
+                      fillmodel(pmodel=model, pentries=['' for i in range(6)] + [sourceref(), references()])}
     else:
         retval = {jsguid(Modelelemtype.DOCU, d.docu_id):
                       fillmodel(pmodel=model, pentries=[d.docu_name, d.docu_reference
@@ -145,7 +145,7 @@ def documents2js(pemtpymodel):
                           , None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO, d.docu_stfo_id)
                           , None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
                           , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=d.docu_id))
-                          , str(len(d.getrefmodes())), references(pmode=d)
+                          ,  references(pmode=d)
 
                                                         ]
                                 )
@@ -228,12 +228,12 @@ def orgUnits2js(pemptymodel):
         , 'mail', 'telefon'
         , 'address', 'parent'
         , 'sourceref'
-        , 'referencecnt+', 'references+'
+        , 'references+'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.ORGU, '0000'): fillmodel(pmodel=model
                                                                 , pentries=['' for i in range(len(model) - 3)] + [
-                sourceref(), 0, references()]
+                sourceref(), references()]
                                                                 )}
     else:
         retval = {jsguid(Modelelemtype.ORGU, o.orgu_id):
@@ -244,7 +244,7 @@ def orgUnits2js(pemptymodel):
                           , o.orgu_address,
                           None if o.orgu_orgu_id is None else jsguid(Modelelemtype.ORGU, o.orgu_orgu_id)
                           , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=o.orgu_id))
-                          , str(len(o.getrefmodes())), references(pmode=o)
+                          , references(pmode=o)
                       ])
                   for o in OragnisationalUnit.select()
                   }

@@ -137,13 +137,17 @@ class Entity(MultilangBaseobject):
             union all
             select enti.entilev + 1,enti_id,enti_underlay_enti_id,enti_name
             from entities
-            join  enti on enti.entiid =  enti_underlay_enti_id
+            join enti on enti.entiid = enti_underlay_enti_id
                       and enti.entilev < 100
             )
             select * from enti
             where entiid = {}
             """.format(self.enti_id))
-        return subtypelevel[0][0]
+        try:
+            return subtypelevel[0][0]
+        except:
+            print(self.enti_id,subtypelevel)
+            return 0
 
     @staticmethod
     def mappingto(ptablid):

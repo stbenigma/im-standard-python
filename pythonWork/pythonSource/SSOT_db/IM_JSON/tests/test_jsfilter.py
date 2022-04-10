@@ -21,7 +21,6 @@ simpletestjson = {
             "name": "f_icon_377_object_handshake",
             "parent": "",
             "reference": "f_icon_377_object_handshake",
-            "referencecnt+": "2",
             "references+": [
                 "realsubenti_lev2",
                 "Master Entity"

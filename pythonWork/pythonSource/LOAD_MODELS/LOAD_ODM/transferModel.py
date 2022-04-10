@@ -687,14 +687,16 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
 
             # HACK around sqlite3.IntegrityError: CHECK constraint failed: relr_stx_chk
             if relr.relr_starttext_x is None or int(relr.relr_starttext_x) < 0:
-                logmessages.writelog(f"Patching relr_starttext_x({relr.relr_starttext_x}) on {rela.rela_id} to 0 (diagram {pdiagid}, relation {rela.rela_id})")
-                #logging.warning(f"Patching relr_starttext_x({relr.relr_starttext_x}) on {rela.rela_id} to 0")
+                logmessages.writelog(
+                    f"Patching relr_starttext_x({relr.relr_starttext_x}) on {rela.rela_id} to 0 (diagram {pdiagid}, relation {rela.rela_id})")
+                # logging.warning(f"Patching relr_starttext_x({relr.relr_starttext_x}) on {rela.rela_id} to 0")
                 relr.relr_starttext_x = 0
 
             # HACK around sqlite3.IntegrityError: CHECK constraint failed: relr_sty_chk
             if relr.relr_starttext_y is None:
-                logmessages.writelog(f"Patching relr_starttext_y({relr.relr_starttext_y}) on {rela.rela_id} to 0 (diagram {pdiagid}, relation {rela.rela_id})")
-                #logging.warning(f"Patching relr_starttext_y({relr.relr_starttext_y}) on {rela.rela_id} to 0")
+                logmessages.writelog(
+                    f"Patching relr_starttext_y({relr.relr_starttext_y}) on {rela.rela_id} to 0 (diagram {pdiagid}, relation {rela.rela_id})")
+                # logging.warning(f"Patching relr_starttext_y({relr.relr_starttext_y}) on {rela.rela_id} to 0")
                 relr.relr_starttext_y = 0
 
             relr.insert()
@@ -1001,7 +1003,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pburerole=BusinessruleElement.AFFECTED)
         bure.insert()
     # fi
 
@@ -1011,7 +1013,8 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pwriteable=True)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pwriteable=True,
+                                   pburerole=BusinessruleElement.AFFECTED)
         bure.insert()
     # fi
     return

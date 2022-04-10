@@ -186,8 +186,6 @@ class FILTEREDJSModel(JSModel):
                     and type(elem[key]) in (set, list)):
                     try:
                         elem[key] = list(set(elem[key]).intersection(pfilteredidlist))
-                        if key == "references+" and "referencecnt+" in elem:
-                            elem["referencecnt+"] = len(elem[key]).__str__()
                     except:
                         # one value in the val-list is of structured type (dict), ignore the error
                         pass

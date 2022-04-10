@@ -13,7 +13,7 @@ context = local()
 def jsguid(mtype, guid):
     """creates a unique ID as reference in the json file
    <telemtype><elemid> """
-    context.ctx = {}
+    context.ctx = dict()
     context.ctx[mtype] = guid
     return None if guid is None else mtype + (guid if type(guid) == str else str(guid))
 
@@ -59,13 +59,14 @@ def examples2js(pexpls: list = None):
                     retval[lang] = [nvl(value)]
         return retval
 
+
 class JSModel:
     ELEMTYPE_LANG = 'LANG'
     ELEMTYPE_PROJ = 'PROJ'
     ELEMTYPE_CATG = 'CATG'
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities',
-        #Modelelemtype.BURU: 'businessrules2js',
+        Modelelemtype.BURU: 'businessrules',
         Modelelemtype.RELA: 'relations',
         Modelelemtype.ATTR: 'attributes',
         Modelelemtype.DOMA: 'domains',
@@ -201,10 +202,11 @@ class JSModel:
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 
+
 # JSModel
 
 
-def printJSON(pmodel, pfilepath, pfilename,psorted = False):
+def printJSON(pmodel, pfilepath, pfilename, psorted=False):
     destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
         jsonfile.write(json.dumps(pmodel, indent=3))
