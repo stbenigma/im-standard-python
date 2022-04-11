@@ -6,16 +6,10 @@ from SSOT_db.IM_OBJECTS import *
 
 def buruinelements(pelemid=None):
     if pelemid is None:
-        retval = {'affected': [],
-                  'referenced': []}
+        retval = []
     else:
         bures = BusinessruleElement.select(pwhere=("bure_mode_id = ?", pelemid))
-        retval = {'affected': [jsguid(Modelelemtype.BURU, be.bure_buru_id) for be in bures if (
-                    (be.bure_role == BusinessruleElement.AFFECTED) or
-                    (Boolean.str2bool(be.bure_writeable)))],
-                  'referenced': [jsguid(Modelelemtype.BURU, be.bure_buru_id) for be in bures if
-                                 be.bure_role == BusinessruleElement.REFERENCED],
-                  }
+        retval = [jsguid(Modelelemtype.BURU, be.bure_buru_id) for be in bures]
     return retval
 
 
@@ -25,7 +19,6 @@ def buruelement2js(pbure=None):
     else:
         mode = Modelelement().getbyid(pbure.bure_mode_id)
         retval = {'elemid': jsguid(mode.mode_type, mode.mode_id),
-                  'role': pbure.bure_role,
                   'r/w': pbure.bure_writeable}
     return retval
 
@@ -43,9 +36,6 @@ def businessrule2js(pburu):
                                      ]
                            )
     else:
-        bures = BusinessruleElement.select()
-        ch = pburu.getchildren()
-        chs = [buruelement2js(be) for be in ch]
         retval = fillmodel(pmodel=model,
                            pentries=[multilangtext(pburu.buru_name_l),
                                      multilangtext(pburu.buru_descr_l),

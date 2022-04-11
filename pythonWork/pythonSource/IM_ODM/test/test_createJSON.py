@@ -36,32 +36,25 @@ class MyTestCase(unittest.TestCase):
                                        enti.enti_id))
 
         BusinessruleElement(bure_buru_id=buruid,
-                                   bure_mode_id=attrs[0].attr_id,
-                                   bure_role=BusinessruleElement.AFFECTED
+                                   bure_mode_id=attrs[0].attr_id
                                    ).insert()
         BusinessruleElement(bure_buru_id=buruid,
-                                   bure_mode_id=attrs[1].attr_id,
-                                   bure_role=BusinessruleElement.AFFECTED
+                                   bure_mode_id=attrs[1].attr_id
                                    ).insert()
         BusinessruleElement(bure_buru_id=buruid,
-                                   bure_mode_id=attrs[2].attr_id,
-                                   bure_role=BusinessruleElement.REFERENCED
+                                   bure_mode_id=attrs[2].attr_id
                                    ).insert()
         dbConnect.closeDB()
         return
 
     def test_createJSON(self):
         modelname, modeldir, modeldb = testmodelcrm()
-        dbConnect.openDB(pfilepath=modeldb, pfks='1', pversioncheck=False)
-        buru = BusinessRule.select()
-        bure = BusinessruleElement.select()
-        bure2 = buru[3].getchildren()
-        dbConnect.closeDB()
         self.fillextrabusinessrules(pfilepath=modeldb)
         dbConnect.openDB(pfilepath=modeldb, pfks='1', pversioncheck=False)
         buru = BusinessRule.select()
-        bure = BusinessruleElement.select()
-        bure2 = buru[3].getchildren()
+        buruid=BusinessRule.getbyuk(buru_name="test-BR1").getid()
+        bures = BusinessruleElement.select(pwhere=("bure_buru_id = ?",buruid))
+        buruid="BURU"+str(buruid)
         dbConnect.closeDB()
         with tempfile.TemporaryDirectory() as tmpdirname:
             createJSON.createJSON(pdbfilepath=modeldb, pmodelname=modelname,
@@ -71,8 +64,9 @@ class MyTestCase(unittest.TestCase):
             jsfile = open(fullpath)
             js = json.load(jsfile)
             self.assertTrue('entities' in js)
-
-            self.assertEqual(5,len(js['businessrules']))
+            self.assertEqual(len(buru),len(js['businessrules']))
+            elems= js['businessrules'][buruid]['elements']
+            self.assertEqual(len(bures),len(elems))
 
         return
 

@@ -1000,8 +1000,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(bure_buru_id=buruid, bure_mode_id=pmodeid,
-                                   bure_role=BusinessruleElement.AFFECTED)
+        bure = BusinessruleElement(bure_buru_id=buruid, bure_mode_id=pmodeid)
         bure.insert()
     # fi
 
@@ -1012,7 +1011,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
         bure = BusinessruleElement(bure_buru_id=buruid, bure_mode_id=pmodeid,
-                                   bure_writeable=True, bure_role=BusinessruleElement.AFFECTED)
+                                   bure_writeable=True)
         bure.insert()
     # fi
     return
