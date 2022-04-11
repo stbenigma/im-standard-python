@@ -153,7 +153,8 @@ def entities2js(pemptymodel):
                                          reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                         Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
-                               ) for e in tqdm(Entity.select())
+                               ) for e in tqdm(Entity.select(),
+                                               unit=" Entity", desc="Serialising entities", dynamic_ncols=True)
                  }
 
     return entis
