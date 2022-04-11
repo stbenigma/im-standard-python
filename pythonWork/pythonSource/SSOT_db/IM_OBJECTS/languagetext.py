@@ -22,12 +22,13 @@ class Languagetext(Baseobject):
     BURU_DESCR: str = 'BURU_DESCR'
     BURU_ERRORMSG: str = 'BURU_ERRORMSG'
     EXPL_VALUE: str = 'EXPL_VALUE'
-    ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
-        , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
-        , ENTI_SYNONYM
-        , RELA_TEXT_TO, RELA_TEXT_FROM
-        , DOMA_NAME, DOMA_DESCR
-        , BURU_NAME, BURU_DESCR, BURU_ERRORMSG, EXPL_VALUE
+    ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP,
+         ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP,
+         ENTI_SYNONYM,
+         RELA_TEXT_TO, RELA_TEXT_FROM,
+         DOMA_NAME, DOMA_DESCR,
+         BURU_NAME, BURU_DESCR, BURU_ERRORMSG,
+        EXPL_VALUE
                            ]
 
     __greportLang: str = None

@@ -20,12 +20,17 @@ class BusinessRule(MultilangBaseobject):
     _columnlist: list = []
     _defaultorderby = "buru_name"
 
-    def __init__(self, psrcname=None, psrcid=None):
+    def __init__(self, **kwargs):
+        srcid=kwargs['srcid'] if 'srcid' in kwargs else None
+        srcname=kwargs['srcname'] if 'srcname' in kwargs else None
         super().__init__(multilangcols={'buru_name': Languagetext.BURU_NAME,
                                         'buru_descr': Languagetext.BURU_DESCR,
                                         'buru_errormsg': Languagetext.BURU_ERRORMSG}
-                         , pscrid=psrcid
-                         , psrcname=psrcname)
+                         , pscrid=srcid
+                         , psrcname=srcname)
+        for col,val in kwargs.items():
+            if col in self._columnlist:
+                self.setcolvalue(col,val)
 
     def getname(self, plang=None):
         return self._getsprachval(colname='buru_name', plang=plang)
@@ -72,12 +77,13 @@ class BusinessruleElement(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self, pburuid=None, pwriteable=False, pmodeid=None,pburerole=None):
+    def __init__(self, ** kwargs):
         super().__init__()
-        self.bure_buru_id = pburuid
-        self.bure_mode_id = pmodeid
-        self.bure_role = pburerole
-        self.bure_writeable = Boolean.bool2str(pwriteable)
+        for col, val in kwargs.items():
+            if col in self._columnlist:
+                self.setcolvalue(col, Boolean.bool2str(val) if type(val) is bool else val)
+        if self.bure_writeable is None:
+            self.bure_writeable = "FALSE"
 
     def getelement(self):
         return Modelelement.getelement(pmodeid=self.bure_mode_id)

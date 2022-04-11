@@ -315,13 +315,13 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
             doma = pdoma
             # if domain has a business rule, add it to this domain.
             if buruID is not None:
-                BusinessruleElement(pburuid=buruID, pmodeid=doma.doma_id).insert()
+                BusinessruleElement(bure_buru_id=buruID, bure_mode_id=doma.doma_id).insert()
     else:
         pdoma.insert()
         doma = pdoma
         # if domain has a business rule, add it to this domain.
         if buruID is not None:
-            BusinessruleElement(pburuid=buruID, pmodeid=doma.doma_id).insert()
+            BusinessruleElement(bure_buru_id=buruID, bure_mode_id=doma.doma_id).insert()
 
     if (lov is not None) & (lov != {}):
         for idx, key in enumerate(lovs.keys(), start=1):
@@ -970,12 +970,10 @@ def getcheckconstraint(pxml):
              constrxml]
     if (len(rules) == 0): return None
     descr = '\n'.join("dbtype={}    rule={}".format(r[0], r[1]) for r in rules)
-    buru = BusinessRule()
-    buru.buru_name = constrname
-    buru.buru_descr = descr
-    buru.buru_rule = rules[0][1]  # first solution, take the first rule in the list
-    buru.buru_type = BusinessRule.BURU_TYPE_CHECK
-    buru.buru_errormsg = 'Rule {} violated. {}'.format(constrname, buru.buru_rule)
+    # first solution, take the first rule in the list
+    buru = BusinessRule(buru_name=constrname, buru_descr=descr, buru_rule=rules[0][1],
+                        buru_type=BusinessRule.BURU_TYPE_CHECK,
+                        buru_errormsg=f"Rule {constrname} violated.")
     return buru
 
 
@@ -989,10 +987,9 @@ def getformula(pelemname, pmodetype, pmodeid, pxml):
     formula = handleXML.findText(pxml, "formulaDesc")
     sourctype = handleXML.findText(pxml, "sourceType")
     if formula is None: return
-    buru = BusinessRule()
-    buru.buru_descr = "Function: {} formula: {}".format(sourctype, formula)
-    buru.buru_rule = formula
-    buru.buru_type = BusinessRule.BURU_TYPE_CALC
+    buru = BusinessRule(buru_descr=f"Function: {sourctype} formula: {formula}",
+                        buru_rule=formula,
+                        buru_type=BusinessRule.BURU_TYPE_CALC)
     return buru
 
 
@@ -1003,7 +1000,8 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pburerole=BusinessruleElement.AFFECTED)
+        bure = BusinessruleElement(bure_buru_id=buruid, bure_mode_id=pmodeid,
+                                   bure_role=BusinessruleElement.AFFECTED)
         bure.insert()
     # fi
 
@@ -1013,8 +1011,8 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pwriteable=True,
-                                   pburerole=BusinessruleElement.AFFECTED)
+        bure = BusinessruleElement(bure_buru_id=buruid, bure_mode_id=pmodeid,
+                                   bure_writeable=True, bure_role=BusinessruleElement.AFFECTED)
         bure.insert()
     # fi
     return

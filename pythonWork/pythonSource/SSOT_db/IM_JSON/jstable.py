@@ -1,42 +1,44 @@
 from SSOT_db.IM_JSON import  *
+from SSOT_db.IM_JSON.jsattribute import buruinelements
 
 def tables2js(pemptymodel):
     model = ['name', 'interface-name+',
         'interface-id', 'prefix',
         'descr',
         'uc', 'dc', 'um', 'dm',
-        'minzoomlevel', 'maxzoomlevel', 'publstatus'
-        ,'CRUD',
-        'columns+', 'userdefprops',
+        'minzoomlevel', 'maxzoomlevel', 'publstatus',
+         'CRUD',
+        'columns+', "businessrules+", 'userdefprops',
         'entitiesmapped', 'relationsmapped',
         'sourceref', 'referencedby'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(9)]
-                                                                                       + [0, 4, 'DRAFT'
-                                                                                          ,crudstr(),
-                                                                                           reflist(),userdefprops()
-                                                                                           ,[jsguid(Modelelemtype.ENTI, '0000')],
+                                                                                       + [0, 4, 'DRAFT',
+                                                                                           crudstr(),
+                                                                                           reflist(),buruinelements(None),userdefprops(),
+                                                                                            [jsguid(Modelelemtype.ENTI, '0000')],
                                                                                           [jsguid(Modelelemtype.RELA, '0000')],
                                                                                            sourceref(), reflist()])
                   }
     else:
         retval = {jsguid(Modelelemtype.TABL, t.tabl_id):
-                      fillmodel(pmodel=model, pentries=[t.tabl_name
-                          , Interface().getbyid(t.tabl_intf_id).getname()
-                          , jsguid(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid())
-                          , t.tabl_prefix, t.tabl_descr
-                          , t.tabl_uc, t.tabl_dc, t.tabl_um, t.tabl_dm
-                          , t.getminzoomlevel(), t.getmaxzoomlevel(), t.getpublstatus()
-                          , crudstr(pcreate=t.tabl_create,pread=t.tabl_read,pupdate=t.tabl_update,pdelete=t.tabl_delete)
-                          , [jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()]
-                          , udpv2js(pmodeid=t.tabl_id, pmodelemtype=Modelelemtype.TABL)
-                          , [jsguid(Modelelemtype.ENTI, e.enti_id)
-                                    for e in TablEntiMap.getentilist(ptablid=t.tabl_id)]
-                        , [jsguid(Modelelemtype.RELA,r.rela_id)
-                                 for r in TablEntiMap.getrelalist(ptablid=t.tabl_id)]
-                          , Externalref.getsrcinfo(pmodeid=t.tabl_id)
-                          , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)] \
+                      fillmodel(pmodel=model, pentries=[t.tabl_name,
+                           Interface().getbyid(t.tabl_intf_id).getname(),
+                           jsguid(Modelelemtype.INTF, Interface().getbyid(t.tabl_intf_id).getid()),
+                           t.tabl_prefix, t.tabl_descr,
+                           t.tabl_uc, t.tabl_dc, t.tabl_um, t.tabl_dm,
+                           t.getminzoomlevel(), t.getmaxzoomlevel(), t.getpublstatus(),
+                           crudstr(pcreate=t.tabl_create,pread=t.tabl_read,pupdate=t.tabl_update,pdelete=t.tabl_delete),
+                           [jsguid(Modelelemtype.COLU, c.colu_id) for c in t.getcolumns()],
+                            buruinelements(t.tabl_id),
+                            udpv2js(pmodeid=t.tabl_id, pmodelemtype=Modelelemtype.TABL),
+                           [jsguid(Modelelemtype.ENTI, e.enti_id)
+                                    for e in TablEntiMap.getentilist(ptablid=t.tabl_id)],
+                         [jsguid(Modelelemtype.RELA,r.rela_id)
+                                 for r in TablEntiMap.getrelalist(ptablid=t.tabl_id)],
+                           Externalref.getsrcinfo(pmodeid=t.tabl_id),
+                           [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)] \
                                                         + [jsguid(Modelelemtype.ORGU, d[0]) for d in
                                                            OragnisationalUnit.getreforgulist(pid=t.tabl_id)]
                                                         ])

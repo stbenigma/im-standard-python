@@ -37,7 +37,7 @@ def optionalvalue(pelem, pkey):
 
 
 def jsonfilename(pfilename):
-    return pfilename + '.json'
+    return pfilename + ('' if pfilename[-5:]=='.json' else '.json')
 
 
 def examples2js(pexpls: list = None):

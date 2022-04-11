@@ -1,18 +1,21 @@
 from SSOT_db.IM_JSON import *
-from SSOT_db.IM_OBJECTS import *
-from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
 from SSOT_db.IM_JSON import jsentity
+from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
+from SSOT_db.IM_OBJECTS import *
+
 
 def buruinelements(pelemid=None):
     if pelemid is None:
-        retval = {'checked': [],
-                  'referenced': [],
-                  'changed': []}
+        retval = {'affected': [],
+                  'referenced': []}
     else:
         bures = BusinessruleElement.select(pwhere=("bure_mode_id = ?", pelemid))
-        retval = {'checked': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if be.bure_role == BusinessruleElement.AFFECTED],
-                  'referenced': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if be.bure_role == BusinessruleElement.REFERENCED],
-                  'changed': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if Boolean.str2bool(be.bure_writeable) ]}
+        retval = {'affected': [jsguid(Modelelemtype.BURU, be.bure_buru_id) for be in bures if (
+                    (be.bure_role == BusinessruleElement.AFFECTED) or
+                    (Boolean.str2bool(be.bure_writeable)))],
+                  'referenced': [jsguid(Modelelemtype.BURU, be.bure_buru_id) for be in bures if
+                                 be.bure_role == BusinessruleElement.REFERENCED],
+                  }
     return retval
 
 
@@ -40,6 +43,9 @@ def businessrule2js(pburu):
                                      ]
                            )
     else:
+        bures = BusinessruleElement.select()
+        ch = pburu.getchildren()
+        chs = [buruelement2js(be) for be in ch]
         retval = fillmodel(pmodel=model,
                            pentries=[multilangtext(pburu.buru_name_l),
                                      multilangtext(pburu.buru_descr_l),
@@ -85,7 +91,7 @@ def attr2js(pattr):
                 , '', ''
                 , '', ''
                 , '', ''
-                , jentity.examples2js(None), multilangtext(), multilangtext()
+                , jsentity.examples2js(None), multilangtext(), multilangtext()
                 , '', '', '', '', 0, 4, 'DRAFT'
                 , sourceref(), reflist(), buruinelements(None)
                 , reflist(), userdefprops()
