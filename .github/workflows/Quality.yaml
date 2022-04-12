@@ -155,7 +155,7 @@ jobs:
       with:
         repository: foryouandyourcustomers/Sika-IM
         token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
-        path: testdata/Bossard-IM
+        path: testdata/Sika-IM
 
     - name: Generate Sika model
       run: |
