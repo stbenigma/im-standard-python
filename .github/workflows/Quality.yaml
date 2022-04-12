@@ -57,13 +57,13 @@ jobs:
     #        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
     #        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Build deployment package
+    - name: Build deployment package. This bootstraps translation
       run: |
-        python pythonWork/pythonSource/tools/deploy.py
+        inv deploy
 
     - name: Test run generator
       run: |
-        python dist/generator.py --version
+        inv generator --version
 
     - name: Integration test run with riddle model located within same git repo
       run: |

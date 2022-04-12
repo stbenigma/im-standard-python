@@ -43,7 +43,8 @@ def generator(c, model=None,
               confluence=False,
               sharepoint=False,
               sparx_ea=False,
-              link_udpr=None):
+              link_udpr=None,
+              profile=False):
     if model is None:
         model = TEST_MODEL / 'IM'
         if languages is None:
@@ -81,10 +82,18 @@ def generator(c, model=None,
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
 
+    if profile:
+        print("⏱⏱⏱ Running in profiler mode: This might take some time  ⏱⏱⏱")
+        optargs.append("--profile")
+
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
         print(f"Starting generator with: {command} in {PROJECT_ROOT}")
         c.run(command)
+
+    if profile:
+        print(f"⏱⏱⏱ Profile results in log/ ⏱⏱⏱")
+        print(f"snakeviz log/generator-lastest-fillmergedb.prof")
 
 
 @task
