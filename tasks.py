@@ -153,6 +153,10 @@ def verify_content(fh):
             raise ValueError(f"bossard found in content")
         if 'ktlu' in lower_content_string:
             raise ValueError(f"bossard found in content")
+        if 'bosch' in lower_content_string:
+            raise ValueError(f"bosch found in content")
+        if 'komax' in lower_content_string:
+            raise ValueError(f"komax found in content")
         if '/Users/' in lower_content_string:
             raise ValueError(f"/Users/ found in content")
     except UnicodeDecodeError:

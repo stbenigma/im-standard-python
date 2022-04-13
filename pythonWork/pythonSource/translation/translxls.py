@@ -10,9 +10,9 @@ transldict = {} #sind nur Beispiele
 def translateString(pval,pfrom,pto):
     global words
     global letters
-#    if pval.startswith("Ist die kleinste Einheit, die komax interessiert."):
-#        print (ascii(pval[len("Ist die kleinste Einheit, die komax interessiert.")-2:\
-#                   len("Ist die kleinste Einheit, die komax interessiert.")+2]))
+#    if pval.startswith("Ist die kleinste Einheit, die XY interessiert."):
+#        print (ascii(pval[len("Ist die kleinste Einheit, die XY interessiert.")-2:\
+#                   len("Ist die kleinste Einheit, die XY interessiert.")+2]))
 #    words += 1
 #    letters += len(pval)
 #    return pval
@@ -33,9 +33,9 @@ def translateString(pval,pfrom,pto):
         result = rj['translations'][0]['text']
         words += 1
         letters += len(pval)
-#        if pval.startswith("Ist die kleinste Einheit, die komax interessiert."):
-#            print(ascii(result[len("**Is the smallest unit that interests komax.") - 2: \
-#                             len("**Is the smallest unit that interests komax.") + 2]))
+#        if pval.startswith("Ist die kleinste Einheit, die XY interessiert."):
+#            print(ascii(result[len("**Is the smallest unit that interests XY.") - 2: \
+#                             len("**Is the smallest unit that interests XY.") + 2]))
         transldict[pval] = result
     else:
         result = pval
