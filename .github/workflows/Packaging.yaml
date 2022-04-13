@@ -36,7 +36,7 @@ jobs:
 
       - name: Build deployment package. This bootstraps translation
         run: |
-          python pythonWork/pythonSource/tools/deploy.py --verbose
+          inv verify_package
 
       # Run smoke test
       - name: Smoke-test generator

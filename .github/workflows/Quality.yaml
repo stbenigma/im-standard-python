@@ -59,7 +59,7 @@ jobs:
 
     - name: Build deployment package. This bootstraps translation
       run: |
-        inv deploy
+        inv package
 
     - name: Test run generator
       run: |

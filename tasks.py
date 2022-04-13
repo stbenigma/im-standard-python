@@ -62,6 +62,12 @@ def verify_package(c):
                     raise ValueError(f"Found stopword in file {element.filename}") from exc
 
 
+@task(pre=[verify_package])
+def deploy(c):
+    print(f"Deprecated, use 'package' task instead")
+    pass
+
+
 @task(pre=[package], aliases=['gen', 'generate'])
 def generator(c, model=None,
               languages=None,
