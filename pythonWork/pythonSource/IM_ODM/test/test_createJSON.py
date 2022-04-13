@@ -44,6 +44,9 @@ class MyTestCase(unittest.TestCase):
         BusinessruleElement(bure_buru_id=buruid,
                                    bure_mode_id=attrs[2].attr_id
                                    ).insert()
+        BusinessruleElement(bure_buru_id=buruid,
+                                   bure_mode_id=enti.enti_id
+                                   ).insert()
         dbConnect.closeDB()
         return
 
