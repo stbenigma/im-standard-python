@@ -24,9 +24,9 @@ def relation2js(prela):
         'from-to', 'to-from',
         'isinkeys+', 'sourceref',
         'uc', 'dc', 'um', 'dm',
-        'minzoomlevel', 'maxzoomlevel', 'publstatus',
-        'userdefprops','referencedby'
-        ,'tablesmapped+'
+        'minzoomlevel', 'maxzoomlevel', 'publstatus',"businessrules+",
+        'userdefprops','referencedby',
+         'tablesmapped+'
               ]
     if prela is None:
         retval = fillmodel(pmodel=model,
@@ -34,7 +34,7 @@ def relation2js(prela):
                                     relaend2js(), relaend2js(),
                                        reflist(), sourceref(),
                                       '', '','','',
-                                    0,4,'DRAFT',
+                                    0,4,'DRAFT',buruinelements(None),
                                     userdefprops(),reflist(),tabreflist()
                                     ]
                            )
@@ -43,36 +43,37 @@ def relation2js(prela):
                                                     from key_elements 
                                                     where kele_rela_id = ?)""", prela.rela_id))]
         retval = fillmodel(pmodel=model,
-                   pentries=[prela.rela_name, prela.rela_type
-                               ,relaend2js(prelaend= [jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from)
-                                ,None if prela.rela_arcs_id_from is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_from)
-                                ,multilangtext(prela.rela_assoc_from_to_l)
-                                ,prela.rela_maptype_from_to
-                                ,Boolean.str2bool(prela.rela_hist_from_to)
-                                ,Boolean.str2bool(prela.rela_mandatory_from_to)
-                                ,prela.to_cardstr()
-                                 ])
-                               ,relaend2js(prelaend=[ jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to)
-                                  ,None if prela.rela_arcs_id_to is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_to)
-                                  ,multilangtext(prela.rela_assoc_to_from_l)
-                                  ,prela.rela_maptype_to_from
-                                  ,Boolean.str2bool(prela.rela_hist_to_from)
-                                  ,Boolean.str2bool(prela.rela_mandatory_to_from)
-                                  ,prela.from_cardstr()
-                                ])
-                                ,reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys]),
-                              sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id))
-                               ,prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm,
-                                prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getpublstatus()
-                                ,userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA))
-                               ,[jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=prela.rela_id)]\
+                   pentries=[prela.rela_name, prela.rela_type,
+                                relaend2js(prelaend= [jsguid(Modelelemtype.ENTI, prela.rela_enti_id_from),
+                                 None if prela.rela_arcs_id_from is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_from),
+                                 multilangtext(prela.rela_assoc_from_to_l),
+                                 prela.rela_maptype_from_to,
+                                 Boolean.str2bool(prela.rela_hist_from_to),
+                                 Boolean.str2bool(prela.rela_mandatory_from_to),
+                                 prela.to_cardstr()
+                                 ]),
+                                relaend2js(prelaend=[ jsguid(Modelelemtype.ENTI, prela.rela_enti_id_to),
+                                   None if prela.rela_arcs_id_to is None else jsguid(Modelelemtype.ARCS, prela.rela_arcs_id_to),
+                                   multilangtext(prela.rela_assoc_to_from_l),
+                                   prela.rela_maptype_to_from,
+                                   Boolean.str2bool(prela.rela_hist_to_from),
+                                   Boolean.str2bool(prela.rela_mandatory_to_from),
+                                   prela.from_cardstr()
+                                ]),
+                                 reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in keys]),
+                              sourceref(pvalues=Externalref.getsrcinfo(pmodeid=prela.rela_id)),
+                                prela.rela_uc, prela.rela_dc, prela.rela_um, prela.rela_dm,
+                                prela.getminzoomlevel(), prela.getmaxzoomlevel(), prela.getpublstatus(),
+                                buruinelements(prela.rela_id),
+                                userdefprops(pprops=udpv2js(pmodeid=prela.rela_id, pmodelemtype=Modelelemtype.RELA)),
+                               [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=prela.rela_id)]\
                                 +[jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=prela.rela_id)],
-                tabreflist(plist={
-                    jsguid(Modelelemtype.INTF, s.getid()):
-                        [jsguid(Modelelemtype.TABL, t.tabl_id)
-                         for t in TablEntiMap.gettabllist(prelaid=prela.rela_id,
-                                                 pintfid=s.getid())
-                        ]
+                            tabreflist(plist={
+                                jsguid(Modelelemtype.INTF, s.getid()):
+                                    [jsguid(Modelelemtype.TABL, t.tabl_id)
+                                     for t in TablEntiMap.gettabllist(prelaid=prela.rela_id,
+                                                             pintfid=s.getid())
+                                    ]
                     for s in Interface.getmapped(prelaid=prela.rela_id)})
 
                                ]
@@ -142,8 +143,8 @@ def arcs2js(pemptymodel):
     if pemptymodel:
         retval= {jsguid(Modelelemtype.ARCS, "0000") : fillmodel(pmodel=model,pentries=['','',reflist(),sourceref(),'','','',''])}
     else:
-        retval = {jsguid(Modelelemtype.ARCS, a.arcs_id): fillmodel(pmodel=model
-                                                               ,pentries=[a.arcs_name,
+        retval = {jsguid(Modelelemtype.ARCS, a.arcs_id): fillmodel(pmodel=model,
+                                                                pentries=[a.arcs_name,
                         jsguid(Modelelemtype.ENTI, a.arcs_enti_id),
                         [jsguid(Modelelemtype.RELA, r.rela_id) for r in a.getrelalist()],
                         Externalref.getsrcinfo(pmodeid=a.arcs_id),

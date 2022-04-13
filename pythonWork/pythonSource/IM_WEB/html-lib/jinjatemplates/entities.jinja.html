@@ -130,6 +130,7 @@
 										<th>{{ webmodel.gettransltext('Entität')~'-2' }}</th>
 										<th>{{ webmodel.gettransltext('Arc') }}</th>
 										<th>{{ webmodel.gettransltext('Schlüssel') }}</th>
+										<th>{{ webmodel.gettransltext('Business Rules') }}</th>
 									</tr>
 									{% for relaid in elem["relations+"] %}
 									{% set rela = webmodel.getelem(relaid) %}
@@ -153,6 +154,13 @@
 											{{ blocks.tdicon('down') }}
 											<td>{{ arc }}</td>
 											{{ blocks.tdbool2icon((rela['isinkeys+']|count) > 0) }}
+												<td> {% for buruid in elem["businessrules+"] %}
+													 {% set buru = webmodel.getelem(buruid) %}
+													 {{ webmodel.getreflink(name=webmodel.getlangstr(buru["name"])
+											   			,destid=buruid
+											   			,curintfid=webmodel.getelemintfid(elemid))|safe }}
+													{% endfor %}
+												</td>
 										   </tr>
 									   		<tr>
 											<td>{{ '' }}</td>
@@ -169,7 +177,15 @@
 							</table>
 						</div> 
 					{% endcall %}
-					
+
+					<!--businessrules-->
+					{% if elem["businessrules+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Business Rules"), lbc=elemid ~ "refburu") %}
+						{{ blocks.burulist(webmodel,elemid,elem) }}
+					{% endcall %}
+					{% endif %}
+
+
 					<!--referencedby-->
 					{% if elem["referencedby"]|count > 0 %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Referenziert von"), lbc=elemid ~ "ref") %}

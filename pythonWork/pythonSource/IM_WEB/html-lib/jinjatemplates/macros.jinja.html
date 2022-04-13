@@ -166,6 +166,36 @@
 						</div> 
 {%- endmacro %}
 
+{% macro burulist(webmodel, elemid, elem) -%}
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>{{ webmodel.gettransltext("Name") }}</th>
+										<th>{{ webmodel.gettransltext("Typ") }}</th>
+										<th>{{ webmodel.gettransltext("R/W") }}</th>
+									</tr>
+									{% for buruid in elem["businessrules+"] %}
+									{% set buru = webmodel.getelem(buruid) %}
+									<tr>
+										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(buru["name"])
+											   ,destid=buruid
+											   ,curintfid=webmodel.getelemintfid(elemid))|safe }}
+										</td>
+										<td>{{ buru["type"] }}
+										</td>
+										<td>{{ buru['elements'][elemid]["r/w"] }}
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+
+{%- endmacro %}
+
+
+
 {% macro elementlist(webmodel, elems) -%}
 			{% for elemid in elems %}
 			{% if loop.index > 1 %} {{ ', ' }} {% endif %}

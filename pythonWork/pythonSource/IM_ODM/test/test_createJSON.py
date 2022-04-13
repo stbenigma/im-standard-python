@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from IM_ODM import createJSON
-from SSOT_db.IM_OBJECTS import BusinessRule, BusinessruleElement,Attribute,Entity,Languagetext
+from SSOT_db.IM_OBJECTS import BusinessRule, BusinessruleElement,Attribute,Entity,Languagetext,Relation
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra.tests.integration import testmodelcrm
 
@@ -32,6 +32,7 @@ class MyTestCase(unittest.TestCase):
         buruid = buru.insert()
         Languagetext.fillnontranslatedtexts(['BURU'])
         enti = Entity.getbyuk(enti_name="natürliche Person")
+        rela = Relation.getbyuk(rela_name= "Relation_103")
         attrs=Attribute.select(pwhere=("attr_enti_id = ?",
                                        enti.enti_id))
 
@@ -46,6 +47,9 @@ class MyTestCase(unittest.TestCase):
                                    ).insert()
         BusinessruleElement(bure_buru_id=buruid,
                                    bure_mode_id=enti.enti_id
+                                   ).insert()
+        BusinessruleElement(bure_buru_id=buruid,
+                                   bure_mode_id=rela.rela_id
                                    ).insert()
         dbConnect.closeDB()
         return
