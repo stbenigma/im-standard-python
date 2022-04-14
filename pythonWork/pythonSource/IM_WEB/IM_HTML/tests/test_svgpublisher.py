@@ -1,5 +1,7 @@
+import html
 import json
 import logging
+import re
 from pathlib import Path
 
 import pytest
@@ -9,15 +11,7 @@ from IM_WEB.IM_HTML.svgpublisher import publish_svg_diagrams
 from SSOT_db.IM_JSON import JSModel
 from SSOT_infra import parameters
 from SSOT_infra.parameters import parameterdefaults
-from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir
-
-
-class MockTranslator:
-
-    def tr(self, value):
-        if type(value) == dict and len(value) > 0:
-            return list(value.values())[0]
-        return ''  # fallback
+from SSOT_infra.tests.integration import IntegrationTest, riddle_json
 
 
 def udpr_to_link(element: dict) -> (str or None):
@@ -27,21 +21,20 @@ def udpr_to_link(element: dict) -> (str or None):
         for m_key, m_value in udpr.items():
             for g_key, g_value in m_value.items():
                 for key, value in g_value.items():
-                    print(f"UDPR {m_key} {g_key}: {key} == {value}")
                     if 'TOOL' in value['name']:
-                        print(f"Found {value['value']} on {element}")
                         return value['value']
     return None
 
 
 class EnvironDiagramGeneration(IntegrationTest):
-    RIDDLEPATH = testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
+
+    RIDDLE_PATH = riddle_json()
 
     @pytest.fixture(autouse=True)
     def init(self, tmp_path):
         self.temp_folder = Path(tmp_path)
 
-    def test_render(self, ssot_file=RIDDLEPATH):
+    def test_render(self, ssot_file=RIDDLE_PATH):
         if not ssot_file.exists():
             logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
         with open(ssot_file, 'r') as src:
@@ -68,7 +61,10 @@ class EnvironDiagramGeneration(IntegrationTest):
             self.assertEqual(1, len(riddle_file))
             with open(riddle_file[0], 'r') as src:
                 lines = src.readlines()
-                match = list(filter(lambda l: 'https://www.planemapper.com/' in l.lower(), lines))
-                print(f"Found {len(match)} hyperlinks in {riddle_file[0]}")
+                match = list(filter(lambda l: 'https://res.cloudinary.com/' in l.lower(), lines))
                 self.assertTrue(len(match) > 0)
-
+                m = re.findall(r'"https://res\.cloudinary\.com.+&amp;"', match[0])
+                self.assertEqual(len(m), 1)
+                content = m[0][1:-1]
+                verify = html.escape(html.unescape(content))
+                self.assertEqual(content, verify)

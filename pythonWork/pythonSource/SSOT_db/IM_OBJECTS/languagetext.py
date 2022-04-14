@@ -19,6 +19,7 @@ class Languagetext(Baseobject):
     RELA_TEXT_TO: str = 'RELA_TEXT_TO'
     ENTI_SYNONYM: str = 'ENTI_SYNONYM'
     BURU_NAME: str = 'BURU_NAME'
+    BURU_DESCR: str = 'BURU_DESCR'
     BURU_ERRORMSG: str = 'BURU_ERRORMSG'
     EXPL_VALUE: str = 'EXPL_VALUE'
     ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
@@ -26,7 +27,7 @@ class Languagetext(Baseobject):
         , ENTI_SYNONYM
         , RELA_TEXT_TO, RELA_TEXT_FROM
         , DOMA_NAME, DOMA_DESCR
-        , BURU_NAME, BURU_ERRORMSG, EXPL_VALUE
+        , BURU_NAME, BURU_DESCR, BURU_ERRORMSG, EXPL_VALUE
                            ]
 
     __greportLang: str = None
@@ -89,6 +90,10 @@ class Languagetext(Baseobject):
                                     from DOMAINS
                                     union all  
                                    select 'BURU_NAME' attrname, buru_name text 
+                                        ,buru_id,buru_uc,buru_dc
+                                    from business_rules  
+                                    union all  
+                                   select 'BURU_DESCR' attrname, buru_descr text 
                                         ,buru_id,buru_uc,buru_dc
                                     from business_rules  
                                     union all  

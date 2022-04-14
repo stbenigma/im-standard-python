@@ -21,9 +21,10 @@
     <link rel="icon" type="image/png" href="image/imicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jscode.js"></script>
     <script src="js/IM.js"></script>
 	<script src="js/svg-pan-zoom.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -47,10 +48,10 @@
 		<div id="toc_list">
 			<div class="form-wrapper">
 				<form autocomplete="off">
-					<div class="form-group">
+					<div class="form-group focused">
 						<label class="form-label" for="first">search key</label>
 						<input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
-						<img id="searchclear" class="icon-times" src="icons/cross.svg">
+						<img id="searchclear" class="icon-times" src="icons/cross.svg" stype="display: none;">
 						<img class="icon-search" alt="minus" src="icons/search.svg" id="searcher">
 					</div>
 				</form>
@@ -184,7 +185,7 @@
 									
 									<td class="attribute">
 										{% for child in webmodel.documents %}
-										{% set childelem = webmodel.getelem(child[0])%}
+										{% set childelem = webmodel.getelem(child[0]) %}
 										{% if childelem['parent'] == elemid %}
 											 {{ webmodel.getreflink(name=childelem['name'],destid=child[0]) |safe+', '}} 
 										{% endif %}
@@ -304,8 +305,6 @@
             </div>
         </div>
     </div>
-	
-	{% include "jscode.js" %}
-	
+	{{ blocks.zoomfinish(diagrams=webmodel.diagrams) }}
 </body>
 </html>

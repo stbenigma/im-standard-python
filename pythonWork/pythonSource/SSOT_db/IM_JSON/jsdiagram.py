@@ -1,5 +1,5 @@
 from SSOT_db.IM_JSON import *
-from SSOT_infra import nvl
+from SSOT_infra import nvl,logmessages
 import math
 from tqdm.auto import tqdm
 
@@ -61,7 +61,7 @@ def elemreps2sql(presult: Mergeresult, pdiagid, pelemreps):
         try:
             eler.insert()
         except Exception as err:
-            presult.markdberror(per=err, pelem=jelem)
+            presult.markdberror(perr=err, pelem=jelem)
             continue
     # for
     return
@@ -330,7 +330,7 @@ def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
     return
 
 
-def defarcs(parc, pdiagid):
+def defarcs(parc:Arc, pdiagid):
     if parc is None:
         return {'arcs': {'ARCS0000': {"circles": ['', '']}
                          }
@@ -339,9 +339,12 @@ def defarcs(parc, pdiagid):
     arcselem = parc.getarcselem(pdiagid=pdiagid)
     if len(arcselem) == 0:
         return arc
-    enti = Elementrep.select(
+    entis = Elementrep.select(
         pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
-    enti = enti[0]
+    if len(entis)== 0:
+        logmessages.writelog(f"Arc-entity not found for diagram:\tDiagram {pdiagid}, Entity {parc.arcs_enti_id}")
+        return arc
+    enti = entis[0]
     PONTDISTANCE = 20
     entiheight, entiwidth = enti.eler_height, enti.eler_width
     enticenterx, enticentery = enti.eler_position_x + (entiwidth / 2), enti.eler_position_y + (entiheight / 2)

@@ -3,11 +3,9 @@ import logging
 import os
 import sqlite3
 from threading import local
-from SSOT_infra import nvl
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
-
-
+from SSOT_infra import nvl
 
 context = local()
 
@@ -15,7 +13,7 @@ context = local()
 def jsguid(mtype, guid):
     """creates a unique ID as reference in the json file
    <telemtype><elemid> """
-    context.ctx = {}
+    context.ctx = dict()
     context.ctx[mtype] = guid
     return None if guid is None else mtype + (guid if type(guid) == str else str(guid))
 
@@ -23,8 +21,6 @@ def jsguid(mtype, guid):
 def jsguid2id(guid):
     """returns the id part of a jsguid by removing the 4 leading characters (type) from a jsguid"""
     return None if guid is None else int(guid[4:])
-
-
 
 
 def jsguid2type(guid):
@@ -70,7 +66,7 @@ class JSModel:
     ELEMTYPE_CATG = 'CATG'
     _elemtype2label = {
         Modelelemtype.ENTI: 'entities',
-        Modelelemtype.BURU: 'businessrules2js',
+        Modelelemtype.BURU: 'businessrules',
         Modelelemtype.RELA: 'relations',
         Modelelemtype.ATTR: 'attributes',
         Modelelemtype.DOMA: 'domains',
@@ -99,34 +95,19 @@ class JSModel:
         self._errors = []
         self._warnings = []
         self.languages = {}  # langid:iso2
-        self._statusfilter = (None, 'DRAFT', 'GTOP', 'PUBL')
 
-    def getelements(self, pelemtype, pfiltered=True):
+    def getelements(self, pelemtype):
         """returns dict of top level Elements filtered by statusfilter"""
-        elemkey = JSModel.elemtype2label(pelemtype=pelemtype)
-        if elemkey is None:
-            """ not found, check wether pelem is already a key"""
-            if pelemtype in self.jsmodel:
-                elemkey = pelemtype
-            else:
+        if pelemtype in self.jsmodel:
+            elemtypekey = pelemtype
+        else:
+            elemtypekey = JSModel.elemtype2label(pelemtype=pelemtype)
+            if elemtypekey is None:
                 return None
             # fi
         # fi
-        assert (elemkey in self.jsmodel), "key {} not found in json-model".format(elemkey)
-        """get all elements, if filtered make sure it is 
-            a) not a dict, 
-            b) has no publstatus or 
-            c) its publstatus is in my statusfilter"""
-        elems = {key: value for key, value in self.jsmodel[elemkey].items()
-                 if (not pfiltered or (type(value) != dict) or
-                     ('publstatus' not in value) or (value['publstatus'] in self._statusfilter))}
-        return elems
-
-    def setstatusfilter(self, pfilter):
-        self._statusfilter = pfilter
-
-    def getstatusfilter(self, pfilter):
-        return self._statusfilter
+        assert (elemtypekey in self.jsmodel), "key {} not found in json-model".format(elemtypekey)
+        return self.jsmodel[elemtypekey]
 
     @staticmethod
     def readfromfile(pfilename):
@@ -211,14 +192,12 @@ class JSModel:
         if pelemstr != '':
             self._errors.append(pelemstr)
         self.incerrcnt()
-
-    # markerror
+        return
 
     def markwarning(self, pmsg):
         self._warnings.append("WARNING: {}".format(pmsg))
         self.incwrncnt()
-
-    # markwarning
+        return
 
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
@@ -227,10 +206,10 @@ class JSModel:
 # JSModel
 
 
-def printJSON(pmodel, pfilepath, pfilename):
+def printJSON(pmodel, pfilepath, pfilename, psorted=False):
     destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
-        jsonfile.write(json.dumps(pmodel, indent=3, sort_keys=False))
+        jsonfile.write(json.dumps(pmodel, indent=3))
     return destination
 
 

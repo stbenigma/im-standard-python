@@ -1,5 +1,6 @@
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype
+from .relationship import Relation
 
 class Key(Baseobject):
     _tablename: str = 'keys'
@@ -58,5 +59,3 @@ class Keyelement(Baseobject):
 
 
 # Keyelement
-from .attribute import Attribute
-from .relationship import Relation

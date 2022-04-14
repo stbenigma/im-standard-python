@@ -44,7 +44,7 @@ def fillsql(pmodel:JSModel):
     print("==== {} error(s) found ====".format(str(pmodel.errcnt())))
     for warn in pmodel.warnings(): print (warn)
     print("==== {} warning(s) found ====".format(str(pmodel.wrncnt())))
-# fillsql
+    return
 
 
 # Main Programm

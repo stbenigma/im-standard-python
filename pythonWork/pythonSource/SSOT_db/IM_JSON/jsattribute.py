@@ -1,33 +1,64 @@
 from SSOT_db.IM_JSON import *
+from SSOT_db.IM_OBJECTS import *
+from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
+from SSOT_db.IM_JSON import jsentity
 
-def businessrule2js(pburuid=None):
-    model = ['name', 'level', 'type'
-        , 'readwrite', 'rule', 'errosmsg', 'refelements'
-             ]
-    if pburuid is None:
-        retval = fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])
+def buruinelements(pelemid=None):
+    if pelemid is None:
+        retval = {'checked': [],
+                  'referenced': [],
+                  'changed': []}
     else:
-        bures = BusinessruleElement.getburuelements(pmodeid=pburuid)
-        if not bures: return []
-        retval = []
-        for bure in bures:
-            buru: BusinessRule = bure.getparent()
-            refobjs = []
-            if (buru.buru_type == BusinessRule.BURU_TYPE_CALC) or \
-                    (
-                            buru.buru_type == BusinessRule.BURU_TYPE_CHECK and buru.buru_level != BusinessRule.BURU_LEVEL_ATTR):
-                refobjs = []  # fill jsguids
-            # print (bure.getparent().buru_name)
-            burujs = {'name': buru.buru_name, 'level': buru.buru_level, 'type': buru.buru_type
-                , 'readwrite': "W" if Boolean.str2bool(bure.bure_writeable) else 'R', 'rule': buru.buru_rule
-                      }
-            if buru.buru_type == BusinessRule.BURU_TYPE_CHECK:
-                burujs['errosmsg'] = buru.buru_errormsg
-            if len(refobjs) > 0:
-                burujs['refelements'] = [r for r in refobjs]
-            retval.append(burujs)
+        bures = BusinessruleElement.select(pwhere=("bure_mode_id = ?", pelemid))
+        retval = {'checked': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if be.bure_role == BusinessruleElement.AFFECTED],
+                  'referenced': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if be.bure_role == BusinessruleElement.REFERENCED],
+                  'changed': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if Boolean.str2bool(be.bure_writeable) ]}
+    return retval
+
+
+def buruelement2js(pbure=None):
+    if pbure is None:
+        retval = {'elemid': 'xxxx0000', 'role': '', 'r/w': ''}
+    else:
+        mode = Modelelement().getbyid(pbure.bure_mode_id)
+        retval = {'elemid': jsguid(mode.mode_type, mode.mode_id),
+                  'role': pbure.bure_role,
+                  'r/w': pbure.bure_writeable}
+    return retval
+
+
+def businessrule2js(pburu):
+    model = ['name', 'descr', 'level', 'type'
+        , 'impact', 'rule', 'errosmsg', 'elements'
+             ]
+    if pburu is None:
+        retval = fillmodel(pmodel=model,
+                           pentries=[multilangtext(), multilangtext(),
+                                     '', '', '', '',
+                                     multilangtext(),
+                                     [buruelement2js()]
+                                     ]
+                           )
+    else:
+        retval = fillmodel(pmodel=model,
+                           pentries=[multilangtext(pburu.buru_name_l),
+                                     multilangtext(pburu.buru_descr_l),
+                                     pburu.buru_level, pburu.buru_type,
+                                     pburu.buru_impact, pburu.buru_rule,
+                                     multilangtext(pburu.buru_errormsg_l),
+                                     [buruelement2js(be) for be in pburu.getchildren()]
+                                     ]
+                           )
     # fi
     return retval
+
+
+def businessrules2js(pemptymodel):
+    if pemptymodel:
+        burus = {jsguid(Modelelemtype.BURU, '0000'): businessrule2js(None)}
+    else:
+        burus = {jsguid(Modelelemtype.BURU, b.buru_id): businessrule2js(b) for b in BusinessRule.select()}
+    return burus
 
 
 def attr2js(pattr):
@@ -41,8 +72,7 @@ def attr2js(pattr):
         , 'examples', 'tooltip', 'descr'
         , 'uc', 'dc', 'um', 'dm'
         , 'minzoomlevel', 'maxzoomlevel', 'publstatus'
-        , 'sourceref', 'keys+'
-             # , 'businessrules'
+        , 'sourceref', 'keys+', 'businessrules+'
         , 'referencedby', 'userdefprops'
         , 'columnsmapped+', 'diagrams+'
              ]
@@ -57,47 +87,54 @@ def attr2js(pattr):
                 , '', ''
                 , jentity.examples2js(None), multilangtext(), multilangtext()
                 , '', '', '', '', 0, 4, 'DRAFT'
-                , sourceref(), reflist()
-                                       # , businessrules2js()
+                , sourceref(), reflist(), buruinelements(None)
                 , reflist(), userdefprops()
-                , {jsguid(Modelelemtype.INTF, "0000"): [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
+                , {jsguid(Modelelemtype.INTF, "0000"):
+                       [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
                                        ]
                            )
     else:
         doma = Domain().getbyid(pattr.attr_doma_id)
 
-        retval = fillmodel(pmodel=model
-                           , pentries=[pattr.attr_tech_name, multilangtext(pattr.attr_displ_name_l)
-                , pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id)
-                , jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),
-                                       None if doma.doma_daty_id is None else Datatype().getbyid(
-                                           doma.doma_daty_id).daty_name
-                , doma.doma_type, None if (doma.doma_type != Domain.GRP) else domaingroupmembers(
-                    pdomaid=pattr.attr_doma_id)
-                , Boolean.str2bool(pattr.attr_is_descriptive), Boolean.str2bool(pattr.attr_is_mandatory)
-                , Boolean.str2bool(pattr.attr_is_historicised), Boolean.str2bool(pattr.attr_is_repeated)
-                , Boolean.str2bool(pattr.attr_is_translated), Boolean.str2bool(pattr.attr_is_encrypted)
-                , examples2js(pexpls=pattr.getexamples())
-                , multilangtext(pattr.attr_tooltip_l)
-                , multilangtext(pattr.attr_descr_l)
-                , pattr.attr_uc, pattr.attr_dc, pattr.attr_um, pattr.attr_dm
-                , pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getpublstatus()
-                , Externalref.getsrcinfo(pmodeid=pattr.attr_id),
-                                       [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()]
-                                       # , businessrules2js(pburuid=pattrxml.attr_id)
-                , [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=pattr.attr_id)] \
-                                       + [jsguid(Modelelemtype.ORGU, d[0]) for d in
-                                          OragnisationalUnit.getreforgulist(pid=pattr.attr_id)]
-                , userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR))
-                , colureflist({jsguid(Modelelemtype.INTF, s.getid()): [jsguid(Modelelemtype.COLU, c.colu_id) for c in
-                                                                       ColAttrMap.getcolulist(pattrid=pattr.attr_id,
-                                                                                              pintfid=s.getid())]
-                               for s in Interface.getmapped(pattrid=pattr.attr_id)
-                               }
-                              )
-                , reflist(
-                    plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in Diagram.getdiagrams(pmodeid=pattr.attr_id)])
-                                       ])
+        retval = fillmodel(pmodel=model,
+                           pentries=[pattr.attr_tech_name, multilangtext(pattr.attr_displ_name_l),
+                                     pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id),
+                                     jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),
+                                     None if doma.doma_daty_id is None else Datatype().getbyid(
+                                         doma.doma_daty_id).daty_name,
+                                     doma.doma_type,
+                                     None if (doma.doma_type != Domain.GRP) else \
+                                         domaingroupmembers(pdomaid=pattr.attr_doma_id),
+                                     Boolean.str2bool(pattr.attr_is_descriptive),
+                                     Boolean.str2bool(pattr.attr_is_mandatory),
+                                     Boolean.str2bool(pattr.attr_is_historicised),
+                                     Boolean.str2bool(pattr.attr_is_repeated),
+                                     Boolean.str2bool(pattr.attr_is_translated),
+                                     Boolean.str2bool(pattr.attr_is_encrypted),
+                                     examples2js(pexpls=pattr.getexamples()),
+                                     multilangtext(pattr.attr_tooltip_l),
+                                     multilangtext(pattr.attr_descr_l),
+                                     pattr.attr_uc, pattr.attr_dc, pattr.attr_um, pattr.attr_dm,
+                                     pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getpublstatus(),
+                                     Externalref.getsrcinfo(pmodeid=pattr.attr_id),
+                                     [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()],
+                                     buruinelements(pattr.attr_id),
+                                     [jsguid(Modelelemtype.DOCU, d[0]) for d in
+                                      Document.getrefdoculist(pid=pattr.attr_id)] \
+                                     + [jsguid(Modelelemtype.ORGU, d[0]) for d in
+                                        OragnisationalUnit.getreforgulist(pid=pattr.attr_id)],
+                                     userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR)),
+                                     colureflist({jsguid(Modelelemtype.INTF, s.getid()): [
+                                         jsguid(Modelelemtype.COLU, c.colu_id) for c in
+                                         ColAttrMap.getcolulist(pattrid=pattr.attr_id,
+                                                                pintfid=s.getid())]
+                                         for s in Interface.getmapped(pattrid=pattr.attr_id)
+                                     }
+                                     ),
+                                     reflist(
+                                         plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
+                                                Diagram.getdiagrams(pmodeid=pattr.attr_id)])
+                                     ])
         if (doma.doma_type != Domain.GRP):
             del retval['memberattrs+']
     # fi
@@ -184,8 +221,8 @@ def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
 
         """Examples have in ODM no guid. Delete them and fill new synonyms"""
-        jsentity.mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage()
-                               , presult=presult, pattrid=attrid)
+        jsentity.mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
+                               presult=presult, pattrid=attrid)
 
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_TOOLTIP, ptexts=jelem['tooltip'])
@@ -201,21 +238,21 @@ def keyelems2js(pkey):
     if pkey is None:
         retval = fillmodel(pmodel=model, pentries=[reflist(), reflist()])
     else:
-        retval = fillmodel(pmodel=model
-                           , pentries=[[jsguid(Modelelemtype.ATTR, ke.kele_attr_id)
-                                        for ke in pkey.getkeyelements(Modelelemtype.ATTR)]
-                , [jsguid(Modelelemtype.RELA, ke.kele_rela_id)
-                   for ke in pkey.getkeyelements(Modelelemtype.RELA)]
-                                       ]
+        retval = fillmodel(pmodel=model,
+                           pentries=[[jsguid(Modelelemtype.ATTR, ke.kele_attr_id)
+                                      for ke in pkey.getkeyelements(Modelelemtype.ATTR)],
+                                     [jsguid(Modelelemtype.RELA, ke.kele_rela_id)
+                                      for ke in pkey.getkeyelements(Modelelemtype.RELA)]
+                                     ]
                            )
     # fi
     return retval
 
 
 def keys2js(pemptymodel):
-    model = ['name', 'entity'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'sourceref', 'key-elements'
+    model = ['name', 'entity',
+             'uc', 'dc', 'um', 'dm',
+             'sourceref', 'key-elements'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.KEYS, "0000"): fillmodel(pmodel=model,
@@ -225,12 +262,12 @@ def keys2js(pemptymodel):
         keys = Key.select()
 
         retval = {jsguid(Modelelemtype.KEYS, k.keys_id):
-                      fillmodel(pmodel=model
-                                , pentries=[k.keys_name, jsguid(Modelelemtype.ENTI, k.keys_enti_id)
-                              , k.keys_uc, k.keys_dc, k.keys_um, k.keys_dm
-                              , Externalref.getsrcinfo(pmodeid=k.keys_id)
-                              , keyelems2js(k)
-                                            ]
+                      fillmodel(pmodel=model,
+                                pentries=[k.keys_name, jsguid(Modelelemtype.ENTI, k.keys_enti_id),
+                                          k.keys_uc, k.keys_dc, k.keys_um, k.keys_dm,
+                                          Externalref.getsrcinfo(pmodeid=k.keys_id),
+                                          keyelems2js(k)
+                                          ]
                                 )
                   for k in keys}
 

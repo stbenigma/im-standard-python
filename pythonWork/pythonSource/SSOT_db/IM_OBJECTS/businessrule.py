@@ -21,8 +21,9 @@ class BusinessRule(MultilangBaseobject):
     _defaultorderby = "buru_name"
 
     def __init__(self, psrcname=None, psrcid=None):
-        super().__init__(multilangcols={'buru_descr': Languagetext.ATTR_COMMENT,
-                                        'buru_errormsg': Languagetext.ATTR_TOOLTIP}
+        super().__init__(multilangcols={'buru_name': Languagetext.BURU_NAME,
+                                        'buru_descr': Languagetext.BURU_DESCR,
+                                        'buru_errormsg': Languagetext.BURU_ERRORMSG}
                          , pscrid=psrcid
                          , psrcname=psrcname)
 
@@ -34,6 +35,9 @@ class BusinessRule(MultilangBaseobject):
 
     def geterrormsg(self, plang=None):
         return self._getsprachval(colname='buru_errormsg', plang=plang)
+
+    def getchildren(self):
+        return BusinessruleElement.select(pwhere=("bure_buru_id=?",self.getid()))
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pattrid=self.buru_id)
@@ -60,15 +64,19 @@ class BusinessRule(MultilangBaseobject):
 # BusinessRule
 
 class BusinessruleElement(Baseobject):
+
+    AFFECTED,REFERENCED = 'AFCT', 'REF'
+
     _tablename: str = 'businessrule_elements'
     _prefix: str = 'bure'
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self, pburuid=None, pwriteable=False, pmodeid=None):
+    def __init__(self, pburuid=None, pwriteable=False, pmodeid=None,pburerole=None):
         super().__init__()
         self.bure_buru_id = pburuid
         self.bure_mode_id = pmodeid
+        self.bure_role = pburerole
         self.bure_writeable = Boolean.bool2str(pwriteable)
 
     def getelement(self):

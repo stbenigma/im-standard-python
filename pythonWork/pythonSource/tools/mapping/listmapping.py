@@ -574,13 +574,13 @@ def createAllMapping(pjsonfile, plang):
     lang = plang if plang is not None else jsmodel.jsmodel["model"]["language"]
     filename = pjsonfile[:-len(JSONEXTENSION)] + '_datamodels'
     fileext = '.xlsx'
-
+    target = filename + fileext
     #    writexls(pfilename= filename + fileext,pmodel=model,plang=lang)
-    writeintfxls(pfilename=filename + fileext, pmodel=jsmodel, plang=lang)
+    writeintfxls(pfilename=target, pmodel=jsmodel, plang=lang)
     print("Model {}: \n  => created in file {}"
           .format(jsmodel.jsmodel["model"]["name"]
                   , filename + fileext))
-    return
+    return target
 
 
 if __name__ == '__main__':

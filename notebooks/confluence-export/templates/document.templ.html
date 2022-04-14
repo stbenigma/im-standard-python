@@ -20,7 +20,7 @@
         </tr>
         <tr>
           <th>{{ gettext('Reference count') }}</th>
-          <td>{{ document['referencecnt+'] }}</td>
+          <td>{{ str(len(document['references+'])) }}</td>
         </tr>
         <tr>
           <th>{{ gettext('Parent') }}</th>

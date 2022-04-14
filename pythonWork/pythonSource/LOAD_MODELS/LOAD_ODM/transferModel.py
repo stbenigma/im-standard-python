@@ -3,6 +3,7 @@ import math
 import os
 import re
 import xml.etree.ElementTree as et
+from typing import List
 
 from LOAD_MODELS.LOAD_INFRA import handleXML
 from LOAD_MODELS.LOAD_ODM import transferRelational
@@ -684,6 +685,20 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc):
                                                                    py=points[len(points) - 1]['y'], pdiagid=pdiagid,
                                                                    pentiid=rela.rela_enti_id_to)
 
+            # HACK around sqlite3.IntegrityError: CHECK constraint failed: relr_stx_chk
+            if relr.relr_starttext_x is None or int(relr.relr_starttext_x) < 0:
+                logmessages.writelog(
+                    f"Patching relr_starttext_x({relr.relr_starttext_x}) on {rela.rela_id} to 0 (diagram {pdiagid}, relation {rela.rela_id})")
+                # logging.warning(f"Patching relr_starttext_x({relr.relr_starttext_x}) on {rela.rela_id} to 0")
+                relr.relr_starttext_x = 0
+
+            # HACK around sqlite3.IntegrityError: CHECK constraint failed: relr_sty_chk
+            if relr.relr_starttext_y is None:
+                logmessages.writelog(
+                    f"Patching relr_starttext_y({relr.relr_starttext_y}) on {rela.rela_id} to 0 (diagram {pdiagid}, relation {rela.rela_id})")
+                # logging.warning(f"Patching relr_starttext_y({relr.relr_starttext_y}) on {rela.rela_id} to 0")
+                relr.relr_starttext_y = 0
+
             relr.insert()
 
             linesegs = []
@@ -718,9 +733,16 @@ def transferdiaarc(parcs, pdiagid, puc, pdc):
     pass
 
 
+def stable_file_list(folder: str) -> List[str]:
+    assert os.path.isdir(folder), f"Path '{folder}' is not a valid folder"
+    result = list(os.listdir(folder))
+    result.sort()
+    return result
+
+
 def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
     try:
-        listdir = os.listdir(pdirec)
+        listdir = stable_file_list(pdirec)
     except Exception as ex:
         if pmandatorydirec:
             logmessages.writelog('dosxmlfiles: directory "{}" not found.'.format(pdirec))
@@ -736,7 +758,7 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
 
 def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
     try:
-        listdir = os.listdir(pdirec)
+        listdir = stable_file_list(pdirec)
     except Exception as ex:
         if pmandatoryfile:
             logmessages.writelog('dosSEGfiles: directory "{}" not found.'.format(pdirec))
@@ -981,7 +1003,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pburerole=BusinessruleElement.AFFECTED)
         bure.insert()
     # fi
 
@@ -991,7 +1013,8 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
-        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pwriteable=True)
+        bure = BusinessruleElement(pburuid=buruid, pmodeid=pmodeid, pwriteable=True,
+                                   pburerole=BusinessruleElement.AFFECTED)
         bure.insert()
     # fi
     return
@@ -1532,7 +1555,7 @@ def do1UDPFile(pfileName):
 
 
 def dofiles(pdirec, pfileregexp, ptransferfunc):
-    for file in os.listdir(parameters.odmFilesDirec()):
+    for file in stable_file_list(parameters.odmFilesDirec()):
         filename, file_extension = os.path.splitext(file)
         if (pfileregexp.filename):
             filepath = parameters.odmIMDirec() + file
@@ -1654,7 +1677,7 @@ def transferproject():
         sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1).lower()
         assert defspra == parameters.dbDefaultLang(), \
             f"Model default language in parameter ('{parameters.dbDefaultLang()}') and project comment ('{defspra}') mismatch"
-        assert set(sprachen.split(',')) ==  set(parameters.dbLanguages().split(',')), \
+        assert set(sprachen.split(',')) == set(parameters.dbLanguages().split(',')), \
             f"Model languages in parameter ({parameters.dbLanguages()}) and project comment ({sprachen}) mismatch"
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
     proj = Project()

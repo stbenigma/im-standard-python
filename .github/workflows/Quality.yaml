@@ -41,6 +41,7 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file conda-base-environment.yaml --name base
+        pip install Office365-REST-Python-Client
 
     - name: Unitttests with pytest
       run: |
@@ -58,12 +59,11 @@ jobs:
 
     - name: Build deployment package
       run: |
-        python pythonWork/pythonSource/tools/deploy.py
+        inv package
 
-    # Run integration test
     - name: Test run generator
       run: |
-        python dist/generator.py --version
+        inv generator --version
 
     - name: Integration test run with riddle model located within same git repo
       run: |
@@ -77,12 +77,12 @@ jobs:
         echo "Update SPOD"
         python dist/generator.py --languages 'en' --model pythonWork/pythonSource/testenvironment/testmodels/riddle/IM --all
 
-      # Integration test prerequisites
+    # Integration test prerequisites
     - name: Clone reference model repository using fycops token
       uses: actions/checkout@v2
       with:
         repository: foryouandyourcustomers/fyyccim-refmodels
-        token: ${{ secrets.FYYCCIM_REFMODELS_KEY }}
+        token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
         path: testdata/fyyccim-refmodels
 
     - name: Integration test run with raetsel-3lang model
@@ -123,8 +123,43 @@ jobs:
         cp testdata/db-schema-versions/raetsel-3lang-1.6.db testdata/fyyccim-refmodels/raetsel-3lang/DB/raetsel-3lang.db
         python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
 
+    # Integration test requires testdata/fyyccim-refmodels to be checked out
+    # and SPOD generated (*.json files)
     - name: Execute integration tests
       run: pytest -m "integration"
+
+    - name: Clone ktlu-im repository using fycops token
+      uses: actions/checkout@v2
+      with:
+        repository: foryouandyourcustomers/ktlu-im
+        token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
+        path: testdata/ktlu-im
+
+    - name: Generate Kanton Luzern model (lawa)
+      run: |
+        python dist/generator.py --languages=de --model testdata/ktlu-im/IM --all
+
+    - name: Clone Bossard repository using fycops token
+      uses: actions/checkout@v2
+      with:
+        repository: foryouandyourcustomers/Bossard-IM
+        token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
+        path: testdata/Bossard-IM
+
+    - name: Generate Boassard model
+      run: |
+        python dist/generator.py --languages=de --model testdata/Bossard-IM/IM --all
+
+    - name: Clone Sika repository using fycops token
+      uses: actions/checkout@v2
+      with:
+        repository: foryouandyourcustomers/Sika-IM
+        token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
+        path: testdata/Sika-IM
+
+    - name: Generate Sika model
+      run: |
+        python dist/generator.py --languages=de --model testdata/Sika-IM/IM --all
 
     - name: Install and run Coverage.py
       run: |

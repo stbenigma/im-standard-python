@@ -1,6 +1,6 @@
-from SSOT_db.IM_JSON import  *
+from SSOT_db.IM_JSON import *
 
-def columns2js(pemptymodel):
+def columns2js(pemptymodel: bool):
     model = ['name'
          ,'table-name+'
          ,'table-id',

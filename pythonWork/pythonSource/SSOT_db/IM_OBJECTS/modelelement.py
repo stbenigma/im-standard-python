@@ -104,6 +104,11 @@ class Modelelement(Baseobject):
         So Modelelement is created first (with a system generated ID, unique over all subtables). It's ID is then
         used as ID' of the subtables
     """
+    #publication status
+    DRAFT: str = 'DRAFT'
+    GTOP: str = 'GTOP'
+    PUBL: str = 'PUBL'
+
     _tablename: str = 'modelelement'
     _prefix: str = 'mode'
     _idcolname: str = _prefix + '_id'
@@ -127,9 +132,9 @@ class Modelelement(Baseobject):
 
     @staticmethod
     def longpublstatus(pdbvalue):
-        longstati = {'DRAFT': 'draft',
-                     'GTOP': 'good to print',
-                     'PUBL': 'published'}
+        longstati = {Modelelement.DRAFT: 'draft',
+                     Modelelement.GTOP: 'good to print',
+                     Modelelement.PUBL: 'published'}
         if pdbvalue in longstati:
             return longstati[pdbvalue]
         return None

@@ -1,6 +1,6 @@
 from SSOT_db.IM_JSON import JSModel, langs2js, entities2js, domains2js, attributes2js, relations2js, arcs2js, keys2js, \
     documents2js, orgUnits2js, categories2js, systems2js, tables2js, columns2js, diagrams2js, udps2js, physicalunits2js, \
-    datatypes2js, storageformats2js, fillmodel
+    datatypes2js, storageformats2js, fillmodel,businessrules2js
 from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
 from datetime import datetime
@@ -45,7 +45,7 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.RELA)] = relations2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ARCS)] = arcs2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.KEYS)] = keys2js(pemptymodel)
-    # jsmodel[JSModel.elemtype2label(Modelelemtype.KEYS)] = businessrules2js(pemptymodel)
+    jsmodel[JSModel.elemtype2label(Modelelemtype.BURU)] = businessrules2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.DOCU)] = documents2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ORGU)] = orgUnits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_CATG)] = categories2js(pemptymodel)

@@ -177,7 +177,7 @@ class Baseobject:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
                 except:
-                    print ("Loggin-Error in Baseobject.insert():")
+                    print ("Loggin-Error in Baseobject.updatedb():")
                     print(str(e))
                     print (lsql)
                     print (self.totuple())
@@ -347,13 +347,10 @@ class Baseobject:
         if (len(cls._columnlist) == 0): cls._columnlist = Baseobject.gettablecolumns(cls._tablename)
         if porderby is None:
             porderby = cls.defaultorderby()
-        lsql = """select {} from {} as {} {} {} """ \
-            .format(cls.columnsliststring()
-                    , cls._tablename
-                    , cls._prefix
-                    , "" if pwhere is None else "where {}".format(pwhere if type(pwhere) is str else pwhere[0])
-                    , "" if porderby is None else
-                    "order by {}".format(porderby))
+        lsql = f"""select {cls.columnsliststring()} 
+                        from {cls._tablename} as {cls._prefix} 
+                        {"" if pwhere is None else f"where {pwhere if type(pwhere) is str else pwhere[0]}"} 
+                        {"" if porderby is None else f"order by {porderby}"} """
         arguments = ()
         if type(pwhere) is tuple and len(pwhere) > 1:
             arguments = (*arguments, *pwhere[1:])

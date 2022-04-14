@@ -20,6 +20,10 @@ arguments = argparse.Namespace(verbose=True)
 
 DEFAULT_DIST_FOLDER = './dist'
 
+EXCLUDE_LIST = [
+    'pythonWork/pythonSource/IM_WEB/testallwebfillallin1.py',
+    'pythonWork/pythonSource/PUBLISH_MODEL/sharepoint/shareplum_sandbox.py',
+]
 
 def log(msg):
     """Poor man's logging"""
@@ -182,6 +186,10 @@ def accept(path: str):
     if file_path.match('**/testenvironment/**/*.*'): return False  # skip testdata
     if "unittest-tmp-dir" in map(lambda part: str(part), file_path.parts): return False
 
+    if str(path) in EXCLUDE_LIST:
+        logging.debug(f"Skipping {file} on EXCLUDE_LIST")
+        return False
+
     # include
     if file.endswith('.py'): return True  # source files
     if file.endswith('.mo'): return True  # gettext message catalog
@@ -212,3 +220,4 @@ if __name__ == '__main__':
     result = main(Path.cwd(), sys.argv[1:])
     with zipfile.ZipFile(result, 'r') as archive:
         print(f"{len(archive.filelist)} files packed into distribution bundle {result.resolve()}")
+

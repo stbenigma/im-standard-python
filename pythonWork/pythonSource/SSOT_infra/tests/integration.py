@@ -9,6 +9,17 @@ CRMTEST: str = 'crmTest'
 RIDDLE: str = 'riddle'
 
 
+def testmodel(ptestmodel):
+    return ptestmodel, \
+          testmodels_dir() / ptestmodel, \
+         testmodels_dir() / ptestmodel / 'DB' / (ptestmodel + '.db')
+
+def testmodel1():
+    return testmodel(TESTMODEL1)
+
+def testmodelcrm():
+    return testmodel(CRMTEST)
+
 class IntegrationTest(unittest.TestCase):
 
     def setUp(self) -> None:
@@ -43,6 +54,10 @@ def testenvironment_root() -> Path:
 
 def testmodels_dir() -> Path:
     return testenvironment_root() / 'testmodels'
+
+
+def riddle_json() -> Path:
+    return testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
 
 
 def odmtestmodelnames():

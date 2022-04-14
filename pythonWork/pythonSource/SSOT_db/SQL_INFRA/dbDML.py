@@ -6,23 +6,27 @@ import sqlite3
 from SSOT_db.SQL_INFRA import  dbConnect
 from SSOT_infra import logmessages
 
-def select(psql, *args):
+def select(psql,*args):
     """execute a sql select statement
     returns the resultset of the sql statement
     args is the set of substitution variables "?" in the sql statement
     """
     cursor = dbConnect.getdbcon().cursor()
 
-    try:
+    try:        # print(psql)
+        # print(args)
+        # print(f"execute: unexpected SQL-error: \t{e}")
+        # logmessages.writelog(psql)
+        # logmessages.writelog(str(args))
+        # logmessages.writelog("unexpected SQL-error: \t%s" % e)
+
         cursor.execute(psql, args)
     except sqlite3.Error as e:
-        print(psql)
-        print(f"execute: unexpected SQL-error: \t{e}")
         raise Exception(f'Statement failed "{psql}" {args}') from e
     result = cursor.fetchall()
     return result
 
-def exec(psql, *args):
+def exec(psql,*args):
     """execute a sql statement without returning any values
     args is the set of substitution variables "?" in the sql statement
     """
@@ -31,9 +35,9 @@ def exec(psql, *args):
     try:
         rows = cursor.execute(psql, args)
     except sqlite3.Error as e:
-        print('Failed to execute {} {}'.format(psql, str(args)))
-        logmessages.writelog(psql)
-        logmessages.writelog(f"exec: unexpected SQL-error: \t{str(e)}")
+        #print('Failed to execute {} {}'.format(psql, str(args)))
+        #logmessages.writelog(psql)
+        #logmessages.writelog(f"exec: unexpected SQL-error: \t{str(e)}\nstr(args)")
         raise e
     dbConnect.getdbcon().commit()
     return rows
@@ -47,9 +51,9 @@ def delete(psql, *args):
     try:
         rows = cursor.execute(psql, args).rowcount
     except sqlite3.Error as e:
-        logmessages.writelog(psql)
-        logmessages.writelog(args)
-        logmessages.writelog("unexpected SQL-error: \t%s" % e)
+        #logmessages.writelog(psql)
+        #logmessages.writelog(args)
+        #logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
     dbConnect.getdbcon().commit()
     return rows

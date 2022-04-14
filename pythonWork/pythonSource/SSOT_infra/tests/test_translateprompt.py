@@ -39,10 +39,12 @@ class TestTranslation(TestCase):
         # englisch
         settransldomain("en")
         assert transl("Entität") == "Entity"
+        assert transl("Attribut") == "Attribute"
         assert transl("entität") == "entität"  # do not translate if lowercase
         # französisch
         settransldomain("fr")
         assert transl("Entität") == "Entité"
+        assert transl("Attribut") == "Attribut"
         # check specific language other than set language
         assert transl("Entität", "de") == "Entität"
         assert transl("Entität", "en") == "Entity"

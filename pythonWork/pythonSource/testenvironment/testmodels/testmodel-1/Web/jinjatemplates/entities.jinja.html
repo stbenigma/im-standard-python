@@ -23,7 +23,7 @@
 								</tr>
 								<tr>
 									<td class="attribute">
-										{% for syno in elem["synonyms"].values() %}
+										{% for syno in elem["synonyms"] %}
 										{% if loop.index > 1 %} {{ ', ' }} {% endif %}
 										{{ webmodel.getlangstr(syno) }}
 										{% endfor %}
@@ -56,50 +56,12 @@
 					
 					<!--attributes-->       
 					{% call blocks.subblock(header=webmodel.gettransltext("Attribute"), lbc=elemid ~ "attr") %}
-						<div class="table-responsive">
-							<table class="table borderless" >
-								<tbody>
-									<tr>
-										<th>{{ webmodel.gettransltext('Name') }}</th>
-										<th>{{ webmodel.gettransltext('Wertebereich') }}</th>
-										<th>{{ webmodel.gettransltext('Typ') }}</th>
-										<th>{{ webmodel.gettransltext('Pflichtattribut') }}</th>
-										<th>{{ webmodel.gettransltext('Schlüssel') }}</th>
-										<th>{{ webmodel.gettransltext('Deskriptor') }}</th>
-										<th>{{ webmodel.gettransltext('übersetzt') }}</th>
-										<th>{{ webmodel.gettransltext('wiederholt') }}</th>
-										<th>{{ webmodel.gettransltext('historisiert') }}</th>
-										<th>{{ webmodel.gettransltext('verschlüsselt') }}</th>
-									</tr>
-									{% for attrid in elem["attributes+"] %}
-									{% set elem = webmodel.getelem(attrid) %}
-									{% set domaid = elem["domain"] %}
-									<tr>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(elem["name"]), destid=attrid) |safe}}</td>
-										<td> {% if domaid %}
-											{% set doma = webmodel.getelem(domaid) %}
-											{% if doma["origin"] == 'DER' %}
-											{{ webmodel.getlangstr(doma["name"]) }}
-											{% else %}
-											{{ webmodel.getreflink(name=webmodel.getlangstr(doma["name"]),destid=domaid)|safe}}
-											{% endif %}
-											{% endif %}
-										</td>
-										<td>{{ elem["type+"] }}</td>
-										{{ blocks.tdbool2icon(elem["mandatory"]) }}
-										{{ blocks.tdbool2icon(elem["keys+"]|count == 0) }}
-										{{ blocks.tdbool2icon(elem["descriptive"]) }}
-										{{ blocks.tdbool2icon(elem["translated"]) }}
-										{{ blocks.tdbool2icon(elem["repeated"]) }}
-										{{ blocks.tdbool2icon(elem["historisiert"]) }}
-										{{ blocks.tdbool2icon(elem["encrypted"]) }}
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div> 
+						{{ blocks.attrlist(webmodel=webmodel,elem=elem,title="Eigene Attribute",attrtype="attributes+") }}
+						{% if "inheritedattributes+" in elem and elem["inheritedattributes+"]|count > 0 %}
+							{{ blocks.attrlist(webmodel=webmodel,elem=elem,title="Geerbte Attribute",attrtype="inheritedattributes+") }}
+						{% endif %}
 					{% endcall %}
-					
+
 					<!--examples-->
 					{% if elem["examples"]|count > 0 %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Beispiele"), lbc=elemid ~ "expl") %}
@@ -255,7 +217,7 @@
 					<!--translations-->       
 					{% set otherlangs = webmodel.getlanguages(all=False) %}
 					{% if (otherlangs|count) > 0 %}
-					{% set synonyms = elem["synonyms"].values() %}
+					{% set synonyms = elem["synonyms"] %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Übersetzungen"), lbc=elemid ~ "transl") %}
 						<div class="table-responsive">
 							<table class="table borderless" >

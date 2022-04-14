@@ -4,8 +4,19 @@ import unittest
 
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_ODM import fillDB
-from SSOT_infra.tests.test_translateprompt import TestTranslation
 from SSOT_db.createDB import createDB
+from SSOT_infra.tests.test_translateprompt import TestTranslation
+
+
+def create_testmodel(testmodelname, testdir, dbfilepath, new=True):
+    # create model for testmodel1 no param file
+    if new and os.path.exists(dbfilepath):
+        os.remove(dbfilepath)
+    os.chdir(testdir)
+    db = fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
+    assert db.is_file()
+    return db
+
 
 class TESTFILLDB(unittest.TestCase):
 
@@ -17,34 +28,25 @@ class TESTFILLDB(unittest.TestCase):
         assert True
 
     def test_fillmergedb(self):
-        # create model for testmodel1. no param file
-        testmodelname = testsrc.TESTMODEL1
-        testpath = testsrc.testmodels_dir() / testmodelname
-        dbdirpath = testpath / 'DB'
-        dbfilepath = dbdirpath / (testmodelname + '.db')
-        jsonfilepath = dbdirpath / (testmodelname + '.json')
-        if os.path.exists(dbfilepath):
-            os.remove(dbfilepath)
-        os.chdir(testpath)
-        fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
-        fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
-
+        testmodelname, testdir, dbfilepath = testsrc.testmodel1()
+        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
+        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=False)
 
     def test_filldb(self):
         def getbyfield(pmodel, ptype, pname, pfield='name', plang=None):
             retval = []
-            for k,v in pmodel[ptype].items():
+            for k, v in pmodel[ptype].items():
                 if (plang is None and v[pfield] == pname) or \
                         (plang is not None and v[pfield][plang] == pname):
-                    retval.append((k,v))
-            #raise Exception(f"{ptype} : {pfield} : {pname}({plang}) not found ")
+                    retval.append((k, v))
+            # raise Exception(f"{ptype} : {pfield} : {pname}({plang}) not found ")
             return retval
 
         def testuserdefproperties(jmodel):
-            entiid,enti = getbyfield(jmodel, "entities", "Multi UK Entity", plang='en')[0]
-            self.assertEqual(enti["publstatus"],"DRAFT")
-            entiid,enti = getbyfield(jmodel, "entities", "Single Entity", plang='en')[0]
-            self.assertEqual(enti["publstatus"],"GTOP")
+            entiid, enti = getbyfield(jmodel, "entities", "Multi UK Entity", plang='en')[0]
+            self.assertEqual(enti["publstatus"], "DRAFT")
+            entiid, enti = getbyfield(jmodel, "entities", "Single Entity", plang='en')[0]
+            self.assertEqual(enti["publstatus"], "GTOP")
             attrid, attr = getbyfield(jmodel, "attributes", "Attribute1", plang='en')[0]
             self.assertEqual(attr["publstatus"], "GTOP")
             relaid, rela = getbyfield(jmodel, "relations", "Relation_1")[0]
@@ -55,43 +57,44 @@ class TESTFILLDB(unittest.TestCase):
 
         def testsubenties(jmodel):
             # subentities and super entities
-            masterentityID,masterentity = getbyfield(jmodel, "entities", "Master Entity", plang='en')[0]
+            masterentityID, masterentity = getbyfield(jmodel, "entities", "Master Entity", plang='en')[0]
             self.assertEqual(masterentity["subtypellevel+"], 0, "Master Entity")
-            arcID,arc = getbyfield(jmodel,"arcs",masterentityID,pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]),3,"Master Entity arc has wrong relations")
+            arcID, arc = getbyfield(jmodel, "arcs", masterentityID, pfield='entity')[0]
+            self.assertEqual(len(arc["relations"]), 3, "Master Entity arc has wrong relations")
 
-            masterentity2ID,masterentity2 = getbyfield(jmodel, "entities", "Master Entity2", plang='en')[0]
+            masterentity2ID, masterentity2 = getbyfield(jmodel, "entities", "Master Entity2", plang='en')[0]
             self.assertEqual(masterentity2["subtypellevel+"], 0, "Master Entity2")
-            arcID,arc = getbyfield(jmodel,"arcs",masterentity2ID,pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]),3,"Master Entity2 arc has wrong relations")
+            arcID, arc = getbyfield(jmodel, "arcs", masterentity2ID, pfield='entity')[0]
+            self.assertEqual(len(arc["relations"]), 3, "Master Entity2 arc has wrong relations")
 
-            childentity1ID,childentity1 = getbyfield(jmodel, "entities", "Child Entity1", plang='en')[0]
+            childentity1ID, childentity1 = getbyfield(jmodel, "entities", "Child Entity1", plang='en')[0]
             self.assertEqual(childentity1["subtypellevel+"], 1, "Child Entity1")
 
-            childentity2ID,childentity2 = getbyfield(jmodel, "entities", "Child Entity2", plang='en')[0]
+            childentity2ID, childentity2 = getbyfield(jmodel, "entities", "Child Entity2", plang='en')[0]
             self.assertEqual(childentity2["subtypellevel+"], 1, "Child Entity2")
 
-            realsubenti_lev1ID,realsubenti_lev1 = getbyfield(jmodel, "entities", "realsubenti_lev1", plang='en')[0]
+            realsubenti_lev1ID, realsubenti_lev1 = getbyfield(jmodel, "entities", "realsubenti_lev1", plang='en')[0]
             self.assertEqual(realsubenti_lev1["subtypellevel+"], 1, "realsubenti_lev1")
-            arcID,arc = getbyfield(jmodel,"arcs",realsubenti_lev1ID,pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]),2,"realsubenti_lev1 arc has wrong relations")
+            arcID, arc = getbyfield(jmodel, "arcs", realsubenti_lev1ID, pfield='entity')[0]
+            self.assertEqual(len(arc["relations"]), 2, "realsubenti_lev1 arc has wrong relations")
 
-            realsubenti_lev2ID,realsubenti_lev2 = getbyfield(jmodel, "entities", "realsubenti_lev2", plang='en')[0]
+            realsubenti_lev2ID, realsubenti_lev2 = getbyfield(jmodel, "entities", "realsubenti_lev2", plang='en')[0]
             self.assertEqual(realsubenti_lev2["subtypellevel+"], 2, "realsubenti_lev2")
             with self.assertRaises(Exception):
                 arcID, arc = getbyfield(jmodel, "arcs", realsubenti_lev2ID, pfield='entity')[0]
 
-            extsubentitylev22ID,extsubentitylev22 = getbyfield(jmodel, "entities", "extsubentitylev2-2", plang='en')[0]
+            extsubentitylev22ID, extsubentitylev22 = getbyfield(jmodel, "entities", "extsubentitylev2-2", plang='en')[0]
             self.assertEqual(extsubentitylev22["subtypellevel+"], 0, "extsubentitylev2-2")
             self.assertEqual(len(extsubentitylev22["supertypes+"]), 1, "supertentites extsubentitylev2-2")
-            arcID,arc = getbyfield(jmodel,"arcs",extsubentitylev22ID,pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]),1,"extsubentitylev2-2 arc has wrong relations")
+            arcID, arc = getbyfield(jmodel, "arcs", extsubentitylev22ID, pfield='entity')[0]
+            self.assertEqual(len(arc["relations"]), 1, "extsubentitylev2-2 arc has wrong relations")
 
-            realsubenti2lev1ID,realsubenti2lev1 = getbyfield(jmodel, "entities", "realsubenti2-lev1", plang='en')[0]
+            realsubenti2lev1ID, realsubenti2lev1 = getbyfield(jmodel, "entities", "realsubenti2-lev1", plang='en')[0]
             self.assertEqual(realsubenti2lev1["subtypellevel+"], 1, "realsubenti2-lev1")
             self.assertEqual(len(realsubenti2lev1["supertypes+"]), 2, "supertentites realsubenti2-lev1")
 
-            subentitynonoverlay2ID,subentitynonoverlay2 = getbyfield(jmodel, "entities", "subentitynonoverlay2", plang='en')[0]
+            subentitynonoverlay2ID, subentitynonoverlay2 = \
+                getbyfield(jmodel, "entities", "subentitynonoverlay2", plang='en')[0]
             self.assertEqual(subentitynonoverlay2["subtypellevel+"], 0, "subentitynonoverlay2")
             return
 
@@ -129,14 +132,14 @@ class TESTFILLDB(unittest.TestCase):
         logfilepath = testpath / "logfiles" / "speciallog.log"
         paramfile = testpath / (testmodelname + '.params')
         if os.path.exists(dbfilepath):
-            createDB(pupgrade=True,pparamfile=paramfile)
+            createDB(pupgrade=True, pparamfile=paramfile)
         fillDB.filldbmain(pparamfile=paramfile)
         # check handling of translations
         with open(jsonfilepath) as jsonFile:
             jmodel = json.load(jsonFile)
-            checkentityID,checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]
+            checkentityID, checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]
             self.assertIsNotNone(checkentity, f"Testcase 'Child Entity1' is not present in {testmodelname}")
-            synos = list(checkentity["synonyms"].values())
+            synos = list(checkentity["synonyms"])
             self.assertEqual(synos[0]["en"], "*de* DSynonym")
             self.assertEqual(synos[0]["fr"], "*de* DSynonym")
             self.assertEqual(checkentity["descr"]["en"],

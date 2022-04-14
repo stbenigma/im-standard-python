@@ -1,6 +1,7 @@
 # -*- coding: latin-1 -*-
 import argparse
 import sys
+from pathlib import Path
 
 from LOAD_MODELS.LOAD_ODM import transferModel
 from LOAD_MODELS.LOAD_INFRA import mergedbs
@@ -16,7 +17,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='1')
+        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks='1',pversioncheck=False)
         parameters.dbDefaultLang(newval=Language.getdefaultlang().lang_iso_code2)
         langs = Language.getlanguagecodes()
         parameters.dbLanguages(newval=','.join(langs))
@@ -86,7 +87,7 @@ def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdes
         logmessages.showmessages("database {} for model {} filled with modeldata and json file generated"
                                  .format(parameters.dbFilePath(),
                                          parameters.modelName()))
-    return
+    return Path(parameters.dbFilePath())
 
 
 def main(psysargs):

@@ -22,9 +22,9 @@ def rendermodel(export: HTMLExport, pmodel: JSModel, pcurlang, pintfid=None, pht
                         domains=sorted([[key, value["name"][pcurlang]] for key, value in pmodel.jsmodel["domains"].items()
                                                     if (value["interface-id"] is None and value["origin"] == "DOM")]
                                               , key=lambda x: x[1].upper() if x[1] is not None else '')
-                       , documents=sorted([[key, "{} ({})".format(value["name"],str(value['referencecnt+']))] for key, value in pmodel.jsmodel["documents"].items()]
+                       , documents=sorted([[key, "{} ({})".format(value["name"],str(len(value['references+'])))] for key, value in pmodel.jsmodel["documents"].items()]
                                         , key=lambda x: x[1].upper())
-                        , orgunits=sorted([[key, "{} ({})".format(value["name"], str(value['referencecnt+']))] for key, value in
+                        , orgunits=sorted([[key, "{} ({})".format(value["name"], str(len(value['references+'])))] for key, value in
                                                     pmodel.jsmodel["orgunits"].items()]
                                                 , key=lambda x: x[1].upper())
                         , systems=sorted([[key, value["name"]] for key, value in pmodel.jsmodel["systems"].items()]
