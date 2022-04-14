@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import shutil
 import unittest
 from pathlib import Path
 
@@ -26,6 +27,12 @@ class GenerateHTML(unittest.TestCase):
         create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
 
         testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
+        if os.path.exists(testdir/"Web/jinjatemplates"):
+            shutil.rmtree(testdir/"Web/jinjatemplates/")
+        if os.path.exists(testdir/"Web/js"):
+            shutil.rmtree(testdir/"Web/js/")
+        if os.path.exists(testdir/"Web/css"):
+            shutil.rmtree(testdir/"Web/css/")
         fillDB.filldbmain(pparamfile = testdir / (testmodelname + '.params'))
 
     def test_listwebdoku(self):
@@ -69,6 +76,8 @@ class GenerateHTML(unittest.TestCase):
         html_export = HTMLExport()
         html_export.setmodel(js_model)
         html_export.setWebDirec(str(self.temp_folder))
+        if os.path.exists(self.temp_folder):
+            shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)
 
     def test_integration_generate_html_riddle(self):
