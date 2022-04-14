@@ -156,7 +156,7 @@
 											{{ blocks.tdbool2icon((rela['isinkeys+']|count) > 0) }}
 												<td> {% for buruid in elem["businessrules+"] %}
 													 {% set buru = webmodel.getelem(buruid) %}
-													 {{ webmodel.getreflink(name=webmodel.getlangstr(buru["name"])
+													 {{ webmodel.getreflink(name=webmodel.getlangstr(getnvl(buru["name"],'???'))
 											   			,destid=buruid
 											   			,curintfid=webmodel.getelemintfid(elemid))|safe }}
 													{% endfor %}

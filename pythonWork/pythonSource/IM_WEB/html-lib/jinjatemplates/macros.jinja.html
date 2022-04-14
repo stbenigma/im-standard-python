@@ -76,7 +76,7 @@
 {%- endmacro %}
 
 {% macro subblock(header, lbc) -%}
-					<div class="panel">
+					<div class="panel"  id="#{{lbc}}">
 						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{lbc}}">
 							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
 							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
@@ -121,6 +121,11 @@
 									<tr>
 										<th>{{ webmodel.gettransltext("Typ") }}</th>
 										<th>{{ webmodel.gettransltext("Referenz") }}</th>
+										{% if elemid[:4] == 'BURU' %}
+										<th>
+											 {{ webmodel.gettransltext("R/W") }}
+										</th>
+										{% endif %}
 									</tr>
 									{% for refid in elem %}
 									{% set refelem = webmodel.getelem(refid) %}
@@ -132,10 +137,21 @@
 										{% elif refid[:4] == 'COLU' %}
 											{% set displ = displ ~ " ({}: {})".format(refelem["table-name+"],refelem["interface-name+"]) %}
 										{% endif %}
-										<td>{{ webmodel.getreflink(name=displ
-											   ,destid=refid
-											   ,destintfid=webmodel.getelemintfid(refid))|safe }}
+										<td>{% if (elemid[:4] == 'BURU' and refid[:4] == 'RELA' ) %}
+												{% set refid2 = webmodel.getelem(refid)["from-to"]["enti"] %}
+											{% else %}
+												{% set refid2 = refid %}
+											{% endif %}
+
+											{{ webmodel.getreflink(name=displ
+											   ,destid=refid2
+											   ,destintfid=webmodel.getelemintfid(refid2))|safe }}
 										</td>
+										{% if elemid[:4] == 'BURU' %}
+										<td>
+											 {{ elem[refid]["r/w"] }}
+										</td>
+										{% endif %}
 									</tr>
 									{% endfor %}
 								</tbody>
@@ -178,7 +194,7 @@
 									{% for buruid in elem["businessrules+"] %}
 									{% set buru = webmodel.getelem(buruid) %}
 									<tr>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(buru["name"])
+										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(getnvl(buru["name"],'???'))
 											   ,destid=buruid
 											   ,curintfid=webmodel.getelemintfid(elemid))|safe }}
 										</td>
