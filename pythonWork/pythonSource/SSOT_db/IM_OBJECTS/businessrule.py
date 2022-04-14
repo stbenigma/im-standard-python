@@ -1,7 +1,7 @@
+from SSOT_infra import logmessages
 from .baseobject import Baseobject, MultilangBaseobject, Boolean
 from .languagetext import Languagetext
 from .modelelement import Modelelement, Modelelemtype
-from SSOT_infra import logmessages
 
 
 class BusinessRule(MultilangBaseobject):
@@ -21,16 +21,16 @@ class BusinessRule(MultilangBaseobject):
     _defaultorderby = "buru_name"
 
     def __init__(self, **kwargs):
-        srcid=kwargs['srcid'] if 'srcid' in kwargs else None
-        srcname=kwargs['srcname'] if 'srcname' in kwargs else None
+        srcid = kwargs['srcid'] if 'srcid' in kwargs else None
+        srcname = kwargs['srcname'] if 'srcname' in kwargs else None
         super().__init__(multilangcols={'buru_name': Languagetext.BURU_NAME,
                                         'buru_descr': Languagetext.BURU_DESCR,
                                         'buru_errormsg': Languagetext.BURU_ERRORMSG}
                          , pscrid=srcid
                          , psrcname=srcname)
-        for col,val in kwargs.items():
+        for col, val in kwargs.items():
             if col in self._columnlist:
-                self.setcolvalue(col,val)
+                self.setcolvalue(col, val)
 
     def getname(self, plang=None):
         return self._getsprachval(colname='buru_name', plang=plang)
@@ -42,7 +42,7 @@ class BusinessRule(MultilangBaseobject):
         return self._getsprachval(colname='buru_errormsg', plang=plang)
 
     def getchildren(self):
-        return BusinessruleElement.select(pwhere=("bure_buru_id=?",self.getid()))
+        return BusinessruleElement.select(pwhere=("bure_buru_id=?", self.getid()))
 
     def getmodellelement(self):
         return Modelelement.getbyelemid(pattrid=self.buru_id)
@@ -55,27 +55,27 @@ class BusinessRule(MultilangBaseobject):
             """
         locburu = self.getbyuk(buru_name=self.buru_name)
         if locburu is None:
-            #does not yet exist insert it
+            # does not yet exist insert it
             buruid = self.insert()
         else:
             buruid = locburu.buru_id
-            #check for identical definition and log error if not
+            # check for identical definition and log error if not
             if not self.semanticequal(locburu):
-                logmessages.writelog(f"""Business Rule "{self.buru_name}" already exists """+
+                logmessages.writelog(f"""Business Rule "{self.buru_name}" already exists """ +
                                      """ but with different definition. It is replaced by the exisiting one""")
-        #fi
+        # fi
         return buruid
+
 
 # BusinessRule
 
 class BusinessruleElement(Baseobject):
-
     _tablename: str = 'businessrule_elements'
     _prefix: str = 'bure'
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self, ** kwargs):
+    def __init__(self, **kwargs):
         super().__init__()
         for col, val in kwargs.items():
             if col in self._columnlist:

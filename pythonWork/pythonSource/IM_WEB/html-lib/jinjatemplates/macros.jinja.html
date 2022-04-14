@@ -138,14 +138,21 @@
 											{% set displ = displ ~ " ({}: {})".format(refelem["table-name+"],refelem["interface-name+"]) %}
 										{% endif %}
 										<td>{% if (elemid[:4] == 'BURU' and refid[:4] == 'RELA' ) %}
-												{% set refid2 = webmodel.getelem(refid)["from-to"]["enti"] %}
+												{% set refid1 = webmodel.getelem(refid)["from-to"]["enti"] %}
+												{% set displ1 = webmodel.getlangstr(webmodel.getelem(refid1)["name"]) %}
+												{% set refid2 = webmodel.getelem(refid)["to-from"]["enti"] %}
+												{% set displ2 = webmodel.getlangstr(webmodel.getelem(refid2)["name"]) %}
+												{{ displ ~ ': ' ~ webmodel.getreflink(name=displ1
+												   ,destid=refid1
+												   ,destintfid=webmodel.getelemintfid(refid1))|safe }}
+												{{ '   <->   ' ~ webmodel.getreflink(name=displ2
+												   ,destid=refid2
+												   ,destintfid=webmodel.getelemintfid(refid2))|safe }}
 											{% else %}
-												{% set refid2 = refid %}
+												{{ webmodel.getreflink(name=displ
+												   ,destid=refid
+												   ,destintfid=webmodel.getelemintfid(refid))|safe }}
 											{% endif %}
-
-											{{ webmodel.getreflink(name=displ
-											   ,destid=refid2
-											   ,destintfid=webmodel.getelemintfid(refid2))|safe }}
 										</td>
 										{% if elemid[:4] == 'BURU' %}
 										<td>

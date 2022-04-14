@@ -38,8 +38,11 @@ class Languagetext(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__()
+        for col, val in kwargs.items():
+            if col in self._columnlist:
+                self.setcolvalue(col, Boolean.bool2str(val) if type(val) is bool else val)
 
     @staticmethod
     def filldefaulttext(plang):
