@@ -1,6 +1,4 @@
-from SSOT_db.IM_JSON import JSModel, langs2js, entities2js, domains2js, attributes2js, relations2js, arcs2js, keys2js, \
-    documents2js, orgUnits2js, categories2js, systems2js, tables2js, columns2js, diagrams2js, udps2js, physicalunits2js, \
-    datatypes2js, storageformats2js, fillmodel,businessrules2js
+from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
 from datetime import datetime

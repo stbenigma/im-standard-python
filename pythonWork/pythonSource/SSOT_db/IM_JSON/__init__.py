@@ -4,6 +4,7 @@ from .jsmergetosql import fromodm2db,fromdb2odm,Mergeresult,idTranslate,keytrans
 from .jsreference import *
 from .jslang import *
 from .jsrefdata import *
+from .jsbusinessrule import *
 from .jsentity import *
 from .jsdomain import *
 from .jsattribute import *

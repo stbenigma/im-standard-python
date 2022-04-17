@@ -3,8 +3,7 @@ import re
 from tqdm.auto import tqdm
 
 from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql
-from SSOT_db.IM_JSON.jsattribute import buruinelements
+    inssourceref, udpvs2sql, buruinelements
 from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
     tabreflist, JSModel, jsguid2id
 from SSOT_db.IM_OBJECTS import *
@@ -14,7 +13,7 @@ from SSOT_db.IM_OBJECTS import *
 """
 
 
-def synonyms(psynos: list = None):
+def synonyms2js(psynos: list = None):
     """ None = emptymodel"""
     """    [
             {
@@ -93,7 +92,7 @@ def entities2js(pemptymodel):
                                                                          '', '', '', '',
                                                                          0, 4, 'DRAFT',
                                                                          entityicon(),
-                                                                         synonyms(None), examples2js(None),
+                                                                         synonyms2js(None), examples2js(None),
                                                                          sourceref(None),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
@@ -117,7 +116,7 @@ def entities2js(pemptymodel):
                                          e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm,
                                          e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus(),
                                          entityicon(penti=e),
-                                         synonyms(psynos=[s.syno_name_l for s in e.getsynonyms()]),
+                                         synonyms2js(psynos=[s.syno_name_l for s in e.getsynonyms()]),
                                          examples2js(pexpls=e.getexamples()),
                                          sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id)),
                                          reflist(

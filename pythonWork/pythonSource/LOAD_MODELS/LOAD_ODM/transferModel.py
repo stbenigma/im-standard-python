@@ -973,11 +973,13 @@ def getcheckconstraint(pxml):
     # first solution, take the first rule in the list
     buru = BusinessRule(buru_name=constrname, buru_descr=descr, buru_rule=rules[0][1],
                         buru_type=BusinessRule.BURU_TYPE_CHECK,
-                        buru_errormsg=f"Rule {constrname} violated.")
+                        buru_errormsg=f"Rule {constrname} violated.",
+                        srcid=handleXML.findField(pxml,'id')+"check",
+                        srcname=Externalref.SOURCE_ODM)
     return buru
 
 
-def getformula(pelemname, pmodetype, pmodeid, pxml):
+def getformula(pxml):
     """
     <formulaDesc>bisdat - vondat</formulaDesc>
     <sourceType>Aggregate</sourceType>
@@ -989,14 +991,16 @@ def getformula(pelemname, pmodetype, pmodeid, pxml):
     if formula is None: return
     buru = BusinessRule(buru_descr=f"Function: {sourctype} formula: {formula}",
                         buru_rule=formula,
-                        buru_type=BusinessRule.BURU_TYPE_CALC)
+                        buru_type=BusinessRule.BURU_TYPE_CALC,
+                        srcid=handleXML.findField(pxml,'id')+"formula",
+                        srcname=Externalref.SOURCE_ODM)
     return buru
 
 
 def doconstraints(pelemname, pmodetype, pmodeid, pxml):
     buru = getcheckconstraint(pxml)
     if buru and pmodetype == Modelelemtype.ATTR:
-        buru.buru_name = nvl(buru.buru_name, pelemname)
+        buru.buru_name = nvl(buru.buru_name, pelemname+'_CHECK')
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
@@ -1004,9 +1008,9 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
         bure.insert()
     # fi
 
-    buru = getformula(pelemname, pmodetype, pmodeid, pxml)
+    buru = getformula(pxml)
     if buru and pmodetype == Modelelemtype.ATTR:
-        buru.buru_name = nvl(buru.buru_name, pelemname)
+        buru.buru_name = nvl(buru.buru_name, pelemname+'_CALC')
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)

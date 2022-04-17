@@ -1,5 +1,6 @@
 from SSOT_db.IM_JSON import  *
-from SSOT_db.IM_JSON.jsattribute import buruinelements
+from SSOT_db.IM_JSON import buruinelements
+
 
 def tables2js(pemptymodel):
     model = ['name', 'interface-name+',

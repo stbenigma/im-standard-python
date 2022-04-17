@@ -9,7 +9,7 @@ from SSOT_db.IM_JSON import sql2json, jsonfilename, JSModel
 
 
 def createJSON(pdbfilepath, pmodelname, pjsfilepath, pjsfilename):
-    dbConnect.openDB(pdbfilepath, pfks='1')
+    dbConnect.openDB(pdbfilepath)
     jsmodel = JSModel(pmodel=sql2json(pdbname=pmodelname))
 
     jsmodel.printmodel(pfilepath=pjsfilepath, pfilename=pjsfilename)

@@ -1,62 +1,7 @@
 from SSOT_db.IM_JSON import *
-from SSOT_db.IM_JSON import jsentity
+from SSOT_db.IM_JSON import jsentity, buruinelements
 from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
 from SSOT_db.IM_OBJECTS import *
-
-
-def buruinelements(pelemid=None):
-    if pelemid is None:
-        retval = []
-    else:
-        bures = BusinessruleElement.select(pwhere=("bure_mode_id = ?", pelemid))
-        retval = [jsguid(Modelelemtype.BURU, be.bure_buru_id) for be in bures]
-    return retval
-
-
-def buruelements2js(pbures=None):
-    if pbures is None:
-        retval = {'xxxx0000': {'r/w': ''}}
-    else:
-        retval = dict()
-        for bure in pbures:
-            mode = Modelelement().getbyid(bure.bure_mode_id)
-            retval[jsguid(mode.mode_type, mode.mode_id)] =\
-                          {"r/w": "W" if Boolean.str2bool(bure.bure_writeable) else "R"}
-    return retval
-
-
-def businessrule2js(pburu):
-    model = ['name', 'descr', 'level', 'type'
-        , 'impact', 'rule', 'errosmsg', 'elements'
-             ]
-    if pburu is None:
-        retval = fillmodel(pmodel=model,
-                           pentries=[multilangtext(), multilangtext(),
-                                     '', '', '', '',
-                                     multilangtext(),
-                                     [buruelements2js()]
-                                     ]
-                           )
-    else:
-        retval = fillmodel(pmodel=model,
-                           pentries=[multilangtext(pburu.buru_name_l),
-                                     multilangtext(pburu.buru_descr_l),
-                                     pburu.buru_level, pburu.buru_type,
-                                     pburu.buru_impact, pburu.buru_rule,
-                                     multilangtext(pburu.buru_errormsg_l),
-                                     buruelements2js(pburu.getchildren())
-                                     ]
-                           )
-    # fi
-    return retval
-
-
-def businessrules2js(pemptymodel):
-    if pemptymodel:
-        burus = {jsguid(Modelelemtype.BURU, '0000'): businessrule2js(None)}
-    else:
-        burus = {jsguid(Modelelemtype.BURU, b.buru_id): businessrule2js(b) for b in BusinessRule.select()}
-    return burus
 
 
 def attr2js(pattr):
@@ -173,43 +118,78 @@ def js2attr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
                pwithextsrcref=pwithextsrcref)
-    """      "ATTR11890": {
-         "techname": "EMAIL",
+    """       "ATTR117": {
+         "techname": "TYP",
          "name": {
-            "de": "eMail",
-            "en": "eMail",
-            "fr": "Courriel"
+            "de": "Typ",
+            "en": "Purpose",
+            "fr": "Type"
          },
          "seq": 1,
-         "entity": "ENTI11889",
-         "relation": null,
-         "domain": "DOMA11877",
+         "entity": "ENTI112",
+         "domain": "DOMA97",
+         "basedatatype+": "unknown",
+         "type+": "TXT",
          "descriptive": false,
          "mandatory": false,
          "historicised": false,
          "repeated": false,
          "translated": false,
          "encrypted": false,
-         "examples": {
-            "de": null,
-            "en": null,
-            "fr": null
-         },
+         "examples": {},
          "tooltip": {
-            "de": null,
-            "en": null,
-            "fr": null
+            "de": "",
+            "en": "",
+            "fr": ""
          },
          "descr": {
-            "de": null,
-            "en": null,
-            "fr": null
+            "de": "Typ der L\u00e4ndergruppe (Vertrieb, Zoll, Organisation)",
+            "en": "**Type of country group (distribution, customs, organization)",
+            "fr": "Type de groupe de pays (vente, douane, organisation)"
          },
          "uc": "stb",
-         "dc": "2019-06-01 10:36:20 UTC",
+         "dc": "2019-05-06 09:01:27 UTC",
          "um": null,
          "dm": null,
+         "minzoomlevel": 0,
+         "maxzoomlevel": 4,
+         "publstatus": null,
+         "sourceref": {
+            "ODM": [
+               "854EF45E-D99B-33BB-CEBA-CCBFD3723223",
+               "2022-04-14 18:04:14.882148"
+            ]
+         },
+         "keys+": [],
+         "businessrules+": [],
+         "referencedby": [],
+         "userdefprops": {
+            "datamapping": {
+               "DHL": {
+                  "UDPR15": {
+                     "name": "DHL AttrName",
+                     "value": null
+                  },
+                  "UDPR17": {
+                     "name": "DHL AttrName Shipper",
+                     "value": null
+                  }
+               },
 
+            }
+         },
+         "columnsmapped+": {
+            "INTF630": [
+               "COLU799"
+            ],
+            "INTF314": [
+               "COLU390"
+            ]
+         },
+         "diagrams+": [
+            "DIAG313",
+            "DIAG311"
+         ]
       },"""
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ATTR).items():
         attrid = keytransl(jid)

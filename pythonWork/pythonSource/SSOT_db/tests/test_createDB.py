@@ -97,7 +97,7 @@ class test_createDB(unittest.TestCase):
 
             # empty database witout version information
             dbpath = os.path.join(tempdir, testsrc.TESTMODEL1 + '.db')
-            dbConnect.opendDB4DDL(pfilepath=dbpath, pfks='OFF')
+            dbConnect.opendDB4DDL(pfilepath=dbpath)
             with self.assertRaises(Exception):
                 createDB(pmodelname=testsrc.TESTMODEL1, pdestination=dbpath, pupgrade=True)
 

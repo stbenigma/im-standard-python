@@ -31,6 +31,8 @@ class BusinessRule(MultilangBaseobject):
         for col, val in kwargs.items():
             if col in self._columnlist:
                 self.setcolvalue(col, val)
+            else:
+                assert col in ("srcid","srcname"), f"parameter ({col}) not allowed for {type(self)}"
 
     def getname(self, plang=None):
         return self._getsprachval(colname='buru_name', plang=plang)

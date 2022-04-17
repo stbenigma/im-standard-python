@@ -112,6 +112,12 @@ class Baseobject:
     def setid(self, pid):
         self.setcolvalue(pcolname=self._idcolname,pvalue=pid)
 
+    def getsrcname(self):
+        return self.__srcname
+
+    def getsrcid(self):
+        return self.__srcid
+
     def insert(self, pdoerrhdlng=True):
         self.setdefaultval(pcolname='dc', pvalue=datetime.today())
         self.setdefaultval(pcolname='uc', pvalue=Baseobject.defaultCreator)

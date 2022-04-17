@@ -28,7 +28,7 @@ def main(pdirec, plang,pforceoverwrite = False):
 
     fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
 
-    dbConnect.openDB(parameters.dbFilePath(), pfks='1')
+    dbConnect.openDB(parameters.dbFilePath())
     #jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     jsmodel = JSModel.readfromfile(parameters.dbDirect() + parameters.modelName() + ".json")
     printHTML.setmodel(jsmodel)

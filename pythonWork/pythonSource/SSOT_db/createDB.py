@@ -60,7 +60,7 @@ def createnewDB(pdbfilepath):
     """
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='0')
+    dbConnect.opendDB4DDL(pfilepath=dbfilepath)
     applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
@@ -113,7 +113,7 @@ def applyupgrades():
 
 def upgradeDB():
     # get list of upgrade-files
-    dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
+    dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath())
     actversion = dbConnect.getversion()
     applied = []
     if actversion is None:
