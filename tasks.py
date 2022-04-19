@@ -2,6 +2,7 @@
 # Tasks for the invoke 'https://www.pyinvoke.org/ library
 # We use this instead of a Make / Scons / ... build automation tool
 #
+import pathlib
 from pathlib import Path
 import sys
 import zipfile as zlib
@@ -51,7 +52,9 @@ def package(c):
         argv.extend(sys.argv[idx:])
     except ValueError:
         pass
-    c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
+    with c.cd(PROJECT_ROOT):
+        print(f"Running in {pathlib.Path.cwd()}")
+        c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
 
 
 @task(pre=[package], aliases=['verify', 'check'])
@@ -70,7 +73,7 @@ def verify_package(c):
 
 @task(pre=[verify_package])
 def deploy(c):
-    print(f"Deprecated, use 'package' task instead")
+    print(f"Deprecated tas {c}, use 'package' task instead")
     pass
 
 
@@ -98,7 +101,8 @@ def generator(c, model=None,
     if not model.is_absolute():
         abs_rel = Path(PROJECT_ROOT, model)
         if not abs_rel.is_dir():
-            model = model.relative_to(PROJECT_ROOT).resolve()
+            cwd = pathlib.Path.cwd()
+            model = cwd / model
         else:
             model = abs_rel
 
@@ -158,8 +162,9 @@ def dbversion(c, model=None):
 
 @task
 def version(c):
+    assert c is not None
     ver = load_tools_library()
-    print(f"Version: {ver['TOOLVERSION']}, Schema: {ver['DBVERSION']}")
+    print(f"ictools version {ver['TOOLVERSION']} (schema {ver['DBVERSION']})")
 
 
 def verify_content(fh):
