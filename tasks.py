@@ -78,7 +78,10 @@ def generator(c, model=None,
               sharepoint=False,
               sparx_ea=False,
               link_udpr=None,
-              profile=False):
+              profile=False,
+              version=False,
+              verbose=False,
+              ):
     if model is None:
         model = TEST_MODEL / 'IM'
         if languages is None:
@@ -116,9 +119,16 @@ def generator(c, model=None,
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
 
+
     if profile:
         print("⏱⏱⏱ Running in profiler mode: This might take some time  ⏱⏱⏱")
         optargs.append("--profile")
+
+    if version:
+        optargs.append("--version")
+
+    if verbose:
+        optargs.append("--verbose")
 
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
