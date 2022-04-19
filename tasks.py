@@ -2,7 +2,6 @@
 # Tasks for the invoke 'https://www.pyinvoke.org/ library
 # We use this instead of a Make / Scons / ... build automation tool
 #
-
 from pathlib import Path
 import sys
 import zipfile as zlib
@@ -17,6 +16,13 @@ PROJECT_ROOT = Path(__file__).parent.resolve()
 SOURCE_FOLDER = PROJECT_ROOT / 'pythonWork' / 'pythonSource'
 TEST_MODEL = SOURCE_FOLDER / 'testenvironment' / 'testmodels' / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
+
+
+def load_tools_library():
+    sys.path.append(f"{SOURCE_FOLDER}")
+    import SSOT_infra
+    ver = SSOT_infra.__version__
+    return ver
 
 
 @task
@@ -119,7 +125,6 @@ def generator(c, model=None,
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
 
-
     if profile:
         print("⏱⏱⏱ Running in profiler mode: This might take some time  ⏱⏱⏱")
         optargs.append("--profile")
@@ -149,6 +154,12 @@ def dbversion(c, model=None):
         print(f"{dbfile} is not file")
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
+
+
+@task
+def version(c):
+    ver = load_tools_library()
+    print(f"Version: {ver['TOOLVERSION']}, Schema: {ver['DBVERSION']}")
 
 
 def verify_content(fh):
