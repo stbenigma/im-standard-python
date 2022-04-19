@@ -34,13 +34,9 @@ jobs:
         run: |
           conda env update --file conda-base-environment.yaml --name base
 
-      - name: Bootstrap repository
-        run: make
-        continue-on-error: true
-
-      - name: Build deployment package
+      - name: Build deployment package. This bootstraps translation
         run: |
-          python pythonWork/pythonSource/tools/deploy.py --verbose
+          inv verify
 
       # Run smoke test
       - name: Smoke-test generator

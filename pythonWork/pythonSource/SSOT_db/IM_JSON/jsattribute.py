@@ -4,6 +4,14 @@ from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
 from SSOT_db.IM_OBJECTS import *
 
 
+def businessrules2js(pemptymodel):
+    if pemptymodel:
+        burus = {jsguid(Modelelemtype.BURU, '0000'): businessrule2js(None)}
+    else:
+        burus = {jsguid(Modelelemtype.BURU, b.buru_id): businessrule2js(b) for b in BusinessRule.select()}
+    return burus
+
+
 def attr2js(pattr):
     model = ['techname', 'name'
         , 'seq', 'entity'

@@ -72,6 +72,9 @@ class BusinessRule(MultilangBaseobject):
 # BusinessRule
 
 class BusinessruleElement(Baseobject):
+
+    AFFECTED,REFERENCED = 'AFCT', 'REF'
+
     _tablename: str = 'businessrule_elements'
     _prefix: str = 'bure'
     _idcolname: str = _prefix + '_id'

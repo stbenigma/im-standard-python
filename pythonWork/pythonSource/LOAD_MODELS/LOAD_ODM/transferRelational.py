@@ -15,7 +15,7 @@ def do1column(plfnr, pcolxml, ptablid):
 <createdBy>stb</createdBy>
 <createdTime>2020-01-17 14:39:32 UTC</createdTime>
 <comment><![CDATA[Name of the marketing brand of the reference. Is equal, by default, to MANUFACTURER]]></comment>
-<ownerDesignName>IM_GEBERIT</ownerDesignName>
+<ownerDesignName>IM_CUSTOMER</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

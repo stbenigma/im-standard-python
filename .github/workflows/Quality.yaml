@@ -59,11 +59,11 @@ jobs:
 
     - name: Build deployment package
       run: |
-        python pythonWork/pythonSource/tools/deploy.py
+        inv package
 
     - name: Test run generator
       run: |
-        python dist/generator.py --version
+        inv generator --version
 
     - name: Integration test run with riddle model located within same git repo
       run: |
@@ -155,7 +155,7 @@ jobs:
       with:
         repository: foryouandyourcustomers/Sika-IM
         token: ${{ secrets.FYAYC_GITHUB_TOKEN }}
-        path: testdata/Bossard-IM
+        path: testdata/Sika-IM
 
     - name: Generate Sika model
       run: |

@@ -1,6 +1,6 @@
 # The toolsuite around Information Modeling and the Information Cadastre
 
-[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-82%25-seagreen)
+[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-84%25-seagreen)
 
 The tools provided by
 <a href="https://foryouandyourcustomers.com" style="color: #F79724; text-decoration: underline;text-decoration-style: dotted;">
