@@ -24,7 +24,7 @@ def synonyms2js(psynos: list = None):
             ]
     """
     if psynos is None:
-        return [multilangtext(None)]
+        return [multilangtext()]
     else:
         return [multilangtext(s) for s in psynos]
 
@@ -85,8 +85,8 @@ def entities2js(pemptymodel):
              ]
     if pemptymodel:
         entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
-                                                               pentries=[multilangtext(None), '',
-                                                                         multilangtext(None), multilangtext(None),
+                                                               pentries=[multilangtext(), '',
+                                                                         multilangtext(), multilangtext(),
                                                                          '', '', '',
                                                                          '', '',
                                                                          '', '', '', '',

@@ -5,8 +5,8 @@
       "language": "en",
       "uc": "stb",
       "dc": "2021-10-05 08:01:24 UTC",
-      "um": "sys",
-      "dm": "2022-04-09 14:08:22.241011"
+      "um": null,
+      "dm": null
    },
    "languages": {
       "en": {
@@ -17,7 +17,7 @@
       }
    },
    "entities": {
-      "ENTI101": {
+      "ENTI112": {
          "name": {
             "en": "Child Entity1"
          },
@@ -31,12 +31,12 @@
          "category": "CATG7",
          "exptuple#": null,
          "prefix": null,
-         "supertypeentity": "ENTI105",
+         "supertypeentity": "ENTI118",
          "subtypellevel+": 1,
          "uc": "stb",
          "dc": "2021-10-05 08:37:45 UTC",
          "um": "sys",
-         "dm": "2022-03-26 20:03:51.107047",
+         "dm": "2022-04-19 11:03:13.879691",
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
@@ -49,25 +49,26 @@
          "sourceref": {
             "ODM": [
                "AC139BBA-F3E5-1467-F135-0C25A40F5394",
-               "2022-03-26 20:03:50.997791"
+               "2022-04-19 11:03:13.781337"
             ]
          },
          "supertypes+": [
-            "ENTI105"
+            "ENTI118"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [
-            "ATTR102"
+            "ATTR113"
          ],
          "inheritedattributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "relations+": [
             "RELA140",
             "RELA126"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -76,7 +77,7 @@
             "DIAG145"
          ]
       },
-      "ENTI110": {
+      "ENTI100": {
          "name": {
             "en": "Child Entity2"
          },
@@ -90,12 +91,12 @@
          "category": "CATG7",
          "exptuple#": null,
          "prefix": null,
-         "supertypeentity": "ENTI105",
+         "supertypeentity": "ENTI118",
          "subtypellevel+": 1,
          "uc": "stb",
          "dc": "2021-10-05 08:40:07 UTC",
          "um": "sys",
-         "dm": "2022-03-26 20:03:51.107360",
+         "dm": "2022-04-19 11:03:13.878817",
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
@@ -108,34 +109,35 @@
          "sourceref": {
             "ODM": [
                "2A7B0AAE-1E72-6C59-FF3D-4983C08AC222",
-               "2022-03-26 20:03:51.017738"
+               "2022-04-19 11:03:13.724264"
             ]
          },
          "supertypes+": [
-            "ENTI105"
+            "ENTI118"
          ],
          "roles+": [
-            "ENTI92",
-            "ENTI121",
-            "ENTI104"
+            "ENTI93",
+            "ENTI109",
+            "ENTI99"
          ],
          "subtypes+": [],
          "attributes+": [
-            "ATTR111"
+            "ATTR101"
          ],
          "inheritedattributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "relations+": [
-            "RELA141",
-            "RELA123",
-            "RELA124",
-            "RELA127",
-            "RELA129"
+            "RELA139",
+            "RELA131",
+            "RELA130",
+            "RELA125",
+            "RELA128"
          ],
          "keys+": [
-            "KEYS112"
+            "KEYS102"
          ],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -144,7 +146,7 @@
             "DIAG145"
          ]
       },
-      "ENTI105": {
+      "ENTI118": {
          "name": {
             "en": "Master Entity"
          },
@@ -181,28 +183,29 @@
          "sourceref": {
             "ODM": [
                "EE445642-FC73-9FC3-7ABD-8F5274F1E8EA",
-               "2022-03-26 20:03:51.006598"
+               "2022-04-19 11:03:13.806616"
             ]
          },
          "supertypes+": [],
          "roles+": [],
          "subtypes+": [
-            "ENTI101",
-            "ENTI110",
-            "ENTI120"
+            "ENTI112",
+            "ENTI100",
+            "ENTI92"
          ],
          "attributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "inheritedattributes+": [],
          "relations+": [
             "RELA140",
-            "RELA141",
-            "RELA142"
+            "RELA139",
+            "RELA138"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [
-            "ARCS139"
+            "ARCS137"
          ],
          "referencedby": [
             "DOCU68"
@@ -213,7 +216,7 @@
             "DIAG145"
          ]
       },
-      "ENTI99": {
+      "ENTI110": {
          "name": {
             "en": "Master Entity2"
          },
@@ -245,25 +248,26 @@
          "sourceref": {
             "ODM": [
                "7B59FC33-0A1F-F195-8B51-5A95A6DC0BDB",
-               "2022-03-26 20:03:50.989269"
+               "2022-04-19 11:03:13.767388"
             ]
          },
          "supertypes+": [],
          "roles+": [],
          "subtypes+": [
             "ENTI91",
-            "ENTI109",
-            "ENTI113"
+            "ENTI115",
+            "ENTI116"
          ],
          "attributes+": [],
          "inheritedattributes+": [],
          "relations+": [
-            "RELA133",
-            "RELA131",
-            "RELA130",
+            "RELA129",
+            "RELA132",
+            "RELA123",
             "RELA126"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [
             "ARCS136"
          ],
@@ -276,7 +280,7 @@
             "DIAG145"
          ]
       },
-      "ENTI92": {
+      "ENTI93": {
          "name": {
             "en": "Multi UK Entity"
          },
@@ -308,30 +312,31 @@
          "sourceref": {
             "ODM": [
                "1DB72D71-7BE0-FEF9-3571-E614A5109406",
-               "2022-03-26 20:03:50.963788"
+               "2022-04-19 11:03:13.672749"
             ]
          },
          "supertypes+": [
-            "ENTI110"
+            "ENTI100"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [
-            "ATTR93",
             "ATTR94",
-            "ATTR95"
+            "ATTR95",
+            "ATTR96"
          ],
          "inheritedattributes+": [
-            "ATTR108",
-            "ATTR111"
+            "ATTR121",
+            "ATTR101"
          ],
          "relations+": [
-            "RELA123"
+            "RELA131"
          ],
          "keys+": [
-            "KEYS96",
-            "KEYS97"
+            "KEYS97",
+            "KEYS98"
          ],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [
             "DOCU70",
@@ -343,7 +348,7 @@
             "DIAG145"
          ]
       },
-      "ENTI115": {
+      "ENTI104": {
          "name": {
             "en": "Recursive entity"
          },
@@ -375,23 +380,24 @@
          "sourceref": {
             "ODM": [
                "54D530C7-314B-5D0D-3B23-33F91027670B",
-               "2022-03-26 20:03:51.028086"
+               "2022-04-19 11:03:13.742030"
             ]
          },
          "supertypes+": [],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [
-            "ATTR116",
-            "ATTR117",
-            "ATTR119"
+            "ATTR105",
+            "ATTR106",
+            "ATTR108"
          ],
          "inheritedattributes+": [],
          "relations+": [
-            "RELA129",
-            "RELA128"
+            "RELA128",
+            "RELA134"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -400,7 +406,7 @@
             "DIAG145"
          ]
       },
-      "ENTI98": {
+      "ENTI117": {
          "name": {
             "en": "Single Entity"
          },
@@ -432,7 +438,7 @@
          "sourceref": {
             "ODM": [
                "EB1D7D7D-06EB-E40B-B0B6-A2DFF2E41B5D",
-               "2022-03-26 20:03:50.983617"
+               "2022-04-19 11:03:13.801595"
             ]
          },
          "supertypes+": [],
@@ -442,6 +448,7 @@
          "inheritedattributes+": [],
          "relations+": [],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -450,7 +457,7 @@
             "DIAG145"
          ]
       },
-      "ENTI122": {
+      "ENTI111": {
          "name": {
             "en": "extsubentitylev2-1"
          },
@@ -482,22 +489,23 @@
          "sourceref": {
             "ODM": [
                "7C1F233B-7395-8C15-BF67-7C3F479A7AE0",
-               "2022-03-26 20:03:51.063273"
+               "2022-04-19 11:03:13.775857"
             ]
          },
          "supertypes+": [
-            "ENTI120"
+            "ENTI92"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "relations+": [
-            "RELA134"
+            "RELA127"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -506,7 +514,7 @@
             "DIAG145"
          ]
       },
-      "ENTI114": {
+      "ENTI122": {
          "name": {
             "en": "extsubentitylev2-2"
          },
@@ -538,11 +546,11 @@
          "sourceref": {
             "ODM": [
                "F8B60272-F573-507D-5DED-FDC2F4FA928A",
-               "2022-03-26 20:03:51.025924"
+               "2022-04-19 11:03:13.823835"
             ]
          },
          "supertypes+": [
-            "ENTI120"
+            "ENTI92"
          ],
          "roles+": [],
          "subtypes+": [
@@ -550,15 +558,16 @@
          ],
          "attributes+": [],
          "inheritedattributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "relations+": [
-            "RELA132",
-            "RELA144"
+            "RELA124",
+            "RELA142"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [
-            "ARCS143"
+            "ARCS141"
          ],
          "referencedby": [],
          "userdefprops": {},
@@ -581,12 +590,12 @@
          "category": "CATG9",
          "exptuple#": null,
          "prefix": null,
-         "supertypeentity": "ENTI114",
+         "supertypeentity": "ENTI122",
          "subtypellevel+": 1,
          "uc": "stb",
          "dc": "2022-01-29 11:19:21 UTC",
          "um": "sys",
-         "dm": "2022-03-26 20:03:51.106278",
+         "dm": "2022-04-19 11:03:13.877766",
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
@@ -599,22 +608,23 @@
          "sourceref": {
             "ODM": [
                "08390462-17FB-6EC7-30B4-C5D15586EF5D",
-               "2022-03-26 20:03:50.960755"
+               "2022-04-19 11:03:13.664491"
             ]
          },
          "supertypes+": [
-            "ENTI99",
-            "ENTI114"
+            "ENTI110",
+            "ENTI122"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [],
          "relations+": [
-            "RELA131",
-            "RELA144"
+            "RELA132",
+            "RELA142"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -623,7 +633,7 @@
             "DIAG145"
          ]
       },
-      "ENTI120": {
+      "ENTI92": {
          "name": {
             "en": "realsubenti_lev1"
          },
@@ -637,12 +647,12 @@
          "category": "CATG8",
          "exptuple#": null,
          "prefix": null,
-         "supertypeentity": "ENTI105",
+         "supertypeentity": "ENTI118",
          "subtypellevel+": 1,
          "uc": "stb",
          "dc": "2021-10-05 08:41:42 UTC",
          "um": "sys",
-         "dm": "2022-03-26 20:03:51.107711",
+         "dm": "2022-04-19 11:03:13.878364",
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
@@ -655,33 +665,34 @@
          "sourceref": {
             "ODM": [
                "1741A293-9F5D-E514-FB1A-3BC9E42B0C8F",
-               "2022-03-26 20:03:51.049115"
+               "2022-04-19 11:03:13.668375"
             ]
          },
          "supertypes+": [
-            "ENTI105"
+            "ENTI118"
          ],
          "roles+": [],
          "subtypes+": [
+            "ENTI111",
             "ENTI122",
-            "ENTI114",
-            "ENTI100"
+            "ENTI103"
          ],
          "attributes+": [],
          "inheritedattributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "relations+": [
-            "RELA142",
-            "RELA134",
-            "RELA132",
-            "RELA125",
-            "RELA138"
+            "RELA138",
+            "RELA127",
+            "RELA124",
+            "RELA133",
+            "RELA144"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [
             "ARCS135",
-            "ARCS137"
+            "ARCS143"
          ],
          "referencedby": [],
          "userdefprops": {},
@@ -690,7 +701,7 @@
             "DIAG145"
          ]
       },
-      "ENTI100": {
+      "ENTI103": {
          "name": {
             "en": "realsubenti_lev2"
          },
@@ -704,12 +715,12 @@
          "category": "CATG9",
          "exptuple#": null,
          "prefix": null,
-         "supertypeentity": "ENTI120",
+         "supertypeentity": "ENTI92",
          "subtypellevel+": 2,
          "uc": "stb",
          "dc": "2022-01-29 11:16:42 UTC",
          "um": "sys",
-         "dm": "2022-03-26 20:03:51.106693",
+         "dm": "2022-04-19 11:03:13.879254",
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
@@ -722,22 +733,23 @@
          "sourceref": {
             "ODM": [
                "32C64AA6-3D11-1E42-5F1D-E05A4882FCB2",
-               "2022-03-26 20:03:50.995488"
+               "2022-04-19 11:03:13.736973"
             ]
          },
          "supertypes+": [
-            "ENTI120"
+            "ENTI92"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "relations+": [
-            "RELA138"
+            "RELA144"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -746,7 +758,7 @@
             "DIAG145"
          ]
       },
-      "ENTI121": {
+      "ENTI109": {
          "name": {
             "en": "role Entity"
          },
@@ -778,23 +790,24 @@
          "sourceref": {
             "ODM": [
                "633B9A76-27F4-9757-BDBB-9094311C97B0",
-               "2022-03-26 20:03:51.061465"
+               "2022-04-19 11:03:13.762290"
             ]
          },
          "supertypes+": [
-            "ENTI110"
+            "ENTI100"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [
-            "ATTR108",
-            "ATTR111"
+            "ATTR121",
+            "ATTR101"
          ],
          "relations+": [
-            "RELA127"
+            "RELA125"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -803,7 +816,7 @@
             "DIAG145"
          ]
       },
-      "ENTI104": {
+      "ENTI99": {
          "name": {
             "en": "role Entity 2"
          },
@@ -835,23 +848,24 @@
          "sourceref": {
             "ODM": [
                "21A306AE-DB1D-04D1-2592-3327DD2B3CD4",
-               "2022-03-26 20:03:51.004737"
+               "2022-04-19 11:03:13.695643"
             ]
          },
          "supertypes+": [
-            "ENTI110"
+            "ENTI100"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [
-            "ATTR108",
-            "ATTR111"
+            "ATTR121",
+            "ATTR101"
          ],
          "relations+": [
-            "RELA124"
+            "RELA130"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -860,7 +874,7 @@
             "DIAG145"
          ]
       },
-      "ENTI109": {
+      "ENTI115": {
          "name": {
             "en": "subentitynonoverlay1"
          },
@@ -892,21 +906,22 @@
          "sourceref": {
             "ODM": [
                "BB21F608-081A-10C7-4CAA-C9BCA032C3F1",
-               "2022-03-26 20:03:51.015500"
+               "2022-04-19 11:03:13.793684"
             ]
          },
          "supertypes+": [
-            "ENTI99"
+            "ENTI110"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [],
          "relations+": [
-            "RELA133",
-            "RELA125"
+            "RELA129",
+            "RELA133"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -915,7 +930,7 @@
             "DIAG145"
          ]
       },
-      "ENTI113": {
+      "ENTI116": {
          "name": {
             "en": "subentitynonoverlay2"
          },
@@ -947,20 +962,21 @@
          "sourceref": {
             "ODM": [
                "C17A94B7-A795-922C-9B2C-502C9C7916F4",
-               "2022-03-26 20:03:51.023813"
+               "2022-04-19 11:03:13.797870"
             ]
          },
          "supertypes+": [
-            "ENTI99"
+            "ENTI110"
          ],
          "roles+": [],
          "subtypes+": [],
          "attributes+": [],
          "inheritedattributes+": [],
          "relations+": [
-            "RELA130"
+            "RELA123"
          ],
          "keys+": [],
+         "businessrules+": [],
          "inarcs+": [],
          "referencedby": [],
          "userdefprops": {},
@@ -1016,21 +1032,21 @@
             }
          ],
          "usedinattrs+": [
-            "ATTR94"
+            "ATTR95"
          ],
          "usedincols+": [],
          "usedingrps+": [
-            "DOMA83"
+            "DOMA82"
          ],
          "sourceref": {
             "ODM": [
                "7F06A64B-0C00-1355-F863-DBD9FDE5B848",
-               "2022-03-26 20:03:50.912915"
+               "2022-04-19 11:03:13.609549"
             ]
          },
          "referencedby": []
       },
-      "DOMA118": {
+      "DOMA107": {
          "name": {
             "en": "DER-NUM_2_0_1_99_"
          },
@@ -1059,14 +1075,14 @@
          "unit": null,
          "unitid": null,
          "usedinattrs+": [
-            "ATTR119"
+            "ATTR108"
          ],
          "usedincols+": [],
          "usedingrps+": [],
          "sourceref": {
             "ODM": [
                "DOMAF71A25DF-1D3A-9E2B-9970-5CA27326816E",
-               "2022-03-26 20:03:51.045935"
+               "2022-04-19 11:03:13.753969"
             ]
          },
          "referencedby": []
@@ -1101,14 +1117,14 @@
          "format+": null,
          "formatid": null,
          "usedinattrs+": [
-            "ATTR93"
+            "ATTR94"
          ],
          "usedincols+": [],
          "usedingrps+": [],
          "sourceref": {
             "ODM": [
                "631FC893-D28E-5FE4-89DB-473C78BB2B2A",
-               "2022-03-26 20:03:50.904175"
+               "2022-04-19 11:03:13.607874"
             ]
          },
          "referencedby": []
@@ -1142,7 +1158,7 @@
          "sourceref": {
             "ODM": [
                "C3DAFABD-5133-27CA-E0E5-B039A45135D6",
-               "2022-03-26 20:03:50.915296"
+               "2022-04-19 11:03:13.612143"
             ]
          },
          "referencedby": []
@@ -1171,14 +1187,14 @@
          "maxlng": 60,
          "syntaxrule": null,
          "usedinattrs+": [
-            "ATTR108"
+            "ATTR121"
          ],
          "usedincols+": [],
          "usedingrps+": [],
          "sourceref": {
             "ODM": [
                "57EF5654-BB1B-99CD-E31A-A47A05AD3EE6",
-               "2022-03-26 20:03:50.902610"
+               "2022-04-19 11:03:13.606249"
             ]
          },
          "referencedby": []
@@ -1217,7 +1233,7 @@
          "sourceref": {
             "ODM": [
                "16723A86-5E8B-B50D-F81D-ECBEEF3E8261",
-               "2022-03-26 20:03:50.881792"
+               "2022-04-19 11:03:13.592775"
             ]
          },
          "referencedby": []
@@ -1252,14 +1268,14 @@
          "format+": null,
          "formatid": null,
          "usedinattrs+": [
-            "ATTR102"
+            "ATTR113"
          ],
          "usedincols+": [],
          "usedingrps+": [],
          "sourceref": {
             "ODM": [
                "0AD80E26-0F5C-D068-29EA-4740A04582AE",
-               "2022-03-26 20:03:50.880541"
+               "2022-04-19 11:03:13.590192"
             ]
          },
          "referencedby": []
@@ -1288,21 +1304,21 @@
          "maxlng": null,
          "syntaxrule": null,
          "usedinattrs+": [
-            "ATTR111"
+            "ATTR101"
          ],
          "usedincols+": [],
          "usedingrps+": [
-            "DOMA87"
+            "DOMA86"
          ],
          "sourceref": {
             "ODM": [
                "4371DA6A-2A2E-094E-B223-F78464D5EDE8",
-               "2022-03-26 20:03:50.884473"
+               "2022-04-19 11:03:13.597474"
             ]
          },
          "referencedby": []
       },
-      "DOMA82": {
+      "DOMA85": {
          "name": {
             "en": "SDO_GEOMETRY"
          },
@@ -1330,12 +1346,12 @@
          "sourceref": {
             "ODM": [
                "47E390DE-0671-C4B1-8428-0F45CBEE18F8",
-               "2022-03-26 20:03:50.920178"
+               "2022-04-19 11:03:13.625146"
             ]
          },
          "referencedby": []
       },
-      "DOMA83": {
+      "DOMA82": {
          "name": {
             "en": "Struct Type 1"
          },
@@ -1379,21 +1395,21 @@
             }
          ],
          "usedinattrs+": [
-            "ATTR117"
+            "ATTR106"
          ],
          "usedincols+": [],
          "usedingrps+": [
-            "DOMA87"
+            "DOMA86"
          ],
          "sourceref": {
             "ODM": [
                "2D3E418B-0666-65C2-FB25-5B9C19B43786",
-               "2022-03-26 20:03:50.921585"
+               "2022-04-19 11:03:13.618291"
             ]
          },
          "referencedby": []
       },
-      "DOMA87": {
+      "DOMA86": {
          "name": {
             "en": "StructType_2"
          },
@@ -1438,7 +1454,7 @@
             {
                "name": "subattr1",
                "mandatory": false,
-               "domain": "DOMA83",
+               "domain": "DOMA82",
                "descr": null,
                "uc": "stb",
                "dc": "2021-10-05 08:56:49 UTC",
@@ -1447,14 +1463,14 @@
             }
          ],
          "usedinattrs+": [
-            "ATTR116"
+            "ATTR105"
          ],
          "usedincols+": [],
          "usedingrps+": [],
          "sourceref": {
             "ODM": [
                "C7BC8A51-9983-7650-B81E-AF676BFF4AE7",
-               "2022-03-26 20:03:50.931716"
+               "2022-04-19 11:03:13.627532"
             ]
          },
          "referencedby": []
@@ -1493,7 +1509,7 @@
          "sourceref": {
             "ODM": [
                "EEE08598-697A-DDA5-3CD6-F5F8A17DD6AA",
-               "2022-03-26 20:03:50.918212"
+               "2022-04-19 11:03:13.615758"
             ]
          },
          "referencedby": []
@@ -1633,16 +1649,16 @@
             }
          ],
          "usedinattrs+": [
-            "ATTR95"
+            "ATTR96"
          ],
          "usedincols+": [],
          "usedingrps+": [
-            "DOMA87"
+            "DOMA86"
          ],
          "sourceref": {
             "ODM": [
                "5595B09A-F334-06B9-E641-60634C73D28B",
-               "2022-03-26 20:03:50.885681"
+               "2022-04-19 11:03:13.599212"
             ]
          },
          "referencedby": []
@@ -1673,17 +1689,17 @@
          "usedinattrs+": [],
          "usedincols+": [],
          "usedingrps+": [
-            "DOMA83"
+            "DOMA82"
          ],
          "sourceref": {
             "ODM": [
                "DOM3000004",
-               "2022-03-26 20:03:50.916925"
+               "2022-04-19 11:03:13.613821"
             ]
          },
          "referencedby": []
       },
-      "DOMA86": {
+      "DOMA90": {
          "name": {
             "en": "XMLTYPE"
          },
@@ -1711,7 +1727,7 @@
          "sourceref": {
             "ODM": [
                "F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1",
-               "2022-03-26 20:03:50.930418"
+               "2022-04-19 11:03:13.637683"
             ]
          },
          "referencedby": []
@@ -1745,20 +1761,20 @@
          "sourceref": {
             "ODM": [
                "392458B0-D8CC-29BB-06F9-5456F4669028",
-               "2022-03-26 20:03:50.883204"
+               "2022-04-19 11:03:13.595361"
             ]
          },
          "referencedby": []
       }
    },
    "attributes": {
-      "ATTR93": {
+      "ATTR94": {
          "techname": "ATTRIBUTE1",
          "name": {
             "en": "Attribute1"
          },
          "seq": 1,
-         "entity": "ENTI92",
+         "entity": "ENTI93",
          "domain": "DOMA77",
          "basedatatype+": "Date",
          "type+": "DAT",
@@ -1785,13 +1801,14 @@
          "sourceref": {
             "ODM": [
                "516D6D31-9499-0623-86CD-09B535D4EB3C",
-               "2022-03-26 20:03:50.968549"
+               "2022-04-19 11:03:13.679238"
             ]
          },
          "keys+": [
-            "KEYS96",
-            "KEYS97"
+            "KEYS97",
+            "KEYS98"
          ],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -1799,13 +1816,13 @@
             "DIAG145"
          ]
       },
-      "ATTR94": {
+      "ATTR95": {
          "techname": "ATTRIBUTE2",
          "name": {
             "en": "Attribute2"
          },
          "seq": 2,
-         "entity": "ENTI92",
+         "entity": "ENTI93",
          "domain": "DOMA78",
          "basedatatype+": "VARCHAR",
          "type+": "LOV",
@@ -1832,12 +1849,13 @@
          "sourceref": {
             "ODM": [
                "4213B1CA-CC28-8A26-8D75-5B5107D6B6A2",
-               "2022-03-26 20:03:50.971846"
+               "2022-04-19 11:03:13.684231"
             ]
          },
          "keys+": [
-            "KEYS96"
+            "KEYS97"
          ],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -1845,13 +1863,13 @@
             "DIAG145"
          ]
       },
-      "ATTR95": {
+      "ATTR96": {
          "techname": "ATTRIBUTE4",
          "name": {
             "en": "Attribute4"
          },
          "seq": 3,
-         "entity": "ENTI92",
+         "entity": "ENTI93",
          "domain": "DOMA75",
          "basedatatype+": "VARCHAR",
          "type+": "LOV",
@@ -1878,12 +1896,13 @@
          "sourceref": {
             "ODM": [
                "22D91AAD-5149-C235-3759-87748D3E036A",
-               "2022-03-26 20:03:50.974704"
+               "2022-04-19 11:03:13.688019"
             ]
          },
          "keys+": [
-            "KEYS97"
+            "KEYS98"
          ],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -1891,105 +1910,13 @@
             "DIAG145"
          ]
       },
-      "ATTR102": {
-         "techname": "FIRST_APPEARANCE",
-         "name": {
-            "en": "First Appearance"
-         },
-         "seq": 1,
-         "entity": "ENTI101",
-         "domain": "DOMA71",
-         "basedatatype+": "Timestamp",
-         "type+": "DAT",
-         "descriptive": true,
-         "mandatory": false,
-         "historicised": false,
-         "repeated": false,
-         "translated": false,
-         "encrypted": false,
-         "examples": {
-            "en": [
-               "1. Beispiel Attribute first appearance"
-            ]
-         },
-         "tooltip": {
-            "en": ""
-         },
-         "descr": {
-            "en": "First time Child was seen"
-         },
-         "uc": "stb",
-         "dc": "2021-10-05 08:38:38 UTC",
-         "um": null,
-         "dm": null,
-         "minzoomlevel": 0,
-         "maxzoomlevel": 2,
-         "publstatus": "GTOP",
-         "sourceref": {
-            "ODM": [
-               "002B1F8B-69CC-4418-F5E8-AA5292EDDDED",
-               "2022-03-26 20:03:51.000707"
-            ]
-         },
-         "keys+": [],
-         "referencedby": [],
-         "userdefprops": {},
-         "columnsmapped+": {},
-         "diagrams+": [
-            "DIAG145"
-         ]
-      },
-      "ATTR108": {
-         "techname": "NAME",
-         "name": {
-            "en": "Name"
-         },
-         "seq": 1,
-         "entity": "ENTI105",
-         "domain": "DOMA76",
-         "basedatatype+": "VARCHAR",
-         "type+": "TXT",
-         "descriptive": true,
-         "mandatory": true,
-         "historicised": false,
-         "repeated": false,
-         "translated": false,
-         "encrypted": false,
-         "examples": {},
-         "tooltip": {
-            "en": ""
-         },
-         "descr": {
-            "en": "Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2"
-         },
-         "uc": "stb",
-         "dc": "2021-10-05 08:36:08 UTC",
-         "um": null,
-         "dm": null,
-         "minzoomlevel": 0,
-         "maxzoomlevel": 2,
-         "publstatus": "PUBL",
-         "sourceref": {
-            "ODM": [
-               "1EDFCF52-99BE-C55B-22E3-D41F32D7AFC0",
-               "2022-03-26 20:03:51.012364"
-            ]
-         },
-         "keys+": [],
-         "referencedby": [],
-         "userdefprops": {},
-         "columnsmapped+": {},
-         "diagrams+": [
-            "DIAG145"
-         ]
-      },
-      "ATTR111": {
+      "ATTR101": {
          "techname": "COUNT",
          "name": {
             "en": "Count"
          },
          "seq": 1,
-         "entity": "ENTI110",
+         "entity": "ENTI100",
          "domain": "DOMA74",
          "basedatatype+": "unknown",
          "type+": "TXT",
@@ -2016,12 +1943,13 @@
          "sourceref": {
             "ODM": [
                "53ED3002-BD9C-4CBD-D8E5-3C363A99B1AA",
-               "2022-03-26 20:03:51.020414"
+               "2022-04-19 11:03:13.728824"
             ]
          },
          "keys+": [
-            "KEYS112"
+            "KEYS102"
          ],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -2029,14 +1957,14 @@
             "DIAG145"
          ]
       },
-      "ATTR116": {
+      "ATTR105": {
          "techname": "STRUCT_ATTRIBUTE2",
          "name": {
             "en": "Struct-Attribute2"
          },
          "seq": 1,
-         "entity": "ENTI115",
-         "domain": "DOMA87",
+         "entity": "ENTI104",
+         "domain": "DOMA86",
          "basedatatype+": null,
          "type+": "GRP",
          "memberattrs+": [
@@ -2063,7 +1991,7 @@
             {
                "name": "subattr1",
                "mandatory": false,
-               "domain": "DOMA83",
+               "domain": "DOMA82",
                "descr": null,
                "uc": "stb",
                "dc": "2021-10-05 08:56:49 UTC",
@@ -2094,10 +2022,11 @@
          "sourceref": {
             "ODM": [
                "B83F9D2F-1A61-D608-B4BF-5CB2739A0B82",
-               "2022-03-26 20:03:51.031053"
+               "2022-04-19 11:03:13.745936"
             ]
          },
          "keys+": [],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -2105,14 +2034,14 @@
             "DIAG145"
          ]
       },
-      "ATTR117": {
+      "ATTR106": {
          "techname": "STRUCT_ATTR_1",
          "name": {
             "en": "Struct Attr 1"
          },
          "seq": 2,
-         "entity": "ENTI115",
-         "domain": "DOMA83",
+         "entity": "ENTI104",
+         "domain": "DOMA82",
          "basedatatype+": null,
          "type+": "GRP",
          "memberattrs+": [
@@ -2160,10 +2089,11 @@
          "sourceref": {
             "ODM": [
                "37E26AF2-886E-1A3E-6279-754BC44990EB",
-               "2022-03-26 20:03:51.042884"
+               "2022-04-19 11:03:13.749879"
             ]
          },
          "keys+": [],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -2171,14 +2101,14 @@
             "DIAG145"
          ]
       },
-      "ATTR119": {
+      "ATTR108": {
          "techname": "NORMAL_ATTRIBUTE__LOGICAL",
          "name": {
             "en": "Normal Attribute, logical"
          },
          "seq": 3,
-         "entity": "ENTI115",
-         "domain": "DOMA118",
+         "entity": "ENTI104",
+         "domain": "DOMA107",
          "basedatatype+": "NUMERIC",
          "type+": "NUM",
          "descriptive": false,
@@ -2204,10 +2134,105 @@
          "sourceref": {
             "ODM": [
                "F71A25DF-1D3A-9E2B-9970-5CA27326816E",
-               "2022-03-26 20:03:51.047021"
+               "2022-04-19 11:03:13.755996"
             ]
          },
          "keys+": [],
+         "businessrules+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG145"
+         ]
+      },
+      "ATTR113": {
+         "techname": "FIRST_APPEARANCE",
+         "name": {
+            "en": "First Appearance"
+         },
+         "seq": 1,
+         "entity": "ENTI112",
+         "domain": "DOMA71",
+         "basedatatype+": "Timestamp",
+         "type+": "DAT",
+         "descriptive": true,
+         "mandatory": false,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {
+            "en": [
+               "1. Beispiel Attribute first appearance"
+            ]
+         },
+         "tooltip": {
+            "en": ""
+         },
+         "descr": {
+            "en": "First time Child was seen"
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:38:38 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": 0,
+         "maxzoomlevel": 2,
+         "publstatus": "GTOP",
+         "sourceref": {
+            "ODM": [
+               "002B1F8B-69CC-4418-F5E8-AA5292EDDDED",
+               "2022-04-19 11:03:13.786275"
+            ]
+         },
+         "keys+": [],
+         "businessrules+": [],
+         "referencedby": [],
+         "userdefprops": {},
+         "columnsmapped+": {},
+         "diagrams+": [
+            "DIAG145"
+         ]
+      },
+      "ATTR121": {
+         "techname": "NAME",
+         "name": {
+            "en": "Name"
+         },
+         "seq": 1,
+         "entity": "ENTI118",
+         "domain": "DOMA76",
+         "basedatatype+": "VARCHAR",
+         "type+": "TXT",
+         "descriptive": true,
+         "mandatory": true,
+         "historicised": false,
+         "repeated": false,
+         "translated": false,
+         "encrypted": false,
+         "examples": {},
+         "tooltip": {
+            "en": ""
+         },
+         "descr": {
+            "en": "Descriptive, mandatory Attribute with domain,  displayed on zoom level 0-2"
+         },
+         "uc": "stb",
+         "dc": "2021-10-05 08:36:08 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": 0,
+         "maxzoomlevel": 2,
+         "publstatus": "PUBL",
+         "sourceref": {
+            "ODM": [
+               "1EDFCF52-99BE-C55B-22E3-D41F32D7AFC0",
+               "2022-04-19 11:03:13.820162"
+            ]
+         },
+         "keys+": [],
+         "businessrules+": [],
          "referencedby": [],
          "userdefprops": {},
          "columnsmapped+": {},
@@ -2221,7 +2246,7 @@
          "name": "Master Entity_subtype_Child Entity1",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI101",
+            "enti": "ENTI112",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2232,8 +2257,8 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI105",
-            "arc": "ARCS139",
+            "enti": "ENTI118",
+            "arc": "ARCS137",
             "assoc": {
                "en": ""
             },
@@ -2251,15 +2276,16 @@
          "minzoomlevel": null,
          "maxzoomlevel": null,
          "publstatus": null,
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA141": {
+      "RELA139": {
          "name": "Master Entity_subtype_Child Entity2",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI110",
+            "enti": "ENTI100",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2270,8 +2296,8 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI105",
-            "arc": "ARCS139",
+            "enti": "ENTI118",
+            "arc": "ARCS137",
             "assoc": {
                "en": ""
             },
@@ -2289,15 +2315,16 @@
          "minzoomlevel": null,
          "maxzoomlevel": null,
          "publstatus": null,
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA142": {
+      "RELA138": {
          "name": "Master Entity_subtype_realsubenti_lev1",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI120",
+            "enti": "ENTI92",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2308,8 +2335,8 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI105",
-            "arc": "ARCS139",
+            "enti": "ENTI118",
+            "arc": "ARCS137",
             "assoc": {
                "en": ""
             },
@@ -2327,15 +2354,16 @@
          "minzoomlevel": null,
          "maxzoomlevel": null,
          "publstatus": null,
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA133": {
+      "RELA129": {
          "name": "Relation_1",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI109",
+            "enti": "ENTI115",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2346,7 +2374,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI99",
+            "enti": "ENTI110",
             "arc": "ARCS136",
             "assoc": {
                "en": ""
@@ -2360,7 +2388,7 @@
          "sourceref": {
             "ODM": [
                "AC4AB93D-B789-E1E3-8888-0F26F25D0CCC",
-               "2022-03-26 20:03:51.098156"
+               "2022-04-19 11:03:13.847688"
             ]
          },
          "uc": "stb",
@@ -2370,15 +2398,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA134": {
+      "RELA127": {
          "name": "Relation_12",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI122",
+            "enti": "ENTI111",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2389,7 +2418,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI120",
+            "enti": "ENTI92",
             "arc": "ARCS135",
             "assoc": {
                "en": ""
@@ -2403,7 +2432,7 @@
          "sourceref": {
             "ODM": [
                "98773956-D6BC-5D89-19DA-97F65AA1CD6D",
-               "2022-03-26 20:03:51.100232"
+               "2022-04-19 11:03:13.840305"
             ]
          },
          "uc": "stb",
@@ -2413,15 +2442,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA132": {
+      "RELA124": {
          "name": "Relation_13",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI114",
+            "enti": "ENTI122",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2432,7 +2462,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI120",
+            "enti": "ENTI92",
             "arc": "ARCS135",
             "assoc": {
                "en": ""
@@ -2446,7 +2476,7 @@
          "sourceref": {
             "ODM": [
                "19757F8B-F006-B487-6894-5F267A97A1CD",
-               "2022-03-26 20:03:51.096118"
+               "2022-04-19 11:03:13.830834"
             ]
          },
          "uc": "stb",
@@ -2456,11 +2486,12 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA131": {
+      "RELA132": {
          "name": "Relation_14",
          "type": "ISAS",
          "from-to": {
@@ -2475,7 +2506,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI99",
+            "enti": "ENTI110",
             "arc": "ARCS136",
             "assoc": {
                "en": ""
@@ -2489,7 +2520,7 @@
          "sourceref": {
             "ODM": [
                "CA08EC18-7BBB-9539-9CCE-96F555200F2A",
-               "2022-03-26 20:03:51.093792"
+               "2022-04-19 11:03:13.858684"
             ]
          },
          "uc": "stb",
@@ -2499,15 +2530,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA130": {
+      "RELA123": {
          "name": "Relation_2",
          "type": "ISAS",
          "from-to": {
-            "enti": "ENTI113",
+            "enti": "ENTI116",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2518,7 +2550,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI99",
+            "enti": "ENTI110",
             "arc": "ARCS136",
             "assoc": {
                "en": ""
@@ -2532,7 +2564,7 @@
          "sourceref": {
             "ODM": [
                "0B734027-31D6-30D3-C8C6-0DCD0AE533E9",
-               "2022-03-26 20:03:51.089659"
+               "2022-04-19 11:03:13.827456"
             ]
          },
          "uc": "stb",
@@ -2542,15 +2574,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA125": {
+      "RELA133": {
          "name": "Relation_3",
          "type": "M:N",
          "from-to": {
-            "enti": "ENTI109",
+            "enti": "ENTI115",
             "arc": null,
             "assoc": {
                "en": "belongs to"
@@ -2561,7 +2594,7 @@
             "cardstr+": "0..N"
          },
          "to-from": {
-            "enti": "ENTI120",
+            "enti": "ENTI92",
             "arc": null,
             "assoc": {
                "en": "knows about"
@@ -2575,7 +2608,7 @@
          "sourceref": {
             "ODM": [
                "CF487C0E-449B-5BB8-8B39-208F6AF5B8DE",
-               "2022-03-26 20:03:51.072316"
+               "2022-04-19 11:03:13.863373"
             ]
          },
          "uc": "stb",
@@ -2585,6 +2618,7 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
@@ -2593,7 +2627,7 @@
          "name": "Relation_4",
          "type": "M:1",
          "from-to": {
-            "enti": "ENTI99",
+            "enti": "ENTI110",
             "arc": null,
             "assoc": {
                "en": "goes with"
@@ -2604,7 +2638,7 @@
             "cardstr+": "0..N"
          },
          "to-from": {
-            "enti": "ENTI101",
+            "enti": "ENTI112",
             "arc": null,
             "assoc": {
                "en": "follows"
@@ -2618,7 +2652,7 @@
          "sourceref": {
             "ODM": [
                "7A0A38F5-97D4-7200-DDDF-C89D4E4C513B",
-               "2022-03-26 20:03:51.075805"
+               "2022-04-19 11:03:13.837102"
             ]
          },
          "uc": "stb",
@@ -2628,15 +2662,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "PUBL",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA123": {
+      "RELA131": {
          "name": "Relation_5",
          "type": "ISAR",
          "from-to": {
-            "enti": "ENTI92",
+            "enti": "ENTI93",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2647,7 +2682,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI110",
+            "enti": "ENTI100",
             "arc": null,
             "assoc": {
                "en": ""
@@ -2661,7 +2696,7 @@
          "sourceref": {
             "ODM": [
                "BC5ADB54-2BB1-77F8-5BA3-F356BBE0C84C",
-               "2022-03-26 20:03:51.065529"
+               "2022-04-19 11:03:13.854403"
             ]
          },
          "uc": "stb",
@@ -2671,15 +2706,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA124": {
+      "RELA130": {
          "name": "Relation_777",
          "type": "ISAR",
          "from-to": {
-            "enti": "ENTI110",
+            "enti": "ENTI100",
             "arc": null,
             "assoc": {
                "en": "is"
@@ -2690,7 +2726,7 @@
             "cardstr+": "0..1"
          },
          "to-from": {
-            "enti": "ENTI104",
+            "enti": "ENTI99",
             "arc": null,
             "assoc": {
                "en": "duplicate name"
@@ -2704,7 +2740,7 @@
          "sourceref": {
             "ODM": [
                "B55C27E1-B8EC-E30D-85FD-455DB94B1302",
-               "2022-03-26 20:03:51.067411"
+               "2022-04-19 11:03:13.851321"
             ]
          },
          "uc": "stb",
@@ -2714,15 +2750,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "DRAFT",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA127": {
+      "RELA125": {
          "name": "Relation_777v1",
          "type": "ISAR",
          "from-to": {
-            "enti": "ENTI110",
+            "enti": "ENTI100",
             "arc": null,
             "assoc": {
                "en": "is"
@@ -2733,7 +2770,7 @@
             "cardstr+": "0..1"
          },
          "to-from": {
-            "enti": "ENTI121",
+            "enti": "ENTI109",
             "arc": null,
             "assoc": {
                "en": "duplicate name"
@@ -2747,7 +2784,7 @@
          "sourceref": {
             "ODM": [
                "508E5A69-FDFC-1A2D-5CEB-83E3133AEF20",
-               "2022-03-26 20:03:51.077949"
+               "2022-04-19 11:03:13.833964"
             ]
          },
          "uc": "stb",
@@ -2757,15 +2794,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "PUBL",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA129": {
+      "RELA128": {
          "name": "Relation_8",
          "type": "M:1",
          "from-to": {
-            "enti": "ENTI110",
+            "enti": "ENTI100",
             "arc": null,
             "assoc": {
                "en": "eats"
@@ -2776,7 +2814,7 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI115",
+            "enti": "ENTI104",
             "arc": null,
             "assoc": {
                "en": "eaten by"
@@ -2787,12 +2825,12 @@
             "cardstr+": "0..N"
          },
          "isinkeys+": [
-            "KEYS112"
+            "KEYS102"
          ],
          "sourceref": {
             "ODM": [
                "A49895D8-915D-0BEA-A740-F9A20ABE4AB9",
-               "2022-03-26 20:03:51.087276"
+               "2022-04-19 11:03:13.844024"
             ]
          },
          "uc": "stb",
@@ -2802,15 +2840,16 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA128": {
+      "RELA134": {
          "name": "Relation_9",
          "type": "M:1",
          "from-to": {
-            "enti": "ENTI115",
+            "enti": "ENTI104",
             "arc": null,
             "assoc": {
                "en": "is of"
@@ -2821,7 +2860,7 @@
             "cardstr+": "0..N"
          },
          "to-from": {
-            "enti": "ENTI115",
+            "enti": "ENTI104",
             "arc": null,
             "assoc": {
                "en": "builds"
@@ -2835,7 +2874,7 @@
          "sourceref": {
             "ODM": [
                "F3167504-5F55-0C08-422F-1820A94EE1BF",
-               "2022-03-26 20:03:51.085107"
+               "2022-04-19 11:03:13.867313"
             ]
          },
          "uc": "stb",
@@ -2845,11 +2884,12 @@
          "minzoomlevel": 0,
          "maxzoomlevel": 4,
          "publstatus": "GTOP",
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
       },
-      "RELA144": {
+      "RELA142": {
          "name": "extsubentitylev2-2_subtype_realsubenti2-lev1",
          "type": "ISAS",
          "from-to": {
@@ -2864,7 +2904,46 @@
             "cardstr+": "1"
          },
          "to-from": {
-            "enti": "ENTI114",
+            "enti": "ENTI122",
+            "arc": "ARCS141",
+            "assoc": {
+               "en": ""
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "isinkeys+": [],
+         "sourceref": {},
+         "uc": "stb",
+         "dc": "2022-01-29 11:19:06 UTC",
+         "um": null,
+         "dm": null,
+         "minzoomlevel": null,
+         "maxzoomlevel": null,
+         "publstatus": null,
+         "businessrules+": [],
+         "userdefprops": {},
+         "referencedby": [],
+         "tablesmapped+": {}
+      },
+      "RELA144": {
+         "name": "realsubenti_lev1_subtype_realsubenti_lev2",
+         "type": "ISAS",
+         "from-to": {
+            "enti": "ENTI103",
+            "arc": null,
+            "assoc": {
+               "en": ""
+            },
+            "maptype": "1",
+            "hist": false,
+            "mandatory": true,
+            "cardstr+": "1"
+         },
+         "to-from": {
+            "enti": "ENTI92",
             "arc": "ARCS143",
             "assoc": {
                "en": ""
@@ -2877,50 +2956,13 @@
          "isinkeys+": [],
          "sourceref": {},
          "uc": "stb",
-         "dc": "2022-01-29 11:19:06 UTC",
-         "um": null,
-         "dm": null,
-         "minzoomlevel": null,
-         "maxzoomlevel": null,
-         "publstatus": null,
-         "userdefprops": {},
-         "referencedby": [],
-         "tablesmapped+": {}
-      },
-      "RELA138": {
-         "name": "realsubenti_lev1_subtype_realsubenti_lev2",
-         "type": "ISAS",
-         "from-to": {
-            "enti": "ENTI100",
-            "arc": null,
-            "assoc": {
-               "en": ""
-            },
-            "maptype": "1",
-            "hist": false,
-            "mandatory": true,
-            "cardstr+": "1"
-         },
-         "to-from": {
-            "enti": "ENTI120",
-            "arc": "ARCS137",
-            "assoc": {
-               "en": ""
-            },
-            "maptype": "1",
-            "hist": false,
-            "mandatory": true,
-            "cardstr+": "1"
-         },
-         "isinkeys+": [],
-         "sourceref": {},
-         "uc": "stb",
          "dc": "2021-10-05 08:41:42 UTC",
          "um": null,
          "dm": null,
          "minzoomlevel": null,
          "maxzoomlevel": null,
          "publstatus": null,
+         "businessrules+": [],
          "userdefprops": {},
          "referencedby": [],
          "tablesmapped+": {}
@@ -2929,15 +2971,15 @@
    "arcs": {
       "ARCS135": {
          "name": "Arc_2",
-         "entity": "ENTI120",
+         "entity": "ENTI92",
          "relations": [
-            "RELA134",
-            "RELA132"
+            "RELA127",
+            "RELA124"
          ],
          "sourceref": {
             "ODM": [
                "58CBBA79-E08D-678A-454D-ACDCC0FF8CBD",
-               "2022-03-26 20:03:51.102422"
+               "2022-04-19 11:03:13.871290"
             ]
          },
          "uc": "stb",
@@ -2947,16 +2989,16 @@
       },
       "ARCS136": {
          "name": "Arc_1",
-         "entity": "ENTI99",
+         "entity": "ENTI110",
          "relations": [
-            "RELA133",
-            "RELA131",
-            "RELA130"
+            "RELA129",
+            "RELA132",
+            "RELA123"
          ],
          "sourceref": {
             "ODM": [
                "C7B785A5-4840-219A-0E89-D39189F423C5",
-               "2022-03-26 20:03:51.104479"
+               "2022-04-19 11:03:13.874959"
             ]
          },
          "uc": "stb",
@@ -2965,24 +3007,12 @@
          "dm": null
       },
       "ARCS137": {
-         "name": "realsubenti_lev1_subtype",
-         "entity": "ENTI120",
-         "relations": [
-            "RELA138"
-         ],
-         "sourceref": {},
-         "uc": "stb",
-         "dc": "2021-10-05 08:41:42 UTC",
-         "um": null,
-         "dm": null
-      },
-      "ARCS139": {
          "name": "Master Entity_subtype",
-         "entity": "ENTI105",
+         "entity": "ENTI118",
          "relations": [
             "RELA140",
-            "RELA141",
-            "RELA142"
+            "RELA139",
+            "RELA138"
          ],
          "sourceref": {},
          "uc": "stb",
@@ -2990,23 +3020,35 @@
          "um": null,
          "dm": null
       },
-      "ARCS143": {
+      "ARCS141": {
          "name": "extsubentitylev2-2_subtype",
-         "entity": "ENTI114",
+         "entity": "ENTI122",
          "relations": [
-            "RELA144"
+            "RELA142"
          ],
          "sourceref": {},
          "uc": "stb",
          "dc": "2022-01-29 11:19:06 UTC",
          "um": null,
          "dm": null
+      },
+      "ARCS143": {
+         "name": "realsubenti_lev1_subtype",
+         "entity": "ENTI92",
+         "relations": [
+            "RELA144"
+         ],
+         "sourceref": {},
+         "uc": "stb",
+         "dc": "2021-10-05 08:41:42 UTC",
+         "um": null,
+         "dm": null
       }
    },
    "keys": {
-      "KEYS96": {
+      "KEYS97": {
          "name": "UK1",
-         "entity": "ENTI92",
+         "entity": "ENTI93",
          "uc": "stb",
          "dc": "2021-10-05 08:49:21 UTC",
          "um": null,
@@ -3014,20 +3056,20 @@
          "sourceref": {
             "ODM": [
                "0560F38C-0701-E6B7-B114-0DC5B1C511DA",
-               "2022-03-26 20:03:50.980578"
+               "2022-04-19 11:03:13.691417"
             ]
          },
          "key-elements": {
             "attributes": [
-               "ATTR93",
-               "ATTR94"
+               "ATTR94",
+               "ATTR95"
             ],
             "relations": []
          }
       },
-      "KEYS97": {
+      "KEYS98": {
          "name": "UniqueKey2",
-         "entity": "ENTI92",
+         "entity": "ENTI93",
          "uc": "stb",
          "dc": "2021-10-05 08:49:40 UTC",
          "um": null,
@@ -3035,20 +3077,20 @@
          "sourceref": {
             "ODM": [
                "86148B5D-1DD2-B15C-3573-E4B4A4C0CDAA",
-               "2022-03-26 20:03:50.981794"
+               "2022-04-19 11:03:13.693214"
             ]
          },
          "key-elements": {
             "attributes": [
-               "ATTR95",
-               "ATTR93"
+               "ATTR96",
+               "ATTR94"
             ],
             "relations": []
          }
       },
-      "KEYS112": {
+      "KEYS102": {
          "name": "Key_1",
-         "entity": "ENTI110",
+         "entity": "ENTI100",
          "uc": "stb",
          "dc": "2021-10-05 08:54:10 UTC",
          "um": null,
@@ -3056,19 +3098,20 @@
          "sourceref": {
             "ODM": [
                "D5598753-6F28-E1D7-00D1-467254B634E5",
-               "2022-03-26 20:03:51.022554"
+               "2022-04-19 11:03:13.733424"
             ]
          },
          "key-elements": {
             "attributes": [
-               "ATTR111"
+               "ATTR101"
             ],
             "relations": [
-               "RELA129"
+               "RELA128"
             ]
          }
       }
    },
+   "businessrules": {},
    "documents": {
       "DOCU68": {
          "name": "f_icon_377_object_handshake",
@@ -3080,13 +3123,12 @@
          "sourceref": {
             "ODM": [
                "311DC210-16D2-5982-489E-052929AB265A",
-               "2022-03-26 20:03:50.875261"
+               "2022-04-19 11:03:13.580401"
             ]
          },
-         "referencecnt+": "2",
          "references+": [
-            "ENTI92",
-            "ENTI105"
+            "ENTI93",
+            "ENTI118"
          ]
       },
       "DOCU69": {
@@ -3099,10 +3141,9 @@
          "sourceref": {
             "ODM": [
                "749AE8BE-3965-B4A7-D960-0C3097ED3469",
-               "2022-03-26 20:03:50.876353"
+               "2022-04-19 11:03:13.582932"
             ]
          },
-         "referencecnt+": "0",
          "references+": []
       },
       "DOCU70": {
@@ -3115,13 +3156,12 @@
          "sourceref": {
             "ODM": [
                "E035088F-56BA-B7E7-ADB4-B684B0194348",
-               "2022-03-26 20:03:50.877747"
+               "2022-04-19 11:03:13.585988"
             ]
          },
-         "referencecnt+": "2",
          "references+": [
-            "ENTI92",
-            "ENTI99"
+            "ENTI93",
+            "ENTI110"
          ]
       }
    },
@@ -3130,7 +3170,7 @@
       "CATG1": {
          "name": "Fakt",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.943782",
+         "dc": "2022-04-19 11:03:13.651155",
          "um": null,
          "dm": null,
          "ui": {
@@ -3148,7 +3188,7 @@
       "CATG2": {
          "name": "Dimension",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.944702",
+         "dc": "2022-04-19 11:03:13.652476",
          "um": null,
          "dm": null,
          "ui": {
@@ -3166,7 +3206,7 @@
       "CATG3": {
          "name": "Logging",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.947071",
+         "dc": "2022-04-19 11:03:13.653581",
          "um": null,
          "dm": null,
          "ui": {
@@ -3184,7 +3224,7 @@
       "CATG4": {
          "name": "\u00dcbersicht",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.947941",
+         "dc": "2022-04-19 11:03:13.654541",
          "um": null,
          "dm": null,
          "ui": {
@@ -3202,7 +3242,7 @@
       "CATG5": {
          "name": "Tempor\u00e4r",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.948766",
+         "dc": "2022-04-19 11:03:13.655569",
          "um": null,
          "dm": null,
          "ui": {
@@ -3220,7 +3260,7 @@
       "CATG6": {
          "name": "Extern",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.949582",
+         "dc": "2022-04-19 11:03:13.656598",
          "um": null,
          "dm": null,
          "ui": {
@@ -3238,7 +3278,7 @@
       "CATG7": {
          "name": "Classification1",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.950479",
+         "dc": "2022-04-19 11:03:13.657644",
          "um": null,
          "dm": null,
          "ui": {
@@ -3256,7 +3296,7 @@
       "CATG8": {
          "name": "Classification2",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.956765",
+         "dc": "2022-04-19 11:03:13.658698",
          "um": null,
          "dm": null,
          "ui": {
@@ -3274,7 +3314,7 @@
       "CATG9": {
          "name": "Entity",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.957828",
+         "dc": "2022-04-19 11:03:13.659755",
          "um": null,
          "dm": null,
          "ui": {
@@ -3302,7 +3342,7 @@
          "sourceref": {
             "ODM": [
                "90A6DE35-7D20-FAE2-43F5-8338615FF552",
-               "2022-03-26 20:03:51.177180"
+               "2022-04-19 11:03:13.992403"
             ]
          },
          "referencedby": [],
@@ -3330,7 +3370,7 @@
          "elements": {
             "attribute": [
                {
-                  "element": "ATTR93",
+                  "element": "ATTR94",
                   "index": 0,
                   "pos_x": 856,
                   "pos_y": 293,
@@ -3351,49 +3391,7 @@
                   }
                },
                {
-                  "element": "ATTR102",
-                  "index": 0,
-                  "pos_x": 426,
-                  "pos_y": 300,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 105,
-                     "height": 13,
-                     "opacity": 100,
-                     "color": "00cccc",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "ffffff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ATTR108",
-                  "index": 0,
-                  "pos_x": 416,
-                  "pos_y": 250,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 285,
-                     "height": 13,
-                     "opacity": 100,
-                     "color": "00cccc",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "ffffff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ATTR111",
+                  "element": "ATTR101",
                   "index": 0,
                   "pos_x": 586,
                   "pos_y": 300,
@@ -3414,7 +3412,7 @@
                   }
                },
                {
-                  "element": "ATTR116",
+                  "element": "ATTR105",
                   "index": 0,
                   "pos_x": 636,
                   "pos_y": 560,
@@ -3435,7 +3433,49 @@
                   }
                },
                {
-                  "element": "ATTR94",
+                  "element": "ATTR113",
+                  "index": 0,
+                  "pos_x": 426,
+                  "pos_y": 300,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 105,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "00cccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ATTR121",
+                  "index": 0,
+                  "pos_x": 416,
+                  "pos_y": 250,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 285,
+                     "height": 13,
+                     "opacity": 100,
+                     "color": "00cccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ATTR95",
                   "index": 0,
                   "pos_x": 856,
                   "pos_y": 306,
@@ -3456,7 +3496,7 @@
                   }
                },
                {
-                  "element": "ATTR117",
+                  "element": "ATTR106",
                   "index": 0,
                   "pos_x": 636,
                   "pos_y": 573,
@@ -3477,7 +3517,7 @@
                   }
                },
                {
-                  "element": "ATTR95",
+                  "element": "ATTR96",
                   "index": 0,
                   "pos_x": 856,
                   "pos_y": 280,
@@ -3498,7 +3538,7 @@
                   }
                },
                {
-                  "element": "ATTR119",
+                  "element": "ATTR108",
                   "index": 0,
                   "pos_x": 636,
                   "pos_y": 586,
@@ -3521,7 +3561,7 @@
             ],
             "entity": [
                {
-                  "element": "ENTI92",
+                  "element": "ENTI93",
                   "index": 0,
                   "pos_x": 830,
                   "pos_y": 250,
@@ -3542,49 +3582,7 @@
                   }
                },
                {
-                  "element": "ENTI98",
-                  "index": 0,
-                  "pos_x": 140,
-                  "pos_y": 210,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 170,
-                     "height": 110,
-                     "opacity": 100,
-                     "color": "a4e1ff",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "0000ff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
                   "element": "ENTI99",
-                  "index": 0,
-                  "pos_x": 150,
-                  "pos_y": 420,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 170,
-                     "height": 110,
-                     "opacity": 100,
-                     "color": "ff89ec",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "0000ff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI104",
                   "index": 0,
                   "pos_x": 830,
                   "pos_y": 400,
@@ -3605,91 +3603,7 @@
                   }
                },
                {
-                  "element": "ENTI105",
-                  "index": 0,
-                  "pos_x": 390,
-                  "pos_y": 220,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 321,
-                     "height": 221,
-                     "opacity": 100,
-                     "color": "00cccc",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "ffffff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI109",
-                  "index": 0,
-                  "pos_x": 270,
-                  "pos_y": 570,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 161,
-                     "height": 61,
-                     "opacity": 100,
-                     "color": "ff89ec",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "0000ff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI113",
-                  "index": 0,
-                  "pos_x": 270,
-                  "pos_y": 640,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 161,
-                     "height": 61,
-                     "opacity": 100,
-                     "color": "ffff99",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "0000ff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI114",
-                  "index": 0,
-                  "pos_x": 550,
-                  "pos_y": 750,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 151,
-                     "height": 91,
-                     "opacity": 100,
-                     "color": "a4e1ff",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "0000ff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI115",
+                  "element": "ENTI104",
                   "index": 0,
                   "pos_x": 610,
                   "pos_y": 530,
@@ -3710,7 +3624,7 @@
                   }
                },
                {
-                  "element": "ENTI121",
+                  "element": "ENTI109",
                   "index": 0,
                   "pos_x": 840,
                   "pos_y": 350,
@@ -3731,7 +3645,28 @@
                   }
                },
                {
-                  "element": "ENTI122",
+                  "element": "ENTI110",
+                  "index": 0,
+                  "pos_x": 150,
+                  "pos_y": 420,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 170,
+                     "height": 110,
+                     "opacity": 100,
+                     "color": "ff89ec",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "0000ff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI111",
                   "index": 0,
                   "pos_x": 550,
                   "pos_y": 700,
@@ -3742,6 +3677,111 @@
                   "ui": {
                      "width": 151,
                      "height": 41,
+                     "opacity": 100,
+                     "color": "a4e1ff",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "0000ff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI115",
+                  "index": 0,
+                  "pos_x": 270,
+                  "pos_y": 570,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 161,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "ff89ec",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "0000ff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI116",
+                  "index": 0,
+                  "pos_x": 270,
+                  "pos_y": 640,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 161,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "ffff99",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "0000ff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI117",
+                  "index": 0,
+                  "pos_x": 140,
+                  "pos_y": 210,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 170,
+                     "height": 110,
+                     "opacity": 100,
+                     "color": "a4e1ff",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "0000ff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI118",
+                  "index": 0,
+                  "pos_x": 390,
+                  "pos_y": 220,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 321,
+                     "height": 221,
+                     "opacity": 100,
+                     "color": "00cccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI122",
+                  "index": 0,
+                  "pos_x": 550,
+                  "pos_y": 750,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 151,
+                     "height": 91,
                      "opacity": 100,
                      "color": "a4e1ff",
                      "marginwidth": null,
@@ -3773,49 +3813,7 @@
                   }
                },
                {
-                  "element": "ENTI101",
-                  "index": 0,
-                  "pos_x": 400,
-                  "pos_y": 270,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 141,
-                     "height": 61,
-                     "opacity": 100,
-                     "color": "00cccc",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "ffffff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI110",
-                  "index": 0,
-                  "pos_x": 560,
-                  "pos_y": 270,
-                  "uc": "stb",
-                  "dc": "2021-10-05 08:02:04 UTC",
-                  "um": null,
-                  "dm": null,
-                  "ui": {
-                     "width": 141,
-                     "height": 51,
-                     "opacity": 100,
-                     "color": "00cccc",
-                     "marginwidth": null,
-                     "marginopacity": 100,
-                     "margincolor": "ffffff",
-                     "fontsize": 10,
-                     "fontcolor": "0000ff"
-                  }
-               },
-               {
-                  "element": "ENTI120",
+                  "element": "ENTI92",
                   "index": 0,
                   "pos_x": 410,
                   "pos_y": 340,
@@ -3838,6 +3836,48 @@
                {
                   "element": "ENTI100",
                   "index": 0,
+                  "pos_x": 560,
+                  "pos_y": 270,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 141,
+                     "height": 51,
+                     "opacity": 100,
+                     "color": "00cccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI112",
+                  "index": 0,
+                  "pos_x": 400,
+                  "pos_y": 270,
+                  "uc": "stb",
+                  "dc": "2021-10-05 08:02:04 UTC",
+                  "um": null,
+                  "dm": null,
+                  "ui": {
+                     "width": 141,
+                     "height": 61,
+                     "opacity": 100,
+                     "color": "00cccc",
+                     "marginwidth": null,
+                     "marginopacity": 100,
+                     "margincolor": "ffffff",
+                     "fontsize": 10,
+                     "fontcolor": "0000ff"
+                  }
+               },
+               {
+                  "element": "ENTI103",
+                  "index": 0,
                   "pos_x": 430,
                   "pos_y": 357,
                   "uc": "stb",
@@ -3859,7 +3899,7 @@
             ]
          },
          "relationships": {
-            "RELA130": {
+            "RELA123": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -3920,7 +3960,7 @@
                   }
                ]
             },
-            "RELA132": {
+            "RELA124": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -3991,7 +4031,7 @@
                   }
                ]
             },
-            "RELA127": {
+            "RELA125": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4143,7 +4183,7 @@
                   }
                ]
             },
-            "RELA134": {
+            "RELA127": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4204,7 +4244,7 @@
                   }
                ]
             },
-            "RELA129": {
+            "RELA128": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4265,7 +4305,7 @@
                   }
                ]
             },
-            "RELA133": {
+            "RELA129": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4326,7 +4366,7 @@
                   }
                ]
             },
-            "RELA124": {
+            "RELA130": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4397,7 +4437,7 @@
                   }
                ]
             },
-            "RELA123": {
+            "RELA131": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4458,7 +4498,7 @@
                   }
                ]
             },
-            "RELA131": {
+            "RELA132": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4519,7 +4559,7 @@
                   }
                ]
             },
-            "RELA125": {
+            "RELA133": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4580,7 +4620,7 @@
                   }
                ]
             },
-            "RELA128": {
+            "RELA134": {
                "linewidth": 1,
                "linecolor": null,
                "lineopacity": 100,
@@ -4696,7 +4736,7 @@
          "sourceref": {
             "ODM": [
                "B46607BF-CEAC-400D-8361-7773E9838FC0",
-               "2022-03-26 20:03:51.125019"
+               "2022-04-19 11:03:13.903033"
             ]
          }
       }
@@ -4708,13 +4748,13 @@
          "name": "unknown",
          "basetype": "STRING",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.785113",
+         "dc": "2022-04-19 11:03:13.448436",
          "um": null,
          "dm": null,
          "sourceref": {
             "ODM": [
                "LOGDT017",
-               "2022-03-26 20:03:50.786004"
+               "2022-04-19 11:03:13.450138"
             ]
          }
       },
@@ -4722,13 +4762,13 @@
          "name": "Date",
          "basetype": "DATETIME",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.797517",
+         "dc": "2022-04-19 11:03:13.474602",
          "um": null,
          "dm": null,
          "sourceref": {
             "ODM": [
                "LOGDT007",
-               "2022-03-26 20:03:50.798125"
+               "2022-04-19 11:03:13.475728"
             ]
          }
       },
@@ -4736,13 +4776,13 @@
          "name": "NUMERIC",
          "basetype": "NUMERIC",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.817733",
+         "dc": "2022-04-19 11:03:13.506687",
          "um": null,
          "dm": null,
          "sourceref": {
             "ODM": [
                "LOGDT019",
-               "2022-03-26 20:03:50.818539"
+               "2022-04-19 11:03:13.507660"
             ]
          }
       },
@@ -4750,13 +4790,13 @@
          "name": "Timestamp",
          "basetype": "DATETIME",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.863822",
+         "dc": "2022-04-19 11:03:13.551247",
          "um": null,
          "dm": null,
          "sourceref": {
             "ODM": [
                "LOGDT015",
-               "2022-03-26 20:03:50.864396"
+               "2022-04-19 11:03:13.552225"
             ]
          }
       },
@@ -4764,13 +4804,13 @@
          "name": "VARCHAR",
          "basetype": "STRING",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.868154",
+         "dc": "2022-04-19 11:03:13.558197",
          "um": null,
          "dm": null,
          "sourceref": {
             "ODM": [
                "LOGDT024",
-               "2022-03-26 20:03:50.868740"
+               "2022-04-19 11:03:13.565931"
             ]
          }
       },
@@ -4778,13 +4818,13 @@
          "name": "String",
          "basetype": "STRING",
          "uc": "sys",
-         "dc": "2022-03-26 20:03:50.872712",
+         "dc": "2022-04-19 11:03:13.576026",
          "um": null,
          "dm": null,
          "sourceref": {
             "ODM": [
                "A3A3C77D-0366-9768-FF89-1C25E56881C8",
-               "2022-03-26 20:03:50.873320"
+               "2022-04-19 11:03:13.577177"
             ]
          }
       }
@@ -4794,7 +4834,7 @@
          "name": "png",
          "descr": null,
          "uc": "fillDB",
-         "dc": "2022-03-26",
+         "dc": "2022-04-19",
          "um": null,
          "dm": null,
          "usedindocuments+": [
@@ -4806,7 +4846,7 @@
          "name": "PNG",
          "descr": null,
          "uc": "fillDB",
-         "dc": "2022-03-26",
+         "dc": "2022-04-19",
          "um": null,
          "dm": null,
          "usedindocuments+": [
@@ -4817,9 +4857,9 @@
    },
    "_imprint_": {
       "database": "/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/testenvironment/testmodels/testmodel-1/DB/testmodel-1.db",
-      "created": "2022-04-09 14:08:22.353346",
+      "created": "2022-04-19 11:03:14.111094",
       "Modelversion": "1.8",
-      "hashvalue": -3711734316712523385,
+      "hashvalue": -6856573851057516329,
       "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
    }
 }

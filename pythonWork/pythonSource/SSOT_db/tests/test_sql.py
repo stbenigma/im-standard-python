@@ -13,6 +13,8 @@ class test_sql_files(unittest.TestCase):
 
 
     def test_script(self):
+        #moved to fyayc-im. maybe we should test later locally.
+        return
         def movescripts():
             if os.path.exists(os.path.join(self.SQLSOURCE, self.DIFFSCRIPT1)):
                 shutil.move(os.path.join(self.SQLSOURCE, self.DIFFSCRIPT1), os.path.join(self.DIFFSCRIPTPATH,self.DIFFSCRIPT1))

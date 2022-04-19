@@ -15,7 +15,7 @@ def buruinelements(pelemid=None):
 
 def buruelement2js(pbure=None):
     if pbure is None:
-        retval = {'r/w': ''}
+        retval = {'r/w': 'R'}
     else:
         retval = {"r/w": "W" if Boolean.str2bool(pbure.bure_writeable) else "R"}
     return retval
@@ -23,13 +23,13 @@ def buruelement2js(pbure=None):
 
 def buruelements2js(pbures=None):
     if pbures is None:
-        retval = {}
+        retval = {'xxxx0000': buruelement2js()}
     else:
         retval = dict()
         for bure in pbures:
             mode = Modelelement().getbyid(bure.bure_mode_id)
-            retval[jsguid(mode.mode_type, mode.mode_id)] = buruelement2js()
-        return retval
+            retval[jsguid(mode.mode_type, mode.mode_id)] = buruelement2js(bure)
+    return retval
 
 def businessrule2js(pburu, plangs={'en'}):
     model = ['name', 'descr', 'level', 'type',

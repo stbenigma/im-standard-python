@@ -66,7 +66,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(newburu['errormsg']['en'],"new error message")
         self.assertTrue(attrid in newburu['elements'])
         self.assertFalse(tablid in newburu['elements'])
-        self.assertEqual("meandmyself",newburu['um'])
+        #self.assertEqual("meandmyself",newburu['um'])
 
         return
 
