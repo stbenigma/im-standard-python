@@ -1,5 +1,4 @@
 import os
-import shutil
 import re
 import tempfile
 import unittest
@@ -34,13 +33,6 @@ class TestListWebDocumentation(unittest.TestCase):
                 os.chdir(testpath)
                 createDB(pupgrade=True,pmodelname=testsrc.TESTMODEL1)
             fillDB.filldbmain(pmodelname=testsrc.TESTMODEL1)
-            if os.path.exists(testpath / "Web/jinjatemplates"):
-                shutil.rmtree(testpath / "Web/jinjatemplates/")
-            if os.path.exists(testpath / "Web/js"):
-                shutil.rmtree(testpath / "Web/js/")
-            if os.path.exists(testpath / "Web/css"):
-                shutil.rmtree(testpath / "Web/css/")
-
 
         testpath = testsrc.testmodels_dir() / testsrc.TESTMODEL2
         if not os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL2 + '.json')):
@@ -48,12 +40,6 @@ class TestListWebDocumentation(unittest.TestCase):
             if os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.db')):
                 createDB(pupgrade=True,pparamfile=testpath / (testsrc.TESTMODEL2+ ".params"))
             fillDB.filldbmain(pparamfile=testpath / (testsrc.TESTMODEL2+ ".params"))
-            if os.path.exists(testpath / "Web/jinjatemplates"):
-                shutil.rmtree(testpath / "Web/jinjatemplates/")
-            if os.path.exists(testpath / "Web/js"):
-                shutil.rmtree(testpath / "Web/js/")
-            if os.path.exists(testpath / "Web/css"):
-                shutil.rmtree(testpath / "Web/css/")
 
         testpath = testsrc.testmodels_dir() / testsrc.CRMTEST
         if not os.path.exists(testpath / 'DB' / (testsrc.CRMTEST + '.json')):
@@ -61,12 +47,6 @@ class TestListWebDocumentation(unittest.TestCase):
             if os.path.exists(testpath / 'DB' / (testsrc.CRMTEST + '.db')):
                 createDB(pupgrade=True,pparamfile=testpath / (testsrc.CRMTEST+ ".params"))
             fillDB.filldbmain(pparamfile=testpath/ (testsrc.CRMTEST+ ".params"))
-            if os.path.exists(testpath / "Web/jinjatemplates"):
-                shutil.rmtree(testpath / "Web/jinjatemplates/")
-            if os.path.exists(testpath / "Web/js"):
-                shutil.rmtree(testpath / "Web/js/")
-            if os.path.exists(testpath / "Web/css"):
-                shutil.rmtree(testpath / "Web/css/")
         return
 
     def test_main(self):
