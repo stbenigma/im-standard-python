@@ -35,18 +35,18 @@ class GenerateHTML(unittest.TestCase):
         self.testmodelriddle.initWeb()
 
     def test_listwebdoku(self):
-        os.chdir(self.testmodelcrm.modeldir)
+        #os.chdir(self.testmodelcrm.modeldir)
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
-                                   'crmTest.params',
+                                   str(self.testmodelcrm.paramfile),
                                    '--diagrams=DUMMY,"Kunde mit Bilder"'])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
-                                   'crmTest.params',
+                                   str(self.testmodelcrm.paramfile),
                                    '--diagrams=DUMMY'])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
-                                   'crmTest.params',
+                                   str(self.testmodelcrm.paramfile),
                                    '-s',
                                    'PUBL'])
 
