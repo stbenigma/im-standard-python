@@ -546,6 +546,7 @@ def initparam(pbasedirec, pparamfile=None, pmodelname=None, pdbfile=None, pmodel
     # overwrite parameters from real parameters, if they exist
     if pmodelfilepath is not None:
         odmIMDirec(newval=os.path.dirname(pmodelfilepath))
+
     if pdbfile is not None:
         dbDirect(newval=os.path.dirname(pdbfile))
         dbFilePath(newval=pdbfile)
@@ -559,15 +560,20 @@ def initparam(pbasedirec, pparamfile=None, pmodelname=None, pdbfile=None, pmodel
 
     if pmodellang is not None:
         dbDefaultLang(pmodellang)
+
     if planguages is not None:
         dbLanguages(planguages)
 
     if dbDefaultLang() not in SUPPORTEDLANGUAGES.keys():
         raise Exception(f"Language {dbDefaultLang()} not supported.  {','.join(SUPPORTEDLANGUAGES.keys())}")
+
     for lang in dbLanguages().split(','):
         if lang not in SUPPORTEDLANGUAGES.keys():
             raise Exception(f"Language {lang} not supported.  [{','.join(SUPPORTEDLANGUAGES.keys())}]")
+
     if modelName() is None:
         raise Exception("no modelname given")
+
     filldefaultparams()
+
     return

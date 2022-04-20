@@ -5,14 +5,14 @@ from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule,jsguid
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.IM_OBJECTS import BusinessRule,Attribute,Entity,Table
-from SSOT_infra.tests.integration import testmodelcrm
+import SSOT_infra.tests.integration as testsrc
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        modelname, modeldir, modeldb = testmodelcrm()
-        dbConnect.openDB(modeldb,pversioncheck=False )
+        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        dbConnect.openDB(self.testmodelcrm.dbfile,pversioncheck=False )
         self.newbrname='test-BR10'
-        self.crmmodel = JSModel(pmodel=sql2json(pdbname=modelname))
+        self.crmmodel = JSModel(pmodel=sql2json(pdbname=self.testmodelcrm.modelname))
         return
 
     def tearDown(self) -> None:

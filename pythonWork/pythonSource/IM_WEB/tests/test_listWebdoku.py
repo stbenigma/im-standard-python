@@ -11,8 +11,8 @@ from IM_WEB import listWebdoku
 from IM_WEB.IM_HTML import HTMLExport
 from SSOT_db.IM_JSON import JSModel
 from SSOT_infra import parameters
-from LOAD_MODELS.LOAD_ODM import fillDB
 import SSOT_infra.tests.integration as testsrc
+from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
 
 
 class GenerateHTML(unittest.TestCase):
@@ -22,49 +22,36 @@ class GenerateHTML(unittest.TestCase):
         self.temp_folder = Path(tmp_path)
 
     def setUp(self) -> None:
-        from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
-        testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        if os.path.exists(testdir/"Web/jinjatemplates"):
-            shutil.rmtree(testdir/"Web/jinjatemplates/")
-        if os.path.exists(testdir/"Web/js"):
-            shutil.rmtree(testdir/"Web/js/")
-        if os.path.exists(testdir/"Web/css"):
-            shutil.rmtree(testdir/"Web/css/")
+        self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1)
+        create_testmodel(self.testmodel1, new=True)
+        self.testmodel1.initWeb()
 
-        testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
-        if os.path.exists(testdir/"Web/jinjatemplates"):
-            shutil.rmtree(testdir/"Web/jinjatemplates/")
-        if os.path.exists(testdir/"Web/js"):
-            shutil.rmtree(testdir/"Web/js/")
-        if os.path.exists(testdir/"Web/css"):
-            shutil.rmtree(testdir/"Web/css/")
-        if os.path.exists(dbfilepath):
-            os.remove(dbfilepath)
-        fillDB.filldbmain(pparamfile = testdir / (testmodelname + '.params'))
+        self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodelcrm.initDB()
+        self.testmodelcrm.initWeb()
+
+        self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE)
+        self.testmodelriddle.initDB()
+        self.testmodelriddle.initWeb()
 
     def test_listwebdoku(self):
-        testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
-        os.chdir(testdir)
-        listWebdoku.main(psysargs=['/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/listWebdoku.py',
+        os.chdir(self.testmodelcrm.modeldir)
+        listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
                                    'crmTest.params',
                                    '--diagrams=DUMMY,"Kunde mit Bilder"'])
-        listWebdoku.main(psysargs=['/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/listWebdoku.py',
+        listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
                                    'crmTest.params',
                                    '--diagrams=DUMMY'])
-        listWebdoku.main(psysargs=['/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-tools/pythonWork/pythonSource/IM_WEB/listWebdoku.py',
+        listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
                                    'crmTest.params',
                                    '-s',
                                    'PUBL'])
 
     def test_generate_html_riddle(self):
-        project = testsrc.testmodels_dir() / testsrc.RIDDLE
-
-        ssot_file = project / 'DB' / (testsrc.RIDDLE+'.json')
-        self.generate_html(project, ssot_file)
+        self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
 
     def generate_html(self, project, ssot_file):
         if not ssot_file.exists():
@@ -90,9 +77,7 @@ class GenerateHTML(unittest.TestCase):
         listWebdoku.listwebmain(html_export)
 
     def test_integration_generate_html_riddle(self):
-        project = testsrc.testmodels_dir() / 'riddle'
-        ssot_file = project / 'DB' / 'riddle.json'
-        self.generate_html(project, ssot_file)
+        self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
 
     @pytest.mark.integration
     def test_integration_generate_html_PIM(self):

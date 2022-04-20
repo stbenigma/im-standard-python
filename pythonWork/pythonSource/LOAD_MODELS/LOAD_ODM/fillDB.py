@@ -57,6 +57,8 @@ def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdes
     assert (pparamfile is not None or pmodelname is not None), "Parameter file or modelname must be given"
     if pparamfile is not None:
         basedirec = os.path.abspath(os.path.dirname(pparamfile))
+    elif pdestination is not None:
+            basedirec = os.path.abspath(os.path.dirname(os.path.dirname(pdestination)))
     else:
         # modelname given, take current directory as basedirec
         basedirec = os.getcwd()

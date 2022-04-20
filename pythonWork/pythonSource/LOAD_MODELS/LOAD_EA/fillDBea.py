@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
 from SSOT_infra import logmessages,parameters
 from LOAD_MODELS.LOAD_EA import transferEAModel21, transferEAModelNative
-from IM_ODM import createJSON
+from SSOT_db import createJSON
 from LOAD_MODELS.LOAD_ODM import fillDB
 
 
@@ -28,7 +28,7 @@ def main(p_param1, pxmlfile,ptransffuncversion):
         # not createDB.existsDB(parameters.dbFilePath()))
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
-        createJSON.createJSON(pdbfilepath=parameters.dbFilePath(),pmodelname=parameters.modelName(),
+        createJSON.createJSON(pdbfilepath=parameters.dbFilePath(), pmodelname=parameters.modelName(),
                               pjsfilepath=filepath, pjsfilename=filename)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata {} and json file generated"

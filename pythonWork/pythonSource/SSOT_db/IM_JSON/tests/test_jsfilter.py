@@ -2,7 +2,7 @@ import difflib
 import json
 import unittest
 from SSOT_db.IM_OBJECTS import Modelelement
-from SSOT_db.IM_JSON import JSModel, FILTEREDJSModel, printJSON
+from SSOT_db.IM_JSON import JSModel, FILTEREDJSModel
 import SSOT_infra.tests.integration as testsrc
 
 simpletestjson = {
@@ -143,16 +143,16 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self):
         from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
-        testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        self.model = JSModel.readfromfile(dbfilepath.__str__().replace("db", "json"))
+        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        create_testmodel(self.testmodel1, new=True)
+        self.model = JSModel.readfromfile(self.testmodel1.jsonfile)
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
         self.draftfilter = FILTEREDJSModel(ppublstatus=Modelelement.DRAFT, pmodel=self.model.jsmodel)
         self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP, pmodel=self.model.jsmodel)
         self.publfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.model.jsmodel)
 
-        testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
-        self.crmmodel = JSModel.readfromfile(dbfilepath.__str__().replace("crmTest.db", "stabilescrmTest.json"))
+        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        self.crmmodel = JSModel.readfromfile(self.testmodelcrm.jsonfile.__str__().replace("crmTest.json", "stabilescrmTest.json"))
 
     def test_publish_function(self):
         element = {"id": 0}
@@ -251,7 +251,6 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["tables"]))
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["columns"]))
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["systems"]))
-            self.assertEqual(0, len(self.crmpublfilter.jsmodel["columns"]))
         except Exception as e:
             # printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
             # printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")

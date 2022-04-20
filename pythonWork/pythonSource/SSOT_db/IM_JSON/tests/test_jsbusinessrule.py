@@ -1,17 +1,15 @@
 import unittest
 
-from IM_ODM import createJSON
-from SSOT_db.IM_OBJECTS import BusinessRule, BusinessruleElement, Attribute, Entity, Languagetext, Relation, Language, \
-    Table, Column
+from SSOT_db.IM_OBJECTS import BusinessRule
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra.tests.integration import testmodelcrm
+import SSOT_infra.tests.integration as testsrc
 from SSOT_db.IM_JSON import jsbusinessrule
 
 
 class test_businessrules(unittest.TestCase):
     def setUp(self) -> None:
-        self.modelname, self.dbdir, self.dbfilepath = testmodelcrm()
-        dbConnect.openDB(self.dbfilepath, pversioncheck=False)
+        self.testmodelcrm= testsrc.Testmodel(testsrc.CRMTEST)
+        dbConnect.openDB(self.testmodelcrm.dbfile, pversioncheck=False)
         self.buru = BusinessRule.getbyuk(buru_name='Personenrolle.BESCHREIBUNG_CHECK')
         self.bures = self.buru.getchildren()
 

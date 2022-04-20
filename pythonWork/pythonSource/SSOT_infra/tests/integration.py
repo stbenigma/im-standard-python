@@ -1,6 +1,11 @@
+import os.path
+import shutil
 import traceback
 import unittest
 from pathlib import Path
+
+from LOAD_MODELS.LOAD_ODM import fillDB
+from SSOT_db import createDB, createJSON
 
 ROOT_MARKER = 'pythonWork'
 TESTMODEL1: str = 'testmodel-1'
@@ -9,16 +14,45 @@ CRMTEST: str = 'crmTest'
 RIDDLE: str = 'riddle'
 
 
-def testmodel(ptestmodel):
-    return ptestmodel, \
-          testmodels_dir() / ptestmodel, \
-         testmodels_dir() / ptestmodel / 'DB' / (ptestmodel + '.db')
+class Testmodel():
+    def __init__(self, modelname):
+        self.modelname = modelname
+        self.modeldir = testmodels_dir() / modelname
+        self.logfile = self.modeldir / (modelname + '.log')
+        self.paramfile = self.modeldir / (modelname + '.params')
+        self.dbdir = self.modeldir / 'DB'
+        self.dbfile = self.dbdir / (modelname + '.db')
+        self.jsonfilename = modelname + '.json'
+        self.jsonfile = self.dbdir / self.jsonfilename
+        self.webdir = self.modeldir / 'Web'
 
-def testmodel1():
-    return testmodel(TESTMODEL1)
+    def initDB(self):
+        initDB(self.modelname)
 
-def testmodelcrm():
-    return testmodel(CRMTEST)
+    def initWeb(self):
+        # make sure new templates files are reloaded
+        if os.path.exists(self.webdir / "jinjatemplates"):
+            shutil.rmtree(self.webdir / "jinjatemplates/")
+        if os.path.exists(self.webdir / "js"):
+            shutil.rmtree(self.webdir / "js/")
+        if os.path.exists(self.webdir / "css"):
+            shutil.rmtree(self.webdir / "css/")
+
+
+def initDB(pmodel):
+    tm = Testmodel(pmodel)
+    if os.path.exists(tm.dbfile):
+        createDB(pmodelname=tm.modelname, pupgrade=True, pdestination=tm.dbfile)
+    else:
+        if os.path.exists(tm.paramfile):
+            fillDB.filldbmain(pparamfile=tm.paramfile)
+        else:
+            fillDB.filldbmain(pmodelname=tm.modelname, pdestination=tm.dbfile)
+    if not os.path.exists(tm.jsonfile):
+        createJSON.createJSON(pdbfilepath=tm.dbfile, pmodelname=tm.modelname,
+                              pjsfilepath=tm.dbdir, pjsfilename=tm.jsonfilename)
+    return
+
 
 class IntegrationTest(unittest.TestCase):
 

@@ -3,10 +3,10 @@ import os
 import tempfile
 import unittest
 
-from IM_ODM import createJSON
+from SSOT_db import createJSON
 from SSOT_db.IM_OBJECTS import BusinessRule, BusinessruleElement, Attribute, Entity, Languagetext, Relation,Language,Table,Column
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra.tests.integration import testmodelcrm
+from SSOT_infra.tests import integration
 
 
 class MyTestCase(unittest.TestCase):
@@ -71,19 +71,22 @@ class MyTestCase(unittest.TestCase):
         dbConnect.closeDB()
         return
 
+    def setUp(self) -> None:
+        self.testmodelcrm = integration.Testmodel(integration.CRMTEST)
+        integration.initDB(self.testmodelcrm.modelname)
+
     def test_createJSON(self):
-        modelname, modeldir, modeldb = testmodelcrm()
-        self.fillextrabusinessrules(pfilepath=modeldb)
-        dbConnect.openDB(pfilepath=modeldb, pversioncheck=False)
+        self.fillextrabusinessrules(pfilepath=self.testmodelcrm.dbfile)
+        dbConnect.openDB(pfilepath=self.testmodelcrm.dbfile, pversioncheck=False)
         buru = BusinessRule.select()
         buruid = BusinessRule.getbyuk(buru_name="test-BR1").getid()
         bures = BusinessruleElement.select(pwhere=("bure_buru_id = ?", buruid))
         buruid = "BURU" + str(buruid)
         dbConnect.closeDB()
         with tempfile.TemporaryDirectory() as tmpdirname:
-            createJSON.createJSON(pdbfilepath=modeldb, pmodelname=modelname,
-                                  pjsfilepath=tmpdirname, pjsfilename=modelname)
-            fullpath = os.path.join(tmpdirname, modelname + '.json')
+            createJSON.createJSON(pdbfilepath=self.testmodelcrm.dbfile, pmodelname=self.testmodelcrm.modelname,
+                                  pjsfilepath=tmpdirname, pjsfilename=self.testmodelcrm.jsonfilename)
+            fullpath = os.path.join(tmpdirname, self.testmodelcrm.jsonfilename)
             self.assertTrue(os.path.exists(fullpath))
             jsfile = open(fullpath)
             js = json.load(jsfile)
@@ -94,7 +97,6 @@ class MyTestCase(unittest.TestCase):
             self.assertTrue('TESTDATA'in js['businessrules'][buruid]['sourceref'].keys())
 
         return
-
 
 if __name__ == '__main__':
     unittest.main()

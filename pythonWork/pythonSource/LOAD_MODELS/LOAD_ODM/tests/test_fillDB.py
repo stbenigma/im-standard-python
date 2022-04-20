@@ -8,12 +8,12 @@ from SSOT_db.createDB import createDB
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 
 
-def create_testmodel(testmodelname, testdir, dbfilepath, new=True):
+def create_testmodel(testmodel , new=True):
     # create model for testmodel1 no param file
-    if new and os.path.exists(dbfilepath):
-        os.remove(dbfilepath)
-    os.chdir(testdir)
-    db = fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
+    if new and os.path.exists(testmodel.dbfile):
+        os.remove(testmodel.dbfile)
+    os.chdir(testmodel.modeldir)
+    db = fillDB.filldbmain(pmodelname=testmodel.modelname, pdestination=testmodel.dbfile)
     assert db.is_file()
     return db
 
@@ -23,14 +23,16 @@ class TESTFILLDB(unittest.TestCase):
     def setUp(self) -> None:
         translation = TestTranslation()
         translation.setUp()
+        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
+        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
 
     def test_filldbmain(self):
         assert True
 
     def test_fillmergedb(self):
-        testmodelname, testdir, dbfilepath = testsrc.testmodel1()
-        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
-        create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=False)
+        create_testmodel(self.testmodel1, new=True)
+        create_testmodel(self.testmodel1, new=False)
 
     def test_filldb(self):
         def getbyfield(pmodel, ptype, pname, pfield='name', plang=None):
@@ -99,6 +101,7 @@ class TESTFILLDB(unittest.TestCase):
             return
 
         # create model for testmodel1. no param file
+
         testmodelname = testsrc.TESTMODEL1
         testpath = testsrc.testmodels_dir() / testmodelname
         dbdirpath = testpath / 'DB'
@@ -129,7 +132,6 @@ class TESTFILLDB(unittest.TestCase):
         dbdirpath = testpath / 'DB'
         dbfilepath = dbdirpath / (testmodelname + '.db')
         jsonfilepath = dbdirpath / (testmodelname + '.json')
-        logfilepath = testpath / "logfiles" / "speciallog.log"
         paramfile = testpath / (testmodelname + '.params')
         if os.path.exists(dbfilepath):
             createDB(pupgrade=True, pparamfile=paramfile)
@@ -153,44 +155,36 @@ class TESTFILLDB(unittest.TestCase):
             jsonFile.close()
 
         # create db for crmtest with Paramfile
-        testmodelname = testsrc.CRMTEST
-        testpath = testsrc.testmodels_dir() / testmodelname
-        dbdirpath = testpath / 'DB'
-        dbfilepath = dbdirpath / (testmodelname + '.db')
-        logfilepath = testpath / (testmodelname + '.log')
-        paramfile = testpath / (testmodelname + '.params')
+        testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
         # error for wrong modelname
         with self.assertRaises(Exception):
-            fillDB.filldbmain(pparamfile=paramfile, pmodelname='Gugus')
+            fillDB.filldbmain(pparamfile=testmodelcrm.paramfile, pmodelname='Gugus')
 
         # should work
-        if os.path.exists(dbfilepath):
-            os.remove(dbfilepath)
-        if os.path.exists(logfilepath):
-            os.remove(logfilepath)
+        if os.path.exists(testmodelcrm.dbfile):
+            os.remove(testmodelcrm.dbfile)
+        if os.path.exists(testmodelcrm.logfile):
+            os.remove(testmodelcrm.logfile)
 
-        fillDB.filldbmain(pparamfile=paramfile)
-        self.assertTrue(os.path.exists(dbfilepath), f"DB file not created where assumed {dbfilepath}")
-        self.assertTrue(os.path.exists(dbdirpath / (testmodelname + '_loaded.json')),
-                        f"json file not where assumed {dbdirpath / (testmodelname + '_loaded.json')}")
-        self.assertTrue(os.path.exists(dbdirpath / (testmodelname + '.json')),
-                        f"json file not where assumed {dbdirpath / (testmodelname + '.json')}")
-        self.assertTrue(os.path.exists(logfilepath),
-                        f"json file not where assumed {logfilepath}")
+        fillDB.filldbmain(pparamfile=testmodelcrm.paramfile)
+        self.assertTrue(os.path.exists(testmodelcrm.dbfile), f"DB file not created where assumed {testmodelcrm.dbfile}")
+        self.assertTrue(os.path.exists(testmodelcrm.dbdir / (testmodelcrm.modelname + '_loaded.json')),
+                        f"json file not where assumed {testmodelcrm.dbdir / (testmodelcrm.modelname + '_loaded.json')}")
+        self.assertTrue(os.path.exists(testmodelcrm.jsonfile),
+                        f"json file not where assumed {testmodelcrm.jsonfile}")
+        self.assertTrue(os.path.exists(testmodelcrm.logfile),
+                        f"json file not where assumed {testmodelcrm.logfile}")
 
-        testmodelname = testsrc.RIDDLE
-        testpath = testsrc.testmodels_dir() / testmodelname
-        dbdirpath = testpath / 'DB'
-        dbfilepath = dbdirpath / (testmodelname + '.db')
-        if os.path.exists(dbfilepath):
-            os.remove(dbfilepath)
-        os.chdir(testpath)
-        fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
-        self.assertTrue(os.path.exists(dbfilepath), f"DB file not created where assumed {dbfilepath}")
-        self.assertTrue(os.path.exists(dbdirpath / (testmodelname + '_loaded.json')),
-                        f"json file not where assumed {dbdirpath / (testmodelname + '_loaded.json')}")
-        self.assertTrue(os.path.exists(dbdirpath / (testmodelname + '.json')),
-                        f"json file not where assumed {dbdirpath / (testmodelname + '.json')}")
-        self.assertTrue(os.path.exists((testmodelname + '.log')),
-                        f"log file not where assumed {(testmodelname + '.log')}")
+        testmodelriddle  = testsrc.Testmodel(testsrc.RIDDLE)
+        if os.path.exists(testmodelriddle.dbfile):
+            os.remove(testmodelriddle.dbfile)
+        os.chdir(testmodelriddle.modeldir)
+        fillDB.filldbmain(pmodelname=testmodelriddle.modelname, pdestination=testmodelriddle.dbfile)
+        self.assertTrue(os.path.exists(testmodelriddle.dbfile), f"DB file not created where assumed {testmodelriddle.dbfile}")
+        self.assertTrue(os.path.exists(testmodelriddle.dbdir/ (testmodelriddle.modelname + '_loaded.json')),
+                        f"json file not where assumed {testmodelriddle.dbdir / (testmodelriddle.modelname + '_loaded.json')}")
+        self.assertTrue(os.path.exists(testmodelriddle.jsonfile),
+                        f"json file not where assumed {testmodelriddle.jsonfile}")
+        self.assertTrue(os.path.exists(testmodelriddle.logfile),
+                        f"log file not where assumed {testmodelriddle.logfile}")
         return
