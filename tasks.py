@@ -15,8 +15,10 @@ except ModuleNotFoundError:
 
 PROJECT_ROOT = Path(__file__).parent.resolve()
 SOURCE_FOLDER = PROJECT_ROOT / 'pythonWork' / 'pythonSource'
-TEST_MODEL = SOURCE_FOLDER / 'testenvironment' / 'testmodels' / 'riddle'
+TESTMODELS_BASE = SOURCE_FOLDER / 'testenvironment' / 'testmodels'
+TEST_MODEL = TESTMODELS_BASE / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
+INTEGRATION_TEST_FOLDER =  PROJECT_ROOT / 'testdata'
 
 
 def load_tools_library():
@@ -27,7 +29,7 @@ def load_tools_library():
 
 
 @task
-def bootstrap(c):
+def update_infrastructure(c):
     c.run('conda env update --file conda-base-environment.yaml')
     c.run('pip run ')
 
@@ -90,6 +92,7 @@ def generator(c, model=None,
               profile=False,
               version=False,
               verbose=False,
+              spod_only=False,
               ):
     if model is None:
         model = TEST_MODEL / 'IM'
@@ -139,6 +142,9 @@ def generator(c, model=None,
     if verbose:
         optargs.append("--verbose")
 
+    if spod_only:
+        optargs.append("--spod-only")
+
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
         print(f"Starting generator with: {command} in {PROJECT_ROOT}")
@@ -160,11 +166,47 @@ def dbversion(c, model=None):
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
 
 
+@task(aliases=['but'])
+def bootstrap_unit_tests(c):
+    required_models = [
+        TESTMODELS_BASE / 'crmTest',
+        TESTMODELS_BASE / 'riddle',
+        TESTMODELS_BASE / 'testmodel-1',
+        TESTMODELS_BASE / 'testmodel-2',
+    ]
+
+    # more generic:  for hit in glob.glob(f"testdata/**/IM", recursive=True):
+    for hit in required_models:
+        candidate = Path(hit)
+        if candidate.is_dir():
+            print(f"Generating SPOD for {hit}")
+            c.run(f"inv generator --spod-only -m {candidate / 'IM'}")
+
+
 @task
-def version(c):
-    assert c is not None
-    ver = load_tools_library()
-    print(f"ictools version {ver['TOOLVERSION']} (schema {ver['DBVERSION']})")
+def checkout_refmodels(c):
+    base = INTEGRATION_TEST_FOLDER
+    if not base.is_dir():
+        print(f"Checking out refmodels (https://github.com/foryouandyourcustomers/fyyccim-refmodels)")
+        c.run(f"git clone --progress --depth 1 git@github.com:foryouandyourcustomers/fyyccim-refmodels.git {str(base)}")
+    else:
+        c.run(f"git --git-dir='{str(base)}' update")
+
+
+@task(aliases=['bit'], pre=[checkout_refmodels])
+def bootstrap_integration_tests(c):
+
+    required_models = [
+        'testdata/fyyccim-refmodels/CRM/IM',
+        'testdata/fyyccim-refmodels/PIM/IM',
+    ]
+
+    # more generic:  for hit in glob.glob(f"testdata/**/IM", recursive=True):
+    for hit in required_models:
+        candidate = Path(hit)
+        if candidate.is_dir():
+            print(f"Generating SPOD for {hit}")
+            c.run(f"inv generator --spod-only -m {candidate}")
 
 
 def verify_content(fh):
