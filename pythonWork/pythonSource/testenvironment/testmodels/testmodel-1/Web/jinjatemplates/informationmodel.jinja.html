@@ -79,8 +79,7 @@
 							{% endfor %}
 						</ol>
 				{% endcall %}
-				
-				
+
 				<!--domains-->       
 				{% if webmodel.domains|count > 0 %}
 				{% call blocks.listblock(label=webmodel.gettransltext("Wertebereiche"), id="DomainsL",lbc="bardoma") %}
@@ -92,7 +91,18 @@
 				{% endcall %}
 				{% endif %}
 
-				<!--Documents-->       
+				<!--business rules-->
+				{% if webmodel.businessrules|count > 0 %}
+				{% call blocks.listblock(label=webmodel.gettransltext("Business Rules"), id="BurusL",lbc="barburu") %}
+						<ol class="tree" id="BuruList">
+							{% for buru in webmodel.businessrules %}
+							<li class="obj">{{ webmodel.getreflink(name=buru[1],destid=buru[0]) |safe}}
+							{% endfor %}
+						</ol>
+				{% endcall %}
+				{% endif %}
+
+				<!--Documents-->
 				{% if webmodel.documents|count > 0 %}
 				{% call blocks.listblock(label=webmodel.gettransltext("Dokumente"), id="DocusL",lbc="bardocu") %}
 						<ol class="tree" id="DocusList">
@@ -152,6 +162,54 @@
 		
 		{% include 'domains.jinja.html' %}
 
+		<!--business rules-->
+		{% for buru in webmodel.businessrules %}
+		{% set elemid = buru[0] %}
+		{% set elem = webmodel.getelem (elemid) %}
+		{% call blocks.mainblock(type=webmodel.gettransltext("Business Rules"), id=elemid, name=webmodel.getlangstr(elem["name"]),
+					descr=webmodel.getlangstr(elem["descr"]), lbc=elemid ~ "main") %}
+			<h2>Information</h2>
+			<div class="table-responsive">
+				<table class="table borderless">
+					<tbody>
+						<tr>
+							<th>{{ webmodel.gettransltext('Ebene') }}</th>
+							<th>{{ webmodel.gettransltext('Typ') }}</th>
+							<th>{{ webmodel.gettransltext('Auswirkung') }}</th>
+						</tr>
+						<tr>
+							<td>{{ elem["level"] }}</td>
+							<td>{{ elem["type"] }}</td>
+							<td>{{ elem["impact"] }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-responsive">
+					<table class="table borderless" >
+						<tbody>
+							<tr>
+								<td>{{ webmodel.gettransltext('Regel')  }}</td>
+								<td>{{ elem["rule"] }}
+							</tr>
+							<tr>
+								<td>{{ webmodel.gettransltext('Fehlermeldung')  }}</td>
+								<td>{{ elem["errormsg"] }}
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!--references-->
+			{% if elem["elements"]|count > 0 %}
+			{% call blocks.subblock(header=webmodel.gettransltext("Referenziert"), lbc=elemid ~ "ref") %}
+				{{ blocks.referencelist(webmodel,elemid,elem["elements"]) }}
+			{% endcall %}
+			{% endif %}
+
+		{% endcall%}
+		{% endfor %}
+
 		<!--Documents-->
 		{% for docu in webmodel.documents %}
 		{% set elemid = docu[0] %}
@@ -198,7 +256,7 @@
 					</div>
 					
 					<!--references-->       
-					{% if elem|count > 0 %}
+					{% if elem["references+"]|count > 0 %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Referenziert"), lbc=elemid ~ "ref") %}
 						{{ blocks.referencelist(webmodel,elemid,elem["references+"]) }}
 					{% endcall %}

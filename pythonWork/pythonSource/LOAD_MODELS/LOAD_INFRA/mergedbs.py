@@ -22,6 +22,7 @@ transferprocs = {
     , 'keys': (22, keys2sql, nofunc, True)
     , 'tables': (30, tables2sql, nofunc, True)
     , 'columns': (32, columns2sql, nofunc, True)
+    , 'businessrules': (33, businessrules2sql, nofunc, True)
     , 'diagrams': (34, diagrams2sql, nofunc, True)
     , '_imprint_': (99, nofunc, nofunc, True)
 }

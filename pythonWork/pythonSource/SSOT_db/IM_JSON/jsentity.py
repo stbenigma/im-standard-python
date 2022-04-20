@@ -3,8 +3,7 @@ import re
 from tqdm.auto import tqdm
 
 from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql
-from SSOT_db.IM_JSON.jsattribute import buruinelements
+    inssourceref, udpvs2sql, buruinelements
 from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
     tabreflist, JSModel, jsguid2id
 from SSOT_db.IM_OBJECTS import *
@@ -14,7 +13,7 @@ from SSOT_db.IM_OBJECTS import *
 """
 
 
-def synonyms(psynos: list = None):
+def synonyms2js(psynos: list = None):
     """ None = emptymodel"""
     """    [
             {
@@ -25,7 +24,7 @@ def synonyms(psynos: list = None):
             ]
     """
     if psynos is None:
-        return [multilangtext(None)]
+        return [multilangtext()]
     else:
         return [multilangtext(s) for s in psynos]
 
@@ -86,14 +85,14 @@ def entities2js(pemptymodel):
              ]
     if pemptymodel:
         entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
-                                                               pentries=[multilangtext(None), '',
-                                                                         multilangtext(None), multilangtext(None),
+                                                               pentries=[multilangtext(), '',
+                                                                         multilangtext(), multilangtext(),
                                                                          '', '', '',
                                                                          '', '',
                                                                          '', '', '', '',
                                                                          0, 4, 'DRAFT',
                                                                          entityicon(),
-                                                                         synonyms(None), examples2js(None),
+                                                                         synonyms2js(None), examples2js(None),
                                                                          sourceref(None),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
@@ -117,7 +116,7 @@ def entities2js(pemptymodel):
                                          e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm,
                                          e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus(),
                                          entityicon(penti=e),
-                                         synonyms(psynos=[s.syno_name_l for s in e.getsynonyms()]),
+                                         synonyms2js(psynos=[s.syno_name_l for s in e.getsynonyms()]),
                                          examples2js(pexpls=e.getexamples()),
                                          sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id)),
                                          reflist(
@@ -153,8 +152,7 @@ def entities2js(pemptymodel):
                                          reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                         Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
-                               ) for e in tqdm(Entity.select(),
-                                               unit=" Entity", desc="Serialising entities", dynamic_ncols=True)
+                               ) for e in tqdm(Entity.select())
                  }
 
     return entis

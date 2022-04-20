@@ -27,13 +27,12 @@ class Webmodel:
 
     def getelemintfid(self,elemid):
         elem = self.getelem(elemid)
-        assert elem is not None
-        if jsguid2type(elemid) in ["TABL","DOMA"]:
-            retval = elem["interface-id"]
-        elif jsguid2type(elemid) in ["INTF","COLU"]:
-            retval = elem["interface-id+"]
-        else:
-            retval = None
+        retval = None
+        if elem is not None:
+            if jsguid2type(elemid) in ["TABL","DOMA"]:
+                retval = elem["interface-id"]
+            elif jsguid2type(elemid) in ["INTF","COLU"]:
+                retval = elem["interface-id+"]
         #fi
         return retval
 

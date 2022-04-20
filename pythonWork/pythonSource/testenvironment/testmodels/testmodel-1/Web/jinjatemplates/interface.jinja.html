@@ -142,7 +142,13 @@
 							</tbody>
 						</table>
 					</div>
-					
+					<!--businessrules-->
+					{% if elem["businessrules+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Business Rules"), lbc=elemid ~ "refburu") %}
+						{{ blocks.burulist(webmodel,elemid,elem) }}
+					{% endcall %}
+					{% endif %}
+
 					<!--columns-->       
 					{% call blocks.subblock(header="Columns", lbc=elemid ~ "colu") %}
 						<div class="table-responsive">
@@ -280,7 +286,13 @@
 							</tbody>
 						</table>
 					</div>
-					
+					<!--businessrules-->
+					{% if elem["businessrules+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Business Rules"), lbc=elemid ~ "refburu") %}
+						{{ blocks.burulist(webmodel,elemid,elem) }}
+					{% endcall %}
+					{% endif %}
+
 					<!--mappings-->       
 					{% if (elem["attributesmapped"]|count) > 0 %}
 					{% call blocks.subblock(header="Mappings", lbc=elemid ~ "map") %}

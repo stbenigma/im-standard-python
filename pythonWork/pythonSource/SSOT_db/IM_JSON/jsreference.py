@@ -232,7 +232,7 @@ def orgUnits2js(pemptymodel):
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.ORGU, '0000'): fillmodel(pmodel=model
-                                                                , pentries=['' for i in range(len(model) - 3)] + [
+                                                                , pentries=['' for i in range(len(model) - 2)] + [
                 sourceref(), references()]
                                                                 )}
     else:

@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import shutil
 import unittest
 from pathlib import Path
 
@@ -24,8 +25,22 @@ class GenerateHTML(unittest.TestCase):
         from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
         testmodelname, testdir, dbfilepath = testsrc.testmodel1()
         create_testmodel(testmodelname=testmodelname, testdir=testdir, dbfilepath=dbfilepath, new=True)
+        if os.path.exists(testdir/"Web/jinjatemplates"):
+            shutil.rmtree(testdir/"Web/jinjatemplates/")
+        if os.path.exists(testdir/"Web/js"):
+            shutil.rmtree(testdir/"Web/js/")
+        if os.path.exists(testdir/"Web/css"):
+            shutil.rmtree(testdir/"Web/css/")
 
         testmodelname, testdir, dbfilepath = testsrc.testmodelcrm()
+        if os.path.exists(testdir/"Web/jinjatemplates"):
+            shutil.rmtree(testdir/"Web/jinjatemplates/")
+        if os.path.exists(testdir/"Web/js"):
+            shutil.rmtree(testdir/"Web/js/")
+        if os.path.exists(testdir/"Web/css"):
+            shutil.rmtree(testdir/"Web/css/")
+        if os.path.exists(dbfilepath):
+            os.remove(dbfilepath)
         fillDB.filldbmain(pparamfile = testdir / (testmodelname + '.params'))
 
     def test_listwebdoku(self):
@@ -54,6 +69,7 @@ class GenerateHTML(unittest.TestCase):
     def generate_html(self, project, ssot_file):
         if not ssot_file.exists():
             logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
+            return
         with open(ssot_file, 'r') as src:
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
@@ -69,6 +85,8 @@ class GenerateHTML(unittest.TestCase):
         html_export = HTMLExport()
         html_export.setmodel(js_model)
         html_export.setWebDirec(str(self.temp_folder))
+        if os.path.exists(self.temp_folder):
+            shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)
 
     def test_integration_generate_html_riddle(self):

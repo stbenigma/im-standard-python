@@ -28,7 +28,8 @@ def main(p_param1, pxmlfile,ptransffuncversion):
         # not createDB.existsDB(parameters.dbFilePath()))
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
-        createJSON.createJSON(pfilepath=filepath, pfilename=filename)
+        createJSON.createJSON(pdbfilepath=parameters.dbFilePath(),pmodelname=parameters.modelName(),
+                              pjsfilepath=filepath, pjsfilename=filename)
     finally:
         logmessages.showmessages("database {} for model {} filled with modeldata {} and json file generated"
                                  .format(parameters.dbFilePath()

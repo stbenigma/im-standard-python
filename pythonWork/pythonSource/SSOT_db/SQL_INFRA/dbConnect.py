@@ -13,7 +13,7 @@ myDbConn: sqlite3.Connection = None
 actualdbversion = {}
 
 
-def openDBbasic(pfilepath, pfks='0'):
+def openDBbasic(pfilepath, pfks='ON'):
     """ opens the db pfilepath
     """
     try:
@@ -27,14 +27,14 @@ def openDBbasic(pfilepath, pfks='0'):
     return locconn
 
 
-def opendDB4DDL(pfilepath, pfks="0"):
+def opendDB4DDL(pfilepath, pfks="OFF"):
     """ creates a database and opens it.
      by default checking is off as I want to do DDL
      """
     openDBbasic(pfilepath, pfks=pfks)
 
 
-def openDB(pfilepath, pfks='0',pversioncheck=True):
+def openDB(pfilepath, pfks='ON',pversioncheck=True):
     """opens the database pfilepath
     pfks OFF -> no checks enabled (for DDL)
         on -> checks enabled (for DML)

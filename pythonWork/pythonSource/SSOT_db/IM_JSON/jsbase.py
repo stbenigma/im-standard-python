@@ -37,7 +37,7 @@ def optionalvalue(pelem, pkey):
 
 
 def jsonfilename(pfilename):
-    return pfilename + '.json'
+    return pfilename + ('' if pfilename[-5:]=='.json' else '.json')
 
 
 def examples2js(pexpls: list = None):
@@ -232,15 +232,12 @@ def warn_missing_translation(din: dict, dout: dict) -> None:
     return
 
 
-def multilangtext(ptext: dict = None):
-    """ None = emptymodel"""
-    if ptext is None:
-        return {'en': ''}
-    else:
-        result = {k: nvl(v) for k, v in ptext.items()}
-        ### Multilang-Texte werden im select behandelt.
-        # warn_missing_translation(ptext, result)
-        return result
+def multilangtext(ptext: dict = {'en':''}):
+    assert ptext is not None
+    result = {k: nvl(v) for k, v in ptext.items()}
+    ### Multilang-Texte werden im select behandelt.
+    # warn_missing_translation(ptext, result)
+    return result
 
 
 def reflist(plist: list = None):

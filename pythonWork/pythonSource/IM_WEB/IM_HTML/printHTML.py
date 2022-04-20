@@ -128,6 +128,10 @@ class HTMLExport:
             return transl('Tabelle', plang)
         elif ptyp == Modelelemtype.DOCU:
             return transl('Dokument', plang)
+        elif ptyp == Modelelemtype.RELA:
+            return transl('Beziehung', plang)
+        elif ptyp == Modelelemtype.BURU:
+            return transl('Business Rule', plang)
         elif ptyp == Modelelemtype.ORGU:
             return transl('Organisatioseinheit', plang)
         elif ptyp == Modelelemtype.INTF:
