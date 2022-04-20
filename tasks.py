@@ -189,8 +189,6 @@ def checkout_refmodels(c):
     if not base.is_dir():
         print(f"Checking out refmodels (https://github.com/foryouandyourcustomers/fyyccim-refmodels)")
         c.run(f"git clone --progress --depth 1 git@github.com:foryouandyourcustomers/fyyccim-refmodels.git {str(base)}")
-    else:
-        c.run(f"git --git-dir='{str(base)}' update")
 
 
 @task(aliases=['bit'], pre=[checkout_refmodels])

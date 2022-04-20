@@ -164,6 +164,5 @@ jobs:
 
     - name: Install and run Coverage.py
       run: |
-        conda install coverage
         coverage run -m pytest
         coverage report -m
