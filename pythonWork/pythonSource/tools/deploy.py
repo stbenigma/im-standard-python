@@ -25,6 +25,7 @@ EXCLUDE_LIST = [
     'pythonWork/pythonSource/PUBLISH_MODEL/sharepoint/shareplum_sandbox.py',
 ]
 
+
 def log(msg):
     """Poor man's logging"""
     global arguments
@@ -33,7 +34,7 @@ def log(msg):
         print(msg)
 
 
-def notebook_to_python(source, exporter, destination):
+def notebook_to_python(source: Path, exporter, destination):
     with open(source, 'r') as src:
         nb = nbf.read(src, nbf.NO_CONVERT)
 
@@ -91,10 +92,10 @@ def main(basefolder: Path, argv: []):
     destination_folder.mkdir(exist_ok=True)
     logging.info(f"Distribution to {destination_folder.resolve()}")
 
-    script_file = arguments.notebook
-
     if basefolder is None:
         basefolder = Path.cwd()
+
+    script_file = str(Path(basefolder, arguments.notebook))
 
     c = Config()
     c.TagRemovePreprocessor.remove_cell_tags = strip_cells_with_tags
@@ -115,7 +116,7 @@ def main(basefolder: Path, argv: []):
     target.chmod(0o755)
 
     version = 'unknown version'
-    version_file = Path(basefolder) / 'pythonWork' /\
+    version_file = Path(basefolder) / 'pythonWork' / \
                    'pythonSource' / 'SSOT_infra' / 'versions.json'
     if version_file.is_file():
         with open(version_file, 'r') as src:
@@ -220,4 +221,3 @@ if __name__ == '__main__':
     result = main(Path.cwd(), sys.argv[1:])
     with zipfile.ZipFile(result, 'r') as archive:
         print(f"{len(archive.filelist)} files packed into distribution bundle {result.resolve()}")
-

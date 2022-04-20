@@ -1665,21 +1665,36 @@ def fillelementdisplays():
     return
 
 
-def transferproject():
+def read_languages_form_project_comment():
     proj = handleXML.parseXML(
         pfilename=os.path.join(parameters.odmIMDirec(), parameters.modelName() + parameters.odmIMExtension()))
     root = proj.getroot()
     comm = handleXML.findText(root, 'comment')
-    if comm is None:
+    if comm is not None:
+        defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1).lower().strip()
+        sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1).lower()
+        spl = list(map(str.strip, sprachen.split(',')))
+        spl.remove(defspra)
+        spl.insert(0, defspra)
+        print(f"Languages: {spl}")
+        return spl, root
+    else:
+        return None, root
+
+
+def transferproject():
+    langs, root = read_languages_form_project_comment()
+    if langs is None:
         defspra = parameters.dbDefaultLang()
         sprachen = parameters.dbLanguages()
     else:
-        defspra = re.search(r'currentLang=([A-Z]{2})', comm).group(1).lower()
-        sprachen = re.search(r'languages=([A-Z,]*)', comm).group(1).lower()
+        defspra = langs[0]
+        sprachen = ','.join(langs)
         assert defspra == parameters.dbDefaultLang(), \
             f"Model default language in parameter ('{parameters.dbDefaultLang()}') and project comment ('{defspra}') mismatch"
         assert set(sprachen.split(',')) == set(parameters.dbLanguages().split(',')), \
             f"Model languages in parameter ({parameters.dbLanguages()}) and project comment ({sprachen}) mismatch"
+
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
     proj = Project()
     proj.proj_name = handleXML.findField(root, 'name')

@@ -2,7 +2,7 @@
 # Tasks for the invoke 'https://www.pyinvoke.org/ library
 # We use this instead of a Make / Scons / ... build automation tool
 #
-
+import pathlib
 from pathlib import Path
 import sys
 import zipfile as zlib
@@ -15,12 +15,21 @@ except ModuleNotFoundError:
 
 PROJECT_ROOT = Path(__file__).parent.resolve()
 SOURCE_FOLDER = PROJECT_ROOT / 'pythonWork' / 'pythonSource'
-TEST_MODEL = SOURCE_FOLDER / 'testenvironment' / 'testmodels' / 'riddle'
+TESTMODELS_BASE = SOURCE_FOLDER / 'testenvironment' / 'testmodels'
+TEST_MODEL = TESTMODELS_BASE / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
+INTEGRATION_TEST_FOLDER =  PROJECT_ROOT / 'testdata'
+
+
+def load_tools_library():
+    sys.path.append(f"{SOURCE_FOLDER}")
+    import SSOT_infra
+    ver = SSOT_infra.__version__
+    return ver
 
 
 @task
-def bootstrap(c):
+def update_infrastructure(c):
     c.run('conda env update --file conda-base-environment.yaml')
     c.run('pip run ')
 
@@ -45,7 +54,9 @@ def package(c):
         argv.extend(sys.argv[idx:])
     except ValueError:
         pass
-    c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
+    with c.cd(PROJECT_ROOT):
+        print(f"Running in {pathlib.Path.cwd()}")
+        c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
 
 
 @task(pre=[package], aliases=['verify', 'check'])
@@ -64,7 +75,7 @@ def verify_package(c):
 
 @task(pre=[verify_package])
 def deploy(c):
-    print(f"Deprecated, use 'package' task instead")
+    print(f"Deprecated tas {c}, use 'package' task instead")
     pass
 
 
@@ -78,7 +89,11 @@ def generator(c, model=None,
               sharepoint=False,
               sparx_ea=False,
               link_udpr=None,
-              profile=False):
+              profile=False,
+              version=False,
+              verbose=False,
+              spod_only=False,
+              ):
     if model is None:
         model = TEST_MODEL / 'IM'
         if languages is None:
@@ -89,7 +104,8 @@ def generator(c, model=None,
     if not model.is_absolute():
         abs_rel = Path(PROJECT_ROOT, model)
         if not abs_rel.is_dir():
-            model = model.relative_to(PROJECT_ROOT).resolve()
+            cwd = pathlib.Path.cwd()
+            model = cwd / model
         else:
             model = abs_rel
 
@@ -120,6 +136,15 @@ def generator(c, model=None,
         print("⏱⏱⏱ Running in profiler mode: This might take some time  ⏱⏱⏱")
         optargs.append("--profile")
 
+    if version:
+        optargs.append("--version")
+
+    if verbose:
+        optargs.append("--verbose")
+
+    if spod_only:
+        optargs.append("--spod-only")
+
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
         print(f"Starting generator with: {command} in {PROJECT_ROOT}")
@@ -139,6 +164,47 @@ def dbversion(c, model=None):
         print(f"{dbfile} is not file")
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
+
+
+@task(aliases=['but'])
+def bootstrap_unit_tests(c):
+    required_models = [
+        TESTMODELS_BASE / 'crmTest',
+        TESTMODELS_BASE / 'riddle',
+        TESTMODELS_BASE / 'testmodel-1',
+        TESTMODELS_BASE / 'testmodel-2',
+    ]
+
+    # more generic:  for hit in glob.glob(f"testdata/**/IM", recursive=True):
+    for hit in required_models:
+        candidate = Path(hit)
+        if candidate.is_dir():
+            print(f"Generating SPOD for {hit}")
+            c.run(f"inv generator --spod-only -m {candidate / 'IM'}")
+
+
+@task
+def checkout_refmodels(c):
+    base = INTEGRATION_TEST_FOLDER
+    if not base.is_dir():
+        print(f"Checking out refmodels (https://github.com/foryouandyourcustomers/fyyccim-refmodels)")
+        c.run(f"git clone --progress --depth 1 git@github.com:foryouandyourcustomers/fyyccim-refmodels.git {str(base)}")
+
+
+@task(aliases=['bit'], pre=[checkout_refmodels])
+def bootstrap_integration_tests(c):
+
+    required_models = [
+        'testdata/fyyccim-refmodels/CRM/IM',
+        'testdata/fyyccim-refmodels/PIM/IM',
+    ]
+
+    # more generic:  for hit in glob.glob(f"testdata/**/IM", recursive=True):
+    for hit in required_models:
+        candidate = Path(hit)
+        if candidate.is_dir():
+            print(f"Generating SPOD for {hit}")
+            c.run(f"inv generator --spod-only -m {candidate}")
 
 
 def verify_content(fh):
@@ -161,5 +227,4 @@ def verify_content(fh):
             raise ValueError(f"/Users/ found in content")
     except UnicodeDecodeError:
         pass
-    pass
     pass
