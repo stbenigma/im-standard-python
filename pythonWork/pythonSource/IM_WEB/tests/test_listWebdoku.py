@@ -61,13 +61,6 @@ class GenerateHTML(unittest.TestCase):
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
         js_model = JSModel(pmodel=model)
-
-        # HACK fake model
-        model_file = project / 'IM' / 'riddle.dmd'
-        if not model_file.exists():
-            model_file.parent.mkdir(exist_ok=True)
-            model_file.touch(exist_ok=True)
-
         parameters.initparam(str(project),pmodelname=js_model.modelname())
         html_export = HTMLExport()
         html_export.setmodel(js_model)
@@ -76,6 +69,7 @@ class GenerateHTML(unittest.TestCase):
             shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)
 
+    @pytest.mark.integration
     def test_integration_generate_html_riddle(self):
         self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
 
