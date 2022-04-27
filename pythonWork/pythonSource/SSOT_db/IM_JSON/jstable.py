@@ -11,7 +11,7 @@ def tables2js(pemptymodel):
          'CRUD',
         'columns+', "businessrules+", 'userdefprops',
         'entitiesmapped', 'relationsmapped',
-        'sourceref', 'referencedby'
+        'sourceref', 'raci+','referencedby'
              ]
     if pemptymodel:
         retval = {jsguid(Modelelemtype.TABL, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(9)]
@@ -20,7 +20,7 @@ def tables2js(pemptymodel):
                                                                                            reflist(),buruinelements(None),userdefprops(),
                                                                                             [jsguid(Modelelemtype.ENTI, '0000')],
                                                                                           [jsguid(Modelelemtype.RELA, '0000')],
-                                                                                           sourceref(), reflist()])
+                                                                                           sourceref(), jsentity.racilist(),reflist()])
                   }
     else:
         retval = {jsguid(Modelelemtype.TABL, t.tabl_id):
@@ -38,7 +38,7 @@ def tables2js(pemptymodel):
                                     for e in TablEntiMap.getentilist(ptablid=t.tabl_id)],
                          [jsguid(Modelelemtype.RELA,r.rela_id)
                                  for r in TablEntiMap.getrelalist(ptablid=t.tabl_id)],
-                           Externalref.getsrcinfo(pmodeid=t.tabl_id),
+                           Externalref.getsrcinfo(pmodeid=t.tabl_id),jsentity.racilist(t.tabl_id),
                            [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=t.tabl_id)] \
                                                         + [jsguid(Modelelemtype.ORGU, d[0]) for d in
                                                            OragnisationalUnit.getreforgulist(pid=t.tabl_id)]

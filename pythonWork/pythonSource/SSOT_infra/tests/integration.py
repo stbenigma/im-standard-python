@@ -27,7 +27,17 @@ class Testmodel():
         self.webdir = self.modeldir / 'Web'
 
     def initDB(self):
-        initDB(self.modelname)
+        if os.path.exists(self.dbfile):
+            createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
+        else:
+            if os.path.exists(self.paramfile):
+                fillDB.filldbmain(pparamfile=self.paramfile)
+            else:
+                fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
+        if not os.path.exists(self.jsonfile):
+            createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,
+                                  pjsfilepath=self.dbdir, pjsfilename=self.jsonfilename)
+        return
 
     def initWeb(self):
         # make sure new templates files are reloaded
@@ -40,17 +50,7 @@ class Testmodel():
 
 
 def initDB(pmodel):
-    tm = Testmodel(pmodel)
-    if os.path.exists(tm.dbfile):
-        createDB(pmodelname=tm.modelname, pupgrade=True, pdestination=tm.dbfile)
-    else:
-        if os.path.exists(tm.paramfile):
-            fillDB.filldbmain(pparamfile=tm.paramfile)
-        else:
-            fillDB.filldbmain(pmodelname=tm.modelname, pdestination=tm.dbfile)
-    if not os.path.exists(tm.jsonfile):
-        createJSON.createJSON(pdbfilepath=tm.dbfile, pmodelname=tm.modelname,
-                              pjsfilepath=tm.dbdir, pjsfilename=tm.jsonfilename)
+    tm = Testmodel(pmodel).initDB()
     return
 
 

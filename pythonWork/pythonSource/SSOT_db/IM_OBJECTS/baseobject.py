@@ -58,12 +58,22 @@ class Baseobject:
         if col in self._columnlist.keys():
             if self.colvalue(col) is None: self.setcolvalue(col, pvalue)
 
-    def __init__(self, psrcname=None, pscrid=None):
+    def __init__(self, **kwargs):
         if (len(self.__class__._columnlist) == 0): self.__class__._columnlist = Baseobject.gettablecolumns(self._tablename)
-        self.__srcname = psrcname
-        self.__srcid = pscrid
         self.__emptyclass()
+
+        self.__srcname = kwargs['srcname'] if ('srcname' in kwargs) else kwargs['psrcname'] if ('psrcname' in kwargs) else None
+        #old spelling
+        self.__srcid = kwargs['srcid'] if ('srcid' in kwargs) else kwargs['psrcid'] if ('psrcid' in kwargs)\
+                        else kwargs['pscrid'] if ('pscrid' in kwargs) else None
+        for col, val in kwargs.items():
+            if col in self.__class__._columnlist:
+                self.setcolvalue(col, Boolean.bool2str(val) if type(val)== bool else val )
+            else:
+                assert col in ("srcid","srcname","psrcid","pscrid","psrcname"), f"parameter ({col}) not allowed for {type(self)}"
         self.setdefaultvalues()
+
+        return
 
 
     def __emptyclass(self):
@@ -205,19 +215,9 @@ class Baseobject:
 
     def setdefaultvalues(self):
         for colname,colvalue in self._columnlist.items():
-            self.setcolvalue(pcolname=colname, pvalue=colvalue[1])
+            if self.colvalue(colname) is None:
+                self.setcolvalue(pcolname=colname, pvalue=colvalue[1])
         return
-        # sql = "PRAGMA table_info({})".format(self._tablename)
-        # cols = dbDML.select(sql)
-        # for c in cols:
-        #     defval= c[4]
-        #     if defval is None: continue
-        #     defval = defval.strip("'")
-        #     defval = defval.strip('"')
-        #     colname = c[1].lower()
-        #     self.setcolvalue(pcolname=colname,pvalue=defval)
-        # #for
-        #return
 
     def tostring(self):
         lretval = "Table: {}\n".format(self._tablename)
@@ -407,9 +407,8 @@ class Baseobject:
 # Baseobject
 
 class MultilangBaseobject(Baseobject):
-    def __init__(self, multilangcols, psrcname=None, pscrid=None):
-        super().__init__(psrcname=psrcname, pscrid=pscrid
-                         )
+    def __init__(self, multilangcols, **kwargs):
+        super().__init__(**kwargs)
         self._multilangcols = multilangcols
         return
 
@@ -432,6 +431,7 @@ class MultilangBaseobject(Baseobject):
         # try
 
         return retval
+
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref

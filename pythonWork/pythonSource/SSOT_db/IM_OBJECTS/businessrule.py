@@ -21,18 +21,11 @@ class BusinessRule(MultilangBaseobject):
     _defaultorderby = "buru_name"
 
     def __init__(self, **kwargs):
-        srcid = kwargs['srcid'] if 'srcid' in kwargs else None
-        srcname = kwargs['srcname'] if 'srcname' in kwargs else None
         super().__init__(multilangcols={'buru_name': Languagetext.BURU_NAME,
                                         'buru_descr': Languagetext.BURU_DESCR,
                                         'buru_errormsg': Languagetext.BURU_ERRORMSG}
-                         , pscrid=srcid
-                         , psrcname=srcname)
-        for col, val in kwargs.items():
-            if col in self._columnlist:
-                self.setcolvalue(col, val)
-            else:
-                assert col in ("srcid","srcname"), f"parameter ({col}) not allowed for {type(self)}"
+                         , **kwargs)
+        return
 
     def getname(self, plang=None):
         return self._getsprachval(colname='buru_name', plang=plang)
@@ -73,18 +66,13 @@ class BusinessRule(MultilangBaseobject):
 
 class BusinessruleElement(Baseobject):
 
-    AFFECTED,REFERENCED = 'AFCT', 'REF'
-
     _tablename: str = 'businessrule_elements'
     _prefix: str = 'bure'
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
     def __init__(self, **kwargs):
-        super().__init__()
-        for col, val in kwargs.items():
-            if col in self._columnlist:
-                self.setcolvalue(col, Boolean.bool2str(val) if type(val) is bool else val)
+        super().__init__(**kwargs)
         if self.bure_writeable is None:
             self.bure_writeable = "FALSE"
 

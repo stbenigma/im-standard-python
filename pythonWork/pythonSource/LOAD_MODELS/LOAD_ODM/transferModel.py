@@ -272,7 +272,7 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
         buru = getcheckconstraint(pxml=pxml)
         if buru:
             regexpprefix: str = "REGEXP:"
-            if (pdoma.doma_type == Domain.TXT) and buru.buru_rule.startswith(regexpprefix):
+            if (pdoma.doma_type == Domain.TXT) and nvl(buru.buru_rule, '').startswith(regexpprefix):
                 pdoma.doma_txt_syntaxrule = re.sub(regexpprefix, '', buru.buru_rule)
             else:
                 buru.buru_name = nvl(buru.buru_name, pdoma.doma_name + '_CHK')
@@ -965,7 +965,7 @@ def getcheckconstraint(pxml):
     constrname = handleXML.findText(pxml, "constraintName")
     constrxml = pxml.find("checkConstraint")
     useDomainConstr = Boolean.str2bool(nvl(handleXML.findText(pxml, 'useDomainConstraints'), 'true'))
-    if constrxml is None: return
+    if constrxml is None: return None
     rules = [(handleXML.findField(impldef, 'dbType'), handleXML.findField(impldef, 'definition')) for impldef in
              constrxml]
     if (len(rules) == 0): return None
@@ -974,7 +974,7 @@ def getcheckconstraint(pxml):
     buru = BusinessRule(buru_name=constrname, buru_descr=descr, buru_rule=rules[0][1],
                         buru_type=BusinessRule.BURU_TYPE_CHECK,
                         buru_errormsg=f"Rule {constrname} violated.",
-                        srcid=handleXML.findField(pxml,'id')+"check",
+                        srcid=handleXML.findField(pxml, 'id') + "check",
                         srcname=Externalref.SOURCE_ODM)
     return buru
 
@@ -992,7 +992,7 @@ def getformula(pxml):
     buru = BusinessRule(buru_descr=f"Function: {sourctype} formula: {formula}",
                         buru_rule=formula,
                         buru_type=BusinessRule.BURU_TYPE_CALC,
-                        srcid=handleXML.findField(pxml,'id')+"formula",
+                        srcid=handleXML.findField(pxml, 'id') + "formula",
                         srcname=Externalref.SOURCE_ODM)
     return buru
 
@@ -1000,7 +1000,7 @@ def getformula(pxml):
 def doconstraints(pelemname, pmodetype, pmodeid, pxml):
     buru = getcheckconstraint(pxml)
     if buru and pmodetype == Modelelemtype.ATTR:
-        buru.buru_name = nvl(buru.buru_name, pelemname+'_CHECK')
+        buru.buru_name = nvl(buru.buru_name, pelemname + '_CHECK')
         buru.buru_impact = 'REFUSE'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
@@ -1010,7 +1010,7 @@ def doconstraints(pelemname, pmodetype, pmodeid, pxml):
 
     buru = getformula(pxml)
     if buru and pmodetype == Modelelemtype.ATTR:
-        buru.buru_name = nvl(buru.buru_name, pelemname+'_CALC')
+        buru.buru_name = nvl(buru.buru_name, pelemname + '_CALC')
         buru.buru_impact = 'denormalised (calcualated) Value'
         buru.buru_level = BusinessRule.BURU_LEVEL_ATTR
         buruid = BusinessRule.searchorinsertburu(buru)
@@ -1922,6 +1922,52 @@ def adjustlabelpositions():
     return
 
 
+"""transfer raci-udps into proper structure and remove udps"""
+
+
+def transferraci():
+    raciattrs = ['Responsible', 'Accountable', 'Consulted', 'Informed']
+
+    udpvs = Userdefpropvalue.getthemevalues(ptheme=parameters.odmUDPraciFileName())
+    """ get all different actors with their raci 
+          mapping to modelelements"""
+    actors = dict()
+    for udpv in udpvs:
+        modeid, value, name = udpv
+        for role in value.split(','):
+            rolename = role.strip()
+            if rolename in actors:
+                if modeid in actors[rolename]:
+                    actors[rolename][modeid] += name[0]
+                else:
+                    actors[rolename][modeid] = name[0]
+            else:
+                actors[rolename] = {modeid: name[0]}
+            # fi
+        # for
+    # for
+
+    """ insert actors and their concerns 
+    """
+    for actor, concern in actors.items():
+        actrid = Actorrole(actr_name=actor,
+                           srcid='ACTR-' + actor,
+                           srcname=Externalref.SOURCE_ODM).insert()
+        for modeid,raci in concern.items():
+            Actorconcern(actc_actr_id=actrid,
+                         actc_mode_id=modeid,
+                         actc_responsible=('R' in raci),
+                         actc_accountable=('A' in raci),
+                         actc_consulted=('C' in raci),
+                         actc_informed=('I' in raci)).insert()
+        # for
+    # for
+    """ delete UDPs we transferred into the model 
+    """
+    Userdefprop.delete(pwhere=('udpr_theme = ?', parameters.odmUDPraciFileName()))
+    return
+
+
 def transferODMModel(**kwargs):
     global interfacedomains
     initglobals()
@@ -1955,5 +2001,6 @@ def transferODMModel(**kwargs):
     filllanguages()
     fillelementdisplays()
     Languagetext.fillnontranslatedtexts(['DOMA'])
+    transferraci()
     removefixedudp()
 # end transferODMModel

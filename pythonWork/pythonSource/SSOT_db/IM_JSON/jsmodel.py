@@ -45,6 +45,7 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.KEYS)] = keys2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.BURU)] = businessrules2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.DOCU)] = documents2js(pemptymodel)
+    jsmodel[JSModel.elemtype2label(Modelelemtype.ACTR)] = actorroles2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ORGU)] = orgUnits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_CATG)] = categories2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel)

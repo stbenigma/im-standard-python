@@ -5,7 +5,7 @@ class Storageformat(Baseobject):
     _tablename:str = 'storage_formats'
     _prefix:str = 'stfo'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
     _defaultorderby = "stfo_id"
 
     def __init__(self,pname=None,pdescr=None):
@@ -43,7 +43,7 @@ class PhysicalUnit(Baseobject):
     _tablename:str = 'physical_unit'
     _prefix:str = 'phyu'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
     _defaultorderby = "phyu_name"
 
 

@@ -23,4 +23,5 @@ from .representation import Elementrep,Relationrep,Linesegment
 from .orgunit import OragnisationalUnit,ModelelemOrgu
 from .businessrule import BusinessRule,BusinessruleElement
 from .examples import Example
+from .actorrole import Actorrole,Actorconcern
 

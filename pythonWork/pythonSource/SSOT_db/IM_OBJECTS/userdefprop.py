@@ -186,3 +186,14 @@ class Userdefpropvalue(Baseobject):
                 """, pmodeid, ptheme, '%' if pgroup == '*' else pgroup, pmeltype)
         return data
 
+    @staticmethod
+    def getthemevalues(ptheme):
+        lsql = """select udpv_mode_id as mode_id
+                     ,udpv_value as value
+                     ,udpr_name as name
+                    from user_defined_properties
+                    join udp_values on udpv_udpr_id = udpr_id
+                    where udpr_theme = ?
+                    """
+        udpvs = dbDML.select(lsql,ptheme)
+        return udpvs

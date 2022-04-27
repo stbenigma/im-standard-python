@@ -36,10 +36,7 @@ create table modelelem_type
 	melt_uc varchar(30) not null,
 	melt_dc varchar(30) not null,
 	melt_um varchar(30),
-	melt_dm varchar(30),
-	check (melt_shortname in ('ARCS', 'ATTR', 'BURU', 'COLU', 'DOMA', 'ENTI'
-                                , 'INTF', 'ORGU', 'RELA', 'SYNO', 'TABL','DOCU','KEYS','DATY'
-                                ,'DGRM','DIAG','EXPL'))
+	melt_dm varchar(30)
 );
 
 create table modelelement
@@ -52,9 +49,6 @@ create table modelelement
     mode_min_zoom_level numeric(1) null check ( mode_min_zoom_level between 0 and 4 ) ,
     mode_max_zoom_level numeric(1)  null check ( mode_max_zoom_level between 0 and 4 ) ,
 	mode_publ_status varchar (5) null check ( mode_publ_status in ('DRAFT', 'GTOP', 'PUBL') )
-	check (mode_type in ("ARCS", "ATTR", "BURU", "COLU", "DOMA", "ENTI"
-                            , "INTF", "ORGU", "RELA", "SYNO", "TABL","DOCU"
-							,"KEYS","DATY","DGRM","DIAG","EXPL"))
 );
 
 create table datatypes
@@ -463,6 +457,43 @@ create table interfaces
 	intf_um varchar(30),
 	intf_dm varchar(30)
 );
+
+create table actor_roles 
+    (
+     actr_id integer not null primary key autoincrement
+	 references modelelement (mode_id) 
+	     on delete cascade,
+     actr_name varchar (100) not null constraint actr_un unique, 
+     actr_descr varchar (4000) , 
+     actr_uc varchar (30) not null , 
+     actr_dc datetime not null , 
+     actr_um varchar (30) , 
+     actr_dm datetime
+	);
+
+create table actor_concerns 
+    (
+     actc_id integer not null primary key autoincrement,
+     actc_responsible varchar (5) not null default 'FALSE' check ( actc_responsible in ('FALSE', 'TRUE') ) , 
+     actc_accountable varchar (5) not null default 'FALSE' check ( actc_accountable in ('FALSE', 'TRUE') ), 
+     actc_consulted varchar (5) not null default 'FALSE' check ( actc_consulted in ('FALSE', 'TRUE') ) , 
+     actc_informed varchar (5) not null default 'FALSE' check ( actc_informed in ('FALSE', 'TRUE') ) , 
+     actc_actr_id numeric (10) not null , 
+     actc_mode_id numeric (10) not null , 
+     actc_uc varchar (30) not null , 
+     actc_dc datetime not null , 
+     actc_um varchar (30) , 
+     actc_dm datetime,
+	 constraint actc_uk unique (actc_actr_id, actc_mode_id),
+	 constraint actc_actr_fk foreign key (actc_actr_id) 
+	     references actor_roles (actr_id) 
+	     on delete cascade,
+	constraint actc_mode_id foreign key (actc_mode_id) 
+		     references modelelement (mode_id) 
+		     on delete cascade 
+    );
+
+
 
 create table domains
 (
@@ -930,7 +961,6 @@ create table businessrule_elements
      bure_buru_id numeric (10) not null ,
      bure_mode_id numeric (10) not null ,
      bure_writeable varchar (5) not null constraint ck__businessr__bure___10216507 check ( bure_writeable='TRUE' or bure_writeable='FALSE' ) ,
-     bure_role VARCHAR (4) constraint ck__businessr__bure___10216507  check ( bure_role in ('AFCT', 'REF')), 
      bure_uc varchar (30) not null ,
      bure_dc varchar(30) not null ,
      bure_um varchar (30) null ,
@@ -1028,6 +1058,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.8' as version, datetime() as installedtime;
+create view dbversion as select '1.9' as version, '2022-04-11 17:48' as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

@@ -13,6 +13,7 @@ from .jsdiagram import *
 from .jssystem import *
 from .jstable import *
 from .jscolumn import *
+from .jsactorroles import *
 from .jsmodel import *
 from .jsfilter import FILTEREDJSModel
 

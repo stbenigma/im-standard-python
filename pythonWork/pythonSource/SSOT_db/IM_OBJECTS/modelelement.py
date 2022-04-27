@@ -4,8 +4,11 @@ from SSOT_db.SQL_INFRA import dbDML
 from .baseobject import Baseobject, Boolean
 from SSOT_infra import logmessages
 
-
+""" Modelelemtype
+    master data object filled at start never changed thereafter
+"""
 class Modelelemtype(Baseobject):
+    ACTR: str = 'ACTR'
     ENTI: str = 'ENTI'
     BURU: str = 'BURU'
     SYNO: str = 'SYNO'
@@ -30,7 +33,7 @@ class Modelelemtype(Baseobject):
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
     _idcolname: str = _prefix + '_id'
-    _columnlist = []
+    _columnlist = dict()
 
     def __init__(self, pshortname=None, pname=None):
 
@@ -46,24 +49,26 @@ class Modelelemtype(Baseobject):
 
     @staticmethod
     def fillmelt():
+        #insert as special function, table should remain immutable
         # melt_shortname,  melt_name    ,melt_uc,  melt_dc
-        Modelelemtype(pshortname=Modelelemtype.ARCS, pname='Arc').insert()
-        Modelelemtype(pshortname=Modelelemtype.ATTR, pname='Attribute').insert()
-        Modelelemtype(pshortname=Modelelemtype.BURU, pname='Business Rule').insert()
-        Modelelemtype(pshortname=Modelelemtype.COLU, pname='Column').insert()
-        Modelelemtype(pshortname=Modelelemtype.DOMA, pname='Domain').insert()
-        Modelelemtype(pshortname=Modelelemtype.ENTI, pname='Entity').insert()
-        Modelelemtype(pshortname=Modelelemtype.INTF, pname='Interface').insert()
-        Modelelemtype(pshortname=Modelelemtype.ORGU, pname='Organizational Unit').insert()
-        Modelelemtype(pshortname=Modelelemtype.RELA, pname='Relation').insert()
-        Modelelemtype(pshortname=Modelelemtype.SYNO, pname='Synonym').insert()
-        Modelelemtype(pshortname=Modelelemtype.TABL, pname='Table').insert()
-        Modelelemtype(pshortname=Modelelemtype.DATY, pname='Datatyope').insert()
-        Modelelemtype(pshortname=Modelelemtype.KEYS, pname='Key').insert()
-        Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document').insert()
-        Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember').insert()
-        Modelelemtype(pshortname=Modelelemtype.DIAG, pname='Diagram').insert()
-        Modelelemtype(pshortname=Modelelemtype.EXPL, pname='Example').insert()
+        Modelelemtype(pshortname=Modelelemtype.ARCS, pname='Arc')._insert()
+        Modelelemtype(pshortname=Modelelemtype.ATTR, pname='Attribute')._insert()
+        Modelelemtype(pshortname=Modelelemtype.BURU, pname='Business Rule')._insert()
+        Modelelemtype(pshortname=Modelelemtype.COLU, pname='Column')._insert()
+        Modelelemtype(pshortname=Modelelemtype.DOMA, pname='Domain')._insert()
+        Modelelemtype(pshortname=Modelelemtype.ENTI, pname='Entity')._insert()
+        Modelelemtype(pshortname=Modelelemtype.INTF, pname='Interface')._insert()
+        Modelelemtype(pshortname=Modelelemtype.ORGU, pname='Organizational Unit')._insert()
+        Modelelemtype(pshortname=Modelelemtype.RELA, pname='Relation')._insert()
+        Modelelemtype(pshortname=Modelelemtype.SYNO, pname='Synonym')._insert()
+        Modelelemtype(pshortname=Modelelemtype.TABL, pname='Table')._insert()
+        Modelelemtype(pshortname=Modelelemtype.DATY, pname='Datatyope')._insert()
+        Modelelemtype(pshortname=Modelelemtype.KEYS, pname='Key')._insert()
+        Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document')._insert()
+        Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember')._insert()
+        Modelelemtype(pshortname=Modelelemtype.DIAG, pname='Diagram')._insert()
+        Modelelemtype(pshortname=Modelelemtype.EXPL, pname='Example')._insert()
+        Modelelemtype(pshortname=Modelelemtype.ACTR, pname='Actor Role')._insert()
 
     @staticmethod
     def getidbyshortname(pshortname):
@@ -95,6 +100,16 @@ class Modelelemtype(Baseobject):
         else:
             return ""
 
+    """override insert, delete and update to make sure it is never changed after init
+    """
+    def insert(self,pdoerrhdlng=True):
+        raise Exception(f"no chnages in table {self._tablename} allowed")
+    def updatedb(self, pdoerrhdlng=True):
+        raise Exception(f"no chnages in table {self._tablename} allowed")
+    def delete(cls,pwhere=None):
+        raise Exception(f"no chnages in table {self._tablename} allowed")
+    def _insert(self):
+        super().insert()
 
 # Modelelemtype
 
@@ -181,6 +196,8 @@ class Modelelement(Baseobject):
             element = Diagram().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DOCU:
             element = Document().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.ACTR:
+            element = Actorrole().getbyid(self.mode_id)
         else:
             element = None
         return element
@@ -279,6 +296,7 @@ class ModelelementProperty(Baseobject):
 
 
 # ModelelementProperty
+from .actorrole import Actorrole
 from .externalref import Externalref
 from .datatype import Datatype
 from .domain import Domain, DomaingroupMember

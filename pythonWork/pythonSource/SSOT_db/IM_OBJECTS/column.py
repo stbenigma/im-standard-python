@@ -14,7 +14,7 @@ class Column(Baseobject):
     _prefix: str = 'colu'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.COLU
-    _columnlist = []
+    _columnlist = dict()
     _defaultorderby = "colu_column_name"
 
     def __init__(self, psrcname=None, psrcid=None):

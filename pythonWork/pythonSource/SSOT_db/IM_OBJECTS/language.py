@@ -7,7 +7,7 @@ class Language(Baseobject):
     _tablename:str ='languages'
     _prefix:str ='lang'
     _idcolname: str = _prefix + '_id'
-    _columnlist = []
+    _columnlist = dict()
     _defaultorderby = "lang_iso_code2"
 
     def __init__(self,pname=None,piso2=None,piso3=None):

@@ -9,7 +9,7 @@ class Diagram(Baseobject):
     _prefix:str = 'diag'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.DIAG
-    _columnlist:list = []
+    _columnlist = dict()
     _defaultorderby = "upper(diag_name)"
 
     def __init__(self, psrcname=None, psrcid=None):
@@ -78,7 +78,7 @@ class Diagramtype(Baseobject):
     _tablename:str = 'diagramtypes'
     _prefix:str = 'diat'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
 
 
     def __init__(self,pname=None):
@@ -102,10 +102,10 @@ class MeltDiat(Baseobject):
     _tablename:str = 'melt_diats'
     _prefix:str = 'medi'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
 
     def __init__(self,pmeltid=None,pdiatid=None):
-        _columnlist = []
+        _columnlist = dict()
 
         super().__init__()
         self.medi_melt_id = pmeltid

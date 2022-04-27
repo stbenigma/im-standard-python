@@ -39,10 +39,9 @@ class Languagetext(Baseobject):
     _columnlist: list = []
 
     def __init__(self, **kwargs):
-        super().__init__()
-        for col, val in kwargs.items():
-            if col in self._columnlist:
-                self.setcolvalue(col, Boolean.bool2str(val) if type(val) is bool else val)
+        super().__init__(**kwargs)
+        return
+
 
     @staticmethod
     def filldefaulttext(plang):
@@ -162,10 +161,7 @@ class Languagetext(Baseobject):
         select lang.lang_iso_code2,
             case when lgtxori.lgtx_text is not NULL
                 then lgtxori.lgtx_text
-                else case when lgtxdef.lgtx_text is NULL or lgtxdef.lgtx_text = ""  
-                        then lgtxdef.lgtx_text
-                        else "*" || langlang.lang_iso_code2 || "* " || lgtxdef.lgtx_text 
-                      end 
+                else lgtxdef.lgtx_text
                 end text
         from languages lang
         left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID
@@ -179,14 +175,14 @@ class Languagetext(Baseobject):
 
     @staticmethod
     def transltext(pattrname, pmodeid, plang):
-        data = dbDML.select("""
-        select lgtx_text
-        from lang_texts
-        join languages on lang_id = lgtx_lang_id
-        where lgtx_mode_id = {}
-        and lgtx_attrname = '{}'
-        and lower(lang_iso_code2) = lower('{}') 
-        """.format(pmodeid, pattrname, plang))
+        data = dbDML.select(f"""
+            select lgtx_text
+            from lang_texts
+            join languages on lang_id = lgtx_lang_id
+            where lgtx_mode_id = {pmodeid}
+            and lgtx_attrname = '{pattrname}'
+            and lower(lang_iso_code2) = lower('{plang}') 
+        """)
         return data[0][0] if (len(data) > 0) else ''
 
     @staticmethod

@@ -79,6 +79,7 @@ def parameterdefaults():
                  'odmorgunitDirec': os.path.join('businessinfo', 'party'),
                  'odmudptranslfilename': 'translation',
                  'odmudpmappingfilename': 'datamapping',
+                 'odmudpracifilename': 'RACI',
                  'odmudpelemdisplfilename': 'elementdisplay',
                  'odmmappingDirec': 'mapping',
                  'odmudpfileextension': '.udposdm',
@@ -258,6 +259,9 @@ def iconmasterdocumentname(newval=None):
 
 def odmUDPMappingFileName(newval=None):
     return getsetparam(pparamname='odmudpmappingfilename', pnewval=newval)
+
+def odmUDPraciFileName(newval=None):
+    return getsetparam(pparamname='odmudpracifilename', pnewval=newval)
 
 
 def odmUDPFileExtension(newval=None):

@@ -69,6 +69,7 @@ class JSModel:
         Modelelemtype.BURU: 'businessrules',
         Modelelemtype.RELA: 'relations',
         Modelelemtype.ATTR: 'attributes',
+        Modelelemtype.ACTR: 'actorroles',
         Modelelemtype.DOMA: 'domains',
         Modelelemtype.ORGU: 'orgunits',
         Modelelemtype.TABL: 'tables',
@@ -201,7 +202,6 @@ class JSModel:
 
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
-
 
 # JSModel
 
