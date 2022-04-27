@@ -156,14 +156,37 @@ def generator(c, model=None,
 
 
 @task
-def dbversion(c, model=None):
+def dbversion(c, model=None, full=False):
+    if full:
+        c.run(f"""echo expected  `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
     if model is None:
-        model = TEST_MODEL / 'DB' / 'riddle.db'
+        model = 'riddle'
+    if model in ('crmTest','riddle','testmodel-1','testmodel-2'):
+        model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
     dbfile = Path(model).resolve()
     if not dbfile.is_file():
         print(f"{dbfile} is not file")
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
+
+@task
+def upgradedb(c, model=None):
+    def upgrade1db(model):
+        if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
+            model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
+        dbfile = Path(model).resolve()
+        if not dbfile.is_file():
+            print(f"{dbfile} is not file")
+            exit(1)
+        with c.cd(PROJECT_ROOT):
+            c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
+        return
+    if model is None:
+        for model in ('crmTest','riddle','testmodel-1','testmodel-2'):
+            upgrade1db(model)
+    else:
+        upgrade1db(model)
+
 
 
 @task(aliases=['but'])

@@ -20,7 +20,7 @@ def columns2js(pemptymodel):
              'R/W',
              'attributesmapped','businessrules+',
              'userdefprops',
-             'sourceref',
+             'sourceref','raci+',
              'referencedby'
              ]
     if pemptymodel:
@@ -30,7 +30,7 @@ def columns2js(pemptymodel):
                                                                                               Modelelemtype.ATTR + "0000"]),
                                                                                           buruinelements(None),
                                                                                           userdefprops(),
-                                                                                          sourceref(), reflist()
+                                                                                          sourceref(), jsentity.racilist(),reflist()
                                                                                           ])}
     else:
         retval = {jsguid(Modelelemtype.COLU, c.colu_id): fillmodel(pmodel=model, pentries=[
@@ -54,7 +54,7 @@ def columns2js(pemptymodel):
                            ColAttrMap.getattrlist(pcoluid=c.colu_id)]),
             buruinelements(c.colu_id),
             udpv2js(pmodeid=c.colu_id, pmodelemtype=Modelelemtype.COLU),
-            Externalref.getsrcinfo(pmodeid=c.colu_id),
+            Externalref.getsrcinfo(pmodeid=c.colu_id),jsentity.racilist(c.colu_id),
             [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)] \
             + [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)]
         ])

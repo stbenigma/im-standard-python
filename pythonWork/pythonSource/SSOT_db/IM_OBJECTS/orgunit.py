@@ -10,7 +10,7 @@ class OragnisationalUnit(Baseobject):
     _prefix:str = 'orgu'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.ORGU
-    _columnlist:list = []
+    _columnlist = dict()
 
     def __init__(self,psrcname=None,psrcid=None):
 
@@ -95,7 +95,7 @@ class ModelelemOrgu(Baseobject):
     _tablename:str = 'mode_orgu'
     _prefix:str = 'moou'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
 
     def __init__(self,pmodeid=None,porguid = None):
 

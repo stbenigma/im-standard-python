@@ -63,6 +63,13 @@ def entityicon(penti: Entity = None):
         return retval(icontype, iconref)
     # fi
 
+def racilist(pmodeid=None):
+    if pmodeid is None:
+        retval = {}
+    else:
+        racis = Actorrole.getracis(pmodeid=pmodeid)
+        retval = {jsguid('ACTR',r[0]): r[1] for r in racis.items()}
+    return retval
 
 def entities2js(pemptymodel):
     model = ['name', 'shortname',
@@ -75,7 +82,7 @@ def entities2js(pemptymodel):
              'minzoomlevel', 'maxzoomlevel', 'publstatus',
              'icon',
              'synonyms', 'examples',
-             'sourceref',
+             'sourceref','raci+',
              'supertypes+', 'roles+',
              'subtypes+', 'attributes+',
              'inheritedattributes+',
@@ -93,7 +100,7 @@ def entities2js(pemptymodel):
                                                                          0, 4, 'DRAFT',
                                                                          entityicon(),
                                                                          synonyms2js(None), examples2js(None),
-                                                                         sourceref(None),
+                                                                         sourceref(None),racilist(),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
@@ -119,6 +126,7 @@ def entities2js(pemptymodel):
                                          synonyms2js(psynos=[s.syno_name_l for s in e.getsynonyms()]),
                                          examples2js(pexpls=e.getexamples()),
                                          sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id)),
+                                         racilist(pmodeid = e.enti_id),
                                          reflist(
                                              plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()]),
                                          reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in

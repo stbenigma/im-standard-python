@@ -8,7 +8,7 @@ class Table(Baseobject):
     _prefix:str = 'tabl'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.TABL
-    _columnlist = []
+    _columnlist = dict()
     _defaultorderby = "tabl_name"
 
     def __init__(self,psrcname=None, psrcid=None):

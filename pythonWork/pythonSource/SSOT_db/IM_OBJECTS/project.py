@@ -7,7 +7,7 @@ class Project(Baseobject):
     _tablename:str ='projects'
     _prefix:str ='proj'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
 
     def __init__(self):
         super().__init__()

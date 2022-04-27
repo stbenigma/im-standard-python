@@ -11,7 +11,7 @@ class Document(Baseobject):
     _prefix:str = 'docu'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.DOCU
-    _columnlist:list = []
+    _columnlist = dict()
 
     def __init__(self,psrcname=None,psrcid=None):
 
@@ -126,7 +126,7 @@ class ModelelemDocu(Baseobject):
     _tablename:str = 'mode_docu'
     _prefix:str = 'modo'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
 
     def __init__(self,pmodeid = None,pdocuid=None):
 

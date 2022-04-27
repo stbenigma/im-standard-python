@@ -10,7 +10,7 @@ class Externalref(Baseobject):
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
     _idcolname: str = _prefix + '_id'
-    _columnlist:list = []
+    _columnlist = dict()
     _defaultorderby = "extr_id"
 
 

@@ -125,6 +125,10 @@
 										<th>
 											 {{ webmodel.gettransltext("R/W") }}
 										</th>
+										{% elif elemid[:4] == 'ACTR' %}
+										<th>
+											 {{ webmodel.gettransltext("RACI") }}
+										</th>
 										{% endif %}
 									</tr>
 									{% for refid in elem %}
@@ -158,6 +162,10 @@
 										<td>
 											 {{ elem[refid]["r/w"] }}
 										</td>
+										{% elif elemid[:4] == 'ACTR' %}
+										<td>
+											 {{ elem[refid] }}
+										</td>
 										{% endif %}
 									</tr>
 									{% endfor %}
@@ -189,34 +197,38 @@
 						</div> 
 {%- endmacro %}
 
-{% macro burulist(webmodel, elemid, elem) -%}
+{% macro reflist(webmodel, elemid, type, refs) -%}
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
 									<tr>
 										<th>{{ webmodel.gettransltext("Name") }}</th>
+										{% if type == 'BURU' %}
 										<th>{{ webmodel.gettransltext("Typ") }}</th>
 										<th>{{ webmodel.gettransltext("R/W") }}</th>
+										{% elif type == 'ACTR' %}
+										<th>{{ webmodel.gettransltext("RACI") }}</th>
+										{% endif %}
 									</tr>
-									{% for buruid in elem["businessrules+"] %}
-									{% set buru = webmodel.getelem(buruid) %}
+									{% for refid in refs %}
+									{% set ref = webmodel.getelem(refid) %}
 									<tr>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(getnvl(buru["name"],'???'))
-											   ,destid=buruid
+										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(getnvl(ref["name"],'???'))
+											   ,destid=refid
 											   ,curintfid=webmodel.getelemintfid(elemid))|safe }}
 										</td>
-										<td>{{ buru["type"] }}
-										</td>
-										<td>{{ buru['elements'][elemid]["r/w"] }}
-										</td>
+										{% if type == 'BURU' %}
+										<td>{{ ref["type"] }}</td>
+										<td>{{ ref['elements'][elemid]["r/w"] }}</td>
+										{% elif type == 'ACTR' %}
+										<td>{{ refs[refid] }}</td>
+										{% endif %}
 									</tr>
 									{% endfor %}
 								</tbody>
 							</table>
 						</div>
-
 {%- endmacro %}
-
 
 
 {% macro elementlist(webmodel, elems) -%}

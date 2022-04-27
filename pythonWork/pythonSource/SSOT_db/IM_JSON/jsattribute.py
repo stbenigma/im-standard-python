@@ -13,34 +13,35 @@ def businessrules2js(pemptymodel):
 
 
 def attr2js(pattr):
-    model = ['techname', 'name'
-        , 'seq', 'entity'
-        , 'domain', 'basedatatype+'
-        , 'type+', 'memberattrs+'
-        , 'descriptive', 'mandatory'
-        , 'historicised', 'repeated'
-        , 'translated', 'encrypted'
-        , 'examples', 'tooltip', 'descr'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'minzoomlevel', 'maxzoomlevel', 'publstatus'
-        , 'sourceref', 'keys+', 'businessrules+'
-        , 'referencedby', 'userdefprops'
-        , 'columnsmapped+', 'diagrams+'
+    model = ['techname', 'name',
+        'seq', 'entity',
+        'domain', 'basedatatype+',
+        'type+', 'memberattrs+',
+        'descriptive', 'mandatory',
+        'historicised', 'repeated',
+        'translated', 'encrypted',
+        'examples', 'tooltip', 'descr',
+        'uc', 'dc', 'um', 'dm',
+        'minzoomlevel', 'maxzoomlevel', 'publstatus',
+        'sourceref', 'raci+','keys+', 'businessrules+',
+        'referencedby', 'userdefprops',
+        'columnsmapped+', 'diagrams+'
              ]
     if pattr is None:
-        retval = fillmodel(pmodel=model
-                           , pentries=['', multilangtext()
-                , '', ''
-                , '', ''
-                , '', reflist()
-                , '', ''
-                , '', ''
-                , '', ''
-                , jsentity.examples2js(None), multilangtext(), multilangtext()
-                , '', '', '', '', 0, 4, 'DRAFT'
-                , sourceref(), reflist(), buruinelements(None)
-                , reflist(), userdefprops()
-                , {jsguid(Modelelemtype.INTF, "0000"):
+        retval = fillmodel(pmodel=model,
+                           pentries=['', multilangtext(),
+                '', '',
+                '', '',
+                '', reflist(),
+                '', '',
+                '', '',
+                '', '',
+                jsentity.examples2js(None), multilangtext(), multilangtext(),
+                '', '', '', '', 0, 4, 'DRAFT',
+                sourceref(), jsentity.racilist(),
+                reflist(), buruinelements(None),
+                reflist(), userdefprops(),
+                {jsguid(Modelelemtype.INTF, "0000"):
                        [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
                                        ]
                            )
@@ -68,6 +69,7 @@ def attr2js(pattr):
                                      pattr.attr_uc, pattr.attr_dc, pattr.attr_um, pattr.attr_dm,
                                      pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getpublstatus(),
                                      Externalref.getsrcinfo(pmodeid=pattr.attr_id),
+                                     jsentity.racilist(pattr.attr_id),
                                      [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()],
                                      buruinelements(pattr.attr_id),
                                      [jsguid(Modelelemtype.DOCU, d[0]) for d in

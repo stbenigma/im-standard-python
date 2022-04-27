@@ -11,6 +11,7 @@ transferprocs = {
     , 'storageformats': (5, storageformats2sql, nofunc, False)
     , 'documents': (6, documents2sql, nofunc, True)
     , 'orgunits': (7, orgunits2sql, nofunc, True)
+    , 'actorroles': (7, actorroles2sql, actorconcerns2sql, True)
     , 'categories': (7, entitycategory2sql, nofunc, True)
     , 'userdefprops': (8, udps2sql, nofunc, False)
     , 'systems': (10, systems2sql, nofunc, True)
@@ -39,7 +40,7 @@ def mergejson2db(pmodeljson):
         # fi
     # for
 
-    """Do dependency inserts where you need all Elements of a type (like superentities)"""
+    """Do dependency inserts where you need all Elements of a type (like actor_roles)"""
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
         js2refsql = transferprocs[masterobject][2]
         if js2refsql != nofunc:

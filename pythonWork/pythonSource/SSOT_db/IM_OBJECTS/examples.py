@@ -12,7 +12,7 @@ class Example(MultilangBaseobject):
     _prefix:str = 'expl'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.EXPL
-    _columnlist:list = []
+    _columnlist = dict()
     _defaultorderby = None
 
     def __init__(self,pvalue=None,pentiid=None,pattrid=None):

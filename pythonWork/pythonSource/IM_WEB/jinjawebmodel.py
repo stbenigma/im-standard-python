@@ -29,6 +29,9 @@ def rendermodel(export: HTMLExport, pmodel: JSModel, pcurlang, pintfid=None, pht
                          orgunits=sorted([[key, "{} ({})".format(value["name"], str(len(value['references+'])))] for key, value in
                                                     pmodel.jsmodel["orgunits"].items()],
                                                  key=lambda x: x[1].upper()),
+                         actorroles=sorted([[key, "{} ({})".format(value["name"], str(len(value['concerns'])))] for key, value in
+                                                    pmodel.jsmodel["actorroles"].items()],
+                                                 key=lambda x: x[1].upper()),
                          systems=sorted([[key, value["name"]] for key, value in pmodel.jsmodel["systems"].items()],
                                                  key=lambda x: x[1].upper()),
                               diagrams =pdiagrams)
