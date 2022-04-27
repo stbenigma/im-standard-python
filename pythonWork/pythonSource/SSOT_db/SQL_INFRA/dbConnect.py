@@ -1,6 +1,6 @@
-# -*- coding: latin-1 -*-
-
+import logging
 import sqlite3
+from contextlib import closing
 
 from SSOT_infra import parameters
 
@@ -13,7 +13,7 @@ myDbConn: sqlite3.Connection = None
 actualdbversion = {}
 
 
-def openDBbasic(pfilepath, pfks='ON'):
+def openDBbasic(pfilepath, pfks='ON') -> sqlite3.Connection:
     """ opens the db pfilepath
     """
     try:
@@ -27,11 +27,11 @@ def openDBbasic(pfilepath, pfks='ON'):
     return locconn
 
 
-def opendDB4DDL(pfilepath, pfks="OFF"):
+def opendDB4DDL(pfilepath, pfks="OFF") -> sqlite3.Connection:
     """ creates a database and opens it.
      by default checking is off as I want to do DDL
      """
-    openDBbasic(pfilepath, pfks=pfks)
+    return openDBbasic(pfilepath, pfks=pfks)
 
 
 def openDB(pfilepath, pfks='ON',pversioncheck=True):
@@ -40,9 +40,10 @@ def openDB(pfilepath, pfks='ON',pversioncheck=True):
         on -> checks enabled (for DML)
     checks the version and guarantees matching with version-file
     """
-    openDBbasic(pfilepath=pfilepath, pfks=pfks)
+    conn = openDBbasic(pfilepath=pfilepath, pfks=pfks)
     if pversioncheck:
         checkversion()
+    return conn
 
 
 def closeDB():
@@ -123,3 +124,29 @@ def getversion():
     """
     global actualdbversion
     return actualdbversion["version"]
+
+
+def read_git_revision(connection):
+    """@:return The git revision stored in the view [gitrevision]
+    or '<unknown>' if the view does not exist
+    """
+    assert isinstance(connection, sqlite3.Connection)
+    try:
+        with closing(connection.cursor()) as cursor:
+            cursor.execute("select * from [gitrevision]")
+            curr_table = cursor.fetchall()
+    except sqlite3.Error as e:
+        logging.warning(f"Cannot read git revision, returning '<unknown>'. Reason: {e}")
+        curr_table = [['<unknown>']]
+    # try
+    return curr_table[0][0]
+
+
+def write_git_reversion(version: str, connection):
+    """Create view 'gitrevision' holding only the git revision"""
+    assert len(version) > 0
+    assert isinstance(connection, sqlite3.Connection)
+    safe_version = version.replace("'", "''")
+    connection.execute("DROP VIEW IF EXISTS [gitrevision]")
+    statement = f"CREATE VIEW [gitrevision] AS SELECT '{safe_version}' AS [revision]"
+    connection.execute(statement)

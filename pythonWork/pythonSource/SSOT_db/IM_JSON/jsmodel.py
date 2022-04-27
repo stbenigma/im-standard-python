@@ -60,12 +60,14 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.STFO)] = storageformats2js(pemptymodel)
 
     modelhash = make_hash(jsmodel)
+    git_revision = '<emptymodel>' if pemptymodel else dbConnect.read_git_revision(dbConnect.getdbcon())
     jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:",
                             "created": str(datetime.today()),
                             "Modelversion": "" if pemptymodel else dbConnect.getversion(),
                             "hashvalue": modelhash,
+                            "git-revision": git_revision,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
-    logging.info("JSModel generated")
+    logging.info(f"JSModel for git revision '{git_revision}' generated")
     return jsmodel
 
 

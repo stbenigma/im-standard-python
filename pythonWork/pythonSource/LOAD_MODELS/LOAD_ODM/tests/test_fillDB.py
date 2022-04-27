@@ -1,10 +1,14 @@
 import json
 import os
 import unittest
+from contextlib import closing
+from pathlib import Path
 
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_ODM import fillDB
+from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.createDB import createDB
+from SSOT_infra import parameters
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 
 
@@ -187,4 +191,16 @@ class TESTFILLDB(unittest.TestCase):
                         f"json file not where assumed {testmodelriddle.jsonfile}")
         self.assertTrue(os.path.exists(testmodelriddle.logfile),
                         f"log file not where assumed {testmodelriddle.logfile}")
-        return
+
+
+        return testmodelriddle.dbfile
+
+    def test_revision(self):
+        repo_revision = parameters.read_git_description(Path(__file__).parent)
+        self.assertTrue('unknown' not in repo_revision)
+
+        db_file = self.test_filldb()
+        with closing(dbConnect.openDBbasic(db_file)) as conn:
+            ver = dbConnect.read_git_revision(conn)
+            self.assertEquals(ver, repo_revision)
+
