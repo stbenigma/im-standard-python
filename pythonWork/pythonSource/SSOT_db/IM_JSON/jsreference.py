@@ -65,6 +65,7 @@ def udps2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
     for jskey, jselem in podmjson.getelements(pelemtype=Modelelemtype.UDPR).items():
         """mdelelemetype_properties are emptied and loaded from source"""
         newudprid = keytransl(jskey)
+        if newudprid is None: continue  # element was not treated
         inscnt = 0
         delcnt = ModelelementProperty.delete(pwhere=("metp_udpr_id = ?", newudprid))
         for elemtype in jselem["usedfor"]:

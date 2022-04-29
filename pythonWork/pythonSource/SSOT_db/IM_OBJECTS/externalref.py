@@ -15,7 +15,6 @@ class Externalref(Baseobject):
 
 
     def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
-
         super().__init__()
         self.extr_source_name = psrcname
         self.extr_source_id = psrcid

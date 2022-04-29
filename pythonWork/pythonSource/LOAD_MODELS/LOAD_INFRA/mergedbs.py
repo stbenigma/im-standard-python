@@ -1,5 +1,7 @@
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
+from SSOT_db.SQL_INFRA import dbConnect
+
 
 nofunc = lambda p: None
 # json-key: (processorder,baseobjectload, referencesload,hasexternalref)
@@ -67,3 +69,30 @@ def mergejson2db(pmodeljson):
     for w in result.warnings:
         print(w)
     return
+
+
+"""merge jsonfile into existing database
+    and return the jsonfile generated from the updated database
+"""
+
+def mergejs2sql(pdbfile:str,pmodel:JSModel):
+    dbConnect.openDB(pfilepath=pdbfile)
+    retval = None
+    try:
+        newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
+        dbversion = dbConnect.getversion()
+        if newversion != dbversion:
+            logmessages.showmessages(f"""existing database  {pdbfile}\nhas version {dbversion} but should have {newversion}""")
+            raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
+
+        mergejson2db(pmodeljson=pmodel)
+
+        """generate json from merged DB"""
+        retval = JSModel(pmodel=sql2json())
+    finally:
+        dbConnect.closeDB()
+    return retval
+
+if __name__ == '__main__':
+    model = JSModel.readfromfile(pfilename='/Users/stb/Documents/Projekte/Sika/Fehlerfall/Sika-IM.new.json')
+    mergejs2sql(pdbfile ='/Users/stb/Documents/Projekte/Sika/Fehlerfall/Sika-IM.db' ,pmodel=model)

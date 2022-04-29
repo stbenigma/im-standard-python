@@ -14,7 +14,10 @@ def addfk(odmjsid, dbid):
 
 def keytransl(odmjsid):
     global idTranslate
-    return idTranslate[odmjsid]
+    if odmjsid in idTranslate:
+        return idTranslate[odmjsid]
+    else:
+        return None
 
 class Mergeresult:
     def __init__(self):
@@ -105,67 +108,67 @@ def getallsrcrefs(pelemtype):
     # for
     return retval
 
-def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcref=True):
-    """from DB to ODM transfer"""
-    removedrefs = []
-    """get all srcrefs existing in ODM
-         in the form
-        {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
-    if pwithextsrcref:
-        allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype)
-    else:
-        allodmsrcrefs = Extsourcerefs()
-
-    """is there a db-element without ODM-GUID"""
-    for key, elem in pdbjson.getelements(pelemtype=pelemtype).items():
-        if pwithextsrcref:
-            if len(elem["sourceref"])== 0:
-                """no external source references this entry, mark to be removed"""
-                removedrefs.append(key)
-            else:
-                dbsrcid = None
-                for srcname, srcelem in elem["sourceref"].items():
-                    if srcname == Externalref.SOURCE_ODM:
-                        dbsrcid = srcelem[0]
-                        break
-                    #fi
-                if dbsrcid is None:
-                    presult.warnings.append("+++ Element {} in db not yet in ODM".format(key))
-                else:
-                    """does db-odmguid exist in ODM """
-                    odmsrcref = allodmsrcrefs.get(psrcname=Externalref.SOURCE_ODM,psrcid=dbsrcid)
-                    if odmsrcref is None:
-                        """odm-source id does no longer exist in ODM
-                            remove it from DB"""
-                        Externalref.delete(pwhere=("extr_source_name = ? and extr_source_id = ?",
-                                                    Externalref.SOURCE_ODM, dbsrcid))
-                        removedrefs.append(key)
-                        presult.adddelrefcnt(1)
-                    else:
-                        """odm found. already treated in fromo dm2db"""
-                        pass
-                    #fi
-                #fi
-            #fi
-        #fi
-    #for
-    if pwithextsrcref:
-        """delete all elements which no longer exist"""
-        Modelelement.deletemodes(pmodeids=[jsguid2id(key) for key in removedrefs])
-        presult.deletecnt += len (removedrefs)
-    else:
-        """delete all DB elements with UK not in the ODM-DB"""
-        jsukname = 'name' #currently we have only names as UK in non-odm-guid-elements
-        for dbkey,dbval in pdbjson.getelements(pelemtype=pelemtype).items():
-            uklist = [dbkey for odmval in podmjson.getelements(pelemtype=pelemtype).values() if dbval[jsukname] == odmval[jsukname]]
-            if len(uklist) == 0:
-                """no uk found in ODM, delete it from DB"""
-                dbobj = pjs2obj(pkey=dbkey,pelem=dbval) #memory only object
-                dbobj.delete(pwhere=valuepairs2sqlexpr(**{colname:dbobj.colvalue(colname) for colname in puknames}))
-                presult.deletecnt += 1
-            #fi
-        #for
-    return
+# def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcref=True):
+#     """from DB to ODM transfer"""
+#     removedrefs = []
+#     """get all srcrefs existing in ODM
+#          in the form
+#         {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
+#     if pwithextsrcref:
+#         allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype)
+#     else:
+#         allodmsrcrefs = Extsourcerefs()
+#
+#     """is there a db-element without ODM-GUID"""
+#     for key, elem in pdbjson.getelements(pelemtype=pelemtype).items():
+#         if pwithextsrcref:
+#             if len(elem["sourceref"])== 0:
+#                 """no external source references this entry, mark to be removed"""
+#                 removedrefs.append(key)
+#             else:
+#                 dbsrcid = None
+#                 for srcname, srcelem in elem["sourceref"].items():
+#                     if srcname == Externalref.SOURCE_ODM:
+#                         dbsrcid = srcelem[0]
+#                         break
+#                     #fi
+#                 if dbsrcid is None:
+#                     presult.warnings.append("+++ Element {} in db not yet in ODM".format(key))
+#                 else:
+#                     """does db-odmguid exist in ODM """
+#                     odmsrcref = allodmsrcrefs.get(psrcname=Externalref.SOURCE_ODM,psrcid=dbsrcid)
+#                     if odmsrcref is None:
+#                         """odm-source id does no longer exist in ODM
+#                             remove it from DB"""
+#                         Externalref.delete(pwhere=("extr_source_name = ? and extr_source_id = ?",
+#                                                     Externalref.SOURCE_ODM, dbsrcid))
+#                         removedrefs.append(key)
+#                         presult.adddelrefcnt(1)
+#                     else:
+#                         """odm found. already treated in fromo dm2db"""
+#                         pass
+#                     #fi
+#                 #fi
+#             #fi
+#         #fi
+#     #for
+#     if pwithextsrcref:
+#         """delete all elements which no longer exist"""
+#         Modelelement.deletemodes(pmodeids=[jsguid2id(key) for key in removedrefs])
+#         presult.deletecnt += len (removedrefs)
+#     else:
+#         """delete all DB elements with UK not in the ODM-DB"""
+#         jsukname = 'name' #currently we have only names as UK in non-odm-guid-elements
+#         for dbkey,dbval in pdbjson.getelements(pelemtype=pelemtype).items():
+#             uklist = [dbkey for odmval in podmjson.getelements(pelemtype=pelemtype).values() if dbval[jsukname] == odmval[jsukname]]
+#             if len(uklist) == 0:
+#                 """no uk found in ODM, delete it from DB"""
+#                 dbobj = pjs2obj(pkey=dbkey,pelem=dbval) #memory only object
+#                 dbobj.delete(pwhere=valuepairs2sqlexpr(**{colname:dbobj.colvalue(colname) for colname in puknames}))
+#                 presult.deletecnt += 1
+#             #fi
+#         #for
+#     return
 
 
 def translatefks(pdbobj):
@@ -193,20 +196,20 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
 
 
     newdberrors = []
-    olddberrors = None
+    oldrepeaterrs,newrepeaterrs = None,[]
     newelements = copy(podmjson.getelements(pelemtype=pelemtype))
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
         Try several times, stop trying if errors stagnate"""
     loopcnt = 0 #safeguard
-    while olddberrors != newdberrors:
+    while oldrepeaterrs != newrepeaterrs:
         loopcnt += 1
         if loopcnt > 50:
             print ("***** fromodm2db: too many tries for element {}".format(pelemtype))
             break
 
-        olddberrors = newdberrors
-        newdberrors = []
+        oldrepeaterrs = newrepeaterrs
+        newrepeaterrs = []
 
         """external source refs in the target Database for the acutal elementtype (pelemtype) in the form
             {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
@@ -244,8 +247,10 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                 lastupdatesrcref = dbsrcrefs.getwithmaxupd()
                 if (lastupdatesrcref.srcname !=  Externalref.SOURCE_ODM):
                     """other source updated DB after ODM"""
-                    newdberrors.append("""*** Double update merge problem for {}:{}: source "{}" updated after source {}"""
-                                       .format(pelemtype,dbsrcref.dbid,lastupdatesrcref.srcname,Externalref.SOURCE_ODM))
+                    newdberrors.append(f"""*** Double update merge problem for {pelemtype}:{dbsrcref.dbid}: source "{lastupdatesrcref.srcname}" updated after source {Externalref.SOURCE_ODM}""")
+                    newrepeaterrs.append(
+                        f"""*** Double update merge problem for {pelemtype}:{dbsrcref.dbid}: source "{lastupdatesrcref.srcname}" updated after source {Externalref.SOURCE_ODM}"""
+                        )
                 else:
                     """update db-record if there is a difference"""
                     addfk(odmjsid=key, dbid=dbsrcref.dbid)
@@ -258,7 +263,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             presult.addupdcnt(1)
                             del newelements[key] #omit in next loop
                         except Exception as e:
-                            newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,obj.getid(),e))
+                            newdberrors.append(f"""*** update-error : ID = "{pelemtype}:{obj.getid()}" \n{e}""")
+                            newrepeaterrs.append(f"""*** update-error : ID = "{pelemtype}:{obj.getid()}" """)
                     # fi
                 #fi
             else:
@@ -275,7 +281,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                         presult.insertcnt += 1
                         del newelements[key]  # omit in next loop
                     except Exception as e:
-                        newdberrors.append("""*** insert-error: ID = "{}:{}" exists with different GUID\n{}""".format(pelemtype,obj.getid(),e))
+                        newdberrors.append(f"""*** insert-error: ID = "{key}" exists with different GUID\n{e}""")
+                        newrepeaterrs.append(f"""*** insert-error: ID = "{key}" exists with different GUID""")
                 else:
                     """Entry found via UK. update it.  update the external ref as well, as it could be"""
                     addfk(odmjsid=key, dbid=ukref.getid())
@@ -292,7 +299,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             presult.addupdcnt(1)
                             del newelements[key]  # omit in next loop
                         except Exception as e:
-                            newdberrors.append("""*** update-error : ID = "{}:{}" \n{}""".format(pelemtype,ukref.getid(),e))
+                            newdberrors.append(f"""*** update-error : ID = "{pelemtype}:{ukref.getid()}" \n{e}""")
+                            newrepeaterrs.append(f"""*** update-error : ID = "{pelemtype}:{ukref.getid()}" """)
 
                     #fi
                 # fi

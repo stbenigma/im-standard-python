@@ -1,6 +1,6 @@
 #__all__ = [""]
 from .jsbase import *
-from .jsmergetosql import fromodm2db,fromdb2odm,Mergeresult,idTranslate,keytransl
+from .jsmergetosql import fromodm2db,Mergeresult,idTranslate,keytransl
 from .jsreference import *
 from .jslang import *
 from .jsrefdata import *
