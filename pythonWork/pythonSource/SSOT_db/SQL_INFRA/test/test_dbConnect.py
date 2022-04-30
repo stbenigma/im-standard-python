@@ -8,7 +8,7 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         super().setUp()
-        self.connection = dbConnect.openDBbasic(':memory:')
+        self.connection = dbConnect.openDBbasic('/tmp/test.db')
 
     def tearDown(self) -> None:
         dbConnect.closeDB()
@@ -21,6 +21,11 @@ class MyTestCase(unittest.TestCase):
 
     def test_read_git_revision(self):
         self.test_write_git_revision()
-        value = dbConnect.read_git_revision(self.connection)
+
+        self.tearDown()
+        # reconnect
+        self.setUp()
+
+        value = dbConnect.read_git_revision()
         self.assertIsNotNone(value)
-        self.assertEqual(value, self.TEST_VERSION)
+        self.assertEqual(self.TEST_VERSION, value)

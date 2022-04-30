@@ -23,40 +23,44 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         langs = Language.getlanguagecodes()
         parameters.dbLanguages(newval=','.join(langs))
         dbConnect.closeDB()
-        createnewDB(pdbfilepath=None)  # create in Memory
+        connection = createnewDB(pdbfilepath=None)  # create in Memory
+        dbConnect.write_git_reversion('transfer', connection)
     # fi
     transferfunction(**kwargs)
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
+
     new_git_revision = parameters.read_git_description(Path(parameters.odmIMDirec()))
     loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName() + "_loaded")
+    loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
     if createnewdb:
         logging.info(f"Created SPOD for git revision {new_git_revision}")
         with closing(dbConnect.openDB(pfilepath=parameters.dbFilePath())) as conn:
             dbConnect.write_git_reversion(new_git_revision, conn)
-        loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        conn = dbConnect.openDB(pfilepath=parameters.dbFilePath())
-        old_git_revision = dbConnect.read_git_revision(conn)
-        logging.info(f"Opening DB '{parameters.dbFilePath()}' for upgrade from git revision '{old_git_revision}'"
-                     f" to git revision '{new_git_revision}'")
-        newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
-        if newversion != dbConnect.getversion():
-            logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
-                                     .format(parameters.dbFilePath(), dbConnect.getversion(),
-                                             newversion))
-            raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
-                                                                                 newversion))
-        mergedbs.mergejson2db(pmodeljson=loadedjson)
-        dbConnect.write_git_reversion(new_git_revision, conn)
-
-        """generate json from merged DB"""
-        newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        dbConnect.closeDB()
-        spod = newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
-        logging.info(f"Updated SPOD '{spod}' to git revision {newjson.jsmodel['_imprint_']['git-revision']}")
+        logging.info(f"Opening destination db for merge {parameters.dbFilePath()}")
+        with closing(dbConnect.openDB(pfilepath=parameters.dbFilePath())) as connection:
+            old_git_revision = dbConnect.read_git_revision(connection)
+            logging.info(f"Opening DB '{parameters.dbFilePath()}' for upgrade from git revision '{old_git_revision}'"
+                         f" to git revision '{new_git_revision}'")
+            newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
+            if newversion != dbConnect.getversion():
+                logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
+                                         .format(parameters.dbFilePath(), dbConnect.getversion(),
+                                                 newversion))
+                raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
+                                                                                     newversion))
+            logging.debug(f"Starting merge")
+            mergedbs.mergejson2db(pmodeljson=loadedjson)
+            logging.debug(f"Merge complete")
+            """generate json from merged DB"""
+            newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+            spod = newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+            logging.info(f"Updated SPOD '{spod}' to git revision {newjson.jsmodel['_imprint_']['git-revision']}")
+            dbConnect.closeDB()
+            logging.debug(f"Database {connection} closed")
     # fi
     return
 

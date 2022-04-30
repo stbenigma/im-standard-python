@@ -29,7 +29,7 @@ transferprocs = {
 }
 
 
-def mergejson2db(pmodeljson):
+def mergejson2db(pmodeljson: JSModel):
     assert dbConnect.isopenDB()
     result = Mergeresult()
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
@@ -48,6 +48,11 @@ def mergejson2db(pmodeljson):
         # fi
     # for
 
+    rev = pmodeljson.jsmodel['_imprint_']['git-revision']
+    logging.info(f"Writing git revision {rev} to DB")
+    dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
+    dbConnect.getdbcon().commit()
+
     if (len(result.errors) == 0):
         """clean up and set final project parameters"""
         Language.deleteunused()
@@ -56,6 +61,7 @@ def mergejson2db(pmodeljson):
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     else:
+        logging.warning("There where errors updating the database")
         for dbe in result.errors:
             print(dbe)
     # fi
