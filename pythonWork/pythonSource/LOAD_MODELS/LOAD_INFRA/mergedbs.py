@@ -94,5 +94,5 @@ def mergejs2sql(pdbfile:str,pmodel:JSModel):
     return retval
 
 if __name__ == '__main__':
-    model = JSModel.readfromfile(pfilename='/Users/stb/Documents/Projekte/Sika/Fehlerfall/Sika-IM.new.json')
-    mergejs2sql(pdbfile ='/Users/stb/Documents/Projekte/Sika/Fehlerfall/Sika-IM.db' ,pmodel=model)
+    model = JSModel.readfromfile(pfilename=sys.argv[2])
+    mergejs2sql(pdbfile =sys.argv[1] ,pmodel=model)
