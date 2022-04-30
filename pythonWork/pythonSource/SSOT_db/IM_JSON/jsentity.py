@@ -220,6 +220,7 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
 
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ENTI).items():
         entiid = keytransl(jid)
+        if entiid is None: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']

@@ -53,10 +53,10 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
             logging.debug(f"Starting merge")
-            mergedbs.mergejson2db(pmodeljson=loadedjson)
+            newjson = mergedbs.mergejson2db(pdbfile=parameters.dbFilePath(), pmodeljson=loadedjson)
             logging.debug(f"Merge complete")
             """generate json from merged DB"""
-            newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+            #newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
             spod = newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
             logging.info(f"Updated SPOD '{spod}' to git revision {newjson.jsmodel['_imprint_']['git-revision']}")
             dbConnect.closeDB()

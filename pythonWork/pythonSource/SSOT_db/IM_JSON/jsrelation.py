@@ -119,7 +119,7 @@ def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
 
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.RELA).items():
         newrelaid = keytransl(jid)
-
+        if newrelaid is None: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']

@@ -88,7 +88,9 @@ def columns2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
 
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.COLU).items():
         newcoluid = keytransl(jid)
-        assert newcoluid is not None, f"No column id for {jid} {jelem}"
+        if newcoluid is None:
+            logging.warning(f"Element {jid} was notn treated")
+            continue
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']

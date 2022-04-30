@@ -297,6 +297,7 @@ def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
 
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.DIAG).items():
         newdiagid = keytransl(jid)
+        if newdiagid is None: continue  # element was not treated
         inscnt = 0
         delcnt = Elementrep.delete(pwhere=("eler_diag_id = ?", newdiagid))
         for jelemreps in jelem['elements'].values():

@@ -159,7 +159,7 @@ class Baseobject:
                     print (lsql)
                     print (self.totuple())
             # if
-            msg = "Cannot insert into {} tuple {}".format(self._tablename, self.totuple())
+            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}"
             if str(e).startswith("UNIQUE constraint failed"):
                 raise UniqueKeyException(msg) from e
             elif str(e).startswith("FOREIGN KEY constraint failed"):
@@ -169,8 +169,14 @@ class Baseobject:
 
         # try
         if self.__srcname is not None:
-            Externalref(psrcname=self.__srcname, psrcid=self.__srcid, pmodeid=self.getid()).insert(
+            try:
+                Externalref(psrcname=self.__srcname, psrcid=self.__srcid, pmodeid=self.getid()).insert(
                 pdoerrhdlng=pdoerrhdlng)
+            except Exception as e2:
+                #delete original entry
+                self.delete(pwhere=(f"{self._idcolname} = ?",locid))
+                raise Exception() from e2
+
         return self.getid()
 
     def updatedb(self, pdoerrhdlng=True):

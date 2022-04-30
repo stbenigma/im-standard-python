@@ -163,7 +163,7 @@ def businessrules2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
       },"""
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.BURU).items():
         buruid = keytransl(jid)
-
+        if buruid is None: continue  # element was not treated
         replacelgtx(presult=presult, pmodeid=buruid, pattr=Languagetext.BURU_DESCR, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=buruid, pattr=Languagetext.BURU_ERRORMSG, ptexts=jelem['errormsg'])
         replacelgtx(presult=presult, pmodeid=buruid, pattr=Languagetext.BURU_NAME, ptexts=jelem['name'])
