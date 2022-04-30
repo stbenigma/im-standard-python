@@ -3,6 +3,7 @@ from SSOT_db.SQL_INFRA import dbDML
 from datetime import datetime
 
 class Externalref(Baseobject):
+    SOURCE_SPOD:str='SPOD'
     SOURCE_ODM:str='ODM'
     SOURCE_EAXML:str='EAXML'
     SOURCE_ELLIE:str='ELLIE'

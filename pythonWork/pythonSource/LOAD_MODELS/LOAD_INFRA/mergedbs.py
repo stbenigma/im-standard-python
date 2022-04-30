@@ -30,7 +30,10 @@ transferprocs = {
     , '_imprint_': (99, nofunc, nofunc, True)
 }
 
-
+""" merge json into current connection
+    DB-Version has already been checked
+    returns the Mergeresult
+    """
 def mergejson2db(pmodeljson):
     assert dbConnect.isopenDB()
     result = Mergeresult()
@@ -68,14 +71,14 @@ def mergejson2db(pmodeljson):
         f"          {result.insertcnt} inserted, {result.updatecnt} updated, {result.deletecnt} deleted, {result.deleterefcnt} references removed")
     for w in result.warnings:
         print(w)
-    return
+    return result
 
 
 """merge jsonfile into existing database
     and return the jsonfile generated from the updated database
 """
 
-def mergejs2sql(pdbfile:str,pmodel:JSModel):
+def mergejs2sql(pdbfile:str,pmodel:JSModel,psrcname=Externalref.SOURCE_SPOD):
     dbConnect.openDB(pfilepath=pdbfile)
     retval = None
     try:
