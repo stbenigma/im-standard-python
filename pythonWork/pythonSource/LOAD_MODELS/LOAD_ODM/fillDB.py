@@ -38,25 +38,8 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        conn = dbConnect.openDB(pfilepath=parameters.dbFilePath())
-        old_git_revision = dbConnect.read_git_revision(conn)
-        logging.info(f"Opening DB '{parameters.dbFilePath()}' for upgrade from git revision '{old_git_revision}'"
-                     f" to git revision '{new_git_revision}'")
-        newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
-        if newversion != dbConnect.getversion():
-            logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
-                                     .format(parameters.dbFilePath(), dbConnect.getversion(),
-                                             newversion))
-            raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
-                                                                                 newversion))
-        mergedbs.mergejson2db(pmodeljson=loadedjson)
-        dbConnect.write_git_reversion(new_git_revision, conn)
-
-        """generate json from merged DB"""
-        newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        dbConnect.closeDB()
-        spod = newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
-        logging.info(f"Updated SPOD '{spod}' to git revision {newjson.jsmodel['_imprint_']['git-revision']}")
+        newjson = mergedbs.mergejs2sql(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
+        newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     # fi
     return
 

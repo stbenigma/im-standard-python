@@ -1,5 +1,7 @@
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
+from SSOT_db.SQL_INFRA import dbConnect
+
 
 nofunc = lambda p: None
 # json-key: (processorder,baseobjectload, referencesload,hasexternalref)
@@ -28,7 +30,10 @@ transferprocs = {
     , '_imprint_': (99, nofunc, nofunc, True)
 }
 
-
+""" merge json into current connection
+    DB-Version has already been checked
+    returns the Mergeresult
+    """
 def mergejson2db(pmodeljson):
     assert dbConnect.isopenDB()
     result = Mergeresult()
@@ -66,4 +71,31 @@ def mergejson2db(pmodeljson):
         f"          {result.insertcnt} inserted, {result.updatecnt} updated, {result.deletecnt} deleted, {result.deleterefcnt} references removed")
     for w in result.warnings:
         print(w)
-    return
+    return result
+
+
+"""merge jsonfile into existing database
+    and return the jsonfile generated from the updated database
+"""
+
+def mergejs2sql(pdbfile:str,pmodel:JSModel,psrcname=Externalref.SOURCE_SPOD):
+    dbConnect.openDB(pfilepath=pdbfile)
+    retval = None
+    try:
+        newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
+        dbversion = dbConnect.getversion()
+        if newversion != dbversion:
+            logmessages.showmessages(f"""existing database  {pdbfile}\nhas version {dbversion} but should have {newversion}""")
+            raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
+
+        mergejson2db(pmodeljson=pmodel)
+
+        """generate json from merged DB"""
+        retval = JSModel(pmodel=sql2json())
+    finally:
+        dbConnect.closeDB()
+    return retval
+
+if __name__ == '__main__':
+    model = JSModel.readfromfile(pfilename=sys.argv[2])
+    mergejs2sql(pdbfile =sys.argv[1] ,pmodel=model)

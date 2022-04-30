@@ -203,6 +203,7 @@ def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
       },"""
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ATTR).items():
         attrid = keytransl(jid)
+        if attrid is None: continue #element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -293,9 +294,11 @@ def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
     inscnt = 0
     delcnt = Keyelement.delete(pwhere=("kele_keys_id = ?", pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
+        modeid = keytransl(jid)
+        if modeid is None: continue #element was not treated
         ins1kele(presult=presult, pkey=pkey,
-                 pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None,
-                 prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
+                 pattrid=modeid if jsguid2type(jid) == Modelelemtype.ATTR else None,
+                 prelaid=modeid if jsguid2type(jid) == Modelelemtype.RELA else None)
         inscnt += 1
     # for
     presult.addinscnt(max(0, (inscnt - delcnt)))
@@ -320,7 +323,9 @@ def keys2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
                pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.KEYS).items():
-        key = Key().getbyid(pid=keytransl(jid))
+        keyid=keytransl(jid)
+        if keyid is None: continue  # element was not treated
+        key = Key().getbyid(pid=keyid)
         inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
         if pwithextsrcref:
             inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])

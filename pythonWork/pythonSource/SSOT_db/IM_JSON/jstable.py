@@ -72,6 +72,7 @@ def tables2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
         newtablid = keytransl(jid)
+        if newtablid is None: continue  # element was not treated
         Modelelement.upddisplelements(pmodeid=newtablid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
         insreferences(presult=presult, pmodeid=newtablid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newtablid, psources=jelem["sourceref"])
