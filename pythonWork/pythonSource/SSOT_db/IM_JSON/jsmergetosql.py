@@ -2,7 +2,6 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../IM_DB')
 from SSOT_db.IM_JSON import  *
 from SSOT_db.IM_OBJECTS import  *
-from SSOT_db.SQL_INFRA.dbDML import valuepairs2sqlexpr
 from copy import copy
 from SSOT_infra import parameters
 
@@ -237,7 +236,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                 obj = pjs2obj(pkey=key, pelem=elem,pmodellang=modellang)
                 dbsrcref = None
             #fi
-            """make sure we use new id's, wehreever we know it already"""
+            """make sure we use new id's, where ever we know it already"""
             translatefks(obj)
             if dbsrcref is not None:
                 """entry via ODM-GUID found. this is my existing brother, try to update it"""
@@ -277,10 +276,12 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                     try:
                         obj.setid(None) #provoke new ID in new db
                         objid = obj.insert(pdoerrhdlng=False)
+                        logging.debug(f"Created new row with id {objid} for key {key}")
                         addfk(odmjsid=key, dbid=objid)
                         presult.insertcnt += 1
                         del newelements[key]  # omit in next loop
                     except Exception as e:
+                        logging.warning(f"Cannot insert new element {obj} due to {type(e)}: {e}")
                         newdberrors.append(f"""*** insert-error: ID = "{key}" exists with different GUID\n{e}""")
                         newrepeaterrs.append(f"""*** insert-error: ID = "{key}" exists with different GUID""")
                 else:
