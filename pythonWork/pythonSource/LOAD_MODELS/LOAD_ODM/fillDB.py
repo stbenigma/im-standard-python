@@ -53,16 +53,15 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
             logging.debug(f"Starting merge")
-            newjson = mergedbs.mergejson2db(pdbfile=parameters.dbFilePath(), pmodeljson=loadedjson)
+            mergedbs.mergejson2db(pmodeljson=loadedjson)
             logging.debug(f"Merge complete")
             """generate json from merged DB"""
             #newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            spod = newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
-            logging.info(f"Updated SPOD '{spod}' to git revision {newjson.jsmodel['_imprint_']['git-revision']}")
+            spod = loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+            logging.info(f"Updated SPOD '{spod}' to git revision {loadedjson.jsmodel['_imprint_']['git-revision']}")
             dbConnect.closeDB()
             logging.debug(f"Database {connection} closed")
     # fi
-    return
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,

@@ -592,8 +592,8 @@ def read_git_description(folder: Path = None):
         assert folder.is_dir()
     command = ['git', 'describe', '--always']
     try:
-        git_tag = subprocess.check_output(command, cwd=folder).decode().strip()
+        git_tag = subprocess.check_output(command, cwd=str(folder), stderr=subprocess.DEVNULL).decode().strip()
         return git_tag
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
-        logging.warning(f"Cannot obtain git version of folder {folder}.\n{e}")
+        logging.warning(f"Cannot obtain git revision from folder {folder}.\n{e}")
         return f'<unknown@{str(folder)}>'

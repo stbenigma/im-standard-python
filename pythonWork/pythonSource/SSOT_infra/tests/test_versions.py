@@ -22,3 +22,10 @@ class TestVersions(unittest.TestCase):
             r = t.read_git_description(Path(tmp))
             self.assertIsInstance(r, str)
             self.assertTrue(r.startswith('<unknown'))
+
+    def test_read_git_repo_version(self):
+        nongit_folder = Path('/tmp/dummy')
+        nongit_folder.mkdir(exist_ok=True)
+        r = t.read_git_description(nongit_folder)
+        self.assertIsInstance(r, str)
+        self.assertEqual(f'<unknown@{str(nongit_folder)}>', r)

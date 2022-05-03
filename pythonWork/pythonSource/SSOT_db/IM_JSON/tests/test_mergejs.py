@@ -1,69 +1,85 @@
 import datetime
+import json
+import logging
+import shutil
 import unittest
+from contextlib import closing
+from pathlib import Path
+
+import pytest
 
 from LOAD_MODELS.LOAD_INFRA import mergedbs
-from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule,jsguid
+from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsmergetosql
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.IM_OBJECTS import BusinessRule,Attribute,Entity,Table
+from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table
 import SSOT_infra.tests.integration as testsrc
 
-class MyTestCase(unittest.TestCase):
+
+class TestMergeJson(unittest.TestCase):
+
+    @pytest.fixture(autouse=True)
+    def inject_fixtures(self, caplog):
+        self._caplog = caplog
+
     def setUp(self) -> None:
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
-        self.testmodel1= testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.riddle = testsrc.Testmodel(testsrc.RIDDLE)
         return
 
     def test_merge(self):
-        dbConnect.openDB(self.testmodelcrm.dbfile,pversioncheck=False )
-        self.newbrname='test-BR10'
+        dbConnect.openDB(self.testmodelcrm.dbfile, pversioncheck=False)
+        self.newbrname = 'test-BR10'
         self.crmmodel = JSModel(pmodel=sql2json(pdbname=self.testmodelcrm.modelname))
         try:
             buru = BusinessRule(buru_name=self.newbrname,
-                                buru_rule= 'nichts',
-                                buru_level= 'ATTR',
-                                buru_type= 'CHECK',
+                                buru_rule='nichts',
+                                buru_level='ATTR',
+                                buru_type='CHECK',
                                 buru_uc='me',
-                                buru_dc= datetime.datetime.now(),
+                                buru_dc=datetime.datetime.now(),
                                 srcid='9999',
                                 srcname='test_mergejs')
-            burujs = jsbusinessrule.businessrule2js(buru,plangs=('de','en','fr'))
-            attrid=jsguid('ATTR', Attribute.select()[0].attr_id)
-            tablid=jsguid('TABL', Table.select()[0].tabl_id)
-            burujs['elements'] = {attrid:{"r/w":"R"},
-                                  tablid:{"r/w":"R"}
+            burujs = jsbusinessrule.businessrule2js(buru, plangs=('de', 'en', 'fr'))
+            attrid = jsguid('ATTR', Attribute.select()[0].attr_id)
+            tablid = jsguid('TABL', Table.select()[0].tabl_id)
+            burujs['elements'] = {attrid: {"r/w": "R"},
+                                  tablid: {"r/w": "R"}
                                   }
             burujs['sourceref']['test_mergejs'][1] = str(datetime.datetime.now())
             self.crmmodel.jsmodel['businessrules']["BURU9999"] = burujs
 
-            mergedbs.mergejson2db(pmodeljson=self.crmmodel)
+            with self._caplog.at_level(logging.DEBUG):
+                mergedbs.mergejson2db(pmodeljson=self.crmmodel)
+
             """generate json from merged DB"""
             newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            newburuid=newjson.jsmodel['attributes'][attrid]['businessrules+'][0]
-            self.assertEqual(newburuid,newjson.jsmodel['tables'][tablid]['businessrules+'][0])
+            newburuid = newjson.jsmodel['attributes'][attrid]['businessrules+'][0]
+            self.assertEqual(newburuid, newjson.jsmodel['tables'][tablid]['businessrules+'][0])
 
-            newburu=newjson.getbyid(newburuid)
+            newburu = newjson.getbyid(newburuid)
             self.assertTrue(newburuid in newjson.jsmodel['businessrules'])
             self.assertTrue(attrid in newburu['elements'])
             self.assertTrue(tablid in newburu['elements'])
 
-            self.assertEqual('9999',newburu['sourceref']['test_mergejs'][0])
+            self.assertEqual('9999', newburu['sourceref']['test_mergejs'][0])
 
-            #now test an update
+            # now test an update
             updjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
             updburu = updjson.getelements('businessrules')[newburuid]
-            updburu['errormsg']['en']="new error message"
+            updburu['errormsg']['en'] = "new error message"
             updburu['um'] = "meandmyself"
             del updburu['elements'][tablid]
-            updburu['sourceref']['test_updatemergejs'] = ['9999-111',str(datetime.datetime.now())]
+            updburu['sourceref']['test_updatemergejs'] = ['9999-111', str(datetime.datetime.now())]
             mergedbs.mergejson2db(pmodeljson=updjson)
-            #now check the merge
+            # now check the merge
             newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            newburu=newjson.getbyid(newburuid)
-            self.assertEqual('9999-111',newburu['sourceref']['test_updatemergejs'][0])
-            self.assertEqual(newburu['errormsg']['en'],"new error message")
+            newburu = newjson.getbyid(newburuid)
+            self.assertEqual('9999-111', newburu['sourceref']['test_updatemergejs'][0])
+            self.assertEqual(newburu['errormsg']['en'], "new error message")
             self.assertTrue(attrid in newburu['elements'])
             self.assertFalse(tablid in newburu['elements'])
-            #self.assertEqual("meandmyself",newburu['um'])
+            # self.assertEqual("meandmyself",newburu['um'])
         finally:
             # remove created elements
             BusinessRule.delete(pwhere=("buru_name = ?", self.newbrname))
@@ -88,6 +104,185 @@ class MyTestCase(unittest.TestCase):
         finally:
             dbConnect.closeDB()
 
+    def test_merge_column_riddle(self):
+        js_file = Path(self.riddle.dbdir, self.riddle.jsonfilename)
+        self.assertTrue(js_file.is_file())
+        with open(js_file, 'r') as src:
+            jsmodel = json.load(src)
 
-if __name__ == '__main__':
-    unittest.main()
+        previous = len(jsmodel['columns'])
+
+        table_ref_key = next(iter(jsmodel['tables'].keys()))
+
+        default_domain = \
+            next(filter(lambda d: next(iter(d[1]['name'].values())) == 'Unknown', jsmodel['domains'].items()))[0]
+
+        # apply changes to model
+        new_column = {'name': 'test',
+                      'table-id': table_ref_key,
+                      'interface_col_id': '12-34',
+                      'attributesmapped': [],
+                      'mandatory': False,
+                      'datatype': 'unknown',
+                      'format': None,
+                      'domain': default_domain,
+                      'descr': "Created by unittest",
+                      }
+
+        self.set_defaults(new_column)
+        new_column_key = 'COLU-1'
+        jsmodel['columns'][new_column_key] = new_column
+        tmpdb = Path('/tmp/test_merge_riddle.db')
+        shutil.copy(self.riddle.dbfile, tmpdb)
+        with closing(dbConnect.openDBbasic(tmpdb)):
+            new_model = JSModel(jsmodel)
+            mergedbs.mergejson2db(pmodeljson=new_model)
+
+        with closing(dbConnect.openDBbasic(tmpdb)) as connection:
+            with closing(connection.execute(f"SELECT COUNT(*) FROM [columns]")) as cursor:
+                r = cursor.fetchall()
+                self.assertEqual(len(jsmodel['columns']), r[0][0])
+                self.assertEqual(previous + 1, r[0][0])
+
+        val = jsmergetosql.keytransl(new_column_key)
+        self.assertIsInstance(val, int)
+        self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
+
+    def test_merge_table_and_column_riddle(self):
+        js_file = Path(self.riddle.dbdir, self.riddle.jsonfilename)
+        self.assertTrue(js_file.is_file())
+        with open(js_file, 'r') as src:
+            jsmodel = json.load(src)
+
+        previous_table_count = len(jsmodel['tables'])
+        previous_column_count = len(jsmodel['columns'])
+
+        sys_ref_key = next(iter(jsmodel['systems'].keys()))
+
+        default_domain = \
+            next(filter(lambda d: next(iter(d[1]['name'].values())) == 'Unknown', jsmodel['domains'].items()))[0]
+
+        # apply changes to model
+        new_table = {
+            'name': 'main',
+            'interface-id': sys_ref_key,
+            'entitiesmapped': [],
+            'relationsmapped': [],
+            'columnsmapped': [],
+            'prefix': None, 'descr': "Unittest",
+        }
+        self.set_defaults(new_table)
+        new_table_key = 'TABL-1'
+        jsmodel['tables'][new_table_key] = new_table
+
+        # apply changes to model
+        column_name = 'unitttest-abc'
+        new_column = {'name': column_name,
+                      'table-id': new_table_key,
+                      'interface_col_id': '12-34',
+                      'attributesmapped': [],
+                      'mandatory': False,
+                      'datatype': 'unknown',
+                      'format': None,
+                      'domain': default_domain,
+                      'descr': "Created by unittest",
+                      }
+        self.set_defaults(new_column)
+        new_column_key = 'COLU-1'
+        jsmodel['columns'][new_column_key] = new_column
+
+        tmpdb = Path('/tmp/test_merge_riddle.db')
+        shutil.copy(self.riddle.dbfile, tmpdb)
+        with closing(dbConnect.openDBbasic(tmpdb)):
+            new_model = JSModel(jsmodel)
+            with self._caplog.at_level(logging.DEBUG):
+                mergedbs.mergejson2db(pmodeljson=new_model)
+                with open('log.log', 'w') as out:
+                    records = []
+                    for rec in self._caplog.records:
+                        records.append({'msg': rec.msg, 'lvl': rec.levelname})
+                    json.dump(records, out, indent=4, sort_keys=True)
+                print(f"Wrote {len(self._caplog.records)} records to 'log.log'")
+
+        with closing(dbConnect.openDBbasic(tmpdb)) as connection:
+            with closing(connection.execute("SELECT COUNT(*) FROM [tables]")) as cursor:
+                r = cursor.fetchall()
+                self.assertEqual(len(jsmodel['tables']), r[0][0])
+                self.assertEqual(previous_table_count + 1, r[0][0])
+
+            with closing(connection.execute("SELECT COUNT(*) FROM [columns]")) as cursor:
+                r = cursor.fetchall()
+                self.assertEqual(len(jsmodel['columns']), r[0][0])
+                self.assertEqual(previous_column_count + 1, r[0][0])
+
+            with closing(connection.execute(
+                    f"SELECT COUNT(*) FROM [columns] WHERE [colu_column_name] = '{column_name}'")) as cursor:
+                r = cursor.fetchall()
+                self.assertEqual(1, r[0][0])
+
+        val = jsmergetosql.keytransl(new_table_key)
+        self.assertIsInstance(val, int)
+        self.assertIsNotNone(jsmodel['tables'][new_table_key], f"Expecting unaltered json")
+
+        val = jsmergetosql.keytransl(new_column_key)
+        self.assertIsInstance(val, int)
+        self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
+
+    def test_merge_column_riddle(self):
+        js_file = Path(self.riddle.dbdir, self.riddle.jsonfilename)
+        self.assertTrue(js_file.is_file())
+        with open(js_file, 'r') as src:
+            jsmodel = json.load(src)
+
+        previous = len(jsmodel['columns'])
+
+        table_ref_key = next(iter(jsmodel['tables'].keys()))
+
+        default_domain = \
+            next(filter(lambda d: next(iter(d[1]['name'].values())) == 'Unknown', jsmodel['domains'].items()))[0]
+
+        # apply changes to model
+        new_column = {'name': 'test',
+                      'table-id': table_ref_key,
+                      'interface_col_id': '12-34',
+                      'attributesmapped': [],
+                      'mandatory': False,
+                      'datatype': 'unknown',
+                      'format': None,
+                      'domain': default_domain,
+                      'descr': "Created by unittest",
+                      }
+
+        self.set_defaults(new_column)
+        new_column_key = 'COLU-1'
+        jsmodel['columns'][new_column_key] = new_column
+        tmpdb = Path('/tmp/test_merge_riddle.db')
+        shutil.copy(self.riddle.dbfile, tmpdb)
+        with closing(dbConnect.openDBbasic(tmpdb)):
+            new_model = JSModel(jsmodel)
+            mergedbs.mergejson2db(pmodeljson=new_model)
+
+        with closing(dbConnect.openDBbasic(tmpdb)) as connection:
+            with closing(connection.execute(f"SELECT COUNT(*) FROM [columns]")) as cursor:
+                r = cursor.fetchall()
+                self.assertEqual(len(jsmodel['columns']), r[0][0])
+                self.assertEqual(previous + 1, r[0][0])
+
+        val = jsmergetosql.keytransl(new_column_key)
+        self.assertIsInstance(val, int)
+        self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
+
+    def set_defaults(self, element: dict):
+        defaults = {'uc': 'test', 'dc': '2022-02-02',
+                    'um': None, 'dm': None,
+                    'publstatus': None,
+                    'userdefprops': {},
+                    'minzoomlevel': None, 'maxzoomlevel': None,
+                    'referencedby': [],
+                    'sourceref': {
+                        'JSON': ['test_merge_riddle 1', '2022-04-28 15:38:01.1'],
+                    }}
+        element.update(defaults)
+
+        if __name__ == '__main__':
+            unittest.main()
