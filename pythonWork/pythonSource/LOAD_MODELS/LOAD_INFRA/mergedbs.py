@@ -30,14 +30,15 @@ transferprocs = {
     , '_imprint_': (99, nofunc, nofunc, True)
 }
 
-
-def mergejson2db(pmodeljson: JSModel):
-    """ merge json into current connection
-        DB-Version has already been checked
-        returns the Mergeresult
+""" merge json into current connection
+    DB-Version has already been checked
+    returns the Mergeresult
     """
+
+
+def mergejson2sql(pmodeljson, psrcname=Externalref.SOURCE_SPOD, pverbose=False):
     assert dbConnect.isopenDB()
-    result = Mergeresult()
+    result = Mergeresult(verbose=pverbose)
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
         js2sql = transferprocs[masterobject][1]
         if js2sql != nofunc:
@@ -68,13 +69,67 @@ def mergejson2db(pmodeljson: JSModel):
         proj.updatedb(pdoerrhdlng=True)
     else:
         logging.warning("There where errors updating the database")
-        for dbe in result.errors:
-            print(dbe)
     # fi
-    print("{}Errors {},  Warnings {}".format('' if (len(result.errors) + len(result.warnings) == 0) else '******* '
-                                             , len(result.errors), len(result.warnings)))
-    print(f"elements changed in database {dbConnect.getDBname()}")
-    print(
-        f"          {result.insertcnt} inserted, {result.updatecnt} updated, {result.deletecnt} deleted, {result.deleterefcnt} references removed")
-    for w in result.warnings:
-        print(w)
+    return result
+
+
+"""merge jsonfile into existing database
+    and return the jsonfile generated from the updated database
+"""
+
+
+def connecttodbcopy():
+    assert dbConnect.isopenDB()
+    # get a copy of a db in Memory and open it
+    memconn = dbConnect.connectmemorydb()
+    dbConnect.getdbcon().backup(memconn)
+    dbConnect.closeDB()
+    dbConnect.setdbcon(memconn)
+    assert dbConnect.isopenDB()
+    return dbConnect.getdbcon()
+
+def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=Externalref.SOURCE_SPOD,
+               pverbose=False, pdryrun=False):
+    dbConnect.openDB(pfilepath=pdbfile)
+    if pdryrun:
+        #create a backup in memory and connect to it
+        connecttodbcopy()
+
+    retval = None
+    try:
+        if pdryrun:
+            print (f"***** dry merge-run on db {pdbfile}")
+            print (f"***** Database will not be modified ****")
+        newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
+        dbversion = dbConnect.getversion()
+        if newversion != dbversion:
+            logmessages.showmessages(
+                f"""existing database  {pdbfile}\nhas version {dbversion} but should have {newversion}""")
+            raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
+
+        mergeresult = mergejson2sql(pmodeljson=pmodel, psrcname=psrcname, pverbose=pverbose)
+        if pverbose and len(mergeresult.changes) > 0:
+            for c in mergeresult.changes:
+                print(c)
+        if (len(mergeresult.errors) > 0):
+            for dbe in mergeresult.errors:
+                print(dbe)
+        print("{} Errors {},  Warnings {}".format(
+            '' if (len(mergeresult.errors) + len(mergeresult.warnings) == 0) else '*******'
+            , len(mergeresult.errors), len(mergeresult.warnings)))
+        print(f"elements changed in database {dbConnect.getDBname()}")
+        print(
+            f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
+        for w in mergeresult.warnings:
+            print(w)
+
+        """generate json from merged DB"""
+        retval = JSModel(pmodel=sql2json())
+    finally:
+        dbConnect.closeDB()
+    return retval
+
+
+if __name__ == '__main__':
+    model = JSModel.readfromfile(pfilename=sys.argv[2])
+    mergejs2db(pdbfile=sys.argv[1], pmodel=model)

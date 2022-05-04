@@ -98,6 +98,6 @@ def instablemapping(presult: Mergeresult, ptablid, pmappedelems):
             presult.markdberror(perr=err, pelem="tablid={}, enti/relaid={}".format(ptablid, jsguid2id(jentiid)))
             continue
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"Table to Entity mapping  for Element {ptablid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"Table to Entity mapping  for Element {ptablid}")
     return

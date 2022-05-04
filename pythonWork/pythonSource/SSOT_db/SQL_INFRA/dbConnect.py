@@ -3,15 +3,15 @@ import sqlite3
 from contextlib import closing
 
 from SSOT_infra import parameters
+from SSOT_db.IM_OBJECTS import Language
 
-"""create database and connect to it
-"""
+""" create database and connect to it
+    """
 
 #global db connection used for all DML statements
 myDbConn: sqlite3.Connection = None
 #db version read from database view dbversion
 actualdbversion = {}
-
 
 def openDBbasic(pfilepath, pfks='ON') -> sqlite3.Connection:
     """ opens the db pfilepath
@@ -24,7 +24,7 @@ def openDBbasic(pfilepath, pfks='ON') -> sqlite3.Connection:
         raise exp
     getdbcon().execute(f"PRAGMA foreign_keys = {pfks}")
     getdbcon().execute("PRAGMA main.cache_size = -2000")
-    return locconn
+    return getdbcon()
 
 
 def opendDB4DDL(pfilepath, pfks="OFF") -> sqlite3.Connection:
@@ -154,3 +154,21 @@ def write_git_reversion(version: str, connection = None):
     connection.execute("DROP VIEW IF EXISTS [gitrevision];")
     statement = f"CREATE VIEW [gitrevision] AS SELECT '{safe_version}' AS [revision];"
     connection.execute(statement)
+
+def getconnlangparameters():
+    assert isopenDB()
+    deflang = Language.getdefaultlang().lang_iso_code2
+    langs = Language.getlanguagecodes()
+    return (deflang,langs)
+
+
+def getdblangparameters(pfilepath):
+    with closing(openDBbasic(pfilepath)) as conn:
+        deflang,langs = getconnlangparameters()
+        parameters.dbDefaultLang(newval=deflang)
+        parameters.dbLanguages(newval=','.join(langs))
+    return
+
+def connectmemorydb()->sqlite3.Connection:
+    return sqlite3.connect(":memory:")
+

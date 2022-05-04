@@ -301,8 +301,8 @@ def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
                  prelaid=modeid if jsguid2type(jid) == Modelelemtype.RELA else None)
         inscnt += 1
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"keyelements")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"keyelements")
     return
 
 

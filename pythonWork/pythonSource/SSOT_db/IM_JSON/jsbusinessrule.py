@@ -118,8 +118,8 @@ def insbures(presult: Mergeresult, pburuid, prefs):
             presult.markdberror(perr=err, pelem=[refid, pburuid])
             continue
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"Business rules elements for BR {pburuid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"Business rules elements for BR {pburuid}")
     return
 
 def businessrules2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):

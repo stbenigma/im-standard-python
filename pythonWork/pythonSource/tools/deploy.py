@@ -75,7 +75,7 @@ def hardcode_version(version: str, pattern: str, subject) -> int:
     return replaced
 
 
-def notebook_to_python_script(scripts: [Path], destination_folder: Path, strip_cells_with_tags: set[str]) -> [Path]:
+def notebook_to_python_script(scripts: [Path], destination_folder: Path, strip_cells_with_tags) -> [Path]:
     c = Config()
     c.TagRemovePreprocessor.remove_cell_tags = strip_cells_with_tags
     c.TagRemovePreprocessor.enabled = True

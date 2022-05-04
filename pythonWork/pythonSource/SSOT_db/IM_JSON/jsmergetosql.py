@@ -19,40 +19,48 @@ def keytransl(odmjsid):
         return None
 
 class Mergeresult:
-    def __init__(self):
+    def __init__(self,verbose=False):
+        self.verbose = verbose
         self.insertcnt = 0
         self.updatecnt = 0
         self.deletecnt = 0
         self.deleterefcnt = 0
         self.errors = []
         self.warnings = []
-
-    def update(self,pmerge):
-        self.addinscnt(pmerge.insertcnt)
-        self.addupdcnt(pmerge.updatecnt)
-        self.adddelrefcnt(pmerge.deleterefcnt)
-        self.adddelrefcnt(pmerge.deletecnt)
-        self.errors += pmerge.errors
-        self.warnings += pmerge.warnings
+        self.changes = []
 
     def markdberror(self,perr,pelem):
-        self.errors.append("""*** DB-Error {}\{}""".format(perr, pelem))
+        self.errors.append(f"""*** DB-Error {perr}\{pelem}""")
 
     def markerror(self,pstr):
-        self.errors.append(str)
+        self.errors.append(pstr)
 
     def markwarning(self,pstr):
-        self.warnings.append(str)
+        self.warnings.append(pstr)
 
-    def adddelcnt(self,cnt):
+    def addchange(self,pstr):
+        if self.verbose:
+            self.changes.append(pstr)
+
+    def adddelcnt(self,cnt,pstr=None):
         self.deletecnt += cnt
-    def addinscnt(self,cnt):
-        self.insertcnt += cnt
-    def addupdcnt(self,cnt):
-        self.updatecnt += cnt
-    def adddelrefcnt(self,cnt):
-        self.deleterefcnt += cnt
+        if cnt > 0 and pstr is not None:
+            self.addchange(pstr+ f"  delete,cnt={str(cnt)}")
 
+    def addinscnt(self,cnt,pstr=None):
+        self.insertcnt += cnt
+        if cnt > 0 and pstr is not None:
+            self.addchange(pstr+ f"  insert,cnt={str(cnt)}")
+
+    def addupdcnt(self,cnt,pstr=None):
+        self.updatecnt += cnt
+        if cnt > 0 and pstr is not None:
+            self.addchange(pstr+ f"  update,cnt={str(cnt)}")
+
+    def adddelrefcnt(self,cnt,pstr=None):
+        self.deleterefcnt += cnt
+        if cnt > 0 and pstr is not None:
+            self.addchange(pstr+ f"  delete-refs,cnt={str(cnt)}")
 
 class Extsourceref:
     def __init__(self,psrcname,psrcid,plastupd,pdbid):
@@ -106,68 +114,6 @@ def getallsrcrefs(pelemtype):
                                  plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
     # for
     return retval
-
-# def fromdb2odm(presult,podmjson,pdbjson,pelemtype,puknames,pjs2obj,pwithextsrcref=True):
-#     """from DB to ODM transfer"""
-#     removedrefs = []
-#     """get all srcrefs existing in ODM
-#          in the form
-#         {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
-#     if pwithextsrcref:
-#         allodmsrcrefs = getallsrcrefs(pelemtype=pelemtype)
-#     else:
-#         allodmsrcrefs = Extsourcerefs()
-#
-#     """is there a db-element without ODM-GUID"""
-#     for key, elem in pdbjson.getelements(pelemtype=pelemtype).items():
-#         if pwithextsrcref:
-#             if len(elem["sourceref"])== 0:
-#                 """no external source references this entry, mark to be removed"""
-#                 removedrefs.append(key)
-#             else:
-#                 dbsrcid = None
-#                 for srcname, srcelem in elem["sourceref"].items():
-#                     if srcname == Externalref.SOURCE_ODM:
-#                         dbsrcid = srcelem[0]
-#                         break
-#                     #fi
-#                 if dbsrcid is None:
-#                     presult.warnings.append("+++ Element {} in db not yet in ODM".format(key))
-#                 else:
-#                     """does db-odmguid exist in ODM """
-#                     odmsrcref = allodmsrcrefs.get(psrcname=Externalref.SOURCE_ODM,psrcid=dbsrcid)
-#                     if odmsrcref is None:
-#                         """odm-source id does no longer exist in ODM
-#                             remove it from DB"""
-#                         Externalref.delete(pwhere=("extr_source_name = ? and extr_source_id = ?",
-#                                                     Externalref.SOURCE_ODM, dbsrcid))
-#                         removedrefs.append(key)
-#                         presult.adddelrefcnt(1)
-#                     else:
-#                         """odm found. already treated in fromo dm2db"""
-#                         pass
-#                     #fi
-#                 #fi
-#             #fi
-#         #fi
-#     #for
-#     if pwithextsrcref:
-#         """delete all elements which no longer exist"""
-#         Modelelement.deletemodes(pmodeids=[jsguid2id(key) for key in removedrefs])
-#         presult.deletecnt += len (removedrefs)
-#     else:
-#         """delete all DB elements with UK not in the ODM-DB"""
-#         jsukname = 'name' #currently we have only names as UK in non-odm-guid-elements
-#         for dbkey,dbval in pdbjson.getelements(pelemtype=pelemtype).items():
-#             uklist = [dbkey for odmval in podmjson.getelements(pelemtype=pelemtype).values() if dbval[jsukname] == odmval[jsukname]]
-#             if len(uklist) == 0:
-#                 """no uk found in ODM, delete it from DB"""
-#                 dbobj = pjs2obj(pkey=dbkey,pelem=dbval) #memory only object
-#                 dbobj.delete(pwhere=valuepairs2sqlexpr(**{colname:dbobj.colvalue(colname) for colname in puknames}))
-#                 presult.deletecnt += 1
-#             #fi
-#         #for
-#     return
 
 
 def translatefks(pdbobj):
@@ -259,7 +205,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             obj.setid(dbsrcref.dbid) #preserve DB-id
                             obj.updatedb(pdoerrhdlng=False)
                             Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=obj.getid())
-                            presult.addupdcnt(1)
+                            presult.addupdcnt(1,f"Update of {str(obj)}")
                             del newelements[key] #omit in next loop
                         except Exception as e:
                             newdberrors.append(f"""*** update-error : ID = "{pelemtype}:{obj.getid()}" \n{e}""")
@@ -278,7 +224,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                         objid = obj.insert(pdoerrhdlng=False)
                         logging.debug(f"Created new row with id {objid} for key {key}")
                         addfk(odmjsid=key, dbid=objid)
-                        presult.insertcnt += 1
+                        presult.addinscnt (1,f"Insert of  {str(obj)}")
                         del newelements[key]  # omit in next loop
                     except Exception as e:
                         logging.warning(f"Cannot insert new element {obj} due to {type(e)}: {e}")
@@ -297,7 +243,7 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             if lwithextsrcref:
                                 """update lastupd and add extr scr id as it may have changed or is new"""
                                 Externalref.setlastupdate(psrcname=Externalref.SOURCE_ODM,pmodeid=ukref.getid(),psrcid=elem['sourceref'][Externalref.SOURCE_ODM][0])
-                            presult.addupdcnt(1)
+                            presult.addupdcnt(1,f"Update of {str(ukref)}")
                             del newelements[key]  # omit in next loop
                         except Exception as e:
                             newdberrors.append(f"""*** update-error : ID = "{pelemtype}:{ukref.getid()}" \n{e}""")

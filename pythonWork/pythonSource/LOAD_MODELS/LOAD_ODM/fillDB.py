@@ -18,13 +18,8 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(),pversioncheck=False)
-        parameters.dbDefaultLang(newval=Language.getdefaultlang().lang_iso_code2)
-        langs = Language.getlanguagecodes()
-        parameters.dbLanguages(newval=','.join(langs))
-        dbConnect.closeDB()
-        connection = createnewDB(pdbfilepath=None)  # create in Memory
-        dbConnect.write_git_reversion('transfer', connection)
+        dbConnect.getdblangparameters(pfilepath=parameters.dbFilePath())
+        createnewDB(pdbfilepath=None)  # create in Memory
     # fi
     transferfunction(**kwargs)
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
@@ -53,7 +48,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
             logging.debug(f"Starting merge")
-            mergedbs.mergejson2db(pmodeljson=loadedjson)
+            mergedbs.mergejson2db(pdbfile=parameters.dbFilePath(), pmodeljson=loadedjson)
             logging.debug(f"Merge complete")
             """generate json from merged DB"""
             #newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
@@ -62,6 +57,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
             dbConnect.closeDB()
             logging.debug(f"Database {connection} closed")
     # fi
+    return
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,

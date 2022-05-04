@@ -122,6 +122,6 @@ def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs):
             continue
         # try
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"Column Maps for column {pcoluid} ")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"Column Maps for column {pcoluid} ")
     return

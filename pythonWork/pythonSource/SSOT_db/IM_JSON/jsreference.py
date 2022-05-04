@@ -77,8 +77,8 @@ def udps2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             except Exception as err:
                 presult.markdberror(perr=err, pelem=list(jselem))
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"modelelement properties for property {jskey}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"modelelement properties for property {jskey}")
     # for
     return
 
@@ -125,8 +125,8 @@ def udpvs2sql(presult, pmodeid, pudps):
             # for
         # for
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"User defined prop values  for Element {pmodeid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"User defined prop values  for Element {pmodeid}")
     return
 
 
@@ -204,8 +204,8 @@ def insreferences(presult: Mergeresult, pmodeid, prefs):
             presult.markdberror(perr=err, pelem=[refid, pmodeid])
             continue
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"References for ORGU or DOCU for Element {pmodeid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"References for ORGU or DOCU for Element {pmodeid}")
     return
 
 

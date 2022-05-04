@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-import sqlite3
 from threading import local
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
@@ -90,11 +89,6 @@ class JSModel:
 
     def __init__(self, pmodel=None):
         self.jsmodel = {} if pmodel is None else pmodel
-        self._checked = False
-        self._errorcnt = 0
-        self._warningcnt = 0
-        self._errors = []
-        self._warnings = []
         self.languages = {}  # langid:iso2
 
     def getelements(self, pelemtype):
@@ -163,42 +157,7 @@ class JSModel:
     def modelname(self):
         return self.jsmodel["model"]["name"]
 
-    def incerrcnt(self):
-        self._errorcnt += 1
 
-    def errcnt(self):
-        return self._errorcnt
-
-    def incwrncnt(self):
-        self._warningcnt += 1
-
-    def wrncnt(self):
-        return self._warningcnt
-
-    def errors(self):
-        return self._errors
-
-    def warnings(self):
-        return self._warnings
-
-    def markerror(self, pmsg, pelemstr=''):
-        if type(pmsg) in (sqlite3.IntegrityError, sqlite3.DatabaseError, sqlite3.DataError, sqlite3.Error):
-            errtype = 'DB-'
-        else:
-            errtype = ''
-        # fi
-
-        self._errors.append("***{}ERROR: {}".format(errtype, pmsg))
-        self._errors.append("     " + pmsg.__str__())
-        if pelemstr != '':
-            self._errors.append(pelemstr)
-        self.incerrcnt()
-        return
-
-    def markwarning(self, pmsg):
-        self._warnings.append("WARNING: {}".format(pmsg))
-        self.incwrncnt()
-        return
 
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)

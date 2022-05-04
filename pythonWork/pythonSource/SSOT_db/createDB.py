@@ -47,17 +47,17 @@ def insertBaseData():
     return
 
 
+"""True if the file exists
+"""
 def existsDB(pfilepath):
-    """True if the file exists
-    """
     return os.path.exists(pfilepath)
 
 
-def createnewDB(pdbfilepath):
-    """create a new database and fill in the basic data and leaves it open
+"""create a new database and fill in the basic data and leaves it open
 
-        pdbfilepath = None => create it in memory and do not close it
-    """
+    pdbfilepath = None => create it in memory and do not close it
+"""
+def createnewDB(pdbfilepath):
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
     connection = dbConnect.opendDB4DDL(pfilepath=dbfilepath)
