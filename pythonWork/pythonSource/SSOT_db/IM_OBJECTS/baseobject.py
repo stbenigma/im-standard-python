@@ -4,6 +4,16 @@ from SSOT_db.SQL_INFRA import dbDDL, dbDML
 from SSOT_infra import logmessages,nvl
 from datetime import datetime
 
+
+def prettyprint(v):
+    if type(v) in (int, float):
+        return v
+    elif type(v) is str:
+        return f"'{v[0:40]}{'...' if len(v)>40 else ''}'"
+    else:
+        return f"'{v}'"
+
+
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
@@ -74,7 +84,6 @@ class Baseobject:
         self.setdefaultvalues()
 
         return
-
 
     def __emptyclass(self):
         for col in self._columnlist.keys():
@@ -347,6 +356,44 @@ class Baseobject:
             retval[col] = fk
         return retval
 
+
+    def getelementdescs(self):
+        from SSOT_db.IM_OBJECTS import table2class
+
+        fks = self.getfkcolumns()
+
+        def getparentdesc(colname):
+            val = self.colvalue(colname)
+            if colname in fks:
+                tablename=fks[colname][0]
+                if tablename in table2class:
+                    return f"{colname}=>{table2class[tablename]().getbyid(val).descrstr()}"
+                else:
+                    return f"{tablename}: {colname}={prettyprint(val)}"
+            else:
+                return f"{colname}={prettyprint(val)}"
+
+        retval = []
+        uklist = dbDDL.getuklist(ptablename=self._tablename)
+        for uk in uklist:
+            descstr= ''
+            retval.append(', '.join(getparentdesc(col) for col in uk))
+        return retval
+
+    def __str__ (self):
+        retval = f"{self._tablename.capitalize()}: "
+        retval += ', '.join(f"{col}={prettyprint(self.colvalue(col))}" for col in self._columnlist)
+        return retval
+
+    def descrstr(self):
+        descrs = self.getelementdescs()
+        if len(descrs) == 0:
+            retval =  self.__str__()
+        else:
+            retval = f"{self._tablename.capitalize()}: "
+            retval += descrs[0]
+        return retval
+
     @classmethod
     def defaultorderby(cls):
         try:
@@ -441,3 +488,4 @@ class MultilangBaseobject(Baseobject):
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref
+

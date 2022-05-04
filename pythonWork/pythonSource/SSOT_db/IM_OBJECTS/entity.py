@@ -29,7 +29,7 @@ class EntityCategory(Baseobject):
     _prefix: str = 'enca'
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
-    _defaultorderby = None
+    _defaultorderby = "enca_name"
 
     def __init__(self, pname=None):
         super().__init__()
