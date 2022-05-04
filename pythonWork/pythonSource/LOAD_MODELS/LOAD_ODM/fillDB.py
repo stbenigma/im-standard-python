@@ -18,11 +18,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(),pversioncheck=False)
-        parameters.dbDefaultLang(newval=Language.getdefaultlang().lang_iso_code2)
-        langs = Language.getlanguagecodes()
-        parameters.dbLanguages(newval=','.join(langs))
-        dbConnect.closeDB()
+        dbConnect.getdblangparameters(pfilepath=parameters.dbFilePath())
         createnewDB(pdbfilepath=None)  # create in Memory
     # fi
     transferfunction(**kwargs)
@@ -38,7 +34,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        newjson = mergedbs.mergejs2sql(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
+        newjson = mergedbs.mergejs2db(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
         newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     # fi
     return

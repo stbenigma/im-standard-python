@@ -1657,7 +1657,8 @@ def filllanguages():
     Synonym.transfersynotransl()
     # fill all elements in default language
     Languagetext.filldefaulttext(parameters.dbDefaultLangID())
-    Language.deleteunused()
+    #languages are predefined. don't just delete them
+    # Language.deleteunused()
     return
 
 
@@ -1677,7 +1678,6 @@ def read_languages_form_project_comment():
         spl = list(map(str.strip, sprachen.split(',')))
         spl.remove(defspra)
         spl.insert(0, defspra)
-        print(f"Languages: {spl}")
         return spl, root
     else:
         return None, root
@@ -2001,7 +2001,7 @@ def transferODMModel(**kwargs):
     removeemptyudp()
     filllanguages()
     fillelementdisplays()
-    Languagetext.fillnontranslatedtexts(['DOMA'])
+    Languagetext.fillnontranslatedtexts([Modelelemtype.DOMA,Modelelemtype.BURU])
     transferraci()
     removefixedudp()
 # end transferODMModel

@@ -309,8 +309,8 @@ def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
             inscnt += len(jelemreps)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"Elementreps on diagram {newdiagid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Elementreps on diagram {newdiagid}")
 
         inscnt = 0
         delcnt = Relationrep.delete(pwhere=("relr_diag_id = ?", newdiagid))
@@ -322,8 +322,8 @@ def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=keytransl(jrelaid), prelarep=jrelarep)
             inscnt += 1
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"Relationreps on diagram {newdiagid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Relationreps on diagram {newdiagid}")
 
         insreferences(presult=presult, pmodeid=newdiagid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newdiagid, psources=jelem["sourceref"])

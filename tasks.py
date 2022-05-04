@@ -173,14 +173,21 @@ def dbversion(c, model=None, full=False):
 def upgradedb(c, model=None):
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
-            model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
-        dbfile = Path(model).resolve()
+            modelpath = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
+        else:
+            modelpath = Path(model) #assume it is a modeldbfilepath
+            model = modelpath.stem
+        dbfile = modelpath.resolve()
         if not dbfile.is_file():
             print(f"{dbfile} is not file")
             exit(1)
         with c.cd(PROJECT_ROOT):
-            c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
+            from SSOT_db import createDB
+            createDB(pupgrade=True, pdestination=dbfile,pmodelname=model)
+            #c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
         return
+
+    load_tools_library()
     if model is None:
         for model in ('crmTest','riddle','testmodel-1','testmodel-2'):
             upgrade1db(model)

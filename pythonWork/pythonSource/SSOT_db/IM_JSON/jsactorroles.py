@@ -41,8 +41,8 @@ def actorconcerns2sql(presult, podmjson):
                 presult.markdberror(perr=err, pelem=actr)
         # for
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"actorroles-concerns")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"actorroles-concerns")
 
     return
 

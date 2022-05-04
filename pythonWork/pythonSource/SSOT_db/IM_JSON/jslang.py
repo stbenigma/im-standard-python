@@ -3,6 +3,9 @@ from SSOT_db.IM_OBJECTS import Languagetext, Language, Boolean
 from SSOT_db.SQL_INFRA import dbConnect
 from datetime import datetime
 
+def replaceprefix(plang):
+    return f"*{plang}* "
+
 def langs2js(pemptymodel):
     model = ['name', 'iso3', 'modellanguage', 'replacementlang']
     if pemptymodel:
@@ -31,8 +34,8 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
                             pmodeid, pattr))
     inscnt =insertlgtx(pmodeid=pmodeid,pattr=pattr,ptexts=ptexts)
 
-    presult.insertcnt += max(0,inscnt - delcnt)
-    presult.deletecnt += max(0,delcnt - inscnt)
+    presult.addinscnt(max(0,inscnt - delcnt),f"lang_texts for mode {pmodeid}, attribute {pattr}")
+    presult.adddelcnt(max(0,delcnt - inscnt),f"lang_texts for mode {pmodeid}, attribute {pattr}")
     return
 
 # replacelgtx
@@ -40,13 +43,15 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
 def insertlgtx(pmodeid, pattr, ptexts):
     inscnt = 0
     baselang = Language.liesdeflangiso2()
-    replaceprefix = "*{}* ".format(baselang)
+
     for lang in Language.select():
         iso2 = lang.lang_iso_code2
         if iso2 in ptexts.keys():
             if (iso2 != baselang\
-                    and (ptexts[iso2] is None or ptexts[iso2].startswith(replaceprefix))):
-                continue  #insert only genuine texts, not replacement texts
+                    and (ptexts[iso2] is None or ptexts[iso2] == ''
+                         or ptexts[iso2].startswith(replaceprefix(baselang)))
+                ):
+                continue  #insert only genuine texts, not replacement or emptytexts
             lgtx = Languagetext()
             lgtx.lgtx_attrname = pattr
             lgtx.lgtx_text = ptexts[iso2]

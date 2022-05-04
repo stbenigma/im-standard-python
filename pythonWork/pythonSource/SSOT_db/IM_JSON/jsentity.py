@@ -208,8 +208,8 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
             insertlgtx(pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
                        ptexts={lang: values[idx] for lang, values in pelem["examples"].items()})
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
     # fi
     return
 
@@ -240,8 +240,8 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             """synonyms and their lang-texts are alreday deleted"""
             insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"synonyms for entitiy {entiid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"synonyms for entitiy {entiid}")
 
         mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
                       presult=presult, pentiid=entiid)
