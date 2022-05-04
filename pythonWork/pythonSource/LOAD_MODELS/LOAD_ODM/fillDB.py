@@ -24,20 +24,20 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
     transferfunction(**kwargs)
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
+
     new_git_revision = parameters.read_git_description(Path(parameters.odmIMDirec()))
     loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName() + "_loaded")
+    loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
     if createnewdb:
         logging.info(f"Created SPOD for git revision {new_git_revision}")
         with closing(dbConnect.openDB(pfilepath=parameters.dbFilePath())) as conn:
             dbConnect.write_git_reversion(new_git_revision, conn)
-        loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
         newjson = mergedbs.mergejs2db(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
         newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     # fi
-    return
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,

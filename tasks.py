@@ -31,7 +31,6 @@ def load_tools_library():
 @task
 def update_infrastructure(c):
     c.run('conda env update --file conda-base-environment.yaml')
-    c.run('pip run ')
 
 
 @task

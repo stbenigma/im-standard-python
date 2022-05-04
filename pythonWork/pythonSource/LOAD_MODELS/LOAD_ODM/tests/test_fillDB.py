@@ -202,5 +202,5 @@ class TESTFILLDB(unittest.TestCase):
         db_file = self.test_filldb()
         with closing(dbConnect.openDBbasic(db_file)) as conn:
             ver = dbConnect.read_git_revision(conn)
-            self.assertEquals(ver, repo_revision)
+            self.assertEqual(ver, repo_revision)
 

@@ -1,9 +1,12 @@
+import re
 import sqlite3
+import logging
 
 from SSOT_db.SQL_INFRA import dbDDL, dbDML
 from SSOT_infra import logmessages,nvl
 from datetime import datetime
 
+logger = logging.getLogger('baseobject')
 
 def prettyprint(v):
     if type(v) in (int, float):
@@ -153,6 +156,8 @@ class Baseobject:
                       , self.columnsliststring(pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
+            logger.debug(f"Created new entry (id:{id}) in {self._tablename} from "\
+                         f"{Baseobject.print_sql_placeholder_values(lsql, self.totuple())}")
             if self.getid() is None:
                 self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
@@ -168,7 +173,8 @@ class Baseobject:
                     print (lsql)
                     print (self.totuple())
             # if
-            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}"
+            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}."\
+                  f"\n{e} from {Baseobject.print_sql_placeholder_values(lsql, self.totuple())}"
             if str(e).startswith("UNIQUE constraint failed"):
                 raise UniqueKeyException(msg) from e
             elif str(e).startswith("FOREIGN KEY constraint failed"):
@@ -456,6 +462,22 @@ class Baseobject:
     @classmethod
     def columnsliststring(cls, pplaceholder=False):
         return ','.join('?' if pplaceholder else col for col in cls._columnlist.keys())
+
+    @classmethod
+    def print_sql_placeholder_values(cls, sql: str, values: tuple):
+        result = sql
+        pattern = re.compile(r"[^(]+\(([^)]+)\)[^(]*(\([^)]*\))?.*")
+        matcher = pattern.match(sql)
+        if matcher is not None:
+            columns = matcher.group(1).split(',')
+            vit = iter(values)
+            bracket_content = []
+            for column in columns:
+                bracket_content.append(column + '=' + str(next(vit)))
+            result = result.replace(matcher.group(1), ', '.join(bracket_content))
+            if len(matcher.group(2)) > 0:
+                result = result.replace(matcher.group(2), '(...)')
+        return result
 
 # Baseobject
 

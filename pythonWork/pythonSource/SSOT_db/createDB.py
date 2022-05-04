@@ -60,14 +60,14 @@ def existsDB(pfilepath):
 def createnewDB(pdbfilepath):
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath)
+    connection = dbConnect.opendDB4DDL(pfilepath=dbfilepath)
     applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
     if dbConnect.getversion() != parameters.expecteddbversion():
         applyupgrades()
     dbConnect.checkson() #enable all constraints
-    return
+    return connection
 
 
 def extract_version(pfilename):

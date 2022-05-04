@@ -126,10 +126,12 @@ def getversion():
     return actualdbversion["version"]
 
 
-def read_git_revision(connection):
+def read_git_revision(connection = None):
     """@:return The git revision stored in the view [gitrevision]
     or '<unknown>' if the view does not exist
     """
+    if connection is None:
+        connection = getdbcon()
     assert isinstance(connection, sqlite3.Connection)
     try:
         with closing(connection.cursor()) as cursor:
@@ -142,13 +144,15 @@ def read_git_revision(connection):
     return curr_table[0][0]
 
 
-def write_git_reversion(version: str, connection):
+def write_git_reversion(version: str, connection = None):
     """Create view 'gitrevision' holding only the git revision"""
     assert len(version) > 0
+    if connection is None:
+        connection = getdbcon()
     assert isinstance(connection, sqlite3.Connection)
     safe_version = version.replace("'", "''")
-    connection.execute("DROP VIEW IF EXISTS [gitrevision]")
-    statement = f"CREATE VIEW [gitrevision] AS SELECT '{safe_version}' AS [revision]"
+    connection.execute("DROP VIEW IF EXISTS [gitrevision];")
+    statement = f"CREATE VIEW [gitrevision] AS SELECT '{safe_version}' AS [revision];"
     connection.execute(statement)
 
 def getconnlangparameters():

@@ -38,7 +38,7 @@ def exec(psql,*args):
         #print('Failed to execute {} {}'.format(psql, str(args)))
         #logmessages.writelog(psql)
         #logmessages.writelog(f"exec: unexpected SQL-error: \t{str(e)}\nstr(args)")
-        raise e
+        raise sqlite3.Error(f"{e.__class__} '{e}' when executing statement '{psql}' with args {args}.") from e
     dbConnect.getdbcon().commit()
     return rows
 

@@ -29,9 +29,11 @@ transferprocs = {
     , '_imprint_': (99, nofunc, nofunc, True)
 }
 
-""" merge json into current connection
-    DB-Version has already been checked
-    returns the Mergeresult
+
+def mergejson2db(pmodeljson: JSModel):
+    """ merge json into current connection
+        DB-Version has already been checked
+        returns the Mergeresult
     """
 
 
@@ -53,6 +55,11 @@ def mergejson2sql(pmodeljson, psrcname=Externalref.SOURCE_SPOD, pverbose=False):
             js2refsql(presult=result, podmjson=pmodeljson)
         # fi
     # for
+
+    rev = pmodeljson.jsmodel['_imprint_']['git-revision']
+    logging.info(f"Writing git revision {rev} to DB")
+    dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
+    dbConnect.getdbcon().commit()
 
     if (len(result.errors) == 0):
         """clean up and set final project parameters"""
