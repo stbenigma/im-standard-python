@@ -197,7 +197,7 @@ class TestMergeJson(unittest.TestCase):
             new_model = JSModel(jsmodel)
             with self._caplog.at_level(logging.DEBUG):
                 mergedbs.mergejson2db(pmodeljson=new_model)
-                with open('log.log', 'w') as out:
+                with open('unittest-log.json', 'w') as out:
                     records = []
                     for rec in self._caplog.records:
                         records.append({'msg': rec.msg, 'lvl': rec.levelname})
