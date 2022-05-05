@@ -5,13 +5,12 @@ import shutil
 import unittest
 from contextlib import closing
 from pathlib import Path
+import io
+import sys
 
 import pytest
 
-from LOAD_MODELS.LOAD_INFRA import mergedbs
-from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsmergetosql
-from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table
+from SSOT_db.IM_JSON import jsmergetosql
 import sqlite3
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
@@ -21,7 +20,6 @@ from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorro
 from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table, Actorrole,Domain,Languagetext,Entity
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
-
 
 
 class TestMergeJson(unittest.TestCase):
@@ -80,9 +78,9 @@ class TestMergeJson(unittest.TestCase):
             updburu['errormsg']['en'] = "new error message"
             updburu['um'] = "meandmyself"
             del updburu['elements'][tablid]
-            updburu['sourceref']['test_updatemergejs'] = ['9999-111',str(datetime.datetime.now())]
+            updburu['sourceref']['test_updatemergejs'] = ['9999-111', str(datetime.datetime.now())]
             mergedbs.mergejson2sql(pmodeljson=updjson)
-            #now check the merge
+            # now check the merge
             newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
             newburu = newjson.getbyid(newburuid)
             self.assertEqual('9999-111', newburu['sourceref']['test_updatemergejs'][0])
@@ -116,26 +114,25 @@ class TestMergeJson(unittest.TestCase):
 
     def test_mergefull(self):
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
-        #test dryrun on exisisting files
+        # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         dbConnect.closeDB()
 
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
-        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile,pmodel=curmodel,
-                                      pverbose=True,pdryrun=True)
+        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
+                                       pverbose=True, pdryrun=True)
         sys.stdout = sys.__stdout__  # Reset redirect.
         stdprint = capturedOutput.getvalue()
         self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
 
-        #set up my model in memory to reuse it for several tests
+        # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
         originaldbconn = dbConnect.getdbcon()
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
         firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-
 
         # create copy of filled db
         seconddbconn = mergedbs.connecttodbcopy()
@@ -253,7 +250,7 @@ class TestMergeJson(unittest.TestCase):
         with closing(dbConnect.openDBbasic(tmpdb)):
             new_model = JSModel(jsmodel)
             with self._caplog.at_level(logging.DEBUG):
-                mergedbs.mergejson2db(pmodeljson=new_model)
+                mergedbs.mergejson2sql(pmodeljson=new_model)
                 with open('unittest-log.json', 'w') as out:
                     records = []
                     for rec in self._caplog.records:
@@ -317,7 +314,7 @@ class TestMergeJson(unittest.TestCase):
         shutil.copy(self.riddle.dbfile, tmpdb)
         with closing(dbConnect.openDBbasic(tmpdb)):
             new_model = JSModel(jsmodel)
-            mergedbs.mergejson2db(pmodeljson=new_model)
+            mergedbs.mergejson2sql(pmodeljson=new_model)
 
         with closing(dbConnect.openDBbasic(tmpdb)) as connection:
             with closing(connection.execute(f"SELECT COUNT(*) FROM [columns]")) as cursor:
@@ -341,5 +338,5 @@ class TestMergeJson(unittest.TestCase):
                     }}
         element.update(defaults)
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()

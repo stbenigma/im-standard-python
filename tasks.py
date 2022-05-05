@@ -2,7 +2,9 @@
 # Tasks for the invoke 'https://www.pyinvoke.org/ library
 # We use this instead of a Make / Scons / ... build automation tool
 #
+import json
 import pathlib
+from contextlib import closing
 from pathlib import Path
 import sys
 import zipfile as zlib
@@ -170,6 +172,7 @@ def dbversion(c, model=None, full=False):
 
 @task
 def upgradedb(c, model=None):
+
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
             modelpath = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
@@ -182,17 +185,26 @@ def upgradedb(c, model=None):
             exit(1)
         with c.cd(PROJECT_ROOT):
             from SSOT_db import createDB
-            createDB(pupgrade=True, pdestination=dbfile,pmodelname=model)
+            path = createDB(pupgrade=True, pdestination=dbfile, pmodelname=model)
             #c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
-        return
+            return dbfile
 
     load_tools_library()
     if model is None:
         for model in ('crmTest','riddle','testmodel-1','testmodel-2'):
             upgrade1db(model)
     else:
-        upgrade1db(model)
-
+        db_file = upgrade1db(model)
+        from SSOT_db.IM_JSON import JSModel, sql2json
+        from SSOT_db.SQL_INFRA.dbConnect import openDB, closeDB
+        with closing(openDB(db_file)) as conn:
+            loadedjson = JSModel(pmodel=sql2json(pdbname=str(db_file)))
+            json_file = loadedjson.printmodel(pfilepath=str(db_file.parent), pfilename=db_file.stem)
+            closeDB()
+            json = loadedjson.jsmodel
+            print(f"\x1b[32mSucessfully\x1b[39m upgraded database {db_file}"\
+                  f" and JSON {json_file} to version {json['_imprint_'].get('Modelversion', '?.?')}"\
+                  f" git revision: {json['_imprint_'].get('git-revision', '?????')}")
 
 
 @task(aliases=['but'])
@@ -235,6 +247,47 @@ def bootstrap_integration_tests(c):
             print(f"Generating SPOD for {hit}")
             c.run(f"inv generator --spod-only -m {candidate}")
 
+
+@task(help={
+    'source': "SPOD Source file [mandatory]",
+    'output': "Path of the destination file. Source path with .db extension if undefined",
+    'nomerge': "Overwrite current database"})
+def filldb(c, source, output = None, nomerge = False):
+    load_tools_library()
+    src_path = Path(source)
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if output is None:
+        out_path = src_path.with_suffix('.db')
+    else:
+        out_path = Path(output)
+
+    if nomerge:
+        print(f"Removing current database")
+        out_path.unlink(missing_ok=True)
+
+    with open(src_path, 'r') as src:
+        spod = json.load(src)
+
+    print(f"Successfully loaded model {spod['model']['name']} {spod['_imprint_'].get('git-revision')}")
+
+    from SSOT_db.SQL_INFRA import dbConnect
+    from SSOT_infra import parameters
+    from SSOT_db.IM_JSON import JSModel
+    from SSOT_db.createDB import createnewDB
+
+    revision = spod['_imprint_'].get('git-revision', parameters.read_git_description(src_path.parent))
+    print(f"Created SPOD for git revision {revision}")
+
+    parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
+    #parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
+
+    with closing(createnewDB(str(out_path))) as conn:
+        dbConnect.write_git_reversion(revision, conn)
+        model = JSModel(spod)
+        print(f"\x1b[32mSucessfully\x1b[39m created database {src_path} from SPOD {out_path}")
 
 def verify_content(fh):
     data = fh.read()

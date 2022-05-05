@@ -48,7 +48,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
             logging.debug(f"Starting merge")
-            mergedbs.mergejson2db(pdbfile=parameters.dbFilePath(), pmodeljson=loadedjson)
+            mergedbs.mergejson2sql(pmodeljson=loadedjson)
             logging.debug(f"Merge complete")
             """generate json from merged DB"""
             #newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))

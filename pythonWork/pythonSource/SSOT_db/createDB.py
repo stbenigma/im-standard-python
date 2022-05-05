@@ -177,7 +177,7 @@ def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodeln
         # fi
     finally:
         logmessages.closelog()
-    return
+    return parameters.dbFilePath()
 
 
 def main(psysargs):
