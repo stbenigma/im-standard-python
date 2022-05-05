@@ -12,12 +12,13 @@ from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsmergetosql
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table
+import sqlite3
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
 from LOAD_MODELS.LOAD_ODM.transferModel import transferODMModel
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles
-from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table, Actorrole
+from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table, Actorrole,Domain,Languagetext,Entity
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
 
@@ -147,6 +148,17 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
+
+        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
+        result = mergedbs.mergejson2sql(pmodeljson=firstjson,pverbose=True,psrcname="TEST")
+        for c in result.changes:
+            print(c)
+        self.assertEqual(1, result.updatecnt)
+        self.assertEqual(0, result.insertcnt)
+        self.assertEqual(0, result.deletecnt)
+
+        dbConnect.closeDB()
+
         return
 
     def test_merge_column_riddle(self):

@@ -8,6 +8,16 @@ from datetime import datetime
 
 logger = logging.getLogger('baseobject')
 
+
+def prettyprint(v):
+    if type(v) in (int, float):
+        return v
+    elif type(v) is str:
+        return f"'{v[0:40]}{'...' if len(v)>40 else ''}'"
+    else:
+        return f"'{v}'"
+
+
 class Boolean:
     TRUE: str = 'TRUE'
     FALSE: str = 'FALSE'
@@ -79,7 +89,6 @@ class Baseobject:
 
         return
 
-
     def __emptyclass(self):
         for col in self._columnlist.keys():
             self.setcolvalue(pcolname=col,pvalue=None)
@@ -148,8 +157,6 @@ class Baseobject:
                       , self.columnsliststring(pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
-            logger.debug(f"Created new entry (id:{id}) in {self._tablename} from "\
-                         f"{Baseobject.print_sql_placeholder_values(lsql, self.totuple())}")
             if self.getid() is None:
                 self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
@@ -165,8 +172,7 @@ class Baseobject:
                     print (lsql)
                     print (self.totuple())
             # if
-            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}."\
-                  f"\n{e} from {Baseobject.print_sql_placeholder_values(lsql, self.totuple())}"
+            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}"
             if str(e).startswith("UNIQUE constraint failed"):
                 raise UniqueKeyException(msg) from e
             elif str(e).startswith("FOREIGN KEY constraint failed"):
@@ -352,6 +358,44 @@ class Baseobject:
         for col, fk in fkcols.items():
             fk.append(fk[1][0:4])
             retval[col] = fk
+        return retval
+
+
+    def getelementdescs(self):
+        from SSOT_db.IM_OBJECTS import table2class
+
+        fks = self.getfkcolumns()
+
+        def getparentdesc(colname):
+            val = self.colvalue(colname)
+            if colname in fks:
+                tablename=fks[colname][0]
+                if tablename in table2class:
+                    return f"{colname}=>{table2class[tablename]().getbyid(val).descrstr()}"
+                else:
+                    return f"{tablename}: {colname}={prettyprint(val)}"
+            else:
+                return f"{colname}={prettyprint(val)}"
+
+        retval = []
+        uklist = dbDDL.getuklist(ptablename=self._tablename)
+        for uk in uklist:
+            descstr= ''
+            retval.append(', '.join(getparentdesc(col) for col in uk))
+        return retval
+
+    def __str__ (self):
+        retval = f"{self._tablename.capitalize()}: "
+        retval += ', '.join(f"{col}={prettyprint(self.colvalue(col))}" for col in self._columnlist)
+        return retval
+
+    def descrstr(self):
+        descrs = self.getelementdescs()
+        if len(descrs) == 0:
+            retval =  self.__str__()
+        else:
+            retval = f"{self._tablename.capitalize()}: "
+            retval += descrs[0]
         return retval
 
     @classmethod

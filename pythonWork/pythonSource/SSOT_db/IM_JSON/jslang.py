@@ -29,6 +29,7 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
             delete all texts from all languages in ptexts
        Then
            insert all texts from all languages """
+
     delcnt = Languagetext.delete(pwhere=("""lgtx_mode_id = ? 
                             and lgtx_attrname = ?""",
                             pmodeid, pattr))
