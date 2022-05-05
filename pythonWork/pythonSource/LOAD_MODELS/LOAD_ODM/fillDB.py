@@ -35,9 +35,13 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        newjson = mergedbs.mergejs2db(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
-        newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        try:
+            newjson = mergedbs.mergejs2db(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
+            newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        except Exception as e:
+            raise e
     # fi
+    return
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,

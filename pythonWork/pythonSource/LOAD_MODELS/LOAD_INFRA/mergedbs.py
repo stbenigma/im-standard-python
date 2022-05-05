@@ -125,6 +125,8 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=Externalref.SOURCE_SPOD,
         if len(mergeresult.errors) == 0:
             """generate json from merged DB"""
             retval = JSModel(pmodel=sql2json())
+        else:
+            raise Exception("Errors while merging")
     finally:
         dbConnect.closeDB()
     return retval

@@ -95,14 +95,6 @@ def storageformats2sql(presult, podmjson: JSModel, pwithextsrcref):
     fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
                    pwithextsrcref=pwithextsrcref)
 
-    # for jid,jelem in pmodel.jsmodel['storageformats'].items():
-    #     stfo = js2stfo(pkey=jid,pelem=jelem)
-    #     try:
-    #         stfo.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=stfo.tostring())
-    #         continue
-    # #for
     return
 
 def datatypes2js(pemptymodel):

@@ -163,8 +163,8 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
         else:
             alldbsrcrefs = Extsourcerefs()
 
-        curodmelements = copy(newelements) #to allow deletion of done elements in loop
-        for key,elem in curodmelements.items():
+        curjsonelements = copy(newelements) #to allow deletion of done elements in loop
+        for key,elem in curjsonelements.items():
             """some elements (ARCS,DOMAINS) can have ODM-ref or not (depending wether they are generated or
                user maintained
                if pwithtextref is True, make sure the element really has a 'sourceref' entry for  ODM """
@@ -208,8 +208,10 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             presult.addupdcnt(1,f"Update of {str(obj)}")
                             del newelements[key] #omit in next loop
                         except Exception as e:
-                            newdberrors.append(f"""*** update-error : ID = "{pelemtype}:{obj.getid()}" \n{e}""")
-                            newrepeaterrs.append(f"""*** update-error : ID = "{pelemtype}:{obj.getid()}" """)
+                            err = f"""*** update-error : ID = "{pelemtype}:{obj.getid()}" """
+                            err += f"""\n{elem}"""
+                            newdberrors.append(f"""{err} \n{e}""")
+                            newrepeaterrs.append(err)
                     # fi
                 #fi
             else:
@@ -226,8 +228,10 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                         presult.addinscnt (1,f"Insert of  {str(obj)}")
                         del newelements[key]  # omit in next loop
                     except Exception as e:
-                        newdberrors.append(f"""*** insert-error: ID = "{key}" exists with different GUID\n{e}""")
-                        newrepeaterrs.append(f"""*** insert-error: ID = "{key}" exists with different GUID""")
+                        err = f"""*** insert-error: ID = "{key}" exists with different GUID\n{e}"""
+                        err += f"""\n{elem}"""
+                        newdberrors.append(f"""{err} \n{e}""")
+                        newrepeaterrs.append(err)
                 else:
                     """Entry found via UK. update it.  update the external ref as well, as it could be"""
                     addfk(odmjsid=key, dbid=ukref.getid())
@@ -244,9 +248,10 @@ def fromodm2db(presult,podmjson:JSModel, pelemtype, pjs2obj,pwithextsrcref=True,
                             presult.addupdcnt(1,f"Update of {str(ukref)}")
                             del newelements[key]  # omit in next loop
                         except Exception as e:
-                            newdberrors.append(f"""*** update-error : ID = "{pelemtype}:{ukref.getid()}" \n{e}""")
-                            newrepeaterrs.append(f"""*** update-error : ID = "{pelemtype}:{ukref.getid()}" """)
-
+                            err = f"""*** update-error : ID = "{pelemtype}:{ukref.getid()}" """
+                            err += f"""\n{elem}"""
+                            newdberrors.append(f"""{err} \n{e}""")
+                            newrepeaterrs.append(err)
                     #fi
                 # fi
             #fi
