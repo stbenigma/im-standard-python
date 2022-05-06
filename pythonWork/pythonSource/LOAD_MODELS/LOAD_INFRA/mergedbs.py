@@ -1,7 +1,7 @@
+import sys
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
-
 
 nofunc = lambda p: None
 # json-key: (processorder,baseobjectload, referencesload,hasexternalref)
@@ -30,13 +30,12 @@ transferprocs = {
     , '_imprint_': (99, nofunc, nofunc, True)
 }
 
-""" merge json into current connection
-    DB-Version has already been checked
-    returns the Mergeresult
-    """
-
 
 def mergejson2sql(pmodeljson, psrcname=Externalref.SOURCE_SPOD, pverbose=False):
+    """ merge json into current connection
+        DB-Version has already been checked
+        returns the Mergeresult
+    """
     assert dbConnect.isopenDB()
     result = Mergeresult(verbose=pverbose)
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
@@ -129,7 +128,6 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=Externalref.SOURCE_SPOD,
     finally:
         dbConnect.closeDB()
     return retval
-
 
 if __name__ == '__main__':
     model = JSModel.readfromfile(pfilename=sys.argv[2])

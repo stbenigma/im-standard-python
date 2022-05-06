@@ -157,6 +157,8 @@ class Baseobject:
                       , self.columnsliststring(pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
+            logger.debug(f"Created new entry (id:{id}) in {self._tablename} from "\
+                         f"{Baseobject.print_sql_placeholder_values(lsql, self.totuple())}")
             if self.getid() is None:
                 self.setid(id)  # autocolumns zurücklesen
         except sqlite3.Error as e:
@@ -172,7 +174,8 @@ class Baseobject:
                     print (lsql)
                     print (self.totuple())
             # if
-            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}"
+            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}."\
+                  f"\n{e} from {Baseobject.print_sql_placeholder_values(lsql, self.totuple())}"
             if str(e).startswith("UNIQUE constraint failed"):
                 raise UniqueKeyException(msg) from e
             elif str(e).startswith("FOREIGN KEY constraint failed"):
@@ -508,3 +511,4 @@ class MultilangBaseobject(Baseobject):
 from .languagetext import Languagetext
 from .modelelement import Modelelement
 from .externalref import Externalref
+

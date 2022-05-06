@@ -32,7 +32,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
         logging.info(f"Created SPOD for git revision {new_git_revision}")
         with closing(dbConnect.openDB(pfilepath=parameters.dbFilePath())) as conn:
             dbConnect.write_git_reversion(new_git_revision, conn)
-        loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        spod = loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
         logging.info(f"Opening destination db for merge {parameters.dbFilePath()}")
@@ -48,7 +48,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
             logging.debug(f"Starting merge")
-            mergedbs.mergejson2sql(pmodeljson=loadedjson)
+            mergedbs.mergejson2db(pdbfile=parameters.dbFilePath(), pmodeljson=loadedjson)
             logging.debug(f"Merge complete")
             """generate json from merged DB"""
             #newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
@@ -57,8 +57,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
             dbConnect.closeDB()
             logging.debug(f"Database {connection} closed")
     # fi
-    return
-
+    return spod
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
                pmodellang=None, planguages=None, plogfilepath=None, pmodelfilepath=None):

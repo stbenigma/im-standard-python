@@ -5,6 +5,13 @@ import shutil
 import unittest
 from contextlib import closing
 from pathlib import Path
+
+import pytest
+
+from LOAD_MODELS.LOAD_INFRA import mergedbs
+from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsmergetosql
+from SSOT_db.SQL_INFRA import dbConnect
+from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table
 import io
 import sys
 
@@ -20,6 +27,7 @@ from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorro
 from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table, Actorrole,Domain,Languagetext,Entity
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
+
 
 
 class TestMergeJson(unittest.TestCase):
@@ -137,7 +145,7 @@ class TestMergeJson(unittest.TestCase):
         # create copy of filled db
         seconddbconn = mergedbs.connecttodbcopy()
         # first merge with itself
-        result = mergedbs.mergejson2sql(pmodeljson=firstjson)
+        result = mergedbs.mergejson2sql(pmodeljson=firstjson, pverbose=True, psrcname="TEST")
         for c in result.changes:
             print(c)
         self.assertEqual(0, result.updatecnt)
@@ -338,5 +346,53 @@ class TestMergeJson(unittest.TestCase):
                     }}
         element.update(defaults)
 
+    def test_mergefull(self):
+        parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
+        #test dryrun on exisisting files
+        dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
+        curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        dbConnect.closeDB()
+
+        capturedOutput = io.StringIO()  # Create StringIO object
+        sys.stdout = capturedOutput  # and redirect stdout.
+        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile,pmodel=curmodel,
+                                      pverbose=True,pdryrun=True)
+        sys.stdout = sys.__stdout__  # Reset redirect.
+        stdprint = capturedOutput.getvalue()
+        #don't care about other errors I only test the dry-run-merge
+        self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
+
+        #set up my model in memory to reuse it for several tests
+        createnewDB(pdbfilepath=None)  # create in memory
+        originaldbconn = dbConnect.getdbcon()
+        print("")
+        # create transferModel.transferODMModel
+        fillmodel2db.filldb(transferODMModel)
+        firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+
+        # create copy of filled db
+        # first merge with itself
+        result = mergedbs.mergejson2sql(pmodeljson=firstjson,pverbose=True,psrcname="TEST")
+        #for c in result.changes:
+        #    print(c)
+        self.assertEqual(0, result.updatecnt)
+        self.assertEqual(0, result.insertcnt)
+        self.assertEqual(0, result.deletecnt)
+        self.assertEqual(0, len(result.warnings))
+        self.assertEqual(0, len(result.errors))
+
+        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
+        result = mergedbs.mergejson2sql(pmodeljson=firstjson,pverbose=True,psrcname="TEST")
+        for c in result.changes:
+            print(c)
+        self.assertEqual(1, result.updatecnt)
+        self.assertEqual(0, result.insertcnt)
+        self.assertEqual(0, result.deletecnt)
+
+        dbConnect.closeDB()
+
+        return
+
 if __name__ == '__main__':
     unittest.main()
+
