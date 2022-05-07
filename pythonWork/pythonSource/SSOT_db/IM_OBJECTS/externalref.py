@@ -11,12 +11,9 @@ class Externalref(Baseobject):
     _defaultorderby = "extr_id"
 
 
-    def __init__(self,psrcname=None,psrcid=None,pmodeid=None,plastupd=None):
-        super().__init__()
-        self.extr_source_name = psrcname
-        self.extr_source_id = psrcid
-        self.extr_mode_id = pmodeid
-        self.extr_last_update = plastupd or datetime.today()
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.extr_last_update = self.extr_last_update or datetime.today()
 
     @staticmethod
     def setlastupdate(psrcname,pmodeid,psrcid=None):
@@ -66,7 +63,7 @@ class Externalref(Baseobject):
 
     @staticmethod
     def getallextrs (pelemtype):
-        return  Externalref.select(pwhere=("""exists (select mode_id 
+        return  Externalref.select(pwhere=("""extr_mode_id in (select mode_id 
                                                         from modelelement 
                                                         where upper(mode_type) = upper(?))""", pelemtype))
 

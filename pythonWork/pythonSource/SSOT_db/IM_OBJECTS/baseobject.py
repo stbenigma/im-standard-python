@@ -185,8 +185,9 @@ class Baseobject:
         # try
         if self.__srcname is not None:
             try:
-                Externalref(psrcname=self.__srcname, psrcid=self.__srcid, pmodeid=self.getid()).insert(
+                Externalref(extr_source_name=self.__srcname, extr_source_id=self.__srcid, extr_mode_id=self.getid()).insert(
                 pdoerrhdlng=pdoerrhdlng)
+
             except Exception as e2:
                 #delete original entry
                 self.delete(pwhere=(f"{self._idcolname} = ?",locid))

@@ -88,16 +88,6 @@ class Mergeresult:
             self.addchange(pstr + f"  delete-refs,cnt={str(cnt)}")
         return
 
-
-class Extsourceref:
-    def __init__(self, psrcname, psrcid, plastupd, pdbid):
-        self.srcname = psrcname
-        self.srcid = psrcid
-        self.lastupd = plastupd
-        self.dbid = pdbid
-        return
-
-
 class Extsourcerefs(list):
     def push(self, val):
         self.append(val)
@@ -105,43 +95,43 @@ class Extsourcerefs(list):
 
     def get(self, psrcname, psrcid):
         for e in self:
-            if e.srcname == psrcname and e.srcid == psrcid:
+            if e.extr_source_name == psrcname and e.srextr_source_idcid == psrcid:
                 return e
         return None
 
     def getall(self, pdbid):
         retval = Extsourcerefs()
         for e in self:
-            if e.dbid == pdbid:
+            if e.extr_mode_id == pdbid:
                 retval.append(e)
         return retval
 
     def getmaxupd(self):
         retval = ''
         for e in self:
-            retval = max(e.lastupd, retval)
+            retval = max(e.extr_last_update, retval)
         return retval
 
-    def getwithmaxupd(self) -> Extsourceref:
+    def getwithmaxupd(self) -> Externalref:
         maxupd = self.getmaxupd()
         for e in self:
-            if e.lastupd == maxupd: return e
+            if e.extr_last_update == maxupd:
+                return e
         return None
 
     def exists(self, psrcname, psrcid=None, pdbid=None):
         for e in self:
-            if (e.srcname == psrcname) \
-                    and ((psrcid is not None and e.srcid == psrcid) \
-                         or (pdbid is not None and e.keytrans == pdbid)):
+            if (e.extr_source_name == psrcname) \
+                    and ((psrcid is not None and e.extr_source_id == psrcid) \
+                         or (pdbid is not None and e.extr_mode_id == pdbid)):
                 return True
         return False
-# Extrsourceref
+# Extrsourcerefs
 
 def getallsrcrefs(pelemtype):
     retval = Extsourcerefs()
     for extr in Externalref.getallextrs(pelemtype=pelemtype):
-        retval.push(Extsourceref(psrcname=extr.extr_source_name, psrcid=extr.extr_source_id,
-                                 plastupd=extr.extr_last_update, pdbid=extr.extr_mode_id))
+        retval.push(extr)
     # for
     return retval
 
@@ -183,11 +173,8 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         presult.resetnewerrors()
 
         """external source refs in the target Database for the acutal elementtype (pelemtype) in the form
-            {OBJTkey: [srcname,srcid,srclastupd,keytrans]}"""
-        if pwithextsrcref:
-            alldbsrcrefs = getallsrcrefs(pelemtype=pelemtype)
-        else:
-            alldbsrcrefs = Extsourcerefs()
+            {OBJTkey: [srcname,srcid,srclastupd,modeid]}"""
+        alldbsrcrefs:Extsourcerefs = getallsrcrefs(pelemtype=pelemtype)
 
         curjsonelements = copy(newelements)  # to allow deletion of done elements in loop
         for key, elem in curjsonelements.items():
@@ -197,10 +184,11 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
             lwithextsrcref = pwithextsrcref and (
                         ('sourceref' in elem) and (presult.srcname in elem['sourceref']))
             if lwithextsrcref:
-                extsrcref = Extsourceref(psrcname=presult.srcname,
-                                         psrcid=elem['sourceref'][presult.srcname][0]
-                                         , plastupd=elem['sourceref'][presult.srcname][1]
-                                         , pdbid=key)
+                extsrcref = Externalref(extr_source_name=presult.srcname,
+                                         extr_source_id=elem['sourceref'][presult.srcname][0],
+                                         extr_last_update=elem['sourceref'][presult.srcname][1],
+                                         extr_mode_id=key)
+
                 obj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang
                               , psrcname=extsrcref.srcname, psrcid=extsrcref.srcid)
                 """get the db entry with the same external src GUID"""

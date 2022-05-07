@@ -167,6 +167,8 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.insertcnt)
         self.assertEqual(0, result.deletecnt)
 
+        return
+
         #check update of UK of other source
         firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
         #savecurrentdbandjson(firstjson)

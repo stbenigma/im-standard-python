@@ -10,7 +10,9 @@ def inssourceref(presult: Mergeresult, pmodeid, psources):
     if psources is None: return inscnt
     for src, entry in psources.items():
         assert len(entry) > 1, f"Expecting two enties in psources {psources} {entry}"
-        extr = Externalref(pmodeid=pmodeid, psrcname=src, psrcid=entry[0], plastupd=entry[1])
+        extr = Externalref(extr_mode_id=pmodeid, extr_source_name=src, extr_source_id=entry[0],
+                           extr_last_update=entry[1])
+
         try:
             extr.insert(pdoerrhdlng=False)
         except Exception as err:
