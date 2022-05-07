@@ -33,7 +33,7 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
     delcnt = Languagetext.delete(pwhere=("""lgtx_mode_id = ? 
                             and lgtx_attrname = ?""",
                             pmodeid, pattr))
-    inscnt =insertlgtx(pmodeid=pmodeid,pattr=pattr,ptexts=ptexts)
+    inscnt =insertlgtx(presult,pmodeid=pmodeid,pattr=pattr,ptexts=ptexts)
 
     presult.addinscnt(max(0,inscnt - delcnt),f"lang_texts for mode {pmodeid}, attribute {pattr}")
     presult.adddelcnt(max(0,delcnt - inscnt),f"lang_texts for mode {pmodeid}, attribute {pattr}")
@@ -41,7 +41,7 @@ def replacelgtx(presult:Mergeresult, pmodeid, pattr, ptexts):
 
 # replacelgtx
 
-def insertlgtx(pmodeid, pattr, ptexts):
+def insertlgtx(presult,pmodeid, pattr, ptexts):
     inscnt = 0
     baselang = Language.liesdeflangiso2()
 
@@ -69,7 +69,6 @@ def insertlgtx(pmodeid, pattr, ptexts):
         #if
     #for
     return inscnt
-
 # replacelgtx
 
 def js2lang(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
@@ -81,7 +80,7 @@ def js2lang(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     lang.lang_is_text_lang = Boolean.TRUE
     return lang
 
-def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
+def langs2sql(presult:Mergeresult, pjson:JSModel,pwithextsrcref):
     assert dbConnect.isopenDB()
     """   "languages": {
       "de": {
@@ -91,29 +90,16 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
          "replacementlang": null
       }"""
     """exclude lang_lang_id from semantic compare"""
-    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=JSModel.ELEMTYPE_LANG,pjs2obj=js2lang,pwithextsrcref=pwithextsrcref,pequalexceptlist=['lang_lang_id'])
-
-    for iso2, jlang in podmjson.getelements(pelemtype=JSModel.ELEMTYPE_LANG).items():
-        replangiso2 = jlang['replacementlang']
-        curlang:Language = Language().getbyuk(lang_iso_code2 =iso2)
-        if replangiso2 is None:
-            curlang.lang_lang_id = None
-        else:
-            replang = Language().getbyuk(lang_iso_code2=replangiso2.lower())
-            curlang.lang_lang_id = None if replang is None else replang.getid()
-        #fi
-        """update the replacementlang fk"""
-        curlang.updatedb()
-    #for
+    fromjson2db(presult=presult,pjson=pjson,pelemtype=JSModel.ELEMTYPE_LANG,pjs2obj=js2lang,pwithextsrcref=pwithextsrcref,pequalexceptlist=['lang_lang_id'])
 
     try:
         deflang =  Language.getdefaultlang()
-        if deflang is None: presult.errors.append("""*** No modellanguage defined""")
+        if deflang is None: presult.markdberror("""*** No modellanguage defined""",pelem="defaultlang")
     except:
-        presult.errors.append("""*** more then one default modellanguage defined""")
+        presult.markerror("""*** more then one default modellanguage defined""")
 
     """update proj_languages field with all languages found"""
-    for iso2, jlang in podmjson.getelements(pelemtype=JSModel.ELEMTYPE_LANG).items():
+    for iso2, jlang in pjson.getelements(pelemtype=JSModel.ELEMTYPE_LANG).items():
         newlang:Language = Language().getbyuk(lang_iso_code2=iso2)
         if newlang is not None:
             replacementiso2 = jlang["replacementlang"]
@@ -124,13 +110,18 @@ def langs2sql(presult, podmjson:JSModel,pwithextsrcref):
             #fi
             if newlang.lang_lang_id != replacmentid:
                 newlang.updatedb()
+                presult.addupdcnt(1,f"replacement Language for {newlang.lang_iso_code2} changed")
         # for
 
     try:
-        """fill replacementlanguage for all languages which do not have one yet"""
-        Language.setallreplacementlang()
-    except Exception as err:
-        presult.markdberror(perr=err, pelem=pelem)
+        deflang =  Language.getdefaultlang()
+        if deflang is None: presult.markdberror("""*** No modellanguage defined""",pelem="defaultlang")
+    except:
+        presult.markerror("""*** more then one default modellanguage defined""")
 
+    """check all languages have replacementlanguage"""
+    langs = Language.getlangswithillegalreplacement()
+    if len(langs) > 0:
+        presult.markdberror(f"Illegal replacementlanguage(s) {','.l.lang_iso_code2 for l in langs}")
     return
 # langs2sql

@@ -117,14 +117,16 @@ def js2proj(pkey, pelem, pmodellang=None):
     return proj
 
 
-def proj2sql(presult, podmjson: JSModel, pwithextsrcref):
-    elem = podmjson.jsmodel['model']
+def proj2sql(presult, pjson: JSModel, pwithextsrcref):
+    inscnt = 0
+    elem = pjson.jsmodel['model']
     try:
         """insert if nonexistent, otherwise don't touch"""
         projs = Project.select()
         if len(projs) == 0:
             proj = js2proj(pkey=None, pelem=elem)
             proj.insert()
+            inscnt += 1
     except Exception as err:
         presult.markdberror(perr=err, pelem=elem)
-    return
+    return inscnt

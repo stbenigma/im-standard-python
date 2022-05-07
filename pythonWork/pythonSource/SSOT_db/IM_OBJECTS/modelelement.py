@@ -159,10 +159,6 @@ class Modelelement(Baseobject):
         modeid = Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid)
         return None if modeid is None else Modelelement().getbyid(pid=modeid)
 
-    @staticmethod
-    def getmodebyodmguid(psrcid):
-        return Modelelement.getmodebyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
-
     def getmyelement(self):
         if self.mode_type == Modelelemtype.SYNO:
             element = Synonym().getbyid(self.mode_id)
@@ -210,10 +206,6 @@ class Modelelement(Baseobject):
     @staticmethod
     def getelementbyextref(psrcname, psrcid):
         return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
-
-    @staticmethod
-    def getelementbyodmguid(psrcid):
-        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
 
     @staticmethod
     def insertudpelems(pudpthema):

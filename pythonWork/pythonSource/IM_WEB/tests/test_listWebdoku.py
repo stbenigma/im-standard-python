@@ -27,11 +27,9 @@ class GenerateHTML(unittest.TestCase):
         self.testmodel1.initWeb()
 
         self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST)
-        self.testmodelcrm.initDB()
         self.testmodelcrm.initWeb()
 
         self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE)
-        self.testmodelriddle.initDB()
         self.testmodelriddle.initWeb()
 
     def test_listwebdoku(self):

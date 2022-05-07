@@ -33,7 +33,7 @@ def exec(psql,*args):
 
     cursor = dbConnect.getdbcon().cursor()
     try:
-        rows = cursor.execute(psql, args)
+        rows = cursor.execute(psql, args).rowcount
     except sqlite3.Error as e:
         #print('Failed to execute {} {}'.format(psql, str(args)))
         #logmessages.writelog(psql)

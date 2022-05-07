@@ -332,23 +332,6 @@ class Baseobject:
         ref = self.getbyextref(psrcid=psrcid, psrcname=psrcname)
         return None if ref is None else ref.getid()
 
-    def getbyODMref(self, psrcid):
-        return self.getbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
-
-    def getIDbyODMref(self, psrcid):
-        return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_ODM)
-
-
-    def getbyEAref(self, psrcid):
-        return self.getbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
-
-
-    def getIDbyEAref(self, psrcid):
-        return self.getIDbyextref(psrcid=psrcid, psrcname=Externalref.SOURCE_EAXML)
-
-    #    def getsprachvals(self):
-#        raise NotImplementedError("Must override getsprachvals")
-
     def getukvaluepairs(self):
         uklist = dbDDL.getuklist(ptablename=self._tablename)
         return [dbDML.valuepairs2sqlexpr(**{colname:self.colvalue(colname) for colname in uk}) for uk in uklist]

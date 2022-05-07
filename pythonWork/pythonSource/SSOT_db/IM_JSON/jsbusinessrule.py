@@ -81,7 +81,7 @@ def businessrules2js(pemptymodel):
 
 def js2buru(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     buru = BusinessRule(srcname=psrcname, srcid=psrcid,
-                        buru_id=jsguid2id(pkey),
+                        buru_id=pkey,
                         buru_name=pelem['name'][pmodellang],
                         buru_errormsg=pelem['errormsg'][pmodellang],
                         buru_descr=pelem['descr'][pmodellang],
@@ -122,8 +122,8 @@ def insbures(presult: Mergeresult, pburuid, prefs):
     presult.adddelcnt(max(0, (delcnt - inscnt)),f"Business rules elements for BR {pburuid}")
     return
 
-def businessrules2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.BURU, pjs2obj=js2buru,
+def businessrules2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.BURU, pjs2obj=js2buru,
                pwithextsrcref=pwithextsrcref)
     """             "BURU166": {
          "name": {
@@ -161,9 +161,9 @@ def businessrules2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             ]
          }
       },"""
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.BURU).items():
-        buruid = keytransl(jid)
-        if buruid is None: continue  # element was not treated
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.BURU).items():
+        buruid = presult.keytransl(jid)
+        if buruid  == 0: continue  # element was not treated
         replacelgtx(presult=presult, pmodeid=buruid, pattr=Languagetext.BURU_DESCR, ptexts=jelem['descr'])
         replacelgtx(presult=presult, pmodeid=buruid, pattr=Languagetext.BURU_ERRORMSG, ptexts=jelem['errormsg'])
         replacelgtx(presult=presult, pmodeid=buruid, pattr=Languagetext.BURU_NAME, ptexts=jelem['name'])

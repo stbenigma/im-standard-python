@@ -3,10 +3,6 @@ from SSOT_db.SQL_INFRA import dbDML
 from datetime import datetime
 
 class Externalref(Baseobject):
-    SOURCE_SPOD:str='SPOD'
-    SOURCE_ODM:str='ODM'
-    SOURCE_EAXML:str='EAXML'
-    SOURCE_ELLIE:str='ELLIE'
 
     _tablename:str = 'external_refs'
     _prefix:str = 'extr'
@@ -84,16 +80,6 @@ class Externalref(Baseobject):
     def existssrcid(psrcname,psrcid):
         extrs = Externalref.getextr(psrcname=psrcname,psrcid=psrcid)
         return (len(extrs) > 0)
-
-
-    @staticmethod
-    def getODMmodeid(psrcid):
-        return Externalref.getmodeid(psrcname=Externalref.SOURCE_ODM,psrcid=psrcid)
-
-
-    @staticmethod
-    def getODMsrcid(pmodeid):
-        return Externalref.getsrcid(psrcname=Externalref.SOURCE_ODM,pmodeid=pmodeid)
 
 #Externalref
 

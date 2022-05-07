@@ -3,6 +3,7 @@ import shutil
 import traceback
 import unittest
 from pathlib import Path
+import datetime
 
 from LOAD_MODELS.LOAD_ODM import fillDB
 from SSOT_db import createDB, createJSON
@@ -26,15 +27,24 @@ class Testmodel():
         self.jsonfile = self.dbdir / self.jsonfilename
         self.webdir = self.modeldir / 'Web'
 
-    def initDB(self):
-        if os.path.exists(self.dbfile):
-            createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
-        else:
+    def initDB(self,palways=False):
+        def age(ptimestamp):
+            diff = datetime.datetime.now()-datetime.datetime.fromtimestamp(ptimestamp)
+            return int(round(diff.total_seconds()/60))
+
+        if palways or not os.path.exists(self.dbfile) or age(os.path.getmtime(self.dbfile))>60:
+            if palways and os.path.exists(self.dbfile):
+                os.remove(self.dbfile)
+            elif os.path.exists(self.dbfile):
+                #upgrade
+                createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
+
             if os.path.exists(self.paramfile):
                 fillDB.filldbmain(pparamfile=self.paramfile)
             else:
                 fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
-        if not os.path.exists(self.jsonfile):
+
+        if palways or not os.path.exists(self.jsonfile) or age(os.path.getmtime(self.jsonfile))>60:
             createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,
                                   pjsfilepath=self.dbdir, pjsfilename=self.jsonfilename)
         return
@@ -96,3 +106,23 @@ def riddle_json() -> Path:
 
 def odmtestmodelnames():
     return [TESTMODEL1, TESTMODEL2, CRMTEST, RIDDLE]
+
+"""init module with regenerating the testmodels db and jsons"""
+try:
+    Testmodel(TESTMODEL1).initDB()
+except:
+        print (f"could not fill {TESTMODEL1}")
+try:
+    Testmodel(TESTMODEL2).initDB()
+except:
+    print(f"could not fill {TESTMODEL2}")
+try:
+        Testmodel(CRMTEST).initDB()
+except:
+    print(f"could not fill {CRMTEST}")
+try:
+    Testmodel(RIDDLE).initDB()
+except:
+    print(f"could not fill {RIDDLE}")
+
+

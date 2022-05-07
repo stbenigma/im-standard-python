@@ -6,6 +6,7 @@ from SSOT_infra import nvl
 from SSOT_db.IM_OBJECTS import  *
 from SSOT_db import IM_JSON
 
+SOURCE_ELLIE: str = 'ELLIE'
 
 def ellie2proj(pmodel, pmodellng):
     proj = Project()
@@ -33,7 +34,7 @@ attributes = []
 
 def ellie2attr(pentiid, pattrid, pellieattr, pmodellng) -> Attribute:
     attr = Attribute(pname=pellieattr, pentiid=pentiid
-                     , psrcname=Externalref.SOURCE_ELLIE, psrcid=pellieattr['id'])
+                     , psrcname=SOURCE_ELLIE, psrcid=pellieattr['id'])
     attr.attr_dc = pellieattr['created_at']
     attr.attr_id = pattrid
     attr.attr_displ_name = pellieattr['name']
@@ -68,7 +69,7 @@ def ellie2entities(pinjson, pmodellng):
     for entiid, inenti in enumerate(pinjson):
         metadata = inenti["metadata"]
         entitransl[inenti["id"]] = entiid
-        enti = Entity(psrcname=Externalref.SOURCE_ELLIE, psrcid=inenti["id"])
+        enti = Entity(psrcname=SOURCE_ELLIE, psrcid=inenti["id"])
         enti.enti_id = entiid
         enti.enti_name = inenti['name']
         enti.enti_name_l = {pmodellng: inenti['name']}

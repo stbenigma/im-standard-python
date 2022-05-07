@@ -97,26 +97,17 @@ class ModelelemOrgu(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist = dict()
 
-    def __init__(self,pmodeid=None,porguid = None):
+    def __init__(self,**kwargs):
 
-        super().__init__()
-        self.moou_mode_id = pmodeid
-        self.moou_orgu_id = porguid
+        super().__init__(kwargs)
 
 
     @staticmethod
     def insertorguref(porguidlist, pmodeid):
         if porguidlist is None: return
-        for orguguid in porguidlist:
-            moou = ModelelemOrgu()
-            moou.moou_orgu_id = Externalref.getODMmodeid(psrcid=orguguid)
-            if moou.moou_orgu_id is None:
-                #GUID no longer exists
-                logmessages.writelog("Org-Unit ({}) referenced in model-element id={} does not exist".format(orguguid, pmodeid))
-                return
-            moou.moou_mode_id = pmodeid
-            moou.insert()
+        for orguid in porguidlist:
+            ModelelemOrgu(moou_orgu_id = orguid,moou_mode_id = pmodeid).insert()
         #for
-    #insertdocuref
+        return
 #ModelelemDoku
 

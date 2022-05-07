@@ -52,8 +52,8 @@ def tables2js(pemptymodel):
 def js2tabl(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     tabl = Table()
     tabl.tabl_name = pelem['name']
-    tabl.tabl_id = jsguid2id(pkey)
-    tabl.tabl_intf_id = jsguid2id(pelem['interface-id'])
+    tabl.tabl_id = pkey
+    tabl.tabl_intf_id = pelem['interface-id']
     tabl.tabl_prefix = pelem['prefix']
     tabl.tabl_descr = pelem['descr']
     tabl.tabl_uc = pelem['uc']
@@ -63,16 +63,16 @@ def js2tabl(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return tabl
 
 
-def tables2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.TABL, pjs2obj=js2tabl,
+def tables2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.TABL, pjs2obj=js2tabl,
                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.TABL).items():
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.TABL).items():
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
-        newtablid = keytransl(jid)
-        if newtablid is None: continue  # element was not treated
+        newtablid = presult.keytransl(jid)
+        if newtablid  == 0: continue  # element was not treated
         Modelelement.upddisplelements(pmodeid=newtablid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
         insreferences(presult=presult, pmodeid=newtablid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newtablid, psources=jelem["sourceref"])
@@ -89,13 +89,13 @@ def instablemapping(presult: Mergeresult, ptablid, pmappedelems):
         elemtype = jsguid2type(jid)
         tema = TablEntiMap()
         tema.tema_tabl_id = ptablid
-        tema.tema_rela_id = keytransl(jid) if elemtype == Modelelemtype.RELA else None
-        tema.tema_enti_id = keytransl(jid) if elemtype == Modelelemtype.ENTI else None
+        tema.tema_rela_id = presult.keytransl(jid) if elemtype == Modelelemtype.RELA else None
+        tema.tema_enti_id = presult.keytransl(jid) if elemtype == Modelelemtype.ENTI else None
         try:
             tema.insert()
             inscnt += 1
         except Exception as err:
-            presult.markdberror(perr=err, pelem="tablid={}, enti/relaid={}".format(ptablid, jsguid2id(jentiid)))
+            presult.markdberror(perr=err, pelem="tablid={}, enti/relaid={}".format(ptablid, jid))
             continue
     # for
     presult.addinscnt(max(0, (inscnt - delcnt)),f"Table to Entity mapping  for Element {ptablid}")

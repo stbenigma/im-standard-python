@@ -47,17 +47,24 @@ def insertBaseData():
     return
 
 
-"""True if the file exists
-"""
 def existsDB(pfilepath):
+    """True if the file exists
+    """
     return os.path.exists(pfilepath)
 
 
-"""create a new database and fill in the basic data and leaves it open
+def createnewDB(pdbfilepath,pbaselang = None, planguages=None):
+    """create a new database and fill in the basic data and leaves it open
 
-    pdbfilepath = None => create it in memory and do not close it
-"""
-def createnewDB(pdbfilepath):
+        pdbfilepath = None => create it in memory and do not close it
+        baselang and languages are used to prefill the database
+        if they are None, the values from parameters are used
+    """
+
+    if pbaselang is not None:
+        parameters.dbDefaultLang(pbaselang)
+    if planguages is not None:
+        parameters.dbLanguages(','.join(planguages))
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
     connection = dbConnect.opendDB4DDL(pfilepath=dbfilepath)

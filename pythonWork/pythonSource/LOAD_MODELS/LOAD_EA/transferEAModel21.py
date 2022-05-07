@@ -11,6 +11,7 @@ from LOAD_MODELS.LOAD_ODM import transferModel
 
 XMIVERSION = "2.1"
 XMIPREFIX = f"{{http://schema.omg.org/spec/XMI/{XMIVERSION}}}"
+SOURCE_EAXMI: str = 'EAXMI'
 
 """List of Relations 
    {relationguid: {"rela":, "srcentiguid": ,"dstentiguid","....":}}
@@ -134,12 +135,12 @@ def inslineseg(prelrid,pseq,px,py,pmandatory,pangle):
 
 def do1diaglink(pdiaglinkxml):
     diagguid = handleXML.findRefGuid(pdiaglinkxml, 'DiagramID')
-    diag = Diagram().getbyEAref(psrcid=diagguid)
+    diag = Diagram().getbyextref(psrcid=diagguid,psrcname=SOURCE_EAXMI)
     if diag is None:
         logmessages.writelog("Diagram {} not found".format(diagguid))
         return
     objguid = handleXML.findRefGuid(pdiaglinkxml, 'ConnectorID')
-    rela = Relation().getbyEAref(psrcid=objguid)
+    rela = Relation().getbyextref(psrcid=objguid,psrcname=SOURCE_EAXMI)
     if rela is None:
         logmessages.writelog("Object {} not found for diagram {}".format(objguid, diagguid))
         return
@@ -223,12 +224,12 @@ def do1diaglink(pdiaglinkxml):
 
 def do1diagobj(pdiagobjxml):
     diagguid = handleXML.findRefGuid(pdiagobjxml, 'Diagram_ID')
-    diag = Diagram().getbyEAref(psrcid=diagguid)
+    diag = Diagram().getbyextref(psrcid=diagguid,psrcname=SOURCE_EAXMI)
     if diag is None:
         logmessages.writelog("Diagram {} not found".format(diagguid))
         return
     objguid = handleXML.findRefGuid(pdiagobjxml, 'Object_ID')
-    obj = Entity().getbyEAref(psrcid=objguid)
+    obj = Entity().getbyextref(psrcid=objguid,psrcname=SOURCE_EAXMI)
     if obj is None:
         logmessages.writelog("Object {} not found for diagram {}".format(objguid, diagguid))
         return
@@ -281,7 +282,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype, pattr, pintfid=None
 
 def do1Attribute(pattrxml):
     vaterguid = handleXML.findRefGuid(pattrxml, "Object_ID")
-    vater = Entity().getbyEAref(psrcid=vaterguid)
+    vater = Entity().getbyextref(psrcid=vaterguid,psrcname=SOURCE_EAXMI)
     attrname = handleXML.findColumn(pattrxml, "Name")
 
     attr = Attribute(pname=transferModel.removeattrmeta(attrname), pentiid=vater.enti_id
@@ -301,7 +302,7 @@ def do1Attribute(pattrxml):
     attr.attr_is_encrypted = 'FALSE'
     domaguid = handleXML.findRefGuid(pattrxml,"Classifier")
     if domaguid is not None:
-        doma = Domain().getbyEAref(psrcid=domaguid)
+        doma = Domain().getbyextref(psrcid=domaguid,psrcname=SOURCE_EAXMI)
         if doma is None:
             logmessages.writelog(f"Unknown domain {domaguid}")
             doma = Domain().getunknown()
@@ -320,7 +321,7 @@ def fillKeys(p_enti, p_entiid):
             if (kr is not None):
                 keyrefs = kr.split(',')
                 # print(idx, handleXML.findField(enti,'name'), handleXML.findField(key,'id'), handleXML.findField(enti,'id'), keyrefs)
-                keys = Key(psrcid=handleXML.findField(key, 'id'), psrcname=Externalref.SOURCE_ODM)
+                keys = Key(psrcid=handleXML.findField(key, 'id'), psrcname=SOURCE_EAXMI)
                 keys.keys_name = handleXML.findField(key, 'name')
                 keys.keys_uc = handleXML.findText(key, 'createdBy')
                 keys.keys_dc = handleXML.findText(key, 'createdTime')
@@ -347,9 +348,9 @@ def transferKeys():
             kele.kele_keys_id = key.keys_id
             kele.kele_uc = key.keys_uc
             kele.kele_dc = key.keys_dc
-            kele.kele_attr_id = Attribute().getIDbyODMref(psrcid=ke)
+            kele.kele_attr_id = Attribute().getIDbyextref(psrcid=ke,psrcname=SOURCE_EAXMI)
             if kele.kele_attr_id is None:
-                kele.kele_rela_id = Relation().getIDbyODMref(psrcid=ke)
+                kele.kele_rela_id = Relation().getIDbyextref(psrcid=ke,psrcname=SOURCE_EAXMI)
                 kele.kele_attr_id = None
                 if kele.kele_rela_id is None:
                     logmessages.writelog(
@@ -416,7 +417,7 @@ def do1LOV(plovvalue):
     deva.deva_dc = datetime.today()
     deva.deva_sort_order = handleXML.findColumn(plovvalue, "Pos")
     domaguid = handleXML.findRefGuid(plovvalue, "Object_ID")
-    doma = Domain().getbyEAref(psrcid=domaguid)
+    doma = Domain().getbyextref(psrcid=domaguid,psrcname=SOURCE_EAXMI)
     if doma is None:
         logmessages.writelog(f"Domain {domaguid}for domainvalue {deva.deva_name} not found")
     else:
@@ -466,7 +467,7 @@ def do1Arc(parc):
     arcbase = getrelation(arcbase[0])
     srcentiguid, dstentiguid = arcbase["srcentiguid"], arcbase["dstentiguid"]
     arcentiguid = srcentiguid if dstentiguid == arcguid else dstentiguid
-    arcenti = Entity().getbyEAref(psrcid=arcentiguid)
+    arcenti = Entity().getbyextref(psrcid=arcentiguid,psrcname=SOURCE_EAXMI)
     if arcenti is None:
         logmessages.writelog(f"Arc {arcguid} not connected to knwon entity {arcentiguid}")
         return
@@ -477,7 +478,7 @@ def do1Arc(parc):
     for relaguid in arcrelas:
         srcentiguid, dstentiguid = getrelation(relaguid,"srcentiguid"), getrelation(relaguid,"dstentiguid")
         otherentiguid = srcentiguid if dstentiguid == arcguid else dstentiguid
-        otherenti = Entity().getbyEAref(psrcid=otherentiguid)
+        otherenti = Entity().getbyextref(psrcid=otherentiguid,psrcname=SOURCE_EAXMI)
         if otherenti is None:
             logmessages.writelog(f"Arc {arcguid} not connected to known entity {otherentiguid}")
             continue
@@ -494,9 +495,9 @@ def do1Arc(parc):
 def do1Relation(prelaxml):
     relaguid = handleXML.findColumn(prelaxml, 'ea_guid')
     srcentiguid = handleXML.findRefGuid(prelaxml, "Start_Object_ID")
-    srcenti = Entity().getbyEAref(psrcid=srcentiguid)
+    srcenti = Entity().getbyextref(psrcid=srcentiguid,psrcname=SOURCE_EAXMI)
     dstentiguid = handleXML.findRefGuid(prelaxml, "End_Object_ID")
-    dstenti = Entity().getbyEAref(psrcid=dstentiguid)
+    dstenti = Entity().getbyextref(psrcid=dstentiguid,psrcname=SOURCE_EAXMI)
     relaname = "RELA-" + handleXML.findColumn(prelaxml, "Connector_ID")
 
     rela = Relation(psrcname=Externalref.SOURCE_EAXML, psrcid=relaguid)
