@@ -234,26 +234,44 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
                 # local obj of element information
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang
-                                  , psrcname=cursrcrefname, psrcid=elemsrcrefs[cursrcrefname][0])
+                                  , psrcname=cursrcrefname, psrcid=getelemsrcid(psrcrefs=elemsrcrefs,psrcname=cursrcrefname))
 
                 dbobj = getbyanysrcref(presult=presult, pelemsrcrefs=elemsrcrefs)
 
             else:
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang)
-                cursrcrefid,elemsrcrefs = None,[]
+                cursrcrefid,elemsrcrefs = None,dict()
                 dbobj = None
 
             # fi
-            """here we have a object from the json-element (jsonobj) and 
+            """here we have an object from the json-element (jsonobj) and 
                 and a dbobj  (if I found one with any external ref)
                 or no dbobj, if there are no external refs or none was found
             """
-
             """make sure we use new id's, wehreever we know it already"""
             translatefks(presult, jsonobj)
+
             """ if there is checkonly modus my db was empty and dbobj is None (see above) . I do only inserts to check the consistency. """
-            if dbobj is not None :
-                """entry via external ref  found. this is my existing brother, try to update it"""
+            if dbobj is None and not presult.ischeckonly():
+                """Entry not found via sourceref. It could have a changed different srcrefs     """
+                dbobj = jsonobj.getbyanyuk()  # getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
+            #fi
+            if dbobj is None:
+                """Entry not found via SRCREF and not found via UK -> it is new"""
+                try:
+                    jsonobj.setid(None)  # provoke new ID in new db
+                    dbobjid = jsonobj.insert(pdoerrhdlng=False)
+                    presult.addfkey(extjsid=key, dbid=dbobjid)
+                    presult.addinscnt(1, f"Insert of  {str(jsonobj)}")
+                    del newelements[key]  # omit in next loop
+                except Exception as e:
+                    if not (presult.ischeckonly() and pelemtype == "LANG"):
+                        newerrorlist.append(key)
+                        err = f"""*** insert-error: ID = "{key}" """
+                        err += f"""\n{e}\n{elem}"""
+                        presult.markerror(f"""{err} \n{e}""")
+            else:
+                """entry via external ref  or uk found. this is my existing brother, try to update it"""
 
                 """get from db all external sourcerefs for this db-ID"""
                 dbsrcrefs = Externalref.getsrcinfo(dbobj.getid())
@@ -272,78 +290,22 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                         case 1,2,3
                         """
                     presult.addfkey(extjsid=key, dbid=dbobj.getid())
-                    if not jsonobj.semanticequal(dbobj, pequalexceptlist=pequalexceptlist):
-                        try:
-                            jsonobj.setid(dbobj.getid())  # preserve DB-id
-                            jsonobj.updatedb(pdoerrhdlng=False)
-                            if pwithextsrcref and cursrcrefid != getelemsrcid(psrcrefs=dbsrcrefs,psrcname=cursrcrefname):
-                                Externalref.setlastupdate(psrcname=cursrcrefname,pmodeid=dbobj.getid(),psrcid=cursrcrefid)
-                            presult.addupdcnt(1, f"Update of {str(jsonobj)}")
-                            del newelements[key]  # omit in next loop
-                        except Exception as e:
-                            newerrorlist.append(key)
-                            err = f"""*** update-error : "{pelemtype}: DB-id = {dbobj.getid()} Json-Key = {key} """
-                            err += f"""\n{elem}"""
-                            presult.markerror(f"""{err} \n{e}""")
-                    # fi
-                # fi
-            else:
-                """Entry not found via sourceref. It could have a changed different srcref
-                   for checkonly I don't care about whats in the database and I force an insert
-                    """
-
-                if presult.ischeckonly():
-                    dbukobj = None
-                else:
-                    dbukobj = jsonobj.getbyanyuk()  # getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
-
-                """ if an entry with the same UK exists (must have different srcid, otherwise it would not land here)
-                    we habe a UK-problem. Otherwise insert the element """
-                if dbukobj is None :
-                    """Entry not found via SRCREF and not found via UK -> it is new"""
                     try:
-                        jsonobj.setid(None)  # provoke new ID in new db
-                        dbobjid = jsonobj.insert(pdoerrhdlng=False)
-                        presult.addfkey(extjsid=key, dbid=dbobjid)
-                        presult.addinscnt(1, f"Insert of  {str(jsonobj)}")
+                        jsonobj.setid(dbobj.getid())  # preserve DB-id
+                        if pwithextsrcref and cursrcrefid != getelemsrcid(psrcrefs=dbsrcrefs,
+                                                                          psrcname=cursrcrefname):
+                            Externalref.setlastupdate(psrcname=cursrcrefname, pmodeid=dbobj.getid(),
+                                                      psrcid=cursrcrefid)
+
+                        if not jsonobj.semanticequal(dbobj, pequalexceptlist=pequalexceptlist):
+                            jsonobj.updatedb(pdoerrhdlng=False)
+                            presult.addupdcnt(1, f"Update of {str(jsonobj)}")
                         del newelements[key]  # omit in next loop
                     except Exception as e:
-                        if not (presult.ischeckonly() and pelemtype == "LANG"):
-                            newerrorlist.append(key)
-                            err = f"""*** insert-error: ID = "{key}" """
-                            err += f"""\n{e}\n{elem}"""
-                            presult.markerror(f"""{err} \n{e}""")
-                else:
-                    """get from db all external sourcerefs for this db-ID"""
-                    dbsrcrefs = Externalref.getsrcinfo(dbukobj.getid())
-                    """ check if any db-external refs was updated later than the corresponding json ref """
-                    lastupdatedsrcname = whoupdatedmeanwhile(psrcname=cursrcrefname, pjsonsrcrefs=elemsrcrefs,
-                                                             pdbsrcrefs=dbsrcrefs)
-                    if lastupdatedsrcname is not None:
-                        # case 1,2,3
-                        presult.markerror(
-                            f"""*** Double update merge problem for {pelemtype}: DB-id = {dbukobj.getid()} Json-Key = {key}: source "{lastupdatedsrcname}" updated record in DB""")
-                        """ the element is in error, don't try again"""
-                        del newelements[key]  # omit in next loop
-                    else:
-                        """Entry found via UK. update it.  update the external ref as well"""
-                        presult.addfkey(extjsid=key, dbid=dbukobj.getid())
-
-                        if not dbukobj.semanticequal(jsonobj, pequalexceptlist=pequalexceptlist):
-                            try:
-                                """update element found by it's uk"""
-                                dbukobj.semanticcopy(jsonobj)
-                                dbukobj.updatedb(pdoerrhdlng=False)
-                                if pwithextsrcref and cursrcrefid != getelemsrcid(psrcrefs=elem["sourceref"],psrcname=cursrcrefname):
-                                    Externalref.setlastupdate(psrcname=cursrcrefname,pmodeid=dbukobj.getid(),psrcid=cursrcrefid)
-                                presult.addupdcnt(1, f"Update of {str(dbukobj)}")
-                                del newelements[key]  # omit in next loop
-                            except Exception as e:
-                                newerrorlist.append(key)
-                                err = f"""*** update-error : {pelemtype} DB-id = {dbobj.getid()} Json-Key = {key}: """
-                                err += f"""\n{elem}"""
-                                presult.markerror(f"""{err} \n{e}""")
-                        # fi
+                        newerrorlist.append(key)
+                        err = f"""*** update-error : "{pelemtype}: DB-id = {dbobj.getid()} Json-Key = {key} """
+                        err += f"""\n{elem}"""
+                        presult.markerror(f"""{err} \n{e}""")
                     # fi
                 # fi
             # fi

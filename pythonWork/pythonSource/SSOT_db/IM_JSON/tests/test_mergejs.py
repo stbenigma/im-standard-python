@@ -150,7 +150,6 @@ class TestMergeJson(unittest.TestCase):
 
         # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
-        originaldbconn = dbConnect.getdbcon()
         print("")
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)

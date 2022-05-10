@@ -19,7 +19,7 @@ transferprocs = {
     , 'documents': (6, documents2sql, nofunc, True)
     , 'orgunits': (7, orgunits2sql, nofunc, True)
     , 'actorroles': (7, actorroles2sql, actorconcerns2sql, True)
-    , 'categories': (7, entitycategory2sql, nofunc, True)
+    , 'categories': (7, entitycategory2sql, nofunc, False)
     , 'userdefprops': (8, udps2sql, nofunc, False)
     , 'systems': (10, systems2sql, nofunc, True)
     , 'domains': (12, domains2sql, nofunc, True)
