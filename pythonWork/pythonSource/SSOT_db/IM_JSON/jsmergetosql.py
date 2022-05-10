@@ -111,7 +111,7 @@ def translatefks(presult: Mergeresult, pobj):
     return
 
 
-def getelemsrcref(psrcname, pkey, pelem):
+def getelemsrcrefs(psrcname, pkey, pelem):
     """ get all source refs of the element, if current sourcename is missing it is a insert, create it
         we assume, the elemnent requires a srcref
     """
@@ -122,6 +122,13 @@ def getelemsrcref(psrcname, pkey, pelem):
     if psrcname not in srcrefs:
         srcrefs[psrcname] = [pkey, datetime.now()]
     return srcrefs
+
+def getelemsrcid(psrcrefs,psrcname):
+    if psrcname in psrcrefs:
+        retval = psrcrefs[psrcname][0]
+    else:
+        retval = None
+    return retval
 
 
 """get the db entry with any of the external src refs
@@ -187,6 +194,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
      (9) element in ODM copied. Changes GUID but perserves UK-fields
 
     """
+    cursrcrefname = presult.srcname
     try:
         modellang = Language.getdefaultlang().lang_iso_code2
     except:
@@ -195,7 +203,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
     olderrorlist, newerrorlist = None, []
     newelements = copy(pjson.getelements(pelemtype=pelemtype))
-    dbelemtypesrcrefs = getallsrcrefs(pelemtype=pelemtype,psrcname=presult.srcname)
+    dbelemtypesrcrefs = getallsrcrefs(pelemtype=pelemtype,psrcname=cursrcrefname)
 
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
@@ -213,27 +221,28 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
         curjsonelements = copy(newelements)  # to allow deletion of done elements in loop
         for key, elem in curjsonelements.items():
-            if pwithextsrcref:
+            if pwithextsrcref and not presult.ischeckonly():
                 """ get all srcrefs of the element 
                 make sure it has an entry for the current srcname 
                 if not: create one
                 """
-                elemsrcrefs = getelemsrcref(psrcname=presult.srcname, pkey=key, pelem=elem)
+                elemsrcrefs = getelemsrcrefs(psrcname=cursrcrefname, pkey=key, pelem=elem)
                 #remove sourceref which has been handled
-                cursrcrefid = elemsrcrefs[presult.srcname][0]
+                cursrcrefid = elemsrcrefs[cursrcrefname][0]
                 if cursrcrefid in dbelemtypesrcrefs:
                     del dbelemtypesrcrefs[cursrcrefid]
 
                 # local obj of element information
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang
-                                  , psrcname=presult.srcname, psrcid=elemsrcrefs[presult.srcname][0])
+                                  , psrcname=cursrcrefname, psrcid=elemsrcrefs[cursrcrefname][0])
 
                 dbobj = getbyanysrcref(presult=presult, pelemsrcrefs=elemsrcrefs)
 
             else:
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang)
-                elemsrcrefs = []
+                cursrcrefid,elemsrcrefs = None,[]
                 dbobj = None
+
             # fi
             """here we have a object from the json-element (jsonobj) and 
                 and a dbobj  (if I found one with any external ref)
@@ -242,14 +251,14 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
             """make sure we use new id's, wehreever we know it already"""
             translatefks(presult, jsonobj)
-            """ if there is checkonly modus, my db was empty. I do only inserts to check the consistency. """
-            if dbobj is not None and not presult.ischeckonly():
+            """ if there is checkonly modus my db was empty and dbobj is None (see above) . I do only inserts to check the consistency. """
+            if dbobj is not None :
                 """entry via external ref  found. this is my existing brother, try to update it"""
 
                 """get from db all external sourcerefs for this db-ID"""
                 dbsrcrefs = Externalref.getsrcinfo(dbobj.getid())
                 """ check if any db-external refs was updated later than the corresponding json ref """
-                lastupdatedsrcname = whoupdatedmeanwhile(psrcname=presult.srcname, pjsonsrcrefs=elemsrcrefs,
+                lastupdatedsrcname = whoupdatedmeanwhile(psrcname=cursrcrefname, pjsonsrcrefs=elemsrcrefs,
                                                          pdbsrcrefs=dbsrcrefs)
                 if lastupdatedsrcname is not None:
                     # case 1,2,3
@@ -267,6 +276,8 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                         try:
                             jsonobj.setid(dbobj.getid())  # preserve DB-id
                             jsonobj.updatedb(pdoerrhdlng=False)
+                            if pwithextsrcref and cursrcrefid != getelemsrcid(psrcrefs=dbsrcrefs,psrcname=cursrcrefname):
+                                Externalref.setlastupdate(psrcname=cursrcrefname,pmodeid=dbobj.getid(),psrcid=cursrcrefid)
                             presult.addupdcnt(1, f"Update of {str(jsonobj)}")
                             del newelements[key]  # omit in next loop
                         except Exception as e:
@@ -277,11 +288,18 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                     # fi
                 # fi
             else:
-                """Entry not found via sourceref. It could have a changed different srcref"""
-                dbukobj = jsonobj.getbyanyuk()  # getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
+                """Entry not found via sourceref. It could have a changed different srcref
+                   for checkonly I don't care about whats in the database and I force an insert
+                    """
+
+                if presult.ischeckonly():
+                    dbukobj = None
+                else:
+                    dbukobj = jsonobj.getbyanyuk()  # getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
+
                 """ if an entry with the same UK exists (must have different srcid, otherwise it would not land here)
                     we habe a UK-problem. Otherwise insert the element """
-                if dbukobj is None or presult.ischeckonly():
+                if dbukobj is None :
                     """Entry not found via SRCREF and not found via UK -> it is new"""
                     try:
                         jsonobj.setid(None)  # provoke new ID in new db
@@ -296,21 +314,36 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                             err += f"""\n{e}\n{elem}"""
                             presult.markerror(f"""{err} \n{e}""")
                 else:
-                    """Entry found via UK. update it.  update the external ref as well"""
-                    presult.addfkey(extjsid=key, dbid=dbukobj.getid())
+                    """get from db all external sourcerefs for this db-ID"""
+                    dbsrcrefs = Externalref.getsrcinfo(dbukobj.getid())
+                    """ check if any db-external refs was updated later than the corresponding json ref """
+                    lastupdatedsrcname = whoupdatedmeanwhile(psrcname=cursrcrefname, pjsonsrcrefs=elemsrcrefs,
+                                                             pdbsrcrefs=dbsrcrefs)
+                    if lastupdatedsrcname is not None:
+                        # case 1,2,3
+                        presult.markerror(
+                            f"""*** Double update merge problem for {pelemtype}: DB-id = {dbukobj.getid()} Json-Key = {key}: source "{lastupdatedsrcname}" updated record in DB""")
+                        """ the element is in error, don't try again"""
+                        del newelements[key]  # omit in next loop
+                    else:
+                        """Entry found via UK. update it.  update the external ref as well"""
+                        presult.addfkey(extjsid=key, dbid=dbukobj.getid())
 
-                    if not dbukobj.semanticequal(jsonobj, pequalexceptlist=pequalexceptlist):
-                        try:
-                            """update element found by it's uk"""
-                            dbukobj.semanticcopy(jsonobj)
-                            dbukobj.updatedb(pdoerrhdlng=False)
-                            presult.addupdcnt(1, f"Update of {str(dbukobj)}")
-                            del newelements[key]  # omit in next loop
-                        except Exception as e:
-                            newerrorlist.append(key)
-                            err = f"""*** update-error : {pelemtype} DB-id = {dbobj.getid()} Json-Key = {key}: """
-                            err += f"""\n{elem}"""
-                            presult.markerror(f"""{err} \n{e}""")
+                        if not dbukobj.semanticequal(jsonobj, pequalexceptlist=pequalexceptlist):
+                            try:
+                                """update element found by it's uk"""
+                                dbukobj.semanticcopy(jsonobj)
+                                dbukobj.updatedb(pdoerrhdlng=False)
+                                if pwithextsrcref and cursrcrefid != getelemsrcid(psrcrefs=elem["sourceref"],psrcname=cursrcrefname):
+                                    Externalref.setlastupdate(psrcname=cursrcrefname,pmodeid=dbukobj.getid(),psrcid=cursrcrefid)
+                                presult.addupdcnt(1, f"Update of {str(dbukobj)}")
+                                del newelements[key]  # omit in next loop
+                            except Exception as e:
+                                newerrorlist.append(key)
+                                err = f"""*** update-error : {pelemtype} DB-id = {dbobj.getid()} Json-Key = {key}: """
+                                err += f"""\n{elem}"""
+                                presult.markerror(f"""{err} \n{e}""")
+                        # fi
                     # fi
                 # fi
             # fi
@@ -320,9 +353,9 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
     #check list of sourcerefs, that are in the db but not in the json
     for dbid in dbelemtypesrcrefs.values():
         extrfs = Externalref.getsrcinfo(dbid)
-        if presult.srcname in extrfs:
+        if cursrcrefname in extrfs:
             #remove srcrefentry which was not in jsonfile from db
-            Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?",presult.srcname,dbid))
+            Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?",cursrcrefname,dbid))
 
     presult.savenewerrors()
     return

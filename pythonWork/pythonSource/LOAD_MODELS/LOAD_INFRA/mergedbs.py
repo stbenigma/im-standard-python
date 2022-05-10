@@ -36,14 +36,11 @@ transferprocs = {
 }
 
 def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False):
+
     if not pcheckonly:
         #make sure, the model is consistent with database
         #but not if I am called by the check
-        dbConnect.push()
-        try:
-            assert checkjsonmodel(pmodel=pmodel,pverbose=pverbose)
-        finally:
-            dbConnect.pop()
+        assert checkjsonmodel(pmodel=pmodel,pverbose=pverbose)
 
     #here we need an open database
     assert dbConnect.isopenDB()
@@ -158,9 +155,10 @@ def checkjsonmodel(pmodel, pverbose=False) -> bool:
     languages = list(pmodel.jsmodel['languages'].keys())
 
     # create db in Memory with languages from the json file
-    createnewDB(pdbfilepath=None,pbaselang=baselang,planguages=languages)
+    # save the old DB
+    dbConnect.push()
     try:
-        dbConnect.push()
+        createnewDB(pdbfilepath=None, pbaselang=baselang, planguages=languages)
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,pcheckonly=True)
         logging.info(f"model {modelname}")
         logging.info(f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
