@@ -151,22 +151,21 @@ def do1structtype(filename):
     structdom = structdomains.getroot()
     if (handleXML.findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (handleXML.findField(structdom,"name"))
-    doma = Domain(psrcname=SOURCE_ODM, psrcid=handleXML.findField(structdom, "id"))
-    doma.doma_name = handleXML.findField(structdom, "name")
-    doma.doma_descr = handleXML.findText(structdom, "comment")
-    doma.doma_uc = handleXML.findText(structdom, "createdBy")
-    doma.doma_dc = handleXML.findText(structdom, "createdTime")
-    doma.doma_type = Domain.GRP
-    doma.doma_origin = Domain.DOMAIN
-
-    doma.insert()
+    domaid = Domain(srcname=SOURCE_ODM, srcid=handleXML.findField(structdom, "id"),
+         doma_name = handleXML.findField(structdom, "name"),
+         doma_descr = handleXML.findText(structdom, "comment"),
+         doma_uc = handleXML.findText(structdom, "createdBy"),
+         doma_dc = handleXML.findText(structdom, "createdTime"),
+         doma_type = Domain.GRP,
+         doma_origin = Domain.DOMAIN
+        ).insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:
         # print (doma.doma_name,handleXML.findField(el,"name"),handleXML.findText(el,'type'))
         dgrmsrcid = handleXML.findField(el, 'id')
         dgrm = DomaingroupMember(psrcname=SOURCE_ODM, psrcid=dgrmsrcid)
-        dgrm.dgrm_doma_id_group = doma.doma_id
+        dgrm.dgrm_doma_id_group = domaid
         dgrm.dgrm_name = handleXML.findField(el, "name")
         dgrm.dgrm_descr = handleXML.findText(el, "comment")
         dgrm.dgrm_uc = handleXML.findText(el, "createdBy")
@@ -347,10 +346,10 @@ def do1domainfile(pfilename):
     root = domains.getroot()
 
     for dom in root.findall('domains/Domain'):
-        doma = Domain(psrcname=SOURCE_ODM, psrcid=handleXML.findField(dom, "id"))
-        doma.doma_name = handleXML.findField(dom, "name")
-        doma.doma_descr = handleXML.findText(dom, 'comment')
-        doma.doma_origin = Domain.DOMAIN
+        doma = Domain(srcname=SOURCE_ODM, srcid=handleXML.findField(dom, "id"),
+             doma_name = handleXML.findField(dom, "name"),
+             doma_descr = handleXML.findText(dom, 'comment'),
+             doma_origin = Domain.DOMAIN)
         doma = liesunsfuelldoma(pdoma=doma, pxml=dom)
 
         intfname = interfacename(handleXML.findField(root, 'fileName'))
@@ -822,8 +821,8 @@ def transferdiagramme():
 
 
 def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, pintfid=None):
-    doma = Domain(psrcname=SOURCE_ODM, psrcid=Modelelemtype.DOMA + handleXML.findField(pattrxml, 'id'))
-    doma.doma_name = pattrname
+    doma = Domain(srcname=SOURCE_ODM, srcid=Modelelemtype.DOMA + handleXML.findField(pattrxml, 'id'),
+         doma_name = pattrname)
     domatest = Domain.getbyname(pname=doma.doma_name)
     if (domatest is not None):
         # es gibt ihn schon, füge den Vaternamen dazu
@@ -885,11 +884,12 @@ def do1Arc(fileName):
     arcXML = handleXML.parseXML(pfilename=fileName).getroot()
     if (handleXML.findField(arcXML, "class") != "oracle.dbtools.crest.model.design.logical.Arc"): return
 
-    arc = Arc(pname=handleXML.findField(arcXML, "name")
-              , pentiid=Entity().getIDbyextref(psrcid=handleXML.findText(arcXML, 'entity'),psrcname=SOURCE_ODM)
-              , puc=handleXML.findText(arcXML, 'createdBy')
-              , pdc=handleXML.findText(arcXML, 'createdTime')
-              , psrcname=SOURCE_ODM, psrcid=handleXML.findField(arcXML, "id"))
+    arc = Arc(arcs_name=handleXML.findField(arcXML, "name")
+              , arcs_enti_id=Entity().getIDbyextref(psrcid=handleXML.findText(arcXML, 'entity')
+                                 ,psrcname=SOURCE_ODM)
+              , arcs_uc=handleXML.findText(arcXML, 'createdBy')
+              , arcs_dc=handleXML.findText(arcXML, 'createdTime')
+              , srcname=SOURCE_ODM, srcid=handleXML.findField(arcXML, "id"))
     arcid = arc.insert()
 
     """map all relations to this arc"""
@@ -1362,8 +1362,9 @@ def doSubentities():
         if superentity is not None:  # skip arc if superentity reference is broken
             superenti = getentity(superentiguid, "entity")
             subentiids = getentity(superentiguid, "subentities")
-            arc = Arc(pname=superenti.enti_name + '_subtype', pentiid=superenti.enti_id
-                      , puc=superenti.enti_uc, pdc=superenti.enti_dc)
+            arc = Arc(srcname=SOURCE_ODM,srcid=f"ARCS-{superenti.enti_id}-subtype",
+                      arcs_name=superenti.enti_name + '_subtype', arcs_enti_id=superenti.enti_id
+                      ,arcs_uc=superenti.enti_uc, arcs_dc=superenti.enti_dc)
             arc.insert()
             Relation.insertisa(parc=arc, pentiids=subentiids)
         # fi

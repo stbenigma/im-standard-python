@@ -36,15 +36,12 @@ def getrelation(pguid,pvalue=None):
 def initDomains():
     daty_id = Datatype(pname="unknown"
                        , pbasetype=Datatype.STRING
-                       , psrcname=Externalref.SOURCE_EAXML, pscrid="DATYunknown"
+                       , psrcname=Externalref.SOURCE_EAXMI, pscrid="DATYunknown"
                        ).insert()
 
-    doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid="DOMAunknown")
-    doma.doma_name = "unknown"
-    doma.daty_id = daty_id
-    doma.doma_type = Domain.TXT
-    doma.doma_origin = Domain.DOMAIN
-    doma.insert()
+    doma = Domain(srcname=SOURCE_EAXMI, srcid="DOMAunknown",
+                  doma_name = "unknown",daty_id = daty_id,
+                  doma_type = Domain.TXT,doma_origin = Domain.DOMAIN)insert()
     return
 
 
@@ -105,7 +102,7 @@ def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
 
 def do1entitydiag(pdiagxml):
     diagguid = handleXML.findColumn(pdiagxml, 'ea_guid')
-    diag = Diagram(psrcname=Externalref.SOURCE_EAXML, psrcid=diagguid)
+    diag = Diagram(psrcname=Externalref.SOURCE_EAXMI, psrcid=diagguid)
     diag.diag_name = handleXML.findColumn(pdiagxml, 'Name')
     diag.diag_diat_id = Diagramtype.getbyname(pname=Diagramtype.ENTITY).diat_id
 
@@ -286,7 +283,7 @@ def do1Attribute(pattrxml):
     attrname = handleXML.findColumn(pattrxml, "Name")
 
     attr = Attribute(pname=transferModel.removeattrmeta(attrname), pentiid=vater.enti_id
-                     , psrcname=Externalref.SOURCE_EAXML, psrcid=handleXML.findColumn(pattrxml, 'ea_guid'))
+                     , psrcname=Externalref.SOURCE_EAXMI, psrcid=handleXML.findColumn(pattrxml, 'ea_guid'))
     if attr.attr_tech_name is None:
         attr.attr_tech_name = re.sub('[-,.()\[\]äöüèéàÄ~ÖÜ ]', '_', str.upper(attr.attr_displ_name))
     attr.attr_uc = "filldbea"
@@ -386,7 +383,7 @@ def handleSuperentities():
 
 def do1Entity(pentitiy):
     entiguid: str = handleXML.findColumn(pentitiy, 'ea_guid')
-    enti = Entity(psrcname=Externalref.SOURCE_EAXML, psrcid=entiguid)
+    enti = Entity(psrcname=Externalref.SOURCE_EAXMI, psrcid=entiguid)
     enti.enti_name = handleXML.findColumn(pentitiy, "Name")
     enti.enti_descr = handleXML.findColumn(pentitiy, 'Note')
     enti.enti_uc = handleXML.findColumn(pentitiy, 'Author')
@@ -428,27 +425,26 @@ def do1LOV(plovvalue):
 
 def do1Domain(pdomain):
     domaguid: str = handleXML.findColumn(pdomain, 'ea_guid')
-    doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid=domaguid)
-    doma.doma_name = handleXML.findColumn(pdomain, "Name")
-    doma.doma_origin = Domain.DOMAIN
-    doma.doma_type = Domain.LOV
-    doma.doma_descr = handleXML.findColumn(pdomain, 'Note')
-    doma.doma_uc = handleXML.findColumn(pdomain, 'Author')
-    doma.doma_dc = handleXML.findColumn(pdomain, 'CreatedDate')
-    doma.doma_dm = handleXML.findColumn(pdomain, 'ModifiedDate')
-
-    domaId = doma.insert()
+    domaid = Domain(srcname=Externalref.SOURCE_EAXMI, srcid=domaguid,
+                    doma_name = handleXML.findColumn(pdomain, "Name"),
+                    doma_origin = Domain.DOMAIN,
+                    doma_type = Domain.LOV,
+                    doma_descr = handleXML.findColumn(pdomain, 'Note'),
+                    doma_uc = handleXML.findColumn(pdomain, 'Author'),
+                    doma_dc = handleXML.findColumn(pdomain, 'CreatedDate'),
+                    doma_dm = handleXML.findColumn(pdomain, 'ModifiedDate')
+                    )insert()
     return
 
 
 def do1Arc(parc):
 
     arcguid: str = handleXML.findColumn(parc, 'ea_guid')
-    arc = Arc(psrcname=Externalref.SOURCE_EAXML, psrcid=arcguid)
-    arc.arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID")
-    arc.arcs_uc = handleXML.findColumn(parc, 'Author')
-    arc.arcs_dc = handleXML.findColumn(parc, 'CreatedDate')
-    arc.arcs_dm = handleXML.findColumn(parc, 'ModifiedDate')
+    arc = Arc(srcname=Externalref.SOURCE_EAXMI, srcid=arcguid,
+    arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID"),
+    arcs_uc = handleXML.findColumn(parc, 'Author'),
+    arcs_dc = handleXML.findColumn(parc, 'CreatedDate'),
+    arcs_dm = handleXML.findColumn(parc, 'ModifiedDate'))
 
     arcbase,arcrelas = [],[]
     for relaguid in getrelationkeys():
@@ -500,7 +496,7 @@ def do1Relation(prelaxml):
     dstenti = Entity().getbyextref(psrcid=dstentiguid,psrcname=SOURCE_EAXMI)
     relaname = "RELA-" + handleXML.findColumn(prelaxml, "Connector_ID")
 
-    rela = Relation(psrcname=Externalref.SOURCE_EAXML, psrcid=relaguid)
+    rela = Relation(psrcname=Externalref.SOURCE_EAXMI, psrcid=relaguid)
     rela.rela_name = relaname
     rela.rela_assoc_from_to = handleXML.findColumn(prelaxml, 'SourceRole')
     rela.rela_hist_from_to = Boolean.bool2str(transferModel.is_historisized(rela.rela_assoc_from_to))

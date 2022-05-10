@@ -40,11 +40,10 @@ class Domain(MultilangBaseobject):
     _columnlist: list = []
     _defaultorderby = "doma_name"
 
-    def __init__(self, psrcname=None, psrcid=None):
+    def __init__(self, **kwargs):
 
         super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
-                         , pscrid=psrcid
-                         , psrcname=psrcname
+                         , **kwargs
                          )
 
     def getname(self, plang=None):

@@ -42,12 +42,9 @@ def initDomains():
                        , psrcname=Externalref.SOURCE_EAXML, pscrid="DATYunknown"
                        ).insert()
 
-    doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid="DOMAunknown")
-    doma.doma_name = "unknown"
-    doma.daty_id = daty_id
-    doma.doma_type = Domain.TXT
-    doma.doma_origin = Domain.DOMAIN
-    doma.insert()
+    Domain(srcname=Externalref.SOURCE_EAXML, srcid="DOMAunknown",
+           doma_name = "unknown", daty_id = daty_id,
+        doma_type = Domain.TXT,doma_origin = Domain.DOMAIN)insert()
     return
 
 
@@ -480,16 +477,15 @@ def do1LOV(plovvalue):
 
 def do1Domain(pdomain):
     domaguid: str = handleXML.findColumn(pdomain, 'ea_guid')
-    doma = Domain(psrcname=Externalref.SOURCE_EAXML, psrcid=domaguid)
-    doma.doma_name = handleXML.findColumn(pdomain, "Name")
-    doma.doma_origin = Domain.DOMAIN
-    doma.doma_type = Domain.LOV
-    doma.doma_descr = handleXML.findColumn(pdomain, 'Note')
-    doma.doma_uc = handleXML.findColumn(pdomain, 'Author')
-    doma.doma_dc = handleXML.findColumn(pdomain, 'CreatedDate')
-    doma.doma_dm = handleXML.findColumn(pdomain, 'ModifiedDate')
-
-    domaId = doma.insert()
+    domaid = Domain(srcname=Externalref.SOURCE_EAXML, srcid=domaguid,
+         doma_name = handleXML.findColumn(pdomain, "Name"),
+         doma_origin = Domain.DOMAIN,
+         doma_type = Domain.LOV,
+         doma_descr = handleXML.findColumn(pdomain, 'Note'),
+         doma_uc = handleXML.findColumn(pdomain, 'Author'),
+         doma_dc = handleXML.findColumn(pdomain, 'CreatedDate'),
+         doma_dm = handleXML.findColumn(pdomain, 'ModifiedDate')
+       )insert()
     return
 
 arcboxes = []
@@ -498,11 +494,11 @@ def do1Arcbox(parc):
     arcguid: str = handleXML.findColumn(parc, 'ea_guid')
     arcobjectid: str = handleXML.findColumn(parc, 'Object_ID')
     arcboxes.append(arcguid)
-    arc = Arc(psrcname=Externalref.SOURCE_EAXML, psrcid=arcguid)
-    arc.arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID")
-    arc.arcs_uc = handleXML.findColumn(parc, 'Author')
-    arc.arcs_dc = handleXML.findColumn(parc, 'CreatedDate')
-    arc.arcs_dm = handleXML.findColumn(parc, 'ModifiedDate')
+    arc = Arc(srcname=Externalref.SOURCE_EAXML, srcid=arcguid,
+    arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID"),
+    arcs_uc = handleXML.findColumn(parc, 'Author'),
+    arcs_dc = handleXML.findColumn(parc, 'CreatedDate'),
+    arcs_dm = handleXML.findColumn(parc, 'ModifiedDate'))
     arc.insert()
     return
 
@@ -510,11 +506,11 @@ def do1Arcbox(parc):
 
 def do1Arc(parc):
     arcguid: str = handleXML.findColumn(parc, 'ea_guid')
-    arc = Arc(psrcname=Externalref.SOURCE_EAXML, psrcid=arcguid)
-    arc.arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID")
-    arc.arcs_uc = handleXML.findColumn(parc, 'Author')
-    arc.arcs_dc = handleXML.findColumn(parc, 'CreatedDate')
-    arc.arcs_dm = handleXML.findColumn(parc, 'ModifiedDate')
+    arc = Arc(srcname=Externalref.SOURCE_EAXML, srcid=arcguid,
+    arcs_name = handleXML.findColumn(parc, "Name") + handleXML.findColumn(parc, "Object_ID"),
+    arcs_uc = handleXML.findColumn(parc, 'Author'),
+    arcs_dc = handleXML.findColumn(parc, 'CreatedDate'),
+    arcs_dm = handleXML.findColumn(parc, 'ModifiedDate'))
 
     arcbase, arcrelas = [], []
     for relaguid in getrelationkeys():

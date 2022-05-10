@@ -160,13 +160,13 @@ def arcs2js(pemptymodel):
     return retval
 
 def js2arcs(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
-    arc = Arc(pname=pelem['name'],psrcname=psrcname,psrcid=psrcid)
-    arc.arcs_id = pkey
-    arc.arcs_enti_id = pelem['entity']
-    arc.arcs_uc = pelem['uc']
-    arc.arcs_dc = pelem['dc']
-    arc.arcs_um = pelem['um']
-    arc.arcs_dm = pelem['dm']
+    arc = Arc(srcname=psrcname,srcid=psrcid,arcs_name=pelem['name'],
+            arcs_id = pkey,
+            arcs_enti_id = pelem['entity'],
+            arcs_uc = pelem['uc'],
+            arcs_dc = pelem['dc'],
+            arcs_um = pelem['um'],
+            arcs_dm = pelem['dm'])
     return arc
 
 def arcs2sql(presult:Mergeresult, pjson: JSModel, pwithextsrcref):
