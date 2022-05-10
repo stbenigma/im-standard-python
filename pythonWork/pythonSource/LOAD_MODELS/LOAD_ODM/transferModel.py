@@ -151,14 +151,15 @@ def do1structtype(filename):
     structdom = structdomains.getroot()
     if (handleXML.findField(structdom, "class") != "oracle.dbtools.crest.model.design.datatypes.StructuredType"): return
     # print (handleXML.findField(structdom,"name"))
-    domaid = Domain(srcname=SOURCE_ODM, srcid=handleXML.findField(structdom, "id"),
+    doma = Domain(srcname=SOURCE_ODM, srcid=handleXML.findField(structdom, "id"),
          doma_name = handleXML.findField(structdom, "name"),
          doma_descr = handleXML.findText(structdom, "comment"),
          doma_uc = handleXML.findText(structdom, "createdBy"),
          doma_dc = handleXML.findText(structdom, "createdTime"),
          doma_type = Domain.GRP,
          doma_origin = Domain.DOMAIN
-        ).insert()
+        )
+    domaid = doma.insert()
 
     elements = structdom.findall("attributes/Attribute")
     for el in elements:

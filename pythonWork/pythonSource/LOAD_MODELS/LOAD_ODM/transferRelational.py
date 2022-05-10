@@ -203,8 +203,8 @@ def doattrmapping(pcolmappings):
                                 for mg in cntmapxml]"""
         if (colmap["rtype"] ==  Odmmapping.RELKEYTYPE and colmap['ltype'] == Odmmapping.KEYTYPE):
             continue
-        attrid = Externalref.getmodeid (psrcid=colmap['lID'],psrcname=SOURCE_ODM)
-        colu = Externalref.getmodeid(psrcid=colmap['rID'],psrcname=SOURCE_ODM)
+        attrid = Externalref.getmodeid (psrcid=colmap['lID'],psrcname=transferModel.SOURCE_ODM)
+        colu = Externalref.getmodeid(psrcid=colmap['rID'],psrcname=transferModel.SOURCE_ODM)
         if ((colu is None) or (attrid is None)):
             logmessages.writelog ("Column-Reference ({}:{}) or Attribute Reference ({}:{}) not found"
                                   .format(colmap['rtype'],colmap['rID'],colmap['ltype'],colmap['lID']))

@@ -99,7 +99,7 @@ class ModelelemOrgu(Baseobject):
 
     def __init__(self,**kwargs):
 
-        super().__init__(kwargs)
+        super().__init__(**kwargs)
 
 
     @staticmethod

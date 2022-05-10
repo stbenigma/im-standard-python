@@ -67,7 +67,7 @@ class test_jsobjects(unittest.TestCase):
             self.assertEqual('',emptyactr['ACTR0000']['name'])
             self.assertEqual('RACI',emptyactr['ACTR0000']['concerns']['xxxx0000'])
             actr = jsactorroles.js2actr(pkey='ACTR0000', pelem=emptyactr['ACTR0000'])
-            self.assertEqual(0,actr.actr_id)
+            self.assertEqual('ACTR0000',actr.actr_id)
 
 
             #actors from ODM

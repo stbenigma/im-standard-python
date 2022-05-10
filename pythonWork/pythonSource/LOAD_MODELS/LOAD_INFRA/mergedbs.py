@@ -1,3 +1,5 @@
+import logging
+
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
@@ -37,9 +39,11 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
     if not pcheckonly:
         #make sure, the model is consistent with database
         #but not if I am called by the check
-        opencon = dbConnect.getdbcon()
-        assert checkjsonmodel(pmodel=pmodel,pverbose=pverbose)
-        dbConnect.setdbcon(opencon)
+        dbConnect.push()
+        try:
+            assert checkjsonmodel(pmodel=pmodel,pverbose=pverbose)
+        finally:
+            dbConnect.pop()
 
     #here we need an open database
     assert dbConnect.isopenDB()
@@ -82,6 +86,7 @@ def connecttodbcopy():
     memconn = dbConnect.connectmemorydb()
     dbConnect.getdbcon().backup(memconn)
     dbConnect.closeDB()
+    dbConnect.makedbsafe(memconn)
     dbConnect.setdbcon(memconn)
     assert dbConnect.isopenDB()
     return dbConnect.getdbcon()
@@ -153,22 +158,23 @@ def checkjsonmodel(pmodel, pverbose=False) -> bool:
     languages = list(pmodel.jsmodel['languages'].keys())
 
     # create db in Memory with languages from the json file
-
     createnewDB(pdbfilepath=None,pbaselang=baselang,planguages=languages)
+    try:
+        dbConnect.push()
+        mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,pcheckonly=True)
+        logging.info(f"model {modelname}")
+        logging.info(f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
+        logging.info(f"Baselanguage: {baselang}  Languages: {languages}")
+        logging.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
+        logging.info(
+            f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
 
-    mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,pcheckonly=True)
-    logging.info(f"model {modelname}")
-    logging.info(f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
-    logging.info(f"Baselanguage: {baselang}  Languages: {languages}")
-    logging.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
-    logging.info(
-        f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
-
-    for dbe in mergeresult.errors:
-        logging.info(dbe)
-    for w in mergeresult.warnings:
-        logging.info(w)
-    dbConnect.closeDB()
+        for dbe in mergeresult.errors:
+            logging.error(dbe)
+        for w in mergeresult.warnings:
+            logging.warning(w)
+    finally:
+        dbConnect.pop()
     return len(mergeresult.errors) == 0
 
 

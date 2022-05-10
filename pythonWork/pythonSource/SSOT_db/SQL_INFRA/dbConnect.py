@@ -12,6 +12,40 @@ from SSOT_db.IM_OBJECTS import Language
 myDbConn: sqlite3.Connection = None
 #db version read from database view dbversion
 actualdbversion = {}
+opendbs = []
+
+def push():
+    global opendbs
+    """pushes the current connection (myDbConn)
+       and resets myDbConn to None
+       if myDbConn is empty, nothing is done  
+       """
+    if myDbConn is not None:
+        opendbs.append(myDbConn)
+        setdbcon(None)
+    return
+
+def pop ()->sqlite3.Connection:
+    global opendbs
+    """ if myDbConn is open, close it
+        returnvalue and myDbConn = None if stack is empty
+       if not, connection from stack is set to myDbConn and returned
+       """
+    if isopenDB():
+        closeDB()
+    actconn = None if (len(opendbs)==0) else opendbs.pop()
+    setdbcon(actconn)
+    return actconn
+
+def resetconnstack():
+    """empties connection stack and closes all connections if still open
+       should only be used in testing
+    """
+    global opendbs
+    while len(opendbs)>0:
+        opendbs.pop()
+    return
+
 
 def openDBbasic(pfilepath, pfks='ON') -> sqlite3.Connection:
     """ opens the db pfilepath
@@ -22,9 +56,13 @@ def openDBbasic(pfilepath, pfks='ON') -> sqlite3.Connection:
         setversion()
     except Exception as exp:
         raise exp
-    getdbcon().execute(f"PRAGMA foreign_keys = {pfks}")
-    getdbcon().execute("PRAGMA main.cache_size = -2000")
+    makedbsafe(pdbcon=getdbcon(),pfks=pfks)
     return getdbcon()
+
+def makedbsafe(pdbcon,pfks='ON'):
+    pdbcon.execute(f"PRAGMA foreign_keys = {pfks}")
+    pdbcon.execute("PRAGMA main.cache_size = -2000")
+    return
 
 
 def opendDB4DDL(pfilepath, pfks="OFF") -> sqlite3.Connection:
