@@ -9,30 +9,31 @@ import sys
 SOURCE_SPOD:str='SPOD' #default source for SPOD-internal updates
 
 nofunc = lambda p: None
-# json-key: (processorder,baseobjectload, referencesload,hasexternalref)
+# json-key: (processorder,baseobjectload, referencesload,hasexternalref,tablename)
+# table name is only allowed for entries with typcial json-ids (xxxxNNNN)
 transferprocs = {
-    'model': (1, proj2sql, nofunc, False)
-    , 'languages': (2, langs2sql, nofunc, False)
-    , 'physicalunits': (3, physicalunits2sql, nofunc, False)
-    , 'datatypes': (4, datatypes2sql, nofunc, True)
-    , 'storageformats': (5, storageformats2sql, nofunc, False)
-    , 'documents': (6, documents2sql, nofunc, True)
-    , 'orgunits': (7, orgunits2sql, nofunc, True)
-    , 'actorroles': (7, actorroles2sql, actorconcerns2sql, True)
-    , 'categories': (7, entitycategory2sql, nofunc, False)
-    , 'userdefprops': (8, udps2sql, nofunc, False)
-    , 'systems': (10, systems2sql, nofunc, True)
-    , 'domains': (12, domains2sql, nofunc, True)
-    , 'entities': (14, entities2sql, nofunc, True)
-    , 'attributes': (16, attributes2sql, nofunc, True)
-    , 'arcs': (18, arcs2sql, nofunc, True)
-    , 'relations': (20, relations2sql, nofunc, True)
-    , 'keys': (22, keys2sql, nofunc, True)
-    , 'tables': (30, tables2sql, nofunc, True)
-    , 'columns': (32, columns2sql, nofunc, True)
-    , 'businessrules': (33, businessrules2sql, nofunc, True)
-    , 'diagrams': (34, diagrams2sql, nofunc, True)
-    , '_imprint_': (99, nofunc, nofunc, True)
+    'model': (1, proj2sql, nofunc, False,None)
+    , 'languages': (2, langs2sql, nofunc, False,None)
+    , 'physicalunits': (3, physicalunits2sql, nofunc, False,PhysicalUnit._tablename)
+    , 'datatypes': (4, datatypes2sql, nofunc, True,Datatype._tablename)
+    , 'storageformats': (5, storageformats2sql, nofunc, False,Storageformat._tablename)
+    , 'documents': (6, documents2sql, nofunc, True,Document._tablename)
+    , 'orgunits': (7, orgunits2sql, nofunc, True,OragnisationalUnit._tablename)
+    , 'actorroles': (7, actorroles2sql, actorconcerns2sql, True,Actorrole._tablename)
+    , 'categories': (7, entitycategory2sql, nofunc, False,EntityCategory._tablename)
+    , 'userdefprops': (8, udps2sql, nofunc, False,Userdefprop._tablename)
+    , 'systems': (10, systems2sql, nofunc, True,Interface._tablename)
+    , 'domains': (12, domains2sql, nofunc, True,Domain._tablename)
+    , 'entities': (14, entities2sql, nofunc, True,Entity._tablename)
+    , 'attributes': (16, attributes2sql, nofunc, True,Attribute._tablename)
+    , 'arcs': (18, arcs2sql, nofunc, True,Arc._tablename)
+    , 'relations': (20, relations2sql, nofunc, True,Relation._tablename)
+    , 'keys': (22, keys2sql, nofunc, True,Key._tablename)
+    , 'tables': (30, tables2sql, nofunc, True,Table._tablename)
+    , 'columns': (32, columns2sql, nofunc, True,Column._tablename)
+    , 'businessrules': (33, businessrules2sql, nofunc, True,BusinessRule._tablename)
+    , 'diagrams': (34, diagrams2sql, nofunc, True,Diagram._tablename)
+    , '_imprint_': (99, nofunc, nofunc, True,None)
 }
 
 def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False):
@@ -62,6 +63,27 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
         # fi
     # for
 
+    # while checking, there is no delete
+    if not pcheckonly:
+        # delete in reversed order (because of possible references) all elements which are no longer relevant
+        # cannot be done in fromjson2db because dependencies might exists
+        for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0],reverse=True):
+            extref = transferprocs[masterobject][3]
+            if extref:
+                #it is an element with external reference
+                cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
+                result.adddelcnt(cnt,masterobject)
+            else:
+                #no external reference. Delete entry, if its key does not exists in the json-file
+                #the table is mapped to a db-objects
+                tablename = transferprocs[masterobject][4]
+                if tablename in table2class:
+                    jsonids = tuple(jsguid2id(key) for key in pmodel.getelements(masterobject).keys())
+                    cnt = table2class[tablename].deletemissingids(jsonids)
+                    result.adddelcnt(cnt, masterobject)
+            #fi
+        # for
+
     rev = pmodel.jsmodel['_imprint_']['git-revision']
     logging.info(f"Writing git revision {rev} to DB")
     dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
@@ -71,7 +93,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
         """clean up and set final project parameters"""
         Language.deleteunused()
         proj: Project = Project.select()[0]
-        proj.proj_um, proj.proj_dm = Baseobject.defaultCreator, datetime.today()
+        proj.proj_um, proj.proj_dm = psrcname, datetime.now()
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     # fi

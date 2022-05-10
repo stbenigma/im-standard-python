@@ -272,6 +272,17 @@ class Modelelement(Baseobject):
         dbDML.exec(lsql)
         return
 
+    @staticmethod
+    def deletenonreferenced(pmodetype):
+        """ delete all modelelements which do not longer have an external reference
+        """
+        cnt = Modelelement.delete(pwhere=("""mode_type = ? 
+                                and not exists 
+                                (select 1 from external_refs 
+                                where extr_mode_id = mode_id)""",pmodetype))
+        return cnt
+
+
 
 class ModelelementProperty(Baseobject):
     _tablename: str = 'modelemtype_properties'

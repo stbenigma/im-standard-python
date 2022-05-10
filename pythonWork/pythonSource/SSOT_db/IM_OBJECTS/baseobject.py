@@ -457,6 +457,14 @@ class Baseobject:
         return retval
 
     @classmethod
+    def deletemissingids(cls, pids:tuple):
+        cnt = 0
+        if len(pids) > 0:
+            cnt = cls.delete(pwhere = (f"{cls._idcolname} not in ({','.join('?' * len(pids))})",*pids))
+        return cnt
+
+
+    @classmethod
     def columnsliststring(cls, pplaceholder=False):
         return ','.join('?' if pplaceholder else col for col in cls._columnlist.keys())
 
