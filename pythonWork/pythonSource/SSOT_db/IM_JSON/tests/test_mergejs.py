@@ -137,10 +137,11 @@ class TestMergeJson(unittest.TestCase):
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        savecurrentdbandjson(curmodel)
         dbConnect.closeDB()
-
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
+
         newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,psrcname=self.srcname,
                                       pverbose=True, pdryrun=True)
         sys.stdout = sys.__stdout__  # Reset redirect.

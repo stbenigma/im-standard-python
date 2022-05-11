@@ -79,8 +79,8 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
                 tablename = transferprocs[masterobject][4]
                 if tablename in table2class:
                     jsonids = tuple(jsguid2id(key) for key in pmodel.getelements(masterobject).keys())
-                    cnt = table2class[tablename].deletemissingids(jsonids)
-                    result.adddelcnt(cnt, masterobject)
+                    #cnt = table2class[tablename].deletemissingids(jsonids)
+                    #result.adddelcnt(cnt, masterobject)
             #fi
         # for
 
@@ -89,7 +89,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
     dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
     dbConnect.getdbcon().commit()
 
-    if (len(result.errors) == 0):
+    if not pcheckonly and (len(result.errors) == 0):
         """clean up and set final project parameters"""
         Language.deleteunused()
         proj: Project = Project.select()[0]
