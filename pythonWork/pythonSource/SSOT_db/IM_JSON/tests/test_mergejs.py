@@ -126,11 +126,12 @@ class TestMergeJson(unittest.TestCase):
 
     def test_mergefull(self):
         def savecurrentdbandjson(pjson):
-            import sqlite3
-            locconn = sqlite3.connect("/Users/stb/Downloads/savedb.db")
-            dbConnect.getdbcon().backup(locconn)
-            locconn.close()
-            pjson.printmodel(pfilepath="/Users/stb/Downloads", pfilename="savejson.json")
+            #can be used to save the current (memory-)database and a json file to filesystem
+            # import sqlite3
+            # locconn = sqlite3.connect("savedb.db")
+            # dbConnect.getdbcon().backup(locconn)
+            # locconn.close()
+            # pjson.printmodel(pfilepath=".", pfilename="savejson.json")
             return
 
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
