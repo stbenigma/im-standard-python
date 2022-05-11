@@ -74,7 +74,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
                 cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
                 result.adddelcnt(cnt,masterobject)
             else:
-                #no external reference. Delete entry, if its key does not exists in the json-file
+                #no external reference. Delete entry, if its key does not exist in the json-file
                 #the table is mapped to a db-objects
                 tablename = transferprocs[masterobject][4]
                 if tablename in table2class:
