@@ -134,9 +134,9 @@ class ModelelemDocu(Baseobject):
 
 
     @staticmethod
-    def insertdocuref(pdocguidlist,pmodeid):
-        if pdocguidlist is None: return
-        for docuid in pdocguidlist:
+    def insertdocuref(pdocidlist, pmodeid):
+        if pdocidlist is None: return
+        for docuid in pdocidlist:
             ModelelemDocu(modo_docu_id= docuid,modo_mode_id = pmodeid).insert()
         #for
         return

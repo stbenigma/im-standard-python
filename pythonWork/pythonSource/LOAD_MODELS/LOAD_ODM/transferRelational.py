@@ -60,7 +60,7 @@ def do1column(plfnr, pcolxml, ptablid):
     transferModel.updateUDP(pmodeid=colu.colu_id, pobj=pcolxml)
     colu.fillextid()
     documents = transferModel.getdokuref(pelem= pcolxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=colu.colu_id)
+    ModelelemDocu.insertdocuref(pdocidlist=documents, pmodeid=colu.colu_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=pcolxml), pmodeid=colu.colu_id)
 #do1column
 
@@ -79,7 +79,7 @@ def do1table(pfilename):
     Userdefpropvalue.fillallvalues(ptablid=tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=tabl.tabl_id)
+    ModelelemDocu.insertdocuref(pdocidlist=documents, pmodeid=tabl.tabl_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=tablexml), pmodeid=tabl.tabl_id)
 
     """<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">"""
@@ -111,7 +111,7 @@ def do1interface(pfilename):
     intf.insert()
 
     #Dokumente an dieser Interface
-    ModelelemDocu.insertdocuref(pdocguidlist= transferModel.getdokuref(pelem=intfxml, pstruct=True), pmodeid    = intf.intf_id)
+    ModelelemDocu.insertdocuref(pdocidlist= transferModel.getdokuref(pelem=intfxml, pstruct=True), pmodeid    = intf.intf_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=intfxml), pmodeid=intf.intf_id)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)

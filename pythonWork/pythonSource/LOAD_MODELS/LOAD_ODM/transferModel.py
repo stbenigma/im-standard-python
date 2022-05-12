@@ -1076,7 +1076,7 @@ def do1Attribute(plfnr, pattrxml, pentiId):
     updateUDP(pmodeid=attrId, pobj=pattrxml)
 
     documents = getdokuref(pelem=pattrxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=attrId)
+    ModelelemDocu.insertdocuref(pdocidlist=documents, pmodeid=attrId)
     ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=pattrxml),pmodeid=attrId)
 
     doconstraints(pelemname=vatername + '.' + attr.attr_tech_name, pmodetype=Modelelemtype.ATTR, pmodeid=attrId,
@@ -1157,9 +1157,12 @@ def getdokuref(pelem, pstruct=False):
             documentids = []
             for idx, doc in enumerate(docs, start=1):
                 # alle referenzierten Dokumente
-                docguid = Externalref.getmodeid(psrcid=handleXML.findField(doc, 'id'),psrcname=SOURCE_ODM)
-                # print(docguid)
-                documentids.append(docguid)
+                docuid = Externalref.getmodeid(psrcid=handleXML.findField(doc, 'id'),psrcname=SOURCE_ODM)
+                if docuid is None:
+                    logmessages.writelog(f"document guid {handleXML.findField(doc, 'id')} not found for element {handleXML.findField(pelem, 'id')}:{handleXML.findField(pelem, 'name')}")
+                    logging.error(f"document guid {handleXML.findField(doc, 'id')} not found for element {handleXML.findField(pelem, 'id')}:{handleXML.findField(pelem, 'name')}")
+                else:
+                    documentids.append(docuid)
             # for
             documentids = tuple(documentids)
         # fi
@@ -1169,7 +1172,16 @@ def getdokuref(pelem, pstruct=False):
         docs = handleXML.findField(pelem.find("documents"), 'usedDucuments')
         if (docs is not None):
             docguids = docs.split(' ')
-            documentids = tuple(Externalref.getmodeid(psrcid=d,psrcname=SOURCE_ODM) for d in docguids)
+            documentids = []
+            for docguid in docguids:
+                docuid = Externalref.getmodeid(psrcid=docguid, psrcname=SOURCE_ODM)
+                if docuid is None:
+                    logmessages.writelog(f"document guid {docguid} not found for element {handleXML.findField(pelem, 'id')}:{handleXML.findField(pelem, 'name')}")
+                    logging.error(
+                        f"document guid {docguid} not found for element {handleXML.findField(pelem, 'id')}:{handleXML.findField(pelem, 'name')}")
+                else:
+                    documentids.append(docuid)
+            documentids = tuple(documentids)
     # fi
     # print(documents)
     return documentids
@@ -1306,7 +1318,7 @@ def do1Entity(fileName):
 
     updateUDP(pmodeid=entiId, pobj=entixml)
 
-    ModelelemDocu.insertdocuref(pdocguidlist=getdokuref(pelem=entixml), pmodeid=entiId)
+    ModelelemDocu.insertdocuref(pdocidlist=getdokuref(pelem=entixml), pmodeid=entiId)
     ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=entixml), pmodeid=entiId)
 
     attrs = entixml.find('attributes')
@@ -1448,7 +1460,7 @@ def do1Relation(fileName):
     Userdefpropvalue.fillallvalues(prelaid=rela.rela_id)
 
     updateUDP(pmodeid=rela.rela_id, pobj=relaxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=rela.rela_id)
+    ModelelemDocu.insertdocuref(pdocidlist=documents, pmodeid=rela.rela_id)
     ModelelemOrgu.insertorguref(porguidlist=getpartyref(pelem=relaxml), pmodeid=rela.rela_id)
 
     attrs = relaxml.find('attributes')

@@ -186,7 +186,7 @@ def upgradedb(c, model=None):
             #c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
         return
 
-    load_tools_library()
+    print (load_tools_library())
     if model is None:
         for model in ('crmTest','riddle','testmodel-1','testmodel-2'):
             upgrade1db(model)
