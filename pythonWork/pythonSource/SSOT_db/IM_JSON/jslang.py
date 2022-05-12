@@ -122,6 +122,6 @@ def langs2sql(presult:Mergeresult, pjson:JSModel,pwithextsrcref):
     """check all languages have replacementlanguage"""
     langs = Language.getlangswithillegalreplacement()
     if len(langs) > 0:
-        presult.markdberror(f"Illegal replacementlanguage(s) {','.l.lang_iso_code2 for l in langs}")
+        presult.markdberror(perr="Illegal replacementlanguage(s)",pelem=','.join(l.lang_iso_code2 for l in langs))
     return
 # langs2sql
