@@ -142,18 +142,15 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
                 print(dbe)
         for w in mergeresult.warnings:
             print(w)
-        print("Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
+        print(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
         print(f"elements changed in database {dbConnect.getDBname()}")
         print(
             f"    {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
         if pdryrun:
             print(f"***** Database was not modified ****")
 
-        if len(mergeresult.errors) == 0:
-            """generate json from merged DB"""
-            retval = JSModel(pmodel=sql2json())
-        else:
-            raise Exception("Errors while merging")
+        """generate json from merged DB"""
+        retval = JSModel(pmodel=sql2json())
 
     finally:
         if dbConnect.isopenDB():
