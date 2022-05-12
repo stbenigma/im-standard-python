@@ -1,5 +1,3 @@
-from SSOT_infra.parameters import SUPPORTEDLANGUAGES
-
 class Langexceldata:
     KEY = 'Key'
 

@@ -1,10 +1,7 @@
-import dbDDL
-import dbDML
-from SSOT_db.SQL_INFRA import  dbConnect
-from dbDDL import gettablelist
-from SSOT_infra import parameters, logmessages
+import os.path
 import sys
 from openpyxl import Workbook
+from SSOT_db.IM_JSON import JSModel
 
 def excelfilename(pfilename):
     return pfilename + '.xlsx'
@@ -50,18 +47,11 @@ def createExcel(pfilename: str):
     wb.save(filename=pfilename)
     return
 
-def main(param1):
-    parameters.initparam(pparamfile=param1)
-    logmessages.initlog('createEXCEL')
-    filename = parameters.modelName()
-    filepath = parameters.dbDirect()
-    try:
-        dbConnect.openDB(pfilepath=parameters.dbFilePath());
-        createExcel(pfilename=filepath+excelfilename(filename))
-        dbConnect.closeDB()
-    finally:
-        logmessages.showmessages("XLSX file {} for model {} created"
-                                 .format(filepath + excelfilename(filename), parameters.modelName()))
+def createlangexcels(pjsonfilepath,pdest=None):
+    asserts os.path.exists(pjsonfilepath)
+    print (os.path.dirname(pjsonfilepath))
+    jsmodel = JSModel.readfromfile(pfilename=pjsonfilepath)
     return
+
 if __name__ == '__main__':
-    main(param1=None if len(sys.argv) == 1 else sys.argv[1])
+    main(pjsonfilepath=sys.argv[1],pdest=None if len(sys.argv)<3 else sys.argv[2])

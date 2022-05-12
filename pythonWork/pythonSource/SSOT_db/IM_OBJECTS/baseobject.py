@@ -378,7 +378,6 @@ class Baseobject:
         retval = []
         uklist = dbDDL.getuklist(ptablename=self._tablename)
         for uk in uklist:
-            descstr = ''
             retval.append(', '.join(getparentdesc(col) for col in uk))
         return retval
 
