@@ -39,26 +39,6 @@ def jsonfilename(pfilename):
     return pfilename + ('' if pfilename[-5:]=='.json' else '.json')
 
 
-def examples2js(pexpls: list = None):
-    """ None = emptymodel
-        [Example,]"""
-    if pexpls is None:
-        return {'en': ['']}
-    else:
-        """    {"de": ["Lager",]
-                   "en": ["Stock",]
-                },
-        """
-        retval = {}
-        for expl in pexpls:
-            for lang, value in expl.expl_value_l.items():
-                if lang in retval:
-                    retval[lang].append(nvl(value))
-                else:
-                    retval[lang] = [nvl(value)]
-        return retval
-
-
 class JSModel:
     ELEMTYPE_LANG = 'LANG'
     ELEMTYPE_PROJ = 'PROJ'
