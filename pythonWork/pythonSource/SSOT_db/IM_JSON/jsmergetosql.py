@@ -1,8 +1,8 @@
 from SSOT_infra import todatetime
-from datetime import datetime
 import sys, os
 
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
+#sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
+from datetime import datetime
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from copy import copy
