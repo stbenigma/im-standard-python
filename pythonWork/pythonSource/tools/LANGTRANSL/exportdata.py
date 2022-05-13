@@ -16,8 +16,11 @@ class Exportdata:
         return retval
 
     @staticmethod
-    def xlskey(pid: str, pattr: str):
-        return pid + '-' + pattr
+    def xlskey(pid: str, pattr: str,pidx:int = None):
+        retval = pid + '-' + pattr
+        if pidx is not None:
+            retval+='-' + str(pidx)
+        return  retval
 
     def getdata(self, ptype=None):
         if ptype is None:
@@ -41,9 +44,9 @@ class Exportdata:
             self._data[self.xlskey(key,  'descr')] = self.fulldata(elem['descr'], self._getdefname(elem) + '  - Description', '')
             self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], self._getdefname(elem) + '  - Tooltip', '')
             for idx,syno in enumerate(elem['synonyms'],start=1):
-                self._data[self.xlskey(key+'-'+str(idx), 'synonym')] = self.fulldata(syno,self._getdefname(elem)+'->'+ self._getdeflangstr(syno)+'  - Synonym', '')
-            #for idx,expl in enumerate(elem['examples'],start=1):
-            #    self._data[self.xlskey(key+'-'+str(idx),'example')] = self.fulldata(expl.expl_value_l, elem.enti_name + '  - Example', '')
+                self._data[self.xlskey(key, 'synonym',idx)] = self.fulldata(syno,self._getdefname(elem)+'->'+ self._getdeflangstr(syno)+'  - Synonym', '')
+            for idx,expl in enumerate(elem['examples'],start=1):
+                self._data[self.xlskey(key,'example',idx)] = self.fulldata(expl, self._getdefname(elem) + '  - Example-' + str(idx), '')
 
     def _readburudata(self):
         elements = self._model.getelements('businessrules')
@@ -60,8 +63,8 @@ class Exportdata:
             self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  - Name', '')
             self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  - Description', '')
             self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], refname + '  - Tooltip', '')
-            #for expl in elem.getexamples():
-            #    self._data[self.xlskey(self.EXPL, expl.expl_id, 'examples')] = self.fulldata(expl.expl_value_l, elem.attr_tech_name + '  - Example', '')
+            for idx,expl in enumerate(elem['examples'],start=1):
+                self._data[self.xlskey(key,'example',idx)] = self.fulldata(expl, self._getdefname(elem) + '  - Example-' + str(idx), '')
 
     def _readdomadata(self):
         elements = self._model.getelements('domains')
@@ -91,7 +94,7 @@ class Exportdata:
 def createexcel(pdestfile, pmodel):
     data = Exportdata(pmodel).getdata()
     wb = Workbook()
-    #writesheets(pwb=wb,pdata=data)
+    writesheets(pwb=wb,pdata=data)
     wb.save(filename=pdestfile)
     print (f"""Translation excel generated: {pdestfile} """)
     return

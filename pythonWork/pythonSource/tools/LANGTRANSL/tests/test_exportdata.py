@@ -7,6 +7,7 @@ import SSOT_infra.tests.integration as tb
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.tm2 = tb.Testmodel(tb.TESTMODEL2)
+        self.tm2.initDB(palways=True)
 
     def test_calls(self):
         with self.assertRaises(Exception) as exp:
@@ -14,9 +15,9 @@ class MyTestCase(unittest.TestCase):
         print ("")
 
         data = exportdata.Exportdata(JSModel.readfromfile(self.tm2.jsonfile)).getdata()
-        for key in ('ENTI118-name','ENTI118-descr','ENTI118-tooltip','ENTI111-1-synonym',
+        for key in ('ENTI118-name','ENTI118-descr','ENTI118-tooltip','ENTI111-synonym-1',
                     'ATTR123-name','ATTR123-descr','ATTR123-tooltip',
-                    'DOMA90-name','DOMA90-descr'):
+                    'DOMA90-name','DOMA90-descr','ENTI119-example-2'):
             self.assertTrue(key in data)
 
         destfilename=os.path.join(self.tm2.dbdir,self.tm2.modelname+'.xlsx')
@@ -30,7 +31,7 @@ class MyTestCase(unittest.TestCase):
         os.remove(destfilename)
         exportdata.createlangexcel(self.tm2.jsonfile,pdest=destfilename)
         self.assertTrue(os.path.exists(destfilename))
-        os.remove(destfilename)
+        #os.remove(destfilename)
 
         return
 
