@@ -4,9 +4,10 @@ from tqdm.auto import tqdm
 
 from SSOT_db.IM_JSON.jsattribute import examples2js
 from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, sourceref, reflist, userdefprops, \
-    tabreflist, JSModel, jsguid2id
-from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql, buruinelements
+    tabreflist, JSModel
+from SSOT_db.IM_JSON.jsreference import udpv2js
+from SSOT_db.IM_JSON import insertlgtx, Mergeresult, replacelgtx, insreferences, \
+    inssourceref, udpvs2sql, buruinelements,fromjson2db
 from SSOT_db.IM_OBJECTS import *
 
 """ builds a dictionary of all entities
@@ -192,13 +193,12 @@ def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
     if len(pelem["examples"]) > 0:
-        """Examples have in ODM no guid. Delete them and fill new ones"""
+        """Examples have no guid. Delete them and fill new ones"""
         inscnt = 0
         delcnt = Example.delete(pwhere=("expl_enti_id = ? or expl_attr_id = ?", pentiid, pattrid))
         # insert all examples2js for base language
-        expls = pelem["examples"][pmodellang]
-        for idx, e in enumerate(expls):
-            expl = Example(pvalue=e, pentiid=pentiid, pattrid=pattrid)
+        for idx,e in enumerate(pelem["examples"]):
+            expl = Example(expl_value=e[pmodellang], expl_enti_id=pentiid, expl_attr_id=pattrid)
             try:
                 expl.insert()
                 inscnt += 1
@@ -207,7 +207,7 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
                 continue
             """Examples and their lang-texts are alreday deleted inseret langtexts only"""
             insertlgtx(presult=presult,pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
-                       ptexts={lang: values[idx] for lang, values in pelem["examples"].items()})
+                       ptexts=e)
         # for
         presult.addinscnt(max(0, (inscnt - delcnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
         presult.adddelcnt(max(0, (delcnt - inscnt)),f"Examples for entity {pentiid} or attribute {pattrid}")

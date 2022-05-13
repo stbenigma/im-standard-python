@@ -168,7 +168,7 @@ def dbversion(c, model=None, full=False):
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
 
-@task
+@task(aliases=['updb'])
 def upgradedb(c, model=None):
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
@@ -258,7 +258,7 @@ def verify_content(fh):
         pass
     pass
 
-@task
+@task(aliases=['crtm'])
 def createtestmodeldbs(c):
     def fillone(model):
         """init module with regenerating the testmodels db and jsons"""

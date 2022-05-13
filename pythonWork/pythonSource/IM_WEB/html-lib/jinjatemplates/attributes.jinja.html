@@ -67,9 +67,9 @@
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
-									{% for expl in elem["examples"][webmodel.getcurlanguage()] %}
+									{% for expl in elem["examples"] %}
 									<tr>
-										<td>{{ expl | safe}} </td>
+										<td>{{ expl[webmodel.getcurlanguage()] | safe}} </td>
 									</tr>
 									{% endfor %}
 								</tbody>
@@ -171,7 +171,11 @@
 									<tr>
 										<td>{{ webmodel.gettransltext('Beispiele') }}</td>
 										{% for lang in otherlangs %}
-											<td>{{ '\n'.join(elem["examples"][lang])|nvl|formattext|safe }}</td>
+											{% set otherlangs = [] %}
+										    {% for e in elem["examples"] %}
+											{% set otherlangs = otherlangs.append(e[lang]) %}
+											{% endfor %}
+											<td>{{ '\n'.join(otherlangs)|nvl|formattext|safe }}</td>
 										{% endfor %}
 									</tr>
 								</tbody>
