@@ -2,10 +2,11 @@ import re
 
 from tqdm.auto import tqdm
 
+from SSOT_db.IM_JSON.jsattribute import examples2js
+from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, sourceref, reflist, userdefprops, \
+    tabreflist, JSModel, jsguid2id
 from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
     inssourceref, udpvs2sql, buruinelements
-from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
-    tabreflist, JSModel, jsguid2id
 from SSOT_db.IM_OBJECTS import *
 
 """ builds a dictionary of all entities

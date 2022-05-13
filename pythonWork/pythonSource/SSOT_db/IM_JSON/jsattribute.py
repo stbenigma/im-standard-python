@@ -2,6 +2,7 @@ from SSOT_db.IM_JSON import *
 from SSOT_db.IM_JSON import jsentity, buruinelements
 from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
 from SSOT_db.IM_OBJECTS import *
+from SSOT_infra import nvl
 
 
 def businessrules2js(pemptymodel):
@@ -36,14 +37,14 @@ def attr2js(pattr):
                 '', '',
                 '', '',
                 '', '',
-                jsentity.examples2js(None), multilangtext(), multilangtext(),
+                                     examples2js(None), multilangtext(), multilangtext(),
                 '', '', '', '', 0, 4, 'DRAFT',
-                sourceref(), jsentity.racilist(),
-                reflist(), buruinelements(None),
-                reflist(), userdefprops(),
-                {jsguid(Modelelemtype.INTF, "0000"):
+                                     sourceref(), jsentity.racilist(),
+                                     reflist(), buruinelements(None),
+                                     reflist(), userdefprops(),
+                                     {jsguid(Modelelemtype.INTF, "0000"):
                        [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
-                                       ]
+                                     ]
                            )
     else:
         doma = Domain().getbyid(pattr.attr_doma_id)
@@ -326,3 +327,18 @@ def keys2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])
     # for
     return
+
+
+def examples2js(pexpls: list = None):
+    """ None = emptymodel
+        [Example,]"""
+    if pexpls is None:
+        return [{'en':'',}]
+    else:
+        """    [ {"de": ["Lager",],
+                  "en": ["Stock",]
+                  },
+               ]
+        """
+        retval = [expl.expl_value_l for expl in pexpls]
+        return retval
