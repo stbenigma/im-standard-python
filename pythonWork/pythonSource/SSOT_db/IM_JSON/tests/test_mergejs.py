@@ -7,27 +7,17 @@ from contextlib import closing
 from pathlib import Path
 
 import pytest
-
-from LOAD_MODELS.LOAD_INFRA import mergedbs
-from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsmergetosql
-from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table
 import io
 import sys
 
-import pytest
-
-from SSOT_db.IM_JSON import jsmergetosql
-import sqlite3
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
 from LOAD_MODELS.LOAD_ODM.transferModel import transferODMModel
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles
-from SSOT_db.IM_OBJECTS import BusinessRule, Attribute, Table, Actorrole,Domain,Languagetext,Entity
+from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
-
 
 
 class TestMergeJson(unittest.TestCase):
@@ -37,71 +27,85 @@ class TestMergeJson(unittest.TestCase):
         self._caplog = caplog
 
     def setUp(self) -> None:
-        self.testmodelcrm: testsrc.Testmodel = testsrc.Testmodel(testsrc.CRMTEST)
-        self.testmodel1: testsrc.Testmodel = testsrc.Testmodel(testsrc.TESTMODEL1)
-        self.testmodel2: testsrc.Testmodel = testsrc.Testmodel(testsrc.TESTMODEL2)
-        self.riddle: testsrc.Testmodel = testsrc.Testmodel(testsrc.RIDDLE)
+        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.riddle = testsrc.Testmodel(testsrc.RIDDLE)
+        self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
+        self.srcname = "TestMergeJson"
+
+
         return
 
     def test_merge(self):
         dbConnect.openDB(self.testmodelcrm.dbfile, pversioncheck=False)
+        mergedbs.connecttodbcopy()
         self.newbrname = 'test-BR10'
+        #make sure legacy test entries are gone
+        BusinessRule.delete(pwhere=("buru_name = ?", self.newbrname))
         self.crmmodel = JSModel(pmodel=sql2json(pdbname=self.testmodelcrm.modelname))
-        try:
-            buru = BusinessRule(buru_name=self.newbrname,
-                                buru_rule='nichts',
-                                buru_level='ATTR',
-                                buru_type='CHECK',
-                                buru_uc='me',
-                                buru_dc=datetime.datetime.now(),
-                                srcid='9999',
-                                srcname='test_mergejs')
-            burujs = jsbusinessrule.businessrule2js(buru, plangs=('de', 'en', 'fr'))
-            attrid = jsguid('ATTR', Attribute.select()[0].attr_id)
-            tablid = jsguid('TABL', Table.select()[0].tabl_id)
-            burujs['elements'] = {attrid: {"r/w": "R"},
-                                  tablid: {"r/w": "R"}
-                                  }
-            burujs['sourceref']['test_mergejs'][1] = str(datetime.datetime.now())
-            self.crmmodel.jsmodel['businessrules']["BURU9999"] = burujs
+        buru = BusinessRule(buru_name=self.newbrname,
+                            buru_rule='nichts',
+                            buru_level='ATTR',
+                            buru_type='CHECK',
+                            buru_uc='me',
+                            buru_dc=datetime.datetime.now(),
+                            srcid='9999',
+                            srcname=self.srcname)
+        burujs = jsbusinessrule.businessrule2js(buru, plangs=('de', 'en', 'fr'))
+        attrid = jsguid('ATTR', Attribute.select()[0].attr_id)
+        tablid = jsguid('TABL', Table.select()[0].tabl_id)
+        burujs['elements'] = {attrid: {"r/w": "R"},
+                              tablid: {"r/w": "R"}
+                              }
+        burujs['sourceref'][self.srcname][1] = str(datetime.datetime.now())
+        self.crmmodel.jsmodel['businessrules']["BURU9999"] = burujs
 
-            with self._caplog.at_level(logging.DEBUG):
-                mergedbs.mergejson2sql(pmodeljson=self.crmmodel)
+        with self._caplog.at_level(logging.DEBUG):
+            mergedbs.mergejson2sql(pmodel=self.crmmodel,psrcname=self.srcname)
+        assert dbConnect.isopenDB()
+        """generate json from merged DB"""
+        newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        newburuid = newjson.jsmodel['attributes'][attrid]['businessrules+'][0]
+        self.assertEqual(newburuid, newjson.jsmodel['tables'][tablid]['businessrules+'][0])
 
-            """generate json from merged DB"""
-            newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            newburuid = newjson.jsmodel['attributes'][attrid]['businessrules+'][0]
-            self.assertEqual(newburuid, newjson.jsmodel['tables'][tablid]['businessrules+'][0])
+        newburu = newjson.getbyid(newburuid)
+        self.assertTrue(newburuid in newjson.jsmodel['businessrules'])
+        self.assertTrue(attrid in newburu['elements'])
+        self.assertTrue(tablid in newburu['elements'])
 
-            newburu = newjson.getbyid(newburuid)
-            self.assertTrue(newburuid in newjson.jsmodel['businessrules'])
-            self.assertTrue(attrid in newburu['elements'])
-            self.assertTrue(tablid in newburu['elements'])
+        self.assertEqual('9999', newburu['sourceref'][self.srcname][0])
 
-            self.assertEqual('9999', newburu['sourceref']['test_mergejs'][0])
+        #dbConnect.openDB(self.testmodelcrm.dbfile, pversioncheck=False)
+        # now test an update
+        updjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        updburu = updjson.getelements('businessrules')[newburuid]
+        updburu['errormsg']['en'] = "new error message"
+        updburu['um'] = "meandmyself"
+        del updburu['elements'][tablid]
+        updburu['sourceref'][self.srcname] = ['9999-111', str(datetime.datetime.now())]
+        with self._caplog.at_level(level=logging.ERROR):
+            check = mergedbs.checkjsonmodel(pmodel=updjson,pverbose=False)
+            if not check:
+                for c in self._caplog.records:
+                    if c.levelname == logging.ERROR:
+                        print(c.getMessage())
+            self.assertTrue(check)
 
-            # now test an update
-            updjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            updburu = updjson.getelements('businessrules')[newburuid]
-            updburu['errormsg']['en'] = "new error message"
-            updburu['um'] = "meandmyself"
-            del updburu['elements'][tablid]
-            updburu['sourceref']['test_updatemergejs'] = ['9999-111', str(datetime.datetime.now())]
-            mergedbs.mergejson2sql(pmodeljson=updjson)
-            # now check the merge
-            newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            newburu = newjson.getbyid(newburuid)
-            self.assertEqual('9999-111', newburu['sourceref']['test_updatemergejs'][0])
-            self.assertEqual(newburu['errormsg']['en'], "new error message")
-            self.assertTrue(attrid in newburu['elements'])
-            self.assertFalse(tablid in newburu['elements'])
-            # self.assertEqual("meandmyself",newburu['um'])
-        finally:
-            # remove created elements
-            BusinessRule.delete(pwhere=("buru_name = ?", self.newbrname))
-            dbConnect.closeDB()
+        result = mergedbs.mergejson2sql(pmodel=updjson,psrcname=self.srcname)
+        # now check the merge
+        newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        newburu = newjson.getbyid(newburuid)
+        self.assertEqual('9999-111', newburu['sourceref'][self.srcname][0])
+        self.assertEqual(newburu['errormsg']['en'], "new error message")
+        self.assertTrue(attrid in newburu['elements'])
+        self.assertFalse(tablid in newburu['elements'])
+        # self.assertEqual("meandmyself",newburu['um'])
 
-            return
+        # remove created elements
+        BusinessRule.delete(pwhere=("buru_name = ?", self.newbrname))
+        dbConnect.closeDB()
+
+        return
 
     def test_mergeactorrole(self):
         dbConnect.openDB(self.testmodel1.dbfile, pversioncheck=False)
@@ -121,50 +125,83 @@ class TestMergeJson(unittest.TestCase):
             dbConnect.closeDB()
 
     def test_mergefull(self):
+        def savecurrentdbandjson(pjson):
+            #can be used to save the current (memory-)database and a json file to filesystem
+            # import sqlite3
+            # locconn = sqlite3.connect("savedb.db")
+            # dbConnect.getdbcon().backup(locconn)
+            # locconn.close()
+            # pjson.printmodel(pfilepath=".", pfilename="savejson.json")
+            return
+
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
-        # test dryrun on exisisting files
+        #test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        savecurrentdbandjson(curmodel)
         dbConnect.closeDB()
-
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
-        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
-                                       pverbose=True, pdryrun=True)
+
+        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,psrcname=self.srcname,
+                                      pverbose=True, pdryrun=True)
         sys.stdout = sys.__stdout__  # Reset redirect.
         stdprint = capturedOutput.getvalue()
+        # don't care about other errors I only test the dry-run-merge
         self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
 
         # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
-        originaldbconn = dbConnect.getdbcon()
+        print("")
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
         firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
         # create copy of filled db
-        seconddbconn = mergedbs.connecttodbcopy()
         # first merge with itself
-        result = mergedbs.mergejson2sql(pmodeljson=firstjson, pverbose=True, psrcname="TEST")
+        with self._caplog.at_level(level=logging.INFO):
+            result = mergedbs.mergejson2sql(pmodel=firstjson,psrcname=self.srcname, pverbose=True)
+            for c in self._caplog.records:
+                print(c.getMessage())
         for c in result.changes:
-            print(c)
+            print (c)
         self.assertEqual(0, result.updatecnt)
         self.assertEqual(0, result.insertcnt)
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
-
-        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
-        result = mergedbs.mergejson2sql(pmodeljson=firstjson,pverbose=True,psrcname="TEST")
+        #check update of non UK
+        firstjson.jsmodel["entities"]["ENTI118"]["descr"]["de"] += 'XX'
+        #savecurrentdbandjson(firstjson)
+        result = mergedbs.mergejson2sql(pmodel=firstjson,psrcname=self.srcname, pverbose=True)
         for c in result.changes:
             print(c)
         self.assertEqual(1, result.updatecnt)
         self.assertEqual(0, result.insertcnt)
         self.assertEqual(0, result.deletecnt)
 
+        #check update of UK of other source
+        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
+        #savecurrentdbandjson(firstjson)
+        result = mergedbs.mergejson2sql(pmodel=firstjson,psrcname=self.srcname, pverbose=True)
+        for c in result.changes:
+            print(c)
+        self.assertEqual(1, result.updatecnt)
+        self.assertEqual(0, result.insertcnt)
+        self.assertEqual(0, result.deletecnt)
+
+        #check delete of existing
+        #check create new entry
+        #delete of my entry = last source is removed
+
         dbConnect.closeDB()
 
-        return
+        curmodel.jsmodel['entities']={"blabla":{}}
+        with self.assertRaises(Exception) as exp:
+            mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,psrcname=self.srcname,
+                                      pverbose=True, pdryrun=False)
+
+
 
     def test_merge_column_riddle(self):
         js_file = Path(self.riddle.dbdir, self.riddle.jsonfilename)
@@ -198,7 +235,7 @@ class TestMergeJson(unittest.TestCase):
         shutil.copy(self.riddle.dbfile, tmpdb)
         with closing(dbConnect.openDBbasic(tmpdb)):
             new_model = JSModel(jsmodel)
-            mergedbs.mergejson2db(pmodeljson=new_model)
+            result = mergedbs.mergejson2sql(pmodel=new_model,psrcname=self.srcname)
 
         with closing(dbConnect.openDBbasic(tmpdb)) as connection:
             with closing(connection.execute(f"SELECT COUNT(*) FROM [columns]")) as cursor:
@@ -206,7 +243,7 @@ class TestMergeJson(unittest.TestCase):
                 self.assertEqual(len(jsmodel['columns']), r[0][0])
                 self.assertEqual(previous + 1, r[0][0])
 
-        val = jsmergetosql.keytransl(new_column_key)
+        val = result.keytransl(new_column_key)
         self.assertIsInstance(val, int)
         self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
 
@@ -258,8 +295,9 @@ class TestMergeJson(unittest.TestCase):
         with closing(dbConnect.openDBbasic(tmpdb)):
             new_model = JSModel(jsmodel)
             with self._caplog.at_level(logging.DEBUG):
-                mergedbs.mergejson2sql(pmodeljson=new_model)
-                with open('unittest-log.json', 'w') as out:
+                result = mergedbs.mergejson2sql(pmodel=new_model,psrcname=self.srcname)
+
+                with open('log.log', 'w') as out:
                     records = []
                     for rec in self._caplog.records:
                         records.append({'msg': rec.msg, 'lvl': rec.levelname})
@@ -272,6 +310,7 @@ class TestMergeJson(unittest.TestCase):
                 self.assertEqual(len(jsmodel['tables']), r[0][0])
                 self.assertEqual(previous_table_count + 1, r[0][0])
 
+            cols = Column.select(pwhere="colu_column_name = 'unitttest-abc'")
             with closing(connection.execute("SELECT COUNT(*) FROM [columns]")) as cursor:
                 r = cursor.fetchall()
                 self.assertEqual(len(jsmodel['columns']), r[0][0])
@@ -282,11 +321,11 @@ class TestMergeJson(unittest.TestCase):
                 r = cursor.fetchall()
                 self.assertEqual(1, r[0][0])
 
-        val = jsmergetosql.keytransl(new_table_key)
+        val = result.keytransl(new_table_key)
         self.assertIsInstance(val, int)
         self.assertIsNotNone(jsmodel['tables'][new_table_key], f"Expecting unaltered json")
 
-        val = jsmergetosql.keytransl(new_column_key)
+        val = result.keytransl(new_column_key)
         self.assertIsInstance(val, int)
         self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
 
@@ -322,7 +361,7 @@ class TestMergeJson(unittest.TestCase):
         shutil.copy(self.riddle.dbfile, tmpdb)
         with closing(dbConnect.openDBbasic(tmpdb)):
             new_model = JSModel(jsmodel)
-            mergedbs.mergejson2sql(pmodeljson=new_model)
+            result = mergedbs.mergejson2sql(pmodel=new_model,psrcname=self.srcname)
 
         with closing(dbConnect.openDBbasic(tmpdb)) as connection:
             with closing(connection.execute(f"SELECT COUNT(*) FROM [columns]")) as cursor:
@@ -330,9 +369,40 @@ class TestMergeJson(unittest.TestCase):
                 self.assertEqual(len(jsmodel['columns']), r[0][0])
                 self.assertEqual(previous + 1, r[0][0])
 
-        val = jsmergetosql.keytransl(new_column_key)
+        val = result.keytransl(new_column_key)
         self.assertIsInstance(val, int)
         self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
+        return
+
+    def test_checkjson(self):
+        jstm1 =JSModel.readfromfile(self.testmodel1.jsonfile)
+        print ("")
+        self.assertTrue(mergedbs.checkjsonfile(self.testmodel1.jsonfile, pverbose=True))
+        jstm1.jsmodel["entities"]["ENTI112"]["category"]="gugu000"
+        jstm1.printmodel(pfilepath="/tmp",pfilename="test.json")
+        self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
+        jstm1 =JSModel.readfromfile(self.testmodel1.jsonfile)
+        jstm1.jsmodel["entities"]["ENTI112"]["name"]['en']=''
+        jstm1.jsmodel["entities"]["ENTI118"]["name"]['en']=''
+        jstm1.printmodel(pfilepath="/tmp",pfilename="test.json")
+        self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
+        jstm1 =JSModel.readfromfile(self.testmodel1.jsonfile)
+        jstm1.jsmodel["entities"]["ENTI112"]["name"]['en']=None
+        jstm1.printmodel(pfilepath="/tmp",pfilename="test.json")
+        self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
+        jstm1 =JSModel.readfromfile(self.testmodel1.jsonfile)
+        del jstm1.jsmodel["categories"]["CATG7"]
+        jstm1.printmodel(pfilepath="/tmp",pfilename="test.json")
+        with self._caplog.at_level(level=logging.INFO):
+            self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
+            for c in self._caplog.records:
+                print(c.getMessage())
+
+
+        with self._caplog.at_level(logging.DEBUG):
+            self.assertTrue(mergedbs.checkjsonfile(pjsonfilepath=self.testmodel2.jsonfile, pverbose=False))
+            self.assertTrue(mergedbs.checkjsonfile(pjsonfilepath=self.testmodelcrm.jsonfile, pverbose=False))
+            self.assertTrue(mergedbs.checkjsonfile(pjsonfilepath=self.riddle.jsonfile, pverbose=False))
 
     def set_defaults(self, element: dict):
         defaults = {'uc': 'test', 'dc': '2022-02-02',
@@ -341,10 +411,11 @@ class TestMergeJson(unittest.TestCase):
                     'userdefprops': {},
                     'minzoomlevel': None, 'maxzoomlevel': None,
                     'referencedby': [],
-                    'sourceref': {
-                        'JSON': ['test_merge_riddle 1', '2022-04-28 15:38:01.1'],
-                    }}
+                    'sourceref': {}
+                    }
         element.update(defaults)
+        return
+
 
     def test_mergefull(self):
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
@@ -391,8 +462,6 @@ class TestMergeJson(unittest.TestCase):
 
         dbConnect.closeDB()
 
-        return
 
 if __name__ == '__main__':
     unittest.main()
-

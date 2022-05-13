@@ -30,7 +30,7 @@ def physicalunits2js(pemptymodel):
 
 def js2phyu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     phyu:PhysicalUnit = PhysicalUnit()
-    phyu.phyu_id = jsguid2id(pkey)
+    phyu.phyu_id = pkey
     phyu.phyu_si_unit = pelem['si-unit']
     phyu.phyu_descr = pelem['descr']
     phyu.phyu_name = pelem['name']
@@ -41,8 +41,8 @@ def js2phyu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     return phyu
 
 
-def physicalunits2sql(presult, podmjson:JSModel,pwithextsrcref):
-    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
+def physicalunits2sql(presult, pjson:JSModel,pwithextsrcref):
+    fromjson2db(presult=presult,pjson=pjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
     # for jid,jelem in pmodel.jsmodel['physicalunits'].items():
     #     phyu = js2phyu(pkey=jid,pelem=jelem)
     #     try:
@@ -82,7 +82,7 @@ def storageformats2js(pemptymodel):
 
 def js2stfo(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     stfo:Storageformat = Storageformat()
-    stfo.stfo_id = jsguid2id(pkey)
+    stfo.stfo_id = pkey
     stfo.stfo_name = pelem['name']
     stfo.stfo_descr = pelem['descr']
     stfo.stfo_uc = pelem['uc']
@@ -91,8 +91,8 @@ def js2stfo(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     stfo.stfo_dm = pelem['dm']
     return stfo
 
-def storageformats2sql(presult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
+def storageformats2sql(presult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson,  pelemtype=Modelelemtype.STFO, pjs2obj=js2stfo,
                    pwithextsrcref=pwithextsrcref)
 
     return
@@ -121,7 +121,7 @@ def datatypes2js(pemptymodel):
 
 def js2daty(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     daty = Datatype(pname=pelem['name'],pbasetype=pelem['basetype'],psrcname=psrcname,pscrid=psrcid)
-    daty.daty_id = jsguid2id(pkey)
+    daty.daty_id = pkey
     daty.daty_uc = pelem['uc']
     daty.daty_dc = pelem['dc']
     daty.daty_um = pelem['um']
@@ -129,17 +129,9 @@ def js2daty(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     return daty
 
 
-def datatypes2sql(presult, podmjson:JSModel,pwithextsrcref):
-    fromodm2db(presult=presult,podmjson=podmjson,pelemtype=Modelelemtype.DATY,pjs2obj=js2daty,pwithextsrcref=pwithextsrcref)
-    # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DATY).items():
-    #     daty = js2daty(pkey=jid,pelem=jelem)
-    #     try:
-    #         daty.insert()
-    #     except Exception as err:
-    #         pmodel.markerror(pmsg=err, pelemstr=daty.tostring())
-    #         continue
-    #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
-    # #for
+def datatypes2sql(presult, pjson:JSModel,pwithextsrcref):
+    fromjson2db(presult=presult,pjson=pjson,pelemtype=Modelelemtype.DATY,pjs2obj=js2daty,pwithextsrcref=pwithextsrcref)
+
     return
 
 

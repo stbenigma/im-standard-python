@@ -46,10 +46,11 @@ def ui2eler(pjsui, peler):
 
 def elemreps2sql(presult: Mergeresult, pdiagid, pelemreps):
     """[elemrep,] """
+    inscnt = 0
     for jelem in pelemreps:
         eler = Elementrep()
         eler.eler_diag_id = pdiagid
-        eler.eler_mode_id = keytransl(jelem['element'])
+        eler.eler_mode_id = presult.keytransl(jelem['element'])
         eler.eler_index = jelem['index']
         eler.eler_position_x = jelem['pos_x']
         eler.eler_position_y = jelem['pos_y']
@@ -60,11 +61,12 @@ def elemreps2sql(presult: Mergeresult, pdiagid, pelemreps):
         ui2eler(pjsui=jelem["ui"], peler=eler)
         try:
             eler.insert()
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem=jelem)
             continue
     # for
-    return
+    return inscnt
 
 
 def relarep2js(prelarep):
@@ -138,6 +140,7 @@ def lineseg2js(plineseg):
 def lineseg2sql(presult: Mergeresult, prelrid, plinesegs):
     """               "linesegments": [{"x": 276,...},]
     """
+    inscnt = 0
     for jidx, jelem in enumerate(plinesegs):
         lise = Linesegment()
         lise.lise_seq = jidx
@@ -152,14 +155,16 @@ def lineseg2sql(presult: Mergeresult, prelrid, plinesegs):
         lise.lise_dm = jelem['dm']
         try:
             lise.insert()
+            inscnt +=1
         except Exception as err:
             presult.markdberror(perr=err, pelem=jelem)
             continue
     # for
-    return
+    return inscnt
 
 
 def relarep2sql(presult, pdiagid, prelaid, prelarep):
+    inscnt = 0
     relr = Relationrep()
     relr.relr_diag_id = pdiagid
     relr.relr_mode_id = prelaid
@@ -192,13 +197,15 @@ def relarep2sql(presult, pdiagid, prelaid, prelarep):
     relr.relr_dm = prelarep['dm']
     try:
         relrid = relr.insert()
+        inscnt += 1
     except Exception as err:
         presult.markdberror(perr=err, pelem=relr)
         relrid = None
 
+    #linesegmentsinserts are not counted
     lineseg2sql(presult=presult, prelrid=relrid, plinesegs=prelarep['linesegments'])
 
-    return
+    return inscnt
 
 
 def legend2js(pdiag=None, pmodelname=None):
@@ -279,7 +286,7 @@ def diagrams2js(pemptymodel, pmodelname):
 
 def js2diag(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     diag = Diagram(psrcname=psrcname, psrcid=psrcid)
-    diag.diag_id = jsguid2id(pkey)
+    diag.diag_id = pkey
     diag.diag_name = pelem['name']
     diag.diag_legendx = pelem['legend']['x']
     diag.diag_legendy = pelem['legend']['y']
@@ -291,13 +298,13 @@ def js2diag(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return diag
 
 
-def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.DIAG, pjs2obj=js2diag,
+def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.DIAG, pjs2obj=js2diag,
                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.DIAG).items():
-        newdiagid = keytransl(jid)
-        if newdiagid is None: continue  # element was not treated
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.DIAG).items():
+        newdiagid = presult.keytransl(jid)
+        if newdiagid  == 0: continue  # element was not treated
         inscnt = 0
         delcnt = Elementrep.delete(pwhere=("eler_diag_id = ?", newdiagid))
         for jelemreps in jelem['elements'].values():
@@ -306,8 +313,8 @@ def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
                     ,"entities": [{entirep},]
                     }
             """
-            elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
-            inscnt += len(jelemreps)
+
+            inscnt += elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
         # for
         presult.addinscnt(max(0, (inscnt - delcnt)),f"Elementreps on diagram {newdiagid}")
         presult.adddelcnt(max(0, (delcnt - inscnt)),f"Elementreps on diagram {newdiagid}")
@@ -319,8 +326,8 @@ def diagrams2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
                     "RELAnnn": {relarep},
                     } 
             """
-            relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=keytransl(jrelaid), prelarep=jrelarep)
-            inscnt += 1
+
+            inscnt += relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=presult.keytransl(jrelaid), prelarep=jrelarep)
         # for
         presult.addinscnt(max(0, (inscnt - delcnt)),f"Relationreps on diagram {newdiagid}")
         presult.adddelcnt(max(0, (delcnt - inscnt)),f"Relationreps on diagram {newdiagid}")

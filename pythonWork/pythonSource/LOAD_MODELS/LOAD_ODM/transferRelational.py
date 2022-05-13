@@ -29,7 +29,7 @@ def do1column(plfnr, pcolxml, ptablid):
 </propertyMap>
 </Column>
 """
-    colu = Column(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(pcolxml, 'id'))
+    colu = Column(psrcname=transferModel.SOURCE_ODM, psrcid=handleXML.findField(pcolxml, 'id'))
     colu.colu_column_name = handleXML.findField(pcolxml, 'name')
     colu.colu_format = None
     colu.colu_mandatory = Boolean.bool2str(not Boolean.str2bool(
@@ -60,7 +60,7 @@ def do1column(plfnr, pcolxml, ptablid):
     transferModel.updateUDP(pmodeid=colu.colu_id, pobj=pcolxml)
     colu.fillextid()
     documents = transferModel.getdokuref(pelem= pcolxml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=colu.colu_id)
+    ModelelemDocu.insertdocuref(pdocidlist=documents, pmodeid=colu.colu_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=pcolxml), pmodeid=colu.colu_id)
 #do1column
 
@@ -68,7 +68,7 @@ def do1table(pfilename):
     global globalschnid
     tablexml = ET.parse(pfilename).getroot()
     #print (tablexml.get('name'),tablexml.get('id'),sep=' | ')
-    tabl = table.Table(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(tablexml, "id"))
+    tabl = table.Table(psrcname=transferModel.SOURCE_ODM, psrcid=handleXML.findField(tablexml, "id"))
     tabl.tabl_name = handleXML.findField(tablexml, "name")
     tabl.tabl_uc = handleXML.findText(tablexml, 'createdBy')
     tabl.tabl_dc = handleXML.findText(tablexml, 'createdTime')
@@ -79,7 +79,7 @@ def do1table(pfilename):
     Userdefpropvalue.fillallvalues(ptablid=tabl.tabl_id)
 
     documents = transferModel.getdokuref(tablexml)
-    ModelelemDocu.insertdocuref(pdocguidlist=documents, pmodeid=tabl.tabl_id)
+    ModelelemDocu.insertdocuref(pdocidlist=documents, pmodeid=tabl.tabl_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=tablexml), pmodeid=tabl.tabl_id)
 
     """<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">"""
@@ -103,7 +103,7 @@ def transfertables(pschndirec):
 def do1interface(pfilename):
     global globalschnid
     intfxml = ET.parse(pfilename).getroot()
-    intf = interface.Interface(psrcname=Externalref.SOURCE_ODM, psrcid=handleXML.findField(intfxml, 'id'))
+    intf = interface.Interface(psrcname=transferModel.SOURCE_ODM, psrcid=handleXML.findField(intfxml, 'id'))
     intf.intf_name = handleXML.findField(intfxml, 'name')
     intf.intf_descr = handleXML.findText(intfxml, 'comment')
     intf.intf_uc = handleXML.findText(intfxml, 'createdBy')
@@ -111,7 +111,7 @@ def do1interface(pfilename):
     intf.insert()
 
     #Dokumente an dieser Interface
-    ModelelemDocu.insertdocuref(pdocguidlist= transferModel.getdokuref(pelem=intfxml, pstruct=True), pmodeid    = intf.intf_id)
+    ModelelemDocu.insertdocuref(pdocidlist= transferModel.getdokuref(pelem=intfxml, pstruct=True), pmodeid    = intf.intf_id)
     ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=intfxml), pmodeid=intf.intf_id)
     #Tabellen
     filename, file_extension = os.path.splitext(pfilename)
@@ -203,8 +203,8 @@ def doattrmapping(pcolmappings):
                                 for mg in cntmapxml]"""
         if (colmap["rtype"] ==  Odmmapping.RELKEYTYPE and colmap['ltype'] == Odmmapping.KEYTYPE):
             continue
-        attrid = Externalref.getODMmodeid (psrcid=colmap['lID'])
-        colu = Externalref.getODMmodeid(psrcid=colmap['rID'])
+        attrid = Externalref.getmodeid (psrcid=colmap['lID'],psrcname=transferModel.SOURCE_ODM)
+        colu = Externalref.getmodeid(psrcid=colmap['rID'],psrcname=transferModel.SOURCE_ODM)
         if ((colu is None) or (attrid is None)):
             logmessages.writelog ("Column-Reference ({}:{}) or Attribute Reference ({}:{}) not found"
                                   .format(colmap['rtype'],colmap['rID'],colmap['ltype'],colmap['lID']))
@@ -242,9 +242,9 @@ def do1mapping(pfilename):
                 and odmmap.itype in (None,2,3) # hierachical mappings
                 ):
             continue #only Entity/Relation to Table mappings are handled
-        tabentimap.tema_enti_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.ENTITYPE else None
-        tabentimap.tema_rela_id = Externalref.getODMmodeid(psrcid=odmmap.logid) if odmmap.logtype == odmmap.RELATYPE else None
-        tabentimap.tema_tabl_id = Externalref.getODMmodeid(psrcid=odmmap.relid) if odmmap.reltype == odmmap.TABLETYPE else None
+        tabentimap.tema_enti_id = Externalref.getmodeid(psrcid=odmmap.logid,psrcname=transferModel.SOURCE_ODM) if odmmap.logtype == odmmap.ENTITYPE else None
+        tabentimap.tema_rela_id = Externalref.getmodeid(psrcid=odmmap.logid,psrcname=transferModel.SOURCE_ODM) if odmmap.logtype == odmmap.RELATYPE else None
+        tabentimap.tema_tabl_id = Externalref.getmodeid(psrcid=odmmap.relid,psrcname=transferModel.SOURCE_ODM) if odmmap.reltype == odmmap.TABLETYPE else None
         if (odmmap.logtype == Odmmapping.ENTITYPE and tabentimap.tema_enti_id is None):
             element = 'Entity fehlt'
         elif (odmmap.reltype == Odmmapping.TABLETYPE and tabentimap.tema_tabl_id is None):

@@ -27,10 +27,10 @@ from .actorrole import Actorrole, Actorconcern
 
 table2class = {c._tablename: c for c in
                (Modelelemtype, Modelelement, ModelelementProperty,
-               Datatype, Project, Interface, Table, Column, ColAttrMap,
-               Language, Languagetext, TablEntiMap, Document, ModelelemDocu,
-               Domain, DomaingroupMember, DefaultValue, Diagram, Diagramtype,
-               MeltDiat, Attribute, Key, Keyelement, Arc, Relation, Entity, Synonym,
-               EntityCategory, ElementUI, Userdefprop, Userdefpropvalue, Externalref, PhysicalUnit,
-               Storageformat, Elementrep, Relationrep, Linesegment, OragnisationalUnit, ModelelemOrgu,
-               BusinessRule, BusinessruleElement, Example, Actorrole, Actorconcern)}
+                Datatype, Project, Interface, Table, Column, ColAttrMap,
+                Language, Languagetext, TablEntiMap, Document, ModelelemDocu,
+                Domain, DomaingroupMember, DefaultValue, Diagram, Diagramtype,
+                MeltDiat, Attribute, Key, Keyelement, Arc, Relation, Entity, Synonym,
+                EntityCategory, ElementUI, Userdefprop, Userdefpropvalue, Externalref, PhysicalUnit,
+                Storageformat, Elementrep, Relationrep, Linesegment, OragnisationalUnit, ModelelemOrgu,
+                BusinessRule, BusinessruleElement, Example, Actorrole, Actorconcern)}

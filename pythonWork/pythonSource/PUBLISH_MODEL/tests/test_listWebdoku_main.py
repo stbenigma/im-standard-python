@@ -25,11 +25,8 @@ class TestListWebDocumentation(unittest.TestCase):
         translation = TestTranslation()
         translation.setUp()
         self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
-        self.testmodel1.initDB()
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
-        self.testmodel2.initDB()
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
-        self.testmodelcrm.initDB()
 
         assert os.path.isdir(testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
         return

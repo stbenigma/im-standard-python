@@ -2,7 +2,7 @@ import re
 
 from tqdm.auto import tqdm
 
-from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
+from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromjson2db, replacelgtx, insreferences, \
     inssourceref, udpvs2sql, buruinelements
 from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
     tabreflist, JSModel, jsguid2id
@@ -173,12 +173,12 @@ def entities2js(pemptymodel):
 
 def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     enti = Entity(psrcname=psrcname, psrcid=psrcid)
-    enti.enti_id = jsguid2id(pkey)
+    enti.enti_id = pkey
     enti.enti_name = pelem['name'][pmodellang]
     enti.enti_short_name = pelem['shortname']
     enti.enti_prefix = pelem['prefix']
-    enti.enti_underlay_enti_id = jsguid2id(pelem['supertypeentity'])
-    enti.enti_enca_id = jsguid2id(pelem['category'])
+    enti.enti_underlay_enti_id = pelem['supertypeentity']
+    enti.enti_enca_id = pelem['category']
     enti.enti_tooltip = pelem['tooltip'][pmodellang]
     enti.enti_descr = pelem['descr'][pmodellang]
     enti.enti_exp_tuplecnt = pelem['exptuple#']
@@ -204,8 +204,8 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
             except Exception as err:
                 presult.markdberror(perr=err, pelem=pelem)
                 continue
-            """Examples and their lang-texts are alreday deleted"""
-            insertlgtx(pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
+            """Examples and their lang-texts are alreday deleted inseret langtexts only"""
+            insertlgtx(presult=presult,pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
                        ptexts={lang: values[idx] for lang, values in pelem["examples"].items()})
         # for
         presult.addinscnt(max(0, (inscnt - delcnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
@@ -214,13 +214,13 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
     return
 
 
-def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
-               pwithextsrcref=pwithextsrcref)
+def entities2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
+                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ENTI).items():
-        entiid = keytransl(jid)
-        if entiid is None: continue  # element was not treated
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ENTI).items():
+        entiid = presult.keytransl(jid)
+        if entiid  == 0: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -229,8 +229,8 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         inscnt = 0
         delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
         for jsyno in jelem["synonyms"]:
-            syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
-            # syno.syno_id = jsguid2id(synoid)
+            syno = Synonym(pname=jsyno[pjson.modellanguage()], pentiid=entiid)
+            # syno.syno_id = synoid
             try:
                 syno.insert()
                 inscnt += 1
@@ -238,12 +238,12 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
                 presult.markdberror(perr=err, pelem=jsyno)
                 continue
             """synonyms and their lang-texts are alreday deleted"""
-            insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+            insertlgtx(presult=presult,pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
         presult.addinscnt(max(0, (inscnt - delcnt)),f"synonyms for entitiy {entiid}")
         presult.adddelcnt(max(0, (delcnt - inscnt)),f"synonyms for entitiy {entiid}")
 
-        mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
+        mergeexamples(pelem=jelem, pmodellang=pjson.modellanguage(),
                       presult=presult, pentiid=entiid)
 
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)

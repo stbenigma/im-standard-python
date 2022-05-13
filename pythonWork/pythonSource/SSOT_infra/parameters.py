@@ -9,6 +9,8 @@ from pathlib import Path
     Contains projectwide global parameter-Dictionary
     searches and reads parameterfile  
 """
+# my set of parameters
+parameter = {}
 
 # databasetypes
 SQLITE: str = 'sqlite'
@@ -98,11 +100,6 @@ def parameterdefaults():
                  'logfilepath': None,
                  'iconmasterdocumentname': "ENTITY-ICONS"
                  }
-
-
-# my set of parameters
-parameter: {}
-
 
 def getsetparam(pparamname, pnewval: str = None):
     """returns the parameterset value named pparamname if pnewval  is None
@@ -597,3 +594,5 @@ def read_git_description(folder: Path = None):
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
         logging.warning(f"Cannot obtain git revision from folder {folder}.\n{e}")
         return f'<unknown@{str(folder)}>'
+
+parameterdefaults()

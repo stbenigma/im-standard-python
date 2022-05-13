@@ -189,7 +189,7 @@ def upgradedb(c, model=None):
             #c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
             return dbfile
 
-    load_tools_library()
+    print (load_tools_library())
     if model is None:
         for model in ('crmTest','riddle','testmodel-1','testmodel-2'):
             upgrade1db(model)
@@ -310,3 +310,21 @@ def verify_content(fh):
     except UnicodeDecodeError:
         pass
     pass
+
+@task
+def createtestmodeldbs(c):
+    def fillone(model):
+        """init module with regenerating the testmodels db and jsons"""
+        try:
+            integration.Testmodel(model).initDB(palways=True)
+        except:
+            print(f"could not fill {model}")
+
+    load_tools_library()
+    with c.cd(PROJECT_ROOT):
+        from SSOT_infra.tests import integration
+
+        fillone (integration.TESTMODEL1)
+        fillone (integration.TESTMODEL2)
+        fillone(integration.CRMTEST)
+        fillone (integration.RIDDLE)

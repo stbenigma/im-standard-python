@@ -91,17 +91,17 @@ def relations2js(pemptymodel):
 
 def js2rela (pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     rela = Relation(psrcname=psrcname,psrcid=psrcid)
-    rela.rela_id = jsguid2id(pkey)
+    rela.rela_id = pkey
     rela.rela_name = pelem['name']
     rela.rela_type = pelem['type']
-    rela.rela_enti_id_from = jsguid2id(pelem['from-to']['enti'])
-    rela.rela_arcs_id_from = jsguid2id(pelem['from-to']['arc'])
+    rela.rela_enti_id_from = pelem['from-to']['enti']
+    rela.rela_arcs_id_from = pelem['from-to']['arc']
     rela.rela_assoc_from_to = pelem['from-to']['assoc'][pmodellang]
     rela.rela_maptype_from_to = pelem['from-to']['maptype']
     rela.rela_mandatory_from_to = Boolean.bool2str(pelem['from-to']['mandatory'])
     rela.rela_hist_from_to = Boolean.bool2str(pelem['from-to']['hist'])
-    rela.rela_enti_id_to = jsguid2id(pelem['to-from']['enti'])
-    rela.rela_arcs_id_to = jsguid2id(pelem['to-from']['arc'])
+    rela.rela_enti_id_to = pelem['to-from']['enti']
+    rela.rela_arcs_id_to = pelem['to-from']['arc']
     rela.rela_assoc_to_from = pelem['to-from']['assoc'][pmodellang]
     rela.rela_maptype_to_from = pelem['to-from']['maptype']
     rela.rela_mandatory_to_from = Boolean.bool2str(pelem['to-from']['mandatory'])
@@ -112,14 +112,14 @@ def js2rela (pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     rela.rela_dm = pelem['dm']
     return rela
 
-def relations2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
-    """there are arcs without extref (those generated for subtypes) will be handled in fromodm2db"""
-    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.RELA, pjs2obj=js2rela,
+def relations2sql(presult:Mergeresult, pjson: JSModel, pwithextsrcref):
+    """there are arcs without extref (those generated for subtypes) will be handled in fromjson2db"""
+    fromjson2db(presult=presult, pjson=pjson,  pelemtype=Modelelemtype.RELA, pjs2obj=js2rela,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.RELA).items():
-        newrelaid = keytransl(jid)
-        if newrelaid is None: continue  # element was not treated
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.RELA).items():
+        newrelaid = presult.keytransl(jid)
+        if newrelaid  == 0: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -160,23 +160,23 @@ def arcs2js(pemptymodel):
     return retval
 
 def js2arcs(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
-    arc = Arc(pname=pelem['name'],psrcname=psrcname,psrcid=psrcid)
-    arc.arcs_id = jsguid2id(pkey)
-    arc.arcs_enti_id = jsguid2id(pelem['entity'])
-    arc.arcs_uc = pelem['uc']
-    arc.arcs_dc = pelem['dc']
-    arc.arcs_um = pelem['um']
-    arc.arcs_dm = pelem['dm']
+    arc = Arc(srcname=psrcname,srcid=psrcid,arcs_name=pelem['name'],
+            arcs_id = pkey,
+            arcs_enti_id = pelem['entity'],
+            arcs_uc = pelem['uc'],
+            arcs_dc = pelem['dc'],
+            arcs_um = pelem['um'],
+            arcs_dm = pelem['dm'])
     return arc
 
-def arcs2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
-    """there are arcs without extref (those generated for subtypes) will be handled in fromodm2db"""
-    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ARCS, pjs2obj=js2arcs,
+def arcs2sql(presult:Mergeresult, pjson: JSModel, pwithextsrcref):
+    """there are arcs without extref (those generated for subtypes) will be handled in fromjson2db"""
+    fromjson2db(presult=presult, pjson=pjson,  pelemtype=Modelelemtype.ARCS, pjs2obj=js2arcs,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ARCS).items():
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ARCS).items():
         if pwithextsrcref:
-            inssourceref(presult=presult,pmodeid=keytransl(jid), psources=jelem["sourceref"])
+            inssourceref(presult=presult,pmodeid=presult.keytransl(jid), psources=jelem["sourceref"])
     # for
     return
 

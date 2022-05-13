@@ -7,10 +7,12 @@ def inssourceref(presult: Mergeresult, pmodeid, psources):
     """   "sourceref": {
         "ODM": ["80D2A6F4-56D6-88E4-2E84-676699D4EBF2","2021-02-13 15:23:41.412333"]
     },"""
-    if psources is None: return
+    if psources is None: return inscnt
     for src, entry in psources.items():
         assert len(entry) > 1, f"Expecting two enties in psources {psources} {entry}"
-        extr = Externalref(pmodeid=pmodeid, psrcname=src, psrcid=entry[0], plastupd=entry[1])
+        extr = Externalref(extr_mode_id=pmodeid, extr_source_name=src, extr_source_id=entry[0],
+                           extr_last_update=entry[1])
+
         try:
             extr.insert(pdoerrhdlng=False)
         except Exception as err:
@@ -45,7 +47,7 @@ def udps2js(pemptymodel):
 
 def js2udpr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     udpr = Userdefprop()
-    udpr.udpr_id = jsguid2id(pkey)
+    udpr.udpr_id = pkey
     udpr.udpr_theme = pelem['theme']
     udpr.udpr_group = pelem['group']
     udpr.udpr_name = pelem['name']
@@ -58,15 +60,15 @@ def js2udpr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return udpr
 
 
-def udps2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
+def udps2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     global fktranslate
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
                pwithextsrcref=pwithextsrcref)
 
-    for jskey, jselem in podmjson.getelements(pelemtype=Modelelemtype.UDPR).items():
+    for jskey, jselem in pjson.getelements(pelemtype=Modelelemtype.UDPR).items():
         """mdelelemetype_properties are emptied and loaded from source"""
-        newudprid = keytransl(jskey)
-        if newudprid is None: continue  # element was not treated
+        newudprid = presult.keytransl(jskey)
+        if newudprid  == 0: continue  # element was not treated
         inscnt = 0
         delcnt = ModelelementProperty.delete(pwhere=("metp_udpr_id = ?", newudprid))
         for elemtype in jselem["usedfor"]:
@@ -110,7 +112,7 @@ def udpvs2sql(presult, pmodeid, pudps):
             for jid, jelem in jgroup.items():
                 # only non-null-udpr are copied to the database
                 if jelem['value'] is None: continue
-                udpr = Userdefprop().getbyid(keytransl(jid))
+                udpr = Userdefprop().getbyid(presult.keytransl(jid))
                 if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))
                         or (nvl(udpr.udpr_name) != nvl(jelem['name']))):
                     presult.markdberror(perr="User defined property has unknown theme or group"
@@ -157,17 +159,17 @@ def documents2js(pemtpymodel):
 
 def js2docu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     docu = Document(psrcname=psrcname, psrcid=psrcid)
-    docu.docu_id = jsguid2id(pkey)
+    docu.docu_id = pkey
     docu.docu_name = pelem['name']
     docu.docu_reference = pelem['reference']
     docu.docu_content = pelem['content']
-    docu.docu_stfo_id = jsguid2id(pelem['formatid'])
-    docu.docu_docu_id = jsguid2id(pelem['parent'])
+    docu.docu_stfo_id = pelem['formatid']
+    docu.docu_docu_id = pelem['parent']
     return docu
 
 
-def documents2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
+def documents2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
                pwithextsrcref=pwithextsrcref)
     # parents = [] #(docu_id, parent_id)
     # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DOCU).items():
@@ -192,9 +194,10 @@ def insreferences(presult: Mergeresult, pmodeid, prefs):
     for refid in prefs:
         elemtype = jsguid2type(refid)
         if elemtype == Modelelemtype.ORGU:
-            obj = ModelelemOrgu(pmodeid=pmodeid, porguid=keytransl(refid))
+            obj = ModelelemOrgu(moou_mode_id=pmodeid,moou_orgu_id = presult.keytransl(refid))
         elif elemtype == Modelelemtype.DOCU:
-            obj = ModelelemDocu(pmodeid=pmodeid, pdocuid=keytransl(refid))
+            obj = ModelelemDocu(modo_mode_id=pmodeid, modo_docu_id=presult.keytransl(refid))
+
         else:
             raise Exception("*****insreferences: Illegal type of element {}".format(elemtype))
         try:
@@ -255,7 +258,7 @@ def orgUnits2js(pemptymodel):
 
 def js2orgu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     orgu: OragnisationalUnit = OragnisationalUnit(psrcname=psrcname, psrcid=psrcid)
-    orgu.orgu_id = jsguid2id(pkey)
+    orgu.orgu_id = pkey
     orgu.orgu_name = pelem['name']
     orgu.orgu_orgu_id = None
     orgu.orgu_descr = pelem['descr']
@@ -266,16 +269,16 @@ def js2orgu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     orgu.orgu_mail = pelem['mail']
     orgu.orgu_telefon = pelem['telefon']
     orgu.orgu_address = pelem['address']
-    orgu.orgu_orgu_id = jsguid2id(pelem['parent'])
+    orgu.orgu_orgu_id = pelem['parent']
     return orgu
 
 
-def orgunits2sql(presult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
+def orgunits2sql(presult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ORGU).items():
-        inssourceref(presult=presult, pmodeid=keytransl(jid), psources=jelem["sourceref"])
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ORGU).items():
+        inssourceref(presult=presult, pmodeid=presult.keytransl(jid), psources=jelem["sourceref"])
     # for
     return
 
@@ -320,7 +323,7 @@ def categories2js(pemptymodel):
 
 def js2enca(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     enca: EntityCategory = EntityCategory(pname=pelem['name'])
-    enca.enca_id = jsguid2id(pkey)
+    enca.enca_id = pkey
     enca.enca_name = pelem['name']
     enca.enca_uc = pelem['uc']
     enca.enca_dc = pelem['dc']
@@ -329,8 +332,8 @@ def js2enca(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return enca
 
 
-def entitycategory2sql(presult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=JSModel.ELEMTYPE_CATG, pjs2obj=js2enca,
+def entitycategory2sql(presult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=JSModel.ELEMTYPE_CATG, pjs2obj=js2enca,
                pwithextsrcref=pwithextsrcref)
     return
 
