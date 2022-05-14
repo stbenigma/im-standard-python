@@ -1,12 +1,15 @@
 import os.path
 from .langexceldata import Langexceldata
 from SSOT_db.IM_JSON import JSModel
-from openpyxl import Workbook
+from openpyxl import Workbook,styles
+from openpyxl.utils import get_column_letter
+from openpyxl.comments import Comment
 
 class Exportdata:
     def __init__(self, pmodel:JSModel):
         self._model:JSModel = pmodel
         self._deflang= self._model.jsmodel['model']['language']
+        self._languages= self._model.jsmodel['languages'].keys()
         self.gatherdata()
 
     def fulldata(self, ptext: dict, pdesc: str, pcomment: str) -> dict:
@@ -31,6 +34,9 @@ class Exportdata:
     def _getdeflangstr(self, pelem):
         return pelem[self._deflang]
 
+    def getlanguages(self):
+        return self._languages
+
     def _getdefname(self, pelem):
         return self._getdeflangstr(pelem['name'])
 
@@ -40,11 +46,11 @@ class Exportdata:
     def _readentidata(self):
         elements = self._model.getelements('entities')
         for key,elem in elements.items():
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], self._getdefname(elem) + '  - Name', '')
-            self._data[self.xlskey(key,  'descr')] = self.fulldata(elem['descr'], self._getdefname(elem) + '  - Description', '')
-            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], self._getdefname(elem) + '  - Tooltip', '')
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], self._getdefname(elem) + '  Entity-Name', '')
+            self._data[self.xlskey(key,  'descr')] = self.fulldata(elem['descr'], self._getdefname(elem) + '  Entity--Description', '')
+            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], self._getdefname(elem) + '  Entity--Tooltip', '')
             for idx,syno in enumerate(elem['synonyms'],start=1):
-                self._data[self.xlskey(key, 'synonym',idx)] = self.fulldata(syno,self._getdefname(elem)+'->'+ self._getdeflangstr(syno)+'  - Synonym', '')
+                self._data[self.xlskey(key, 'synonym',idx)] = self.fulldata(syno,self._getdefname(elem)+'->'+ self._getdeflangstr(syno)+'  - Synonym-' + str(idx), '')
             for idx,expl in enumerate(elem['examples'],start=1):
                 self._data[self.xlskey(key,'example',idx)] = self.fulldata(expl, self._getdefname(elem) + '  - Example-' + str(idx), '')
 
@@ -52,17 +58,17 @@ class Exportdata:
         elements = self._model.getelements('businessrules')
         for key,elem in elements.items():
             refname=self._getdefname(elem)
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  - Name', '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  - Description', '')
-            self._data[self.xlskey(key, 'errormsg')] = self.fulldata(elem['errormsg'], refname + '  - Errormessage', '')
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  Businessrule-Name', '')
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  Businessrule-Description', '')
+            self._data[self.xlskey(key, 'errormsg')] = self.fulldata(elem['errormsg'], refname + '  Businessrule-Errormessage', '')
 
     def _readattrdata(self):
         elements = self._model.getelements('attributes')
         for key,elem in elements.items():
             refname=self._getdefname(self._getelement(elem['entity'])) +'->'+ self._getdefname(elem)
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  - Name', '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  - Description', '')
-            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], refname + '  - Tooltip', '')
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  Attribute-Name', '')
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  Attribute-Description', '')
+            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], refname + '  Attribute-Tooltip', '')
             for idx,expl in enumerate(elem['examples'],start=1):
                 self._data[self.xlskey(key,'example',idx)] = self.fulldata(expl, self._getdefname(elem) + '  - Example-' + str(idx), '')
 
@@ -70,8 +76,8 @@ class Exportdata:
         elements = self._model.getelements('domains')
         for key,elem in elements.items():
             refname=self._getdefname(elem)
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  - Name', '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  - Description', '')
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname+ '  Domain-Name', '')
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  Domain-Description', '')
         return
 
     def _readreladata(self):
@@ -79,8 +85,8 @@ class Exportdata:
         for key,elem in elements.items():
             fromentiname = self._getdefname(self._getelement(elem['from-to']['enti']))
             toentiname = self._getdefname(self._getelement(elem['to-from']['enti']))
-            self._data[self.xlskey(key, 'fromto')] = self.fulldata(elem['from-to']['assoc'], fromentiname + ' => ' + toentiname, '')
-            self._data[self.xlskey(key, 'tofrom')] = self.fulldata(elem['to-from']['assoc'], toentiname + ' => ' + fromentiname, '')
+            self._data[self.xlskey(key, 'fromto')] = self.fulldata(elem['from-to']['assoc'], 'Relation -' + fromentiname + ' => ' + toentiname, '')
+            self._data[self.xlskey(key, 'tofrom')] = self.fulldata(elem['to-from']['assoc'], 'Relation -' + toentiname + ' => ' + fromentiname, '')
 
     def gatherdata(self):
         self._data = {}
@@ -91,8 +97,45 @@ class Exportdata:
         self._readburudata()
 #Exportdata
 
+def writesheets(pwb,pdata:Exportdata):
+    ws = pwb.active
+    ws.protection.sheet = True
+
+    excel = Langexceldata()
+    langs = pdata.getlanguages()
+    excel.setheader(plangs=langs)
+
+    excel.setheaderwidth(pdimensions=[20]+[50]*len(langs)+[45,40])
+
+    ws.append(excel.getheaderlist())
+    ws("A1").comment=Comment
+
+    for idx,d in enumerate(excel.getheaderwidth(),start=1):
+        ws.column_dimensions[get_column_letter(idx)].width = d
+
+    for key,data in pdata.getdata().items():
+        row = [key]
+        for l in langs:
+            row.append(data[l])
+        row.append(data['descr'])
+        row.append(data['comment'])
+        ws.append(row)
+
+    #unlock all cells but head and first
+    for row in ws.rows:
+        for cell in row:
+            if cell.row >1 :
+                if cell.column> 1:
+                    cell.protection = styles.Protection(locked=False)
+                cell.alignment = styles.Alignment(wrapText=True,vertical='top')
+
+    return
+
+
 def createexcel(pdestfile, pmodel):
-    data = Exportdata(pmodel).getdata()
+
+    data = Exportdata(pmodel)
+    #getdata = {key: {lang:str,} 'desc':desc,'comment':comment}
     wb = Workbook()
     writesheets(pwb=wb,pdata=data)
     wb.save(filename=pdestfile)
