@@ -1,6 +1,6 @@
 import os
 import unittest
-from tools.LANGTRANSL import exportdata,importdata
+from tools.LANGTRANSL import exportdata,importdata,langexceldata
 from SSOT_db.IM_JSON import JSModel
 import SSOT_infra.tests.integration as tb
 
@@ -9,12 +9,16 @@ class MyTestCase(unittest.TestCase):
         self.tm2 = tb.Testmodel(tb.TESTMODEL2)
         self.tm2.initDB(palways=True)
 
+    def test_metainfo(self):
+        mi = langexceldata.Metainfo(modelname='test')
+        print (mi)
+
     def test_calls(self):
         with self.assertRaises(Exception) as exp:
             exportdata.createlangexcel('gugus')
         print ("")
 
-        data = exportdata.Exportdata(JSModel.readfromfile(self.tm2.jsonfile),pjsonfile=self.tm2.jsonfile).getdata()
+        data = exportdata.Exportdata(pjsonfile=self.tm2.jsonfile).getdata()
         for key in ('ENTI118-name','ENTI118-descr','ENTI118-tooltip','ENTI111-synonym-1',
                     'ATTR123-name','ATTR123-descr','ATTR123-tooltip',
                     'DOMA90-name','DOMA90-descr','ENTI119-example-2'):

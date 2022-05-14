@@ -3,8 +3,7 @@ import sys
 
 from openpyxl import load_workbook
 
-from SSOT_db.IM_JSON.jsmodel import JSModel
-from .langexceldata import Langexceldata
+from LANGTRANSL.langexceldata import Langexceldata
 
 
 def importlangexcel(pexcelfile, pmodeldb=None):
@@ -16,11 +15,12 @@ def importlangexcel(pexcelfile, pmodeldb=None):
         print(f"***** Excelfile could not be imported {pexcelfile}")
         print(e)
 
-    excel = Langexceldata()
     ws = wb.active
-    metainfo = Langexceldata.analyzecomment(ws["A1"].comment.text)
-    jsonfile = getjsonfile (pmodeldb,pjsonfile=metainfo[])
-    mergejson = JSModel.readfromfile(pfilename=)
+    excel = Langexceldata()
+    a1comment = ws["A2"].comment
+    excel.analyzecomment('' if a1comment is None else a1comment.text)
+    # jsonfile = getjsonfile (pmodeldb,pjsonfile=metainfo[])
+    # mergejson = JSModel.readfromfile(pfilename=None)
 
     return
 

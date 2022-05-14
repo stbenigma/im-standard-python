@@ -1,19 +1,29 @@
-import sys
 import os.path
-from LANGTRANSL.langexceldata import Langexceldata
-from SSOT_db.IM_JSON import JSModel
+import sys
+
 from openpyxl import Workbook, styles
-from openpyxl.utils import get_column_letter
 from openpyxl.comments import Comment
+from openpyxl.utils import get_column_letter
+
+from LANGTRANSL.langexceldata import Langexceldata, Metainfo
+from SSOT_db.IM_JSON import JSModel
+from SSOT_infra import nvl
 
 
 class Exportdata:
-    def __init__(self, pmodel: JSModel, pjsonfile):
-        self._model: JSModel = pmodel
+    def __init__(self, pjsonfile):
+        self._model: JSModel = JSModel.readfromfile(pfilename=pjsonfile)
+
         self._deflang = self._model.jsmodel['model']['language']
         self._languages = self._model.jsmodel['languages'].keys()
+        self._metainfo = Metainfo(gitrevision=self._model.jsmodel["_imprint_"]["git-revision"],
+                                  dbmodelversion=self._model.jsmodel["_imprint_"]["Modelversion"],
+                                  lastupdate=nvl(self._model.jsmodel["model"]["dm"],
+                                                 self._model.jsmodel["model"]["dc"]),
+                                  jsonfile=pjsonfile,
+                                  modellang=self._model.jsmodel["model"]["language"],
+                                  modelname=self._model.jsmodel["model"]["name"])
         self.gatherdata()
-        self.setmetainfo(pjsonfile)
 
     def fulldata(self, ptext: dict, pdesc: str, pcomment: str) -> dict:
         retval = ptext
@@ -28,34 +38,8 @@ class Exportdata:
             retval += '-' + str(pidx)
         return retval
 
-    def setmetainfo(self, pjsonfile):
-        self._gitrevision = self._model.jsmodel["_imprint_"]["git-revision"]
-        self._dbmodelversion = self._model.jsmodel["_imprint_"]["Modelversion"]
-        dm = self._model.jsmodel["model"]["dm"]
-        if dm is None:
-            dm = self._model.jsmodel["model"]["dc"]
-        self._lastupdate = dm
-        self._jsonfile = pjsonfile
-        self._modellang = self._model.jsmodel["model"]["language"]
-        self._modelname = self._model.jsmodel["model"]["name"]
-
-    def getjsongitrevision(self):
-        return self._gitrevision
-
-    def getjsondbmodelversion(self):
-        return self._dbmodelversion
-
-    def getjsonlastupdate(self):
-        return self._lastupdate
-
-    def getjsonmodelname(self):
-        return self._modelname
-
-    def getjsonmodellang(self):
-        return self._modellang
-
-    def getjsonfile(self):
-        return self._jsonfile
+    def metainfo(self):
+        return self._metainfo
 
     def getdata(self, ptype=None):
         if ptype is None:
@@ -156,13 +140,7 @@ def writesheets(pwb, pdata: Exportdata):
     excel.setheaderwidth(pdimensions=[20] + [50] * len(langs) + [45, 40])
 
     ws.append(excel.getheaderlist())
-    comment = '\n'.join(s for s in [f"model={pdata.getjsonmodelname()}",
-                                    f"lastmodified={pdata.getjsonlastupdate()}",
-                                    f"modellanguage={pdata.getjsonmodellang()}",
-                                    f"git-revision={pdata.getjsongitrevision()}",
-                                    f"jsonfile={pdata.getjsonfile()}"
-                                    ])
-    ws["A1"].comment = Comment(text=comment,
+    ws["A1"].comment = Comment(text=pdata.metainfo(),
                                author="SPOD-Generator", height=100, width=400)
 
     for idx, d in enumerate(excel.getheaderwidth(), start=1):
@@ -188,8 +166,7 @@ def writesheets(pwb, pdata: Exportdata):
 
 
 def createexcel(pdestfile, pjsonfile):
-    jsmodel = JSModel.readfromfile(pfilename=pjsonfile)
-    data = Exportdata(jsmodel, pjsonfile)
+    data = Exportdata(pjsonfile)
     # getdata = {key: {lang:str,} 'desc':desc,'comment':comment}
     wb = Workbook()
     writesheets(pwb=wb, pdata=data)

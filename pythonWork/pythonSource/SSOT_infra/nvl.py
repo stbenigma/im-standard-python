@@ -9,3 +9,7 @@ def nvl(pval1, pval2=''):
 def nvl2(pval, pvalNone, pvalnNone):
     """oracles nvl2 function: return valNone if val is None, valnNone otherwise """
     return pvalNone if pval is None else pvalnNone
+
+def nvlkey(pdict,pkey):
+    """return None if key does not exist. otherwise pdict[pkey]"""
+    return None if not pkey in pdict else pdict[pkey]
