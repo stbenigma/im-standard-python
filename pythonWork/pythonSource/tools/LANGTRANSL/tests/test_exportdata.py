@@ -1,6 +1,6 @@
 import os
 import unittest
-from LANGTRANSL import exportdata
+from tools.LANGTRANSL import exportdata,importdata
 from SSOT_db.IM_JSON import JSModel
 import SSOT_infra.tests.integration as tb
 
@@ -14,7 +14,7 @@ class MyTestCase(unittest.TestCase):
             exportdata.createlangexcel('gugus')
         print ("")
 
-        data = exportdata.Exportdata(JSModel.readfromfile(self.tm2.jsonfile)).getdata()
+        data = exportdata.Exportdata(JSModel.readfromfile(self.tm2.jsonfile),pjsonfile=self.tm2.jsonfile).getdata()
         for key in ('ENTI118-name','ENTI118-descr','ENTI118-tooltip','ENTI111-synonym-1',
                     'ATTR123-name','ATTR123-descr','ATTR123-tooltip',
                     'DOMA90-name','DOMA90-descr','ENTI119-example-2'):
@@ -34,6 +34,13 @@ class MyTestCase(unittest.TestCase):
         #os.remove(destfilename)
 
         return
+
+    def test_importdata(self):
+        with self.assertRaises(Exception) as exp:
+            importdata.importlangexcel('gugus')
+        print ("")
+        impfilename = os.path.join(self.tm2.dbdir, self.tm2.modelname + '.xlsx')
+        importdata.importlangexcel(impfilename)
 
 
 if __name__ == '__main__':
