@@ -1,6 +1,9 @@
-from SSOT_infra.parameters import SUPPORTEDLANGUAGES
+import re
 from SSOT_infra import nvlkey
 import logging
+
+def strislang(l: str) -> bool:
+    return type(l) is str and re.match("[a-z]{2}",l)
 
 class Metainfo():
     def __init__(self,**kwargs):
@@ -48,7 +51,7 @@ class Metainfo():
                     self._dbmodelversion = vals[1].strip()
             else:
                 logging.warning(f"Excelimport: invalid metainformation from comment: {vals}")
-        return
+        return self
 
     def __str__(self):
         return '\n'.join(s for s in [f"model={self.getmodelname()}",
@@ -106,20 +109,42 @@ class Langexceldata:
     def keyrowidx(self):
         return self.getheaderidx(self.KEY)
 
+    def getlanguages(self):
+        assert len(self._header)>1
+        return [val for idx,val in self._header.items() if strislang(val)]
+
     def analyzeheader(self, prow):
-        if not (self.KEY in prow and len(prow) > 1):
+        headervals = [cell.value for cell in prow]
+        if not (self.KEY in headervals and len(headervals) > 1):
             raise AssertionError("***** Header must contain 'Key' and at least one language-code")
         self._header = dict()
-        for idx, title in enumerate(prow, start=1):
+        for idx, title in enumerate(headervals, start=1):
             self._header[idx] = title
+        langs =self.getlanguages()
+        if len(langs) != len(set(langs)):
+            raise AssertionError("***** Header must not contain duplicated languages {langs}")
+
+    @staticmethod
+    def decodekey(pkey):
+        """returns id,attr,idx for from a keyvalue
+            ENTI119-Name[-nnn]
+        """
+        key,attr,idx = None,None,None
+        if re.match("^[A-Z]{4}\d+\-[a-z]+\-?\d*$",pkey):
+            vals = pkey.split('-')
+            key =vals[0]
+            attr = vals[1]
+            idx = None if len(vals)<3 else int(vals[2])
+        else:
+            raise Exception(ValueError)
+        return key,attr,idx
+
 
     def analyzecomment(self,pcomment):
         self._metainfo = Metainfo().str2metainfo(pcomment)
         return
 
-    def getmetainfo(self):
+    def getmetainfo(self)->Metainfo:
         return self._metainfo
 
-    @staticmethod
-    def strislang(l: str) -> bool:
-        return l.lower() in SUPPORTEDLANGUAGES.keys()
+

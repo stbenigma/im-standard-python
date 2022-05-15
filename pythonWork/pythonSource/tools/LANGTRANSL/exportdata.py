@@ -69,10 +69,10 @@ class Exportdata:
             self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'],
                                                                     self._getdefname(elem) + '  Entity--Tooltip', '')
             for idx, syno in enumerate(elem['synonyms'], start=1):
-                self._data[self.xlskey(key, 'synonym', idx)] = self.fulldata(syno, self._getdefname(
+                self._data[self.xlskey(key, 'synonyms', idx)] = self.fulldata(syno, self._getdefname(
                     elem) + '->' + self._getdeflangstr(syno) + '  - Synonym-' + str(idx), '')
             for idx, expl in enumerate(elem['examples'], start=1):
-                self._data[self.xlskey(key, 'example', idx)] = self.fulldata(expl, self._getdefname(
+                self._data[self.xlskey(key, 'examples', idx)] = self.fulldata(expl, self._getdefname(
                     elem) + '  - Example-' + str(idx), '')
 
     def _readburudata(self):
@@ -95,7 +95,7 @@ class Exportdata:
             self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], refname + '  Attribute-Tooltip',
                                                                     '')
             for idx, expl in enumerate(elem['examples'], start=1):
-                self._data[self.xlskey(key, 'example', idx)] = self.fulldata(expl, self._getdefname(
+                self._data[self.xlskey(key, 'examples', idx)] = self.fulldata(expl, self._getdefname(
                     elem) + '  - Example-' + str(idx), '')
 
     def _readdomadata(self):

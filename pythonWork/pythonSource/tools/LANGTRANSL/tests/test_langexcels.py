@@ -1,7 +1,6 @@
 import os
 import unittest
 from tools.LANGTRANSL import exportdata,importdata,langexceldata
-from SSOT_db.IM_JSON import JSModel
 import SSOT_infra.tests.integration as tb
 
 class MyTestCase(unittest.TestCase):
@@ -10,8 +9,15 @@ class MyTestCase(unittest.TestCase):
         self.tm2.initDB(palways=True)
 
     def test_metainfo(self):
+        self.assertTrue(langexceldata.strislang('xx'))
+        self.assertFalse(langexceldata.strislang('x'))
+        self.assertFalse(langexceldata.strislang(None))
+        self.assertFalse(langexceldata.strislang(''))
+        self.assertFalse(langexceldata.strislang('xY'))
+
         mi = langexceldata.Metainfo(modelname='test')
         print (mi)
+        return
 
     def test_calls(self):
         with self.assertRaises(Exception) as exp:
@@ -19,9 +25,9 @@ class MyTestCase(unittest.TestCase):
         print ("")
 
         data = exportdata.Exportdata(pjsonfile=self.tm2.jsonfile).getdata()
-        for key in ('ENTI118-name','ENTI118-descr','ENTI118-tooltip','ENTI111-synonym-1',
+        for key in ('ENTI118-name','ENTI118-descr','ENTI118-tooltip','ENTI111-synonyms-1',
                     'ATTR123-name','ATTR123-descr','ATTR123-tooltip',
-                    'DOMA90-name','DOMA90-descr','ENTI119-example-2'):
+                    'DOMA90-name','DOMA90-descr','ENTI119-examples-2'):
             self.assertTrue(key in data)
 
         destfilename=os.path.join(self.tm2.dbdir,self.tm2.modelname+'.xlsx')
