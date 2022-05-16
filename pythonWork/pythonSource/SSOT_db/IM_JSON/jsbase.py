@@ -1,7 +1,7 @@
+import datetime
 import json
 import logging
 import os
-import sqlite3
 from threading import local
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
@@ -90,11 +90,6 @@ class JSModel:
 
     def __init__(self, pmodel=None):
         self.jsmodel = {} if pmodel is None else pmodel
-        self._checked = False
-        self._errorcnt = 0
-        self._warningcnt = 0
-        self._errors = []
-        self._warnings = []
         self.languages = {}  # langid:iso2
 
     def getelements(self, pelemtype):
@@ -112,8 +107,12 @@ class JSModel:
 
     @staticmethod
     def readfromfile(pfilename):
-        with open(pfilename, 'r') as handle:
-            model = json.load(handle)
+        try:
+            with open(pfilename, 'r') as handle:
+                model = json.load(handle)
+        except ValueError as e:
+            raise ValueError(f"Invalid JSON in {pfilename}. {e}") from e
+
         return JSModel(pmodel=model)
 
     @staticmethod
@@ -163,50 +162,37 @@ class JSModel:
     def modelname(self):
         return self.jsmodel["model"]["name"]
 
-    def incerrcnt(self):
-        self._errorcnt += 1
-
-    def errcnt(self):
-        return self._errorcnt
-
-    def incwrncnt(self):
-        self._warningcnt += 1
-
-    def wrncnt(self):
-        return self._warningcnt
-
-    def errors(self):
-        return self._errors
-
-    def warnings(self):
-        return self._warnings
-
-    def markerror(self, pmsg, pelemstr=''):
-        if type(pmsg) in (sqlite3.IntegrityError, sqlite3.DatabaseError, sqlite3.DataError, sqlite3.Error):
-            errtype = 'DB-'
-        else:
-            errtype = ''
-        # fi
-
-        self._errors.append("***{}ERROR: {}".format(errtype, pmsg))
-        self._errors.append("     " + pmsg.__str__())
-        if pelemstr != '':
-            self._errors.append(pelemstr)
-        self.incerrcnt()
-        return
-
-    def markwarning(self, pmsg):
-        self._warnings.append("WARNING: {}".format(pmsg))
-        self.incwrncnt()
-        return
-
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 
 # JSModel
 
 
+def check_json_serialisable(structure: dict):
+
+    def nest(element, path: str):
+        if isinstance(element, dict):
+            for key, value in element.items():
+                full_path = path + '."' + key + '"'
+                nest(value, full_path)
+        elif isinstance(element, list):
+            index = 0
+            for item in element:
+                full_path = path + f'[{index}]'
+                nest(item, full_path)
+                index += 1
+        else:
+            check_value(element, path)
+
+    def check_value(value, path: str):
+        if isinstance(value, datetime.datetime):
+            raise ValueError(f"Value {value} of type {type(value)} in {path} cannot be serialised")
+
+    nest(structure, '')
+
+
 def printJSON(pmodel, pfilepath, pfilename, psorted=False):
+    check_json_serialisable(pmodel)
     destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
         jsonfile.write(json.dumps(pmodel, indent=3))

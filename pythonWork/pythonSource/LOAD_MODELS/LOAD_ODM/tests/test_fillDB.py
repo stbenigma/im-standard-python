@@ -1,10 +1,15 @@
 import json
+import logging
 import os
 import unittest
+from contextlib import closing
+from pathlib import Path
 
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_ODM import fillDB
+from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.createDB import createDB
+from SSOT_infra import parameters
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 
 
@@ -26,6 +31,7 @@ class TESTFILLDB(unittest.TestCase):
         self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodel2.initDB(palways=True)
 
     def test_filldbmain(self):
         assert True
@@ -133,26 +139,29 @@ class TESTFILLDB(unittest.TestCase):
         dbfilepath = dbdirpath / (testmodelname + '.db')
         jsonfilepath = dbdirpath / (testmodelname + '.json')
         paramfile = testpath / (testmodelname + '.params')
-        if os.path.exists(dbfilepath):
-            createDB(pupgrade=True, pparamfile=paramfile)
+        #if os.path.exists(dbfilepath):
+        #    createDB(pupgrade=True, pparamfile=paramfile)
         fillDB.filldbmain(pparamfile=paramfile)
         # check handling of translations
+        print(f"Verifying against {jsonfilepath}")
         with open(jsonfilepath) as jsonFile:
             jmodel = json.load(jsonFile)
             checkentityID, checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]
             self.assertIsNotNone(checkentity, f"Testcase 'Child Entity1' is not present in {testmodelname}")
             synos = list(checkentity["synonyms"])
-            self.assertEqual(synos[0]["en"], "DSynonym")
-            self.assertEqual(synos[0]["fr"], "DSynonym")
+            self.assertEqual(synos[0]["en"], "*de* DSynonym")
+            self.assertEqual(synos[0]["fr"], "*de* DSynonym")
             self.assertEqual(checkentity["descr"]["en"],
                              "Child entity,  Subtype \nDisplayed on all zoom levels (0-2)")
             self.assertEqual(checkentity["descr"]["fr"],
-                             "Untergeordnete Entität, Untertyp\nWird auf allen Zoomstufen angezeigt (0-2)")
+                             "*de* Untergeordnete Entität, Untertyp\nWird auf allen Zoomstufen angezeigt (0-2)")
             attr = jmodel["attributes"][checkentity["attributes+"][0]]
             self.assertEqual(attr["techname"], "ERSTE_ERSCHEINUNG", "wrong testcase attribute")
-            self.assertEqual(attr["tooltip"]["en"], "Tooltip Eonly")
-            self.assertEqual(attr["tooltip"]["fr"], "Tooltip Eonly")
-            jsonFile.close()
+            self.assertEqual(attr["tooltip"]["en"], "*de* Tooltip Eonly")
+            self.assertEqual(attr["tooltip"]["fr"], "*de* Tooltip Eonly")
+
+            imprint = jmodel['_imprint_'].get('git-revision')
+            self.assertTrue(len(imprint) > 2)
 
         # create db for crmtest with Paramfile
         testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
@@ -187,4 +196,16 @@ class TESTFILLDB(unittest.TestCase):
                         f"json file not where assumed {testmodelriddle.jsonfile}")
         self.assertTrue(os.path.exists(testmodelriddle.logfile),
                         f"log file not where assumed {testmodelriddle.logfile}")
-        return
+
+
+        return testmodelriddle.dbfile
+
+    def test_revision(self):
+        repo_revision = parameters.read_git_description(Path(__file__).parent)
+        self.assertTrue('unknown' not in repo_revision)
+
+        db_file = self.test_filldb()
+        with closing(dbConnect.openDBbasic(db_file)) as conn:
+            ver = dbConnect.read_git_revision(conn)
+            self.assertEqual(ver, repo_revision)
+

@@ -88,10 +88,16 @@ class Language(Baseobject):
                     """.format(pmodellang))
     #setmodellang
 
+    @staticmethod
+    def getlangswithillegalreplacement():
+        langs = Language.select(pwhere="""(lang_lang_id is not NULL and lang_is_base_lang = 'TRUE') or 
+                                           (lang_lang_id is  NULL and lang_is_base_lang = 'FALSE') """)
+        return langs
+
     @ staticmethod
     def setallreplacementlang():
         #make sure everybody has a replacementlanguage
-        dbDML.exec("""update languages  
+        cnt = dbDML.exec("""update languages  
         set lang_lang_id = 
             case when lang_is_base_lang  = 'TRUE'
             then NULL
@@ -101,7 +107,7 @@ class Language(Baseobject):
                 )
             end
         where lang_lang_id is NULL""")
-    #setallreplacementlang
+        return cnt
 #Language
 
 

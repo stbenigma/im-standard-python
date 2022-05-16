@@ -1,11 +1,16 @@
 import json
 import os
+import subprocess
+import logging
+from pathlib import Path
 
 """  Collection of all parameters for the management of the database and all tools
 
     Contains projectwide global parameter-Dictionary
     searches and reads parameterfile  
 """
+# my set of parameters
+parameter = {}
 
 # databasetypes
 SQLITE: str = 'sqlite'
@@ -95,11 +100,6 @@ def parameterdefaults():
                  'logfilepath': None,
                  'iconmasterdocumentname': "ENTITY-ICONS"
                  }
-
-
-# my set of parameters
-parameter: {}
-
 
 def getsetparam(pparamname, pnewval: str = None):
     """returns the parameterset value named pparamname if pnewval  is None
@@ -581,3 +581,18 @@ def initparam(pbasedirec, pparamfile=None, pmodelname=None, pdbfile=None, pmodel
     filldefaultparams()
 
     return
+
+
+def read_git_description(folder: Path = None):
+    """@:returns The git reference describing the repo status seen in folder"""
+    if folder is not None:
+        assert folder.is_dir()
+    command = ['git', 'describe', '--always']
+    try:
+        git_tag = subprocess.check_output(command, cwd=str(folder), stderr=subprocess.DEVNULL).decode().strip()
+        return git_tag
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        logging.warning(f"Cannot obtain git revision from folder {folder}.\n{e}")
+        return f'<unknown@{str(folder)}>'
+
+parameterdefaults()

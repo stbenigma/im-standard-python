@@ -53,21 +53,28 @@ def existsDB(pfilepath):
     return os.path.exists(pfilepath)
 
 
-def createnewDB(pdbfilepath):
+def createnewDB(pdbfilepath,pbaselang = None, planguages=None):
     """create a new database and fill in the basic data and leaves it open
 
         pdbfilepath = None => create it in memory and do not close it
+        baselang and languages are used to prefill the database
+        if they are None, the values from parameters are used
     """
+
+    if pbaselang is not None:
+        parameters.dbDefaultLang(pbaselang)
+    if planguages is not None:
+        parameters.dbLanguages(','.join(planguages))
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath)
+    connection = dbConnect.opendDB4DDL(pfilepath=dbfilepath)
     applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
     if dbConnect.getversion() != parameters.expecteddbversion():
         applyupgrades()
     dbConnect.checkson() #enable all constraints
-    return
+    return connection
 
 
 def extract_version(pfilename):
@@ -177,7 +184,7 @@ def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodeln
         # fi
     finally:
         logmessages.closelog()
-    return
+    return parameters.dbFilePath()
 
 
 def main(psysargs):

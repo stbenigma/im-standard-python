@@ -16,14 +16,9 @@ class Arc(Baseobject):
     _columnlist: list = []
     _defaultorderby = "arcs_id"
 
-    def __init__(self, pname=None, pentiid=None, puc=None, pdc=None, psrcname=None, psrcid=None):
+    def __init__(self, **kwargs):
 
-        super().__init__( psrcname=psrcname
-                         , pscrid=psrcid)
-        self.arcs_name = pname
-        self.arcs_enti_id = pentiid
-        self.arcs_uc = puc
-        self.arcs_dc = pdc if (pdc is not None) else str(datetime)
+        super().__init__( **kwargs)
 
     def getmodeid(self):
         return self.arcs_id

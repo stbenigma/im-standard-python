@@ -128,26 +128,17 @@ class ModelelemDocu(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist = dict()
 
-    def __init__(self,pmodeid = None,pdocuid=None):
+    def __init__(self,**kwargs):
 
-        super().__init__()
-        self.modo_mode_id = pmodeid
-        self.modo_docu_id = pdocuid
+        super().__init__(**kwargs)
 
 
     @staticmethod
-    def insertdocuref(pdocguidlist,pmodeid):
-        if pdocguidlist is None: return
-        for docguid in pdocguidlist:
-            modo = ModelelemDocu()
-            modo.modo_docu_id = Externalref.getODMmodeid(psrcid=docguid)
-            if modo.modo_docu_id is None:
-                #GUID no longer exists
-                logmessages.writelog("Document ({}) referenced in model-element id={} does not exist".format(docguid, pmodeid))
-                return
-            modo.modo_mode_id = pmodeid
-            modo.insert()
+    def insertdocuref(pdocidlist, pmodeid):
+        if pdocidlist is None: return
+        for docuid in pdocidlist:
+            ModelelemDocu(modo_docu_id= docuid,modo_mode_id = pmodeid).insert()
         #for
-    #insertdocuref
+        return
 #ModelelemDoku
 

@@ -1,55 +1,73 @@
 # -*- coding: latin-1 -*-
 import argparse
 import sys
+from contextlib import closing
 from pathlib import Path
 
 from LOAD_MODELS.LOAD_ODM import transferModel
 from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import *
-from SSOT_db.IM_OBJECTS import Language
 from SSOT_db import existsDB, createnewDB
 from SSOT_infra import logmessages, parameters, argparseparent
 
 
-def fillmergedb(pdbfilepath, transferfunction, **kwargs):
+def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> str:
+    """
+    Create or merge SPOD (sqlite and json).
+    :param pdbfilepath:
+    :param transferfunction:
+    :param kwargs:
+    :return: Path to results (json, sqlite)
+    """
     createnewdb = not existsDB(pdbfilepath)
     if createnewdb:
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(),pversioncheck=False)
-        parameters.dbDefaultLang(newval=Language.getdefaultlang().lang_iso_code2)
-        langs = Language.getlanguagecodes()
-        parameters.dbLanguages(newval=','.join(langs))
-        dbConnect.closeDB()
+        dbConnect.getdblangparameters(pfilepath=pdbfilepath)
         createnewDB(pdbfilepath=None)  # create in Memory
     # fi
     transferfunction(**kwargs)
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
+    new_git_revision = parameters.read_git_description(Path(parameters.odmIMDirec()))
     loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName() + "_loaded")
+    loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
     if createnewdb:
-        loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        logging.info(f"Created SPOD for git revision {new_git_revision}")
+        with closing(dbConnect.openDB(pfilepath=pdbfilepath)) as conn:
+            dbConnect.write_git_reversion(new_git_revision, conn)
+        js_spod_file = loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        dbConnect.openDB(pfilepath=parameters.dbFilePath())
+        logging.info(f"Opening destination db for merge {pdbfilepath}")
+        with closing(dbConnect.openDB(pfilepath=pdbfilepath)) as connection:
+            old_git_revision = dbConnect.read_git_revision(connection)
+            logging.info(f"Opening DB '{parameters.dbFilePath()}' for upgrade from git revision '{old_git_revision}'"
+                         f" to git revision '{new_git_revision}'")
+            newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
+            if newversion != dbConnect.getversion():
+                logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
+                                         .format(pdbfilepath, dbConnect.getversion(),
+                                                 newversion))
+                raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
+                                                                                     newversion))
+            dbConnect.closeDB()
 
-        newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
-        if newversion != dbConnect.getversion():
-            logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
-                                     .format(parameters.dbFilePath(), dbConnect.getversion(),
-                                             newversion))
-            raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
-                                                                                 newversion))
+        logging.debug(f"Starting merge")
+        mergedbs.mergejs2db(pdbfile=pdbfilepath, pmodel=loadedjson)
 
-        mergedbs.mergejson2db(pmodeljson=loadedjson)
-        """generate json from merged DB"""
-        newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        dbConnect.closeDB()
-        newjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        with closing(dbConnect.openDB(pfilepath=pdbfilepath)):
+            reloaded = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+            dbConnect.closeDB()
+
+        logging.debug(f"Writing reloaded model to json SPOD")
+        js_spod_file = reloaded.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        logging.info(f"Merge of SPOD {js_spod_file} to git revision {reloaded.jsmodel['_imprint_']['git-revision']} complete")
     # fi
-    return
+
+    return js_spod_file
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,

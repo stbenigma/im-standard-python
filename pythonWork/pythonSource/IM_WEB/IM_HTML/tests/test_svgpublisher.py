@@ -37,6 +37,7 @@ class EnvironDiagramGeneration(IntegrationTest):
     def test_render(self, ssot_file=RIDDLE_PATH):
         if not ssot_file.exists():
             logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
+            return
         with open(ssot_file, 'r') as src:
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)

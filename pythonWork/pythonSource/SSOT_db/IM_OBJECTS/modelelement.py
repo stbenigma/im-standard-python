@@ -159,10 +159,6 @@ class Modelelement(Baseobject):
         modeid = Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid)
         return None if modeid is None else Modelelement().getbyid(pid=modeid)
 
-    @staticmethod
-    def getmodebyodmguid(psrcid):
-        return Modelelement.getmodebyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
-
     def getmyelement(self):
         if self.mode_type == Modelelemtype.SYNO:
             element = Synonym().getbyid(self.mode_id)
@@ -210,10 +206,6 @@ class Modelelement(Baseobject):
     @staticmethod
     def getelementbyextref(psrcname, psrcid):
         return Modelelement.getelement(pmodeid=Externalref.getmodeid(psrcname=psrcname, psrcid=psrcid))
-
-    @staticmethod
-    def getelementbyodmguid(psrcid):
-        return Modelelement.getelementbyextref(psrcname=Externalref.SOURCE_ODM, psrcid=psrcid)
 
     @staticmethod
     def insertudpelems(pudpthema):
@@ -279,6 +271,17 @@ class Modelelement(Baseobject):
                                                  dbDML.dbval(ppublstat), pmodeid)
         dbDML.exec(lsql)
         return
+
+    @staticmethod
+    def deletenonreferenced(pmodetype):
+        """ delete all modelelements which do not longer have an external reference
+        """
+        cnt = Modelelement.delete(pwhere=("""mode_type = ? 
+                                and not exists 
+                                (select 1 from external_refs 
+                                where extr_mode_id = mode_id)""",pmodetype))
+        return cnt
+
 
 
 class ModelelementProperty(Baseobject):

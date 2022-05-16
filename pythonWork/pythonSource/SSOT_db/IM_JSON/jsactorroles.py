@@ -20,10 +20,10 @@ def js2actc(pactrid,pmodeid,praci):
                         )
     return actc
 
-def actorconcerns2sql(presult, podmjson):
+def actorconcerns2sql(presult, pjson):
     """actor concerns are emptied and loaded from source"""
     inscnt,delcnt = 0,0
-    newactrs = podmjson.getelements(Modelelemtype.ACTR)
+    newactrs = pjson.getelements(Modelelemtype.ACTR)
     for actrjsid,actr in newactrs.items():
         delcnt += Actorconcern.delete(pwhere=("actc_actr_id = ?", jsguid2id(actrjsid)))
         """  "concerns": {
@@ -32,8 +32,8 @@ def actorconcerns2sql(presult, podmjson):
             """
         for modejsid,raci in actr["concerns"].items():
             try:
-                actc = js2actc(pactrid=jsmergetosql.keytransl(actrjsid),
-                               pmodeid = jsmergetosql.keytransl(modejsid),
+                actc = js2actc(pactrid=presult.keytransl(actrjsid),
+                               pmodeid = presult.keytransl(modejsid),
                                praci=raci)
                 actc.insert()
                 inscnt += 1
@@ -41,8 +41,8 @@ def actorconcerns2sql(presult, podmjson):
                 presult.markdberror(perr=err, pelem=actr)
         # for
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"actorroles-concerns")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"actorroles-concerns")
 
     return
 
@@ -81,7 +81,7 @@ def actorroles2js(pemptymodel):
 
 def js2actr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     actr = Actorrole(srcname=psrcname,srcid=psrcid,
-                     actr_id = jsguid2id(pkey),
+                     actr_id = pkey,
                      actr_uc = pelem['uc'],
                      actr_dc = pelem['dc'],
                      actr_um = pelem['um'],
@@ -90,14 +90,15 @@ def js2actr(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
                      actr_descr = pelem['descr'])
     return actr
 
-def actorroles2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.ACTR, pjs2obj=js2actr,
+def actorroles2sql(presult:Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson,  pelemtype=Modelelemtype.ACTR, pjs2obj=js2actr,
                    pwithextsrcref=pwithextsrcref)
 
-    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.ACTR).items():
-        dbactrid = jsmergetosql.keytransl(jid)
+    for jid,jelem in pjson.getelements(pelemtype=Modelelemtype.ACTR).items():
+        dbactrid = presult.keytransl(jid)
 
         #insactorcons(presult=presult,pactrid=dbactrid,pcons=jelem["concerns"])
         inssourceref(presult=presult,pmodeid=dbactrid, psources=jelem["sourceref"])
+
     return
 

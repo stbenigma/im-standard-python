@@ -2,7 +2,9 @@
 # Tasks for the invoke 'https://www.pyinvoke.org/ library
 # We use this instead of a Make / Scons / ... build automation tool
 #
+import json
 import pathlib
+from contextlib import closing
 from pathlib import Path
 import sys
 import zipfile as zlib
@@ -18,7 +20,7 @@ SOURCE_FOLDER = PROJECT_ROOT / 'pythonWork' / 'pythonSource'
 TESTMODELS_BASE = SOURCE_FOLDER / 'testenvironment' / 'testmodels'
 TEST_MODEL = TESTMODELS_BASE / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
-INTEGRATION_TEST_FOLDER =  PROJECT_ROOT / 'testdata'
+INTEGRATION_TEST_FOLDER = PROJECT_ROOT / 'testdata'
 
 
 def load_tools_library():
@@ -31,7 +33,6 @@ def load_tools_library():
 @task
 def update_infrastructure(c):
     c.run('conda env update --file conda-base-environment.yaml')
-    c.run('pip run ')
 
 
 @task
@@ -158,10 +159,11 @@ def generator(c, model=None,
 @task
 def dbversion(c, model=None, full=False):
     if full:
-        c.run(f"""echo expected  `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
+        c.run(
+            f"""echo expected  `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
     if model is None:
         model = 'riddle'
-    if model in ('crmTest','riddle','testmodel-1','testmodel-2'):
+    if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
         model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
     dbfile = Path(model).resolve()
     if not dbfile.is_file():
@@ -169,24 +171,41 @@ def dbversion(c, model=None, full=False):
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
 
+
 @task
 def upgradedb(c, model=None):
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
-            model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
-        dbfile = Path(model).resolve()
+            modelpath = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
+        else:
+            modelpath = Path(model)  # assume it is a modeldbfilepath
+            model = modelpath.stem
+        dbfile = modelpath.resolve()
         if not dbfile.is_file():
             print(f"{dbfile} is not file")
             exit(1)
         with c.cd(PROJECT_ROOT):
-            c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
-        return
+            from SSOT_db import createDB
+            path = createDB(pupgrade=True, pdestination=dbfile, pmodelname=model)
+            # c.run(f"""python {SOURCE_FOLDER}/SSOT_db/createDB.py -u -d {dbfile}""")
+            return dbfile
+
+    print(load_tools_library())
     if model is None:
-        for model in ('crmTest','riddle','testmodel-1','testmodel-2'):
+        for model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
             upgrade1db(model)
     else:
-        upgrade1db(model)
-
+        db_file = upgrade1db(model)
+        from SSOT_db.IM_JSON import JSModel, sql2json
+        from SSOT_db.SQL_INFRA.dbConnect import openDB, closeDB
+        with closing(openDB(db_file)) as conn:
+            loadedjson = JSModel(pmodel=sql2json(pdbname=str(db_file)))
+            json_file = loadedjson.printmodel(pfilepath=str(db_file.parent), pfilename=db_file.stem)
+            closeDB()
+            json = loadedjson.jsmodel
+            print(f"\x1b[32mSucessfully\x1b[39m upgraded database {db_file}" \
+                  f" and JSON {json_file} to version {json['_imprint_'].get('Modelversion', '?.?')}" \
+                  f" git revision: {json['_imprint_'].get('git-revision', '?????')}")
 
 
 @task(aliases=['but'])
@@ -216,7 +235,6 @@ def checkout_refmodels(c):
 
 @task(aliases=['bit'], pre=[checkout_refmodels])
 def bootstrap_integration_tests(c):
-
     required_models = [
         'testdata/fyyccim-refmodels/CRM/IM',
         'testdata/fyyccim-refmodels/PIM/IM',
@@ -228,6 +246,48 @@ def bootstrap_integration_tests(c):
         if candidate.is_dir():
             print(f"Generating SPOD for {hit}")
             c.run(f"inv generator --spod-only -m {candidate}")
+
+
+@task(help={
+    'source': "SPOD Source file [mandatory]",
+    'output': "Path of the destination file. Source path with .db extension if undefined",
+    'nomerge': "Overwrite current database"})
+def filldb(c, source, output=None, nomerge=False):
+    load_tools_library()
+    src_path = Path(source)
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if output is None:
+        out_path = src_path.with_suffix('.db')
+    else:
+        out_path = Path(output)
+
+    if nomerge:
+        print(f"Removing current database")
+        out_path.unlink(missing_ok=True)
+
+    with open(src_path, 'r') as src:
+        spod = json.load(src)
+
+    print(f"Successfully loaded model {spod['model']['name']} {spod['_imprint_'].get('git-revision')}")
+
+    from SSOT_db.SQL_INFRA import dbConnect
+    from SSOT_infra import parameters
+    from SSOT_db.IM_JSON import JSModel
+    from SSOT_db.createDB import createnewDB
+
+    revision = spod['_imprint_'].get('git-revision', parameters.read_git_description(src_path.parent))
+    print(f"Created SPOD for git revision {revision}")
+
+    parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
+    # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
+
+    with closing(createnewDB(str(out_path))) as conn:
+        dbConnect.write_git_reversion(revision, conn)
+        model = JSModel(spod)
+        print(f"\x1b[32mSucessfully\x1b[39m created database {src_path} from SPOD {out_path}")
 
 
 def verify_content(fh):
@@ -250,4 +310,43 @@ def verify_content(fh):
             raise ValueError(f"/Users/ found in content")
     except UnicodeDecodeError:
         pass
+    pass
+
+
+@task
+def createtestmodeldbs(c):
+    def fillone(model):
+        """init module with regenerating the testmodels db and jsons"""
+        try:
+            integration.Testmodel(model).initDB(palways=True)
+        except:
+            print(f"could not fill {model}")
+
+    load_tools_library()
+    with c.cd(PROJECT_ROOT):
+        from SSOT_infra.tests import integration
+
+        fillone(integration.TESTMODEL1)
+        fillone(integration.TESTMODEL2)
+        fillone(integration.CRMTEST)
+        fillone(integration.RIDDLE)
+
+
+@task
+def unittest(c):
+    """Run unittests tests using pytest"""
+    import pytest as pt
+    pt.main(['-m', 'not integration'])
+
+
+@task
+def integrationtest(c):
+    """Run integration tests using pytest"""
+    import pytest as pt
+    pt.main(['-m', 'integration'])
+
+
+@task(pre=[unittest, integrationtest])
+def test(c):
+    """Virtual target running all tests"""
     pass

@@ -1,9 +1,10 @@
+import copy
+import logging
+from datetime import datetime
+
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
-from datetime import datetime
-import copy
-import logging
 
 
 def lastupd():
@@ -30,7 +31,7 @@ def make_hash(pmodel):
     return hash(tuple(frozenset(sorted(new_model.items()))))
 
 
-def sql2json(pdbname, pemptymodel=False):
+def sql2json(pdbname=None, pemptymodel=False):
     jsmodel = {}
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_PROJ)] = proj2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_LANG)] = langs2js(pemptymodel)
@@ -61,12 +62,27 @@ def sql2json(pdbname, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.STFO)] = storageformats2js(pemptymodel)
 
     modelhash = make_hash(jsmodel)
-    jsmodel['_imprint_'] = {"database": "None" if pemptymodel else pdbname if pdbname != "" else ":in-memory:",
+
+    if pemptymodel:
+        dbname, dbversion = "None", ""
+        git_revision = '<emptymodel>'
+    else:
+        dbversion = dbConnect.getversion()
+        git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
+        if pdbname == "":
+            dbname = ":in-memory:"
+        elif pdbname is None:
+            dbname = dbConnect.getDBname()
+        else:
+            dbname = pdbname
+
+    jsmodel['_imprint_'] = {"database": dbname,
                             "created": str(datetime.today()),
-                            "Modelversion": "" if pemptymodel else dbConnect.getversion(),
+                            "Modelversion": dbversion,
                             "hashvalue": modelhash,
+                            "git-revision": git_revision,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
-    logging.info("JSModel generated")
+    logging.info(f"JSModel for git revision '{git_revision}' generated")
     return jsmodel
 
 
@@ -101,14 +117,16 @@ def js2proj(pkey, pelem, pmodellang=None):
     return proj
 
 
-def proj2sql(presult, podmjson: JSModel, pwithextsrcref):
-    elem = podmjson.jsmodel['model']
+def proj2sql(presult, pjson: JSModel, pwithextsrcref):
+    inscnt = 0
+    elem = pjson.jsmodel['model']
     try:
         """insert if nonexistent, otherwise don't touch"""
         projs = Project.select()
         if len(projs) == 0:
             proj = js2proj(pkey=None, pelem=elem)
             proj.insert()
+            inscnt += 1
     except Exception as err:
         presult.markdberror(perr=err, pelem=elem)
-    return
+    return inscnt

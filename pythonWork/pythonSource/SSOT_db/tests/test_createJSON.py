@@ -10,6 +10,7 @@ from SSOT_infra.tests import integration
 
 
 class MyTestCase(unittest.TestCase):
+
     def test_createemptyjson(self):
         filename = "empty_json.json"
         with tempfile.TemporaryDirectory() as tmpdirname:

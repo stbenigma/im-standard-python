@@ -66,13 +66,13 @@ def columns2js(pemptymodel):
 
 def js2colu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     colu = Column(psrcname=psrcname, psrcid=psrcid)
-    colu.colu_id = jsguid2id(pkey)
+    colu.colu_id = pkey
     colu.colu_column_name = pelem['name']
-    colu.colu_tabl_id = jsguid2id(pelem['table-id'])
+    colu.colu_tabl_id = pelem['table-id']
     colu.colu_mandatory = Boolean.bool2str(pelem['mandatory'])
     colu.colu_type_string = pelem['datatype']
     colu.colu_format = pelem['format']
-    colu.colu_doma_id = jsguid2id(pelem['domain'])
+    colu.colu_doma_id = pelem['domain']
     colu.colu_descr = pelem['descr']
     colu.colu_ext_system_id = pelem['interface_col_id']
     colu.colu_uc = pelem['uc']
@@ -82,12 +82,16 @@ def js2colu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return colu
 
 
-def columns2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.COLU, pjs2obj=js2colu,
+def columns2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.COLU, pjs2obj=js2colu,
                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.COLU).items():
-        newcoluid = keytransl(jid)
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.COLU).items():
+        newcoluid = presult.keytransl(jid)
+        if newcoluid  == 0:
+            logging.debug(f"Element {jid} not merged as it is new")
+            continue
+
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -109,7 +113,7 @@ def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs):
         coam.coam_seq = idx
         coam.coam_direction = ColAttrMap.INBOUND
         coam.coam_colu_id = pcoluid
-        coam.coam_attr_id = keytransl(jattrid)
+        coam.coam_attr_id = presult.keytransl(jattrid)
         try:
             coam.insert()
             inscnt += 1
@@ -118,6 +122,6 @@ def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs):
             continue
         # try
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"Column Maps for column {pcoluid} ")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"Column Maps for column {pcoluid} ")
     return

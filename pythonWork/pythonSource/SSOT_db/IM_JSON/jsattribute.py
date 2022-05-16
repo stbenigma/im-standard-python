@@ -104,9 +104,9 @@ def attributes2js(pemptymodel):
 
 def js2attr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     attr = Attribute(psrcname=psrcname, psrcid=psrcid)
-    attr.attr_id = jsguid2id(pkey)
-    attr.attr_enti_id = jsguid2id(pelem['entity'])
-    attr.attr_doma_id = jsguid2id(pelem['domain'])
+    attr.attr_id = pkey
+    attr.attr_enti_id = pelem['entity']
+    attr.attr_doma_id = pelem['domain']
     attr.attr_tech_name = pelem['techname']
     attr.attr_displ_name = pelem['name'][pmodellang]
     attr.attr_displ_seq = pelem['seq']
@@ -125,8 +125,8 @@ def js2attr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return attr
 
 
-def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
+def attributes2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
                pwithextsrcref=pwithextsrcref)
     """       "ATTR117": {
          "techname": "TYP",
@@ -201,15 +201,16 @@ def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
             "DIAG311"
          ]
       },"""
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ATTR).items():
-        attrid = keytransl(jid)
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ATTR).items():
+        attrid = presult.keytransl(jid)
+        if attrid  == 0: continue #element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
         Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
 
         """Examples have in ODM no guid. Delete them and fill new synonyms"""
-        jsentity.mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
+        jsentity.mergeexamples(pelem=jelem, pmodellang=pjson.modellanguage(),
                                presult=presult, pattrid=attrid)
 
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
@@ -263,6 +264,7 @@ def keys2js(pemptymodel):
 
 
 def ins1kele(presult: Mergeresult, pkey: Key, pattrid, prelaid):
+    inscnt = 0
     kele = Keyelement()
     kele.kele_keys_id = pkey.keys_id
     kele.kele_attr_id = pattrid
@@ -273,9 +275,10 @@ def ins1kele(presult: Mergeresult, pkey: Key, pattrid, prelaid):
     kele.kele_dm = pkey.keys_dm
     try:
         kele.insert()
+        inscnt += 1
     except Exception as err:
         presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
-    return
+    return inscnt
 
 
 def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
@@ -293,21 +296,22 @@ def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
     inscnt = 0
     delcnt = Keyelement.delete(pwhere=("kele_keys_id = ?", pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
-        ins1kele(presult=presult, pkey=pkey,
-                 pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None,
-                 prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
-        inscnt += 1
+        modeid = presult.keytransl(jid)
+        if modeid  == 0: continue #element was not treated
+        inscnt += ins1kele(presult=presult, pkey=pkey,
+                 pattrid=modeid if jsguid2type(jid) == Modelelemtype.ATTR else None,
+                 prelaid=modeid if jsguid2type(jid) == Modelelemtype.RELA else None)
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"keyelements")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"keyelements")
     return
 
 
 def js2keys(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     key = Key(psrcname=psrcname, psrcid=psrcid)
-    key.keys_id = jsguid2id(pkey)
+    key.keys_id = pkey
     key.keys_name = pelem['name']
-    key.keys_enti_id = jsguid2id(pelem['entity'])
+    key.keys_enti_id = pelem['entity']
     key.keys_uc = pelem['uc']
     key.keys_dc = pelem['dc']
     key.keys_um = pelem['um']
@@ -315,12 +319,14 @@ def js2keys(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return key
 
 
-def keys2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
+def keys2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.KEYS).items():
-        key = Key().getbyid(pid=keytransl(jid))
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.KEYS).items():
+        keyid=presult.keytransl(jid)
+        if keyid == 0: continue  # element was not treated
+        key = Key().getbyid(pid=keyid)
         inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
         if pwithextsrcref:
             inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])

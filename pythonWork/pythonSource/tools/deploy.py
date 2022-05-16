@@ -9,12 +9,14 @@ import tempfile
 from pathlib import Path
 import argparse
 from datetime import datetime
-from subprocess import check_output, CalledProcessError
+
 from nbconvert import PythonExporter
 from traitlets.config import Config
 import nbformat as nbf
 import zipfile
 import logging
+
+from SSOT_infra import parameters
 
 arguments = argparse.Namespace(verbose=True)
 
@@ -73,6 +75,30 @@ def hardcode_version(version: str, pattern: str, subject) -> int:
     return replaced
 
 
+def notebook_to_python_script(scripts: [Path], destination_folder: Path, strip_cells_with_tags) -> [Path]:
+    c = Config()
+    c.TagRemovePreprocessor.remove_cell_tags = strip_cells_with_tags
+    c.TagRemovePreprocessor.enabled = True
+    c.PythonExporter.preprocessors = ["nbconvert.preprocessors.TagRemovePreprocessor"]
+
+    exporter = PythonExporter(config=c)
+    targets = []
+    for script in scripts:
+        script_file = str(script)
+        filename = os.path.basename(script_file)
+        noext, _ = os.path.splitext(filename)
+        target = destination_folder / (noext + '.py')
+
+        log(f"Converting {script_file} to plain python")
+        notebook_to_python(script_file, exporter, target)
+        log(f"Wrote {os.path.abspath(target)}. Removed cells with tags {strip_cells_with_tags}")
+
+        target.chmod(0o755)
+        targets.append(target)
+
+    return targets
+
+
 def main(basefolder: Path, argv: []):
     global arguments
     strip_cells_with_tags = ("test", "visual", "debug")
@@ -95,27 +121,10 @@ def main(basefolder: Path, argv: []):
     if basefolder is None:
         basefolder = Path.cwd()
 
-    script_file = str(Path(basefolder, arguments.notebook))
+    script_file = Path(basefolder, arguments.notebook)
+    targets = notebook_to_python_script([ script_file],  destination_folder, strip_cells_with_tags)
+    target = targets[0]
 
-    c = Config()
-    c.TagRemovePreprocessor.remove_cell_tags = strip_cells_with_tags
-    c.TagRemovePreprocessor.enabled = True
-
-    c.PythonExporter.preprocessors = ["nbconvert.preprocessors.TagRemovePreprocessor"]
-
-    exporter = PythonExporter(config=c)
-
-    filename = os.path.basename(script_file)
-    noext, _ = os.path.splitext(filename)
-    target = destination_folder / (noext + '.py')
-
-    log(f"Converting {script_file} to plain python")
-    notebook_to_python(script_file, exporter, target)
-    log(f"Wrote {os.path.abspath(target)}. Removed cells with tags {strip_cells_with_tags}")
-
-    target.chmod(0o755)
-
-    version = 'unknown version'
     version_file = Path(basefolder) / 'pythonWork' / \
                    'pythonSource' / 'SSOT_infra' / 'versions.json'
     if version_file.is_file():
@@ -127,15 +136,7 @@ def main(basefolder: Path, argv: []):
 
     hardcode_version("VERSION_TAG = '" + version_mark + "'", r"VERSION_TAG\s*=\s*['\"].+['\"]", target)
 
-    logging.info("Updating locale message catalogs (*.mo)")
-    generate_translations()
-
-    git_tag = 'dev'
-
-    try:
-        git_tag = check_output(['git', 'describe', '--always']).decode().strip()
-    except CalledProcessError as e:
-        print(f"Warning: Cannot read git repository status")
+    git_tag = parameters.toolversion()
 
     package_name = f"model2diagram-{version['TOOLVERSION']}"
     archive = destination_folder / (package_name + '.zip')
