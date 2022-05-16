@@ -48,7 +48,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
 
     #here we need an open database
     assert dbConnect.isopenDB()
-
+    
     result = Mergeresult(verbose=pverbose,checkonly=pcheckonly,srcname=psrcname)
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
         js2sql = transferprocs[masterobject][1]

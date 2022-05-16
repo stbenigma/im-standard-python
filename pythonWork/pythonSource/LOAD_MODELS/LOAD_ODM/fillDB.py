@@ -24,7 +24,7 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> str:
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.getdblangparameters(pfilepath=pdbfilepath)
+        dbConnect.getdblangparameters(pfilepath=parameters.dbFilePath())
         createnewDB(pdbfilepath=None)  # create in Memory
     # fi
     transferfunction(**kwargs)

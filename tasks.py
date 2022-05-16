@@ -171,8 +171,7 @@ def dbversion(c, model=None, full=False):
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
 
-
-@task
+@task(aliases=['updb'])
 def upgradedb(c, model=None):
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
@@ -312,8 +311,7 @@ def verify_content(fh):
         pass
     pass
 
-
-@task
+@task(aliases=['crtm'])
 def createtestmodeldbs(c):
     def fillone(model):
         """init module with regenerating the testmodels db and jsons"""
@@ -326,27 +324,7 @@ def createtestmodeldbs(c):
     with c.cd(PROJECT_ROOT):
         from SSOT_infra.tests import integration
 
-        fillone(integration.TESTMODEL1)
-        fillone(integration.TESTMODEL2)
+        fillone (integration.TESTMODEL1)
+        fillone (integration.TESTMODEL2)
         fillone(integration.CRMTEST)
-        fillone(integration.RIDDLE)
-
-
-@task
-def unittest(c):
-    """Run unittests tests using pytest"""
-    import pytest as pt
-    pt.main(['-m', 'not integration'])
-
-
-@task
-def integrationtest(c):
-    """Run integration tests using pytest"""
-    import pytest as pt
-    pt.main(['-m', 'integration'])
-
-
-@task(pre=[unittest, integrationtest])
-def test(c):
-    """Virtual target running all tests"""
-    pass
+        fillone (integration.RIDDLE)
