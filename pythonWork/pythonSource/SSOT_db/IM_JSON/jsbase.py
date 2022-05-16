@@ -162,8 +162,6 @@ class JSModel:
     def modelname(self):
         return self.jsmodel["model"]["name"]
 
-
-
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 

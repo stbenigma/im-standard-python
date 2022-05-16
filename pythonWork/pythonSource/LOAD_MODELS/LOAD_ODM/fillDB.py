@@ -11,7 +11,7 @@ from SSOT_db import existsDB, createnewDB
 from SSOT_infra import logmessages, parameters, argparseparent
 
 
-def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> (str, str):
+def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> str:
     """
     Create or merge SPOD (sqlite and json).
     :param pdbfilepath:
@@ -56,13 +56,18 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> (str, str):
             dbConnect.closeDB()
 
         logging.debug(f"Starting merge")
-        reloaded = mergedbs.mergejs2db(pdbfile=pdbfilepath, pmodel=loadedjson)
-        logging.debug(f"Writing merge result to json SPOD")
+        mergedbs.mergejs2db(pdbfile=pdbfilepath, pmodel=loadedjson)
+
+        with closing(dbConnect.openDB(pfilepath=pdbfilepath)):
+            reloaded = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+            dbConnect.closeDB()
+
+        logging.debug(f"Writing reloaded model to json SPOD")
         js_spod_file = reloaded.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
         logging.info(f"Merge of SPOD {js_spod_file} to git revision {reloaded.jsmodel['_imprint_']['git-revision']} complete")
     # fi
 
-    return (js_spod_file, parameters.dbFilePath())
+    return js_spod_file
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,

@@ -124,11 +124,9 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
     if pdryrun:
         # create a backup in memory and connect to it
         connecttodbcopy()
+        print(f"***** dry merge-run on db {pdbfile}")
 
-    retval = None
     try:
-        if pdryrun:
-            print(f"***** dry merge-run on db {pdbfile}")
         newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
         dbversion = dbConnect.getversion()
         if newversion != dbversion:
@@ -152,13 +150,11 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
         if pdryrun:
             print(f"***** Database was not modified ****")
 
-        """generate json from merged DB"""
-        retval = JSModel(pmodel=sql2json())
-
     finally:
         if dbConnect.isopenDB():
             dbConnect.closeDB()
-    return retval
+    return
+
 
 def checkjsonfile(pjsonfilepath, pverbose=False)-> bool:
     logging.info(f"check jsonfile {pjsonfilepath}")
