@@ -175,12 +175,12 @@ def check_json_serialisable(structure: dict):
     def nest(element, path: str):
         if isinstance(element, dict):
             for key, value in element.items():
-                full_path = path + '.' + key
+                full_path = path + '."' + key + '"'
                 nest(value, full_path)
         elif isinstance(element, list):
             index = 0
             for item in element:
-                full_path = path + f'[{index}].'
+                full_path = path + f'[{index}]'
                 nest(item, full_path)
                 index += 1
         else:
@@ -188,9 +188,9 @@ def check_json_serialisable(structure: dict):
 
     def check_value(value, path: str):
         if isinstance(value, datetime.datetime):
-            raise ValueError(f"Value {value} in {path} cannot be serialised")
+            raise ValueError(f"Value {value} of type {type(value)} in {path} cannot be serialised")
 
-    nest(structure, '.')
+    nest(structure, '')
 
 
 def printJSON(pmodel, pfilepath, pfilename, psorted=False):

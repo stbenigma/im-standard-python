@@ -159,7 +159,9 @@ class TESTFILLDB(unittest.TestCase):
             self.assertEqual(attr["techname"], "ERSTE_ERSCHEINUNG", "wrong testcase attribute")
             self.assertEqual(attr["tooltip"]["en"], "*de* Tooltip Eonly")
             self.assertEqual(attr["tooltip"]["fr"], "*de* Tooltip Eonly")
-            jsonFile.close()
+
+            imprint = jmodel['_imprint_'].get('git-revision')
+            self.assertTrue(len(imprint) > 2)
 
         # create db for crmtest with Paramfile
         testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)

@@ -11,13 +11,20 @@ from SSOT_db import existsDB, createnewDB
 from SSOT_infra import logmessages, parameters, argparseparent
 
 
-def fillmergedb(pdbfilepath, transferfunction, **kwargs):
+def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> (str, str):
+    """
+    Create or merge SPOD (sqlite and json).
+    :param pdbfilepath:
+    :param transferfunction:
+    :param kwargs:
+    :return: Path to results (json, sqlite)
+    """
     createnewdb = not existsDB(pdbfilepath)
     if createnewdb:
         createnewDB(pdbfilepath=pdbfilepath)
     else:
         #get languageparameter of current DB
-        dbConnect.getdblangparameters(pfilepath=parameters.dbFilePath())
+        dbConnect.getdblangparameters(pfilepath=pdbfilepath)
         createnewDB(pdbfilepath=None)  # create in Memory
     # fi
     transferfunction(**kwargs)
@@ -29,31 +36,33 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
     loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
     if createnewdb:
         logging.info(f"Created SPOD for git revision {new_git_revision}")
-        with closing(dbConnect.openDB(pfilepath=parameters.dbFilePath())) as conn:
+        with closing(dbConnect.openDB(pfilepath=pdbfilepath)) as conn:
             dbConnect.write_git_reversion(new_git_revision, conn)
-        spod = loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        js_spod_file = loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
     else:
         """merge created DB into existing one"""
-        logging.info(f"Opening destination db for merge {parameters.dbFilePath()}")
-        with closing(dbConnect.openDB(pfilepath=parameters.dbFilePath())) as connection:
+        logging.info(f"Opening destination db for merge {pdbfilepath}")
+        with closing(dbConnect.openDB(pfilepath=pdbfilepath)) as connection:
             old_git_revision = dbConnect.read_git_revision(connection)
             logging.info(f"Opening DB '{parameters.dbFilePath()}' for upgrade from git revision '{old_git_revision}'"
                          f" to git revision '{new_git_revision}'")
             newversion = loadedjson.jsmodel['_imprint_']["Modelversion"]
             if newversion != dbConnect.getversion():
                 logmessages.showmessages("""existing database  {}\nhas version {} but should have {}"""
-                                         .format(parameters.dbFilePath(), dbConnect.getversion(),
+                                         .format(pdbfilepath, dbConnect.getversion(),
                                                  newversion))
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
             dbConnect.closeDB()
 
         logging.debug(f"Starting merge")
-        spod = mergedbs.mergejs2db(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
-        logging.debug(f"Merge complete")
-        logging.info(f"Updated SPOD {spod} to git revision {spod.jsmodel['_imprint_']['git-revision']}")
+        reloaded = mergedbs.mergejs2db(pdbfile=pdbfilepath, pmodel=loadedjson)
+        logging.debug(f"Writing merge result to json SPOD")
+        js_spod_file = reloaded.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
+        logging.info(f"Merge of SPOD {js_spod_file} to git revision {reloaded.jsmodel['_imprint_']['git-revision']} complete")
     # fi
-    return spod
+
+    return (js_spod_file, parameters.dbFilePath())
 
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
