@@ -5,7 +5,7 @@ from openpyxl import load_workbook,styles
 from openpyxl.worksheet.worksheet import Worksheet
 
 from LANGTRANSL.langexceldata import Langexceldata
-from SSOT_db.IM_JSON import JSModel
+from SSOT_db.IM_JSON import JSModel,jsguid2type
 
 def getjsonfile (pmodeldb,pjsonfile):
     return pjsonfile
@@ -19,48 +19,75 @@ greenfill = styles.PatternFill(patternType='solid',
                                             fgColor=styles.Color('80ED99'))
 emptyfill = styles.PatternFill(fill_type=None)
 
-def checkentries(pws:Worksheet, pexcel:Langexceldata, pjson:JSModel, pkeyidx:int):
-    okrows = []
-    for row in pws.iter_rows(min_row=2):
-        cell = row[pkeyidx-1]
-        cell.fill = emptyfill
-        comment=""
+class LangExcelException(Exception):
+    pass
+
+def checkkey(pcell,pjson):
+    pcell.fill = emptyfill
+    try:
         try:
-            key,attr,idx = Langexceldata.decodekey(cell.value)
+            key, attr, idx = Langexceldata.decodekey(pcell.value)
         except Exception as exp:
             if type(exp) == ValueError:
-                comment = f"illegal key in {cell.value}"
+                raise LangExcelException (f"illegal key in {pcell.value}")
             else:
-                comment = f"Error in {cell.value}, {exp}"
-        if comment == "":
-            # is key in json?
-            jselem = pjson.getbyid(key)
-            if jselem is None:
-                comment = f"key {key} not found"
-            else:
-                #is the attribute in the keyfield a legal json entry?
-                if attr in jselem:
-                    #if attr is listattr, is idx in json?
-                    if attr in ("examples","synonyms") and len(jselem[attr])<idx:
-                        comment=f"index for {attr} does not exist {idx}"
-                elif attr not in ("fromto","tofrom"):
-                    comment = f"unknown attribute {attr} for this element"
-            #fi
-        #fi
-        if comment != "":
-            #key cell has error
-            cell.fill = redfill
+                raise LangExcelException (f"Error in {pcell.value}, {exp}")
+        #try
+        # is key in json?
+        jselem = pjson.getbyid(key)
+        if jselem is None:
+            raise LangExcelException (f"key {key} not found")
         else:
+            # is the attribute in the keyfield a legal json entry?
+            if attr in jselem:
+                # if attr is listattr, is idx in json?
+                if attr in ("examples", "synonyms") and len(jselem[attr]) < idx  :
+                    raise LangExcelException (f"index for {attr} does not exist {idx}")
+            elif attr not in ("fromto", "tofrom"):
+                raise LangExcelException (f"unknown attribute {attr} for this element")
+        # fi
+    except LangExcelException as lgexp:
+        pcell.fill=redfill
+        raise lgexp
+    return (key, attr, idx)
+
+def checkentries(pws:Worksheet, pexcel:Langexceldata, pjson:JSModel, pkeyidx:int):
+    okrows = []
+    dupname={'ENTI': {l:[] for l in pexcel.getlanguages()},
+             'ATTR':{l:[] for l in pexcel.getlanguages()}}
+    for row in pws.iter_rows(min_row=2):
+        try:
+            cell = row[pkeyidx - 1]
+            key, attr, idx = checkkey(pcell=cell,pjson=pjson)
             #check languages for not null
-            pass
-
-        if comment != "":
-            row[pexcel.getheaderidx('Comments') - 1].value = comment
-        else:
+            for lang in pexcel.getlanguages():
+                langidx = pexcel.getheaderidx(lang)
+                cell =row[langidx-1]
+                cell.fill = emptyfill
+                assert 0<langidx <100
+                if attr in ('name',"synonyms"):
+                    if cell.value is None:
+                        raise LangExcelException(f"not null columns must not be empty")
+                if attr == 'name':
+                    elemtyp = jsguid2type(key)
+                    if elemtyp in ('ENTI','ATTR'):
+                        if cell.value in dupname[elemtyp][lang]:
+                            raise LangExcelException(f"Nameentry must be unique")
+                        else:
+                            dupname[elemtyp][lang].append(cell.value)
+                    #fi
+                #fi
             okrows.append(row)
-    #for
+            comment = ""
 
-        #handle okrows
+        except LangExcelException as exp:
+            # key cell has error
+            cell.fill = redfill
+            comment = str(exp)
+        #try
+        row[pexcel.getheaderidx('Comments') - 1].value = comment
+    #for
+    #handle okrows
     return okrows
 
 def mergeexcel2json(pws:Worksheet,pexcel:Langexceldata,pjson:JSModel):
@@ -90,7 +117,6 @@ def importlangexcel(pexcelfile, pmodeldb=None):
     wb.save(pexcelfile)
 
     return
-
 
 if __name__ == '__main__':
     importlangexcel(pexcelfile=sys.argv[1], pmodeldb=None if len(sys.argv) < 3 else sys.argv[2])
