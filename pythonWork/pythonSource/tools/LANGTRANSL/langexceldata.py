@@ -2,6 +2,23 @@ import re
 from SSOT_infra import nvlkey
 import logging
 
+attrmatchkey2js= {'name':'name',
+            'descr':'descr',
+            'tooltip':'tooltip',
+            'synonyms':'synonyms',
+            'examples':'examples',
+            'errormsg':'errormsg',
+            'fromto':'from-to'
+            ,'tofrom':'to-from'}
+attrmatchjs2key={val:key for key,val in attrmatchkey2js.items()}
+def attrjs2key(pstr):
+    return None if not pstr in attrmatchjs2key else attrmatchjs2key[pstr]
+
+def attrkey2js(pstr):
+    return None if not pstr in attrmatchkey2js else attrmatchkey2js[pstr]
+
+
+
 def strislang(l: str) -> bool:
     return type(l) is str and re.match("[a-z]{2}",l)
 

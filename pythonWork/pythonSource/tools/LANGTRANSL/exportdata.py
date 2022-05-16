@@ -5,7 +5,7 @@ from openpyxl import Workbook, styles
 from openpyxl.comments import Comment
 from openpyxl.utils import get_column_letter
 
-from LANGTRANSL.langexceldata import Langexceldata, Metainfo
+from LANGTRANSL.langexceldata import Langexceldata, Metainfo,attrjs2key,attrkey2js
 from SSOT_db.IM_JSON import JSModel
 from SSOT_infra import nvl
 
@@ -62,16 +62,16 @@ class Exportdata:
     def _readentidata(self):
         elements = self._model.getelements('entities')
         for key, elem in elements.items():
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], self._getdefname(elem) + '  Entity-Name',
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem[attrkey2js('name')], self._getdefname(elem) + '  Entity-Name',
                                                                  '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'],
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem[attrkey2js('descr')],
                                                                   self._getdefname(elem) + '  Entity--Description', '')
-            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'],
+            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem[attrkey2js('tooltip')],
                                                                     self._getdefname(elem) + '  Entity--Tooltip', '')
-            for idx, syno in enumerate(elem['synonyms'], start=1):
+            for idx, syno in enumerate(elem[attrkey2js('synonyms')], start=1):
                 self._data[self.xlskey(key, 'synonyms', idx)] = self.fulldata(syno, self._getdefname(
                     elem) + '->' + self._getdeflangstr(syno) + '  - Synonym-' + str(idx), '')
-            for idx, expl in enumerate(elem['examples'], start=1):
+            for idx, expl in enumerate(elem[attrkey2js('examples')], start=1):
                 self._data[self.xlskey(key, 'examples', idx)] = self.fulldata(expl, self._getdefname(
                     elem) + '  - Example-' + str(idx), '')
 
@@ -79,22 +79,22 @@ class Exportdata:
         elements = self._model.getelements('businessrules')
         for key, elem in elements.items():
             refname = self._getdefname(elem)
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname + '  Businessrule-Name', '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  Businessrule-Description',
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem[attrkey2js('name')], refname + '  Businessrule-Name', '')
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem[attrkey2js('descr')], refname + '  Businessrule-Description',
                                                                   '')
-            self._data[self.xlskey(key, 'errormsg')] = self.fulldata(elem['errormsg'],
+            self._data[self.xlskey(key, 'errormsg')] = self.fulldata(elem[attrkey2js('errormsg')],
                                                                      refname + '  Businessrule-Errormessage', '')
 
     def _readattrdata(self):
         elements = self._model.getelements('attributes')
         for key, elem in elements.items():
             refname = self._getdefname(self._getelement(elem['entity'])) + '->' + self._getdefname(elem)
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname + '  Attribute-Name', '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  Attribute-Description',
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem[attrkey2js('name')], refname + '  Attribute-Name', '')
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem[attrkey2js('descr')], refname + '  Attribute-Description',
                                                                   '')
-            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem['tooltip'], refname + '  Attribute-Tooltip',
+            self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem[attrkey2js('tooltip')], refname + '  Attribute-Tooltip',
                                                                     '')
-            for idx, expl in enumerate(elem['examples'], start=1):
+            for idx, expl in enumerate(elem[attrkey2js('examples')], start=1):
                 self._data[self.xlskey(key, 'examples', idx)] = self.fulldata(expl, self._getdefname(
                     elem) + '  - Example-' + str(idx), '')
 
@@ -102,19 +102,19 @@ class Exportdata:
         elements = self._model.getelements('domains')
         for key, elem in elements.items():
             refname = self._getdefname(elem)
-            self._data[self.xlskey(key, 'name')] = self.fulldata(elem['name'], refname + '  Domain-Name', '')
-            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem['descr'], refname + '  Domain-Description', '')
+            self._data[self.xlskey(key, 'name')] = self.fulldata(elem[attrkey2js('name')], refname + '  Domain-Name', '')
+            self._data[self.xlskey(key, 'descr')] = self.fulldata(elem[attrkey2js('descr')], refname + '  Domain-Description', '')
         return
 
     def _readreladata(self):
         elements = self._model.getelements('relations')
         for key, elem in elements.items():
-            fromentiname = self._getdefname(self._getelement(elem['from-to']['enti']))
-            toentiname = self._getdefname(self._getelement(elem['to-from']['enti']))
-            self._data[self.xlskey(key, 'fromto')] = self.fulldata(elem['from-to']['assoc'],
+            fromentiname = self._getdefname(self._getelement(elem[attrkey2js('fromto')]['enti']))
+            toentiname = self._getdefname(self._getelement(elem[attrkey2js('tofrom')]['enti']))
+            self._data[self.xlskey(key, 'fromto')] = self.fulldata(elem[attrkey2js("fromto")]['assoc'],
                                                                    'Relation -' + fromentiname + ' => ' + toentiname,
                                                                    '')
-            self._data[self.xlskey(key, 'tofrom')] = self.fulldata(elem['to-from']['assoc'],
+            self._data[self.xlskey(key, 'tofrom')] = self.fulldata(elem[attrkey2js('tofrom')]['assoc'],
                                                                    'Relation -' + toentiname + ' => ' + fromentiname,
                                                                    '')
 
