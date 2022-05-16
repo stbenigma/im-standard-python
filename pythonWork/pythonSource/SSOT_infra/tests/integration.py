@@ -15,7 +15,7 @@ CRMTEST: str = 'crmTest'
 RIDDLE: str = 'riddle'
 
 
-class Testmodel():
+class Testmodel:
     def __init__(self, modelname):
         self.modelname = modelname
         self.modeldir = testmodels_dir() / modelname
@@ -47,7 +47,7 @@ class Testmodel():
         if palways or not os.path.exists(self.jsonfile) or age(os.path.getmtime(self.jsonfile))>60:
             createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,
                                   pjsfilepath=self.dbdir, pjsfilename=self.jsonfilename)
-        return
+        return self
 
     def initWeb(self):
         # make sure new templates files are reloaded

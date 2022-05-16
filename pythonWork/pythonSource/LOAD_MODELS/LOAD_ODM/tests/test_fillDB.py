@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import unittest
 from contextlib import closing
@@ -30,6 +31,7 @@ class TESTFILLDB(unittest.TestCase):
         self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodel2.initDB(palways=True)
 
     def test_filldbmain(self):
         assert True
@@ -137,10 +139,11 @@ class TESTFILLDB(unittest.TestCase):
         dbfilepath = dbdirpath / (testmodelname + '.db')
         jsonfilepath = dbdirpath / (testmodelname + '.json')
         paramfile = testpath / (testmodelname + '.params')
-        if os.path.exists(dbfilepath):
-            createDB(pupgrade=True, pparamfile=paramfile)
+        #if os.path.exists(dbfilepath):
+        #    createDB(pupgrade=True, pparamfile=paramfile)
         fillDB.filldbmain(pparamfile=paramfile)
         # check handling of translations
+        print(f"Verifying against {jsonfilepath}")
         with open(jsonfilepath) as jsonFile:
             jmodel = json.load(jsonFile)
             checkentityID, checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]

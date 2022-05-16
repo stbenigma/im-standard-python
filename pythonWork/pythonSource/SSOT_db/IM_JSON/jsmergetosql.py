@@ -1,5 +1,4 @@
 from SSOT_infra import todatetime
-from datetime import datetime
 import sys, os
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
@@ -120,8 +119,10 @@ def getelemsrcrefs(psrcname, pkey, pelem):
     else:
         srcrefs = dict()
     if psrcname not in srcrefs:
-        srcrefs[psrcname] = [pkey, datetime.now()]
+        from datetime import datetime as dt
+        srcrefs[psrcname] = [pkey, dt.now()]
     return srcrefs
+
 
 def getelemsrcid(psrcrefs,psrcname):
     if psrcname in psrcrefs:

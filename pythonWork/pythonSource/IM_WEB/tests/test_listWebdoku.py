@@ -9,10 +9,10 @@ import pytest
 
 from IM_WEB import listWebdoku
 from IM_WEB.IM_HTML import HTMLExport
+from IM_WEB.listWebdoku import safe_filename
 from SSOT_db.IM_JSON import JSModel
 from SSOT_infra import parameters
 import SSOT_infra.tests.integration as testsrc
-from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
 
 
 class GenerateHTML(unittest.TestCase):
@@ -22,14 +22,13 @@ class GenerateHTML(unittest.TestCase):
         self.temp_folder = Path(tmp_path)
 
     def setUp(self) -> None:
-        self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1)
-        create_testmodel(self.testmodel1, new=True)
+        self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1).initDB()
         self.testmodel1.initWeb()
 
-        self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST).initDB()
         self.testmodelcrm.initWeb()
 
-        self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE)
+        self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE).initDB()
         self.testmodelriddle.initWeb()
 
     def test_listwebdoku(self):
@@ -66,6 +65,16 @@ class GenerateHTML(unittest.TestCase):
         if os.path.exists(self.temp_folder):
             shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)
+
+    def test_safe_filename(self):
+        self.assertEqual('', safe_filename(''))
+        self.assertEqual('-', safe_filename('-'))
+        with self.assertRaises(ValueError):
+            safe_filename('/').index('/')
+        with self.assertRaises(ValueError):
+            t = safe_filename('//')
+            self.assertEqual(2, len(t))
+            t.index('/')
 
     @pytest.mark.integration
     def test_integration_generate_html_riddle(self):

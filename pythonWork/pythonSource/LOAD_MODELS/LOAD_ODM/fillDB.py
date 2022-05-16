@@ -7,7 +7,6 @@ from pathlib import Path
 from LOAD_MODELS.LOAD_ODM import transferModel
 from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import *
-from SSOT_db.IM_OBJECTS import Language
 from SSOT_db import existsDB, createnewDB
 from SSOT_infra import logmessages, parameters, argparseparent
 
@@ -47,17 +46,15 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs):
                                                  newversion))
                 raise Exception("DB-Version mismatch: found {} instead of {}".format(dbConnect.getversion(),
                                                                                      newversion))
-            logging.debug(f"Starting merge")
-            mergedbs.mergejson2db(pdbfile=parameters.dbFilePath(), pmodeljson=loadedjson)
-            logging.debug(f"Merge complete")
-            """generate json from merged DB"""
-            #newjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-            spod = loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName())
-            logging.info(f"Updated SPOD '{spod}' to git revision {loadedjson.jsmodel['_imprint_']['git-revision']}")
             dbConnect.closeDB()
-            logging.debug(f"Database {connection} closed")
+
+        logging.debug(f"Starting merge")
+        spod = mergedbs.mergejs2db(pdbfile=parameters.dbFilePath(), pmodel=loadedjson)
+        logging.debug(f"Merge complete")
+        logging.info(f"Updated SPOD {spod} to git revision {spod.jsmodel['_imprint_']['git-revision']}")
     # fi
     return spod
+
 
 def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
                pmodellang=None, planguages=None, plogfilepath=None, pmodelfilepath=None):

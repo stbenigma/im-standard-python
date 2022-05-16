@@ -39,6 +39,10 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
     return
 
 
+def safe_filename(path: str) -> str:
+    return path.replace('/', '-').replace(' - ', '-')
+
+
 def listwebmain(export: HTMLExport):
     def langpart(plang):
         return '_' + plang
@@ -51,7 +55,7 @@ def listwebmain(export: HTMLExport):
     # erstelle die Liste der HTML Files für HREF's
     schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
     for skey, svalue in schnlist.items():
-        export.htmlfilelist[skey] = svalue['name'] + '.html'
+        export.htmlfilelist[skey] = safe_filename(svalue['name'] + '.html')
 
     for lang in langs:
         lang = lang.lower()

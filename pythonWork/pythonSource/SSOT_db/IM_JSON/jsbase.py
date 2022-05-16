@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -106,8 +107,12 @@ class JSModel:
 
     @staticmethod
     def readfromfile(pfilename):
-        with open(pfilename, 'r') as handle:
-            model = json.load(handle)
+        try:
+            with open(pfilename, 'r') as handle:
+                model = json.load(handle)
+        except ValueError as e:
+            raise ValueError(f"Invalid JSON in {pfilename}. {e}") from e
+
         return JSModel(pmodel=model)
 
     @staticmethod
@@ -165,7 +170,31 @@ class JSModel:
 # JSModel
 
 
+def check_json_serialisable(structure: dict):
+
+    def nest(element, path: str):
+        if isinstance(element, dict):
+            for key, value in element.items():
+                full_path = path + '.' + key
+                nest(value, full_path)
+        elif isinstance(element, list):
+            index = 0
+            for item in element:
+                full_path = path + f'[{index}].'
+                nest(item, full_path)
+                index += 1
+        else:
+            check_value(element, path)
+
+    def check_value(value, path: str):
+        if isinstance(value, datetime.datetime):
+            raise ValueError(f"Value {value} in {path} cannot be serialised")
+
+    nest(structure, '.')
+
+
 def printJSON(pmodel, pfilepath, pfilename, psorted=False):
+    check_json_serialisable(pmodel)
     destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
         jsonfile.write(json.dumps(pmodel, indent=3))
