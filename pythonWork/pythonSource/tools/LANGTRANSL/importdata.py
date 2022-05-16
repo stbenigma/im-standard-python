@@ -5,7 +5,7 @@ from copy import deepcopy
 from openpyxl import load_workbook, styles
 from openpyxl.worksheet.worksheet import Worksheet
 
-from LANGTRANSL.langexceldata import Langexceldata, attrkey2js
+from tools.LANGTRANSL.langexceldata import Langexceldata, attrkey2js
 from SSOT_db.IM_JSON import JSModel, jsguid2type, printJSON
 from SSOT_infra import nvl
 

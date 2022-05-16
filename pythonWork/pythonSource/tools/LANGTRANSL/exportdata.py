@@ -5,7 +5,7 @@ from openpyxl import Workbook, styles
 from openpyxl.comments import Comment
 from openpyxl.utils import get_column_letter
 
-from LANGTRANSL.langexceldata import Langexceldata, Metainfo,attrjs2key,attrkey2js
+from tools.LANGTRANSL.langexceldata import Langexceldata, Metainfo,attrjs2key,attrkey2js
 from SSOT_db.IM_JSON import JSModel
 from SSOT_infra import nvl
 

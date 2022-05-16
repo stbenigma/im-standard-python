@@ -1,12 +1,10 @@
-from SSOT_infra import todatetime
-import sys, os
+from copy import copy
 
-#sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
-from datetime import datetime
+# sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
-from copy import copy
 from SSOT_infra import parameters
+from SSOT_infra import todatetime
 
 
 class Mergeresult:
@@ -91,9 +89,9 @@ class Mergeresult:
         return
 
 
-def getallsrcrefs(pelemtype,psrcname):
+def getallsrcrefs(pelemtype, psrcname):
     """ get all sourcerefs for an elementtype and a source"""
-    retval = {extr.extr_source_id:extr.extr_id \
+    retval = {extr.extr_source_id: extr.extr_id \
               for extr in Externalref.getallextrs(pelemtype=pelemtype, psrcname=psrcname)}
     return retval
 
@@ -120,10 +118,12 @@ def getelemsrcrefs(psrcname, pkey, pelem):
     else:
         srcrefs = dict()
     if psrcname not in srcrefs:
+        from datetime import datetime
         srcrefs[psrcname] = [pkey, datetime.now()]
     return srcrefs
 
-def getelemsrcid(psrcrefs,psrcname):
+
+def getelemsrcid(psrcrefs, psrcname):
     if psrcname in psrcrefs:
         retval = psrcrefs[psrcname][0]
     else:
@@ -203,7 +203,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
     olderrorlist, newerrorlist = None, []
     newelements = copy(pjson.getelements(pelemtype=pelemtype))
-    dbelemtypesrcrefs = getallsrcrefs(pelemtype=pelemtype,psrcname=cursrcrefname)
+    dbelemtypesrcrefs = getallsrcrefs(pelemtype=pelemtype, psrcname=cursrcrefname)
 
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
@@ -227,20 +227,21 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                 if not: create one
                 """
                 elemsrcrefs = getelemsrcrefs(psrcname=cursrcrefname, pkey=key, pelem=elem)
-                #remove sourceref which has been handled
+                # remove sourceref which has been handled
                 cursrcrefid = elemsrcrefs[cursrcrefname][0]
                 if cursrcrefid in dbelemtypesrcrefs:
                     del dbelemtypesrcrefs[cursrcrefid]
 
                 # local obj of element information
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang
-                                  , psrcname=cursrcrefname, psrcid=getelemsrcid(psrcrefs=elemsrcrefs,psrcname=cursrcrefname))
+                                  , psrcname=cursrcrefname,
+                                  psrcid=getelemsrcid(psrcrefs=elemsrcrefs, psrcname=cursrcrefname))
 
                 dbobj = getbyanysrcref(presult=presult, pelemsrcrefs=elemsrcrefs)
 
             else:
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang)
-                cursrcrefid,elemsrcrefs = None,dict()
+                cursrcrefid, elemsrcrefs = None, dict()
                 dbobj = None
 
             # fi
@@ -255,7 +256,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
             if dbobj is None and not presult.ischeckonly():
                 """Entry not found via sourceref. It could have a changed different srcrefs     """
                 dbobj = jsonobj.getbyanyuk()  # getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
-            #fi
+            # fi
             if dbobj is None:
                 """Entry not found via SRCREF and not found via UK -> it is new"""
                 try:
@@ -312,12 +313,12 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         # for
     # while
 
-    #check list of sourcerefs, that are in the db but not in the json
+    # check list of sourcerefs, that are in the db but not in the json
     for dbid in dbelemtypesrcrefs.values():
         extrfs = Externalref.getsrcinfo(dbid)
         if cursrcrefname in extrfs:
-            #remove srcrefentry which was not in jsonfile from db
-            Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?",cursrcrefname,dbid))
+            # remove srcrefentry which was not in jsonfile from db
+            Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?", cursrcrefname, dbid))
 
     presult.savenewerrors()
     return
