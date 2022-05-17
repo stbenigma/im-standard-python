@@ -5,9 +5,9 @@ from copy import deepcopy
 from openpyxl import load_workbook, styles
 from openpyxl.worksheet.worksheet import Worksheet
 
-from tools.LANGTRANSL.langexceldata import Langexceldata, attrkey2js
 from SSOT_db.IM_JSON import JSModel, jsguid2type, printJSON
 from SSOT_infra import nvl
+from tools.LANGTRANSL.langexceldata import Langexceldata, attrkey2js
 
 
 def getjsonfile(pmodeldb, pjsonfile):
@@ -25,7 +25,6 @@ emptyfill = styles.PatternFill(fill_type=None)
 
 class LangExcelException(Exception):
     pass
-
 
 def checkkey(pcell, pjson):
     pcell.fill = emptyfill
@@ -57,42 +56,68 @@ def checkkey(pcell, pjson):
     return [key, attr, idx]
 
 
+def formukvalue(pelemtype, pkey, pvalue):
+    if (pelemtype == 'ATTR' or pelemtype == 'SYNO'):
+        # attributes-names and synonyms are unique within entity
+        return pkey + '-' + pvalue
+    else:
+        return pvalue
+
+
+def check1langentry(pcell, plang, pkey, pattr, pdupnames):
+    """checks cell for not null and uniquteness
+    """
+    pcell.fill = emptyfill
+
+    if pattr in ('name', 'synonyms'):
+        if nvl(pcell.value) == '':
+            pcell.fill = redfill
+            raise LangExcelException(f"not null columns must not be empty")
+        elemtyp = jsguid2type(pkey)
+        if elemtyp in ('ENTI', 'ATTR', 'DOMA'):
+            if elemtyp == 'ENTI' and pattr == 'synonyms':
+                elemtyp = 'SYNO'
+            ukvalue = formukvalue(pelemtype=elemtyp, pkey=pkey, pvalue=pcell.value)
+            if ukvalue in pdupnames[elemtyp][plang]:
+                pcell.fill = redfill
+                raise LangExcelException(f"Nameentry must be unique")
+            else:
+                pdupnames[elemtyp][plang].append(ukvalue)
+            # fi
+        # fi
+    # fi
+    return
+
+
 def checkentries(pws: Worksheet, pexcel: Langexceldata, pjson: JSModel):
     okrows = []
-    dupname = {'ENTI': {l: [] for l in pexcel.getlanguages()},
-               'ATTR': {l: [] for l in pexcel.getlanguages()}}
+    dupnames = {'ENTI': {l: [] for l in pexcel.getlanguages()},
+                'ATTR': {l: [] for l in pexcel.getlanguages()},
+                'DOMA': {l: [] for l in pexcel.getlanguages()},
+                'SYNO': {l: [] for l in pexcel.getlanguages()}}
     for row in pws.iter_rows(min_row=2):
         try:
-            cell = row[pexcel.keyrowidx() - 1]
-            key, attr, idx = checkkey(pcell=cell, pjson=pjson)
-            # check languages for not null
-            for lang in pexcel.getlanguages():
-                langidx = pexcel.getheaderidx(lang)
-                cell = row[langidx - 1]
-                cell.fill = emptyfill
-                assert 0 < langidx < 100
-                if attr in ('name', "synonyms"):
-                    if nvl(cell.value) == '':
-                        raise LangExcelException(f"not null columns must not be empty")
-                if attr == 'name':
-                    elemtyp = jsguid2type(key)
-                    if elemtyp in ('ENTI', 'ATTR'):
-                        if cell.value in dupname[elemtyp][lang]:
-                            raise LangExcelException(f"Nameentry must be unique")
-                        else:
-                            dupname[elemtyp][lang].append(cell.value)
-                    # fi
-                # fi
-            okrows.append(row)
-            comment = ""
+            comment = ''
+            key, attr, idx = checkkey(pcell=row[pexcel.keyrowidx() - 1], pjson=pjson)
+            try:
+                # check languages for not null
+                for lang in pexcel.getlanguages():
+                    # returns erroneus cell in exception or nothing if ok
+                    langidx = pexcel.getheaderidx(lang)
+                    assert 0 < langidx < 100
+                    check1langentry(pkey=key, pattr=attr, plang=lang, pcell=row[langidx - 1], pdupnames=dupnames)
+                # row is ok (no exception) add to rows to be handled later
+                okrows.append(row)
 
-        except LangExcelException as exp:
-            # key cell has error
-            cell.fill = redfill
-            comment = str(exp)
-        # try
-        row[pexcel.getheaderidx('Comments') - 1].value = comment
-    # for
+            except LangExcelException as lgexp:
+                # cell has error
+                comment = str(lgexp)
+
+        except LangExcelException as lgexp:
+            comment = str(lgexp)
+        finally:
+            row[pexcel.getheaderidx('Comments') - 1].value = comment
+    # for row in
     return okrows
 
 
@@ -101,22 +126,22 @@ def transfer2json(prows, pjson, pexcel):
     changes = 0
     for row in prows:
         key, attr, idx = Langexceldata.decodekey(row[pexcel.keyrowidx() - 1].value)
-        jsentry = pjson.getbyid(key)
+        jsentry = resultjson.getbyid(key)
         for lang in pexcel.getlanguages():
             colidx = pexcel.getheaderidx(lang)
-            cell=row[colidx - 1]
-            xval= cell.value
-            entry=jsentry[attrkey2js(attr)]
+            cell = row[colidx - 1]
+            xval = cell.value
+            entry = jsentry[attrkey2js(attr)]
             if idx is not None:
-                #examples or synonyms
-                jval = entry[idx-1]
-            elif attr in ('fromto','tofrom'):
-                #relationshipassocs
+                # examples or synonyms
+                jval = entry[idx - 1]
+            elif attr in ('fromto', 'tofrom'):
+                # relationshipassocs
                 jval = entry['assoc']
             else:
                 jval = entry
             if nvl(xval) != nvl(jval[lang]):
-                jval[lang]=nvl(xval)
+                jval[lang] = nvl(xval)
                 cell.fill = greenfill
                 changes += 1
 
@@ -125,10 +150,10 @@ def transfer2json(prows, pjson, pexcel):
 
 def mergeexcel2json(pws: Worksheet, pexcel: Langexceldata, pjson: JSModel):
     okrows = checkentries(pws=pws, pexcel=pexcel, pjson=pjson)
-    retval = None
+    changes, resultjson = None, None
     if len(okrows) == pws.max_row - 1:
-        changes, retval = transfer2json(prows=okrows, pjson=pjson, pexcel=pexcel)
-    return changes, retval
+        changes, resultjson = transfer2json(prows=okrows, pjson=pjson, pexcel=pexcel)
+    return changes, resultjson
 
 
 def importlangexcel(pexcelfile, pmodeldb=None):
@@ -137,8 +162,8 @@ def importlangexcel(pexcelfile, pmodeldb=None):
     try:
         wb = load_workbook(filename=pexcelfile)
     except Exception as e:
-        print(f"***** Excelfile could not be imported {pexcelfile}")
         print(e)
+        raise Exception(f"***** Excelfile could not be imported {pexcelfile}")
 
     ws: Worksheet = wb.active
     excel = Langexceldata()
@@ -150,18 +175,20 @@ def importlangexcel(pexcelfile, pmodeldb=None):
 
     resultexcel = pexcelfile.replace('.xlsx', '_result.xlsx')
     changes, newjson = mergeexcel2json(pws=ws, pexcel=excel, pjson=mergejson)
+    resultjson = jsonfile.replace('.json', '_result.json')
+    if os.path.exists(resultjson):
+        os.remove(resultjons)
     if newjson is None:
         print(f"***** Errors found, see red marks in \n{resultexcel}")
+        wb.save(resultexcel)
     elif changes == 0:
         print(f"No changes found, nothing was updated")
     else:
-        resultjson = jsonfile.replace('.json', '_result.json')
         printJSON(pmodel=newjson.jsmodel, pfilepath=os.path.dirname(resultjson), pfilename=os.path.basename(resultjson))
         print(f"Translations merged, see changed entries in \n{resultexcel}\nand in\n{resultjson}")
-    wb.save(resultexcel)
-
+        wb.save(resultexcel)
     return
 
-
 if __name__ == '__main__':
-    importlangexcel(pexcelfile=sys.argv[1], pmodeldb=None if len(sys.argv) < 3 else sys.argv[2])
+    args = sys.argv
+    importlangexcel(pexcelfile=args[1], pmodeldb=None if len(args) < 3 else args[2])

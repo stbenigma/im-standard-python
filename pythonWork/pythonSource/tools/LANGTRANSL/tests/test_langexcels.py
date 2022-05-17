@@ -1,8 +1,10 @@
 import os
+import tempfile
 import unittest
 
 import SSOT_infra.tests.integration as tb
 from tools.LANGTRANSL import exportdata, importdata, langexceldata
+
 
 
 def nocomments(pws):
@@ -57,7 +59,9 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             ['RELA138-tofrom', '', '', '', 'Relation -Hauptentität => Kind Entität1', ''],
             ['RELA126-fromto', 'fügt hinzu', 'adds', 'ajoute', 'Relation -Zusätzliche Einheit => Rollen-Entität 2', ''],
             ['RELA126-tofrom', 'hinzugefügt von', 'added by', 'ajouté par',
-             'Relation -Rollen-Entität 2 => Zusätzliche Einheit', '']
+             'Relation -Rollen-Entität 2 => Zusätzliche Einheit', ''],
+            ['ATTR113-name', 'erste Erscheinung', 'First Appearance', 'première apparition',
+             'Kind Entität1->erste Erscheinung', 'Attribute-Name']
         ]
         self.wb = Workbook()
         self.testws = self.wb.active
@@ -67,11 +71,8 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         # wb.save(filename=destfilename)
         self.testexcel = langexceldata.Langexceldata()
         self.testexcel.analyzeheader(self.testws['1'])
-        self.testjson = JSModel.readfromfile(pfilename=importdata.getjsonfile(pmodeldb=None, pjsonfile=self.tm2.jsonfile))
-
-
-
-
+        self.testjson = JSModel.readfromfile(
+            pfilename=importdata.getjsonfile(pmodeldb=None, pjsonfile=self.tm2.jsonfile))
 
     def test_metainfo(self):
         self.assertTrue(langexceldata.strislang('xx'))
@@ -87,30 +88,35 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
     def test_excelcheck(self):
 
         # all but header is returned as OK rows
-        self.assertEqual(len(self.testdata) - 1, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 1,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertTrue(nocomments(self.testws))
 
         # invalid key
         self.testws.cell(row=2, column=1).value = 'gugus'
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=1).value = self.testdata[1][0]
 
         # invalid key
         self.testws.cell(row=2, column=1).value = 'ENTI99999-name'
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=1).value = self.testdata[1][0]
 
         # invalid key
         self.testws.cell(row=2, column=1).value = 'ENTI99999-name'
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=1).value = self.testdata[1][0]
 
         # invalid key
         self.testws.cell(row=2, column=1).value = 'ENTI-synonyms-a'
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=1).value = self.testdata[1][0]
 
@@ -130,37 +136,64 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
 
         # invalid key
         self.testws.cell(row=2, column=1).value = 'RELA-to-from'
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=1).value = self.testdata[1][0]
 
         # empty not null column de
         self.testws.cell(row=2, column=2).value = ''
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=2).value = self.testdata[1][1]
         # empty not null column en
         self.testws.cell(row=2, column=3).value = ''
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=2, column=3).value = self.testdata[1][2]
 
         # duplicate name de
         self.testws.cell(row=3, column=2).value = self.testdata[1][1]
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=3, column=2).value = self.testdata[2][1]
 
         # duplicate name fr
         self.testws.cell(row=3, column=4).value = self.testdata[1][3]
-        self.assertEqual(len(self.testdata) - 2, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertFalse(nocomments(self.testws))
         self.testws.cell(row=3, column=4).value = self.testdata[2][3]
 
-        # all comments are removed if it checks ok
-        self.assertEqual(len(self.testdata) - 1, len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        # two errors in line
+        self.testws.cell(row=3, column=4).value = self.testdata[1][3]
+        self.testws.cell(row=3, column=3).value = self.testdata[1][2]
+        self.assertEqual(len(self.testdata) - 2,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.assertEqual(importdata.redfill.fgColor.value, self.testws.cell(row=3, column=3).fill.fgColor.value)
+        self.assertEqual(importdata.redfill.fgColor.value, self.testws.cell(row=3, column=4).fill.fgColor.value)
+        self.assertFalse(nocomments(self.testws))
+        self.testws.cell(row=3, column=4).value = self.testdata[2][3]
+        self.testws.cell(row=3, column=3).value = self.testdata[2][2]
+
+        # duplicate attrnames are no error
+        self.testws.cell(row=10, column=2).value = self.testws.cell(row=21, column=2).value
+        self.assertEqual(len(self.testdata) - 1,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.assertEqual(importdata.emptyfill.fgColor.value, self.testws.cell(row=21, column=2).fill.fgColor.value)
         self.assertTrue(nocomments(self.testws))
-        # os.remove(destfilename)
+        self.testws.cell(row=10, column=2).value = self.testdata[8][1]
+
+        # all comments are removed if it checks ok
+        self.assertEqual(len(self.testdata) - 1,
+                         len(importdata.checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
+        self.assertTrue(nocomments(self.testws))
+        # os.remove(self.tm2.dbdir / "testexcel.xlsx")
         return
 
     def test_calls(self):
@@ -190,46 +223,86 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         return
 
     def test_exceljson(self):
-        #no changes
+
+        # no changes
         changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
-        self.assertEqual(0,changes)
+        self.assertEqual(0, changes)
+        for key, val in newjson.getelements('entities').items():
+            self.assertEqual(self.testjson.getbyid(key)['name']['de'], val['name']['de'])
+            self.assertEqual(self.testjson.getbyid(key)['name']['fr'], val['name']['fr'])
+            self.assertEqual(self.testjson.getbyid(key)['name']['en'], val['name']['en'])
+            self.assertEqual(self.testjson.getbyid(key)['tooltip']['de'], val['tooltip']['de'])
+        for key, val in newjson.getelements('domains').items():
+            self.assertEqual(self.testjson.getbyid(key)['name']['de'], val['name']['de'])
+            self.assertEqual(self.testjson.getbyid(key)['name']['fr'], val['name']['fr'])
+            self.assertEqual(self.testjson.getbyid(key)['name']['en'], val['name']['en'])
+            self.assertEqual(self.testjson.getbyid(key)['descr']['de'], val['descr']['de'])
 
         # change 1 name
         self.testws.cell(row=2, column=2).value = 'gugus'
         changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
-        #self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
-        self.assertEqual(1,changes)
+        # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.assertEqual(1, changes)
         self.assertTrue(nocomments(self.testws))
-        self.assertEqual(importdata.greenfill.fgColor.value,self.testws.cell(row=2, column=2).fill.fgColor.value)
+        self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
         self.testws.cell(row=2, column=2).value = self.testdata[1][1]
         self.testws.cell(row=2, column=2).fill = importdata.emptyfill
+        self.assertEqual('gugus', newjson.getbyid('ENTI119')['name']['de'])
 
-        changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
-        #self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
-        self.assertEqual(1,changes)
+        changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=newjson)
+        # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.assertEqual(1, changes)
         self.assertTrue(nocomments(self.testws))
-        self.assertEqual(importdata.greenfill.fgColor.value,self.testws.cell(row=2, column=2).fill.fgColor.value)
+        self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
+        self.assertEqual(self.testdata[1][1], newjson.getbyid('ENTI119')['name']['de'])
 
-        #second change
+        # second change
         self.testws.cell(row=2, column=2).value = 'gugus2'
         self.testws.cell(row=5, column=3).value = 'Tooltip Test'
         changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
-        #self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
-        self.assertEqual(2,changes)
-        self.assertEqual(importdata.greenfill.fgColor.value,self.testws.cell(row=2, column=2).fill.fgColor.value)
-        self.assertEqual(importdata.greenfill.fgColor.value,self.testws.cell(row=5, column=3).fill.fgColor.value)
+        # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.assertEqual(2, changes)
+        self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
+        self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=5, column=3).fill.fgColor.value)
         self.testws.cell(row=2, column=2).value = self.testdata[1][1]
         self.testws.cell(row=5, column=3).value = self.testdata[4][2]
-        #os.remove(self.tm2.dbdir / "testexcel.xlsx")
-
-
+        self.assertEqual('gugus2', newjson.getbyid('ENTI119')['name']['de'])
+        self.assertEqual('Tooltip Test', newjson.getbyid('ENTI119')['tooltip']['en'])
+        # os.remove(self.tm2.dbdir / "testexcel.xlsx")
 
     def test_importdata(self):
+        from openpyxl import load_workbook
+        import shutil
+
+        resultjson = str(self.tm2.jsonfile).replace('.json', '_result.json')
+
         with self.assertRaises(Exception) as exp:
             importdata.importlangexcel('gugus')
         print("")
         impfilename = os.path.join(self.tm2.dbdir, self.tm2.modelname + '.xlsx')
         importdata.importlangexcel(impfilename)
+        self.assertFalse(os.path.exists(resultjson)) #nothing changed, no files generated
+
+        with tempfile.TemporaryDirectory() as tempdir:
+            os.chdir(tempdir)
+            shutil.copyfile(impfilename,'myinput.xlsx')
+            shutil.copyfile(self.tm2.jsonfile,'myjson.json')
+            wb = load_workbook(filename='myinput.xlsx')
+            ws = wb.active
+            a1comment = ws["A1"].comment
+            self.assertIsNotNone(a1comment)
+            a1comment.text=a1comment.text.replace(str(self.tm2.jsonfile),'myjson.json')
+            excel = langexceldata.Langexceldata()
+            excel.analyzecomment('' if a1comment is None else a1comment.text)
+            self.assertEqual ('myjson.json',excel.getmetainfo().getjsonfile())
+            ws["A1"].comment = a1comment
+            wb.save(filename="myinput.xlsx")
+            #wb.save(filename=impfilename.replace('.xlsx','_test.xlsx'))
+            importdata.importlangexcel("myinput.xlsx")
+            #shutil.copyfile("myinput_result.xlsx",self.tm2.dbdir/"myinput_result.xlsx")
+            self.assertFalse(os.path.exists("myjson_result.json"))
+            self.assertFalse(os.path.exists("myinput_result.xlsx"))
+            #self.assertTrue(os.path.exists(resultjson))
 
 
 if __name__ == '__main__':

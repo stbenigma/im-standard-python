@@ -7,7 +7,7 @@ from openpyxl.utils import get_column_letter
 
 from tools.LANGTRANSL.langexceldata import Langexceldata, Metainfo,attrjs2key,attrkey2js
 from SSOT_db.IM_JSON import JSModel
-from SSOT_infra import nvl
+from SSOT_infra import nvl,nvlkey
 
 
 class Exportdata:
@@ -16,7 +16,7 @@ class Exportdata:
 
         self._deflang = self._model.jsmodel['model']['language']
         self._languages = self._model.jsmodel['languages'].keys()
-        self._metainfo = Metainfo(gitrevision=self._model.jsmodel["_imprint_"]["git-revision"],
+        self._metainfo = Metainfo(gitrevision=nvlkey(self._model.jsmodel["_imprint_"],"git-revision"),
                                   dbmodelversion=self._model.jsmodel["_imprint_"]["Modelversion"],
                                   lastupdate=nvl(self._model.jsmodel["model"]["dm"],
                                                  self._model.jsmodel["model"]["dc"]),
