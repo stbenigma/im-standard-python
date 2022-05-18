@@ -90,7 +90,6 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
     rev = pmodel.jsmodel['_imprint_']['git-revision']
     logging.info(f"Writing git revision {rev} to DB")
     dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
-    dbConnect.getdbcon().commit()
 
     if not pcheckonly and (len(result.errors) == 0):
         """clean up and set final project parameters"""
@@ -100,6 +99,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     # fi
+
     return result
 
 def connecttodbcopy():
@@ -135,7 +135,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
                 f"""existing database  {pdbfile}\nhas version {dbversion} but should have {newversion}""")
             raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
 
-        mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose)
+        mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose, pcheckonly=pdryrun)
         if pverbose and len(mergeresult.changes) > 0:
             for c in mergeresult.changes:
                 print(c)

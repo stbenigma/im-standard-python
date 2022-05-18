@@ -23,8 +23,9 @@ from SSOT_infra import parameters
 class TestMergeJson(unittest.TestCase):
 
     @pytest.fixture(autouse=True)
-    def inject_fixtures(self, caplog):
+    def inject_fixtures(self, caplog, tmp_path):
         self._caplog = caplog
+        self.temp_folder = Path(tmp_path)
 
     def setUp(self) -> None:
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST).initDB()
@@ -122,21 +123,13 @@ class TestMergeJson(unittest.TestCase):
             dbConnect.closeDB()
 
     def test_mergefull(self):
-        def savecurrentdbandjson(pjson):
-            # can be used to save the current (memory-)database and a json file to filesystem
-            # import sqlite3
-            # locconn = sqlite3.connect("savedb.db")
-            # dbConnect.getdbcon().backup(locconn)
-            # locconn.close()
-            # pjson.printmodel(pfilepath=".", pfilename="savejson.json")
-            return
 
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        savecurrentdbandjson(curmodel)
         dbConnect.closeDB()
+        curmodel.printSPOD(self.temp_folder / 'curmodel.json')
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
 
@@ -153,6 +146,7 @@ class TestMergeJson(unittest.TestCase):
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
         firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        curmodel.printSPOD(self.temp_folder / 'firstjson.json')
 
         # create copy of filled db
         # first merge with itself
@@ -423,9 +417,11 @@ class TestMergeJson(unittest.TestCase):
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         dbConnect.closeDB()
 
+        curmodel.printSPOD(Path(self.temp_folder, 'curmodel.json'))
+
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
-        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
+        mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
                                       pverbose=True, pdryrun=True)
         sys.stdout = sys.__stdout__  # Reset redirect.
         stdprint = capturedOutput.getvalue()
@@ -434,7 +430,7 @@ class TestMergeJson(unittest.TestCase):
 
         # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
-        originaldbconn = dbConnect.getdbcon()
+
         print("")
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
@@ -450,9 +446,10 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
-
+        self.assertIsNotNone(firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"])
         firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
-        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=True)
+        result.write_json(self.temp_folder / 'test_mergefull.json')
         for c in result.changes:
             print(c)
         self.assertEqual(1, result.updatecnt)
