@@ -27,13 +27,17 @@ def fillmergedb(pdbfilepath, transferfunction, **kwargs) -> str:
         dbConnect.getdblangparameters(pfilepath=pdbfilepath)
         createnewDB(pdbfilepath=None)  # create in Memory
     # fi
+
     transferfunction(**kwargs)
     loadedjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     dbConnect.closeDB()
 
     new_git_revision = parameters.read_git_description(Path(parameters.odmIMDirec()))
-    loadedjson.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName() + "_loaded")
+    dbfile = Path(pdbfilepath)
+    loaded_json_file = dbfile.parent / str(dbfile.stem + "_loaded.json")
+    loadedjson.printSPOD(loaded_json_file)
     loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
+
     if createnewdb:
         logging.info(f"Created SPOD for git revision {new_git_revision}")
         with closing(dbConnect.openDB(pfilepath=pdbfilepath)) as conn:

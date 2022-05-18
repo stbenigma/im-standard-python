@@ -23,7 +23,7 @@ def create_testmodel(testmodel , new=True):
     return
 
 
-class TESTFILLDB(unittest.TestCase):
+class TestFillDatabase(unittest.TestCase):
 
     def setUp(self) -> None:
         translation = TestTranslation()

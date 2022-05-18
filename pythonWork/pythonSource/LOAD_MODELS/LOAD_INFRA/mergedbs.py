@@ -126,6 +126,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
         connecttodbcopy()
         print(f"***** dry merge-run on db {pdbfile}")
 
+    mergeresult = None
     try:
         newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
         dbversion = dbConnect.getversion()
@@ -153,6 +154,13 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
     finally:
         if dbConnect.isopenDB():
             dbConnect.closeDB()
+
+    if mergeresult is not None:
+        js_change_file = Path('log') / 'merge.json'
+        js_change_file.parent.mkdir(exist_ok=True)
+        logging.debug("Writing change log to '%s'", str(js_change_file))
+        mergeresult.write_json(js_change_file)
+
     return
 
 

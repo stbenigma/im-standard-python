@@ -451,7 +451,8 @@ class Baseobject:
             elemdelcnt = dbDML.delete(lsql, *arguments)
             retval = elemdelcnt + modedelcnt  # cascade delete from MODE has to be counted as well
         except Exception as err:
-            raise err
+            message = f"Cannot delete element {lsql}\n{str(*arguments)}"
+            raise Exception(message) from err
         return retval
 
     @classmethod

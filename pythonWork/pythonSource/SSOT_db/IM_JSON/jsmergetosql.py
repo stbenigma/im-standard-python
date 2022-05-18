@@ -1,3 +1,5 @@
+import json
+
 from SSOT_infra import todatetime
 import sys, os
 
@@ -12,8 +14,11 @@ class Mergeresult:
     def __init__(self, srcname, verbose=False, checkonly=False):
         self.verbose = verbose
         self.insertcnt = 0
+        self.insertstats = {}
         self.updatecnt = 0
+        self.updatestats = {}
         self.deletecnt = 0
+        self.deletestats = {}
         self.deleterefcnt = 0
         self.errors = []
         self.newerrors = []
@@ -88,6 +93,19 @@ class Mergeresult:
         if cnt > 0 and pstr is not None:
             self.addchange(pstr + f"  delete-refs,cnt={str(cnt)}")
         return
+
+    def write_json(self, file):
+        """Write the merge result to a json file"""
+        js_structure = {
+            'summary': {
+                'inserted': self.insertcnt,
+                'updated': self.updatecnt,
+                'deleted': self.deletecnt,
+            },
+            'changeset': self.changes,
+        }
+        with open(file, 'w') as out:
+            json.dump(js_structure, out)
 
 
 def getallsrcrefs(pelemtype,psrcname):

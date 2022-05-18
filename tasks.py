@@ -4,6 +4,7 @@
 #
 import json
 import pathlib
+import shutil
 from contextlib import closing
 from pathlib import Path
 import sys
@@ -249,10 +250,11 @@ def bootstrap_integration_tests(c):
 
 
 @task(help={
-    'source': "SPOD Source file [mandatory]",
+    'source': "JSON source [mandatory]",
     'output': "Path of the destination file. Source path with .db extension if undefined",
     'nomerge': "Overwrite current database"})
 def filldb(c, source, output=None, nomerge=False):
+    """Fill database form SPOD (JSON source)"""
     load_tools_library()
     src_path = Path(source)
 
@@ -264,10 +266,6 @@ def filldb(c, source, output=None, nomerge=False):
     else:
         out_path = Path(output)
 
-    if nomerge:
-        print(f"Removing current database")
-        out_path.unlink(missing_ok=True)
-
     with open(src_path, 'r') as src:
         spod = json.load(src)
 
@@ -277,6 +275,7 @@ def filldb(c, source, output=None, nomerge=False):
     from SSOT_infra import parameters
     from SSOT_db.IM_JSON import JSModel
     from SSOT_db.createDB import createnewDB
+    from LOAD_MODELS.LOAD_INFRA import mergedbs
 
     revision = spod['_imprint_'].get('git-revision', parameters.read_git_description(src_path.parent))
     print(f"Created SPOD for git revision {revision}")
@@ -284,10 +283,83 @@ def filldb(c, source, output=None, nomerge=False):
     parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
 
-    with closing(createnewDB(str(out_path))) as conn:
+    # prepare target
+    archive = src_path.parent / '.archive'
+    archive.mkdir(exist_ok=True)
+
+    if out_path.is_file():
+        backup = archive / out_path.name
+        index = 1
+        while backup.is_file():
+            backup = archive / f"{out_path.name}.{index}"
+            index += 1
+        print(f"Moving current database to archive '{backup}'")
+        shutil.copy(out_path, backup)
+
+    if nomerge:
+        out_path.unlink(missing_ok=True)
+
+    if out_path.is_file():
+        print(f"Updating database {out_path}")
+        database = closing(dbConnect.openDB(str(out_path)))
+    else:
+        print(f"Creating database {out_path}")
+        database = closing(createnewDB(str(out_path)))
+
+    with database as conn:
         dbConnect.write_git_reversion(revision, conn)
         model = JSModel(spod)
-        print(f"\x1b[32mSucessfully\x1b[39m created database {src_path} from SPOD {out_path}")
+        mergedbs.mergejs2db(pdbfile=str(out_path.resolve()), pmodel=model)
+        print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+
+
+@task(help={
+    'source': "SPOD database [mandatory]",
+    'output': "Path of the destination json. Source path with .json extension if undefined"
+    })
+def db2json(c, source, output=None):
+    load_tools_library()
+    src_path = Path(source)
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if output is None:
+        out_path = src_path.with_suffix('.json')
+    else:
+        out_path = Path(output)
+
+    from SSOT_db.SQL_INFRA import dbConnect
+    from SSOT_infra import parameters
+    from SSOT_db.IM_JSON import JSModel
+    from SSOT_db.createDB import createnewDB
+    from LOAD_MODELS.LOAD_INFRA import mergedbs
+
+
+    parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
+    # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
+
+    # prepare target
+    archive = src_path.parent / '.archive'
+    archive.mkdir(exist_ok=True)
+
+    if out_path.is_file():
+        backup = archive / out_path.name
+        index = 1
+        while backup.is_file():
+            backup = archive / f"{out_path.name}.{index}"
+            index += 1
+        print(f"Moving current database to archive '{backup}'")
+        shutil.copy(out_path, backup)
+
+    from SSOT_db.IM_JSON import sql2json
+    with closing(dbConnect.openDB(src_path)):
+        model = JSModel(sql2json(pdbname=dbConnect.getDBname()))
+        git_revision = dbConnect.read_git_revision( dbConnect.getdbcon())
+        revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
+        print(f"Writing SPOD for git revision {revision}")
+        model.printmodel(str(out_path))
+    print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
 
 
 def verify_content(fh):
