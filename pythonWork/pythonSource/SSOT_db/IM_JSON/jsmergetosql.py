@@ -142,8 +142,9 @@ def getbyanysrcref(presult, pelemsrcrefs):
     for name, ref in pelemsrcrefs.items():
         dbobj = Modelelement.getelementbyextref(psrcname=name, psrcid=ref[0])
         if dbobj is not None:
+            return retval #HOTFIX return first found Check problem of SPOD creating new id for same json entry
             if (retval is not None) and (dbobj.getid() != retval.getid()):
-                raise Exception("too many extrefs")
+                raise Exception(f"too many extrefs for source_id {ref[0]} and dbids {dbobj.getid()} and {retval.getid()}'")
             else:
                 retval = dbobj
     return retval
