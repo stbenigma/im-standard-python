@@ -1,5 +1,4 @@
 import re
-from SSOT_infra import nvlkey
 import logging
 
 attrmatchkey2js= {'name':'name',
@@ -24,12 +23,12 @@ def strislang(l: str) -> bool:
 
 class Metainfo():
     def __init__(self,**kwargs):
-        self._gitrevision = nvlkey(kwargs,"gitrevision")
-        self._dbmodelversion = nvlkey(kwargs,"dbmodelversion")
-        self._lastupdate = nvlkey(kwargs,"lastupdate")
-        self._jsonfile = nvlkey(kwargs,"jsonfile")
-        self._modellang = nvlkey(kwargs,"modellang")
-        self._modelname = nvlkey(kwargs,"modelname")
+        self._gitrevision = kwargs.get("gitrevision")
+        self._dbmodelversion = kwargs.get("dbmodelversion")
+        self._lastupdate = kwargs.get("lastupdate")
+        self._jsonfile = kwargs.get("jsonfile")
+        self._modellang = kwargs.get("modellang")
+        self._modelname = kwargs.get("modelname")
 
     def getgitrevision(self):
         return self._gitrevision

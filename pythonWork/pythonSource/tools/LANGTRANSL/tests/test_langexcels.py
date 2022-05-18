@@ -4,7 +4,8 @@ import unittest
 
 import SSOT_infra.tests.integration as tb
 from tools.LANGTRANSL import exportdata, importdata, langexceldata
-
+from SSOT_db.IM_JSON import JSModel
+from LOAD_MODELS.LOAD_INFRA import mergedbs
 
 
 def nocomments(pws):
@@ -20,7 +21,6 @@ class MyTestCase(unittest.TestCase):
         self.tm2.initDB(palways=True)
 
         from openpyxl import Workbook
-        from SSOT_db.IM_JSON import JSModel
 
         self.testdata = [
             ['Key', 'de', 'en', 'fr', 'Description', 'Comments'],
@@ -72,7 +72,7 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         self.testexcel = langexceldata.Langexceldata()
         self.testexcel.analyzeheader(self.testws['1'])
         self.testjson = JSModel.readfromfile(
-            pfilename=importdata.getjsonfile(pmodeldb=None, pjsonfile=self.tm2.jsonfile))
+            pfilename=self.tm2.jsonfile)
 
     def test_metainfo(self):
         self.assertTrue(langexceldata.strislang('xx'))
@@ -273,6 +273,8 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
     def test_importdata(self):
         from openpyxl import load_workbook
         import shutil
+        from SSOT_db.SQL_INFRA import dbConnect
+        from SSOT_db.IM_OBJECTS import Entity
 
         resultjson = str(self.tm2.jsonfile).replace('.json', '_result.json')
 
@@ -287,6 +289,7 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             os.chdir(tempdir)
             shutil.copyfile(impfilename,'myinput.xlsx')
             shutil.copyfile(self.tm2.jsonfile,'myjson.json')
+            shutil.copyfile(self.tm2.dbfile,'testmodel-2.db')
             wb = load_workbook(filename='myinput.xlsx')
             ws = wb.active
             a1comment = ws["A1"].comment
@@ -298,12 +301,40 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             ws["A1"].comment = a1comment
             wb.save(filename="myinput.xlsx")
             #wb.save(filename=impfilename.replace('.xlsx','_test.xlsx'))
-            importdata.importlangexcel("myinput.xlsx")
+            changes = importdata.importlangexcel("myinput.xlsx")
+            self.assertEqual(0,changes)
             #shutil.copyfile("myinput_result.xlsx",self.tm2.dbdir/"myinput_result.xlsx")
             self.assertFalse(os.path.exists("myjson_result.json"))
             self.assertFalse(os.path.exists("myinput_result.xlsx"))
-            #self.assertTrue(os.path.exists(resultjson))
 
+
+            #teste Änderung im Excel
+            cell = ws["B2"]
+            cell.value = cell.value + "XX"
+            cell = ws["C2"]
+            cell.value = cell.value + "YY"
+            wb.save(filename="myinput.xlsx")
+            wb.save(filename=impfilename.replace('.xlsx','_test.xlsx'))
+            changes = importdata.importlangexcel("myinput.xlsx")
+            self.assertTrue(changes>0)
+
+            resultjson = JSModel.readfromfile(pfilename="myjson_result.json")
+            mergedbs.mergejs2db(pmodel=resultjson, psrcname="TRANSL", pverbose=False, pdbfile="testmodel-2.db")
+            self.assertTrue(os.path.exists("myjson_result.json"))
+            self.assertTrue(os.path.exists("myinput_result.xlsx"))
+
+            dbConnect.openDB(pfilepath="testmodel-2.db")
+            enti = Entity().getbyid(118)
+            self.assertTrue(enti.enti_name.endswith("XX"))
+            self.assertTrue(enti.enti_name_l['en'].endswith("YY"))
+
+            dbConnect.closeDB()
+
+            shutil.copyfile("myinput_result.xlsx",self.tm2.dbdir/"myinput_result.xlsx")
+            shutil.copyfile("myinput.xlsx",self.tm2.dbdir/"myinput.xlsx")
+            shutil.copyfile("myjson_result.json",self.tm2.dbdir/"myjson_result.json")
+
+            #self.assertTrue(os.path.exists(resultjson))
 
 if __name__ == '__main__':
     unittest.main()

@@ -9,11 +9,6 @@ from SSOT_db.IM_JSON import JSModel, jsguid2type, printJSON
 from SSOT_infra import nvl
 from tools.LANGTRANSL.langexceldata import Langexceldata, attrkey2js
 
-
-def getjsonfile(pmodeldb, pjsonfile):
-    return pjsonfile
-
-
 redfill = styles.PatternFill(patternType='solid',
                              fill_type='solid',
                              fgColor=styles.Color('FB8500'))
@@ -156,7 +151,7 @@ def mergeexcel2json(pws: Worksheet, pexcel: Langexceldata, pjson: JSModel):
     return changes, resultjson
 
 
-def importlangexcel(pexcelfile, pmodeldb=None):
+def importlangexcel(pexcelfile):
     assert os.path.isfile(pexcelfile)
 
     try:
@@ -170,7 +165,7 @@ def importlangexcel(pexcelfile, pmodeldb=None):
     a1comment = ws["A1"].comment
     excel.analyzecomment('' if a1comment is None else a1comment.text)
     excel.analyzeheader(ws['1'])
-    jsonfile = getjsonfile(pmodeldb, pjsonfile=excel.getmetainfo().getjsonfile())
+    jsonfile = excel.getmetainfo().getjsonfile()
     mergejson = JSModel.readfromfile(pfilename=jsonfile)
 
     resultexcel = pexcelfile.replace('.xlsx', '_result.xlsx')
@@ -187,7 +182,7 @@ def importlangexcel(pexcelfile, pmodeldb=None):
         printJSON(pmodel=newjson.jsmodel, pfilepath=os.path.dirname(resultjson), pfilename=os.path.basename(resultjson))
         print(f"Translations merged, see changed entries in \n{resultexcel}\nand in\n{resultjson}")
         wb.save(resultexcel)
-    return
+    return changes
 
 if __name__ == '__main__':
     args = sys.argv
