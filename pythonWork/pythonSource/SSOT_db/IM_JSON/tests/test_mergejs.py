@@ -121,7 +121,7 @@ class TestMergeJson(unittest.TestCase):
         finally:
             dbConnect.closeDB()
 
-    def test_mergefull(self):
+    def test_mergefull2(self):
         def savecurrentdbandjson(pjson):
             # can be used to save the current (memory-)database and a json file to filesystem
             # import sqlite3
@@ -416,7 +416,7 @@ class TestMergeJson(unittest.TestCase):
         element.update(defaults)
         return
 
-    def test_mergefull(self):
+    def test_mergefull1(self):
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
