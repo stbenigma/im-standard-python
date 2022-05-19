@@ -3,9 +3,9 @@ import tempfile
 import unittest
 
 import SSOT_infra.tests.integration as tb
-from tools.LANGTRANSL import exportdata, importdata, langexceldata
-from SSOT_db.IM_JSON import JSModel
 from LOAD_MODELS.LOAD_INFRA import mergedbs
+from SSOT_db.IM_JSON import JSModel
+from tools.LANGTRANSL import exportdata, importdata, langexceldata
 
 
 def nocomments(pws):
@@ -283,40 +283,39 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         print("")
         impfilename = os.path.join(self.tm2.dbdir, self.tm2.modelname + '.xlsx')
         importdata.importlangexcel(impfilename)
-        self.assertFalse(os.path.exists(resultjson)) #nothing changed, no files generated
+        self.assertFalse(os.path.exists(resultjson))  # nothing changed, no files generated
 
         with tempfile.TemporaryDirectory() as tempdir:
             os.chdir(tempdir)
-            shutil.copyfile(impfilename,'myinput.xlsx')
-            shutil.copyfile(self.tm2.jsonfile,'myjson.json')
-            shutil.copyfile(self.tm2.dbfile,'testmodel-2.db')
+            shutil.copyfile(impfilename, 'myinput.xlsx')
+            shutil.copyfile(self.tm2.jsonfile, 'myjson.json')
+            shutil.copyfile(self.tm2.dbfile, 'testmodel-2.db')
             wb = load_workbook(filename='myinput.xlsx')
             ws = wb.active
             a1comment = ws["A1"].comment
             self.assertIsNotNone(a1comment)
-            a1comment.text=a1comment.text.replace(str(self.tm2.jsonfile),'myjson.json')
+            a1comment.text = a1comment.text.replace(str(self.tm2.jsonfile), 'myjson.json')
             excel = langexceldata.Langexceldata()
             excel.analyzecomment('' if a1comment is None else a1comment.text)
-            self.assertEqual ('myjson.json',excel.getmetainfo().getjsonfile())
+            self.assertEqual('myjson.json', excel.getmetainfo().getjsonfile())
             ws["A1"].comment = a1comment
             wb.save(filename="myinput.xlsx")
-            #wb.save(filename=impfilename.replace('.xlsx','_test.xlsx'))
+            # wb.save(filename=impfilename.replace('.xlsx','_test.xlsx'))
             changes = importdata.importlangexcel("myinput.xlsx")
-            self.assertEqual(0,changes)
-            #shutil.copyfile("myinput_result.xlsx",self.tm2.dbdir/"myinput_result.xlsx")
+            self.assertEqual(0, changes)
+            # shutil.copyfile("myinput_result.xlsx",self.tm2.dbdir/"myinput_result.xlsx")
             self.assertFalse(os.path.exists("myjson_result.json"))
             self.assertFalse(os.path.exists("myinput_result.xlsx"))
 
-
-            #teste Änderung im Excel
+            # teste Änderung im Excel
             cell = ws["B2"]
             cell.value = cell.value + "XX"
             cell = ws["C2"]
             cell.value = cell.value + "YY"
             wb.save(filename="myinput.xlsx")
-            wb.save(filename=impfilename.replace('.xlsx','_test.xlsx'))
+            wb.save(filename=impfilename.replace('.xlsx', '_test.xlsx'))
             changes = importdata.importlangexcel("myinput.xlsx")
-            self.assertTrue(changes>0)
+            self.assertTrue(changes > 0)
 
             resultjson = JSModel.readfromfile(pfilename="myjson_result.json")
             mergedbs.mergejs2db(pmodel=resultjson, psrcname="TRANSL", pverbose=False, pdbfile="testmodel-2.db")
@@ -330,11 +329,32 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
 
             dbConnect.closeDB()
 
-            shutil.copyfile("myinput_result.xlsx",self.tm2.dbdir/"myinput_result.xlsx")
-            shutil.copyfile("myinput.xlsx",self.tm2.dbdir/"myinput.xlsx")
-            shutil.copyfile("myjson_result.json",self.tm2.dbdir/"myjson_result.json")
+            shutil.copyfile("myinput_result.xlsx", self.tm2.dbdir / "myinput_result.xlsx")
+            shutil.copyfile("myinput.xlsx", self.tm2.dbdir / "myinput.xlsx")
+            shutil.copyfile("myjson_result.json", self.tm2.dbdir / "myjson_result.json")
 
-            #self.assertTrue(os.path.exists(resultjson))
+            # self.assertTrue(os.path.exists(resultjson))
+
+    def test_translateexcel(self):
+        with self.assertRaises(Exception) as exp:
+            importdata.translateexcel(None, None)
+
+        if os.path.exists("/Users/stb/.deepl/deeplauthid"):
+            with open("/Users/stb/.deepl/deeplauthid") as d:
+                deeplid = d.read()
+        else:
+            print("******* Test with real deeplid skipped")
+            return
+
+        with self.assertRaises(Exception) as exp:
+            importdata.translateexcel(None, deeplid)
+
+        with tempfile.TemporaryDirectory() as tempdir:
+            self.wb.save("testexcel.xlsx")
+            importdata.translateexcel("testexcel.xlsx", deeplid)
+
+        return
+
 
 if __name__ == '__main__':
     unittest.main()

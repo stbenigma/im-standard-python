@@ -184,6 +184,19 @@ def importlangexcel(pexcelfile):
         wb.save(resultexcel)
     return changes
 
+def translateexcel(pexcelfile,pdeeplkey):
+    from LANGTRANSL import setauthid,translate
+    assert pdeeplkey is not None,f"no DEEPL key, cannot translate"
+    assert (pexcelfile is not None) and os.path.exists(pexcelfile),f"Excel not found: {pexcelfile}"
+    setauthid(pdeeplkey)
+    #make sure the connection works
+    try:
+        translate('test','de','de')
+    except Exception as e:
+        raise Exception(f"connection to DEEPL did not work\{e}")
+    return
+
+    return
 if __name__ == '__main__':
     args = sys.argv
     importlangexcel(pexcelfile=args[1], pmodeldb=None if len(args) < 3 else args[2])

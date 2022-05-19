@@ -1,2 +1,3 @@
 from .exportdata import createlangexcel
-from .importdata import importlangexcel
+from .importdata import importlangexcel,translateexcel
+from .DEEPLtranslate import translate,setauthid

@@ -1,3 +1,4 @@
+import os.path
 import unittest
 
 from tools.LANGTRANSL.DEEPLtranslate import translate,setauthid
@@ -12,12 +13,17 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(Exception) as exp:
             _ = translate("Bahnhof",'DE','FR')
 
-        setauthid("9043d070-26fd-f874-6b80-37ddc4b6367c")
-        with self.assertRaises(Exception) as exp:
-            _ = translate("Bahnhof",'xx','FR')
-        self.assertTrue(translate("Bahnhof",'DE','FR').startswith("Gare"))
-        self.assertTrue(translate("Bahnhof",'DE','EN').startswith("Station"))
-        self.assertTrue(translate("Bahnhof",'De','en').startswith("Station"))
+        if os.path.exists("/Users/stb/.deepl/deeplauthid"):
+            with open("/Users/stb/.deepl/deeplauthid") as d:
+                deeplid = d.read()
+            setauthid(deeplid)
+            with self.assertRaises(Exception) as exp:
+                _ = translate("Bahnhof",'xx','FR')
+            self.assertTrue(translate("Bahnhof",'DE','FR').startswith("Gare"))
+            self.assertTrue(translate("Bahnhof",'DE','EN').startswith("Station"))
+            self.assertTrue(translate("Bahnhof",'De','en').startswith("Station"))
+        else:
+            print("******* Test with real deeplid skipped")
 
         return
 
