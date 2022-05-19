@@ -21,6 +21,7 @@ emptyfill = styles.PatternFill(fill_type=None)
 class LangExcelException(Exception):
     pass
 
+
 def checkkey(pcell, pjson):
     pcell.fill = emptyfill
     try:
@@ -151,20 +152,23 @@ def mergeexcel2json(pws: Worksheet, pexcel: Langexceldata, pjson: JSModel):
     return changes, resultjson
 
 
-def importlangexcel(pexcelfile):
-    assert os.path.isfile(pexcelfile)
-
+def opentranslexecel(pexcelfile):
     try:
         wb = load_workbook(filename=pexcelfile)
     except Exception as e:
-        print(e)
-        raise Exception(f"***** Excelfile could not be imported {pexcelfile}")
+        raise Exception(f"***** Excelfile could not be imported {pexcelfile}\n | {e})")
 
     ws: Worksheet = wb.active
     excel = Langexceldata()
     a1comment = ws["A1"].comment
     excel.analyzecomment('' if a1comment is None else a1comment.text)
     excel.analyzeheader(ws['1'])
+    return wb, excel
+
+
+def importlangexcel(pexcelfile):
+    assert os.path.isfile(pexcelfile)
+    wb, excel = opentranslexecel(pexcelfile)
     jsonfile = excel.getmetainfo().getjsonfile()
     mergejson = JSModel.readfromfile(pfilename=jsonfile)
 
@@ -179,24 +183,58 @@ def importlangexcel(pexcelfile):
     elif changes == 0:
         print(f"No changes found, nothing was updated")
     else:
-        printJSON(pmodel=newjson.jsmodel, pfilepath=os.path.dirname(resultjson), pfilename=os.path.basename(resultjson))
+        printJSON(pmodel=newjson.jsmodel, pfilepath=os.path.dirname(resultjson),
+                  pfilename=os.path.basename(resultjson))
         print(f"Translations merged, see changed entries in \n{resultexcel}\nand in\n{resultjson}")
         wb.save(resultexcel)
     return changes
 
-def translateexcel(pexcelfile,pdeeplkey):
-    from LANGTRANSL import setauthid,translate
-    assert pdeeplkey is not None,f"no DEEPL key, cannot translate"
-    assert (pexcelfile is not None) and os.path.exists(pexcelfile),f"Excel not found: {pexcelfile}"
+
+def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
+    from LANGTRANSL import setauthid, translate
+    assert pdeeplkey is not None, f"no DEEPL key, cannot translate"
+    assert (pexcelfile is not None) and os.path.exists(pexcelfile), f"Excel not found: {pexcelfile}"
     setauthid(pdeeplkey)
-    #make sure the connection works
+    # make sure the connection works
     try:
-        translate('test','de','de')
+        translate('test', 'de', 'de')
     except Exception as e:
         raise Exception(f"connection to DEEPL did not work\{e}")
-    return
 
-    return
+    wb, excel = opentranslexecel(pexcelfile)
+    modellang = excel.getmetainfo().getmodellang()
+    if modellang is None:
+        if pmainlanguage is None:
+            assert False, f"No main language given"
+        else:
+            modellang = pmainlanguage
+    else:
+        assert modellang == nvl(pmainlanguage, modellang), \
+            f"conflicting main languages given (excelccomment {modellang}, parameter {pmainlanguage}"
+    # fi
+
+    langs = {lang: excel.getheaderidx(lang) for lang in excel.getlanguages()}
+    del langs[modellang]
+    mainlangidx = excel.getheaderidx(modellang)
+    changes = 0
+    for row in wb.active.iter_rows(min_row=2):
+        original = row[mainlangidx-1].value
+        for lang, idx in langs.items():
+            cell = row[idx-1]
+            if original is None:
+                cell.value = None
+            elif type(original) is str and nvl(cell.value)=='':
+                transl = translate(original, modellang, lang)
+                cell.value = transl
+                changes +=1
+            # fi
+        # for
+    # for
+    wb.save(pexcelfile)
+    wb.save("/Users/stb/Downloads/testexcel.xlsx")
+    return changes
+
+
 if __name__ == '__main__':
     args = sys.argv
     importlangexcel(pexcelfile=args[1], pmodeldb=None if len(args) < 3 else args[2])

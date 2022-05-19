@@ -3,6 +3,7 @@ import tempfile
 import unittest
 
 import SSOT_infra.tests.integration as tb
+from SSOT_infra import nvl
 from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import JSModel
 from tools.LANGTRANSL import exportdata, importdata, langexceldata
@@ -349,9 +350,23 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         with self.assertRaises(Exception) as exp:
             importdata.translateexcel(None, deeplid)
 
+        with self.assertRaises(Exception) as exp:
+            importdata.translateexcel("testexcel.xlsx", deeplid,pmainlanguage=None)
+
         with tempfile.TemporaryDirectory() as tempdir:
             self.wb.save("testexcel.xlsx")
-            importdata.translateexcel("testexcel.xlsx", deeplid)
+            self.assertEqual(0,importdata.translateexcel("testexcel.xlsx", deeplid,pmainlanguage='de'))
+
+            switch = True
+            changes = 0
+            for row in self.wb.active.iter_rows(min_row=2):
+                cell = row[2 if switch else 3]
+                if nvl(cell.value,'') != '':
+                    changes +=1
+                    cell.value = ''
+                switch = not switch
+            self.wb.save("testexcel.xlsx")
+            self.assertEqual(changes,importdata.translateexcel("testexcel.xlsx", deeplid,pmainlanguage='de'))
 
         return
 
