@@ -21,9 +21,8 @@ def ellie2proj(pmodel, pmodellng):
 
 
 def ellie2lang(pmodellng):
-    lang = Language(pname=pmodellng, piso2=pmodellng, piso3=None)
-    lang.lang_is_base_lang = Boolean.bool2str(True)
-    lang.lang_lang_id = None
+    lang = Language(lang_iso_code2=pmodellng,
+                    lang_is_base_lang = True)
     return IM_JSON.langs2js(plangs=[lang])
 
 

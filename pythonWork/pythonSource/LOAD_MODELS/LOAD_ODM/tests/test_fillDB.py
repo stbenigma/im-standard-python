@@ -1,19 +1,18 @@
 import json
-import logging
 import os
 import unittest
 from contextlib import closing
 from pathlib import Path
 
 import SSOT_infra.tests.integration as testsrc
+from SSOT_infra.tests.test_translateprompt import TestTranslation
+from SSOT_db.IM_JSON import JSModel
 from LOAD_MODELS.LOAD_ODM import fillDB
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.createDB import createDB
 from SSOT_infra import parameters
-from SSOT_infra.tests.test_translateprompt import TestTranslation
 
 
-def create_testmodel(testmodel , new=True):
+def create_testmodel(testmodel, new=True):
     # create model for testmodel1 no param file
     if new and os.path.exists(testmodel.dbfile):
         os.remove(testmodel.dbfile)
@@ -31,10 +30,8 @@ class TestFillDatabase(unittest.TestCase):
         self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        print ("************************* enable test wenn es funktioniert")
         self.testmodel2.initDB(palways=True)
-
-    def test_filldbmain(self):
-        assert True
 
     def test_fillmergedb(self):
         create_testmodel(self.testmodel1, new=True)
@@ -108,46 +105,38 @@ class TestFillDatabase(unittest.TestCase):
 
         # create model for testmodel1. no param file
 
-        testmodelname = testsrc.TESTMODEL1
-        testpath = testsrc.testmodels_dir() / testmodelname
-        dbdirpath = testpath / 'DB'
-        dbfilepath = dbdirpath / (testmodelname + '.db')
-        jsonfilepath = dbdirpath / (testmodelname + '.json')
-        if os.path.exists(dbfilepath):
-            os.remove(dbfilepath)
-        os.chdir(testpath)
-        fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
-        self.assertTrue(os.path.exists(dbfilepath), f"DB file not created where assumed {dbfilepath}")
-        self.assertTrue(os.path.exists(dbdirpath / (testmodelname + '_loaded.json')),
-                        f"json file not where assumed {dbdirpath / (testmodelname + '_loaded.json')}")
-        self.assertTrue(os.path.exists(jsonfilepath),
-                        f"json file not where assumed {jsonfilepath}")
-        self.assertTrue(os.path.exists(testpath / (testmodelname + '.log')),
-                        f"json file not where assumed {testpath / (testmodelname + '.log')}")
+        tm1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        tm1.modeldir = testsrc.testmodels_dir() / tm1.modelname
+        if os.path.exists(tm1.dbfile):
+            os.remove(tm1.dbfile)
+        os.chdir(tm1.modeldir)
+        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
+        self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
+        self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
+                        f"json file not where assumed {tm1.dbdir / (tm1.modelname + '_loaded.json')}")
+        self.assertTrue(os.path.exists(tm1.jsonfile),
+                        f"json file not where assumed {tm1.jsonfile}")
+        self.assertTrue(os.path.exists(tm1.logfile),
+                        f"json file not where assumed {tm1.logfile}")
         # create db for a second time => merge
-        fillDB.filldbmain(pmodelname=testmodelname, pdestination=dbfilepath)
+        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
         # check subentitylevels
-        with open(jsonfilepath) as jsonFile:
+        with open(tm1.jsonfile) as jsonFile:
             jmodel = json.load(jsonFile)
             testsubenties(jmodel)
             testuserdefproperties(jmodel)
 
         # create db for testmodel2 with Paramfile
-        testmodelname = testsrc.TESTMODEL2
-        testpath = testsrc.testmodels_dir() / testmodelname
-        dbdirpath = testpath / 'DB'
-        dbfilepath = dbdirpath / (testmodelname + '.db')
-        jsonfilepath = dbdirpath / (testmodelname + '.json')
-        paramfile = testpath / (testmodelname + '.params')
-        #if os.path.exists(dbfilepath):
+        tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
+        # if os.path.exists(tm2.dbfile):
         #    createDB(pupgrade=True, pparamfile=paramfile)
-        fillDB.filldbmain(pparamfile=paramfile)
+        fillDB.filldbmain(pparamfile=tm2.paramfile)
         # check handling of translations
-        print(f"Verifying against {jsonfilepath}")
-        with open(jsonfilepath) as jsonFile:
+        print(f"Verifying against {tm2.jsonfile}")
+        with open(tm2.jsonfile) as jsonFile:
             jmodel = json.load(jsonFile)
             checkentityID, checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]
-            self.assertIsNotNone(checkentity, f"Testcase 'Child Entity1' is not present in {testmodelname}")
+            self.assertIsNotNone(checkentity, f"Testcase 'Child Entity1' is not present in {tm2.modelname}")
             synos = list(checkentity["synonyms"])
             self.assertEqual(synos[0]["en"], "*de* DSynonym")
             self.assertEqual(synos[0]["fr"], "*de* DSynonym")
@@ -184,19 +173,19 @@ class TestFillDatabase(unittest.TestCase):
         self.assertTrue(os.path.exists(testmodelcrm.logfile),
                         f"json file not where assumed {testmodelcrm.logfile}")
 
-        testmodelriddle  = testsrc.Testmodel(testsrc.RIDDLE)
+        testmodelriddle = testsrc.Testmodel(testsrc.RIDDLE)
         if os.path.exists(testmodelriddle.dbfile):
             os.remove(testmodelriddle.dbfile)
         os.chdir(testmodelriddle.modeldir)
         fillDB.filldbmain(pmodelname=testmodelriddle.modelname, pdestination=testmodelriddle.dbfile)
-        self.assertTrue(os.path.exists(testmodelriddle.dbfile), f"DB file not created where assumed {testmodelriddle.dbfile}")
-        self.assertTrue(os.path.exists(testmodelriddle.dbdir/ (testmodelriddle.modelname + '_loaded.json')),
+        self.assertTrue(os.path.exists(testmodelriddle.dbfile),
+                        f"DB file not created where assumed {testmodelriddle.dbfile}")
+        self.assertTrue(os.path.exists(testmodelriddle.dbdir / (testmodelriddle.modelname + '_loaded.json')),
                         f"json file not where assumed {testmodelriddle.dbdir / (testmodelriddle.modelname + '_loaded.json')}")
         self.assertTrue(os.path.exists(testmodelriddle.jsonfile),
                         f"json file not where assumed {testmodelriddle.jsonfile}")
         self.assertTrue(os.path.exists(testmodelriddle.logfile),
                         f"log file not where assumed {testmodelriddle.logfile}")
-
 
         return testmodelriddle.dbfile
 
@@ -209,3 +198,68 @@ class TestFillDatabase(unittest.TestCase):
             ver = dbConnect.read_git_revision(conn)
             self.assertEqual(ver, repo_revision)
 
+    def test_odmfiledefaults(self):
+        tm1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
+
+        self.assertEqual(tm1.modeldir / 'IM' / 'Konfiguration',
+                         fillDB.configdir(pconfigdir=tm1.modeldir / 'IM' / 'Konfiguration', pmodeldir=None))
+        with self.assertRaises(Exception):
+            _ = fillDB.configdir(pconfigdir=tm1.modeldir / 'XX' / 'Konfiguguration', pmodeldir=None)
+        with self.assertRaises(Exception):
+            _ = fillDB.configdir(pconfigdir=tm1.modeldir / 'IM' / 'Konfiguguration', pmodeldir=None)
+        with self.assertRaises(Exception):
+            _ = fillDB.configdir(pconfigdir=None, pmodeldir=None)
+        with self.assertRaises(Exception):
+            _ = fillDB.configdir(pconfigdir=None, pmodeldir=None)
+        self.assertEqual(tm1.modeldir / 'IM' / 'Konfiguration', fillDB.configdir(pmodeldir=tm1.modeldir / 'IM'))
+        self.assertEqual(tm1.modeldir / 'IM' / 'Konfiguration', fillDB.configdir(pconfigdir="Konfiguration",pmodeldir=tm1.modeldir / 'IM'))
+
+        self.assertEqual(tm2.modeldir / 'IM' / 'Configuration',
+                         fillDB.configdir(pconfigdir=tm2.modeldir / 'IM' / 'Configuration', pmodeldir=None))
+        self.assertEqual(tm2.modeldir / 'IM' / 'Configuration',
+                         fillDB.configdir(pconfigdir=None, pmodeldir=tm2.modeldir / 'IM'))
+        """
+        fills default for destination directory
+
+        :param pdestdir:  destination directory or None
+        :param pmodeldir:  modelfiledirectory
+        :return: pdestdir if it is not None
+                pmodeldir/../DB if is None
+        assertion failure, if directory does not exist  
+        """
+        with self.assertRaises(Exception):
+            _ = fillDB.destdir(pdestdir=None, pmodeldir=None)
+        with self.assertRaises(Exception):
+            _ = fillDB.destdir(pdestdir=tm2.modeldir / 'XX')
+        self.assertEqual(tm2.modeldir / 'DB', fillDB.destdir(pmodeldir=tm2.modeldir / 'IM'))
+        self.assertEqual(tm2.modeldir / 'DB', fillDB.destdir(pdestdir=tm2.modeldir / 'DB'))
+
+        return
+
+    def test_odm2json(self):
+        """
+            create an empty memory db
+            fill odm info into this db
+            Module parameters contains all information about source of ODM files and model
+
+            :pdebug True, writes the filled sqlite-datase to the parameters.dbFilePath()
+            :return jsonsstructure created out of ODM info
+            :exception if there are sever errors
+        """
+        tm1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
+
+        parameters.parameterdefaults()
+        with self.assertRaises(Exception):
+            _ = fillDB.ODM2json()
+
+        _ = fillDB.transferodm2json(pmodelfile=tm1.modeldir / 'IM' / (tm1.modelname + '.dmd'),
+                                    pdestdir=None, pconfigdir=None, pdebug=False)
+        self.assertEqual(JSModel,type(_))
+        _ = fillDB.transferodm2json(pmodelfile=tm2.modeldir / 'IM' / (tm2.modelname + '.dmd'),
+                                    pdestdir=None, pconfigdir='Configuration', pdebug=True)
+        self.assertEqual(JSModel,type(_))
+        self.assertTrue(os.path.exists(tm2.dbdir / (tm2.modelname + "_odm.db")))
+        os.remove(tm2.dbdir / (tm2.modelname + "_odm.db"))
+        return

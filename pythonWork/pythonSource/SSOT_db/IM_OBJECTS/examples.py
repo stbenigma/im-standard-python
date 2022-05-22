@@ -29,12 +29,10 @@ class Example(MultilangBaseobject):
     @staticmethod
     def fillexamples(pdeflngexpls,plngexpls,plngs,pentiid=None,pattrid=None):
         def inslngexample(plngid,pmodeid,pvalue):
-            lgtx = Languagetext()
-            lgtx.lgtx_attrname = Languagetext.EXPL_VALUE
-            lgtx.lgtx_lang_id = plngid
-            lgtx.lgtx_mode_id = pmodeid
-            lgtx.lgtx_text = pvalue
-            lgtx.insert()
+            _ = Languagetext(lgtx_attrname = Languagetext.EXPL_VALUE,
+                                lgtx_lang_id = plngid,
+                                lgtx_mode_id = pmodeid,
+                                lgtx_text = pvalue).insert()
             return
 
         """transfer examples into the example and the language text tables

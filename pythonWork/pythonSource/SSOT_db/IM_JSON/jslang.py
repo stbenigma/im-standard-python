@@ -72,12 +72,11 @@ def insertlgtx(presult,pmodeid, pattr, ptexts):
 # replacelgtx
 
 def js2lang(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
-    lang = Language()
-    lang.lang_iso_code2 = pkey
-    lang.lang_iso_code3 = pelem['iso3']
-    lang.lang_iso_name = pelem['name']
-    lang.lang_is_base_lang = Boolean.bool2str(pelem['modellanguage'])
-    lang.lang_is_text_lang = Boolean.TRUE
+    lang = Language(lang_iso_code2 = pkey,
+                    lang_iso_code3 = pelem['iso3'],
+                    lang_iso_name = pelem['name'],
+                    lang_is_base_lang = pelem['modellanguage'],
+                    lang_is_text_lang = True)
     return lang
 
 def langs2sql(presult:Mergeresult, pjson:JSModel,pwithextsrcref):

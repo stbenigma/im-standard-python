@@ -29,7 +29,12 @@ SUPPORTEDLANGUAGES = \
      'en': ['English', 'eng'],
      'fr': ['Français', 'fra'],
      'es': ['Español', 'esp'],
-     'it': ['Italiano', 'ita']
+     'it': ['Italiano', 'ita'],
+     'nl': ['Nederlandse','nld'],
+     'pl': ['Polska','pol'],
+     'pt': ['Português', 'prt'],
+     'gr': ['Ελληνικά', 'grc'],
+     'bg': ['Български', 'bgr']
      }
 
 VERSIONFILEPATH: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "versions.json")
@@ -503,6 +508,8 @@ def convert2abspath(*args):
 def filldefaultparams():
     """ Parameters defaulted in relation to other parameters
     """
+    if dbLanguages() is None and dbDefaultLang() is not None:
+        dbLanguages(newval=dbDefaultLang())
     if odmIMDirec() is None:
         odmIMDirec(newval=os.path.join(baseDirec(), odmIMDefaultDirec()))
     if dbDirect() is None:

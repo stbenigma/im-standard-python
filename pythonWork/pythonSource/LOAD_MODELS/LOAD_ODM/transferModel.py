@@ -1702,14 +1702,22 @@ def transferproject():
     langs, root = read_languages_form_project_comment()
     if langs is None:
         defspra = parameters.dbDefaultLang()
+        assert defspra is not None,f"neither parameter nor model-comment contains model-language"
         sprachen = parameters.dbLanguages()
+        if sprachen is None:
+            sprachen = defspra
     else:
         defspra = langs[0]
         sprachen = ','.join(langs)
-        assert defspra == parameters.dbDefaultLang(), \
-            f"Model default language in parameter ('{parameters.dbDefaultLang()}') and project comment ('{defspra}') mismatch"
-        assert set(sprachen.split(',')) == set(parameters.dbLanguages().split(',')), \
-            f"Model languages in parameter ({parameters.dbLanguages()}) and project comment ({sprachen}) mismatch"
+        parameters.dbDefaultLang(defspra)
+        parameters.dbLanguages(sprachen)
+    #fi
+    for l in sprachen.split(','):
+        _ = Language(lang_iso_code2=l,
+                        lang_is_base_lang=(l==defspra)).insert()
+    Language.setallreplacementlang()
+    parameters.dbDefaultLangID(Language.spraidlookup(piso=defspra))
+
 
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
     proj = Project()
@@ -1720,22 +1728,6 @@ def transferproject():
     proj.proj_curr_lang = defspra
     proj.insert()
 
-    if defspra is not None:
-        defspra = defspra
-        defspraid = Language.spraidlookup(piso=defspra)
-        # setze die Defaultsprache aus dem Modell
-        if defspraid is None:
-            e = ValueError(f"""Model requires '{defspra}' as default language. 
-                           "But '{defspra}' is not in the processed languages list: '{parameters.dbLanguages()}'"""
-                           )
-            e.defspra = defspra
-            raise e
-        else:
-            Language.setmodellang(pmodellang=defspra)
-            Language.setallreplacementlang()
-            parameters.dbDefaultLang(defspra)
-            parameters.dbDefaultLangID(defspraid)
-    # fi
     return
 
 
@@ -1985,6 +1977,12 @@ def transferraci():
 
 
 def transferODMModel(**kwargs):
+    """ fills odm model into an empty database.
+        Module parameters must contain all information about sources of ODM-files
+
+        dbConnection must be open
+    """
+    assert dbConnect.isopenDB()
     global interfacedomains
     initglobals()
     """provisional Element internal buffers"""
@@ -2019,4 +2017,5 @@ def transferODMModel(**kwargs):
     Languagetext.fillnontranslatedtexts([Modelelemtype.DOMA,Modelelemtype.BURU])
     transferraci()
     removefixedudp()
+    return
 # end transferODMModel

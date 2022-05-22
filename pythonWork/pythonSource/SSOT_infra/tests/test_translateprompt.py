@@ -22,7 +22,7 @@ def update_gettext_ressources(translation_root: str
         pre, ext = os.path.splitext(po_source)
         mo_target = pre + '.mo'
         subprocess.check_output(['msgfmt', '-o', mo_target, po_source])
-    print(f"Upated {len(sources)} files")
+    print(f"Updated {len(sources)} files")
     return len(sources)
 
 
