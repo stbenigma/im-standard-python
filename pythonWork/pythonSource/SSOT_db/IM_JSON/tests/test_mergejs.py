@@ -170,7 +170,7 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
         # check update of non UK
-        firstjson.jsmodel["entities"]["ENTI118"]["descr"]["de"] += 'XX'
+        firstjson.jsmodel["entities"][enti2key]["descr"]["de"] += 'XX'
         # savecurrentdbandjson(firstjson)
         result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
         for c in result.changes:
@@ -180,7 +180,7 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.deletecnt)
 
         # check update of UK of other source
-        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
+        firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
         # savecurrentdbandjson(firstjson)
         result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
         for c in result.changes:
@@ -381,16 +381,18 @@ class TestMergeJson(unittest.TestCase):
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
         print("")
         self.assertTrue(mergedbs.checkjsonfile(self.testmodel1.jsonfile, pverbose=True))
-        jstm1.jsmodel["entities"]["ENTI112"]["category"] = "gugu000"
+        enti1key = list(jstm1.jsmodel["entities"].keys())[0]
+        enti2key = list(jstm1.jsmodel["entities"].keys())[1]
+        jstm1.jsmodel["entities"][enti1key]["category"] = "gugu000"
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
-        jstm1.jsmodel["entities"]["ENTI112"]["name"]['en'] = ''
-        jstm1.jsmodel["entities"]["ENTI118"]["name"]['en'] = ''
+        jstm1.jsmodel["entities"][enti1key]["name"]['en'] = ''
+        jstm1.jsmodel["entities"][enti2key]["name"]['en'] = ''
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
-        jstm1.jsmodel["entities"]["ENTI112"]["name"]['en'] = None
+        jstm1.jsmodel["entities"][enti1key]["name"]['en'] = None
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
@@ -454,8 +456,8 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
-        self.assertIsNotNone(firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"])
-        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
+        self.assertIsNotNone(firstjson.jsmodel["entities"][enti2key]["name"]["de"])
+        firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
         result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=True)
         result.write_json(self.temp_folder / 'test_mergefull.json')
         for c in result.changes:

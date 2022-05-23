@@ -6,6 +6,7 @@ from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db import createnewDB
 from SSOT_infra import parameters
 import sys
+from datetime import datetime
 
 SOURCE_SPOD:str='SPOD' #default source for SPOD-internal updates
 

@@ -292,8 +292,6 @@ def domains2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
             domaingroupmembers2sql(presult=presult, pgrpdomaid=presult.keytransl(jid)
                                    , pelements=jelem["elements"])
         # fi
-        doma = Domain().getbyid(dbdomaid)
-        lgtx= Languagetext.getlang_texts(pattrname=Languagetext.DOMA_DESCR,pmodeid=dbdomaid)
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_NAME, ptexts=jelem['name'])
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_DESCR, ptexts=jelem['descr'])
         insreferences(presult=presult, pmodeid=dbdomaid, prefs=jelem['referencedby'])

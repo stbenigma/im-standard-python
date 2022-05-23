@@ -42,8 +42,9 @@ class Domain(MultilangBaseobject):
 
     def __init__(self, **kwargs):
 
-        super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
-                         , **kwargs
+        super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME,
+                                         'doma_descr': Languagetext.DOMA_DESCR},
+                          **kwargs
                          )
 
     def getname(self, plang=None):
