@@ -18,8 +18,8 @@ SQLSERVER: str = 'sql-server'
 POSTGRES: str = 'postgres'
 PARAMFILEEXTENSION: str = ".params"
 LOGFILEEXTENSION: str = '.log'
-SSOTDBEXTENSION: str = '.db'
-SSOTDBDIREC: str = 'DB'
+SPODDBEXTENSION: str = '.db'
+SPODDBDIREC: str = 'DB'
 MODELDIREC: str = 'IM'
 WEBDEFAULTDIREC: str = 'Web'
 JSONEXTENSION: str = '.json'
@@ -64,8 +64,8 @@ def parameterdefaults():
                  'sqlfilename': 'modelmodel_' + SQLITE,
                  'dbfilepath': None,
                  'dbdirec': None,
-                 'dbfileextension': SSOTDBEXTENSION,
-                 'dbdefaultdirec': SSOTDBDIREC,
+                 'dbfileextension': SPODDBEXTENSION,
+                 'dbdefaultdirec': SPODDBDIREC,
                  'dbdefaultlang': 'en',
                  'dblanguages': 'en',
                  'dbdefaultlangid': None,

@@ -41,8 +41,6 @@ def insertlanguages():
 
 
 def insertBaseData():
-    print ("********************insertBaseData löschen sobald funktioniert")
-    ##insertlanguages()
     Modelelemtype.fillmelt()
     insertdiagtypes()
     return
@@ -185,8 +183,8 @@ def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodeln
 def main(psysargs):
     parser = argparse.ArgumentParser(description='Create or upgrade SSOT-DB', parents=[argparseparent.parentparser()])
     parser.add_argument('--destination', '-d', dest="destination",
-                        help=f"Path of databasefile. Default ./{parameters.SSOTDBDIREC}" +
-                             f"/<modelname>{parameters.SSOTDBEXTENSION})")
+                        help=f"Path of databasefile. Default ./{parameters.SPODDBDIREC}" +
+                             f"/<modelname>{parameters.SPODDBEXTENSION})")
     parser.add_argument('--upgrade', '-u', action='store_true', dest='upgrade',
                         help="Upgrade existing database to latest version.")
     argparse.Namespace()
@@ -209,8 +207,8 @@ def main(psysargs):
     currentdir = os.getcwd()
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
-                                                 myargs['modelname'] + parameters.SSOTDBEXTENSION)
+            myargs['destination'] = os.path.join(currentdir, parameters.SPODDBDIREC,
+                                                 myargs['modelname'] + parameters.SPODDBEXTENSION)
 
     # do only testing of parameterpassing while in unittest
     if not arguments.unittest:

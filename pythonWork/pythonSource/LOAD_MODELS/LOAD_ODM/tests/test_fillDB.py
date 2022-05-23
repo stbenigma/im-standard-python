@@ -31,7 +31,7 @@ class TestFillDatabase(unittest.TestCase):
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
         print ("************************* enable test wenn es funktioniert")
-        self.testmodel2.initDB(palways=True)
+        #self.testmodel2.initDB(palways=True)
 
     def test_fillmergedb(self):
         create_testmodel(self.testmodel1, new=True)
@@ -111,6 +111,7 @@ class TestFillDatabase(unittest.TestCase):
             os.remove(tm1.dbfile)
         os.chdir(tm1.modeldir)
         fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
+
         self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
         self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
                         f"json file not where assumed {tm1.dbdir / (tm1.modelname + '_loaded.json')}")
@@ -256,9 +257,12 @@ class TestFillDatabase(unittest.TestCase):
 
         _ = fillDB.transferodm2json(pmodelfile=tm1.modeldir / 'IM' / (tm1.modelname + '.dmd'),
                                     pdestdir=None, pconfigdir=None, pdebug=False)
+        _.printSPOD(str(tm1.jsonfile).replace(".json","_odm.json"))
+
         self.assertEqual(JSModel,type(_))
         _ = fillDB.transferodm2json(pmodelfile=tm2.modeldir / 'IM' / (tm2.modelname + '.dmd'),
                                     pdestdir=None, pconfigdir='Configuration', pdebug=True)
+        _.printSPOD(str(tm2.jsonfile).replace(".json","_odm.json"))
         self.assertEqual(JSModel,type(_))
         self.assertTrue(os.path.exists(tm2.dbdir / (tm2.modelname + "_odm.db")))
         os.remove(tm2.dbdir / (tm2.modelname + "_odm.db"))

@@ -151,7 +151,7 @@ def main(psysargs):
                              f"./<modelname>{parameters.PARAMFILEEXTENSION}")
     parser.add_argument('--modelname', '-m', dest="modelname")
     parser.add_argument('jsonfile', nargs='?',
-                        help=f"Path of the jsonfile to be converted. Default ./{parameters.SSOTDBDIREC}" +
+                        help=f"Path of the jsonfile to be converted. Default ./{parameters.SPODDBDIREC}" +
                              f"/<modelname>{parameters.JSONEXTENSION})")
     parser.add_argument('--destination', '-d', dest="destination",
                         help=f"Directory to write the generated files to . Default ./{parameters.WEBDEFAULTDIREC}")
@@ -183,7 +183,7 @@ def main(psysargs):
     argparseparent.fillssotdefaults(pcurrentdir=currentdir, parguments=myargs)
     if myargs['modelname'] is not None:
         if myargs['jsonfile'] is None:
-            myargs['jsonfile'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
+            myargs['jsonfile'] = os.path.join(currentdir, parameters.SPODDBDIREC,
                                               myargs['modelname'] + parameters.JSONEXTENSION)
     # fi
 
