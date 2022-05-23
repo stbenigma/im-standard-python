@@ -396,7 +396,7 @@ class TestMergeJson(unittest.TestCase):
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
-        del jstm1.jsmodel["categories"]["CATG7"]
+        del jstm1.jsmodel["categories"]["CATG1"]
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         with self._caplog.at_level(level=logging.INFO):
             self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
@@ -451,6 +451,9 @@ class TestMergeJson(unittest.TestCase):
         result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
         # for c in result.changes:
         #    print(c)
+        enti1key = list(firstjson.jsmodel["entities"].keys())[0]
+        enti2key = list(firstjson.jsmodel["entities"].keys())[1]
+
         self.assertEqual(0, result.updatecnt)
         self.assertEqual(0, result.insertcnt)
         self.assertEqual(0, result.deletecnt)
