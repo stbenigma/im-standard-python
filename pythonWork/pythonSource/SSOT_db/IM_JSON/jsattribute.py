@@ -341,8 +341,8 @@ def examples2js(pexpls: list = None):
     if pexpls is None:
         return [{'en':'',}]
     else:
-        """    [ {"de": ["Lager",],
-                  "en": ["Stock",]
+        """    [ {"de": "Lager",
+                  "en": "Stock"
                   },
                ]
         """
