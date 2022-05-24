@@ -81,7 +81,7 @@ class Baseobject:
         self.__emptyclass()
 
         self.__srcname = kwargs['srcname'] if ('srcname' in kwargs) else kwargs['psrcname'] if (
-                    'psrcname' in kwargs) else None
+                'psrcname' in kwargs) else None
         # old spelling
         self.__srcid = kwargs['srcid'] if ('srcid' in kwargs) else kwargs['psrcid'] if ('psrcid' in kwargs) \
             else kwargs['pscrid'] if ('pscrid' in kwargs) else None
@@ -214,7 +214,7 @@ class Baseobject:
         updcollist = list(self._columnlist.keys())
         updcollist.remove(self._idcolname)  # ID will never be changed, it is the where-condition
         lsql = f"""update {self._tablename} """
-        lsql += """\nset {}""".format('\n,'.join(col +" = ?" for col in updcollist))
+        lsql += """\nset {}""".format('\n,'.join(col + " = ?" for col in updcollist))
         lsql += f"""\nwhere {self._idcolname} = {dbDML.dbval(self.getid())}"""
         values = [self.colvalue(pcolname=col) for col in updcollist]
         # print (lsql)
@@ -450,16 +450,16 @@ class Baseobject:
             elemdelcnt = dbDML.delete(lsql, *arguments)
             retval = elemdelcnt + modedelcnt  # cascade delete from MODE has to be counted as well
         except Exception as err:
-            raise err
+            message = f"Cannot delete element {lsql}\n{str(*arguments)}"
+            raise Exception(message) from err
         return retval
 
     @classmethod
-    def deletemissingids(cls, pids:tuple):
+    def deletemissingids(cls, pids: tuple):
         cnt = 0
         if len(pids) > 0:
-            cnt = cls.delete(pwhere = (f"{cls._idcolname} not in ({','.join('?' * len(pids))})",*pids))
+            cnt = cls.delete(pwhere=(f"{cls._idcolname} not in ({','.join('?' * len(pids))})", *pids))
         return cnt
-
 
     @classmethod
     def columnsliststring(cls, pplaceholder=False):

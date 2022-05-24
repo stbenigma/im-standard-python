@@ -1,7 +1,15 @@
 from .baseobject import Baseobject
-from datetime import date
 from SSOT_db.SQL_INFRA import dbDML
+from SSOT_infra import parameters,nvl
 
+
+def expandiso2(plang:str):
+    lang = plang.lower() if plang else None
+    exp = parameters.SUPPORTEDLANGUAGES.get(lang)
+    if  exp is not None :
+        return exp[0:2]
+    else:
+        return [lang,lang]
 
 class Language(Baseobject):
     _tablename:str ='languages'
@@ -10,17 +18,13 @@ class Language(Baseobject):
     _columnlist = dict()
     _defaultorderby = "lang_iso_code2"
 
-    def __init__(self,pname=None,piso2=None,piso3=None):
-
-        super().__init__()
-        self.lang_iso_name = pname
-        self.lang_iso_code2 = piso2
-        self.lang_iso_code3 =  piso3
-        self.lang_is_text_lang ='TRUE'
-        self.lang_is_base_lang = 'FALSE'
-        self.lang_uc ='stb'
-        self.lang_dc = date.today()
-
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.lang_is_text_lang = nvl(self.lang_is_text_lang,'TRUE')
+        self.lang_is_base_lang = nvl(self.lang_is_base_lang,'FALSE')
+        defname,defiso3 = expandiso2(self.lang_iso_code2)
+        self.lang_iso_code3 = nvl(self.lang_iso_code3,defiso3)
+        self.lang_iso_name = nvl(self.lang_iso_name,defname)
 
     @staticmethod
     def getdefaultlang():

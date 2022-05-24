@@ -1,14 +1,11 @@
-import copy
-import logging
-from datetime import datetime
-
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
-
+import copy
+import datetime
 
 def lastupd():
-    return datetime.today().__str__()
+    return datetime.datetime.today().__str__()
 
 
 def make_hash(pmodel):
@@ -77,7 +74,7 @@ def sql2json(pdbname=None, pemptymodel=False):
             dbname = pdbname
 
     jsmodel['_imprint_'] = {"database": dbname,
-                            "created": str(datetime.today()),
+                            "created": lastupd(),
                             "Modelversion": dbversion,
                             "hashvalue": modelhash,
                             "git-revision": git_revision,

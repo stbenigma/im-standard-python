@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 import os
+from pathlib import Path
 from threading import local
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
@@ -145,6 +146,9 @@ class JSModel:
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 
+    def printSPOD(self, destination: Path):
+        return storeSPOD(self.jsmodel, destination)
+
 # JSModel
 
 
@@ -170,14 +174,15 @@ def check_json_serialisable(structure: dict):
 
     nest(structure, '')
 
-
 def printJSON(pmodel, pfilepath, pfilename, psorted=False):
+    destination = Path(pfilepath, jsonfilename(pfilename))
+    return storeSPOD(pmodel, destination)
+
+def storeSPOD(pmodel, destination, psorted=False) -> Path:
     check_json_serialisable(pmodel)
-    destination = os.path.join(pfilepath, jsonfilename(pfilename))
     with open(destination, 'w') as jsonfile:
         jsonfile.write(json.dumps(pmodel, indent=3))
     return destination
-
 
 def fillmodel(pmodel, pentries):
     """

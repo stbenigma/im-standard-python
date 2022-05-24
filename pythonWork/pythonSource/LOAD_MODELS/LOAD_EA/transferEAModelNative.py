@@ -629,7 +629,6 @@ def filllanguages():
     Synonym.transfersynotransl()
     # fill all elements in default language
     Languagetext.filldefaulttext(parameters.dbDefaultLangID())
-    Language.deleteunused()
     return
 
 

@@ -1,4 +1,7 @@
-from copy import copy
+import json
+
+from SSOT_infra import todatetime
+import sys, os
 
 # sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
 from SSOT_db.IM_JSON import *
@@ -11,8 +14,11 @@ class Mergeresult:
     def __init__(self, srcname, verbose=False, checkonly=False):
         self.verbose = verbose
         self.insertcnt = 0
+        self.insertstats = {}
         self.updatecnt = 0
+        self.updatestats = {}
         self.deletecnt = 0
+        self.deletestats = {}
         self.deleterefcnt = 0
         self.errors = []
         self.newerrors = []
@@ -88,6 +94,19 @@ class Mergeresult:
             self.addchange(pstr + f"  delete-refs,cnt={str(cnt)}")
         return
 
+    def write_json(self, file):
+        """Write the merge result to a json file"""
+        js_structure = {
+            'summary': {
+                'inserted': self.insertcnt,
+                'updated': self.updatecnt,
+                'deleted': self.deletecnt,
+            },
+            'changeset': self.changes,
+        }
+        with open(file, 'w') as out:
+            json.dump(js_structure, out)
+
 
 def getallsrcrefs(pelemtype, psrcname):
     """ get all sourcerefs for an elementtype and a source"""
@@ -118,12 +137,12 @@ def getelemsrcrefs(psrcname, pkey, pelem):
     else:
         srcrefs = dict()
     if psrcname not in srcrefs:
-        from datetime import datetime
-        srcrefs[psrcname] = [pkey, datetime.now()]
+        from datetime import datetime as dt
+        srcrefs[psrcname] = [pkey, dt.now()]
     return srcrefs
 
 
-def getelemsrcid(psrcrefs, psrcname):
+def getelemsrcid(psrcrefs,psrcname):
     if psrcname in psrcrefs:
         retval = psrcrefs[psrcname][0]
     else:
@@ -141,8 +160,9 @@ def getbyanysrcref(presult, pelemsrcrefs):
     for name, ref in pelemsrcrefs.items():
         dbobj = Modelelement.getelementbyextref(psrcname=name, psrcid=ref[0])
         if dbobj is not None:
+            return retval #HOTFIX return first found Check problem of SPOD creating new id for same json entry
             if (retval is not None) and (dbobj.getid() != retval.getid()):
-                raise Exception("too many extrefs")
+                raise Exception(f"too many extrefs for source_id {ref[0]} and dbids {dbobj.getid()} and {retval.getid()}'")
             else:
                 retval = dbobj
     return retval

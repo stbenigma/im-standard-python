@@ -23,8 +23,9 @@ from SSOT_infra import parameters
 class TestMergeJson(unittest.TestCase):
 
     @pytest.fixture(autouse=True)
-    def inject_fixtures(self, caplog):
+    def inject_fixtures(self, caplog, tmp_path):
         self._caplog = caplog
+        self.temp_folder = Path(tmp_path)
 
     def setUp(self) -> None:
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST).initDB()
@@ -121,7 +122,7 @@ class TestMergeJson(unittest.TestCase):
         finally:
             dbConnect.closeDB()
 
-    def test_mergefull(self):
+    def test_mergefull2(self):
         def savecurrentdbandjson(pjson):
             # can be used to save the current (memory-)database and a json file to filesystem
             # import sqlite3
@@ -135,8 +136,8 @@ class TestMergeJson(unittest.TestCase):
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        savecurrentdbandjson(curmodel)
         dbConnect.closeDB()
+        curmodel.printSPOD(self.temp_folder / 'curmodel.json')
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
 
@@ -153,6 +154,7 @@ class TestMergeJson(unittest.TestCase):
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
         firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        curmodel.printSPOD(self.temp_folder / 'firstjson.json')
 
         # create copy of filled db
         # first merge with itself
@@ -168,7 +170,7 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
         # check update of non UK
-        firstjson.jsmodel["entities"]["ENTI118"]["descr"]["de"] += 'XX'
+        firstjson.jsmodel["entities"][enti2key]["descr"]["de"] += 'XX'
         # savecurrentdbandjson(firstjson)
         result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
         for c in result.changes:
@@ -178,7 +180,7 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.deletecnt)
 
         # check update of UK of other source
-        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
+        firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
         # savecurrentdbandjson(firstjson)
         result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
         for c in result.changes:
@@ -379,20 +381,22 @@ class TestMergeJson(unittest.TestCase):
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
         print("")
         self.assertTrue(mergedbs.checkjsonfile(self.testmodel1.jsonfile, pverbose=True))
-        jstm1.jsmodel["entities"]["ENTI112"]["category"] = "gugu000"
+        enti1key = list(jstm1.jsmodel["entities"].keys())[0]
+        enti2key = list(jstm1.jsmodel["entities"].keys())[1]
+        jstm1.jsmodel["entities"][enti1key]["category"] = "gugu000"
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
-        jstm1.jsmodel["entities"]["ENTI112"]["name"]['en'] = ''
-        jstm1.jsmodel["entities"]["ENTI118"]["name"]['en'] = ''
+        jstm1.jsmodel["entities"][enti1key]["name"]['en'] = ''
+        jstm1.jsmodel["entities"][enti2key]["name"]['en'] = ''
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
-        jstm1.jsmodel["entities"]["ENTI112"]["name"]['en'] = None
+        jstm1.jsmodel["entities"][enti1key]["name"]['en'] = None
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
-        del jstm1.jsmodel["categories"]["CATG7"]
+        del jstm1.jsmodel["categories"]["CATG1"]
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
         with self._caplog.at_level(level=logging.INFO):
             self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
@@ -416,16 +420,18 @@ class TestMergeJson(unittest.TestCase):
         element.update(defaults)
         return
 
-    def test_mergefull(self):
+    def test_mergefull1(self):
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         dbConnect.closeDB()
 
+        curmodel.printSPOD(Path(self.temp_folder, 'curmodel.json'))
+
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
-        newjson = mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
+        mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
                                       pverbose=True, pdryrun=True)
         sys.stdout = sys.__stdout__  # Reset redirect.
         stdprint = capturedOutput.getvalue()
@@ -434,7 +440,7 @@ class TestMergeJson(unittest.TestCase):
 
         # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
-        originaldbconn = dbConnect.getdbcon()
+
         print("")
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
@@ -445,14 +451,18 @@ class TestMergeJson(unittest.TestCase):
         result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
         # for c in result.changes:
         #    print(c)
+        enti1key = list(firstjson.jsmodel["entities"].keys())[0]
+        enti2key = list(firstjson.jsmodel["entities"].keys())[1]
+
         self.assertEqual(0, result.updatecnt)
         self.assertEqual(0, result.insertcnt)
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
-
-        firstjson.jsmodel["entities"]["ENTI118"]["name"]["de"] += 'XX'
-        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
+        self.assertIsNotNone(firstjson.jsmodel["entities"][enti2key]["name"]["de"])
+        firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=True)
+        result.write_json(self.temp_folder / 'test_mergefull.json')
         for c in result.changes:
             print(c)
         self.assertEqual(1, result.updatecnt)

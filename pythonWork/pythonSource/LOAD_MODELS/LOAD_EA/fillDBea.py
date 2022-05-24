@@ -5,10 +5,10 @@ from SSOT_db import createJSON
 from LOAD_MODELS.LOAD_ODM import fillDB
 
 
-def filldbmain(callarg, pintputfile, ptransffunc):
-    fillDB.fillmergedb(pdestination=callarg
+def filldbmain(callarg, pinputfile, ptransffunc):
+    fillDB.fillmergedb (pdbfilepath=callarg
                        , transferfunction=ptransffunc
-                       , pinput=pintputfile)
+                       , pinputfile=pinputfile)
 
 
 def main(p_param1, pxmlfile,ptransffuncversion):
@@ -24,7 +24,7 @@ def main(p_param1, pxmlfile,ptransffuncversion):
         else:
             transffunc = transferEAModel21.transferEAModel
         #fi
-        filldbmain(callarg=p_param1, pintputfile=pxmlfile,ptransffunc=transffunc, createnewdb=True)
+        filldbmain(callarg=p_param1, pinputfile=pxmlfile,ptransffunc=transffunc, createnewdb=True)
         # not createDB.existsDB(parameters.dbFilePath()))
         filename = parameters.modelName()
         filepath = parameters.dbDirect()

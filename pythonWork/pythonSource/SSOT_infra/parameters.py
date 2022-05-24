@@ -18,8 +18,8 @@ SQLSERVER: str = 'sql-server'
 POSTGRES: str = 'postgres'
 PARAMFILEEXTENSION: str = ".params"
 LOGFILEEXTENSION: str = '.log'
-SSOTDBEXTENSION: str = '.db'
-SSOTDBDIREC: str = 'DB'
+SPODDBEXTENSION: str = '.db'
+SPODDBDIREC: str = 'DB'
 MODELDIREC: str = 'IM'
 WEBDEFAULTDIREC: str = 'Web'
 JSONEXTENSION: str = '.json'
@@ -29,7 +29,12 @@ SUPPORTEDLANGUAGES = \
      'en': ['English', 'eng'],
      'fr': ['Français', 'fra'],
      'es': ['Español', 'esp'],
-     'it': ['Italiano', 'ita']
+     'it': ['Italiano', 'ita'],
+     'nl': ['Nederlandse','nld'],
+     'pl': ['Polska','pol'],
+     'pt': ['Português', 'prt'],
+     'gr': ['Ελληνικά', 'grc'],
+     'bg': ['Български', 'bgr']
      }
 
 VERSIONFILEPATH: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "versions.json")
@@ -59,8 +64,8 @@ def parameterdefaults():
                  'sqlfilename': 'modelmodel_' + SQLITE,
                  'dbfilepath': None,
                  'dbdirec': None,
-                 'dbfileextension': SSOTDBEXTENSION,
-                 'dbdefaultdirec': SSOTDBDIREC,
+                 'dbfileextension': SPODDBEXTENSION,
+                 'dbdefaultdirec': SPODDBDIREC,
                  'dbdefaultlang': 'en',
                  'dblanguages': 'en',
                  'dbdefaultlangid': None,
@@ -503,6 +508,8 @@ def convert2abspath(*args):
 def filldefaultparams():
     """ Parameters defaulted in relation to other parameters
     """
+    if dbLanguages() is None and dbDefaultLang() is not None:
+        dbLanguages(newval=dbDefaultLang())
     if odmIMDirec() is None:
         odmIMDirec(newval=os.path.join(baseDirec(), odmIMDefaultDirec()))
     if dbDirect() is None:

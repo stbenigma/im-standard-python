@@ -210,3 +210,14 @@ def getdblangparameters(pfilepath):
 def connectmemorydb()->sqlite3.Connection:
     return sqlite3.connect(":memory:")
 
+def makebackuptofile(pdbfile):
+    """
+    makes a backup of the open database to a file
+    :param pdbfile: backup to filesystem
+    :return: connection of created backup
+    """
+    assert isopenDB(), "only backups of open database allowed"
+    backupconn = sqlite3.connect(pdbfile)
+    getdbcon().backup(backupconn)
+    return backupconn
+

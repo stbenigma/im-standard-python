@@ -4,7 +4,9 @@ from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db import createnewDB
+from SSOT_infra import parameters
 import sys
+from datetime import datetime
 
 SOURCE_SPOD:str='SPOD' #default source for SPOD-internal updates
 
@@ -37,19 +39,26 @@ transferprocs = {
 }
 
 def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False) -> Mergeresult:
-    """ merge json into current connection
+    """
+    merge json into current connection
         DB-Version has already been checked
         returns the Mergeresult
+
+    :param pmodel: JSModel with jsonfile to merge
+    :param psrcname:  Name of the source providing model-info
+    :param pverbose:  True -> do more logging
+    :param pcheckonly: True -> I am beeing called by a check. do not check to avoid recursion
+    :return:
     """
     if not pcheckonly:
-        #make sure, the model is consistent with database
-        #but not if I am called by the check
-        assert checkjsonmodel(pmodel=pmodel,pverbose=pverbose)
+        # make sure, the model is consistent with database
+        # but not if I am called by the check
+        assert checkjsonmodel(pmodel=pmodel, pverbose=pverbose)
 
-    #here we need an open database
+    # here we need an open database
     assert dbConnect.isopenDB()
-    
-    result = Mergeresult(verbose=pverbose,checkonly=pcheckonly,srcname=psrcname)
+
+    result = Mergeresult(verbose=pverbose, checkonly=pcheckonly, srcname=psrcname)
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
         js2sql = transferprocs[masterobject][1]
         if js2sql != nofunc:
@@ -70,37 +79,37 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
     if not pcheckonly:
         # delete in reversed order (because of possible references) all elements which are no longer relevant
         # cannot be done in fromjson2db because dependencies might exists
-        for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0],reverse=True):
+        for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0], reverse=True):
             extref = transferprocs[masterobject][3]
             if extref:
-                #it is an element with external reference
+                # it is an element with external reference
                 cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
-                result.adddelcnt(cnt,masterobject)
+                result.adddelcnt(cnt, masterobject)
             else:
-                #no external reference. Delete entry, if its key does not exist in the json-file
-                #the table is mapped to a db-objects
+                # no external reference. Delete entry, if its key does not exist in the json-file
+                # the table is mapped to a db-objects
                 tablename = transferprocs[masterobject][4]
                 if tablename in table2class:
                     jsonids = tuple(jsguid2id(key) for key in pmodel.getelements(masterobject).keys())
-                    #cnt = table2class[tablename].deletemissingids(jsonids)
-                    #result.adddelcnt(cnt, masterobject)
-            #fi
+                    # cnt = table2class[tablename].deletemissingids(jsonids)
+                    # result.adddelcnt(cnt, masterobject)
+            # fi
         # for
 
     rev = pmodel.jsmodel['_imprint_']['git-revision']
     logging.info(f"Writing git revision {rev} to DB")
     dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
-    dbConnect.getdbcon().commit()
 
     if not pcheckonly and (len(result.errors) == 0):
         """clean up and set final project parameters"""
-        Language.deleteunused()
         proj: Project = Project.select()[0]
         proj.proj_um, proj.proj_dm = psrcname, datetime.now()
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     # fi
+
     return result
+
 
 def connecttodbcopy():
     assert dbConnect.isopenDB()
@@ -116,16 +125,24 @@ def connecttodbcopy():
 
 def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
                pverbose=False, pdryrun=False):
-    """merge jsonfile into existing database
-        and return the jsonfile generated from the updated database
     """
+    merge jsonfile into existing database
 
+    :param pdbfile: filepath of existing database to merge into
+    :param pmodel:  JSModel read from file to merge
+    :param psrcname: Name of the source merging data into an existing SPOD
+    :param pverbose: log more information
+    :param pdryrun: do a merging into a clone, not changing the real datagbase
+    :return:  jsonstructure generated from the updated database
+    """
+    retval = None
     dbConnect.openDB(pfilepath=pdbfile)
     if pdryrun:
         # create a backup in memory and connect to it
         connecttodbcopy()
         print(f"***** dry merge-run on db {pdbfile}")
 
+    mergeresult = None
     try:
         newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
         dbversion = dbConnect.getversion()
@@ -149,11 +166,20 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
             f"    {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
         if pdryrun:
             print(f"***** Database was not modified ****")
+        #return json from merge anyway
+        retval = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
     finally:
         if dbConnect.isopenDB():
             dbConnect.closeDB()
-    return
+
+    if mergeresult is not None:
+        js_change_file = Path('log') / 'merge.json'
+        js_change_file.parent.mkdir(exist_ok=True)
+        logging.debug("Writing change log to '%s'", str(js_change_file))
+        mergeresult.write_json(js_change_file)
+
+    return retval
 
 
 def checkjsonfile(pjsonfilepath, pverbose=False)-> bool:
@@ -162,21 +188,29 @@ def checkjsonfile(pjsonfilepath, pverbose=False)-> bool:
 
 
 def checkjsonmodel(pmodel, pverbose=False) -> bool:
-    """ checks a json for consistency
-
-        it is entered in a empty database and merged into it.
+    """
+    checks a json for consistency
+        it is entered in an empty database and merged into it.
         This will show consistency and constraint errors
+    :param pmodel: JSModel to be checked
+    :param pverbose:  log more information
+    :return:  True -> model could be inserted into database
+            False-> errors detected
     """
     imprint = pmodel.jsmodel['_imprint_']
     modelname = pmodel.jsmodel['model']["name"]
     baselang = pmodel.jsmodel['model']["language"]
+    if baselang is not None:
+        parameters.dbDefaultLang(baselang)
     languages = list(pmodel.jsmodel['languages'].keys())
+    if languages is not None:
+        parameters.dbLanguages(','.join(languages))
 
     # create db in Memory with languages from the json file
     # save the old DB
     dbConnect.push()
     try:
-        createnewDB(pdbfilepath=None, pbaselang=baselang, planguages=languages)
+        createnewDB(pdbfilepath=None)
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,pcheckonly=True)
         logging.info(f"model {modelname}")
         logging.info(f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")

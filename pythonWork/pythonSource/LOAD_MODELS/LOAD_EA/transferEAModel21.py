@@ -546,7 +546,6 @@ def filllanguages():
     Synonym.transfersynotransl()
     # fill all elements in default language
     Languagetext.filldefaulttext(parameters.dbDefaultLangID())
-    Language.deleteunused()
     return
 
 
@@ -577,9 +576,13 @@ def transfer1project(pprojxml):
     return
 
 def transferEAModel(**kwargs):
+    """transfers EA-Model into open DB
 
-    """überträgt das ganze EA Modell aus einem XML in die DB"""
-    infile = handleXML.searchfile(pfilename=kwargs["pinput"], pdefaultdirec=parameters.baseDirec())
+        transferEAModel(pinputfile)
+
+    """
+
+    infile = handleXML.searchfile(pfilename=kwargs["pinputfile"], pdefaultdirec=parameters.baseDirec())
     eaxml = handleXML.parseXML(pfilename=infile)
     earoot = eaxml.getroot()
 
