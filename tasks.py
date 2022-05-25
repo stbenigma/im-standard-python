@@ -145,7 +145,7 @@ def generator(c, model=None,
         optargs.append("--verbose")
 
     if spod_only:
-        optargs.append("--spod-only")
+            optargs.append("--spod-only")
 
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
@@ -349,7 +349,7 @@ def db2json(c, source, output=None):
         while backup.is_file():
             backup = archive / f"{out_path.name}.{index}"
             index += 1
-        print(f"Moving current database to archive '{backup}'")
+        print(f"Moving current json to archive '{backup}'")
         shutil.copy(out_path, backup)
 
     from SSOT_db.IM_JSON import sql2json
@@ -357,9 +357,9 @@ def db2json(c, source, output=None):
         model = JSModel(sql2json(pdbname=dbConnect.getDBname()))
         git_revision = dbConnect.read_git_revision( dbConnect.getdbcon())
         revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
-        print(f"Writing SPOD for git revision {revision}")
-        model.printmodel(str(out_path))
-    print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+        print(f"Writing SPOD for git revision {revision} to {out_path}")
+        model.write_json(out_path)
+    print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SPOD {src_path}")
 
 
 def verify_content(fh):
