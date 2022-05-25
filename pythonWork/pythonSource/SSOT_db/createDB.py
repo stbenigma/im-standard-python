@@ -29,15 +29,15 @@ def insertdiagtypes():
     Diagramtype(pname=Diagramtype.RELATIONAL).insert()
     return
 
-
-def insertlanguages():
-    for key, value in parameters.SUPPORTEDLANGUAGES.items():
-        if key in parameters.dbLanguages():
-            Language(lang_iso_name=value[0], lang_iso_code2=key, lang_iso_code3=value[1]).insert()
-
-    Language.setmodellang(pmodellang=parameters.dbDefaultLang())
-    Language.setallreplacementlang()
-    return
+# #no longer in use languages are filled from import
+# def insertlanguages():
+#     for key, value in parameters.SUPPORTEDLANGUAGES.items():
+#         if key in parameters.dbLanguages():
+#             Language(lang_iso_name=value[0], lang_iso_code2=key, lang_iso_code3=value[1]).insert()
+#
+#     Language.setmodellang(pmodellang=parameters.dbDefaultLang())
+#     Language.setallreplacementlang()
+#     return
 
 
 def insertBaseData():

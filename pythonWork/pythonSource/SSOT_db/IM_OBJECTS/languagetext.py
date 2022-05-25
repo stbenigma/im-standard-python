@@ -161,9 +161,12 @@ class Languagetext(Baseobject):
             and lgtx_mode_id = ?
             )
         select lang.lang_iso_code2,
-            case when lgtxori.lgtx_text is not NULL
+            case when (lgtxori.lgtx_text is not NULL) and (lgtxori.lgtx_text != "")
                 then lgtxori.lgtx_text
-                else '*'||langlang.lang_iso_code2||'* '||lgtxdef.lgtx_text
+                else case when (lgtxdef.lgtx_text is not NULL) and (lgtxdef.lgtx_text != "")
+                     then '*'||langlang.lang_iso_code2||'* '||lgtxdef.lgtx_text
+                     else lgtxdef.lgtx_text
+                     end
                 end text
         from languages lang
         left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID

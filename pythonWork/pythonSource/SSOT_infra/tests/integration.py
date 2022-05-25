@@ -19,6 +19,7 @@ class Testmodel:
     def __init__(self, modelname):
         self.modelname = modelname
         self.modeldir = testmodels_dir() / modelname
+        self.modelfile = testmodels_dir() / modelname / 'IM' / (modelname+'.dmd')
         self.logfile = self.modeldir / (modelname + '.log')
         self.paramfile = self.modeldir / (modelname + '.params')
         self.dbdir = self.modeldir / 'DB'

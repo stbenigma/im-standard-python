@@ -1,11 +1,13 @@
+import json
 import os
 import tempfile
 import unittest
+from openpyxl import load_workbook,Workbook
 
 import SSOT_infra.tests.integration as tb
-from SSOT_infra import nvl
 from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_db.IM_JSON import JSModel
+from SSOT_infra import nvl
 from tools.LANGTRANSL import exportdata, importdata, langexceldata
 
 
@@ -21,49 +23,58 @@ class MyTestCase(unittest.TestCase):
         self.tm2 = tb.Testmodel(tb.TESTMODEL2)
         self.tm2.initDB(palways=True)
 
-        from openpyxl import Workbook
+        with open(self.tm2.jsonfile, 'r') as tm2file:
+            self.tm2json = json.load(tm2file)
 
-        self.testdata = [
-            ['Key', 'de', 'en', 'fr', 'Description', 'Comments'],
-            ['ENTI119-name', 'Hauptentität', 'Master Entity', 'Entité principale', 'Hauptentität  Entity-Name', ''],
-            ['ENTI118-name', 'Einzelentität', 'Single Entity', 'Entité unique', 'Hauptentität  Entity-Name', ''],
-            ['ENTI119-descr', """Master-Entität mit 3 Kindern mit Attributen und Klassifizierungen
-Wird auf allen Zoomstufen angezeigt (0-4)
-einzelnes Attribut Eindeutiger Schlüssel""",
-             """Master entity with 3 children with attributes and classifications
-Displayed on all zoom levels (0-4)
-single attribute Unique key""",
-             """*Entité maître avec 3 enfants avec attributs et classifications
-Affiché sur tous les niveaux de zoom (0-4)
-attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
-            ['ENTI119-tooltip', '', '', '', 'Hauptentität  Entity--Tooltip', ''],
-            ['ENTI119-synonyms-1', 'Vaterentität', 'Main Entity', 'Entité maître',
-             'Hauptentität->Vaterentität  - Synonym-1', ''],
-            ['ENTI119-examples-1', '1. Beispiel Master-Entität', '1. Example: Master entity',
-             '1. exemple: Entité maître', 'Hauptentität  - Example-1', ''],
-            ['ENTI119-examples-2', '2. Beispiel Master-Entität.', '2. Example: Master Entity',
-             '2. exemple: Entité maître', 'Hauptentität  - Example-2', ''],
-            ['ATTR113-examples-1', '1. Beispiel Attribute', '1. Beispiel Attribute first appearance',
-             '1. Example: Attribut', 'erste Erscheinung  - Example-1', ''],
-            ['ATTR123-name', 'Name', 'Name', 'Nom', 'Hauptentität->Name  Attribute-Name', ''],
-            ['ATTR123-descr', 'Beschreibendes, obligatorisches Attribut mit Bereich, angezeigt auf Zoomstufe 0-2',
-             'Descriptive, mandatory Attribute with domain, showed on zoom level 0-2',
-             'Attribut descriptif, obligatoire avec domaine, affiché au niveau de zoom 0-2',
-             'Hauptentität->Name  Attribute-Description', ''],
-            ['ATTR123-tooltip', '', '', '', 'Hauptentität->Name  Attribute-Tooltip', ''],
-            ['DOMA90-name', 'XMLTYPE', 'XMLTYPE', 'XMLTYPE', 'XMLTYPE  Domain-Name', ''],
-            ['DOMA90-descr', '', '', '', 'XMLTYPE  Domain-Description', ''],
-            ['DOMA73-name', 'email Address', 'email Address', 'email Address', 'email Address  Domain-Name', ''],
-            ['DOMA73-descr', 'Email address with regexp check', 'Email address with regexp check',
-             'Email address with regexp check', 'email Address  Domain-Description', ''],
-            ['RELA138-fromto', '', '', '', 'Relation -Kind Entität1 => Hauptentität', ''],
-            ['RELA138-tofrom', '', '', '', 'Relation -Hauptentität => Kind Entität1', ''],
-            ['RELA126-fromto', 'fügt hinzu', 'adds', 'ajoute', 'Relation -Zusätzliche Einheit => Rollen-Entität 2', ''],
-            ['RELA126-tofrom', 'hinzugefügt von', 'added by', 'ajouté par',
-             'Relation -Rollen-Entität 2 => Zusätzliche Einheit', ''],
-            ['ATTR113-name', 'erste Erscheinung', 'First Appearance', 'première apparition',
-             'Kind Entität1->erste Erscheinung', 'Attribute-Name']
-        ]
+        self.testdata = [['Key', 'de', 'en', 'fr', 'Description', 'Comments']]
+        entities = []
+        for key, val in self.tm2json['entities'].items():
+            if val['name']['de'] in ('Hauptentität', 'Einzelentität', 'Rollen-Entität 2'):
+                entities.append(key)
+                self.testdata.append([key + '-name', val['name']['de'], val['name']['en'], val['name']['fr'],
+                                      val['name']['de'] + ' Entity-Name', ''])
+                self.testdata.append([key + '-descr', val['descr']['de'], val['descr']['en'], val['descr']['fr'],
+                                      val['name']['de'] + ' Entity-Description', ''])
+                self.testdata.append(
+                    [key + '-tooltip', val['tooltip']['de'], val['tooltip']['en'], val['tooltip']['fr'],
+                     val['name']['de'] + ' Entity-Tooltip', ''])
+                for idx, syno in enumerate(val['synonyms'], start=1):
+                    self.testdata.append(
+                        [key + '-synonyms-' + str(idx), val['synonyms'][idx-1]['de'], val['synonyms'][idx-1]['en'],
+                         val['synonyms'][idx-1]['fr'],
+                         val['name']['de'] + '->' + val['synonyms'][idx-1]['de'] + '  - Synonym-' + str(idx), ''])
+                for idx, expl in enumerate(val['examples'], start=1):
+                    self.testdata.append(
+                        [key + '-examples-' + str(idx), val['examples'][idx-1]['de'], val['examples'][idx-1]['en'],
+                         val['examples'][idx-1]['fr'],
+                         val['name']['de'] + '  - Example-' + str(idx), ''])
+        for key, val in self.tm2json['attributes'].items():
+            if val['name']['de'] in ('Name', 'erste Erscheinung'):
+                self.testdata.append([key + '-name', val['name']['de'], val['name']['en'], val['name']['fr'],
+                                      val['name']['de'] + ' Domain-Name', ''])
+                self.testdata.append([key + '-descr', val['descr']['de'], val['descr']['en'], val['descr']['fr'],
+                                      val['name']['de'] + ' Domain-Description', ''])
+            for idx, expl in enumerate(val['examples'], start=1):
+                self.testdata.append(
+                    [key + '-examples-' + str(idx), val['examples'][idx-1]['de'], val['examples'][idx-1]['en'],
+                     val['examples'][idx-1]['fr'],
+                     val['name']['de'] + '  - Example-' + str(idx), ''])
+        for key, val in self.tm2json['domains'].items():
+            if val['name']['de'] in ('XMLTYPE', 'email Address'):
+                self.testdata.append([key + '-name', val['name']['de'], val['name']['en'], val['name']['fr'],
+                                      val['name']['de'] + ' Domain-Name', ''])
+                self.testdata.append([key + '-descr', val['descr']['de'], val['descr']['en'], val['descr']['fr'],
+                                      val['name']['de'] + ' Domain-Description', ''])
+        for key, val in self.tm2json['relations'].items():
+            if (val["to-from"]['enti'] in entities) or (val["from-to"]['enti'] in entities):
+                self.testdata.append([key + '-tofrom', val['to-from']['assoc']['de'], val['to-from']['assoc']['en'],
+                                      val['to-from']['assoc']['fr'],
+                                      val['name'] + ' to-from', ''])
+            self.testdata.append([key + '-fromto', val['from-to']['assoc']['de'], val['from-to']['assoc']['en'],
+                                  val['from-to']['assoc']['fr'],
+                                  val['name'] + ' from-to', ''])
+        # ['ATTR113-name', 'erste Erscheinung', 'First Appearance', 'première apparition',
+        #  'Kind Entität1->erste Erscheinung', 'Attribute-Name']
         self.wb = Workbook()
         self.testws = self.wb.active
         for r in self.testdata:
@@ -73,7 +84,7 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         self.testexcel = langexceldata.Langexceldata()
         self.testexcel.analyzeheader(self.testws['1'])
         self.testjson = JSModel.readfromfile(
-            pfilename=self.tm2.jsonfile)
+        pfilename = self.tm2.jsonfile)
 
     def test_metainfo(self):
         self.assertTrue(langexceldata.strislang('xx'))
@@ -83,7 +94,6 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         self.assertFalse(langexceldata.strislang('xY'))
 
         mi = langexceldata.Metainfo(modelname='test')
-        print(mi)
         return
 
     def test_excelcheck(self):
@@ -203,10 +213,26 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         print("")
 
         data = exportdata.Exportdata(pjsonfile=self.tm2.jsonfile).getdata()
-        for key in ('ENTI118-name', 'ENTI118-descr', 'ENTI118-tooltip', 'ENTI111-synonyms-1',
-                    'ATTR123-name', 'ATTR123-descr', 'ATTR123-tooltip',
-                    'DOMA90-name', 'DOMA90-descr', 'ENTI119-examples-2'):
-            self.assertTrue(key in data)
+        for key, val in self.tm2json['entities'].items():
+            self.assertTrue(key + '-name' in data)
+            self.assertTrue(key + '-descr' in data)
+            self.assertTrue(key + '-tooltip' in data)
+            for idx, syno in enumerate(val['synonyms'], start=1):
+                self.assertTrue(key + '-synonyms-' + str(idx) in data)
+            for idx, expl in enumerate(val['examples'], start=1):
+                self.assertTrue(key + '-examples-' + str(idx) in data)
+        for key, val in self.tm2json['attributes'].items():
+            self.assertTrue(key + '-name' in data)
+            self.assertTrue(key + '-descr' in data)
+            self.assertTrue(key + '-tooltip' in data)
+            for idx, expl in enumerate(val['examples'], start=1):
+                self.assertTrue(key + '-examples-' + str(idx) in data)
+        for key in self.tm2json['domains'].keys():
+            self.assertTrue(key + '-name' in data)
+            self.assertTrue(key + '-descr' in data)
+        for key in self.tm2json['relations'].keys():
+            self.assertTrue(key + '-tofrom' in data)
+            self.assertTrue(key + '-fromto' in data)
 
         destfilename = os.path.join(self.tm2.dbdir, self.tm2.modelname + '.xlsx')
         if os.path.exists(destfilename):
@@ -240,6 +266,7 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             self.assertEqual(self.testjson.getbyid(key)['descr']['de'], val['descr']['de'])
 
         # change 1 name
+        entiid= self.testws.cell(row=2, column=1).value.split('-')[0]
         self.testws.cell(row=2, column=2).value = 'gugus'
         changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
         # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
@@ -248,14 +275,14 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
         self.testws.cell(row=2, column=2).value = self.testdata[1][1]
         self.testws.cell(row=2, column=2).fill = importdata.emptyfill
-        self.assertEqual('gugus', newjson.getbyid('ENTI119')['name']['de'])
+        self.assertEqual('gugus', newjson.getbyid(entiid)['name']['de'])
 
         changes, newjson = importdata.mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=newjson)
         # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
         self.assertEqual(1, changes)
         self.assertTrue(nocomments(self.testws))
         self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
-        self.assertEqual(self.testdata[1][1], newjson.getbyid('ENTI119')['name']['de'])
+        self.assertEqual(self.testdata[1][1], newjson.getbyid(entiid)['name']['de'])
 
         # second change
         self.testws.cell(row=2, column=2).value = 'gugus2'
@@ -267,12 +294,11 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
         self.assertEqual(importdata.greenfill.fgColor.value, self.testws.cell(row=5, column=3).fill.fgColor.value)
         self.testws.cell(row=2, column=2).value = self.testdata[1][1]
         self.testws.cell(row=5, column=3).value = self.testdata[4][2]
-        self.assertEqual('gugus2', newjson.getbyid('ENTI119')['name']['de'])
-        self.assertEqual('Tooltip Test', newjson.getbyid('ENTI119')['tooltip']['en'])
+        self.assertEqual('gugus2', newjson.getbyid(entiid)['name']['de'])
+        self.assertEqual('Tooltip Test', newjson.getbyid(entiid)['tooltip']['en'])
         # os.remove(self.tm2.dbdir / "testexcel.xlsx")
 
     def test_importdata(self):
-        from openpyxl import load_workbook
         import shutil
         from SSOT_db.SQL_INFRA import dbConnect
         from SSOT_db.IM_OBJECTS import Entity
@@ -311,6 +337,7 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             # teste Änderung im Excel
             cell = ws["B2"]
             cell.value = cell.value + "XX"
+            testentityname = cell.value
             cell = ws["C2"]
             cell.value = cell.value + "YY"
             wb.save(filename="myinput.xlsx")
@@ -324,7 +351,7 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             self.assertTrue(os.path.exists("myinput_result.xlsx"))
 
             dbConnect.openDB(pfilepath="testmodel-2.db")
-            enti = Entity().getbyid(118)
+            enti = Entity().getbyuk(enti_name=testentityname)
             self.assertTrue(enti.enti_name.endswith("XX"))
             self.assertTrue(enti.enti_name_l['en'].endswith("YY"))
 
@@ -351,22 +378,23 @@ attribut unique Clé unique""", 'Hauptentität  Entity--Description', ''],
             importdata.translateexcel(None, deeplid)
 
         with self.assertRaises(Exception) as exp:
-            importdata.translateexcel("testexcel.xlsx", deeplid,pmainlanguage=None)
+            importdata.translateexcel("testexcel.xlsx", deeplid, pmainlanguage=None)
 
         with tempfile.TemporaryDirectory() as tempdir:
+            os.chdir(tempdir)
             self.wb.save("testexcel.xlsx")
-            self.assertEqual(0,importdata.translateexcel("testexcel.xlsx", deeplid,pmainlanguage='de'))
+            self.assertEqual(0, importdata.translateexcel("testexcel.xlsx", deeplid, pmainlanguage='de'))
 
             switch = True
             changes = 0
             for row in self.wb.active.iter_rows(min_row=2):
                 cell = row[2 if switch else 3]
-                if nvl(cell.value,'') != '':
-                    changes +=1
+                if nvl(cell.value, '') != '':
+                    changes += 1
                     cell.value = ''
                 switch = not switch
             self.wb.save("testexcel.xlsx")
-            self.assertEqual(changes,importdata.translateexcel("testexcel.xlsx", deeplid,pmainlanguage='de'))
+            self.assertEqual(changes, importdata.translateexcel("testexcel.xlsx", deeplid, pmainlanguage='de'))
 
         return
 

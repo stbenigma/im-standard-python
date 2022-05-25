@@ -12,7 +12,7 @@ import sys
 
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
-from LOAD_MODELS.LOAD_ODM.transferModel import transferODMModel
+from LOAD_MODELS.LOAD_ODM import fillDB
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles
 from SSOT_db.IM_OBJECTS import *
@@ -46,7 +46,7 @@ class TestMergeJson(unittest.TestCase):
                             buru_level='ATTR',
                             buru_type='CHECK',
                             buru_uc='me',
-                            buru_dc=datetime.datetime.now(),
+                            buru_dc=str(datetime.datetime.now()),
                             srcid='9999',
                             srcname=self.srcname)
         burujs = jsbusinessrule.businessrule2js(buru, plangs=('de', 'en', 'fr'))
@@ -122,7 +122,7 @@ class TestMergeJson(unittest.TestCase):
         finally:
             dbConnect.closeDB()
 
-    def test_mergefull2(self):
+    def test_mergefull(self):
         def savecurrentdbandjson(pjson):
             # can be used to save the current (memory-)database and a json file to filesystem
             # import sqlite3
@@ -151,40 +151,27 @@ class TestMergeJson(unittest.TestCase):
         # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
         print("")
-        # create transferModel.transferODMModel
-        fillmodel2db.filldb(transferODMModel)
-        firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        curmodel.printSPOD(self.temp_folder / 'firstjson.json')
+
+        firstjson = fillDB.transferodm2json(pmodelfile=self.testmodel2.modelfile)
 
         # create copy of filled db
         # first merge with itself
-        with self._caplog.at_level(level=logging.INFO):
-            result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
-            for c in self._caplog.records:
-                print(c.getMessage())
-        for c in result.changes:
-            print(c)
+        createnewDB(pdbfilepath=None)
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
+        # for c in result.changes:
+        #    print(c)
+        enti2key = list(firstjson.jsmodel["entities"].keys())[1]
+
         self.assertEqual(0, result.updatecnt)
-        self.assertEqual(0, result.insertcnt)
+        self.assertTrue(result.insertcnt>0)
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
-        # check update of non UK
-        firstjson.jsmodel["entities"][enti2key]["descr"]["de"] += 'XX'
-        # savecurrentdbandjson(firstjson)
-        result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
-        for c in result.changes:
-            print(c)
-        self.assertEqual(1, result.updatecnt)
-        self.assertEqual(0, result.insertcnt)
-        self.assertEqual(0, result.deletecnt)
+        self.assertIsNotNone(firstjson.jsmodel["entities"][enti2key]["name"]["de"])
 
-        # check update of UK of other source
         firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
-        # savecurrentdbandjson(firstjson)
-        result = mergedbs.mergejson2sql(firstjson, psrcname=self.srcname, pverbose=True)
-        for c in result.changes:
-            print(c)
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=False)
+        result.write_json(self.temp_folder / 'test_mergefull.json')
         self.assertEqual(1, result.updatecnt)
         self.assertEqual(0, result.insertcnt)
         self.assertEqual(0, result.deletecnt)
@@ -419,58 +406,6 @@ class TestMergeJson(unittest.TestCase):
                     }
         element.update(defaults)
         return
-
-    def test_mergefull1(self):
-        parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
-        # test dryrun on exisisting files
-        dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
-        curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-        dbConnect.closeDB()
-
-        curmodel.printSPOD(Path(self.temp_folder, 'curmodel.json'))
-
-        capturedOutput = io.StringIO()  # Create StringIO object
-        sys.stdout = capturedOutput  # and redirect stdout.
-        mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
-                                      pverbose=True, pdryrun=True)
-        sys.stdout = sys.__stdout__  # Reset redirect.
-        stdprint = capturedOutput.getvalue()
-        # don't care about other errors I only test the dry-run-merge
-        self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
-
-        # set up my model in memory to reuse it for several tests
-        createnewDB(pdbfilepath=None)  # create in memory
-
-        print("")
-        # create transferModel.transferODMModel
-        fillmodel2db.filldb(transferODMModel)
-        firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-
-        # create copy of filled db
-        # first merge with itself
-        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
-        # for c in result.changes:
-        #    print(c)
-        enti1key = list(firstjson.jsmodel["entities"].keys())[0]
-        enti2key = list(firstjson.jsmodel["entities"].keys())[1]
-
-        self.assertEqual(0, result.updatecnt)
-        self.assertEqual(0, result.insertcnt)
-        self.assertEqual(0, result.deletecnt)
-        self.assertEqual(0, len(result.warnings))
-        self.assertEqual(0, len(result.errors))
-        self.assertIsNotNone(firstjson.jsmodel["entities"][enti2key]["name"]["de"])
-        firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
-        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=True)
-        result.write_json(self.temp_folder / 'test_mergefull.json')
-        for c in result.changes:
-            print(c)
-        self.assertEqual(1, result.updatecnt)
-        self.assertEqual(0, result.insertcnt)
-        self.assertEqual(0, result.deletecnt)
-
-        dbConnect.closeDB()
-
 
 if __name__ == '__main__':
     unittest.main()

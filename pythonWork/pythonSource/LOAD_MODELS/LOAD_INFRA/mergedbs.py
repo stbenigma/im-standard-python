@@ -175,9 +175,12 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
 
     if mergeresult is not None:
         js_change_file = Path('log') / 'merge.json'
-        js_change_file.parent.mkdir(exist_ok=True)
-        logging.debug("Writing change log to '%s'", str(js_change_file))
-        mergeresult.write_json(js_change_file)
+        try:
+            js_change_file.parent.mkdir(exist_ok=True)
+            logging.debug("Writing change log to '%s'", str(js_change_file))
+            mergeresult.write_json(js_change_file)
+        except:
+            pass #loggin darf nicht abstürzen
 
     return retval
 

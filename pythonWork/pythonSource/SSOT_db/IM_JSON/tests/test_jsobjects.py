@@ -95,7 +95,12 @@ class test_jsobjects(unittest.TestCase):
     def test_jsoncreate(self):
         dbConnect.openDB(pfilepath=self.testmodelcrm.dbfile)
         newjson = JSModel(pmodel=sql2json(pdbname=self.testmodelcrm.modelname))
-        expl = newjson.getbyid("ATTR126")["examples"]
+        attrs = newjson.getelements('attributes')
+        expl = None
+        for key,attr in attrs.items():
+            if len(attr['examples'])==3:
+                expl = attr['examples']
+        self.assertIsNotNone(expl)
         self.assertEqual(3,len(expl)) #3 examples
         self.assertTrue('de' in expl[0]) #key is languange
         self.assertEqual(3,len(expl[0]))#3 langs

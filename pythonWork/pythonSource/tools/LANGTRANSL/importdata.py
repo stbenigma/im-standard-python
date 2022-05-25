@@ -169,6 +169,7 @@ def opentranslexecel(pexcelfile):
 def importlangexcel(pexcelfile):
     assert os.path.isfile(pexcelfile)
     wb, excel = opentranslexecel(pexcelfile)
+    ws = wb.active
     jsonfile = excel.getmetainfo().getjsonfile()
     mergejson = JSModel.readfromfile(pfilename=jsonfile)
 

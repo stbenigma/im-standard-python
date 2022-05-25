@@ -1,7 +1,4 @@
-import json
-
-from SSOT_infra import todatetime
-import sys, os
+from copy import copy
 
 # sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
 from SSOT_db.IM_JSON import *
@@ -138,11 +135,11 @@ def getelemsrcrefs(psrcname, pkey, pelem):
         srcrefs = dict()
     if psrcname not in srcrefs:
         from datetime import datetime as dt
-        srcrefs[psrcname] = [pkey, dt.now()]
+        srcrefs[psrcname] = [pkey, str(dt.now())]
     return srcrefs
 
 
-def getelemsrcid(psrcrefs,psrcname):
+def getelemsrcid(psrcrefs, psrcname):
     if psrcname in psrcrefs:
         retval = psrcrefs[psrcname][0]
     else:
@@ -160,9 +157,10 @@ def getbyanysrcref(presult, pelemsrcrefs):
     for name, ref in pelemsrcrefs.items():
         dbobj = Modelelement.getelementbyextref(psrcname=name, psrcid=ref[0])
         if dbobj is not None:
-            return retval #HOTFIX return first found Check problem of SPOD creating new id for same json entry
-            if (retval is not None) and (dbobj.getid() != retval.getid()):
-                raise Exception(f"too many extrefs for source_id {ref[0]} and dbids {dbobj.getid()} and {retval.getid()}'")
+            return dbobj  ###TODO HOTFIX return first found Check problem of SPOD creating new id for same json entry
+            if False and (retval is not None) and (dbobj.getid() != retval.getid()):
+                raise Exception(
+                    f"too many extrefs for source_id {ref[0]} and dbids {dbobj.getid()} and {retval.getid()}'")
             else:
                 retval = dbobj
     return retval

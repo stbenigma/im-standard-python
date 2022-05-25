@@ -65,9 +65,9 @@ class Exportdata:
             self._data[self.xlskey(key, 'name')] = self.fulldata(elem[attrkey2js('name')], self._getdefname(elem) + '  Entity-Name',
                                                                  '')
             self._data[self.xlskey(key, 'descr')] = self.fulldata(elem[attrkey2js('descr')],
-                                                                  self._getdefname(elem) + '  Entity--Description', '')
+                                                                  self._getdefname(elem) + '  Entity-Description', '')
             self._data[self.xlskey(key, 'tooltip')] = self.fulldata(elem[attrkey2js('tooltip')],
-                                                                    self._getdefname(elem) + '  Entity--Tooltip', '')
+                                                                    self._getdefname(elem) + '  Entity-Tooltip', '')
             for idx, syno in enumerate(elem[attrkey2js('synonyms')], start=1):
                 self._data[self.xlskey(key, 'synonyms', idx)] = self.fulldata(syno, self._getdefname(
                     elem) + '->' + self._getdeflangstr(syno) + '  - Synonym-' + str(idx), '')
