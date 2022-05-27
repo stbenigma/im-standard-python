@@ -308,7 +308,7 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     Fill database form SPOD (JSON source)
     @:param dry Dry run
     """
-    initialize_logging("json2ddb")
+    initialize_logging("json2db")
     load_tools_library()
     src_path = Path(source)
 

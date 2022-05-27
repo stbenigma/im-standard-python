@@ -39,11 +39,6 @@ class Mergeresult:
         self.idTranslate[extjsid] = dbid
 
     def keytransl(self, extjsid):
-        try:
-            if int(extjsid[4:]) < 0:
-                logging.info(f"Processing new key {extjsid}")
-        except ValueError:
-            pass
         if extjsid in self.idTranslate:
             return self.idTranslate[extjsid]
         else:

@@ -445,18 +445,23 @@ class Baseobject:
         try:
             modedelcnt = 0
             if cls._modelemtype is not None:
-                subselect = "select {} from {}".format(cls._idcolname, cls._tablename)
+                statement = "select {} from {}".format(cls._idcolname, cls._tablename)
                 if pwhere is not None:
-                    subselect += wherecond(pwhere)
-                modedelcnt = Modelelement.delete(pwhere=("mode_id in ({})".format(subselect), *arguments))
+                    statement += wherecond(pwhere)
+                modedelcnt = Modelelement.delete(pwhere=("mode_id in ({})".format(statement), *arguments))
             # fi
-            lsql = """delete from {} {}""" \
+            statement = """delete from {} {}""" \
                 .format(cls._tablename, wherecond(pwhere))
-            elemdelcnt = dbDML.delete(lsql, *arguments)
+            elemdelcnt = dbDML.delete(statement, *arguments)
             retval = elemdelcnt + modedelcnt  # cascade delete from MODE has to be counted as well
         except Exception as err:
-            message = f"Cannot delete element {lsql}\n{str(*arguments)}"
-            raise Exception(message) from err
+            message = f"Cannot delete element {statement}\nArguments: {str(arguments)}"
+            if cls._tablename in [ 'examples', 'synonyms' ]:
+                logger.warning(f"Ignoring fk error on delete {cls._tablename}:\n{message}")
+                retval = 0
+            else:
+                raise Exception(message) from err
+
         return retval
 
     @classmethod
