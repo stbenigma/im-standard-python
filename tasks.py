@@ -10,10 +10,16 @@ from pathlib import Path
 import sys
 import zipfile as zlib
 
+import logging
+import os
+from logging import handlers
+from datetime import datetime
+
 try:
     from invoke import task
 except ModuleNotFoundError:
-    print("invoke module not found. Install using 'conda install invoke'")
+    print("Python module 'invoke' not found. Install using 'conda install invoke'")
+    print("See: https://www.pyinvoke.org/")
     exit(-1)
 
 PROJECT_ROOT = Path(__file__).parent.resolve()
@@ -22,6 +28,35 @@ TESTMODELS_BASE = SOURCE_FOLDER / 'testenvironment' / 'testmodels'
 TEST_MODEL = TESTMODELS_BASE / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
 INTEGRATION_TEST_FOLDER = PROJECT_ROOT / 'testdata'
+
+
+def initialize_logging(start_message: str = None):
+    stamp = datetime.now()
+    run_stamp = stamp.strftime("%Y-%m-%d_%H-%M-%S")
+
+    os.makedirs('log', exist_ok=True)
+    logfile = f'log/invoke-{run_stamp}.log'
+    formatter = logging.Formatter("%(asctime)s [%(threadName)s] - %(name)s - %(levelname)s - %(message)s")
+
+    file_handler = handlers.RotatingFileHandler(logfile, maxBytes=(1024 * 1024 * 20), backupCount=10)
+    file_handler.setFormatter(formatter)
+
+    console_log_handler = logging.StreamHandler()
+    console_formatter = logging.Formatter("%(levelname)s - %(message)s")
+    console_log_handler.setFormatter(console_formatter)
+
+
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.DEBUG)
+
+    root_logger.addHandler(console_log_handler)
+    root_logger.addHandler(file_handler)
+
+    console_log_handler.setLevel(logging.INFO)
+    file_handler.setLevel(logging.DEBUG)
+
+    if start_message is not None:
+        root_logger.info(start_message)
 
 
 def load_tools_library():
@@ -273,6 +308,7 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     Fill database form SPOD (JSON source)
     @:param dry Dry run
     """
+    initialize_logging("json2ddb")
     load_tools_library()
     src_path = Path(source)
 
@@ -350,6 +386,7 @@ def count(connection, table: str) -> int:
     'output': "Path of the destination json. Source path with .json extension if undefined"
 })
 def db2json(c, source, output=None):
+    initialize_logging("db2json")
     load_tools_library()
     src_path = Path(source)
 

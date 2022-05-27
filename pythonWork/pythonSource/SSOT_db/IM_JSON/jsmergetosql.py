@@ -1,6 +1,8 @@
+import logging
 from copy import copy
 
-# sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
+from tqdm.autonotebook import tqdm
+
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_infra import parameters
@@ -23,6 +25,7 @@ class Mergeresult:
         self.changes = []
         self.srcname = srcname
         self.idTranslate = dict()
+        self.use_json_id = False
         """{extjsid: keytrans,}  jsid MMMMxxxx (RELA1442)"""
         self.checkonly = checkonly
 
@@ -36,6 +39,11 @@ class Mergeresult:
         self.idTranslate[extjsid] = dbid
 
     def keytransl(self, extjsid):
+        try:
+            if int(extjsid[4:]) < 0:
+                logging.info(f"Processing new key {extjsid}")
+        except ValueError:
+            pass
         if extjsid in self.idTranslate:
             return self.idTranslate[extjsid]
         else:
@@ -93,16 +101,26 @@ class Mergeresult:
 
     def write_json(self, file):
         """Write the merge result to a json file"""
-        js_structure = {
+        with open(file, 'w') as out:
+            json.dump(self._repr_json_(), out)
+
+    def _repr_json_(self):
+        return {
             'summary': {
                 'inserted': self.insertcnt,
                 'updated': self.updatecnt,
                 'deleted': self.deletecnt,
+                'errors': len(self.newerrors),
+                'warnings': len(self.warnings),
             },
             'changeset': self.changes,
+            'errors': self.newerrors,
+            'warnings': self.warnings,
         }
-        with open(file, 'w') as out:
-            json.dump(js_structure, out)
+
+    def __repr__(self):
+        return f"c:{self.insertcnt}, u:{self.updatecnt}, d:{self.deletecnt}." \
+               f" errors:{len(self.newerrors)}, warnings:{len(self.warnings)}"
 
 
 def getallsrcrefs(pelemtype, psrcname):
@@ -236,9 +254,10 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         olderrorlist = newerrorlist
         newerrorlist = []
         presult.resetnewerrors()
-
         curjsonelements = copy(newelements)  # to allow deletion of done elements in loop
-        for key, elem in curjsonelements.items():
+
+        action = f"{'Verification' if presult.checkonly else 'Processing'} {pelemtype}. Pass {loopcnt}"
+        for key, elem in tqdm(curjsonelements.items(), desc=action, dynamic_ncols=True):
             if pwithextsrcref and not presult.ischeckonly():
                 """ get all srcrefs of the element 
                 make sure it has an entry for the current srcname 
@@ -277,13 +296,20 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
             # fi
             if dbobj is None:
                 """Entry not found via SRCREF and not found via UK -> it is new"""
+                identity = insert_identity(context=presult, elementtype=pelemtype, key=key, jsonobj=jsonobj)
+                jsonobj.setid(identity)
                 try:
-                    jsonobj.setid(None)  # provoke new ID in new db
                     dbobjid = jsonobj.insert(pdoerrhdlng=False)
+                    logging.debug(f"Inserted {key} with identity {identity} -> {dbobjid}")
+                    if identity is not None:
+                        assert dbobjid == identity, f"ID to be inserted {identity} got {dbobjid}"
+                    else:
+                        assert int(dbobjid) > 0, f"ID to be inserted {identity} got {dbobjid} for {key}"
                     presult.addfkey(extjsid=key, dbid=dbobjid)
-                    presult.addinscnt(1, f"Insert of  {str(jsonobj)}")
+                    presult.addinscnt(1, f"Insert of {str(jsonobj)}")
                     del newelements[key]  # omit in next loop
                 except Exception as e:
+                    #logging.debug(f"Insert attempt of element {key} with id {identity} failed", exc_info=e)
                     if not (presult.ischeckonly() and pelemtype == "LANG"):
                         newerrorlist.append(key)
                         err = f"""*** insert-error: ID = "{key}" """
@@ -338,5 +364,36 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
             # remove srcrefentry which was not in jsonfile from db
             Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?", cursrcrefname, dbid))
 
+    if len(newerrorlist) > 0:
+        print(f"Remaining errors for {pelemtype}: {newerrorlist}")
     presult.savenewerrors()
     return
+
+
+def insert_identity(context: Mergeresult, elementtype: str, key: str, jsonobj) -> int:
+    """
+    Identity management for new elements.
+    Keep identities from JSON for specific element types
+    :param jsonobj:
+    :param key:
+    :param presult:
+    :return:
+    """
+    if context.use_json_id:
+        if elementtype in [Modelelemtype.ATTR,
+                           Modelelemtype.ENTI,
+                           Modelelemtype.INTF,
+                           Modelelemtype.TABL,
+                           Modelelemtype.COLU,
+                           ]:
+            try:
+                assert context.idTranslate.get(key) is None, f"Id for {key} already set: {context.idTranslate.get(key)}"
+                identity = int(key[4:])
+                if identity > 0:
+                    return identity
+            except ValueError:
+                logging.warning(f"Unable to use key {key} for identity")
+                pass
+
+    # in any other case
+    return None

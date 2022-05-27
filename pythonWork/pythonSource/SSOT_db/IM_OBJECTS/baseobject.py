@@ -158,8 +158,13 @@ class Baseobject:
         if self.colvalue(self.fullcolname('um')) is None: self.setcolvalue(self.colvalue(self.fullcolname('um')), Baseobject.defaultCreator)
         """
         if self._modelemtype is not None:
-            locid = Modelelement(pid=self.getid(), pmeltshortname=self._modelemtype).insert()
-            self.setid(locid)
+            try:
+                locid = Modelelement(pid=self.getid(), pmeltshortname=self._modelemtype).insert()
+                self.setid(locid)
+            except UniqueKeyException as e:
+                assert e
+                locid = self.getid()
+                logger.debug(f"Modelelement for {self.getid()} already exists")
 
         lsql = """insert into {} ({}) values ({})
            """.format(self._tablename, self.columnsliststring()
