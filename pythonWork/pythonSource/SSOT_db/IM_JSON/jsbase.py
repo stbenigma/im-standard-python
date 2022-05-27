@@ -149,6 +149,17 @@ class JSModel:
     def printSPOD(self, destination: Path):
         return storeSPOD(self.jsmodel, destination)
 
+    def _repr_json_(self):
+        return {
+            'model': self.jsmodel['model'],
+            'imprint': self.jsmodel['_imprint_'],
+            'entities': len(self.jsmodel['entities']),
+            'attributes': len(self.jsmodel['attributes']),
+            'systems': len(self.jsmodel['systems']),
+            'tables': len(self.jsmodel['tables']),
+            'columns': len(self.jsmodel['columns']),
+        }
+
 # JSModel
 
 

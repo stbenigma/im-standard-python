@@ -158,21 +158,35 @@ def generator(c, model=None,
 
 
 @task
-def dbversion(c, model=None, full=False):
+def dbversion(c, model=None, full=False, db=None):
     if full:
         c.run(
-            f"""echo expected  `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
+            f"""echo expected `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
     if model is None:
         model = 'riddle'
     if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
         model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
+    if db is not None:
+        model = db
     dbfile = Path(model).resolve()
     if not dbfile.is_file():
         print(f"{dbfile} is not file")
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
 
-@task(aliases=['updb'])
+    load_tools_library()
+    from SSOT_db.SQL_INFRA.dbConnect import openDB
+
+    with closing(openDB(dbfile)) as connection:
+        print(f"Entities: {count(connection, 'entities')}")
+        print(f"Attributes: {count(connection, 'attributes')}")
+        print(f"Systems: {count(connection, 'interfaces')}")
+        print(f"Tables: {count(connection, 'tables')}")
+        print(f"Columns: {count(connection, 'columns')}")
+
+
+
+@task
 def upgradedb(c, model=None):
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
@@ -248,12 +262,17 @@ def bootstrap_integration_tests(c):
             c.run(f"inv generator --spod-only -m {candidate}")
 
 
-@task(help={
-    'source': "JSON source [mandatory]",
-    'output': "Path of the destination file. Source path with .db extension if undefined",
-    'nomerge': "Overwrite current database"})
-def filldb(c, source, output=None, nomerge=False):
-    """Fill database form SPOD (JSON source)"""
+@task(aliases=['filldb'],
+      help={
+          'source': "JSON source [mandatory]",
+          'srcname': "Name of the source",
+          'output': "Path of the destination file. Source path with .db extension if undefined",
+          'nomerge': "Overwrite current database"})
+def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=False):
+    """
+    Fill database form SPOD (JSON source)
+    @:param dry Dry run
+    """
     load_tools_library()
     src_path = Path(source)
 
@@ -264,10 +283,6 @@ def filldb(c, source, output=None, nomerge=False):
         out_path = src_path.with_suffix('.db')
     else:
         out_path = Path(output)
-
-    if nomerge:
-        print(f"Removing current database")
-        out_path.unlink(missing_ok=True)
 
     with open(src_path, 'r') as src:
         spod = json.load(src)
@@ -304,22 +319,36 @@ def filldb(c, source, output=None, nomerge=False):
 
     if out_path.is_file():
         print(f"Updating database {out_path}")
-        database = closing(dbConnect.openDB(str(out_path)))
+        database = dbConnect.openDB(str(out_path))
     else:
         print(f"Creating database {out_path}")
-        database = closing(createnewDB(str(out_path)))
+        database = createnewDB(str(out_path))
 
-    with database as conn:
+    with closing(database) as conn:
         dbConnect.write_git_reversion(revision, conn)
         model = JSModel(spod)
-        mergedbs.mergejs2db(pdbfile=str(out_path.resolve()), pmodel=model)
-        print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+        mergedbs.mergejs2db(pdbfile=str(out_path.resolve()), pmodel=model, psrcname=srcname,
+                            pverbose=verbose, pdryrun=dry, pkeepids=nomerge)
 
+        print(f"Entities: {count(database, 'entities')}")
+        print(f"Attributes: {count(database, 'attributes')}")
+        print(f"Systems: {count(database, 'interfaces')}")
+        print(f"Tables: {count(database, 'tables')}")
+        print(f"Columns: {count(database, 'columns')}")
+
+    print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+
+
+def count(connection, table: str) -> int:
+    with closing(connection.cursor()) as cursor:
+        cursor.execute(f"SELECT count(*) FROM [{table}]")
+        curr_table = cursor.fetchall()
+        return curr_table[0][0]
 
 @task(help={
     'source': "SPOD database [mandatory]",
     'output': "Path of the destination json. Source path with .json extension if undefined"
-    })
+})
 def db2json(c, source, output=None):
     load_tools_library()
     src_path = Path(source)
@@ -338,7 +367,6 @@ def db2json(c, source, output=None):
     from SSOT_db.createDB import createnewDB
     from LOAD_MODELS.LOAD_INFRA import mergedbs
 
-
     parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
 
@@ -352,17 +380,18 @@ def db2json(c, source, output=None):
         while backup.is_file():
             backup = archive / f"{out_path.name}.{index}"
             index += 1
-        print(f"Moving current database to archive '{backup}'")
+        print(f"Moving current json to archive '{backup}'")
         shutil.copy(out_path, backup)
 
     from SSOT_db.IM_JSON import sql2json
     with closing(dbConnect.openDB(src_path)):
         model = JSModel(sql2json(pdbname=dbConnect.getDBname()))
-        git_revision = dbConnect.read_git_revision( dbConnect.getdbcon())
+        git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
-        print(f"Writing SPOD for git revision {revision}")
-        model.printmodel(str(out_path))
-    print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+        print(f"Writing SPOD for git revision {revision} to {out_path}")
+        model.printSPOD(out_path)
+    print("Summary:\n" + json.dumps(model._repr_json_(), indent=4))
+    print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SPOD {src_path}")
 
 
 def verify_content(fh):
@@ -387,7 +416,8 @@ def verify_content(fh):
         pass
     pass
 
-@task(aliases=['crtm'])
+
+@task
 def createtestmodeldbs(c):
     def fillone(model):
         """init module with regenerating the testmodels db and jsons"""
