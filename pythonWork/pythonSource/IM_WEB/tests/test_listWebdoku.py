@@ -42,6 +42,7 @@ class GenerateHTML(unittest.TestCase):
 
     def test_listwebdoku(self):
         #os.chdir(self.testmodelcrm.modeldir)
+        self.testmodelcrm.initWeb()
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
                                    str(self.testmodelcrm.paramfile),

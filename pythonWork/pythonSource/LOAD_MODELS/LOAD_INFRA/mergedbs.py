@@ -1,5 +1,5 @@
 import sys
-from datetime import datetime
+import datetime
 
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import *
@@ -14,27 +14,27 @@ nofunc = lambda p: None
 # table name is only allowed for entries with typcial json-ids (xxxxNNNN)
 transferprocs = {
     'model': (1, proj2sql, nofunc, False, None),
-     'languages': (2, langs2sql, nofunc, False, None),
-     'physicalunits': (3, physicalunits2sql, nofunc, False, PhysicalUnit._tablename),
-     'datatypes': (4, datatypes2sql, nofunc, True, Datatype._tablename),
-     'storageformats': (5, storageformats2sql, nofunc, False, Storageformat._tablename),
-     'documents': (6, documents2sql, nofunc, True, Document._tablename),
-     'orgunits': (7, orgunits2sql, nofunc, True, OragnisationalUnit._tablename),
-     'actorroles': (7, actorroles2sql, actorconcerns2sql, True, Actorrole._tablename),
-     'categories': (7, entitycategory2sql, nofunc, False, EntityCategory._tablename),
-     'userdefprops': (8, udps2sql, nofunc, False, Userdefprop._tablename),
-     'systems': (10, systems2sql, nofunc, True, Interface._tablename),
-     'domains': (12, domains2sql, nofunc, True, Domain._tablename),
-     'entities': (14, entities2sql, nofunc, True, Entity._tablename),
-     'attributes': (16, attributes2sql, nofunc, True, Attribute._tablename),
-     'arcs': (18, arcs2sql, nofunc, True, Arc._tablename),
-     'relations': (20, relations2sql, nofunc, True, Relation._tablename),
-     'keys': (22, keys2sql, nofunc, True, Key._tablename),
-     'tables': (30, tables2sql, nofunc, True, Table._tablename),
-     'columns': (32, columns2sql, nofunc, True, Column._tablename),
-     'businessrules': (33, businessrules2sql, nofunc, True, BusinessRule._tablename),
-     'diagrams': (34, diagrams2sql, nofunc, True, Diagram._tablename),
-     '_imprint_': (99, nofunc, nofunc, True, None)
+    'languages': (2, langs2sql, nofunc, False, None),
+    'physicalunits': (3, physicalunits2sql, nofunc, False, PhysicalUnit._tablename),
+    'datatypes': (4, datatypes2sql, nofunc, True, Datatype._tablename),
+    'storageformats': (5, storageformats2sql, nofunc, False, Storageformat._tablename),
+    'documents': (6, documents2sql, nofunc, True, Document._tablename),
+    'orgunits': (7, orgunits2sql, nofunc, True, OragnisationalUnit._tablename),
+    'actorroles': (7, actorroles2sql, actorconcerns2sql, True, Actorrole._tablename),
+    'categories': (7, entitycategory2sql, nofunc, False, EntityCategory._tablename),
+    'userdefprops': (8, udps2sql, nofunc, False, Userdefprop._tablename),
+    'systems': (10, systems2sql, nofunc, True, Interface._tablename),
+    'domains': (12, domains2sql, nofunc, True, Domain._tablename),
+    'entities': (14, entities2sql, nofunc, True, Entity._tablename),
+    'attributes': (16, attributes2sql, nofunc, True, Attribute._tablename),
+    'arcs': (18, arcs2sql, nofunc, True, Arc._tablename),
+    'relations': (20, relations2sql, nofunc, True, Relation._tablename),
+    'keys': (22, keys2sql, nofunc, True, Key._tablename),
+    'tables': (30, tables2sql, nofunc, True, Table._tablename),
+    'columns': (32, columns2sql, nofunc, True, Column._tablename),
+    'businessrules': (33, businessrules2sql, nofunc, True, BusinessRule._tablename),
+    'diagrams': (34, diagrams2sql, nofunc, True, Diagram._tablename),
+    '_imprint_': (99, nofunc, nofunc, True, None)
 }
 
 
@@ -107,7 +107,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
     if not pcheckonly and (len(result.errors) == 0):
         """clean up and set final project parameters"""
         proj: Project = Project.select()[0]
-        proj.proj_um, proj.proj_dm = psrcname, datetime.now()
+        proj.proj_um, proj.proj_dm = psrcname, datetime.datetime.now()
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     # fi
