@@ -7,8 +7,8 @@ from lxml import etree
 from pathlib import Path
 
 from SSOT_db.IM_JSON import JSModel
-from test_xmiexport import IntegrationTestXMIExport
-from IM_EA.export.xmiexport import XMIBuilder
+from .test_xmiexport import IntegrationTestXMIExport
+from LOAD_MODELS.LOAD_EA.export.xmiexport import XMIBuilder
 
 from matplotlib.patches import Rectangle
 
