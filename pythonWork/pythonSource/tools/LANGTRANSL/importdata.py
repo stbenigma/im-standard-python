@@ -8,6 +8,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 from SSOT_db.IM_JSON import JSModel, jsguid2type, printJSON
 from SSOT_infra import nvl
 from tools.LANGTRANSL.langexceldata import Langexceldata, attrkey2js
+from tools.LANGTRANSL import DEEPLtranslate
 
 redfill = styles.PatternFill(patternType='solid',
                              fill_type='solid',
@@ -192,13 +193,12 @@ def importlangexcel(pexcelfile):
 
 
 def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
-    from LANGTRANSL import setauthid, translate
     assert pdeeplkey is not None, f"no DEEPL key, cannot translate"
     assert (pexcelfile is not None) and os.path.exists(pexcelfile), f"Excel not found: {pexcelfile}"
-    setauthid(pdeeplkey)
+    DEEPLtranslate.setauthid(pdeeplkey)
     # make sure the connection works
     try:
-        translate('test', 'de', 'de')
+        DEEPLtranslate.translate('test', 'de', 'de')
     except Exception as e:
         raise Exception(f"connection to DEEPL did not work\{e}")
 
@@ -225,7 +225,7 @@ def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
             if original is None:
                 cell.value = None
             elif type(original) is str and nvl(cell.value)=='':
-                transl = translate(original, modellang, lang)
+                transl = DEEPLtranslate.translate(original, modellang, lang)
                 cell.value = transl
                 changes +=1
             # fi
