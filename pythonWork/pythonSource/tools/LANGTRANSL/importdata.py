@@ -178,7 +178,7 @@ def importlangexcel(pexcelfile):
     changes, newjson = mergeexcel2json(pws=ws, pexcel=excel, pjson=mergejson)
     resultjson = jsonfile.replace('.json', '_result.json')
     if os.path.exists(resultjson):
-        os.remove(resultjons)
+        os.remove(resultjson)
     if newjson is None:
         print(f"***** Errors found, see red marks in \n{resultexcel}")
         wb.save(resultexcel)
@@ -200,7 +200,7 @@ def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
     try:
         DEEPLtranslate.translate('test', 'de', 'de')
     except Exception as e:
-        raise Exception(f"connection to DEEPL did not work\{e}")
+        raise Exception(f"connection to DEEPL did not work\\{e}")
 
     wb, excel = opentranslexecel(pexcelfile)
     modellang = excel.getmetainfo().getmodellang()
@@ -238,4 +238,4 @@ def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
 
 if __name__ == '__main__':
     args = sys.argv
-    importlangexcel(pexcelfile=args[1], pmodeldb=None if len(args) < 3 else args[2])
+    importlangexcel(pexcelfile=args[1])
