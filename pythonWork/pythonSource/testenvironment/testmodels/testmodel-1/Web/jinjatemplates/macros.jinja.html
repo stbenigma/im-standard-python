@@ -76,7 +76,7 @@
 {%- endmacro %}
 
 {% macro subblock(header, lbc) -%}
-					<div class="panel">
+					<div class="panel"  id="#{{lbc}}">
 						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{lbc}}">
 							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
 							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
@@ -121,6 +121,15 @@
 									<tr>
 										<th>{{ webmodel.gettransltext("Typ") }}</th>
 										<th>{{ webmodel.gettransltext("Referenz") }}</th>
+										{% if elemid[:4] == 'BURU' %}
+										<th>
+											 {{ webmodel.gettransltext("R/W") }}
+										</th>
+										{% elif elemid[:4] == 'ACTR' %}
+										<th>
+											 {{ webmodel.gettransltext("RACI") }}
+										</th>
+										{% endif %}
 									</tr>
 									{% for refid in elem %}
 									{% set refelem = webmodel.getelem(refid) %}
@@ -132,10 +141,32 @@
 										{% elif refid[:4] == 'COLU' %}
 											{% set displ = displ ~ " ({}: {})".format(refelem["table-name+"],refelem["interface-name+"]) %}
 										{% endif %}
-										<td>{{ webmodel.getreflink(name=displ
-											   ,destid=refid
-											   ,destintfid=webmodel.getelemintfid(refid))|safe }}
+										<td>{% if (elemid[:4] == 'BURU' and refid[:4] == 'RELA' ) %}
+												{% set refid1 = webmodel.getelem(refid)["from-to"]["enti"] %}
+												{% set displ1 = webmodel.getlangstr(webmodel.getelem(refid1)["name"]) %}
+												{% set refid2 = webmodel.getelem(refid)["to-from"]["enti"] %}
+												{% set displ2 = webmodel.getlangstr(webmodel.getelem(refid2)["name"]) %}
+												{{ displ ~ ': ' ~ webmodel.getreflink(name=displ1
+												   ,destid=refid1
+												   ,destintfid=webmodel.getelemintfid(refid1))|safe }}
+												{{ '   <->   ' ~ webmodel.getreflink(name=displ2
+												   ,destid=refid2
+												   ,destintfid=webmodel.getelemintfid(refid2))|safe }}
+											{% else %}
+												{{ webmodel.getreflink(name=displ
+												   ,destid=refid
+												   ,destintfid=webmodel.getelemintfid(refid))|safe }}
+											{% endif %}
 										</td>
+										{% if elemid[:4] == 'BURU' %}
+										<td>
+											 {{ elem[refid]["r/w"] }}
+										</td>
+										{% elif elemid[:4] == 'ACTR' %}
+										<td>
+											 {{ elem[refid] }}
+										</td>
+										{% endif %}
 									</tr>
 									{% endfor %}
 								</tbody>
@@ -165,6 +196,40 @@
 							</table>
 						</div> 
 {%- endmacro %}
+
+{% macro reflist(webmodel, elemid, type, refs) -%}
+						<div class="table-responsive">
+							<table class="table borderless" >
+								<tbody>
+									<tr>
+										<th>{{ webmodel.gettransltext("Name") }}</th>
+										{% if type == 'BURU' %}
+										<th>{{ webmodel.gettransltext("Typ") }}</th>
+										<th>{{ webmodel.gettransltext("R/W") }}</th>
+										{% elif type == 'ACTR' %}
+										<th>{{ webmodel.gettransltext("RACI") }}</th>
+										{% endif %}
+									</tr>
+									{% for refid in refs %}
+									{% set ref = webmodel.getelem(refid) %}
+									<tr>
+										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(getnvl(ref["name"],'???'))
+											   ,destid=refid
+											   ,curintfid=webmodel.getelemintfid(elemid))|safe }}
+										</td>
+										{% if type == 'BURU' %}
+										<td>{{ ref["type"] }}</td>
+										<td>{{ ref['elements'][elemid]["r/w"] }}</td>
+										{% elif type == 'ACTR' %}
+										<td>{{ refs[refid] }}</td>
+										{% endif %}
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+{%- endmacro %}
+
 
 {% macro elementlist(webmodel, elems) -%}
 			{% for elemid in elems %}
@@ -211,7 +276,7 @@
 								</td>
 								<td>{{ attr["type+"] }}</td>
 								{{ tdbool2icon(attr["mandatory"]) }}
-								{{ tdbool2icon(attr["keys+"]|count == 0) }}
+								{{ tdbool2icon(attr["keys+"]|count > 0) }}
 								{{ tdbool2icon(attr["descriptive"]) }}
 								{% if attrtype == "attributes+" %}
 									{{ tdbool2icon(attr["translated"]) }}

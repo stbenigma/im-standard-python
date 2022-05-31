@@ -39,6 +39,10 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
     return
 
 
+def safe_filename(path: str) -> str:
+    return path.replace('/', '-').replace(' - ', '-')
+
+
 def listwebmain(export: HTMLExport):
     def langpart(plang):
         return '_' + plang
@@ -51,7 +55,7 @@ def listwebmain(export: HTMLExport):
     # erstelle die Liste der HTML Files für HREF's
     schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
     for skey, svalue in schnlist.items():
-        export.htmlfilelist[skey] = svalue['name'] + '.html'
+        export.htmlfilelist[skey] = safe_filename(svalue['name'] + '.html')
 
     for lang in langs:
         lang = lang.lower()
@@ -147,7 +151,7 @@ def main(psysargs):
                              f"./<modelname>{parameters.PARAMFILEEXTENSION}")
     parser.add_argument('--modelname', '-m', dest="modelname")
     parser.add_argument('jsonfile', nargs='?',
-                        help=f"Path of the jsonfile to be converted. Default ./{parameters.SSOTDBDIREC}" +
+                        help=f"Path of the jsonfile to be converted. Default ./{parameters.SPODDBDIREC}" +
                              f"/<modelname>{parameters.JSONEXTENSION})")
     parser.add_argument('--destination', '-d', dest="destination",
                         help=f"Directory to write the generated files to . Default ./{parameters.WEBDEFAULTDIREC}")
@@ -179,7 +183,7 @@ def main(psysargs):
     argparseparent.fillssotdefaults(pcurrentdir=currentdir, parguments=myargs)
     if myargs['modelname'] is not None:
         if myargs['jsonfile'] is None:
-            myargs['jsonfile'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
+            myargs['jsonfile'] = os.path.join(currentdir, parameters.SPODDBDIREC,
                                               myargs['modelname'] + parameters.JSONEXTENSION)
     # fi
 

@@ -6,6 +6,7 @@ from SSOT_infra import nvl
 from SSOT_db.IM_OBJECTS import  *
 from SSOT_db import IM_JSON
 
+SOURCE_ELLIE: str = 'ELLIE'
 
 def ellie2proj(pmodel, pmodellng):
     proj = Project()
@@ -20,20 +21,16 @@ def ellie2proj(pmodel, pmodellng):
 
 
 def ellie2lang(pmodellng):
-    lang = Language(pname=pmodellng, piso2=pmodellng, piso3=None)
-    lang.lang_is_base_lang = Boolean.bool2str(True)
-    lang.lang_lang_id = None
+    lang = Language(lang_iso_code2=pmodellng,
+                    lang_is_base_lang = True)
     return IM_JSON.langs2js(plangs=[lang])
-
-
-nvlkey = lambda x, m: m[x] if x in m else None
 
 attributes = []
 
 
 def ellie2attr(pentiid, pattrid, pellieattr, pmodellng) -> Attribute:
     attr = Attribute(pname=pellieattr, pentiid=pentiid
-                     , psrcname=Externalref.SOURCE_ELLIE, psrcid=pellieattr['id'])
+                     , psrcname=SOURCE_ELLIE, psrcid=pellieattr['id'])
     attr.attr_dc = pellieattr['created_at']
     attr.attr_id = pattrid
     attr.attr_displ_name = pellieattr['name']
@@ -43,7 +40,7 @@ def ellie2attr(pentiid, pattrid, pellieattr, pmodellng) -> Attribute:
     attr.attr_displ_seq = pellieattr['order']
     attr.attr_tooltip = None
     attr.attr_tooltip_l = None
-    descr = nvlkey('description', pellieattr['metadata'])
+    descr =  pellieattr['metadata'].get('description')
     attr.attr_descr = descr
     attr.attr_descr_l = {pmodellng: descr}
     attr.attr_is_descriptive = None
@@ -68,13 +65,13 @@ def ellie2entities(pinjson, pmodellng):
     for entiid, inenti in enumerate(pinjson):
         metadata = inenti["metadata"]
         entitransl[inenti["id"]] = entiid
-        enti = Entity(psrcname=Externalref.SOURCE_ELLIE, psrcid=inenti["id"])
+        enti = Entity(psrcname=SOURCE_ELLIE, psrcid=inenti["id"])
         enti.enti_id = entiid
         enti.enti_name = inenti['name']
         enti.enti_name_l = {pmodellng: inenti['name']}
         enti.enti_short_name = None
-        enti.enti_descr = nvlkey("Description", metadata)
-        enti.enti_descr_l = {pmodellng: nvlkey("Description", metadata)}
+        enti.enti_descr =  metadata.get("Description")
+        enti.enti_descr_l = {pmodellng:  metadata.get("Description")}
         enti.enti_tooltip = None
         enti.enti_tooltip_l = None
         enti.enti_enca_id = None
@@ -85,7 +82,7 @@ def ellie2entities(pinjson, pmodellng):
         enti.enti_dm = None
         enti.enti_uc = None
         enti.enti_dc = None
-        insynos = nvlkey("Synonyms", metadata)
+        insynos =  metadata.get("Synonyms")
         synos = []
         if insynos is not None and insynos != '':
             for synoid, s in enumerate(insynos.split(',')):
@@ -99,7 +96,7 @@ def ellie2entities(pinjson, pmodellng):
         # fi
         enti.setsynonyms(synos)
 
-        inexpl = nvlkey("Examples", metadata)
+        inexpl =  metadata.get("Examples")
         expls = []
         if inexpl is not None and inexpl != '':
             for explid, e in enumerate(re.split('\n', inexpl)):
@@ -114,7 +111,7 @@ def ellie2entities(pinjson, pmodellng):
         enti.setexamples(expls)
 
         attrs = []
-        inattrs = nvlkey("attributes", inenti)
+        inattrs =  inenti.get("attributes")
         if inattrs is not None:
             for attrid, a in enumerate(inattrs):
                 attrs.append(ellie2attr(pentiid=entiid, pattrid=(100 * entiid) + attrid, pellieattr=a,
@@ -132,7 +129,7 @@ def ellie2entities(pinjson, pmodellng):
 
 def ellie2relations(pinjson,pmodellng):
     def getenti(pinjson):
-        return {'entiid':entitransl[pinjson['id']],'type':nvl(nvlkey('startType',pinjson))+nvl(nvlkey('endType',pinjson))}
+        return {'entiid':entitransl[pinjson['id']],'type':nvl(pinjson.get('endType'))}
 
     for r in pinjson:
         srcenti = getenti(r["sourceEntity"])

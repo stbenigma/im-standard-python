@@ -12,14 +12,11 @@ class Example(MultilangBaseobject):
     _prefix:str = 'expl'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.EXPL
-    _columnlist:list = []
+    _columnlist = dict()
     _defaultorderby = None
 
-    def __init__(self,pvalue=None,pentiid=None,pattrid=None):
-        super().__init__(multilangcols={'expl_value': Languagetext.EXPL_VALUE})
-        self.expl_value = pvalue
-        self.expl_enti_id = pentiid
-        self.expl_attr_id = pattrid
+    def __init__(self,**kwargs):
+        super().__init__(multilangcols={'expl_value': Languagetext.EXPL_VALUE},**kwargs)
 
     @classmethod
     def getexamples(cls,pmodeid):
@@ -29,12 +26,10 @@ class Example(MultilangBaseobject):
     @staticmethod
     def fillexamples(pdeflngexpls,plngexpls,plngs,pentiid=None,pattrid=None):
         def inslngexample(plngid,pmodeid,pvalue):
-            lgtx = Languagetext()
-            lgtx.lgtx_attrname = Languagetext.EXPL_VALUE
-            lgtx.lgtx_lang_id = plngid
-            lgtx.lgtx_mode_id = pmodeid
-            lgtx.lgtx_text = pvalue
-            lgtx.insert()
+            _ = Languagetext(lgtx_attrname = Languagetext.EXPL_VALUE,
+                                lgtx_lang_id = plngid,
+                                lgtx_mode_id = pmodeid,
+                                lgtx_text = pvalue).insert()
             return
 
         """transfer examples into the example and the language text tables
@@ -42,7 +37,8 @@ class Example(MultilangBaseobject):
         modeid = pentiid if pentiid is not None else pattrid
         newexamples = dict()
         for idx,expl in enumerate(pdeflngexpls):
-            example = Example(pvalue=expl, pentiid = pentiid, pattrid = pattrid)
+
+            example = Example(expl_value =expl, expl_enti_id = pentiid, expl_attr_id = pattrid)
 
             i = 2  # safeguard for eternal loop
             origvalue = example.expl_value

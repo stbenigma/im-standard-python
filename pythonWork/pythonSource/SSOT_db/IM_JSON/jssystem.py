@@ -32,7 +32,7 @@ def systems2js(pemptymodel):
 
 def js2intf(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     intf = Interface(psrcname=psrcname,psrcid=psrcid)
-    intf.intf_id = jsguid2id(pkey)
+    intf.intf_id = pkey
     intf.intf_name = pelem['name']
     intf.intf_descr = optionalvalue(pelem, 'descr')
     intf.intf_uc = pelem['uc']
@@ -42,8 +42,8 @@ def js2intf(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
     return intf
 
 
-def systems2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson,  pelemtype=Modelelemtype.INTF, pjs2obj=js2intf,
+def systems2sql(presult:Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson,  pelemtype=Modelelemtype.INTF, pjs2obj=js2intf,
                    pwithextsrcref=pwithextsrcref)
     # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.INTF).items():
     #     js2intf(pkey=jid,pelem=jelem)
@@ -55,6 +55,6 @@ def systems2sql(presult:Mergeresult, podmjson: JSModel, pwithextsrcref):
     #
     #     inssourceref(pmodel = pmodel,pmodeid=jsguid2id(jid), psources=jelem["sourceref"])
     # #for
-    for jid,jelem in podmjson.getelements(pelemtype=Modelelemtype.INTF).items():
-        insreferences(presult=presult, pmodeid=keytransl(jid), prefs=jelem['referencedby'])
+    for jid,jelem in pjson.getelements(pelemtype=Modelelemtype.INTF).items():
+        insreferences(presult=presult, pmodeid=presult.keytransl(jid), prefs=jelem['referencedby'])
     return

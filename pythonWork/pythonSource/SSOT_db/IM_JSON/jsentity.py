@@ -2,11 +2,12 @@ import re
 
 from tqdm.auto import tqdm
 
-from SSOT_db.IM_JSON import udpv2js, insertlgtx, Mergeresult, fromodm2db, keytransl, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql
-from SSOT_db.IM_JSON.jsattribute import buruinelements
-from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, examples2js, sourceref, reflist, userdefprops, \
-    tabreflist, JSModel, jsguid2id
+from SSOT_db.IM_JSON.jsattribute import examples2js
+from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, sourceref, reflist, userdefprops, \
+    tabreflist, JSModel
+from SSOT_db.IM_JSON.jsreference import udpv2js
+from SSOT_db.IM_JSON import insertlgtx, Mergeresult, replacelgtx, insreferences, \
+    inssourceref, udpvs2sql, buruinelements,fromjson2db
 from SSOT_db.IM_OBJECTS import *
 
 """ builds a dictionary of all entities
@@ -14,7 +15,7 @@ from SSOT_db.IM_OBJECTS import *
 """
 
 
-def synonyms(psynos: list = None):
+def synonyms2js(psynos: list = None):
     """ None = emptymodel"""
     """    [
             {
@@ -25,7 +26,7 @@ def synonyms(psynos: list = None):
             ]
     """
     if psynos is None:
-        return [multilangtext(None)]
+        return [multilangtext()]
     else:
         return [multilangtext(s) for s in psynos]
 
@@ -64,6 +65,13 @@ def entityicon(penti: Entity = None):
         return retval(icontype, iconref)
     # fi
 
+def racilist(pmodeid=None):
+    if pmodeid is None:
+        retval = {}
+    else:
+        racis = Actorrole.getracis(pmodeid=pmodeid)
+        retval = {jsguid('ACTR',r[0]): r[1] for r in racis.items()}
+    return retval
 
 def entities2js(pemptymodel):
     model = ['name', 'shortname',
@@ -76,7 +84,7 @@ def entities2js(pemptymodel):
              'minzoomlevel', 'maxzoomlevel', 'publstatus',
              'icon',
              'synonyms', 'examples',
-             'sourceref',
+             'sourceref','raci+',
              'supertypes+', 'roles+',
              'subtypes+', 'attributes+',
              'inheritedattributes+',
@@ -86,15 +94,15 @@ def entities2js(pemptymodel):
              ]
     if pemptymodel:
         entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
-                                                               pentries=[multilangtext(None), '',
-                                                                         multilangtext(None), multilangtext(None),
+                                                               pentries=[multilangtext(), '',
+                                                                         multilangtext(), multilangtext(),
                                                                          '', '', '',
                                                                          '', '',
                                                                          '', '', '', '',
                                                                          0, 4, 'DRAFT',
                                                                          entityicon(),
-                                                                         synonyms(None), examples2js(None),
-                                                                         sourceref(None),
+                                                                         synonyms2js(None), examples2js(None),
+                                                                         sourceref(None),racilist(),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
@@ -117,9 +125,10 @@ def entities2js(pemptymodel):
                                          e.enti_uc, e.enti_dc, e.enti_um, e.enti_dm,
                                          e.getminzoomlevel(), e.getmaxzoomlevel(), e.getpublstatus(),
                                          entityicon(penti=e),
-                                         synonyms(psynos=[s.syno_name_l for s in e.getsynonyms()]),
+                                         synonyms2js(psynos=[s.syno_name_l for s in e.getsynonyms()]),
                                          examples2js(pexpls=e.getexamples()),
                                          sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id)),
+                                         racilist(pmodeid = e.enti_id),
                                          reflist(
                                              plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()]),
                                          reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
@@ -153,8 +162,7 @@ def entities2js(pemptymodel):
                                          reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                         Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
-                               ) for e in tqdm(Entity.select(),
-                                               unit=" Entity", desc="Serialising entities", dynamic_ncols=True)
+                               ) for e in tqdm(Entity.select())
                  }
 
     return entis
@@ -167,12 +175,12 @@ def entities2js(pemptymodel):
 
 def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     enti = Entity(psrcname=psrcname, psrcid=psrcid)
-    enti.enti_id = jsguid2id(pkey)
+    enti.enti_id = pkey
     enti.enti_name = pelem['name'][pmodellang]
     enti.enti_short_name = pelem['shortname']
     enti.enti_prefix = pelem['prefix']
-    enti.enti_underlay_enti_id = jsguid2id(pelem['supertypeentity'])
-    enti.enti_enca_id = jsguid2id(pelem['category'])
+    enti.enti_underlay_enti_id = pelem['supertypeentity']
+    enti.enti_enca_id = pelem['category']
     enti.enti_tooltip = pelem['tooltip'][pmodellang]
     enti.enti_descr = pelem['descr'][pmodellang]
     enti.enti_exp_tuplecnt = pelem['exptuple#']
@@ -185,35 +193,35 @@ def js2enti(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
     if len(pelem["examples"]) > 0:
-        """Examples have in ODM no guid. Delete them and fill new ones"""
+        """Examples have no guid. Delete them and fill new ones"""
         inscnt = 0
         delcnt = Example.delete(pwhere=("expl_enti_id = ? or expl_attr_id = ?", pentiid, pattrid))
         # insert all examples2js for base language
-        expls = pelem["examples"][pmodellang]
-        for idx, e in enumerate(expls):
-            expl = Example(pvalue=e, pentiid=pentiid, pattrid=pattrid)
+        for idx,e in enumerate(pelem["examples"]):
+            expl = Example(expl_value=e[pmodellang], expl_enti_id=pentiid, expl_attr_id=pattrid)
             try:
                 expl.insert()
                 inscnt += 1
             except Exception as err:
                 presult.markdberror(perr=err, pelem=pelem)
                 continue
-            """Examples and their lang-texts are alreday deleted"""
-            insertlgtx(pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
-                       ptexts={lang: values[idx] for lang, values in pelem["examples"].items()})
+            """Examples and their lang-texts are alreday deleted inseret langtexts only"""
+            insertlgtx(presult=presult,pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
+                       ptexts=e)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
     # fi
     return
 
 
-def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
-               pwithextsrcref=pwithextsrcref)
+def entities2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ENTI, pjs2obj=js2enti,
+                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ENTI).items():
-        entiid = keytransl(jid)
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ENTI).items():
+        entiid = presult.keytransl(jid)
+        if entiid  == 0: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -222,8 +230,8 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
         inscnt = 0
         delcnt = Synonym.delete(pwhere=("syno_enti_id=?", entiid))
         for jsyno in jelem["synonyms"]:
-            syno = Synonym(pname=jsyno[podmjson.modellanguage()], pentiid=entiid)
-            # syno.syno_id = jsguid2id(synoid)
+            syno = Synonym(pname=jsyno[pjson.modellanguage()], pentiid=entiid)
+            # syno.syno_id = synoid
             try:
                 syno.insert()
                 inscnt += 1
@@ -231,12 +239,12 @@ def entities2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
                 presult.markdberror(perr=err, pelem=jsyno)
                 continue
             """synonyms and their lang-texts are alreday deleted"""
-            insertlgtx(pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+            insertlgtx(presult=presult,pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)))
-        presult.adddelcnt(max(0, (delcnt - inscnt)))
+        presult.addinscnt(max(0, (inscnt - delcnt)),f"synonyms for entitiy {entiid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)),f"synonyms for entitiy {entiid}")
 
-        mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
+        mergeexamples(pelem=jelem, pmodellang=pjson.modellanguage(),
                       presult=presult, pentiid=entiid)
 
         Modelelement.upddisplelements(pmodeid=entiid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)

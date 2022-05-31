@@ -1,6 +1,12 @@
+import os.path
+import shutil
 import traceback
 import unittest
 from pathlib import Path
+import datetime
+
+from LOAD_MODELS.LOAD_ODM import fillDB
+from SSOT_db import createDB, createJSON
 
 ROOT_MARKER = 'pythonWork'
 TESTMODEL1: str = 'testmodel-1'
@@ -9,16 +15,55 @@ CRMTEST: str = 'crmTest'
 RIDDLE: str = 'riddle'
 
 
-def testmodel(ptestmodel):
-    return ptestmodel, \
-          testmodels_dir() / ptestmodel, \
-         testmodels_dir() / ptestmodel / 'DB' / (ptestmodel + '.db')
+class Testmodel:
+    def __init__(self, modelname):
+        self.modelname = modelname
+        self.modeldir = testmodels_dir() / modelname
+        self.modelfile = testmodels_dir() / modelname / 'IM' / (modelname+'.dmd')
+        self.logfile = self.modeldir / (modelname + '.log')
+        self.paramfile = self.modeldir / (modelname + '.params')
+        self.dbdir = self.modeldir / 'DB'
+        self.dbfile = self.dbdir / (modelname + '.db')
+        self.jsonfilename = modelname + '.json'
+        self.jsonfile = self.dbdir / self.jsonfilename
+        self.webdir = self.modeldir / 'Web'
 
-def testmodel1():
-    return testmodel(TESTMODEL1)
+    def initDB(self,palways=False):
+        def age(ptimestamp):
+            diff = datetime.datetime.now()-datetime.datetime.fromtimestamp(ptimestamp)
+            return int(round(diff.total_seconds()/60))
 
-def testmodelcrm():
-    return testmodel(CRMTEST)
+        if palways or not os.path.exists(self.dbfile) or age(os.path.getmtime(self.dbfile))>60:
+            if palways and os.path.exists(self.dbfile):
+                os.remove(self.dbfile)
+            elif os.path.exists(self.dbfile):
+                #upgrade
+                createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
+
+            if os.path.exists(self.paramfile):
+                fillDB.filldbmain(pparamfile=self.paramfile)
+            else:
+                fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
+
+        if palways or not os.path.exists(self.jsonfile) or age(os.path.getmtime(self.jsonfile))>60:
+            createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,
+                                  pjsfilepath=self.dbdir, pjsfilename=self.jsonfilename)
+        return self
+
+    def initWeb(self):
+        # make sure new templates files are reloaded
+        if os.path.exists(self.webdir / "jinjatemplates"):
+            shutil.rmtree(self.webdir / "jinjatemplates/")
+        if os.path.exists(self.webdir / "js"):
+            shutil.rmtree(self.webdir / "js/")
+        if os.path.exists(self.webdir / "css"):
+            shutil.rmtree(self.webdir / "css/")
+
+
+def initDB(pmodel):
+    tm = Testmodel(pmodel).initDB()
+    return
+
 
 class IntegrationTest(unittest.TestCase):
 
@@ -62,3 +107,23 @@ def riddle_json() -> Path:
 
 def odmtestmodelnames():
     return [TESTMODEL1, TESTMODEL2, CRMTEST, RIDDLE]
+
+"""init module with regenerating the testmodels db and jsons"""
+try:
+    Testmodel(TESTMODEL1).initDB()
+except:
+        print (f"could not fill {TESTMODEL1}")
+try:
+    Testmodel(TESTMODEL2).initDB()
+except:
+    print(f"could not fill {TESTMODEL2}")
+try:
+        Testmodel(CRMTEST).initDB()
+except:
+    print(f"could not fill {CRMTEST}")
+try:
+    Testmodel(RIDDLE).initDB()
+except:
+    print(f"could not fill {RIDDLE}")
+
+

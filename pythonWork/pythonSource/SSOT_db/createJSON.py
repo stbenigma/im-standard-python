@@ -3,15 +3,16 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
-from SSOT_db.SQL_INFRA import  dbConnect
+from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters, logmessages
-from SSOT_db.IM_JSON import  sql2json, jsonfilename, JSModel
+from SSOT_db.IM_JSON import sql2json, jsonfilename, JSModel
 
-def createJSON(pfilepath, pfilename):
-    dbConnect.openDB(parameters.dbFilePath(), pfks='1')
-    jsmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
-    jsmodel.printmodel(pfilepath=pfilepath, pfilename=pfilename)
+def createJSON(pdbfilepath, pmodelname, pjsfilepath, pjsfilename):
+    dbConnect.openDB(pdbfilepath)
+    jsmodel = JSModel(pmodel=sql2json(pdbname=pmodelname))
+
+    jsmodel.printmodel(pfilepath=pjsfilepath, pfilename=pjsfilename)
     dbConnect.myDbConn.close()
     return
 
@@ -50,7 +51,7 @@ def json2xml(json_obj, line_padding=""):
 
 def main(param1):
     if param1 is None:
-        filepath = './'  # current directory is better os.path.dirname(__file__)+'/../IM_db/sqlfiles/'
+        filepath = '../IM_ODM/'  # current directory is better os.path.dirname(__file__)+'/../IM_db/sqlfiles/'
         filename = 'modelmodel-empty'
         createemptyJSON(pfilepath=filepath, pfilename=filename)
         print("empty JSON file {} created"
@@ -61,7 +62,8 @@ def main(param1):
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
         try:
-            createJSON(pfilepath=filepath, pfilename=filename)
+            createJSON(pdbfilepath=parameters.dbFilePath(), pmodelname=parameters.modelName(), pjsfilepath=filepath,
+                       pjsfilename=filename)
         finally:
             logmessages.showmessages("JSON file {} for model {} created"
                                      .format(filepath + jsonfilename(filename), parameters.modelName()))
@@ -72,4 +74,5 @@ def main(param1):
 
 if __name__ == '__main__':
     import sys
+
     main(param1=None if len(sys.argv) == 1 else sys.argv[1])

@@ -40,11 +40,11 @@ class Domain(MultilangBaseobject):
     _columnlist: list = []
     _defaultorderby = "doma_name"
 
-    def __init__(self, psrcname=None, psrcid=None):
+    def __init__(self, **kwargs):
 
-        super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME, 'doma_descr': Languagetext.DOMA_DESCR}
-                         , pscrid=psrcid
-                         , psrcname=psrcname
+        super().__init__( multilangcols={'doma_name': Languagetext.DOMA_NAME,
+                                         'doma_descr': Languagetext.DOMA_DESCR},
+                          **kwargs
                          )
 
     def getname(self, plang=None):
@@ -212,7 +212,8 @@ class Domain(MultilangBaseobject):
     # displgranul
 
     def getgroupmembers(self):
-        members = Domain.select(pwhere="doma_id in (select dgrm_doma_id_member from domaingroup_members where dgrm_doma_id_group = {})".format(self.doma_id))
+        members = DomaingroupMember.select(pwhere=("dgrm_doma_id_group = ?",self.doma_id))
+        return members
 
 
     @staticmethod
@@ -255,6 +256,11 @@ class DomaingroupMember(Baseobject):
         return self.dgrm_name
     def getdescr(self,plang=None):
         return self.dgrm_descr
+
+    def getparentid(self):
+        return self.dgrm_doma_id_group
+    def getparent(self):
+        return Domain().getbyid(self.dgrm_doma_id_group)
 
 
 

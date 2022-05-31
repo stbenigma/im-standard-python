@@ -1,56 +1,8 @@
 from SSOT_db.IM_JSON import *
-from SSOT_db.IM_OBJECTS import *
+from SSOT_db.IM_JSON import jsentity, buruinelements
 from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
-from SSOT_db.IM_JSON import jsentity
-
-def buruinelements(pelemid=None):
-    if pelemid is None:
-        retval = {'checked': [],
-                  'referenced': [],
-                  'changed': []}
-    else:
-        bures = BusinessruleElement.select(pwhere=("bure_mode_id = ?", pelemid))
-        retval = {'checked': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if be.bure_role == BusinessruleElement.AFFECTED],
-                  'referenced': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if be.bure_role == BusinessruleElement.REFERENCED],
-                  'changed': [jsguid(Modelelemtype.BURU,be.bure_buru_id) for be in bures if Boolean.str2bool(be.bure_writeable) ]}
-    return retval
-
-
-def buruelement2js(pbure=None):
-    if pbure is None:
-        retval = {'elemid': 'xxxx0000', 'role': '', 'r/w': ''}
-    else:
-        mode = Modelelement().getbyid(pbure.bure_mode_id)
-        retval = {'elemid': jsguid(mode.mode_type, mode.mode_id),
-                  'role': pbure.bure_role,
-                  'r/w': pbure.bure_writeable}
-    return retval
-
-
-def businessrule2js(pburu):
-    model = ['name', 'descr', 'level', 'type'
-        , 'impact', 'rule', 'errosmsg', 'elements'
-             ]
-    if pburu is None:
-        retval = fillmodel(pmodel=model,
-                           pentries=[multilangtext(), multilangtext(),
-                                     '', '', '', '',
-                                     multilangtext(),
-                                     [buruelement2js()]
-                                     ]
-                           )
-    else:
-        retval = fillmodel(pmodel=model,
-                           pentries=[multilangtext(pburu.buru_name_l),
-                                     multilangtext(pburu.buru_descr_l),
-                                     pburu.buru_level, pburu.buru_type,
-                                     pburu.buru_impact, pburu.buru_rule,
-                                     multilangtext(pburu.buru_errormsg_l),
-                                     [buruelement2js(be) for be in pburu.getchildren()]
-                                     ]
-                           )
-    # fi
-    return retval
+from SSOT_db.IM_OBJECTS import *
+from SSOT_infra import nvl
 
 
 def businessrules2js(pemptymodel):
@@ -62,36 +14,37 @@ def businessrules2js(pemptymodel):
 
 
 def attr2js(pattr):
-    model = ['techname', 'name'
-        , 'seq', 'entity'
-        , 'domain', 'basedatatype+'
-        , 'type+', 'memberattrs+'
-        , 'descriptive', 'mandatory'
-        , 'historicised', 'repeated'
-        , 'translated', 'encrypted'
-        , 'examples', 'tooltip', 'descr'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'minzoomlevel', 'maxzoomlevel', 'publstatus'
-        , 'sourceref', 'keys+', 'businessrules+'
-        , 'referencedby', 'userdefprops'
-        , 'columnsmapped+', 'diagrams+'
+    model = ['techname', 'name',
+        'seq', 'entity',
+        'domain', 'basedatatype+',
+        'type+', 'memberattrs+',
+        'descriptive', 'mandatory',
+        'historicised', 'repeated',
+        'translated', 'encrypted',
+        'examples', 'tooltip', 'descr',
+        'uc', 'dc', 'um', 'dm',
+        'minzoomlevel', 'maxzoomlevel', 'publstatus',
+        'sourceref', 'raci+','keys+', 'businessrules+',
+        'referencedby', 'userdefprops',
+        'columnsmapped+', 'diagrams+'
              ]
     if pattr is None:
-        retval = fillmodel(pmodel=model
-                           , pentries=['', multilangtext()
-                , '', ''
-                , '', ''
-                , '', reflist()
-                , '', ''
-                , '', ''
-                , '', ''
-                , jentity.examples2js(None), multilangtext(), multilangtext()
-                , '', '', '', '', 0, 4, 'DRAFT'
-                , sourceref(), reflist(), buruinelements(None)
-                , reflist(), userdefprops()
-                , {jsguid(Modelelemtype.INTF, "0000"):
+        retval = fillmodel(pmodel=model,
+                           pentries=['', multilangtext(),
+                '', '',
+                '', '',
+                '', reflist(),
+                '', '',
+                '', '',
+                '', '',
+                                     examples2js(None), multilangtext(), multilangtext(),
+                '', '', '', '', 0, 4, 'DRAFT',
+                                     sourceref(), jsentity.racilist(),
+                                     reflist(), buruinelements(None),
+                                     reflist(), userdefprops(),
+                                     {jsguid(Modelelemtype.INTF, "0000"):
                        [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
-                                       ]
+                                     ]
                            )
     else:
         doma = Domain().getbyid(pattr.attr_doma_id)
@@ -117,6 +70,7 @@ def attr2js(pattr):
                                      pattr.attr_uc, pattr.attr_dc, pattr.attr_um, pattr.attr_dm,
                                      pattr.getminzoomlevel(), pattr.getmaxzoomlevel(), pattr.getpublstatus(),
                                      Externalref.getsrcinfo(pmodeid=pattr.attr_id),
+                                     jsentity.racilist(pattr.attr_id),
                                      [jsguid(Modelelemtype.KEYS, k.keys_id) for k in pattr.getkeys()],
                                      buruinelements(pattr.attr_id),
                                      [jsguid(Modelelemtype.DOCU, d[0]) for d in
@@ -151,9 +105,9 @@ def attributes2js(pemptymodel):
 
 def js2attr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     attr = Attribute(psrcname=psrcname, psrcid=psrcid)
-    attr.attr_id = jsguid2id(pkey)
-    attr.attr_enti_id = jsguid2id(pelem['entity'])
-    attr.attr_doma_id = jsguid2id(pelem['domain'])
+    attr.attr_id = pkey
+    attr.attr_enti_id = pelem['entity']
+    attr.attr_doma_id = pelem['domain']
     attr.attr_tech_name = pelem['techname']
     attr.attr_displ_name = pelem['name'][pmodellang]
     attr.attr_displ_seq = pelem['seq']
@@ -172,56 +126,92 @@ def js2attr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return attr
 
 
-def attributes2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
+def attributes2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
                pwithextsrcref=pwithextsrcref)
-    """      "ATTR11890": {
-         "techname": "EMAIL",
+    """       "ATTR117": {
+         "techname": "TYP",
          "name": {
-            "de": "eMail",
-            "en": "eMail",
-            "fr": "Courriel"
+            "de": "Typ",
+            "en": "Purpose",
+            "fr": "Type"
          },
          "seq": 1,
-         "entity": "ENTI11889",
-         "relation": null,
-         "domain": "DOMA11877",
+         "entity": "ENTI112",
+         "domain": "DOMA97",
+         "basedatatype+": "unknown",
+         "type+": "TXT",
          "descriptive": false,
          "mandatory": false,
          "historicised": false,
          "repeated": false,
          "translated": false,
          "encrypted": false,
-         "examples": {
-            "de": null,
-            "en": null,
-            "fr": null
-         },
+         "examples": {},
          "tooltip": {
-            "de": null,
-            "en": null,
-            "fr": null
+            "de": "",
+            "en": "",
+            "fr": ""
          },
          "descr": {
-            "de": null,
-            "en": null,
-            "fr": null
+            "de": "Typ der L\u00e4ndergruppe (Vertrieb, Zoll, Organisation)",
+            "en": "**Type of country group (distribution, customs, organization)",
+            "fr": "Type de groupe de pays (vente, douane, organisation)"
          },
          "uc": "stb",
-         "dc": "2019-06-01 10:36:20 UTC",
+         "dc": "2019-05-06 09:01:27 UTC",
          "um": null,
          "dm": null,
+         "minzoomlevel": 0,
+         "maxzoomlevel": 4,
+         "publstatus": null,
+         "sourceref": {
+            "ODM": [
+               "854EF45E-D99B-33BB-CEBA-CCBFD3723223",
+               "2022-04-14 18:04:14.882148"
+            ]
+         },
+         "keys+": [],
+         "businessrules+": [],
+         "referencedby": [],
+         "userdefprops": {
+            "datamapping": {
+               "DHL": {
+                  "UDPR15": {
+                     "name": "DHL AttrName",
+                     "value": null
+                  },
+                  "UDPR17": {
+                     "name": "DHL AttrName Shipper",
+                     "value": null
+                  }
+               },
 
+            }
+         },
+         "columnsmapped+": {
+            "INTF630": [
+               "COLU799"
+            ],
+            "INTF314": [
+               "COLU390"
+            ]
+         },
+         "diagrams+": [
+            "DIAG313",
+            "DIAG311"
+         ]
       },"""
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.ATTR).items():
-        attrid = keytransl(jid)
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ATTR).items():
+        attrid = presult.keytransl(jid)
+        if attrid  == 0: continue #element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
         Modelelement.upddisplelements(pmodeid=attrid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
 
         """Examples have in ODM no guid. Delete them and fill new synonyms"""
-        jsentity.mergeexamples(pelem=jelem, pmodellang=podmjson.modellanguage(),
+        jsentity.mergeexamples(pelem=jelem, pmodellang=pjson.modellanguage(),
                                presult=presult, pattrid=attrid)
 
         replacelgtx(presult=presult, pmodeid=attrid, pattr=Languagetext.ATTR_COMMENT, ptexts=jelem['descr'])
@@ -275,6 +265,7 @@ def keys2js(pemptymodel):
 
 
 def ins1kele(presult: Mergeresult, pkey: Key, pattrid, prelaid):
+    inscnt = 0
     kele = Keyelement()
     kele.kele_keys_id = pkey.keys_id
     kele.kele_attr_id = pattrid
@@ -285,9 +276,10 @@ def ins1kele(presult: Mergeresult, pkey: Key, pattrid, prelaid):
     kele.kele_dm = pkey.keys_dm
     try:
         kele.insert()
+        inscnt += 1
     except Exception as err:
         presult.markdberror(perr=err, pelem=str(pkey.keys_id) + kele.tostring())
-    return
+    return inscnt
 
 
 def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
@@ -305,21 +297,22 @@ def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
     inscnt = 0
     delcnt = Keyelement.delete(pwhere=("kele_keys_id = ?", pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
-        ins1kele(presult=presult, pkey=pkey,
-                 pattrid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.ATTR else None,
-                 prelaid=keytransl(jid) if jsguid2type(jid) == Modelelemtype.RELA else None)
-        inscnt += 1
+        modeid = presult.keytransl(jid)
+        if modeid  == 0: continue #element was not treated
+        inscnt += ins1kele(presult=presult, pkey=pkey,
+                 pattrid=modeid if jsguid2type(jid) == Modelelemtype.ATTR else None,
+                 prelaid=modeid if jsguid2type(jid) == Modelelemtype.RELA else None)
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)))
-    presult.adddelcnt(max(0, (delcnt - inscnt)))
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"keyelements")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"keyelements")
     return
 
 
 def js2keys(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     key = Key(psrcname=psrcname, psrcid=psrcid)
-    key.keys_id = jsguid2id(pkey)
+    key.keys_id = pkey
     key.keys_name = pelem['name']
-    key.keys_enti_id = jsguid2id(pelem['entity'])
+    key.keys_enti_id = pelem['entity']
     key.keys_uc = pelem['uc']
     key.keys_dc = pelem['dc']
     key.keys_um = pelem['um']
@@ -327,14 +320,31 @@ def js2keys(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     return key
 
 
-def keys2sql(presult: Mergeresult, podmjson: JSModel, pwithextsrcref):
-    fromodm2db(presult=presult, podmjson=podmjson, pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
+def keys2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
+    fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
                pwithextsrcref=pwithextsrcref)
 
-    for jid, jelem in podmjson.getelements(pelemtype=Modelelemtype.KEYS).items():
-        key = Key().getbyid(pid=keytransl(jid))
+    for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.KEYS).items():
+        keyid=presult.keytransl(jid)
+        if keyid == 0: continue  # element was not treated
+        key = Key().getbyid(pid=keyid)
         inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
         if pwithextsrcref:
             inssourceref(presult=presult, pmodeid=key.keys_id, psources=jelem["sourceref"])
     # for
     return
+
+
+def examples2js(pexpls: list = None):
+    """ None = emptymodel
+        [Example,]"""
+    if pexpls is None:
+        return [{'en':'',}]
+    else:
+        """    [ {"de": "Lager",
+                  "en": "Stock"
+                  },
+               ]
+        """
+        retval = [expl.expl_value_l for expl in pexpls]
+        return retval

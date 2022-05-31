@@ -24,6 +24,7 @@ class Datatype(Baseobject):
                          , psrcname=psrcname)
         self.daty_name = pname
         self.daty_basetype = pbasetype
+        return
 
     @staticmethod
     def baseType(dt):

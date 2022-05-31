@@ -142,7 +142,21 @@
 							</tbody>
 						</table>
 					</div>
-					
+					<!--businessrules-->
+					{% if elem["businessrules+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Business Rules"), lbc=elemid ~ "refburu") %}
+						{{ blocks.reflist(webmodel,elemid,"BURU",elem["businessrules+"]) }}
+					{% endcall %}
+					{% endif %}
+
+					<!--actorroles-->
+					{% if elem["raci+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Akteurrollen"), lbc=elemid ~ "refraci") %}
+						{{ blocks.reflist(webmodel,elemid,"ACTR",elem["raci+"]) }}
+					{% endcall %}
+					{% endif %}
+
+
 					<!--columns-->       
 					{% call blocks.subblock(header="Columns", lbc=elemid ~ "colu") %}
 						<div class="table-responsive">
@@ -280,7 +294,21 @@
 							</tbody>
 						</table>
 					</div>
-					
+					<!--businessrules-->
+					{% if elem["businessrules+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Business Rules"), lbc=elemid ~ "refburu") %}
+						{{ blocks.reflist(webmodel,elemid,"BURU",elem["businessrules+"]) }}
+					{% endcall %}
+					{% endif %}
+
+					<!--actorroles-->
+					{% if elem["raci+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Akteurrollen"), lbc=elemid ~ "refraci") %}
+						{{ blocks.reflist(webmodel,elemid,"ACTR",elem["raci+"]) }}
+					{% endcall %}
+					{% endif %}
+
+
 					<!--mappings-->       
 					{% if (elem["attributesmapped"]|count) > 0 %}
 					{% call blocks.subblock(header="Mappings", lbc=elemid ~ "map") %}

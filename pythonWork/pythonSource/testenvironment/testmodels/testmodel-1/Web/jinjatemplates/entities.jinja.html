@@ -68,9 +68,9 @@
 						<div class="table-responsive">
 							<table class="table borderless" >
 								<tbody>
-									{% for expl in elem["examples"][webmodel.getcurlanguage()] %}
+									{% for expl in elem["examples"] %}
 									<tr>
-										<td>{{ expl | safe}} </td>
+										<td>{{ expl[webmodel.getcurlanguage()] | safe}} </td>
 									</tr>
 									{% endfor %}
 								</tbody>
@@ -130,6 +130,7 @@
 										<th>{{ webmodel.gettransltext('Entität')~'-2' }}</th>
 										<th>{{ webmodel.gettransltext('Arc') }}</th>
 										<th>{{ webmodel.gettransltext('Schlüssel') }}</th>
+										<th>{{ webmodel.gettransltext('Business Rules') }}</th>
 									</tr>
 									{% for relaid in elem["relations+"] %}
 									{% set rela = webmodel.getelem(relaid) %}
@@ -153,6 +154,13 @@
 											{{ blocks.tdicon('down') }}
 											<td>{{ arc }}</td>
 											{{ blocks.tdbool2icon((rela['isinkeys+']|count) > 0) }}
+												<td> {% for buruid in rela["businessrules+"] %}
+													 {% set buru = webmodel.getelem(buruid) %}
+													 {{ webmodel.getreflink(name=webmodel.getlangstr(buru["name"])
+											   			,destid=buruid
+											   			,curintfid=webmodel.getelemintfid(elemid))|safe }}
+													{% endfor %}
+												</td>
 										   </tr>
 									   		<tr>
 											<td>{{ '' }}</td>
@@ -169,7 +177,22 @@
 							</table>
 						</div> 
 					{% endcall %}
-					
+
+					<!--businessrules-->
+					{% if elem["businessrules+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Business Rules"), lbc=elemid ~ "refburu") %}
+						{{ blocks.reflist(webmodel,elemid,"BURU",elem["businessrules+"]) }}
+					{% endcall %}
+					{% endif %}
+
+					<!--actorroles-->
+					{% if elem["raci+"]|count > 0 %}
+					{% call blocks.subblock(header=webmodel.gettransltext("Akteurrollen"), lbc=elemid ~ "refraci") %}
+						{{ blocks.reflist(webmodel,elemid,"ACTR",elem["raci+"]) }}
+					{% endcall %}
+					{% endif %}
+
+
 					<!--referencedby-->
 					{% if elem["referencedby"]|count > 0 %}
 					{% call blocks.subblock(header=webmodel.gettransltext("Referenziert von"), lbc=elemid ~ "ref") %}
@@ -254,7 +277,11 @@
 									<tr>
 										<td>{{ webmodel.gettransltext('Beispiele') }}</td>
 										{% for lang in otherlangs %}
-											<td>{{ '\n'.join(elem["examples"][lang])|nvl|formattext|safe }}</td>
+											{% set otherlangs = [] %}
+										    {% for e in elem["examples"] %}
+											{% set otherlangs = otherlangs.append(e[lang]) %}
+											{% endfor %}
+											<td>{{ '\n'.join(otherlangs)|nvl|formattext|safe }}</td>
 										{% endfor %}
 									</tr>
 								</tbody>

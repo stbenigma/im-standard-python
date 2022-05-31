@@ -1,11 +1,16 @@
 import json
 import os
+import subprocess
+import logging
+from pathlib import Path
 
 """  Collection of all parameters for the management of the database and all tools
 
     Contains projectwide global parameter-Dictionary
     searches and reads parameterfile  
 """
+# my set of parameters
+parameter = {}
 
 # databasetypes
 SQLITE: str = 'sqlite'
@@ -13,8 +18,8 @@ SQLSERVER: str = 'sql-server'
 POSTGRES: str = 'postgres'
 PARAMFILEEXTENSION: str = ".params"
 LOGFILEEXTENSION: str = '.log'
-SSOTDBEXTENSION: str = '.db'
-SSOTDBDIREC: str = 'DB'
+SPODDBEXTENSION: str = '.db'
+SPODDBDIREC: str = 'DB'
 MODELDIREC: str = 'IM'
 WEBDEFAULTDIREC: str = 'Web'
 JSONEXTENSION: str = '.json'
@@ -24,7 +29,12 @@ SUPPORTEDLANGUAGES = \
      'en': ['English', 'eng'],
      'fr': ['Français', 'fra'],
      'es': ['Español', 'esp'],
-     'it': ['Italiano', 'ita']
+     'it': ['Italiano', 'ita'],
+     'nl': ['Nederlandse','nld'],
+     'pl': ['Polska','pol'],
+     'pt': ['Português', 'prt'],
+     'gr': ['Ελληνικά', 'grc'],
+     'bg': ['Български', 'bgr']
      }
 
 VERSIONFILEPATH: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "versions.json")
@@ -54,8 +64,8 @@ def parameterdefaults():
                  'sqlfilename': 'modelmodel_' + SQLITE,
                  'dbfilepath': None,
                  'dbdirec': None,
-                 'dbfileextension': SSOTDBEXTENSION,
-                 'dbdefaultdirec': SSOTDBDIREC,
+                 'dbfileextension': SPODDBEXTENSION,
+                 'dbdefaultdirec': SPODDBDIREC,
                  'dbdefaultlang': 'en',
                  'dblanguages': 'en',
                  'dbdefaultlangid': None,
@@ -79,6 +89,7 @@ def parameterdefaults():
                  'odmorgunitDirec': os.path.join('businessinfo', 'party'),
                  'odmudptranslfilename': 'translation',
                  'odmudpmappingfilename': 'datamapping',
+                 'odmudpracifilename': 'RACI',
                  'odmudpelemdisplfilename': 'elementdisplay',
                  'odmmappingDirec': 'mapping',
                  'odmudpfileextension': '.udposdm',
@@ -94,11 +105,6 @@ def parameterdefaults():
                  'logfilepath': None,
                  'iconmasterdocumentname': "ENTITY-ICONS"
                  }
-
-
-# my set of parameters
-parameter: {}
-
 
 def getsetparam(pparamname, pnewval: str = None):
     """returns the parameterset value named pparamname if pnewval  is None
@@ -258,6 +264,9 @@ def iconmasterdocumentname(newval=None):
 
 def odmUDPMappingFileName(newval=None):
     return getsetparam(pparamname='odmudpmappingfilename', pnewval=newval)
+
+def odmUDPraciFileName(newval=None):
+    return getsetparam(pparamname='odmudpracifilename', pnewval=newval)
 
 
 def odmUDPFileExtension(newval=None):
@@ -499,6 +508,8 @@ def convert2abspath(*args):
 def filldefaultparams():
     """ Parameters defaulted in relation to other parameters
     """
+    if dbLanguages() is None and dbDefaultLang() is not None:
+        dbLanguages(newval=dbDefaultLang())
     if odmIMDirec() is None:
         odmIMDirec(newval=os.path.join(baseDirec(), odmIMDefaultDirec()))
     if dbDirect() is None:
@@ -546,6 +557,7 @@ def initparam(pbasedirec, pparamfile=None, pmodelname=None, pdbfile=None, pmodel
     # overwrite parameters from real parameters, if they exist
     if pmodelfilepath is not None:
         odmIMDirec(newval=os.path.dirname(pmodelfilepath))
+
     if pdbfile is not None:
         dbDirect(newval=os.path.dirname(pdbfile))
         dbFilePath(newval=pdbfile)
@@ -559,15 +571,35 @@ def initparam(pbasedirec, pparamfile=None, pmodelname=None, pdbfile=None, pmodel
 
     if pmodellang is not None:
         dbDefaultLang(pmodellang)
+
     if planguages is not None:
         dbLanguages(planguages)
 
     if dbDefaultLang() not in SUPPORTEDLANGUAGES.keys():
         raise Exception(f"Language {dbDefaultLang()} not supported.  {','.join(SUPPORTEDLANGUAGES.keys())}")
+
     for lang in dbLanguages().split(','):
         if lang not in SUPPORTEDLANGUAGES.keys():
             raise Exception(f"Language {lang} not supported.  [{','.join(SUPPORTEDLANGUAGES.keys())}]")
+
     if modelName() is None:
         raise Exception("no modelname given")
+
     filldefaultparams()
+
     return
+
+
+def read_git_description(folder: Path = None):
+    """@:returns The git reference describing the repo status seen in folder"""
+    if folder is not None:
+        assert folder.is_dir()
+    command = ['git', 'describe', '--always']
+    try:
+        git_tag = subprocess.check_output(command, cwd=str(folder), stderr=subprocess.DEVNULL).decode().strip()
+        return git_tag
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        logging.warning(f"Cannot obtain git revision from folder {folder}.\n{e}")
+        return f'<unknown@{str(folder)}>'
+
+parameterdefaults()

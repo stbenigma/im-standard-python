@@ -22,12 +22,13 @@ class Languagetext(Baseobject):
     BURU_DESCR: str = 'BURU_DESCR'
     BURU_ERRORMSG: str = 'BURU_ERRORMSG'
     EXPL_VALUE: str = 'EXPL_VALUE'
-    ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP
-        , ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP
-        , ENTI_SYNONYM
-        , RELA_TEXT_TO, RELA_TEXT_FROM
-        , DOMA_NAME, DOMA_DESCR
-        , BURU_NAME, BURU_DESCR, BURU_ERRORMSG, EXPL_VALUE
+    ODMtranslAttributes = [ENTI_NAME, ENTI_COMMENT, ENTI_TOOLTIP,
+         ATTR_NAME, ATTR_COMMENT, ATTR_TOOLTIP,
+         ENTI_SYNONYM,
+         RELA_TEXT_TO, RELA_TEXT_FROM,
+         DOMA_NAME, DOMA_DESCR,
+         BURU_NAME, BURU_DESCR, BURU_ERRORMSG,
+        EXPL_VALUE
                            ]
 
     __greportLang: str = None
@@ -37,16 +38,18 @@ class Languagetext(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        return
+
 
     @staticmethod
-    def filldefaulttext(plang):
+    def filldefaulttext(pdefaultlang):
         """füllt sämtliche übersetzten Elemente in die lang_texts der Defaultsprache ein.
            D.h. alle übersetzten Attribute haben mind. in der Defaultsprache einen  Eintrag.
            Synonyms and exampleshave been handled beforehand (they are in a comma-separated list...)
         """
-        assert plang, "No language provided"
+        assert pdefaultlang, "No language provided"
         """select to get all multilanguage fields we know of. Has to be changed, if in a MultiLangbaseobject
             a multilangcolumns changes"""
         multilangfields = """select 'ENTI_NAME' mlt_attrname, enti_name mlt_text
@@ -103,19 +106,21 @@ class Languagetext(Baseobject):
                                     """
         """correct possible inconsistencies where the original field is NULL but the udp translated value is not
             remove all lang_texts (inserted by insertlang_texts) having empty original values"""
+        from SSOT_db.IM_OBJECTS import Languagetext
         dbDML.exec(f"""delete from lang_texts
                     where(lgtx_attrname, lgtx_mode_id)
                         in (select mlt_attrname, mlt_id
                                 from ({multilangfields})
                                 where mlt_text is Null or mlt_text = ""
                                 )""")
+        """copy all original texts into the default"""
         dbDML.exec(f"""insert into lang_texts 
                     (lgtx_attrname,  lgtx_text
                    ,lgtx_mode_id, lgtx_uc, lgtx_dc
                    , lgtx_lang_id)
                   select mlt_attrname,  mlt_text, mlt_id, mlt_uc, mlt_dc,lang_id 
                   from ({multilangfields})
-                cross join (select {plang} as lang_id)
+                cross join (select {pdefaultlang} as lang_id)
                    """)
         return
 
@@ -156,12 +161,12 @@ class Languagetext(Baseobject):
             and lgtx_mode_id = ?
             )
         select lang.lang_iso_code2,
-            case when lgtxori.lgtx_text is not NULL
+            case when (lgtxori.lgtx_text is not NULL) and (lgtxori.lgtx_text != "")
                 then lgtxori.lgtx_text
-                else case when lgtxdef.lgtx_text is NULL or lgtxdef.lgtx_text = ""  
-                        then lgtxdef.lgtx_text
-                        else "*" || langlang.lang_iso_code2 || "* " || lgtxdef.lgtx_text 
-                      end 
+                else case when (lgtxdef.lgtx_text is not NULL) and (lgtxdef.lgtx_text != "")
+                     then '*'||langlang.lang_iso_code2||'* '||lgtxdef.lgtx_text
+                     else lgtxdef.lgtx_text
+                     end
                 end text
         from languages lang
         left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID
@@ -175,14 +180,14 @@ class Languagetext(Baseobject):
 
     @staticmethod
     def transltext(pattrname, pmodeid, plang):
-        data = dbDML.select("""
-        select lgtx_text
-        from lang_texts
-        join languages on lang_id = lgtx_lang_id
-        where lgtx_mode_id = {}
-        and lgtx_attrname = '{}'
-        and lower(lang_iso_code2) = lower('{}') 
-        """.format(pmodeid, pattrname, plang))
+        data = dbDML.select(f"""
+            select lgtx_text
+            from lang_texts
+            join languages on lang_id = lgtx_lang_id
+            where lgtx_mode_id = {pmodeid}
+            and lgtx_attrname = '{pattrname}'
+            and lower(lang_iso_code2) = lower('{plang}') 
+        """)
         return data[0][0] if (len(data) > 0) else ''
 
     @staticmethod
@@ -194,16 +199,17 @@ class Languagetext(Baseobject):
         return
 
     @staticmethod
-    def fillnontranslatedtexts(ptypes):
+    def fillnontranslatedtexts(ptypes:list):
         """all non translated texts for the modelelementtype in ptypes
         are copied into non-default-language
         so we accept the defaltlanguage text as the proper text for any language
         """
-        types = re.sub(r"(\w+)",r"'\1'",",".join(ptypes))
+
+        types = re.sub(r"(\w+)",r"'\1'",",".join(ptypes)) #make sql-list-string
         """get all langtexts from the default-language
             for all mode_types in the given list
             multiply them with non-default languages
-            if they do not yet exists in the new language
+            if they are not empty and do not yet exists in the new language
             insert them into lang_texts
         """
         lsql = f"""insert into lang_texts
@@ -217,11 +223,12 @@ class Languagetext(Baseobject):
                 cross join (select lang_id as new_lang_id 
                             from languages 
                             where lang_is_base_lang = 'FALSE')
-                where not exists(select 1 from lang_texts comp
+                where lgtx_text is not NULL and lgtx_text != ''
+                    and not exists(select 1 from lang_texts comp
                     where comp.lgtx_mode_id = lgt.lgtx_mode_id
                     and comp.lgtx_attrname = lgt.lgtx_attrname
                     and comp.lgtx_lang_id = new_lang_id)
-"""
+        """
         cnt = dbDML.exec(psql=lsql)
         return
 # Languagetext

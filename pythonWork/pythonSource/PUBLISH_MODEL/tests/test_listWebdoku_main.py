@@ -24,29 +24,11 @@ class TestListWebDocumentation(unittest.TestCase):
 
         translation = TestTranslation()
         translation.setUp()
+        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
+        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
 
         assert os.path.isdir(testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
-        testpath = testsrc.testmodels_dir() / testsrc.TESTMODEL1
-        if not os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.json')):
-            os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL1)
-            if os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.db')):
-                os.chdir(testpath)
-                createDB(pupgrade=True,pmodelname=testsrc.TESTMODEL1)
-            fillDB.filldbmain(pmodelname=testsrc.TESTMODEL1)
-
-        testpath = testsrc.testmodels_dir() / testsrc.TESTMODEL2
-        if not os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL2 + '.json')):
-            os.chdir(testpath)
-            if os.path.exists(testpath / 'DB' / (testsrc.TESTMODEL1 + '.db')):
-                createDB(pupgrade=True,pparamfile=testpath / (testsrc.TESTMODEL2+ ".params"))
-            fillDB.filldbmain(pparamfile=testpath / (testsrc.TESTMODEL2+ ".params"))
-
-        testpath = testsrc.testmodels_dir() / testsrc.CRMTEST
-        if not os.path.exists(testpath / 'DB' / (testsrc.CRMTEST + '.json')):
-            os.chdir(testpath)
-            if os.path.exists(testpath / 'DB' / (testsrc.CRMTEST + '.db')):
-                createDB(pupgrade=True,pparamfile=testpath / (testsrc.CRMTEST+ ".params"))
-            fillDB.filldbmain(pparamfile=testpath/ (testsrc.CRMTEST+ ".params"))
         return
 
     def test_main(self):

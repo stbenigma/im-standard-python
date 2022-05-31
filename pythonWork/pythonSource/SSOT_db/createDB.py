@@ -29,19 +29,18 @@ def insertdiagtypes():
     Diagramtype(pname=Diagramtype.RELATIONAL).insert()
     return
 
-
-def insertlanguages():
-    for key, value in parameters.SUPPORTEDLANGUAGES.items():
-        if key in parameters.dbLanguages():
-            Language(pname=value[0], piso2=key, piso3=value[1]).insert()
-
-    Language.setmodellang(pmodellang=parameters.dbDefaultLang())
-    Language.setallreplacementlang()
-    return
+# #no longer in use languages are filled from import
+# def insertlanguages():
+#     for key, value in parameters.SUPPORTEDLANGUAGES.items():
+#         if key in parameters.dbLanguages():
+#             Language(lang_iso_name=value[0], lang_iso_code2=key, lang_iso_code3=value[1]).insert()
+#
+#     Language.setmodellang(pmodellang=parameters.dbDefaultLang())
+#     Language.setallreplacementlang()
+#     return
 
 
 def insertBaseData():
-    insertlanguages()
     Modelelemtype.fillmelt()
     insertdiagtypes()
     return
@@ -57,17 +56,18 @@ def createnewDB(pdbfilepath):
     """create a new database and fill in the basic data and leaves it open
 
         pdbfilepath = None => create it in memory and do not close it
+        baselang and languages are used to prefill the database
+        if they are None, the values from parameters are used
     """
+
     memorydb = ":memory:"
     dbfilepath = pdbfilepath if pdbfilepath is not None else memorydb
-    dbConnect.opendDB4DDL(pfilepath=dbfilepath, pfks='0')
+    connection = dbConnect.opendDB4DDL(pfilepath=dbfilepath)
     applysqlscript(psqlfilepath=parameters.sqlfilepath())
     insertBaseData()
     dbConnect.setversion()
-    if dbConnect.getversion() != parameters.expecteddbversion():
-        applyupgrades()
     dbConnect.checkson() #enable all constraints
-    return
+    return connection
 
 
 def extract_version(pfilename):
@@ -113,7 +113,7 @@ def applyupgrades():
 
 def upgradeDB():
     # get list of upgrade-files
-    dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath(), pfks='OFF')
+    dbConnect.opendDB4DDL(pfilepath=parameters.dbFilePath())
     actversion = dbConnect.getversion()
     applied = []
     if actversion is None:
@@ -142,8 +142,10 @@ def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodeln
     assert (pparamfile is not None or pmodelname is not None), "Parameter file or modelname must be given"
     if pparamfile is not None:
         basedirec = os.path.abspath(os.path.dirname(pparamfile))
+    elif pdestination is not None:
+        basedirec = os.path.dirname(pdestination)
     else:
-        # modelname given, take current directory as basedirec
+        # no paramfile or destination is given, take current directory as basedirec
         basedirec = os.getcwd()
     # fi
     parameters.initparam(pbasedirec=basedirec, pparamfile=pparamfile, pmodelname=pmodelname, pdbfile=pdestination,
@@ -175,14 +177,14 @@ def createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE, pmodeln
         # fi
     finally:
         logmessages.closelog()
-    return
+    return parameters.dbFilePath()
 
 
 def main(psysargs):
     parser = argparse.ArgumentParser(description='Create or upgrade SSOT-DB', parents=[argparseparent.parentparser()])
     parser.add_argument('--destination', '-d', dest="destination",
-                        help=f"Path of databasefile. Default ./{parameters.SSOTDBDIREC}" +
-                             f"/<modelname>{parameters.SSOTDBEXTENSION})")
+                        help=f"Path of databasefile. Default ./{parameters.SPODDBDIREC}" +
+                             f"/<modelname>{parameters.SPODDBEXTENSION})")
     parser.add_argument('--upgrade', '-u', action='store_true', dest='upgrade',
                         help="Upgrade existing database to latest version.")
     argparse.Namespace()
@@ -205,8 +207,8 @@ def main(psysargs):
     currentdir = os.getcwd()
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(currentdir, parameters.SSOTDBDIREC,
-                                                 myargs['modelname'] + parameters.SSOTDBEXTENSION)
+            myargs['destination'] = os.path.join(currentdir, parameters.SPODDBDIREC,
+                                                 myargs['modelname'] + parameters.SPODDBEXTENSION)
 
     # do only testing of parameterpassing while in unittest
     if not arguments.unittest:
@@ -214,7 +216,6 @@ def main(psysargs):
                  pmodelname=myargs['modelname'],
                  pdestination=myargs['destination'], pmodellang=myargs['modellanguage'], planguages=myargs['languages'],
                  plogfilepath=myargs['logfile'])
-
 
 if __name__ == '__main__':
     main(sys.argv)

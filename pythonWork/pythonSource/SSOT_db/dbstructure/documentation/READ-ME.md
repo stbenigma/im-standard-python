@@ -1,6 +1,6 @@
 # SSOT-Docu
 
-In this directory we publish the current model for the SSOT-Database and -system.  
+In this directory we _publishable the current model for the SSOT-Database and -system.  
 
 ## Documentation
 
