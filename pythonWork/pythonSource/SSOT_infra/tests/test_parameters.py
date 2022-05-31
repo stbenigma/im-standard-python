@@ -13,69 +13,6 @@ class test_parameters(unittest.TestCase):
             f.close()
         return
 
-# def test_lookfor1file():
-#     return
-#     #init parameter global variable
-#     parameters.parameterdefaults()
-#
-#     with tempfile.TemporaryDirectory() as basedirec:
-#         assert parameters.lookfor1file(p_direc=basedirec) is None, f"nonexisting DMD found in {basedirec}"
-#         direc = os.path.join(basedirec ,parameters.odmIMDefaultDirec())
-#
-#         os.mkdir(direc)
-#         makefile(pfilename=os.path.join (direc ,TESTMODELNAME + parameters.odmIMExtension()))
-#
-#         assert parameters.lookfor1file(p_direc=direc) == TESTMODELNAME,f"no {TESTMODELNAME}.dmd in {direc}"
-#
-#         #erzeuge ein 2. DMD im selben Directory
-#         makefile(pfilename=or.path.join(direc, 'TEST_DMD2' + parameters.odmIMExtension()))
-#         try:
-#             parameters.lookfor1file(p_direc=direc)
-#             assert False,f"more than one file in {direc}"
-#         except:
-#             pass
-#     #with
-#     return
-
-# def test_lookformodelname():
-#     #init parameter global variable
-#     parameters.parameterdefaults()
-#
-#     with tempfile.TemporaryDirectory() as basedirec:
-#         direc = basedirec
-#         try:
-#             lookformodelname(p_direc=direc)
-#             assert False,f"find nonexisting file in {direc}"
-#         except:
-#             pass
-#         direc = basedirec + '/' + parameters.odmIMDefaultDirec()
-#         os.mkdir(direc)
-#         firstfile=direc + TESTMODELNAME + parameters.odmIMExtension()
-#         makefile(pfilename = firstfile)
-#         (imdirectory, immodelname) = parameters.lookformodelname(p_direc=direc)
-#         assert immodelname == TESTMODELNAME,f"T{ESTMODELNAME}.dmd not found in {direc} with lookformodelname"
-#         assert imdirectory == direc,f"{direc} not found in lookformodelname"
-#         os.remove(firstfile)
-#         os.rmdir(direc)
-#
-#         os.mkdir(basedirec + '/' + parameters.odmVCSDirec())
-#         direc = basedirec + '/' + parameters.odmVCSDirec() + parameters.odmIMDefaultDirec()
-#         os.mkdir(direc)
-#         firstfile=direc + TESTMODELNAME + parameters.odmIMExtension()
-#         makefile(pfilename=firstfile)
-#         (imdirectory, immodelname) = parameters.lookformodelname(p_direc=direc)
-#         assert immodelname == TESTMODELNAME,f"{TESTMODELNAME}.dmd not found in {direc} with lookformodelname"
-#         assert imdirectory == direc,f"{direc} not found in lookformodelname"
-#
-#         secondfile=direc + 'TEST_DMD2' + parameters.odmIMExtension()
-#         makefile(pfilename=secondfile)
-#         try:
-#             (imdirectory, immodelname) = parameters.lookformodelname(p_direc=direc)
-#             assert False,f"2 dmd-files in {direc} not recognized with lookformodelname"
-#         except:
-#             pass
-#     #with
-#     return
 
     def test_initparam(self):
         with self.assertRaises(Exception):

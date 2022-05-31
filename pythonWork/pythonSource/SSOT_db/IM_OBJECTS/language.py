@@ -26,13 +26,17 @@ class Language(Baseobject):
         self.lang_iso_code3 = nvl(self.lang_iso_code3,defiso3)
         self.lang_iso_name = nvl(self.lang_iso_name,defname)
 
-    @staticmethod
-    def getdefaultlang():
+    @classmethod
+    def getdefaultlang(cls):
         lDefLangs = Language.select(pwhere=("""lang_is_base_lang = ?""", 'TRUE'))
         if (lDefLangs is None): return None
         if (len(lDefLangs) == 0): return None
         if (len(lDefLangs) > 1): raise Exception("More than one model-Language defined")
         return lDefLangs[0]
+
+    @classmethod
+    def getdefaultlangid(cls):
+        return cls.getdefaultlang().lang_id
 
     @staticmethod
     def getlanguagecodes():

@@ -11,7 +11,7 @@ import io
 import sys
 
 import SSOT_infra.tests.integration as testsrc
-from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
+from LOAD_MODELS.LOAD_INFRA import mergedbs
 from LOAD_MODELS.LOAD_ODM import fillDB
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles

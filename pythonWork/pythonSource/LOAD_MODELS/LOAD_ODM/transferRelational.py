@@ -4,7 +4,8 @@ import xml.etree.ElementTree as ET
 from SSOT_db.IM_OBJECTS import  *
 from LOAD_MODELS.LOAD_INFRA import handleXML
 from LOAD_MODELS.LOAD_ODM import transferModel
-from SSOT_infra import parameters, logmessages,nvl
+from SSOT_infra import logmessages,nvl
+from .odmparameters import getodmparams,ODMParameter
 
 globalschnid:int = None
 
@@ -95,7 +96,7 @@ def do1table(pfilename):
 #do1table
 
 def transfertables(pschndirec):
-    tablesdirec = pschndirec +'/' + parameters.odmtabledirec()
+    tablesdirec = getodmparams().tabledirec(pschndirec)
     transferModel.dosegfiles(pdirec=tablesdirec,
                              transferfiles=do1table)
 #transfertables
@@ -120,9 +121,9 @@ def do1interface(pfilename):
 #do1interface
 
 def transferinterface():
-    transferModel.doxmlfiles(pdirec=parameters.odmrelDirec(),
+    transferModel.doxmlfiles(pdirec=getodmparams().reldirec(),
                              ptransfer=do1interface,
-                             ppattern=r'{}.xml'.format(transferModel.GUIDPATTERN))
+                             ppattern=r'{}.xml'.format(ODMParameter.guidpattern()))
 #transferinterface
 
 def loeschmodell():
@@ -269,8 +270,8 @@ def do1mapping(pfilename):
 #do1mapping
 
 def transfermappings():
-    transferModel.doxmlfiles(pdirec=parameters.odmmappingDirec(), ptransfer=do1mapping
-                             , ppattern=r'ExtendedMap_RM{}.xml'.format(transferModel.GUIDPATTERN))
+    transferModel.doxmlfiles(pdirec=getodmparams().mappingdirec(), ptransfer=do1mapping
+                             , ppattern=r'ExtendedMap_RM{}.xml'.format(ODMParameter.guidpattern()))
 
 #transfermappings
 

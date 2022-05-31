@@ -1,5 +1,4 @@
 from SSOT_db.SQL_INFRA import dbDML
-from SSOT_infra import logmessages
 from .baseobject import Baseobject
 from .modelelement import Modelelemtype,Modelelement
 from .externalref import Externalref
@@ -97,13 +96,14 @@ class Document(Baseobject):
 
     @classmethod
     def geticons(cls,pentiid):
-        iconmasterdocumentname = "ENTITY-ICONS"
+        ENTITYICONS: str = "ENTITY-ICONS"  # Master-Document for Entitiy-Icon-files
+
         """reads subdocuments of documents attached to an entity
         """
         return cls.select(pwhere=("""docu_id in (select modo_docu_id from mode_docu 
                                                     where modo_mode_id = ?)
                                     and docu_docu_id in (select docu_id from documents 
-                                                        where docu_name = ?)""",pentiid,iconmasterdocumentname))
+                                                        where docu_name = ?)""",pentiid,ENTITYICONS))
 
     """def xxdocureferenced(prelaid=None,penti=None,pwebattr=None):
     data = dbDML.select("

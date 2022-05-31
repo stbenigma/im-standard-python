@@ -25,15 +25,12 @@ def initlog(pmodulename: str):
         """
     global logcount, logfile, logtrap
     logcount = 0
-    logpath = Path(parameters.logfilepath())
-    logpath.parent.mkdir(exist_ok=True)
-    logfile = open(logpath, 'a+')
-    log_line = "{}  {}: Model={}  DB={}\n".format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
-                                                  , pmodulename
-                                                  ,
-                                                  parameters.odmIMDirec() + parameters.modelName() + parameters.odmIMExtension()
-                                                  , parameters.dbFilePath())
-    logfile.write(log_line)
+    log_line = f"""{datetime.now().strftime("%Y-%m-%d %H:%m:%S")}  {pmodulename}: Model={parameters.modelName()}  DB={parameters.dbFilePath()}\n"""
+    if parameters.logfilepath() is not None:
+        logpath = Path(parameters.logfilepath())
+        logpath.parent.mkdir(exist_ok=True)
+        logfile = open(logpath, 'a+')
+        logfile.write(log_line)
     logtrap(log_line)
     return
 

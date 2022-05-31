@@ -40,10 +40,7 @@ class Testmodel:
                 #upgrade
                 createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
 
-            if os.path.exists(self.paramfile):
-                fillDB.filldbmain(pparamfile=self.paramfile)
-            else:
-                fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
+            fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
 
         if palways or not os.path.exists(self.jsonfile) or age(os.path.getmtime(self.jsonfile))>60:
             createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,

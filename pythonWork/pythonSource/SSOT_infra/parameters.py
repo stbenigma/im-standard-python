@@ -106,6 +106,9 @@ def parameterdefaults():
                  'iconmasterdocumentname': "ENTITY-ICONS"
                  }
 
+def dbjsonfile():
+    return os.path.join(dbDirect(),(modelName()+JSONEXTENSION))
+
 def getsetparam(pparamname, pnewval: str = None):
     """returns the parameterset value named pparamname if pnewval  is None
     sets the the parameterset value to pnewval otherwise
