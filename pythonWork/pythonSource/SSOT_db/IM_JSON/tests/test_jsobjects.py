@@ -32,6 +32,7 @@ class test_jsobjects(unittest.TestCase):
             self.assertEqual(len(BusinessRule.select()), len(brjs))
         finally:
             dbConnect.closeDB()
+        return
 
     def test_actorroles(self):
         def filltestdatatodb():
@@ -89,3 +90,18 @@ class test_jsobjects(unittest.TestCase):
         finally:
             Actorrole.delete(pwhere="actr_name like 'test_'")
             dbConnect.closeDB()
+        return
+
+    def test_jsoncreate(self):
+        dbConnect.openDB(pfilepath=self.testmodelcrm.dbfile)
+        newjson = JSModel(pmodel=sql2json(pdbname=self.testmodelcrm.modelname))
+        attrs = newjson.getelements('attributes')
+        expl = None
+        for key,attr in attrs.items():
+            if len(attr['examples'])==3:
+                expl = attr['examples']
+        self.assertIsNotNone(expl)
+        self.assertEqual(3,len(expl)) #3 examples
+        self.assertTrue('de' in expl[0]) #key is languange
+        self.assertEqual(3,len(expl[0]))#3 langs
+        return

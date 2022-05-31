@@ -1,44 +1,44 @@
-import logging
+import sys
+import datetime
 
+from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db import createnewDB
 from SSOT_infra import parameters
-import sys
-from datetime import datetime
 
-SOURCE_SPOD:str='SPOD' #default source for SPOD-internal updates
+SOURCE_SPOD: str = 'SPOD'  # default source for SPOD-internal updates
 
 nofunc = lambda p: None
 # json-key: (processorder,baseobjectload, referencesload,hasexternalref,tablename)
 # table name is only allowed for entries with typcial json-ids (xxxxNNNN)
 transferprocs = {
-    'model': (1, proj2sql, nofunc, False,None)
-    , 'languages': (2, langs2sql, nofunc, False,None)
-    , 'physicalunits': (3, physicalunits2sql, nofunc, False,PhysicalUnit._tablename)
-    , 'datatypes': (4, datatypes2sql, nofunc, True,Datatype._tablename)
-    , 'storageformats': (5, storageformats2sql, nofunc, False,Storageformat._tablename)
-    , 'documents': (6, documents2sql, nofunc, True,Document._tablename)
-    , 'orgunits': (7, orgunits2sql, nofunc, True,OragnisationalUnit._tablename)
-    , 'actorroles': (7, actorroles2sql, actorconcerns2sql, True,Actorrole._tablename)
-    , 'categories': (7, entitycategory2sql, nofunc, False,EntityCategory._tablename)
-    , 'userdefprops': (8, udps2sql, nofunc, False,Userdefprop._tablename)
-    , 'systems': (10, systems2sql, nofunc, True,Interface._tablename)
-    , 'domains': (12, domains2sql, nofunc, True,Domain._tablename)
-    , 'entities': (14, entities2sql, nofunc, True,Entity._tablename)
-    , 'attributes': (16, attributes2sql, nofunc, True,Attribute._tablename)
-    , 'arcs': (18, arcs2sql, nofunc, True,Arc._tablename)
-    , 'relations': (20, relations2sql, nofunc, True,Relation._tablename)
-    , 'keys': (22, keys2sql, nofunc, True,Key._tablename)
-    , 'tables': (30, tables2sql, nofunc, True,Table._tablename)
-    , 'columns': (32, columns2sql, nofunc, True,Column._tablename)
-    , 'businessrules': (33, businessrules2sql, nofunc, True,BusinessRule._tablename)
-    , 'diagrams': (34, diagrams2sql, nofunc, True,Diagram._tablename)
-    , '_imprint_': (99, nofunc, nofunc, True,None)
+    'model': (1, proj2sql, nofunc, False, None),
+    'languages': (2, langs2sql, nofunc, False, None),
+    'physicalunits': (3, physicalunits2sql, nofunc, False, PhysicalUnit._tablename),
+    'datatypes': (4, datatypes2sql, nofunc, True, Datatype._tablename),
+    'storageformats': (5, storageformats2sql, nofunc, False, Storageformat._tablename),
+    'documents': (6, documents2sql, nofunc, True, Document._tablename),
+    'orgunits': (7, orgunits2sql, nofunc, True, OragnisationalUnit._tablename),
+    'actorroles': (7, actorroles2sql, actorconcerns2sql, True, Actorrole._tablename),
+    'categories': (7, entitycategory2sql, nofunc, False, EntityCategory._tablename),
+    'userdefprops': (8, udps2sql, nofunc, False, Userdefprop._tablename),
+    'systems': (10, systems2sql, nofunc, True, Interface._tablename),
+    'domains': (12, domains2sql, nofunc, True, Domain._tablename),
+    'entities': (14, entities2sql, nofunc, True, Entity._tablename),
+    'attributes': (16, attributes2sql, nofunc, True, Attribute._tablename),
+    'arcs': (18, arcs2sql, nofunc, True, Arc._tablename),
+    'relations': (20, relations2sql, nofunc, True, Relation._tablename),
+    'keys': (22, keys2sql, nofunc, True, Key._tablename),
+    'tables': (30, tables2sql, nofunc, True, Table._tablename),
+    'columns': (32, columns2sql, nofunc, True, Column._tablename),
+    'businessrules': (33, businessrules2sql, nofunc, True, BusinessRule._tablename),
+    'diagrams': (34, diagrams2sql, nofunc, True, Diagram._tablename),
+    '_imprint_': (99, nofunc, nofunc, True, None)
 }
 
-def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False) -> Mergeresult:
+
+def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False, pkeepids=False) -> Mergeresult:
     """
     merge json into current connection
         DB-Version has already been checked
@@ -48,17 +48,19 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
     :param psrcname:  Name of the source providing model-info
     :param pverbose:  True -> do more logging
     :param pcheckonly: True -> I am beeing called by a check. do not check to avoid recursion
+    :param pkeepids: use identities (number part of ENTI[nnnn]) from JSON as db id
     :return:
     """
     if not pcheckonly:
         # make sure, the model is consistent with database
         # but not if I am called by the check
-        assert checkjsonmodel(pmodel=pmodel, pverbose=pverbose)
+        assert checkjsonmodel(pmodel=pmodel, pkeepids=False, pverbose=pverbose)
 
     # here we need an open database
     assert dbConnect.isopenDB()
 
     result = Mergeresult(verbose=pverbose, checkonly=pcheckonly, srcname=psrcname)
+    result.use_json_id = pkeepids
     for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0]):
         js2sql = transferprocs[masterobject][1]
         if js2sql != nofunc:
@@ -84,6 +86,8 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
             if extref:
                 # it is an element with external reference
                 cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
+                if cnt > 0:
+                    logging.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
                 result.adddelcnt(cnt, masterobject)
             else:
                 # no external reference. Delete entry, if its key does not exist in the json-file
@@ -103,7 +107,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False,pcheckonly=False)
     if not pcheckonly and (len(result.errors) == 0):
         """clean up and set final project parameters"""
         proj: Project = Project.select()[0]
-        proj.proj_um, proj.proj_dm = psrcname, datetime.now()
+        proj.proj_um, proj.proj_dm = psrcname, datetime.datetime.now()
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     # fi
@@ -124,7 +128,7 @@ def connecttodbcopy():
 
 
 def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
-               pverbose=False, pdryrun=False):
+               pverbose=False, pdryrun=False, pkeepids=False):
     """
     merge jsonfile into existing database
 
@@ -132,7 +136,8 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
     :param pmodel:  JSModel read from file to merge
     :param psrcname: Name of the source merging data into an existing SPOD
     :param pverbose: log more information
-    :param pdryrun: do a merging into a clone, not changing the real datagbase
+    :param pdryrun: do a merging into a clone, not changing the real database
+    :param pkeepids: use identities (number part of ENTI[nnnn]) from JSON as db id
     :return:  jsonstructure generated from the updated database
     """
     retval = None
@@ -151,7 +156,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
                 f"""existing database  {pdbfile}\nhas version {dbversion} but should have {newversion}""")
             raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
 
-        mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose)
+        mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose, pkeepids=pkeepids)
         if pverbose and len(mergeresult.changes) > 0:
             for c in mergeresult.changes:
                 print(c)
@@ -166,7 +171,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
             f"    {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
         if pdryrun:
             print(f"***** Database was not modified ****")
-        #return json from merge anyway
+        # return json from merge anyway
         retval = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
     finally:
@@ -175,19 +180,22 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
 
     if mergeresult is not None:
         js_change_file = Path('log') / 'merge.json'
-        js_change_file.parent.mkdir(exist_ok=True)
-        logging.debug("Writing change log to '%s'", str(js_change_file))
-        mergeresult.write_json(js_change_file)
+        try:
+            js_change_file.parent.mkdir(exist_ok=True)
+            logging.debug("Writing change log to '%s'", str(js_change_file))
+            mergeresult.write_json(js_change_file)
+        except:
+            pass  # loggin darf nicht abstürzen
 
     return retval
 
 
-def checkjsonfile(pjsonfilepath, pverbose=False)-> bool:
+def checkjsonfile(pjsonfilepath, pverbose=False) -> bool:
     logging.info(f"check jsonfile {pjsonfilepath}")
-    return checkjsonmodel(pmodel=JSModel.readfromfile(pjsonfilepath),pverbose=pverbose)
+    return checkjsonmodel(pmodel=JSModel.readfromfile(pjsonfilepath), pverbose=pverbose)
 
 
-def checkjsonmodel(pmodel, pverbose=False) -> bool:
+def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
     """
     checks a json for consistency
         it is entered in an empty database and merged into it.
@@ -211,9 +219,11 @@ def checkjsonmodel(pmodel, pverbose=False) -> bool:
     dbConnect.push()
     try:
         createnewDB(pdbfilepath=None)
-        mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,pcheckonly=True)
+        mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose, pcheckonly=True,
+                                    pkeepids=pkeepids)
         logging.info(f"model {modelname}")
-        logging.info(f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
+        logging.info(
+            f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
         logging.info(f"Baselanguage: {baselang}  Languages: {languages}")
         logging.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
         logging.info(

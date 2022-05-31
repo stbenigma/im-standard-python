@@ -1,13 +1,12 @@
-import json
+import logging
+from copy import copy
 
-from SSOT_infra import todatetime
-import sys, os
+from tqdm.autonotebook import tqdm
 
-sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_DB')
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
-from copy import copy
 from SSOT_infra import parameters
+from SSOT_infra import todatetime
 
 
 class Mergeresult:
@@ -26,6 +25,7 @@ class Mergeresult:
         self.changes = []
         self.srcname = srcname
         self.idTranslate = dict()
+        self.use_json_id = False
         """{extjsid: keytrans,}  jsid MMMMxxxx (RELA1442)"""
         self.checkonly = checkonly
 
@@ -96,21 +96,31 @@ class Mergeresult:
 
     def write_json(self, file):
         """Write the merge result to a json file"""
-        js_structure = {
+        with open(file, 'w') as out:
+            json.dump(self._repr_json_(), out)
+
+    def _repr_json_(self):
+        return {
             'summary': {
                 'inserted': self.insertcnt,
                 'updated': self.updatecnt,
                 'deleted': self.deletecnt,
+                'errors': len(self.newerrors),
+                'warnings': len(self.warnings),
             },
             'changeset': self.changes,
+            'errors': self.newerrors,
+            'warnings': self.warnings,
         }
-        with open(file, 'w') as out:
-            json.dump(js_structure, out)
+
+    def __repr__(self):
+        return f"c:{self.insertcnt}, u:{self.updatecnt}, d:{self.deletecnt}." \
+               f" errors:{len(self.newerrors)}, warnings:{len(self.warnings)}"
 
 
-def getallsrcrefs(pelemtype,psrcname):
+def getallsrcrefs(pelemtype, psrcname):
     """ get all sourcerefs for an elementtype and a source"""
-    retval = {extr.extr_source_id:extr.extr_id \
+    retval = {extr.extr_source_id: extr.extr_id \
               for extr in Externalref.getallextrs(pelemtype=pelemtype, psrcname=psrcname)}
     return retval
 
@@ -138,11 +148,11 @@ def getelemsrcrefs(psrcname, pkey, pelem):
         srcrefs = dict()
     if psrcname not in srcrefs:
         from datetime import datetime as dt
-        srcrefs[psrcname] = [pkey, dt.now()]
+        srcrefs[psrcname] = [pkey, str(dt.now())]
     return srcrefs
 
 
-def getelemsrcid(psrcrefs,psrcname):
+def getelemsrcid(psrcrefs, psrcname):
     if psrcname in psrcrefs:
         retval = psrcrefs[psrcname][0]
     else:
@@ -160,9 +170,10 @@ def getbyanysrcref(presult, pelemsrcrefs):
     for name, ref in pelemsrcrefs.items():
         dbobj = Modelelement.getelementbyextref(psrcname=name, psrcid=ref[0])
         if dbobj is not None:
-            return retval #HOTFIX return first found Check problem of SPOD creating new id for same json entry
-            if (retval is not None) and (dbobj.getid() != retval.getid()):
-                raise Exception(f"too many extrefs for source_id {ref[0]} and dbids {dbobj.getid()} and {retval.getid()}'")
+            return dbobj  ###TODO HOTFIX return first found Check problem of SPOD creating new id for same json entry
+            if False and (retval is not None) and (dbobj.getid() != retval.getid()):
+                raise Exception(
+                    f"too many extrefs for source_id {ref[0]} and dbids {dbobj.getid()} and {retval.getid()}'")
             else:
                 retval = dbobj
     return retval
@@ -223,7 +234,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
     olderrorlist, newerrorlist = None, []
     newelements = copy(pjson.getelements(pelemtype=pelemtype))
-    dbelemtypesrcrefs = getallsrcrefs(pelemtype=pelemtype,psrcname=cursrcrefname)
+    dbelemtypesrcrefs = getallsrcrefs(pelemtype=pelemtype, psrcname=cursrcrefname)
 
     """loop as long as the error list changes. This could be due to the order of constraints resolution (
         e.g. fk does not yet exists).
@@ -238,29 +249,31 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         olderrorlist = newerrorlist
         newerrorlist = []
         presult.resetnewerrors()
-
         curjsonelements = copy(newelements)  # to allow deletion of done elements in loop
-        for key, elem in curjsonelements.items():
+
+        action = f"{'Verification' if presult.checkonly else 'Processing'} {pelemtype}. Pass {loopcnt}"
+        for key, elem in tqdm(curjsonelements.items(), desc=action, dynamic_ncols=True):
             if pwithextsrcref and not presult.ischeckonly():
                 """ get all srcrefs of the element 
                 make sure it has an entry for the current srcname 
                 if not: create one
                 """
                 elemsrcrefs = getelemsrcrefs(psrcname=cursrcrefname, pkey=key, pelem=elem)
-                #remove sourceref which has been handled
+                # remove sourceref which has been handled
                 cursrcrefid = elemsrcrefs[cursrcrefname][0]
                 if cursrcrefid in dbelemtypesrcrefs:
                     del dbelemtypesrcrefs[cursrcrefid]
 
                 # local obj of element information
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang
-                                  , psrcname=cursrcrefname, psrcid=getelemsrcid(psrcrefs=elemsrcrefs,psrcname=cursrcrefname))
+                                  , psrcname=cursrcrefname,
+                                  psrcid=getelemsrcid(psrcrefs=elemsrcrefs, psrcname=cursrcrefname))
 
                 dbobj = getbyanysrcref(presult=presult, pelemsrcrefs=elemsrcrefs)
 
             else:
                 jsonobj = pjs2obj(pkey=key, pelem=elem, pmodellang=modellang)
-                cursrcrefid,elemsrcrefs = None,dict()
+                cursrcrefid, elemsrcrefs = None, dict()
                 dbobj = None
 
             # fi
@@ -275,16 +288,23 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
             if dbobj is None and not presult.ischeckonly():
                 """Entry not found via sourceref. It could have a changed different srcrefs     """
                 dbobj = jsonobj.getbyanyuk()  # getbyuk(**{colname:obj.colvalue(colname) for colname in puknames})
-            #fi
+            # fi
             if dbobj is None:
                 """Entry not found via SRCREF and not found via UK -> it is new"""
+                identity = insert_identity(context=presult, elementtype=pelemtype, key=key, jsonobj=jsonobj)
+                jsonobj.setid(identity)
                 try:
-                    jsonobj.setid(None)  # provoke new ID in new db
                     dbobjid = jsonobj.insert(pdoerrhdlng=False)
+                    logging.debug(f"Inserted {key} with identity {identity} -> {dbobjid}")
+                    if identity is not None:
+                        assert dbobjid == identity, f"ID to be inserted {identity} got {dbobjid}"
+                    else:
+                        assert int(dbobjid) > 0, f"ID to be inserted {identity} got {dbobjid} for {key}"
                     presult.addfkey(extjsid=key, dbid=dbobjid)
-                    presult.addinscnt(1, f"Insert of  {str(jsonobj)}")
+                    presult.addinscnt(1, f"Insert of {str(jsonobj)}")
                     del newelements[key]  # omit in next loop
                 except Exception as e:
+                    #logging.debug(f"Insert attempt of element {key} with id {identity} failed", exc_info=e)
                     if not (presult.ischeckonly() and pelemtype == "LANG"):
                         newerrorlist.append(key)
                         err = f"""*** insert-error: ID = "{key}" """
@@ -332,12 +352,43 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         # for
     # while
 
-    #check list of sourcerefs, that are in the db but not in the json
+    # check list of sourcerefs, that are in the db but not in the json
     for dbid in dbelemtypesrcrefs.values():
         extrfs = Externalref.getsrcinfo(dbid)
         if cursrcrefname in extrfs:
-            #remove srcrefentry which was not in jsonfile from db
-            Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?",cursrcrefname,dbid))
+            # remove srcrefentry which was not in jsonfile from db
+            Externalref.delete(pwhere=("extr_source_name = ? and extr_mode_id = ?", cursrcrefname, dbid))
 
+    if len(newerrorlist) > 0:
+        print(f"Remaining errors for {pelemtype}: {newerrorlist}")
     presult.savenewerrors()
     return
+
+
+def insert_identity(context: Mergeresult, elementtype: str, key: str, jsonobj) -> int:
+    """
+    Identity management for new elements.
+    Keep identities from JSON for specific element types
+    :param jsonobj:
+    :param key:
+    :param presult:
+    :return:
+    """
+    if context.use_json_id:
+        if elementtype in [Modelelemtype.ATTR,
+                           Modelelemtype.ENTI,
+                           Modelelemtype.INTF,
+                           Modelelemtype.TABL,
+                           Modelelemtype.COLU,
+                           ]:
+            try:
+                assert context.idTranslate.get(key) is None, f"Id for {key} already set: {context.idTranslate.get(key)}"
+                identity = int(key[4:])
+                if identity > 0:
+                    return identity
+            except ValueError:
+                logging.warning(f"Unable to use key {key} for identity")
+                pass
+
+    # in any other case
+    return None

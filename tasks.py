@@ -10,10 +10,16 @@ from pathlib import Path
 import sys
 import zipfile as zlib
 
+import logging
+import os
+from logging import handlers
+from datetime import datetime
+
 try:
     from invoke import task
 except ModuleNotFoundError:
-    print("invoke module not found. Install using 'conda install invoke'")
+    print("Python module 'invoke' not found. Install using 'conda install invoke'")
+    print("See: https://www.pyinvoke.org/")
     exit(-1)
 
 PROJECT_ROOT = Path(__file__).parent.resolve()
@@ -22,6 +28,35 @@ TESTMODELS_BASE = SOURCE_FOLDER / 'testenvironment' / 'testmodels'
 TEST_MODEL = TESTMODELS_BASE / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
 INTEGRATION_TEST_FOLDER = PROJECT_ROOT / 'testdata'
+
+
+def initialize_logging(start_message: str = None):
+    stamp = datetime.now()
+    run_stamp = stamp.strftime("%Y-%m-%d_%H-%M-%S")
+
+    os.makedirs('log', exist_ok=True)
+    logfile = f'log/invoke-{run_stamp}.log'
+    formatter = logging.Formatter("%(asctime)s [%(threadName)s] - %(name)s - %(levelname)s - %(message)s")
+
+    file_handler = handlers.RotatingFileHandler(logfile, maxBytes=(1024 * 1024 * 20), backupCount=10)
+    file_handler.setFormatter(formatter)
+
+    console_log_handler = logging.StreamHandler()
+    console_formatter = logging.Formatter("%(levelname)s - %(message)s")
+    console_log_handler.setFormatter(console_formatter)
+
+
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.DEBUG)
+
+    root_logger.addHandler(console_log_handler)
+    root_logger.addHandler(file_handler)
+
+    console_log_handler.setLevel(logging.INFO)
+    file_handler.setLevel(logging.DEBUG)
+
+    if start_message is not None:
+        root_logger.info(start_message)
 
 
 def load_tools_library():
@@ -145,7 +180,7 @@ def generator(c, model=None,
         optargs.append("--verbose")
 
     if spod_only:
-            optargs.append("--spod-only")
+        optargs.append("--spod-only")
 
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
@@ -158,19 +193,32 @@ def generator(c, model=None,
 
 
 @task
-def dbversion(c, model=None, full=False):
+def dbversion(c, model=None, full=False, db=None):
     if full:
         c.run(
-            f"""echo expected  `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
+            f"""echo expected `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
     if model is None:
         model = 'riddle'
     if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
         model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
+    if db is not None:
+        model = db
     dbfile = Path(model).resolve()
     if not dbfile.is_file():
         print(f"{dbfile} is not file")
         exit(1)
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
+
+    load_tools_library()
+    from SSOT_db.SQL_INFRA.dbConnect import openDB
+
+    with closing(openDB(dbfile)) as connection:
+        print(f"Entities: {count(connection, 'entities')}")
+        print(f"Attributes: {count(connection, 'attributes')}")
+        print(f"Systems: {count(connection, 'interfaces')}")
+        print(f"Tables: {count(connection, 'tables')}")
+        print(f"Columns: {count(connection, 'columns')}")
+
 
 
 @task
@@ -249,12 +297,18 @@ def bootstrap_integration_tests(c):
             c.run(f"inv generator --spod-only -m {candidate}")
 
 
-@task(help={
-    'source': "JSON source [mandatory]",
-    'output': "Path of the destination file. Source path with .db extension if undefined",
-    'nomerge': "Overwrite current database"})
-def filldb(c, source, output=None, nomerge=False):
-    """Fill database form SPOD (JSON source)"""
+@task(aliases=['filldb'],
+      help={
+          'source': "JSON source [mandatory]",
+          'srcname': "Name of the source",
+          'output': "Path of the destination file. Source path with .db extension if undefined",
+          'nomerge': "Overwrite current database"})
+def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=False):
+    """
+    Fill database form SPOD (JSON source)
+    @:param dry Dry run
+    """
+    initialize_logging("json2db")
     load_tools_library()
     src_path = Path(source)
 
@@ -301,23 +355,38 @@ def filldb(c, source, output=None, nomerge=False):
 
     if out_path.is_file():
         print(f"Updating database {out_path}")
-        database = closing(dbConnect.openDB(str(out_path)))
+        database = dbConnect.openDB(str(out_path))
     else:
         print(f"Creating database {out_path}")
-        database = closing(createnewDB(str(out_path)))
+        database = createnewDB(str(out_path))
 
-    with database as conn:
+    with closing(database) as conn:
         dbConnect.write_git_reversion(revision, conn)
         model = JSModel(spod)
-        mergedbs.mergejs2db(pdbfile=str(out_path.resolve()), pmodel=model)
-        print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+        mergedbs.mergejs2db(pdbfile=str(out_path.resolve()), pmodel=model, psrcname=srcname,
+                            pverbose=verbose, pdryrun=dry, pkeepids=nomerge)
 
+        print(f"Entities: {count(database, 'entities')}")
+        print(f"Attributes: {count(database, 'attributes')}")
+        print(f"Systems: {count(database, 'interfaces')}")
+        print(f"Tables: {count(database, 'tables')}")
+        print(f"Columns: {count(database, 'columns')}")
+
+    print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+
+
+def count(connection, table: str) -> int:
+    with closing(connection.cursor()) as cursor:
+        cursor.execute(f"SELECT count(*) FROM [{table}]")
+        curr_table = cursor.fetchall()
+        return curr_table[0][0]
 
 @task(help={
     'source': "SPOD database [mandatory]",
     'output': "Path of the destination json. Source path with .json extension if undefined"
-    })
+})
 def db2json(c, source, output=None):
+    initialize_logging("db2json")
     load_tools_library()
     src_path = Path(source)
 
@@ -334,7 +403,6 @@ def db2json(c, source, output=None):
     from SSOT_db.IM_JSON import JSModel
     from SSOT_db.createDB import createnewDB
     from LOAD_MODELS.LOAD_INFRA import mergedbs
-
 
     parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
@@ -355,10 +423,11 @@ def db2json(c, source, output=None):
     from SSOT_db.IM_JSON import sql2json
     with closing(dbConnect.openDB(src_path)):
         model = JSModel(sql2json(pdbname=dbConnect.getDBname()))
-        git_revision = dbConnect.read_git_revision( dbConnect.getdbcon())
+        git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
         print(f"Writing SPOD for git revision {revision} to {out_path}")
-        model.write_json(out_path)
+        model.printSPOD(out_path)
+    print("Summary:\n" + json.dumps(model._repr_json_(), indent=4))
     print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SPOD {src_path}")
 
 

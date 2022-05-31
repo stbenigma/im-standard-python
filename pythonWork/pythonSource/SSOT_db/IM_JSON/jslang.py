@@ -111,25 +111,14 @@ def langs2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
         newlang: Language = Language().getbyuk(lang_iso_code2=iso2)
         if newlang is not None:
             replacementiso2 = jlang["replacementlang"]
-            if replacementiso2 is None:
-                replacmentid = None
-            else:
+            if replacementiso2 is not None:
                 replacmentid = Language().getbyuk(lang_iso_code2=replacementiso2).getid()
-            # fi
-            if newlang.lang_lang_id != replacmentid:
-                newlang.updatedb()
-                presult.addupdcnt(1, f"replacement Language for {newlang.lang_iso_code2} changed")
-        # for
-
-    try:
-        deflang = Language.getdefaultlang()
-        if deflang is None: presult.markdberror("""*** No modellanguage defined""", pelem="defaultlang")
-    except:
-        presult.markerror("""*** more then one default modellanguage defined""")
-
-    """check all languages have replacementlanguage"""
-    langs = Language.getlangswithillegalreplacement()
-    if len(langs) > 0:
-        presult.markdberror(perr="Illegal replacementlanguage(s)", pelem=','.join(l.lang_iso_code2 for l in langs))
+                if newlang.lang_lang_id != replacmentid:
+                    newlang.lang_lang_id = replacmentid
+                    newlang.updatedb()
+                    ###TODO handle replacement languages properly they have no ID, only a iso2code
+                    #presult.addupdcnt(1, f"replacement Language for {newlang.lang_iso_code2} changed")
+        #fi
+    # for
     return
 # langs2sql

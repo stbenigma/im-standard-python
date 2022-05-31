@@ -1,7 +1,6 @@
-import datetime
 import json
 import logging
-import os
+from datetime import datetime
 from pathlib import Path
 from threading import local
 
@@ -38,27 +37,7 @@ def optionalvalue(pelem, pkey):
 
 
 def jsonfilename(pfilename):
-    return pfilename + ('' if pfilename[-5:]=='.json' else '.json')
-
-
-def examples2js(pexpls: list = None):
-    """ None = emptymodel
-        [Example,]"""
-    if pexpls is None:
-        return {'en': ['']}
-    else:
-        """    {"de": ["Lager",]
-                   "en": ["Stock",]
-                },
-        """
-        retval = {}
-        for expl in pexpls:
-            for lang, value in expl.expl_value_l.items():
-                if lang in retval:
-                    retval[lang].append(nvl(value))
-                else:
-                    retval[lang] = [nvl(value)]
-        return retval
+    return pfilename + ('' if pfilename[-5:] == '.json' else '.json')
 
 
 class JSModel:
@@ -169,11 +148,22 @@ class JSModel:
     def printSPOD(self, destination: Path):
         return storeSPOD(self.jsmodel, destination)
 
+    def _repr_json_(self):
+        return {
+            'model': self.jsmodel['model'],
+            'imprint': self.jsmodel['_imprint_'],
+            'entities': len(self.jsmodel['entities']),
+            'attributes': len(self.jsmodel['attributes']),
+            'systems': len(self.jsmodel['systems']),
+            'tables': len(self.jsmodel['tables']),
+            'columns': len(self.jsmodel['columns']),
+        }
+
+
 # JSModel
 
 
 def check_json_serialisable(structure: dict):
-
     def nest(element, path: str):
         if isinstance(element, dict):
             for key, value in element.items():
@@ -189,20 +179,23 @@ def check_json_serialisable(structure: dict):
             check_value(element, path)
 
     def check_value(value, path: str):
-        if isinstance(value, datetime.datetime):
+        if isinstance(value, datetime):
             raise ValueError(f"Value {value} of type {type(value)} in {path} cannot be serialised")
 
     nest(structure, '')
 
+
 def printJSON(pmodel, pfilepath, pfilename, psorted=False):
     destination = Path(pfilepath, jsonfilename(pfilename))
     return storeSPOD(pmodel, destination)
+
 
 def storeSPOD(pmodel, destination, psorted=False) -> Path:
     check_json_serialisable(pmodel)
     with open(destination, 'w') as jsonfile:
         jsonfile.write(json.dumps(pmodel, indent=3))
     return destination
+
 
 def fillmodel(pmodel, pentries):
     """
@@ -223,7 +216,7 @@ def warn_missing_translation(din: dict, dout: dict) -> None:
     return
 
 
-def multilangtext(ptext: dict = {'en':''}):
+def multilangtext(ptext: dict = {'en': ''}):
     assert ptext is not None
     result = {k: nvl(v) for k, v in ptext.items()}
     ### Multilang-Texte werden im select behandelt.

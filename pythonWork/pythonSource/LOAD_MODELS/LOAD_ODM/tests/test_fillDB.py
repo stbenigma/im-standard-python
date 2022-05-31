@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import unittest
 from contextlib import closing
@@ -31,7 +32,7 @@ class TestFillDatabase(unittest.TestCase):
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
         print ("************************* enable test wenn es funktioniert")
-        #self.testmodel2.initDB(palways=True)
+        self.testmodel2.initDB(palways=True)
 
     def test_fillmergedb(self):
         create_testmodel(self.testmodel1, new=True)
@@ -133,7 +134,7 @@ class TestFillDatabase(unittest.TestCase):
         #    createDB(pupgrade=True, pparamfile=paramfile)
         fillDB.filldbmain(pparamfile=tm2.paramfile)
         # check handling of translations
-        print(f"Verifying against {tm2.jsonfile}")
+        #print(f"Verifying against {tm2.jsonfile}")
         with open(tm2.jsonfile) as jsonFile:
             jmodel = json.load(jsonFile)
             checkentityID, checkentity = getbyfield(jmodel, "entities", "Kind Entität1", plang="de")[0]

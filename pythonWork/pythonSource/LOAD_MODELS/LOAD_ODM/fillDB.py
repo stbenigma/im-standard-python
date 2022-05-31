@@ -79,7 +79,7 @@ def destdir(pdestdir:Path= None,pmodeldir:Path= None):
     assert os.path.isdir(retval), f"Destination path does not exists: {retval} "
     return retval
 
-def transferodm2json(pmodelfile, pdefaultlang=None,pdestdir=None, pconfigdir=None, pdebug=False):
+def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None, pconfigdir=None, pdebug=False):
     """
     Reads a ODM model and transfers is into a json file.
 
@@ -104,6 +104,7 @@ def transferodm2json(pmodelfile, pdefaultlang=None,pdestdir=None, pconfigdir=Non
     parameters.odmIMDirec(modeldir)
     parameters.baseDirec(os.path.dirname(modeldir))
     parameters.dbDefaultLang(pdefaultlang)
+    parameters.dbLanguages(planguages if planguages is not None else pdefaultlang)
     parameters.filldefaultparams()
     ODMjson = ODM2json(pdebug=pdebug)
     return ODMjson
@@ -119,7 +120,7 @@ def fillmergedb(pdbfilepath, **kwargs):
     """
     dbfile = Path(pdbfilepath)
     loadedjson = transferodm2json(pmodelfile=parameters.odmIMDirec()+'/'+parameters.modelName()+parameters.odmIMExtension(),
-                                  pdefaultlang=parameters.dbDefaultLang(),
+                                  pdefaultlang=parameters.dbDefaultLang(),planguages=parameters.dbLanguages(),
                                   pdestdir=dbfile.parent,
                                   pconfigdir=parameters.odmKonfDirec())
 

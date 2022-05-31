@@ -46,16 +46,9 @@ def translateString(pval,pfrom,pto):
 def translateSheet (pfileName, pdestFileName
                     , pfromLang, ptoLang):
     wb = openpyxl.load_workbook(filename = pfileName)
-    #print(pwb.sheetnames)
     ws = wb.active
-    #print(pwb.sheetnames,ws)
-
-    x=0
-    for row in ws.values:
-        x+=1
-        y=0
-        for val in row:
-            y+=1
+    for x,row in enumerate(ws.values,start=1):
+        for y,val in enumerate(row,start=1):
             if (val is not None):
                 #ersetze nur den String in der Zielsprache in einer Note
                 noteregex = r"(\[{}_(ENTI|ATTR)_COMMENT\[\n)(.*)(\n\]{}_(ENTI|ATTR)_COMMENT\])"\

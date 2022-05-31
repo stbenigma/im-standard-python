@@ -31,8 +31,18 @@ class GenerateHTML(unittest.TestCase):
         self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE).initDB()
         self.testmodelriddle.initWeb()
 
+    def test_html_proper(self):
+        listWebdoku.webmain(pjsonfilepath=self.testmodelcrm.jsonfile, pwebdirec=self.testmodelcrm.webdir, pmodelname=self.testmodelcrm.modelname)
+        with open(self.testmodelcrm.webdir / (self.testmodelcrm.modelname+'_de.html'),"r") as webfile:
+            html=webfile.read()
+            self.assertRegex(html,"Sachdienstmitarbeiter")
+            self.assertRegex(html,"<br>\nde-at<br>")
+
+        return
+
     def test_listwebdoku(self):
         #os.chdir(self.testmodelcrm.modeldir)
+        self.testmodelcrm.initWeb()
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
                                    str(self.testmodelcrm.paramfile),
