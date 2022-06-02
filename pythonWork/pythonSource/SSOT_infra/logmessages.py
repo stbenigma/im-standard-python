@@ -19,15 +19,20 @@ logtrap = nop_trap
 """
 
 
-def initlog(pmodulename: str):
+def initlog(pmodulename: str,plogfilepath=None):
     """initializes the logfile for appending (creating if it does not exist) for the module pmodulename
         sets the logcounter to 0
         """
     global logcount, logfile, logtrap
     logcount = 0
-    log_line = f"""{datetime.now().strftime("%Y-%m-%d %H:%m:%S")}  {pmodulename}: Model={parameters.modelName()}  DB={parameters.dbFilePath()}\n"""
-    if parameters.logfilepath() is not None:
+    log_line = f"""{datetime.now().strftime("%Y-%m-%d %H:%m:%S")}  {pmodulename}\n"""
+    if plogfilepath is not None:
+        logpath = plogfilepath
+    elif parameters.logfilepath() is not None:
         logpath = Path(parameters.logfilepath())
+    else:
+        logpath = None
+    if logpath is not None:
         logpath.parent.mkdir(exist_ok=True)
         logfile = open(logpath, 'a+')
         logfile.write(log_line)

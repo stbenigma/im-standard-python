@@ -114,13 +114,13 @@ class ODMParameter():
         return self.odmspecificpath('logical', 'entity')
 
     def relationdirec(self):
-        self.odmspecificpath('logical', 'relation')
+        return self.odmspecificpath('logical', 'relation')
 
     def logicalsubviewdirec(self):
-        self.odmspecificpath('logical', 'subviews')
+        return self.odmspecificpath('logical', 'subviews')
 
     def arcdirec(self):
-        self.odmspecificpath('logical', 'arc')
+        return self.odmspecificpath('logical', 'arc')
 
     #business data subdirectory
     def businessinfodirec(self):
@@ -143,13 +143,13 @@ class ODMParameter():
 
     #relational subdirectories
     def reldirec(self):
-        self.odmspecificpath('rel')
+        return self.odmspecificpath('rel')
 
     def intfdirec(self,pintfdirec):
-        return self.reldirec('rel') / pintfdirec
+        return self.reldirec() / pintfdirec
 
     def tabledirec(self,pintfdirec):
-        return self.intfdirec(pintfdirec) / self.odmspecificpath('table')
+        return self.intfdirec(pintfdirec) / 'table'
 
     def relsubviewsdirec(self,pintfdirec):
         return self.intfdirec(pintfdirec) / 'subviews'

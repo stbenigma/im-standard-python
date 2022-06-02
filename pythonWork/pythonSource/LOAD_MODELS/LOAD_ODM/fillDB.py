@@ -35,7 +35,7 @@ def ODM2json(pdebug=False) -> JSModel:
     ODMjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
 
     if pdebug:
-        debugfilepath =  replace(parameters.dbFilePath(),'.db','_odm.db')
+        debugfilepath =  str(parameters.dbFilePath()).replace('.db','_odm.db')
         dbConnect.makebackuptofile(pdbfile=debugfilepath)
     dbConnect.closeDB()
     return ODMjson
@@ -76,7 +76,7 @@ def destdir(pdestdir:Path= None,pmodeldir:Path= None):
     return retval
 
 def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None,
-                     pconfigdirec=None, pdebug=False) -> JSModel:
+                     plogfilepath=None, pconfigdirec=None, pdebug=False) -> JSModel:
     """
     Reads a ODM model and transfers is into a json file.
 
@@ -96,8 +96,10 @@ def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None
     modeldir = None if pmodelfile is None else Path(os.path.dirname(os.path.abspath(pmodelfile)))
     parameters.initparam(pbasedirec=os.path.dirname(modeldir),
                          pmodelname=modelname,
-                         pmodellang=pdefaultlang, planguages=planguages if planguages is not None else pdefaultlang)
+                         pmodellang=pdefaultlang, planguages=planguages if planguages is not None else pdefaultlang,
+                         plogfilepath=plogfilepath)
     parameters.dbDirect(destdir(pdestdir=pdestdir,pmodeldir=modeldir))
+    logmessages.writelog(f"Transfer ODM to SPOD Model={parameters.modelName()}, DB={parameters.dbFilePath()}")
     #set global parameters for later use
     setodmparams(ODMParameter(imdirec=modeldir,
                                  configdirec=configdir(pconfigdir=pconfigdirec,pmodeldir=modeldir)))
@@ -201,7 +203,7 @@ def filldbmain(pdbtype=parameters.SQLITE, pmodelname=None, pmodelfilepath=None,p
     :return: path to database file
     """
 
-    logmessages.initlog('fillDBODM')
+    logmessages.initlog('fillDBODM',plogfilepath=plogfilepath)
 
     try:
         fillmergedb(pdbfilepath=pdestination,pmodelname=pmodelname,pmodelfilepath=pmodelfilepath,

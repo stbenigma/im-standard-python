@@ -99,7 +99,7 @@ def transfertables(pschndirec):
     tablesdirec = getodmparams().tabledirec(pschndirec)
     transferModel.dosegfiles(pdirec=tablesdirec,
                              transferfiles=do1table)
-#transfertables
+    return
 
 def do1interface(pfilename):
     global globalschnid
@@ -118,13 +118,13 @@ def do1interface(pfilename):
     filename, file_extension = os.path.splitext(pfilename)
     globalschnid = intf.intf_id #hässlich aber geht schlecht über generische Funktionen
     transfertables(pschndirec=filename)
-#do1interface
+    return
 
 def transferinterface():
     transferModel.doxmlfiles(pdirec=getodmparams().reldirec(),
                              ptransfer=do1interface,
                              ppattern=r'{}.xml'.format(ODMParameter.guidpattern()))
-#transferinterface
+    return
 
 def loeschmodell():
     ColAttrMap.delete()
@@ -132,7 +132,7 @@ def loeschmodell():
     Column().delete()
     Table().delete()
     Interface().delete()
-#loeschmodell
+    return
 
 noneint = lambda elem : None if elem is None else int(elem)
 
