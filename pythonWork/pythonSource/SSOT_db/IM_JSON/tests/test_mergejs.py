@@ -13,6 +13,7 @@ import sys
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
 from LOAD_MODELS.LOAD_ODM import fillDB
+from LOAD_MODELS.LOAD_ODM.transferModel import transferODMModel
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles
 from SSOT_db.IM_OBJECTS import *
@@ -407,7 +408,7 @@ class TestMergeJson(unittest.TestCase):
         element.update(defaults)
         return
 
-    def test_mergefull1(self):
+    def test_merge_entity_rename(self):
         parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
@@ -432,6 +433,7 @@ class TestMergeJson(unittest.TestCase):
         # create transferModel.transferODMModel
         fillmodel2db.filldb(transferODMModel)
         firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        firstjson.write_json(self.temp_folder / 'mergefull1_first.json')
 
         # create copy of filled db
         # first merge with itself
@@ -443,9 +445,12 @@ class TestMergeJson(unittest.TestCase):
         self.assertEqual(0, result.deletecnt)
         self.assertEqual(0, len(result.warnings))
         self.assertEqual(0, len(result.errors))
+
+        enti2key = list(firstjson.jsmodel['entities'].keys())[2]
+
         self.assertIsNotNone(firstjson.jsmodel["entities"][enti2key]["name"]["de"])
         firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
-        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=True)
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=False)
         result.write_json(self.temp_folder / 'test_mergefull.json')
         for c in result.changes:
             print(c)
