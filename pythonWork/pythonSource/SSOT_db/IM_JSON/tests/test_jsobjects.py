@@ -1,15 +1,15 @@
 import unittest
 
-from SSOT_db.IM_OBJECTS import BusinessRule,Actorrole,Actorconcern,Attribute,Boolean
+from SSOT_db.IM_OBJECTS import BusinessRule, Actorrole, Actorconcern, Attribute, Boolean
 from SSOT_db.SQL_INFRA import dbConnect
 import SSOT_infra.tests.integration as testsrc
-from SSOT_db.IM_JSON import jsbusinessrule,jsactorroles,JSModel,sql2json
+from SSOT_db.IM_JSON import jsbusinessrule, jsactorroles, JSModel, sql2json, jsentity, Mergeresult
 
 
 class test_jsobjects(unittest.TestCase):
     def setUp(self) -> None:
-        self.testmodelcrm= testsrc.Testmodel(testsrc.CRMTEST)
-        self.testmodel1= testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
 
     def test_businessrules(self):
         try:
@@ -17,17 +17,17 @@ class test_jsobjects(unittest.TestCase):
             self.buru = BusinessRule.getbyuk(buru_name='Personenrolle.BESCHREIBUNG_CHECK')
             self.bures = self.buru.getchildren()
 
-            self.assertEqual([],jsbusinessrule.buruinelements())
-            self.assertEqual([],jsbusinessrule.buruinelements(-999))
+            self.assertEqual([], jsbusinessrule.buruinelements())
+            self.assertEqual([], jsbusinessrule.buruinelements(-999))
             elements = jsbusinessrule.buruinelements(self.bures[0].bure_mode_id)
-            self.assertEqual(1,len(elements))
+            self.assertEqual(1, len(elements))
             self.assertEqual(1, len(jsbusinessrule.buruelements2js()))
             self.assertEqual(1, len(jsbusinessrule.buruelements2js()['xxxx0000']))
             jsbure = jsbusinessrule.buruelements2js([self.bures[0]])
-            self.assertEqual('R', jsbure['ATTR'+str(self.bures[0].bure_mode_id)]['r/w'])
-            brjs=jsbusinessrule.businessrules2js(pemptymodel=True)
+            self.assertEqual('R', jsbure['ATTR' + str(self.bures[0].bure_mode_id)]['r/w'])
+            brjs = jsbusinessrule.businessrules2js(pemptymodel=True)
             self.assertEqual(1, len(brjs))
-            self.assertEqual('',brjs['BURU0000']['uc'])
+            self.assertEqual('', brjs['BURU0000']['uc'])
             brjs = jsbusinessrule.businessrules2js(pemptymodel=False)
             self.assertEqual(len(BusinessRule.select()), len(brjs))
         finally:
@@ -36,13 +36,13 @@ class test_jsobjects(unittest.TestCase):
 
     def test_actorroles(self):
         def filltestdatatodb():
-            self.actrid=Actorrole(srcid='123123',srcname='test',
-                      actr_name='test1',actr_descr='descr1').insert()
-            attrs=Attribute.select()
-            Actorconcern(actc_actr_id=self.actrid,actc_mode_id=attrs[0].attr_id,
+            self.actrid = Actorrole(srcid='123123', srcname='test',
+                                    actr_name='test1', actr_descr='descr1').insert()
+            attrs = Attribute.select()
+            Actorconcern(actc_actr_id=self.actrid, actc_mode_id=attrs[0].attr_id,
                          actc_responsible='TRUE').insert()
-            Actorconcern(actc_actr_id=self.actrid,actc_mode_id=attrs[1].attr_id,
-                         actc_informed='TRUE',actc_consulted='TRUE').insert()
+            Actorconcern(actc_actr_id=self.actrid, actc_mode_id=attrs[1].attr_id,
+                         actc_informed='TRUE', actc_consulted='TRUE').insert()
             return
 
         try:
@@ -65,31 +65,48 @@ class test_jsobjects(unittest.TestCase):
             self.assertEqual(3, actc.actc_actr_id)
 
             emptyactr = jsactorroles.actorroles2js(pemptymodel=True)
-            self.assertEqual('',emptyactr['ACTR0000']['name'])
-            self.assertEqual('RACI',emptyactr['ACTR0000']['concerns']['xxxx0000'])
+            self.assertEqual('', emptyactr['ACTR0000']['name'])
+            self.assertEqual('RACI', emptyactr['ACTR0000']['concerns']['xxxx0000'])
             actr = jsactorroles.js2actr(pkey='ACTR0000', pelem=emptyactr['ACTR0000'])
-            self.assertEqual('ACTR0000',actr.actr_id)
+            self.assertEqual('ACTR0000', actr.actr_id)
 
-
-            #actors from ODM
+            # actors from ODM
             dbactrs = jsactorroles.actorroles2js(pemptymodel=False)
             filltestdatatodb()
             actrs = jsactorroles.actorroles2js(pemptymodel=False)
-            self.assertEqual(len(dbactrs)+1,len(actrs))
-            for k,v in actrs.items():
-                if v['name']=='test1':
-                    actrid=k
+            self.assertEqual(len(dbactrs) + 1, len(actrs))
+            for k, v in actrs.items():
+                if v['name'] == 'test1':
+                    actrid = k
             newjson = JSModel(pmodel=sql2json(pdbname=self.testmodel1.modelname))
 
             concerned = list(actrs[actrid]["concerns"].keys())
             mode1 = newjson.getbyid(concerned[0])
             mode2 = newjson.getbyid(concerned[1])
-            self.assertEqual('R',mode1['raci+'][actrid])
-            self.assertEqual('CI',mode2['raci+'][actrid])
+            self.assertEqual('R', mode1['raci+'][actrid])
+            self.assertEqual('CI', mode2['raci+'][actrid])
 
         finally:
             Actorrole.delete(pwhere="actr_name like 'test_'")
             dbConnect.closeDB()
+
+    def test_store_entity(self):
+        with dbConnect.openDB(self.testmodel1.dbfile, pversioncheck=False) as connection:
+            mr = Mergeresult('test_store_entity')
+            lang, _ = dbConnect.getconnlangparameters()
+            model = {"entities":
+                         jsentity.entities2js(True)
+                     }
+            next(iter(model['entities'].values()))["examples"] = [
+                {
+                    lang: [
+                        "E1 example 1"
+                    ]
+                }
+            ]
+            jsm = JSModel(model)
+            actc = jsentity.entities2sql(mr, jsm, True)
+
         return
 
     def test_jsoncreate(self):
@@ -97,11 +114,11 @@ class test_jsobjects(unittest.TestCase):
         newjson = JSModel(pmodel=sql2json(pdbname=self.testmodelcrm.modelname))
         attrs = newjson.getelements('attributes')
         expl = None
-        for key,attr in attrs.items():
-            if len(attr['examples'])==3:
+        for key, attr in attrs.items():
+            if len(attr['examples']) == 3:
                 expl = attr['examples']
         self.assertIsNotNone(expl)
-        self.assertEqual(3,len(expl)) #3 examples
-        self.assertTrue('de' in expl[0]) #key is languange
-        self.assertEqual(3,len(expl[0]))#3 langs
+        self.assertEqual(3, len(expl))  # 3 examples
+        self.assertTrue('de' in expl[0])  # key is languange
+        self.assertEqual(3, len(expl[0]))  # 3 langs
         return

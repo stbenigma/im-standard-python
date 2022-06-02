@@ -137,7 +137,7 @@ class TestMergeJson(unittest.TestCase):
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         dbConnect.closeDB()
-        curmodel.printSPOD(self.temp_folder / 'curmodel.json')
+        curmodel.write_json(self.temp_folder / 'curmodel.json')
         capturedOutput = io.StringIO()  # Create StringIO object
         sys.stdout = capturedOutput  # and redirect stdout.
 
@@ -406,6 +406,55 @@ class TestMergeJson(unittest.TestCase):
                     }
         element.update(defaults)
         return
+
+    def test_mergefull1(self):
+        parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
+        # test dryrun on exisisting files
+        dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
+        curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        dbConnect.closeDB()
+
+        curmodel.write_json(Path(self.temp_folder, 'curmodel.json'))
+
+        capturedOutput = io.StringIO()  # Create StringIO object
+        sys.stdout = capturedOutput  # and redirect stdout.
+        mergedbs.mergejs2db(pdbfile=self.testmodel2.dbfile, pmodel=curmodel,
+                                      pverbose=True, pdryrun=True)
+        sys.stdout = sys.__stdout__  # Reset redirect.
+        stdprint = capturedOutput.getvalue()
+        # don't care about other errors I only test the dry-run-merge
+        self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
+
+        # set up my model in memory to reuse it for several tests
+        createnewDB(pdbfilepath=None)  # create in memory
+
+        print("")
+        # create transferModel.transferODMModel
+        fillmodel2db.filldb(transferODMModel)
+        firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+
+        # create copy of filled db
+        # first merge with itself
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
+        # for c in result.changes:
+        #    print(c)
+        self.assertEqual(0, result.updatecnt)
+        self.assertEqual(0, result.insertcnt)
+        self.assertEqual(0, result.deletecnt)
+        self.assertEqual(0, len(result.warnings))
+        self.assertEqual(0, len(result.errors))
+        self.assertIsNotNone(firstjson.jsmodel["entities"][enti2key]["name"]["de"])
+        firstjson.jsmodel["entities"][enti2key]["name"]["de"] += 'XX'
+        result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST", pcheckonly=True)
+        result.write_json(self.temp_folder / 'test_mergefull.json')
+        for c in result.changes:
+            print(c)
+        self.assertEqual(1, result.updatecnt)
+        self.assertEqual(0, result.insertcnt)
+        self.assertEqual(0, result.deletecnt)
+
+        dbConnect.closeDB()
+
 
 if __name__ == '__main__':
     unittest.main()

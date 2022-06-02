@@ -88,7 +88,7 @@ def columns2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.COLU).items():
         newcoluid = presult.keytransl(jid)
-        if newcoluid  == 0:
+        if newcoluid == 0:
             logging.debug(f"Element {jid} not merged as it is new")
             continue
 
