@@ -132,8 +132,11 @@ def translatefks(presult: Mergeresult, pobj):
         if not (colname == pobj.getidcolname() and fk[2] == 'mode'):
             """fk from ID to mode_id is not handled
                translate id, if it is translated, assume, untranslatd id's are in form xxxx0000"""
-            if presult.istranslkey(pobj.colvalue(pcolname=colname)):
-                pobj.setcolvalue(pcolname=colname, pvalue=presult.keytransl(pobj.colvalue(pcolname=colname)))
+            try:
+                if presult.istranslkey(pobj.colvalue(pcolname=colname)):
+                    pobj.setcolvalue(pcolname=colname, pvalue=presult.keytransl(pobj.colvalue(pcolname=colname)))
+            except Exception as e:
+                raise Exception(f"Failed to process foreign key '{fk} of column '{colname} on object {pobj}. Value: {pobj.colvalue(pcolname=colname)}") from e
     # for
     return
 

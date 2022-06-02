@@ -319,7 +319,9 @@ class Baseobject:
         if len(idset) == 0: return None
         if len(idset) == 1: return foundrows[0]
         raise Exception(
-            "different rows found for different uk's of table {}, id={}".format(self._tablename, self.getid()))
+            "ID set {} -> rows '{}' found for different uk's of table {}, id={}".format(idset,
+                                                                                     ', '.join([str(a.totuple()) for a in foundrows]),
+                                                                                     self._tablename, self.getid()))
         return
 
     def prefix(self):
