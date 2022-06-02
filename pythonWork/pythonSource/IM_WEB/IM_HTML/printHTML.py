@@ -9,6 +9,7 @@ from pathlib import Path
 from SSOT_db.IM_JSON import JSModel
 from SSOT_db.IM_OBJECTS import Modelelemtype, Domain
 from SSOT_infra import parameters, nvl2, nvl, transl
+from IM_WEB.htmlparameters import gethtmlparams,sethtmlparams,HTMLParameter
 
 
 def no_hyperlink(element: dict) -> (str or None):
@@ -142,18 +143,12 @@ class HTMLExport:
             return ptyp
         # fi
 
-    def searchlogo(self, p_imagedirec):
-        retval = ''
-        for ext in ('png', 'jpg', 'svg'):
-            if os.path.isfile(os.path.join (p_imagedirec , 'logo.' + ext)):
-                retval = 'logo.' + ext
-        return retval
 
     def setWebDirec(self, p_webdirec):
 
         self.webDirectory = Path(nvl(p_webdirec, parameters.webDirec()))
         self.webFileName = parameters.modelName()
-        self.imagedirec = os.path.join(self.webDirectory, 'image')
+        self.imagedirec = os.path.join(self.webDirectory, 'images')
         self.cssdirec = os.path.join(self.webDirectory, 'css')
         self.icondirec = os.path.join(self.webDirectory, 'icons')
         self.jsdirec = os.path.join(self.webDirectory, 'js')
@@ -163,8 +158,6 @@ class HTMLExport:
         lib_path_tokens = this_file.parts[:-2]
         self.libSourceDirec = os.path.join(*lib_path_tokens, 'html-lib')
         assert os.path.exists(self.libSourceDirec), f"Unable to find {self.libSourceDirec}"
-        if (parameters.logoFileName() is None):
-            parameters.logoFileName(self.searchlogo(self.imagedirec))
 
     def createlib(self):
         if not os.path.exists(self.cssdirec):
@@ -181,7 +174,7 @@ class HTMLExport:
 
     def copyimages(self):
         """copy all file from the modeler-image directory into the web-image directory"""
-        image_src = parameters.odmFilesDirec() + 'images'
+        image_src = gethtmlparams().imagedirec()
         if os.path.exists(image_src):
             copy_tree(image_src, self.imagedirec)
 

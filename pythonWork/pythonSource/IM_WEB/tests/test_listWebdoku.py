@@ -33,6 +33,11 @@ class GenerateHTML(unittest.TestCase):
 
     def test_html_proper(self):
         listWebdoku.webmain(pjsonfilepath=self.testmodelcrm.jsonfile, pwebdirec=self.testmodelcrm.webdir, pmodelname=self.testmodelcrm.modelname)
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'jinjatemplates'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'css'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'js'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'icons'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'images'))
         with open(self.testmodelcrm.webdir / (self.testmodelcrm.modelname+'_de.html'),"r") as webfile:
             html=webfile.read()
             self.assertRegex(html,"Sachdienstmitarbeiter")

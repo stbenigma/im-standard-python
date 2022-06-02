@@ -81,9 +81,9 @@ class test_createDB(unittest.TestCase):
         with self.assertRaises(Exception):
             createDB()
         with self.assertRaises(Exception):
-            createDB(pparamfile=None, pmodelname=None)
+            createDB(pmodelname=None)
         with self.assertRaises(Exception):
-            createDB(pparamfile=None, pupgrade=False, pdbtype=parameters.SQLITE)
+            createDB(pupgrade=False, pdbtype=parameters.SQLITE)
 
         with tempfile.TemporaryDirectory() as tempdir:
             os.chdir(tempdir)
@@ -113,8 +113,3 @@ class test_createDB(unittest.TestCase):
         if os.path.exists(dbfilepath):
             shutil.rmtree(dbdirecpath)
 
-        createDB(pparamfile=str(os.path.join(testsrc.testmodels_dir(), testsrc.TESTMODEL2, testsrc.TESTMODEL2 + '.params')))
-        assert existsDB(parameters.dbFilePath())
-        # cannot recreate model
-        with self.assertRaises(Exception):
-            createDB(pparamfile=str(os.path.join(testsrc.testmodels_dir(), testsrc.TESTMODEL2)))

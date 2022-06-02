@@ -74,7 +74,7 @@ class ODMParameter():
     def imdirec(self, newval=None):
         """ set imdirec if newval is not None
             return imdirec
-            return basedirec/imdirec if None
+            return basedirec/imdefaultdirec if None
             """
         if newval is None:
             retval = self._imdirec if self._imdirec is not None else os.path.join(self.baseDirec(), self.imdefaultdirec())
@@ -190,7 +190,7 @@ class ODMParameter():
         return filepath
 
 #global getodmparams for ODM-fill
-getodmparams:ODMParameter = None
+curodmparams:ODMParameter = None
 
 def setodmparams(odmparam):
     global curodmparams

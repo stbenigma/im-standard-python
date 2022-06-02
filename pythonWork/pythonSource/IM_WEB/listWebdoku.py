@@ -5,6 +5,7 @@ import os
 import sys
 
 from IM_WEB import jinjawebmodel
+from IM_WEB.htmlparameters import sethtmlparams,gethtmlparams,HTMLParameter
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
 from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel
@@ -116,9 +117,10 @@ def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None
         jsonmodel = None
         modelname = pmodelname
 
+
     parameters.initparam(pbasedirec=basedirec, pparamfile=pparamfile, pmodelname=modelname, plogfilepath=plogfilepath,
                          pwebdirec=pwebdirec)
-
+    sethtmlparams(HTMLParameter())
     logmessages.initlog('createHTML')
     try:
         exporter = HTMLExport()
