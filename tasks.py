@@ -390,6 +390,9 @@ def db2json(c, source, output=None):
     load_tools_library()
     src_path = Path(source)
 
+    if source is None:
+        raise ValueError("no source database defined")
+
     if not src_path.is_file():
         raise Exception(f"Source '{src_path.resolve()}' is not a file")
 
@@ -401,8 +404,6 @@ def db2json(c, source, output=None):
     from SSOT_db.SQL_INFRA import dbConnect
     from SSOT_infra import parameters
     from SSOT_db.IM_JSON import JSModel
-    from SSOT_db.createDB import createnewDB
-    from LOAD_MODELS.LOAD_INFRA import mergedbs
 
     parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
