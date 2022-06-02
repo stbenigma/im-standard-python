@@ -180,7 +180,7 @@ def generator(c, model=None,
         optargs.append("--verbose")
 
     if spod_only:
-        optargs.append("--spod-only")
+            optargs.append("--spod-only")
 
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
