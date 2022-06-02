@@ -66,9 +66,11 @@ class TestInvoke(unittest.TestCase):
         destination_db = Path(self.temp_folder) / 'riddle-altered.db'
         store = [
             'invoke',
-            'filldb',
+            'json2db',
             '--source',
             str(destination_json.resolve()),
+            '--srcname',
+            'unittest',
             '--output',
             str(destination_db.resolve()),
         ]
