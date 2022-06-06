@@ -24,10 +24,8 @@ class test_parameters(unittest.TestCase):
             currentDirec = os.getcwd()
             parameters.initparam(pbasedirec=currentDirec, pmodelname=TESTMODELNAME)
             self.assertEqual(currentDirec,parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec,'IM'),parameters.odmIMDirec())
             self.assertEqual(os.path.join(currentDirec,'DB'),parameters.dbDirect())
             self.assertEqual(os.path.join(currentDirec,'DB',TESTMODELNAME+'.db'),parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec,'Web'),parameters.webDirec())
             self.assertEqual(os.path.join(currentDirec),parameters.logfiledirec())
             self.assertEqual(os.path.join(currentDirec,TESTMODELNAME+'.log'),parameters.logfilepath())
             self.assertEqual('en',parameters.dbDefaultLang())
@@ -43,16 +41,6 @@ class test_parameters(unittest.TestCase):
             self.assertEqual('de',parameters.dbDefaultLang())
             self.assertEqual('es',parameters.dbLanguages())
 
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodelfilepath='a.b')
-            self.assertEqual(os.path.join(currentDirec),parameters.odmIMDirec())
-
-            os.mkdir(os.path.join(tempdir,'IM'))
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodelfilepath='IM/a.b')
-            self.assertEqual(os.path.join(currentDirec,'IM'),parameters.odmIMDirec())
-
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodelfilepath='IM/a.b')
-            self.assertEqual(os.path.join(currentDirec,'IM'),parameters.odmIMDirec())
-
             parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodellang='de',planguages='es,en,it,de')
             self.assertEqual('de',parameters.dbDefaultLang())
             self.assertEqual('es,en,it,de',parameters.dbLanguages())
@@ -60,10 +48,8 @@ class test_parameters(unittest.TestCase):
             currentDirec = os.getcwd()
             parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pdbfile=os.path.join(currentDirec,'foo.db'),plogfilepath=os.path.join(currentDirec,'foo.logg'))
             self.assertEqual(currentDirec,parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec,'IM'),parameters.odmIMDirec())
             self.assertEqual(os.path.join(currentDirec),parameters.dbDirect())
             self.assertEqual(os.path.join(currentDirec,'foo.db'),parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec,'Web'),parameters.webDirec())
             self.assertEqual(os.path.join(currentDirec),parameters.logfiledirec())
             self.assertEqual(os.path.join(currentDirec,'foo.logg'),parameters.logfilepath())
 
@@ -77,7 +63,6 @@ class test_parameters(unittest.TestCase):
                 '[ODM]\n',
                 f'modelName = "{TESTMODELNAME}"\n',
                 '#base directory for all model data\n',
-                f'#odmIMDirec = "{None}"\n',
                 '#model name\n',
                 '[DB]\n',
                 '#default language of model in DB\n',
@@ -86,10 +71,8 @@ class test_parameters(unittest.TestCase):
                 ])
             parameters.initparam(pbasedirec=currentDirec,pparamfile=paramfile)
             self.assertEqual(currentDirec, parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec, 'IM'), parameters.odmIMDirec())
             self.assertEqual(os.path.join(currentDirec, 'DB'), parameters.dbDirect())
             self.assertEqual(os.path.join(currentDirec, 'DB', TESTMODELNAME + '.db'), parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec, 'Web'), parameters.webDirec())
             self.assertEqual(os.path.join(currentDirec), parameters.logfiledirec())
             self.assertEqual(os.path.join(currentDirec, TESTMODELNAME + '.log'), parameters.logfilepath())
             self.assertEqual('de', parameters.dbDefaultLang())
@@ -97,10 +80,8 @@ class test_parameters(unittest.TestCase):
             #same paramfile called with both modelname in parameter
             parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pparamfile=paramfile)
             self.assertEqual(currentDirec, parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec, 'IM'), parameters.odmIMDirec())
             self.assertEqual(os.path.join(currentDirec, 'DB'), parameters.dbDirect())
             self.assertEqual(os.path.join(currentDirec, 'DB', TESTMODELNAME + '.db'), parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec, 'Web'), parameters.webDirec())
             self.assertEqual(os.path.join(currentDirec), parameters.logfiledirec())
             self.assertEqual(os.path.join(currentDirec, TESTMODELNAME + '.log'), parameters.logfilepath())
             self.assertEqual('de', parameters.dbDefaultLang())
@@ -112,7 +93,6 @@ class test_parameters(unittest.TestCase):
                      ,pcontent=[
                 '[ODM]\n',
                 f'modelName = "{TESTMODELNAME}"\n',
-                f"""odmIMDirec = "{os.path.join(currentDirec, 'gitHub','IM')}"\n""",
                 f"""dbdirec = "{os.path.join(currentDirec, 'DB2')}"\n""",
                 '[DB]\n',
                 '#default language of model in DB\n',
@@ -120,10 +100,8 @@ class test_parameters(unittest.TestCase):
                 ])
             parameters.initparam(pbasedirec=currentDirec,pparamfile=paramfile)
             self.assertEqual(currentDirec, parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec,'gitHub','IM'), parameters.odmIMDirec())
             self.assertEqual(os.path.join(currentDirec, 'DB2'), parameters.dbDirect())
             self.assertEqual(os.path.join(currentDirec, 'DB2', TESTMODELNAME + '.db'), parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec, 'Web'), parameters.webDirec())
             self.assertEqual(os.path.join(currentDirec,'logfiles'), parameters.logfiledirec())
             self.assertEqual(os.path.join(currentDirec,'logfiles','speciallog.log'), parameters.logfilepath())
             os.remove(paramfile)
@@ -134,16 +112,11 @@ class test_parameters(unittest.TestCase):
                           , pcontent=[
                     """[ODM]
                     #base directory for all modeler data (with ending /)
-                    odmbasedirec = "gitHub"
+                    basedirec = "gitHub"
                     
-                    #base directory for odm-model-files (with ending /)
-                    #odmimdirec = 
                     
                     #model name   
-                    odmmodelname = "ModellModell_neu"
-                    
-                    #directory containing odm-configuration-files (below odmIMDirec)
-                    #odmkonfdirec = "Konfiguration"
+                    modelname = "ModellModell_neu"
                     
                     [DB]
                     #default language of model in DB
@@ -154,10 +127,6 @@ class test_parameters(unittest.TestCase):
                     
                     #directory containing DB-file (with ending /)
                     dbdirec = "gitHub/DB"
-                    
-                    #directory for web-source output
-                    #default <localbasedirec> <webDefaultDirec>
-                    webdirec = "Web"
                     
                     #filename of logo in Webpage (path webdirec/image/)
                     logofilename = "logo.jpg"
@@ -174,14 +143,8 @@ class test_parameters(unittest.TestCase):
                     #base directory for all modeler data 
                     #basedirec = ""
 
-                    #base directory for odm-model-files 
-                    odmimdirec = "gitHub/IM"  
-
                     #model name   =========ERROR in ModelnameField "odm" is obsolete
                     modelname = "ModellModell_neu"
-
-                    #directory containing odm-configuration-files (below odmIMDirec)
-                    #odmkonfdirec = "Konfiguration"
 
                     [DB]
                     #default language of model in DB
@@ -193,10 +156,6 @@ class test_parameters(unittest.TestCase):
                     #directory containing DB-file (with ending /)
                     dbdirec = "gitHub/DB"
 
-                    #directory for web-source output
-                    #default <localbasedirec> <webDefaultDirec>
-                    webdirec = "Web"
-                    
                     logfiledirec = ".."        
                                  
                     #filename of logo in Webpage (path webdirec/image/)
@@ -207,7 +166,6 @@ class test_parameters(unittest.TestCase):
             self.assertEqual(parameters.modelName(),"ModellModell_neu")
             self.assertEqual(parameters.baseDirec(),currentDirec)
             self.assertEqual(parameters.logfiledirec(),os.path.dirname(currentDirec))
-            self.assertEqual(parameters.odmIMDirec(),currentDirec + "/gitHub/IM")
             os.remove(paramfile)
         return
 

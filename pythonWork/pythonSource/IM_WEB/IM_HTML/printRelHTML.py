@@ -41,7 +41,7 @@ def putrefinsvg(export: HTMLExport, ptext, pintf):
 
 
 def interfacediagram(export: HTMLExport, pintf):
-    svgtext = printdiagHTML.getsvgfromfile(pname=pintf['name'])
+    svgtext = printdiagHTML.getsvgfromfile(export=export,pname=pintf['name'])
     if svgtext is not None:
         svgtext = putrefinsvg(export=export, ptext=svgtext, pintf=pintf)
     return svgtext

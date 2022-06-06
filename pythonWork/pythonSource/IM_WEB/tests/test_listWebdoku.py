@@ -49,18 +49,18 @@ class GenerateHTML(unittest.TestCase):
         #os.chdir(self.testmodelcrm.modeldir)
         self.testmodelcrm.initWeb()
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
-                                   '-p',
-                                   str(self.testmodelcrm.paramfile),
-                                   '--diagrams=DUMMY,"Kunde mit Bilder"'])
+                                    "-d",str(self.testmodelcrm.webdir),
+                                   '--diagrams=DUMMY,"Kunde mit Bilder"',
+                                   str(self.testmodelcrm.jsonfile)])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
-                                   '-p',
-                                   str(self.testmodelcrm.paramfile),
-                                   '--diagrams=DUMMY'])
+                                   "-d", str(self.testmodelcrm.webdir),
+                                   '--diagrams=DUMMY',
+                                   str(self.testmodelcrm.jsonfile)])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
-                                   '-p',
-                                   str(self.testmodelcrm.paramfile),
+                                   "-d", str(self.testmodelcrm.webdir),
                                    '-s',
-                                   'PUBL'])
+                                   'PUBL',
+                                   str(self.testmodelcrm.jsonfile)])
 
     def test_generate_html_riddle(self):
         self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
@@ -76,7 +76,7 @@ class GenerateHTML(unittest.TestCase):
         parameters.initparam(str(project),pmodelname=js_model.modelname())
         html_export = HTMLExport()
         html_export.setmodel(js_model)
-        html_export.setWebDirec(str(self.temp_folder))
+        html_export.webDirec(str(self.temp_folder))
         if os.path.exists(self.temp_folder):
             shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)

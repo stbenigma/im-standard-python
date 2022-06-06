@@ -50,14 +50,13 @@ class EnvironDiagramGeneration(IntegrationTest):
         parameterdefaults()
         parameters.parameter['webdirec'] = str(content)
 
-        html_export.setWebDirec(str(content.resolve()))
+        html_export.webDirec(str(content.resolve()))
 
         html_export.custom_hyperlink = udpr_to_link
 
         for lang in model['languages'].keys():
             generated = publish_svg_diagrams(html_export, lang)
             self.assertTrue(len(generated) > 1)
-            print(generated)
             riddle_file = list(filter(lambda d: 'riddle-' in str(d), generated.values()))
             self.assertEqual(1, len(riddle_file))
             with open(riddle_file[0], 'r') as src:

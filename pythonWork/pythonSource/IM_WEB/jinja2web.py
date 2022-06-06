@@ -215,7 +215,7 @@ template = templateEnv.get_template(TEMPLATE_FILE)
 outputText = template.render()  # this is where to put args to the template renderer
 """
 def model2html(pwebmodel:Webmodel):
-    template_folder = pwebmodel.export.jinadirec
+    template_folder = pwebmodel.export.jinjaDirec()
     assert os.path.isdir(template_folder), f"Missing jinja templates folder {template_folder}"
     t = Environment(loader=FileSystemLoader(searchpath=template_folder),autoescape=True)
     if pwebmodel.getintfid() is not None:

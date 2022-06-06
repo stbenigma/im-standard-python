@@ -4,8 +4,7 @@ import logging
 import os
 import sys
 
-from IM_WEB import jinjawebmodel
-from IM_WEB.htmlparameters import sethtmlparams,gethtmlparams,HTMLParameter
+from IM_WEB import jinjawebmodel,htmlparameters
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
 from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel
@@ -21,7 +20,7 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
                              "name": dvalue["name"],
                              "svg": printdiagHTML.getsvgtext(export=export, pdiagelem=dvalue, pdiaganker=dkey,
                                                              plang=planguage),
-                             "pdf": printdiagHTML.pdffilename(pname=dvalue["name"], plang=planguage)
+                             "pdf": printdiagHTML.pdffilename(export=export,pname=dvalue["name"], plang=planguage)
                              } for dkey, dvalue in pmodel.jsmodel["diagrams"].items()
                             if (dvalue["type"] == "Entity")],
                            key=lambda x: x["name"].upper())
@@ -29,7 +28,7 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
             diags = [{"id": pintfid,
                       "name": pmodel.getbyid(pintfid)["name"],
                       "svg": printRelHTML.interfacediagram(export=export, pintf=pmodel.getbyid(pintfid)),
-                      "pdf": printdiagHTML.pdffilename(pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
+                      "pdf": printdiagHTML.pdffilename(export=export,pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
                      ]
         # fi
         html = jinjawebmodel.rendermodel(export=export, pcurlang=planguage, pmodel=pmodel, pintfid=pintfid,
@@ -63,8 +62,7 @@ def listwebmain(export: HTMLExport):
         Languagetext.reportLang(lang)
         # omit language in name for non translated models
         langfilename = export.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.html"
-        logging.info("Generating web content for language {} in {}".format(lang, os.path.join(export.webDirectory,
-                                                                                              langfilename)))
+        logging.info(f"Generating web content for language {lang} in {os.path.join(export.webDirec(),langfilename)}")
         export.htmlfilelist[0] = langfilename
         printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model)
     # for
@@ -80,16 +78,16 @@ def listwebmain(export: HTMLExport):
     for anker, element in schnlist.items():
         langfilename = export.htmlfilelist[anker]
         logging.info("Generating web content fo system {} in {}".format(element['name'],
-                                                                        os.path.join(export.webDirectory,
+                                                                        os.path.join(export.webDirec(),
                                                                                      langfilename)))
         printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model, pintfid=anker)
     # for
     return
 
 
-def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, **kwargs ):
-    assert (pparamfile is not None or (
-                pjsonfilepath is not None and pwebdirec is not None)), f"paramfile or source and dest must begiven"
+def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, **kwargs ):
+    assert (pjsonfilepath is not None and pwebdirec is not None),\
+        f"jsonsource and desination tdirectory must be given"
 
     status = None
     diagrams = None
@@ -103,39 +101,31 @@ def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None
         #fi
     #for
 
-    if pparamfile is not None:
-        basedirec = os.path.abspath(os.path.dirname(pparamfile))
-    else:
-        # modelname given, take current directory as basedirec
-        basedirec = os.getcwd()
-    # fi
-
     if pjsonfilepath is not None:
+        basedirec = os.path.abspath(os.path.dirname(os.path.dirname(pjsonfilepath)))
         jsonmodel = JSModel.readfromfile(pfilename=pjsonfilepath)
         modelname = jsonmodel.modelname()
     else:
+        basedirec = os.getcwd()
         jsonmodel = None
         modelname = pmodelname
 
 
-    parameters.initparam(pbasedirec=basedirec, pparamfile=pparamfile, pmodelname=modelname, plogfilepath=plogfilepath,
-                         pwebdirec=pwebdirec)
-    sethtmlparams(HTMLParameter())
     logmessages.initlog('createHTML')
     try:
-        exporter = HTMLExport()
-        exporter.setWebDirec(p_webdirec=None)
+        exporter = HTMLExport(baseDirec=basedirec,modelName=modelname,
+                              webDirec=pwebdirec,logofile=plogfilepath)
         jsonfilepath = pjsonfilepath
         if jsonfilepath is None:
-            jsonfilepath = os.path.join(parameters.dbDirect(), parameters.modelName() + ".json")
+            jsonfilepath = os.path.join(exporter.dbDirec(), exporter.modelName() + ".json")
             jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
-        elif parameters.modelName() != jsonmodel.modelname():
-            raise Exception(f"Modelnames parameter:{parameters.modelName()}" +
+        elif exporter.modelName() != jsonmodel.modelname():
+            raise Exception(f"Modelnames parameter:{exporter.modelName()}" +
                             f" and jsonfile:{jsonmodel.modelname()} do not match")
         deflang = jsonmodel.modellanguage()
 
         if deflang is not None:
-            parameters.dbDefaultLang(deflang)
+            exporter.dbDefaultLang(deflang)
 
         jsonmodel = FILTEREDJSModel(pmodel = jsonmodel.jsmodel,ppublstatus=status,pimdiagrams=diagrams)
         #jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
@@ -143,20 +133,17 @@ def webmain(pparamfile=None, pjsonfilepath=None, pwebdirec=None, pmodelname=None
         listwebmain(exporter)
 
     finally:
-        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {parameters.modelName()} created into {parameters.webDirec()}")
+        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {parameters.modelName()} created into {exporter.webDirec()}")
 
 
 def main(psysargs):
     parser = argparse.ArgumentParser(description='Generate html-pages for model')
-    parser.add_argument('--paramfile', '-p', dest='paramfile',
-                        help=f"Parameterfile for modelenvironent. Default: " +
-                             f"./<modelname>{parameters.PARAMFILEEXTENSION}")
     parser.add_argument('--modelname', '-m', dest="modelname")
     parser.add_argument('jsonfile', nargs='?',
                         help=f"Path of the jsonfile to be converted. Default ./{parameters.SPODDBDIREC}" +
                              f"/<modelname>{parameters.JSONEXTENSION})")
     parser.add_argument('--destination', '-d', dest="destination",
-                        help=f"Directory to write the generated files to . Default ./{parameters.WEBDEFAULTDIREC}")
+                        help=f"Directory to write the generated files to . Default ./{htmlparameters.HTMLParameter.WEBDEFAULTDIREC}")
     parser.add_argument('--logfile', '-log', dest='logfile',
                         help=f"Path for logfile. Default: ./<modelname>{parameters.LOGFILEEXTENSION}")
     parser.add_argument('--status', '-s', dest='status',
@@ -189,13 +176,13 @@ def main(psysargs):
                                               myargs['modelname'] + parameters.JSONEXTENSION)
     # fi
 
-    if myargs['jsonfile'] is None and myargs['modelname'] is None and myargs['paramfile'] is None:
+    if myargs['jsonfile'] is None and myargs['modelname'] is None:
         print(f"Either modelname or jsonfile must be given.")
         exit(1)
 
     # do only testing of parameterpassing while in unittest
     if not myargs["unittest"]:
-        webmain(pparamfile=myargs['paramfile'], pjsonfilepath=myargs['jsonfile'], pwebdirec=myargs['destination'],
+        webmain(pjsonfilepath=myargs['jsonfile'], pwebdirec=myargs['destination'],
                 plogfilepath=myargs['logfile'], pmodelname=myargs['modelname']
                 ,status=myargs["status"],diagrams=myargs["diagrams"])
     return
