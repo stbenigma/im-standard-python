@@ -2,6 +2,8 @@ import re
 import os
 import logging
 from datetime import datetime
+from pathlib import Path
+
 from markdown import markdown
 
 from IM_WEB.IM_HTML import entityenviron, HTMLExport
@@ -196,13 +198,13 @@ def formattext(pstr):
         try:
             htmltext = markdown(pstr[len(MARKDOWN):])
             """ mark html tags with a special class to allow css for markdown content"""
-            htmltext = re.sub(r'<(h1|h2|h3|h4|p|li|ul|ol)>', '<\g<1> class="md">',htmltext)
+            htmltext = re.sub(r'<(h1|h2|h3|h4|p|li|ul|ol)>', r'<\g<1> class="md">', htmltext)
             return htmltext
         except:
             return pstr
     else: #assume plain text
         try: #replace cr with <br>cr
-            return re.sub(r"\n", "<br>\n", pstr)
+            return re.sub(r"\n", r"<br>\n", pstr)
         except:
             return pstr
     #fi
@@ -239,7 +241,7 @@ def model2html(pwebmodel:Webmodel):
     except Exception as e:
         logmessages.writelog("Error in jinja template {}/{}".format(pwebmodel.export.jinadirec, templatename))
         logmessages.writelog(str(e))
-        raise e
+        raise Exception(f"Cannot render template {Path(template_folder, templatename)}: " + str(e)) from e
     #try
     return retval
 
