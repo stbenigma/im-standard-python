@@ -134,12 +134,12 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
         basedirec = os.getcwd()
     # fi
 
-    assert (pmodelname is not None or pmodelfilepath is not None), "Modelfile or modelname must be given"
-    if pmodelname is None:
+    assert not (pmodelname is None and pmodelfilepath is None), "Modelfile or modelname must be given"
+    if pmodelfilepath is not None:
         modelfilepath = Path(pmodelfilepath)
         modelfilename = str(os.path.basename(pmodelfilepath)).split('.')[0]
         modelname = modelfilename
-    elif pmodelfilepath is None:
+    elif pmodelname is not None:
         modelname = pmodelname
         modelfilepath = os.path.join(basedirec, ODMParameter.imdefaultdirec(), (modelname + ODMParameter.imextension()))
         modelfilename = modelname

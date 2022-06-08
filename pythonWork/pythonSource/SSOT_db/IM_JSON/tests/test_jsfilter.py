@@ -39,6 +39,7 @@ simpletestjson = {
             "attributes+": [],
             "category": "CATG9",
             "dc": "2022-01-29 11:16:42 UTC",
+            "businessrules+":[],
             "descr": {
                 "en": ""
             },
@@ -69,7 +70,8 @@ simpletestjson = {
             "attributes+": [
                 "ATTR108"
             ],
-            "category": "CATG7",
+            "category": "CATG7",            "businessrules+":[],
+            "businessrules+":[],
             "dc": "2021-10-05 08:31:18 UTC",
             "descr": {
                 "en": "Master entity with 3 children with attributes and classifications\nDisplayed on all zoom levels (0-4)\nsingle attribute Unique key"
@@ -129,6 +131,7 @@ simpletestjson = {
     "diagrams": {},
     "domains": {},
     "keys": {},
+    "businessrules": {},
     "orgunits": {},
     "physicalunits": {},
     "relations": {},

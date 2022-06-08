@@ -110,7 +110,7 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(tm1.dbfile):
             os.remove(tm1.dbfile)
         os.chdir(tm1.modeldir)
-        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile,pmodelfilepath=tm1.logfile)
+        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile,plogfilepath=tm1.logfile)
 
         self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
         self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
