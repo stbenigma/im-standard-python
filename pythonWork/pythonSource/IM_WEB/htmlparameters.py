@@ -1,6 +1,6 @@
 import os
 
-import path
+from pathlib import Path
 
 from SSOT_infra import Parameter
 
@@ -22,7 +22,7 @@ class HTMLParameter(Parameter):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        this_direc = os.path.dirname(path.Path(__file__))
+        this_direc = os.path.dirname(Path(__file__))
         self.libSourceDirec = os.path.join(this_direc, 'html-lib')
         assert os.path.exists(self.libSourceDirec), f"Unable to find {self.libSourceDirec}"
 
@@ -50,7 +50,7 @@ class HTMLParameter(Parameter):
             retval = self._webDirec if self._webDirec is not None else os.path.join(self.baseDirec(),
                                                                                     HTMLParameter.WEBDEFAULTDIREC)
         else:
-            self._webDirec = path.Path(newval)
+            self._webDirec = Path(newval)
             retval = None
         return retval
 
@@ -63,7 +63,7 @@ class HTMLParameter(Parameter):
             retval = self._imageDirec if self._imageDirec is not None else os.path.join(self.webDirec(),
                                                                                         HTMLParameter.IMAGEDEFAULTDIREC)
         else:
-            self._imageDirec = path.Path(newval)
+            self._imageDirec = Path(newval)
             retval = None
         return retval
 
@@ -71,7 +71,7 @@ class HTMLParameter(Parameter):
         if newval is None:
             retval = self._webFileName
         else:
-            self._webFileName = path.Path(newval)
+            self._webFileName = Path(newval)
             retval = None
         return retval
 
@@ -79,7 +79,7 @@ class HTMLParameter(Parameter):
         if newval is None:
             retval = self._webFileNamePath
         else:
-            self._webFileNamePath = path.Path(newval)
+            self._webFileNamePath = Path(newval)
             retval = None
         return retval
 
@@ -88,7 +88,7 @@ class HTMLParameter(Parameter):
             retval = self._cssDirec if self._cssDirec is not None else os.path.join(self.webDirec(),
                                                                                         HTMLParameter.CSDEFAULTDIREC)
         else:
-            self._cssDirec = path.Path(newval)
+            self._cssDirec = Path(newval)
             retval = None
         return retval
 
@@ -97,7 +97,7 @@ class HTMLParameter(Parameter):
             retval = self._iconDirec if self._iconDirec is not None else os.path.join(self.imageDirec(),
                                                                                         HTMLParameter.ICONEFAULTDIREC)
         else:
-            self._iconDirec = path.Path(newval)
+            self._iconDirec = Path(newval)
             retval = None
         return retval
 
@@ -107,7 +107,7 @@ class HTMLParameter(Parameter):
             retval = self._jsDirec if self._jsDirec is not None else os.path.join(self.webDirec(),
                                                                                         HTMLParameter.JSSDEFAULTDIREC)
         else:
-            self._jsDirec = path.Path(newval)
+            self._jsDirec = Path(newval)
             retval = None
         return retval
 
@@ -116,7 +116,7 @@ class HTMLParameter(Parameter):
             retval = self._jinjaDirec if self._jinjaDirec is not None else os.path.join(self.webDirec(),
                                                                                         HTMLParameter.JINJADEFAULTDIREC)
         else:
-            self._jinjaDirec = path.Path(newval)
+            self._jinjaDirec = Path(newval)
             retval = None
         return retval
 
@@ -138,7 +138,7 @@ class HTMLParameter(Parameter):
                         retval = None
                         break
         else:
-            self._logofile = path.Path(newval)
+            self._logofile = Path(newval)
             retval = None
         return retval
 
