@@ -1676,8 +1676,8 @@ def fillelementdisplays():
     return
 
 
-def read_languages_form_project_comment():
-    proj = handleXML.parseXML(pfilename=getodmparams().modelfilepath())
+def read_languages_form_project_comment(pmodelfilepath):
+    proj = handleXML.parseXML(pfilename=pmodelfilepath)
     root = proj.getroot()
     comm = handleXML.findText(root, 'comment')
     if comm is not None:
@@ -1692,7 +1692,7 @@ def read_languages_form_project_comment():
 
 
 def transferproject():
-    langs, root = read_languages_form_project_comment()
+    langs, root = read_languages_form_project_comment(pmodelfilepath=getodmparams().modelfilepath())
     if langs is None:
         defspra = getodmparams().modelLang()
         assert defspra is not None,f"neither parameter nor model-comment contains model-language"
