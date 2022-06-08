@@ -1,12 +1,13 @@
 import os
 import shutil
+import subprocess
 import tempfile
 import unittest
 from os import path
 
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.createDB import main, existsDB, createDB
-from SSOT_infra import parameters
+from SSOT_db.createDB import main, existsDB, createDB,applysqlscript
+from SSOT_infra import Parameter
 import SSOT_infra.tests.integration as testsrc
 
 
@@ -83,7 +84,7 @@ class test_createDB(unittest.TestCase):
         with self.assertRaises(Exception):
             createDB(pmodelname=None)
         with self.assertRaises(Exception):
-            createDB(pupgrade=False, pdbtype=parameters.SQLITE)
+            createDB(pupgrade=False, pdbtype=Parameter.SQLITE)
 
         with tempfile.TemporaryDirectory() as tempdir:
             os.chdir(tempdir)
@@ -103,9 +104,22 @@ class test_createDB(unittest.TestCase):
 
             # test real upgrade
             shutil.rmtree('DB/')
-            parameters.sqlfilename(newval='LAST_modelmodel_sqlite')
-            createDB(pmodelname=testsrc.TESTMODEL1, pupgrade=False)
-            createDB(pmodelname=testsrc.TESTMODEL1, pupgrade=True)
+            savefilename=Parameter.SQLFILENAME
+            os.chdir(os.path.dirname(__file__))
+            lastfile= subprocess.check_output(["git" ,"show",
+                                               "2.9:../dbstructure/sqlite/modelmodel_sqlite.sql",]).decode("utf-8")
+            os.chdir(tempdir)
+            with open (f"{Parameter.sqlpath()}/LAST_modelmodel_sqlite.sql",'w') as f:
+                f.write(lastfile)
+            Parameter.SQLFILENAME='LAST_modelmodel_sqlite'
+            #create new db without applying insert base data
+            connection = dbConnect.opendDB4DDL(pfilepath=dbpath)
+            applysqlscript(psqlfilepath=Parameter.sqlfilepath())
+            dbConnect.setversion()
+            dbConnect.checkson()  # enable all constraints
+            dbConnect.closeDB()
+            createDB(pdestination=dbpath,pmodelname=testsrc.TESTMODEL1, pupgrade=True)
+            Parameter.SQLFILENAME=savefilename
 
         # test with testmodel-2
         dbdirecpath = os.path.join(testsrc.testmodels_dir(), testsrc.TESTMODEL2, 'DB')

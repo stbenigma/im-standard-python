@@ -1,12 +1,12 @@
 import os
 import path
 
-from SSOT_infra import parameters
+from SSOT_infra import Parameter
 
 """  Collection of all parameters used for ODM-transfer to SPOD
 """
 
-class ODMParameter():
+class ODMParameter(Parameter):
 
     # definitions from foryouandyourcustomers for ODM-defaults and enhancements
 
@@ -16,60 +16,57 @@ class ODMParameter():
     TRANSLATIONFILENAME:str ='translation'
     GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
 
-    def __init__(self,imdirec=None,configdirec=None):
+    def __init__(self,imdirec=None,configdirec=None,**kwargs):
+        super().__init__(**kwargs)
         self._imdirec = imdirec
         self._configdirec = configdirec
+        self._dbDefaultLangID = None
         return
 
-
-    def modelName(self):
-        return parameters.modelName()
-
-    def baseDirec(self):
-        return parameters.baseDirec()
-
-    def dbLanguages(self):
-        return parameters.dbLanguages()
-
-    def dbDefaultLang(self):
-        return parameters.dbDefaultLang()
-
-    @classmethod
-    def imdefaultdirec(cls):
+    @staticmethod
+    def imdefaultdirec():
         return 'IM'
 
-    @classmethod
-    def imextension(cls):
+    @staticmethod
+    def imextension():
         return '.dmd'
 
-    @classmethod
-    def udpfileextension(cls):
+    @staticmethod
+    def udpfileextension():
         return '.udposdm'
 
-    @classmethod
-    def guidpattern(cls):
-        return cls.GUIDPATTERN
+    @staticmethod
+    def guidpattern():
+        return ODMParameter.GUIDPATTERN
 
     def udpelemdisplfilepath(self):
-        return self.odmfilesdirec() / (self.ELEMDISPLAYFILENAME + self.udpfileextension())
+        return self.odmfilesdirec() / (self.ELEMDISPLAYFILENAME + ODMParameter.udpfileextension())
 
-    @classmethod
-    def udpelemdisplfilename(cls):
-        return cls.ELEMDISPLAYFILENAME
+    @staticmethod
+    def udpelemdisplfilename():
+        return ODMParameter.ELEMDISPLAYFILENAME
 
     def udpracifilepath(self):
-        return self.odmfilesdirec() / (self.RACIFILENAME + self.udpfileextension())
+        return self.odmfilesdirec() / (self.RACIFILENAME + ODMParameter.udpfileextension())
 
-    @classmethod
-    def udpracifilename(cls):
-        return cls.RACIFILENAME
+    @staticmethod
+    def udpracifilename():
+        return ODMParameter.RACIFILENAME
 
     def udptranslfilepath(self):
-        return self.odmfilesdirec() / (self.TRANSLATIONFILENAME + self.udpfileextension())
+        return self.odmfilesdirec() / (self.TRANSLATIONFILENAME + ODMParameter.udpfileextension())
 
-    @classmethod
-    def udptranslfilename(cls):
-        return cls.TRANSLATIONFILENAME
+    @staticmethod
+    def udptranslfilename():
+        return ODMParameter.TRANSLATIONFILENAME
+
+    def dbDefaultLangID(self,newval=None):
+        if newval is None:
+            retval = self._dbDefaultLangID
+        else:
+            self._dbDefaultLangId = newval
+            retval = None
+        return retval
 
     def imdirec(self, newval=None):
         """ set imdirec if newval is not None
@@ -77,7 +74,7 @@ class ODMParameter():
             return basedirec/imdefaultdirec if None
             """
         if newval is None:
-            retval = self._imdirec if self._imdirec is not None else os.path.join(self.baseDirec(), self.imdefaultdirec())
+            retval = self._imdirec if self._imdirec is not None else os.path.join(self.baseDirec(), ODMParameter.imdefaultdirec())
         else:
             self._imdirec = path.Path(newval)
             retval = None
@@ -86,7 +83,7 @@ class ODMParameter():
     """ return all path specific in ODM an relative to ODM-directory """
 
     def modelfilepath(self):
-        return os.path.join(self.imdirec() , self.modelName() + self.imextension())
+        return os.path.join(self.imdirec() , self.modelName() + ODMParameter.imextension())
 
 
     def odmspecificpath(self, *paths):
@@ -172,10 +169,10 @@ class ODMParameter():
         return retval
 
     def defdomainsfilpath(self):
-        return self.configpath() / self.defdomainsfilname()
+        return self.configpath() / ODMParameter.defdomainsfilname()
 
-    @classmethod
-    def defdomainsfilname(cls):
+    @staticmethod
+    def defdomainsfilname():
         return 'defaultdomains.xml'
 
     def typesfile(self):

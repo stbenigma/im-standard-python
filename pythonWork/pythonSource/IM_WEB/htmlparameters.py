@@ -1,15 +1,14 @@
 import os
 
 import path
-from pathlib import Path
 
-from SSOT_infra import parameters
+from SSOT_infra import Parameter
 
 """  Collection of all parameters used for HTML generation
 """
 
 
-class HTMLParameter():
+class HTMLParameter(Parameter):
 
     # definitions by foryouandyourcustomers for ODM-defaults and enhancements
 
@@ -21,11 +20,7 @@ class HTMLParameter():
     ICONEFAULTDIREC= 'icons'
 
     def __init__(self, **kwargs):
-        #should be in call to super once parameter is also a class
-        self.modelName(kwargs.get("modelName"))
-        self.baseDirec(kwargs.get("baseDirec"))
-        self.dbLanguages(kwargs.get("dbLanguages"))
-        self.dbDefaultLang(kwargs.get("dbDefaultLang"))
+        super().__init__(**kwargs)
 
         this_direc = os.path.dirname(path.Path(__file__))
         self.libSourceDirec = os.path.join(this_direc, 'html-lib')
@@ -39,28 +34,12 @@ class HTMLParameter():
         self._iconDirec = kwargs.get("iconDirec")
         self._jsDirec= kwargs.get("jsDirec")
         self._jinjaDirec= kwargs.get("jinjaDirec")
-        self.webFileName = parameters.modelName()
-
+        self.webFileName = self.modelName()
 
         self._logofile = kwargs.get("logofile")
 
 
         return
-
-    def modelName(self,newval=None):
-        return parameters.modelName(newval)
-
-    def baseDirec(self,newval=None):
-        return parameters.baseDirec(newval)
-
-    def dbDirec(self,newval=None):
-        return parameters.dbDirect(newval)
-
-    def dbLanguages(self,newval=None):
-        return parameters.dbLanguages(newval)
-
-    def dbDefaultLang(self,newval=None):
-        return parameters.dbDefaultLang(newval)
 
     def webDirec(self, newval=None):
         """ set webDirec if newval is not None

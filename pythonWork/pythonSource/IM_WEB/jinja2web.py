@@ -237,7 +237,7 @@ def model2html(pwebmodel:Webmodel):
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:
-        logmessages.writelog("Error in jinja template {}/{}".format(pwebmodel.export.jinadirec, templatename))
+        logmessages.writelog("Error in jinja template {}/{}".format(pwebmodel.export.jinjaDirec(), templatename))
         logmessages.writelog(str(e))
         raise e
     #try

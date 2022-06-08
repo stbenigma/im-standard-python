@@ -1,7 +1,4 @@
 from datetime import datetime
-from pathlib import Path
-
-from SSOT_infra import parameters
 from SSOT_infra.translateprompt import plural
 
 logcount: int = 0
@@ -28,8 +25,6 @@ def initlog(pmodulename: str,plogfilepath=None):
     log_line = f"""{datetime.now().strftime("%Y-%m-%d %H:%m:%S")}  {pmodulename}\n"""
     if plogfilepath is not None:
         logpath = plogfilepath
-    elif parameters.logfilepath() is not None:
-        logpath = Path(parameters.logfilepath())
     else:
         logpath = None
     if logpath is not None:

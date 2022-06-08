@@ -9,7 +9,7 @@ from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
 from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel
 from SSOT_db.IM_OBJECTS import *
-from SSOT_infra import parameters, logmessages, argparseparent,settransldomain
+from SSOT_infra import parameters,Parameter, logmessages, argparseparent,settransldomain
 
 
 def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=None):
@@ -50,7 +50,7 @@ def listwebmain(export: HTMLExport):
     export.createlib()
     export.copyimages()
     model = export.getmodel()
-    parameters.dbDefaultLang(model.modellanguage())
+    export.modelLang(model.modellanguage())
     langs = model.jsmodel["languages"].keys()
     # erstelle die Liste der HTML Files für HREF's
     schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
@@ -67,10 +67,10 @@ def listwebmain(export: HTMLExport):
         printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model)
     # for
     # prepare for relational models
-    Languagetext.reportLang(parameters.dbDefaultLang())
+    Languagetext.reportLang(export.modelLang())
     # backjumps from relational webpage goes to default-lang-model
     export.htmlfilelist[0] \
-        = export.webFileName + f"{'' if len(langs) == 1 else langpart(parameters.dbDefaultLang())}.html"
+        = export.webFileName + f"{'' if len(langs) == 1 else langpart(export.modelLang())}.html"
 
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else parameters.dbDefaultLang()
@@ -110,12 +110,12 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
         jsonmodel = None
         modelname = pmodelname
 
-
-    logmessages.initlog('createHTML')
+    exporter = HTMLExport(baseDirec=basedirec, modelname=modelname,
+                          webDirec=pwebdirec, logofile=plogfilepath)
+    jsonfilepath = pjsonfilepath
     try:
-        exporter = HTMLExport(baseDirec=basedirec,modelName=modelname,
-                              webDirec=pwebdirec,logofile=plogfilepath)
-        jsonfilepath = pjsonfilepath
+        logmessages.initlog('createHTML',
+                            plogfilepath=exporter.logfilepath())
         if jsonfilepath is None:
             jsonfilepath = os.path.join(exporter.dbDirec(), exporter.modelName() + ".json")
             jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
@@ -125,27 +125,26 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
         deflang = jsonmodel.modellanguage()
 
         if deflang is not None:
-            exporter.dbDefaultLang(deflang)
+            exporter.modelLang(deflang)
 
         jsonmodel = FILTEREDJSModel(pmodel = jsonmodel.jsmodel,ppublstatus=status,pimdiagrams=diagrams)
         #jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
         exporter.setmodel(jsonmodel)
         listwebmain(exporter)
-
     finally:
-        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {parameters.modelName()} created into {exporter.webDirec()}")
+        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {exporter.modelName()} created into {exporter.webDirec()}")
 
 
 def main(psysargs):
     parser = argparse.ArgumentParser(description='Generate html-pages for model')
     parser.add_argument('--modelname', '-m', dest="modelname")
     parser.add_argument('jsonfile', nargs='?',
-                        help=f"Path of the jsonfile to be converted. Default ./{parameters.SPODDBDIREC}" +
-                             f"/<modelname>{parameters.JSONEXTENSION})")
+                        help=f"Path of the jsonfile to be converted. Default ./{Parameter.SPODDBDIREC}" +
+                             f"/<modelname>{Parameter.JSONEXTENSION})")
     parser.add_argument('--destination', '-d', dest="destination",
                         help=f"Directory to write the generated files to . Default ./{htmlparameters.HTMLParameter.WEBDEFAULTDIREC}")
     parser.add_argument('--logfile', '-log', dest='logfile',
-                        help=f"Path for logfile. Default: ./<modelname>{parameters.LOGFILEEXTENSION}")
+                        help=f"Path for logfile. Default: ./<modelname>{Parameter.LOGFILEEXTENSION}")
     parser.add_argument('--status', '-s', dest='status',
                         help=f"Publication status (DRAFT, GTOP, PUBL). Default: None")
     parser.add_argument('--diagrams', '-diag', dest='diagrams',
@@ -172,8 +171,8 @@ def main(psysargs):
     argparseparent.fillssotdefaults(pcurrentdir=currentdir, parguments=myargs)
     if myargs['modelname'] is not None:
         if myargs['jsonfile'] is None:
-            myargs['jsonfile'] = os.path.join(currentdir, parameters.SPODDBDIREC,
-                                              myargs['modelname'] + parameters.JSONEXTENSION)
+            myargs['jsonfile'] = os.path.join(currentdir, Parameter.SPODDBDIREC,
+                                              myargs['modelname'] + Parameter.JSONEXTENSION)
     # fi
 
     if myargs['jsonfile'] is None and myargs['modelname'] is None:

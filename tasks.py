@@ -334,7 +334,7 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     revision = spod['_imprint_'].get('git-revision', parameters.read_git_description(src_path.parent))
     print(f"Created SPOD for git revision {revision}")
 
-    parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
+    parameter.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
 
     # prepare target
@@ -404,7 +404,7 @@ def db2json(c, source, output=None):
     from SSOT_db.createDB import createnewDB
     from LOAD_MODELS.LOAD_INFRA import mergedbs
 
-    parameters.initparam(str(SOURCE_FOLDER), pmodelname=src_path.stem)
+    parameters.initparam(basedirec=str(SOURCE_FOLDER), modelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
 
     # prepare target

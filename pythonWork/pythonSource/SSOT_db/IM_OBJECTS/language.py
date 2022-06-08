@@ -1,11 +1,11 @@
 from .baseobject import Baseobject
 from SSOT_db.SQL_INFRA import dbDML
-from SSOT_infra import parameters,nvl
+from SSOT_infra import Parameter,nvl
 
 
 def expandiso2(plang:str):
     lang = plang.lower() if plang else None
-    exp = parameters.SUPPORTEDLANGUAGES.get(lang)
+    exp = Parameter.SUPPORTEDLANGUAGES.get(lang)
     if  exp is not None :
         return exp[0:2]
     else:

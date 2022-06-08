@@ -160,7 +160,7 @@ def mergeintodb(pintfname,ptabs):
     return
 
 def main(param1,pxls):
-    parameters.initparam(pparamfile=param1)
+    parameters.initparam()
     logmessages.initlog('importEXCEL')
     filename = parameters.modelName()
     filepath = parameters.dbDirect()

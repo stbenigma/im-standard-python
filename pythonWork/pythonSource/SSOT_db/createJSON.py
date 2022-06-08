@@ -58,7 +58,7 @@ def main(param1):
               .format(filepath + jsonfilename(filename)))
     else:
         parameters.initparam(pparamfile=param1)
-        logmessages.initlog('createJSON')
+        logmessages.initlog('createJSON',plogfilepath=None)
         filename = parameters.modelName()
         filepath = parameters.dbDirect()
         try:

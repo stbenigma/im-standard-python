@@ -1,4 +1,5 @@
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import logmessages
+from LOAD_MODELS.LOAD_ODM import getodmparams
 from .baseobject import MultilangBaseobject,UniqueKeyException
 from .modelelement import Modelelemtype
 from .languagetext import Languagetext
@@ -58,7 +59,7 @@ class Example(MultilangBaseobject):
 
         for idx,expl in newexamples.items():
             """do default-lang"""
-            deflng = parameters.dbDefaultLang()
+            deflng = getodmparams().modelLang()
             inslngexample(plngid=Language.spraidlookup(deflng), pmodeid=expl.expl_id
                           , pvalue=expl.expl_value)
             for lng in plngs:

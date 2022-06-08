@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import unittest
 from contextlib import closing
@@ -8,7 +7,7 @@ from pathlib import Path
 import SSOT_infra.tests.integration as testsrc
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 from SSOT_db.IM_JSON import JSModel
-from LOAD_MODELS.LOAD_ODM import fillDB
+from LOAD_MODELS.LOAD_ODM import fillDB,getodmparams,setodmparams,ODMParameter
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
 
@@ -249,8 +248,8 @@ class TestFillDatabase(unittest.TestCase):
         tm1 = testsrc.Testmodel(testsrc.TESTMODEL1)
         tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
 
-        parameters.parameterdefaults()
         with self.assertRaises(Exception):
+            setodmparams(ODMParameter())
             _ = fillDB.ODM2json()
 
         _ = fillDB.transferodm2json(pmodelfile=tm1.modeldir / 'IM' / (tm1.modelname + '.dmd'),

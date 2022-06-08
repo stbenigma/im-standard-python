@@ -10,7 +10,7 @@ from LOAD_MODELS.LOAD_ODM import transferRelational,getodmparams,ODMParameter
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import nvl, hex2int, int2hex
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import logmessages
 
 
 SOURCE_ODM:str='ODM'
@@ -340,7 +340,7 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     # return none if domainfile is defaultdomainfile, name otherwise
-    interfacename = lambda name: None if (name == getodmparams().defdomainsfilname()[:-4]) else name
+    interfacename = lambda name: None if (name == ODMParameter.defdomainsfilname()[:-4]) else name
 
     domains = handleXML.parseXML(pfilename=pfilename)
     root = domains.getroot()
@@ -1065,7 +1065,7 @@ def do1Attribute(plfnr, pattrxml, pentiId):
         dom = Domain.select()
         print(e)
         raise e  # Problem with multientrance  Domains are out of sync
-    Example.fillexamples(pattrid=attrId, plngs=getodmparams().dbLanguages().split(',')
+    Example.fillexamples(pattrid=attrId, plngs=getodmparams().languages().split(',')
                          , pdeflngexpls=examples, plngexpls=lngexamples)
 
     Userdefpropvalue.fillallvalues(pattrid=attrId)
@@ -1227,7 +1227,7 @@ def extractlngexamples(ptext, pname):
     lngexamples = dict()
     lngcomments = handleXML.extractlngcomments(ptext=ptext)
     for lng, lngtext in lngcomments.items():
-        if lng == getodmparams().dbDefaultLang(): continue
+        if lng == getodmparams().modelLang(): continue
         for fieldname, text in lngtext.items():
             if fieldname == f"{lng.upper()}_{pname}":
                 firstpart, lngexamples[lng] = handleXML.separateExamples(text)
@@ -1273,7 +1273,7 @@ def do1Entity(fileName):
     while i < 10:
         try:
             entiId = enti.insert()
-            Example.fillexamples(pentiid=entiId, plngs=getodmparams().dbLanguages().split(',')
+            Example.fillexamples(pentiid=entiId, plngs=getodmparams().languages().split(',')
                                  , pdeflngexpls=examples, plngexpls=lngexamples)
             break
         except Exception as e:
@@ -1496,7 +1496,7 @@ def do1UDPFile(pfileName):
     # for
 
     # die speziellen Properties (translation of comments in notes manuell einfüllen
-    if (ludpTheme == getodmparams().udptranslfilename()):
+    if (ludpTheme == ODMParameter.udptranslfilename()):
         for lgrpkey, lgrpvalue in lgroups.items():
             if lgrpkey != '':
                 fillspecialtransludp(pudpTheme=ludpTheme, pgroup=lgrpvalue, pname='_ENTI_COMMENT', ptype='comments',
@@ -1663,7 +1663,7 @@ def loaddefaultcolors():
 
 
 def filllanguages():
-    Languagetext.insertlang_texts(pudpthema=getodmparams().udptranslfilename())
+    Languagetext.insertlang_texts(pudpthema=ODMParameter.udptranslfilename())
     # copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
@@ -1672,7 +1672,7 @@ def filllanguages():
 
 
 def fillelementdisplays():
-    Modelelement.insertudpelems(pudpthema=getodmparams().udpelemdisplfilename())
+    Modelelement.insertudpelems(pudpthema=ODMParameter.udpelemdisplfilename())
     return
 
 
@@ -1694,22 +1694,22 @@ def read_languages_form_project_comment():
 def transferproject():
     langs, root = read_languages_form_project_comment()
     if langs is None:
-        defspra = parameters.dbDefaultLang()
+        defspra = getodmparams().modelLang()
         assert defspra is not None,f"neither parameter nor model-comment contains model-language"
-        sprachen = parameters.dbLanguages()
+        sprachen = getodmparams().languages()
         if sprachen is None:
             sprachen = defspra
     else:
         defspra = langs[0]
         sprachen = ','.join(langs)
-        parameters.dbDefaultLang(defspra)
-        parameters.dbLanguages(sprachen)
+        getodmparams().modelLang(defspra)
+        getodmparams().languages(sprachen)
     #fi
     for l in sprachen.split(','):
         _ = Language(lang_iso_code2=l,
                         lang_is_base_lang=(l==defspra)).insert()
     Language.setallreplacementlang()
-    parameters.dbDefaultLangID(Language.spraidlookup(piso=defspra))
+    getodmparams().dbDefaultLangID(Language.spraidlookup(piso=defspra))
 
 
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
@@ -1789,11 +1789,11 @@ def removeemptyudp():
 
 def removefixedudp():
     """remove all UDP's which are part of our model"""
-    modeludps = [(getodmparams().udpelemdisplfilename(), val) for val in Modelelement.ODMattrmapping.values()]
+    modeludps = [(ODMParameter.udpelemdisplfilename(), val) for val in Modelelement.ODMattrmapping.values()]
     for lang in Language.select():
         for name in Languagetext.ODMtranslAttributes:
             modeludps.append(
-                (getodmparams().udptranslfilename(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
+                (ODMParameter.udptranslfilename(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
         # for
     # for
 
@@ -1965,7 +1965,7 @@ def transferraci():
     # for
     """ delete UDPs we transferred into the model 
     """
-    Userdefprop.delete(pwhere=('udpr_theme = ?', getodmparams().udpracifilename()))
+    Userdefprop.delete(pwhere=('udpr_theme = ?', ODMParameter.udpracifilename()))
     return
 
 

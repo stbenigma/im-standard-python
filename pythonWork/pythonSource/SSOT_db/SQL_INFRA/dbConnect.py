@@ -130,7 +130,7 @@ def readversion(pconn):
     try:
         cursor.execute("select * from dbversion")
         curr_table = cursor.fetchall()
-    except:
+    except Exception as e:
         curr_table = [[None, None]]
     # try
     return {"version": curr_table[0][0]
@@ -161,6 +161,8 @@ def getversion():
     """return the version of the actually open DB
     """
     global actualdbversion
+    if actualdbversion["version"] is None:
+        setversion()
     return actualdbversion["version"]
 
 
@@ -200,12 +202,12 @@ def getconnlangparameters():
     return (deflang,langs)
 
 
-def getdblangparameters(pfilepath):
-    with closing(openDBbasic(pfilepath)) as conn:
-        deflang,langs = getconnlangparameters()
-        parameters.dbDefaultLang(newval=deflang)
-        parameters.dbLanguages(newval=','.join(langs))
-    return
+# def getdblangparameters(pfilepath):
+#     with closing(openDBbasic(pfilepath)) as conn:
+#         deflang,langs = getconnlangparameters()
+#         parameter.modelLang(newval=deflang)
+#         parameter.languages(newval=','.join(langs))
+#     return
 
 def connectmemorydb()->sqlite3.Connection:
     return sqlite3.connect(":memory:")

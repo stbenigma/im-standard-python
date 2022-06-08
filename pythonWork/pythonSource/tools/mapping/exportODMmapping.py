@@ -100,7 +100,7 @@ def createXML(pjson,pintf):
 
 def export1Map(pimdirec,pintfname):
     global nonodmtables,nonodmcolumns,odmtablecnt,odmcolumncnt
-    parameters.initparam(pparamfile=pimdirec)
+    parameters.initparam()
     jsfilename= parameters.dbDirect() + parameters.modelName() + ".json"
     jsmodel = JSModel.readfromfile(pfilename=jsfilename)
     expintf = None

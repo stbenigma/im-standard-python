@@ -8,7 +8,7 @@ from LOAD_MODELS.LOAD_ODM import transferModel,getodmparams,ODMParameter,setodmp
 from SSOT_db import existsDB, createnewDB,dbinfo
 from SSOT_db.IM_JSON import *
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra import logmessages, parameters, argparseparent
+from SSOT_infra import logmessages, argparseparent,Parameter,parameters
 
 
 def ODM2json(pdebug=False) -> JSModel:
@@ -35,7 +35,7 @@ def ODM2json(pdebug=False) -> JSModel:
     ODMjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
 
     if pdebug:
-        debugfilepath =  str(parameters.dbFilePath()).replace('.db','_odm.db')
+        debugfilepath =  str(getodmparams().dbFilePath()).replace('.db','_odm.db')
         dbConnect.makebackuptofile(pdbfile=debugfilepath)
     dbConnect.closeDB()
     return ODMjson
@@ -69,7 +69,7 @@ def destdir(pdestdir:Path= None,pmodeldir:Path= None):
     """
     assert not (pdestdir is None and pmodeldir is None), f"with no information I would have to guess"
     if pdestdir is None:
-        retval = Path(os.path.dirname(pmodeldir)) / parameters.dbDefaultDirect()
+        retval = Path(os.path.dirname(pmodeldir)) / getodmparams().dbDefaultDirect()
     else:
         retval = Path(pdestdir) if isinstance(pdestdir, str) else pdestdir
     assert os.path.isdir(retval), f"Destination path does not exists: {retval} "
@@ -94,15 +94,14 @@ def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None
     """
     modelname:str = None if pmodelfile is None else Path(pmodelfile).stem
     modeldir = None if pmodelfile is None else Path(os.path.dirname(os.path.abspath(pmodelfile)))
-    parameters.initparam(pbasedirec=os.path.dirname(modeldir),
-                         pmodelname=modelname,
-                         pmodellang=pdefaultlang, planguages=planguages if planguages is not None else pdefaultlang,
-                         plogfilepath=plogfilepath)
-    parameters.dbDirect(destdir(pdestdir=pdestdir,pmodeldir=modeldir))
-    logmessages.writelog(f"Transfer ODM to SPOD Model={parameters.modelName()}, DB={parameters.dbFilePath()}")
-    #set global parameters for later use
     setodmparams(ODMParameter(imdirec=modeldir,
-                                 configdirec=configdir(pconfigdir=pconfigdirec,pmodeldir=modeldir)))
+                            configdirec=configdir(pconfigdir=pconfigdirec,pmodeldir=modeldir),basedirec=os.path.dirname(modeldir),
+                         modelname=modelname,
+                         modellang=pdefaultlang, languages=planguages if planguages is not None else pdefaultlang,
+                         logfilepath=plogfilepath,
+                         dbdirec=destdir(pdestdir=pdestdir,pmodeldir=modeldir)     ))
+    logmessages.writelog(f"Transfer ODM to SPOD Model={getodmparams().modelName()}, DB={getodmparams().dbFilePath()}")
+    #set global parameter for later use
     ODMjson = ODM2json(pdebug=pdebug)
     return ODMjson
 
@@ -183,12 +182,12 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
     logging.info(
         f"Merge of SPOD {js_spod_file} to git revision {reloaded.jsmodel['_imprint_']['git-revision']} complete")
     logmessages.writelog(f"model {pmodelname} filled in database: {pdbfilepath}\n" +
-                             f"jsonfile of model generated {parameters.dbjsonfile()}")
+                             f"jsonfile of model generated {getodmparams().dbjsonfile()}")
 
     return
 
 
-def filldbmain(pdbtype=parameters.SQLITE, pmodelname=None, pmodelfilepath=None,pdestination=None,
+def filldbmain(pmodelname=None, pmodelfilepath=None,pdestination=None,
                pmodellang=None, planguages=None, plogfilepath=None, pconfigdirec=None):
     """
     fills the call-parameters into parameter and calls the fillmerge (read model and merge into db)
@@ -225,16 +224,16 @@ def main(psysargs):
     """
     parser = argparse.ArgumentParser(description='Fill ODM model into SSOT-DB', parents=[argparseparent.parentparser()])
     parser.add_argument('modelfilepath', nargs='?',
-                        help=f"Path of the modelfile. Default ./{parameters.MODELDIREC}" +
-                             f"/<modelname>{parameters.ODMMODELEXTENSION})")
+                        help=f"Path of the modelfile. Default ./{ODMParameter.imdefaultdirec()}" +
+                             f"/<modelname>{ODMParameter.imextension()})")
     parser.add_argument('--destination', '-d', dest="destination",
-                        help=f"Path of databasefile. Default ./{parameters.SPODDBDIREC}" +
-                             f"/<modelname>{parameters.SPODDBEXTENSION})")
+                        help=f"Path of databasefile. Default ./{Parameter.SPODDBDIREC}" +
+                             f"/<modelname>{Parameter.SPODDBEXTENSION})")
     parser.add_argument('--configdirec', '-c', dest="configdirec",
                         help=f"Path of ODM configuration directory. Default IM-direc/[CK]onfiguration" +
-                             f"/<modelname>{parameters.SPODDBEXTENSION})")
-    # parser.add_argument('--dbtype', '-t', dest='dbtype', default=parameters.SQLITE,
-    #                    help=f"Type of database to be created. Default '{parameters.SQLITE}'")
+                             f"/<modelname>{Parameter.SPODDBEXTENSION})")
+    # parser.add_argument('--dbtype', '-t', dest='dbtype', default=Parameter.SQLITE,
+    #                    help=f"Type of database to be created. Default '{Parameter.SQLITE}'")
     argparse.Namespace()
 
     if (len(psysargs) > 0) and ('.py' in psysargs[0]) and ('ipykernel' not in psysargs[0]):
@@ -252,8 +251,8 @@ def main(psysargs):
     argparseparent.fillssotdefaults(pcurrentdir=currentdir, parguments=myargs)
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(currentdir, parameters.SPODDBDIREC,
-                                                 myargs['modelname'] + parameters.SPODDBEXTENSION)
+            myargs['destination'] = os.path.join(currentdir, Parameter.SPODDBDIREC,
+                                                 myargs['modelname'] + Parameter.SPODDBEXTENSION)
         if myargs['modelfilepath'] is None:
             myargs['modelfilepath'] = os.path.join(currentdir, ODMParameter.imdefaultdirec(),
                                                    myargs['modelname'] + ODMParameter.imextension())

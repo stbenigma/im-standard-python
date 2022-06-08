@@ -16,7 +16,7 @@ from tools import createMapExcel,createAllMapping
 
 
 def main(pdirec, plang,pforceoverwrite = False):
-    parameters.initparam(pparamfile=pdirec)
+    parameters.initparam(basedirec=pdirec)
     if plang is None:
         Languagetext.reportLang(parameters.dbDefaultLang())
     else:

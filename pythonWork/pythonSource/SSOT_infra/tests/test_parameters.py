@@ -22,151 +22,37 @@ class test_parameters(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tempdir:
             os.chdir(tempdir)
             currentDirec = os.getcwd()
-            parameters.initparam(pbasedirec=currentDirec, pmodelname=TESTMODELNAME)
-            self.assertEqual(currentDirec,parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec,'DB'),parameters.dbDirect())
-            self.assertEqual(os.path.join(currentDirec,'DB',TESTMODELNAME+'.db'),parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec),parameters.logfiledirec())
-            self.assertEqual(os.path.join(currentDirec,TESTMODELNAME+'.log'),parameters.logfilepath())
-            self.assertEqual('en',parameters.dbDefaultLang())
-            self.assertEqual('en',parameters.dbLanguages())
+            parameters.initparam(basedirec=currentDirec, modelname=TESTMODELNAME)
+            self.assertEqual(currentDirec,str(parameters.parameter.baseDirec()))
+            self.assertEqual(os.path.join(currentDirec,'DB'),str(parameters.parameter.dbDirect()))
+            self.assertEqual(os.path.join(currentDirec,'DB',TESTMODELNAME+'.db'),str(parameters.parameter.dbFilePath()))
+            self.assertEqual(os.path.join(currentDirec),str(parameters.parameter.logfiledirec()))
+            self.assertEqual(os.path.join(currentDirec,TESTMODELNAME+'.log'),str(parameters.parameter.logfilepath()))
+            self.assertEqual('en', parameters.parameter.modelLang())
+            self.assertEqual('en', parameters.parameter.languages())
 
             #some other parameters
             with self.assertRaises(Exception):
-                parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodellang='xx')
+                parameters.initparam(basedirec=currentDirec,odelname=TESTMODELNAME,modellang='xx')
             with self.assertRaises(Exception) :
-                parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,planguages='xx,es')
+                parameters.initparam(basedirec=currentDirec,modelname=TESTMODELNAME,languages='xx,es')
 
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodellang='de',planguages='es')
-            self.assertEqual('de',parameters.dbDefaultLang())
-            self.assertEqual('es',parameters.dbLanguages())
+            parameters.initparam(basedirec=currentDirec,modelname=TESTMODELNAME,modellang='de',languages='es')
+            self.assertEqual('de', parameters.parameter.modelLang())
+            self.assertEqual('es', parameters.parameter.languages())
 
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pmodellang='de',planguages='es,en,it,de')
-            self.assertEqual('de',parameters.dbDefaultLang())
-            self.assertEqual('es,en,it,de',parameters.dbLanguages())
+            parameters.initparam(basedirec=currentDirec,modelname=TESTMODELNAME,modellang='de',languages='es,en,it,de')
+            self.assertEqual('de', parameters.parameter.modelLang())
+            self.assertEqual('es,en,it,de', parameters.parameter.languages())
 
             currentDirec = os.getcwd()
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pdbfile=os.path.join(currentDirec,'foo.db'),plogfilepath=os.path.join(currentDirec,'foo.logg'))
-            self.assertEqual(currentDirec,parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec),parameters.dbDirect())
-            self.assertEqual(os.path.join(currentDirec,'foo.db'),parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec),parameters.logfiledirec())
-            self.assertEqual(os.path.join(currentDirec,'foo.logg'),parameters.logfilepath())
+            parameters.initparam(basedirec=currentDirec,modelname=TESTMODELNAME,dbfilepath=os.path.join(currentDirec,'foo.db'),logfilepath=os.path.join(currentDirec,'foo.logg'))
+            self.assertEqual(currentDirec,str(parameters.parameter.baseDirec()))
+            self.assertEqual(os.path.join(currentDirec),str(parameters.parameter.dbDirect()))
+            self.assertEqual(os.path.join(currentDirec,'foo.db'),str(parameters.parameter.dbFilePath()))
+            self.assertEqual(os.path.join(currentDirec),str(parameters.parameter.logfiledirec()))
+            self.assertEqual(os.path.join(currentDirec,'foo.logg'),str(parameters.parameter.logfilepath()))
 
-        with tempfile.TemporaryDirectory() as tempdir:
-            #Test mit Parameterfile implizit gerufen
-            os.chdir(tempdir)
-            currentDirec = os.getcwd()
-            paramfile = os.path.join(currentDirec,TESTMODELNAME + parameters.PARAMFILEEXTENSION)
-            self.makefile(pfilename=paramfile
-                     ,pcontent=[
-                '[ODM]\n',
-                f'modelName = "{TESTMODELNAME}"\n',
-                '#base directory for all model data\n',
-                '#model name\n',
-                '[DB]\n',
-                '#default language of model in DB\n',
-                'dbDefaultLang =  "de"\n',
-                'dblanguages =  "de,fr"\n'
-                ])
-            parameters.initparam(pbasedirec=currentDirec,pparamfile=paramfile)
-            self.assertEqual(currentDirec, parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec, 'DB'), parameters.dbDirect())
-            self.assertEqual(os.path.join(currentDirec, 'DB', TESTMODELNAME + '.db'), parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec), parameters.logfiledirec())
-            self.assertEqual(os.path.join(currentDirec, TESTMODELNAME + '.log'), parameters.logfilepath())
-            self.assertEqual('de', parameters.dbDefaultLang())
-            self.assertEqual('de,fr', parameters.dbLanguages())
-            #same paramfile called with both modelname in parameter
-            parameters.initparam(pbasedirec=currentDirec,pmodelname=TESTMODELNAME,pparamfile=paramfile)
-            self.assertEqual(currentDirec, parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec, 'DB'), parameters.dbDirect())
-            self.assertEqual(os.path.join(currentDirec, 'DB', TESTMODELNAME + '.db'), parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec), parameters.logfiledirec())
-            self.assertEqual(os.path.join(currentDirec, TESTMODELNAME + '.log'), parameters.logfilepath())
-            self.assertEqual('de', parameters.dbDefaultLang())
-            self.assertEqual('de,fr', parameters.dbLanguages())
-            os.remove(paramfile)
-
-            paramfile = os.path.join(currentDirec,TESTMODELNAME + parameters.PARAMFILEEXTENSION)
-            self.makefile(pfilename=paramfile
-                     ,pcontent=[
-                '[ODM]\n',
-                f'modelName = "{TESTMODELNAME}"\n',
-                f"""dbdirec = "{os.path.join(currentDirec, 'DB2')}"\n""",
-                '[DB]\n',
-                '#default language of model in DB\n',
-                'logfilepath="./logfiles/speciallog.log"\n',
-                ])
-            parameters.initparam(pbasedirec=currentDirec,pparamfile=paramfile)
-            self.assertEqual(currentDirec, parameters.baseDirec())
-            self.assertEqual(os.path.join(currentDirec, 'DB2'), parameters.dbDirect())
-            self.assertEqual(os.path.join(currentDirec, 'DB2', TESTMODELNAME + '.db'), parameters.dbFilePath())
-            self.assertEqual(os.path.join(currentDirec,'logfiles'), parameters.logfiledirec())
-            self.assertEqual(os.path.join(currentDirec,'logfiles','speciallog.log'), parameters.logfilepath())
-            os.remove(paramfile)
-
-
-            paramfile = os.path.join(currentDirec, TESTMODELNAME + parameters.PARAMFILEEXTENSION)
-            self.makefile(pfilename=paramfile
-                          , pcontent=[
-                    """[ODM]
-                    #base directory for all modeler data (with ending /)
-                    basedirec = "gitHub"
-                    
-                    
-                    #model name   
-                    modelname = "ModellModell_neu"
-                    
-                    [DB]
-                    #default language of model in DB
-                    dbdefaultlang = "en"
-                    
-                    #comma separated languages to be maintained, choose from de, en, fr, es
-                    dblanguages = "de,en"
-                    
-                    #directory containing DB-file (with ending /)
-                    dbdirec = "gitHub/DB"
-                    
-                    #filename of logo in Webpage (path webdirec/image/)
-                    logofilename = "logo.jpg"
-                """
-                ])
-            with self.assertRaises(Exception):
-                parameters.initparam(pbasedirec=currentDirec, pparamfile=paramfile)
-            os.remove(paramfile)
-
-            paramfile = os.path.join(currentDirec, TESTMODELNAME + parameters.PARAMFILEEXTENSION)
-            self.makefile(pfilename=paramfile
-                          , pcontent=[
-                    """[ODM]
-                    #base directory for all modeler data 
-                    #basedirec = ""
-
-                    #model name   =========ERROR in ModelnameField "odm" is obsolete
-                    modelname = "ModellModell_neu"
-
-                    [DB]
-                    #default language of model in DB
-                    dbdefaultlang = "en"
-
-                    #comma separated languages to be maintained, choose from de, en, fr, es
-                    dblanguages = "de,en"
-
-                    #directory containing DB-file (with ending /)
-                    dbdirec = "gitHub/DB"
-
-                    logfiledirec = ".."        
-                                 
-                    #filename of logo in Webpage (path webdirec/image/)
-                    logofilename = "logo.jpg"
-                """
-                ])
-            parameters.initparam(pbasedirec=currentDirec, pparamfile=paramfile)
-            self.assertEqual(parameters.modelName(),"ModellModell_neu")
-            self.assertEqual(parameters.baseDirec(),currentDirec)
-            self.assertEqual(parameters.logfiledirec(),os.path.dirname(currentDirec))
-            os.remove(paramfile)
         return
 
 
