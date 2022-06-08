@@ -1,5 +1,5 @@
 import os
-import path
+from pathlib import Path
 
 from SSOT_infra import Parameter
 
@@ -76,7 +76,7 @@ class ODMParameter(Parameter):
         if newval is None:
             retval = self._imdirec if self._imdirec is not None else os.path.join(self.baseDirec(), ODMParameter.imdefaultdirec())
         else:
-            self._imdirec = path.Path(newval)
+            self._imdirec = Path(newval)
             retval = None
         return retval
 
@@ -87,7 +87,7 @@ class ODMParameter(Parameter):
 
 
     def odmspecificpath(self, *paths):
-        retval = path.Path(os.path.join(self._imdirec, self.modelName(), *paths))
+        retval = Path(os.path.join(self._imdirec, self.modelName(), *paths))
         return retval
 
     # the following are all relative to the imdirec
@@ -157,7 +157,7 @@ class ODMParameter(Parameter):
     """ special directories """
     def configpath(self,newval=None):
         if newval is not None:
-            self._configdirec = path.Path(newval)
+            self._configdirec = Path(newval)
             retval = None
         elif self._configdirec is not None:
             retval = self._configdirec
