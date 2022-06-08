@@ -110,7 +110,7 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(tm1.dbfile):
             os.remove(tm1.dbfile)
         os.chdir(tm1.modeldir)
-        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
+        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile,pmodelfilepath=tm1.logfile)
 
         self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
         self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
@@ -118,7 +118,7 @@ class TestFillDatabase(unittest.TestCase):
         self.assertTrue(os.path.exists(tm1.jsonfile),
                         f"json file not where assumed {tm1.jsonfile}")
         self.assertTrue(os.path.exists(tm1.logfile),
-                        f"json file not where assumed {tm1.logfile}")
+                        f"Log file not where assumed {tm1.logfile}")
         # create db for a second time => merge
         fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
         # check subentitylevels

@@ -48,7 +48,6 @@ class GenerateHTML(unittest.TestCase):
     def test_listwebdoku(self):
         #os.chdir(self.testmodelcrm.modeldir)
         print ("\nDEBUG***************** sitch on ***********")
-        return
         self.testmodelcrm.initWeb()
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                     "-d",str(self.testmodelcrm.webdir),

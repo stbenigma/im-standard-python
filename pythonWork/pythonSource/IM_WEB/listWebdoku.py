@@ -97,7 +97,7 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
             stati= [Modelelement.GTOP,Modelelement.DRAFT,Modelelement.PUBL]
             assert status is None or status.upper()  in stati, f"Publication status must be in {stati}"
         elif key == "diagrams" and val is not None:
-            diagrams = [dia.strip() for dia in val.split(',')]
+            diagrams = [dia.strip(" '\"") for dia in val.split(',')]
         #fi
     #for
 

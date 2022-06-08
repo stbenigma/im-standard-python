@@ -105,9 +105,10 @@ class test_createDB(unittest.TestCase):
             # test real upgrade
             shutil.rmtree('DB/')
             savefilename=Parameter.SQLFILENAME
-            os.chdir(os.path.dirname(__file__))
+            os.chdir(testsrc.source_root() / 'SSOT_db' / 'dbstructure' / 'sqlite')
             lastfile= subprocess.check_output(["git" ,"show",
-                                               "2.9:../dbstructure/sqlite/modelmodel_sqlite.sql",]).decode("utf-8")
+                                               f"2.9:./modelmodel_sqlite.sql"
+                                               ]).decode("utf-8")
             os.chdir(tempdir)
             with open (f"{Parameter.sqlpath()}/LAST_modelmodel_sqlite.sql",'w') as f:
                 f.write(lastfile)
