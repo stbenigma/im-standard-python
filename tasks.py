@@ -427,7 +427,7 @@ def db2json(c, source, output=None):
         git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
         print(f"Writing SPOD for git revision {revision} to {out_path}")
-        model.printSPOD(out_path)
+        model.write_json(out_path)
     print("Summary:\n" + json.dumps(model._repr_json_(), indent=4))
     print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SPOD {src_path}")
 

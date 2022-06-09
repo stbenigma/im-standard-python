@@ -1,11 +1,14 @@
 import sys
-import datetime
+import logging
 
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
+
+logger = logging.getLogger('mergedbs')
+summary = logging.getLogger('mergedbs:summary')
 
 SOURCE_SPOD: str = 'SPOD'  # default source for SPOD-internal updates
 
@@ -87,7 +90,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
                 # it is an element with external reference
                 cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
                 if cnt > 0:
-                    logging.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
+                    logger.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
                 result.adddelcnt(cnt, masterobject)
             else:
                 # no external reference. Delete entry, if its key does not exist in the json-file
@@ -101,7 +104,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
         # for
 
     rev = pmodel.jsmodel['_imprint_']['git-revision']
-    logging.info(f"Writing git revision {rev} to DB")
+    logger.info(f"Writing git revision {rev} to DB")
     dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
 
     if not pcheckonly and (len(result.errors) == 0):
@@ -157,20 +160,37 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
             raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
 
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose, pkeepids=pkeepids)
-        if pverbose and len(mergeresult.changes) > 0:
-            for c in mergeresult.changes:
-                print(c)
-        if (len(mergeresult.errors) > 0):
-            for dbe in mergeresult.errors:
-                print(dbe)
+
+        message = f"Errors {len(mergeresult.errors)}, Warnings {len(mergeresult.warnings)}, Changes {len(mergeresult.changes)}"
+        print("Merge result: " + message)
+        if len(mergeresult.errors) > 0:
+            summary.error(message)
+        elif len(mergeresult.warnings) > 0:
+            summary.warning(message)
+        else:
+            summary.info(message)
+
+        if len(mergeresult.errors) > 0:
+            summary.warning(f"--- Errors ---- ")
+        for dbe in mergeresult.errors:
+            summary.error(str(dbe))
+
+        if len(mergeresult.warnings) > 0:
+            summary.warning(f"--- Warnings ---- ")
         for w in mergeresult.warnings:
-            print(w)
+            summary.warning(w)
+
+        if len(mergeresult.changes) > 0:
+            summary.debug(f"--- Changes ---- ")
+        for c in mergeresult.changes:
+            summary.debug(str(c))
+
         print(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
         print(f"elements changed in database {dbConnect.getDBname()}")
         print(
             f"    {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
         if pdryrun:
-            print(f"***** Database was not modified ****")
+            logging.info(f"***** Database was not modified ****")
         # return json from merge anyway
         retval = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
@@ -182,7 +202,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
         js_change_file = Path('log') / 'merge.json'
         try:
             js_change_file.parent.mkdir(exist_ok=True)
-            logging.debug("Writing change log to '%s'", str(js_change_file))
+            logger.debug("Writing change log to '%s'", str(js_change_file))
             mergeresult.write_json(js_change_file)
         except:
             pass  # loggin darf nicht abstürzen
@@ -191,7 +211,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
 
 
 def checkjsonfile(pjsonfilepath, pverbose=False) -> bool:
-    logging.info(f"check jsonfile {pjsonfilepath}")
+    logger.info(f"check jsonfile {pjsonfilepath}")
     return checkjsonmodel(pmodel=JSModel.readfromfile(pjsonfilepath), pverbose=pverbose)
 
 
@@ -221,18 +241,18 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
         createnewDB(pdbfilepath=None)
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose, pcheckonly=True,
                                     pkeepids=pkeepids)
-        logging.info(f"model {modelname}")
-        logging.info(
+        logger.info(f"model {modelname}")
+        logger.info(
             f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
-        logging.info(f"Baselanguage: {baselang}  Languages: {languages}")
-        logging.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
-        logging.info(
+        logger.info(f"Baselanguage: {baselang}  Languages: {languages}")
+        logger.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
+        logger.info(
             f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
 
         for dbe in mergeresult.errors:
-            logging.error(dbe)
+            logger.error(dbe)
         for w in mergeresult.warnings:
-            logging.warning(w)
+            logger.warning(w)
     finally:
         dbConnect.pop()
     return len(mergeresult.errors) == 0
