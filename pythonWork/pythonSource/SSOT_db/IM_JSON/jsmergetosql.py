@@ -8,7 +8,7 @@ from SSOT_db.IM_OBJECTS import *
 from SSOT_infra import parameters
 from SSOT_infra import todatetime
 
-logger = logging.getLogger("jsmergetosql")
+logger = logging.getLogger(__name__)
 
 class Mergeresult:
     def __init__(self, srcname, verbose=False, checkonly=False):
@@ -311,7 +311,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                         presult.addfkey(extjsid=key, dbid=dbobjid)
                         presult.addinscnt(1, f"Insert of {str(jsonobj)}")
                         del newelements[key]  # omit in next loop
-                        del failures[key]
+                        failures.pop(key, None)
                     except Exception as e:
                         #logging.debug(f"Insert attempt of element {key} with id {identity} failed", exc_info=e)
                         if not (presult.ischeckonly() and pelemtype == "LANG"):
@@ -351,7 +351,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                                 jsonobj.updatedb(pdoerrhdlng=False)
                                 presult.addupdcnt(1, f"Update of {str(jsonobj)}")
                             del newelements[key]  # omit in next loop
-                            del failures[key]
+                            failures.pop(key, None)
                         except Exception as e:
                             newerrorlist.append(key)
                             err = f"""*** update-error : "{pelemtype}: DB-id = {dbobj.getid()} Json-Key = {key} """
@@ -380,7 +380,15 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
         if logger.isEnabledFor(logging.DEBUG):
             for js_key, error in failures.items():
-                logger.warning(f"Failed to {error[0]} element {js_key}: {str(error[1])}: {error[1].args} {error[2]}")
+                ex = error[1]
+                if isinstance(ex, Exception):
+                    try:
+                        args = ex.args
+                    except:
+                        args = ''
+                else:
+                    args = ''
+                logger.warning(f"Failed to {error[0]} element {js_key}: {str(error[1])}: {args} {error[2]}")
 
     presult.failures.update(failures)
     presult.savenewerrors()

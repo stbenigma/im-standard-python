@@ -1,12 +1,25 @@
+import os
 import re
 import sqlite3
 import logging
+from datetime import datetime
 
 from SSOT_db.SQL_INFRA import dbDDL, dbDML
 from SSOT_infra import logmessages, nvl
 from datetime import datetime
 
+# custom logging levels below logging.DEBUG
+FAILED_SQL = 6
+SUCCESSFUL_SQL = 5
+
 logger = logging.getLogger('baseobject')
+
+sqltrace = logging.getLogger('sqltrace')
+sqltrace.setLevel(SUCCESSFUL_SQL)  # trace level
+
+stamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+sql_trace_handler = logging.FileHandler(f'sqlite-{stamp}.log')
+sqltrace.addHandler(sql_trace_handler)
 
 
 def prettyprint(v):
@@ -129,6 +142,20 @@ class Baseobject:
     def totuple(self):
         return tuple(self.toarray())
 
+    @classmethod
+    def to_sql_values(cls, values: []) -> [str]:
+        result = []
+        for value in values:
+            if value is None:
+                result.append('null')
+            elif isinstance(value, str):
+                result.append(f"'{value}'")
+            elif isinstance(value, datetime):
+                result.append(f"'{value}'")
+            else:
+                result.append(str(value))
+        return result
+
     def _fromarray(self, parr):
         for cnt, val in enumerate(parr):
             collist = {colvalue[0]: colname for colname, colvalue in self._columnlist.items()}
@@ -171,11 +198,15 @@ class Baseobject:
                       , self.columnsliststring(pplaceholder=True))
         try:
             id = dbDML.insert(lsql, self.totuple())
-            logger.debug(f"Created new entry (id:{id}) in {self._tablename} from " \
-                         f"{Baseobject.print_sql_placeholder_values(lsql, self.totuple())}")
             if self.getid() is None:
                 self.setid(id)  # autocolumns zurücklesen
+            logger.debug(f"Created new entry (id:{id}) in {self._tablename} from " \
+                         f"{Baseobject.print_sql_placeholder_values(lsql, self.totuple())}")
+            self.trace(SUCCESSFUL_SQL, lsql, self.toarray())
         except sqlite3.Error as e:
+            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}." \
+                  f"\n{e} from statement \n{Baseobject.print_sql_placeholder_values(lsql, self.totuple())}"
+
             if pdoerrhdlng:
                 try:
                     logmessages.writelog(str(e))
@@ -187,9 +218,10 @@ class Baseobject:
                     print(str(e))
                     print(lsql)
                     print(self.totuple())
+
+                self.trace(FAILED_SQL, lsql, self.toarray(), e)
+
             # if
-            msg = f"Cannot insert into {self._tablename} tuple {self.totuple()}." \
-                  f"\n{e} from {Baseobject.print_sql_placeholder_values(lsql, self.totuple())}"
             if str(e).startswith("UNIQUE constraint failed"):
                 raise UniqueKeyException(msg) from e
             elif str(e).startswith("FOREIGN KEY constraint failed"):
@@ -225,6 +257,9 @@ class Baseobject:
         # print (lsql)
         try:
             id = dbDML.exec(lsql, *values)
+            self.trace(SUCCESSFUL_SQL, f"update {self._tablename} {self.update_set_statement(updcollist)}"
+                                       f" where {self._idcolname} = {dbDML.dbval(self.getid())}"
+                       , values)
         except sqlite3.Error as e:
             if pdoerrhdlng:
                 try:
@@ -236,6 +271,9 @@ class Baseobject:
                     print(lsql)
                     print(self.totuple())
             # if
+            self.trace(FAILED_SQL, f"update {self._tablename} set {self.update_set_statement(updcollist)}"
+                                   f" where {self._idcolname} = {dbDML.dbval(self.getid())}",
+                       values, e)
             raise e
         # try
         if self.__srcname is not None:
@@ -243,6 +281,11 @@ class Baseobject:
                                       psrcid=self.__srcid,
                                       pmodeid=self.getid())
         return
+
+    def update_set_statement(self, columns: []):
+        values = [f"{t[0]} = {t[1]}" for t in
+                  zip(columns, self.to_sql_values([self.colvalue(pcolname=col) for col in columns]))]
+        return ', '.join(values)
 
     def gettablecolumns(ptablename):
         sql = "PRAGMA table_info({})".format(ptablename)
@@ -279,6 +322,28 @@ class Baseobject:
         return self
 
     # getbyid
+
+    def trace(self, level, statement, values: list, exception: Exception = None):
+        try:
+            sql_statement = statement
+            if 'insert' in statement.lower():
+                str_values = self.to_sql_values(values)
+                value_string = 'values (' + ', '.join(str_values) + ')'
+                sql_statement = re.sub(r"values \(.+\).*", value_string, statement).rstrip()
+
+            if 'update' in statement.lower():
+                sql_statement = re.sub(r'\s+', r' ', statement.replace('\n', ' '), re.MULTILINE | re.DOTALL)
+                if exception is not None:
+                    exception = exception.args[-1]
+
+            if exception is not None:
+                args = ''
+                if isinstance(exception, Exception):
+                    args = f"{os.linesep}{os.linesep.join(exception.args)}"
+                sql_statement = f"! {sql_statement}\n {exception.__class__}: {str(exception)}{args}"
+            sqltrace.log(level, sql_statement)
+        except Exception as e:
+            logger.erro(f"Cannot log error {statement}", e)
 
     @classmethod
     def getbyuk(cls, **colvalpairs):
@@ -320,8 +385,10 @@ class Baseobject:
         if len(idset) == 1: return foundrows[0]
         raise Exception(
             "ID set {} -> rows '{}' found for different uk's of table {}, id={}".format(idset,
-                                                                                     ', '.join([str(a.totuple()) for a in foundrows]),
-                                                                                     self._tablename, self.getid()))
+                                                                                        ', '.join(
+                                                                                            [str(a.totuple()) for a in
+                                                                                             foundrows]),
+                                                                                        self._tablename, self.getid()))
         return
 
     def prefix(self):
@@ -458,7 +525,7 @@ class Baseobject:
             retval = elemdelcnt + modedelcnt  # cascade delete from MODE has to be counted as well
         except Exception as err:
             message = f"Cannot delete element {statement}\nArguments: {str(arguments)}"
-            if cls._tablename in [ 'examples', 'synonyms' ]:
+            if cls._tablename in ['examples', 'synonyms']:
                 logger.warning(f"Ignoring fk error on delete {cls._tablename}:\n{message}")
                 retval = 0
             else:

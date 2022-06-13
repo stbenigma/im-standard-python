@@ -23,13 +23,13 @@ class GenerateHTML(unittest.TestCase):
 
     def setUp(self) -> None:
         self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1).initDB()
-        self.testmodel1.initWeb()
+        self.testmodel1.remove_web_infrastructure()
 
         self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST).initDB()
-        self.testmodelcrm.initWeb()
+        self.testmodelcrm.remove_web_infrastructure()
 
         self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE).initDB()
-        self.testmodelriddle.initWeb()
+        self.testmodelriddle.remove_web_infrastructure()
 
     def test_html_proper(self):
         listWebdoku.webmain(pjsonfilepath=self.testmodelcrm.jsonfile, pwebdirec=self.testmodelcrm.webdir, pmodelname=self.testmodelcrm.modelname)
@@ -42,7 +42,7 @@ class GenerateHTML(unittest.TestCase):
 
     def test_listwebdoku(self):
         #os.chdir(self.testmodelcrm.modeldir)
-        self.testmodelcrm.initWeb()
+        self.testmodelcrm.remove_web_infrastructure()
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    '-p',
                                    str(self.testmodelcrm.paramfile),
