@@ -5,7 +5,7 @@ import xml.etree.ElementTree as et
 from datetime import datetime
 
 import handleXML
-from SSOT_infra import parameter, logmessages,int2hex
+from SSOT_infra import parameter, logmessages,int2hex,Parameter
 from SSOT_db.IM_OBJECTS import  *
 from LOAD_MODELS.LOAD_ODM import transferModel
 
@@ -550,7 +550,7 @@ def filllanguages():
 
 
 def transfer1project(pprojxml):
-    defspra = parameters.dbDefaultLang()
+    defspra = Parameter.DEFAULTLANG
     sprachen = parameter.languages()
     proj = Project()
     proj.proj_name = handleXML.findField(pprojxml, 'name')
@@ -570,7 +570,6 @@ def transfer1project(pprojxml):
         else:
             Language.setmodellang(pmodellang=defspra)
             Language.setallreplacementlang()
-            parameters.dbDefaultLang(defspra)
             getodmparams().dbDefaultLangID(defspraid)
     # fi
     return

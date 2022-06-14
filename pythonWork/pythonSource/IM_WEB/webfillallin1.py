@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../tools')
 from SSOT_db.SQL_INFRA import  dbConnect
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import Parameter, logmessages
 from IM_HTML import printHTML
 from LOAD_MODELS.LOAD_ODM import fillDB
 import listWebdoku
@@ -18,7 +18,7 @@ from tools import createMapExcel,createAllMapping
 def main(pdirec, plang,pforceoverwrite = False):
     parameters.initparam(basedirec=pdirec)
     if plang is None:
-        Languagetext.reportLang(parameters.dbDefaultLang())
+        Languagetext.reportLang(Parameter.DEFAULTLANG)
     else:
         Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')

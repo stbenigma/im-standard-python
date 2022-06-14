@@ -652,7 +652,6 @@ def transfer1project(pprojxml):
         else:
             Language.setmodellang(pmodellang=defspra)
             Language.setallreplacementlang()
-            parameters.dbDefaultLang(defspra)
             getodmparams().dbDefaultLangID(defspraid)
     # fi
     return
