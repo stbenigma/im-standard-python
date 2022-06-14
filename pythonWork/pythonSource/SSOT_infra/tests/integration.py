@@ -38,7 +38,8 @@ class Testmodel:
                 os.remove(self.dbfile)
             elif os.path.exists(self.dbfile):
                 #upgrade
-                createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
+                createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile,
+                         plogfilepath=self.logfile)
 
             fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
 
