@@ -73,7 +73,7 @@ def listwebmain(export: HTMLExport):
         = export.webFileName + f"{'' if len(langs) == 1 else langpart(export.modelLang())}.html"
 
     """Schnittstellen werden immer englisch gedruckt"""
-    lang = Languagetext.EN if (Languagetext.EN in langs) else Parameter.DEFAULTLANG
+    lang = Languagetext.EN if (Languagetext.EN in langs) else export.modelLang()
     Languagetext.reportLang(lang)
     for anker, element in schnlist.items():
         langfilename = export.htmlfilelist[anker]
