@@ -338,12 +338,12 @@ class Baseobject:
 
             if exception is not None:
                 args = ''
-                if isinstance(exception, Exception):
+                if isinstance(exception, BaseException):
                     args = f"{os.linesep}{os.linesep.join(exception.args)}"
                 sql_statement = f"! {sql_statement}\n {exception.__class__}: {str(exception)}{args}"
             sqltrace.log(level, sql_statement)
         except Exception as e:
-            logger.erro(f"Cannot log error {statement}", e)
+            logger.error(f"Cannot log error {statement}", exc_info=e)
 
     @classmethod
     def getbyuk(cls, **colvalpairs):
