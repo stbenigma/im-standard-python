@@ -44,7 +44,7 @@ class TestInvoke(unittest.TestCase):
             '--model',
             str(model_folder.resolve())
         ]
-        print(f"Generating riddle")
+        print(f"Generating riddle using subprocess: {' '.join(generate)}")
         result = subprocess.check_output(generate)
         self.assertTrue(dbfile.is_file(),
                         f"Expecting SPOD db in '{dbfile.resolve()}'")
