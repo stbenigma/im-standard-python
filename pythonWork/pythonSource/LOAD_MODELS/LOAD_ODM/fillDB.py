@@ -8,7 +8,7 @@ from LOAD_MODELS.LOAD_ODM import transferModel,getodmparams,ODMParameter,setodmp
 from SSOT_db import existsDB, createnewDB,dbinfo
 from SSOT_db.IM_JSON import *
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra import logmessages, argparseparent,Parameter,parameters
+from SSOT_infra import logmessages, argparseparent,Parameter,parameters,nvl2
 
 
 def ODM2json(pdebug=False) -> JSModel:
@@ -118,8 +118,15 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
     :param pconfigdirec: directory of ODM-configuration
     :return:
     """
-    dbfile = Path(pdbfilepath)
-    dbdirec = dbfile.parent
+
+    if pdbfilepath is None:
+        assert pmodelname is not None or pmodelfilepath is not None,"Modelname or modelfile must be given"
+        dbdirec = Path(os.path.abspath(os.path.dirname(os.path.dirname(pmodelfilepath)))) / Parameter.SPODDBDIREC
+        dbfile = None
+    else:
+        dbfile = Path(pdbfilepath)
+        dbdirec = dbfile.parent
+
     # create folder for DB files if not exists
     os.makedirs(dbdirec, exist_ok=True)
 
@@ -137,7 +144,7 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
     assert not (pmodelname is None and pmodelfilepath is None), "Modelfile or modelname must be given"
     if pmodelfilepath is not None:
         modelfilepath = Path(pmodelfilepath)
-        modelfilename = str(os.path.basename(pmodelfilepath)).split('.')[0]
+        modelfilename = modelfilepath.stem
         modelname = modelfilename
     elif pmodelname is not None:
         modelname = pmodelname
@@ -145,28 +152,30 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
         modelfilename = modelname
 
     assert (modelfilename == modelname), f"Modelname {modelname} does not match modelfile-name {modelfilename}"
+    if dbfile is None:
+        dbfile = dbdirec / (modelname + Parameter.SPODDBEXTENSION)
 
-    modellang, languages = dbinfo.dblanguages(pdbfilepath=pdbfilepath,pmodellang=pmodellang,planguages=planguages)
+    modellang, languages = dbinfo.dblanguages(pdbfilepath=dbfile,pmodellang=pmodellang,planguages=planguages)
 
     """Main program for fillDB"""
     loadedjson = transferodm2json(pmodelfile=modelfilepath,
                                   pdefaultlang=modellang,planguages=languages,
-                                  pdestdir=dbfile.parent,
+                                  pdestdir=dbdirec,
                                   pconfigdirec=pconfigdirec)
 
     new_git_revision = parameters.read_git_description(Path(os.path.dirname(modelfilepath)))
-    loaded_json_file = dbfile.parent / str(dbfile.stem + "_loaded.json")
+    loaded_json_file = dbdirec / str(modelname + "_loaded.json")
     loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
     loadedjson.printSPOD(loaded_json_file)
 
-    if not existsDB(pdbfilepath):
+    if not existsDB(dbfile):
         logging.info(f"Created SPOD for git revision {new_git_revision}")
-        createnewDB(pdbfilepath=pdbfilepath)
+        createnewDB(pdbfilepath=dbfile)
         dbConnect.write_git_reversion(new_git_revision, dbConnect.getdbcon())
         dbConnect.closeDB()
     else:
         ####??? braucht es das?
-        dbConnect.openDB(pfilepath=pdbfilepath)
+        dbConnect.openDB(pfilepath=dbfile)
         old_git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         logging.info(f"Opening DB '{dbfile}' for upgrade from git revision '{old_git_revision}'"
                      f" to git revision '{new_git_revision}'")
@@ -175,13 +184,13 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
 
     logging.debug(f"Starting merge")
     """merge created DB into existing one"""
-    reloaded = mergedbs.mergejs2db(pdbfile=pdbfilepath, pmodel=loadedjson)
+    reloaded = mergedbs.mergejs2db(pdbfile=dbfile, pmodel=loadedjson)
 
     logging.debug(f"Writing reloaded model to json SPOD")
     js_spod_file = reloaded.printmodel(pfilepath=dbdirec, pfilename=modelname+'.json')
     logging.info(
         f"Merge of SPOD {js_spod_file} to git revision {reloaded.jsmodel['_imprint_']['git-revision']} complete")
-    logmessages.writelog(f"model {pmodelname} filled in database: {pdbfilepath}\n" +
+    logmessages.writelog(f"model {pmodelname} filled in database: {dbfile}\n" +
                              f"jsonfile of model generated {getodmparams().dbjsonfile()}")
 
     return
@@ -210,7 +219,7 @@ def filldbmain(pmodelname=None, pmodelfilepath=None,pdestination=None,
                     pconfigdirec=pconfigdirec)
     finally:
         logmessages.showmessages()
-    return Path(pdestination)
+    return None if pdestination is None else Path(pdestination)
 
 
 def main(psysargs):
@@ -260,7 +269,7 @@ def main(psysargs):
 
     if myargs['modelfilepath'] is not None:
         if myargs['modelname'] is None:
-            myargs['modelname'] = myargs['modelfilepath'].stem
+            myargs['modelname'] = Path(myargs['modelfilepath']).stem
         myargs['modelfilepath'] = os.path.abspath(myargs['modelfilepath'])
 
     # do only testing of parameterpassing while in unittest

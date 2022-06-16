@@ -56,6 +56,8 @@ class Testmodel:
             shutil.rmtree(self.webdir / "js/")
         if os.path.exists(self.webdir / "css"):
             shutil.rmtree(self.webdir / "css/")
+        if os.path.exists(self.webdir / "images"):
+            shutil.rmtree(self.webdir / "images/")
 
 
 def initDB(pmodel):

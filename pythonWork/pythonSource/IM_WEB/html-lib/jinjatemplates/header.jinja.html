@@ -40,7 +40,7 @@
 			{% set otherlangs = model.getlanguages(all=False) %}
 			{% for lang in otherlangs %}
 				{% set icon = ('gb' if lang.lower() == 'en' else lang.lower()) ~ '.png'  %}
-				{{ lang.upper() }} {{ model.getreflink(name='<img class="icon-check" src="icons/{}">'.format(icon) ,destid=None,destlang=lang)|safe }}
+				{{ lang.upper() }} {{ model.getreflink(name='<img class="icon-check" src="images/icons/{}">'.format(icon) ,destid=None,destlang=lang)|safe }}
 			{% endfor  %}
 
 		</div>

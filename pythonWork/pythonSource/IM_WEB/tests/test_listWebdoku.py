@@ -25,6 +25,9 @@ class GenerateHTML(unittest.TestCase):
         self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1).initDB()
         self.testmodel1.initWeb()
 
+        self.testmodel2=testsrc.Testmodel(testsrc.TESTMODEL2).initDB()
+        self.testmodel2.initWeb()
+
         self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST).initDB()
         self.testmodelcrm.initWeb()
 
@@ -36,8 +39,8 @@ class GenerateHTML(unittest.TestCase):
         self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'jinjatemplates'))
         self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'css'))
         self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'js'))
-        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'icons'))
         self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'images'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'images'/'icons'))
         with open(self.testmodelcrm.webdir / (self.testmodelcrm.modelname+'_de.html'),"r") as webfile:
             html=webfile.read()
             self.assertRegex(html,"Sachdienstmitarbeiter")

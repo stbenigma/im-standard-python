@@ -141,8 +141,6 @@ class HTMLExport(HTMLParameter):
             shutil.copytree(os.path.join(self.libSourceDirec, 'css'), self.cssDirec())
         if not os.path.exists(self.jsDirec()):
             shutil.copytree(os.path.join(self.libSourceDirec, 'js'), self.jsDirec())
-        if not os.path.exists(self.iconDirec()):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'icons'), self.iconDirec())
         if not os.path.exists(self.imageDirec()):
             shutil.copytree(os.path.join(self.libSourceDirec, 'image'), self.imageDirec())
         if not os.path.exists(self.jinjaDirec()):

@@ -80,7 +80,7 @@ class MyTestCase(unittest.TestCase):
                 models = stable_file_list(imdir)
                 for model in models:
                     if model.endswith('.dmd'):
-                        if model != 'BASFMDM.dmd': continue
+                        # DEBUG if model != 'BASFMDM.dmd': continue
                         shutil.rmtree(basedirec / DBDIREC, ignore_errors=True)
                         shutil.rmtree(basedirec / WEBDIRC, ignore_errors=True)
                         if os.path.exists(basedirec / (model[:-4]+ ".log")): os.remove(basedirec / (model[:-4]+ ".log"))

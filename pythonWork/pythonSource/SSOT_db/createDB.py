@@ -8,8 +8,8 @@ from packaging import version
 
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_db.SQL_INFRA import dbDDL
-from SSOT_db.IM_OBJECTS import MeltDiat, Modelelemtype, Diagramtype, Language
-from SSOT_infra import parameters,Parameter, logmessages, argparseparent
+from SSOT_db.IM_OBJECTS import MeltDiat, Modelelemtype, Diagramtype
+from SSOT_infra import parameters,Parameter, logmessages, argparseparent,nvl
 
 
 def applysqlscript(psqlfilepath):
@@ -140,14 +140,16 @@ def createDB(pupgrade=False, pdbtype=Parameter.SQLITE, pmodelname=None, pdestina
         pdestination => Filepath of dbfile to be created
      """
     global myparam
-    assert (pmodelname is not None), "modelname must be given"
+    modelname=nvl(pmodelname)
     if pdestination is not None:
         basedirec = os.path.dirname(pdestination)
+        modelname =nvl(modelname,Path(pdestination).stem)
     else:
+        assert (modelname is not None), "modelname or dbfile must be given"
         # no paramfile or destination is given, take current directory as basedirec
         basedirec = os.getcwd()
     # fi
-    myparam= Parameter(basedirec=basedirec, modelname=pmodelname, dbfilepath=pdestination,
+    myparam= Parameter(basedirec=basedirec, modelname=modelname, dbfilepath=pdestination,
                        modellang=pmodellang, languages=planguages, logfilepath=plogfilepath)
     try:
         logmessages.initlog('CreateDB',plogfilepath=myparam.logfilepath())
@@ -200,7 +202,6 @@ def main(psysargs):
     if 'version' in myargs and myargs['version']:
         argparseparent.showversion()
         exit(0)
-    argparseparent.checkmodelandparam(parguments=myargs)
     argparseparent.fillssotdefaults(pcurrentdir=os.getcwd(), parguments=myargs)
 
     currentdir = os.getcwd()
@@ -211,7 +212,7 @@ def main(psysargs):
 
     # do only testing of parameterpassing while in unittest
     if not arguments.unittest:
-        createDB(pparamfile=myargs['paramfile'], pupgrade=myargs['upgrade'], pdbtype=myargs['dbtype'],
+        createDB(pupgrade=myargs['upgrade'], pdbtype=myargs['dbtype'],
                  pmodelname=myargs['modelname'],
                  pdestination=myargs['destination'], pmodellang=myargs['modellanguage'], planguages=myargs['languages'],
                  plogfilepath=myargs['logfile'])

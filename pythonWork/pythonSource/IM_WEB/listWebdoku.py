@@ -87,7 +87,7 @@ def listwebmain(export: HTMLExport):
 
 def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, **kwargs ):
     assert (pjsonfilepath is not None and pwebdirec is not None),\
-        f"jsonsource and desination tdirectory must be given"
+        f"jsonsource and destination directory must be given"
 
     status = None
     diagrams = None
