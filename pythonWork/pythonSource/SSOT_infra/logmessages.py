@@ -1,5 +1,6 @@
 from datetime import datetime
 from SSOT_infra.translateprompt import plural
+from pathlib import Path
 
 logcount: int = 0
 logfile = None
@@ -28,7 +29,7 @@ def initlog(pmodulename: str,plogfilepath=None):
     else:
         logpath = None
     if logpath is not None:
-        logpath.parent.mkdir(exist_ok=True)
+        Path(logpath).parent.mkdir(exist_ok=True)
         logfile = open(logpath, 'a+')
         logfile.write(log_line)
     logtrap(log_line)

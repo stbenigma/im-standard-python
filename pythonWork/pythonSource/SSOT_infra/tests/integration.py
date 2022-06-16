@@ -86,6 +86,8 @@ def resolve_project_root(folder: Path = __file__) -> Path:
     project_root = Path(*list(dirs[0:base]))
     return project_root
 
+def testdata_root() -> Path:
+    return resolve_project_root() / 'testdata'
 
 def source_root() -> Path:
     return resolve_project_root() / ROOT_MARKER / "pythonSource"

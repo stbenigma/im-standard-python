@@ -265,7 +265,7 @@ def main(psysargs):
 
     # do only testing of parameterpassing while in unittest
     if not arguments.unittest:
-        filldbmain(pdbtype=myargs['dbtype'], pmodelname=myargs['modelname'],pmodelfilepath=myargs['modelfilepath'],
+        filldbmain(pmodelname=myargs['modelname'],pmodelfilepath=myargs['modelfilepath'],
                    pdestination=myargs['destination'],
                    pmodellang=myargs['modellanguage'], planguages=myargs['languages'],
                    plogfilepath=myargs['logfile'],
