@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 
 from SSOT_db.SQL_INFRA import dbDML
@@ -139,6 +140,9 @@ class Modelelement(Baseobject):
 
     # __init__
 
+    def __repr__(self):
+        return f"Modelelement({self.getid()}, {self.mode_type})"
+
     """Mapping of mode attributes to udp-names  in ODM"""
     ODMattrmapping = {'mode_min_zoom_level': 'minzoomlevel',
                       'mode_max_zoom_level': 'maxzoomlevel',
@@ -276,10 +280,16 @@ class Modelelement(Baseobject):
     def deletenonreferenced(pmodetype):
         """ delete all modelelements which do not longer have an external reference
         """
-        cnt = Modelelement.delete(pwhere=("""mode_type = ? 
+        try:
+            where = ("""mode_type = ? 
                                 and not exists 
                                 (select 1 from external_refs 
-                                where extr_mode_id = mode_id)""",pmodetype))
+                                    where extr_mode_id = mode_id)""", pmodetype)
+            cnt = Modelelement.delete(pwhere=where)
+        except BaseException as e:
+            candidates = Modelelement.select(pwhere=where)
+            logging.error(f"Failed to delete one of {list(candidates)} where mode_type={pmodetype}. " + str(e))
+            raise
         return cnt
 
 

@@ -87,11 +87,14 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
         for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0], reverse=True):
             extref = transferprocs[masterobject][3]
             if extref:
-                # it is an element with external reference
-                cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
-                if cnt > 0:
-                    logger.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
-                result.adddelcnt(cnt, masterobject)
+                try:
+                    # it is an element with external reference
+                    cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
+                    if cnt > 0:
+                        logger.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
+                    result.adddelcnt(cnt, masterobject)
+                except Exception as e:
+                    logger.warning(f"Cannot delete elements", exc_info=e)
             else:
                 # no external reference. Delete entry, if its key does not exist in the json-file
                 # the table is mapped to a db-objects
