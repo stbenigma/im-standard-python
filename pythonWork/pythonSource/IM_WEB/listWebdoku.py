@@ -3,6 +3,7 @@ import argparse
 import logging
 import os
 import sys
+from pathlib import Path
 
 from IM_WEB import jinjawebmodel,htmlparameters
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
@@ -102,8 +103,9 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
     #for
 
     if pjsonfilepath is not None:
-        basedirec = os.path.abspath(os.path.dirname(os.path.dirname(pjsonfilepath)))
-        jsonmodel = JSModel.readfromfile(pfilename=pjsonfilepath)
+        jsonfilepath=Path(pjsonfilepath).resolve()
+        basedirec = os.path.abspath(os.path.dirname(os.path.dirname(jsonfilepath)))
+        jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
         modelname = jsonmodel.modelname()
     else:
         basedirec = os.getcwd()
@@ -112,7 +114,6 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
 
     exporter = HTMLExport(baseDirec=basedirec, modelname=modelname,
                           webDirec=pwebdirec, logofile=plogfilepath)
-    jsonfilepath = pjsonfilepath
     try:
         logmessages.initlog('createHTML',
                             plogfilepath=exporter.logfilepath())

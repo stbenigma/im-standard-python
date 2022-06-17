@@ -30,7 +30,7 @@ def expecteddbversion():
 
 def nvlPath(p):
     if p is None: return None
-    return Path(p)
+    return Path(p).resolve()
 
 
 class Parameter():

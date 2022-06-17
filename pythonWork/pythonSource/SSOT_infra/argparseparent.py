@@ -38,8 +38,8 @@ def argisnone(pargument, parguments):
 
 
 def checkmodelandparam(parguments):
-    if not (argnotnone('modelname', parguments) or argnotnone('modelfilepath', parguments)):
-        print("modelname or modelfilepath must be given")
+    if not (argnotnone('modelname', parguments) or argnotnone('modelfilepath', parguments) or argnotnone('destination', parguments)):
+        print("modelname or modelfilepath or destination must be given")
         exit(1)
 
 def showversion():

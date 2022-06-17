@@ -142,7 +142,7 @@ def createDB(pupgrade=False, pdbtype=Parameter.SQLITE, pmodelname=None, pdestina
     global myparam
     modelname=nvl(pmodelname)
     if pdestination is not None:
-        basedirec = os.path.dirname(pdestination)
+        basedirec = os.path.dirname(os.path.dirname(Path(pdestination).resolve()))
         modelname =nvl(modelname,Path(pdestination).stem)
     else:
         assert (modelname is not None), "modelname or dbfile must be given"
