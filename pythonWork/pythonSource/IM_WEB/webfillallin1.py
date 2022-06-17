@@ -26,7 +26,7 @@ def main(pdirec, plang,pforceoverwrite = False):
     os.makedirs(parameters.webDirec(), exist_ok=True)
     os.makedirs(parameters.dbDirect(), exist_ok=True)
 
-    fillDB.filldbmain(pdestination=parameters.dbFilePath(),pmodelname=parameters.modelName())
+    fillDB.fillmergedb(pdbfilepath=parameters.dbFilePath(), pmodelname=parameters.modelName())
 
     dbConnect.openDB(parameters.dbFilePath())
     #jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))

@@ -82,14 +82,14 @@ def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None
 
     :param pmodelfile: .dmd file for the ODM-model
     :param pdefaultlang: iso2 code of model languagen (default 'en')
-    :param pdestination: directory for generated json-file
+    :param pdbfilepath: directory for generated json-file
                          default <modeldirectory>/../DB
     :param pconfigdir: directory containing the ODM configuration files
                     default 1. modelfile directory / Configuration
                             2. modelfile directry / Konfiguration
     :param pdebug: True write intermediate sqlite database
                     to a db file modelname_odm.db
-                    in pdestination
+                    in pdbfilepath
     :return:
     """
     modelname:str = None if pmodelfile is None else Path(pmodelfile).stem
@@ -107,7 +107,7 @@ def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None
 
 
 def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None, planguages=None,
-                pconfigdirec=None):
+                pconfigdirec=None,plogfilepath=None, ):
     """
     Create or merge SPOD (sqlite and json).
     :param pdbfilepath:
@@ -157,6 +157,8 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
 
     modellang, languages = dbinfo.dblanguages(pdbfilepath=dbfile,pmodellang=pmodellang,planguages=planguages)
 
+    logmessages.initlog('fillDBODM',plogfilepath=plogfilepath)
+
     """Main program for fillDB"""
     loadedjson = transferodm2json(pmodelfile=modelfilepath,
                                   pdefaultlang=modellang,planguages=languages,
@@ -193,39 +195,12 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
     logmessages.writelog(f"model {pmodelname} filled in database: {dbfile}\n" +
                              f"jsonfile of model generated {getodmparams().dbjsonfile()}")
 
-    return
-
-
-def filldbmain(pmodelname=None, pmodelfilepath=None,pdestination=None,
-               pmodellang=None, planguages=None, plogfilepath=None, pconfigdirec=None):
-    """
-    fills the call-parameters into parameter and calls the fillmerge (read model and merge into db)
-    :param pdbtype:  NOT USED Currently
-    :param pmodelname: Name of the model
-    :param pdestination: filepath of destination DB file
-    :param pmodellang: Baselanguage of the model (in case ODM-file does not contain any languages)
-    :param planguages: languages of the model (in case ODM-file does not contain any languages)
-    :param plogfilepath:  file to write the logs to
-    :param pmodelfilepath: ODM-dmd file main file of ODM model
-    :param pconfigdirec: directory for configuration files (if not absoulte, relative to IM directory)
-    :return: path to database file
-    """
-
-    logmessages.initlog('fillDBODM',plogfilepath=plogfilepath)
-
-    try:
-        fillmergedb(pdbfilepath=pdestination,pmodelname=pmodelname,pmodelfilepath=pmodelfilepath,
-                    pmodellang=pmodellang, planguages=planguages,
-                    pconfigdirec=pconfigdirec)
-    finally:
-        logmessages.showmessages()
-    return None if pdestination is None else Path(pdestination)
-
+    logmessages.showmessages()
+    return dbfile
 
 def main(psysargs):
     """
     parses sysargs, searches for model and directories and calls
-    filldbmain
     show version
 
     :param psysargs:
@@ -274,8 +249,8 @@ def main(psysargs):
 
     # do only testing of parameterpassing while in unittest
     if not arguments.unittest:
-        filldbmain(pmodelname=myargs['modelname'],pmodelfilepath=myargs['modelfilepath'],
-                   pdestination=myargs['destination'],
+        fillmergedb(pmodelname=myargs['modelname'], pmodelfilepath=myargs['modelfilepath'],
+                   pdbfilepath=myargs['destination'],
                    pmodellang=myargs['modellanguage'], planguages=myargs['languages'],
                    plogfilepath=myargs['logfile'],
                    pconfigdirec=myargs['configdirec'])

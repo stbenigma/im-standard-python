@@ -1,16 +1,16 @@
 {% macro tdbool2icon(bool) -%}
 	{% if bool %}	
-		<td class="symbol"><img class="icon-check" src="icons/checkmark.svg"></td>
+		<td class="symbol"><img class="icon-check" src="images/icons/checkmark.svg"></td>
 	{% else %}	
-		<td class="symbol"><img class="icon-remove" src="icons/cross.svg"></td>
+		<td class="symbol"><img class="icon-remove" src="images/icons/cross.svg"></td>
 	{% endif %}	
 {%- endmacro %}
 
 {% macro tdicon(icon) -%}
 	{% if icon == 'down' %}	
-		<td class="leftsymbol"><img class="icon-down" src="icons/downarrow.svg"></td>
+		<td class="leftsymbol"><img class="icon-down" src="images/icons/downarrow.svg"></td>
 	{% elif icon == 'up' %}		
-		<td class="leftsymbol"><img class="icon-up" src="icons/uparrow.svg"></td>
+		<td class="leftsymbol"><img class="icon-up" src="images/icons/uparrow.svg"></td>
 	{% else %}	
 		<td> icon </td>
 	{% endif %}	
@@ -22,8 +22,8 @@
 					<div class="panel">
 						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{lbc}}">
 							<label class="label0">{{ label }}</label>
-							<img class="icon-minus" alt="minus" src="icons/minus.svg">
-							<img class="icon-plus" alt="plus" src="icons/plus.svg">
+							<img class="icon-minus" alt="minus" src="images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="images/icons/plus.svg">
 						</div>
 					</div>
 					<!-- The inside div eliminates the 'jumping' animation. -->
@@ -67,8 +67,8 @@
 			</div>
 			<div class="panel">
 				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#{{ lbc }}">
-					<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-					<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+					<img class="icon-chevron-up" alt="minus" src="images/icons/chevron-up.svg">
+					<img class="icon-chevron-down" alt="plus" src="images/icons/chevron-down.svg">
 					<label class="label1">more</label>
 				</div>
 			</div>
@@ -78,8 +78,8 @@
 {% macro subblock(header, lbc) -%}
 					<div class="panel"  id="#{{lbc}}">
 						<div class="panel-heading collapsed" data-toggle="collapse"  data-target="#{{lbc}}">
-							<img class="icon-chevron-up" alt="minus" src="icons/chevron-up.svg">
-							<img class="icon-chevron-down" alt="plus" src="icons/chevron-down.svg">
+							<img class="icon-chevron-up" alt="minus" src="images/icons/chevron-up.svg">
+							<img class="icon-chevron-down" alt="plus" src="images/icons/chevron-down.svg">
 							<label class="label1"><h3>{{ header }}</h3></label>				
 						</div>
 					</div>

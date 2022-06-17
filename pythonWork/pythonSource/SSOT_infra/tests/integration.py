@@ -41,7 +41,7 @@ class Testmodel:
                 createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile,
                          plogfilepath=self.logfile)
 
-            fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
+            fillDB.fillmergedb(pmodelname=self.modelname, pdbfilepath=self.dbfile)
 
         if palways or not os.path.exists(self.jsonfile) or age(os.path.getmtime(self.jsonfile))>60:
             createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,

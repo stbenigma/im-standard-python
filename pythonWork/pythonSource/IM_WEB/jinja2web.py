@@ -119,6 +119,7 @@ class Webmodel:
                 if intfanker in elem:
                     tablist += elem[intfanker]
             if len(tablist) == 0: continue
+            tablist=list(set(tablist))
             allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({} ({}))".format(self.getelem(tabanker)['name']
                                                                                                 , self.getelem(tabanker)['CRUD'])
                                                 , destid=tabanker
@@ -151,6 +152,7 @@ class Webmodel:
                 if intfanker in mapcolus:
                     collist += mapcolus[intfanker]
             if len(collist) == 0: continue
+            collist =list(set(collist))
             allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({}.{} ({}))".format(self.getelem(colanker)['table-name+']
                                                                                     , self.getelem(colanker)['name']
                                                                                     , self.getelem(colanker)['R/W'])

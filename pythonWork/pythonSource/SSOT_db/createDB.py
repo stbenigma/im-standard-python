@@ -137,7 +137,7 @@ def createDB(pupgrade=False, pdbtype=Parameter.SQLITE, pmodelname=None, pdestina
         pupgrade => upgrade existing database
         pdbtype => type of db to generate
         pmodelname
-        pdestination => Filepath of dbfile to be created
+        pdbfilepath => Filepath of dbfile to be created
      """
     global myparam
     modelname=nvl(pmodelname)
@@ -202,6 +202,7 @@ def main(psysargs):
     if 'version' in myargs and myargs['version']:
         argparseparent.showversion()
         exit(0)
+    argparseparent.checkmodelandparam(myargs)
     argparseparent.fillssotdefaults(pcurrentdir=os.getcwd(), parguments=myargs)
 
     currentdir = os.getcwd()

@@ -32,6 +32,7 @@ class IntegrationTestXMIExport(IntegrationTest):
     @pytest.mark.integration
     def test_crm_xmi(self):
         json_model, model = self.load_crm_model()
+        if json_model is None:return #no referencetestmodel found
         entities = json_model['entities']
 
         exporter = XMIBuilder(model, 'en')
@@ -66,6 +67,7 @@ class IntegrationTestXMIExport(IntegrationTest):
     @pytest.mark.integration
     def test_crm_extended(self):
         json_model, model = self.load_crm_model()
+        if json_model is None:return #no referencetestmodel found
         entities = json_model['entities']
 
         exporter = XMIBuilder(model, 'en')
@@ -82,8 +84,11 @@ class IntegrationTestXMIExport(IntegrationTest):
         assert len(entities) == len(classes)
 
     def load_crm_model(self) -> (json, JSModel):
-        json_model = self.load_model(self.project_root / MODEL_REPOSITORY /
-                                     'CRM/DB/IM_CRM_FYAYC.json')
+        refmodeldir = self.project_root / MODEL_REPOSITORY
+        if not refmodeldir.exists():
+            logging.warning(f"Skipping integration test due to missing resource {refmodeldir.resolve()}")
+            return None,None
+        json_model = self.load_model(refmodeldir / 'CRM/DB/IM_CRM_FYAYC.json')
         model = JSModel(pmodel=json_model)
         return json_model, model
 

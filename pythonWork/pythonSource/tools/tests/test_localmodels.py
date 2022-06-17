@@ -44,8 +44,8 @@ class MyTestCase(unittest.TestCase):
         def check1ODMmodel(modelfilepath, basedirec):
             print(f"***** checking model {modelfilepath}")
             try:
-                fillDB.filldbmain(pmodelfilepath=str(modelfilepath),
-                                  pdestination=basedirec / DBDIREC / (modelfilepath.stem + '.db'),
+                fillDB.fillmergedb(pmodelfilepath=str(modelfilepath),
+                                  pdbfilepath=basedirec / DBDIREC / (modelfilepath.stem + '.db'),
                                   plogfilepath=basedirec / (modelfilepath.stem + '.log'))
             except Exception as e:
                 self.assertTrue(False, f"******* model {modelfilepath}\n" +

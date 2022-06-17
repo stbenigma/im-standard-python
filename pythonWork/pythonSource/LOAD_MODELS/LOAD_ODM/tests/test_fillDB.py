@@ -17,7 +17,7 @@ def create_testmodel(testmodel, new=True):
     if new and os.path.exists(testmodel.dbfile):
         os.remove(testmodel.dbfile)
     os.chdir(testmodel.modeldir)
-    db = fillDB.filldbmain(pmodelname=testmodel.modelname, pdestination=testmodel.dbfile,
+    db = fillDB.fillmergedb(pmodelname=testmodel.modelname, pdbfilepath=testmodel.dbfile,
                            plogfilepath=testmodel.logfile)
     assert db.is_file()
     return
@@ -111,7 +111,7 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(tm1.dbfile):
             os.remove(tm1.dbfile)
         os.chdir(tm1.modeldir)
-        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile,plogfilepath=tm1.logfile)
+        fillDB.fillmergedb(pmodelname=tm1.modelname, pdbfilepath=tm1.dbfile, plogfilepath=tm1.logfile)
 
         self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
         self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
@@ -121,7 +121,7 @@ class TestFillDatabase(unittest.TestCase):
         self.assertTrue(os.path.exists(tm1.logfile),
                         f"Log file not where assumed {tm1.logfile}")
         # create db for a second time => merge
-        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile,
+        fillDB.fillmergedb(pmodelname=tm1.modelname, pdbfilepath=tm1.dbfile,
                           plogfilepath=tm1.logfile)
         # check subentitylevels
         with open(tm1.jsonfile) as jsonFile:
@@ -133,7 +133,7 @@ class TestFillDatabase(unittest.TestCase):
         tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         # if os.path.exists(tm2.dbfile):
         #    createDB(pupgrade=True, pparamfile=paramfile)
-        fillDB.filldbmain(pmodelfilepath=tm2.modelfile,pdestination=tm2.dbfile,
+        fillDB.fillmergedb(pmodelfilepath=tm2.modelfile, pdbfilepath=tm2.dbfile,
                           plogfilepath=tm2.logfile)
         # check handling of translations
         #print(f"Verifying against {tm2.jsonfile}")
@@ -160,7 +160,7 @@ class TestFillDatabase(unittest.TestCase):
         testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
         # error for wrong modelname
         with self.assertRaises(Exception):
-            fillDB.filldbmain(pdestination=testmodelcrm.dbfile, pmodelname='Gugus')
+            fillDB.fillmergedb(pdbfilepath=testmodelcrm.dbfile, pmodelname='Gugus')
 
         # should work
         if os.path.exists(testmodelcrm.dbfile):
@@ -168,7 +168,7 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(testmodelcrm.logfile):
             os.remove(testmodelcrm.logfile)
 
-        fillDB.filldbmain(pdestination=testmodelcrm.dbfile,
+        fillDB.fillmergedb(pdbfilepath=testmodelcrm.dbfile,
                           pmodelfilepath=testmodelcrm.modelfile,
                           plogfilepath=testmodelcrm.logfile)
         self.assertTrue(os.path.exists(testmodelcrm.dbfile), f"DB file not created where assumed {testmodelcrm.dbfile}")
@@ -183,8 +183,8 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(testmodelriddle.dbfile):
             os.remove(testmodelriddle.dbfile)
         os.chdir(testmodelriddle.modeldir)
-        fillDB.filldbmain(pmodelname=testmodelriddle.modelname,
-                          pdestination=testmodelriddle.dbfile,
+        fillDB.fillmergedb(pmodelname=testmodelriddle.modelname,
+                          pdbfilepath=testmodelriddle.dbfile,
                           plogfilepath=testmodelriddle.logfile)
         self.assertTrue(os.path.exists(testmodelriddle.dbfile),
                         f"DB file not created where assumed {testmodelriddle.dbfile}")
