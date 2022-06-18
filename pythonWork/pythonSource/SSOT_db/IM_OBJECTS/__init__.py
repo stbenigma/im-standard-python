@@ -24,6 +24,7 @@ from .orgunit import OragnisationalUnit, ModelelemOrgu
 from .businessrule import BusinessRule, BusinessruleElement
 from .examples import Example
 from .actorrole import Actorrole, Actorconcern
+from .checkdatabase import checkdatabase
 
 table2class = {c._tablename: c for c in
                (Modelelemtype, Modelelement, ModelelementProperty,

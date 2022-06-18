@@ -4,12 +4,14 @@ import unittest
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
 from SSOT_db.IM_OBJECTS import Entity,Actorrole,Actorconcern,Attribute,Externalref,DomaingroupMember,ModelelemDocu
-from SSOT_db.SQL_INFRA import dbConnect
+from SSOT_db.SQL_INFRA import dbConnect,dbDML
+from SSOT_db.IM_OBJECTS.checkdatabase import checkdatabase
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testcrm = testsrc.Testmodel(testsrc.CRMTEST)
         create_testmodel(self.testmodel1, new=True)
         return
 
@@ -69,6 +71,92 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(('mode_type=' in elem[0][2] or 'docu_name=' in elem[0][2]))
 
         dbConnect.closeDB()
+        return
+
+    def test_consistency(self):
+        def createdberrors():
+            """creates 4 UK errors (1 ENTI,1 DOMA, 2 ATTR
+             and 2 mismatcherrors"""
+            sql = """
+            update lang_texts
+            set lgtx_text='beidefalsch'
+            --select * from lang_texts
+            where lgtx_attrname=?
+            and lgtx_lang_id=(select lang_id from languages
+                            where lang_iso_code2=?)
+            and lgtx_mode_id in
+                (select enti_id from entities
+                where enti_name in (?,?))
+            """
+            dbDML.exec(sql,'ENTI_NAME','fr','Eigentümer','Händler')
+
+            sql = """
+            update lang_texts
+            set lgtx_text='allefalsch'
+            --select * from lang_texts
+            where lgtx_attrname=?
+            and lgtx_lang_id=(select lang_id from languages
+                            where lang_iso_code2=?)
+            and lgtx_mode_id in
+                (select doma_id from domains
+                where doma_name in (?,?,?))
+            """
+            dbDML.exec(sql,'DOMA_NAME','en','Anzahl','Artikel ID','Beschreibung')
+
+            sql="""
+            update lang_texts
+            set lgtx_text='allefalsch'
+            --select * from lang_texts
+            where lgtx_attrname=?
+            and lgtx_lang_id=(select lang_id from languages
+                            where lang_iso_code2=?)
+            and lgtx_mode_id in
+                (select attr_id from attributes
+                where attr_displ_name in (?,?,?,?))
+            """
+            dbDML.exec(sql,'ATTR_NAME','fr','Hausnr','Strassenname','Typ','*Zweck')
+
+            sql="""
+            update lang_texts
+            set lgtx_text=lgtx_text||'xx'
+            where lgtx_attrname=?
+            and lgtx_lang_id=(select lang_id from languages
+                            where lang_is_base_lang = 'TRUE')
+            and lgtx_mode_id in
+                (select attr_id from attributes
+                where attr_displ_name in (?))
+            """
+            dbDML.exec(sql,'ATTR_COMMENT','Hausnr')
+
+            sql="""
+            update lang_texts
+            set lgtx_text=lgtx_text||'xx'
+            where lgtx_attrname=?
+            and lgtx_lang_id=(select lang_id from languages
+                            where lang_is_base_lang = 'TRUE')
+            and lgtx_mode_id in
+                (select buru_id from business_rules
+                where buru_name in (?))
+            """
+            dbDML.exec(sql,'BURU_DESCR','vonbis')
+
+
+            return
+
+        #self.testcrm.initDB(True)
+        with self.assertRaises(Exception) as exp:
+            checkdatabase()
+        dbConnect.openDB(self.testcrm.dbfile)
+        conn = dbConnect.connecttodbcopy()
+
+        errors = checkdatabase()
+        self.assertEqual(0,len(errors))
+        createdberrors()
+        errors = checkdatabase()
+        self.assertEqual(6,len(errors))
+        print (errors)
+
+        conn.close()
         return
 
 if __name__ == '__main__':
