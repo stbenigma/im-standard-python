@@ -36,13 +36,6 @@ class TestListWebDocumentation(unittest.TestCase):
         self.assertEqual(cm.exception.code, 1)
         listWebdoku.main(psysargs=['listWebdoku.py', '-m', 'bla', '--unittest'])
 
-        with tempfile.TemporaryDirectory() as tempdir:
-            os.chdir(tempdir)  # we need a current directory
-            basedir = testsrc.testmodels_dir() / testsrc.TESTMODEL2
-            listWebdoku.main(psysargs=['listWebdoku.py', f'--paramfile={basedir}/testmodel-2.params'])
-            # this web file directory must not be in curr-dir
-            self.assertFalse(os.path.exists(tempdir + "/Web"))
-
         return
 
     def test_webmain(self):
@@ -58,8 +51,3 @@ class TestListWebDocumentation(unittest.TestCase):
             pjsonfilepath=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'DB' / (testsrc.TESTMODEL1 + '.json'),
             pwebdirec=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'Web')
 
-        os.chdir(testsrc.testmodels_dir())  # we need a current directory
-        listWebdoku.webmain(pparamfile=testsrc.testmodels_dir() / testsrc.TESTMODEL2 / (testsrc.TESTMODEL2 + '.params'))
-
-        os.chdir(testsrc.testmodels_dir() / testsrc.CRMTEST)  # we need a current directory
-        listWebdoku.webmain(pparamfile=testsrc.testmodels_dir() / testsrc.CRMTEST / (testsrc.CRMTEST + '.params'))
