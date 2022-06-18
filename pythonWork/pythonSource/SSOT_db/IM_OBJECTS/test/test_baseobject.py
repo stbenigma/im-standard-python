@@ -10,3 +10,4 @@ class TestFillDB(unittest.TestCase):
             "insert into x (a,b,c) values (?,?,?)", ('1', '2', '3')
         )
         self.assertEqual('insert into x (a=1, b=2, c=3) values (...)', res)
+
