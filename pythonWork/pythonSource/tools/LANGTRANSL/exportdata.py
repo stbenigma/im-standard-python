@@ -191,4 +191,7 @@ def createlangexcel(pjsonfile, pdest=None):
 
 
 if __name__ == '__main__':
-    createlangexcel(pjsonfile=sys.argv[1], pdest=None if len(sys.argv) < 3 else sys.argv[2])
+    if not (2 <= len(sys.argv) <= 3):
+        print("************* Usage: exportdata <jsonfilepath> [<destinationfilepath>]")
+    else:
+        createlangexcel(pjsonfile=sys.argv[1], pdest=None if len(sys.argv) < 3 else sys.argv[2])

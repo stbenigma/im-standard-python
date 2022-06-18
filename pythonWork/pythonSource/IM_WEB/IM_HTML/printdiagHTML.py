@@ -498,36 +498,36 @@ def putrefinsvg(export: HTMLExport, ptext, pdiagid, plang):
     return retval
 
 
-def checkforfile(pname, ptype, plang=None):
+def checkforfile(export,pname, ptype, plang=None):
     retval = None
     if plang is not None:
-        filepath = os.path.join(parameters.webDirec(), "image", pname + "_" + plang + "." + ptype)
+        filepath = os.path.join(export.imageDirec(), pname + "_" + plang + "." + ptype)
         if os.path.exists(filepath):
             retval = filepath
     # fi
     if retval is None:
         """check for file without language_marker"""
-        filepath = os.path.join(parameters.webDirec(), "image", pname + "." + ptype)
+        filepath = os.path.join(export.imageDirec(), pname + "." + ptype)
         if os.path.exists(filepath):
             retval = filepath
 
     return retval
 
 
-def svgfilename(pname, plang=None):
-    return checkforfile(pname=pname, plang=plang, ptype="svg")
+def svgfilename(export,pname, plang=None):
+    return checkforfile(export=export,pname=pname, plang=plang, ptype="svg")
 
 
-def pdffilename(pname, plang=None):
+def pdffilename(export,pname, plang=None):
     retval = None
-    if checkforfile(pname=pname, plang=plang, ptype="pdf") is not None:
+    if checkforfile(export=export,pname=pname, plang=plang, ptype="pdf") is not None:
         retval = "image/" + pname + "." + "pdf"
     return retval
 
 
-def getsvgfromfile(pname, plang=None):
+def getsvgfromfile(export,pname, plang=None):
     retval = None
-    svgfn = svgfilename(pname=pname, plang=plang)
+    svgfn = svgfilename(export=export,pname=pname, plang=plang)
     if svgfn is not None:
         """add links to svg and include it in html"""
         with (open(file=svgfn, mode="r")) as f:
@@ -537,10 +537,10 @@ def getsvgfromfile(pname, plang=None):
 
 
 def getsvgtext(export: HTMLExport, plang, pdiaganker, pdiagelem, ptitel=None):
-    retval = getsvgfromfile(pname=pdiagelem["name"], plang=plang)
+    retval = getsvgfromfile(export=export,pname=pdiagelem["name"], plang=plang)
     if retval is not None:
         retval = putrefinsvg(export=export, ptext=retval, pdiagid=pdiaganker, plang=plang)
-    elif pdffilename(pname=pdiagelem["name"], plang=plang) is not None:
+    elif pdffilename(export=export,pname=pdiagelem["name"], plang=plang) is not None:
         retval = None
     else:
         """render diagram"""

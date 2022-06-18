@@ -10,6 +10,7 @@ from .nvl import nvl, nvl2  # _publishable low level functions directly in Modul
 from .translateprompt import transl, settransldomain, resettransldomain
 from .hex import hex2int,int2hex
 from .mydatetime import DEFAULTDATETIMEFORMAT,todatetime
+from .parameters import Parameter,parameter
 
 
 def version() -> dict:

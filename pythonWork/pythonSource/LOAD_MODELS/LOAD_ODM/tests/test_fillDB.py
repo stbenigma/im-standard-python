@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import unittest
 from contextlib import closing
@@ -8,7 +7,7 @@ from pathlib import Path
 import SSOT_infra.tests.integration as testsrc
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 from SSOT_db.IM_JSON import JSModel
-from LOAD_MODELS.LOAD_ODM import fillDB
+from LOAD_MODELS.LOAD_ODM import fillDB,getodmparams,setodmparams,ODMParameter
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
 
@@ -18,7 +17,8 @@ def create_testmodel(testmodel, new=True):
     if new and os.path.exists(testmodel.dbfile):
         os.remove(testmodel.dbfile)
     os.chdir(testmodel.modeldir)
-    db = fillDB.filldbmain(pmodelname=testmodel.modelname, pdestination=testmodel.dbfile)
+    db = fillDB.fillmergedb(pmodelname=testmodel.modelname, pdbfilepath=testmodel.dbfile,
+                           plogfilepath=testmodel.logfile)
     assert db.is_file()
     return
 
@@ -111,7 +111,7 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(tm1.dbfile):
             os.remove(tm1.dbfile)
         os.chdir(tm1.modeldir)
-        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
+        fillDB.fillmergedb(pmodelname=tm1.modelname, pdbfilepath=tm1.dbfile, plogfilepath=tm1.logfile)
 
         self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
         self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
@@ -119,9 +119,10 @@ class TestFillDatabase(unittest.TestCase):
         self.assertTrue(os.path.exists(tm1.jsonfile),
                         f"json file not where assumed {tm1.jsonfile}")
         self.assertTrue(os.path.exists(tm1.logfile),
-                        f"json file not where assumed {tm1.logfile}")
+                        f"Log file not where assumed {tm1.logfile}")
         # create db for a second time => merge
-        fillDB.filldbmain(pmodelname=tm1.modelname, pdestination=tm1.dbfile)
+        fillDB.fillmergedb(pmodelname=tm1.modelname, pdbfilepath=tm1.dbfile,
+                          plogfilepath=tm1.logfile)
         # check subentitylevels
         with open(tm1.jsonfile) as jsonFile:
             jmodel = json.load(jsonFile)
@@ -132,7 +133,8 @@ class TestFillDatabase(unittest.TestCase):
         tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         # if os.path.exists(tm2.dbfile):
         #    createDB(pupgrade=True, pparamfile=paramfile)
-        fillDB.filldbmain(pparamfile=tm2.paramfile)
+        fillDB.fillmergedb(pmodelfilepath=tm2.modelfile, pdbfilepath=tm2.dbfile,
+                          plogfilepath=tm2.logfile)
         # check handling of translations
         #print(f"Verifying against {tm2.jsonfile}")
         with open(tm2.jsonfile) as jsonFile:
@@ -158,7 +160,7 @@ class TestFillDatabase(unittest.TestCase):
         testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
         # error for wrong modelname
         with self.assertRaises(Exception):
-            fillDB.filldbmain(pparamfile=testmodelcrm.paramfile, pmodelname='Gugus')
+            fillDB.fillmergedb(pdbfilepath=testmodelcrm.dbfile, pmodelname='Gugus')
 
         # should work
         if os.path.exists(testmodelcrm.dbfile):
@@ -166,20 +168,24 @@ class TestFillDatabase(unittest.TestCase):
         if os.path.exists(testmodelcrm.logfile):
             os.remove(testmodelcrm.logfile)
 
-        fillDB.filldbmain(pparamfile=testmodelcrm.paramfile)
+        fillDB.fillmergedb(pdbfilepath=testmodelcrm.dbfile,
+                          pmodelfilepath=testmodelcrm.modelfile,
+                          plogfilepath=testmodelcrm.logfile)
         self.assertTrue(os.path.exists(testmodelcrm.dbfile), f"DB file not created where assumed {testmodelcrm.dbfile}")
         self.assertTrue(os.path.exists(testmodelcrm.dbdir / (testmodelcrm.modelname + '_loaded.json')),
                         f"json file not where assumed {testmodelcrm.dbdir / (testmodelcrm.modelname + '_loaded.json')}")
         self.assertTrue(os.path.exists(testmodelcrm.jsonfile),
                         f"json file not where assumed {testmodelcrm.jsonfile}")
         self.assertTrue(os.path.exists(testmodelcrm.logfile),
-                        f"json file not where assumed {testmodelcrm.logfile}")
+                        f"log file not where assumed {testmodelcrm.logfile}")
 
         testmodelriddle = testsrc.Testmodel(testsrc.RIDDLE)
         if os.path.exists(testmodelriddle.dbfile):
             os.remove(testmodelriddle.dbfile)
         os.chdir(testmodelriddle.modeldir)
-        fillDB.filldbmain(pmodelname=testmodelriddle.modelname, pdestination=testmodelriddle.dbfile)
+        fillDB.fillmergedb(pmodelname=testmodelriddle.modelname,
+                          pdbfilepath=testmodelriddle.dbfile,
+                          plogfilepath=testmodelriddle.logfile)
         self.assertTrue(os.path.exists(testmodelriddle.dbfile),
                         f"DB file not created where assumed {testmodelriddle.dbfile}")
         self.assertTrue(os.path.exists(testmodelriddle.dbdir / (testmodelriddle.modelname + '_loaded.json')),
@@ -210,17 +216,14 @@ class TestFillDatabase(unittest.TestCase):
             _ = fillDB.configdir(pconfigdir=tm1.modeldir / 'XX' / 'Konfiguguration', pmodeldir=None)
         with self.assertRaises(Exception):
             _ = fillDB.configdir(pconfigdir=tm1.modeldir / 'IM' / 'Konfiguguration', pmodeldir=None)
-        with self.assertRaises(Exception):
-            _ = fillDB.configdir(pconfigdir=None, pmodeldir=None)
-        with self.assertRaises(Exception):
-            _ = fillDB.configdir(pconfigdir=None, pmodeldir=None)
-        self.assertEqual(tm1.modeldir / 'IM' / 'Konfiguration', fillDB.configdir(pmodeldir=tm1.modeldir / 'IM'))
+        self.assertIsNone(fillDB.configdir(pconfigdir=None, pmodeldir=tm1.modeldir))
+
+        self.assertIsNone(fillDB.configdir(pconfigdir=None, pmodeldir=None))
+        self.assertIsNone(fillDB.configdir(pmodeldir=tm1.modeldir / 'IM'))
         self.assertEqual(tm1.modeldir / 'IM' / 'Konfiguration', fillDB.configdir(pconfigdir="Konfiguration",pmodeldir=tm1.modeldir / 'IM'))
 
         self.assertEqual(tm2.modeldir / 'IM' / 'Configuration',
                          fillDB.configdir(pconfigdir=tm2.modeldir / 'IM' / 'Configuration', pmodeldir=None))
-        self.assertEqual(tm2.modeldir / 'IM' / 'Configuration',
-                         fillDB.configdir(pconfigdir=None, pmodeldir=tm2.modeldir / 'IM'))
         """
         fills default for destination directory
 
@@ -252,17 +255,17 @@ class TestFillDatabase(unittest.TestCase):
         tm1 = testsrc.Testmodel(testsrc.TESTMODEL1)
         tm2 = testsrc.Testmodel(testsrc.TESTMODEL2)
 
-        parameters.parameterdefaults()
         with self.assertRaises(Exception):
+            setodmparams(ODMParameter())
             _ = fillDB.ODM2json()
 
         _ = fillDB.transferodm2json(pmodelfile=tm1.modeldir / 'IM' / (tm1.modelname + '.dmd'),
-                                    pdestdir=None, pconfigdir=None, pdebug=False)
+                                    pdestdir=None, pconfigdirec=None, pdebug=False)
         _.printSPOD(str(tm1.jsonfile).replace(".json","_odm.json"))
 
         self.assertEqual(JSModel,type(_))
         _ = fillDB.transferodm2json(pmodelfile=tm2.modeldir / 'IM' / (tm2.modelname + '.dmd'),
-                                    pdestdir=None, pconfigdir='Configuration', pdebug=True)
+                                    pdestdir=None, pconfigdirec='Configuration', pdebug=True)
         _.printSPOD(str(tm2.jsonfile).replace(".json","_odm.json"))
         self.assertEqual(JSModel,type(_))
         self.assertTrue(os.path.exists(tm2.dbdir / (tm2.modelname + "_odm.db")))

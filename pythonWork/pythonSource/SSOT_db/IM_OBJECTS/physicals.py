@@ -13,8 +13,6 @@ class Storageformat(Baseobject):
         super().__init__()
         self.stfo_name = pname
         self.stfo_descr = pdescr
-        self.stfo_uc = 'fillDB'
-        self.stfo_dc = date.today()
 
     def getname(self,plang=None):
         return self.stfo_name
@@ -50,8 +48,6 @@ class PhysicalUnit(Baseobject):
     def __init__(self,):
 
         super().__init__()
-        self.phyu_uc = 'fillDB'
-        self.phyu_dc = date.today()
 
 
 

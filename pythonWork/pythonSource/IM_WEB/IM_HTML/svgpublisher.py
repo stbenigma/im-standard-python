@@ -8,10 +8,8 @@ def publish_svg_diagrams(config: HTMLExport, language: str) -> dict:
     assert config.model.jsmodel is not None
     model_json = config.model.jsmodel
 
-    assert isinstance(config.webDirectory, Path)
-
     # ensure destination folder exists
-    destination_folder = Path(config.webDirectory) / f'svg-diagrams-{language}'
+    destination_folder = Path(config.webDirec()) / f'svg-diagrams-{language}'
     destination_folder.mkdir(parents=True, exist_ok=True)
     assert destination_folder.is_dir(), f"Destination path {destination_folder.resolve()} is not a directory"
 

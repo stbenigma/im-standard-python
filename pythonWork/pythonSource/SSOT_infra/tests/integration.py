@@ -38,12 +38,10 @@ class Testmodel:
                 os.remove(self.dbfile)
             elif os.path.exists(self.dbfile):
                 #upgrade
-                createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile)
+                createDB(pmodelname=self.modelname, pupgrade=True, pdestination=self.dbfile,
+                         plogfilepath=self.logfile)
 
-            if os.path.exists(self.paramfile):
-                fillDB.filldbmain(pparamfile=self.paramfile)
-            else:
-                fillDB.filldbmain(pmodelname=self.modelname, pdestination=self.dbfile)
+            fillDB.fillmergedb(pmodelname=self.modelname, pdbfilepath=self.dbfile)
 
         if palways or not os.path.exists(self.jsonfile) or age(os.path.getmtime(self.jsonfile))>60:
             createJSON.createJSON(pdbfilepath=self.dbfile, pmodelname=self.modelname,
@@ -58,6 +56,8 @@ class Testmodel:
             shutil.rmtree(self.webdir / "js/")
         if os.path.exists(self.webdir / "css"):
             shutil.rmtree(self.webdir / "css/")
+        if os.path.exists(self.webdir / "images"):
+            shutil.rmtree(self.webdir / "images/")
 
 
 def initDB(pmodel):
@@ -88,6 +88,8 @@ def resolve_project_root(folder: Path = __file__) -> Path:
     project_root = Path(*list(dirs[0:base]))
     return project_root
 
+def testdata_root() -> Path:
+    return resolve_project_root() / 'testdata'
 
 def source_root() -> Path:
     return resolve_project_root() / ROOT_MARKER / "pythonSource"

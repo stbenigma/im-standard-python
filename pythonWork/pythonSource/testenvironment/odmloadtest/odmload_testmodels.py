@@ -50,7 +50,7 @@ def cleaneddiffs(pfile1,pfile2,ptype):
     return retval
 
 def testloading1model(pcallarg):
-    parameters.initparam(pparamfile=pcallarg)
+    parameters.initparam()
     modelname= parameters.modelName()
 
     #load reference files to compare to as json and as text

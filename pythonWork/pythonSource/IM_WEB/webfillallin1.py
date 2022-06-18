@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../IM_db')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/..')
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../tools')
 from SSOT_db.SQL_INFRA import  dbConnect
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import Parameter, logmessages
 from IM_HTML import printHTML
 from LOAD_MODELS.LOAD_ODM import fillDB
 import listWebdoku
@@ -16,9 +16,9 @@ from tools import createMapExcel,createAllMapping
 
 
 def main(pdirec, plang,pforceoverwrite = False):
-    parameters.initparam(pparamfile=pdirec)
+    parameters.initparam(basedirec=pdirec)
     if plang is None:
-        Languagetext.reportLang(parameters.dbDefaultLang())
+        Languagetext.reportLang(Parameter.DEFAULTLANG)
     else:
         Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')
@@ -26,13 +26,13 @@ def main(pdirec, plang,pforceoverwrite = False):
     os.makedirs(parameters.webDirec(), exist_ok=True)
     os.makedirs(parameters.dbDirect(), exist_ok=True)
 
-    fillDB.filldbmain(callarg=pdirec, createnewdb=not existsDB(parameters.dbFilePath()))
+    fillDB.fillmergedb(pdbfilepath=parameters.dbFilePath(), pmodelname=parameters.modelName())
 
     dbConnect.openDB(parameters.dbFilePath())
     #jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     jsmodel = JSModel.readfromfile(parameters.dbDirect() + parameters.modelName() + ".json")
     printHTML.setmodel(jsmodel)
-    printHTML.setWebDirec(p_webdirec=None)
+    printHTML.webDirec(p_webdirec=None)
 
     listWebdoku.listwebmain(plang=Languagetext.reportLang())
     #jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())

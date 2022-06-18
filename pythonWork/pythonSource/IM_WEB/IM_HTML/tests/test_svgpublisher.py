@@ -9,8 +9,6 @@ import pytest
 from IM_WEB.IM_HTML import HTMLExport
 from IM_WEB.IM_HTML.svgpublisher import publish_svg_diagrams
 from SSOT_db.IM_JSON import JSModel
-from SSOT_infra import parameters
-from SSOT_infra.parameters import parameterdefaults
 from SSOT_infra.tests.integration import IntegrationTest, riddle_json
 
 
@@ -41,23 +39,20 @@ class EnvironDiagramGeneration(IntegrationTest):
         with open(ssot_file, 'r') as src:
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
-        html_export = HTMLExport()
+        html_export = HTMLExport(modelname=model['model']['name'])
         html_export.model = JSModel(pmodel=model)
         content = self.temp_folder / 'content'
         content.mkdir(parents=True, exist_ok=True)
 
         # TODO get rid of this
-        parameterdefaults()
-        parameters.parameter['webdirec'] = str(content)
-
-        html_export.setWebDirec(str(content.resolve()))
+        html_export.webDirec(str(content))
+        html_export.webDirec(str(content.resolve()))
 
         html_export.custom_hyperlink = udpr_to_link
 
         for lang in model['languages'].keys():
             generated = publish_svg_diagrams(html_export, lang)
             self.assertTrue(len(generated) > 1)
-            print(generated)
             riddle_file = list(filter(lambda d: 'riddle-' in str(d), generated.values()))
             self.assertEqual(1, len(riddle_file))
             with open(riddle_file[0], 'r') as src:

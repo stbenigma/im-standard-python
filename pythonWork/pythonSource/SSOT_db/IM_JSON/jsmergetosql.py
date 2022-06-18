@@ -5,7 +5,7 @@ from tqdm.autonotebook import tqdm
 
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
-from SSOT_infra import parameters
+from SSOT_infra import Parameter
 from SSOT_infra import todatetime
 
 
@@ -230,7 +230,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         modellang = Language.getdefaultlang().lang_iso_code2
     except:
         # e.g. if languages are not yet filled
-        modellang = parameters.dbDefaultLang()
+        modellang = Parameter.DEFAULTLANG
 
     olderrorlist, newerrorlist = None, []
     newelements = copy(pjson.getelements(pelemtype=pelemtype))

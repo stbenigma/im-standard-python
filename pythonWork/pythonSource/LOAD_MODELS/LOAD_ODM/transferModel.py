@@ -6,14 +6,13 @@ import xml.etree.ElementTree as et
 from typing import List
 
 from LOAD_MODELS.LOAD_INFRA import handleXML
-from LOAD_MODELS.LOAD_ODM import transferRelational
+from LOAD_MODELS.LOAD_ODM import transferRelational,getodmparams,ODMParameter
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import nvl, hex2int, int2hex
-from SSOT_infra import parameters, logmessages
+from SSOT_infra import logmessages
 
-GUIDPATTERN: str = '[A-Z0-9-]{20,45}'
-UDPEXTENSION: str = 'udposdm'
+
 SOURCE_ODM:str='ODM'
 
 class Color:
@@ -134,7 +133,7 @@ def is_repeated(pstr: str) -> bool:
 
 
 def transferTypes():
-    types = handleXML.parseXML(pfilename=os.path.join(parameters.odmKonfDirec(), parameters.odmTypesFile()))
+    types = handleXML.parseXML(pfilename=os.path.join(getodmparams().typesfile()))
     root = types.getroot()
     for typ in root.findall('logicaltype'):
         Datatype(pname=handleXML.findField(typ, 'name')
@@ -208,7 +207,7 @@ def do1structtype(filename):
 
 def dostructtypes():
     global unkndomains
-    dosegfiles(pdirec=parameters.odmstructypesDirec(), transferfiles=do1structtype, pmandatoryfile=False)
+    dosegfiles(pdirec=getodmparams().structypesdirec(), transferfiles=do1structtype, pmandatoryfile=False)
 
     """update group domains as their types may now be available"""
     for key, val in unkndomains.items():
@@ -341,7 +340,7 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
 def do1domainfile(pfilename):
     global interfacedomains
     # return none if domainfile is defaultdomainfile, name otherwise
-    interfacename = lambda name: None if (name == parameters.odmdefdomainsfile()[:-4]) else name
+    interfacename = lambda name: None if (name == ODMParameter.defdomainsfilname()[:-4]) else name
 
     domains = handleXML.parseXML(pfilename=pfilename)
     root = domains.getroot()
@@ -362,9 +361,9 @@ def do1domainfile(pfilename):
 
 
 def transferDomains():
-    do1domainfile(pfilename=parameters.odmDefDomainsfilePath())
+    do1domainfile(pfilename=getodmparams().defdomainsfilpath())
 
-    doxmlfiles(pdirec=parameters.odmdomainsDirec()
+    doxmlfiles(pdirec=getodmparams().domainsdirec()
                , ptransfer=do1domainfile
                , ppattern=r'.*\.{}'.format('xml')
                , pmandatorydirec=False)
@@ -768,7 +767,7 @@ def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
         if re.match('seg_.*', el):
             doxmlfiles(pdirec=os.path.join(pdirec, el)
                        , ptransfer=transferfiles
-                       , ppattern=r'{}.xml'.format(GUIDPATTERN))
+                       , ppattern=r'{}.xml'.format(ODMParameter.guidpattern()))
     # efor
     return
 
@@ -815,9 +814,9 @@ def do1diagramm(pfilename):
 
 
 def transferdiagramme():
-    doxmlfiles(pdirec=parameters.odmentisubviewDirec()
+    doxmlfiles(pdirec=getodmparams().logicalsubviewdirec()
                , ptransfer=do1diagramm
-               , ppattern=r'{}.xml'.format(GUIDPATTERN))
+               , ppattern=r'{}.xml'.format(ODMParameter.guidpattern()))
     return
 
 
@@ -896,15 +895,12 @@ def do1Arc(fileName):
     """map all relations to this arc"""
     relations = arcXML.findall('relations/relationID')
     relids = ','.join("'{}'".format(r.text) for r in relations)
-    # DEBUG Arc 2x auf Beziehung
-    #    if handleXML.findField(arcXML, "name") in ('xxArc_9', 'xxArc_11'):
-    #        print(handleXML.findField(arcXML, "id"), handleXML.findField(arcXML, "name"), handleXML.findText(arcXML, 'entity'))
     Relation.setarcinrela(prelids=relids, parcid=arcid)
     return
 
 
 def transferArcs():
-    dosegfiles(pdirec=parameters.odmArcDirec(), transferfiles=do1Arc)
+    dosegfiles(pdirec=getodmparams().arcdirec(), transferfiles=do1Arc)
     Relation.setrelatypes()
     return
 
@@ -1069,7 +1065,7 @@ def do1Attribute(plfnr, pattrxml, pentiId):
         dom = Domain.select()
         print(e)
         raise e  # Problem with multientrance  Domains are out of sync
-    Example.fillexamples(pattrid=attrId, plngs=parameters.dbLanguages().split(',')
+    Example.fillexamples(pattrid=attrId, plngs=getodmparams().languages().split(',')
                          , pdeflngexpls=examples, plngexpls=lngexamples)
 
     Userdefpropvalue.fillallvalues(pattrid=attrId)
@@ -1231,7 +1227,7 @@ def extractlngexamples(ptext, pname):
     lngexamples = dict()
     lngcomments = handleXML.extractlngcomments(ptext=ptext)
     for lng, lngtext in lngcomments.items():
-        if lng == parameters.dbDefaultLang(): continue
+        if lng == getodmparams().modelLang(): continue
         for fieldname, text in lngtext.items():
             if fieldname == f"{lng.upper()}_{pname}":
                 firstpart, lngexamples[lng] = handleXML.separateExamples(text)
@@ -1277,7 +1273,7 @@ def do1Entity(fileName):
     while i < 10:
         try:
             entiId = enti.insert()
-            Example.fillexamples(pentiid=entiId, plngs=parameters.dbLanguages().split(',')
+            Example.fillexamples(pentiid=entiId, plngs=getodmparams().languages().split(',')
                                  , pdeflngexpls=examples, plngexpls=lngexamples)
             break
         except Exception as e:
@@ -1337,7 +1333,7 @@ def transferEntities():
     global schluessel
     # lösche die globalen Elemente
     schluessel = []
-    dosegfiles(pdirec=parameters.odmEntityDirec(), transferfiles=do1Entity)
+    dosegfiles(pdirec=getodmparams().entitydirec(), transferfiles=do1Entity)
     return
 
 
@@ -1474,7 +1470,7 @@ def do1Relation(fileName):
 
 def transferRelations():
     # lösche die Beziehungen
-    dosegfiles(pdirec=parameters.odmRelationDirec(), transferfiles=do1Relation)
+    dosegfiles(pdirec=getodmparams().relationdirec(), transferfiles=do1Relation)
     dbConnect.myDbConn.commit()
 
 
@@ -1500,7 +1496,7 @@ def do1UDPFile(pfileName):
     # for
 
     # die speziellen Properties (translation of comments in notes manuell einfüllen
-    if (ludpTheme == parameters.odmUDPTranslFileName()):
+    if (ludpTheme == ODMParameter.udptranslfilename()):
         for lgrpkey, lgrpvalue in lgroups.items():
             if lgrpkey != '':
                 fillspecialtransludp(pudpTheme=ludpTheme, pgroup=lgrpvalue, pname='_ENTI_COMMENT', ptype='comments',
@@ -1571,22 +1567,22 @@ def do1UDPFile(pfileName):
     return
 
 
-def dofiles(pdirec, pfileregexp, ptransferfunc):
-    for file in stable_file_list(parameters.odmFilesDirec()):
-        filename, file_extension = os.path.splitext(file)
-        if (pfileregexp.filename):
-            filepath = parameters.odmIMDirec() + file
-            # print (filepath)
-            ptransferfunc(filepath)
-        # fi
-    # endfor
-    return
+# def dofiles(pdirec, pfileregexp, ptransferfunc):
+#     for file in stable_file_list(getodmparams().filesdirec()):
+#         filename, file_extension = os.path.splitext(file)
+#         if (pfileregexp.filename):
+#             filepath = getodmparams().odmIMDirec() + file
+#             print("**********DEBUG",filepath,str(file))
+#             ptransferfunc(filepath)
+#         # fi
+#     # endfor
+#     return
 
 
 def transferUDP():
-    doxmlfiles(pdirec=parameters.odmFilesDirec()
+    doxmlfiles(pdirec=getodmparams().filesdirec()
                , ptransfer=do1UDPFile
-               , ppattern=r'.*\.{}'.format(UDPEXTENSION))
+               , ppattern=r'.*{}'.format(getodmparams().udpfileextension()))
 
     dbConnect.myDbConn.commit()
     return
@@ -1607,7 +1603,7 @@ def loadcolors(color: Color, elem):
 
 def loaddefaultcolors():
     global defcolors, classcolors, classids
-    settings = handleXML.parseXML(pfilename=parameters.odmsettingsfile())
+    settings = handleXML.parseXML(pfilename=getodmparams().settingsfile())
     root = settings.getroot()
     classif = root.find('classification_types')
 
@@ -1667,24 +1663,21 @@ def loaddefaultcolors():
 
 
 def filllanguages():
-    Languagetext.insertlang_texts(pudpthema=parameters.odmUDPTranslFileName())
+    Languagetext.insertlang_texts(pudpthema=ODMParameter.udptranslfilename())
     # copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
-    Languagetext.filldefaulttext(parameters.dbDefaultLangID())
-    #languages are predefined. don't just delete them
-    # Language.deleteunused()
+    Languagetext.filldefaulttext(Language.getdefaultlangid())
     return
 
 
 def fillelementdisplays():
-    Modelelement.insertudpelems(pudpthema=parameters.odmUDPElemdisplFileName())
+    Modelelement.insertudpelems(pudpthema=ODMParameter.udpelemdisplfilename())
     return
 
 
-def read_languages_form_project_comment():
-    proj = handleXML.parseXML(
-        pfilename=os.path.join(parameters.odmIMDirec(), parameters.modelName() + parameters.odmIMExtension()))
+def read_languages_form_project_comment(pmodelfilepath):
+    proj = handleXML.parseXML(pfilename=pmodelfilepath)
     root = proj.getroot()
     comm = handleXML.findText(root, 'comment')
     if comm is not None:
@@ -1699,24 +1692,24 @@ def read_languages_form_project_comment():
 
 
 def transferproject():
-    langs, root = read_languages_form_project_comment()
+    langs, root = read_languages_form_project_comment(pmodelfilepath=getodmparams().modelfilepath())
     if langs is None:
-        defspra = parameters.dbDefaultLang()
+        defspra = getodmparams().modelLang()
         assert defspra is not None,f"neither parameter nor model-comment contains model-language"
-        sprachen = parameters.dbLanguages()
+        sprachen = getodmparams().languages()
         if sprachen is None:
             sprachen = defspra
     else:
         defspra = langs[0]
         sprachen = ','.join(langs)
-        parameters.dbDefaultLang(defspra)
-        parameters.dbLanguages(sprachen)
+        getodmparams().modelLang(defspra)
+        getodmparams().languages(sprachen)
     #fi
     for l in sprachen.split(','):
         _ = Language(lang_iso_code2=l,
                         lang_is_base_lang=(l==defspra)).insert()
     Language.setallreplacementlang()
-    parameters.dbDefaultLangID(Language.spraidlookup(piso=defspra))
+    getodmparams().dbDefaultLangID(Language.spraidlookup(piso=defspra))
 
 
     # print (handleXML.findField(root,'name'),comm,sprachen,defspra)
@@ -1775,7 +1768,7 @@ def do1Orgunit(fileName):
 def transferDocuments():
     global docuparents
     docuparents = {}
-    dosegfiles(pdirec=parameters.odmdocumentDirec(), transferfiles=do1Document, pmandatoryfile=False)
+    dosegfiles(pdirec=getodmparams().documentdirec(), transferfiles=do1Document, pmandatoryfile=False)
     Document.updparents(psrcname=SOURCE_ODM, pparents=docuparents)
     return
 
@@ -1783,7 +1776,7 @@ def transferDocuments():
 def transferorgunits():
     global orguparents
     orguparents = {}
-    dosegfiles(pdirec=parameters.odmorgunitDirec(), transferfiles=do1Orgunit, pmandatoryfile=False)
+    dosegfiles(pdirec=getodmparams().orgunitdirec(), transferfiles=do1Orgunit, pmandatoryfile=False)
     OragnisationalUnit.updparents(psrcname=SOURCE_ODM, pparents=orguparents)
     return
 
@@ -1796,11 +1789,11 @@ def removeemptyudp():
 
 def removefixedudp():
     """remove all UDP's which are part of our model"""
-    modeludps = [(parameters.odmUDPElemdisplFileName(), val) for val in Modelelement.ODMattrmapping.values()]
+    modeludps = [(ODMParameter.udpelemdisplfilename(), val) for val in Modelelement.ODMattrmapping.values()]
     for lang in Language.select():
         for name in Languagetext.ODMtranslAttributes:
             modeludps.append(
-                (parameters.odmUDPTranslFileName(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
+                (ODMParameter.udptranslfilename(), "{}_{}".format(lang.lang_iso_code2.upper(), name.upper())))
         # for
     # for
 
@@ -1936,7 +1929,7 @@ def adjustlabelpositions():
 def transferraci():
     raciattrs = ['Responsible', 'Accountable', 'Consulted', 'Informed']
 
-    udpvs = Userdefpropvalue.getthemevalues(ptheme=parameters.odmUDPraciFileName())
+    udpvs = Userdefpropvalue.getthemevalues(ptheme=ODMParameter.udpracifilename())
     """ get all different actors with their raci 
           mapping to modelelements"""
     actors = dict()
@@ -1972,7 +1965,7 @@ def transferraci():
     # for
     """ delete UDPs we transferred into the model 
     """
-    Userdefprop.delete(pwhere=('udpr_theme = ?', parameters.odmUDPraciFileName()))
+    Userdefprop.delete(pwhere=('udpr_theme = ?', ODMParameter.udpracifilename()))
     return
 
 
@@ -1986,10 +1979,9 @@ def transferODMModel(**kwargs):
     global interfacedomains
     initglobals()
     """provisional Element internal buffers"""
-    businfodirec = os.path.join(parameters.odmIMDirec(), parameters.modelName(), 'businessinfo')
-    dosegfiles(pdirec=os.path.join(businfodirec, 'email'), transferfiles=do1email, pmandatoryfile=False)
-    dosegfiles(pdirec=os.path.join(businfodirec, 'phone'), transferfiles=do1phone, pmandatoryfile=False)
-    dosegfiles(pdirec=os.path.join(businfodirec, 'contact'), transferfiles=do1contact, pmandatoryfile=False)
+    dosegfiles(pdirec=getodmparams().emaildirec(), transferfiles=do1email, pmandatoryfile=False)
+    dosegfiles(pdirec=getodmparams().phonedirec(), transferfiles=do1phone, pmandatoryfile=False)
+    dosegfiles(pdirec=getodmparams().contactdirec(), transferfiles=do1contact, pmandatoryfile=False)
 
     """überträgt das ganze ODM Modell in die DB"""
     transferproject()

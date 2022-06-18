@@ -1,11 +1,9 @@
 import sys
-import datetime
 
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra import parameters
 
 SOURCE_SPOD: str = 'SPOD'  # default source for SPOD-internal updates
 
@@ -185,7 +183,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
             logging.debug("Writing change log to '%s'", str(js_change_file))
             mergeresult.write_json(js_change_file)
         except:
-            pass  # loggin darf nicht abstürzen
+            pass  # logging darf nicht abstürzen
 
     return retval
 
@@ -208,11 +206,7 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
     imprint = pmodel.jsmodel['_imprint_']
     modelname = pmodel.jsmodel['model']["name"]
     baselang = pmodel.jsmodel['model']["language"]
-    if baselang is not None:
-        parameters.dbDefaultLang(baselang)
     languages = list(pmodel.jsmodel['languages'].keys())
-    if languages is not None:
-        parameters.dbLanguages(','.join(languages))
 
     # create db in Memory with languages from the json file
     # save the old DB

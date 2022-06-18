@@ -4,39 +4,39 @@ import os.path
 import sys
 
 from LOAD_MODELS.LOAD_INFRA import mergedbs
-from LOAD_MODELS.LOAD_ODM import transferModel
-from SSOT_db import existsDB, createnewDB
+from LOAD_MODELS.LOAD_ODM import transferModel,getodmparams,ODMParameter,setodmparams
+from SSOT_db import existsDB, createnewDB,dbinfo
 from SSOT_db.IM_JSON import *
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra import logmessages, parameters, argparseparent, nvl
+from SSOT_infra import logmessages, argparseparent,Parameter,parameters,nvl2
 
 
-def ODM2json(pdebug=False) -> str:
+def ODM2json(pdebug=False) -> JSModel:
     """
         create an empty memory db
         fill odm info into this db
-        Module parameters contains all information about source of ODM files and model
+        Class curodmparams contains all information about source of ODM files and model
 
-        :pdebug True, writes the filled sqlite-datase to the parameters.dbDirect()/<modelname>_odm.db
+        :pdebug True, writes the filled sqlite-datase to the getodmparams().dbDirect()/<modelname>_odm.db
         :return jsonsstructure created out of ODM info
         :exception if there are sever errors
     """
-    assert parameters.modelName() is not None, "no modelname given"
-    odmmainfile = os.path.join(nvl(parameters.odmIMDirec(),''), nvl(parameters.modelName(),'') + nvl(parameters.odmIMExtension(),''))
-    assert os.path.exists(odmmainfile), f"no ODM modelmain-file found: {odmmainfile}"
+    assert getodmparams().modelName() is not None, "no modelname given"
+    assert os.path.exists(getodmparams().modelfilepath()), f"no ODM modelmain-file found: {getodmparams().modelfilepath()}"
 
     # create and open memory database
     createnewDB(pdbfilepath=None)
     transferModel.transferODMModel()
 
-    new_git_revision = parameters.read_git_description(Path(parameters.odmIMDirec()))
+    new_git_revision = parameters.read_git_description(Path(getodmparams().imdirec()))
     dbConnect.write_git_reversion(new_git_revision, dbConnect.getdbcon())
 
     ODMjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
     ODMjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
 
     if pdebug:
-        dbConnect.makebackuptofile(pdbfile=parameters.dbDirect() / (parameters.modelName()+"_odm.db"))
+        debugfilepath =  str(getodmparams().dbFilePath()).replace('.db','_odm.db')
+        dbConnect.makebackuptofile(pdbfile=debugfilepath)
     dbConnect.closeDB()
     return ODMjson
 
@@ -47,18 +47,14 @@ def configdir(pconfigdir:Path=None, pmodeldir:Path=None):
     :param pmodeldir: Base directory of model
     :return:
     """
-    assert not (pconfigdir is None and pmodeldir is None), f"with no information I would have to guess"
     if pconfigdir is None:
-        retval = Path(pmodeldir) / 'Configuration'
-        if not os.path.isdir(retval):
-            retval = Path(pmodeldir) / 'Konfiguration'
+        retval = None
+    elif os.path.isabs(pconfigdir):
+        retval = Path(pconfigdir)
     else:
-        if os.path.isabs(pconfigdir) :
-            retval = Path(pconfigdir) if isinstance(pconfigdir, str) else pconfigdir
-        else:
-            retval = Path(pmodeldir) / pconfigdir
+        retval = Path(pmodeldir) / pconfigdir
 
-    assert os.path.isdir(retval), f"Path for configuration files does not exist: {retval}"
+    assert retval is None or os.path.isdir(retval), f"Path for configuration files does not exist: {retval}"
     return retval
 
 def destdir(pdestdir:Path= None,pmodeldir:Path= None):
@@ -73,143 +69,138 @@ def destdir(pdestdir:Path= None,pmodeldir:Path= None):
     """
     assert not (pdestdir is None and pmodeldir is None), f"with no information I would have to guess"
     if pdestdir is None:
-        retval = Path(os.path.dirname(pmodeldir)) / 'DB'
+        retval = Path(os.path.dirname(pmodeldir)) / getodmparams().dbDefaultDirect()
     else:
         retval = Path(pdestdir) if isinstance(pdestdir, str) else pdestdir
     assert os.path.isdir(retval), f"Destination path does not exists: {retval} "
     return retval
 
-def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None, pconfigdir=None, pdebug=False):
+def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None,
+                     plogfilepath=None, pconfigdirec=None, pdebug=False) -> JSModel:
     """
     Reads a ODM model and transfers is into a json file.
 
     :param pmodelfile: .dmd file for the ODM-model
     :param pdefaultlang: iso2 code of model languagen (default 'en')
-    :param pdestination: directory for generated json-file
+    :param pdbfilepath: directory for generated json-file
                          default <modeldirectory>/../DB
     :param pconfigdir: directory containing the ODM configuration files
                     default 1. modelfile directory / Configuration
                             2. modelfile directry / Konfiguration
     :param pdebug: True write intermediate sqlite database
                     to a db file modelname_odm.db
-                    in pdestination
+                    in pdbfilepath
     :return:
     """
-    modelname:str = str(os.path.basename(pmodelfile)).split('.')[0]
-    modeldir = Path(os.path.dirname(os.path.abspath(pmodelfile)))
-    parameters.parameterdefaults()
-    parameters.modelName(modelname)
-    parameters.odmKonfDirec(configdir(pconfigdir=pconfigdir,pmodeldir=modeldir))
-    parameters.dbDirect(destdir(pdestdir=pdestdir,pmodeldir=modeldir))
-    parameters.odmIMDirec(modeldir)
-    parameters.baseDirec(os.path.dirname(modeldir))
-    parameters.dbDefaultLang(pdefaultlang)
-    parameters.dbLanguages(planguages if planguages is not None else pdefaultlang)
-    parameters.filldefaultparams()
+    modelname:str = None if pmodelfile is None else Path(pmodelfile).stem
+    modeldir = None if pmodelfile is None else Path(os.path.dirname(os.path.abspath(pmodelfile)))
+    setodmparams(ODMParameter(imdirec=modeldir,
+                            configdirec=configdir(pconfigdir=pconfigdirec,pmodeldir=modeldir),basedirec=os.path.dirname(modeldir),
+                         modelname=modelname,
+                         modellang=pdefaultlang, languages=planguages if planguages is not None else pdefaultlang,
+                         logfilepath=plogfilepath,
+                         dbdirec=destdir(pdestdir=pdestdir,pmodeldir=modeldir)     ))
+    logmessages.writelog(f"Transfer ODM to SPOD Model={getodmparams().modelName()}, DB={getodmparams().dbFilePath()}")
+    #set global parameter for later use
     ODMjson = ODM2json(pdebug=pdebug)
     return ODMjson
 
 
-def fillmergedb(pdbfilepath, **kwargs):
+def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None, planguages=None,
+                pconfigdirec=None,plogfilepath=None, ):
     """
     Create or merge SPOD (sqlite and json).
     :param pdbfilepath:
-    :param transferfunction:
-    :param kwargs:
+    :param pmodelname: Name of model
+    :param pmodellang: main language for model
+    :param planguages: list of languages in model
+    :param pmodelfilepath: filepath of modelfile (dmd)
+    :param pconfigdirec: directory of ODM-configuration
     :return:
     """
-    dbfile = Path(pdbfilepath)
-    loadedjson = transferodm2json(pmodelfile=parameters.odmIMDirec()+'/'+parameters.modelName()+parameters.odmIMExtension(),
-                                  pdefaultlang=parameters.dbDefaultLang(),planguages=parameters.dbLanguages(),
-                                  pdestdir=dbfile.parent,
-                                  pconfigdir=parameters.odmKonfDirec())
 
-    new_git_revision = parameters.read_git_description(Path(parameters.odmIMDirec()))
-    loaded_json_file = dbfile.parent / str(dbfile.stem + "_loaded.json")
+    if pdbfilepath is None:
+        assert pmodelname is not None or pmodelfilepath is not None,"Modelname or modelfile must be given"
+        dbdirec = Path(os.path.abspath(os.path.dirname(os.path.dirname(pmodelfilepath)))) / Parameter.SPODDBDIREC
+        dbfile = None
+    else:
+        dbfile = Path(pdbfilepath)
+        dbdirec = dbfile.parent
+
+    # create folder for DB files if not exists
+    os.makedirs(dbdirec, exist_ok=True)
+
+    if pmodelfilepath is not None:
+        # basedirec is parent of IM directory
+        basedirec = os.path.abspath(os.path.dirname(os.path.dirname(pmodelfilepath)))
+    elif pdbfilepath is not None:
+        # basedirec is parent of DB directory
+        basedirec = os.path.abspath(os.path.dirname(os.path.dirname(pdbfilepath)))
+    else:
+        # take current directory as basedirec
+        basedirec = os.getcwd()
+    # fi
+
+    assert not (pmodelname is None and pmodelfilepath is None), "Modelfile or modelname must be given"
+    if pmodelfilepath is not None:
+        modelfilepath = Path(pmodelfilepath)
+        modelfilename = modelfilepath.stem
+        modelname = modelfilename
+    elif pmodelname is not None:
+        modelname = pmodelname
+        modelfilepath = os.path.join(basedirec, ODMParameter.imdefaultdirec(), (modelname + ODMParameter.imextension()))
+        modelfilename = modelname
+
+    assert (modelfilename == modelname), f"Modelname {modelname} does not match modelfile-name {modelfilename}"
+    if dbfile is None:
+        dbfile = dbdirec / (modelname + Parameter.SPODDBEXTENSION)
+
+    modellang, languages = dbinfo.dblanguages(pdbfilepath=dbfile,pmodellang=pmodellang,planguages=planguages)
+
+    logmessages.initlog('fillDBODM',plogfilepath=plogfilepath)
+
+    """Main program for fillDB"""
+    loadedjson = transferodm2json(pmodelfile=modelfilepath,
+                                  pdefaultlang=modellang,planguages=languages,
+                                  pdestdir=dbdirec,
+                                  pconfigdirec=pconfigdirec)
+
+    new_git_revision = parameters.read_git_description(Path(os.path.dirname(modelfilepath)))
+    loaded_json_file = dbdirec / str(modelname + "_loaded.json")
     loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
     loadedjson.printSPOD(loaded_json_file)
 
-    if not existsDB(pdbfilepath):
+    if not existsDB(dbfile):
         logging.info(f"Created SPOD for git revision {new_git_revision}")
-        createnewDB(pdbfilepath=pdbfilepath)
+        createnewDB(pdbfilepath=dbfile)
         dbConnect.write_git_reversion(new_git_revision, dbConnect.getdbcon())
         dbConnect.closeDB()
     else:
         ####??? braucht es das?
-        dbConnect.openDB(pfilepath=pdbfilepath)
+        dbConnect.openDB(pfilepath=dbfile)
         old_git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
-        logging.info(f"Opening DB '{parameters.dbFilePath()}' for upgrade from git revision '{old_git_revision}'"
+        logging.info(f"Opening DB '{dbfile}' for upgrade from git revision '{old_git_revision}'"
                      f" to git revision '{new_git_revision}'")
         dbConnect.closeDB()
     # fi
 
     logging.debug(f"Starting merge")
     """merge created DB into existing one"""
-    reloaded = mergedbs.mergejs2db(pdbfile=pdbfilepath, pmodel=loadedjson)
+    reloaded = mergedbs.mergejs2db(pdbfile=dbfile, pmodel=loadedjson)
 
     logging.debug(f"Writing reloaded model to json SPOD")
-    js_spod_file = reloaded.printmodel(pfilepath=parameters.dbDirect(), pfilename=parameters.modelName()+'.json')
+    js_spod_file = reloaded.printmodel(pfilepath=dbdirec, pfilename=modelname+'.json')
     logging.info(
         f"Merge of SPOD {js_spod_file} to git revision {reloaded.jsmodel['_imprint_']['git-revision']} complete")
+    logmessages.writelog(f"model {pmodelname} filled in database: {dbfile}\n" +
+                             f"jsonfile of model generated {getodmparams().dbjsonfile()}")
 
-    return
-
-
-def filldbmain(pparamfile=None, pdbtype=parameters.SQLITE, pmodelname=None, pdestination=None,
-               pmodellang=None, planguages=None, plogfilepath=None, pmodelfilepath=None):
-    """
-    fills the call-parameters into parameter and calls the fillmerge (read model and merge into db)
-    :param pparamfile: parameterfile containing all parameters,
-    :param pdbtype:  NOT USED Currently
-    :param pmodelname: Name of the model
-    :param pdestination:
-    :param pmodellang: Baselanguage of the model (in case ODM-file does not contain any languages)
-    :param planguages: languages of the model (in case ODM-file does not contain any languages)
-    :param plogfilepath:  file to write the logs to
-    :param pmodelfilepath: ODM-dmd file main file of ODM model
-    :return: path to database file
-    """
-
-    assert (pparamfile is not None or pmodelname is not None), "Parameter file or modelname must be given"
-    if pparamfile is not None:
-        basedirec = os.path.abspath(os.path.dirname(pparamfile))
-    elif pdestination is not None:
-        #basedirec is parent of DB directory
-        basedirec = os.path.abspath(os.path.dirname(os.path.dirname(pdestination)))
-    else:
-        # take current directory as basedirec
-        basedirec = os.getcwd()
-    # fi
-
-    if pmodelfilepath is not None:
-        modelfilename = str(os.path.basename(pmodelfilepath)).split('.')[0]
-
-    """Main program for fillDB"""
-    parameters.initparam(pbasedirec=basedirec, pparamfile=pparamfile, pmodelname=pmodelname, pdbfile=pdestination,
-                         pmodellang=pmodellang, planguages=planguages, plogfilepath=plogfilepath,
-                         pmodelfilepath=pmodelfilepath)
-    assert (pmodelname is None or (parameters.modelName() == pmodelname)) \
-        , f"Modelname {pmodelname} does not match modelname in parameter file {parameters.modelName()}"
-    assert (pmodelfilepath is None or (modelfilename == parameters.modelName())) \
-        , f"Modelname {parameters.modelName()} does not match modelfile-name {modelfilename}"
-
-    logmessages.initlog('fillDBODM')
-
-    try:
-        # create folder for DB files if not exists
-        os.makedirs(parameters.dbDirect(), exist_ok=True)
-        fillmergedb(pdbfilepath=parameters.dbFilePath())
-    finally:
-        jsonfile=os.path.join(parameters.dbDirect(),(parameters.modelName()+'.json'))
-        logmessages.showmessages(f"model {parameters.modelName()} filled in database: {parameters.dbFilePath()}\n"+
-                                 f"jsonfile of model generated {jsonfile}")
-    return Path(parameters.dbFilePath())
-
+    logmessages.showmessages()
+    return dbfile
 
 def main(psysargs):
     """
     parses sysargs, searches for model and directories and calls
-    filldbmain
     show version
 
     :param psysargs:
@@ -217,13 +208,16 @@ def main(psysargs):
     """
     parser = argparse.ArgumentParser(description='Fill ODM model into SSOT-DB', parents=[argparseparent.parentparser()])
     parser.add_argument('modelfilepath', nargs='?',
-                        help=f"Path of the modelfile. Default ./{parameters.MODELDIREC}" +
-                             f"/<modelname>{parameters.ODMMODELEXTENSION})")
+                        help=f"Path of the modelfile. Default ./{ODMParameter.imdefaultdirec()}" +
+                             f"/<modelname>{ODMParameter.imextension()})")
     parser.add_argument('--destination', '-d', dest="destination",
-                        help=f"Path of databasefile. Default ./{parameters.SPODDBDIREC}" +
-                             f"/<modelname>{parameters.SPODDBEXTENSION})")
-    # parser.add_argument('--dbtype', '-t', dest='dbtype', default=parameters.SQLITE,
-    #                    help=f"Type of database to be created. Default '{parameters.SQLITE}'")
+                        help=f"Path of databasefile. Default ./{Parameter.SPODDBDIREC}" +
+                             f"/<modelname>{Parameter.SPODDBEXTENSION})")
+    parser.add_argument('--configdirec', '-c', dest="configdirec",
+                        help=f"Path of ODM configuration directory. Default IM-direc/[CK]onfiguration" +
+                             f"/<modelname>{Parameter.SPODDBEXTENSION})")
+    # parser.add_argument('--dbtype', '-t', dest='dbtype', default=Parameter.SQLITE,
+    #                    help=f"Type of database to be created. Default '{Parameter.SQLITE}'")
     argparse.Namespace()
 
     if (len(psysargs) > 0) and ('.py' in psysargs[0]) and ('ipykernel' not in psysargs[0]):
@@ -241,22 +235,25 @@ def main(psysargs):
     argparseparent.fillssotdefaults(pcurrentdir=currentdir, parguments=myargs)
     if myargs['modelname'] is not None:
         if myargs['destination'] is None:
-            myargs['destination'] = os.path.join(currentdir, parameters.SPODDBDIREC,
-                                                 myargs['modelname'] + parameters.SPODDBEXTENSION)
+            myargs['destination'] = os.path.join(currentdir, Parameter.SPODDBDIREC,
+                                                 myargs['modelname'] + Parameter.SPODDBEXTENSION)
         if myargs['modelfilepath'] is None:
-            myargs['modelfilepath'] = os.path.join(currentdir, parameters.MODELDIREC,
-                                                   myargs['modelname'] + parameters.ODMMODELEXTENSION)
+            myargs['modelfilepath'] = os.path.join(currentdir, ODMParameter.imdefaultdirec(),
+                                                   myargs['modelname'] + ODMParameter.imextension())
     # fi
 
     if myargs['modelfilepath'] is not None:
+        if myargs['modelname'] is None:
+            myargs['modelname'] = Path(myargs['modelfilepath']).stem
         myargs['modelfilepath'] = os.path.abspath(myargs['modelfilepath'])
 
     # do only testing of parameterpassing while in unittest
     if not arguments.unittest:
-        filldbmain(pparamfile=myargs['paramfile'], pdbtype=myargs['dbtype'], pmodelname=myargs['modelname'],
-                   pdestination=myargs['destination'],
-                   pmodellang=myargs['modellanguage'], planguages=myargs['languages'], plogfilepath=myargs['logfile'],
-                   pmodelfilepath=myargs['modelfilepath'])
+        fillmergedb(pmodelname=myargs['modelname'], pmodelfilepath=myargs['modelfilepath'],
+                   pdbfilepath=myargs['destination'],
+                   pmodellang=myargs['modellanguage'], planguages=myargs['languages'],
+                   plogfilepath=myargs['logfile'],
+                   pconfigdirec=myargs['configdirec'])
     return
 
 if __name__ == '__main__':

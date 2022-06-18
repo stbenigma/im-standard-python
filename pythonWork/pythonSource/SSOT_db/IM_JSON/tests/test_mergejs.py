@@ -11,7 +11,7 @@ import io
 import sys
 
 import SSOT_infra.tests.integration as testsrc
-from LOAD_MODELS.LOAD_INFRA import mergedbs, fillmodel2db
+from LOAD_MODELS.LOAD_INFRA import mergedbs
 from LOAD_MODELS.LOAD_ODM import fillDB
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles
@@ -132,7 +132,7 @@ class TestMergeJson(unittest.TestCase):
             # pjson.printmodel(pfilepath=".", pfilename="savejson.json")
             return
 
-        parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
+        parameters.initparam(basedirec=self.testmodel2.modeldir, modelname=self.testmodel2.paramfile)
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))

@@ -7,7 +7,7 @@ from datetime import datetime
 from LOAD_MODELS.LOAD_INFRA import handleXML
 from SSOT_db.IM_OBJECTS import  *
 from LOAD_MODELS.LOAD_ODM import transferModel
-from SSOT_infra import parameters, logmessages, int2hex
+from SSOT_infra import parameter, logmessages, int2hex
 
 """List of Relations 
    {relationguid: {"rela":, "srcentiguid": ,"dstentiguid","....":}}
@@ -628,13 +628,13 @@ def filllanguages():
     # copy comma-list-synonym into synoyms
     Synonym.transfersynotransl()
     # fill all elements in default language
-    Languagetext.filldefaulttext(parameters.dbDefaultLangID())
+    Languagetext.filldefaulttext(getodmparams().dbDefaultLangID())
     return
 
 
 def transfer1project(pprojxml):
-    defspra = parameters.dbDefaultLang()
-    sprachen = parameters.dbLanguages()
+    defspra = parameter.modelLang()
+    sprachen = parameter.languages()
     proj = Project()
     proj.proj_name = handleXML.findColumn(pprojxml, 'Name')
     proj.proj_uc = "fillDBea"
@@ -652,8 +652,7 @@ def transfer1project(pprojxml):
         else:
             Language.setmodellang(pmodellang=defspra)
             Language.setallreplacementlang()
-            parameters.dbDefaultLang(defspra)
-            parameters.dbDefaultLangID(defspraid)
+            getodmparams().dbDefaultLangID(defspraid)
     # fi
     return
 

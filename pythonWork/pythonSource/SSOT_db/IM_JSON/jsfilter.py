@@ -12,7 +12,7 @@ class FILTEREDJSModel(JSModel):
                      Modelelemtype.STFO, Modelelemtype.ORGU, Modelelemtype.ARCS,
                      Modelelemtype.KEYS, Modelelemtype.PHYU, Modelelemtype.DIAG,
                      Modelelemtype.TABL, Modelelemtype.INTF, Modelelemtype.COLU,
-                     Modelelemtype.DIAG
+                     Modelelemtype.DIAG, Modelelemtype.BURU
                      )
 
     def __init__(self, pmodel: dict, ppublstatus: str = None, pimdiagrams: list = None):
@@ -172,6 +172,11 @@ class FILTEREDJSModel(JSModel):
         self._removeelement(pelemtype=Modelelemtype.DOCU,
                             pcondition=lambda elem, ref: not (len(elem["references+"]) == 0
                                                               or set(elem["references+"]).intersection(ref)))
+
+        # remove businessrules, not referenced by any remaining elements
+        self._removeelement(pelemtype=Modelelemtype.BURU,
+                            pcondition=lambda elem, ref: not (len(elem["elements"]) == 0
+                                                              or set(elem["elements"]).intersection(ref)))
 
         return
 

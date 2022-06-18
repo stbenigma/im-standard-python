@@ -160,6 +160,7 @@ class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
         ssot_file = self.project_root / 'testdata' / 'fyyccim-refmodels' / 'CRM' / 'DB' / 'IM_CRM_FYAYC.json'
         if not ssot_file.exists():
             logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
+            return
         with open(ssot_file, 'r') as src:
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)

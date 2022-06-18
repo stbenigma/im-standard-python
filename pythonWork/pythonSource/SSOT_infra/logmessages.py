@@ -1,8 +1,6 @@
 from datetime import datetime
-from pathlib import Path
-
-from SSOT_infra import parameters
 from SSOT_infra.translateprompt import plural
+from pathlib import Path
 
 logcount: int = 0
 logfile = None
@@ -19,21 +17,21 @@ logtrap = nop_trap
 """
 
 
-def initlog(pmodulename: str):
+def initlog(pmodulename: str,plogfilepath=None):
     """initializes the logfile for appending (creating if it does not exist) for the module pmodulename
         sets the logcounter to 0
         """
     global logcount, logfile, logtrap
     logcount = 0
-    logpath = Path(parameters.logfilepath())
-    logpath.parent.mkdir(exist_ok=True)
-    logfile = open(logpath, 'a+')
-    log_line = "{}  {}: Model={}  DB={}\n".format(datetime.now().strftime("%Y-%m-%d %H:%m:%S")
-                                                  , pmodulename
-                                                  ,
-                                                  parameters.odmIMDirec() + parameters.modelName() + parameters.odmIMExtension()
-                                                  , parameters.dbFilePath())
-    logfile.write(log_line)
+    log_line = f"""{datetime.now().strftime("%Y-%m-%d %H:%m:%S")}  {pmodulename}\n"""
+    if plogfilepath is not None:
+        logpath = plogfilepath
+    else:
+        logpath = None
+    if logpath is not None:
+        Path(logpath).parent.mkdir(exist_ok=True)
+        logfile = open(logpath, 'a+')
+        logfile.write(log_line)
     logtrap(log_line)
     return
 

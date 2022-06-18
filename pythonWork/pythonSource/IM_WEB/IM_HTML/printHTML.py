@@ -9,25 +9,18 @@ from pathlib import Path
 from SSOT_db.IM_JSON import JSModel
 from SSOT_db.IM_OBJECTS import Modelelemtype, Domain
 from SSOT_infra import parameters, nvl2, nvl, transl
+from IM_WEB.htmlparameters import HTMLParameter
 
 
 def no_hyperlink(element: dict) -> (str or None):
     return None
 
 
-class HTMLExport:
+class HTMLExport(HTMLParameter):
 
-    def __init__(self):
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
         self.outputDirectory: str = None
-        self.webDirectory: str = ""
-        self.webFileName: str = ""
-        self.webFileNamePath: str = ""
-        self.libSourceDirec: str = ""
-        self.imagedirec: str = ""
-        self.cssdirec: str = ""
-        self.icondirec: str = ""
-        self.jsdirec: str = ""
-        self.jinadirec: str = ""
         self.htmlfilelist = {}
         self.model: JSModel = None
 
@@ -97,7 +90,7 @@ class HTMLExport:
             filename = re.sub(r'[^a-zäöüñéàè0-9_-]+', '', filename.lower())
         # fi
         # filename found search in image
-        filepath = os.path.join(parameters.webDirec(), 'image', filename)
+        filepath = os.path.join(self.imageDirec(), filename)
         if os.path.isfile(filepath):
             # absolute path, return it
             return filepath
@@ -142,51 +135,26 @@ class HTMLExport:
             return ptyp
         # fi
 
-    def searchlogo(self, p_imagedirec):
-        retval = ''
-        for ext in ('png', 'jpg', 'svg'):
-            if os.path.isfile(os.path.join (p_imagedirec , 'logo.' + ext)):
-                retval = 'logo.' + ext
-        return retval
-
-    def setWebDirec(self, p_webdirec):
-
-        self.webDirectory = Path(nvl(p_webdirec, parameters.webDirec()))
-        self.webFileName = parameters.modelName()
-        self.imagedirec = os.path.join(self.webDirectory, 'image')
-        self.cssdirec = os.path.join(self.webDirectory, 'css')
-        self.icondirec = os.path.join(self.webDirectory, 'icons')
-        self.jsdirec = os.path.join(self.webDirectory, 'js')
-        self.jinadirec = os.path.join(self.webDirectory, 'jinjatemplates')
-
-        this_file = Path(__file__)
-        lib_path_tokens = this_file.parts[:-2]
-        self.libSourceDirec = os.path.join(*lib_path_tokens, 'html-lib')
-        assert os.path.exists(self.libSourceDirec), f"Unable to find {self.libSourceDirec}"
-        if (parameters.logoFileName() is None):
-            parameters.logoFileName(self.searchlogo(self.imagedirec))
 
     def createlib(self):
-        if not os.path.exists(self.cssdirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'css'), self.cssdirec)
-        if not os.path.exists(self.jsdirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'js'), self.jsdirec)
-        if not os.path.exists(self.icondirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'icons'), self.icondirec)
-        if not os.path.exists(self.imagedirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'image'), self.imagedirec)
-        if not os.path.exists(self.jinadirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'jinjatemplates'), self.jinadirec)
+        if not os.path.exists(self.cssDirec()):
+            shutil.copytree(os.path.join(self.libSourceDirec, 'css'), self.cssDirec())
+        if not os.path.exists(self.jsDirec()):
+            shutil.copytree(os.path.join(self.libSourceDirec, 'js'), self.jsDirec())
+        if not os.path.exists(self.imageDirec()):
+            shutil.copytree(os.path.join(self.libSourceDirec, 'image'), self.imageDirec())
+        if not os.path.exists(self.jinjaDirec()):
+            shutil.copytree(os.path.join(self.libSourceDirec, 'jinjatemplates'), self.jinjaDirec())
         return
 
     def copyimages(self):
         """copy all file from the modeler-image directory into the web-image directory"""
-        image_src = parameters.odmFilesDirec() + 'images'
+        image_src = self.imageDirec()
         if os.path.exists(image_src):
-            copy_tree(image_src, self.imagedirec)
+            copy_tree(image_src, self.imageDirec())
 
     def createFile(self, pfilename: Path):
-        webfile = os.path.join(self.webDirectory, pfilename)
+        webfile = os.path.join(self.webDirec(), pfilename)
         if os.path.exists(webfile):
             os.remove(webfile)
         self.fhtml = open(webfile, 'w')

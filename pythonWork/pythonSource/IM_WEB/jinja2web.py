@@ -119,6 +119,7 @@ class Webmodel:
                 if intfanker in elem:
                     tablist += elem[intfanker]
             if len(tablist) == 0: continue
+            tablist=list(set(tablist))
             allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({} ({}))".format(self.getelem(tabanker)['name']
                                                                                                 , self.getelem(tabanker)['CRUD'])
                                                 , destid=tabanker
@@ -151,6 +152,7 @@ class Webmodel:
                 if intfanker in mapcolus:
                     collist += mapcolus[intfanker]
             if len(collist) == 0: continue
+            collist =list(set(collist))
             allmappings[intfelem["name"]] = ', '.join(self.getreflink(name="({}.{} ({}))".format(self.getelem(colanker)['table-name+']
                                                                                     , self.getelem(colanker)['name']
                                                                                     , self.getelem(colanker)['R/W'])
@@ -215,7 +217,7 @@ template = templateEnv.get_template(TEMPLATE_FILE)
 outputText = template.render()  # this is where to put args to the template renderer
 """
 def model2html(pwebmodel:Webmodel):
-    template_folder = pwebmodel.export.jinadirec
+    template_folder = pwebmodel.export.jinjaDirec()
     assert os.path.isdir(template_folder), f"Missing jinja templates folder {template_folder}"
     t = Environment(loader=FileSystemLoader(searchpath=template_folder),autoescape=True)
     if pwebmodel.getintfid() is not None:
@@ -237,7 +239,7 @@ def model2html(pwebmodel:Webmodel):
     try:
         retval = templ.render(timestamp=datetime.now(),webmodel=pwebmodel)
     except Exception as e:
-        logmessages.writelog("Error in jinja template {}/{}".format(pwebmodel.export.jinadirec, templatename))
+        logmessages.writelog("Error in jinja template {}/{}".format(pwebmodel.export.jinjaDirec(), templatename))
         logmessages.writelog(str(e))
         raise e
     #try

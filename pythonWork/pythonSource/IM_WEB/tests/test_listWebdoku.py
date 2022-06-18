@@ -25,6 +25,9 @@ class GenerateHTML(unittest.TestCase):
         self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1).initDB()
         self.testmodel1.initWeb()
 
+        self.testmodel2=testsrc.Testmodel(testsrc.TESTMODEL2).initDB()
+        self.testmodel2.initWeb()
+
         self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST).initDB()
         self.testmodelcrm.initWeb()
 
@@ -33,6 +36,11 @@ class GenerateHTML(unittest.TestCase):
 
     def test_html_proper(self):
         listWebdoku.webmain(pjsonfilepath=self.testmodelcrm.jsonfile, pwebdirec=self.testmodelcrm.webdir, pmodelname=self.testmodelcrm.modelname)
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'jinjatemplates'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'css'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'js'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'images'))
+        self.assertTrue(os.path.isdir(self.testmodelcrm.webdir/'images'/'icons'))
         with open(self.testmodelcrm.webdir / (self.testmodelcrm.modelname+'_de.html'),"r") as webfile:
             html=webfile.read()
             self.assertRegex(html,"Sachdienstmitarbeiter")
@@ -42,20 +50,21 @@ class GenerateHTML(unittest.TestCase):
 
     def test_listwebdoku(self):
         #os.chdir(self.testmodelcrm.modeldir)
+        print ("\nDEBUG***************** sitch on ***********")
         self.testmodelcrm.initWeb()
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
-                                   '-p',
-                                   str(self.testmodelcrm.paramfile),
-                                   '--diagrams=DUMMY,"Kunde mit Bilder"'])
+                                    "-d",str(self.testmodelcrm.webdir),
+                                   '--diagrams=DUMMY,"Kunde mit Bilder"',
+                                   str(self.testmodelcrm.jsonfile)])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
-                                   '-p',
-                                   str(self.testmodelcrm.paramfile),
-                                   '--diagrams=DUMMY'])
+                                   "-d", str(self.testmodelcrm.webdir),
+                                   '--diagrams=DUMMY',
+                                   str(self.testmodelcrm.jsonfile)])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
-                                   '-p',
-                                   str(self.testmodelcrm.paramfile),
+                                   "-d", str(self.testmodelcrm.webdir),
                                    '-s',
-                                   'PUBL'])
+                                   'PUBL',
+                                   str(self.testmodelcrm.jsonfile)])
 
     def test_generate_html_riddle(self):
         self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
@@ -68,10 +77,8 @@ class GenerateHTML(unittest.TestCase):
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
         js_model = JSModel(pmodel=model)
-        parameters.initparam(str(project),pmodelname=js_model.modelname())
-        html_export = HTMLExport()
+        html_export = HTMLExport(basedirec=str(project),modelname=js_model.modelname(),webDirec=str(self.temp_folder))
         html_export.setmodel(js_model)
-        html_export.setWebDirec(str(self.temp_folder))
         if os.path.exists(self.temp_folder):
             shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)

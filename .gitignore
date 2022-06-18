@@ -151,6 +151,8 @@ dmypy.json
 
 # Subrepository
 /testdata/fyyccim-refmodels/
+/testdata/localtestmodels/**
+!/testdata/localtestmodels/ReadMe.txt
 
 /pythonWork/pythonSource/testenvironment/**/DB/
 /pythonWork/pythonSource/testenvironment/**/Web/
@@ -163,3 +165,5 @@ dmypy.json
 pythonWork/pythonSource/LOAD_MODELS/LOAD_EA/export/tests/riddle.xmi
 testdata/ktlu-im
 pythonWork/pythonSource/tools/LANGTRANSL/tests/log
+**/tests/log
+pythonWork/pythonSource/SSOT_db/dbstructure/sqlite/LAST_modelmodel_sqlite.sql
