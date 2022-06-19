@@ -100,13 +100,15 @@ class test_createDB(unittest.TestCase):
                 pass
         return
 
-    def test_create_db(self):
+    def test_create_db_raise(self):
         with self.assertRaises(Exception):
             createDB()
         with self.assertRaises(Exception):
             createDB(pmodelname=None)
         with self.assertRaises(Exception):
             createDB(pupgrade=False, pdbtype=Parameter.SQLITE)
+
+    def test_create_db(self):
 
         with tempfile.TemporaryDirectory() as tempdir:
             os.chdir(tempdir)
