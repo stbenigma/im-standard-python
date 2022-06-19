@@ -162,7 +162,9 @@ jobs:
       run: |
         python dist/generator.py --languages=de --model testdata/Sika-IM/IM --all
 
-    - name: Install and run Coverage.py
+    - name: Create coverage report
       run: |
+        echo "Measuring code coverage by running all tests"  
         coverage run -m pytest
+        echo "Creating coverage report"
         coverage report -m

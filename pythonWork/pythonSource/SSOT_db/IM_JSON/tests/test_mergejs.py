@@ -208,6 +208,7 @@ class TestMergeJson(unittest.TestCase):
                       'attributesmapped': [],
                       'mandatory': False,
                       'datatype': 'unknown',
+                      'R/W': 'W',
                       'format': None,
                       'domain': default_domain,
                       'descr': "Created by unittest",
@@ -276,6 +277,7 @@ class TestMergeJson(unittest.TestCase):
                       'format': None,
                       'domain': default_domain,
                       'descr': "Created by unittest",
+                      'R/W': 'RW',
                       }
         self.set_defaults(new_column)
         new_column_key = 'COLU-1'
@@ -341,6 +343,7 @@ class TestMergeJson(unittest.TestCase):
                       'mandatory': False,
                       'datatype': 'unknown',
                       'format': None,
+                      'R/W': 'R',
                       'domain': default_domain,
                       'descr': "Created by unittest",
                       }

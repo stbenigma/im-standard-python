@@ -76,6 +76,8 @@ def js2colu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     colu.colu_doma_id = pelem['domain']
     colu.colu_descr = pelem['descr']
     colu.colu_ext_system_id = pelem['interface_col_id']
+    colu.colu_read = Boolean.bool2str('R' in pelem['R/W'])
+    colu.colu_update = Boolean.bool2str('W' in pelem['R/W'])
     colu.colu_uc = pelem['uc']
     colu.colu_dc = pelem['dc']
     colu.colu_um = pelem['um']
