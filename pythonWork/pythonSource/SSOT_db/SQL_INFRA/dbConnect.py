@@ -4,6 +4,7 @@ from contextlib import closing
 
 from SSOT_infra import parameters
 from SSOT_db.IM_OBJECTS import Language
+from SSOT_db.SQL_INFRA import dbConnect
 
 """ create database and connect to it
     """
@@ -223,3 +224,13 @@ def makebackuptofile(pdbfile):
     getdbcon().backup(backupconn)
     return backupconn
 
+def connecttodbcopy():
+    assert dbConnect.isopenDB()
+    # get a copy of a db in Memory and open it
+    memconn = dbConnect.connectmemorydb()
+    dbConnect.getdbcon().backup(memconn)
+    dbConnect.closeDB()
+    dbConnect.makedbsafe(memconn)
+    dbConnect.setdbcon(memconn)
+    assert dbConnect.isopenDB()
+    return dbConnect.getdbcon()

@@ -2,7 +2,60 @@ from SSOT_db.SQL_INFRA import dbDML
 from .baseobject import Baseobject
 import re
 
-
+"""select to get all multilanguage fields we know of. Has to be changed, if in a MultiLangbaseobject
+    a multilangcolumns changes"""
+multilangfields = """select 'ENTI_NAME' mlt_attrname, enti_name mlt_text
+                        ,enti_id mlt_id,enti_uc mlt_uc,enti_dc mlt_dc
+                            from entities 
+                            union all
+                           select 'ENTI_COMMENT' attrname, enti_descr text 
+                                ,enti_id,enti_uc,enti_dc
+                            from entities                     
+                            union all
+                           select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
+                                ,enti_id,enti_uc,enti_dc
+                            from entities                     
+                            union all
+                           select 'ATTR_COMMENT' attrname, attr_descr text 
+                                ,attr_id,attr_uc,attr_dc
+                            from attributes     
+                            union all
+                           select 'ATTR_TOOLTIP' attrname, attr_tooltip text 
+                                ,attr_id,attr_uc,attr_dc
+                            from attributes     
+                            union all                
+                           select 'ATTR_NAME' attrname, attr_displ_name text 
+                                ,attr_id,attr_uc,attr_dc
+                            from attributes  
+                            union all                
+                           select 'RELA_TEXT_FROM' attrname, rela_assoc_from_to text 
+                                ,rela_id,rela_uc,rela_dc
+                            from relations  
+                            union all                
+                           select 'RELA_TEXT_TO' attrname, rela_assoc_to_from text 
+                                ,rela_id,rela_uc,rela_dc
+                            from relations
+                            union all 
+                           select 'DOMA_NAME' attrname, doma_name text 
+                                ,doma_id,doma_uc,doma_dc
+                            from DOMAINS
+                            union all  
+                           select 'DOMA_DESCR' attrname, doma_descr text 
+                                ,doma_id,doma_uc,doma_dc
+                            from DOMAINS
+                            union all  
+                           select 'BURU_NAME' attrname, buru_name text 
+                                ,buru_id,buru_uc,buru_dc
+                            from business_rules  
+                            union all  
+                           select 'BURU_DESCR' attrname, buru_descr text 
+                                ,buru_id,buru_uc,buru_dc
+                            from business_rules  
+                            union all  
+                           select 'BURU_ERRORMSG' attrname, buru_errormsg text 
+                                ,buru_id,buru_uc,buru_dc
+                            from business_rules 
+                            """
 class Languagetext(Baseobject):
     EN: str = 'en'
     DE: str = 'de'
@@ -50,60 +103,7 @@ class Languagetext(Baseobject):
            Synonyms and exampleshave been handled beforehand (they are in a comma-separated list...)
         """
         assert pdefaultlang, "No language provided"
-        """select to get all multilanguage fields we know of. Has to be changed, if in a MultiLangbaseobject
-            a multilangcolumns changes"""
-        multilangfields = """select 'ENTI_NAME' mlt_attrname, enti_name mlt_text
-                                ,enti_id mlt_id,enti_uc mlt_uc,enti_dc mlt_dc
-                                    from entities 
-                                    union all
-                                   select 'ENTI_COMMENT' attrname, enti_descr text 
-                                        ,enti_id,enti_uc,enti_dc
-                                    from entities                     
-                                    union all
-                                   select 'ENTI_TOOLTIP' attrname, enti_tooltip text 
-                                        ,enti_id,enti_uc,enti_dc
-                                    from entities                     
-                                    union all
-                                   select 'ATTR_COMMENT' attrname, attr_descr text 
-                                        ,attr_id,attr_uc,attr_dc
-                                    from attributes     
-                                    union all
-                                   select 'ATTR_TOOLTIP' attrname, attr_tooltip text 
-                                        ,attr_id,attr_uc,attr_dc
-                                    from attributes     
-                                    union all                
-                                   select 'ATTR_NAME' attrname, attr_displ_name text 
-                                        ,attr_id,attr_uc,attr_dc
-                                    from attributes  
-                                    union all                
-                                   select 'RELA_TEXT_FROM' attrname, rela_assoc_from_to text 
-                                        ,rela_id,rela_uc,rela_dc
-                                    from relations  
-                                    union all                
-                                   select 'RELA_TEXT_TO' attrname, rela_assoc_to_from text 
-                                        ,rela_id,rela_uc,rela_dc
-                                    from relations
-                                    union all 
-                                   select 'DOMA_NAME' attrname, doma_name text 
-                                        ,doma_id,doma_uc,doma_dc
-                                    from DOMAINS
-                                    union all  
-                                   select 'DOMA_DESCR' attrname, doma_descr text 
-                                        ,doma_id,doma_uc,doma_dc
-                                    from DOMAINS
-                                    union all  
-                                   select 'BURU_NAME' attrname, buru_name text 
-                                        ,buru_id,buru_uc,buru_dc
-                                    from business_rules  
-                                    union all  
-                                   select 'BURU_DESCR' attrname, buru_descr text 
-                                        ,buru_id,buru_uc,buru_dc
-                                    from business_rules  
-                                    union all  
-                                   select 'BURU_ERRORMSG' attrname, buru_errormsg text 
-                                        ,buru_id,buru_uc,buru_dc
-                                    from business_rules 
-                                    """
+
         """correct possible inconsistencies where the original field is NULL but the udp translated value is not
             remove all lang_texts (inserted by insertlang_texts) having empty original values"""
         from SSOT_db.IM_OBJECTS import Languagetext
@@ -231,4 +231,86 @@ class Languagetext(Baseobject):
         """
         cnt = dbDML.exec(psql=lsql)
         return
-# Languagetext
+
+    @staticmethod
+    def checkMLuk():
+        """ check, that in all languages the translated texts (or if missing, the default text)
+            are unique for enti_name, attr_name, doma_name
+        """
+        retval = []
+
+        sql="""
+    with lgtx as
+        (select lgtx_lang_id,lgtx_text,
+                lgtx_mode_id,lgtx_attrname
+         from lang_texts
+        ),
+    lgtx2 as (select lgtxori.lgtx_mode_id,lang.lang_iso_code2,
+                     lgtxori.lgtx_attrname,
+                     lang.lang_iso_code2 lang, lgtxori.lgtx_text original_text,
+                     langlang.lang_iso_code2 deflang,
+        case when (lgtxori.lgtx_text is not NULL) and (lgtxori.lgtx_text != '')
+            then lgtxori.lgtx_text
+            else case when (lgtxdef.lgtx_text is not NULL) and (lgtxdef.lgtx_text != '')
+                 then '*'||langlang.lang_iso_code2||'* '||lgtxdef.lgtx_text
+                 else lgtxdef.lgtx_text
+                 end
+            end text
+    from languages lang
+    left join languages langlang on langlang.lang_id = lang.LANG_LANG_ID
+    left join lgtx as lgtxori on lgtxori.lgtx_lang_id = lang.lang_id
+    left join lgtx as lgtxdef on lgtxdef.lgtx_lang_id = lang.lang_lang_id
+                    and lgtxori.lgtx_mode_id = lgtxdef.lgtx_mode_id
+                    and lgtxori.lgtx_attrname = lgtxdef.lgtx_attrname
+    ),
+  elem as (select 'ENTI' type, enti_name name,
+                  enti_id modeid, NULL father from entities
+      union all
+      select 'DOMA' type, doma_name,
+             doma_id modeid, NULL father from domains
+      union all
+      select 'ATTR' type, attr_displ_name,
+             attr_id modeid, attr_enti_id father from attributes
+      union all
+      select 'SYNO' type, syno_name,
+             syno_id modeid, syno_enti_id father from synonyms
+      )
+select count(*),type,father, lang,text,lgtx_attrname
+  from elem
+  left join lgtx2 on lgtx_mode_id = modeid
+            and lgtx_attrname in ('ENTI_NAME','DOMA_NAME',
+                                  'ATTR_NAME','SYNO_NAME')
+    where lgtx_mode_id is not Null
+group by type,lang,text,lgtx_attrname,father
+having count(*) >1
+"""
+        result = dbDML.select(sql)
+        """(2, 'DOMA', None, 'fr', 'Name', 'DOMA_NAME')"""
+        for r in result:
+            retval.append(f"multiple ({r[0]}) uk-entries '{r[4]}',for language {r[3]} in attribute {r[5]}")
+        return retval
+
+    @staticmethod
+    def checkMLdefaultentry():
+        retval = []
+        sql = f"""
+        with mlf as ({multilangfields}),
+             deflang as (select lang_id,lang_iso_code2
+                             from languages
+                             where lang_is_base_lang = 'TRUE')
+        select mlt_attrname,mlt_id,mlt_text,lgtx_text,lang_iso_code2
+        from mlf 
+        join lang_texts on lgtx_mode_id = mlt_id
+                and lgtx_attrname =mlt_attrname
+                and (mlt_text is NULL and lgtx_text is not NULL 
+                    or mlt_text is not NULL and lgtx_text is NULL 
+                    or mlt_text != lgtx_text
+                    )
+        join deflang on lgtx_lang_id = lang_id
+        """
+        result = dbDML.select(sql)
+        """ENTI_NAME,121,Administrativgebietx,Administrativgebiet,de"""
+        for r in result:
+            retval.append(f"Element {r[1]}, attribute{r[0]} mismatch of tableattribute and default language ({r[4]}) entry")
+        return retval
+

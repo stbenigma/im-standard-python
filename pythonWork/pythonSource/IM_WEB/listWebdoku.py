@@ -147,9 +147,9 @@ def main(psysargs):
     parser.add_argument('--logfile', '-log', dest='logfile',
                         help=f"Path for logfile. Default: ./<modelname>{Parameter.LOGFILEEXTENSION}")
     parser.add_argument('--status', '-s', dest='status',
-                        help=f"Publication status (DRAFT, GTOP, PUBL). Default: None")
+                        help=f"Fileter: publication status (DRAFT, GTOP, PUBL). Default: None")
     parser.add_argument('--diagrams', '-diag', dest='diagrams',
-                        help=f"List of comma seperated diagram names to be published. Default: None")
+                        help=f"Filter: list of comma seperated diagram names to be published. Default: None")
     parser.add_argument('--version', '-v', action='store_true')
     parser.add_argument('--unittest', action='store_true', dest='unittest',
                         help=argparse.SUPPRESS)  # for testing purposes only

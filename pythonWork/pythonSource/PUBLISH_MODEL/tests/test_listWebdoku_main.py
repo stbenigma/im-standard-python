@@ -3,9 +3,9 @@ import re
 import tempfile
 import unittest
 
+import SSOT_infra.tests.integration as testsrc
 from IM_WEB import listWebdoku
 from SSOT_infra.tests.test_translateprompt import TestTranslation
-import SSOT_infra.tests.integration as testsrc
 
 
 class TestListWebDocumentation(unittest.TestCase):
@@ -26,7 +26,8 @@ class TestListWebDocumentation(unittest.TestCase):
         self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2)
         self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
 
-        assert os.path.isdir(testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
+        assert os.path.isdir(
+            testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
         return
 
     def test_main(self):
@@ -35,20 +36,18 @@ class TestListWebDocumentation(unittest.TestCase):
         self.assertEqual(cm.exception.code, 1)
         listWebdoku.main(psysargs=['listWebdoku.py', '-m', 'bla', '--unittest'])
 
-
         return
 
     def test_webmain(self):
         with tempfile.TemporaryDirectory() as tempdir:
-            os.chdir(tempdir)  #we need a current directory
+            os.chdir(tempdir)  # we need a current directory
             with self.assertRaises(AssertionError):
                 listWebdoku.webmain()
             with self.assertRaises(AssertionError):
                 listWebdoku.webmain(pjsonfilepath='x')
 
-        os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL1)  #we need a current directory
-        listWebdoku.webmain(pjsonfilepath=testsrc.testmodels_dir() / testsrc.TESTMODEL1/ 'DB' / (testsrc.TESTMODEL1 + '.json'),
-                            pwebdirec=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'Web')
-
-
+        os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL1)  # we need a current directory
+        listWebdoku.webmain(
+            pjsonfilepath=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'DB' / (testsrc.TESTMODEL1 + '.json'),
+            pwebdirec=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'Web')
 

@@ -242,7 +242,11 @@ class MyTestCase(unittest.TestCase):
         os.remove(destfilename)
         createlangexcel(self.tm2.jsonfile, pdest=destfilename)
         self.assertTrue(os.path.exists(destfilename))
-        # os.remove(destfilename)
+        os.remove(destfilename)
+        destfilename = os.path.join(self.tm2.dbdir.parent)
+        createlangexcel(self.tm2.jsonfile, pdest=destfilename)
+        self.assertTrue(os.path.exists(destfilename))
+        #os.remove(destfilename)
 
         return
 
@@ -306,6 +310,9 @@ class MyTestCase(unittest.TestCase):
             importlangexcel('gugus')
         print("")
         impfilename = os.path.join(self.tm2.dbdir, self.tm2.modelname + '.xlsx')
+        if not os.path.exists(impfilename):
+            createlangexcel(self.tm2.jsonfile)
+
         importlangexcel(impfilename)
         self.assertFalse(os.path.exists(resultjson))  # nothing changed, no files generated
 

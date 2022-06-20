@@ -112,19 +112,6 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
 
     return result
 
-
-def connecttodbcopy():
-    assert dbConnect.isopenDB()
-    # get a copy of a db in Memory and open it
-    memconn = dbConnect.connectmemorydb()
-    dbConnect.getdbcon().backup(memconn)
-    dbConnect.closeDB()
-    dbConnect.makedbsafe(memconn)
-    dbConnect.setdbcon(memconn)
-    assert dbConnect.isopenDB()
-    return dbConnect.getdbcon()
-
-
 def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
                pverbose=False, pdryrun=False, pkeepids=False):
     """
@@ -142,7 +129,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
     dbConnect.openDB(pfilepath=pdbfile)
     if pdryrun:
         # create a backup in memory and connect to it
-        connecttodbcopy()
+        dbConnect.connecttodbcopy()
         print(f"***** dry merge-run on db {pdbfile}")
 
     mergeresult = None
@@ -155,15 +142,20 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
             raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
 
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose, pkeepids=pkeepids)
+        mergeresult.consistencyerrors = checkdatabase()
+
         if pverbose and len(mergeresult.changes) > 0:
             for c in mergeresult.changes:
                 print(c)
         if (len(mergeresult.errors) > 0):
             for dbe in mergeresult.errors:
                 print(dbe)
+        if (len(mergeresult.consistencyerrors) > 0):
+            for dbe in mergeresult.consistencyerrors:
+                print(dbe)
         for w in mergeresult.warnings:
             print(w)
-        print(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
+        print(f"Errors {len(mergeresult.errors)+len(mergeresult.consistencyerrors)},  Warnings {len(mergeresult.warnings)}")
         print(f"elements changed in database {dbConnect.getDBname()}")
         print(
             f"    {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
@@ -215,21 +207,25 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
         createnewDB(pdbfilepath=None)
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose, pcheckonly=True,
                                     pkeepids=pkeepids)
+        mergeresult.consistencyerrors = checkdatabase()
+
         logging.info(f"model {modelname}")
         logging.info(
             f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
         logging.info(f"Baselanguage: {baselang}  Languages: {languages}")
-        logging.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
+        logging.info(f"Errors {len(mergeresult.errors)+len(mergeresult.consistencyerrors)},  Warnings {len(mergeresult.warnings)}")
         logging.info(
             f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
 
         for dbe in mergeresult.errors:
             logging.error(dbe)
+        for dbe in mergeresult.consistencyerrors:
+            logging.error(dbe)
         for w in mergeresult.warnings:
             logging.warning(w)
     finally:
         dbConnect.pop()
-    return len(mergeresult.errors) == 0
+    return (len(mergeresult.errors) + len(mergeresult.consistencyerrors)) == 0
 
 
 if __name__ == '__main__':

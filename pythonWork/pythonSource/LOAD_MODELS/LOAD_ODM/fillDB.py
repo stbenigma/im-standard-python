@@ -69,7 +69,7 @@ def destdir(pdestdir:Path= None,pmodeldir:Path= None):
     """
     assert not (pdestdir is None and pmodeldir is None), f"with no information I would have to guess"
     if pdestdir is None:
-        retval = Path(os.path.dirname(pmodeldir)) / getodmparams().dbDefaultDirect()
+        retval = Path(os.path.dirname(pmodeldir)) / Parameter.SPODDBDIREC
     else:
         retval = Path(pdestdir) if isinstance(pdestdir, str) else pdestdir
     assert os.path.isdir(retval), f"Destination path does not exists: {retval} "

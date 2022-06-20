@@ -7,7 +7,7 @@ import json
 import pytest
 from lxml import etree
 
-from IM_EA.export.xmiexport import XMIBuilder
+from LOAD_MODELS.LOAD_EA.export.xmiexport import XMIBuilder
 from SSOT_db.IM_JSON import JSModel
 from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir
 
