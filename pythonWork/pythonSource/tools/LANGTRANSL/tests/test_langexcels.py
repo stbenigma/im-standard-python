@@ -310,6 +310,9 @@ class MyTestCase(unittest.TestCase):
             importlangexcel('gugus')
         print("")
         impfilename = os.path.join(self.tm2.dbdir, self.tm2.modelname + '.xlsx')
+        if not os.path.exists(impfilename):
+            createlangexcel(self.tm2.jsonfile)
+
         importlangexcel(impfilename)
         self.assertFalse(os.path.exists(resultjson))  # nothing changed, no files generated
 

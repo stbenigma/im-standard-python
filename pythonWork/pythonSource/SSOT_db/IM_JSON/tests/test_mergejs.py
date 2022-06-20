@@ -36,7 +36,7 @@ class TestMergeJson(unittest.TestCase):
 
     def test_merge(self):
         dbConnect.openDB(self.testmodelcrm.dbfile, pversioncheck=False)
-        mergedbs.connecttodbcopy()
+        dbConnect.connecttodbcopy()
         self.newbrname = 'test-BR10'
         # make sure legacy test entries are gone
         BusinessRule.delete(pwhere=("buru_name = ?", self.newbrname))

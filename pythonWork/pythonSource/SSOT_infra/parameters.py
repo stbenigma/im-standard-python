@@ -158,21 +158,8 @@ class Parameter():
                         "..", "SSOT_db", "dbstructure", "sqlite")
 
     @staticmethod
-    def sqlfilename():
-        return Parameter.SQLFILENAME
-
-    @staticmethod
     def sqlfilepath():
         return os.path.join(Parameter.sqlpath(), (Parameter.SQLFILENAME + Parameter.SQLEXTENSION))
-
-    @staticmethod
-    def dbFileExtension():
-        return Parameter.SPODDBEXTENSION
-
-    @staticmethod
-    def dbDefaultDirect():
-        return Parameter.SPODDBDIREC
-
 
     def convert2abspath(self,p):
         if p is None:

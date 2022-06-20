@@ -29,6 +29,7 @@ WEBDIRC: str = 'Web'
 
 
 class MyTestCase(unittest.TestCase):
+
     @pytest.mark.integration
     def test_localODMs(self):
         def stable_file_list(folder: str) -> list:

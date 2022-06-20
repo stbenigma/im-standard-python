@@ -207,23 +207,25 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
         createnewDB(pdbfilepath=None)
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose, pcheckonly=True,
                                     pkeepids=pkeepids)
+        mergeresult.consistencyerrors = checkdatabase()
+
         logging.info(f"model {modelname}")
         logging.info(
             f"created: {imprint['created']}    Modelversion; {imprint['Modelversion']}       git-revision {imprint['git-revision']}")
         logging.info(f"Baselanguage: {baselang}  Languages: {languages}")
-        logging.info(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
+        logging.info(f"Errors {len(mergeresult.errors)+len(mergeresult.consistencyerrors)},  Warnings {len(mergeresult.warnings)}")
         logging.info(
             f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
 
-        mergeresult.consistencyerrors = checkdatabase()
-
         for dbe in mergeresult.errors:
+            logging.error(dbe)
+        for dbe in mergeresult.consistencyerrors:
             logging.error(dbe)
         for w in mergeresult.warnings:
             logging.warning(w)
     finally:
         dbConnect.pop()
-    return len(mergeresult.errors) == 0 and len(mergeresult.consistencyerrors) == 0
+    return (len(mergeresult.errors) + len(mergeresult.consistencyerrors)) == 0
 
 
 if __name__ == '__main__':
