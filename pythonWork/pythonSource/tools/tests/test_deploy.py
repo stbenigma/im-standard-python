@@ -16,6 +16,7 @@ class TestDeploy(unittest.TestCase):
     def init(self, tmp_path):
         self.temp_folder = Path(tmp_path)
 
+    
     def test_deploy_generator(self):
         notebook = resolve_project_root() / 'notebooks' \
                    / 'mig' / 'generator.ipynb'

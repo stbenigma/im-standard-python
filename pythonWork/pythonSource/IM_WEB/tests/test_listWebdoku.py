@@ -26,7 +26,7 @@ class GenerateHTML(unittest.TestCase):
         self.testmodel1.remove_web_infrastructure()
 
         self.testmodel2=testsrc.Testmodel(testsrc.TESTMODEL2).initDB()
-        self.testmodel2.initWeb()
+        self.testmodel2.remove_web_infrastructure()
 
         self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST).initDB()
         self.testmodelcrm.remove_web_infrastructure()

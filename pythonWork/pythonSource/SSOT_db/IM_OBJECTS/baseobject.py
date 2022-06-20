@@ -329,10 +329,10 @@ class Baseobject:
             if 'insert' in statement.lower():
                 str_values = self.to_sql_values(values)
                 value_string = 'values (' + ', '.join(str_values) + ')'
-                sql_statement = re.sub(r"values \(.+\).*", value_string, statement).rstrip()
+                sql_statement = re.sub(r"values \(.+\).*", re.escape(value_string), statement).rstrip()
 
             if 'update' in statement.lower():
-                sql_statement = re.sub(r'\s+', r' ', statement.replace('\n', ' '), re.MULTILINE | re.DOTALL)
+                sql_statement = re.sub(r'\s+', r' ', re.escape(statement.replace('\n', ' ')), re.MULTILINE | re.DOTALL)
                 if exception is not None:
                     exception = exception.args[-1]
 

@@ -260,13 +260,15 @@ class TestFillDatabase(unittest.TestCase):
             _ = fillDB.ODM2json()
 
         _ = fillDB.transferodm2json(pmodelfile=tm1.modeldir / 'IM' / (tm1.modelname + '.dmd'),
-                                    pdestdir=None, pconfigdir=None, pdebug=False)
-        _.write_json(tm1.jsonfile.with_stem(tm1.jsonfile.name + '_odm'))
+                                    pdestdir=None, pconfigdirec=None, pdebug=False)
+        #_.write_json(tm1.jsonfile.with_stem(tm1.jsonfile.name + '_odm'))
+        _.write_json(str(tm1.jsonfile).replace(tm1.jsonfilename,tm1.modelname + '_odm.json'))  # with_stem macht Probleme
 
         self.assertEqual(JSModel,type(_))
         _ = fillDB.transferodm2json(pmodelfile=tm2.modeldir / 'IM' / (tm2.modelname + '.dmd'),
-                                    pdestdir=None, pconfigdir='Configuration', pdebug=True)
-        _.write_json(tm2.jsonfile.with_stem(tm2.jsonfile.name + '_odm'))
+                                    pdestdir=None, pconfigdirec='Configuration', pdebug=True)
+        #_.write_json(tm2.jsonfile.with_stem(tm2.jsonfile.name + '_odm'))
+        _.write_json(str(tm2.jsonfile).replace(tm2.jsonfilename,tm2.modelname + '_odm.json'))  # with_stem macht Probleme
         self.assertEqual(JSModel,type(_))
 
         tm2db = tm2.dbdir / (tm2.modelname + "_odm.db")

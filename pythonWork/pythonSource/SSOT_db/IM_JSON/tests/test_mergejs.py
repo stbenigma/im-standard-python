@@ -412,7 +412,8 @@ class TestMergeJson(unittest.TestCase):
         return
 
     def test_merge_entity_rename(self):
-        parameters.initparam(pbasedirec=self.testmodel2.modeldir, pparamfile=self.testmodel2.paramfile)
+        parameters.initparam(pbasedirec=self.testmodel2.modeldir,
+                             modelname=self.testmodel2.modelname)
         # test dryrun on exisisting files
         dbConnect.openDB(pfilepath=self.testmodel2.dbfile)
         curmodel = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
@@ -430,16 +431,19 @@ class TestMergeJson(unittest.TestCase):
         self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
 
         # set up my model in memory to reuse it for several tests
-        createnewDB(pdbfilepath=None)  # create in memory
 
         print("")
         # create transferModel.transferODMModel
-        fillmodel2db.filldb(transferODMModel)
-        firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
+        firstjson = fillDB.transferodm2json(pmodelfile=self.testmodel2.modelfile)
+        createnewDB(pdbfilepath=None)  # create in memory
+        mergedbs.mergejson2sql(pmodel=firstjson,psrcname="TEST")
+        #firstjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
         firstjson.write_json(self.temp_folder / 'mergefull1_first.json')
 
+        #createnewDB(pdbfilepath=None)
         # create copy of filled db
         # first merge with itself
+
         result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
         # for c in result.changes:
         #    print(c)

@@ -10,11 +10,11 @@ class Jinja2WebTest(unittest.TestCase):
     MARKER = '<text/markdown>'
 
     def test_model2html(self):
-        export = HTMLExport()
+        export = HTMLExport(modelname="anything")
         export.jinadirec = None
         wm = Webmodel(export=export, pcurlang='de', pintfid=0,
                       pjsmodel=JSModel(), phtmlfilelist=[])
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Exception) :
             model2html(wm)
 
         template_path = Path(Path(__file__).parent, '..', 'html-lib', 'jinjatemplates')
