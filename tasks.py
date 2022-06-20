@@ -180,7 +180,7 @@ def generator(c, model=None,
         optargs.append("--verbose")
 
     if spod_only:
-        optargs.append("--spod-only")
+            optargs.append("--spod-only")
 
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
@@ -390,6 +390,9 @@ def db2json(c, source, output=None):
     load_tools_library()
     src_path = Path(source)
 
+    if source is None:
+        raise ValueError("no source database defined")
+
     if not src_path.is_file():
         raise Exception(f"Source '{src_path.resolve()}' is not a file")
 
@@ -401,8 +404,6 @@ def db2json(c, source, output=None):
     from SSOT_db.SQL_INFRA import dbConnect
     from SSOT_infra import parameters
     from SSOT_db.IM_JSON import JSModel
-    from SSOT_db.createDB import createnewDB
-    from LOAD_MODELS.LOAD_INFRA import mergedbs
 
     parameters.initparam(basedirec=str(SOURCE_FOLDER), modelname=src_path.stem)
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
@@ -426,7 +427,7 @@ def db2json(c, source, output=None):
         git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
         print(f"Writing SPOD for git revision {revision} to {out_path}")
-        model.printSPOD(out_path)
+        model.write_json(out_path)
     print("Summary:\n" + json.dumps(model._repr_json_(), indent=4))
     print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SPOD {src_path}")
 

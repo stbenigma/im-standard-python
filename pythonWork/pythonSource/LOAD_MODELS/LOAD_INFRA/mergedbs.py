@@ -1,9 +1,13 @@
 import sys
+import logging
 
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect
+
+logger = logging.getLogger('mergedbs')
+summary = logging.getLogger('mergedbs:summary')
 
 SOURCE_SPOD: str = 'SPOD'  # default source for SPOD-internal updates
 
@@ -82,11 +86,14 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
         for masterobject in sorted(transferprocs.keys(), key=lambda val: transferprocs[val][0], reverse=True):
             extref = transferprocs[masterobject][3]
             if extref:
-                # it is an element with external reference
-                cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
-                if cnt > 0:
-                    logging.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
-                result.adddelcnt(cnt, masterobject)
+                try:
+                    # it is an element with external reference
+                    cnt = Modelelement.deletenonreferenced(JSModel.label2elemtype(masterobject))
+                    if cnt > 0:
+                        logger.warning(f"Deleted {cnt} dangling elements of type {masterobject}")
+                    result.adddelcnt(cnt, masterobject)
+                except Exception as e:
+                    logger.warning(f"Cannot delete elements", exc_info=e)
             else:
                 # no external reference. Delete entry, if its key does not exist in the json-file
                 # the table is mapped to a db-objects
@@ -99,7 +106,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
         # for
 
     rev = pmodel.jsmodel['_imprint_']['git-revision']
-    logging.info(f"Writing git revision {rev} to DB")
+    logger.info(f"Writing git revision {rev} to DB")
     dbConnect.write_git_reversion(rev, dbConnect.getdbcon())
 
     if not pcheckonly and (len(result.errors) == 0):
@@ -142,25 +149,37 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
             raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
 
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose, pkeepids=pkeepids)
-        mergeresult.consistencyerrors = checkdatabase()
 
-        if pverbose and len(mergeresult.changes) > 0:
-            for c in mergeresult.changes:
-                print(c)
-        if (len(mergeresult.errors) > 0):
-            for dbe in mergeresult.errors:
-                print(dbe)
-        if (len(mergeresult.consistencyerrors) > 0):
-            for dbe in mergeresult.consistencyerrors:
-                print(dbe)
+        message = f"Errors {len(mergeresult.errors)}, Warnings {len(mergeresult.warnings)}, Changes {len(mergeresult.changes)}"
+        print("Merge result: " + message)
+        if len(mergeresult.errors) > 0:
+            summary.error(message)
+        elif len(mergeresult.warnings) > 0:
+            summary.warning(message)
+        else:
+            summary.info(message)
+
+        if len(mergeresult.errors) > 0:
+            summary.warning(f"--- Errors ---- ")
+        for dbe in mergeresult.errors:
+            summary.error(str(dbe))
+
+        if len(mergeresult.warnings) > 0:
+            summary.warning(f"--- Warnings ---- ")
         for w in mergeresult.warnings:
-            print(w)
-        print(f"Errors {len(mergeresult.errors)+len(mergeresult.consistencyerrors)},  Warnings {len(mergeresult.warnings)}")
+            summary.warning(w)
+
+        if len(mergeresult.changes) > 0:
+            summary.debug(f"--- Changes ---- ")
+        for c in mergeresult.changes:
+            summary.debug(str(c))
+
+        print(f"Errors {len(mergeresult.errors)},  Warnings {len(mergeresult.warnings)}")
         print(f"elements changed in database {dbConnect.getDBname()}")
         print(
             f"    {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
         if pdryrun:
-            print(f"***** Database was not modified ****")
+            logging.info(f"***** Database was not modified ****")
         # return json from merge anyway
         retval = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
 
@@ -172,7 +191,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
         js_change_file = Path('log') / 'merge.json'
         try:
             js_change_file.parent.mkdir(exist_ok=True)
-            logging.debug("Writing change log to '%s'", str(js_change_file))
+            logger.debug("Writing change log to '%s'", str(js_change_file))
             mergeresult.write_json(js_change_file)
         except:
             pass  # logging darf nicht abstürzen
@@ -181,7 +200,7 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
 
 
 def checkjsonfile(pjsonfilepath, pverbose=False) -> bool:
-    logging.info(f"check jsonfile {pjsonfilepath}")
+    logger.info(f"check jsonfile {pjsonfilepath}")
     return checkjsonmodel(pmodel=JSModel.readfromfile(pjsonfilepath), pverbose=pverbose)
 
 
@@ -222,7 +241,7 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
         for dbe in mergeresult.consistencyerrors:
             logging.error(dbe)
         for w in mergeresult.warnings:
-            logging.warning(w)
+            logger.warning(w)
     finally:
         dbConnect.pop()
     return (len(mergeresult.errors) + len(mergeresult.consistencyerrors)) == 0

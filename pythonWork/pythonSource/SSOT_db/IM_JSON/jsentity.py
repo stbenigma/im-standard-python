@@ -7,7 +7,7 @@ from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, sourceref, 
     tabreflist, JSModel
 from SSOT_db.IM_JSON.jsreference import udpv2js
 from SSOT_db.IM_JSON import insertlgtx, Mergeresult, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql, buruinelements,fromjson2db
+    inssourceref, udpvs2sql, buruinelements, fromjson2db
 from SSOT_db.IM_OBJECTS import *
 
 """ builds a dictionary of all entities
@@ -65,13 +65,15 @@ def entityicon(penti: Entity = None):
         return retval(icontype, iconref)
     # fi
 
+
 def racilist(pmodeid=None):
     if pmodeid is None:
         retval = {}
     else:
         racis = Actorrole.getracis(pmodeid=pmodeid)
-        retval = {jsguid('ACTR',r[0]): r[1] for r in racis.items()}
+        retval = {jsguid('ACTR', r[0]): r[1] for r in racis.items()}
     return retval
+
 
 def entities2js(pemptymodel):
     model = ['name', 'shortname',
@@ -84,7 +86,7 @@ def entities2js(pemptymodel):
              'minzoomlevel', 'maxzoomlevel', 'publstatus',
              'icon',
              'synonyms', 'examples',
-             'sourceref','raci+',
+             'sourceref', 'raci+',
              'supertypes+', 'roles+',
              'subtypes+', 'attributes+',
              'inheritedattributes+',
@@ -102,7 +104,7 @@ def entities2js(pemptymodel):
                                                                          0, 4, 'DRAFT',
                                                                          entityicon(),
                                                                          synonyms2js(None), examples2js(None),
-                                                                         sourceref(None),racilist(),
+                                                                         sourceref(None), racilist(),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
@@ -128,7 +130,7 @@ def entities2js(pemptymodel):
                                          synonyms2js(psynos=[s.syno_name_l for s in e.getsynonyms()]),
                                          examples2js(pexpls=e.getexamples()),
                                          sourceref(pvalues=Externalref.getsrcinfo(pmodeid=e.enti_id)),
-                                         racilist(pmodeid = e.enti_id),
+                                         racilist(pmodeid=e.enti_id),
                                          reflist(
                                              plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in e.getparents()]),
                                          reflist(plist=[jsguid(Modelelemtype.ENTI, es.enti_id) for es in
@@ -162,7 +164,7 @@ def entities2js(pemptymodel):
                                          reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                         Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
-                               ) for e in tqdm(Entity.select())
+                               ) for e in tqdm(Entity.select(), desc="Entity", dynamic_ncols=True)
                  }
 
     return entis
@@ -197,7 +199,7 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
         inscnt = 0
         delcnt = Example.delete(pwhere=("expl_enti_id = ? or expl_attr_id = ?", pentiid, pattrid))
         # insert all examples2js for base language
-        for idx,e in enumerate(pelem["examples"]):
+        for idx, e in enumerate(pelem["examples"]):
             expl = Example(expl_value=e[pmodellang], expl_enti_id=pentiid, expl_attr_id=pattrid)
             try:
                 expl.insert()
@@ -206,11 +208,11 @@ def mergeexamples(pelem, pmodellang, presult, pentiid=None, pattrid=None):
                 presult.markdberror(perr=err, pelem=pelem)
                 continue
             """Examples and their lang-texts are alreday deleted inseret langtexts only"""
-            insertlgtx(presult=presult,pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
+            insertlgtx(presult=presult, pmodeid=expl.expl_id, pattr=Languagetext.EXPL_VALUE,
                        ptexts=e)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
-        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Examples for entity {pentiid} or attribute {pattrid}")
+        presult.addinscnt(max(0, (inscnt - delcnt)), f"Examples for entity {pentiid} or attribute {pattrid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)), f"Examples for entity {pentiid} or attribute {pattrid}")
     # fi
     return
 
@@ -221,7 +223,7 @@ def entities2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ENTI).items():
         entiid = presult.keytransl(jid)
-        if entiid  == 0: continue  # element was not treated
+        if entiid == 0: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -239,10 +241,10 @@ def entities2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
                 presult.markdberror(perr=err, pelem=jsyno)
                 continue
             """synonyms and their lang-texts are alreday deleted"""
-            insertlgtx(presult=presult,pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
+            insertlgtx(presult=presult, pmodeid=syno.syno_id, pattr=Languagetext.ENTI_SYNONYM, ptexts=jsyno)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)),f"synonyms for entitiy {entiid}")
-        presult.adddelcnt(max(0, (delcnt - inscnt)),f"synonyms for entitiy {entiid}")
+        presult.addinscnt(max(0, (inscnt - delcnt)), f"synonyms for entitiy {entiid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)), f"synonyms for entitiy {entiid}")
 
         mergeexamples(pelem=jelem, pmodellang=pjson.modellanguage(),
                       presult=presult, pentiid=entiid)

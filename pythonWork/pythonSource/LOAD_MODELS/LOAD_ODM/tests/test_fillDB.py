@@ -260,14 +260,16 @@ class TestFillDatabase(unittest.TestCase):
             _ = fillDB.ODM2json()
 
         _ = fillDB.transferodm2json(pmodelfile=tm1.modeldir / 'IM' / (tm1.modelname + '.dmd'),
-                                    pdestdir=None, pconfigdirec=None, pdebug=False)
-        _.printSPOD(str(tm1.jsonfile).replace(".json","_odm.json"))
+                                    pdestdir=None, pconfigdir=None, pdebug=False)
+        _.write_json(tm1.jsonfile.with_stem(tm1.jsonfile.name + '_odm'))
 
         self.assertEqual(JSModel,type(_))
         _ = fillDB.transferodm2json(pmodelfile=tm2.modeldir / 'IM' / (tm2.modelname + '.dmd'),
-                                    pdestdir=None, pconfigdirec='Configuration', pdebug=True)
-        _.printSPOD(str(tm2.jsonfile).replace(".json","_odm.json"))
+                                    pdestdir=None, pconfigdir='Configuration', pdebug=True)
+        _.write_json(tm2.jsonfile.with_stem(tm2.jsonfile.name + '_odm'))
         self.assertEqual(JSModel,type(_))
-        self.assertTrue(os.path.exists(tm2.dbdir / (tm2.modelname + "_odm.db")))
-        os.remove(tm2.dbdir / (tm2.modelname + "_odm.db"))
+
+        tm2db = tm2.dbdir / (tm2.modelname + "_odm.db")
+        self.assertTrue(tm2db.is_file())
+        tm2db.unlink(missing_ok=False)
         return

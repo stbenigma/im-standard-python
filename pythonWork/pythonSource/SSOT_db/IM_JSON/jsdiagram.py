@@ -1,5 +1,5 @@
 from SSOT_db.IM_JSON import *
-from SSOT_infra import nvl,logmessages
+from SSOT_infra import nvl, logmessages
 import math
 from tqdm.auto import tqdm
 
@@ -155,7 +155,7 @@ def lineseg2sql(presult: Mergeresult, prelrid, plinesegs):
         lise.lise_dm = jelem['dm']
         try:
             lise.insert()
-            inscnt +=1
+            inscnt += 1
         except Exception as err:
             presult.markdberror(perr=err, pelem=jelem)
             continue
@@ -202,7 +202,7 @@ def relarep2sql(presult, pdiagid, prelaid, prelarep):
         presult.markdberror(perr=err, pelem=relr)
         relrid = None
 
-    #linesegmentsinserts are not counted
+    # linesegmentsinserts are not counted
     lineseg2sql(presult=presult, prelrid=relrid, plinesegs=prelarep['linesegments'])
 
     return inscnt
@@ -221,11 +221,6 @@ def legend2js(pdiag=None, pmodelname=None):
     return retval
 
 
-def tick(value, progress: tqdm):
-    progress.update(1)
-    return value
-
-
 def diagrams2js(pemptymodel, pmodelname):
     model = ['name', 'legend'
         , 'type', 'width', 'height'
@@ -241,7 +236,6 @@ def diagrams2js(pemptymodel, pmodelname):
                                                                     , defarcs(parc=None, pdiagid=None)
                                                                     , reflist(), reflist()])}
     else:
-        progress = tqdm()  # no prediction on total amount,
         # would be count of all elements on all diagrams (complex)
         retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model, pentries=[
             d.diag_name, legend2js(pdiag=d, pmodelname=pmodelname)
@@ -258,7 +252,7 @@ def diagrams2js(pemptymodel, pmodelname):
                                                                 (select mode_id
                                                                 from modelelement
                                                                 where mode_type = ?)""", d.diag_id, mt.melt_shortname))
-                                       , key=lambda e: tick(e.displorder(), progress))
+                                       , key=lambda e: e.displorder())
                     ]
                for mt in Modelelemtype.select(pwhere=("""melt_id in (select medi_melt_id
                                                                     from melt_diats
@@ -278,7 +272,7 @@ def diagrams2js(pemptymodel, pmodelname):
               + [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=d.diag_id)]
             , Externalref.getsrcinfo(pmodeid=d.diag_id)
         ])
-                  for d in Diagram.select()
+                  for d in tqdm(Diagram.select(), desc="Diagram", dynamic_ncols=True)
                   }
     # fi
     return retval
@@ -300,11 +294,11 @@ def js2diag(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.DIAG, pjs2obj=js2diag,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.DIAG).items():
         newdiagid = presult.keytransl(jid)
-        if newdiagid  == 0: continue  # element was not treated
+        if newdiagid == 0: continue  # element was not treated
         inscnt = 0
         delcnt = Elementrep.delete(pwhere=("eler_diag_id = ?", newdiagid))
         for jelemreps in jelem['elements'].values():
@@ -316,8 +310,8 @@ def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
 
             inscnt += elemreps2sql(presult=presult, pdiagid=newdiagid, pelemreps=jelemreps)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)),f"Elementreps on diagram {newdiagid}")
-        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Elementreps on diagram {newdiagid}")
+        presult.addinscnt(max(0, (inscnt - delcnt)), f"Elementreps on diagram {newdiagid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)), f"Elementreps on diagram {newdiagid}")
 
         inscnt = 0
         delcnt = Relationrep.delete(pwhere=("relr_diag_id = ?", newdiagid))
@@ -327,10 +321,11 @@ def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
                     } 
             """
 
-            inscnt += relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=presult.keytransl(jrelaid), prelarep=jrelarep)
+            inscnt += relarep2sql(presult=presult, pdiagid=newdiagid, prelaid=presult.keytransl(jrelaid),
+                                  prelarep=jrelarep)
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)),f"Relationreps on diagram {newdiagid}")
-        presult.adddelcnt(max(0, (delcnt - inscnt)),f"Relationreps on diagram {newdiagid}")
+        presult.addinscnt(max(0, (inscnt - delcnt)), f"Relationreps on diagram {newdiagid}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)), f"Relationreps on diagram {newdiagid}")
 
         insreferences(presult=presult, pmodeid=newdiagid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newdiagid, psources=jelem["sourceref"])
@@ -338,7 +333,7 @@ def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     return
 
 
-def defarcs(parc:Arc, pdiagid):
+def defarcs(parc: Arc, pdiagid):
     if parc is None:
         return {'arcs': {'ARCS0000': {"circles": ['', '']}
                          }
@@ -349,7 +344,7 @@ def defarcs(parc:Arc, pdiagid):
         return arc
     entis = Elementrep.select(
         pwhere=("""eler_mode_id=? and eler_diag_id = ? and eler_index = 0""", parc.arcs_enti_id, pdiagid))
-    if len(entis)== 0:
+    if len(entis) == 0:
         logmessages.writelog(f"Arc-entity not found for diagram:\tDiagram {pdiagid}, Entity {parc.arcs_enti_id}")
         return arc
     enti = entis[0]

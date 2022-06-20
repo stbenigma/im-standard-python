@@ -1,3 +1,4 @@
+import logging
 import os.path
 import shutil
 import traceback
@@ -48,16 +49,21 @@ class Testmodel:
                                   pjsfilepath=self.dbdir, pjsfilename=self.jsonfilename)
         return self
 
-    def initWeb(self):
+    def remove_web_infrastructure(self):
         # make sure new templates files are reloaded
-        if os.path.exists(self.webdir / "jinjatemplates"):
-            shutil.rmtree(self.webdir / "jinjatemplates/")
-        if os.path.exists(self.webdir / "js"):
-            shutil.rmtree(self.webdir / "js/")
-        if os.path.exists(self.webdir / "css"):
-            shutil.rmtree(self.webdir / "css/")
-        if os.path.exists(self.webdir / "images"):
-            shutil.rmtree(self.webdir / "images/")
+        template_folder = self.webdir / "jinjatemplates"
+        if template_folder.exists():
+            shutil.rmtree(template_folder)
+        js_folder = self.webdir / "js"
+        if js_folder.exists():
+            shutil.rmtree(js_folder)
+        style_folder = self.webdir / "css"
+        if style_folder.exists():
+            shutil.rmtree(style_folder)
+        assert not template_folder.exists(), f"Folder '{template_folder}' should not exist"
+        assert not js_folder.exists(), f"Folder '{js_folder}' should not exist"
+        assert not style_folder.exists(), f"Folder '{style_folder}' should not exist"
+        return
 
 
 def initDB(pmodel):

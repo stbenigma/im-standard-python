@@ -18,9 +18,9 @@ def columns2js(pemptymodel):
              'uc', 'dc', 'um', 'dm',
              'minzoomlevel', 'maxzoomlevel', 'publstatus',
              'R/W',
-             'attributesmapped','businessrules+',
+             'attributesmapped', 'businessrules+',
              'userdefprops',
-             'sourceref','raci+',
+             'sourceref', 'raci+',
              'referencedby'
              ]
     if pemptymodel:
@@ -30,7 +30,8 @@ def columns2js(pemptymodel):
                                                                                               Modelelemtype.ATTR + "0000"]),
                                                                                           buruinelements(None),
                                                                                           userdefprops(),
-                                                                                          sourceref(), jsentity.racilist(),reflist()
+                                                                                          sourceref(),
+                                                                                          jsentity.racilist(), reflist()
                                                                                           ])}
     else:
         retval = {jsguid(Modelelemtype.COLU, c.colu_id): fillmodel(pmodel=model, pentries=[
@@ -54,11 +55,11 @@ def columns2js(pemptymodel):
                            ColAttrMap.getattrlist(pcoluid=c.colu_id)]),
             buruinelements(c.colu_id),
             udpv2js(pmodeid=c.colu_id, pmodelemtype=Modelelemtype.COLU),
-            Externalref.getsrcinfo(pmodeid=c.colu_id),jsentity.racilist(c.colu_id),
+            Externalref.getsrcinfo(pmodeid=c.colu_id), jsentity.racilist(c.colu_id),
             [jsguid(Modelelemtype.DOCU, d[0]) for d in Document.getrefdoculist(pid=c.colu_id)] \
             + [jsguid(Modelelemtype.ORGU, d[0]) for d in OragnisationalUnit.getreforgulist(pid=c.colu_id)]
         ])
-                  for c in Column.select()
+                  for c in tqdm(Column.select(), desc="Column", dynamic_ncols=True)
                   }
     # fi
     return retval
@@ -75,6 +76,8 @@ def js2colu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     colu.colu_doma_id = pelem['domain']
     colu.colu_descr = pelem['descr']
     colu.colu_ext_system_id = pelem['interface_col_id']
+    colu.colu_read = Boolean.bool2str('R' in pelem['R/W'])
+    colu.colu_update = Boolean.bool2str('W' in pelem['R/W'])
     colu.colu_uc = pelem['uc']
     colu.colu_dc = pelem['dc']
     colu.colu_um = pelem['um']
@@ -84,11 +87,11 @@ def js2colu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def columns2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.COLU, pjs2obj=js2colu,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.COLU).items():
         newcoluid = presult.keytransl(jid)
-        if newcoluid  == 0:
+        if newcoluid == 0:
             logging.debug(f"Element {jid} not merged as it is new")
             continue
 
@@ -122,6 +125,6 @@ def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs):
             continue
         # try
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)),f"Column Maps for column {pcoluid} ")
-    presult.adddelcnt(max(0, (delcnt - inscnt)),f"Column Maps for column {pcoluid} ")
+    presult.addinscnt(max(0, (inscnt - delcnt)), f"Column Maps for column {pcoluid} ")
+    presult.adddelcnt(max(0, (delcnt - inscnt)), f"Column Maps for column {pcoluid} ")
     return

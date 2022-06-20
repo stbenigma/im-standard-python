@@ -74,7 +74,7 @@ def insert(psql, rec):
         else:
             raise Exception(f"unknown type for insert {type(rec)}")
     except sqlite3.IntegrityError as ei:
-        # Unique und FK kann fÃ¼r IndexweiterzÃ¤hlen gebraucht werden. darum keine Fehlermeldung
+        # Unique und FK kann für Indexweiterzählen gebraucht werden. Darum keine Fehlermeldung
         if not (str(ei).startswith("UNIQUE constraint failed") \
                 or str(ei).startswith("FOREIGN KEY constraint failed")):
             logmessages.writelog(psql)

@@ -168,7 +168,7 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
     new_git_revision = parameters.read_git_description(Path(os.path.dirname(modelfilepath)))
     loaded_json_file = dbdirec / str(modelname + "_loaded.json")
     loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
-    loadedjson.printSPOD(loaded_json_file)
+    loadedjson.write_json(loaded_json_file)
 
     if not existsDB(dbfile):
         logging.info(f"Created SPOD for git revision {new_git_revision}")

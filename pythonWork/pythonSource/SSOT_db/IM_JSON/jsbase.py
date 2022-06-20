@@ -145,7 +145,7 @@ class JSModel:
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 
-    def printSPOD(self, destination: Path):
+    def write_json(self, destination: Path):
         return storeSPOD(self.jsmodel, destination)
 
     def _repr_json_(self):
