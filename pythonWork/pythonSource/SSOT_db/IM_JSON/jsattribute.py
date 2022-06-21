@@ -2,7 +2,6 @@ from SSOT_db.IM_JSON import *
 from SSOT_db.IM_JSON import jsentity, buruinelements
 from SSOT_db.IM_JSON.jsdomain import domaingroupmembers
 from SSOT_db.IM_OBJECTS import *
-from SSOT_infra import nvl
 
 
 def businessrules2js(pemptymodel):
@@ -15,35 +14,35 @@ def businessrules2js(pemptymodel):
 
 def attr2js(pattr):
     model = ['techname', 'name',
-        'seq', 'entity',
-        'domain', 'basedatatype+',
-        'type+', 'memberattrs+',
-        'descriptive', 'mandatory',
-        'historicised', 'repeated',
-        'translated', 'encrypted',
-        'examples', 'tooltip', 'descr',
-        'uc', 'dc', 'um', 'dm',
-        'minzoomlevel', 'maxzoomlevel', 'publstatus',
-        'sourceref', 'raci+','keys+', 'businessrules+',
-        'referencedby', 'userdefprops',
-        'columnsmapped+', 'diagrams+'
+             'seq', 'entity',
+             'domain', 'basedatatype+',
+             'type+', 'memberattrs+',
+             'descriptive', 'mandatory',
+             'historicised', 'repeated',
+             'translated', 'encrypted',
+             'examples', 'tooltip', 'descr',
+             'uc', 'dc', 'um', 'dm',
+             'minzoomlevel', 'maxzoomlevel', 'publstatus',
+             'sourceref', 'raci+', 'keys+', 'businessrules+',
+             'referencedby', 'userdefprops',
+             'columnsmapped+', 'diagrams+'
              ]
     if pattr is None:
         retval = fillmodel(pmodel=model,
                            pentries=['', multilangtext(),
-                '', '',
-                '', '',
-                '', reflist(),
-                '', '',
-                '', '',
-                '', '',
+                                     '', '',
+                                     '', '',
+                                     '', reflist(),
+                                     '', '',
+                                     '', '',
+                                     '', '',
                                      examples2js(None), multilangtext(), multilangtext(),
-                '', '', '', '', 0, 4, 'DRAFT',
+                                     '', '', '', '', 0, 4, 'DRAFT',
                                      sourceref(), jsentity.racilist(),
                                      reflist(), buruinelements(None),
                                      reflist(), userdefprops(),
                                      {jsguid(Modelelemtype.INTF, "0000"):
-                       [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
+                                          [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
                                      ]
                            )
     else:
@@ -128,7 +127,7 @@ def js2attr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def attributes2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ATTR, pjs2obj=js2attr,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
     """       "ATTR117": {
          "techname": "TYP",
          "name": {
@@ -204,7 +203,7 @@ def attributes2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
       },"""
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ATTR).items():
         attrid = presult.keytransl(jid)
-        if attrid  == 0: continue #element was not treated
+        if attrid == 0: continue  # element was not treated
         minzoomlevel = jelem['minzoomlevel']
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
@@ -298,13 +297,13 @@ def inskeyelements(presult: Mergeresult, pkey: Key, pkeles):
     delcnt = Keyelement.delete(pwhere=("kele_keys_id = ?", pkey.keys_id))
     for jid in pkeles['attributes'] + pkeles['relations']:
         modeid = presult.keytransl(jid)
-        if modeid  == 0: continue #element was not treated
+        if modeid == 0: continue  # element was not treated
         inscnt += ins1kele(presult=presult, pkey=pkey,
-                 pattrid=modeid if jsguid2type(jid) == Modelelemtype.ATTR else None,
-                 prelaid=modeid if jsguid2type(jid) == Modelelemtype.RELA else None)
+                           pattrid=modeid if jsguid2type(jid) == Modelelemtype.ATTR else None,
+                           prelaid=modeid if jsguid2type(jid) == Modelelemtype.RELA else None)
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)),f"keyelements")
-    presult.adddelcnt(max(0, (delcnt - inscnt)),f"keyelements")
+    presult.addinscnt(max(0, (inscnt - delcnt)), f"keyelements")
+    presult.adddelcnt(max(0, (delcnt - inscnt)), f"keyelements")
     return
 
 
@@ -322,10 +321,10 @@ def js2keys(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def keys2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.KEYS, pjs2obj=js2keys,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.KEYS).items():
-        keyid=presult.keytransl(jid)
+        keyid = presult.keytransl(jid)
         if keyid == 0: continue  # element was not treated
         key = Key().getbyid(pid=keyid)
         inskeyelements(presult=presult, pkey=key, pkeles=jelem['key-elements'])
@@ -339,7 +338,7 @@ def examples2js(pexpls: list = None):
     """ None = emptymodel
         [Example,]"""
     if pexpls is None:
-        return [{'en':'',}]
+        return [{'en': '', }]
     else:
         """    [ {"de": "Lager",
                   "en": "Stock"

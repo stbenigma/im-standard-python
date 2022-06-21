@@ -293,6 +293,67 @@
 				</div>
 {%- endmacro %}
 
+{% macro relalist (webmodel,elem,title,relatype) -%}
+			<h4>{{ webmodel.gettransltext(title) }}</h4>
+			<div class="table-responsive">
+				<table class="table borderless" >
+					<tbody>
+						<tr>
+							<th>{{ webmodel.gettransltext('Name') }}</th>
+							<th>{{ webmodel.gettransltext('Entität')~'-1' }}</th>
+							<th></th>
+							<th>{{ webmodel.gettransltext('Beziehung') }}</th>
+							<th></th>
+							<th>{{ webmodel.gettransltext('Entität')~'-2' }}</th>
+							<th>{{ webmodel.gettransltext('Arc') }}</th>
+							<th>{{ webmodel.gettransltext('Schlüssel') }}</th>
+							<th>{{ webmodel.gettransltext('Business Rules') }}</th>
+						</tr>
+						{% for relaid in elem[relatype] %}
+						{% set rela = webmodel.getelem(relaid) %}
+							{% if (rela['type'] not in ('ISAR','ISAS')) %}
+								{% set fromarc,toarc = '','' %}
+								{% if (rela['from-to']['arc'] is not none) %} {% set arc = webmodel.getelem(rela['from-to']['arc'])['name'] %}{% endif %}
+								{% if (rela['to-from']['arc'] is not none) %} {% set arc = webmodel.getelem(rela['to-from']['arc'])['name'] %}{% endif %}
+								{% if (elemid == rela['from-to']['enti']) %}
+									{% set fromto =  rela['from-to'] %}
+									{% set tofrom =  rela['to-from'] %}
+								{% else %}
+									{% set fromto =  rela['to-from'] %}
+									{% set tofrom =  rela['from-to'] %}
+								{% endif %}
+								<tr>
+								<td><{{ getnvl(rela["name"]) }}/td>
+								<td>{{ webmodel.getlangstr(webmodel.getelem(fromto['enti'])['name']) }}</td>
+								<td>{{ "->" }}</td>
+								<td>{{ webmodel.getlangstr(getnvl(fromto['assoc'])) }}</td>
+								<td>{{ fromto['cardstr+'] }}</td>
+								{{ tdicon('down') }}
+								<td>{{ arc }}</td>
+								{{ tdbool2icon((rela['isinkeys+']|count) > 0) }}
+									<td> {% for buruid in rela["businessrules+"] %}
+										 {% set buru = webmodel.getelem(buruid) %}
+										 {{ webmodel.getreflink(name=webmodel.getlangstr(buru["name"])
+											,destid=buruid
+											,curintfid=webmodel.getelemintfid(elemid))|safe }}
+										{% endfor %}
+									</td>
+							   </tr>
+								<tr>
+								<td>{{ '' }}</td>
+								{{ tdicon('up') }}
+								<td>{{ tofrom['cardstr+'] }}</td>
+								<td>{{ '<-' }}</td>
+								<td>{{ webmodel.getlangstr(getnvl(tofrom['assoc'])) }}</td>
+								<td>{{ webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(tofrom['enti'])['name'])
+													,destid=tofrom['enti']) |safe }}</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+{%- endmacro %}
 
 {% macro zoomfinish(diagrams) -%}
 	<script>

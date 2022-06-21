@@ -2,9 +2,13 @@
 # Tasks for the invoke 'https://www.pyinvoke.org/ library
 # We use this instead of a Make / Scons / ... build automation tool
 #
+# Tests for tasks are located in tools/tests/test_invoke.py
+#
+
 import json
 import pathlib
 import shutil
+import tempfile
 from contextlib import closing
 from pathlib import Path
 import sys
@@ -18,7 +22,7 @@ from datetime import datetime
 try:
     from invoke import task
 except ModuleNotFoundError:
-    print("Python module 'invoke' not found. Install using 'conda install invoke'")
+    print("Python module 'invoke' not found. Install using 'conda install invoke' or 'pip install invoke'")
     print("See: https://www.pyinvoke.org/")
     exit(-1)
 
@@ -45,7 +49,6 @@ def initialize_logging(start_message: str = None):
     console_formatter = logging.Formatter("%(levelname)s - %(message)s")
     console_log_handler.setFormatter(console_formatter)
 
-
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
 
@@ -68,11 +71,13 @@ def load_tools_library():
 
 @task
 def update_infrastructure(c):
+    """Update conda infrastructure"""
     c.run('conda env update --file conda-base-environment.yaml')
 
 
 @task
 def translate(c):
+    """Create translation dictionaries (*.mo Files in ./pythonWork/pythonSource/SSOT_infra/locales) from *.po sources"""
     locales = Path(SOURCE_FOLDER, 'SSOT_infra', 'locales')
     assert locales.is_dir()
     for po in locales.rglob('**/*.po'):
@@ -129,7 +134,7 @@ def generator(c, model=None,
               profile=False,
               version=False,
               verbose=False,
-              spod_only=False,
+              ssod_only=False,
               ):
     if model is None:
         model = TEST_MODEL / 'IM'
@@ -179,8 +184,8 @@ def generator(c, model=None,
     if verbose:
         optargs.append("--verbose")
 
-    if spod_only:
-            optargs.append("--spod-only")
+    if ssod_only:
+        optargs.append("--spod-only")
 
     command = f"python dist/generator.py --model='{model.resolve()}' {' '.join(optargs)}"
     with c.cd(PROJECT_ROOT):
@@ -192,21 +197,24 @@ def generator(c, model=None,
         print(f"snakeviz log/generator-lastest-fillmergedb.prof")
 
 
-@task
-def dbversion(c, model=None, full=False, db=None):
+@task(aliases=['ssod'])
+def info(c, ssod=None, full=False, db=None):
+    """Print some information about a SSOD database.
+    @:parameter model Path to the SSOD database. Default is 'riddle'"""
     if full:
         c.run(
             f"""echo expected `less {PROJECT_ROOT / 'pythonWork/pythonSource/SSOT_infra/versions.json'} | grep 'DBVERSION'` """)
-    if model is None:
-        model = 'riddle'
-    if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
-        model = TESTMODELS_BASE / model / 'DB' / f"{model}.db"
+    if ssod is None:
+        ssod = 'riddle'
+    if ssod in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
+        ssod = TESTMODELS_BASE / ssod / 'DB' / f"{ssod}.db"
     if db is not None:
-        model = db
-    dbfile = Path(model).resolve()
+        ssod = db
+    dbfile = Path(ssod).resolve()
     if not dbfile.is_file():
         print(f"{dbfile} is not file")
         exit(1)
+    print(f"Version from database '{ssod.resolve()}':")
     c.run(f"""sqlite3 {dbfile} 'select * from dbversion'""")
 
     load_tools_library()
@@ -218,7 +226,6 @@ def dbversion(c, model=None, full=False, db=None):
         print(f"Systems: {count(connection, 'interfaces')}")
         print(f"Tables: {count(connection, 'tables')}")
         print(f"Columns: {count(connection, 'columns')}")
-
 
 
 @task
@@ -271,7 +278,7 @@ def bootstrap_unit_tests(c):
         candidate = Path(hit)
         if candidate.is_dir():
             print(f"Generating SPOD for {hit}")
-            c.run(f"inv generator --spod-only -m {candidate / 'IM'}")
+            c.run(f"inv generator -m {candidate / 'IM'}")
 
 
 @task
@@ -294,7 +301,7 @@ def bootstrap_integration_tests(c):
         candidate = Path(hit)
         if candidate.is_dir():
             print(f"Generating SPOD for {hit}")
-            c.run(f"inv generator --spod-only -m {candidate}")
+            c.run(f"inv generator --ssod-only -m {candidate}")
 
 
 @task(aliases=['filldb'],
@@ -321,9 +328,9 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
         out_path = Path(output)
 
     with open(src_path, 'r') as src:
-        spod = json.load(src)
+        ssod = json.load(src)
 
-    print(f"Successfully loaded model {spod['model']['name']} {spod['_imprint_'].get('git-revision')}")
+    print(f"Successfully loaded model {ssod['model']['name']} {ssod['_imprint_'].get('git-revision')}")
 
     from SSOT_db.SQL_INFRA import dbConnect
     from SSOT_infra import parameters
@@ -331,10 +338,10 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     from SSOT_db.createDB import createnewDB
     from LOAD_MODELS.LOAD_INFRA import mergedbs
 
-    revision = spod['_imprint_'].get('git-revision', parameters.read_git_description(src_path.parent))
-    print(f"Created SPOD for git revision {revision}")
+    revision = ssod['_imprint_'].get('git-revision', parameters.read_git_description(src_path.parent))
+    print(f"Created SSOD for git revision {revision}")
 
-    parameters.initparam(pmodelname=src_path.stem)
+    parameters.initparam(modelname=ssod['model']['name'])
     # parameters.sqlpath(str(SOURCE_FOLDER / 'SSOT_db' / 'dbstructure'))
 
     # prepare target
@@ -350,20 +357,23 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
         print(f"Moving current database to archive '{backup}'")
         shutil.copy(out_path, backup)
 
-    if nomerge:
-        out_path.unlink(missing_ok=True)
+    fd, tempname = tempfile.mkstemp(suffix='.sqlite3')
+    os.close(fd)
 
-    if out_path.is_file():
-        print(f"Updating database {out_path}")
-        database = dbConnect.openDB(str(out_path))
+    intermediate_db = Path(tempname)
+
+    if nomerge or not out_path.exists():
+        print(f"Creating database {out_path} via {intermediate_db}")
+        database = createnewDB(str(intermediate_db))
     else:
-        print(f"Creating database {out_path}")
-        database = createnewDB(str(out_path))
+        print(f"Updating database {out_path} via {intermediate_db}")
+        shutil.copy(out_path, intermediate_db)
+        database = dbConnect.openDB(str(intermediate_db))
 
     with closing(database) as conn:
         dbConnect.write_git_reversion(revision, conn)
-        model = JSModel(spod)
-        mergedbs.mergejs2db(pdbfile=str(out_path.resolve()), pmodel=model, psrcname=srcname,
+        model = JSModel(ssod)
+        mergedbs.mergejs2db(pdbfile=str(intermediate_db), pmodel=model, psrcname=srcname,
                             pverbose=verbose, pdryrun=dry, pkeepids=nomerge)
 
         print(f"Entities: {count(database, 'entities')}")
@@ -371,8 +381,17 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
         print(f"Systems: {count(database, 'interfaces')}")
         print(f"Tables: {count(database, 'tables')}")
         print(f"Columns: {count(database, 'columns')}")
+        print(f"Diagrams: {count(database, 'diagrams')}")
 
-    print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SPOD {src_path}")
+        if not dry:
+            logging.debug(f"Installing database in {out_path}")
+            shutil.copy(intermediate_db, out_path)
+
+    if not dry:
+        print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SSOD {src_path}")
+    else:
+        print(f"\x1b[32mWould have sucessfully\x1b[39m created database {out_path} from json SSOD {src_path}."
+              " But its a dry run 🌵🏜🐪")
 
 
 def count(connection, table: str) -> int:
@@ -381,11 +400,15 @@ def count(connection, table: str) -> int:
         curr_table = cursor.fetchall()
         return curr_table[0][0]
 
+
 @task(help={
-    'source': "SPOD database [mandatory]",
+    'source': "single source of definition database [mandatory] (SSOD)",
     'output': "Path of the destination json. Source path with .json extension if undefined"
 })
 def db2json(c, source, output=None):
+    """
+    Create the SSOD json file from the SSOD database.
+    """
     initialize_logging("db2json")
     load_tools_library()
     src_path = Path(source)
@@ -426,10 +449,10 @@ def db2json(c, source, output=None):
         model = JSModel(sql2json(pdbname=dbConnect.getDBname()))
         git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         revision = model.jsmodel['_imprint_']['git-revision'] = git_revision
-        print(f"Writing SPOD for git revision {revision} to {out_path}")
+        print(f"Writing SSOD for git revision {revision} to {out_path}")
         model.write_json(out_path)
     print("Summary:\n" + json.dumps(model._repr_json_(), indent=4))
-    print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SPOD {src_path}")
+    print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SSOD {src_path}")
 
 
 def verify_content(fh):
@@ -492,3 +515,12 @@ def integrationtest(c):
 def test(c):
     """Virtual target running all tests"""
     pass
+
+
+@task
+def version(c):
+    """Display tool and SSOD schema version"""
+    load_tools_library()
+    from SSOT_infra import version
+    ver = version()
+    print(f"Version {ver['TOOLVERSION']}, schema {ver['DBVERSION']}")

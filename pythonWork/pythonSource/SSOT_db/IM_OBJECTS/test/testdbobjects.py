@@ -38,11 +38,11 @@ class MyTestCase(unittest.TestCase):
             attr=Attribute.select()[0]
             Actorconcern(actc_responsible='TRUE',actc_actr_id=actrid,
                          actc_mode_id = attr.attr_id).insert()
-            actrs = Actorrole.select()
-            self.assertEqual('CEO',actrs[0].actr_name)
+            actrs = Actorrole.select(pwhere=("actr_name = ?",'testrole1'))
+            self.assertEqual('testrole1',actrs[0].actr_name)
             actcs = actrs[0].getchildren()
-            self.assertEqual(attr.attr_id,actcs[0].actc_mode_id)
-            self.assertEqual(actrid,actcs[0].actc_actr_id)
+            self.assertTrue(attr.attr_id in (act.actc_mode_id for act in actcs))
+            self.assertTrue(actrid in (act.actc_actr_id for act in actcs))
             self.assertEqual(actrid,Externalref.getmodeid(psrcname='test',psrcid='123123'))
             self.assertEqual(Attribute , type(actcs[0].getelement()))
             self.assertEqual('R' , actcs[0].getraci())

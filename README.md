@@ -1,9 +1,9 @@
 # The toolsuite around Information Modeling and the Information Cadastre
 
-[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-84%25-seagreen)
+[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-85%25-seagreen)
 
 The tools provided by
-<a href="https://foryouandyourcustomers.com" style="color: #F79724; text-decoration: underline;text-decoration-style: dotted;">
+<a href="https://foryouandyourcustomers.com" style="color: #F79724; text-decoration: underline;text-decoration-style: dotted; font-family: Roboto; font-size: 24">
 foryouandyourcustomers</a>
 to work with the [Information Model](https://www.informationsmodellierung.ch/)
 and to operate the <span style="font-family:FreeSet">Information Cadastre</span>.
@@ -20,19 +20,20 @@ of your domain of work.
 
 ### The Information Cadastre
 
-The <span style="font-family:FreeSet">Information Cadastre</span> organises the organisation around the Information
-Model.
-
-- It supports the method 'information modeling' and publishing its results with various tools.
-- It provides guidance in how to set up the work and governance around the Information Model.
+The <span style="font-family:FreeSet">Information Cadastre</span> encompasses tools and processes around the Information
+Model to support maintenance and publication of content.
 
 # Tooling
 [invoke](https://www.pyinvoke.org/) is the tool to bootstrap and execute various tasks.
-See `invoke --help` for a list of tasks.
+Use `invoke --list` for a list of tasks or consult the source `./tasks.py`.
+
+To generate or update the single source of definition (SSOD) including the whole documentation, run
+<br>
+`inv gen -m [PathToYourModelDirectory]\IM --all`
 
 ## Bootstrapping and installation
 Bootstrap your Anaconda environment:
 
 ```conda env update --file conda-base-environment.yaml```
 
-```invoke translate```
+```invoke bootstrap```

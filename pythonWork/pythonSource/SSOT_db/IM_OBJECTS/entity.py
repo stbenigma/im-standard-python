@@ -194,6 +194,65 @@ class Entity(MultilangBaseobject):
 
     # maopingto
 
+    def getinheritedrelaids(self):
+        """ get all own and inherited relations """
+        lsql="""with recursive entitree(superenti_id, subenti_id,  relaids, level,super_enti_name,sub_enti_name)
+                   as
+                   (select superenti_id
+                         , subenti_id
+                         , ifnull(
+                            (select relalist
+                             from relas
+                             where relaenti = superenti_id)
+                             ,'') AS relaids
+                         ,0 level
+                        ,super_enti_name,sub_enti_name
+                    from superenti
+                    where superenti_id not in (select subenti_id from superenti)
+                    union all
+                    select sup2.superenti_id
+                         , sup2.subenti_id
+                         , ifnull(entitree.relaids,'')|| ','
+                                  ||ifnull(
+                                     (select relalist
+                                      from relas
+                                     where relaenti = sup2.superenti_id)
+                                      ,'')  as relaids
+                         , entitree.level+1
+                    ,sup2.super_enti_name,sup2.sub_enti_name
+                    from superenti sup2
+                             join entitree on sup2.superenti_id = entitree.subenti_id
+                     where entitree.level < 99
+                    )
+                ,relas as (select distinct relaenti
+                                        ,group_concat(rela_id, ',')
+                                             over (partition by relaenti
+                                             rows between unbounded preceding
+                                                 and unbounded following) as relalist
+                            from (select rela_id,rela_enti_id_from relaenti
+                                  from relations
+                                  where rela_type not in ('ISAS','ISAR')
+                                  union
+                                  select rela_id,rela_enti_id_to relaenti
+                                  from relations
+                                  where rela_type not in ('ISAS','ISAR')
+                                  )
+                            )
+            select rtrim(relaids ,',') as relaids,level
+            from entitree
+            where relaids != ''
+                and subenti_id = ?"""
+
+        retval = []
+        relas = dbDML.select(lsql,self.getid())
+        retval = []
+        if len(relas)>0:
+            assert relas[0][1] < 100, "recursive sql with loop"
+            for a in relas[0][0].split(','):
+                if a.isnumeric():
+                    retval.append(int(a))
+        return retval
+
     """ get all own and inherited attributes """
     def getinheritedattrids(self):
         """recursive SQL
@@ -222,7 +281,7 @@ class Entity(MultilangBaseobject):
                                      (select attrlist
                                       from attrs
                                      where attr_enti_id = sup2.superenti_id)
-                                      ,'')  as attrdis
+                                      ,'')  as attrids
                          , entitree.level+1
                     from superenti sup2
                              join entitree on sup2.superenti_id = entitree.subenti_id

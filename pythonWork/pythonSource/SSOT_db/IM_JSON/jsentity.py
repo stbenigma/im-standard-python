@@ -87,10 +87,10 @@ def entities2js(pemptymodel):
              'icon',
              'synonyms', 'examples',
              'sourceref', 'raci+',
-             'supertypes+', 'roles+',
-             'subtypes+', 'attributes+',
-             'inheritedattributes+',
-             'relations+', 'keys+', "businessrules+",
+             'supertypes+', 'roles+', 'subtypes+',
+             'attributes+','inheritedattributes+',
+             'relations+', 'inheritedrelations+',
+             'keys+', "businessrules+",
              'inarcs+', 'referencedby', 'userdefprops',
              'tablesmapped+', 'diagrams+'
              ]
@@ -107,7 +107,7 @@ def entities2js(pemptymodel):
                                                                          sourceref(None), racilist(),
                                                                          reflist(None), reflist(None),
                                                                          reflist(None), reflist(None),
-                                                                         reflist(None), reflist(None),
+                                                                         reflist(None), reflist(None),reflist(None),
                                                                          reflist(None), buruinelements(None),
                                                                          reflist(None),
                                                                          reflist(None),
@@ -143,6 +143,8 @@ def entities2js(pemptymodel):
                                                         e.getinheritedattrids()]),
                                          reflist(plist=[jsguid(Modelelemtype.RELA, r.rela_id) for r in
                                                         Relation.getbyentity(pentiid=e.enti_id)]),
+                                         reflist(plist=[jsguid(Modelelemtype.RELA, relaid) for relaid in
+                                                        e.getinheritedrelaids()]),
                                          reflist(plist=[jsguid(Modelelemtype.KEYS, k.keys_id) for k in
                                                         Key.select(pwhere=("keys_enti_id = ?", e.enti_id))]),
                                          buruinelements(e.enti_id),
