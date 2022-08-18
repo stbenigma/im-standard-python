@@ -7,8 +7,9 @@ from pathlib import Path
 import SSOT_infra.tests.integration as testsrc
 from SSOT_infra.tests.test_translateprompt import TestTranslation
 from SSOT_db.IM_JSON import JSModel
-from LOAD_MODELS.LOAD_ODM import fillDB,getodmparams,setodmparams,ODMParameter
+from LOAD_MODELS.LOAD_ODM import fillDB,setodmparams,ODMParameter
 from SSOT_db.SQL_INFRA import dbConnect
+from SSOT_db.IM_OBJECTS import PhysicalUnit
 from SSOT_infra import parameters
 
 
@@ -37,6 +38,9 @@ class TestFillDatabase(unittest.TestCase):
     def test_fillmergedb(self):
         create_testmodel(self.testmodel1, new=True)
         create_testmodel(self.testmodel1, new=False)
+        dbConnect.openDB(self.testmodel1.dbfile)
+        phyus = PhysicalUnit.select()
+        self.assertGreater(len(phyus),0)
 
     def test_filldb(self):
         def getbyfield(pmodel, ptype, pname, pfield='name', plang=None):
@@ -45,7 +49,7 @@ class TestFillDatabase(unittest.TestCase):
                 if (plang is None and v[pfield] == pname) or \
                         (plang is not None and v[pfield][plang] == pname):
                     retval.append((k, v))
-            # raise Exception(f"{ptype} : {pfield} : {pname}({plang}) not found ")
+            # raise Exception(f"{ptype} : {pfield} : {pvalue}({plang}) not found ")
             return retval
 
         def testuserdefproperties(jmodel):

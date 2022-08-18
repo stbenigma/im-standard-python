@@ -121,4 +121,11 @@ class test_jsobjects(unittest.TestCase):
         self.assertEqual(3, len(expl))  # 3 examples
         self.assertTrue('de' in expl[0])  # key is languange
         self.assertEqual(3, len(expl[0]))  # 3 langs
+
+        dbConnect.openDB(pfilepath=self.testmodel1.dbfile)
+        newjson = JSModel(pmodel=sql2json(pdbname=self.testmodel1.modelname))
+        doma = newjson.getbyfield(ptype='domains', pvalue="Number Granularity", plang="en")
+        self.assertTrue(len(doma)==1)
+        self.assertEqual("testunitofmeasure",doma[0][1]["unit"])
+
         return

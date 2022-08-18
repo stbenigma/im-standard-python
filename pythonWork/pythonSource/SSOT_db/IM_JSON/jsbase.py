@@ -122,13 +122,24 @@ class JSModel:
     def getdefaultlang(self):
         return self.jsmodel["model"]["language"]
 
-    """return the element identified by the jsid (<type><id>) from the current jsmodel"""
 
     def getbyid(self, pjsid):
+        """return the element identified by the jsid (<type><id>) from the current jsmodel"""
         try:
             return self.jsmodel[JSModel.elemtype2label(jsguid2type(pjsid))][pjsid]
         except:
             return None
+
+    def getbyfield(self, ptype, pvalue, pfield='name', plang=None):
+        """return tupels of (ID,element) of all elements containing the field pfield with a content of pvalue from the type of element current jsmodel
+        """
+        retval = []
+        for k, v in self.jsmodel[ptype].items():
+            if (plang is None and v[pfield] == pvalue) or \
+                    (plang is not None and v[pfield][plang] == pvalue):
+                retval.append((k, v))
+        # raise Exception(f"{ptype} : {pfield} : {pvalue}({plang}) not found ")
+        return retval
 
     def checked(self):
         return self._checked

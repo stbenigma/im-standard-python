@@ -302,7 +302,8 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
         pdoma.doma_num_total_digits = 0 if prec is None else int(prec)
         pdoma.doma_num_round_value = None
         unitofmeasure = handleXML.findText(pxml, 'unitOfMeasure')
-        if unitofmeasure is not None: pdoma.doma_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
+        if unitofmeasure is not None:
+            pdoma.doma_num_phyu_id = PhysicalUnit.getorcreate(pname=unitofmeasure).phyu_id
         deriveddomaname += f"{nvl(pdoma.doma_num_total_digits, '')}_{nvl(pdoma.doma_num_fract_digits, '')}_{nvl(pdoma.doma_num_minvalue, '')}_{nvl(pdoma.doma_num_maxvalue, '')}_{nvl(pdoma.doma_num_round_value, '')}"
 
     # fi

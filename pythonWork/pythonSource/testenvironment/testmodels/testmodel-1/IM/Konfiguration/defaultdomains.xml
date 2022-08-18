@@ -18,9 +18,10 @@
 <ownerDesignName>System</ownerDesignName>
 <avTSortOrder>0</avTSortOrder>
 <dataTypePrecision>15</dataTypePrecision>
-<dataTypeScale>6</dataTypeScale>
+<dataTypeScale>66</dataTypeScale>
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<unitOfMeasure>testunitofmeasure</unitOfMeasure>
 <listOfRanges>
 <rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
 <beginValue>0</beginValue>
@@ -106,8 +107,8 @@
 <fileName>defaultdomains</fileName>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <listOfValues>
-<valueDef value="FALSE" description="false"/>
-<valueDef value="TRUE" description="true"/>
+<valueDef value="FALSE" description="unwahr"/>
+<valueDef value="TRUE" description="wahr"/>
 </listOfValues>
 </Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Description" id="C3DAFABD-5133-27CA-E0E5-B039A45135D6">
