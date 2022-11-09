@@ -9,6 +9,7 @@ from SSOT_infra import Parameter
 class ODMParameter(Parameter):
 
     # definitions from foryouandyourcustomers for ODM-defaults and enhancements
+    ENTITYDEFAULTCLASSNAME = "Entity"
 
     #analyzed User defined property files
     ELEMDISPLAYFILENAME:str = 'elementdisplay' #UDP filename for elementdisplay information

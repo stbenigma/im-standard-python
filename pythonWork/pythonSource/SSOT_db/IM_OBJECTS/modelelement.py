@@ -151,7 +151,7 @@ class Modelelement(Baseobject):
 
     @staticmethod
     def longpublstatus(pdbvalue):
-        longstati = {Modelelement.DRAFT: 'draft',
+        longstati = {Modelelement.DRAFT : 'draft',
                      Modelelement.GTOP: 'good to print',
                      Modelelement.PUBL: 'published'}
         if pdbvalue in longstati:
@@ -291,6 +291,39 @@ class Modelelement(Baseobject):
             logging.error(f"Failed to delete one of {list(candidates)} where mode_type={pmodetype}. " + str(e))
             raise
         return cnt
+
+    @staticmethod
+    def selecttanglingmode():
+        """ check, wether there are modelelements not linked to any object.
+        """
+        retval = []
+        relations = dbDML.select(
+                    """with tabls as (SELECT name tabname
+                                    FROM sqlite_schema
+                                    WHERE
+                                    type ='table' AND
+                                    name NOT LIKE 'sqlite_%')
+                        select tabname,"from" pkcol, "table" reftable,"to" fkcol,on_delete
+                            from tabls
+                            cross join pragma_foreign_key_list(tabname)
+                        where lower(reftable) = 'modelelement'
+                        and upper(on_delete) = 'CASCADE'
+                        and pkcol like '_____id';
+                    """
+                    )
+        #[tabname,pkcol,reftable,fkcol,on_delete]
+        allidssql = "\nunion ".join([f"select {t[1]} from {t[0]}" for t in relations])
+
+        sql = f"""
+        select mode_id,mode_type
+            from main.modelelement
+            where mode_id not in ({allidssql})
+        """
+        result = dbDML.select(sql)
+        """(mode_id,mode_type)"""
+        for r in result:
+            retval.append(f"Modelelement  {r[0]} for element-type {r[1]} is tangling. (Element no longer exists)")
+        return retval
 
 
 

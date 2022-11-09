@@ -107,7 +107,7 @@ def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None
 
 
 def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None, planguages=None,
-                pconfigdirec=None,plogfilepath=None, ):
+                pconfigdirec=None,plogfilepath=None,pverbose=False ):
     """
     Create or merge SPOD (sqlite and json).
     :param pdbfilepath:
@@ -186,7 +186,7 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
 
     logging.debug(f"Starting merge")
     """merge created DB into existing one"""
-    reloaded = mergedbs.mergejs2db(pdbfile=dbfile, pmodel=loadedjson)
+    reloaded = mergedbs.mergejs2db(pdbfile=dbfile, pmodel=loadedjson,pverbose=pverbose)
 
     logging.debug(f"Writing reloaded model to json SPOD")
     js_spod_file = reloaded.printmodel(pfilepath=dbdirec, pfilename=modelname+'.json')

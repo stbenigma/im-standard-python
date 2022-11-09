@@ -107,10 +107,13 @@ def verify_package(c):
     print(f"Verifying package content of {c.package}")
     with zlib.ZipFile(c.package, 'r') as src:
         for element in src.filelist:
+            filename = element.filename.lower()
+            if filename.endswith('.jpg') or filename.endswith('.mo'):
+                continue
             print(f"Scanning {element.filename} ({element.file_size})")
             with src.open(element, 'r') as content:
                 try:
-                    verify_content(content)
+                    verify_content(content, filename)
                 except ValueError as exc:
                     raise ValueError(f"Found stopword in file {element.filename}") from exc
 
@@ -228,7 +231,8 @@ def info(c, ssod=None, full=False, db=None):
         print(f"Columns: {count(connection, 'columns')}")
 
 
-@task
+@task(help={
+    'model': "('crmTest', 'riddle', 'testmodel-1', 'testmodel-2') for test environment or dbfile-path"})
 def upgradedb(c, model=None):
     def upgrade1db(model):
         if model in ('crmTest', 'riddle', 'testmodel-1', 'testmodel-2'):
@@ -239,7 +243,7 @@ def upgradedb(c, model=None):
         dbfile = modelpath.resolve()
         if not dbfile.is_file():
             print(f"{dbfile} is not file")
-            exit(1)
+            exit(10)
         with c.cd(PROJECT_ROOT):
             from SSOT_db import createDB
             path = createDB(pupgrade=True, pdestination=dbfile, pmodelname=model)
@@ -259,8 +263,8 @@ def upgradedb(c, model=None):
             json_file = loadedjson.printmodel(pfilepath=str(db_file.parent), pfilename=db_file.stem)
             closeDB()
             json = loadedjson.jsmodel
-            print(f"\x1b[32mSucessfully\x1b[39m upgraded database {db_file}" \
-                  f" and JSON {json_file} to version {json['_imprint_'].get('Modelversion', '?.?')}" \
+            print(f"\x1b[32mSucessfully\x1b[39m upgraded database {db_file}"
+                  f" and JSON {json_file} to version {json['_imprint_'].get('Modelversion', '?.?')}"
                   f" git revision: {json['_imprint_'].get('git-revision', '?????')}")
 
 
@@ -278,7 +282,7 @@ def bootstrap_unit_tests(c):
         candidate = Path(hit)
         if candidate.is_dir():
             print(f"Generating SPOD for {hit}")
-            c.run(f"inv generator -m {candidate / 'IM'}")
+            c.run(f"inv generator --ssod-only -m {candidate / 'IM'}")
 
 
 @task
@@ -327,6 +331,16 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     else:
         out_path = Path(output)
 
+    from SSOT_db.IM_JSON import JSModel, sql2json
+    if verbose and out_path.is_file():
+        logging.info(f"Loading current state as JSModel from {out_path}")
+        from SSOT_db.SQL_INFRA.dbConnect import openDB, closeDB
+        with closing(openDB(out_path)) as conn:
+            current = JSModel(pmodel=sql2json(pdbname=str(out_path)))
+    else:
+        current = JSModel(pmodel={'_imprint_': {}}, pwithversioncheck=False)
+
+    logging.debug(f"Loading input from {src_path}")
     with open(src_path, 'r') as src:
         ssod = json.load(src)
 
@@ -373,8 +387,8 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     with closing(database) as conn:
         dbConnect.write_git_reversion(revision, conn)
         model = JSModel(ssod)
-        mergedbs.mergejs2db(pdbfile=str(intermediate_db), pmodel=model, psrcname=srcname,
-                            pverbose=verbose, pdryrun=dry, pkeepids=nomerge)
+        regen = mergedbs.mergejs2db(pdbfile=str(intermediate_db), pmodel=model, psrcname=srcname,
+                                    pverbose=verbose, pdryrun=dry, pkeepids=nomerge)
 
         print(f"Entities: {count(database, 'entities')}")
         print(f"Attributes: {count(database, 'attributes')}")
@@ -386,6 +400,17 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
         if not dry:
             logging.debug(f"Installing database in {out_path}")
             shutil.copy(intermediate_db, out_path)
+            regen_json = Path(out_path.stem + '_regen' + '.json')
+            logging.debug(f"Wrote regen json {regen_json}")
+            regen.write_json(regen_json)
+
+    if verbose:
+        from SSOT_db.IM_JSON.delta import delta_spod
+        report = delta_spod(current, regen)
+        delta_report_json = Path(out_path.stem + '_delta' + '.json')
+        with open(delta_report_json, 'w') as out:
+            json.dump(report, out, indent=2)
+            print(f"Wrote delta report to '{delta_report_json}")
 
     if not dry:
         print(f"\x1b[32mSucessfully\x1b[39m created database {out_path} from json SSOD {src_path}")
@@ -455,27 +480,21 @@ def db2json(c, source, output=None):
     print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SSOD {src_path}")
 
 
-def verify_content(fh):
+def verify_content(fh, filepath):
     data = fh.read()
+    stopwords = os.environ.get('STOPWORDS', '').split(',')
     try:
-        lower_content_string = data.decode().lower()
-        if 'geberit' in lower_content_string:
-            raise ValueError(f"geberit found in content")
-        if 'sika' in lower_content_string:
-            raise ValueError(f"sika found in content")
-        if 'bossard' in lower_content_string:
-            raise ValueError(f"bossard found in content")
-        if 'ktlu' in lower_content_string:
-            raise ValueError(f"bossard found in content")
-        if 'bosch' in lower_content_string:
-            raise ValueError(f"bosch found in content")
-        if 'komax' in lower_content_string:
-            raise ValueError(f"komax found in content")
+        content = data.decode()
+        lower_content_string = content.lower()
+        for word in stopwords:
+            stripped = word.strip()
+            if len(stripped) > 2 and stripped in lower_content_string:
+                raise ValueError(f"Found stopword '{word}' in {filepath}")
+
         if '/Users/' in lower_content_string:
-            raise ValueError(f"/Users/ found in content")
-    except UnicodeDecodeError:
-        pass
-    pass
+            raise ValueError(f"Found absolute path prefix '/Users/' found in {filepath}")
+    except Exception as e:
+        logging.warning("Skipping issue", exc_info=e)
 
 
 @task
@@ -483,7 +502,7 @@ def createtestmodeldbs(c):
     def fillone(model):
         """init module with regenerating the testmodels db and jsons"""
         try:
-            integration.Testmodel(model).initDB(palways=True)
+            integration.ModelHelper(model).initDB(palways=True)
         except:
             print(f"could not fill {model}")
 
@@ -523,4 +542,4 @@ def version(c):
     load_tools_library()
     from SSOT_infra import version
     ver = version()
-    print(f"Version {ver['TOOLVERSION']}, schema {ver['DBVERSION']}")
+    print(f"Version {ver['TOOLVERSION']}, schema {ver['DBVERSION']}, json {ver['JSONVERSION']}")

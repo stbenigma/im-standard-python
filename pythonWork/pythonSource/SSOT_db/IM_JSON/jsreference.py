@@ -158,13 +158,14 @@ def documents2js(pemtpymodel):
 
 
 def js2docu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
-    docu = Document(psrcname=psrcname, psrcid=psrcid)
-    docu.docu_id = pkey
-    docu.docu_name = pelem['name']
-    docu.docu_reference = pelem['reference']
-    docu.docu_content = pelem['content']
-    docu.docu_stfo_id = pelem['formatid']
-    docu.docu_docu_id = pelem['parent']
+    docu = Document(srcname=psrcname, srcid=psrcid,
+                    docu_id = pkey,
+                    docu_name = pelem['name'],
+                    docu_reference = pelem['reference'],
+                    docu_content = pelem['content'],
+                    docu_stfo_id = pelem['formatid'],
+                    docu_docu_id = pelem['parent']
+                    )
     return docu
 
 

@@ -3,6 +3,7 @@ import logging
 import os
 import subprocess
 from pathlib import Path
+from packaging import version
 
 from SSOT_infra.nvl import nvl
 
@@ -14,18 +15,23 @@ from SSOT_infra.nvl import nvl
 
 VERSIONFILEPATH: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "versions.json")
 with open(VERSIONFILEPATH, 'r') as handle:
-    versions = json.load(handle)
+    toolversions = json.load(handle)
 
 
 def toolversion():
     """Version currently running
     """
-    return versions['TOOLVERSION']
+    return toolversions.get('TOOLVERSION')
 
 
 def expecteddbversion():
     """version of database expected in this tool version"""
-    return versions['DBVERSION']
+    return toolversions.get('DBVERSION')
+
+def jsonversion():
+    """version of jsonfilestructure expected """
+    v = nvl(toolversions.get('JSONVERSION'),"0.0")
+    return version.parse(v)
 
 
 def nvlPath(p):

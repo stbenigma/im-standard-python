@@ -93,7 +93,7 @@
         </tr>
         {% for attribute_key in column['attributesmapped'] %}
         <tr>
-          <td>{{ util.soft_link(attribute_key) }}</td>
+          <td>{{ util.soft_link(attribute_key[0]) }}</td>
         </tr>
         {% endfor %}
         </tbody></table>

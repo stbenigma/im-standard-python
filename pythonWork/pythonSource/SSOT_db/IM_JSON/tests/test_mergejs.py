@@ -29,10 +29,10 @@ class TestMergeJson(unittest.TestCase):
         self.temp_folder = Path(tmp_path)
 
     def setUp(self) -> None:
-        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST).initDB()
-        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1).initDB()
-        self.riddle = testsrc.Testmodel(testsrc.RIDDLE).initDB()
-        self.testmodel2 = testsrc.Testmodel(testsrc.TESTMODEL2).initDB()
+        self.testmodelcrm = testsrc.ModelHelper(testsrc.CRMTEST).initDB()
+        self.testmodel1 = testsrc.ModelHelper(testsrc.TESTMODEL1).initDB()
+        self.riddle = testsrc.ModelHelper(testsrc.RIDDLE).initDB()
+        self.testmodel2 = testsrc.ModelHelper(testsrc.TESTMODEL2).initDB()
         self.srcname = "TestMergeJson"
 
     def test_merge(self):
@@ -233,11 +233,12 @@ class TestMergeJson(unittest.TestCase):
         self.assertIsInstance(val, int)
         self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
 
-        reloaded_jsmodel = JSModel(pmodel=sql2json(pdbname=str(tmpdb)))
+        with closing(dbConnect.openDBbasic(tmpdb)):
+            reloaded_jsmodel = JSModel(pmodel=sql2json(pdbname=str(tmpdb)))
 
         for category in filter(lambda c: c in ['entities', 'attributes', 'columns'], jsmodel.keys()):
             for key in jsmodel[category].keys():
-                self.assertIsNotNone(reloaded_jsmodel[category].get(key), f"Missing {category} element {key}")
+                self.assertIsNotNone(jsmodel[category].get(key), f"Missing {category} element {key}")
 
     def test_merge_table_and_column_riddle(self):
         js_file = Path(self.riddle.dbdir, self.riddle.jsonfilename)
@@ -321,52 +322,6 @@ class TestMergeJson(unittest.TestCase):
         val = result.keytransl(new_column_key)
         self.assertIsInstance(val, int)
         self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
-
-    def test_merge_column_riddle(self):
-        js_file = Path(self.riddle.dbdir, self.riddle.jsonfilename)
-        self.assertTrue(js_file.is_file())
-        with open(js_file, 'r') as src:
-            jsmodel = json.load(src)
-
-        previous = len(jsmodel['columns'])
-
-        table_ref_key = next(iter(jsmodel['tables'].keys()))
-
-        default_domain = \
-            next(filter(lambda d: next(iter(d[1]['name'].values())) == 'Unknown', jsmodel['domains'].items()))[0]
-
-        # apply changes to model
-        new_column = {'name': 'test',
-                      'table-id': table_ref_key,
-                      'interface_col_id': '12-34',
-                      'attributesmapped': [],
-                      'mandatory': False,
-                      'datatype': 'unknown',
-                      'format': None,
-                      'R/W': 'R',
-                      'domain': default_domain,
-                      'descr': "Created by unittest",
-                      }
-
-        self.set_defaults(new_column)
-        new_column_key = 'COLU-1'
-        jsmodel['columns'][new_column_key] = new_column
-        tmpdb = Path('/tmp/test_merge_riddle.db')
-        shutil.copy(self.riddle.dbfile, tmpdb)
-        with closing(dbConnect.openDBbasic(tmpdb)):
-            new_model = JSModel(jsmodel)
-            result = mergedbs.mergejson2sql(new_model, psrcname=self.srcname)
-
-        with closing(dbConnect.openDBbasic(tmpdb)) as connection:
-            with closing(connection.execute(f"SELECT COUNT(*) FROM [columns]")) as cursor:
-                r = cursor.fetchall()
-                self.assertEqual(len(jsmodel['columns']), r[0][0])
-                self.assertEqual(previous + 1, r[0][0])
-
-        val = result.keytransl(new_column_key)
-        self.assertIsInstance(val, int)
-        self.assertIsNotNone(jsmodel['columns'][new_column_key], f"Expecting unaltered json")
-        return
 
     def test_checkjson(self):
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)

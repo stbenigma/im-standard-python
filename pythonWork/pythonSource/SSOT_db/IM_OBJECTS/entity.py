@@ -192,68 +192,65 @@ class Entity(MultilangBaseobject):
             retval.append([d[0], d[1], [Entity().getbyid(e) for e in d[2].split(',')]])
         return retval
 
-    # maopingto
+    """sql for inherited entities, to be combined with attributes or relationships
+       see getinheritedrelaids and getinheritedattrids"""
+    @staticmethod
+    def sql_entitree():
+        return """
+            with recursive entitree(superenti_id,super_enti_name, subenti_id,sub_enti_name,   level,
+                            rootid,rootname)
+                           as
+                           (select superenti_id,super_enti_name
+                                 , subenti_id,sub_enti_name
+                                 ,0 level
+                                ,subenti_id rootid,sub_enti_name rootname
+                            from superenti
+                            union all
+                            select sup2.superenti_id,sup2.super_enti_name
+                                 , sup2.subenti_id,sup2.sub_enti_name
+                                 , entitree.level+1
+                                ,entitree.rootid,entitree.rootname
+                            from superenti sup2
+                                --join entitree on sup2.superenti_id = entitree.subenti_id
+                                join entitree on sup2.subenti_id = entitree.superenti_id
+                             where entitree.level < 99
+                            )
+            """
 
     def getinheritedrelaids(self):
         """ get all own and inherited relations """
-        lsql="""with recursive entitree(superenti_id, subenti_id,  relaids, level,super_enti_name,sub_enti_name)
-                   as
-                   (select superenti_id
-                         , subenti_id
-                         , ifnull(
-                            (select relalist
-                             from relas
-                             where relaenti = superenti_id)
-                             ,'') AS relaids
-                         ,0 level
-                        ,super_enti_name,sub_enti_name
-                    from superenti
-                    where superenti_id not in (select subenti_id from superenti)
-                    union all
-                    select sup2.superenti_id
-                         , sup2.subenti_id
-                         , ifnull(entitree.relaids,'')|| ','
-                                  ||ifnull(
-                                     (select relalist
-                                      from relas
-                                     where relaenti = sup2.superenti_id)
-                                      ,'')  as relaids
-                         , entitree.level+1
-                    ,sup2.super_enti_name,sup2.sub_enti_name
-                    from superenti sup2
-                             join entitree on sup2.superenti_id = entitree.subenti_id
-                     where entitree.level < 99
-                    )
-                ,relas as (select distinct relaenti
-                                        ,group_concat(rela_id, ',')
-                                             over (partition by relaenti
-                                             rows between unbounded preceding
-                                                 and unbounded following) as relalist
-                            from (select rela_id,rela_enti_id_from relaenti
-                                  from relations
-                                  where rela_type not in ('ISAS','ISAR')
-                                  union
-                                  select rela_id,rela_enti_id_to relaenti
-                                  from relations
-                                  where rela_type not in ('ISAS','ISAR')
-                                  )
-                            )
-            select rtrim(relaids ,',') as relaids,level
-            from entitree
-            where relaids != ''
-                and subenti_id = ?"""
+        lsql=f"""{self.sql_entitree()}
+            ,relas as (select rela_id,rela_enti_id_from relaenti,rela_enti_id_to other
+                              from relations
+                              where rela_type != 'ISAS'
+                                   and not (rela_type = 'ISAR') -- and rela_mandatory_from_to = 'FALSE')
+                              union
+                              select rela_id,rela_enti_id_to relaenti,rela_enti_id_from other
+                              from relations
+                              where rela_type != 'ISAS'
+                                   and not (rela_type = 'ISAR' ) --and rela_mandatory_to_from = 'FALSE')
+                              )
+            select distinct relalist,rootid,rootname
+                from (select rootid,rootname,group_concat(rela_id, ',')
+                                         over (partition by rootid
+                                         rows between unbounded preceding
+                                        and unbounded following) as relalist
+                    from entitree
+                    join relas on relaenti = superenti_id
+                    and rootid = ?)
+            """
 
         retval = []
         relas = dbDML.select(lsql,self.getid())
         retval = []
         if len(relas)>0:
-            assert relas[0][1] < 100, "recursive sql with loop"
+            #assert relas[0][1] < 99, "recursive sql with loop"
             for a in relas[0][0].split(','):
                 if a.isnumeric():
                     retval.append(int(a))
         return retval
 
-    """ get all own and inherited attributes """
+
     def getinheritedattrids(self):
         """recursive SQL
            attrs: get comma separated listof attributes of an entity
@@ -261,51 +258,64 @@ class Entity(MultilangBaseobject):
                     union  2. select all entities which have as superentity the recursive predecessor entitiy
                            add list of attributes of this entity to the list of its predecessor
         """
-        lsql = """with recursive entitree(superenti_id, subenti_id,  attrids, level)
+        lsql = f"""{self.sql_entitree()}
+                ,attrs as (select attr_id,attr_enti_id
+                from attributes)
+                select distinct attrlist,rootid,rootname
+                    from (select rootid,rootname,group_concat(attr_id, ',')
+                                             over (partition by rootid
+                                             rows between unbounded preceding
+                                            and unbounded following) as attrlist
+                from entitree
+                join attrs on attr_enti_id = superenti_id)
+                where rootid =?
+            """
+        attrs = dbDML.select(lsql,self.getid())
+        retval = []
+        if len(attrs)>0:
+            #assert attrs[0][1] < 99, "recursive sql with loop"
+            for a in attrs[0][0].split(','):
+                if a.isnumeric():
+                    retval.append(int(a))
+        return retval
+
+    def getsubentities(self):
+        """ liefert superid,supername,subid,subname,level
+            ab (d.h. inkl.) dieser Entität
+        """
+        lsql="""with recursive entitree(superenti_id, super_enti_name,
+                        subenti_id, sub_enti_name,
+                        level)
                    as
                    (select superenti_id
+                         ,super_enti_name
                          , subenti_id
-                         , ifnull(
-                            (select attrlist
-                             from attrs
-                             where attr_enti_id = superenti_id)
-                             ,'') AS attrids
+                         ,sub_enti_name
                          ,0 level
                     from superenti
-                    where superenti_id not in (select subenti_id from superenti)
+                    where superenti_id =?
                     union all
                     select sup2.superenti_id
+                         ,sup2.super_enti_name
                          , sup2.subenti_id
-                         , ifnull(entitree.attrids,'')|| ',' 
-                                  ||ifnull(
-                                     (select attrlist
-                                      from attrs
-                                     where attr_enti_id = sup2.superenti_id)
-                                      ,'')  as attrids
+                         ,sup2.sub_enti_name
                          , entitree.level+1
                     from superenti sup2
                              join entitree on sup2.superenti_id = entitree.subenti_id
                      where entitree.level < 99
                     )
-                ,attrs as (select distinct attr_enti_id
-                                        ,group_concat(attr_id, ',')
-                                             over (partition by attr_enti_id
-                                            order by attr_displ_seq
-                                             rows between unbounded preceding
-                                                 and unbounded following) as attrlist
-                            from attributes)
-            select rtrim(attrids ,',') as attrids,level
-            from entitree where subenti_id = ?
-            """
-        attrs = dbDML.select(lsql,self.getid())
-        retval = []
-        if len(attrs)>0:
-            assert attrs[0][1] < 100, "recursive sql with loop"
-            for a in attrs[0][0].split(','):
-                if a.isnumeric():
-                    retval.append(int(a))
+            select * from entitree
+        """
+        subentis = dbDML.select(lsql,self.getid())
+        assert len(subentis) < 99, "recursive sql in subentities with loop"
+        return subentis
+
+    def getsubentityids(self):
+        subentis = self.getsubentities()
+        retval = [int(a[2]) for a in subentis]
         return retval
-# Entity
+
+
 
 class Synonym(MultilangBaseobject):
     _tablename: str = 'synonyms'

@@ -47,12 +47,14 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
         # noinspection PyTypeChecker
         self.diagram['relationships']['RELA1111']['linesegments'].append(segment)
         drawiodiagram.add_relations(self.diagram,
-                                    JSModel(self.test_model), self.translator, self.root)
+                                    JSModel(self.test_model,
+                                            pwithversioncheck=False), self.translator, self.root)
         print(tostring(self.root))
 
     def test_add_relation_single(self):
         drawiodiagram.add_relations(self.diagram,
-                                    JSModel(self.test_model), self.translator, self.root)
+                                    JSModel(self.test_model,
+                                            pwithversioncheck=False), self.translator, self.root)
         print(tostring(self.root))
 
     diagram = {
@@ -126,7 +128,8 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
     def test_relation_dashed_undashed(self):
         # noinspection PyTypedDict
         self.diagram['relationships']['RELA1111']['linesegments'] = self.segments
-        drawiodiagram.add_relations(self.diagram, JSModel(self.test_model), self.translator, self.root)
+        drawiodiagram.add_relations(self.diagram, JSModel(self.test_model
+                                                          ,pwithversioncheck=False), self.translator, self.root)
         print(tostring(self.root))
 
 
@@ -147,7 +150,7 @@ class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
         with open(ssot_file, 'r') as src:
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
-        js_model = JSModel(pmodel=model)
+        js_model = JSModel(pmodel=model,pwithversioncheck=False)
         for diagram_key in model['diagrams'].keys():
             xml = create_diagram(diagram_key, js_model, MockTranslator())
             self.assertTrue(len(list(xml.iter())) > 0)
@@ -166,6 +169,6 @@ class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
         self.assertTrue(len(model['diagrams']) > 0)
 
         for diagram_key in model['diagrams'].keys():
-            js_model = JSModel(pmodel=model)
+            js_model = JSModel(pmodel=model,pwithversioncheck=False)
             xml = create_diagram(diagram_key, js_model, MockTranslator())
             self.assertTrue(len(list(xml.iter())) > 0)

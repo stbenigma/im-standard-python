@@ -19,7 +19,8 @@ class TestPrintDiagHTML(unittest.TestCase):
 
     def test_smoke(self):
         config = HTMLExport(modelname='test')
-        config.model = JSModel({'entities': {'ENTI0001': {'subtypellevel+': 0}}})
+        config.model = JSModel({'entities': {'ENTI0001': {'subtypellevel+': 0}}},
+                               pwithversioncheck=False)
         diagram = {'name': 'dummy',
                    'elements': {
                        'entity': [],

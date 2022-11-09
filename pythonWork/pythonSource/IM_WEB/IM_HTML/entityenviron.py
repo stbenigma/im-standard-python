@@ -1,14 +1,17 @@
 import re
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
+
 from matplotlib import colors
 
 from SSOT_db.IM_JSON import JSModel
-from .printdiagHTML import hex2rbg
 from SSOT_db.IM_OBJECTS import Modelelemtype, Relation
+from SSOT_infra import nvl
+from .printdiagHTML import hex2rbg
 
-"""defines the classes and functions to implement an entity-environment representation"""
-nvl = lambda str, default='': str if str is not None else default
+"""
+    defines the classes and functions to implement an entity-environment representation
+    """
 
 
 class EntityCell():
@@ -19,7 +22,7 @@ class EntityCell():
     CHILD = 'child'
 
     def __init__(self, ptype=None, pentiid=None, pentiname=None, passoc=None, pbgcolor=None, pfontcolor=None,
-                 pdescr=None):
+                 pdescr=None, precursiveenti=False, pindirrectassoc=False):
         self.setentiid(pentiid)
         self.setentiname(pentiname)
         self.setentidescr(pdescr)
@@ -27,6 +30,8 @@ class EntityCell():
         self.settype(nvl(ptype))
         self.setbgcolor(nvl(pbgcolor, "rgb(255,255,255)"))
         self.setfontcolor(nvl(pfontcolor, "rgb(0,0,0)"))
+        self._entirecursive = precursiveenti
+        self._asscocindirect = pindirrectassoc
 
     def getentiid(self):
         return self._entiid
@@ -70,6 +75,12 @@ class EntityCell():
     def setassoc(self, passoc):
         self._assoc = passoc
 
+    def getentirecursive(self):
+        return self._entirecursive
+
+    def getassocindirect(self):
+        return self._asscocindirect
+
     def isemptycell(self):
         return self.gettype() == ''
 
@@ -78,7 +89,7 @@ class EntityCell():
 
 
 class EntityEnvironment():
-    """Dictrionary for one entity.
+    """Dictionary for one entity.
         two-dimensional extensible grid 1. index (vidx)  top down , 2. index (hidx) -> left to right
         0/0 is the center
         1,2,3 are cells to downwards or to the right
@@ -86,18 +97,18 @@ class EntityEnvironment():
         {  ...
           ,-1 : {}   vidx
           ,0 : {'left'
-                'center':[entiid,entiname,relationtext]
+                'center': EntityCell
                 right :
                 }
           ,1 : {}
           ,...}
     """
 
-    def __init__(self, pentiid, pentiname, pbgcolor):
+    def __init__(self, pentiid, pentiname, pbgcolor, precursiveenti=False):
         self._grid = dict()
         self.fillcell(pvidx=0, phidx='center',
                       pcell=EntityCell(ptype=EntityCell.CENTER, pentiid=pentiid, pentiname=pentiname,
-                                       pbgcolor=pbgcolor))
+                                       pbgcolor=pbgcolor, precursiveenti=precursiveenti))
         return
 
     def fillcell(self, pvidx, phidx, pcell: EntityCell):
@@ -166,25 +177,46 @@ def hexcolor(pcolor):
     return hex2rbg(nvl(pcolor, "000000"))
 
 
-def related(pentiid, prelated, pjson, pcardinality, pmodellang, pentities):
+def related(pentiid, pjson: JSModel, pcardinality, pmodellang, pentities):
     retval = []
-    for relaid in prelated:
-        rela = pjson.getelements(pelemtype=Modelelemtype.RELA)[relaid]
+    relas = pentities[pentiid]['relations+'] + pentities[pentiid]['inheritedrelations+']
+    for relaid in relas:
+        isindirec = False
+        rela = pjson.getbyid(relaid)
         if rela['type'] in (Relation.ISAROLE, Relation.ISASUBTYPE): continue
-        if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] != pentiid
-                and rela['to-from']['maptype'] == pcardinality):
+        if (rela['from-to']['enti'] == pentiid and rela['to-from']['enti'] == pentiid):
+            # rekursiv, wird nicht hier gezeichnet
+            continue
+        elif (rela['from-to']['enti'] == pentiid  # and rela['to-from']['enti'] != pentiid
+              and rela['to-from']['maptype'] == pcardinality):
             parentid = rela['to-from']['enti']
             assoc = rela['from-to']['assoc'][pmodellang]
-        elif (rela['to-from']['enti'] == pentiid and rela['from-to']['enti'] != pentiid
+        elif (rela['to-from']['enti'] == pentiid  # and rela['from-to']['enti'] != pentiid
               and rela['from-to']['maptype'] == pcardinality):
             parentid = rela['from-to']['enti']
             assoc = rela['to-from']['assoc'][pmodellang]
+        elif rela['to-from']['enti'] != pentiid and rela['from-to']['enti'] != pentiid:
+            if pjson.issupertype(rela['to-from']['enti'], pentiid) \
+                    and rela['to-from']['maptype'] == pcardinality:
+                # inherited entity
+                parentid = rela['from-to']['enti']
+                assoc = rela['to-from']['assoc'][pmodellang]
+                isindirec = True
+            elif pjson.issupertype(rela['from-to']['enti'], pentiid) \
+                    and rela['from-to']['maptype'] == pcardinality:
+                # inherited entity
+                parentid = rela['to-from']['enti']
+                assoc = rela['from-to']['assoc'][pmodellang]
+                isindirec = True
+            else:
+                continue
         else:
-            continue  # not my relation or I am not a child or I am recursive
+            continue
         # fi
         retval.append(EntityCell(ptype=EntityCell.PARENT if pcardinality == Relation.ONE else EntityCell.CHILD
                                  , pentiid=parentid, pentiname=pentities[parentid]['name'][pmodellang], passoc=assoc
-                                 , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=parentid, pcolortype="color"))))
+                                 , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=parentid, pcolortype="color"))
+                                 , pindirrectassoc=isindirec))
     # for
     return retval
 
@@ -196,7 +228,8 @@ def createentienvironment(pentiid, pjson: JSModel, pmodellang):
     if not pentiid in entities.keys(): return None  # non existing entity is Nothing
 
     entienvir = EntityEnvironment(pentiid=pentiid, pentiname=entities[pentiid]['name'][pmodellang]
-                                  , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid, pcolortype="color")))
+                                  , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid, pcolortype="color"))
+                                  , precursiveenti=pjson.isrecursive(pentiid))
     enties = [EntityCell(ptype=EntityCell.ROLE, pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
                          , pdescr=entities[entiid]['descr'][pmodellang]
                          , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid, pcolortype="color"))
@@ -210,15 +243,17 @@ def createentienvironment(pentiid, pjson: JSModel, pmodellang):
     entienvir.togrid(pcells=enties, ptype=EntityCell.SUPER)
 
     """handle Parents (I am ONE, parent is MANY)"""
-    parents = related(pentiid=pentiid, prelated=entities[pentiid]['relations+'], pjson=pjson, pcardinality=Relation.ONE,
-                      pmodellang=pmodellang
-                      , pentities=entities)
+    parents = related(pentiid=pentiid,
+                      pjson=pjson, pcardinality=Relation.ONE,
+                      pmodellang=pmodellang,
+                      pentities=entities)
     entienvir.togrid(pcells=parents, ptype=EntityCell.PARENT)
 
     """handle children (I am MANY, Child is ONE or MANY)"""
-    children = related(pentiid=pentiid, prelated=entities[pentiid]['relations+'], pjson=pjson,
-                       pcardinality=Relation.MANY, pmodellang=pmodellang
-                       , pentities=entities)
+    children = related(pentiid=pentiid,
+                       pjson=pjson,
+                       pcardinality=Relation.MANY, pmodellang=pmodellang,
+                       pentities=entities)
     entienvir.togrid(pcells=children, ptype=EntityCell.CHILD)
 
     return entienvir
@@ -235,14 +270,17 @@ MAXENTICHARS = 21
 MAXDESCRCHARS = 300
 
 
-def printenti(pcell: EntityCell, pposx, pposy):
+def printenti(pcell: EntityCell, pposx, pposy,precursive=False):
+    recursive = f"""<path d="M {ENTIWIDTH*0.9} -1 A 3 3 0 0 1 {ENTIWIDTH} 7" stroke="black" fill="none"/>"""\
+                if precursive else ""
+
     entistart = """<g  fill="{color}" stroke="{stroke}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
             transform="translate({posx},{posy})" >
             <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect>
             <a href="#{ref}" >
             <text id="box{ref}" x="6" y="13" fill="{fillcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
             {name} </text>{title}
-            </a>
+            </a>{recursive}
             </g>
             """
     entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
@@ -252,34 +290,37 @@ def printenti(pcell: EntityCell, pposx, pposy):
                                , fillcolor='black' if pcell.gettype() == EntityCell.CENTER else 'blue',
                                fontsize=FONTSIZE
                                , name=nvl(pcell.getentiname())[:MAXENTICHARS]
-                               , title="<title>{descr}</title>".format(
-            descr=' ' if pcell.getentidescr() in (None, '') else pcell.getentidescr()[:MAXDESCRCHARS]))
+                               , recursive = recursive
+                               , title="<title>{' ' if pcell.getentidescr() in (None, '') else pcell.getentidescr()[:MAXDESCRCHARS]}</title>"
+                               )
     return entibox
 
 
 def printrela(pcell: EntityCell, pposx, pposy):
-    textstart = """<g  fill="{}" stroke="{}" fill-opacity="{}" stroke-opacity="{}" 
-            transform="translate({},{})" >
-            <text id="{}" x="2" y="4" fill="{}" font-weight="bold"  fill-opacity="1.0" font-size="{}" stroke="none">
-            {} </text>
-            </g>
-            """
-    textbox = textstart.format('white', 'blue'
-                               , 80, 80
-                               , pposx, pposy, '', 'black', FONTSIZE
-                               , nvl(pcell.getassoc())[:MAXRELACHARS])
+    textstart = f"""<g  fill="{'white'}" stroke="{'blue'}" fill-opacity="{80}" stroke-opacity="{80}" 
+            transform="translate({pposx},{pposy})" >
+            <text id="{''}" x="2" y="4" fill="{'black'}" font-weight="bold"  fill-opacity="1.0" font-size="{FONTSIZE}" stroke="none">
+            {nvl(pcell.getassoc())[:MAXRELACHARS]} </text></g>"""
 
-    return textbox
+    return textstart
 
 
-def printline(pstartx, pstarty, plenx, pleny):
+blacklinecolor = "rgb(0,0,0)"
+graylinecolor = "rgb(160,160,160)"
+
+
+def linecolor(pindirect: bool) -> str:
+    return graylinecolor if pindirect else blacklinecolor
+
+
+def printline(pstartx, pstarty, plenx, pleny, plinecolor=blacklinecolor):
     DEFAULT_LINEWIDTH: int = 1
-    line = """<g stroke-linecap="butt" >
-              <path stroke="rgb(0,0,0)" fill="none" stroke-opacity="100"  stroke-width="{}" 
-                    d="M{} {} L{} {}" />
+    line = f"""<g stroke-linecap="butt" >
+              <path stroke="{plinecolor}" fill="none" stroke-opacity="100"  stroke-width="{DEFAULT_LINEWIDTH}" 
+                    d="M{pstartx} {pstarty} L{pstartx + plenx} {pstarty + pleny}" />
                 </g>
             """
-    return line.format(DEFAULT_LINEWIDTH, pstartx, pstarty, pstartx + plenx, pstarty + pleny)
+    return line
 
 
 def printlinedio(pstartx, pstarty, plenx, pleny, psrcid=None, prelatext=None):
@@ -341,29 +382,31 @@ def generate_svg_content(penviron):
         linestarty = entistarty + (ENTIHEIGHT / 2)
         relastarty = linestarty - 10
 
-        cellleft = penviron.getcell(phidx='left', pvidx=vkey)
-        cellcenter = penviron.getcell(phidx='center', pvidx=vkey)
-        cellright = penviron.getcell(phidx='right', pvidx=vkey)
+        cellleft: EntityCell = penviron.getcell(phidx='left', pvidx=vkey)
+        cellcenter: EntityCell = penviron.getcell(phidx='center', pvidx=vkey)
+        cellright: EntityCell = penviron.getcell(phidx='right', pvidx=vkey)
 
         if cellleft.gettype() == EntityCell.SUPER:
             svgtext += printenti(pcell=cellleft, pposx=entistartx, pposy=entistarty)
             lenx = entistartx + CELLWIDTH - ENTIWIDTH
             if vkey != 0:
                 lenx -= LINESHORTEN
-            svgtext += printline(pstartx=entistartx + ENTIWIDTH, pstarty=linestarty, plenx=lenx, pleny=0)
+            svgtext += printline(pstartx=entistartx + ENTIWIDTH, pstarty=linestarty, plenx=lenx, pleny=0,
+                                 plinecolor=linecolor(cellleft.getassocindirect()))
             superlineendy = linestarty
 
         elif cellcenter.gettype() == EntityCell.PARENT:
             svgtext += printenti(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
             linelength = ENTIWIDTH
-            svgtext += printline(pstartx=entistartx + ENTIWIDTH, pstarty=linestarty, plenx=linelength, pleny=0)
+            svgtext += printline(pstartx=entistartx + ENTIWIDTH, pstarty=linestarty, plenx=linelength, pleny=0,
+                                 plinecolor=linecolor(cellcenter.getassocindirect()))
             parentlinestarty = nvl(parentlinestarty, linestarty)
         else:
             pass
         # fi
         entistartx += CELLWIDTH
         if cellcenter.gettype() == EntityCell.CENTER:
-            svgtext += printenti(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
+            svgtext += printenti(pcell=cellcenter, pposx=entistartx, pposy=entistarty,precursive=cellcenter.getentirecursive())
             superlinestarty = linestarty
             rolelineendy = linestarty
             childlinestarty = entistarty + ENTIHEIGHT
@@ -381,12 +424,14 @@ def generate_svg_content(penviron):
             lenx = CELLWIDTH - ENTIWIDTH
             if vkey != 0:
                 lenx -= LINESHORTEN
-            svgtext += printline(pstartx=entistartx, pstarty=linestarty, plenx=-lenx, pleny=0)
+            svgtext += printline(pstartx=entistartx, pstarty=linestarty, plenx=-lenx, pleny=0,
+                                 plinecolor=linecolor(cellright.getassocindirect()))
             rolelinestarty = nvl(rolelinestarty, linestarty)
         elif cellcenter.gettype() == EntityCell.CHILD:
             svgtext += printenti(pcell=cellcenter, pposx=entistartx, pposy=entistarty)
             linelength = -ENTIWIDTH
-            svgtext += printline(pstartx=entistartx, pstarty=linestarty, plenx=linelength, pleny=0)
+            svgtext += printline(pstartx=entistartx, pstarty=linestarty, plenx=linelength, pleny=0,
+                                 plinecolor=linecolor(cellcenter.getassocindirect()))
             childlineendy = linestarty
         else:
             pass

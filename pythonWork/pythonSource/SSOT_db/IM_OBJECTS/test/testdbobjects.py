@@ -3,16 +3,17 @@ import unittest
 
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
-from SSOT_db.IM_OBJECTS import Entity,Actorrole,Actorconcern,Attribute,Externalref,DomaingroupMember,ModelelemDocu
+from SSOT_db.IM_OBJECTS import *
 from SSOT_db.SQL_INFRA import dbConnect,dbDML
 from SSOT_db.IM_OBJECTS.checkdatabase import checkdatabase
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
-        self.testcrm = testsrc.Testmodel(testsrc.CRMTEST)
+        self.testmodel1 = testsrc.ModelHelper(testsrc.TESTMODEL1)
+        self.testcrm = testsrc.ModelHelper(testsrc.CRMTEST)
         create_testmodel(self.testmodel1, new=True)
+        create_testmodel(self.testcrm, new=True)
         return
 
     def test_entity(self):
@@ -28,6 +29,20 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(2, len(attrs))
         dbConnect.closeDB()
         return
+
+    def test_subentity(self):
+        dbConnect.openDB(pfilepath=self.testcrm.dbfile)
+        enti = Entity.select(pwhere=('enti_name=?', 'Geografische Einheit'))
+        subentis = enti[0].getsubentities()
+        self.assertEqual('Gebiet',subentis[0][3])
+        self.assertEqual('Land',subentis[1][3])
+        self.assertEqual('Ländergruppe',subentis[2][3])
+        self.assertEqual('PLZ-Gebiet',subentis[3][3])
+        self.assertEqual('Administrativgebiet',subentis[4][3])
+        subids=enti[0].getsubentityids()
+        for se in subentis:
+            self.assertIn(se[2],subids)
+        dbConnect.closeDB()
 
     def test_actorrole(self):
         try:
@@ -72,6 +87,18 @@ class MyTestCase(unittest.TestCase):
 
         dbConnect.closeDB()
         return
+
+    def test_failing_inserts(self):
+        dbConnect.openDB(pfilepath=self.testmodel1.dbfile)
+        modes = Modelelement.select(pwhere="mode_type = 'DOCU' and mode_id not in (select docu_id from documents)")
+        self.assertEqual(0, len(modes))
+        docu = Document(docu_name='dummytest',docu_docu_id=99999)
+        with self.assertRaises(Exception):
+            docu.insert() #should fail but leaving no tangling modelelement behind
+        modes = Modelelement.select(pwhere="mode_type = 'DOCU' and mode_id not in (select docu_id from documents)")
+        self.assertEqual(0, len(modes))
+
+
 
     def test_consistency(self):
         def createdberrors():
@@ -139,8 +166,6 @@ class MyTestCase(unittest.TestCase):
                 where buru_name in (?))
             """
             dbDML.exec(sql,'BURU_DESCR','vonbis')
-
-
             return
 
         #self.testcrm.initDB(True)
@@ -155,6 +180,57 @@ class MyTestCase(unittest.TestCase):
         errors = checkdatabase()
         self.assertEqual(6,len(errors))
         print (errors)
+
+        conn.close()
+        return
+
+    def test_checksupertentimap(self):
+        dbConnect.openDB(self.testcrm.dbfile)
+        conn = dbConnect.connecttodbcopy()
+        checks = ColAttrMap.checksuperentitymap()
+        self.assertEqual(0,len(checks))
+        enti = Entity.getbyuk(enti_name = 'Geografische Einheit')
+        entiwrong = Entity.getbyuk(enti_name = 'Haushalt')
+        subentiids = enti.getsubentityids()
+        for se in subentiids:
+            iha = Entity().getbyid(se).getinheritedattrids()
+            attridlist = ",".join ([str(i) for i in iha])
+            attrs = Attribute.select(pwhere=(f"attr_id in ({attridlist})"))
+
+            if  len(iha)>0:
+                cnt = dbDML.exec(f"update colu_attr_map set coam_enti_id =? where coam_attr_id in ({attridlist})",
+                                 entiwrong.enti_id)
+                self.assertTrue(0<cnt)
+                checks = ColAttrMap.checksuperentitymap()
+                self.assertTrue(0<len(checks))
+                cnt = dbDML.exec(f"update colu_attr_map set coam_enti_id =? where coam_attr_id in ({attridlist})",
+                                 Entity.getbyuk(enti_name = 'Gebiet').enti_id)
+                checks = ColAttrMap.checksuperentitymap()
+                self.assertTrue(0==len(checks))
+                cnt = dbDML.exec(f"update colu_attr_map set coam_enti_id =? where coam_attr_id in ({attridlist})",
+                                 Entity.getbyuk(enti_name = 'PLZ-Gebiet').enti_id)
+                checks = ColAttrMap.checksuperentitymap()
+                self.assertTrue(0==len(checks))
+                cnt = dbDML.exec(f"update colu_attr_map set coam_enti_id = NULL where coam_attr_id in ({attridlist})")
+                checks = ColAttrMap.checksuperentitymap()
+                self.assertTrue(0==len(checks))
+                break
+
+        conn.close()
+
+    def test_mappings(self):
+        dbConnect.openDB(self.testcrm.dbfile)
+        conn = dbConnect.connecttodbcopy()
+        ColAttrMap.createinheritedmaps()
+        for coam in ColAttrMap.select(pwhere="coam_enti_id is not null"):
+            attr = Attribute().getbyid(coam.coam_attr_id)
+            print (coam.coam_colu_id,Column().getbyid(coam.coam_colu_id).getname(),
+                   coam.coam_attr_id,Entity().getbyid(attr.attr_enti_id).getname(),
+                   coam.coam_attr_id,attr.getname(),
+                   coam.coam_enti_id,Entity().getbyid(coam.coam_enti_id).getname())
+
+        #check that subtype column mappings are correctly delivered
+        coaml=[ [coam.coam_attr_id,coam.coam_colu_id,Attribute().getbyid(coam.coam_attr_id).attr_enti_id,coam.coam_enti_id,coam.secondentiids()] for coam in ColAttrMap.select()]#pwhere="coam_enti_id is not null")]
 
         conn.close()
         return

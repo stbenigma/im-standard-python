@@ -1,195 +1,399 @@
-import sys,os
-from SSOT_db.SQL_INFRA import  dbConnect
-from SSOT_infra import parameters, logmessages
-from SSOT_db.IM_OBJECTS import  Table,TablEntiMap,Column,ColAttrMap, Relation,Entity,Attribute,Interface,UniqueKeyException
+import argparse
+import logging
+import os
+import re
+from pathlib import Path
+
+import openpyxl.workbook.workbook
 from openpyxl import load_workbook
 
-def importintf(pws):
-    tabs = {}
-    """copy excel-sheet into a json-structure"""
-    """tabs= {<tabname>:{"entis":[(entitiy,None|DELMAP),],"cols":{<colname>:[(entity,attribute,None|DELMAP),]}}"""
-    curtab = None
-    for rowidx,row in enumerate(pws):
-        if rowidx == 0:continue
-        tab,col,ent,attr = row[0].value,row[1].value,row[2].value,row[3].value,
-        crud = row[4].value if len (row)> 4 else None
-        assert crud in (None,"DELMAP"), "illegal Value for CRUD '{}'".format(crud)
-        if tab is not None:
-            curtab = tab #use for empty tab-entry with columns
-            if tab not in tabs: tabs[tab]={"entis":[],"cols":{},"crud":crud}
-            if ent is not None:
-                #add table mapping
-                tabs[tab]["entis"].append((ent,crud))
-        else:
-            if curtab is None : continue
-            #do columnmappings
-            cols = tabs[curtab]["cols"]
-            if col not in cols: cols[col]=[]
-            cols[col].append((ent,attr,crud))
-        #fi
-    #for
-    return tabs
+from LOAD_MODELS.LOAD_INFRA import mergedbs
+from SSOT_db.IM_JSON import JSModel
+from SSOT_infra import nvl
+from tools.mapping import mappingexceldata as mapxls
 
-def inserttablemap(ptabid,pentiid=None,prelaid=None):
-    tema= TablEntiMap.getbyuk(tema_tabl_id=ptabid,tema_enti_id=pentiid)\
-            if pentiid is not None else \
-        TablEntiMap.getbyuk(tema_tabl_id=ptabid, tema_rela_id=prelaid)
-    if tema is not None:
-        retval = 0 #mapping exists, skip
+SOURCEREF = "MAPIMPORT"
+
+
+def findrow(pws, psearch: dict):
+    for row in pws.rows:
+        for col, val in psearch.items():
+            if row[col - 1].value == val:
+                return row
+    return None
+
+
+def findcol(pws, psearch: dict):
+    for col in pws.columns:
+        for row, val in psearch.items():
+            if col[row - 1].value == val:
+                return col
+    return None
+
+
+def getjsonfile(pws):
+    if pws is None:
+        return None
+    row = findrow(pws, {1: "JSON file"})
+    # JSON file     \abd\asdf\...
+    return None if row is None else row[2 - 1].value
+
+
+def getlang(pws):
+    if pws is None:
+        return None
+    row = findrow(pws, {1: "Language"})
+    # Language     en...
+    return None if row is None else row[2 - 1].value
+
+
+def getmultilines(pvalue: str, pidx: int = None) -> list:
+    """
+       "Entität1
+        Entität2 (Subentität)"
+       returned into
+       [["Entität1",""], ["Entität2","Subentität"]]
+       all leading and trailing blanks, tabs are removed
+       if pidx is not None:
+            missing indices are filled with Nones
+            no subelements in () are handled
+       """
+    names = [name.strip("\t ") for name in nvl(pvalue).splitlines()]
+    if pidx is None:
+        # entities, they could have subentites in parentheses
+        retval = []
+        for name in names:
+            entis = re.match(r"^([^(]*)\(?([^)]*)\)?\s*$", name)
+            if entis is not None and entis[1].strip("\t ") != "":
+                retval.append([entis[1].strip("\t "), entis[2].strip("\t ")])
     else:
-        tema = TablEntiMap()
-        tema.tema_tabl_id = ptabid
-        tema.tema_enti_id = pentiid
-        tema.tema_rela_id = prelaid
-        try:
-            tema.insert(pdoerrhdlng=False)
-            retval= 1
-        except Exception as e:
-            if type(e) != UniqueKeyException:
-                logmessages.writelog("could not insert table-map tabl_id={ptabid}, enti_id={pentiid}, rela_id={prelaid}")
-            retval= 0
-        #try
+        # simple names
+        retval = names
+        if len(retval) < pidx:
+            retval.extend(["" for i in range(pidx - len(retval))])
     return retval
 
-def insertcolumap(pcoluid,pattrid):
-    coam = ColAttrMap.getbyuk(coam_attr_id=pattrid,coam_colu_id=pcoluid,coam_direction = ColAttrMap.INBOUND,coam_seq = 1)
-    if coam is not None:
-        retval = 0 #mapping exists, skip
-    else:
-        coam = ColAttrMap()
-        coam.coam_colu_id = pcoluid
-        coam.coam_attr_id = pattrid
-        coam.coam_direction = ColAttrMap.INBOUND
-        coam.coam_seq = 1
-        try:
-            coam.insert(pdoerrhdlng=False)
-            retval= 1
-        except Exception as e:
-            if type(e) != UniqueKeyException:
-                logmessages.writelog(f"could not insert column_attr_map colu_id={pcoluid}, attr_id={pattrid}")
-            retval= 0
-        #try
-    #fi
-    return retval
 
-def getmapid(pname):
-    entiid,relaid = None,None
-    enti = Entity.getbyuk(enti_name=pname)
-    if enti is None:
-        rela = Relation.getbyuk(rela_name=pname)
-        if rela is None:
-            logmessages.writelog("Entity or Relation {} not found.".format(pname))
-        else:
-            relaid = rela.rela_id
-    else: entiid =enti.enti_id
-    return entiid,relaid
+def checkandaddcolmap(pcolid: str, pcol: dict, pattrinfo: tuple):
+    """ check if mapping to current column already exists
+        if not, add it
+                 "attributesmapped": [
+            [
+               "ATTR182",
+               null
+            ]
+        parameter pattrinfo (attrid,subentiid,attrname,entiname,subentiname)
 
-def printstatline(pname,*args):
-    l = pname.ljust(25)
-    l += ''.join(str(a).ljust(12) for a in args)
-    print (l)
-    return
+    """
+    changes = 0
+    if pattrinfo[0] not in [attrmap[0] for attrmap in pcol["attributesmapped"] if attrmap[1] == pattrinfo[1]]:
+        pcol["attributesmapped"].append([pattrinfo[0], pattrinfo[1]])
+        changes += 1
+        ses = lambda s: "" if s == "" else f" ({s})"
+        logging.info(f"{pcol['interface-name+']} - {pcol['table-name+']}" +
+                     f" - {pcol['name']}: attribute added {pattrinfo[3]} {ses(pattrinfo[4])}- {pattrinfo[2]} ({pattrinfo[0]})")
+    return changes
 
-def mergeintodb(pintfname,ptabs):
-    tablmapinsert,tablmapdelete,columapinsert,columapdelete = 0,0,0,0
-    intf = Interface.getbyuk(intf_name=pintfname)
-    if intf is None:
-        logmessages.writelog(f"Interface {pintfname} not found.")
-        return
-    for tabname,tabmap in ptabs.items():
-        #print (pintfname,tabname,tabmap)
-        # search table in DB
-        tabl = Table.getbyuk(tabl_name=tabname, tabl_intf_id=intf.intf_id)
-        if tabl is None:
-            logmessages.writelog(f"table {tabname} does not exists.")
-            continue
-            
-        for map in tabmap["entis"]:
-            mapname,enticrud = map[0],map[1]
-            entiid,relaid = getmapid(pname=mapname)
-            if entiid is not None or relaid is not None:
-                if enticrud == 'DELMAP':
-                    nvlnull=lambda x:x if x is not None else "NULL"
-                    tablmapdelete += TablEntiMap.delete(
-                        pwhere=f"""tema_tabl_id ={tabl.tabl_id} 
-                                    and (tema_enti_id = {entiid} or tema_rela_id = {relaid})"""
-                    )
-                else:
-                    tablmapinsert += inserttablemap(ptabid=tabl.tabl_id, pentiid=entiid,prelaid=relaid)
-                #fi
-            #fi
-        #for
 
-        for colname,colmap in tabmap["cols"].items():
-            #print (pintfname,tabname,colname,colmap)
-            col = Column.getbyuk(colu_tabl_id=tabl.tabl_id, colu_column_name=colname)
-            if col is None:
-                logmessages.writelog(f"column {tabname}.{colname} does not exists.")
-                continue
+def checkandaddentimap(ptabid: str, ptab: dict, pentiid: str, pentiname: str):
+    """ check if mapping to current table already exists
+        if not, add it
+    """
+    changes = 0
+    if pentiid not in ptab["entitiesmapped"]:
+        ptab["entitiesmapped"].append(pentiid)
+        changes += 1
+        logging.info(f"{ptab['interface-name+']} -  {ptab['name']}:" +
+                     f" entity added '{pentiname}' ({pentiid})")
+    return changes
 
-            for attrmap in colmap:
-                entiname, attrname, colcrud = attrmap[0],attrmap[1],attrmap[2]
-                #print (colname,entiname, attrname, colcrud)
-                if entiname is None and attrname is None:
-                    continue
-                enti = Entity.getbyuk(enti_name=entiname)
-                entiid = enti.enti_id if enti is not None else None
-                attr = Attribute.getbyuk(attr_displ_name=attrname, attr_enti_id=entiid)
-                attrid = None
-                if attr is None:
-                    logmessages.writelog("Column {}.{}: unknown attribute {}.{}"
-                                         .format(tabname,colname,entiname,attrname))
-                    continue
-                else:
-                    if attr.attr_enti_id == entiid:
-                        attrid = attr.attr_id
-                    else:
-                        logmessages.writelog("Attribute {} does not belong to entity {}".format(attrname, entiname))
-                #fi
-                if colcrud == "DELMAP":
-                    #remove mapping to attribute
-                    columapdelete += ColAttrMap.delete(
-                        pwhere="coam_attr_id ={attrid} and coam_colu_id = {coluid}"
-                            .format(attrid=attrid, coluid=col.colu_id))
-                else:
-                    columapinsert += insertcolumap(pattrid=attrid, pcoluid=col.colu_id)
-            #for
-        #for
-    # for
-    printstatline(pintfname,tablmapinsert,tablmapdelete,columapinsert,columapdelete)
-    return
 
-def main(param1,pxls):
-    parameters.initparam()
-    logmessages.initlog('importEXCEL')
-    filename = parameters.modelName()
-    filepath = parameters.dbDirect()
-    if os.path.isfile(pxls):
-        infile = pxls
-    elif os.path.isfile(filepath + pxls):
-        infile = filepath + pxls
-    else:
-        logmessages.showmessages("File {} not found".format(pxls))
-        return
-    #fi
-    try:
-        workbook = load_workbook(filename=infile)
-        dbConnect.openDB(pfilepath=parameters.dbFilePath(), pfks="1")
-        printstatline("Interface","tab-mapins","tab-mapdel","col-mapins","col-mapdel")
-        for ws in workbook.worksheets:
-            if ws.title == 'Overview': continue
-            interface = importintf(ws)
-            mergeintodb(pintfname=ws.title,ptabs=interface)
-        #for
-        dbConnect.getdbcon().commit()
-        dbConnect.closeDB()
-    except Exception as exp:
-        print ("Merge-Exception:",exp)
-        raise exp
-    finally:
-        print ("file {} imported into model {}".format(infile,filename))
-        logmessages.showmessages()
-        return
+def removenoncheckedattributes(pmodel: JSModel, pintfname, pchechedcolattr: dict) -> int:
+    """ remove all col-attr-mappings which were not touched """
+    changes = 0
+    return changes
+
+
+def removenoncheckedentities(pmodel: JSModel, pintfname, pchechedtabenti: dict) -> int:
+    return 0
+    """ remove all tab-enti-mappings which were not touched """
+    changes = 0
+    tables = pmodel.getelements("tables")
+    for tabid, tab in tables.items():
+        if tab["interface-name+"] != pintfname: continue  ##only for one interface!!
+        entismapped = tab["entitiesmapped"]
+        tokeep = {e for e in pchechedtabenti.values()}
+        toremove = set(entismapped).difference(tokeep)
+        for e in toremove:
+            entismapped.remove(e)
+            changes += 1
+            logging.info(f"{pintfname} - '{tab['name']}'" +
+                         f" entity removed {pmodel.getlangtext(pelem=pmodel.getbyid(e)['name'], plang=pmodel.modellanguage())}")
+
+    return changes
+
+
+def import1row(pintfname, pmodel, plang, prowidx,
+               ptabname, pcolname,
+               pentinames, pattrnames,
+               pcheckedtabenti: dict, pcheckedcolattr: dict):
+    changes = 0
+    # find the table in the json structure
+    tables = pmodel.getelements("tables")
+    tabs = [(key, val) for key, val in tables.items() if
+            (val["name"] == ptabname and val["interface-name+"] == pintfname)]
+    if len(tabs) != 1:
+        logging.warning(f"Interface {pintfname} - {ptabname} not found or redundant")
+        return changes
+
+    tabid, tab = tabs[0][0], tabs[0][1]
+
+    # find the column in the json structure
+    columns = pmodel.getelements("columns")
+    cols = [(key, val) for key, val in columns.items() if (val["interface-name+"] == pintfname and
+                                                           val["table-name+"] == ptabname and
+                                                           val["name"] == pcolname)]
+    if len(cols) != 1 and nvl(pcolname) != '':
+        logging.warning(f"Interface '{pintfname}': table '{ptabname}', column '{pcolname}' not found or redundant")
+        return changes
+    colid, col = (None, None) if len(cols) == 0 else (cols[0][0], cols[0][1])
+    # hurra column was found
+    # find the attribute(s) in the json structure
+    # find the entity in the json structure
+    mainentis, subentis = [], []
+    for entiname in pentinames:
+        enti = pmodel.getbyfield(ptype="entities", pvalue=entiname[0], plang=plang)
+        if len(enti) != 1:
+            logging.warning(f"Entity '{entiname[0]}': not found or redundant")
+            return changes
+        mainentis.append(None if len(enti) == 0 else enti[0])
+        enti = pmodel.getbyfield(ptype="entities", pvalue=entiname[1], plang=plang)
+        if len(enti) != 1 and nvl(entiname[1]) != '':
+            logging.warning(f"Entity '{entiname[1]}': not found or redundant")
+            return changes
+        subentis.append(None if len(enti) == 0 else enti[0])
+
+    # find attributes
+    attributes = pmodel.getelements("attributes")
+    attrs = []
+    for idx, enti in enumerate(mainentis):
+        entiname = enti[1]['name'][plang]
+        subentiname = "" if subentis[idx] is None else subentis[idx][1]['name'][plang]
+        attr = [(key, val) for key, val in attributes.items() if (val["entity"] == enti[0] and
+                                                                  val["name"][plang] == pattrnames[idx])]
+        if len(attr) != 1 and nvl(pattrnames[idx]) != '':
+            logging.warning(
+                f"Attribute '{pattrnames[idx]}' of entity '{entiname}': not found or redundant")
+            return changes
+        # [(attrid,subentiid,attrname,entiname,subentiname)]
+        attrs.append(None if len(attr) == 0 else (attr[0][0],
+                                                  None if subentis[idx] is None else subentis[idx][0],
+                                                  attr[0][1]['name'][plang],
+                                                  entiname,
+                                                  subentiname
+                                                  )
+                     )
+
+    assert (tabid is not None and (len(mainentis) == len(subentis) == len(attrs))), \
+        f"invalid value-combination for row {prowidx}"
+
+    """ tabid,tab contain current table"""
+    for enti in mainentis + subentis:
+        if enti is not None:
+            pcheckedtabenti[tabid] = enti[0] #mark as checked
+            changes += checkandaddentimap(ptabid=tabid, ptab=tab,
+                                          pentiid=enti[0], pentiname=enti[1]["name"][plang])
+
+    if col is not None:
+        for attr in attrs:
+            if attr is not None:
+                pcheckedcolattr[colid] = attr[0]
+                changes += checkandaddcolmap(pcolid=colid, pcol=col,
+                                             pattrinfo=attr
+                                             )
+
+    if pintfname == "TestMapping":
+        logging.debug(changes, ptabname, pcolname,
+                      pentinames, pattrnames, attrs)
+    return changes
+
+
+def colidx(s):
+    return mapxls.attrkey2idx(s)
+
+
+def do1row(pintfname, pws, pmodel, plang, prowidx,
+           pcheckedtabenti: dict, pcheckedcolattr: dict) -> int:
+    changes = 0
+    tabname = pws.cell(prowidx, colidx("tableName")).value
+    if tabname is None:
+        logging.warning(f"****Interface '{pintfname}' row {str(prowidx)} does not contain tablenName ")
+        return changes
+    colname = pws.cell(prowidx, colidx("columnName")).value
+    # the following can be multiple lines entities with a subentity in parentheses
+    """
+       "Entität1
+        Entität2 (Subentität)"
+       returned into
+       [["Entität1",None], ["Entität2","Subentität"]]
+       all leading and trailing blanks, tabs or lf are removed
+       """
+    entinames = getmultilines(pvalue=pws.cell(prowidx, colidx("entityName")).value)
+    """
+        missing indices are filled with blanks,
+        no parentheses will be handled 
+    """
+    attrnames = getmultilines(pvalue=pws.cell(prowidx, colidx("attrName")).value, pidx=len(entinames))
+    assert len(entinames) == len(attrnames), \
+        f"number of entitynamen {str(len(entinames))} and attribute-names {str(len(attrnames))} in row {str(prowidx)} must match"
+
+    #####currently we do only mapping############
+    # optional columns
+    # colrw = None if "colrws" not in pcoldict else pcoldict["colrws"][pidx].value
+    # colid = None if "colids" not in pcoldict else pcoldict["colids"][pidx].value
+
+    # all values for one column filled.
+    # check with json
+    changes += import1row(pintfname=pintfname, pmodel=pmodel, plang=plang, prowidx=prowidx,
+                          ptabname=tabname, pcolname=colname,
+                          pentinames=entinames, pattrnames=attrnames,
+                          pcheckedtabenti=pcheckedtabenti, pcheckedcolattr=pcheckedcolattr)
+    return changes
+
+
+def import1interface(pws, pwsname, pmodel, plang) -> int:
+    myexception: Exception
+
+    """ imports one sheet = 1 interface
+        columns with header in row 2   mapxls.COLMAPHEADERS
+        followed by entity columns   mapxls.IMHEAD
+        """
+    changes = 0
+
+    # check structure of worksheet to import
+    if not (pws.cell(1, 1).value == pwsname):
+        logging.warning(f"Interfacename in ws '{pwsname}'.cell(A,1) '{pws.cell(1, 1).value}' does not match sheetname")
+        logging.warning(f"Interface '{pwsname}' skipped")
+        return changes
+    if not (pws.cell(1, len(mapxls.COLHEADERS) + 1).value == mapxls.IMHEAD):
+        logging.warning(
+            f"column title '{pws.cell(1, len(mapxls.COLHEADERS) + 1).value}' for IM-columns does not match '{mapxls.IMHEAD}'")
+        logging.warning(f"Interface '{pwsname}' skipped")
+        return changes
+
+    for idx, title in enumerate(mapxls.COLHEADERS + mapxls.IMHEADERS, start=1):
+        if not (pws.cell(2, idx).value == title):
+            logging.warning(
+                f"titlecolumn '{pws.cell(2, idx).value}' at index {str(idx)} does not match expected value '{title}'")
+            logging.warning(f"Interface '{pwsname}' skipped")
+            return changes
+
+    checkedtabenti = {}  # {tableid:[entiid]}
+    checkedcolattr = {}  # {coluid:[attrid]}
+    for idx in range(3, len(list(pws.rows)) + 1):
+        changes += do1row(pintfname=pwsname, pws=pws, pmodel=pmodel,
+                          plang=plang, prowidx=idx,
+                          pcheckedtabenti=checkedtabenti,
+                          pcheckedcolattr=checkedcolattr)
+
+    changes += removenoncheckedentities(pmodel=pmodel, pintfname=pwsname, pchechedtabenti=checkedtabenti)
+    changes += removenoncheckedattributes(pmodel=pmodel, pintfname=pwsname, pchechedcolattr=checkedcolattr)
+
+    return changes
+
+
+def importinterfaces(pwb: openpyxl.workbook.workbook.Workbook, pmodel: JSModel,
+                     plang) -> int:
+    changes = 0
+    for wsname in pwb.sheetnames:
+        if wsname in mapxls.WS_OVERVIEWSHEETS: continue
+        ws = pwb.get_sheet_by_name(wsname)
+        changes += import1interface(pws=ws, pwsname=wsname, pmodel=pmodel, plang=plang)
+    return changes
+
+
+def importmapexcel(pexcelfile, pjsonfile=None, pdbfile=None, pdryrun=False):
+    """
+    imports an excelfile (format as generated from listmapping) into the database
+    reads for every interface the column-list and its mapping to the information model.
+    Only this is written back into the json-file
+    NO Table or columns, nor entites or attributes are inserted or deleted
+    mark updates in sourceref of changed column and tables resp.
+     sourcref-name is MAPIMPORT
+
+    Improvements:
+    1. if the json file was created after the excel-file, refuse merging resp. require overwrite parameter
+    2. if in jsonfile there are source-updates after the creation of the excel file, check for conflicts
+
+    params:pexcelfile file to import
+        jsonfile filespec of existing file to update
+                None -> take filespec from excelfile (JSON file) in Overview-tab
+
+    """
+    logging.basicConfig(level=logging.INFO)
+    assert (pexcelfile is not None) and os.path.exists(pexcelfile), f"Excel not found: {pexcelfile}"
+    wb = load_workbook(pexcelfile)
+    ws = wb.get_sheet_by_name(mapxls.WS_OVERVIEW) if mapxls.WS_OVERVIEW in wb.sheetnames else None
+
+    jsonfile = pjsonfile if pjsonfile is not None else getjsonfile(ws)
+    assert jsonfile is not None and os.path.exists(jsonfile), f"json-file '{jsonfile}' not found"
+    jsmodel = JSModel.readfromfile(jsonfile)
+
+    dbfile = pdbfile
+    if dbfile is None:
+        dbfile = jsmodel.jsmodel["_imprint_"]["database"]
+    assert pdryrun or os.path.exists(dbfile), f"db-file '{dbfile}' not found"
+
+    lang = getlang(ws)
+    assert lang in jsmodel.getelements("languages").keys(), \
+        f"Language '{lang}' in excelfile '{pexcelfile}' not found in modellanguages in\njsonfile '{jsonfile}' "
+
+    changes = importinterfaces(pwb=wb, pmodel=jsmodel, plang=lang)
+    if changes > 0:
+        # print (jsmodel.jsmodel["tables"]["TABL387"]["entitiesmapped"])
+        # wb.save("/Users/stb/Downloads/testexcel2.xlsx")
+        # jsmodel.write_json("/Users/stb/Downloads/testjson2.json")
+        # wb.save(pexcelfile)
+        # jsmodel.write_json(jsmodel.jsxfile)
+        newjson = mergedbs.mergejs2db(pdbfile=dbfile, pdryrun=pdryrun,
+                                      pmodel=jsmodel, psrcname=SOURCEREF)
+        # generate new jsonfile
+        newjson.write_json(destination=jsonfile)
+
+    # fi
+    logging.info(f"File '{pexcelfile}'\n\tloaded. {str(changes)} changes applied.")
+    return changes
+
+
+def main():
+    """
+    parses sysargs, reads json file and create excel mapping file out of it
+
+    :param argv:
+
+    :return:
+    """
+    parser = argparse.ArgumentParser(description='Create IM-DM mappingexcel.')
+    parser.add_argument('excelfilepath', nargs=1,
+                        help=f"Path of the excelfile to load.")
+    parser.add_argument('--jsonfile', '-j', dest="jsonfile",
+                        help=f"Filepath of jsonfile to load into. Default: JSON file found in excel Overview")
+    parser.add_argument('--dbfile', '-d', dest="dbfile",
+                        help=f"Filepath of database file. Default: database name found in jsonfile")
+    parser.add_argument('--dryrun', '-dry', action='store_true',
+                        help=f"Do not change database.")
+    argparse.Namespace()
+    arguments = parser.parse_args()
+
+    # logging_level = logging.DEBUG if arguments.verbose else logging.INFO
+
+    excelfile = Path(arguments.excelfilepath[0])
+
+    importmapexcel(pexcelfile=excelfile,
+                   pjsonfile=arguments.jsonfile,
+                   pdbfile=arguments.dbfile,
+                   pdryrun=arguments.dryrun)
+
 
 if __name__ == '__main__':
-    main(param1=sys.argv[1],pxls = sys.argv[2])
+    main()

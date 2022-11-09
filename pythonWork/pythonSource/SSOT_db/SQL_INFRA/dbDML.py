@@ -1,19 +1,18 @@
-# -*- coding: latin-1 -*-
-
 import re
 import sqlite3
 
-from SSOT_db.SQL_INFRA import  dbConnect
+from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import logmessages
 
-def select(psql,*args):
+
+def select(psql, *args):
     """execute a sql select statement
     returns the resultset of the sql statement
     args is the set of substitution variables "?" in the sql statement
     """
     cursor = dbConnect.getdbcon().cursor()
 
-    try:        # print(psql)
+    try:  # print(psql)
         # print(args)
         # print(f"execute: unexpected SQL-error: \t{e}")
         # logmessages.writelog(psql)
@@ -26,7 +25,8 @@ def select(psql,*args):
     result = cursor.fetchall()
     return result
 
-def exec(psql,*args):
+
+def exec(psql, *args):
     """execute a sql statement without returning any values
     args is the set of substitution variables "?" in the sql statement
     """
@@ -35,12 +35,13 @@ def exec(psql,*args):
     try:
         rows = cursor.execute(psql, args).rowcount
     except sqlite3.Error as e:
-        #print('Failed to execute {} {}'.format(psql, str(args)))
-        #logmessages.writelog(psql)
-        #logmessages.writelog(f"exec: unexpected SQL-error: \t{str(e)}\nstr(args)")
+        # print('Failed to execute {} {}'.format(psql, str(args)))
+        # logmessages.writelog(psql)
+        # logmessages.writelog(f"exec: unexpected SQL-error: \t{str(e)}\nstr(args)")
         raise sqlite3.Error(f"{e.__class__} '{e}' when executing statement '{psql}' with args {args}.") from e
     dbConnect.getdbcon().commit()
     return rows
+
 
 def delete(psql, *args):
     """execute a sql delete statement
@@ -51,12 +52,13 @@ def delete(psql, *args):
     try:
         rows = cursor.execute(psql, args).rowcount
     except sqlite3.Error as e:
-        #logmessages.writelog(psql)
-        #logmessages.writelog(args)
-        #logmessages.writelog("unexpected SQL-error: \t%s" % e)
+        # logmessages.writelog(psql)
+        # logmessages.writelog(args)
+        # logmessages.writelog("unexpected SQL-error: \t%s" % e)
         raise e
     dbConnect.getdbcon().commit()
     return rows
+
 
 def insert(psql, rec):
     """inserts data
@@ -74,7 +76,7 @@ def insert(psql, rec):
         else:
             raise Exception(f"unknown type for insert {type(rec)}")
     except sqlite3.IntegrityError as ei:
-        # Unique und FK kann für Indexweiterzählen gebraucht werden. Darum keine Fehlermeldung
+        # Unique und FK kann fÃ¼r IndexweiterzÃ¤hlen gebraucht werden. Darum keine Fehlermeldung
         if not (str(ei).startswith("UNIQUE constraint failed") \
                 or str(ei).startswith("FOREIGN KEY constraint failed")):
             logmessages.writelog(psql)
@@ -92,6 +94,7 @@ def insert(psql, rec):
     id = cursor.lastrowid
     dbConnect.getdbcon().commit()
     return id
+
 
 def dbval(pval):
     """translates None into NULL, string into 'string' """

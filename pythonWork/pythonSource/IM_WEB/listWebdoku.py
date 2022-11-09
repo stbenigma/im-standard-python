@@ -1,16 +1,15 @@
-# -*- coding: latin-1 -*-
 import argparse
 import logging
 import os
 import sys
 from pathlib import Path
 
-from IM_WEB import jinjawebmodel,htmlparameters
+from IM_WEB import jinjawebmodel, htmlparameters
 from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
-from SSOT_db.IM_JSON import JSModel,FILTEREDJSModel
+from SSOT_db.IM_JSON import JSModel, FILTEREDJSModel
 from SSOT_db.IM_OBJECTS import *
-from SSOT_infra import parameters,Parameter, logmessages, argparseparent,settransldomain
+from SSOT_infra import Parameter, logmessages, argparseparent, settransldomain
 
 
 def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=None):
@@ -21,7 +20,7 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
                              "name": dvalue["name"],
                              "svg": printdiagHTML.getsvgtext(export=export, pdiagelem=dvalue, pdiaganker=dkey,
                                                              plang=planguage),
-                             "pdf": printdiagHTML.pdffilename(export=export,pname=dvalue["name"], plang=planguage)
+                             "pdf": printdiagHTML.pdffilename(export=export, pname=dvalue["name"], plang=planguage)
                              } for dkey, dvalue in pmodel.jsmodel["diagrams"].items()
                             if (dvalue["type"] == "Entity")],
                            key=lambda x: x["name"].upper())
@@ -29,7 +28,8 @@ def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=No
             diags = [{"id": pintfid,
                       "name": pmodel.getbyid(pintfid)["name"],
                       "svg": printRelHTML.interfacediagram(export=export, pintf=pmodel.getbyid(pintfid)),
-                      "pdf": printdiagHTML.pdffilename(export=export,pname=pmodel.getbyid(pintfid)["name"], plang=planguage)}
+                      "pdf": printdiagHTML.pdffilename(export=export, pname=pmodel.getbyid(pintfid)["name"],
+                                                       plang=planguage)}
                      ]
         # fi
         html = jinjawebmodel.rendermodel(export=export, pcurlang=planguage, pmodel=pmodel, pintfid=pintfid,
@@ -53,17 +53,17 @@ def listwebmain(export: HTMLExport):
     model = export.getmodel()
     export.modelLang(model.modellanguage())
     langs = model.jsmodel["languages"].keys()
-    # erstelle die Liste der HTML Files für HREF's
+    # erstelle die Liste der HTML Files fÃ¼r HREF's
     schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
     for skey, svalue in schnlist.items():
-        export.htmlfilelist[skey] = safe_filename(svalue['name'] + '.html')
+        export.htmlfilelist[skey] = safe_filename(svalue['name'] + f'.{export.webFileExtension()}')
 
     for lang in langs:
         lang = lang.lower()
         Languagetext.reportLang(lang)
         # omit language in name for non translated models
-        langfilename = export.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.html"
-        logging.info(f"Generating web content for language {lang} in {os.path.join(export.webDirec(),langfilename)}")
+        langfilename = export.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.{export.webFileExtension()}"
+        logging.info(f"Generating web content for language {lang} in {os.path.join(export.webDirec(), langfilename)}")
         export.htmlfilelist[0] = langfilename
         printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model)
     # for
@@ -71,7 +71,7 @@ def listwebmain(export: HTMLExport):
     Languagetext.reportLang(export.modelLang())
     # backjumps from relational webpage goes to default-lang-model
     export.htmlfilelist[0] \
-        = export.webFileName + f"{'' if len(langs) == 1 else langpart(export.modelLang())}.html"
+        = export.webFileName + f"{'' if len(langs) == 1 else langpart(export.modelLang())}.{export.webFileExtension()}"
 
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else export.modelLang()
@@ -86,24 +86,25 @@ def listwebmain(export: HTMLExport):
     return
 
 
-def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None, **kwargs ):
-    assert (pjsonfilepath is not None and pwebdirec is not None),\
+def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=None,
+            pfiletype=None, **kwargs):
+    assert (pjsonfilepath is not None and pwebdirec is not None), \
         f"jsonsource and destination directory must be given"
 
     status = None
     diagrams = None
-    for key,val in kwargs.items():
-        if key == "status" :
+    for key, val in kwargs.items():
+        if key == "status":
             status = val
-            stati= [Modelelement.GTOP,Modelelement.DRAFT,Modelelement.PUBL]
-            assert status is None or status.upper()  in stati, f"Publication status must be in {stati}"
+            stati = [Modelelement.GTOP, Modelelement.DRAFT, Modelelement.PUBL]
+            assert status is None or status.upper() in stati, f"Publication status must be in {stati}"
         elif key == "diagrams" and val is not None:
             diagrams = [dia.strip(" '\"") for dia in val.split(',')]
-        #fi
-    #for
+        # fi
+    # for
 
     if pjsonfilepath is not None:
-        jsonfilepath=Path(pjsonfilepath).resolve()
+        jsonfilepath = Path(pjsonfilepath).resolve()
         basedirec = os.path.abspath(os.path.dirname(os.path.dirname(jsonfilepath)))
         jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
         modelname = jsonmodel.modelname()
@@ -113,7 +114,8 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
         modelname = pmodelname
 
     exporter = HTMLExport(baseDirec=basedirec, modelname=modelname,
-                          webDirec=pwebdirec, logofile=plogfilepath)
+                          webDirec=pwebdirec, logofile=plogfilepath,
+                          webFileExtension=pfiletype)
     try:
         logmessages.initlog('createHTML',
                             plogfilepath=exporter.logfilepath())
@@ -128,12 +130,13 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
         if deflang is not None:
             exporter.modelLang(deflang)
 
-        jsonmodel = FILTEREDJSModel(pmodel = jsonmodel.jsmodel,ppublstatus=status,pimdiagrams=diagrams)
-        #jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
+        jsonmodel = FILTEREDJSModel(pmodel=jsonmodel.jsmodel, ppublstatus=status, pimdiagrams=diagrams)
+        # jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
         exporter.setmodel(jsonmodel)
         listwebmain(exporter)
     finally:
-        logmessages.showmessages(f"web-files from jsonfile {jsonfilepath} for model {exporter.modelName()} created into {exporter.webDirec()}")
+        logmessages.showmessages(
+            f"web-files from jsonfile {jsonfilepath} for model {exporter.modelName()} created into {exporter.webDirec()}")
 
 
 def main(psysargs):
@@ -144,10 +147,11 @@ def main(psysargs):
                              f"/<modelname>{Parameter.JSONEXTENSION})")
     parser.add_argument('--destination', '-d', dest="destination",
                         help=f"Directory to write the generated files to . Default ./{htmlparameters.HTMLParameter.WEBDEFAULTDIREC}")
+    parser.add_argument('--filetype', '-f', dest="filetype", help=f"html or aspx. Default html")
     parser.add_argument('--logfile', '-log', dest='logfile',
                         help=f"Path for logfile. Default: ./<modelname>{Parameter.LOGFILEEXTENSION}")
     parser.add_argument('--status', '-s', dest='status',
-                        help=f"Fileter: publication status (DRAFT, GTOP, PUBL). Default: None")
+                        help=f"Filter: publication status (DRAFT, GTOP, PUBL). Default: None")
     parser.add_argument('--diagrams', '-diag', dest='diagrams',
                         help=f"Filter: list of comma seperated diagram names to be published. Default: None")
     parser.add_argument('--version', '-v', action='store_true')
@@ -183,8 +187,9 @@ def main(psysargs):
     # do only testing of parameterpassing while in unittest
     if not myargs["unittest"]:
         webmain(pjsonfilepath=myargs['jsonfile'], pwebdirec=myargs['destination'],
-                plogfilepath=myargs['logfile'], pmodelname=myargs['modelname']
-                ,status=myargs["status"],diagrams=myargs["diagrams"])
+                plogfilepath=myargs['logfile'], pmodelname=myargs['modelname'],
+                pfiletype=myargs['filetype'],
+                status=myargs["status"], diagrams=myargs["diagrams"])
     return
 
 

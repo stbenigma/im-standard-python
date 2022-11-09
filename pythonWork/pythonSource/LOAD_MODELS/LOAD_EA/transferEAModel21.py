@@ -4,7 +4,7 @@ import re
 import xml.etree.ElementTree as et
 from datetime import datetime
 
-import handleXML
+from LOAD_MODELS.LOAD_INFRA import handleXML,LaterEntries
 from SSOT_infra import parameter, logmessages,int2hex,Parameter
 from SSOT_db.IM_OBJECTS import  *
 from LOAD_MODELS.LOAD_ODM import transferModel
@@ -32,6 +32,8 @@ def getrelation(pguid,pvalue=None):
     else:
         return relations[pguid][pvalue]
 
+""" entities to be handled after all were read"""
+laterentities = LaterEntries
 
 def initDomains():
     daty_id = Datatype(pname="unknown"
@@ -77,10 +79,7 @@ def doxmlfiles(pdirec, ptransfer, ppattern=r".*", pmandatorydirec=True):
             ptransfer(pdirec + file)
         # fi
     # for
-
-
-# doxmlfiles
-
+    return
 
 def dosegfiles(pdirec, transferfiles, pmandatoryfile=True):
     try:
@@ -220,6 +219,7 @@ def do1diaglink(pdiaglinkxml):
 
 
 def do1diagobj(pdiagobjxml):
+    global laterentities
     diagguid = handleXML.findRefGuid(pdiagobjxml, 'Diagram_ID')
     diag = Diagram().getbyextref(psrcid=diagguid,psrcname=SOURCE_EAXMI)
     if diag is None:
@@ -247,7 +247,7 @@ def do1diagobj(pdiagobjxml):
     eler.eler_width = entiwidth
     eler.eler_height = entiheight
     eler.eler_opacity = 100
-    col = transferModel.getentity(objguid, "color")
+    col = laterentities.getentry(objguid, "color")
     eler.eler_color = int2hex(col.backgcolor)
     eler.eler_marginwidth = None
     eler.eler_marginopacity = 100
@@ -381,7 +381,8 @@ def handleSuperentities():
     #for
     return
 
-def do1Entity(pentitiy):
+def do1Entity(pentitiy,laterentities):
+    global laterentities
     entiguid: str = handleXML.findColumn(pentitiy, 'ea_guid')
     enti = Entity(psrcname=Externalref.SOURCE_EAXMI, psrcid=entiguid)
     enti.enti_name = handleXML.findColumn(pentitiy, "Name")
@@ -401,8 +402,8 @@ def do1Entity(pentitiy):
                                 , fontsize=10
                                 , fontstyle=None
                                 )
-    transferModel.setentity(entiguid, entity= enti, superentitityguid=parentguid, color=color
-                            , subentities=[], categoryguid=None)
+    laterentities.setentry(entiguid, entity= enti, superentitityguid=parentguid, color=color
+                           , subentities=[], categoryguid=None)
     return
 
 

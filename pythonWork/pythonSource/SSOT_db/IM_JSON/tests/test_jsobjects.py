@@ -1,6 +1,6 @@
 import unittest
 
-from SSOT_db.IM_OBJECTS import BusinessRule, Actorrole, Actorconcern, Attribute, Boolean
+from SSOT_db.IM_OBJECTS import BusinessRule, Actorrole, Actorconcern, Attribute, Boolean, TablEntiMap
 from SSOT_db.SQL_INFRA import dbConnect
 import SSOT_infra.tests.integration as testsrc
 from SSOT_db.IM_JSON import jsbusinessrule, jsactorroles, JSModel, sql2json, jsentity, Mergeresult
@@ -8,8 +8,8 @@ from SSOT_db.IM_JSON import jsbusinessrule, jsactorroles, JSModel, sql2json, jse
 
 class test_jsobjects(unittest.TestCase):
     def setUp(self) -> None:
-        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
-        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testmodelcrm = testsrc.ModelHelper(testsrc.CRMTEST)
+        self.testmodel1 = testsrc.ModelHelper(testsrc.TESTMODEL1)
 
     def test_businessrules(self):
         try:
@@ -104,7 +104,7 @@ class test_jsobjects(unittest.TestCase):
                     ]
                 }
             ]
-            jsm = JSModel(model)
+            jsm = JSModel(model,pwithversioncheck=False)
             actc = jsentity.entities2sql(mr, jsm, True)
 
         return
@@ -121,6 +121,9 @@ class test_jsobjects(unittest.TestCase):
         self.assertEqual(3, len(expl))  # 3 examples
         self.assertTrue('de' in expl[0])  # key is languange
         self.assertEqual(3, len(expl[0]))  # 3 langs
+
+        #test entity mapping via column mapping
+        entimaps = TablEntiMap.select()
 
         dbConnect.openDB(pfilepath=self.testmodel1.dbfile)
         newjson = JSModel(pmodel=sql2json(pdbname=self.testmodel1.modelname))

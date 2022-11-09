@@ -27,7 +27,7 @@ def columns2js(pemptymodel):
         retval = {jsguid(Modelelemtype.COLU, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(17)]
                                                                                        + [0, 4, 'DRAFT', rwstr(),
                                                                                           reflist(plist=[
-                                                                                              Modelelemtype.ATTR + "0000"]),
+                                                                                              [Modelelemtype.ATTR + "0000",Modelelemtype.ENTI+"0000"]]),
                                                                                           buruinelements(None),
                                                                                           userdefprops(),
                                                                                           sourceref(),
@@ -51,8 +51,8 @@ def columns2js(pemptymodel):
             c.colu_uc, c.colu_dc, c.colu_um, c.colu_dm,
             c.getminzoomlevel(), c.getmaxzoomlevel(), c.getpublstatus(),
             rwstr(pread=c.colu_read, pwrite=c.colu_update),
-            reflist(plist=[jsguid(Modelelemtype.ATTR, a.attr_id) for a in
-                           ColAttrMap.getattrlist(pcoluid=c.colu_id)]),
+            reflist(plist=[[jsguid(Modelelemtype.ATTR, a[0]),jsguid(Modelelemtype.ENTI,a[1])]
+                           for a in ColAttrMap.getmappedattrlist(pcoluid=c.colu_id)]),
             buruinelements(c.colu_id),
             udpv2js(pmodeid=c.colu_id, pmodelemtype=Modelelemtype.COLU),
             Externalref.getsrcinfo(pmodeid=c.colu_id), jsentity.racilist(c.colu_id),
@@ -105,18 +105,22 @@ def columns2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
         inssourceref(presult=presult, pmodeid=newcoluid, psources=jelem["sourceref"])
         udpvs2sql(presult=presult, pmodeid=newcoluid, pudps=jelem["userdefprops"])
     # for
+    #defaut all entity-id's which are the attributes one to NULL
+    ColAttrMap.setdefaultentity()
     return
-
 
 def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs):
     inscnt = 0
     delcnt = ColAttrMap.delete(pwhere=("coam_colu_id = ?", pcoluid))
-    for idx, jattrid in enumerate(pattrs, start=1):
-        coam = ColAttrMap()
-        coam.coam_seq = idx
-        coam.coam_direction = ColAttrMap.INBOUND
-        coam.coam_colu_id = pcoluid
-        coam.coam_attr_id = presult.keytransl(jattrid)
+    for idx, jattr in enumerate(pattrs, start=1):
+        attrid = presult.keytransl(jattr[0])
+        entiid = None if jattr[1] is None else presult.keytransl(jattr[1])
+        coam = ColAttrMap(coam_seq = idx,
+                      coam_direction = ColAttrMap.INBOUND,
+                      coam_colu_id = pcoluid,
+                      coam_attr_id = attrid,
+                      coam_enti_id=entiid
+                      )
         try:
             coam.insert()
             inscnt += 1

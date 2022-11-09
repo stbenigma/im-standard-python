@@ -1,13 +1,13 @@
 import logging
 import subprocess
-import unittest
 from pathlib import Path
 import json
 
 import pytest
+import unittest
 
 from SSOT_infra.tests import integration as ti
-from SSOT_infra.tests.integration import Testmodel, RIDDLE
+from SSOT_db.IM_JSON import JSModel
 
 
 class TestInvoke(unittest.TestCase):
@@ -23,7 +23,7 @@ class TestInvoke(unittest.TestCase):
     def setUp(self) -> None:
         super().setUp()
         self.root = ti.resolve_project_root()
-        self.testmodel = ti.Testmodel(ti.RIDDLE)
+        self.testmodel = ti.ModelHelper(ti.RIDDLE)
 
     def test_version(self):
         generate = [
@@ -127,16 +127,16 @@ class TestInvoke(unittest.TestCase):
                         f"Expecting SSOD json in '{tm.jsonfile.resolve()}'")
         print(f"SSOD created in {tm.dbfile} / {jsonfile}")
         logging.debug(f"Generator output:\n{result}")
+        ssod:JSModel = JSModel.readfromfile(jsonfile)
+        #with open(jsonfile, "r") as src:
+        #    ssod = json.load(src)
 
-        with open(jsonfile, "r") as src:
-            ssod = json.load(src)
-
-        entity1 = next(iter(ssod['entities'].values()))
+        entity1 = next(iter(ssod.jsmodel['entities'].values()))
         entity1['shortname'] = 'test_shortname'
 
         destination_json = Path(self.temp_folder) / 'riddle-altered.json'
         with open(destination_json, 'w') as out:
-            json.dump(ssod, out)
+            json.dump(ssod.jsmodel, out)
 
         destination_db = Path(self.temp_folder) / 'riddle-altered.db'
         store = [

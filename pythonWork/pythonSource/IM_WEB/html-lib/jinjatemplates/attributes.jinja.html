@@ -1,12 +1,15 @@
 		<!--Attributes-->       
 		{% for attr in webmodel.attributes %}
-		{% set elemid = attr[0] %}
-		{% set elem = webmodel.getelem (elemid) %}
-		{% set entiid = elem["entity"] %}
-		{% set domaid = elem["domain"] %}
-		{% call blocks.mainblock(type = webmodel.gettransltext("Attribut"), id=elemid, name = webmodel.getlangstr(elem["name"])
+            {% set elemid = attr[0] %}
+            {% set elem = webmodel.getelem (elemid) %}
+            {% set entiid = elem["entity"] %}
+            {% set domaid = elem["domain"] %}
+            {% set entiname = webmodel.getlangstr(webmodel.getelem(entiid)["name"]) %}
+		    {% call blocks.mainblock(type = webmodel.gettransltext("Attribut"), id=elemid, name = webmodel.getlangstr(elem["name"])
 									, descr = webmodel.getlangstr(elem["descr"])
-									,parenttype=webmodel.gettransltext("Entität"),parentname=webmodel.getreflink(name=webmodel.getlangstr(webmodel.getelem(entiid)["name"]),destid=entiid)|safe
+									,parenttype=webmodel.gettransltext("Entität")
+									,parentname=webmodel.getreflink(name=entiname,destid=entiid)|safe
+									,subparents=webmodel.getsubentyrefs(elemid)|join(', ')|safe
 									, lbc=elemid ~ "main") %}
 
 					<h2>Information</h2>
@@ -125,7 +128,7 @@
 											{% for coluid in val %}
 											{% set colu = webmodel.getelem(coluid)%}
 											{% if loop.index > 1 %} {{ ', ' }} {% endif %}
-											{{ webmodel.getreflink(name= colu["name"],destid=coluid,destintfid = intfid)|safe
+											{{ webmodel.getreflink(name= colu["table-name+"]+"."+colu["name"],destid=coluid,destintfid = intfid)|safe
 											  + " ("+ colu["R/W"]+")" }}
 											{% endfor %}
 										</td>

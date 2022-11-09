@@ -1,7 +1,10 @@
 from datetime import datetime
 import logging
 
-DEFAULTDATETIMEFORMAT:str='%Y-%m-%d %H:%M:%S.%f'
+DEFAULTDATETIMEFORMAT: str = '%Y-%m-%d %H:%M:%S.%f'
+
+DEFAULTDATETIMEFORMAT_WITH_TIMEZONE: str = '%Y-%m-%d %H:%M:%S.%f %Z'
+
 
 def todatetime(val):
     if type(val) is str:
@@ -13,7 +16,14 @@ def todatetime(val):
             corrected = ('20' + val)[:26]
             logging.warning(f"Fixing time format {val} -> {corrected}")
             val = corrected
-        retval = datetime.strptime(val,DEFAULTDATETIMEFORMAT)
+        format = DEFAULTDATETIMEFORMAT
+        if val.endswith('UTC'):
+            format = DEFAULTDATETIMEFORMAT_WITH_TIMEZONE
+        try:
+            retval = datetime.strptime(val, format)
+        except ValueError as e:
+            raise ValueError(f"Cannot covert {val} with pattern {format}") from e
+
     else:
         retval = val
     return retval

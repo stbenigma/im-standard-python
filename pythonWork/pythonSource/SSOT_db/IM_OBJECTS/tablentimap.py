@@ -58,72 +58,77 @@ class TablEntiMap(Baseobject):
                                )
 
     @staticmethod
-    def tablelist(pentiid=None):
-        data = dbDML.select("""select  intf_name,group_concat(tabl_id,',') tabids
-                            from tabl_enti_maps
-                            join tables on tabl_id = tema_tabl_id
-                            join interfaces on intf_id = tabl_intf_id 
-                            where tema_enti_id = {}
-                            group by intf_name
-                            order by intf_name
-                            """.format(pentiid if pentiid is not None else 'tema_enti_id'))
-        retval = []
-        try:
-            for d in data:
-                intf_name = d[0]
-                tablist = {}
-                for tabid in d[1].split(','):
-                    tab = Table().getbyid(tabid)
-                    tablist[tab.tabl_name] = tab.webanker()
-                # for
-                retval.append([intf_name, tablist])
-            # for
-        except:
-            pass
-        # try
-        return retval
+    def gettablentimap(directonly,intfid=None):
+        return
 
-    # tablelist
 
-    @staticmethod
-    def extendedtabentimap():
-        data = dbDML.select("""select  tema_tabl_id,tema_enti_id,tabl_name,enti_name,intf_name
-                            from tabl_enti_maps
-                            join tables on tabl_id = tema_tabl_id
-                            join interfaces on intf_id = tabl_intf_id
-                            join entitaeten on enti_id = tema_enti_id 
-                            order by intf_name,tabl_name,enti_name
-                            """)
-        retval = defaultdict(dict)
-        for d in data:
-            retval[d[0]][d[1]] = [d[2], d[3], d[4]]
-        # for
-        return retval
+    # @staticmethod
+    # def tablelist(pentiid=None):
+    #     data = dbDML.select("""select  intf_name,group_concat(tabl_id,',') tabids
+    #                         from tabl_enti_maps
+    #                         join tables on tabl_id = tema_tabl_id
+    #                         join interfaces on intf_id = tabl_intf_id
+    #                         where tema_enti_id = {}
+    #                         group by intf_name
+    #                         order by intf_name
+    #                         """.format(pentiid if pentiid is not None else 'tema_enti_id'))
+    #     retval = []
+    #     try:
+    #         for d in data:
+    #             intf_name = d[0]
+    #             tablist = {}
+    #             for tabid in d[1].split(','):
+    #                 tab = Table().getbyid(tabid)
+    #                 tablist[tab.tabl_name] = tab.webanker()
+    #             # for
+    #             retval.append([intf_name, tablist])
+    #         # for
+    #     except:
+    #         pass
+    #     # try
+    #     return retval
 
-    # extendedtabentimap
 
-    @staticmethod
-    def tabentimap():
-        data = dbDML.select("""select  tema_tabl_id,tema_enti_id
-                        from tabl_enti_maps
-                        """)
-        retval = defaultdict(dict)
-        for d in data:
-            retval[d[0]][d[1]] = True
-        # for
-        return retval
 
-    # tabentimap
+    # @staticmethod
+    # def extendedtabentimap():
+    #     data = dbDML.select("""select  tema_tabl_id,tema_enti_id,tabl_name,enti_name,intf_name
+    #                         from tabl_enti_maps
+    #                         join tables on tabl_id = tema_tabl_id
+    #                         join interfaces on intf_id = tabl_intf_id
+    #                         join entitaeten on enti_id = tema_enti_id
+    #                         order by intf_name,tabl_name,enti_name
+    #                         """)
+    #     retval = defaultdict(dict)
+    #     for d in data:
+    #         retval[d[0]][d[1]] = [d[2], d[3], d[4]]
+    #     # for
+    #     return retval
+    #
+    #
 
-    @staticmethod
-    def tabrelamap():
-        data = dbDML.select("""select  tema_tabl_id,tema_rela_id
-                        from tabl_enti_maps
-                        """)
-        retval = defaultdict(dict)
-        for d in data:
-            retval[d[0]][d[1]] = True
-        # for
-        return retval
-    # tabrelamap
-# TablEntiMap
+    # @staticmethod
+    # def tabentimap():
+    #     data = dbDML.select("""select  tema_tabl_id,tema_enti_id
+    #                     from tabl_enti_maps
+    #                     """)
+    #     retval = defaultdict(dict)
+    #     for d in data:
+    #         retval[d[0]][d[1]] = True
+    #     # for
+    #     return retval
+    #
+
+
+    # @staticmethod
+    # def tabrelamap():
+    #     data = dbDML.select("""select  tema_tabl_id,tema_rela_id
+    #                     from tabl_enti_maps
+    #                     """)
+    #     retval = defaultdict(dict)
+    #     for d in data:
+    #         retval[d[0]][d[1]] = True
+    #     # for
+    #     return retval
+
+

@@ -13,6 +13,12 @@ class test_parameters(unittest.TestCase):
             f.close()
         return
 
+    def test_versions(self):
+        self.assertTrue(type(parameters.jsonversion().base_version) is str)
+        self.assertTrue(type(parameters.expecteddbversion()) is str)
+        self.assertTrue(type(parameters.toolversion()) is str)
+
+
 
     def test_initparam(self):
         with self.assertRaises(Exception):

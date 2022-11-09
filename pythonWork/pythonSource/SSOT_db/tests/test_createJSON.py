@@ -73,7 +73,7 @@ class MyTestCase(unittest.TestCase):
         return
 
     def setUp(self) -> None:
-        self.testmodelcrm = integration.Testmodel(integration.CRMTEST)
+        self.testmodelcrm = integration.ModelHelper(integration.CRMTEST)
         integration.initDB(self.testmodelcrm.modelname)
 
     def test_createJSON(self):

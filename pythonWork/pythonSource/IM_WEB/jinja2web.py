@@ -27,6 +27,19 @@ class Webmodel:
     def getmodelname(self):
         return self.jsmodel.jsmodel['model']['name']
 
+    def getsubentyids(self,attrid):
+        """get all subentity-ids from subentities inheriting this attribute"""
+        entiids = [entikey for entikey,entival in self.jsmodel.getelements("entities").items()
+                   if (attrid in entival["inheritedattributes+"])]
+        return entiids
+
+    def getsubentyrefs(self,attrid):
+        """get all subentity-referencestrings from subentities inheriting this attribute"""
+        entiids = self.getsubentyids(attrid)
+        entirefs = [self.getreflink(name=self.getlangstr(self.getelem(elemid)["name"]),destid=elemid)
+                    for elemid in entiids]
+        return entirefs
+
     def getelemintfid(self,elemid):
         elem = self.getelem(elemid)
         retval = None
@@ -89,7 +102,7 @@ class Webmodel:
             destfilename = self.htmlfilelist[0 if destintfid is None else destintfid]
             if destlang is not None:
                 """ language dependent file"""
-                destfilename = destfilename[:-7] + destlang + ".html"
+                destfilename = destfilename[:-7] + destlang + f".{self.export.webFileExtension()}"
             #fi
         #fi
 
@@ -132,25 +145,34 @@ class Webmodel:
         return allmappings
 
     def collectcolmappings(self,pelem):
-        attrs = {a: self.getelem(a) for a in pelem['attributesmapped']}
-        attrlist = {}
-        for anker, attr in attrs.items():
-            if attr['entity'] is None:
-                attrlist[anker] = "{}.{}".format(self.getelem(attr['relation'])['name']
-                                                       , attr['name'][self.curlanguage])
+        #[[attrkey,attr,subentikey],...]
+        attrs = [[attr[0]
+                  , self.getelem(attr[0])
+                  , attr[1]] for attr in pelem['attributesmapped']]
+        #append string to be displayed
+        for attr in attrs:
+            if attr[1]['entity'] is None:
+                attr.append("{}.{}".format(self.getelem(attr[1]['relation'])['name']
+                                         , attr[1]['name'][self.curlanguage])
+                            )
             else:
-                attrlist[anker] = "{}.{}".format(self.getelem(attr['entity'])['name'][self.curlanguage]
-                                                       , attr['name'][self.curlanguage])
+                enti = self.getelem(attr[2])
+                entistr = "" if enti is None else f" ({enti['name'][self.curlanguage]})"
+                attr.append("{}{}.{}".format(self.getelem(attr[1]['entity'])['name'][self.curlanguage]
+                                             ,entistr
+                                            , attr[1]['name'][self.curlanguage])
+                            )
             # fi
         # for
-        allmappings = {"Information Model": ', '.join (self.getreflink(name=name,destid=anker
-                                                                       ,curintfid=self.getintfid()) for anker,name  in attrlist.items())}
+        allmappings = {"Information Model": ', '.join (self.getreflink(name=attr[3],destid=attr[0]
+                                                                       ,curintfid=self.getintfid()
+                                                                       ) for attr  in attrs)}
 
         for intfanker, intfelem in self.jsmodel.getelements(pelemtype='systems').items():
             if intfanker == pelem['interface-id+']: continue
             collist = []
             for attr in pelem['attributesmapped']:
-                mapcolus = self.getelem(attr)['columnsmapped+']
+                mapcolus = self.getelem(attr[0])['columnsmapped+']
                 if intfanker in mapcolus:
                     collist += mapcolus[intfanker]
             if len(collist) == 0: continue

@@ -2,7 +2,7 @@ import os
 
 from pathlib import Path
 
-from SSOT_infra import Parameter
+from SSOT_infra import Parameter,nvl
 
 """  Collection of all parameters used for HTML generation
 """
@@ -18,6 +18,8 @@ class HTMLParameter(Parameter):
     JINJADEFAULTDIREC= 'jinjatemplates'
     CSDEFAULTDIREC= 'css'
     ICONEFAULTDIREC= 'icons'
+    HTML= 'html'
+    ASPX= 'aspx'
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -29,6 +31,7 @@ class HTMLParameter(Parameter):
         self._webDirec = kwargs.get("webDirec")
         self._webFileName = kwargs.get("webFileName")
         self._webFileNamePath =kwargs.get("webFileNamePath")
+        self._webFileExtension= nvl(kwargs.get("webFileExtension"),self.HTML)
         self._imageDirec = kwargs.get("imageDirec")
         self._cssDirec = kwargs.get("cssDirec")
         self._iconDirec = kwargs.get("iconDirec")
@@ -83,10 +86,18 @@ class HTMLParameter(Parameter):
             retval = None
         return retval
 
+    def webFileExtension(self,newval=None):
+        if newval is None:
+            retval = self._webFileExtension
+        else:
+            self._webFileExtension = newval
+            retval = None
+        return retval
+
     def cssDirec(self, newval=None):
         if newval is None:
             retval = self._cssDirec if self._cssDirec is not None else os.path.join(self.webDirec(),
-                                                                                        HTMLParameter.CSDEFAULTDIREC)
+                                                                             HTMLParameter.CSDEFAULTDIREC)
         else:
             self._cssDirec = Path(newval)
             retval = None

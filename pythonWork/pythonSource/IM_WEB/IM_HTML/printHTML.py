@@ -41,7 +41,7 @@ class HTMLExport(HTMLParameter):
     def filehref(self, pref, panz, plang, pself=False, pimg=None):
         img = nvl2(pimg, '', '<img class="icon-check" src="icons/{}">'.format(pimg))
         return """<a href="{}{}" target="_{}" >{}{}</a>""" \
-            .format(self.webFileName + '_' + plang.lower() + '.html', nvl2(pref, "", "#"), 'self' if pself else 'blank',
+            .format(self.webFileName + '_' + plang.lower() + f'.{self.webFileExtension()}', nvl2(pref, "", "#"), 'self' if pself else 'blank',
                     panz,
                     img)
 

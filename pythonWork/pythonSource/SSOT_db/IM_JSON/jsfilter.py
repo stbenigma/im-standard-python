@@ -15,11 +15,12 @@ class FILTEREDJSModel(JSModel):
                      Modelelemtype.DIAG, Modelelemtype.BURU
                      )
 
-    def __init__(self, pmodel: dict, ppublstatus: str = None, pimdiagrams: list = None):
+    def __init__(self, pmodel: dict, ppublstatus: str = None, pimdiagrams: list = None,
+                 pwithversioncheck=True):
         assert ppublstatus in (None, Modelelement.DRAFT, Modelelement.GTOP, Modelelement.PUBL)
         assert pimdiagrams is None or type(pimdiagrams) == list
         assert type(pmodel) == dict
-        super().__init__(pmodel=copy.deepcopy(pmodel))  # make copy as we might change an objects passed as parameter
+        super().__init__(pmodel=copy.deepcopy(pmodel),pwithversioncheck=pwithversioncheck)  # make copy as we might change an objects passed as parameter
         self._publstatus = ppublstatus
         self._imdiagram = pimdiagrams
         self._filteredidlist = set()
@@ -138,10 +139,10 @@ class FILTEREDJSModel(JSModel):
                                                               )
                             )
 
-        # remove columns of removed tables and not referenced by attributes
+        # remove columns of removed tables and not referenced by attributes and subentities
         self._removeelement(pelemtype=Modelelemtype.COLU,
                             pcondition=lambda elem, ref: not (elem["table-id"] in ref
-                                                              and set(elem["attributesmapped"]).intersection(ref)
+                                                              and {a[0] for a in elem["attributesmapped"]}.intersection(ref)
                                                               )
                             )
 
@@ -180,20 +181,26 @@ class FILTEREDJSModel(JSModel):
 
         return
 
-    """ filters all entries out of reference-lists (all entries with a + at the end of the key"""
 
     @staticmethod
     def _filterreferences(pelements, pfilteredidlist):
+        """ filters all entries out of reference-lists (all entries with a + at the end of the key"""
         for elemkey, elem in pelements.items():
             for key in elem.keys():
                 if ((key.endswith("+")
-                        or key in ("entitiesmapped", "relationsmapped","attributesmapped"))
+                        or key in ("entitiesmapped", "relationsmapped"))
                     and type(elem[key]) in (set, list)):
                     try:
                         elem[key] = list(set(elem[key]).intersection(pfilteredidlist))
                     except:
                         # one value in the val-list is of structured type (dict), ignore the error
                         pass
+                elif key == "attributesmapped":
+                    new = []
+                    for map in elem[key]:
+                        if map[0] in pfilteredidlist and (map[1] is None or map[1] in pfilteredidlist):
+                            new.append(map)
+                    elem[key] = new
         return
 
     def removeelements(self, pelements):

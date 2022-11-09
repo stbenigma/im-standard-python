@@ -1,9 +1,12 @@
 import unittest
 from pathlib import Path
 
+import pytest
+
 from IM_WEB.IM_HTML import HTMLExport
 from IM_WEB.jinja2web import formattext, model2html, Webmodel
 from SSOT_db.IM_JSON import JSModel
+import SSOT_infra.tests.integration as testbase
 
 
 class Jinja2WebTest(unittest.TestCase):
@@ -23,6 +26,16 @@ class Jinja2WebTest(unittest.TestCase):
 
         with self.assertRaises(Exception):
             model2html(wm)
+
+        crm = testbase.ModelHelper(testbase.CRMTEST)
+        export = HTMLExport(modelname=crm.modelname)
+        export.jinadirec = None
+        model = JSModel.readfromfile(crm.jsonfile)
+        testbase.crmmapentityhack(model)
+        wm = Webmodel(export = export,pcurlang='de',pjsmodel=model
+                      ,pintfid=None,phtmlfilelist=None)
+        subenties = wm.getsubentyids(attrid="ATTR190")
+        self.assertTrue(len(subenties)>0)
 
     def test_format_text_pass(self):
         r = formattext(None)

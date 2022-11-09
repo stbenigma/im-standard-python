@@ -19,7 +19,7 @@ def nocomments(pws):
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.tm2 = tb.Testmodel(tb.TESTMODEL2)
+        self.tm2 = tb.ModelHelper(tb.TESTMODEL2)
         self.tm2.initDB(palways=True)
 
         with open(self.tm2.jsonfile, 'r') as tm2file:
@@ -401,7 +401,6 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(changes, translateexcel("testexcel.xlsx", deeplid, pmainlanguage='de'))
 
         return
-
 
 if __name__ == '__main__':
     unittest.main()

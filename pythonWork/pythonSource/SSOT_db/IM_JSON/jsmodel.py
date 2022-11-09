@@ -1,6 +1,7 @@
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
+from SSOT_infra import parameters
 import copy
 import datetime
 
@@ -60,6 +61,9 @@ def sql2json(pdbname=None, pemptymodel=False):
 
     modelhash = make_hash(jsmodel)
 
+    jsonversion = parameters.jsonversion()
+    if jsonversion:
+        jsonversion = parameters.jsonversion().base_version
     if pemptymodel:
         dbname, dbversion = "None", ""
         git_revision = '<emptymodel>'
@@ -76,6 +80,7 @@ def sql2json(pdbname=None, pemptymodel=False):
     jsmodel['_imprint_'] = {"database": dbname,
                             "created": lastupd(),
                             "Modelversion": dbversion,
+                            "JSONversion": jsonversion,
                             "hashvalue": modelhash,
                             "git-revision": git_revision,
                             "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}

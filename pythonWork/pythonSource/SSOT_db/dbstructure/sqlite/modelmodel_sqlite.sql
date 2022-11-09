@@ -141,7 +141,9 @@ create table external_refs
 create table keys
 (
 	keys_id integer not null
-		primary key autoincrement,
+		primary key autoincrement
+		references modelelement (mode_id)
+			on delete cascade,
 	keys_name varchar(60) not null,
 	keys_enti_id integer not null
 		references entities (enti_id)
@@ -907,6 +909,10 @@ create table colu_attr_map
 		constraint coam_attr_fk
 			references ATTRIBUTES (attr_id)
 				on delete cascade,
+	coam_enti_id integer
+		constraint coam_enti_fk
+			references entities (enti_id)
+				on delete cascade, 
 	constraint coam_un
 		unique (coam_direction, coam_colu_id, coam_attr_id, coam_seq),
 	check (coam_direction in ('INBOUND', 'OUTBOUND')),
@@ -1058,6 +1064,6 @@ create view superenti as
 
 
 
-create view dbversion as select '1.9' as version, '2022-04-11 17:48' as installedtime;
+create view dbversion as select '2.0' as version, '2022-07-18 10:00' as installedtime;
 	-- sql-server: create view  dbversion as select '1.0' as version, current_timestamp as installedtime
 	-- postgres: create view  dbversion as select '1.0' as version, current_timestamp as installedtime

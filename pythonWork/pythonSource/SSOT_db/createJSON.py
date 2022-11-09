@@ -18,7 +18,7 @@ def createJSON(pdbfilepath, pmodelname, pjsfilepath, pjsfilename):
 
 
 def createemptyJSON(pfilepath, pfilename):
-    jsmodel = JSModel(pmodel=sql2json(pdbname=None, pemptymodel=True))
+    jsmodel = JSModel(pmodel=sql2json(pdbname=None, pemptymodel=True),pwithversioncheck=False)
     jsmodel.printmodel(pfilepath=pfilepath, pfilename=pfilename)
     return
 

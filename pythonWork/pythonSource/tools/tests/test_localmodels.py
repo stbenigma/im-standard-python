@@ -7,7 +7,9 @@ import pytest
 from IM_WEB import listWebdoku
 from tools.LANGTRANSL import exportdata
 from LOAD_MODELS.LOAD_ODM import fillDB
+from LOAD_MODELS.LOAD_INFRA.handleXML import stable_file_list
 from SSOT_infra.tests.integration import testdata_root
+from tools.mapping import listmapping
 
 LOCALTESTMODELS: str = 'localtestmodels'
 ODMIM: str = 'IM'
@@ -32,13 +34,6 @@ class MyTestCase(unittest.TestCase):
 
     @pytest.mark.integration
     def test_localODMs(self):
-        def stable_file_list(folder: str) -> list:
-            assert os.path.isdir(folder), f"Path '{folder}' is not a valid folder"
-            result = list(os.listdir(folder))
-            for f in result:
-                if f.startswith('.'):
-                    result.remove(f)
-            return result
 
         localmodeldir = testdata_root() / LOCALTESTMODELS
 
@@ -49,7 +44,7 @@ class MyTestCase(unittest.TestCase):
                                   pdbfilepath=basedirec / DBDIREC / (modelfilepath.stem + '.db'),
                                   plogfilepath=basedirec / (modelfilepath.stem + '.log'))
             except Exception as e:
-                self.assertTrue(False, f"******* model {modelfilepath}\n" +
+                self.assertTrue(False, f"\n******* model {modelfilepath}\n" +
                                 f"could not be filled" \
                                 f"{e}")
             self.assertTrue(os.path.isfile(basedirec / DBDIREC / (modelfilepath.stem + '.json')))
@@ -70,22 +65,34 @@ class MyTestCase(unittest.TestCase):
                                 f"could not create translation excel" \
                                 f"{e}")
             self.assertTrue(os.path.isfile(basedirec / DBDIREC / (modelfilepath.stem + '.xlsx')))
+
+            try:
+                listmapping.createAllMapping(pjsonfile=basedirec / DBDIREC / (modelfilepath.stem + '.json'),
+                                             pdestination=basedirec / DBDIREC / (modelfilepath.stem + '_datamodels.xlsx'))
+            except Exception as e:
+                self.assertTrue(False, f"******* model {modelfilepath}\n" +
+                                f"could not create listmapping excel" \
+                                f"{e}")
+            self.assertTrue(os.path.isfile(basedirec / DBDIREC / (modelfilepath.stem + '_datamodels.xlsx')))
             return
 
         print('')
-        filelist = stable_file_list(localmodeldir)
+        filelist = stable_file_list(folder=localmodeldir,removehidden=True)
         for file in filelist:
             basedirec = localmodeldir / file
             imdir = basedirec / ODMIM
             if os.path.exists(imdir):
-                models = stable_file_list(imdir)
+                models = stable_file_list(folder=imdir,removehidden=True)
                 for model in models:
                     if model.endswith('.dmd'):
-                        # DEBUG if model != 'BASFMDM.dmd': continue
+                        # DEBUG if model != "IM_GEBERIT.dmd": continue
+                        # if model != 'EZV_Stammdaten.dmd': continue
+                        # if model != 'DC-IM.dmd': continue
                         shutil.rmtree(basedirec / DBDIREC, ignore_errors=True)
                         shutil.rmtree(basedirec / WEBDIRC, ignore_errors=True)
                         if os.path.exists(basedirec / (model[:-4]+ ".log")): os.remove(basedirec / (model[:-4]+ ".log"))
                         check1ODMmodel(modelfilepath=imdir / model, basedirec=basedirec)
+
         return
 
 

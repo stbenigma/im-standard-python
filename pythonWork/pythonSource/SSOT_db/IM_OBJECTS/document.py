@@ -12,11 +12,9 @@ class Document(Baseobject):
     _modelemtype = Modelelemtype.DOCU
     _columnlist = dict()
 
-    def __init__(self,psrcname=None,psrcid=None):
+    def __init__(self, **kwargs):
 
-        super().__init__(pscrid=psrcid
-                         ,psrcname=psrcname
-                         )
+        super().__init__(**kwargs)
 
     def getname(self,plang=None):
         return self.docu_name

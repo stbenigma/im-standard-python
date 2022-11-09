@@ -18,8 +18,9 @@ sqltrace = logging.getLogger('sqltrace')
 sqltrace.setLevel(SUCCESSFUL_SQL)  # trace level
 
 stamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-sql_trace_handler = logging.FileHandler(f'sqlite-{stamp}.log')
-sqltrace.addHandler(sql_trace_handler)
+logging.debug("sqlite- trace handler disabled")
+#sql_trace_handler = logging.FileHandler(f'sqlite-{stamp}.log')
+#sqltrace.addHandler(sql_trace_handler)
 
 
 def prettyprint(v):
@@ -211,8 +212,6 @@ class Baseobject:
                 try:
                     logmessages.writelog(str(e))
                     logmessages.writelog(self.tostring())
-                    if self._modelemtype is not None:
-                        Modelelement.delete(pwhere=("mode_id = ?", locid))
                 except:
                     print("Loggin-Error in Baseobject.insert():")
                     print(str(e))
@@ -220,8 +219,13 @@ class Baseobject:
                     print(self.totuple())
 
                 self.trace(FAILED_SQL, lsql, self.toarray(), e)
-
             # if
+            if self._modelemtype is not None:
+                """ could not insert record. Remove previously inserted modelelement
+                    as it has no counterpart and would be tangling 
+                """
+                Modelelement.delete(pwhere=("mode_id = ?", locid))
+
             if str(e).startswith("UNIQUE constraint failed"):
                 raise UniqueKeyException(msg) from e
             elif str(e).startswith("FOREIGN KEY constraint failed"):
@@ -341,7 +345,7 @@ class Baseobject:
                 if isinstance(exception, BaseException):
                     args = f"{os.linesep}{os.linesep.join(exception.args)}"
                 sql_statement = f"! {sql_statement}\n {exception.__class__}: {str(exception)}{args}"
-            sqltrace.log(level, sql_statement)
+            #sqltrace.log(level, sql_statement)
         except Exception as e:
             logger.error(f"Cannot log error {statement}", exc_info=e)
 

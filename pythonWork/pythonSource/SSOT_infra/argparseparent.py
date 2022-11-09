@@ -43,7 +43,7 @@ def checkmodelandparam(parguments):
         exit(1)
 
 def showversion():
-    print(f"Versions: Tool: {parameters.toolversion()}     DB: {parameters.expecteddbversion()}")
+    print(f"Versions: Tool: {parameters.toolversion()}     DB: {parameters.expecteddbversion()}         JSON: {parameters.jsonversion()}")
 
 def fillssotdefaults(pcurrentdir, parguments):
     """resolves the SSOT- and ODM-defaults for common arguments

@@ -224,8 +224,8 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
     dbConnect.push()
     try:
         createnewDB(pdbfilepath=None)
-        mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose, pcheckonly=True,
-                                    pkeepids=pkeepids)
+        mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,
+                                    pcheckonly=True, pkeepids=pkeepids)
         mergeresult.consistencyerrors = checkdatabase()
 
         logging.info(f"model {modelname}")

@@ -1,4 +1,3 @@
-import difflib
 import json
 import unittest
 from SSOT_db.IM_OBJECTS import Modelelement
@@ -146,7 +145,7 @@ class MyTestCase(unittest.TestCase):
 
     def setUp(self):
         from LOAD_MODELS.LOAD_ODM.tests.test_fillDB import create_testmodel
-        self.testmodel1 = testsrc.Testmodel(testsrc.TESTMODEL1)
+        self.testmodel1 = testsrc.ModelHelper(testsrc.TESTMODEL1)
         create_testmodel(self.testmodel1, new=True)
         self.model = JSModel.readfromfile(self.testmodel1.jsonfile)
         self.emptyfilter = FILTEREDJSModel(pmodel=self.model.jsmodel)
@@ -154,8 +153,8 @@ class MyTestCase(unittest.TestCase):
         self.gtopfilter = FILTEREDJSModel(ppublstatus=Modelelement.GTOP, pmodel=self.model.jsmodel)
         self.publfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.model.jsmodel)
 
-        self.testmodelcrm = testsrc.Testmodel(testsrc.CRMTEST)
-        self.crmmodel = JSModel.readfromfile(self.testmodelcrm.jsonfile.__str__().replace("crmTest.json", "stabilescrmTest.json"))
+        self.testmodelcrm = testsrc.ModelHelper(testsrc.CRMTEST)
+        return
 
     def test_publish_function(self):
         element = {"id": 0}
@@ -207,11 +206,11 @@ class MyTestCase(unittest.TestCase):
 
     def test_filtered_models(self):
         # my small example
-        minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="GTOP")
+        minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="GTOP",pwithversioncheck=False)
         minimodeltext = json.dumps(minimodel.jsmodel)
         self.assertRegex(minimodeltext, r'.*"realsubenti_lev2".*')
         self.assertRegex(minimodeltext, r'.*"Master Entity".*')
-        minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="PUBL")
+        minimodel = FILTEREDJSModel(pmodel=simpletestjson, ppublstatus="PUBL",pwithversioncheck=False)
         minimodeltext = json.dumps(minimodel.jsmodel)
         self.assertNotRegex(minimodeltext, r'.*"realsubenti_lev2".*')
         self.assertRegex(minimodeltext, r'.*"Master Entity".*')
@@ -245,6 +244,16 @@ class MyTestCase(unittest.TestCase):
 
         # crm does not have any publstatus set.
         try:
+            self.crmmodel = JSModel.readfromfile(self.testmodelcrm.jsonfile)
+
+            crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY"], pmodel=self.crmmodel.jsmodel)
+            cols = [(key,val) for key,val in crm2diagfilter.getelements("columns").items() if val["name"]=='col1tomany']
+            self.assertNotEqual(0,len(cols))
+            colu = cols[0][1]
+            attrs = crm2diagfilter.getelements("attributes")
+            for attr in colu["attributesmapped"]:
+                self.assertIn(attr[0],attrs.keys())
+
             self.crmpublfilter = FILTEREDJSModel(ppublstatus=Modelelement.PUBL, pmodel=self.crmmodel.jsmodel)
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["entities"]))
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["diagrams"]),
@@ -266,8 +275,8 @@ class MyTestCase(unittest.TestCase):
             textjson = json.dumps(self.crmdummyfilter.jsmodel)
             self.assertNotRegex(textjson, r'.*"ENTI114".*')
             self.assertEqual(10, len(self.crmdummyfilter.jsmodel["attributes"]))
-            self.assertEqual(18, len(self.crmdummyfilter.jsmodel["tables"]))
-            self.assertEqual(31, len(self.crmdummyfilter.jsmodel["columns"]))
+            self.assertEqual(19, len(self.crmdummyfilter.jsmodel["tables"]))
+            self.assertEqual(32, len(self.crmdummyfilter.jsmodel["columns"]))
             self.assertEqual(5, len(self.crmdummyfilter.jsmodel["systems"]))
         except Exception as e:
             # printJSON(self.crmdummyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="crmdummymodel")

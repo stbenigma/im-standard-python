@@ -80,7 +80,7 @@ class Metainfo():
 class Langexceldata:
     KEY = 'Key'
     def __init__(self):
-        self._headerwidthws = []
+        self._headerwidths = []
         self._header = dict()
         self._metainfo = None
 
@@ -95,23 +95,12 @@ class Langexceldata:
         self._header[len(plangs) + 2] = 'Description'
         self._header[len(plangs) + 3] = 'Comments'
 
+
     def setheaderwidth(self,pdimensions:list):
-        self._headerwidthws = pdimensions
+        self._headerwidths = pdimensions
 
     def getheaderwidth(self):
-        return self._headerwidthws
-
-    def getheader(self):
-        return self._header
-
-    def setheader(self, plangs):
-        self._header = dict()
-        self._header[1] = self.KEY
-        for idx, l in enumerate(plangs, start=2):
-            self._header[idx] = l
-        else:
-            self._header[len(plangs) + 2] = 'Description'
-            self._header[len(plangs) + 3] = 'Comments'
+        return self._headerwidths
 
     def getheaderlist(self):
         retval = [self._header[k] for k in sorted(self._header.keys())]
@@ -146,7 +135,7 @@ class Langexceldata:
             ENTI119-Name[-nnn]
         """
         key,attr,idx = None,None,None
-        if re.match("^[A-Z]{4}\d+\-[a-z]+\-?\d*$",pkey):
+        if re.match("^[A-Z]{4}\d+-[a-z]+-?\d*$",pkey):
             vals = pkey.split('-')
             key =vals[0]
             attr = vals[1]

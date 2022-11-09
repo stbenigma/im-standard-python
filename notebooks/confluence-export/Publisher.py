@@ -278,7 +278,7 @@ class Publisher:
         column = self.json_data['columns'][column_key]
         result = []
         for attribute_key in column['attributesmapped']:
-            attribute = self.json_data['attributes'][attribute_key]
+            attribute = self.json_data['attributes'][attribute_key[0]]
             columns_mapped = attribute['columnsmapped+']
             all_columns = map(lambda entry: columns_mapped[entry], columns_mapped)
             cols = reduce(lambda e, l: e + l, list(all_columns), [])

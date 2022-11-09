@@ -145,6 +145,7 @@ class IntegrationTestXMIExport(IntegrationTest):
                 models.remove(ssot)
             except Exception as e:
                 success = False
+                logging.error(f"Model {ssot} failed", exc_info=e)
                 errors.append({'ssot': ssot, 'error': e})
         self.assertTrue(success, f"{len(models)} failed. Errors: {errors}")
 

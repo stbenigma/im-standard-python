@@ -4,7 +4,7 @@ import re
 import xml.etree.ElementTree as et
 from datetime import datetime
 
-from LOAD_MODELS.LOAD_INFRA import handleXML
+from LOAD_MODELS.LOAD_INFRA import handleXML,LaterEntries
 from SSOT_db.IM_OBJECTS import  *
 from LOAD_MODELS.LOAD_ODM import transferModel
 from SSOT_infra import parameter, logmessages, int2hex
@@ -12,29 +12,11 @@ from SSOT_infra import parameter, logmessages, int2hex
 """List of Relations 
    {relationguid: {"rela":, "srcentiguid": ,"dstentiguid","....":}}
 """
-relations = dict()
+relations = LaterEntries()
 SOURCE_EAXML: str = 'EAXML'
 
 
-def getrelationkeys():
-    global relations
-    return relations.keys()
-
-
-def setrelation(pguid, **kwargs):
-    global relations
-    if pguid not in relations: relations[pguid] = {}
-    for key, val in kwargs.items():
-        relations[pguid][key] = val
-
-
-def getrelation(pguid, pvalue=None):
-    global relations
-    if pvalue is None:
-        return relations[pguid]
-    else:
-        return relations[pguid][pvalue]
-
+laterentities = LaterEntries
 
 def initDomains():
     daty_id = Datatype(pname="unknown"
@@ -44,7 +26,7 @@ def initDomains():
 
     Domain(srcname=Externalref.SOURCE_EAXML, srcid="DOMAunknown",
            doma_name = "unknown", daty_id = daty_id,
-        doma_type = Domain.TXT,doma_origin = Domain.DOMAIN)insert()
+        doma_type = Domain.TXT,doma_origin = Domain.DOMAIN).insert()
     return
 
 
@@ -160,7 +142,7 @@ def do1diaglink(pdiaglinkxml):
     relr.relr_linewidth = linewidth
     relr.relr_linecolor = "ffffff"  # transferModel.int2hex(getrelation(objguid,"linecolor"))
     relr.relr_lineopacity = 100
-    relr.relr_startedge = edge(getrelation(objguid, "Start_Edge"))
+    relr.relr_startedge = edge(relations.getentry(objguid, "Start_Edge"))
     relr.relr_startposition = None
     relr.relr_start_connector = rela.rela_maptype_to_from
     relr.relr_starttext_angle = None
@@ -169,7 +151,7 @@ def do1diaglink(pdiaglinkxml):
     relr.relr_starttext_y = 10
     relr.relr_starttext_width = 30
     relr.relr_starttext_height = 5
-    relr.relr_endedge = edge(getrelation(objguid, "End_Edge"))
+    relr.relr_endedge = edge(relations.getentry(objguid, "End_Edge"))
     relr.relr_endposition = None
     relr.relr_end_connector = rela.rela_maptype_from_to
     relr.relr_endtext_angle = None
@@ -257,7 +239,7 @@ def do1diagobj(pdiagobjxml):
     eler.eler_width = entiwidth
     eler.eler_height = entiheight
     eler.eler_opacity = 100
-    col = transferModel.getentity(objguid, "color")
+    col = laterentities.getentry(objguid, "color")
     eler.eler_color = int2hex(col.backgcolor)
     eler.eler_marginwidth = None
     eler.eler_marginopacity = 100
@@ -433,6 +415,7 @@ def handleSuperentities():
 #translate entity-ID's
 entityguidtransl = {}
 def do1Entity(pentitiy):
+    global laterentities
     entiguid: str = handleXML.findColumn(pentitiy, 'ea_guid')
     entiobjectID: str = handleXML.findColumn(pentitiy, 'Object_ID')
     enti = Entity(psrcname=Externalref.SOURCE_EAXML, psrcid=entiguid)
@@ -453,8 +436,8 @@ def do1Entity(pentitiy):
                                 , fontsize=10
                                 , fontstyle=None
                                 )
-    transferModel.setentity(entiguid, entity=enti, superentitityguid=parentguid, color=color
-                            , subentities=[], categoryguid=None)
+    laterentities.setentry(entiguid, entity=enti, superentitityguid=parentguid, color=color
+                           , subentities=[], categoryguid=None)
     return
 
 
@@ -513,10 +496,10 @@ def do1Arc(parc):
     arcs_dm = handleXML.findColumn(parc, 'ModifiedDate'))
 
     arcbase, arcrelas = [], []
-    for relaguid in getrelationkeys():
-        if (getrelation(relaguid, "srcentiguid") != arcguid and getrelation(relaguid, "dstentiguid") != arcguid):
+    for relaguid in relations.getkeys():
+        if (relations.getentry(relaguid, "srcentiguid") != arcguid and relations.getentry(relaguid, "dstentiguid") != arcguid):
             continue
-        if getrelation(relaguid, "isArc"):
+        if relations.getentry(relaguid, "isArc"):
             arcbase.append(relaguid)
         else:
             arcrelas.append(relaguid)
@@ -526,7 +509,7 @@ def do1Arc(parc):
         logmessages.writelog(f"Arc {arcguid} has not exactly one arc-relationship")
         return
     # fi
-    arcbase = getrelation(arcbase[0])
+    arcbase = relations.getentry(arcbase[0])
     srcentiguid, dstentiguid = arcbase["srcentiguid"], arcbase["dstentiguid"]
     arcentiguid = srcentiguid if dstentiguid == arcguid else dstentiguid
     arcenti = Entity().getbyextref(psrcid=arcentiguid,psrcname=SOURCE_EAXML)
@@ -538,14 +521,14 @@ def do1Arc(parc):
     arcID = arc.insert()
 
     for relaguid in arcrelas:
-        srcentiguid, dstentiguid = getrelation(relaguid, "srcentiguid"), getrelation(relaguid, "dstentiguid")
+        srcentiguid, dstentiguid = relations.getentry(relaguid, "srcentiguid"), relations.getentry(relaguid, "dstentiguid")
         otherentiguid = srcentiguid if dstentiguid == arcguid else dstentiguid
         otherenti = Entity().getbyextref(psrcid=otherentiguid,psrcname=SOURCE_EAXML)
         if otherenti is None:
             logmessages.writelog(f"Arc {arcguid} not connected to known entity {otherentiguid}")
             continue
 
-        rela = getrelation(relaguid, "rela")
+        rela = relations.getentry(relaguid, "rela")
         rela.rela_arc_id_from = arcID if srcentiguid == arcguid else None
         rela.rela_arc_id_to = arcID if dstentiguid == arcguid else None
         rela.rela_enti_id_from = arcenti.enti_id if srcentiguid == arcguid else otherenti.enti_id
@@ -611,7 +594,7 @@ def do1Relation(prelaxml):
         rela.rela_enti_id_to = dstenti.enti_id
         rela.insert()
     # fi
-    setrelation(relaguid, rela=rela
+    relations.setentry(relaguid, rela=rela
                 , srcentiguid=srcentiguid, dstentiguid=dstentiguid
                 , linecolor=0
                 , Start_Edge=handleXML.findColumn(prelaxml, "Start_Edge")

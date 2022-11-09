@@ -11,7 +11,6 @@ from IM_WEB import listWebdoku
 from IM_WEB.IM_HTML import HTMLExport
 from IM_WEB.listWebdoku import safe_filename
 from SSOT_db.IM_JSON import JSModel
-from SSOT_infra import parameters
 import SSOT_infra.tests.integration as testsrc
 
 
@@ -22,16 +21,16 @@ class GenerateHTML(unittest.TestCase):
         self.temp_folder = Path(tmp_path)
 
     def setUp(self) -> None:
-        self.testmodel1=testsrc.Testmodel(testsrc.TESTMODEL1).initDB()
+        self.testmodel1=testsrc.ModelHelper(testsrc.TESTMODEL1).initDB()
         self.testmodel1.remove_web_infrastructure()
 
-        self.testmodel2=testsrc.Testmodel(testsrc.TESTMODEL2).initDB()
+        self.testmodel2=testsrc.ModelHelper(testsrc.TESTMODEL2).initDB()
         self.testmodel2.remove_web_infrastructure()
 
-        self.testmodelcrm=testsrc.Testmodel(testsrc.CRMTEST).initDB()
+        self.testmodelcrm=testsrc.ModelHelper(testsrc.CRMTEST).initDB()
         self.testmodelcrm.remove_web_infrastructure()
 
-        self.testmodelriddle=testsrc.Testmodel(testsrc.RIDDLE).initDB()
+        self.testmodelriddle=testsrc.ModelHelper(testsrc.RIDDLE).initDB()
         self.testmodelriddle.remove_web_infrastructure()
 
     def test_html_proper(self):
@@ -48,6 +47,16 @@ class GenerateHTML(unittest.TestCase):
 
         return
 
+    def test_listwebmain_crm(self):
+        html_export = HTMLExport(basedirec=str(self.testmodelcrm.modeldir),
+                                 modelname=self.testmodelcrm.modelname,
+                                 webDirec=self.testmodelcrm.webdir
+                                 )
+        js_model = JSModel.readfromfile(self.testmodelcrm.jsonfile)
+        html_export.setmodel(js_model)
+        listWebdoku.listwebmain(html_export)
+
+
     def test_listwebdoku(self):
         #os.chdir(self.testmodelcrm.modeldir)
         self.testmodelcrm.remove_web_infrastructure()
@@ -61,6 +70,13 @@ class GenerateHTML(unittest.TestCase):
                                    str(self.testmodelcrm.jsonfile)])
         listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
                                    "-d", str(self.testmodelcrm.webdir),
+                                   "--filetype","html",
+                                   '-s',
+                                   'PUBL',
+                                   str(self.testmodelcrm.jsonfile)])
+        listWebdoku.main(psysargs=[f'{testsrc.source_root()}/IM_WEB/listWebdoku.py',
+                                   "-d", str(self.testmodelcrm.webdir),
+                                   "-f",'aspx',
                                    '-s',
                                    'PUBL',
                                    str(self.testmodelcrm.jsonfile)])
@@ -68,7 +84,7 @@ class GenerateHTML(unittest.TestCase):
     def test_generate_html_riddle(self):
         self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
 
-    def generate_html(self, project, ssot_file):
+    def generate_html(self, project, ssot_file,filetype='html'):
         if not ssot_file.exists():
             logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
             return
@@ -76,11 +92,14 @@ class GenerateHTML(unittest.TestCase):
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
         js_model = JSModel(pmodel=model)
-        html_export = HTMLExport(basedirec=str(project),modelname=js_model.modelname(),webDirec=str(self.temp_folder))
+        html_export = HTMLExport(basedirec=str(project),modelname=js_model.modelname(),
+                                 webDirec=str(self.temp_folder),webFileExtension=filetype
+                                 )
         html_export.setmodel(js_model)
         if os.path.exists(self.temp_folder):
             shutil.rmtree(self.temp_folder)
         listWebdoku.listwebmain(html_export)
+        self.assertTrue(os.path.exists(html_export.webDirec()+'/'+js_model.modelname()+"."+filetype))
 
     def test_safe_filename(self):
         self.assertEqual('', safe_filename(''))
@@ -92,12 +111,18 @@ class GenerateHTML(unittest.TestCase):
             self.assertEqual(2, len(t))
             t.index('/')
 
+    def test_aspx(self):
+        self.generate_html(self.testmodel1.modeldir, self.testmodel1.jsonfile)
+        self.generate_html(self.testmodel1.modeldir, self.testmodel1.jsonfile,'html')
+        self.generate_html(self.testmodel1.modeldir, self.testmodel1.jsonfile,'aspx')
+        self.generate_html(self.testmodel1.modeldir, self.testmodel1.jsonfile,'xxx')
+
     @pytest.mark.integration
     def test_integration_generate_html_riddle(self):
         self.generate_html(self.testmodelriddle.modeldir, self.testmodelriddle.jsonfile)
 
     @pytest.mark.integration
     def test_integration_generate_html_PIM(self):
-        project = testsrc.resolve_project_root() / 'testdata' / 'fyyccim-refmodels' / 'PIM'
-        ssot_file = project / 'DB' / 'IM_PIM_FYAYC.json'
-        self.generate_html(project, ssot_file)
+        tm = testsrc.ModelHelper('PIM', testsrc.resolve_project_root() / 'testdata' / 'fyyccim-refmodels' / 'IM_PIM_FYAYC')
+        tm.remove_web_infrastructure()
+        self.generate_html(tm.modeldir, tm.jsonfile)

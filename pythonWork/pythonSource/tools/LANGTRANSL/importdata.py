@@ -232,7 +232,7 @@ def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
         # for
     # for
     wb.save(pexcelfile)
-    wb.save("/Users/stb/Downloads/testexcel.xlsx")
+    #wb.save("/Users/stb/Downloads/testexcel.xlsx")
     return changes
 
 
