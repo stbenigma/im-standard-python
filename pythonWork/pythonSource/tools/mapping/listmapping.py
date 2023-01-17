@@ -335,7 +335,7 @@ def writesheetattrcol(pwb: Workbook, pmodel, psysids, plang):
 
 def writesheetinterface(pwb, pintfid, pmodel, plang, pothersysids):
     intf = pmodel.getbyid(pintfid)
-    ws = pwb.create_sheet(intf["name"])
+    ws = pwb.create_sheet(intf["name"][:31]) #max length for tab names
 
     rowidx, colidx = 1, 1
     setcell(pws=ws, pcolumn=colidx, prow=rowidx, pvalue=intf['name'])

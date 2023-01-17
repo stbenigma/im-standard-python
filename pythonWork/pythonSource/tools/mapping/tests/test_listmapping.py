@@ -4,7 +4,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-
+import pytest
 from openpyxl import load_workbook
 
 from SSOT_db.IM_JSON import JSModel
@@ -70,6 +70,23 @@ class ListMapping(unittest.TestCase):
             self.assertTrue( wssf.cell(4, 12).value.endswith("Geografical Unit (Administrative Territory)"))
             # shutil.copy(mapfile,Path.home()/"Downloads")
             # print (f"DEBUG: copied xls to {Path.home()/'Downloads'}")
+
+        return
+
+    def test_excel_names(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            locmodel = JSModel.readfromfile(self.crm.jsonfile)
+
+            syst = locmodel.getelements("systems")
+            locmodel.getbyid(list(syst.keys())[1])["name"] += "123456789012345678901234567890" # make too long system name
+            mapfile = Path(tempdir + '/map.xlsx')
+
+            with pytest.warns(None) as warnrec:
+                listmapping.writeintfxls(pfilename=str(mapfile), pmodel=locmodel,
+                                         plang=locmodel.jsmodel["model"]["language"])
+                if len(warnrec.list)>0:
+                    print (warnrec.list[0])
+                    self.assertEqual(len(warnrec.list), 0)
 
         return
 
