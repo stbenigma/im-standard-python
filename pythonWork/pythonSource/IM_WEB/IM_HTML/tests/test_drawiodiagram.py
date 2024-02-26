@@ -6,11 +6,10 @@ from pathlib import Path
 import pytest
 from lxml.etree import Element, tostring
 
+from IM_WEB.IM_HTML import drawiodiagram
 from IM_WEB.IM_HTML.drawiodiagram import create_diagram
 from SSOT_db.IM_JSON import JSModel
-from IM_WEB.IM_HTML import drawiodiagram
-
-from SSOT_infra.tests.integration import IntegrationTest,RIDDLE,testmodels_dir
+from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir
 from SSOT_infra.tests.test_translateprompt import update_gettext_ressources
 
 
@@ -129,7 +128,7 @@ class TestDrawIoDiagramGeneration(unittest.TestCase):
         # noinspection PyTypedDict
         self.diagram['relationships']['RELA1111']['linesegments'] = self.segments
         drawiodiagram.add_relations(self.diagram, JSModel(self.test_model
-                                                          ,pwithversioncheck=False), self.translator, self.root)
+                                                          , pwithversioncheck=False), self.translator, self.root)
         print(tostring(self.root))
 
 
@@ -150,7 +149,7 @@ class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
         with open(ssot_file, 'r') as src:
             model = json.load(src)
         self.assertTrue(len(model['diagrams']) > 0)
-        js_model = JSModel(pmodel=model,pwithversioncheck=False)
+        js_model = JSModel(pmodel=model, pwithversioncheck=False)
         for diagram_key in model['diagrams'].keys():
             xml = create_diagram(diagram_key, js_model, MockTranslator())
             self.assertTrue(len(list(xml.iter())) > 0)
@@ -169,6 +168,6 @@ class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
         self.assertTrue(len(model['diagrams']) > 0)
 
         for diagram_key in model['diagrams'].keys():
-            js_model = JSModel(pmodel=model,pwithversioncheck=False)
+            js_model = JSModel(pmodel=model, pwithversioncheck=False)
             xml = create_diagram(diagram_key, js_model, MockTranslator())
             self.assertTrue(len(list(xml.iter())) > 0)

@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           # Using 3.9 as the default for github conda image -> faster
           python-version: 3.9
@@ -54,7 +54,7 @@ jobs:
           python generator.py --all --languages=en -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
 
       - name: Upload packed deployment to github
-        uses: xresloader/upload-to-github-release@v1.3.2
+        uses: xresloader/upload-to-github-release@v1.4.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

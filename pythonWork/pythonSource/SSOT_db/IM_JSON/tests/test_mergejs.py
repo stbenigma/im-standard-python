@@ -59,6 +59,7 @@ class TestMergeJson(unittest.TestCase):
         burujs['sourceref'][self.srcname][1] = str(datetime.datetime.now())
         self.crmmodel.jsmodel['businessrules']["BURU9999"] = burujs
 
+
         with self._caplog.at_level(logging.DEBUG):
             mergedbs.mergejson2sql(self.crmmodel, psrcname=self.srcname)
         assert dbConnect.isopenDB()
@@ -130,7 +131,7 @@ class TestMergeJson(unittest.TestCase):
             # locconn = sqlite3.connect("savedb.db")
             # dbConnect.getdbcon().backup(locconn)
             # locconn.close()
-            # pjson.printmodel(pfilepath=".", pfilename="savejson.json")
+            # pjson.printmodel(pfilepath=".", pfullfilename="savejson.json")
             return
 
         parameters.initparam(basedirec=self.testmodel2.modeldir, modelname=self.testmodel2.paramfile)
@@ -159,8 +160,6 @@ class TestMergeJson(unittest.TestCase):
         # first merge with itself
         createnewDB(pdbfilepath=None)
         result = mergedbs.mergejson2sql(firstjson, pverbose=True, psrcname="TEST")
-        # for c in result.changes:
-        #    print(c)
         enti2key = list(firstjson.jsmodel["entities"].keys())[1]
 
         self.assertEqual(0, result.updatecnt)
@@ -204,7 +203,7 @@ class TestMergeJson(unittest.TestCase):
         # apply changes to model
         new_column = {'name': 'test',
                       'table-id': table_ref_key,
-                      'interface_col_id': '12-34',
+                      'datamodel_col_id': '12-34',
                       'attributesmapped': [],
                       'mandatory': False,
                       'datatype': 'unknown',
@@ -249,7 +248,7 @@ class TestMergeJson(unittest.TestCase):
         previous_table_count = len(jsmodel['tables'])
         previous_column_count = len(jsmodel['columns'])
 
-        sys_ref_key = next(iter(jsmodel['systems'].keys()))
+        sys_ref_key = next(iter(jsmodel['datamodels'].keys()))
 
         default_domain = \
             next(filter(lambda d: next(iter(d[1]['name'].values())) == 'Unknown', jsmodel['domains'].items()))[0]
@@ -257,7 +256,7 @@ class TestMergeJson(unittest.TestCase):
         # apply changes to model
         new_table = {
             'name': 'main',
-            'interface-id': sys_ref_key,
+            'datamodel-id': sys_ref_key,
             'entitiesmapped': [],
             'relationsmapped': [],
             'columnsmapped': [],
@@ -271,7 +270,7 @@ class TestMergeJson(unittest.TestCase):
         column_name = 'unitttest-abc'
         new_column = {'name': column_name,
                       'table-id': new_table_key,
-                      'interface_col_id': '12-34',
+                      'datamodel_col_id': '12-34',
                       'attributesmapped': [],
                       'mandatory': False,
                       'datatype': 'unknown',

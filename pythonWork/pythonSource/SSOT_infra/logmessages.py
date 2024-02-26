@@ -6,7 +6,7 @@ logcount: int = 0
 logfile = None
 
 
-def nop_trap(str):
+def nop_trap(instr):
     pass
 
 logtrap = nop_trap

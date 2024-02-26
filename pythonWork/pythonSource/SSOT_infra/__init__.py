@@ -8,9 +8,14 @@ Version file of current release
 
 from .nvl import nvl, nvl2  # _publishable low level functions directly in Module
 from .translateprompt import transl, settransldomain, resettransldomain
-from .hex import hex2int,int2hex
+from .hex import hex2int,int2hex,colorhex
 from .mydatetime import DEFAULTDATETIMEFORMAT,todatetime
 from .parameters import Parameter,parameter
+from .myhtml import striphtml
+from .authentification import *
+from .callstructure import *
+from .mystrings import *
+
 
 
 def version() -> dict:

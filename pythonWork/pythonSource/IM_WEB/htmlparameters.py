@@ -1,25 +1,25 @@
 import os
-
 from pathlib import Path
 
-from SSOT_infra import Parameter,nvl
+from SSOT_infra import Parameter, nvl
 
 """  Collection of all parameters used for HTML generation
 """
 
 
 class HTMLParameter(Parameter):
-
     # definitions by foryouandyourcustomers for ODM-defaults and enhancements
 
     WEBDEFAULTDIREC = 'Web'
-    IMAGEDEFAULTDIREC= 'images'
-    JSSDEFAULTDIREC= 'js'
-    JINJADEFAULTDIREC= 'jinjatemplates'
-    CSDEFAULTDIREC= 'css'
-    ICONEFAULTDIREC= 'icons'
-    HTML= 'html'
-    ASPX= 'aspx'
+    DATAMODELDIREC="datamodels"
+    INFRADIREC="infra"
+    IMAGEDEFAULTDIREC = 'images'
+    JSSDEFAULTDIREC = 'js'
+    JINJADEFAULTDIREC = 'jinjatemplates'
+    CSDEFAULTDIREC = 'css'
+    ICONEFAULTDIREC = 'icons'
+    HTML = 'html'
+    ASPX = 'aspx'
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -28,130 +28,115 @@ class HTMLParameter(Parameter):
         self.libSourceDirec = os.path.join(this_direc, 'html-lib')
         assert os.path.exists(self.libSourceDirec), f"Unable to find {self.libSourceDirec}"
 
-        self._webDirec = kwargs.get("webDirec")
-        self._webFileName = kwargs.get("webFileName")
-        self._webFileNamePath =kwargs.get("webFileNamePath")
-        self._webFileExtension= nvl(kwargs.get("webFileExtension"),self.HTML)
-        self._imageDirec = kwargs.get("imageDirec")
-        self._cssDirec = kwargs.get("cssDirec")
-        self._iconDirec = kwargs.get("iconDirec")
-        self._jsDirec= kwargs.get("jsDirec")
-        self._jinjaDirec= kwargs.get("jinjaDirec")
+        self._webDirec = nvl(kwargs.get("webDirec")
+                             ,os.path.join(super().baseDirec(),self.WEBDEFAULTDIREC))
+        self._webFileName = nvl(kwargs.get("webFileName"),self.modelName())
+        self._webFilePath = kwargs.get("webFilePath")
+        self._webFileExtension = nvl(kwargs.get("webFileExtension"), self.HTML)
+        self._imageDirec = nvl(kwargs.get("imageDirec"),
+                               os.path.join(self.webDirec,self.INFRADIREC,self.IMAGEDEFAULTDIREC))
+        self._cssDirec = nvl(kwargs.get("cssDirec"),
+                             os.path.join(self.webDirec, self.INFRADIREC,self.CSDEFAULTDIREC))
+        self._iconDirec = nvl(kwargs.get("iconDirec"),
+                              os.path.join(self.webDirec, self.INFRADIREC,self.ICONEFAULTDIREC))
+        self._jsDirec = nvl(kwargs.get("jsDirec"),
+                            os.path.join(self.webDirec, self.INFRADIREC,self.JSSDEFAULTDIREC))
+        self._jinjaDirec = nvl(kwargs.get("jinjaDirec"),
+                               os.path.join(self.webDirec, self.INFRADIREC,self.JINJADEFAULTDIREC))
+        self._singlefile = nvl(kwargs.get("singlefile"),True)
         self.webFileName = self.modelName()
 
-        self._logofile = kwargs.get("logofile")
-
-
+        self.logofile = kwargs.get("logofile")
         return
 
-    def webDirec(self, newval=None):
-        """ set webDirec if newval is not None
-            return webDirec
-            return basedirec/webdefaultdirec if None
-            """
-        if newval is None:
-            retval = self._webDirec if self._webDirec is not None else os.path.join(self.baseDirec(),
-                                                                                    HTMLParameter.WEBDEFAULTDIREC)
-        else:
-            self._webDirec = Path(newval)
-            retval = None
-        return retval
+    @property
+    def webDirec(self):
+        return self._webDirec
 
-    def imageDirec(self, newval=None):
-        """ set imagedirec if newval is not None
-            return imagedirec
-            return webDirec/imagedefaultdirec if None
-            """
-        if newval is None:
-            retval = self._imageDirec if self._imageDirec is not None else os.path.join(self.webDirec(),
-                                                                                        HTMLParameter.IMAGEDEFAULTDIREC)
-        else:
-            self._imageDirec = Path(newval)
-            retval = None
-        return retval
+    @webDirec.setter
+    def webDirec(self, newval):
+        self._webDirec = Path(newval) if newval else None
 
-    def webFileName(self, newval=None):
-        if newval is None:
-            retval = self._webFileName
-        else:
-            self._webFileName = Path(newval)
-            retval = None
-        return retval
+    @property
+    def imageDirec(self):
+        return self._imageDirec
+    @imageDirec.setter
+    def imageDirec(self, newval):
+        self._imageDirec = Path(newval) if newval else None
 
-    def webFileNamePath(self, newval=None):
-        if newval is None:
-            retval = self._webFileNamePath
-        else:
-            self._webFileNamePath = Path(newval)
-            retval = None
-        return retval
+    @property
+    def webFileName(self):
+        return self._webFileName
+    @webFileName.setter
+    def webFileName(self, newval):
+        self._webFileName = newval
 
-    def webFileExtension(self,newval=None):
-        if newval is None:
-            retval = self._webFileExtension
-        else:
-            self._webFileExtension = newval
-            retval = None
-        return retval
+    @property
+    def webFilePath(self):
+        return self._webFilePath
+    @webFilePath.setter
+    def webFilePath(self, newval):
+        self._webFilePath = Path(newval)
 
-    def cssDirec(self, newval=None):
-        if newval is None:
-            retval = self._cssDirec if self._cssDirec is not None else os.path.join(self.webDirec(),
-                                                                             HTMLParameter.CSDEFAULTDIREC)
-        else:
-            self._cssDirec = Path(newval)
-            retval = None
-        return retval
+    @property
+    def webFileExtension(self):
+        return self._webFileExtension
 
-    def iconDirec(self, newval=None):
-        if newval is None:
-            retval = self._iconDirec if self._iconDirec is not None else os.path.join(self.imageDirec(),
-                                                                                        HTMLParameter.ICONEFAULTDIREC)
-        else:
-            self._iconDirec = Path(newval)
-            retval = None
-        return retval
+    @webFileExtension.setter
+    def webFileExtension(self, newval):
+        self._webFileExtension = newval
 
+    @property
+    def cssDirec(self):
+        return self._cssDirec
+    @cssDirec.setter
+    def cssDirec(self, newval):
+        self._cssDirec = Path(newval)
 
-    def jsDirec(self, newval=None):
-        if newval is None:
-            retval = self._jsDirec if self._jsDirec is not None else os.path.join(self.webDirec(),
-                                                                                        HTMLParameter.JSSDEFAULTDIREC)
-        else:
-            self._jsDirec = Path(newval)
-            retval = None
-        return retval
+    @property
+    def iconDirec(self):
+        return self._iconDirec
+    @iconDirec.setter
+    def iconDirec(self, newval):
+        self._iconDirec = Path(newval)
 
-    def jinjaDirec(self, newval=None):
-        if newval is None:
-            retval = self._jinjaDirec if self._jinjaDirec is not None else os.path.join(self.webDirec(),
-                                                                                        HTMLParameter.JINJADEFAULTDIREC)
-        else:
-            self._jinjaDirec = Path(newval)
-            retval = None
-        return retval
+    @property
+    def jsDirec(self):
+        return self._jsDirec
+    @jsDirec.setter
+    def jsDirec(self, newval):
+        self._jsDirec = Path(newval)
 
-    def logofile(self, newval=None):
+    @property
+    def jinjaDirec(self):
+        return self._jinjaDirec
+    @jinjaDirec.setter
+    def jinjaDirec(self, newval):
+        self._jinjaDirec = Path(newval)
 
-        """ set logofile if newval is not None
-            return logofile
-            return webDirec/imagedefaultdirec/logo. jpeg, jpg, png is exists
-            return webDirec/imagedefaultdirec/modelname. jpeg, jpg, png if exists
+    @property
+    def singlefile(self):
+        return self._singlefile
+    @singlefile.setter
+    def singlefile(self, newval):
+        self._singlefile = newval
+
+    @property
+    def logofile(self):
+        return self._logofile
+
+    @logofile.setter
+    def logofile(self, newval):
+        """ newval is None defaults to modelname
+            return webDirec/imagedefaultdirec/newval. jpeg, jpg, png if it exists
+            None otherwise
             """
         logofileextensions = ['jpeg', 'jpg', 'png', 'svg']
-        if newval is None:
-            if self._logofile is not None:
-                retval = self._logofile
-            else:
-                for filetype in logofileextensions:
-                    retval = os.path.join(self.imagedefaultdirec() / 'logo' / filetype)
-                    if not os.path.isfile(retval):
-                        retval = None
-                        break
-        else:
-            self._logofile = Path(newval)
-            retval = None
+        logoname = newval if newval else self.modelName()
+        retval = None
+        for filetype in logofileextensions:
+            logofile= os.path.join(self.IMAGEDEFAULTDIREC ,logoname , filetype)
+            if os.path.isfile(logofile):
+                retval = logofile
+                break
         return retval
-
-
-

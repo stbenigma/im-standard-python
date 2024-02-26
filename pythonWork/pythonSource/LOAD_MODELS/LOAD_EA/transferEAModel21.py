@@ -272,7 +272,7 @@ def transferobjtypes(proot, ptransferfunc, **restrictions):
     return
 
 
-def findorcreateDomain(pattrname, pfathername, pdomatype, pattr, pintfid=None
+def findorcreateDomain(pattrname, pfathername, pdomatype, pattr, pdatmid=None
                        , pdomguid=None, pstructdomguid=None, ptypeguid=None):
     return Domain().getunknown().doma_id
 

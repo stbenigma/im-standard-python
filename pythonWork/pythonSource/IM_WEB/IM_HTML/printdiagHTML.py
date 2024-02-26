@@ -1,16 +1,19 @@
-import math
-import os, re
-import logging
+import os
+import re
 import html
+import math
+import logging
 
+from SSOT_infra import nvl
 from SSOT_db.IM_OBJECTS import Modelelemtype
+from .svgodmgeneration import ICONSIZE,renderdiagram as renderodmdiagram
+from .svggeneration import renderdiagram as renderfyaycdiagram
 from .printHTML import HTMLExport
-from SSOT_infra import parameters, nvl
 
 LEGENDWIDTH: int = 363
 LEGENDHEIGHT: int = 128
 DEFAULT_LINEWIDTH: int = 1
-ICONSIZE: int = 40
+
 
 
 def printlegend(pdata, pwidth, pheigh, px, py):
@@ -72,8 +75,6 @@ def printlegend(pdata, pwidth, pheigh, px, py):
     return retval
 
 
-# printlegend
-
 def hex2rbg(phex):
     if phex is None:
         return "rgb(0,0,0)"
@@ -87,24 +88,29 @@ def hex2rbg(phex):
     return "rgb({},{},{})".format(r, g, b)
 
 
-# hex2rbg
-
-
-def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False, pdescr=None):
+def printtext(px, py, ptext, pfillcolor, pfontsize, pstandalone=False, pdescr=None,
+              ptextref='',pfontweight = "normal"):
     MAXATTRDESCR = 300
-    showtext = """<text x="{posx}" y="{posy}" fill="{color}" fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+    showtext = """<text  id="{textref}" x="{posx}" y="{posy}" fill="{color}" 
+                        fill-opacity="1.0" font-size="{fontsize}" stroke="none" pfontweight="{fontweight}" >
     {text}{title}
     </text>
     """
+
     retval = ""
     if pstandalone: retval += "<g >"
 
     description = html.escape(" " if pdescr is None else pdescr[:MAXATTRDESCR])
 
-    retval += showtext.format(posx=px, posy=py, color=pfillcolor, fontsize=pfontsize, text=ptext
-                              , title="" if pstandalone
-        else "<title>{}</title>".format(description))
-    if pstandalone: retval += "</g>\n"
+    retval += showtext.format(textref=ptextref,
+                              posx=px, posy=py,
+                              color=pfillcolor,
+                              fontsize=pfontsize,
+                              text=ptext, fontweight=pfontweight,
+                               title="" if pstandalone
+                            else "<title>{}</title>".format(description))
+    if pstandalone:
+        retval += "</g>\n"
     return retval
 
 
@@ -124,8 +130,6 @@ def calccrowfoot(pstartx, pstarty, pendx, pendy):
     xl, yl = round(fusslaenge * math.sin(winkel1), 2), round(fusslaenge * math.cos(winkel1), 2)
     return xoffset, yoffset, xl, yl
 
-
-# calccrowfoot
 
 def printrela(plist):
     relastart = """<g stroke-linecap="butt" >
@@ -210,7 +214,7 @@ def print1text(ptext, px, py, pwidth, pcolor, psize):
                 t = t + " " + words[idx]
                 idx += 1
             # while
-            retval += printtext(px=px, py=posy, ptext=t
+            retval += printtext(px=posx, py=posy, ptext=t
                                 , pfillcolor=hex2rbg(pcolor), pfontsize=psize
                                 , pstandalone=True)
             if idx < len(words): t = words[idx]
@@ -232,8 +236,6 @@ def printtexte(export: HTMLExport, plist, plang):
     # for
     return retval
 
-
-# printtexte
 
 def print1arc(parc, pcolor):
     startarcstr = """
@@ -352,15 +354,12 @@ def printarcs(export: HTMLExport, plist):
     return retval
 
 
-# printarcs
-
 
 def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
     entistart = """<g  fill="{color}" stroke="{margcolor}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
         transform="translate({posx},{posy})" >
-        <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect><a href="{hyperlink}" >
-        <text id="{textref}" x="20" y="13" fill="{fontcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
-            {name} </text>{title}</a>
+        <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect>
+        {href}
         </g>"""
     imagehtml = """"<image href = "{}" width = "{}px" height = "{}px" class ="entity-image" x="{}px" y="{}px"></image>""" \
         .format('{}', ICONSIZE, ICONSIZE, '{}', '{}')
@@ -388,26 +387,33 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
                 # fallback: element anchor
                 hyperlink = export.custom_hyperlink(entity)
                 if hyperlink is None:
-                    hyperlink = '#' + eler['element']
-                entity_svg = entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor'])
-                                              , fopacity=round(elerui['opacity'] / 100, 2),
-                                              sopacity=round(elerui['marginopacity'] / 100, 2)
-                                              , posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'],
-                                              height=elerui['height']
-                                              , hyperlink=html.escape(hyperlink)
-                                              , textref=pdiaganker + '-' + eler['element']
-                                              , fontcolor=hex2rbg(elerui['fontcolor'])
-                                              , fontsize=11  # vorläufig mal fix verdrahtet e[9], font size
-                                              , name=entity['name'][plang] + (
-                        '' if (eler['index'] == 0) else ':' + str(eler['index']))
-                                              ,
-                                              title="" if entidescr is None else f"<title>{html.escape(entidescr)}</title>")
+                    elemanker = f"#{eler['element']}"
+                    entitext=export.ataghref(phref=elemanker,
+                                            pdispl=entity['name'][plang] +
+                                                    ('' if (eler['index'] == 0) else ':' + str(eler['index'])))
+                    hyperlink= printtext(ptextref= pdiaganker+'-' + eler['element'],
+                                        px=10, py=15,
+                                        ptext=entitext,
+                                        pfillcolor=hex2rbg(elerui['fontcolor']),
+                                        pfontsize=11,
+                                        pfontweight = "bold",
+                                        pdescr=entidescr
+                                        )
+
+                entity_svg = entistart.format(color=hex2rbg(elerui['color']), margcolor=hex2rbg(elerui['margincolor']),
+                                              fopacity=round(elerui['opacity'] / 100, 2),
+                                              sopacity=round(elerui['marginopacity'] / 100, 2),
+                                              posx=eler['pos_x'], posy=eler['pos_y'], width=elerui['width'],
+                                              height=elerui['height'],
+                                              href=hyperlink,
+                                       title="" if entidescr is None else f"<title>{html.escape(entidescr)}</title>"
+                                              )
 
                 # whole entity box carries the hyperlink
-                retval += f"""<a href="{html.escape(hyperlink)}">{entity_svg}</a>\n"""
+                retval += f"""<a href="{elemanker}">{entity_svg}</a>\n"""
 
                 iconsrc = export.iconsrc(pjsenti=export.getelement(eler['element']),
-                                         pdefaultlang=export.getmodel().getdefaultlang())
+                                         pdefaultlang=export.model.getdefaultlang())
                 if iconsrc != "":
                     retval += imagehtml.format(iconsrc
                                                , eler['pos_x'] + elerui['width'] - ICONSIZE / 2,
@@ -422,7 +428,8 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
         y = attr['pos_y']
         aelem = export.getelement(attr['element'])
 
-        hyperlink = export.href(ref=attr['element'], anz=aelem['name'][plang])
+        hyperlink = export.ataghref(phref=f"#{attr['element']}",
+                                    pdispl=aelem['name'][plang])
         description = aelem['descr'][plang]
 
         if description.lower().startswith('http') and not hyperlink.lower().startswith('http'):
@@ -441,12 +448,10 @@ def printelements(export: HTMLExport, pdiag, pdiaganker, plang):
     return retval
 
 
-# printelements
-
 def putrefinsvg(export: HTMLExport, ptext, pdiagid, plang):
     MAXDESCR = 300
     retval = ptext
-    for entiid, entival in export.getmodel().getelements(pelemtype='ENTI').items():
+    for entiid, entival in export.model.getelements(pelemtype='ENTI').items():
         try:
             odmref = entival["sourceref"]["ODM"][0]
         except:
@@ -455,7 +460,7 @@ def putrefinsvg(export: HTMLExport, ptext, pdiagid, plang):
         entiodm = re.escape(odmref[-12:])
         entisearch = re.search(
             r'<g.*"translate\((\d+),(\d+)\)".*\n<rect.*width="(\d+)".*rx="(\d+)".*\n.*<text id="{diagodm}-{entiodm}"[\d\D]*?</g>'
-            .format(diagodm=diagodm, entiodm=entiodm), retval)
+                .format(diagodm=diagodm, entiodm=entiodm), retval)
         if entisearch is None:
             continue
         entistr = entisearch.group()
@@ -487,7 +492,7 @@ def putrefinsvg(export: HTMLExport, ptext, pdiagid, plang):
                              , r'\1{}'.format("<title>{}</title>".format(attrdescr)),
                              newenti)
         # add image if exists
-        filename = export.iconsrc(pjsenti=entival, pdefaultlang=export.getmodel().getdefaultlang())
+        filename = export.iconsrc(pjsenti=entival, pdefaultlang=export.model.getdefaultlang())
         if filename != "":
             newenti += '\n<image href="{}" width="40px" height="40px" class ="entity-image" x="{}px" y="{}px"></image>' \
                 .format(filename, xstart + xwidth - (ICONSIZE / 2), ystart - (ICONSIZE / 2))
@@ -498,36 +503,36 @@ def putrefinsvg(export: HTMLExport, ptext, pdiagid, plang):
     return retval
 
 
-def checkforfile(export,pname, ptype, plang=None):
+def checkforfile(export, pname, ptype, plang=None):
     retval = None
     if plang is not None:
-        filepath = os.path.join(export.imageDirec(), pname + "_" + plang + "." + ptype)
+        filepath = os.path.join(export.imageDirec, pname + "_" + plang + "." + ptype)
         if os.path.exists(filepath):
             retval = filepath
     # fi
     if retval is None:
         """check for file without language_marker"""
-        filepath = os.path.join(export.imageDirec(), pname + "." + ptype)
+        filepath = os.path.join(export.imageDirec, pname + "." + ptype)
         if os.path.exists(filepath):
             retval = filepath
 
     return retval
 
 
-def svgfilename(export,pname, plang=None):
-    return checkforfile(export=export,pname=pname, plang=plang, ptype="svg")
+def svgfilename(export, pname, plang=None):
+    return checkforfile(export=export, pname=pname, plang=plang, ptype="svg")
 
 
-def pdffilename(export,pname, plang=None):
+def pdffilename(export, pname, plang=None):
     retval = None
-    if checkforfile(export=export,pname=pname, plang=plang, ptype="pdf") is not None:
+    if checkforfile(export=export, pname=pname, plang=plang, ptype="pdf") is not None:
         retval = "image/" + pname + "." + "pdf"
     return retval
 
 
-def getsvgfromfile(export,pname, plang=None):
+def getsvgfromfile(export, pname, plang=None):
     retval = None
-    svgfn = svgfilename(export=export,pname=pname, plang=plang)
+    svgfn = svgfilename(export=export, pname=pname, plang=plang)
     if svgfn is not None:
         """add links to svg and include it in html"""
         with (open(file=svgfn, mode="r")) as f:
@@ -536,28 +541,19 @@ def getsvgfromfile(export,pname, plang=None):
     return retval
 
 
-def getsvgtext(export: HTMLExport, plang, pdiaganker, pdiagelem, ptitel=None):
-    retval = getsvgfromfile(export=export,pname=pdiagelem["name"], plang=plang)
+def getsvgtext(export: HTMLExport, plang, pdiaganker, pdiagelem, pdiagtype="FYAYC",ptitle=None):
+    retval = getsvgfromfile(export=export, pname=pdiagelem["name"], plang=plang)
     if retval is not None:
         retval = putrefinsvg(export=export, ptext=retval, pdiagid=pdiaganker, plang=plang)
-    elif pdffilename(export=export,pname=pdiagelem["name"], plang=plang) is not None:
+    elif pdffilename(export=export, pname=pdiagelem["name"], plang=plang) is not None:
         retval = None
     else:
-        """render diagram"""
-        retval = f"""<svg id="{pdiaganker}-SVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                version="1.1"  width="{pdiagelem["width"]}" height="{pdiagelem["height"]}">
-                <defs id="dmw_defs" >
-                </defs>"""
-        if ('legend' in pdiagelem.keys() and pdiagelem['legend']['x'] is not None and pdiagelem['legend'][
-            'y'] is not None):
-            # es hat eine Legende
-            retval += printlegend(pdata=[pdiagelem['name'], nvl(pdiagelem['uc']), nvl(pdiagelem['dc']),
-                                         nvl(pdiagelem['dm'])
-                , nvl(pdiagelem['um']), ptitel, 'Logical']
-                                  , pwidth=LEGENDWIDTH, pheigh=LEGENDHEIGHT
-                                  , px=pdiagelem['legend']['x'], py=pdiagelem['legend']['y'])
-        # fi
-        retval += printelements(export=export, pdiag=pdiagelem, pdiaganker=pdiaganker, plang=plang)
-        retval += """</svg>"""
+        #retval = renderodmdiag(pdiaganker, pdiagelem, ptitle, export, plang)
+        if pdiagtype == "FYAYC":
+            retval = renderfyaycdiagram(model=export.model,diagid=pdiaganker,lang=plang)
+        else:
+            retval = renderodmdiagram(export=export,ptitle=ptitle,pdiagelem=pdiagelem,
+                                      pdiaganker=pdiaganker,plang=plang)
+
     # fi
     return retval

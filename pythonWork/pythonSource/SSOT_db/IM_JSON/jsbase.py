@@ -3,12 +3,22 @@ import logging
 from datetime import datetime
 from pathlib import Path
 from threading import local
+
 from packaging import version
 
 from SSOT_db.IM_OBJECTS import Modelelemtype, Boolean
-from SSOT_infra import nvl,parameters
+from SSOT_infra import nvl,parameters,callers_name
 
 context = local()
+
+
+def readjsonfile(pfilename):
+    try:
+        with open(pfilename, 'r') as handle:
+            retval = json.load(handle)
+    except ValueError as e:
+        raise ValueError(f"Invalid JSON in {pfilename}. {e}") from e
+    return retval
 
 
 def jsguid(mtype, guid):
@@ -21,7 +31,13 @@ def jsguid(mtype, guid):
 
 def jsguid2id(guid):
     """returns the id part of a jsguid by removing the 4 leading characters (type) from a jsguid"""
-    return None if guid is None else int(guid[4:])
+    if guid is None:
+        retval = None
+    elif guid[4:].isdigit():
+        retval = int(guid[4:])
+    else:
+        retval = None
+    return retval
 
 
 def jsguid2type(guid):
@@ -54,7 +70,7 @@ class JSModel:
         Modelelemtype.DOMA: 'domains',
         Modelelemtype.ORGU: 'orgunits',
         Modelelemtype.TABL: 'tables',
-        Modelelemtype.INTF: 'systems',
+        Modelelemtype.DATM: 'datamodels',
         Modelelemtype.COLU: 'columns',
         Modelelemtype.ARCS: 'arcs',
         Modelelemtype.DOCU: 'documents',
@@ -69,17 +85,21 @@ class JSModel:
         ELEMTYPE_PROJ: 'model'
     }
 
-    def __init__(self, pmodel=None,pwithversioncheck=True,**kwargs):
+    def __init__(self, pmodel=None, pwithversioncheck=True, **kwargs):
         if pmodel is None:
             self.jsmodel = {}
         else:
             self.jsmodel = pmodel
             if pwithversioncheck:
-                #check against version in tools-version file
+                # check against version in tools-version file
                 self.assertversion()
 
         self.languages = {}  # langid:iso2
-        self._jsfile=kwargs.get('jsonfile')
+        self._jsfile = kwargs.get('jsonfile')
+
+    @classmethod
+    def emptyjsonmodel(cls):
+        return {val: {} for val in JSModel._elemtype2label.values()}
 
     def getelements(self, pelemtype):
         """returns dict of top level Elements filtered by statusfilter"""
@@ -95,14 +115,10 @@ class JSModel:
         return self.jsmodel[elemtypekey]
 
     @staticmethod
-    def readfromfile(pfilename,pwithcheck=True):
-        try:
-            with open(pfilename, 'r') as handle:
-                model = json.load(handle)
-        except ValueError as e:
-            raise ValueError(f"Invalid JSON in {pfilename}. {e}") from e
+    def readfromfile(pfilename, pwithcheck=True):
+        model = readjsonfile(pfilename=pfilename)
 
-        return JSModel(pmodel=model,pwithversioncheck=pwithcheck,jsonfile=pfilename)
+        return JSModel(pmodel=model, pwithversioncheck=pwithcheck, jsonfile=pfilename)
 
     @staticmethod
     def elemtype2label(pelemtype):
@@ -119,11 +135,11 @@ class JSModel:
         except:
             return plabel
 
-    def getentitycolor(self, pentiid, pcolortype):
-        enti = self.getbyid(pentiid)
+    def getentitycolor(self, pentiid, pcolortype="color"):
+        enti = self.getbyid(pjsid=pentiid, ptype="entities")
         if enti is None:
             return None
-        catg = self.getbyid(enti["category"])
+        catg = self.getbyid(pjsid=enti["category"], ptype="categories")
         if catg is None or len(catg["ui"]) == 0:
             return None
         return catg["ui"][pcolortype]
@@ -135,8 +151,7 @@ class JSModel:
     def getdefaultlang(self):
         return self.jsmodel["model"]["language"]
 
-
-    def getlangtext(self,pelem,plang,pidx=None,preplacement=True):
+    def getlangtext(self, pelem, plang, pidx=None, preplacement=True):
         """ get the value of a translated field
             pelem language-text-element
                 {
@@ -153,8 +168,9 @@ class JSModel:
             the replacement language text (or "" if not wanted) is returned, as this is a replacement for an empty language
 
             """
-        assert ((type(pelem) is dict and (set(pelem.keys())==set(self.jsmodel["languages"].keys())))
-                or (type(pelem) is list and pidx is not None and  (set(pelem[pidx].keys())==set(self.jsmodel["languages"].keys())))
+        assert ((type(pelem) is dict and (set(pelem.keys()) == set(self.jsmodel["languages"].keys())))
+                or (type(pelem) is list and pidx is not None and (
+                        set(pelem[pidx].keys()) == set(self.jsmodel["languages"].keys())))
                 )
         if type(pelem) is list:
             elem = pelem[pidx]
@@ -162,16 +178,16 @@ class JSModel:
             elem = pelem
 
         lang = plang.lower()
-        deflang=self.getdefaultlang()
+        deflang = self.getdefaultlang()
 
         val = nvl(elem.get(lang))
         if lang == deflang:
-            return val #default language is not handled
+            return val  # default language is not handled
 
         if val == f"*{deflang}* {elem.get(deflang)}":
             val = ""
 
-        #if val is empty, choose the replacement language text if chosen
+        # if val is empty, choose the replacement language text if chosen
         if val == "" and preplacement:
             replang = self.jsmodel["languages"].get(lang)["replacementlang"]
             if replang is not None:
@@ -179,17 +195,38 @@ class JSModel:
 
         return val
 
+    def getelemdescr(self, pjsid, ptype=None, plang=None):
+        """returns a string describing an element found by id """
+        elem = self.getbyid(pjsid=pjsid, ptype=ptype)
+        if elem is None: return None
+        lang = plang if plang is not None else self.getdefaultlang()
+        if ptype == "relations":
+            """rela-type, from-entiname, from-to assoc, to-entiname"""
+            fromenti = self.getbyid(pjsid=elem["from-to"]["enti"], ptype="entities")
+            toenti = self.getbyid(pjsid=elem["to-from"]["enti"], ptype="entities")
+            return f"{elem['type']} {fromenti['name'][lang]} " + \
+                   f"- {elem['from-to']['assoc'][lang]} - {toenti['name'][lang]}"
 
-    def getbyid(self, pjsid):
-        """return the element identified by the jsid (<type><id>) from the current jsmodel"""
+        else:
+            return f"no description for element {ptype}:{pjsid}"
+
+
+    def getbyid(self, pjsid, ptype=None):
+        """return the element identified by the jsid (<type><id>) from the current mirojsmodel"""
+        # check for id's which are not of the internal type (e.g. from external tools)
+        if ptype is not None:
+            for k, v in self.jsmodel[ptype].items():
+                if k == pjsid:
+                    return v
         try:
             return self.jsmodel[JSModel.elemtype2label(jsguid2type(pjsid))][pjsid]
         except:
             return None
 
+
     def getbyfield(self, ptype, pvalue, pfield='name', plang=None):
         """return tupels of (ID,element) of all elements containing the field pfield
-            with a content of pvalue from the type of element current jsmodel
+            with a content of pvalue from the type of element current mirojsmodel
             returns empty list if nothing was found
         """
         retval = []
@@ -200,14 +237,29 @@ class JSModel:
         # raise Exception(f"{ptype} : {pfield} : {pvalue}({plang}) not found ")
         return retval
 
-    def getbysrcref(self,psrcname,psrcid)->(str,dict):
+
+    def elementui(self, diagid, elemtype, elemid):
+        try:
+            diag = self.jsmodel["diagrams"][diagid]
+            if elemtype == "relationships":
+                retval = diag[elemtype][elemid]
+            else:
+                uielement = [elem for elem in diag["elements"][elemtype] if elem["element"] == elemid]
+                retval = uielement[0]
+        except:
+            retval = None
+        return retval
+
+
+    def getbysrcref(self, psrcname, psrcid) -> (str, dict):
         """ return the id and the structure of the element, identified by
         the external sourceref-id for the source called psrcname
         return None,None if not found
         """
         for elemtype in self.jsmodel.values():
-            for key,elem in elemtype.items():
-                if type(elem) is not dict: continue
+            for key, elem in filter (lambda e : type(e[1]) is dict,
+                                     elemtype.items()):
+                #replaced by filter if type(elem) is not dict: continue
                 sourceref = elem.get("sourceref")
                 if sourceref is None: continue
                 odmref = sourceref.get(psrcname)
@@ -215,20 +267,22 @@ class JSModel:
                     return key, elem
         return None, None
 
-    def isrecursive(self,pentiid):
+
+    def isrecursive(self, pentiid):
         """ True, if the entitiy has a direct recursive relation
         """
         retval = False
         if pentiid in self.getelements("entities").keys():
             enti = self.getbyid(pentiid)
-            if enti is not None :
+            if enti is not None:
                 for relaid in enti["relations+"]:
-                    #if one relation points to itself, set retval TRUE
+                    # if one relation points to itself, set retval TRUE
                     rela = self.getbyid(relaid)
                     retval = retval or (rela["from-to"]["enti"] == pentiid == rela["to-from"]["enti"])
         return retval
 
-    def issupertype(self,psupid,psubid):
+
+    def issupertype(self, psupid, psubid):
         """
         True, if psupid is a supertypeentitiy on any level of psubid
         False otherwise
@@ -237,31 +291,41 @@ class JSModel:
             return False
         retval = False
         subenti = self.getbyid(psubid)
+        if subenti is None:
+            # If the other entity is unavailable
+            return False
         for newsubid in subenti["supertypes+"]:
-            if (newsubid == psupid) or self.issupertype(psupid,newsubid):
+            if (newsubid == psupid) or self.issupertype(psupid, newsubid):
                 retval = True
                 break
 
         return retval
 
+
     @property
     def checked(self):
         return self._checked
 
+
     def setchecked(self, pvalue):
         self._checked = pvalue
+
 
     def modellanguage(self):
         return self.jsmodel["model"]["language"]
 
+
     def modelname(self):
         return self.jsmodel["model"]["name"]
+
 
     def printmodel(self, pfilepath, pfilename):
         return printJSON(pmodel=self.jsmodel, pfilepath=pfilepath, pfilename=pfilename)
 
+
     def write_json(self, destination: Path):
         return storeSPOD(self.jsmodel, destination)
+
 
     def _repr_json_(self):
         return {
@@ -269,42 +333,82 @@ class JSModel:
             'imprint': self.jsmodel['_imprint_'],
             'entities': len(self.jsmodel['entities']),
             'attributes': len(self.jsmodel['attributes']),
-            'systems': len(self.jsmodel['systems']),
+            'datamodels': len(self.jsmodel['datamodels']),
             'tables': len(self.jsmodel['tables']),
             'columns': len(self.jsmodel['columns']),
         }
 
 
-    def getjsversion(self)->version.Version:
-        if "_imprint_"  not in self.jsmodel:
-            jsversionstr ="0.0"
+    def getjsversion(self) -> version.Version:
+        if "_imprint_" not in self.jsmodel:
+            jsversionstr = "0.0"
         else:
             jsversionstr = self.jsmodel["_imprint_"].get("JSONversion")
             if jsversionstr is None:
-                jsversionstr= "0.0"
+                jsversionstr = "0.0"
 
         jsversion = version.parse(jsversionstr)
         return jsversion
 
-    def checkversion(self,pcheckversion:str=None)->Boolean:
+    def getdbfilepath(self) -> str:
+        if "_imprint_" not in self.jsmodel:
+            dbfilepath = None
+        else:
+            dbfilepath = self.jsmodel["_imprint_"].get("database")
+
+        return dbfilepath
+
+
+    def equalversions(self, pcheckversion: str = None) -> Boolean:
+        if pcheckversion is None:
+            checkv = parameters.jsonversion()
+        else:
+            checkv = version.parse(pcheckversion)
+        return checkv == self.getjsversion()
+
+
+    def compatibleversions(self, pcheckversion: str = None) -> Boolean:
         """
         json version are compatible  if major version is equal
         """
         if pcheckversion is None:
             checkv = parameters.jsonversion()
         else:
-            checkv=version.parse(pcheckversion)
+            checkv = version.parse(pcheckversion)
         return checkv.major == self.getjsversion().major
 
-    def assertversion(self,pcheckversion:str=None):
+
+    def assertversion(self, pcheckversion: str = None):
         """
             breaks if jsonversion is not suitable
         """
-        assert self.checkversion(pcheckversion),\
-        f"loaded json-Version {self.getjsversion().base_version} not covered by current json-version {parameters.jsonversion()}"
+        assert self.compatibleversions(pcheckversion), \
+            f"loaded json-Version {self.getjsversion().base_version} not covered by current json-version {parameters.jsonversion()}"
         return
 
-# JSModel
+
+    def upgradejson(self):
+        """
+            upgrades read json version step by step to json version given in parameters
+            if no ugradefunction exists, raises Exception
+        """
+
+        def upgr00_10():
+            print("upgrade 0.0 to 1.0")
+
+        JSONVERSIONS = {"0.0": lambda x: None,
+                        "1.0": upgr00_10}
+        destversion = parameters.jsonversion()
+        curversion = self.getjsversion()
+        while curversion < destversion:
+            if curversion.major < destversion.major and curversion.minor < 99:
+                curversion = version.Version(f"{curversion.major}.{curversion.minor + 1}")
+            else:
+                curversion = version.Version(f"{curversion.major + 1}.{0}")
+            if str(curversion) in JSONVERSIONS.keys():
+                JSONVERSIONS[str(curversion)]()
+
+        return
 
 
 def check_json_serialisable(structure: dict):
@@ -327,6 +431,7 @@ def check_json_serialisable(structure: dict):
             raise ValueError(f"Value {value} of type {type(value)} in {path} cannot be serialised")
 
     nest(structure, '')
+    return
 
 
 def printJSON(pmodel, pfilepath, pfilename, psorted=False):
@@ -352,20 +457,33 @@ def fillmodel(pmodel, pentries):
     return {pmodel[idx]: val for idx, val in enumerate(pentries)}
 
 
+def initjselement(model, refmodel):
+    for key in refmodel:
+        if not key.endswith("+"):
+            model[key] = None
+    return model
+
+
+def fillargs(model, refmodel: list, **kwargs):
+    for arg, val in kwargs.items():
+        if arg in refmodel:
+            model[arg] = val
+        elif arg + "+" in refmodel:
+            model[arg + "+"] = val
+        elif arg + "#" in refmodel:
+            model[arg + "#"] = val
+        else:
+            #print(f"in function {callers_name()}: unknown attribute for jsonobject {arg}\n'{instr(refmodel)}")
+            logging.warning(f"in function {callers_name()}: unknown attribute for jsonobject: {arg}\n'{str(refmodel)}")
+    return model
+
+
 def warn_missing_translation(din: dict, dout: dict) -> None:
     diff = set(dout.values()).difference(set(din.values()))
     if len(diff) > 0:
         languages = dict(filter(lambda i: i[1] is None, din.items()))
         logging.warning(f"Patching missing translation for {languages.keys()} in {context.ctx}")
     return
-
-
-def multilangtext(ptext: dict = {'en': ''}):
-    assert ptext is not None
-    result = {k: nvl(v) for k, v in ptext.items()}
-    ### Multilang-Texte werden im select behandelt.
-    # warn_missing_translation(ptext, result)
-    return result
 
 
 def reflist(plist: list = None):
@@ -380,7 +498,7 @@ def tabreflist(plist: dict = None):
     """ None = emptymodel"""
     """ """
     if plist is None:
-        return {'INTF000': ['TABL000']}
+        return {'DATM000': ['TABL000']}
     else:
         return plist
 
@@ -389,7 +507,7 @@ def colureflist(plist: dict = None):
     """ None = emptymodel"""
     """ """
     if plist is None:
-        return {'INTF000': ['COLU000']}
+        return {'DATM000': ['COLU000']}
     else:
         return plist
 
@@ -400,6 +518,7 @@ def sourceref(pvalues: dict = None):
         return {"ODM": ["", ""]}
     else:
         return pvalues
+
 
 
 def userdefprops(pprops: dict = None):

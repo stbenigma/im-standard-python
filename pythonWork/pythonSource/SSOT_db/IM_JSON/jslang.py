@@ -1,20 +1,58 @@
-from datetime import datetime
 
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import Languagetext, Language, Boolean
 from SSOT_db.SQL_INFRA import dbConnect
+from SSOT_infra import nvl,Parameter
 
 
 def replaceprefix(plang):
     return f"*{plang}* "
 
+def multilangstring(string,lang:str =None):
+    """if the string is already multilang, don't do it again"""
+    if type(string)==dict:
+        return string
+    else:
+        assert lang is not None, "Language for multianguage string must not be None"
+        return {lang:string}
+
+def multilangtext(ptext: dict = {Parameter.DEFAULTLANG: ''}):
+    assert type(ptext) == dict,"multilangtext must be of the form {'<lang>': '<text>',}"
+    #replace nulls by ""
+    result = {k: nvl(v) for k, v in ptext.items()}
+    ### Multilang-Texte werden im select behandelt.
+    # warn_missing_translation(ptext, result)
+    return result
+
+
+def jsonmultilang(entry):
+    if entry is None:
+        retval = multilangstring(string='',lang=Parameter.DEFAULTLANG)
+    elif type(entry) == str:
+        retval = multilangstring(string=entry, lang=Parameter.DEFAULTLANG)
+    elif type(entry) == dict:
+        # entry is already dictionary (multilang), replace None by ''
+        retval = multilangtext(entry)
+    else:
+        assert False, f"Illegal datatype '{type(entry)}' for entry '{entry}'"
+    return retval
+
+LANGUAGEMODEL = ['name', 'iso3', 'modellanguage', 'replacementlang']
+
+def jsonlanguage(isoname, iso3, modellanguage=False, replacementlang=None):
+    lang=dict()
+    initjselement(model=lang,refmodel=LANGUAGEMODEL)
+    lang["name"]=isoname
+    lang["iso3"]=iso3
+    lang["modellanguage"]=modellanguage
+    lang["replacementlang"]=replacementlang
+    return lang
 
 def langs2js(pemptymodel):
-    model = ['name', 'iso3', 'modellanguage', 'replacementlang']
     if pemptymodel:
-        langs = {'en': fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])}
+        langs = {'en': fillmodel(pmodel=LANGUAGEMODEL, pentries=['' for idx in range(len(LANGUAGEMODEL))])}
     else:
-        langs = {l.lang_iso_code2: fillmodel(pmodel=model,
+        langs = {l.lang_iso_code2: fillmodel(pmodel=LANGUAGEMODEL,
                                              pentries=[l.lang_iso_name, l.lang_iso_code3,
                                                        Boolean.str2bool(l.lang_is_base_lang),
                                                        None if l.lang_lang_id is None else Language().getbyid(
@@ -55,7 +93,7 @@ def insertlgtx(presult, pmodeid, pattr, ptexts):
     for lang in Language.select():
         iso2 = lang.lang_iso_code2
         if iso2 in ptexts.keys():
-            if (iso2 != baselang \
+            if (iso2 != baselang
                     and (ptexts[iso2] is None or ptexts[iso2] == ''
                          or ptexts[iso2].startswith(replaceprefix(baselang)))
             ):
@@ -116,7 +154,7 @@ def langs2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
                 if newlang.lang_lang_id != replacmentid:
                     newlang.lang_lang_id = replacmentid
                     newlang.updatedb()
-                    ###TODO handle replacement languages properly they have no ID, only a iso2code
+                    #TODO handle replacement languages properly they have no ID, only a iso2code
                     #presult.addupdcnt(1, f"replacement Language for {newlang.lang_iso_code2} changed")
         #fi
     # for

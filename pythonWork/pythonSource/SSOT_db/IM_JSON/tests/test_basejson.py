@@ -24,24 +24,31 @@ class TestBasejson(unittest.TestCase):
 
         impr["JSONversion"] = "1.3"
         self.assertEqual("1.3", str(js1.getjsversion()))
-        self.assertFalse(js1.checkversion("0.1"))
-        self.assertTrue(js1.checkversion("1.1"))
-        self.assertTrue(js1.checkversion("1.3"))
-        self.assertTrue(js1.checkversion("1.2.1"))
-        self.assertFalse(js1.checkversion("2.0"))
+        self.assertTrue(js1.equalversions("1.3"))
+        self.assertTrue(js1.equalversions("1.3.0"))
+        self.assertFalse(js1.equalversions("1.0"))
+        self.assertFalse(js1.equalversions("1.3.1"))
+        self.assertFalse(js1.compatibleversions("0.1"))
+        self.assertTrue(js1.compatibleversions("1.1"))
+        self.assertTrue(js1.compatibleversions("1.3"))
+        self.assertTrue(js1.compatibleversions("1.2.1"))
+        self.assertFalse(js1.compatibleversions("2.0"))
         with self.assertRaises(AssertionError) as r:
             js1.assertversion("2.0")
 
+
         jsversion = parameters.jsonversion()
         impr["JSONversion"] = str(jsversion)
-        self.assertTrue(js1.checkversion())
+        self.assertTrue(js1.compatibleversions())
         js1.assertversion()  # should not raise asserterror
         jsmodel = JSModel(js1.jsmodel, pwithversioncheck=True)  # should not raise exception
 
         impr["JSONversion"] = "0.0"
-        self.assertFalse(js1.checkversion())
+        self.assertFalse(js1.compatibleversions())
         with self.assertRaises(AssertionError) as r:
             js1.assertversion()
+        js1.upgradejson()
+
 
         model = copy.deepcopy(js1.jsmodel)
         model["_imprint_"]["JSONversion"] = "0.0"

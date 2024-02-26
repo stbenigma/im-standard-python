@@ -55,21 +55,21 @@ class OdmWriteBack(unittest.TestCase):
             testdir = Path(tempdir, 'tm2')
             shutil.copytree(self.tm2.modeldir, testdir)
 
-            written = wbm.writemappings(pIMdirec=testdir/"IM",pjson=self.tm2json,pintfs=['xxyy'])
+            written = wbm.writemappings(pIMdirec=testdir/"IM",pjson=self.tm2json,pdatms=['xxyy'])
             self.assertEqual(0,len(written))
 
-            written = wbm.writemappings(pIMdirec=testdir/"IM",pjson=self.tm2json,pintfs=[])
+            written = wbm.writemappings(pIMdirec=testdir/"IM",pjson=self.tm2json,pdatms=[])
             self.assertEqual(0,len(written))
 
-            written = wbm.writemappings(pIMdirec=testdir / "IM", pjson=self.tm2json, pintfs=None)
+            written = wbm.writemappings(pIMdirec=testdir / "IM", pjson=self.tm2json, pdatms=None)
             self.assertEqual(0, len(written))
 
         with tempfile.TemporaryDirectory() as tempdir:
             testdir = Path(tempdir, 'crm')
             shutil.copytree(self.crm.modeldir, testdir)
 
-            written = wbm.writemappings(pIMdirec=testdir / "IM", pjson=self.crmjson, pintfs=None)
-            self.assertEqual(len(self.crmjson.jsmodel["systems"]), len(written))
+            written = wbm.writemappings(pIMdirec=testdir / "IM", pjson=self.crmjson, pdatms=None)
+            self.assertEqual(len(self.crmjson.jsmodel["datamodels"]), len(written))
 
         return
 

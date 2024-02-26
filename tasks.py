@@ -87,7 +87,9 @@ def translate(c):
 
 @task(translate)
 def package(c):
-    print(f"Deploying generator")
+    """
+    Build deploy package (ZIP) using custom script in 'tools/deploy.py'
+    """
     sys.path.append(f"{SOURCE_FOLDER}")
     from tools import deploy
     argv = []
@@ -97,8 +99,9 @@ def package(c):
     except ValueError:
         pass
     with c.cd(PROJECT_ROOT):
-        print(f"Running in {pathlib.Path.cwd()}")
+        print(f"Running custom 'deploy' task in {pathlib.Path.cwd()} for {PROJECT_ROOT}")
         c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
+        print(f"Created package {c.package}")
 
 
 @task(pre=[package], aliases=['verify', 'check'])
@@ -226,7 +229,7 @@ def info(c, ssod=None, full=False, db=None):
     with closing(openDB(dbfile)) as connection:
         print(f"Entities: {count(connection, 'entities')}")
         print(f"Attributes: {count(connection, 'attributes')}")
-        print(f"Systems: {count(connection, 'interfaces')}")
+        print(f"datamodels: {count(connection, 'datamodels')}")
         print(f"Tables: {count(connection, 'tables')}")
         print(f"Columns: {count(connection, 'columns')}")
 
@@ -392,7 +395,7 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
 
         print(f"Entities: {count(database, 'entities')}")
         print(f"Attributes: {count(database, 'attributes')}")
-        print(f"Systems: {count(database, 'interfaces')}")
+        print(f"datamodels: {count(database, 'datamodels')}")
         print(f"Tables: {count(database, 'tables')}")
         print(f"Columns: {count(database, 'columns')}")
         print(f"Diagrams: {count(database, 'diagrams')}")

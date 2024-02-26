@@ -75,16 +75,17 @@ def defaultvalues2sql(presult: Mergeresult, pdomaid, pvalues):
     presult.adddelcnt(max(0, (delcnt - inscnt)), f"Defaultvalues for domain {pdomaid}")
     return
 
-
-def domelements(pelems: list = None):
-    def domelement(pentries: list = None):
-        model = ["name", "mandatory", "domain", "descr"
+DOMAINELEMENTMODEL=["name", "mandatory", "domain", "descr"
             , "uc", "dc", "um", "dm"
                  ]
+def domelements(pelems: list = None):
+    def domelement(pentries: list = None):
         if pentries is None:
-            return fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])
+            return fillmodel(pmodel=DOMAINELEMENTMODEL,
+                             pentries=['' for idx in range(len(DOMAINELEMENTMODEL))])
         else:
-            return fillmodel(pmodel=model, pentries=pentries)
+            return fillmodel(pmodel=DOMAINELEMENTMODEL,
+                             pentries=pentries)
         # fi
 
     #
@@ -94,16 +95,39 @@ def domelements(pelems: list = None):
     else:
         return pelems
 
+DOMAINVALUEMODEL=["value", "sort", "displ", "descr"
+            , "uc", "dc", "um", "dm",'mappedto','mappedfrom'
+                 ]
+def jsondomainvalue(value,sort,displ,uc, dc, **kwargs):
+    domainvalues = dict()
+    initjselement(domainvalues,DOMAINVALUEMODEL)
+    domainvalues["value"] = value
+    domainvalues["sort"] = sort
+    domainvalues["uc"] = uc
+    domainvalues["dc"] = dc
+    domainvalues["displ"] = displ
+    domainvalues["transformationsto"] = []
+    domainvalues["mappedfrom"] = []
 
+    fillargs(model=domainvalues,refmodel=DOMAINVALUEMODEL,**kwargs)
+    return domainvalues
+
+def jsondomainvaluemap(domainid,value):
+    return {"domain":domainid,
+                "value":value
+    }
 def domvalues(pvalues: list = None):
     def domvalue(pentries: list = None):
-        model = ["value", "sort", "displ", "descr"
-            , "uc", "dc", "um", "dm"
-                 ]
+         
         if pentries is None:
-            return fillmodel(pmodel=model, pentries=['' for idx in range(len(model))])
+            return fillmodel(pmodel=DOMAINVALUEMODEL,
+                             pentries=['' for idx in range(len(DOMAINVALUEMODEL)-1)]+
+                                        [jsondomainvaluemap(domainid=jsguid(Modelelemtype.DOMA,'0000')
+                                                            ,value='')
+                                         ])
         else:
-            return fillmodel(pmodel=model, pentries=pentries)
+            return fillmodel(pmodel=DOMAINVALUEMODEL,
+                             pentries=pentries)
         # fi
 
     #
@@ -112,15 +136,13 @@ def domvalues(pvalues: list = None):
         return [domvalue()]
     else:
         return [domvalue(pentries=[d.deva_value, d.deva_sort_order, d.deva_displ, d.deva_descr
-            , d.deva_uc, d.deva_dc, d.deva_um, d.deva_dm])
+            , d.deva_uc, d.deva_dc, d.deva_um, d.deva_dm]+[[],[]]) #TODO translations of Lov values
                 for d in pvalues
                 ]
 
-
-def domain2js(pdoma):
-    model = ['name', 'descr'
-        , 'origin', 'interface-id'
-        , 'interface+', 'basedatatype+'
+DOMAINMODEL=['name', 'descr'
+        , 'origin', 'datamodel-id'
+        , 'datamodel+', 'basedatatype+'
         , 'type', 'displdatatype+'
         , 'datatypestr+', 'datatypeid'
         , 'uc', 'um', 'dc', 'dm'
@@ -132,13 +154,75 @@ def domain2js(pdoma):
         , 'granularity', 'granularitytext+'
         , 'contenttype', 'contenttypename+'
         , 'format+', 'formatid'
-        , 'elements', 'values'
+        , 'elements',
+        'values', 'mappedto','mappedfrom'
         , 'usedinattrs+', 'usedincols+'
         , 'usedingrps+', 'sourceref'
         , 'referencedby'
              ]
+def jsondomain(name:dict,descr,domtype,domorigin,uc, dc,datamodelid=None, **kwargs):
+    domain = dict()
+    initjselement(domain,DOMAINMODEL)
+    domain["name"] = multilangtext(name)
+    domain["descr"] = descr
+    domain["origin"] = domorigin
+    domain["type"] = domtype
+    domain["datamodel-id"] = datamodelid
+    domain["uc"] = uc
+    domain["dc"] = dc
+    domain["referencedby"] = []
+    domain["userdefprops"] = dict()
+    domain["examples"] = []
+
+    fillargs(model=domain,refmodel=DOMAINMODEL,**kwargs)
+    reducedoma2type(domatype=domtype,domadict=domain)
+    return domain
+
+def reducedoma2type(domatype,domadict):
+    if domatype == Domain.NUM:
+        for rm in ["maxlng", "syntaxrule", "granularity", "granularitytext+", "contenttype", "contenttypename+"
+            , "format+", "formatid", "elements", "values", 'mappedto','mappedfrom'
+                   ]:
+            domadict.pop(rm,None)
+    elif domatype == Domain.TXT:
+        for rm in ["minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
+            , "granularity", "granularitytext+", "contenttype", "contenttypename+"
+            , "format+", "formatid", "elements", "values", 'mappedto','mappedfrom'
+                   ]:
+            domadict.pop(rm,None)
+    elif domatype == Domain.DAT:
+        for rm in ["maxlng", "syntaxrule"
+            , "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
+            , "contenttype", "contenttypename+"
+            , "elements", "values", 'mappedto','mappedfrom'
+                   ]:
+            domadict.pop(rm,None)
+    elif domatype == Domain.BIN:
+        for rm in ["maxlng", "syntaxrule"
+            , "minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
+            , "granularity", "granularitytext+"
+            , "elements", "values", 'mappedto','mappedfrom'
+                   ]:
+            domadict.pop(rm,None)
+    elif domatype == Domain.GRP:
+        for rm in ["maxlng", "syntaxrule"
+            , "minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
+            , "granularity", "granularitytext+", "contenttype", "contenttypename+"
+            , "format+", "formatid", "values", 'mappedto','mappedfrom'
+                   ]:
+            domadict.pop(rm,None)
+    elif domatype == Domain.LOV:
+        for rm in ["syntaxrule"
+            , "minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
+            , "granularity", "granularitytext+", "contenttype", "contenttypename+"
+            , "format+", "formatid", "elements"
+                   ]:
+            domadict.pop(rm,None)
+
+
+def domain2js(pdoma):
     if pdoma is None:
-        retval = fillmodel(pmodel=model
+        retval = fillmodel(pmodel=DOMAINMODEL
                            , pentries=[multilangtext(), multilangtext()
                 , '', '', '', ''
                 , '', multilangtext(), '', ''
@@ -148,17 +232,18 @@ def domain2js(pdoma):
                 , '', '', '', ''
                 , '', multilangtext(), '', ''
                 , '', ''
-                , domelements(), domvalues()
+                , domelements(),
+                domvalues(),[jsguid(Modelelemtype.DOMA,"0000")],[jsguid(Modelelemtype.DOMA,"0000")]
                 , reflist(), reflist()
                 , reflist(), sourceref()
                 , reflist()
                                        ]
                            )
     else:
-        retval = fillmodel(pmodel=model
+        retval = fillmodel(pmodel=DOMAINMODEL
                            , pentries=[multilangtext(pdoma.doma_name_l), multilangtext(pdoma.doma_descr_l)
-                , pdoma.doma_origin, jsguid(Modelelemtype.INTF, pdoma.doma_intf_id)
-                , None if pdoma.doma_intf_id is None else Interface().getbyid(pdoma.doma_intf_id).getname()
+                , pdoma.doma_origin, jsguid(Modelelemtype.DATM, pdoma.doma_datm_id)
+                , None if pdoma.doma_datm_id is None else Datamodel().getbyid(pdoma.doma_datm_id).getname()
                 , None if pdoma.doma_daty_id is None else Datatype().getbyid(pdoma.doma_daty_id).daty_name
                 , pdoma.doma_type
                 , multilangtext(
@@ -179,7 +264,7 @@ def domain2js(pdoma):
                 , jsguid(Modelelemtype.STFO, pdoma.doma_bin_stfo_id)
                 , domelements(domaingroupmembers(pdoma.doma_id))
                 , domvalues(DefaultValue.select(pwhere=("deva_doma_id = ?", pdoma.doma_id))
-                            )
+                            ),[],[] #TODO mappedfrom , transformationsto
                 , reflist([jsguid(Modelelemtype.ATTR, a.attr_id)
                            for a in Attribute.select(pwhere=("attr_doma_id = ?", pdoma.doma_id))])
                 , reflist([jsguid(Modelelemtype.COLU, c.colu_id) for c in
@@ -195,45 +280,7 @@ def domain2js(pdoma):
                                           OragnisationalUnit.getreforgulist(pid=pdoma.doma_id)]
                                        ]
                            )
-        if pdoma.doma_type == Domain.NUM:
-            for rm in ["maxlng", "syntaxrule", "granularity", "granularitytext+", "contenttype", "contenttypename+"
-                , "format+", "formatid", "elements", "values"
-                       ]:
-                del retval[rm]
-        elif pdoma.doma_type == Domain.TXT:
-            for rm in ["minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
-                , "granularity", "granularitytext+", "contenttype", "contenttypename+"
-                , "format+", "formatid", "elements", "values"
-                       ]:
-                del retval[rm]
-        elif pdoma.doma_type == Domain.DAT:
-            for rm in ["maxlng", "syntaxrule"
-                , "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
-                , "contenttype", "contenttypename+"
-                , "elements", "values"
-                       ]:
-                del retval[rm]
-        elif pdoma.doma_type == Domain.BIN:
-            for rm in ["maxlng", "syntaxrule"
-                , "minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
-                , "granularity", "granularitytext+"
-                , "elements", "values"
-                       ]:
-                del retval[rm]
-        elif pdoma.doma_type == Domain.GRP:
-            for rm in ["maxlng", "syntaxrule"
-                , "minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
-                , "granularity", "granularitytext+", "contenttype", "contenttypename+"
-                , "format+", "formatid", "values"
-                       ]:
-                del retval[rm]
-        elif pdoma.doma_type == Domain.LOV:
-            for rm in ["syntaxrule"
-                , "minvalue", "maxvalue", "totaldigits", "fractdigits", "roundvalue", "unit", "unitid"
-                , "granularity", "granularitytext+", "contenttype", "contenttypename+"
-                , "format+", "formatid", "elements"
-                       ]:
-                del retval[rm]
+        reducedoma2type(domatype=pdoma.doma_type,domadict=retval)
         # fi
     # fi
 
@@ -260,7 +307,7 @@ def js2doma(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
          doma_name = pelem['name'][pmodellang],
          doma_descr = pelem['descr'][pmodellang],
          doma_origin = pelem['origin'],
-         doma_intf_id = optionalvalue(pelem, 'interface-id'),
+         doma_datm_id = optionalvalue(pelem, 'datamodel-id'),
          doma_daty_id = optionalvalue(pelem, 'datatypeid'),
          doma_num_minvalue = None if pelem['type'] != Domain.NUM else optionalvalue(pelem, 'minvalue'),
          doma_num_maxvalue = None if pelem['type'] != Domain.NUM else optionalvalue(pelem, 'maxvalue'),
@@ -284,12 +331,15 @@ def domains2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.DOMA).items():
         dbdomaid = presult.keytransl(jid)
+        if dbdomaid == 0: continue
 
         if jelem['type'] == Domain.LOV:
             defaultvalues2sql(presult=presult, pdomaid=dbdomaid, pvalues=jelem["values"])
 
         elif jelem['type'] == Domain.GRP:
-            domaingroupmembers2sql(presult=presult, pgrpdomaid=presult.keytransl(jid)
+            grpdomaid=presult.keytransl(jid)
+            if grpdomaid == 0 : continue
+            domaingroupmembers2sql(presult=presult, pgrpdomaid=grpdomaid
                                    , pelements=jelem["elements"])
         # fi
         replacelgtx(presult=presult, pmodeid=dbdomaid, pattr=Languagetext.DOMA_NAME, ptexts=jelem['name'])

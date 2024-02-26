@@ -106,6 +106,7 @@ create table actor_concerns
 		     on delete cascade 
     );
 
+INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (18, 'ACTR', 'Actor Role', 'SYS', '2023-12-29');
 
 drop view dbversion;
 create view dbversion as select '1.9' as version, '2022-04-21 14:30' as installedtime;

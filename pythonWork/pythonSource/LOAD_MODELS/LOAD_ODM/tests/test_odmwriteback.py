@@ -104,7 +104,7 @@ class OdmWriteBack(unittest.TestCase):
         #     shutil.copytree(self.crm.modeldir, testdir)
         #     cnt = odmwriteback.writetranslations(pIMdirec=testdir / 'IM',
         #                                          pmodelname=self.crm.modelname,
-        #                                          pjson=self.crmjson)
+        #                                          pjsmodel=self.crmjson)
         #     print(cnt)
         return
 

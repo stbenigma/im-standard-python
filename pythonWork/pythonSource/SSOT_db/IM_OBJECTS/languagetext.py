@@ -245,9 +245,9 @@ class Languagetext(Baseobject):
                 lgtx_mode_id,lgtx_attrname
          from lang_texts
         ),
-    lgtx2 as (select lgtxori.lgtx_mode_id,lang.lang_iso_code2,
-                     lgtxori.lgtx_attrname,
-                     lang.lang_iso_code2 lang, lgtxori.lgtx_text original_text,
+    lgtx2 as (select lgtxori.lgtx_mode_id,
+                     lgtxori.lgtx_attrname,lgtxori.lgtx_text original_text,
+                     lang.lang_iso_code2 lang, 
                      langlang.lang_iso_code2 deflang,
         case when (lgtxori.lgtx_text is not NULL) and (lgtxori.lgtx_text != '')
             then lgtxori.lgtx_text

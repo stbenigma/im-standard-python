@@ -143,17 +143,17 @@ class ODMParameter(Parameter):
     def reldirec(self):
         return self.odmspecificpath('rel')
 
-    def intfdirec(self,pintfdirec):
-        return self.reldirec() / pintfdirec
+    def datmdirec(self,pdatmdirec):
+        return self.reldirec() / pdatmdirec
 
-    def tabledirec(self,pintfdirec):
-        return self.intfdirec(pintfdirec) / 'table'
+    def tabledirec(self,pdatmdirec):
+        return self.datmdirec(pdatmdirec) / 'table'
 
-    def relsubviewsdirec(self,pintfdirec):
-        return self.intfdirec(pintfdirec) / 'subviews'
+    def relsubviewsdirec(self,pdatmdirec):
+        return self.datmdirec(pdatmdirec) / 'subviews'
 
-    def fkdirec(self,pintfdirec):
-        return self.intfdirec(pintfdirec) / 'foreignkey'
+    def fkdirec(self,pdatmdirec):
+        return self.datmdirec(pdatmdirec) / 'foreignkey'
 
     """ special directories """
     def configpath(self,newval=None):

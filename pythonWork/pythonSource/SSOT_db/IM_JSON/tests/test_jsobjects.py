@@ -1,6 +1,6 @@
 import unittest
 
-from SSOT_db.IM_OBJECTS import BusinessRule, Actorrole, Actorconcern, Attribute, Boolean, TablEntiMap
+from SSOT_db.IM_OBJECTS import BusinessRule, Actorrole, Actorconcern, Attribute, Boolean,TablEntiMap,ColAttrMap
 from SSOT_db.SQL_INFRA import dbConnect
 import SSOT_infra.tests.integration as testsrc
 from SSOT_db.IM_JSON import jsbusinessrule, jsactorroles, JSModel, sql2json, jsentity, Mergeresult

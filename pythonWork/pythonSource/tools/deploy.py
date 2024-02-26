@@ -160,6 +160,8 @@ def main(basefolder: Path, argv: []):
         zip.write(stamp_file, stamp_file.relative_to(stamp_file.parent))
         zip.write(windows_runner, windows_runner.relative_to(basefolder))
         zipdir(tools, zip, basefolder)
+        # add resources
+        zipdir(basefolder / 'res', zip, basefolder, lambda all: True)
 
     log(f"Packed up archive {archive}")
     return archive

@@ -1,0 +1,319 @@
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>testmodel-2</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../infra/image/imicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../infra/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../infra/js/jscode.js"></script>
+    <script src="../infra/js/IM.js"></script>
+	<script src="../infra/js/svg-pan-zoom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="../infra/images/icons/favicon/favicon-16x16.png?v=2" sizes="16x16">
+	<link rel="icon" type="image/png" href="../infra/images/icons/favicon/favicon-32x32.png?v=2" sizes="32x32">
+	<link rel="icon" type="image/png" href="../infra/images/icons/favicon/favicon-96x96.png?v=2" sizes="96x96">
+	<link rel="shortcut icon" type="image/x-icon" href="../infra/images/icons/favicon/favicon.ico?v=2">
+</head>
+
+<body>
+	<div class="header" id="TopBar">
+		<p4>foryouandyourcustomers</p4>
+		<p4>testmodel-2</p4>
+		<p5>2023-10-17 18:25:45.291989</p5>
+		<img src="image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+	</div>
+	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+		<img class="icon-filter" alt="filter" src="../infra/images/icons/search.svg">
+	</button>
+	<div class="container" id="sidebar">
+		<div id="toc_list">
+			<div class="form-wrapper">
+				<form autocomplete="off">
+					<div class="form-group focused">
+						<label class="form-label" for="first">search key</label>
+						<input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')" />
+						<img id="searchclear" class="icon-times" src="../infra/images/icons/cross.svg" stype="display: none;">
+						<img class="icon-search" alt="minus" src="../infra/images/icons/search.svg" id="searcher">
+					</div>
+				</form>
+			</div>
+			<p6>Hits:</p6>
+			<output id="count"></output>
+			<div class="contentView">
+
+				<!--diagrams-->
+				
+				<div class="panel-body" id="DiagramL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardiag">
+							<label class="label0">Diagrammes</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardiag">
+						
+					<ol class="tree" id="DiagramList">
+						
+							<li class="obj"><a href="../fr/elements/diagrams/DIAG79.html" target="contentIframe">Main-View</a>
+						
+					</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--entites-->
+				<div class="panel-body" id="EntitesL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barenti">
+							<label class="label0">Entités</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barenti">
+						
+						<ol class="tree" id="EntitesList">
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI43.html" target="contentIframe">Entité de rôle</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI42.html" target="contentIframe">Entité de rôle 2</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI36.html" target="contentIframe">Entité enfant 2-1</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI37.html" target="contentIframe">Entité enfant 2-2</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI35.html" target="contentIframe">Entité enfant2</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI38.html" target="contentIframe">Entité enfant3</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI34.html" target="contentIframe">Entité enfantine1</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI39.html" target="contentIframe">Entité maîtresse2</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI33.html" target="contentIframe">Entité principale</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI41.html" target="contentIframe">Entité récursive</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI44.html" target="contentIframe">Entité supplémentaire</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI32.html" target="contentIframe">Entité unique</a>
+							
+							<li class="obj"><a href="../fr/elements/entities/ENTI40.html" target="contentIframe">Entités multiples du Royaume-Uni</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+				<!--attributes-->
+				<div class="panel-body" id="AttrsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barattr">
+							<label class="label0">Attributs</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barattr">
+						
+						<ol class="tree" id="AttrsList">
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR56.html" target="contentIframe">Attribut de structure 1 (Entité récursive)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR55.html" target="contentIframe">Attribut de structure2 (Entité récursive)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR57.html" target="contentIframe">Attribut normal, logique (Entité récursive)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR52.html" target="contentIframe">Attribut2 (Entités multiples du Royaume-Uni)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR53.html" target="contentIframe">Attribut4 (Entités multiples du Royaume-Uni)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR54.html" target="contentIframe">Comte (Entité enfant2)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR59.html" target="contentIframe">Nom (Entité principale)</a>
+							
+							
+							
+							<li class="obj"><a href="../fr/elements/attributes/ATTR58.html" target="contentIframe">première apparition (Entité enfantine1)</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+
+				<!--domains-->       
+				
+				<div class="panel-body" id="DomainsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardoma">
+							<label class="label0">Domaines des valeurs</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardoma">
+						
+						<ol class="tree" id="DomainList">
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA11.html" target="contentIframe">Boolean</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA13.html" target="contentIframe">Date</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA14.html" target="contentIframe">Description</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA26.html" target="contentIframe">email Address</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA15.html" target="contentIframe">Name</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA16.html" target="contentIframe">Number Granularity</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA17.html" target="contentIframe">Point in time [sec]</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA18.html" target="contentIframe">Quantity</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA19.html" target="contentIframe">SDO_GEOMETRY</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA20.html" target="contentIframe">Struct Type 1</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA21.html" target="contentIframe">StructType_2</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA22.html" target="contentIframe">Surrogate key</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA23.html" target="contentIframe">Time Granularity</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA24.html" target="contentIframe">Unknown</a>
+							
+							<li class="obj"><a href="../fr/elements/domains/DOMA25.html" target="contentIframe">XMLTYPE</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--business rules-->
+				
+
+				<!--Documents-->
+				
+				<div class="panel-body" id="DocusL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardocu">
+							<label class="label0">Documents</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardocu">
+						
+						<ol class="tree" id="DocusList">
+							
+							<li class="obj"><a href="../fr/elements/documents/DOCU9.html" target="contentIframe">Bild1 (2)</a>
+							
+							<li class="obj"><a href="../fr/elements/documents/DOCU8.html" target="contentIframe">ENTITY-ICONS (0)</a>
+							
+							<li class="obj"><a href="../fr/elements/documents/DOCU7.html" target="contentIframe">f_icon_377_object_handshake (2)</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--OrgUnits-->       
+				
+
+				<!--ActorRoles-->
+				
+
+
+				<!--datamodels-->
+				
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+    
+         <div class="wrapper">
+    		<div class="top-container">
+			
+			
+				
+				DE <a href="../de/index.html" target="_self"><img class="icon-check" src="../infra/images/icons/de.png"></a>
+			
+				
+				EN <a href="../en/index.html" target="_self"><img class="icon-check" src="../infra/images/icons/gb.png"></a>
+			
+            &nbsp<button onclick=location.reload()>Diagram(s)</button>
+		</div>
+		<hr>
+             <div style="margin:2rem;position:relative;height:800px">
+		        <iframe name="contentIframe" frameborder="0" loading="lazy" style="position:absolute;top:0;left:0;" height="100%"
+                        width="100%" src="../fr/elements/diagrams/DIAG79.html"></iframe>
+             </div>
+    	</div>
+    
+
+    <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeM0">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeM1">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

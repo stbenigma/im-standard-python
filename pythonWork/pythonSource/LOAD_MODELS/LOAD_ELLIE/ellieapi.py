@@ -163,7 +163,7 @@ def elliejson2json(pelliejson: str) -> str:
     # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.DOCU)] = documents2js(pemptymodel=True)
     # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.ORGU)] = orgUnits2js(pemptymodel=True)
     # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(IM_JSON.JSModel.ELEMTYPE_CATG)] = categories2js(pemptymodel=True)
-    # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel=True)
+    # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.DATM)] = datamodels2js(pemptymodel=True)
     # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.TABL)] = tables2js(pemptymodel=True)
     # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.COLU)] = columns2js(pemptymodel=True)
     # IM_JSON.JSModel[IM_JSON.JSModel.elemtype2label(Modelelemtype.DIAG)] = diagrams2js(pemptymodel=pemptymodel, pmodelname=IM_JSON.JSModel['pmodel']['name'])

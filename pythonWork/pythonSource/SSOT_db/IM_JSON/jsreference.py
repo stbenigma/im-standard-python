@@ -7,7 +7,7 @@ def inssourceref(presult: Mergeresult, pmodeid, psources):
     """   "sourceref": {
         "ODM": ["80D2A6F4-56D6-88E4-2E84-676699D4EBF2","2021-02-13 15:23:41.412333"]
     },"""
-    if psources is None: return inscnt
+    if psources is None: return
     for src, entry in psources.items():
         assert len(entry) > 1, f"Expecting two enties in psources {psources} {entry}"
         extr = Externalref(extr_mode_id=pmodeid, extr_source_name=src, extr_source_id=entry[0],
@@ -24,17 +24,34 @@ def inssourceref(presult: Mergeresult, pmodeid, psources):
     return
 
 
+UDPMODEL = ["theme", "group", "name",
+            "defvalue", "descr",
+            "uc", "dc", "um", "dm",
+            "usedfor"
+            ]
+
+
+def jsonudp(theme, group, name, uc, dc, **kwargs) -> dict:
+    udp = dict()
+    initjselement(udp, UDPMODEL)
+    udp["theme"] = theme
+    udp["group"] = group
+    udp["name"] = name
+    udp["uc"] = uc
+    udp["dc"] = dc
+    udp["usedfor"] = []
+
+    fillargs(model=udp, refmodel=UDPMODEL, **kwargs)
+    return udp
+
+
 def udps2js(pemptymodel):
-    model = ['theme', 'group'
-        , 'name', 'defvalue', 'descr'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'usedfor']
     if pemptymodel:
-        retval = {jsguid(Modelelemtype.UDPR, '0000'): fillmodel(pmodel=model,
-                                                                pentries=['' for i in range(len(model) - 1)] + [
+        retval = {jsguid(Modelelemtype.UDPR, '0000'): fillmodel(pmodel=UDPMODEL,
+                                                                pentries=['' for i in range(len(UDPMODEL) - 1)] + [
                                                                     reflist()])}
     else:
-        retval = {jsguid(Modelelemtype.UDPR, u.udpr_id): fillmodel(pmodel=model, pentries=
+        retval = {jsguid(Modelelemtype.UDPR, u.udpr_id): fillmodel(pmodel=UDPMODEL, pentries=
         [u.udpr_theme, u.udpr_group, u.udpr_name, u.udpr_defaultvalue, u.udpr_descr
             , u.udpr_uc, u.udpr_dc, u.udpr_um, u.udpr_dm
             , reflist(plist=[Modelelemtype.getshortname(metp.metp_melt_id)
@@ -63,12 +80,12 @@ def js2udpr(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 def udps2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     global fktranslate
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.UDPR, pjs2obj=js2udpr,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
 
     for jskey, jselem in pjson.getelements(pelemtype=Modelelemtype.UDPR).items():
         """mdelelemetype_properties are emptied and loaded from source"""
         newudprid = presult.keytransl(jskey)
-        if newudprid  == 0: continue  # element was not treated
+        if newudprid == 0: continue  # element was not treated
         inscnt = 0
         delcnt = ModelelementProperty.delete(pwhere=("metp_udpr_id = ?", newudprid))
         for elemtype in jselem["usedfor"]:
@@ -79,18 +96,37 @@ def udps2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
             except Exception as err:
                 presult.markdberror(perr=err, pelem=list(jselem))
         # for
-        presult.addinscnt(max(0, (inscnt - delcnt)),f"modelelement properties for property {jskey}")
-        presult.adddelcnt(max(0, (delcnt - inscnt)),f"modelelement properties for property {jskey}")
+        presult.addinscnt(max(0, (inscnt - delcnt)), f"modelelement properties for property {jskey}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)), f"modelelement properties for property {jskey}")
     # for
     return
 
 
+def jsonudptheme(theme, group, values):
+    if values is None or len(values) == 0:
+        return dict()
+    else:
+        return {theme: {group: {udpname: jsonudpentry(name=udpname,
+                                                      value=udpvalue)
+                                for udpname, udpvalue in values.items()
+                                }
+                        }
+                }
+
+
+def jsonudpentry(name, value):
+    return {"name": name, "value": value}
+
+
 def udpv2js(pmodeid, pmodelemtype):
     return {
-        th[0]: {gr[1]: {jsguid(mtype=Modelelemtype.UDPR, guid=u.udpr_id): {'name': u.udpr_name
-            , 'value': Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=pmodeid)}
-                        for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=pmodelemtype)}
-                for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=pmodelemtype)}
+        th[0]: {gr[1]: {jsguid(mtype=Modelelemtype.UDPR, guid=u.udpr_id):
+                            jsonudpentry(name=u.udpr_name,
+                                         value=Userdefpropvalue.udpvalue(pudprid=u.udpr_id, pmodeid=pmodeid))
+                        for u in Userdefprop.getudps(ptheme=th[0], pgroup=gr[1], pmeltname=pmodelemtype)
+                        }
+                for gr in Userdefprop.grouplist(pudptheme=th[0], pmelttype=pmodelemtype)
+                }
         for th in Userdefprop.themelist(pmelttype=pmodelemtype)
     }
 
@@ -109,10 +145,13 @@ def udpvs2sql(presult, pmodeid, pudps):
     delcnt = Userdefpropvalue.delete(pwhere=("udpv_mode_id = ?", pmodeid))
     for theme, jtheme in pudps.items():
         for group, jgroup in jtheme.items():
-            for jid, jelem in jgroup.items():
+            for jid, jelem in filter (lambda jg : jg[1]['value'] is not None ,
+                                      jgroup.items()):
                 # only non-null-udpr are copied to the database
-                if jelem['value'] is None: continue
-                udpr = Userdefprop().getbyid(presult.keytransl(jid))
+                #replaced by filter if jelem['value'] is None: continue
+                udprid=presult.keytransl(jid)
+                if udprid == 0 : continue
+                udpr = Userdefprop().getbyid(udprid)
                 if ((nvl(udpr.udpr_theme) != nvl(theme)) or (nvl(udpr.udpr_group) != nvl(group))
                         or (nvl(udpr.udpr_name) != nvl(jelem['name']))):
                     presult.markdberror(perr="User defined property has unknown theme or group"
@@ -127,8 +166,8 @@ def udpvs2sql(presult, pmodeid, pudps):
             # for
         # for
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)),f"User defined prop values  for Element {pmodeid}")
-    presult.adddelcnt(max(0, (delcnt - inscnt)),f"User defined prop values  for Element {pmodeid}")
+    presult.addinscnt(max(0, (inscnt - delcnt)), f"User defined prop values  for Element {pmodeid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)), f"User defined prop values  for Element {pmodeid}")
     return
 
 
@@ -149,7 +188,7 @@ def documents2js(pemtpymodel):
                           , None if d.docu_stfo_id is None else jsguid(Modelelemtype.STFO, d.docu_stfo_id)
                           , None if d.docu_docu_id is None else jsguid(Modelelemtype.DOCU, d.docu_docu_id)
                           , sourceref(pvalues=Externalref.getsrcinfo(pmodeid=d.docu_id))
-                          ,  references(pmode=d)
+                          , references(pmode=d)
 
                                                         ]
                                 )
@@ -159,19 +198,19 @@ def documents2js(pemtpymodel):
 
 def js2docu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     docu = Document(srcname=psrcname, srcid=psrcid,
-                    docu_id = pkey,
-                    docu_name = pelem['name'],
-                    docu_reference = pelem['reference'],
-                    docu_content = pelem['content'],
-                    docu_stfo_id = pelem['formatid'],
-                    docu_docu_id = pelem['parent']
+                    docu_id=pkey,
+                    docu_name=pelem['name'],
+                    docu_reference=pelem['reference'],
+                    docu_content=pelem['content'],
+                    docu_stfo_id=pelem['formatid'],
+                    docu_docu_id=pelem['parent']
                     )
     return docu
 
 
 def documents2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.DOCU, pjs2obj=js2docu,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
     # parents = [] #(docu_id, parent_id)
     # for jid,jelem in pmodel.getelements(pelemtype=Modelelemtype.DOCU).items():
     #     docu = js2docu(pkey=jid,pelem=jelem)
@@ -195,7 +234,7 @@ def insreferences(presult: Mergeresult, pmodeid, prefs):
     for refid in prefs:
         elemtype = jsguid2type(refid)
         if elemtype == Modelelemtype.ORGU:
-            obj = ModelelemOrgu(moou_mode_id=pmodeid,moou_orgu_id = presult.keytransl(refid))
+            obj = ModelelemOrgu(moou_mode_id=pmodeid, moou_orgu_id=presult.keytransl(refid))
         elif elemtype == Modelelemtype.DOCU:
             obj = ModelelemDocu(modo_mode_id=pmodeid, modo_docu_id=presult.keytransl(refid))
 
@@ -208,8 +247,8 @@ def insreferences(presult: Mergeresult, pmodeid, prefs):
             presult.markdberror(perr=err, pelem=[refid, pmodeid])
             continue
     # for
-    presult.addinscnt(max(0, (inscnt - delcnt)),f"References for ORGU or DOCU for Element {pmodeid}")
-    presult.adddelcnt(max(0, (delcnt - inscnt)),f"References for ORGU or DOCU for Element {pmodeid}")
+    presult.addinscnt(max(0, (inscnt - delcnt)), f"References for ORGU or DOCU for Element {pmodeid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)), f"References for ORGU or DOCU for Element {pmodeid}")
     return
 
 
@@ -220,7 +259,7 @@ def references(pmode=None):
         retval = [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ENTI)] \
                  + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.ATTR)] \
                  + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DOMA)] \
-                 + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.INTF)] \
+                 + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DATM)] \
                  + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.TABL)] \
                  + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.COLU)] \
                  + [jsguid(m.mode_type, m.mode_id) for m in pmode.getrefmodes(pmelttype=Modelelemtype.DIAG)]
@@ -276,10 +315,12 @@ def js2orgu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def orgunits2sql(presult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=Modelelemtype.ORGU, pjs2obj=js2orgu,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.ORGU).items():
-        inssourceref(presult=presult, pmodeid=presult.keytransl(jid), psources=jelem["sourceref"])
+        modeid=presult.keytransl(jid)
+        if modeid==0:continue
+        inssourceref(presult=presult, pmodeid=modeid, psources=jelem["sourceref"])
     # for
     return
 
@@ -289,7 +330,7 @@ def getuicomponents(pencaid):
     if len(elui) == 0:
         return {}
     else:
-        return UIELEMENT(width=elui[0].elui_width
+        return UIElement(width=elui[0].elui_width
                          , height=elui[0].elui_height
                          , opacity=elui[0].elui_opacity
                          , color=elui[0].elui_color
@@ -300,19 +341,30 @@ def getuicomponents(pencaid):
                          , fontcolor=elui[0].elui_fontcolor).js()
 
 
+CATEGORYMODEL = ['name'
+    , 'uc', 'dc', 'um', 'dm'
+    , 'ui']
+
+
+def jsoncategory(name, uc, dc, **kwargs):
+    catg = dict()
+    initjselement(model=catg, refmodel=CATEGORYMODEL)
+    catg["name"] = name
+    catg["uc"] = uc
+    catg["dc"] = dc
+    fillargs(model=catg, refmodel=CATEGORYMODEL, **kwargs)
+    return catg
+
+
 def categories2js(pemptymodel):
-    model = ['name'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'ui'
-             ]
     if pemptymodel:
-        retval = {jsguid(JSModel.ELEMTYPE_CATG, '0000'): fillmodel(pmodel=model
-                                                                   , pentries=['' for i in range(len(model) - 1)] + [
-                UIELEMENT().js()]
-                                                                   )}
+        retval = {jsguid(JSModel.ELEMTYPE_CATG, '0000'): fillmodel(pmodel=CATEGORYMODEL
+                                                                   , pentries=['' for i in
+                                                                               range(len(CATEGORYMODEL) - 1)] + [
+                                                                                  UIElement().js()])}
     else:
         retval = {jsguid(JSModel.ELEMTYPE_CATG, ec.enca_id):
-                      fillmodel(pmodel=model, pentries=[
+                      fillmodel(pmodel=CATEGORYMODEL, pentries=[
                           ec.enca_name
                           , ec.enca_uc, ec.enca_dc, ec.enca_um, ec.enca_dm
                           , getuicomponents(pencaid=ec.enca_id)
@@ -335,22 +387,42 @@ def js2enca(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
 
 def entitycategory2sql(presult, pjson: JSModel, pwithextsrcref):
     fromjson2db(presult=presult, pjson=pjson, pelemtype=JSModel.ELEMTYPE_CATG, pjs2obj=js2enca,
-               pwithextsrcref=pwithextsrcref)
+                pwithextsrcref=pwithextsrcref)
+
+    for jskey, jselem in pjson.getelements(pelemtype=JSModel.ELEMTYPE_CATG).items():
+        """ui of categories are emptied and loaded from source"""
+        newcatgid = presult.keytransl(jskey)
+        inscnt = 0
+        delcnt = ElementUI.delete(pwhere=("elui_enca_id = ?", newcatgid))
+        elui = ElementUI(elui_color=jselem["ui"].get("color"), elui_enca_id=newcatgid)
+        try:
+            elui.insert()
+            inscnt += 1
+        except Exception as err:
+            presult.markdberror(perr=err, pelem=list(jselem))
+        # for
+        presult.addinscnt(max(0, (inscnt - delcnt)), f"categories_ui for property {jskey}")
+        presult.adddelcnt(max(0, (delcnt - inscnt)), f"categories_ui for property {jskey}")
+    # for
+    presult.savenewerrors()
     return
 
 
-class UIELEMENT():
-    def __init__(self, width='', height='', opacity='', color='', marginwidth='', marginopacity='', margincolor='',
-                 fontsize='', fontcolor=''):
+class UIElement():
+    DEFAULTCOLOR = "9ecbfc"
+
+    def __init__(self, width=None, height=None, opacity=None, color=None,
+                 marginwidth=None, marginopacity=None, margincolor=None,
+                 fontsize=None, fontcolor=None):
         self.width = width
         self.height = height
-        self.opacity = opacity
-        self.color = color
-        self.marginwidth = marginwidth
-        self.marginopacity = marginopacity
-        self.margincolor = margincolor
-        self.fontsize = fontsize
-        self.fontcolor = fontcolor
+        self.opacity = nvl(opacity, 100)
+        self.color = nvl(color, UIElement.DEFAULTCOLOR)
+        self.marginwidth = nvl(marginwidth, 1)
+        self.marginopacity = nvl(marginopacity, 100)
+        self.margincolor = nvl(margincolor, UIElement.DEFAULTCOLOR)
+        self.fontsize = nvl(fontsize, 10)
+        self.fontcolor = nvl(fontcolor, UIElement.DEFAULTCOLOR)
 
     def js(self):
         return {'width': self.width

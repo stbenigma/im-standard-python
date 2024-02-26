@@ -96,6 +96,8 @@ def actorroles2sql(presult:Mergeresult, pjson: JSModel, pwithextsrcref):
 
     for jid,jelem in pjson.getelements(pelemtype=Modelelemtype.ACTR).items():
         dbactrid = presult.keytransl(jid)
+        if dbactrid == 0: continue
+
 
         #insactorcons(presult=presult,pactrid=dbactrid,pcons=jelem["concerns"])
         inssourceref(presult=presult,pmodeid=dbactrid, psources=jelem["sourceref"])

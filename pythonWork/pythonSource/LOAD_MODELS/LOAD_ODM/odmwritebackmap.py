@@ -28,8 +28,8 @@ from SSOT_infra import transl, nvl
 #         return lang
 #
 #
-# def getelembyodmguid(pjson: JSModel, pelemtype, pguid):
-#     elems = pjson.getelements(pelemtype=pelemtype)
+# def getelembyodmguid(pjsmodel: JSModel, pelemtype, pguid):
+#     elems = pjsmodel.getelements(pelemtype=pelemtype)
 #     for key, elem in elems.items():
 #         odmref = elem.get('sourceref').get('ODM')
 #         if odmref and (odmref[0] == pguid):
@@ -37,7 +37,7 @@ from SSOT_infra import transl, nvl
 #     return None, None
 
 
-# def writetranslations(pIMdirec, pmodelname, pjson: JSModel, pdryrun=False):
+# def writetranslations(pIMdirec, pmodelname, pjsmodel: JSModel, pdryrun=False):
 #     """ make sure the ODM has the same baselanguage as is defined in the jsonmodel
 #         replace in ODM-files all translations (this means without the values of the base language)
 #         we treat all translated elements as defined in  Languagetext.ODMtranslAttributes
@@ -46,26 +46,26 @@ from SSOT_infra import transl, nvl
 #     """
 #     modelmasterfile = pIMdirec / (pmodelname + ODMParameter.imextension())
 #     defaultlang = getmodellang(modelmasterfile).lower()
-#     model = pjson.getelements(JSModel.ELEMTYPE_PROJ)
+#     model = pjsmodel.getelements(JSModel.ELEMTYPE_PROJ)
 #     jsonlang = model.get('language')
 #     if defaultlang != jsonlang:
 #         logging.error(f"Model {pmodelname}, language in ODM ({defaultlang}) and jsonfile ({jsonlang}) differ")
 #         print(f"Model {pmodelname}, language in ODM {defaultlang} and jsonfile {jsonlang} differ")
 #         exit(1)
 #
-#     langs = [key for key, val in pjson.getelements('languages').items() if not val['modellanguage']]
+#     langs = [key for key, val in pjsmodel.getelements('languages').items() if not val['modellanguage']]
 #     odmparam = ODMParameter(modelname=pmodelname, imdirec=pIMdirec, defaultlang=jsonlang, )
 #     cnt = {'enti': 0, 'doma': 0, 'rela': 0, 'attr': 0}
 #     handleXML.dosegfiles(pdirec=odmparam.entitydirec(),
-#                          phandlefunc=do1entity, cnt=cnt, jsstruct=pjson, langs=langs, dryrun=pdryrun)
+#                          phandlefunc=do1entity, cnt=cnt, jsstruct=pjsmodel, langs=langs, dryrun=pdryrun)
 #     handleXML.dosegfiles(pdirec=odmparam.relationdirec(),
-#                          phandlefunc=do1relation, cnt=cnt, jsstruct=pjson, langs=langs, dryrun=pdryrun)
+#                          phandlefunc=do1relation, cnt=cnt, jsstruct=pjsmodel, langs=langs, dryrun=pdryrun)
 #     """domains are not yet translated in ODM """
 #     if False:
 #         handleXML.doxmlfiles(pdirec=odmparam.domainsdirec(), ppattern=r'.*\.xml',
-#                              phandlefunc=do1domain, cnt=cnt, jsstruct=pjson, langs=langs, dryrun=pdryrun)
+#                              phandlefunc=do1domain, cnt=cnt, jsstruct=pjsmodel, langs=langs, dryrun=pdryrun)
 #         handleXML.doxmlfiles(pdirec=odmparam.defdomainsfilpath().parent, ppattern=odmparam.defdomainsfilname(),
-#                              phandlefunc=do1domain, cnt=cnt, jsstruct=pjson, langs=langs, dryrun=pdryrun)
+#                              phandlefunc=do1domain, cnt=cnt, jsstruct=pjsmodel, langs=langs, dryrun=pdryrun)
 #     return cnt
 
 def do1column(pjson:JSModel,pcoluid:str,pcnt:dict):
@@ -76,59 +76,59 @@ def do1table(pjson:JSModel,ptabid:str,pcnt:dict):
     pcnt["tables"] += 1
     return
 
-def savemapfile(pIMdirec:Path,pintf:dict,pxml:et.Element):
+def savemapfile(pIMdirec:Path,pdatm:dict,pxml:et.Element):
     return
-    intffile=""
+    datmfile=""
     #remove existing files
-    outfile = open(intffile, "w")
+    outfile = open(datmfile, "w")
     outfile.write(handleXML.prettify(pxml))
     outfile.close()
     return
 
-def do1interface(pIMdirec:Path,pjson:JSModel,pintfid:str,pintf:dict)->bool:
-    if len(pintf["tables+"]) ==0:
-        logging.info(f"""Interface '{pintf["name"]}' has no tables. Not handled.""")
+def do1datamodel(pIMdirec:Path,pjson:JSModel,pdatmid:str,pdatm:dict)->bool:
+    if len(pdatm["tables+"]) ==0:
+        logging.info(f"""Datamodel '{pdatm["name"]}' has no tables. Not handled.""")
         return False
 
-    #delete mapping files, create new mappingfile for interface
+    #delete mapping files, create new mappingfile for datamodel
     xml = et.Element("RMExtendedMap", {"class": "oracle.dbtools.crest.model.xtdmapping.RMExtendedMap"})
     mappings = et.SubElement(xml, "mappings",
                                 {"itemClass": "oracle.dbtools.crest.model.xtdmapping.ContainerMapping"})
 
     cnt={"tables":0,"columns":0}
-    for tabid in pintf["tables+"]:
+    for tabid in pdatm["tables+"]:
         do1table(pjson=pjson,ptabid=tabid,pcnt=cnt)
 
-    savemapfile(pIMdirec=pIMdirec,pintf=pintf,pxml=xml)
+    savemapfile(pIMdirec=pIMdirec,pdatm=pdatm,pxml=xml)
 
-    logging.info(f"""Interface '{pintf["name"]}': mappings (tables:{str(cnt["tables"])}, columns:{str(cnt["columns"])} written to ODM""")
+    logging.info(f"""datamodel '{pdatm["name"]}': mappings (tables:{str(cnt["tables"])}, columns:{str(cnt["columns"])} written to ODM""")
     return True
 
-def writemappings(pIMdirec:Path, pjson:JSModel, pintfs:list):
-    intfs = {key:val for key, val in pjson.getelements("systems").items() if ((pintfs is None) or (val["name"] in pintfs))}
+def writemappings(pIMdirec:Path, pjson:JSModel, pdatms:list):
+    datms = {key:val for key, val in pjson.getelements("datamodels").items() if ((pdatms is None) or (val["name"] in pdatms))}
 
     writtenback = []
 
-    if len(intfs) ==0:
-        logging.info(f"No interfaces found to process.")
+    if len(datms) ==0:
+        logging.info(f"No datamodels found to process.")
         return writtenback
 
-    for intfid,intf in intfs.items():
-        written = do1interface(pIMdirec=pIMdirec,pjson=pjson,pintfid=intfid,pintf=intf)
+    for datmid,datm in datms.items():
+        written = do1datamodel(pIMdirec=pIMdirec,pjson=pjson,pdatmid=datmid,pdatm=datm)
         if written:
-            writtenback.append(intf)
+            writtenback.append(datm)
 
     return writtenback
 
 
 def main(sysargs):
-    argp = argparse.ArgumentParser(description='Write back mappings for interfaces into ODM-xmls')
+    argp = argparse.ArgumentParser(description='Write back mappings for datamodels into ODM-xmls')
     argp.add_argument('--verbose', '-v', action='store_true',
                       help="Verbose mode")
     argp.add_argument('--destination', '-d', dest="destination",
                       help=f"Path of ODM-model to change.  Default: <path of jsonffile>/../IM ")
-    argp.add_argument('--interfaces', '-i', dest="interfaces",
-                      help=f"List of interfaces (datamodels)  to be written back ('intf1,intf2').  Default: all interfaces found in jsonfile")
+    argp.add_argument('--datamodels', '-i', dest="datamodels",
+                      help=f"List of datamodels to be written back ('datm1,datm2').  Default: all datamodels found in jsonfile")
     argp.add_argument('jsonfile', nargs=1,
                       help=f"jsonfile to be used.")
     argp.add_argument('--logfile', '-log', dest='logfile',
@@ -169,15 +169,15 @@ def main(sysargs):
         logging.error(e)
         exit(1)
 
-    interfaces= writemappings(pIMdirec=imdirec,
-                        pjson=myjson, pintfs = arguments.interfaces
+    datamodels= writemappings(pIMdirec=imdirec,
+                        pjson=myjson, pdatms = arguments.datamodels
                         )
-    if len(interfaces)==0:
+    if len(datamodels)==0:
         logging.info(
             "No mappings recreated")
     else:
         logging.info(
-            "Mappings recreated for\n" + '\n'.join(interfaces))
+            "Mappings recreated for\n" + '\n'.join(datamodels))
     return
 
 if __name__ == '__main__':

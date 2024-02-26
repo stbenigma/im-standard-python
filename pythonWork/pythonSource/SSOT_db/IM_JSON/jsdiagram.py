@@ -1,25 +1,163 @@
+from datetime import datetime
+import math
 from SSOT_db.IM_JSON import *
 from SSOT_infra import nvl, logmessages
-import math
-from tqdm.auto import tqdm
+
+
+DIAGRAMMODEL = ['name', 'legend'
+    , 'type', 'width', 'height'
+    , 'uc', 'dc', 'um', 'dm'
+    , 'elements', 'relationships'
+    , 'arcs', 'referencedby', 'sourceref']
+
+
+def jsondiagram(name, diagtype, uc, dc, **kwargs):
+    diagram = dict()
+    initjselement(model=diagram, refmodel=DIAGRAMMODEL)
+    diagram["name"] = name
+    diagram["type"] = diagtype
+    diagram["elements"] = {"attribute": [],
+                           "entity": []
+                           }
+    diagram["relationships"] = dict()
+    diagram['referencedby']=list()
+    diagram["uc"] = uc
+    diagram["dc"] = dc
+
+    fillargs(model=diagram, refmodel=DIAGRAMMODEL, **kwargs)
+    return diagram
+
+
+DIAGRELAMODEL = ['linewidth', 'linecolor', 'lineopacity'
+        , 'startedge', 'startposition', 'start_connector'
+        , 'starttext_angle', 'starttext_distance'
+        , 'starttext_x', 'starttext_y'
+        , 'starttext_width', 'starttext_height'
+        , 'endedge', 'endposition', 'end_connector'
+        , 'endtext_angle', 'endtext_distance'
+        , 'endtext_x', 'endtext_y'
+        , 'endtext_width', 'endtext_height'
+        , 'fontcolor', 'fontsize'
+        , 'uc', 'dc', 'um', 'dm'
+        , 'linesegments'
+             ]
+def jsondiagrela(start_connector,startedge,startposition,
+                 end_connector,endedge,endposition,
+                 linesegments,**kwargs):
+    diagrela =dict()
+    initjselement(model=diagrela, refmodel=DIAGRELAMODEL)
+    diagrela['linewidth']=1
+    diagrela['lineopacity']=100
+    diagrela['fontcolor']="000000"
+    diagrela['fontsize']=10
+    diagrela['start_connector']=start_connector
+    diagrela['startedge']=startedge
+    diagrela['startposition']=startposition
+    diagrela['end_connector']=end_connector
+    diagrela['endedge']=endedge
+    diagrela['endposition']=endposition
+    diagrela['linesegments']=linesegments
+    #TODO
+    """[jsonlineseg(x=ls["x"],y=ls["y"],
+                                          linetype=ls["linetype"]) for ls in linesegments]"""
+
+    fillargs(model=diagrela, refmodel=DIAGRELAMODEL, **kwargs)
+    return diagrela
+
+DIAGLINESEGMODEL = ['x', 'y'
+    , 'linetype', 'angle'
+                    ]
+def jsonlineseg(x,y,linetype,**kwargs):
+    diaglineseg = dict()
+    initjselement(model=diaglineseg, refmodel=DIAGLINESEGMODEL)
+    diaglineseg["x"]=x
+    diaglineseg["y"]=y
+    diaglineseg["linetype"]=linetype
+    diaglineseg["angle"]=0
+    fillargs(model=diaglineseg, refmodel=DIAGLINESEGMODEL, **kwargs)
+
+    return diaglineseg
+
+def defaultlinesegements(startx, starty, startedge,startmandatory, endx, endy, endedge,endmandatory):
+    """" generate 4 linesegs from startposition to endposition
+    """
+    minoffset = 60
+
+    def linetype(mandatory):
+        if mandatory:
+            return Linesegment.SOLID
+        else:
+            return Linesegment.DASHED
+
+    def xoffset(edge):
+        if edge == Linesegment.SOUTH:
+            return 0
+        elif edge == Linesegment.NORTH:
+            return 0
+        elif edge == Linesegment.WEST:
+            return -minoffset
+        else:
+            return minoffset
+
+    def yoffset(edge):
+        if edge == Linesegment.SOUTH:
+            return minoffset
+        elif edge == Linesegment.NORTH:
+            return -minoffset
+        elif edge == Linesegment.WEST:
+            return 0
+        else:
+            return 0
+
+    linesegs = list()
+    linesegs.append(jsonlineseg(x= startx, y=starty, linetype=linetype(startmandatory)))
+    linesegs.append(jsonlineseg(x= max(startx + xoffset(startedge), 0),
+                     y= max(starty + yoffset(startedge), 0),
+                     linetype= linetype(startmandatory)))
+    linesegs.append(jsonlineseg(x= max(endx + xoffset(endedge), 0),
+                     y= max(endy + yoffset(endedge), 0),
+                     linetype= linetype(endmandatory)))
+    linesegs.append(jsonlineseg(x= endx, y= endy, linetype= linetype(endmandatory)))
+
+    return linesegs
+
+DIAGELEMMODEL = ['element', 'index'
+    , 'pos_x', 'pos_y'
+    , 'uc', 'dc', 'um', 'dm', 'ui'
+                 ]
+def jsondiagelem(element, index, width, height, color, **kwargs):
+    diagelem = dict()
+    initjselement(model=diagelem, refmodel=DIAGELEMMODEL)
+    diagelem["element"] = element
+    diagelem["index"] = index
+    diagelem["pos_y"] = 0
+    diagelem["pos_x"] = 0
+    diagelem["ui"] = UIElement(width=width
+                               , height=height
+                               , opacity=kwargs.get("opacity")
+                               , color=color
+                               , marginwidth=kwargs.get('marginwidth')
+                               , marginopacity=kwargs.get('marginopacity')
+                               , margincolor=kwargs.get('margincolor')
+                               , fontsize=kwargs.get('fontsize')
+                               , fontcolor=kwargs.get('fontcolor')).js()
+    fillargs(model=diagelem, refmodel=DIAGELEMMODEL, **kwargs)
+
+    return diagelem
 
 
 def elemrep2js(peler, panker):
-    model = ['element', 'index'
-        , 'pos_x', 'pos_y'
-        , 'uc', 'dc', 'um', 'dm', 'ui'
-             ]
     if peler is None:
-        retval = fillmodel(pmodel=model, pentries=['XXXX0000'] + ['' for i in range(len(model) - 2)]
-                                                  + [UIELEMENT().js()])
+        retval = fillmodel(pmodel=DIAGELEMMODEL, pentries=['XXXX0000'] + ['' for i in range(len(DIAGELEMMODEL) - 2)]
+                                                          + [UIElement().js()])
     else:
-        retval = fillmodel(pmodel=model
+        retval = fillmodel(pmodel=DIAGELEMMODEL
                            , pentries=[panker
                 , peler.eler_index
                 , peler.eler_position_x
                 , peler.eler_position_y
                 , peler.eler_uc, peler.eler_dc, peler.eler_um, peler.eler_dm
-                , UIELEMENT(width=peler.eler_width
+                , UIElement(width=peler.eler_width
                             , height=peler.eler_height
                             , opacity=peler.eler_opacity
                             , color=peler.eler_color
@@ -70,21 +208,9 @@ def elemreps2sql(presult: Mergeresult, pdiagid, pelemreps):
 
 
 def relarep2js(prelarep):
-    model = ['linewidth', 'linecolor', 'lineopacity'
-        , 'startedge', 'startposition', 'start_connector'
-        , 'starttext_angle', 'starttext_distance'
-        , 'starttext_x', 'starttext_y'
-        , 'starttext_width', 'starttext_height'
-        , 'endedge', 'endposition', 'end_connector'
-        , 'endtext_angle', 'endtext_distance'
-        , 'endtext_x', 'endtext_y'
-        , 'endtext_width', 'endtext_height'
-        , 'fontcolor', 'fontsize'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'linesegments'
-             ]
+
     if prelarep is None:
-        retval = fillmodel(pmodel=model, pentries=['' for i in range(len(model) - 1)] \
+        retval = fillmodel(pmodel=DIAGRELAMODEL, pentries=['' for i in range(len(DIAGRELAMODEL) - 1)] \
                                                   + [[lineseg2js(plineseg=None)]])
     else:
 
@@ -119,19 +245,16 @@ def relarep2js(prelarep):
                   }
     return retval
 
-
-def lineseg2js(plineseg):
-    model = ['x', 'y'
+DIAGLINESEGMODEL = ['x', 'y'
         , 'linetype', 'angle'
-        , 'uc', 'dc', 'um', 'dm'
-             ]
+        ]
+def lineseg2js(plineseg):
     if plineseg is None:
-        retval = fillmodel(pmodel=model, pentries=['' for i in range(len(model))])
+        retval = fillmodel(pmodel=DIAGLINESEGMODEL, pentries=['' for i in range(len(DIAGLINESEGMODEL))])
     else:
-        retval = fillmodel(pmodel=model
+        retval = fillmodel(pmodel=DIAGLINESEGMODEL
                            , pentries=[plineseg.lise_x, plineseg.lise_y
                 , plineseg.lise_linetype, plineseg.lise_angle
-                , plineseg.lise_uc, plineseg.lise_dc, plineseg.lise_um, plineseg.lise_dm
                                        ]
                            )
     return retval
@@ -149,10 +272,6 @@ def lineseg2sql(presult: Mergeresult, prelrid, plinesegs):
         lise.lise_y = jelem['y']
         lise.lise_linetype = jelem['linetype']
         lise.lise_angle = jelem['angle']
-        lise.lise_uc = jelem['uc']
-        lise.lise_dc = jelem['dc']
-        lise.lise_um = jelem['um']
-        lise.lise_dm = jelem['dm']
         try:
             lise.insert()
             inscnt += 1
@@ -203,7 +322,8 @@ def relarep2sql(presult, pdiagid, prelaid, prelarep):
         relrid = None
 
     # linesegmentsinserts are not counted
-    lineseg2sql(presult=presult, prelrid=relrid, plinesegs=prelarep['linesegments'])
+    if relrid is not None:
+        lineseg2sql(presult=presult, prelrid=relrid, plinesegs=prelarep['linesegments'])
 
     return inscnt
 
@@ -222,13 +342,8 @@ def legend2js(pdiag=None, pmodelname=None):
 
 
 def diagrams2js(pemptymodel, pmodelname):
-    model = ['name', 'legend'
-        , 'type', 'width', 'height'
-        , 'uc', 'dc', 'um', 'dm'
-        , 'elements', 'relationships'
-        , 'arcs', 'referencedby', 'sourceref']
     if pemptymodel:
-        retval = {jsguid(Modelelemtype.DIAG, '0000'): fillmodel(pmodel=model,
+        retval = {jsguid(Modelelemtype.DIAG, '0000'): fillmodel(pmodel=DIAGRAMMODEL,
                                                                 pentries=['', legend2js(), '', '', '', '', '', '', ''
                                                                     , elemrep2js(peler=None, panker=None)
                                                                     , {jsguid(Modelelemtype.RELA, "0000"): relarep2js(
@@ -237,10 +352,10 @@ def diagrams2js(pemptymodel, pmodelname):
                                                                     , reflist(), reflist()])}
     else:
         # would be count of all elements on all diagrams (complex)
-        retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=model, pentries=[
+        retval = {jsguid(Modelelemtype.DIAG, d.diag_id): fillmodel(pmodel=DIAGRAMMODEL, pentries=[
             d.diag_name, legend2js(pdiag=d, pmodelname=pmodelname)
             , Diagramtype().getbyid(d.diag_diat_id).getname()
-            , d.diagwidth() + 50  # leave room for icon in entity
+            , nvl(d.diagwidth(), 0) + 50  # leave room for icon in entity
             , d.diagheight()
             , d.diag_uc
             , d.diag_dc
@@ -282,8 +397,9 @@ def js2diag(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     diag = Diagram(psrcname=psrcname, psrcid=psrcid)
     diag.diag_id = pkey
     diag.diag_name = pelem['name']
-    diag.diag_legendx = pelem['legend']['x']
-    diag.diag_legendy = pelem['legend']['y']
+    legend = pelem['legend']
+    diag.diag_legendx = None if legend is None else legend['x']
+    diag.diag_legendy = None if legend is None else legend['y']
     diag.diag_diat_id = Diagramtype().getbyuk(diat_name=pelem['type']).diat_id
     diag.diag_uc = pelem['uc']
     diag.diag_dc = pelem['dc']
@@ -298,7 +414,7 @@ def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
 
     for jid, jelem in pjson.getelements(pelemtype=Modelelemtype.DIAG).items():
         newdiagid = presult.keytransl(jid)
-        if newdiagid == 0: continue  # element was not treated
+        if newdiagid == 0: continue  # element was not handled
         inscnt = 0
         delcnt = Elementrep.delete(pwhere=("eler_diag_id = ?", newdiagid))
         for jelemreps in jelem['elements'].values():
@@ -329,6 +445,8 @@ def diagrams2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
 
         insreferences(presult=presult, pmodeid=newdiagid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newdiagid, psources=jelem["sourceref"])
+        presult.savenewerrors()
+
     # for
     return
 

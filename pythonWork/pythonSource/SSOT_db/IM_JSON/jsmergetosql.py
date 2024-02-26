@@ -1,14 +1,13 @@
-import logging
 from copy import copy
 
 from tqdm.autonotebook import tqdm
 
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import *
-from SSOT_infra import Parameter
 from SSOT_infra import todatetime
 
 logger = logging.getLogger(__name__)
+
 
 class Mergeresult:
     def __init__(self, srcname, verbose=False, checkonly=False):
@@ -127,20 +126,29 @@ def getallsrcrefs(pelemtype, psrcname):
     return retval
 
 
-def translatefks(presult: Mergeresult, pobj):
+def translatefks(presult: Mergeresult, pobj) -> Boolean:
     """fkvalues {colname:[fktable,fkcolname,fkprefix]} all names in lowercase"""
+    retval = True
     fkvalues = pobj.getfkcolumns()
     for colname, fk in fkvalues.items():
         if not (colname == pobj.getidcolname() and fk[2] == 'mode'):
             """fk from ID to mode_id is not handled
-               translate id, if it is translated, assume, untranslatd id's are in form xxxx0000"""
+               translate id, if it there is a translatione , 
+               for background reference tables (like diagram_type) accept (nontranslated) numeric id's 
+               """
             try:
-                if presult.istranslkey(pobj.colvalue(pcolname=colname)):
-                    pobj.setcolvalue(pcolname=colname, pvalue=presult.keytransl(pobj.colvalue(pcolname=colname)))
+                key = pobj.colvalue(pcolname=colname)
+                if presult.istranslkey(key):
+                    pobj.setcolvalue(pcolname=colname, pvalue=presult.keytransl(key))
+                elif key is not None and not (type(key) == int and colname in ['diag_diat_id']):
+                    presult.markerror(
+                        f"Translatekey: foreign key {key} for column {colname} for objkey {pobj.getid()} not found")
+                    retval = False
             except Exception as e:
-                raise Exception(f"Failed to process foreign key '{fk} of column '{colname} on object {pobj}. Value: {pobj.colvalue(pcolname=colname)}") from e
+                raise Exception(
+                    f"Failed to process foreign key '{fk} of column '{colname} on object {pobj}. Value: {pobj.colvalue(pcolname=colname)}") from e
     # for
-    return
+    return retval
 
 
 def getelemsrcrefs(psrcname, pkey, pelem):
@@ -189,7 +197,7 @@ def whoupdatedmeanwhile(psrcname, pjsonsrcrefs, pdbsrcrefs):
     for key, ref in pjsonsrcrefs.items():
         # don't check current source
         if key == psrcname:
-            pass
+            continue
         elif key in pdbsrcrefs:
             if todatetime(ref[1]) < todatetime(pdbsrcrefs[key][1]):
                 # db younger than (means >) json => db updated after my checkout
@@ -197,7 +205,7 @@ def whoupdatedmeanwhile(psrcname, pjsonsrcrefs, pdbsrcrefs):
                 break
         else:
             # json has srcref (not current src), db doesn't -> db deleted record after I did my checkout, don't care
-            pass
+            continue
     return retval
 
 
@@ -235,7 +243,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
         modellang = Language.getdefaultlang().lang_iso_code2
     except:
         # e.g. if languages are not yet filled
-        modellang = Parameter.DEFAULTLANG
+        modellang = pjson.modellanguage()
 
     olderrorlist, newerrorlist = None, []
     newelements = copy(pjson.getelements(pelemtype=pelemtype))
@@ -286,11 +294,14 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
 
                 # fi
                 """here we have an object from the json-element (jsonobj) and 
-                    and a dbobj  (if I found one with any external ref)
+                    and a dbobj  (if I found one with any external element)
                     or no dbobj, if there are no external refs or none was found
                 """
                 """make sure we use new id's, wehreever we know it already"""
-                translatefks(presult, jsonobj)
+                if not translatefks(presult, jsonobj):
+                    newerrorlist.append(key)
+                    failures[key] = ('fktranslate', "fk-key not found", jsonobj)
+                    continue
 
                 """ if there is checkonly modus my db was empty and dbobj is None (see above) . I do only inserts to check the consistency. """
                 if dbobj is None and not presult.ischeckonly():
@@ -313,7 +324,7 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                         del newelements[key]  # omit in next loop
                         failures.pop(key, None)
                     except Exception as e:
-                        #logging.debug(f"Insert attempt of element {key} with id {identity} failed", exc_info=e)
+                        # logging.debug(f"Insert attempt of element {key} with id {identity} failed", exc_info=e)
                         if not (presult.ischeckonly() and pelemtype == "LANG"):
                             newerrorlist.append(key)
                             err = f"""*** insert-error: ID = "{key}" """
@@ -321,11 +332,12 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                             presult.markerror(f"""{err} \n{e}""")
                         failures[key] = ('insert', e, jsonobj)
                 else:
-                    """entry via external ref  or uk found. this is my existing brother, try to update it"""
+                    """entry via external element  or uk found. this is my existing brother, try to update it"""
+                    presult.addfkey(extjsid=key, dbid=dbobj.getid())
 
                     """get from db all external sourcerefs for this db-ID"""
                     dbsrcrefs = Externalref.getsrcinfo(dbobj.getid())
-                    """ check if any db-external refs was updated later than the corresponding json ref """
+                    """ check if any db-external refs was updated later than the corresponding json element """
                     lastupdatedsrcname = whoupdatedmeanwhile(psrcname=cursrcrefname, pjsonsrcrefs=elemsrcrefs,
                                                              pdbsrcrefs=dbsrcrefs)
                     if lastupdatedsrcname is not None:
@@ -339,7 +351,6 @@ def fromjson2db(presult: Mergeresult, pjson: JSModel, pelemtype, pjs2obj, pwithe
                             update db-record if there is a difference
                             case 1,2,3
                             """
-                        presult.addfkey(extjsid=key, dbid=dbobj.getid())
                         try:
                             jsonobj.setid(dbobj.getid())  # preserve DB-id
                             if pwithextsrcref and cursrcrefid != getelemsrcid(psrcrefs=dbsrcrefs,
@@ -407,7 +418,7 @@ def insert_identity(context: Mergeresult, elementtype: str, key: str, jsonobj) -
     if context.use_json_id:
         if elementtype in [Modelelemtype.ATTR,
                            Modelelemtype.ENTI,
-                           Modelelemtype.INTF,
+                           Modelelemtype.DATM,
                            Modelelemtype.TABL,
                            Modelelemtype.COLU,
                            ]:

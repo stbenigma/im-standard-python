@@ -20,8 +20,15 @@ class ElementUI(Baseobject):
     _columnlist: list = []
     _defaultorderby = None
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.setdefaultval("elui_opacity", 100)
+        self.setdefaultval("elui_color",'000000')
+        self.setdefaultval("elui_marginwidth", 1)
+        self.setdefaultval("elui_marginopacity", 100)
+        self.setdefaultval("elui_margincolor", '000000')
+        self.setdefaultval("elui_fontcolor", '000000')
+        return
 
 
 class EntityCategory(Baseobject):
@@ -31,9 +38,10 @@ class EntityCategory(Baseobject):
     _columnlist: list = []
     _defaultorderby = "enca_name"
 
-    def __init__(self, pname=None):
-        super().__init__()
+    def __init__(self, pname=None,**kwargs):
+        super().__init__(**kwargs)
         self.enca_name = pname
+        return
 
     def getname(self, plang=None):
         return self.enca_name
@@ -49,7 +57,7 @@ class Entity(MultilangBaseobject):
     _prefix: str = 'enti'
     _idcolname: str = _prefix + '_id'
     _modelemtype = Modelelemtype.ENTI
-    _columnlist: list = []
+    _columnlist = dict()
     _defaultorderby = "enti_name"
 
     def __init__(self, psrcname=None, psrcid=None):
@@ -130,7 +138,7 @@ class Entity(MultilangBaseobject):
     def getsubtypelevel(self):
         # restrict recursion to max 99 subentities for eternal loop
         subtypelevel = dbDML.select(
-            """with recursive enti (entilev, entiid,parentid,name) as
+            f"""with recursive enti (entilev, entiid,childid,name) as
             ( select 0 entilev, enti_id,enti_underlay_enti_id,enti_name
             from entities
             where enti_underlay_enti_id is NULL
@@ -138,15 +146,18 @@ class Entity(MultilangBaseobject):
             select enti.entilev + 1,enti_id,enti_underlay_enti_id,enti_name
             from entities
             join enti on enti.entiid = enti_underlay_enti_id
-                      and enti.entilev < 100
+                      and enti.entilev <= {self.maxrecursiveentities()} 
             )
             select * from enti
-            where entiid = {}
-            """.format(self.enti_id))
+            where entiid = {self.enti_id}
+            """)
         try:
-            return subtypelevel[0][0]
+            entilev = subtypelevel[0][0]
+            if entilev >= self.maxrecursiveentities():
+                logging.error(f"Error in recrsive subtypelevel call{self.enti_id}, {subtypelevel}")
+            return entilev
         except:
-            print(self.enti_id,subtypelevel)
+            logging.error(f"Error in recrsive subtypelevel call{self.enti_id}, {subtypelevel}")
             return 0
 
     @staticmethod
@@ -154,7 +165,7 @@ class Entity(MultilangBaseobject):
         """ select list of entitiy id's for the logical model (dummy values) which ar linked
             to the given table id
         """
-        lsqle = f"""select 0 intf_id, 'Logisches Modell' intf_name, group_concat(enti_id,',')
+        lsqle = f"""select 0 datm_id, 'Logisches Modell' datm_name, group_concat(enti_id,',')
         	from  tabl_enti_maps as mastermap
 	        left join entities on enti_id = mastermap.tema_enti_id
 	        where  mastermap.tema_tabl_id = {ptablid}
@@ -162,9 +173,9 @@ class Entity(MultilangBaseobject):
         """ select list of table id's for each  model (except the model of the given table id) 
             which are linked to an entity, the given table id is mapped to
         """
-        lsqlt = f"""select tabl_intf_id,intf_name,group_concat(tabl_id,',')
+        lsqlt = f"""select tabl_datm_id,datm_name,group_concat(tabl_id,',')
 	        from tables subtab
-	        join interfaces on intf_id = TABL_intf_ID
+	        join datamodels on datm_id = TABL_datm_ID
 	        where tabl_id in
     	          (select tema1.tema_tabl_id
 	               from tabl_enti_maps tema1
@@ -172,10 +183,10 @@ class Entity(MultilangBaseobject):
 	                                and tema2.tema_tabl_id != tema1.tema_tabl_id
 	                  where tema2.tema_tabl_id = {ptablid}
 	            )
-	            /* eigene Interface wird nicht angezeigt*/
-	           and intf_id != (select tabl_intf_id 
+	            /* eigene Datamodel wird nicht angezeigt*/
+	           and datm_id != (select tabl_datm_id 
 	                            from tables where tabl_id = {ptablid})
-            group by tabl_intf_id,intf_name
+            group by tabl_datm_id,datm_name
             """
         retval = []
         data = dbDML.select(lsqle)
@@ -194,9 +205,11 @@ class Entity(MultilangBaseobject):
 
     """sql for inherited entities, to be combined with attributes or relationships
        see getinheritedrelaids and getinheritedattrids"""
+
+
     @staticmethod
-    def sql_entitree():
-        return """
+    def sql_entitree(maxrecursive):
+        return f"""
             with recursive entitree(superenti_id,super_enti_name, subenti_id,sub_enti_name,   level,
                             rootid,rootname)
                            as
@@ -213,22 +226,25 @@ class Entity(MultilangBaseobject):
                             from superenti sup2
                                 --join entitree on sup2.superenti_id = entitree.subenti_id
                                 join entitree on sup2.subenti_id = entitree.superenti_id
-                             where entitree.level < 99
+                             where entitree.level <= {maxrecursive}
                             )
             """
 
+    def maxrecursiveentities(self):
+        return 99
+
     def getinheritedrelaids(self):
         """ get all own and inherited relations """
-        lsql=f"""{self.sql_entitree()}
+        lsql = f"""{self.sql_entitree(self.maxrecursiveentities())}
             ,relas as (select rela_id,rela_enti_id_from relaenti,rela_enti_id_to other
                               from relations
-                              where rela_type != 'ISAS'
-                                   and not (rela_type = 'ISAR') -- and rela_mandatory_from_to = 'FALSE')
+                              where rela_type not in ( 'ISAS','ISAR')
+                                   --and not (rela_type = 'ISAR') -- and rela_mandatory_from_to = 'FALSE')
                               union
                               select rela_id,rela_enti_id_to relaenti,rela_enti_id_from other
                               from relations
-                              where rela_type != 'ISAS'
-                                   and not (rela_type = 'ISAR' ) --and rela_mandatory_to_from = 'FALSE')
+                              where rela_type not in ('ISAS','ISAR')
+                                   --and not (rela_type = 'ISAR' ) --and rela_mandatory_to_from = 'FALSE')
                               )
             select distinct relalist,rootid,rootname
                 from (select rootid,rootname,group_concat(rela_id, ',')
@@ -239,17 +255,16 @@ class Entity(MultilangBaseobject):
                     join relas on relaenti = superenti_id
                     and rootid = ?)
             """
-
+        relas = dbDML.select(lsql, self.getid())
         retval = []
-        relas = dbDML.select(lsql,self.getid())
-        retval = []
-        if len(relas)>0:
-            #assert relas[0][1] < 99, "recursive sql with loop"
-            for a in relas[0][0].split(','):
+        if len(relas) > 0:
+            relaids = set(relas[0][0].split(',')) #remove duplicates from multiinheritance
+            assert len(relaids) < self.maxrecursiveentities(), \
+                f"recursive sql with inherited relations loop cnt={len(relaids)}, root={relas[0][2]}"
+            for a in relaids:
                 if a.isnumeric():
                     retval.append(int(a))
         return retval
-
 
     def getinheritedattrids(self):
         """recursive SQL
@@ -258,7 +273,7 @@ class Entity(MultilangBaseobject):
                     union  2. select all entities which have as superentity the recursive predecessor entitiy
                            add list of attributes of this entity to the list of its predecessor
         """
-        lsql = f"""{self.sql_entitree()}
+        lsql = f"""{self.sql_entitree(self.maxrecursiveentities())}
                 ,attrs as (select attr_id,attr_enti_id
                 from attributes)
                 select distinct attrlist,rootid,rootname
@@ -270,11 +285,17 @@ class Entity(MultilangBaseobject):
                 join attrs on attr_enti_id = superenti_id)
                 where rootid =?
             """
-        attrs = dbDML.select(lsql,self.getid())
+        attrs = dbDML.select(lsql, self.getid())
         retval = []
-        if len(attrs)>0:
-            #assert attrs[0][1] < 99, "recursive sql with loop"
-            for a in attrs[0][0].split(','):
+        if len(attrs) > 0:
+            attrids = attrs[0][0].split(',')
+            # There are hundreds of inherited attributes: eternal loop is covered in superentity
+            # assert len(attrids) < self.maxrecursiveentities(), \
+            #     f"""recursive sql for inherited attributes loop cnt={len(attrids)}, root={attrs[0][2]}
+            #         attrids = {len(attrids)}, distinct {len(set(attrids))}
+            #         SQL= {lsql}
+            #         """
+            for a in attrids:
                 if a.isnumeric():
                     retval.append(int(a))
         return retval
@@ -283,7 +304,7 @@ class Entity(MultilangBaseobject):
         """ liefert superid,supername,subid,subname,level
             ab (d.h. inkl.) dieser Entität
         """
-        lsql="""with recursive entitree(superenti_id, super_enti_name,
+        lsql = """with recursive entitree(superenti_id, super_enti_name,
                         subenti_id, sub_enti_name,
                         level)
                    as
@@ -306,7 +327,7 @@ class Entity(MultilangBaseobject):
                     )
             select * from entitree
         """
-        subentis = dbDML.select(lsql,self.getid())
+        subentis = dbDML.select(lsql, self.getid())
         assert len(subentis) < 99, "recursive sql in subentities with loop"
         return subentis
 
@@ -314,7 +335,6 @@ class Entity(MultilangBaseobject):
         subentis = self.getsubentities()
         retval = [int(a[2]) for a in subentis]
         return retval
-
 
 
 class Synonym(MultilangBaseobject):

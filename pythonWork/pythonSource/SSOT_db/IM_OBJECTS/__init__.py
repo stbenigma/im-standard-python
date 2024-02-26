@@ -3,12 +3,11 @@ from .baseobject import Baseobject, MultilangBaseobject, Boolean, UniqueKeyExcep
 from .modelelement import Modelelemtype, Modelelement, ModelelementProperty
 from .datatype import Datatype
 from .project import Project
-from .interface import Interface
+from .datamodel import Datamodel
 from .table import Table
-from .column import Column, ColAttrMap
+from .column import Column
 from .language import Language
 from .languagetext import Languagetext
-from .tablentimap import TablEntiMap
 from .document import Document, ModelelemDocu
 from .domain import Domain, DomaingroupMember, DefaultValue
 from .diagram import Diagram, Diagramtype, MeltDiat
@@ -24,14 +23,15 @@ from .orgunit import OragnisationalUnit, ModelelemOrgu
 from .businessrule import BusinessRule, BusinessruleElement
 from .examples import Example
 from .actorrole import Actorrole, Actorconcern
+from .mapping import TablEntiMap, ColAttrMap, Mapping, ModeMap
 from .checkdatabase import checkdatabase
 
 table2class = {c._tablename: c for c in
                (Modelelemtype, Modelelement, ModelelementProperty,
-                Datatype, Project, Interface, Table, Column, ColAttrMap,
+                Datatype, Project, Datamodel, Table, Column, ColAttrMap,
                 Language, Languagetext, TablEntiMap, Document, ModelelemDocu,
                 Domain, DomaingroupMember, DefaultValue, Diagram, Diagramtype,
                 MeltDiat, Attribute, Key, Keyelement, Arc, Relation, Entity, Synonym,
                 EntityCategory, ElementUI, Userdefprop, Userdefpropvalue, Externalref, PhysicalUnit,
                 Storageformat, Elementrep, Relationrep, Linesegment, OragnisationalUnit, ModelelemOrgu,
-                BusinessRule, BusinessruleElement, Example, Actorrole, Actorconcern)}
+                BusinessRule, BusinessruleElement, Example, Actorrole, Actorconcern,Mapping,ModeMap)}

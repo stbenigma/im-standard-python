@@ -8,7 +8,7 @@ from LOAD_MODELS.LOAD_ODM import transferModel,getodmparams,ODMParameter,setodmp
 from SSOT_db import existsDB, createnewDB,dbinfo
 from SSOT_db.IM_JSON import *
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_infra import logmessages, argparseparent,Parameter,parameters,nvl2
+from SSOT_infra import logmessages, argparseparent,Parameter,parameters
 
 
 def ODM2json(pdebug=False) -> JSModel:

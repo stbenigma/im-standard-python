@@ -564,7 +564,6 @@ class Baseobject:
                 result = result.replace(matcher.group(2), '(...)')
         return result
 
-
 # Baseobject
 
 class MultilangBaseobject(Baseobject):

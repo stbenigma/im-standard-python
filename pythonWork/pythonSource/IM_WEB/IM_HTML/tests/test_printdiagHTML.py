@@ -1,7 +1,7 @@
 import unittest
 
 from IM_WEB.IM_HTML.printHTML import HTMLExport
-from IM_WEB.IM_HTML.printdiagHTML import printelements
+from IM_WEB.IM_HTML.svgodmgeneration import printelements
 from SSOT_db.IM_JSON import JSModel
 
 
@@ -111,3 +111,4 @@ class TestPrintDiagHTML(unittest.TestCase):
         self.assertTrue(self.diagram is not None)
         # drawiodiagram.add_relations(self.diagram, JSModel(self.test_model), self.translator, self.root)
         # print(tostring(self.root))
+        return

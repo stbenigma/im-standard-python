@@ -1,4 +1,5 @@
 import re
+from lxml import etree
 from datetime import datetime
 from uuid import uuid4
 
@@ -7,7 +8,8 @@ from matplotlib import colors
 from SSOT_db.IM_JSON import JSModel
 from SSOT_db.IM_OBJECTS import Modelelemtype, Relation
 from SSOT_infra import nvl
-from .printdiagHTML import hex2rbg
+from .svggeneration import hex2rbg,DEFAULT_LINEWIDTH
+from .drawiodiagram import verify_dom, translate_and_encode
 
 """
     defines the classes and functions to implement an entity-environment representation
@@ -104,7 +106,7 @@ class EntityEnvironment():
           ,...}
     """
 
-    def __init__(self, pentiid, pentiname, pbgcolor, precursiveenti=False):
+    def __init__(self, pentiid, pentiname, pbgcolor,precursiveenti=False):
         self._grid = dict()
         self.fillcell(pvidx=0, phidx='center',
                       pcell=EntityCell(ptype=EntityCell.CENTER, pentiid=pentiid, pentiname=pentiname,
@@ -227,9 +229,9 @@ def createentienvironment(pentiid, pjson: JSModel, pmodellang):
 
     if not pentiid in entities.keys(): return None  # non existing entity is Nothing
 
-    entienvir = EntityEnvironment(pentiid=pentiid, pentiname=entities[pentiid]['name'][pmodellang]
-                                  , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid, pcolortype="color"))
-                                  , precursiveenti=pjson.isrecursive(pentiid))
+    entienvir = EntityEnvironment(pentiid=pentiid, pentiname=entities[pentiid]['name'][pmodellang],
+                                   pbgcolor=hexcolor(pjson.getentitycolor(pentiid=pentiid, pcolortype="color")),
+                                  precursiveenti=pjson.isrecursive(pentiid))
     enties = [EntityCell(ptype=EntityCell.ROLE, pentiid=entiid, pentiname=entities[entiid]['name'][pmodellang]
                          , pdescr=entities[entiid]['descr'][pmodellang]
                          , pbgcolor=hexcolor(pjson.getentitycolor(pentiid=entiid, pcolortype="color"))
@@ -277,8 +279,8 @@ def printenti(pcell: EntityCell, pposx, pposy,precursive=False):
     entistart = """<g  fill="{color}" stroke="{stroke}" fill-opacity="{fopacity}" stroke-opacity="{sopacity}" 
             transform="translate({posx},{posy})" >
             <rect x="0" y="0" width="{width}" height="{height}" rx="10" ry="10" >{title}</rect>
-            <a href="#{ref}" >
-            <text id="box{ref}" x="6" y="13" fill="{fillcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
+            <a href="{href}" >
+            <text x="6" y="13" fill="{fillcolor}" font-weight="bold"  fill-opacity="1.0" font-size="{fontsize}" stroke="none">
             {name} </text>{title}
             </a>{recursive}
             </g>
@@ -286,12 +288,13 @@ def printenti(pcell: EntityCell, pposx, pposy,precursive=False):
     entibox = entistart.format(color=pcell.getbgcolor(), stroke='blue'
                                , fopacity=0.3, sopacity=0.8
                                , posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT
-                               , ref=pcell.getentiid()  # , pcell.getentiid()
+                               ,href=f"#{pcell.getentiid()}"
+                               , element=pcell.getentiid()
                                , fillcolor='black' if pcell.gettype() == EntityCell.CENTER else 'blue',
                                fontsize=FONTSIZE
                                , name=nvl(pcell.getentiname())[:MAXENTICHARS]
                                , recursive = recursive
-                               , title="<title>{' ' if pcell.getentidescr() in (None, '') else pcell.getentidescr()[:MAXDESCRCHARS]}</title>"
+                               , title=f"<title>{' ' if pcell.getentidescr() in (None, '') else pcell.getentidescr()[:MAXDESCRCHARS]}</title>"
                                )
     return entibox
 
@@ -299,7 +302,7 @@ def printenti(pcell: EntityCell, pposx, pposy,precursive=False):
 def printrela(pcell: EntityCell, pposx, pposy):
     textstart = f"""<g  fill="{'white'}" stroke="{'blue'}" fill-opacity="{80}" stroke-opacity="{80}" 
             transform="translate({pposx},{pposy})" >
-            <text id="{''}" x="2" y="4" fill="{'black'}" font-weight="bold"  fill-opacity="1.0" font-size="{FONTSIZE}" stroke="none">
+            <text x="2" y="4" fill="{'black'}" font-weight="bold"  fill-opacity="1.0" font-size="{FONTSIZE}" stroke="none">
             {nvl(pcell.getassoc())[:MAXRELACHARS]} </text></g>"""
 
     return textstart
@@ -314,7 +317,6 @@ def linecolor(pindirect: bool) -> str:
 
 
 def printline(pstartx, pstarty, plenx, pleny, plinecolor=blacklinecolor):
-    DEFAULT_LINEWIDTH: int = 1
     line = f"""<g stroke-linecap="butt" >
               <path stroke="{plinecolor}" fill="none" stroke-opacity="100"  stroke-width="{DEFAULT_LINEWIDTH}" 
                     d="M{pstartx} {pstarty} L{pstartx + plenx} {pstarty + pleny}" />
@@ -342,22 +344,20 @@ def printlinedio(pstartx, pstarty, plenx, pleny, psrcid=None, prelatext=None):
           <mxGeometry x="-0.5672" relative="1" as="geometry">
             <mxPoint x="14" y="-10" as="offset" />
           </mxGeometry>
-        </mxCell>""".format(id=str(uuid) + "xx", assoc=prelatext[:MAXRELACHARS], uuid=uuid)
+        </mxCell>""".format(id=str(uuid) + "xx", assoc=translate_and_encode(prelatext[:MAXRELACHARS]), uuid=uuid)
         line += relatext
     # fi
     return line
 
 
-def entienviro2svg(pentiid, penviron):
-    return '<div id="{}-container">\n{}\n</div>'.format(pentiid, generate_svg_content(penviron))
+def entienviro2svg(penviron,pentiid=None):
+    return '<div>\n{}\n</div>'.format(generate_svg_content(penviron=penviron))
 
 
 def generate_svg_content(penviron):
     diagramhead = """
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                 version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">
-        <defs id="dmw_defs" >
-        </defs>
     """
     diagramfoot = """
         </svg>
@@ -366,6 +366,7 @@ def generate_svg_content(penviron):
     if penviron is None:
         print("Penviron is None: ")
         return None
+
     minvidx, maxvidx = penviron.getminvkey(), penviron.getmaxvkey()
 
     rectheight = (maxvidx - minvidx + 1) * CELLHEIGHT
@@ -500,7 +501,7 @@ def generate_drawio_content(penviron: EntityEnvironment):
     diagramhead = """<?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="Electron" modified="{date}T{time}Z" agent="curl/7.1" 
 etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
-  <diagram id="{id}" name="{name}">
+  <diagram name="{name}">
     <mxGraphModel dx="{dx}" dy="{dy}" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1"
     pageScale="1" pageWidth="{width}" pageHeight="{height}" math="0" shadow="0">
     <root>
@@ -524,7 +525,7 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
     centercell = penviron.getcell(pvidx=0, phidx="center")
     drawiotext = diagramhead.format(date=datetime.now().strftime("%Y-%m-%d"),
                                     time=datetime.now().strftime("%H:%M:%S.%s")
-                                    , id=centercell.getentiid(), name=centercell.getentiname()
+                                    , name=centercell.getentiname()
                                     , dx=0, dy=0
                                     , width=rectwidth, height=rectheight)
 
@@ -607,15 +608,21 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
                                    , plenx=0, pleny=rolelineendy - rolelinestarty)
 
     drawiotext += diagramfoot
+    try:
+        loaded_dom = etree.fromstring(drawiotext.encode())
+    except Exception as e:
+        raise Exception(f"Cannot parse {drawiotext}") from e
+    verify_dom(loaded_dom)
+
     return drawiotext
 
 
 def parse_color(value: str):
     """Convert colors in the rgb(rrr,bbb,ggg) format where r,b,g are in decimals 0-255 into an array (r,g,b,a)"""
-    expression = re.compile(r"rgb\(([0-9]+),([0-9]+),([0-9]+)\)")
+    expression = re.compile(r"(rgb|)\(([0-9]+),([0-9]+),([0-9]+)\)")
     match = expression.match(value)
     assert match, f"Value {value} does not match rgb(r,g,b) pattern"
-    return 1 / 256 * int(match.group(1)), 1 / 256 * int(match.group(2)), 1 / 256 * int(match.group(3)), 1
+    return 1 / 256 * int(match.group(2)), 1 / 256 * int(match.group(3)), 1 / 256 * int(match.group(4)), 1
 
 
 def printentidio(pcell: EntityCell, pposx, pposy, unique: str = ''):
@@ -636,7 +643,7 @@ def printentidio(pcell: EntityCell, pposx, pposy, unique: str = ''):
         font_color = (1, 1, 1, 1) if fill_hsv[2] < .5 else (0, 0, 0, 1)
 
     style = f'fillColor={colors.to_hex(fill_color)};fontColor={colors.to_hex(font_color)};'
-    entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=nvl(pcell.getentiname())[:MAXENTICHARS],
+    entibox = entitydio.format(id=pcell.getentiid(), unique=unique, name=translate_and_encode(nvl(pcell.getentiname())[:MAXENTICHARS]),
                                style=style,
                                link="" if pcell.gettype() == EntityCell.CENTER else f'link="ssot:{pcell.getentiid()}"',
                                posx=pposx, posy=pposy, width=ENTIWIDTH, height=ENTIHEIGHT

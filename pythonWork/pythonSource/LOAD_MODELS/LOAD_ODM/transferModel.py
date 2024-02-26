@@ -111,15 +111,6 @@ def do1structtype(filename, XMLtree,unkndomains):
     # for
 
 
-"""    attr.attr_doma_id = findorcreateDomain(pdomguid=handleXML.findText(pattrxml, 'domain')
-                                           , pstructdomguid=handleXML.findText(pattrxml, 'structuredType')
-                                           , ptypeguid=handleXML.findText(pattrxml, 'logicalDatatype')
-                                           , pattrname=attr.attr_displ_name
-                                           , pfathername=vatername
-                                           , pattrxml=pattrxml)
-"""
-
-
 def dostructtypes(unkndomains):
     handleXML.dosegfiles(pdirec=getodmparams().structypesdirec(),
                          phandlefunc=do1structtype,
@@ -207,8 +198,17 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
         pdoma.doma_dat_granularity = Domain.MINUTE
         deriveddomaname += f"{nvl(pdoma.doma_dat_granularity, '')}_{nvl(pdoma.doma_dat_minvalue, '')}_{nvl(pdoma.doma_dat_maxvalue, '')}"
     elif (pdoma.doma_type == Domain.NUM):
-        pdoma.doma_num_minvalue = range[0]
-        pdoma.doma_num_maxvalue = range[1]
+        try:
+            pdoma.doma_num_minvalue = None if range[0] is None else float(range[0])
+        except:
+            logging.error(f"domain \"{pdoma.doma_name}\": range value {range[0]} not numeric")
+            pdoma.doma_num_minvalue = None
+
+        try:
+            pdoma.doma_num_maxvalue = None if range[1] is None else float(range[1])
+        except:
+            logging.error(f"domain \"{pdoma.doma_name}\": range value {range[1]} not numeric")
+            pdoma.doma_num_maxvalue = None
         prec = handleXML.findText(pxml, 'dataTypePrecision')
         if prec is None:
             prec = handleXML.findText(pxml, 'precision')  # in struct-type attributes
@@ -255,9 +255,9 @@ def liesunsfuelldoma(pdoma, pxml, pdatyid=None):
     return doma
 
 
-def do1domainfile(pfilename, XMLtree,interfacedomains):
+def do1domainfile(pfilename, XMLtree,datamodeldomains):
     # return none if domainfile is defaultdomainfile, name otherwise
-    interfacename = lambda name: None if (name == ODMParameter.defdomainsfilname()[:-4]) else name
+    datamodelname = lambda name: None if (name == ODMParameter.defdomainsfilname()[:-4]) else name
 
     root = XMLtree.getroot()
 
@@ -268,24 +268,24 @@ def do1domainfile(pfilename, XMLtree,interfacedomains):
                       doma_origin=Domain.DOMAIN)
         doma = liesunsfuelldoma(pdoma=doma, pxml=dom)
 
-        intfname = interfacename(handleXML.findField(root, 'fileName'))
-        if intfname is not None:
-            # mark domain for interface-reference later on
-            interfacedomains[doma.doma_id] = intfname
+        datmname = datamodelname(handleXML.findField(root, 'fileName'))
+        if datmname is not None:
+            # mark domain for datamodel-reference later on
+            datamodeldomains[doma.doma_id] = datmname
     # for
     return
 
 
-def transferDomains(interfacedomains, unkndomains):
+def transferDomains(datamodeldomains, unkndomains):
     filename=getodmparams().defdomainsfilpath()
     do1domainfile(pfilename=filename, XMLtree=handleXML.parseXML(pfilename=filename),
-                  interfacedomains=interfacedomains)
+                  datamodeldomains=datamodeldomains)
 
     handleXML.doxmlfiles(pdirec=getodmparams().domainsdirec(),
                          phandlefunc=do1domainfile,
                          ppattern=r'.*\.xml',
                          pmandatorydirec=False,
-                         interfacedomains=interfacedomains)
+                         datamodeldomains=datamodeldomains)
 
     dostructtypes(unkndomains)
     return
@@ -623,8 +623,6 @@ def transferdiaconnect(pconnectors, pdiagid, puc, pdc,    duplicateentityvids ):
                 lise.lise_relr_id = relr.relr_id
                 lise.lise_linetype = linetype(pidx=idx, pmaxidx=len(points)
                                               , psourcelt=sourcelinetype, ptargetlt=targetlinetype)
-                lise.lise_uc = puc
-                lise.lise_dc = pdc
                 if len(linesegs) > 0:
                     """ ab dem 2. Punkt wird im vorherigen Punkt der Winkel zum nächsten hinzugefügt"""
                     calcwinkel = lambda ey, sy, ex, sx: math.atan2(ey - sy, ex - sx)
@@ -696,7 +694,7 @@ def transferdiagramme(classifications,laterentities ):
     return
 
 
-def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, pintfid=None):
+def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, pdatmid=None):
     doma = Domain(srcname=SOURCE_ODM, srcid=Modelelemtype.DOMA + handleXML.findField(pattrxml, 'id'),
                   doma_name=pattrname)
     domatest = Domain.getbyname(pname=doma.doma_name)
@@ -704,7 +702,7 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, p
         # es gibt ihn schon, füge den Vaternamen dazu
         doma.doma_name = pattrname + '-' + pvatername
     doma.doma_origin = pdomatype
-    doma.doma_intf_id = pintfid
+    doma.doma_datm_id = pdatmid
     if nvl(ptypeguid) != '':
         doma.doma_daty_id = Modelelement.getmodebyextref(psrcid=ptypeguid, psrcname=SOURCE_ODM).mode_id
     doma.doma_descr = "generiertes Domain für Datentyp für Attribute {}.{}".format(pvatername, pattrname)
@@ -713,7 +711,7 @@ def insertderiveddomain(ptypeguid, pattrname, pvatername, pdomatype, pattrxml, p
     return doma
 
 
-def findorcreateDomain(pattrname, pfathername, pdomatype, pattrxml, pintfid=None
+def findorcreateDomain(pattrname, pfathername, pdomatype, pattrxml, pdatmid=None
                        , pdomguid=None, pstructdomguid=None, ptypeguid=None):
     def handleguid(pguid):
         if pguid is None: return None
@@ -745,7 +743,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype, pattrxml, pintfid=None
         elif isinstance(typeelem, Datatype):
             doma = insertderiveddomain(ptypeguid=ptypeguid, pattrname=pattrname, pvatername=pfathername,
                                        pdomatype=pdomatype,
-                                       pattrxml=pattrxml, pintfid=pintfid)
+                                       pattrxml=pattrxml, pdatmid=pdatmid)
             return doma.doma_id
         else:
             logmessages.writelog("Attr: {}, Father: {}, Domain Guid {} leads to unknown element type {}"
@@ -753,7 +751,7 @@ def findorcreateDomain(pattrname, pfathername, pdomatype, pattrxml, pintfid=None
             return Domain().getunknown().doma_id
         # fi
     # fi
-    return Domain().getunknown().doma_id
+    return None
 
 
 def do1Arc(fileName,XMLtree):
@@ -1060,8 +1058,6 @@ def getdokuref(pelem, pstruct=False):
     return documentids
 
 
-# getdokuref
-
 def getpartyref(pelem):
     partyids = []
     """
@@ -1098,13 +1094,12 @@ def getpartyref(pelem):
     return partyids
 
 
-# getpartyref
-
 def extractlngexamples(ptext, pname):
     lngexamples = dict()
     lngcomments = handleXML.extractlngcomments(ptext=ptext)
-    for lng, lngtext in lngcomments.items():
-        if lng == getodmparams().modelLang(): continue
+    for lng, lngtext in filter (lambda l : l[0] != getodmparams().modelLang(),
+                                lngcomments.items()):
+        #replaced by filter if lng == getodmparams().modelLang(): continue
         for fieldname, text in lngtext.items():
             if fieldname == f"{lng.upper()}_{pname}":
                 firstpart, lngexamples[lng] = handleXML.separateExamples(text)
@@ -1263,9 +1258,6 @@ def abbildTyp(ptyp):
     # fi
 
 
-# abbildTyp
-
-
 def do1Relation(fileName,XMLtree):
     relaxml = XMLtree.getroot()
     documents = getdokuref(pelem=relaxml)
@@ -1337,8 +1329,6 @@ def do1Relation(fileName,XMLtree):
         logmessages.writelog("Relationattributes are not handled (Relation {})".format(rela.rela_name))
     # fi
 
-
-# do1Relation
 
 def transferRelations():
     # lösche die Beziehungen
@@ -1437,17 +1427,6 @@ def do1UDPFile(pfileName,XMLtree):
     # for
     return
 
-
-# def dofiles(pdirec, pfileregexp, ptransferfunc):
-#     for file in stable_file_list(getodmparams().filesdirec()):
-#         filename, file_extension = os.path.splitext(file)
-#         if (pfileregexp.filename):
-#             filepath = getodmparams().odmIMDirec() + file
-#             print("**********DEBUG",filepath,str(file))
-#             ptransferfunc(filepath)
-#         # fi
-#     # endfor
-#     return
 
 
 def transferUDP():
@@ -1839,11 +1818,11 @@ def transferODMModel(**kwargs):
         dbConnection must be open
     """
 
-    """domains in non-default file are IM or interface (relationale model) dependent.
-        fix interface-id of Domains at end of transfer.
+    """domains in non-default file are IM or datamodel (relationale model) dependent.
+        fix datamodel-id of Domains at end of transfer.
         {doma_id : filename of domainfile}
      """
-    interfacedomains = dict()
+    datamodeldomains = dict()
     """List of not yet finished domain
         {id of unfinished domain : guid of type it is supposed to be}"""
     unkndomains = dict()
@@ -1874,7 +1853,7 @@ def transferODMModel(**kwargs):
     transferTypes()
     transferDocuments()
     transferorgunits(contacts)
-    transferDomains(interfacedomains, unkndomains)
+    transferDomains(datamodeldomains, unkndomains)
     transferUDP()
 
     """ Classifications type colors {classguid : {'id': enca_id, 'color': color}}"""
@@ -1894,7 +1873,7 @@ def transferODMModel(**kwargs):
     # adjustlabelpositions()
     Datatype.deleteunused()
     Column.fillextid()
-    Domain.fixdomaininterfaces(interfacedomains)
+    Domain.fixdomaindatamodels(datamodeldomains)
     removeemptyudp()
     filllanguages()
     fillelementdisplays()

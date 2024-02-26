@@ -103,6 +103,6 @@ def maindraw(pjson, plang):
 if __name__ == '__main__':
     direc = sys.argv[1]
     lang = sys.argv[2] if (len(sys.argv)>2) else None
-    #main(pjson=direc, plang=lang)
+    #main(pjsmodel=direc, plang=lang)
     maindraw(pjson=direc, plang=lang)
 

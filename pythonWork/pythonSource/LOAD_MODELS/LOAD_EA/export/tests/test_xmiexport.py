@@ -124,6 +124,7 @@ class IntegrationTestXMIExport(IntegrationTest):
         return sources
 
     @pytest.mark.integration
+    @pytest.mark.nocoverage
     def test_zzz_finally_process_all_models_found_in_testdata_folder(self):
         success = True
         errors = []
@@ -149,7 +150,7 @@ class IntegrationTestXMIExport(IntegrationTest):
                 errors.append({'ssot': ssot, 'error': e})
         self.assertTrue(success, f"{len(models)} failed. Errors: {errors}")
 
-    def load_model(self, model_json_file: str):
+    def load_model(self, model_json_file):
         self.assertTrue(os.path.isfile(model_json_file),
                         f"JSON source not found {model_json_file}")
         with open(model_json_file, 'r') as src:

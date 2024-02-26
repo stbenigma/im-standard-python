@@ -3,18 +3,28 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-from os import path
+from pathlib import Path
+
 
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.createDB import main, existsDB, createDB,applysqlscript
+from SSOT_db.createDB import main, existsDB, createDB,applysqlscript,insertBaseData
 from SSOT_infra import Parameter
+from SSOT_infra.parameters import expecteddbversion
 import SSOT_infra.tests.integration as testsrc
+from SSOT_db.IM_OBJECTS import Modelelemtype
 
 
 class test_createDB(unittest.TestCase):
 
+    def setUp(self) -> None:
+        self.sqlitepath=testsrc.source_root() / 'SSOT_db' / 'dbstructure' / 'sqlite'
+        self.testddl_1_6 = (Path(__file__).parent) / "TEST1.6_modelmodel_sqlite.sql"
+        self.debugpath = Path.home() / "Downloads"  # try local debug path
+        if not Path.exists(self.debugpath):
+            self.debugpath = None
+
     def test_applysqlscript(self):
-        assert True
+        self.assertTrue( 1==1)
 
     def test_insertdiagtypes(self):
         assert True
@@ -26,12 +36,66 @@ class test_createDB(unittest.TestCase):
         self.assertFalse(existsDB(pfilepath=''))
         self.assertFalse(existsDB(pfilepath='bar.db'))
         with tempfile.TemporaryDirectory() as tempdir:
-            f = open(path.join(tempdir, 'bar.db'), 'w')
+            f = open(os.path.join(tempdir, 'bar.db'), 'w')
             self.assertTrue(existsDB(pfilepath=f.name))
             f.close()
 
-    def test_createnew_db(self):
-        assert True
+    def test_createandupgradenew_db(self):
+        memorydb = ":memory:"
+        connection = dbConnect.opendDB4DDL(pfilepath=memorydb)
+        applysqlscript(psqlfilepath=self.testddl_1_6)
+        dbversion = dbConnect.readversion(connection)
+        self.assertTrue(dbversion["version"]=="1.6")
+
+        upgradesql=self.sqlitepath / "modelmodel_sqlite_1.6.1.sql"
+        if Path.exists(upgradesql):
+            applysqlscript(psqlfilepath=upgradesql)
+            dbversion = dbConnect.readversion(connection)
+            self.assertEqual("1.6.1",dbversion["version"])
+
+        with tempfile.TemporaryDirectory() as tempdir:
+            os.chdir(tempdir)
+            dbfile="TESTDDL.db"
+            connection = dbConnect.opendDB4DDL(pfilepath=dbfile)
+            applysqlscript(psqlfilepath=self.testddl_1_6)
+            insertBaseData()
+            dbversion = dbConnect.readversion(connection)
+            self.assertTrue(dbversion["version"] == "1.6")
+            melts=Modelelemtype.select()
+            connection.close()
+
+            createDB(pupgrade=True,pdestination=dbfile)
+            connection = dbConnect.openDB(pfilepath=dbfile)
+            dbversion = dbConnect.readversion(connection)
+            self.assertEqual (expecteddbversion(), dbversion["version"])
+            melts=Modelelemtype.select()
+            self.assertEqual(20,len(melts)) #Version 2.1 20 Modelelemtypes
+            curmeltnames = {
+                'ARCS',
+                'ATTR',
+                'BURU',
+                'COLU',
+                'DOMA',
+                'ENTI',
+                'DATM',
+                'ORGU',
+                'RELA',
+                'SYNO',
+                'TABL',
+                'DATY',
+                'KEYS',
+                'DOCU',
+                'DGRM',
+                'DIAG',
+                'EXPL',
+                'ACTR',
+                'SYST',
+                'MAPS', }
+            self.assertEqual( curmeltnames ,set(m.melt_shortname for m in melts))
+
+            return
+        #with
+
 
     def test_version(self):
         assert True
@@ -47,7 +111,7 @@ class test_createDB(unittest.TestCase):
             os.chdir(tempdir)
             # test real upgrade
             savefilename = Parameter.SQLFILENAME
-            os.chdir(testsrc.source_root() / 'SSOT_db' / 'dbstructure' / 'sqlite')
+            os.chdir(self.sqlitepath)
             try:
                 lastfile = subprocess.check_output(["git", "show",
                                                     f"2.9:./modelmodel_sqlite.sql"
@@ -89,7 +153,7 @@ class test_createDB(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main(psysargs=['createDB.py', '-paramfile', 'bar.params', '-modelname', 'Model', '--unittest'])
 
-            with open(path.join(tempdir, 'bar.params'), 'w') as f:
+            with open(os.path.join(tempdir, 'bar.params'), 'w') as f:
                 try:
                     main(psysargs=['createDB.py', '-p', f.name, '--unittest'])
                 except:
@@ -111,6 +175,7 @@ class test_createDB(unittest.TestCase):
     def test_create_db(self):
 
         with tempfile.TemporaryDirectory() as tempdir:
+
             os.chdir(tempdir)
             logfilepath = os.path.join(tempdir, 'logfile.lll')
             createDB(pmodelname=testsrc.TESTMODEL1, plogfilepath=logfilepath)

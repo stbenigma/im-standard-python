@@ -1,6 +1,6 @@
 from .baseobject import MultilangBaseobject, Baseobject
 from .datatype import Datatype
-from .interface import Interface
+from .datamodel import Datamodel
 from .languagetext import Languagetext
 from .modelelement import Modelelemtype
 from .physicals import Storageformat
@@ -217,24 +217,24 @@ class Domain(MultilangBaseobject):
 
 
     @staticmethod
-    def fixdomaininterfaces(pinterfacedomains):
+    def fixdomaindatamodels(pdatamodeldomains):
         """{doma_id: <filename>}
-            domains in non-default file are IM or interface (relationale model) dependent.
+            domains in non-default file are IM or datamodel (relationale model) dependent.
            filename = IM_Domains or <relname>_Domains
          """
-        interfacename = lambda filename : filename[:-8]
-        interfaces = set((pinterfacedomains.values()))
-        intf2id = {}
-        for filename in interfaces:
-            if filename is None: continue
-            intf = Interface().getbyuk(intf_name=interfacename(filename))
-            #it is either an interface (relational model) or None (= IM)
-            intfid = None if intf is None else intf.intf_id
-            intf2id[filename] = intfid
+        datamodelname = lambda filename : filename[:-8]
+        datamodels = set((pdatamodeldomains.values()))
+        datm2id = {}
+        for filename in filter (lambda d : d is not None, datamodels):
+            #replaced by filter if filename is None: continue
+            datm = Datamodel().getbyuk(datm_name=datamodelname(filename))
+            #it is either an datamodel (relational model) or None (= IM)
+            datmid = None if datm is None else datm.datm_id
+            datm2id[filename] = datmid
         #for
-        domainterfaces = [(intf2id[filename],domaid) for domaid,filename in pinterfacedomains.items()]
-        if len(domainterfaces) > 0:
-            dbDML.execmany(psql="update domains set doma_intf_id = ? where doma_id = ?", recs=domainterfaces)
+        domadatamodels = [(datm2id[filename],domaid) for domaid,filename in pdatamodeldomains.items()]
+        if len(domadatamodels) > 0:
+            dbDML.execmany(psql="update domains set doma_datm_id = ? where doma_id = ?", recs=domadatamodels)
         return
 
 class DomaingroupMember(Baseobject):

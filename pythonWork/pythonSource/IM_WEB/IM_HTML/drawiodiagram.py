@@ -23,7 +23,7 @@ drawio_diagram_base = """<?xml version="1.0" encoding="UTF-8"?>
 
 
 def create_diagram(diagram_key: str, model: JSModel, translator, base=drawio_diagram_base) -> etree:
-    """Create a draw.io diagram from the corresponding node in the jsmodel
+    """Create a draw.io diagram from the corresponding node in the mirojsmodel
     :parameter translator implements gettext() as in the gettext module and tr() to translate SSOT fields
     """
     assert model is not None, f"Expecting a valid model"
@@ -36,13 +36,29 @@ def create_diagram(diagram_key: str, model: JSModel, translator, base=drawio_dia
         logging.error(f"Unable to load {xml_source}. {e}")
         return None
 
-
     xml_node = dom.find('.//root')
 
     add_entities(diagram, model, translator, xml_node)
     add_relations(diagram, model, translator, xml_node)
 
+    verify_dom(dom.getroot())
+
     return dom
+
+
+def verify_dom(dom: etree.Element):
+    """
+    Check if the dom produces valid XML.
+    Major issue: Encodings
+    :param dom: lxml dom
+    :return:
+    """
+    dom_as_string = etree.tostring(dom)
+
+    assert '&"' not in dom_as_string.decode(), f"Found &\" in dom"
+
+    reloaded_dom = etree.fromstring(dom_as_string)
+    assert len(reloaded_dom.getchildren()) == len(dom.getchildren())
 
 
 def sort_by_subtype_level(diagram_entities: [], model: JSModel) -> []:
@@ -67,19 +83,20 @@ def prefix_none():
 
 def html_tooltip(entity, translator) -> str:
     """Create a rich text tooltip according to """
-    tooltip_text = [f"""<h2>{translator.tr(entity['name'])}</h2>"""]
 
-    description = translator.tr(entity.get('descr'))
+    tooltip_text = [f"""<h2>{translate_and_encode(entity['name'], translator)}</h2>"""]
+
+    description = translate_and_encode(entity.get('descr'), translator)
     if description is not None and len(description) > 0:
         tooltip_text.append(f"<p>{description}<p>")
 
     synonyms = entity['synonyms']
     if synonyms is not None and len(synonyms) > 0:
-        syn_list = map(lambda s: translator.tr(s), synonyms)
+        syn_list = map(lambda s: translate_and_encode(s, translator), synonyms)
         synonym_str = ', '.join(syn_list)
         tooltip_text.append(f"<h3>{translator.tr('Synonyms')}</h3><p>{synonym_str}</p>")
 
-    tt = translator.tr(entity.get('tooltip'))
+    tt = translate_and_encode(entity.get('tooltip'), translator)
     if tt is not None and len(tt) > 0:
         tooltip_text.append(f"<h3>{translator.tr('Tooltip')}</h3><p>{tt}</p>")
 
@@ -97,7 +114,7 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         # create the container
         uo = etree.Element('UserObject')
         uo.set('id', enti_key)
-        uo.set('label', translator.tr(enti['name']))
+        uo.set('label', translate_and_encode(enti['name'], translator))
         uo.set('link', 'ssot:' + enti_key)
 
         # Add mouseover values: https://drawio.freshdesk.com/support/solutions/articles/16000067813-edit-and-display-shape-metadata
@@ -105,7 +122,7 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         # Tooltip (https://www.diagrams.net/doc/faq/tooltips) is an alternative, but does not support Key Value display as do attributes
         uo.set(next(prefix_generator) + gettext("Name"), translator.tr(enti['name']))
 
-        description = translator.tr(enti.get('descr'))
+        description = translate_and_encode(enti.get('descr'), translator)
         if description is not None and len(description) > 0:
             uo.set(next(prefix_generator) + gettext("Beschreibung"), description)
 
@@ -248,13 +265,28 @@ def add_relations(diagram, model: JSModel, translator, parent):
             back.set('style', connector_style + f"dashed={end_dashing};endArrow={end_type};startArrow=none")
             parent.append(back)
 
-        front_label_text = translator.tr(relation_ssot['from-to'].get('assoc'))
+        front_label_text = translate_and_encode(relation_ssot['from-to'].get('assoc'), translator)
         if add_label(relation, 'start', front_label_text, f"{key}-from", parent) is None:
             logging.warning(f"Missing coordinates for label '{front_label_text}' on start of relation {key}")
 
-        tail_label_text = translator.tr(relation_ssot['to-from'].get('assoc'))
+        tail_label_text = translate_and_encode(relation_ssot['to-from'].get('assoc'), translator)
         if add_label(relation, 'end', tail_label_text, f"{key}-to", parent) is None:
             logging.warning(f"Missing coordinates for label '{tail_label_text}' on end of relation {key}")
+
+
+def translate_and_encode(text: input, translator=None) -> str:
+    if text is None:
+        return text
+    if translator is None:
+        text = text.replace('"', '&quot;')
+        return escape(text)
+    translated = translator.tr(text)
+    if translated is not None:
+        escaped = escape(translated)
+        quoted = escaped.replace('"', '&quot;')
+        return quoted
+    else:
+        return translated
 
 
 def map_line_end(cardinality: str, mandatory: bool = False) -> str:

@@ -2,17 +2,21 @@ import re
 
 from tqdm.auto import tqdm
 
-from SSOT_db.IM_JSON.jsattribute import examples2js
-from SSOT_db.IM_JSON.jsbase import fillmodel, multilangtext, jsguid, sourceref, reflist, userdefprops, \
-    tabreflist, JSModel
-from SSOT_db.IM_JSON.jsreference import udpv2js
 from SSOT_db.IM_JSON import insertlgtx, Mergeresult, replacelgtx, insreferences, \
-    inssourceref, udpvs2sql, buruinelements, fromjson2db
+    inssourceref, udpvs2sql, buruinelements, fromjson2db, multilangtext, jsonmultilang
+from SSOT_db.IM_JSON.jsattribute import examples2js
+from SSOT_db.IM_JSON.jsbase import fillmodel, jsguid, sourceref, reflist, userdefprops, \
+    tabreflist, JSModel, fillargs, initjselement
+from SSOT_db.IM_JSON.jsreference import udpv2js
 from SSOT_db.IM_OBJECTS import *
 
 """ builds a dictionary of all entities
     jsguid: {<entity>}
 """
+
+
+def jssynonym(synonym):
+    return jsonmultilang(synonym)
 
 
 def synonyms2js(psynos: list = None):
@@ -26,9 +30,9 @@ def synonyms2js(psynos: list = None):
             ]
     """
     if psynos is None:
-        return [multilangtext()]
+        return [jssynonym(None)]
     else:
-        return [multilangtext(s) for s in psynos]
+        return [jssynonym(s) for s in psynos]
 
 
 def entityicon(penti: Entity = None):
@@ -75,50 +79,78 @@ def racilist(pmodeid=None):
     return retval
 
 
+ENTITYMODEL = ['name', 'shortname',
+               'descr', 'tooltip',
+               'category',
+               'exptuple#', 'prefix',
+               'supertypeentity',
+               'subtypellevel+',
+               'uc', 'dc', 'um', 'dm',
+               'minzoomlevel', 'maxzoomlevel', 'publstatus',
+               'icon',
+               'synonyms', 'examples',
+               'sourceref', 'raci+',
+               'supertypes+', 'roles+', 'subtypes+',
+               'attributes+', 'inheritedattributes+',
+               'relations+', 'inheritedrelations+',
+               'keys+', "businessrules+",
+               'inarcs+', 'referencedby', 'userdefprops',
+               'tablesmapped+', 'diagrams+'
+               ]
+
+
+def jsonentity(name, uc, dc, **kwargs)->dict:
+    entity = dict()
+    initjselement(entity, ENTITYMODEL)
+    entity["name"] = multilangtext(name)
+    entity["uc"] = uc
+    entity["dc"] = dc
+    entity["referencedby"] = []
+    entity["userdefprops"] = dict()
+    entity["synonyms"] = []
+    entity["examples"] = []
+
+    fillargs(model=entity, refmodel=ENTITYMODEL, **kwargs)
+    return entity
+
+def arcno(enti,arcid):
+    """
+    returns the sequence-no 1..n of the arc in the entities "inarcs+" list
+    returns None if arcid is not in this entity or if arcid is None
+    """
+    if (arcid is None) or ("inarcs+" not in enti):
+        retval = None
+    else:
+        myarcs = {aid: idx for idx, aid in enumerate(enti["inarcs+"], start=1)}
+        retval = myarcs.get(arcid) #return None if not present
+    return retval
+
+def entityemptymodel():
+    return jsonentity(name=multilangtext(), shortname='',
+                      descr=multilangtext(), tooltip=multilangtext(),
+                      category='',
+                      exptuple='', prefix='',
+                      supertypeentity='',
+                      xsubtypellevel='',
+                      uc='', dc='', um='', dm='',
+                      minzoomlevel=0, maxzoomlevel=4, publstatus='DRAFT',
+                      icon=entityicon(),
+                      synonyms=synonyms2js(None), examples=examples2js(None),
+                      sourceref=sourceref(None), raci=racilist(),
+                      supertypes=reflist(None), roles=reflist(None), subtypes=reflist(None),
+                      attributes=reflist(None), inheritedattributes=reflist(None),
+                      relations=reflist(None), inheritedrelations=reflist(None),
+                      keys=reflist(None), businessrules=buruinelements(None),
+                      inarcs=reflist(None), referencedby=reflist(None),
+                      userdefprops=userdefprops(None),
+                      tablesmapped=tabreflist(None), diagrams=reflist(None))
+
 def entities2js(pemptymodel):
-    model = ['name', 'shortname',
-             'descr', 'tooltip',
-             'category',
-             'exptuple#', 'prefix',
-             'supertypeentity',
-             'subtypellevel+',
-             'uc', 'dc', 'um', 'dm',
-             'minzoomlevel', 'maxzoomlevel', 'publstatus',
-             'icon',
-             'synonyms', 'examples',
-             'sourceref', 'raci+',
-             'supertypes+', 'roles+', 'subtypes+',
-             'attributes+','inheritedattributes+',
-             'relations+', 'inheritedrelations+',
-             'keys+', "businessrules+",
-             'inarcs+', 'referencedby', 'userdefprops',
-             'tablesmapped+', 'diagrams+'
-             ]
     if pemptymodel:
-        entis = {jsguid(Modelelemtype.ENTI, '0000'): fillmodel(pmodel=model,
-                                                               pentries=[multilangtext(), '',
-                                                                         multilangtext(), multilangtext(),
-                                                                         '', '', '',
-                                                                         '', '',
-                                                                         '', '', '', '',
-                                                                         0, 4, 'DRAFT',
-                                                                         entityicon(),
-                                                                         synonyms2js(None), examples2js(None),
-                                                                         sourceref(None), racilist(),
-                                                                         reflist(None), reflist(None),
-                                                                         reflist(None), reflist(None),
-                                                                         reflist(None), reflist(None),reflist(None),
-                                                                         reflist(None), buruinelements(None),
-                                                                         reflist(None),
-                                                                         reflist(None),
-                                                                         userdefprops(None),
-                                                                         tabreflist(None), reflist(None)
-                                                                         ]
-                                                               )
-                 }
+        entis = {jsguid(Modelelemtype.ENTI, '0000'): entityemptymodel()}
     else:
         entis = {jsguid(Modelelemtype.ENTI, e.enti_id):
-                     fillmodel(pmodel=model,
+                     fillmodel(pmodel=ENTITYMODEL,
                                pentries=[multilangtext(ptext=e.enti_name_l), e.enti_short_name,
                                          multilangtext(e.enti_descr_l), multilangtext(e.enti_tooltip_l),
                                          jsguid(JSModel.ELEMTYPE_CATG, e.enti_enca_id),
@@ -157,12 +189,12 @@ def entities2js(pemptymodel):
                                          userdefprops(
                                              pprops=udpv2js(pmodeid=e.enti_id, pmodelemtype=Modelelemtype.ENTI)),
                                          tabreflist(plist={
-                                             jsguid(Modelelemtype.INTF, s.getid()):
+                                             jsguid(Modelelemtype.DATM, s.getid()):
                                                  [jsguid(Modelelemtype.TABL, t.tabl_id)
                                                   for t in TablEntiMap.gettabllist(pentiid=e.enti_id,
-                                                                                   pintfid=s.getid())
+                                                                                   pdatmid=s.getid())
                                                   ]
-                                             for s in Interface.getmapped(pentiid=e.enti_id)}),
+                                             for s in Datamodel.getmapped(pentiid=e.enti_id)}),
                                          reflist(plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                         Diagram.getdiagrams(pmodeid=e.enti_id)])
                                          ]
@@ -170,7 +202,6 @@ def entities2js(pemptymodel):
                  }
 
     return entis
-    # entities2js
 
 
 """inserts all entities from json structure (like the one in entities2js to the sql database
@@ -259,4 +290,4 @@ def entities2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
         inssourceref(presult=presult, pmodeid=entiid, psources=jelem["sourceref"])
         udpvs2sql(presult=presult, pmodeid=entiid, pudps=jelem["userdefprops"])
     # for
-# entities2sql
+    return

@@ -15,6 +15,10 @@ class Actorrole(Baseobject):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.setdefaultval("self.actc_responsible",'FALSE')
+        self.setdefaultval("self.actc_accountable",'FALSE')
+        self.setdefaultval("self.actc_consulted",'FALSE')
+        self.setdefaultval("self.actc_informed",'FALSE')
         return
 
     def getname(self, plang=None):

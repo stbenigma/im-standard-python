@@ -11,9 +11,7 @@ def businessrules2js(pemptymodel):
         burus = {jsguid(Modelelemtype.BURU, b.buru_id): businessrule2js(b) for b in BusinessRule.select()}
     return burus
 
-
-def attr2js(pattr):
-    model = ['techname', 'name',
+ATTRIBUTEMODEL=['techname', 'name',
              'seq', 'entity',
              'domain', 'basedatatype+',
              'type+', 'memberattrs+',
@@ -27,8 +25,32 @@ def attr2js(pattr):
              'referencedby', 'userdefprops',
              'columnsmapped+', 'diagrams+'
              ]
+
+def jsonattribute(name:dict, techname,entity,domain,uc, dc, **kwargs):
+    attribute = dict()
+    initjselement(attribute,ATTRIBUTEMODEL)
+    attribute["name"] = multilangtext(name)
+    attribute["techname"] = techname
+    attribute["entity"] = entity
+    attribute["domain"] = domain
+    attribute["descriptive"] = False
+    attribute["mandatory"] = False
+    attribute["historicised"] = False
+    attribute["repeated"] = False
+    attribute["translated"] = False
+    attribute["encrypted"] = False
+    attribute["uc"] = uc
+    attribute["dc"] = dc
+    attribute["referencedby"] = []
+    attribute["userdefprops"] = dict()
+    attribute["examples"] = []
+
+    fillargs(model=attribute,refmodel=ATTRIBUTEMODEL,**kwargs)
+    return attribute
+
+def attr2js(pattr):
     if pattr is None:
-        retval = fillmodel(pmodel=model,
+        retval = fillmodel(pmodel=ATTRIBUTEMODEL,
                            pentries=['', multilangtext(),
                                      '', '',
                                      '', '',
@@ -41,22 +63,24 @@ def attr2js(pattr):
                                      sourceref(), jsentity.racilist(),
                                      reflist(), buruinelements(None),
                                      reflist(), userdefprops(),
-                                     {jsguid(Modelelemtype.INTF, "0000"):
+                                     {jsguid(Modelelemtype.DATM, "0000"):
                                           [jsguid(Modelelemtype.COLU, "0000")]}, reflist()
                                      ]
                            )
     else:
         doma = Domain().getbyid(pattr.attr_doma_id)
 
-        retval = fillmodel(pmodel=model,
+        retval = fillmodel(pmodel=ATTRIBUTEMODEL,
                            pentries=[pattr.attr_tech_name, multilangtext(pattr.attr_displ_name_l),
                                      pattr.attr_displ_seq, jsguid(Modelelemtype.ENTI, pattr.attr_enti_id),
                                      jsguid(Modelelemtype.DOMA, pattr.attr_doma_id),
-                                     None if doma.doma_daty_id is None else Datatype().getbyid(
-                                         doma.doma_daty_id).daty_name,
-                                     doma.doma_type,
-                                     None if (doma.doma_type != Domain.GRP) else \
-                                         domaingroupmembers(pdomaid=pattr.attr_doma_id),
+                                     None if doma is None else \
+                                         None if doma.doma_daty_id is None else \
+                                             Datatype().getbyid(doma.doma_daty_id).daty_name,
+                                     None if doma is None else doma.doma_type,
+                                     None if doma is None else \
+                                          None if doma.doma_type != Domain.GRP else \
+                                            domaingroupmembers(pdomaid=pattr.attr_doma_id),
                                      Boolean.str2bool(pattr.attr_is_descriptive),
                                      Boolean.str2bool(pattr.attr_is_mandatory),
                                      Boolean.str2bool(pattr.attr_is_historicised),
@@ -77,18 +101,18 @@ def attr2js(pattr):
                                      + [jsguid(Modelelemtype.ORGU, d[0]) for d in
                                         OragnisationalUnit.getreforgulist(pid=pattr.attr_id)],
                                      userdefprops(udpv2js(pmodeid=pattr.attr_id, pmodelemtype=Modelelemtype.ATTR)),
-                                     colureflist({jsguid(Modelelemtype.INTF, s.getid()): [
+                                     colureflist({jsguid(Modelelemtype.DATM, s.getid()): [
                                          jsguid(Modelelemtype.COLU, c.colu_id) for c in
                                          ColAttrMap.getcolulist(pattrid=pattr.attr_id,
-                                                                pintfid=s.getid())]
-                                         for s in Interface.getmapped(pattrid=pattr.attr_id)
+                                                                pdatmid=s.getid())]
+                                         for s in Datamodel.getmapped(pattrid=pattr.attr_id)
                                      }
                                      ),
                                      reflist(
                                          plist=[jsguid(Modelelemtype.DIAG, d.diag_id) for d in
                                                 Diagram.getdiagrams(pmodeid=pattr.attr_id)])
                                      ])
-        if (doma.doma_type != Domain.GRP):
+        if (doma is None or doma.doma_type != Domain.GRP):
             del retval['memberattrs+']
     # fi
     return retval
@@ -189,10 +213,10 @@ def attributes2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
             }
          },
          "columnsmapped+": {
-            "INTF630": [
+            "DATM630": [
                "COLU799"
             ],
-            "INTF314": [
+            "DATM314": [
                "COLU390"
             ]
          },

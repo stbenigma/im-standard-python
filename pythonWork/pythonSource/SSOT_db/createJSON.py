@@ -75,4 +75,8 @@ def main(param1):
 if __name__ == '__main__':
     import sys
 
-    main(param1=None if len(sys.argv) == 1 else sys.argv[1])
+    if len(sys.argv) > 1:
+        print (sys.argv)
+        createJSON(pdbfilepath=sys.argv[1], pmodelname=sys.argv[2], pjsfilepath=sys.argv[3], pjsfilename=sys.argv[4])
+    else:
+        main(param1=None if len(sys.argv) == 1 else sys.argv[1])

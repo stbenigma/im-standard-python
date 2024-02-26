@@ -234,6 +234,7 @@ class MyTestCase(unittest.TestCase):
 
         conn.close()
         return
+    def test_new_modetypes(self):
 
 if __name__ == '__main__':
     unittest.main()

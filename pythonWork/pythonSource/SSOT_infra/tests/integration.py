@@ -1,4 +1,5 @@
-import os.path
+
+import os
 import shutil
 import traceback
 import unittest
@@ -7,13 +8,13 @@ import datetime
 
 from LOAD_MODELS.LOAD_ODM import fillDB
 from SSOT_db import createDB, createJSON
-from SSOT_db.IM_JSON import JSModel
 
 ROOT_MARKER = 'pythonWork'
 TESTMODEL1: str = 'testmodel-1'
 TESTMODEL2: str = 'testmodel-2'
 CRMTEST: str = 'crmTest'
 RIDDLE: str = 'riddle'
+DATASPOT: str = 'dataspot'
 
 
 def crmmapentityhack(jscrm):
@@ -26,7 +27,7 @@ def crmmapentityhack(jscrm):
     testcolid, testcol = [(key, val) for key, val in jscrm.getelements("columns").items() if
                           (val["table-id"] == testtablid and val["name"] == "coltosub")][0]
     attr= jscrm.getbyid("ATTR190")
-    attr["columnsmapped+"][testcol["interface-id+"]].append(testcolid)
+    attr["columnsmapped+"][testcol["datamodel-id+"]].append(testcolid)
     testcol["attributesmapped"] = [["ATTR190", "ENTI121"]]
     return
 
@@ -51,7 +52,8 @@ class ModelHelper:
             diff = datetime.datetime.now() - datetime.datetime.fromtimestamp(ptimestamp)
             return int(round(diff.total_seconds() / 60))
 
-        if palways or not os.path.exists(self.dbfile) or age(os.path.getmtime(self.dbfile)) > 60:
+        #if runs on gitHub (CI=True) create new db
+        if (os.getenv("CI") in [True,'True']) or palways or not os.path.exists(self.dbfile) or age(os.path.getmtime(self.dbfile)) > 60:
             if palways and os.path.exists(self.dbfile):
                 os.remove(self.dbfile)
             elif os.path.exists(self.dbfile):
@@ -66,20 +68,20 @@ class ModelHelper:
                                   pjsfilepath=self.dbdir, pjsfilename=self.jsonfilename)
         return self
 
-    def remove_web_infrastructure(self):
-        drop_web_infrastructure(self.webdir)
+    def remove_web_infrastructure(self,webdir = None):
+        drop_web_infrastructure(webdir if webdir else self.webdir)
 
 
 def drop_web_infrastructure(webdir: Path):
     assert isinstance(webdir, Path)
     # make sure new templates files are reloaded
-    template_folder = webdir / "jinjatemplates"
+    template_folder = webdir / "infra" / "jinjatemplates"
     if template_folder.exists():
         shutil.rmtree(template_folder)
-    js_folder = webdir / "js"
+    js_folder = webdir / "infra" / "js"
     if js_folder.exists():
         shutil.rmtree(js_folder)
-    style_folder = webdir / "css"
+    style_folder = webdir / "infra" / "css"
     if style_folder.exists():
         shutil.rmtree(style_folder)
     assert not template_folder.exists(), f"Folder '{template_folder}' should not exist"

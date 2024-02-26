@@ -93,7 +93,7 @@ class XMIBuilder(object):
         self.scale = 1.2
 
     def model_to_basic_xmi(self, package_name: str = 'initial') -> etree.Element:
-        """Convert the jsmodel"""
+        """Convert the mirojsmodel"""
         assert self.model_node is not None
 
         self.package_node = self.create_package(package_name)
@@ -598,7 +598,7 @@ $DES;$CLT={{{cltid}}}$CLT;$SUP=<none>$SUP;$ENDXREF;""")
         # <properties isSpecification="false" sType="Constraint" nType="0" scope="public" stereotype="Arc"/>
         props = etree.Element('properties')
         entity_node.append(props)
-        # props.set('documentation', f"Arc {key} from {arc.get('entity')} -> [{'|'.join(arc.get('relations'))}")
+        # props.set('documentation', f"Arc {key} from {arc.get('entity')} -> [{'|'.join(arc.get('relations+'))}")
         props.set('isSpecification', 'false')
         props.set('sType', 'Constraint')
         props.set('nType', '0')

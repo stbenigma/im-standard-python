@@ -11,7 +11,7 @@ class FILTEREDJSModel(JSModel):
                      Modelelemtype.DOCU, Modelelemtype.DOMA, Modelelemtype.DATY,
                      Modelelemtype.STFO, Modelelemtype.ORGU, Modelelemtype.ARCS,
                      Modelelemtype.KEYS, Modelelemtype.PHYU, Modelelemtype.DIAG,
-                     Modelelemtype.TABL, Modelelemtype.INTF, Modelelemtype.COLU,
+                     Modelelemtype.TABL, Modelelemtype.DATM, Modelelemtype.COLU,
                      Modelelemtype.DIAG, Modelelemtype.BURU
                      )
 
@@ -23,27 +23,19 @@ class FILTEREDJSModel(JSModel):
         super().__init__(pmodel=copy.deepcopy(pmodel),pwithversioncheck=pwithversioncheck)  # make copy as we might change an objects passed as parameter
         self._publstatus = ppublstatus
         self._imdiagram = pimdiagrams
+        self.filterjson()
+
+    def getfilteredidlist(self) -> set:
+        return self._filteredidlist
+
+    def filterjson(self):
         self._filteredidlist = set()
         if self._publstatus in (None, Modelelement.DRAFT) and self._imdiagram is None:
             self._buildpublishedidlist()
         else:
             self._buildfilteredidlist()
             self._filter_json()
-
-    def getfilteredidlist(self) -> set:
-        return self._filteredidlist
-
-    @property
-    def filtered(self):
-        """ Returns a copy of the internal model with a 'filters' section in the header describing the applied filters
-        """
-        model_clone = copy.deepcopy(self.jsmodel)
-        model_clone['_imprint_']['filters'] = {
-            'publish_status': self._publstatus,
-            'diagrams': self._imdiagram,
-            'filtered_ids': list(self._filteredidlist),
-        }
-        return model_clone
+        return
 
     def _publishable(self, pelement):
         # no publ status set or element does not have the attribute => take it,
@@ -66,7 +58,7 @@ class FILTEREDJSModel(JSModel):
         # fi
         return retval
 
-    """ builds a list of all top level keys fullfilling the publischable criteriy (publstatus) 
+    """ builds a list of all top level keys fullfilling the publishable criteria (publstatus) 
     """
 
     def _buildpublishedidlist(self):
@@ -125,7 +117,7 @@ class FILTEREDJSModel(JSModel):
         # remove arcs of not shown entities
         self._removeelement(pelemtype=Modelelemtype.ARCS,
                             pcondition=lambda elem, ref: not (elem["entity"] in ref
-                                                              and len(elem["relations"]) > 0))
+                                                              and len(elem["relations+"]) > 0))
 
         # remove keys of not shown entities
         self._removeelement(pelemtype=Modelelemtype.KEYS,
@@ -146,8 +138,8 @@ class FILTEREDJSModel(JSModel):
                                                               )
                             )
 
-        # remove systems no longer having any elements or we have not filter set at all
-        self._removeelement(pelemtype=Modelelemtype.INTF,
+        # remove datamodels no longer having any elements or we have not filter set at all
+        self._removeelement(pelemtype=Modelelemtype.DATM,
                             pcondition=lambda elem, ref: not ((self._imdiagram is None
                                                                and self._publstatus is None)
                                                               or set(elem["tables+"]).intersection(ref))
@@ -256,5 +248,31 @@ class FILTEREDJSModel(JSModel):
         for key in diagkeys:
             if key not in self._filteredidlist:
                 del self.jsmodel["diagrams"][key]
+
+        self.jsmodel['_imprint_']['filters'] = {
+            'publish_status': self._publstatus,
+            'diagrams': self._imdiagram,
+            'filtered_ids': list(self._filteredidlist),
+        }
+
+        return
+
+    def filterjsmodel(self, status=None, diagrams=None):
+        """ Applies the filter(s) to the current mirojsmodel-structure
+            The filter is on the base elements  all dependent elements are filtered
+            according to their usage (or non usage) by base elements
+            ATTENTION alreday filtered models are filtered additionally, old filters are not undone
+
+            status : None   no filter
+                    DRAFT   show all stati
+                    GTOP    show all GTOP and  PUBL
+                    PUBL    only show PULB
+
+            diagrams: ["diag name",...]
+                includes all diagrams the  names of which are in the list
+        """
+        self._publstatus = status
+        self._imdiagram = diagrams
+        self.filterjson()
 
         return

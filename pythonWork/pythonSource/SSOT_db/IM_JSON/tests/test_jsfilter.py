@@ -135,7 +135,7 @@ simpletestjson = {
     "physicalunits": {},
     "relations": {},
     "storageformats": {},
-    "systems": {},
+    "datamodels": {},
     "tables": {},
     "userdefprops": {}
 }
@@ -235,11 +235,11 @@ class MyTestCase(unittest.TestCase):
             self.assertNotRegex(textjson, r'.*"realsubenti_lev2".*')
             self.assertRegex(textjson, r'.*"Master Entity".*')
         except Exception as e:
-            # printJSON(self.model.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="model")
-            # printJSON(self.emptyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonempty")
-            # printJSON(self.draftfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsondraft")
-            # printJSON(self.gtopfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsongtop")
-            # printJSON(self.publfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="jsonpubl")
+            # printJSON(self.model.mirojsmodel,pfilepath="/Users/stb/Downloads",pfullfilename="model")
+            # printJSON(self.emptyfilter.mirojsmodel,pfilepath="/Users/stb/Downloads",pfullfilename="jsonempty")
+            # printJSON(self.draftfilter.mirojsmodel,pfilepath="/Users/stb/Downloads",pfullfilename="jsondraft")
+            # printJSON(self.gtopfilter.mirojsmodel,pfilepath="/Users/stb/Downloads",pfullfilename="jsongtop")
+            # printJSON(self.publfilter.mirojsmodel,pfilepath="/Users/stb/Downloads",pfullfilename="jsonpubl")
             raise e
 
         # crm does not have any publstatus set.
@@ -262,10 +262,10 @@ class MyTestCase(unittest.TestCase):
                              + " expected none")
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["tables"]))
             self.assertEqual(0, len(self.crmpublfilter.jsmodel["columns"]))
-            self.assertEqual(0, len(self.crmpublfilter.jsmodel["systems"]))
+            self.assertEqual(0, len(self.crmpublfilter.jsmodel["datamodels"]))
         except Exception as e:
-            # printJSON(self.crmmodel.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmmodel")
-            # printJSON(self.crmpublfilter.jsmodel, pfilepath="/Users/stb/Downloads", pfilename="crmpublmodel")
+            # printJSON(self.crmmodel.mirojsmodel, pfilepath="/Users/stb/Downloads", pfullfilename="crmmodel")
+            # printJSON(self.crmpublfilter.mirojsmodel, pfilepath="/Users/stb/Downloads", pfullfilename="crmpublmodel")
             raise e
 
         try:
@@ -277,9 +277,9 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(10, len(self.crmdummyfilter.jsmodel["attributes"]))
             self.assertEqual(19, len(self.crmdummyfilter.jsmodel["tables"]))
             self.assertEqual(32, len(self.crmdummyfilter.jsmodel["columns"]))
-            self.assertEqual(5, len(self.crmdummyfilter.jsmodel["systems"]))
+            self.assertEqual(5, len(self.crmdummyfilter.jsmodel["datamodels"]))
         except Exception as e:
-            # printJSON(self.crmdummyfilter.jsmodel,pfilepath="/Users/stb/Downloads",pfilename="crmdummymodel")
+            # printJSON(self.crmdummyfilter.mirojsmodel,pfilepath="/Users/stb/Downloads",pfullfilename="crmdummymodel")
             raise e
 
         self.crm2diagfilter = FILTEREDJSModel(pimdiagrams=["DUMMY", "Kunde mit xxx"], pmodel=self.crmmodel.jsmodel)

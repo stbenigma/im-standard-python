@@ -4,7 +4,6 @@ from .domain import Domain
 from .key import Key
 from .modelelement import Modelelemtype,Modelelement
 from .examples import Example
-import SSOT_db.IM_OBJECTS
 
 
 class Attribute(MultilangBaseobject):

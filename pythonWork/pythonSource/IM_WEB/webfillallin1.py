@@ -23,19 +23,19 @@ def main(pdirec, plang,pforceoverwrite = False):
         Languagetext.reportLang(plang.lower())
     logmessages.initlog('AllIn1')
 
-    os.makedirs(parameters.webDirec(), exist_ok=True)
+    os.makedirs(parameters.webDirec, exist_ok=True)
     os.makedirs(parameters.dbDirect(), exist_ok=True)
 
     fillDB.fillmergedb(pdbfilepath=parameters.dbFilePath(), pmodelname=parameters.modelName())
 
     dbConnect.openDB(parameters.dbFilePath())
-    #jsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
+    #mirojsmodel = JSModel(pmodel=sql2json(pdbname=parameters.dbFilePath()))
     jsmodel = JSModel.readfromfile(parameters.dbDirect() + parameters.modelName() + ".json")
-    printHTML.setmodel(jsmodel)
+    printHTMLmodel(jsmodel)
     printHTML.webDirec(p_webdirec=None)
 
     listWebdoku.listwebmain(plang=Languagetext.reportLang())
-    #jsmodel.printmodel(pfilepath=parameters.dbDirect(),pfilename=parameters.modelName())
+    #mirojsmodel.printmodel(pfilepath=parameters.dbDirect(),pfullfilename=parameters.modelName())
     dbConnect.closeDB()
 
     createAllMapping(pjsonfile=parameters.dbDirect() + parameters.modelName() + '.json', plang=Languagetext.reportLang())

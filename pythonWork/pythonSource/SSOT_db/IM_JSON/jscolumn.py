@@ -1,12 +1,11 @@
+from SSOT_infra import nvl
 from SSOT_db.IM_JSON import *
 
-
-def columns2js(pemptymodel):
-    model = ['name',
+COLUMNMODEL=['name',
              'table-name+',
              'table-id',
-             'interface-name+',
-             'interface-id+',
+             'datamodel-name+',
+             'datamodel-id+',
              'mandatory',
              'basedatatype+',
              'datatype',
@@ -14,36 +13,64 @@ def columns2js(pemptymodel):
              'format',
              'domain',
              'descr',
-             'interface_col_id',
+             'datamodel_col_id',
              'uc', 'dc', 'um', 'dm',
              'minzoomlevel', 'maxzoomlevel', 'publstatus',
              'R/W',
-             'attributesmapped', 'businessrules+',
+             'attributesmapped',
+             'columnsmapped',
+             'relationsmapped',
+             'businessrules+',
              'userdefprops',
              'sourceref', 'raci+',
              'referencedby'
              ]
+def jsoncolumapentry(mapid, childid=None):
+    return [mapid, childid]
+
+def jsoncolumn(name,tableid ,uc, dc, readwrite=None, **kwargs):
+    column = dict()
+    initjselement(column,COLUMNMODEL)
+    column["name"] = name
+    column["uc"] = uc
+    column["dc"] = dc
+    column['table-id'] = tableid
+    column['R/W'] = readwrite
+    column['relationsmapped'] = []
+    column['attributesmapped'] = []
+    column['columnsmapped'] = []
+    column["referencedby"] = []
+    column["userdefprops"] = dict()
+
+    fillargs(model=column,refmodel=COLUMNMODEL,**kwargs)
+    return column
+
+def columns2js(pemptymodel):
+
     if pemptymodel:
-        retval = {jsguid(Modelelemtype.COLU, '0000'): fillmodel(pmodel=model, pentries=['' for i in range(17)]
+        retval = {jsguid(Modelelemtype.COLU, '0000'): fillmodel(pmodel=COLUMNMODEL, pentries=['' for i in range(17)]
                                                                                        + [0, 4, 'DRAFT', rwstr(),
                                                                                           reflist(plist=[
                                                                                               [Modelelemtype.ATTR + "0000",Modelelemtype.ENTI+"0000"]]),
+                                                                                          reflist(plist=[Modelelemtype.COLU + "0000"]),
+                                                                                          reflist(plist=[
+                                                                                              [Modelelemtype.RELA + "0000",Modelelemtype.ENTI+"0000"]]),
                                                                                           buruinelements(None),
                                                                                           userdefprops(),
                                                                                           sourceref(),
                                                                                           jsentity.racilist(), reflist()
                                                                                           ])}
     else:
-        retval = {jsguid(Modelelemtype.COLU, c.colu_id): fillmodel(pmodel=model, pentries=[
+        retval = {jsguid(Modelelemtype.COLU, c.colu_id): fillmodel(pmodel=COLUMNMODEL, pentries=[
             c.colu_column_name,
             Table().getbyid(c.colu_tabl_id).getname(),
             jsguid(Modelelemtype.TABL, Table().getbyid(c.colu_tabl_id).getid()),
-            Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getname(),
-            jsguid(Modelelemtype.INTF, Interface().getbyid(Table().getbyid(c.colu_tabl_id).tabl_intf_id).getid()),
+            Datamodel().getbyid(Table().getbyid(c.colu_tabl_id).tabl_datm_id).getname(),
+            jsguid(Modelelemtype.DATM, Datamodel().getbyid(Table().getbyid(c.colu_tabl_id).tabl_datm_id).getid()),
             Boolean.str2bool(c.colu_mandatory),
-            Domain().getbyid(c.colu_doma_id).basedatatype(),
+            None if c.colu_doma_id is None else Domain().getbyid(c.colu_doma_id).basedatatype(),
             c.colu_type_string,
-            jsguid(Modelelemtype.DATY, Domain().getbyid(c.colu_doma_id).doma_daty_id),
+            None if c.colu_doma_id is None else jsguid(Modelelemtype.DATY, Domain().getbyid(c.colu_doma_id).doma_daty_id),
             c.colu_format,
             jsguid(Modelelemtype.DOMA, c.colu_doma_id),
             c.colu_descr,
@@ -52,7 +79,11 @@ def columns2js(pemptymodel):
             c.getminzoomlevel(), c.getmaxzoomlevel(), c.getpublstatus(),
             rwstr(pread=c.colu_read, pwrite=c.colu_update),
             reflist(plist=[[jsguid(Modelelemtype.ATTR, a[0]),jsguid(Modelelemtype.ENTI,a[1])]
-                           for a in ColAttrMap.getmappedattrlist(pcoluid=c.colu_id)]),
+                           for a in ModeMap.getattridlist(coluid=c.colu_id)]),
+            reflist(plist=[jsguid(Modelelemtype.COLU, co.colu_id)
+                           for co in ModeMap.getcolulist(coluid=c.colu_id)]),
+            reflist(plist=[[jsguid(Modelelemtype.RELA, rid[0]),jsguid(Modelelemtype.ENTI,rid[1])]
+                           for rid in ModeMap.getrelaidlist(modeid=c.colu_id)]),
             buruinelements(c.colu_id),
             udpv2js(pmodeid=c.colu_id, pmodelemtype=Modelelemtype.COLU),
             Externalref.getsrcinfo(pmodeid=c.colu_id), jsentity.racilist(c.colu_id),
@@ -75,9 +106,9 @@ def js2colu(pkey, pelem, psrcname=None, psrcid=None, pmodellang=None):
     colu.colu_format = pelem['format']
     colu.colu_doma_id = pelem['domain']
     colu.colu_descr = pelem['descr']
-    colu.colu_ext_system_id = pelem['interface_col_id']
-    colu.colu_read = Boolean.bool2str('R' in pelem['R/W'])
-    colu.colu_update = Boolean.bool2str('W' in pelem['R/W'])
+    colu.colu_ext_system_id = pelem['datamodel_col_id']
+    colu.colu_read = Boolean.bool2str('R' in nvl(pelem['R/W']))
+    colu.colu_update = Boolean.bool2str('W' in nvl(pelem['R/W']))
     colu.colu_uc = pelem['uc']
     colu.colu_dc = pelem['dc']
     colu.colu_um = pelem['um']
@@ -99,8 +130,10 @@ def columns2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
         maxzoomlevel = jelem['maxzoomlevel']
         publstatus = jelem['publstatus']
         Modelelement.upddisplelements(pmodeid=newcoluid, pminzl=minzoomlevel, pmaxzl=maxzoomlevel, ppublstat=publstatus)
-
-        colattrmaps2sql(presult=presult, pcoluid=newcoluid, pattrs=jelem['attributesmapped'])
+        inscolumnmapping(presult=presult, pcoluid=newcoluid,
+                         pmappedattrs=nvl(jelem.get('attributesmapped'),[]),
+                         pmappedrelas=nvl(jelem.get('relationsmapped'),[]),
+                         pmappedcols=nvl(jelem.get('columnsmapped'),[]))
         insreferences(presult=presult, pmodeid=newcoluid, prefs=jelem['referencedby'])
         inssourceref(presult=presult, pmodeid=newcoluid, psources=jelem["sourceref"])
         udpvs2sql(presult=presult, pmodeid=newcoluid, pudps=jelem["userdefprops"])
@@ -109,26 +142,116 @@ def columns2sql(presult: Mergeresult, pjson: JSModel, pwithextsrcref):
     ColAttrMap.setdefaultentity()
     return
 
-def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs):
+# def colattrmaps2sql(presult: Mergeresult, pcoluid, pattrs,prelas,pcolus):
+#     def maponelem(result,coluid,elems,elemtype):
+#         inscnt = 0
+#         for idx, jelem in enumerate(elems, start=1):
+#             elemid = presult.keytransl(jelem[0])
+#             parentid = None if jelem[1] is None else presult.keytransl(jelem[1])
+#             coam = ColAttrMap(coam_seq = idx,
+#                           coam_direction = ColAttrMap.INBOUND,
+#                           coam_colu_id = coluid,
+#                           coam_attr_id = elemid,
+#                           coam_enti_id=parentid
+#                         #todo relations and columns
+#                         # coam_mode_id= attrid,
+#                         #coam_parent_mode_id= childid,
+#                           )
+#             try:
+#                 coam.insert()
+#                 inscnt += 1
+#             except Exception as err:
+#                 result.markdberror(perr=err, pelem=coam.tostring())
+#                 continue
+#             # try
+#         # for
+#         return inscnt
+#
+#     inscnt = 0
+#     delcnt = ModeMap.delete(pwhere=("momo_mode_id1 = ?", pcoluid))
+#     for idx, jattr in enumerate(pattrs, start=1):
+#         attrid = presult.keytransl(jattr[0])
+#         entiid = None if jattr[1] is None else presult.keytransl(jattr[1])
+#         coam = ColAttrMap(coam_seq = idx,
+#                       coam_direction = ColAttrMap.INBOUND,
+#                       coam_colu_id = pcoluid,
+#                       coam_attr_id = attrid,
+#                       coam_enti_id=entiid
+#                       )
+#         try:
+#             coam.insert()
+#             inscnt += 1
+#         except Exception as err:
+#             presult.markdberror(perr=err, pelem=coam.tostring())
+#             continue
+#         # try
+#     # for
+#     presult.addinscnt(max(0, (inscnt - delcnt)), f"Column Maps for column {pcoluid} ")
+#     presult.adddelcnt(max(0, (delcnt - inscnt)), f"Column Maps for column {pcoluid} ")
+#     return
+
+def inscolumnmapping(presult: Mergeresult, pcoluid, pmappedattrs,pmappedrelas,pmappedcols):
+    def maponetype(result, coluid, mappedelems, elemtype):
+        inscnt=0
+
+        for jid in mappedelems:
+            colu = Column().getbyid(coluid)
+            tabl = colu.gettable()
+            if elemtype in (Modelelemtype.ATTR, Modelelemtype.RELA):
+                newkey = presult.keytransl(jid[0])
+                mapping = Mapping.selectorcreate(maptype=Mapping.MAPTYPE_DATM_IM,
+                                              name=str(tabl.tabl_datm_id) + "-" + tabl.tabl_name,
+                                              modeid1=tabl.tabl_datm_id,
+                                              modeid2=None) #DATM-IM has no second modeid2
+            elif elemtype in (Modelelemtype.COLU,):
+                newkey = presult.keytransl(jid)
+                if newkey == 0: continue
+                colu2 = Column().getbyid(newkey)
+                tabl2=colu2.gettable()
+                mapping = Mapping.selectorcreate(maptype=Mapping.MAPTYPE_DATM_DATM,
+                                              name=str(tabl.tabl_datm_id) + "-" + tabl.tabl_name + "-" + str(tabl2.tabl_datm_id),
+                                              modeid1=tabl.tabl_datm_id,
+                                              modeid2=tabl2.tabl_datm_id)
+
+
+
+            if elemtype in (Modelelemtype.ATTR, Modelelemtype.RELA) and \
+                    jid[1] is not None:
+                # No id  found or necessary , No reference
+                subentiid = presult.keytransl(jid[1])
+            else:
+                subentiid = None
+
+            momo = ModeMap(momo_maps_id=mapping.maps_id,
+                           momo_mode_id1=coluid,
+                           momo_mode_id2=newkey,
+                           momo_sub_enti_id=subentiid,
+                           momo_onedirection=Boolean.TRUE,
+                           momo_uc=mapping.maps_uc, momo_dc=mapping.maps_dc,
+                           momo_descr=None,
+                           momo_rule_frwd=None,
+                           momo_rule_bckw=None
+                           )
+            momo.insert()
+        # for
+        return inscnt
+
     inscnt = 0
-    delcnt = ColAttrMap.delete(pwhere=("coam_colu_id = ?", pcoluid))
-    for idx, jattr in enumerate(pattrs, start=1):
-        attrid = presult.keytransl(jattr[0])
-        entiid = None if jattr[1] is None else presult.keytransl(jattr[1])
-        coam = ColAttrMap(coam_seq = idx,
-                      coam_direction = ColAttrMap.INBOUND,
-                      coam_colu_id = pcoluid,
-                      coam_attr_id = attrid,
-                      coam_enti_id=entiid
-                      )
-        try:
-            coam.insert()
-            inscnt += 1
-        except Exception as err:
-            presult.markdberror(perr=err, pelem=coam.tostring())
-            continue
-        # try
-    # for
-    presult.addinscnt(max(0, (inscnt - delcnt)), f"Column Maps for column {pcoluid} ")
-    presult.adddelcnt(max(0, (delcnt - inscnt)), f"Column Maps for column {pcoluid} ")
+    delcnt = ModeMap.delete(pwhere=("momo_mode_id1 = ?", pcoluid))
+    delcnt += Mapping.delete(pwhere=("maps_mode_id1 = ?", pcoluid))
+    inscnt += maponetype(result=presult, coluid=pcoluid,
+                         mappedelems=pmappedattrs,
+                         elemtype=Modelelemtype.ATTR
+                         )
+    inscnt += maponetype(result=presult, coluid=pcoluid,
+                         mappedelems=pmappedrelas,
+                         elemtype=Modelelemtype.RELA
+                         )
+    inscnt += maponetype(result=presult, coluid=pcoluid,
+                         mappedelems=pmappedcols,
+                         elemtype=Modelelemtype.COLU
+                         )
+    
+    presult.addinscnt(max(0, (inscnt - delcnt)),f"Column mapping  for Element {pcoluid}")
+    presult.adddelcnt(max(0, (delcnt - inscnt)),f"Column mapping  for Element {pcoluid}")
     return

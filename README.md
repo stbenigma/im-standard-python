@@ -1,12 +1,12 @@
-# The toolsuite around Information Modeling and the Information Cadastre
+# The toolsuite for Information Modeling and Cartography
 
-[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-85%25-seagreen)
+[![Build status](https://github.com/foryouandyourcustomers/fyyccim-tools/actions/workflows/Quality.yaml/badge.svg)](https://github.com/foryouandyourcustomers/fyyccim-tools/actions) ![cod cov](https://img.shields.io/badge/coverage-75%25-seagreen)
 
 The tools provided by
 <a href="https://foryouandyourcustomers.com" style="color: #F79724; text-decoration: underline;text-decoration-style: dotted; font-family: Roboto; font-size: 24">
 foryouandyourcustomers</a>
 to work with the [Information Model](https://www.informationsmodellierung.ch/)
-and to operate the <span style="font-family:FreeSet">Information Cadastre</span>.
+and practice <span style="font-family:FreeSet">Information Cartography</span>.
 
 ### The Information Model
 
@@ -18,9 +18,9 @@ The information model encompasses the [business glossary](https://www.dataversit
 [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science))
 of your domain of work.
 
-### The Information Cadastre
+### Information Cartography
 
-The <span style="font-family:FreeSet">Information Cadastre</span> encompasses tools and processes around the Information
+The <span style="font-family:FreeSet">Information Cartography</span> encompasses tools and processes around the Information
 Model to support maintenance and publication of content.
 
 # Tooling

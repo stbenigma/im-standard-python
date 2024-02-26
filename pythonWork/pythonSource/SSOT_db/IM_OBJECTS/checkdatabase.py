@@ -1,5 +1,6 @@
 from SSOT_db.SQL_INFRA import dbConnect
-from SSOT_db.IM_OBJECTS import Languagetext, ColAttrMap, Modelelement
+from SSOT_db.IM_OBJECTS import Languagetext, Modelelement, ColAttrMap
+
 
 def checkdatabase():
     """

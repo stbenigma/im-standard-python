@@ -14,27 +14,26 @@ class Jinja2WebTest(unittest.TestCase):
 
     def test_model2html(self):
         export = HTMLExport(modelname="anything")
-        export.jinadirec = None
-        wm = Webmodel(export=export, pcurlang='de', pintfid=0,
-                      pjsmodel=JSModel(), phtmlfilelist=[])
+        export.jinjaDirec=''
+        export.model = JSModel()
+        wm = Webmodel(export=export, pcurlang='de', pdatmid=0)
         with self.assertRaises(Exception) :
             model2html(wm)
 
         template_path = Path(Path(__file__).parent, '..', 'html-lib', 'jinjatemplates')
         self.assertTrue(template_path.is_dir())
-        export.jinadirec = str(template_path)
+        export.jinjaDirec=str(template_path)
 
         with self.assertRaises(Exception):
             model2html(wm)
 
         crm = testbase.ModelHelper(testbase.CRMTEST)
         export = HTMLExport(modelname=crm.modelname)
-        export.jinadirec = None
-        model = JSModel.readfromfile(crm.jsonfile)
-        testbase.crmmapentityhack(model)
-        wm = Webmodel(export = export,pcurlang='de',pjsmodel=model
-                      ,pintfid=None,phtmlfilelist=None)
-        subenties = wm.getsubentyids(attrid="ATTR190")
+        export.jinjaDirec=''
+        export.model = JSModel.readfromfile(crm.jsonfile)
+        wm = Webmodel(export = export,pcurlang='de',pdatmid=None)
+        enti=export.model.getbyfield(pvalue="Geografische Einheit",ptype="entities",plang="de")
+        subenties = wm.getsubentyids(attrid=enti[0][1]["attributes+"][0])
         self.assertTrue(len(subenties)>0)
 
     def test_format_text_pass(self):

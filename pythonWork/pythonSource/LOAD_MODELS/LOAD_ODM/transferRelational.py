@@ -46,10 +46,10 @@ def do1column(plfnr, pcolxml, ptablid):
                                          pstructdomguid=None,
                                          ptypeguid=daty_odm,
                                          pattrname=colu.colu_column_name,
-                                         pfathername=Interface().getbyid(tabl.tabl_intf_id).intf_name
+                                         pfathername=Datamodel().getbyid(tabl.tabl_datm_id).datm_name
                                                      + '.' + tabl.tabl_name,
                                          pdomatype=Domain.DERIVED
-                                         , pintfid=tabl.tabl_intf_id,
+                                         , pdatmid=tabl.tabl_datm_id,
                                          pattrxml=pcolxml)
     if colu.colu_doma_id is not None:
         colu.colu_type_string = Domain().getbyid(colu.colu_doma_id).typestring()
@@ -71,7 +71,7 @@ def do1table(pfilename, XMLtree, globalschnid):
     tabl.tabl_name = handleXML.findField(tablexml, "name")
     tabl.tabl_uc = handleXML.findText(tablexml, 'createdBy')
     tabl.tabl_dc = handleXML.findText(tablexml, 'createdTime')
-    tabl.tabl_intf_id = globalschnid
+    tabl.tabl_datm_id = globalschnid
     tabl.tabl_descr = handleXML.findText(tablexml, "comment")
     tabl.insert()
 
@@ -101,27 +101,27 @@ def transfertables(pschndirec, globalschnid):
     return
 
 
-def do1interface(pfilename, XMLtree):
-    intfxml = XMLtree.getroot()
-    intf = interface.Interface(psrcname=transferModel.SOURCE_ODM, psrcid=handleXML.findField(intfxml, 'id'))
-    intf.intf_name = handleXML.findField(intfxml, 'name')
-    intf.intf_descr = handleXML.findText(intfxml, 'comment')
-    intf.intf_uc = handleXML.findText(intfxml, 'createdBy')
-    intf.intf_dc = handleXML.findText(intfxml, 'createdTime')
-    intf.insert()
+def do1datamodel(pfilename, XMLtree):
+    datmxml = XMLtree.getroot()
+    datm = datamodel.Datamodel(psrcname=transferModel.SOURCE_ODM, psrcid=handleXML.findField(datmxml, 'id'))
+    datm.datm_name = handleXML.findField(datmxml, 'name')
+    datm.datm_descr = handleXML.findText(datmxml, 'comment')
+    datm.datm_uc = handleXML.findText(datmxml, 'createdBy')
+    datm.datm_dc = handleXML.findText(datmxml, 'createdTime')
+    datm.insert()
 
-    # Dokumente an dieser Interface
-    ModelelemDocu.insertdocuref(pdocidlist=transferModel.getdokuref(pelem=intfxml, pstruct=True), pmodeid=intf.intf_id)
-    ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=intfxml), pmodeid=intf.intf_id)
+    # Dokumente an dieser Datamodel
+    ModelelemDocu.insertdocuref(pdocidlist=transferModel.getdokuref(pelem=datmxml, pstruct=True), pmodeid=datm.datm_id)
+    ModelelemOrgu.insertorguref(porguidlist=transferModel.getpartyref(pelem=datmxml), pmodeid=datm.datm_id)
     # Tabellen
     filename, file_extension = os.path.splitext(pfilename)
-    transfertables(pschndirec=filename, globalschnid=intf.intf_id)
+    transfertables(pschndirec=filename, globalschnid=datm.datm_id)
     return
 
 
-def transferinterface():
+def transferdatamodel():
     handleXML.doxmlfiles(pdirec=getodmparams().reldirec(),
-                         phandlefunc=do1interface,
+                         phandlefunc=do1datamodel,
                          ppattern=r'{}.xml'.format(ODMParameter.guidpattern()))
     return
 
@@ -131,7 +131,7 @@ def loeschmodell():
     TablEntiMap.delete()
     Column().delete()
     Table().delete()
-    Interface().delete()
+    Datamodel().delete()
     return
 
 
@@ -280,5 +280,5 @@ def transfermappings():
 
 
 def transfer():
-    transferinterface()
+    transferdatamodel()
     transfermappings()

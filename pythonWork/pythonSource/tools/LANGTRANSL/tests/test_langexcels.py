@@ -2,6 +2,7 @@ import json
 import os
 import tempfile
 import unittest
+from pathlib import Path
 
 from tools.LANGTRANSL.exportdata import *
 from tools.LANGTRANSL.importdata import *
@@ -76,7 +77,7 @@ class MyTestCase(unittest.TestCase):
         self.testws = self.wb.active
         for r in self.testdata:
             self.testws.append(r)
-        # destfilename=self.tm2.dbdir/"testexcel.xlsx"
+        # destfilename=self.tm2.dbdir/"langtestexcel.xlsx"
         # wb.save(filename=destfilename)
         self.testexcel = Langexceldata()
         self.testexcel.analyzeheader(self.testws['1'])
@@ -181,7 +182,7 @@ class MyTestCase(unittest.TestCase):
         self.testws.cell(row=5, column=3).value = self.testdata[1][2]
         self.assertEqual(len(self.testdata) - 2,
                          len(checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
-        self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.wb.save(self.tm2.dbdir / "langtestexcel.xlsx")
         self.assertEqual(redfill.fgColor.value, self.testws.cell(row=5, column=3).fill.fgColor.value)
         self.assertEqual(redfill.fgColor.value, self.testws.cell(row=5, column=4).fill.fgColor.value)
         self.assertFalse(nocomments(self.testws))
@@ -192,7 +193,7 @@ class MyTestCase(unittest.TestCase):
         self.testws.cell(row=14, column=2).value = self.testws.cell(row=17, column=2).value
         self.assertEqual(len(self.testdata) - 1,
                          len(checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
-        self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        self.wb.save(self.tm2.dbdir / "langtestexcel.xlsx")
         self.assertEqual(emptyfill.fgColor.value, self.testws.cell(row=21, column=2).fill.fgColor.value)
         self.assertTrue(nocomments(self.testws))
         self.testws.cell(row=14, column=2).value = self.testdata[13][1]
@@ -201,7 +202,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(self.testdata) - 1,
                          len(checkentries(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)))
         self.assertTrue(nocomments(self.testws))
-        # os.remove(self.tm2.dbdir / "testexcel.xlsx")
+        # os.remove(self.tm2.dbdir / "langtestexcel.xlsx")
         return
 
     def test_calls(self):
@@ -270,7 +271,7 @@ class MyTestCase(unittest.TestCase):
         entiid = self.testws.cell(row=2, column=1).value.split('-')[0]
         self.testws.cell(row=2, column=2).value = 'gugus'
         changes, newjson = mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
-        # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        # self.wb.save(self.tm2.dbdir / "langtestexcel.xlsx")
         self.assertEqual(1, changes)
         self.assertTrue(nocomments(self.testws))
         self.assertEqual(greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
@@ -279,7 +280,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual('gugus', newjson.getbyid(entiid)['name']['de'])
 
         changes, newjson = mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=newjson)
-        # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        # self.wb.save(self.tm2.dbdir / "langtestexcel.xlsx")
         self.assertEqual(1, changes)
         self.assertTrue(nocomments(self.testws))
         self.assertEqual(greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
@@ -289,7 +290,7 @@ class MyTestCase(unittest.TestCase):
         self.testws.cell(row=2, column=2).value = 'gugus2'
         self.testws.cell(row=4, column=3).value = 'Tooltip Test'
         changes, newjson = mergeexcel2json(pws=self.testws, pexcel=self.testexcel, pjson=self.testjson)
-        # self.wb.save(self.tm2.dbdir / "testexcel.xlsx")
+        # self.wb.save(self.tm2.dbdir / "langtestexcel.xlsx")
         self.assertEqual(2, changes)
         self.assertEqual(greenfill.fgColor.value, self.testws.cell(row=2, column=2).fill.fgColor.value)
         self.assertEqual(greenfill.fgColor.value, self.testws.cell(row=4, column=3).fill.fgColor.value)
@@ -297,7 +298,7 @@ class MyTestCase(unittest.TestCase):
         self.testws.cell(row=4, column=3).value = self.testdata[3][2]
         self.assertEqual('gugus2', newjson.getbyid(entiid)['name']['de'])
         self.assertEqual('Tooltip Test', newjson.getbyid(entiid)['tooltip']['en'])
-        # os.remove(self.tm2.dbdir / "testexcel.xlsx")
+        # os.remove(self.tm2.dbdir / "langtestexcel.xlsx")
 
     def test_importdata(self):
         import shutil
@@ -382,12 +383,12 @@ class MyTestCase(unittest.TestCase):
             translateexcel(None, deeplid)
 
         with self.assertRaises(Exception) as exp:
-            translateexcel("testexcel.xlsx", deeplid, pmainlanguage=None)
+            translateexcel("langtestexcel.xlsx", deeplid, pmainlanguage=None)
 
         with tempfile.TemporaryDirectory() as tempdir:
             os.chdir(tempdir)
-            self.wb.save("testexcel.xlsx")
-            self.assertEqual(0, translateexcel("testexcel.xlsx", deeplid, pmainlanguage='de'))
+            self.wb.save("langtestexcel.xlsx")
+            self.assertEqual(0, translateexcel("langtestexcel.xlsx", deeplid, pmainlanguage='de'))
 
             switch = True
             changes = 0
@@ -397,8 +398,19 @@ class MyTestCase(unittest.TestCase):
                     changes += 1
                     cell.value = ''
                 switch = not switch
-            self.wb.save("testexcel.xlsx")
-            self.assertEqual(changes, translateexcel("testexcel.xlsx", deeplid, pmainlanguage='de'))
+            self.wb.save("langtestexcel.xlsx")
+            self.assertEqual(changes, translateexcel("langtestexcel.xlsx", deeplid, pmainlanguage='de'))
+        return
+
+    def test_translaterealexcel(self):
+        if os.path.exists(Path.home()/".deepl/deeplauthid"):
+            with open(Path.home()/".deepl/deeplauthid") as d:
+                deeplid = d.read()
+
+            excelfile=Path.home() / 'Downloads' / "langtestexcel.xlsx"
+            if os.path.exists(Path.home()/".deepl/deeplauthid") and \
+                    os.path.exists(excelfile):
+                translateexcel(excelfile,deeplid, pmainlanguage='de')
 
         return
 

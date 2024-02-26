@@ -15,7 +15,7 @@ def delta_spod(lhs: JSModel, rhs: JSModel) -> dict:
 
     ignore = set(['model', '_imprint_'])
     commons = set.union(set(lhs.jsmodel.keys()), set(rhs.jsmodel.keys())) - ignore
-    #    rhk = rhs.jsmodel.keys() - ignore
+    #    rhk = rhs.mirojsmodel.keys() - ignore
 
     #    commons = set.intersection(lhk, rhk)
     logger.debug(f"Processing sections {commons}")

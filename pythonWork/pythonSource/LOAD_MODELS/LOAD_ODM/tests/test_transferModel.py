@@ -23,6 +23,7 @@ class TestTransferModel(unittest.TestCase):
         self.assertEqual(left, right)
 
     def test_raciload(self):
+        self.testmodel1.initDB()
         dbConnect.openDB(self.testmodel1.dbfile)
         try:
             sales = Actorrole.getbyuk(actr_name='Sales')

@@ -1,12 +1,15 @@
+import copy
+from datetime import datetime
+
 from SSOT_db.IM_JSON import *
 from SSOT_db.IM_OBJECTS import Project, Modelelemtype
 from SSOT_db.SQL_INFRA import dbConnect
 from SSOT_infra import parameters
-import copy
-import datetime
+
+
 
 def lastupd():
-    return datetime.datetime.today().__str__()
+    return datetime.today().__str__()
 
 
 def make_hash(pmodel):
@@ -22,11 +25,23 @@ def make_hash(pmodel):
         return hash(pmodel)
 
     new_model = copy.deepcopy(pmodel)
-    for k, v in new_model.items():
+    for k, v in filter (lambda nm : nm[0] not in ("dc", "dm", "uc", "um", "_imprint_"),
+                        new_model.items()):
         # exclude non-fix dict entries
-        if k in ("dc", "dm", "uc", "um", "_imprint_"): continue
+        #replaced by filter if k in ("dc", "dm", "uc", "um", "_imprint_"): continue
         new_model[k] = make_hash(v)
     return hash(tuple(frozenset(sorted(new_model.items()))))
+
+
+def jsonimprint(dbname, created, modelversion, jsonversion, hashvalue, gitrevision):
+    return {"database": dbname,
+            "created": created,
+            "Modelversion": modelversion,
+            "JSONversion": jsonversion,
+            "hashvalue": hashvalue,
+            "git-revision": gitrevision,
+            "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"
+            }
 
 
 def sql2json(pdbname=None, pemptymodel=False):
@@ -47,7 +62,7 @@ def sql2json(pdbname=None, pemptymodel=False):
     jsmodel[JSModel.elemtype2label(Modelelemtype.ACTR)] = actorroles2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.ORGU)] = orgUnits2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(JSModel.ELEMTYPE_CATG)] = categories2js(pemptymodel)
-    jsmodel[JSModel.elemtype2label(Modelelemtype.INTF)] = systems2js(pemptymodel)
+    jsmodel[JSModel.elemtype2label(Modelelemtype.DATM)] = datamodels2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.TABL)] = tables2js(pemptymodel)
     jsmodel[JSModel.elemtype2label(Modelelemtype.COLU)] = columns2js(pemptymodel)
     logging.info("Processing diagrams")
@@ -77,26 +92,40 @@ def sql2json(pdbname=None, pemptymodel=False):
         else:
             dbname = pdbname
 
-    jsmodel['_imprint_'] = {"database": dbname,
-                            "created": lastupd(),
-                            "Modelversion": dbversion,
-                            "JSONversion": jsonversion,
-                            "hashvalue": modelhash,
-                            "git-revision": git_revision,
-                            "comment": "Entries ending with + represent denormalized data and are not checked for consistency while reading back"}
+    jsmodel['_imprint_'] = jsonimprint(dbname=dbname,
+                                       created=lastupd(),
+                                       modelversion=dbversion,
+                                       jsonversion=jsonversion,
+                                       hashvalue=modelhash,
+                                       gitrevision=git_revision)
     logging.info(f"JSModel for git revision '{git_revision}' generated")
     return jsmodel
 
 
+PROJECTMODEL = ['name', 'type', 'language', 'uc', 'dc', 'um', 'dm']
+
+
+def jsonproject(name, modeltype, language, uc, dc, **kwargs):
+    model = dict()
+    initjselement(model=model, refmodel=PROJECTMODEL)
+    model["name"] = name
+    model["type"] = modeltype
+    model["language"] = language
+    model["uc"] = uc
+    model["dc"] = dc
+
+    fillargs(model=model, refmodel=PROJECTMODEL, **kwargs)
+    return model
+
+
 def proj2js(pemptymodel: bool):
-    model = ['name', 'type', 'language', 'uc', 'dc', 'um', 'dm']
     if pemptymodel:
-        entries = ['' for i in range(len(model))]
+        entries = ['' for i in range(len(PROJECTMODEL))]
     else:
         projs = Project.select()
         if len(projs) == 0:
             """empty db no project found"""
-            entries = [None for i in range(len(model))]
+            entries = [None for i in range(len(PROJECTMODEL))]
         else:
             proj = projs[0]
             entries = [proj.proj_name, Project.LOGICALTYPE,
@@ -104,7 +133,7 @@ def proj2js(pemptymodel: bool):
                        proj.proj_uc, proj.proj_dc, proj.proj_um, proj.proj_dm]
         # fi
     # fi
-    return fillmodel(pmodel=model, pentries=entries)
+    return fillmodel(pmodel=PROJECTMODEL, pentries=entries)
 
 
 def js2proj(pkey, pelem, pmodellang=None):

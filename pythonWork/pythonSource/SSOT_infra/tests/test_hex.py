@@ -1,5 +1,5 @@
 import unittest
-from SSOT_infra.hex import hex2int, int2hex
+from SSOT_infra.hex import hex2int, int2hex,colorhex
 
 
 class TestHex(unittest.TestCase):
@@ -12,6 +12,22 @@ class TestHex(unittest.TestCase):
         assert hex2int('1000000') == 16777216
         assert hex2int('ffffff') == 16777215
 
+
+    def test_colorhex(self):
+        self.assertEqual("gugus",colorhex("gugus"))
+        self.assertEqual(None,colorhex(None))
+        self.assertEqual('#2F4F4F',colorhex('darkslate_grey'))
+        self.assertEqual('2F4F4F',colorhex('darkslate_grey',False))
+        self.assertEqual('#2F4F4F',colorhex('darkslategrey'))
+        self.assertEqual("#FFFF00",colorhex("yellow"))
+        self.assertEqual("#000000",colorhex(0))
+        self.assertEqual("#FFFFFF",colorhex(0xFFFFFF).upper())
+        self.assertEqual("#123ABC",colorhex("#123ABC").upper())
+        self.assertEqual("#123ABC",colorhex("123ABC").upper())
+        self.assertEqual("#123",colorhex("#123"))
+        self.assertEqual("#123ABC",colorhex("#123ABC",True).upper())
+        self.assertNotEqual("#123ABC",colorhex("#123ABC",False).upper())
+        return
 
 class ODMColorCodingFunctions(unittest.TestCase):
     def test_int2hex255(self):
@@ -28,12 +44,16 @@ class ODMColorCodingFunctions(unittest.TestCase):
 
     def test_int2hex_black_no_alpha(self):
         self.assertEqual("000000", int2hex(0x00))
+        return
 
     def test_int2hex_almost_white_no_alpha(self):
         self.assertEqual("ffeeff", int2hex(0xffeeff))
+        return
 
     def test_hex2int_int2hex(self):
         # forward backward conversion just removes alpha channel
         values = [0xffffffff, -1, 0, 1, 255, 0x00ff00, 0x00ff0000, 0xafafafaf]
         for value in values:
             self.assertEqual(value & 0xffffff, hex2int(int2hex(value)))
+        return
+

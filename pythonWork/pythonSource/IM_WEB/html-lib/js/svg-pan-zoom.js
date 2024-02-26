@@ -28,11 +28,7 @@ module.exports = {
     zoomGroup.setAttribute("id", "svg-pan-zoom-controls");
     zoomGroup.setAttribute(
       "transform",
-      "translate(" +
-        (instance.width - 70) +
-        " " +
-        (instance.height - 76) +
-        ") scale(0.75)"
+      "translate(" + (0) + " " + (instance.height / 2) +") scale(0.75)"
     );
     zoomGroup.setAttribute("class", "svg-pan-zoom-control");
 
@@ -1836,7 +1832,7 @@ module.exports = (function(){
 
       // create a normalized event object
       var event = {
-        // keep a ref to the original event object
+        // keep a element to the original event object
         originalEvent: originalEvent,
         target: originalEvent.target || originalEvent.srcElement,
         type: "wheel",

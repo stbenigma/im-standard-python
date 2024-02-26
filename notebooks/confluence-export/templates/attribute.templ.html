@@ -98,7 +98,7 @@
         {% for other_key in util.attribute_lineage(key) %}
         {% set other = data['columns'][other_key] %}
         <tr>
-          <td>{{ util.soft_link(other['interface-id+']) }}</td>
+          <td>{{ util.soft_link(other['datamodel-id+']) }}</td>
           <td>{{ util.soft_link(other['table-id']) }}</td>
           <td>{{ util.soft_link(other_key) }}</td>
         </tr>

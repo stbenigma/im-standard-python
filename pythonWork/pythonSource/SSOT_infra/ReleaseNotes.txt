@@ -1,0 +1,67 @@
+Changes in SPOD database and JSON in
+release     2023-09
+database    2.1
+jsonversion 1.1
+
+Changes to the json file structure
+==================================
+- Linesegments no longer has uc,um,dc,dm.
+    Fields are also removed from json file
+     OLD        "linesegments": [
+                  {
+                     "x": 860,  "y": 506,
+                     "linetype": "DASHED",  "angle": 0,
+                     "uc": "stb",   "dc": "2020-08-13 13:33:27 UTC",
+                     "um": null,    "dm": null
+                  },
+
+     NEW        "linesegments": [
+                  {
+                     "x": 860,  "y": 506,
+                     "linetype": "DASHED",  "angle": 0
+                  },
+
+- Attributes and Columns can have NULL-Domains
+   attr_doma_id can be NULL
+   colu_doma_id can be NULL
+
+- The main entry "systems" was renamed to "interfaces"
+    OLD
+       "systems": {
+          "INTF3": {
+             "name": "Relational_1",
+    NEW
+       "interfaces": {
+          "INTF3": {
+             "name": "Relational_1",
+
+- The relationds entry in arcs got a + (as it is no source-information)
+    OLD
+      "ARCSxx": {
+         ...
+         "relations": [...],
+    NEW
+      "ARCSxx": {
+         ...
+         "relations+": [...],
+
+Changes to the spod-sql-database
+================================
+
+Tables removed:
+table_enti_maps
+colu_attr_map
+
+new tables:
+systems
+mappings
+mode_mode_maps
+deva_deva_maps
+
+table renamed:
+interfaces => datamodels
+(columns intf_ => datm_)
+
+columns names changes
+tabl_intf_id => tabl_datm_id
+doma_intf_id => doma_datm_id

@@ -62,8 +62,8 @@ class Example(MultilangBaseobject):
             deflng = getodmparams().modelLang()
             inslngexample(plngid=Language.spraidlookup(deflng), pmodeid=expl.expl_id
                           , pvalue=expl.expl_value)
-            for lng in plngs:
-                if lng == deflng: continue
+            for lng in filter (lambda l : l != deflng, plngs):
+                #replaced by filter if lng == deflng: continue
                 try:
                     lngvalue = plngexpls[lng][idx]
                     inslngexample(pmodeid=expl.expl_id,plngid=Language.spraidlookup(lng)

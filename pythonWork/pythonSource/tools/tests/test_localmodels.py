@@ -9,7 +9,7 @@ from tools.LANGTRANSL import exportdata
 from LOAD_MODELS.LOAD_ODM import fillDB
 from LOAD_MODELS.LOAD_INFRA.handleXML import stable_file_list
 from SSOT_infra.tests.integration import testdata_root
-from tools.mapping import listmapping
+from tools.excel.datamapping import listmapping
 
 LOCALTESTMODELS: str = 'localtestmodels'
 ODMIM: str = 'IM'
@@ -45,7 +45,7 @@ class MyTestCase(unittest.TestCase):
                                   plogfilepath=basedirec / (modelfilepath.stem + '.log'))
             except Exception as e:
                 self.assertTrue(False, f"\n******* model {modelfilepath}\n" +
-                                f"could not be filled" \
+                                f"could not be filled." +\
                                 f"{e}")
             self.assertTrue(os.path.isfile(basedirec / DBDIREC / (modelfilepath.stem + '.json')))
             self.assertTrue(os.path.isfile(basedirec / DBDIREC / (modelfilepath.stem + '.db')))
@@ -57,7 +57,7 @@ class MyTestCase(unittest.TestCase):
                 self.assertTrue(False, f"******* model {modelfilepath}\n" +
                                 f"could not generate HTML" \
                                 f"{e}")
-            self.assertTrue(os.path.isdir(basedirec / WEBDIRC / 'jinjatemplates'))
+            self.assertTrue(os.path.isdir(basedirec / WEBDIRC / 'infra'  / 'jinjatemplates'))
             try:
                 exportdata.createlangexcel(pjsonfile=basedirec / DBDIREC / (modelfilepath.stem + '.json'))
             except Exception as e:
@@ -83,15 +83,15 @@ class MyTestCase(unittest.TestCase):
             imdir = basedirec / ODMIM
             if os.path.exists(imdir):
                 models = stable_file_list(folder=imdir,removehidden=True)
-                for model in models:
-                    if model.endswith('.dmd'):
-                        # DEBUG if model != "IM_GEBERIT.dmd": continue
-                        # if model != 'EZV_Stammdaten.dmd': continue
-                        # if model != 'DC-IM.dmd': continue
-                        shutil.rmtree(basedirec / DBDIREC, ignore_errors=True)
-                        shutil.rmtree(basedirec / WEBDIRC, ignore_errors=True)
-                        if os.path.exists(basedirec / (model[:-4]+ ".log")): os.remove(basedirec / (model[:-4]+ ".log"))
-                        check1ODMmodel(modelfilepath=imdir / model, basedirec=basedirec)
+                for model in filter (lambda m : m.endswith('.dmd'), models):
+                    if model != "IM_GEBERIT.dmd": continue
+                    # if model != 'EZV_Stammdaten.dmd': continue
+                    # if model != 'DC-IM.dmd': continue
+                    # if model != 'ModellModell_neu.dmd': continue
+                    shutil.rmtree(basedirec / DBDIREC, ignore_errors=True)
+                    shutil.rmtree(basedirec / WEBDIRC, ignore_errors=True)
+                    if os.path.exists(basedirec / (model[:-4]+ ".log")): os.remove(basedirec / (model[:-4]+ ".log"))
+                    check1ODMmodel(modelfilepath=imdir / model, basedirec=basedirec)
 
         return
 

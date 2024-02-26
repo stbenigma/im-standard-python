@@ -154,7 +154,7 @@ class Publisher:
                     if topic == 'tables':
                         title_safe = '{} - {}'.format(title_safe,
                                                       self.translate(
-                                                          self.json_data['systems'][entry['interface-id']]['name']))
+                                                          self.json_data['datmodels'][entry['datamodel-id']]['name']))
 
                     if topic == 'columns':
                         title_safe = '{} - {}'.format(title_safe,
@@ -327,7 +327,7 @@ class Publisher:
     def find_class_for_key(self, key: str) -> str:
         """
             Reverse look up te entity class of a key.
-            Known entity classes are domains, entities, attributes, systems, ...
+            Known entity classes are domains, entities, attributes, datmodels, ...
             :returns: None, if unable to find the entity class
         """
         if not key:

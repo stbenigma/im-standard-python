@@ -1,5 +1,4 @@
 import sys
-import logging
 
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import *
@@ -25,13 +24,14 @@ transferprocs = {
     'actorroles': (7, actorroles2sql, actorconcerns2sql, True, Actorrole._tablename),
     'categories': (7, entitycategory2sql, nofunc, False, EntityCategory._tablename),
     'userdefprops': (8, udps2sql, nofunc, False, Userdefprop._tablename),
-    'systems': (10, systems2sql, nofunc, True, Interface._tablename),
+    'datamodels': (10, datamodels2sql, nofunc, True, Datamodel._tablename),
     'domains': (12, domains2sql, nofunc, True, Domain._tablename),
     'entities': (14, entities2sql, nofunc, True, Entity._tablename),
     'attributes': (16, attributes2sql, nofunc, True, Attribute._tablename),
     'arcs': (18, arcs2sql, nofunc, True, Arc._tablename),
     'relations': (20, relations2sql, nofunc, True, Relation._tablename),
     'keys': (22, keys2sql, nofunc, True, Key._tablename),
+    'mappings': (29, nofunc, nofunc, True, Mapping._tablename), #self.mapstoid
     'tables': (30, tables2sql, nofunc, True, Table._tablename),
     'columns': (32, columns2sql, nofunc, True, Column._tablename),
     'businessrules': (33, businessrules2sql, nofunc, True, BusinessRule._tablename),
@@ -40,7 +40,7 @@ transferprocs = {
 }
 
 
-def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False, pkeepids=False) -> Mergeresult:
+def mergejson2sql(pmodel:JSModel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False, pkeepids=False) -> Mergeresult:
     """
     merge json into current connection
         DB-Version has already been checked
@@ -56,7 +56,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
     if not pcheckonly:
         # make sure, the model is consistent with database
         # but not if I am called by the check
-        assert checkjsonmodel(pmodel=pmodel, pkeepids=False, pverbose=pverbose)
+        assert checkjsonmodel(pmodel=pmodel, pverbose=pverbose)
 
     # here we need an open database
     assert dbConnect.isopenDB()
@@ -112,7 +112,7 @@ def mergejson2sql(pmodel, psrcname=SOURCE_SPOD, pverbose=False, pcheckonly=False
     if not pcheckonly and (len(result.errors) == 0):
         """clean up and set final project parameters"""
         proj: Project = Project.select()[0]
-        proj.proj_um, proj.proj_dm = psrcname, datetime.datetime.now()
+        proj.proj_um, proj.proj_dm = psrcname, datetime.now()
         proj.proj_languages = ','.join([langs.lang_iso_code2 for langs in Language.select()])
         proj.updatedb(pdoerrhdlng=True)
     # fi
@@ -143,7 +143,8 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
     try:
         newversion = pmodel.jsmodel['_imprint_']["Modelversion"]
         dbversion = dbConnect.getversion()
-        if newversion != dbversion:
+        #do not check version of newly created memory database
+        if newversion != dbversion and dbConnect.getDBname()!="":
             logmessages.showmessages(
                 f"""existing database  {pdbfile}\nhas version {dbversion} but should have {newversion}""")
             raise Exception(f"DB-Version mismatch: found {dbversion} instead of {newversion}")
@@ -203,8 +204,18 @@ def checkjsonfile(pjsonfilepath, pverbose=False) -> bool:
     logger.info(f"check jsonfile {pjsonfilepath}")
     return checkjsonmodel(pmodel=JSModel.readfromfile(pjsonfilepath), pverbose=pverbose)
 
+def jsonviadbtojson(pmodel:JSModel,psrcname,pcheckonly=False,pverbose=False)->dict:
+    """loads a jsonfile into an empty DB and creates a json file out of it.
+        Thus filling all denormalized fields properly"""
+    createnewDB(pdbfilepath=None)
+    mergeresult = mergejson2sql(pmodel=pmodel, psrcname=psrcname, pverbose=pverbose,
+                                pcheckonly=pcheckonly, pkeepids=False)
+    mergeresult.consistencyerrors = checkdatabase()
+    retval= sql2json(pdbname=dbConnect.getDBname())
+    dbConnect.closeDB()
+    return retval
 
-def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
+def checkjsonmodel(pmodel:JSModel, pverbose=False) -> bool:
     """
     checks a json for consistency
         it is entered in an empty database and merged into it.
@@ -225,7 +236,7 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
     try:
         createnewDB(pdbfilepath=None)
         mergeresult = mergejson2sql(pmodel=pmodel, psrcname="CHECKJSON", pverbose=pverbose,
-                                    pcheckonly=True, pkeepids=pkeepids)
+                                    pcheckonly=True, pkeepids=False)
         mergeresult.consistencyerrors = checkdatabase()
 
         logging.info(f"model {modelname}")
@@ -237,9 +248,9 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
             f"          {mergeresult.insertcnt} inserted, {mergeresult.updatecnt} updated, {mergeresult.deletecnt} deleted, {mergeresult.deleterefcnt} references removed")
 
         for dbe in mergeresult.errors:
-            logging.error(dbe)
+            logger.error(dbe)
         for dbe in mergeresult.consistencyerrors:
-            logging.error(dbe)
+            logger.error(dbe)
         for w in mergeresult.warnings:
             logger.warning(w)
     finally:
@@ -249,4 +260,4 @@ def checkjsonmodel(pmodel, pkeepids=False, pverbose=False) -> bool:
 
 if __name__ == '__main__':
     model = JSModel.readfromfile(pfilename=sys.argv[2])
-    mergejs2db(pdbfile=sys.argv[1], pmodel=model)
+    mergejs2db(pdbfile=sys.argv[1], pmodel=model,pverbose=True)

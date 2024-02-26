@@ -110,31 +110,31 @@ def updnote(noteelem, langs, descrs, examples, jsstruct, dryrun):
     changed = False
 
     lngcomments = handleXML.extractlngcomments(ptext=noteelem.text)
-    for lang, lngitems in lngcomments.items():
-        if lang not in langs: continue  # skip modellanguage
-        for name, text in lngitems.items():
-            if name.endswith("_COMMENT"):
-                """separate examples from description"""
-                lngdescr, lngexamples = handleXML.separateExamples(text)
-                newlngdescr = jsstruct.getlangtext(pelem=descrs, plang=lang
-                                                   , preplacement=False)
-                if len(examples) > 0:
-                    newexamples = joinlistoflang(joinchar='\n', elems=examples,
-                                                 lang=lang, jsstruct=jsstruct)
-                    newexamplstr = f"\n\n{transl(ptext='Beispiele', plang=lang)}:\n  " \
-                                   + newexamples
-                    newlngdescr = newlngdescr + newexamplstr
-                # fi
-                if newlngdescr != text:
-                    if dryrun:
-                        logging.info(f"note: field={name} " +
-                                     f" newval={newlngdescr}")
-                    changed = True
-                    # replace part  between [xx_yyyy_COMMENT[ and ]xx_yyyy_COMMENT] with the new comment
-                    noteelem.text = re.sub(r'(\[{attrname}\[)([\S\n\t\v ]*)(\]{attrname}\])'.format(attrname=name),
-                                           r'\1\n{}\n\3'.format(newlngdescr),
-                                           noteelem.text)
-                # fi
+    for lang, lngitems in filter (lambda l : l[0] in langs, lngcomments.items()):
+        #replaced by filter if lang not in langs: continue  # skip modellanguage
+        for name, text in filter (lambda l : l[0].endswith("_COMMENT"),
+                                  lngitems.items()):
+            #replaced by filter if name.endswith("_COMMENT"):
+            """separate examples from description"""
+            lngdescr, lngexamples = handleXML.separateExamples(text)
+            newlngdescr = jsstruct.getlangtext(pelem=descrs, plang=lang
+                                               , preplacement=False)
+            if len(examples) > 0:
+                newexamples = joinlistoflang(joinchar='\n', elems=examples,
+                                             lang=lang, jsstruct=jsstruct)
+                newexamplstr = f"\n\n{transl(ptext='Beispiele', plang=lang)}:\n  " \
+                               + newexamples
+                newlngdescr = newlngdescr + newexamplstr
+            # fi
+            if newlngdescr != text:
+                if dryrun:
+                    logging.info(f"note: field={name} " +
+                                 f" newval={newlngdescr}")
+                changed = True
+                # replace part  between [xx_yyyy_COMMENT[ and ]xx_yyyy_COMMENT] with the new comment
+                noteelem.text = re.sub(r'(\[{attrname}\[)([\S\n\t\v ]*)(\]{attrname}\])'.format(attrname=name),
+                                       r'\1\n{}\n\3'.format(newlngdescr),
+                                       noteelem.text)
             # fi
         # for
     # for

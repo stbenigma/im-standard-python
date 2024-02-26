@@ -70,12 +70,12 @@ class TestFillDatabase(unittest.TestCase):
             masterentityID, masterentity = jmodel.getbyfield(ptype="entities", pvalue="Master Entity", plang='en')[0]
             self.assertEqual(masterentity["subtypellevel+"], 0, "Master Entity")
             arcID, arc = jmodel.getbyfield(ptype="arcs", pvalue=masterentityID, pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]), 3, "Master Entity arc has wrong relations")
+            self.assertEqual(len(arc["relations+"]), 3, "Master Entity arc has wrong relations")
 
             masterentity2ID, masterentity2 = jmodel.getbyfield(ptype="entities", pvalue="Master Entity2", plang='en')[0]
             self.assertEqual(masterentity2["subtypellevel+"], 0, "Master Entity2")
             arcID, arc = jmodel.getbyfield(ptype="arcs", pvalue=masterentity2ID, pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]), 3, "Master Entity2 arc has wrong relations")
+            self.assertEqual(len(arc["relations+"]), 3, "Master Entity2 arc has wrong relations")
 
             childentity1ID, childentity1 = jmodel.getbyfield(ptype="entities", pvalue="Child Entity1", plang='en')[0]
             self.assertEqual(childentity1["subtypellevel+"], 1, "Child Entity1")
@@ -86,7 +86,7 @@ class TestFillDatabase(unittest.TestCase):
             realsubenti_lev1ID, realsubenti_lev1 = jmodel.getbyfield(ptype="entities", pvalue="realsubenti_lev1", plang='en')[0]
             self.assertEqual(realsubenti_lev1["subtypellevel+"], 1, "realsubenti_lev1")
             arcID, arc = jmodel.getbyfield(ptype="arcs", pvalue=realsubenti_lev1ID, pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]), 2, "realsubenti_lev1 arc has wrong relations")
+            self.assertEqual(len(arc["relations+"]), 2, "realsubenti_lev1 arc has wrong relations")
 
             realsubenti_lev2ID, realsubenti_lev2 = jmodel.getbyfield(ptype="entities", pvalue="realsubenti_lev2", plang='en')[0]
             self.assertEqual(realsubenti_lev2["subtypellevel+"], 2, "realsubenti_lev2")
@@ -97,7 +97,7 @@ class TestFillDatabase(unittest.TestCase):
             self.assertEqual(extsubentitylev22["subtypellevel+"], 0, "extsubentitylev2-2")
             self.assertEqual(len(extsubentitylev22["supertypes+"]), 1, "supertentites extsubentitylev2-2")
             arcID, arc = jmodel.getbyfield(ptype="arcs", pvalue=extsubentitylev22ID, pfield='entity')[0]
-            self.assertEqual(len(arc["relations"]), 1, "extsubentitylev2-2 arc has wrong relations")
+            self.assertEqual(len(arc["relations+"]), 1, "extsubentitylev2-2 arc has wrong relations")
 
             realsubenti2lev1ID, realsubenti2lev1 = jmodel.getbyfield(ptype="entities", pvalue="realsubenti2-lev1", plang='en')[0]
             self.assertEqual(realsubenti2lev1["subtypellevel+"], 1, "realsubenti2-lev1")
@@ -181,6 +181,14 @@ class TestFillDatabase(unittest.TestCase):
         self.assertTrue(os.path.exists(testmodelcrm.logfile),
                         f"log file not where assumed {testmodelcrm.logfile}")
 
+        checkmodel = JSModel.readfromfile(self.testmodelcrm.jsonfile)
+        enti = checkmodel.getbyfield(ptype="entities", pvalue="natürliche Person", plang="de")
+        attr = [a for a in enti[0][1]["attributes+"] if checkmodel.getbyid(a)["name"]['de'] == "Geburtsdatum"]
+        tab = checkmodel.getbyfield(ptype="tables", pvalue="ColAttr")
+        col = checkmodel.getbyfield(ptype="columns", pvalue="col1tomany")
+        self.assertIn(enti[0][0], tab[0][1]["entitiesmapped"])
+        self.assertIn(attr[0], [c[0] for c in col[0][1]["attributesmapped"]])
+
         testmodelriddle = testsrc.ModelHelper(testsrc.RIDDLE)
         if os.path.exists(testmodelriddle.dbfile):
             os.remove(testmodelriddle.dbfile)
@@ -259,7 +267,7 @@ class TestFillDatabase(unittest.TestCase):
             self.assertIsNotNone(enti2id)
             enti2 = crmjson.getbyid(enti2id)
             self.assertIn(geoinfo[0][0],enti2["inheritedattributes+"])
-            self.assertIn(c["table-id"],enti2["tablesmapped+"][c["interface-id+"]])
+            self.assertIn(c["table-id"],enti2["tablesmapped+"][c["datamodel-id+"]])
             #secondary Entity-Id is in table mapping
             self.assertIn(enti2id,crmjson.getbyid(c["table-id"])["entitiesmapped"])
             #primary entityid is also in table mapping
@@ -299,7 +307,7 @@ class TestFillDatabase(unittest.TestCase):
                                     pdestdir=None, pconfigdirec='Konfiguration', pdebug=False)
         checksubentimap(attrname="GEOINFORMATION",colname="col1tomany")
         #too complex to search in json
-        # checksubentimap(attrname="Name",colname="name",tabname= "natural_person",intfname="MDM"
+        # checksubentimap(attrname="Name",colname="name",tabname= "natural_person",datmname="MDM"
 
         tm2db = tm2.dbdir / (tm2.modelname + "_odm.db")
         self.assertTrue(tm2db.is_file())

@@ -9,79 +9,144 @@ from IM_WEB.IM_HTML import printRelHTML, printdiagHTML
 from IM_WEB.IM_HTML.printHTML import HTMLExport
 from SSOT_db.IM_JSON import JSModel, FILTEREDJSModel
 from SSOT_db.IM_OBJECTS import *
-from SSOT_infra import Parameter, logmessages, argparseparent, settransldomain
+from SSOT_infra import Parameter, logmessages, argparseparent, settransldomain, nvl
 
 
-def printhtmlrender(export: HTMLExport, pfilename, planguage, pmodel, pintfid=None):
-    settransldomain(plang=planguage)
-    with export.createFile(pfilename=pfilename):
-        if pintfid is None:
-            diags = sorted([{"id": dkey,
-                             "name": dvalue["name"],
-                             "svg": printdiagHTML.getsvgtext(export=export, pdiagelem=dvalue, pdiaganker=dkey,
-                                                             plang=planguage),
-                             "pdf": printdiagHTML.pdffilename(export=export, pname=dvalue["name"], plang=planguage)
-                             } for dkey, dvalue in pmodel.jsmodel["diagrams"].items()
-                            if (dvalue["type"] == "Entity")],
-                           key=lambda x: x["name"].upper())
-        else:
-            diags = [{"id": pintfid,
-                      "name": pmodel.getbyid(pintfid)["name"],
-                      "svg": printRelHTML.interfacediagram(export=export, pintf=pmodel.getbyid(pintfid)),
-                      "pdf": printdiagHTML.pdffilename(export=export, pname=pmodel.getbyid(pintfid)["name"],
-                                                       plang=planguage)}
-                     ]
-        # fi
-        html = jinjawebmodel.rendermodel(export=export, pcurlang=planguage, pmodel=pmodel, pintfid=pintfid,
-                                         pdiagrams=diags,
-                                         phtmlfilelist=export.htmlfilelist)
-        export.fhtml.write(html)
-        export.closefile()
+def getimdiags(export, curlang, diagtype):
+    return sorted([{"id": dkey,
+                    "name": dvalue["name"],
+                    "svg": printdiagHTML.getsvgtext(export=export, pdiagelem=dvalue, pdiaganker=dkey,
+                                                    plang=curlang, pdiagtype=diagtype),
+                    "pdf": printdiagHTML.pdffilename(export=export, pname=dvalue["name"], plang=curlang)
+                    } for dkey, dvalue in export.model.jsmodel["diagrams"].items()
+                   if (dvalue["type"] == "Entity")],
+                  key=lambda x: x["name"].upper())
+
+
+def getdatmdiags(export, datmid, curlang):
+    return [{"id": datmid,
+             "name": export.model.getbyid(datmid)["name"],
+             "svg": printRelHTML.datamodeldiagram(export=export, pdatm=export.model.getbyid(datmid)),
+             "pdf": printdiagHTML.pdffilename(export=export, pname=export.model.getbyid(datmid)["name"],
+                                              plang=curlang)}
+            ]
+
+
+def printhtmlrender(export: HTMLExport, pfullfilename, pjinjawebmodel=None,
+                    pelemtype=None, pelemid=None):
+
+    html = jinjawebmodel.rendermodel(pjinjawebmodel=pjinjawebmodel,
+                                     pelemtype=pelemtype, pelemid=pelemid)
+
+    with export.createFile(pfilename=pfullfilename) as fhtmlfile:
+        fhtmlfile.write(html)
+        fhtmlfile.close()
     return
 
-
-def safe_filename(path: str) -> str:
-    return path.replace('/', '-').replace(' - ', '-')
-
-
-def listwebmain(export: HTMLExport):
-    def langpart(plang):
-        return '_' + plang
-
+def listwebmain(export: HTMLExport, diagtype="FYAYC"):
     export.createlib()
     export.copyimages()
     model = export.getmodel()
     export.modelLang(model.modellanguage())
     langs = model.jsmodel["languages"].keys()
     # erstelle die Liste der HTML Files für HREF's
-    schnlist = model.getelements(pelemtype=Modelelemtype.INTF)
-    for skey, svalue in schnlist.items():
-        export.htmlfilelist[skey] = safe_filename(svalue['name'] + f'.{export.webFileExtension()}')
+    datmlist = model.getelements(pelemtype=Modelelemtype.DATM)
+    for skey, svalue in datmlist.items():
+        export.htmlfilelist[skey] = HTMLExport.safe_filename(svalue['name'] + f'.{export.webFileExtension}')
 
+    export.modelLang(export.model.modellanguage())
+    langs = export.modellangs()
+
+    export.htmlfilelist[0] = "index"
+    # erstelle die Liste der HTML Files für HREF's
+    datmlist = export.model.getelements(pelemtype=Modelelemtype.DATM)
+    for skey, svalue in datmlist.items():
+        export.htmlfilelist[skey] = export.DATAMODELDIREC + "/" + HTMLExport.safe_filename(svalue['name']) + "/index"
+
+    elementtypes = ["entities", "orgunits", "attributes", "domains",
+                    "businessrules", "documents", "actorroles", "diagrams"]
     for lang in langs:
         lang = lang.lower()
         Languagetext.reportLang(lang)
-        # omit language in name for non translated models
-        langfilename = export.webFileName + f"{'' if len(langs) == 1 else langpart(Languagetext.reportLang())}.{export.webFileExtension()}"
-        logging.info(f"Generating web content for language {lang} in {os.path.join(export.webDirec(), langfilename)}")
-        export.htmlfilelist[0] = langfilename
-        printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model)
-    # for
-    # prepare for relational models
-    Languagetext.reportLang(export.modelLang())
-    # backjumps from relational webpage goes to default-lang-model
-    export.htmlfilelist[0] \
-        = export.webFileName + f"{'' if len(langs) == 1 else langpart(export.modelLang())}.{export.webFileExtension()}"
+        settransldomain(plang=lang)
 
+        # create language path
+        fullpath = os.path.join(export.webDirec, lang)
+        os.makedirs(name=fullpath, exist_ok=True)
+
+        # create datamodels html directory
+        for datmid, element in datmlist.items():
+            fullpath = os.path.join(export.webDirec, export.DATAMODELDIREC,
+                                    HTMLExport.safe_filename(element['name']))
+            os.makedirs(name=fullpath, exist_ok=True)
+            for f in os.listdir(fullpath):
+                os.remove(os.path.join(fullpath, f))
+
+        langfilename = f"{lang}/{export.fullwebfilename(export.htmlfilelist[0])}"
+        logging.info(f"Generating web content for language {lang} in {os.path.join(export.webDirec, langfilename)}")
+
+        # calcualte all diagrams for IM
+        imdiags = getimdiags(export=export, curlang=lang, diagtype=diagtype)
+
+        # clean or make language-element-paths
+        if not export.singlefile:
+            for elemtype in elementtypes:
+                elempath = f"{lang}/elements/{elemtype}"
+                fullpath = os.path.join(export.webDirec, elempath)
+                os.makedirs(name=fullpath, exist_ok=True)
+                for f in os.listdir(fullpath):
+                    os.remove(os.path.join(fullpath, f))
+
+        # create index-file for language
+        langfilename = f"{lang}/{export.fullwebfilename(export.htmlfilelist[0])}"
+        jinjamodel = jinjawebmodel.jinjawebmodelim(export=export, curlang=lang,
+                                                   diagrams=imdiags)
+        printhtmlrender(export=export, pfullfilename=langfilename,
+                        pjinjawebmodel=jinjamodel)
+
+        if not export.singlefile:
+            jinjamodel = jinjawebmodel.jinjawebmodelim(export=export, curlang=lang, diagrams=imdiags)
+            # generate element pages
+            for elemtype in elementtypes:
+                elempath = f"{lang}/elements/{elemtype}"
+                elems = export.model.getelements(pelemtype=elemtype)
+                for elemid in elems.keys():
+                    langfilename = f"{elempath}/{export.fullwebfilename(elemid)}"
+                    logging.info(
+                        f"Generating web content for language {lang} in {os.path.join(export.webDirec, langfilename)}")
+                    printhtmlrender(export=export, pfullfilename=langfilename,
+                                    pjinjawebmodel=jinjamodel,
+                                    pelemtype=elemtype, pelemid=elemid)
+                    if elemtype=="diagrams":
+                        #print svg file for this diagram
+                        svgfilename = f"{elempath}/{elemid}.svg"
+                        with export.createFile(pfilename=svgfilename) as svgfile:
+                            svgfile.write(jinjamodel.getelem(elemid)["svg"])
+
+            # for
+            elemtype="mainview"
+            langfilename = f"{elempath}/{elemtype}.{export.webFileExtension}"
+            printhtmlrender(export=export, pfullfilename=langfilename,
+                            pjinjawebmodel=jinjamodel, pelemtype=elemtype)
+
+        # fi
+        # break #DEBUG
+    # for
+    # backjumps from relational webpage goes to default-lang-model
     """Schnittstellen werden immer englisch gedruckt"""
     lang = Languagetext.EN if (Languagetext.EN in langs) else export.modelLang()
     Languagetext.reportLang(lang)
-    for anker, element in schnlist.items():
-        langfilename = export.htmlfilelist[anker]
-        logging.info("Generating web content fo system {} in {}".format(element['name'],
-                                                                        os.path.join(export.webDirec(),
-                                                                                     langfilename)))
-        printhtmlrender(export=export, pfilename=langfilename, planguage=lang, pmodel=model, pintfid=anker)
+    settransldomain(plang=lang)
+
+    for datmid, datamodel in datmlist.items():
+        langfilename = export.fullwebfilename(pfilename=export.htmlfilelist[datmid])
+        logging.info(
+            f"Generating web content fo datamodel {datamodel['name']} in {os.path.join(export.webDirec, langfilename)}")
+        datmdiags = getdatmdiags(export=export, datmid=datmid, curlang=lang)
+        jinjamodel = jinjawebmodel.jinjawebmodeldatm(export=export, datmid=datmid, curlang=lang,
+                                                     diagrams=datmdiags)
+        printhtmlrender(export=export, pfullfilename=langfilename,
+                        pjinjawebmodel=jinjamodel)
     # for
     return
 
@@ -91,17 +156,8 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
     assert (pjsonfilepath is not None and pwebdirec is not None), \
         f"jsonsource and destination directory must be given"
 
-    status = None
-    diagrams = None
-    for key, val in kwargs.items():
-        if key == "status":
-            status = val
-            stati = [Modelelement.GTOP, Modelelement.DRAFT, Modelelement.PUBL]
-            assert status is None or status.upper() in stati, f"Publication status must be in {stati}"
-        elif key == "diagrams" and val is not None:
-            diagrams = [dia.strip(" '\"") for dia in val.split(',')]
-        # fi
-    # for
+    singlefile = kwargs.get("singlefile")
+    diagtype = nvl(kwargs.get("diagtype"), 'ODM')
 
     if pjsonfilepath is not None:
         jsonfilepath = Path(pjsonfilepath).resolve()
@@ -115,28 +171,36 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
 
     exporter = HTMLExport(baseDirec=basedirec, modelname=modelname,
                           webDirec=pwebdirec, logofile=plogfilepath,
-                          webFileExtension=pfiletype)
+                          webFileExtension=pfiletype,
+                          singlefile=singlefile)
+    if pjsonfilepath is None:
+        # resolve json path from standards
+        jsonfilepath = os.path.join(exporter.dbDirect(), exporter.modelName() + ".json")
+        jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
+
+    if exporter.modelName() != jsonmodel.modelname():
+        raise Exception(f"Modelnames parameter:{exporter.modelName()}" +
+                        f" and jsonfile:{jsonmodel.modelname()} do not match")
+
     try:
-        logmessages.initlog('createHTML',
-                            plogfilepath=exporter.logfilepath())
-        if jsonfilepath is None:
-            jsonfilepath = os.path.join(exporter.dbDirec(), exporter.modelName() + ".json")
-            jsonmodel = JSModel.readfromfile(pfilename=jsonfilepath)
-        elif exporter.modelName() != jsonmodel.modelname():
-            raise Exception(f"Modelnames parameter:{exporter.modelName()}" +
-                            f" and jsonfile:{jsonmodel.modelname()} do not match")
+        logmessages.initlog('createHTML', plogfilepath=exporter.logfilepath())
         deflang = jsonmodel.modellanguage()
 
         if deflang is not None:
             exporter.modelLang(deflang)
 
+        status = kwargs.get("status")
+        stati = [Modelelement.GTOP, Modelelement.DRAFT, Modelelement.PUBL]
+        assert status is None or status.upper() in stati, f"Publication status must be in {stati}"
+        diags = kwargs.get("diagrams")
+        diagrams = None if diags is None else [dia.strip(" '\"") for dia in diags.split(',')]
         jsonmodel = FILTEREDJSModel(pmodel=jsonmodel.jsmodel, ppublstatus=status, pimdiagrams=diagrams)
         # jsonmodel.printmodel("/Users/stb/Downloads","DEBUG") #DEBUG
-        exporter.setmodel(jsonmodel)
-        listwebmain(exporter)
+        exporter.model = jsonmodel
+        listwebmain(exporter, diagtype=diagtype)
     finally:
         logmessages.showmessages(
-            f"web-files from jsonfile {jsonfilepath} for model {exporter.modelName()} created into {exporter.webDirec()}")
+            f"web-files from jsonfile {jsonfilepath} for model {exporter.modelName()} created into {exporter.webDirec}")
 
 
 def main(psysargs):
@@ -147,7 +211,12 @@ def main(psysargs):
                              f"/<modelname>{Parameter.JSONEXTENSION})")
     parser.add_argument('--destination', '-d', dest="destination",
                         help=f"Directory to write the generated files to . Default ./{htmlparameters.HTMLParameter.WEBDEFAULTDIREC}")
-    parser.add_argument('--filetype', '-f', dest="filetype", help=f"html or aspx. Default html")
+    parser.add_argument('--filetype', '-f', dest="filetype", help=f"html or aspx. Default html",
+                        default="html")
+    parser.add_argument('--diagtype', '-dt', dest="diagtype", default="FYAYC",
+                        help=f"Type of diagramrendering: ODM or FYAYC. Default FYAYC")
+    parser.add_argument('--singlefile', '-sf', action='store_true',
+                        help=f"Print model in single html-file. Otherwise generate a file per element. Default: False")
     parser.add_argument('--logfile', '-log', dest='logfile',
                         help=f"Path for logfile. Default: ./<modelname>{Parameter.LOGFILEEXTENSION}")
     parser.add_argument('--status', '-s', dest='status',
@@ -189,7 +258,8 @@ def main(psysargs):
         webmain(pjsonfilepath=myargs['jsonfile'], pwebdirec=myargs['destination'],
                 plogfilepath=myargs['logfile'], pmodelname=myargs['modelname'],
                 pfiletype=myargs['filetype'],
-                status=myargs["status"], diagrams=myargs["diagrams"])
+                status=myargs["status"], diagrams=myargs["diagrams"],
+                singlefile=myargs["singlefile"], diagtype=myargs["diagtype"])
     return
 
 

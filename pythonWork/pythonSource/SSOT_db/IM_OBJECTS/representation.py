@@ -12,11 +12,14 @@ class Elementrep(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self):
-        super().__init__()
-        eler_index = 0
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.setdefaultval("eler_index", 0)
+        return
 
     """what is displayed on bottom (0) and what in higer positions"""
+    def insert(self,pdoerrhdlng=True):
+        super().insert(pdoerrhdlng=pdoerrhdlng)
 
     def displorder(self):
         elem = Modelelement.getelement(self.eler_mode_id)
@@ -48,10 +51,7 @@ class Elementrep(Baseobject):
         else:
             # can only be one
             return elers[0]
-    # getbydiagmode
 
-
-# elementrep
 
 class Relationrep(Baseobject):
     ONE = Relation.ONE
@@ -62,8 +62,13 @@ class Relationrep(Baseobject):
     _idcolname: str = _prefix + '_id'
     _columnlist: list = []
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.setdefaultval("relr_linewidth",1)
+        self.setdefaultval("relr_linecolor",'000000')
+        self.setdefaultval("relr_lineopacity",100)
+        self.setdefaultval("relr_fontcolor",'000000')
+        return
 
     def getlinesegments(self):
         return Linesegment.select(pwhere=("lise_relr_id = ?", self.relr_id), porderby="lise_seq")
@@ -81,9 +86,6 @@ class Relationrep(Baseobject):
     def getrela(self):
         return Relation().getbyid(pid=self.relr_mode_id)
 
-
-# relationrep
-
 class Linesegment(Baseobject):
     NORTH = 'N'
     EAST = 'E'
@@ -100,8 +102,10 @@ class Linesegment(Baseobject):
     _columnlist: list = []
     _defaultorderby = "lise_seq"
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.setdefaultval("lise_linetype",'SOLID')
+        return
 
     def direction(self):
         if pi / 4 <= self.lise_angle < 3 * pi / 4:

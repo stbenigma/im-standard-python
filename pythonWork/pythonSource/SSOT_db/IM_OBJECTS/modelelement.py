@@ -18,7 +18,7 @@ class Modelelemtype(Baseobject):
     DOMA: str = 'DOMA'
     ORGU: str = 'ORGU'
     TABL: str = 'TABL'
-    INTF: str = 'INTF'
+    DATM: str = 'DATM'
     COLU: str = 'COLU'
     ARCS: str = 'ARCS'
     DOCU: str = 'DOCU'
@@ -30,6 +30,10 @@ class Modelelemtype(Baseobject):
     STFO: str = 'STFO'
     UDPR: str = 'UDPR'
     EXPL: str = 'EXPL'
+    MAPS: str = 'MAPS'
+    SYST: str = 'SYST'
+
+    MELTNAMES = None
 
     _tablename: str = 'modelelem_type'
     _prefix: str = 'melt'
@@ -48,28 +52,12 @@ class Modelelemtype(Baseobject):
     def getname(self, plang=None):
         return self.melt_name
 
-    @staticmethod
-    def fillmelt():
-        #insert as special function, table should remain immutable
-        # melt_shortname,  melt_name    ,melt_uc,  melt_dc
-        Modelelemtype(pshortname=Modelelemtype.ARCS, pname='Arc')._insert()
-        Modelelemtype(pshortname=Modelelemtype.ATTR, pname='Attribute')._insert()
-        Modelelemtype(pshortname=Modelelemtype.BURU, pname='Business Rule')._insert()
-        Modelelemtype(pshortname=Modelelemtype.COLU, pname='Column')._insert()
-        Modelelemtype(pshortname=Modelelemtype.DOMA, pname='Domain')._insert()
-        Modelelemtype(pshortname=Modelelemtype.ENTI, pname='Entity')._insert()
-        Modelelemtype(pshortname=Modelelemtype.INTF, pname='Interface')._insert()
-        Modelelemtype(pshortname=Modelelemtype.ORGU, pname='Organizational Unit')._insert()
-        Modelelemtype(pshortname=Modelelemtype.RELA, pname='Relation')._insert()
-        Modelelemtype(pshortname=Modelelemtype.SYNO, pname='Synonym')._insert()
-        Modelelemtype(pshortname=Modelelemtype.TABL, pname='Table')._insert()
-        Modelelemtype(pshortname=Modelelemtype.DATY, pname='Datatyope')._insert()
-        Modelelemtype(pshortname=Modelelemtype.KEYS, pname='Key')._insert()
-        Modelelemtype(pshortname=Modelelemtype.DOCU, pname='Document')._insert()
-        Modelelemtype(pshortname=Modelelemtype.DGRM, pname='Domaingroupmember')._insert()
-        Modelelemtype(pshortname=Modelelemtype.DIAG, pname='Diagram')._insert()
-        Modelelemtype(pshortname=Modelelemtype.EXPL, pname='Example')._insert()
-        Modelelemtype(pshortname=Modelelemtype.ACTR, pname='Actor Role')._insert()
+    @classmethod
+    def fillmelt(cls):
+        #NEW filled in sqlddl with insert
+        if Modelelemtype.MELTNAMES is None:
+            Modelelemtype.MELTNAMES = {melt.melt_shortname:melt.melt_name for melt in Modelelemtype.select()}
+        return
 
     @staticmethod
     def getidbyshortname(pshortname):
@@ -86,16 +74,16 @@ class Modelelemtype(Baseobject):
     def getbyshortname(pshortname):
         return Modelelemtype().getbyid(Modelelemtype.getidbyshortname(pshortname))
 
-    @staticmethod
-    def type2melt(ptype):
-        trans = {"Entity": Modelelemtype.ENTI,
-                 "Attribute": Modelelemtype.ATTR,
-                 "Relation": Modelelemtype.RELA,
-                 "Table": Modelelemtype.TABL,
-                 "Column": Modelelemtype.COLU,
-                 "Arcs": Modelelemtype.ARCS,
-                 "FKIndexAssociation": ""
-                 }
+    @classmethod
+    def melt2name(cls,melt):
+        if melt in cls.MELTNAMES.keys():
+            return cls.MELTNAMES[melt]
+        else:
+            return ""
+
+    @classmethod
+    def type2melt(cls,ptype):
+        trans = {val:key for key,val in cls.MELTNAMES.items()}
         if ptype in trans:
             return trans[ptype]
         else:
@@ -107,8 +95,9 @@ class Modelelemtype(Baseobject):
         raise Exception(f"no chnages in table {self._tablename} allowed")
     def updatedb(self, pdoerrhdlng=True):
         raise Exception(f"no chnages in table {self._tablename} allowed")
+    @classmethod
     def delete(cls,pwhere=None):
-        raise Exception(f"no chnages in table {self._tablename} allowed")
+        raise Exception(f"no chnages in table {cls._tablename} allowed")
     def _insert(self):
         super().insert()
 
@@ -182,8 +171,8 @@ class Modelelement(Baseobject):
             element = Table().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.COLU:
             element = Column().getbyid(self.mode_id)
-        elif self.mode_type == Modelelemtype.INTF:
-            element = Interface().getbyid(self.mode_id)
+        elif self.mode_type == Modelelemtype.DATM:
+            element = Datamodel().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.ARCS:
             element = Arc().getbyid(self.mode_id)
         elif self.mode_type == Modelelemtype.DGRM:
@@ -351,7 +340,7 @@ from .businessrule import BusinessRule
 from .table import Table
 from .attribute import Attribute
 from .column import Column
-from .interface import Interface
+from .datamodel import Datamodel
 from .document import Document
 from .diagram import Diagram
 from .orgunit import OragnisationalUnit

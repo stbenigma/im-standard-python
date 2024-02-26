@@ -87,6 +87,11 @@ class Relation(MultilangBaseobject):
     MANY2MANY: str = 'M:N'
     ONE: str = '1'
     MANY: str = 'M'
+    # associations that are accepted as role asscociations but are removed whereever possible
+    # "", 'is' in several languages, isa
+    ROLEASSOCIATIONS = ['',
+                        'is', 'ist', 'est', 'e', 'es',
+                        'isa', 'IsA', 'ISA']
 
     _tablename: str = 'relations'
     _prefix: str = 'rela'
@@ -188,30 +193,32 @@ class Relation(MultilangBaseobject):
         """make all relations to ISAS which are 1:1, both sides mandatory an all elements in arc are also mandatory"""
         dbDML.exec("""with arcrela as
             (select * from
-  (select arcs_id,arcs_name,count(*) relacnt
-   ,sum(case when RELA_MANDATORY_TO_FROM = 'TRUE'
-                and RELA_MANDATORY_FROM_TO = 'TRUE'
-                and rela_type = '1:1'
-                then 1 else 0
-                end
-                ) isacnt
-    from arcs
-    join relations on (RELA_ARCS_ID_FROM = arcs_id or RELA_ARCS_ID_TO = arcs_id)
-    group by arcs_id,arcs_name
-    )
-   where relacnt = isacnt
-   )
-update RELATIONS
-set rela_type = 'ISAS'
-where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
-   or RELA_ARCS_ID_from in (select arcs_id from arcrela)
+          (select arcs_id,arcs_name,count(*) relacnt
+           ,sum(case when RELA_MANDATORY_TO_FROM = 'TRUE'
+                        and RELA_MANDATORY_FROM_TO = 'TRUE'
+                        and rela_type = '1:1'
+                        then 1 else 0
+                        end
+                        ) isacnt
+            from arcs
+            join relations on (RELA_ARCS_ID_FROM = arcs_id or RELA_ARCS_ID_TO = arcs_id)
+            group by arcs_id,arcs_name
+            )
+           where relacnt = isacnt
+           )
+        update RELATIONS
+        set rela_type = 'ISAS'
+        where RELA_ARCS_ID_TO in (select arcs_id from arcrela)
+           or RELA_ARCS_ID_from in (select arcs_id from arcrela)
             """
                    )
-        """Roles are 1:1 with different relationshipsend mandataory flag (TRUE/FALSE FALSE/TRUE)"""
-        dbDML.exec("""update relations set  rela_type = 'ISAR'
-                    where rela_type = '1:1'
+        """Roles are 1:1 with different relationshipsend mandatory flag (TRUE/FALSE FALSE/TRUE)"""
+        dbDML.exec(f"""update relations set  rela_type = '{Relation.ISAROLE}'
+                    where rela_type = '{Relation.ONE2ONE}'
                         and (RELA_MANDATORY_FROM_TO  !=  RELA_MANDATORY_TO_FROM)
-                        """
+                        and (rela_assoc_from_to is NULL or rela_assoc_from_to in ('{"','".join(Relation.ROLEASSOCIATIONS)}'))
+                        and (rela_assoc_to_from is NULL or rela_assoc_to_from in ('{"','".join(Relation.ROLEASSOCIATIONS)}'))
+                     """
                    )
 
     @staticmethod

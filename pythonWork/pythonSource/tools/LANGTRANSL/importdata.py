@@ -1,11 +1,14 @@
+import logging
 import os.path
 import sys
+import re
 from copy import deepcopy
 
 from openpyxl import load_workbook, styles
 from openpyxl.worksheet.worksheet import Worksheet
 
 from SSOT_db.IM_JSON import JSModel, jsguid2type, printJSON
+from LOAD_MODELS.LOAD_INFRA import mergedbs
 from SSOT_infra import nvl
 from tools.LANGTRANSL.langexceldata import Langexceldata, attrkey2js
 from tools.LANGTRANSL import DEEPLtranslate
@@ -185,12 +188,17 @@ def importlangexcel(pexcelfile):
     elif changes == 0:
         print(f"No changes found, nothing was updated")
     else:
+        if not mergedbs.checkjsonmodel(pmodel=newjson, pverbose=True):
+            loggin.error(f"Model contains errors")
+
         printJSON(pmodel=newjson.jsmodel, pfilepath=os.path.dirname(resultjson),
                   pfilename=os.path.basename(resultjson))
         print(f"Translations merged, see changed entries in \n{resultexcel}\nand in\n{resultjson}")
         wb.save(resultexcel)
     return changes
 
+def translateable(value):
+    return nvl(value) == '' or re.match ("\*[A-Za-z]*\* ",value)
 
 def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
     assert pdeeplkey is not None, f"no DEEPL key, cannot translate"
@@ -218,24 +226,32 @@ def translateexcel(pexcelfile, pdeeplkey, pmainlanguage=None):
     del langs[modellang]
     mainlangidx = excel.getheaderidx(modellang)
     changes = 0
+    logging.info (f"translating {str(pexcelfile)}, Main language {modellang}")
     for row in wb.active.iter_rows(min_row=2):
         original = row[mainlangidx-1].value
         for lang, idx in langs.items():
             cell = row[idx-1]
             if original is None:
                 cell.value = None
-            elif type(original) is str and nvl(cell.value)=='':
+            elif type(original) is str and translateable(cell.value):
                 transl = DEEPLtranslate.translate(original, modellang, lang)
-                cell.value = transl
+                cell.value = "**"+transl
                 changes +=1
             # fi
         # for
     # for
     wb.save(pexcelfile)
-    #wb.save("/Users/stb/Downloads/testexcel.xlsx")
+    logging.info (f"translation file {str(pexcelfile)} written back.")
+
+    #wb.save("/Users/stb/Downloads/langtestexcel.xlsx")
     return changes
 
 
 if __name__ == '__main__':
     args = sys.argv
-    importlangexcel(pexcelfile=args[1])
+    if len(sys.argv) == 2:
+        #only excelfile. import it
+        importlangexcel(pexcelfile=args[1])
+    elif len(sys.argv) == 3:
+        # excelfile + deeplkey translate it
+        translateexcel(pexcelfile=args[1],pdeeplkey=args[2])

@@ -10,11 +10,12 @@ from .jsdomain import *
 from .jsattribute import *
 from .jsrelation import *
 from .jsdiagram import *
-from .jssystem import *
+from .jsdatamodel import *
 from .jstable import *
 from .jscolumn import *
 from .jsactorroles import *
 from .jsmodel import *
 from .jsfilter import FILTEREDJSModel
+from .jsmapping import *
 
 

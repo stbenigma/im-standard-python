@@ -43,7 +43,7 @@ def js2phyu(pkey,pelem,psrcname=None,psrcid=None,pmodellang=None):
 
 def physicalunits2sql(presult, pjson:JSModel,pwithextsrcref):
     fromjson2db(presult=presult,pjson=pjson,pelemtype=Modelelemtype.PHYU,pjs2obj=js2phyu,pwithextsrcref=pwithextsrcref)
-    # for jid,jelem in pmodel.jsmodel['physicalunits'].items():
+    # for jid,jelem in pmodel.mirojsmodel['physicalunits'].items():
     #     phyu = js2phyu(pkey=jid,pelem=jelem)
     #     try:
     #         phyu.insert()
