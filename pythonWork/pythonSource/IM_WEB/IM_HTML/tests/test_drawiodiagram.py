@@ -9,7 +9,7 @@ from lxml.etree import Element, tostring
 from IM_WEB.IM_HTML import drawiodiagram
 from IM_WEB.IM_HTML.drawiodiagram import create_diagram
 from SSOT_db.IM_JSON import JSModel
-from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir
+from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, path_to_testmodels
 from SSOT_infra.tests.test_translateprompt import update_gettext_ressources
 
 
@@ -143,7 +143,7 @@ class IntegrationTestDrawIoDiagramGeneration(IntegrationTest):
         update_gettext_ressources()
 
     def test_riddle_xmi(self):
-        ssot_file = testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
+        ssot_file = path_to_testmodels() / RIDDLE / 'DB' / (RIDDLE + '.json')
         if not ssot_file.exists():
             logging.warning(f"Skipping integration test due to missing resource {ssot_file.resolve()}")
         with open(ssot_file, 'r') as src:

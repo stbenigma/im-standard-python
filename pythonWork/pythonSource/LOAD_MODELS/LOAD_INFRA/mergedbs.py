@@ -137,7 +137,6 @@ def mergejs2db(pdbfile: str, pmodel: JSModel, psrcname=SOURCE_SPOD,
     if pdryrun:
         # create a backup in memory and connect to it
         dbConnect.connecttodbcopy()
-        print(f"***** dry merge-run on db {pdbfile}")
 
     mergeresult = None
     try:
@@ -226,8 +225,8 @@ def checkjsonmodel(pmodel:JSModel, pverbose=False) -> bool:
             False-> errors detected
     """
     imprint = pmodel.jsmodel['_imprint_']
-    modelname = pmodel.jsmodel['model']["name"]
-    baselang = pmodel.jsmodel['model']["language"]
+    modelname = pmodel.modelname()
+    baselang = pmodel.modellanguage()
     languages = list(pmodel.jsmodel['languages'].keys())
 
     # create db in Memory with languages from the json file

@@ -10,7 +10,7 @@
         <tbody>
           <tr>
             <th>{{ gettext('Tooltip') }}</th>
-            <td>{{attribute['tooltip']}}</td>
+            <td>{{ util.translate(attribute['tooltip']) }}</td>
             <td></td>
           </tr>
           <tr>
@@ -72,7 +72,7 @@
             <td>
               {{ attribute['publstatus'] }}
             </td>
-            <td><td>{{ gettext("Development maturity of this attribute") }}</td></td>
+            <td>{{ gettext("Development maturity of this attribute") }}</td>
           </tr>
         </tbody>
       </table>
@@ -84,6 +84,39 @@
       </p>
     </ac:layout-cell>
   </ac:layout-section>
+  <ac:layout-section ac:type="single">
+      <p>
+        {% if attribute['examples']|length > 0 %}
+        <h2>{{ gettext('Examples') }}</h2>
+        <ul>{% for expl in attribute['examples'] %}
+          <li>{{ util.translate_text(expl) }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </p>
+  </ac:layout-section>
+    {% if  attribute["referencedby"]|count > 0 %}
+ <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>{{ gettext('Documents') }}</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th width="50%">{{ gettext('Document') }}</th>
+          <th width="50%">{{ gettext('Document link') }}</th>
+        </tr>
+        {% for docuid in attribute['referencedby'] %}
+        <tr>
+           <td>{{ util.soft_link(docuid) }}</td>
+            <td>
+                {{ util.getelem(docuid)["reference"]|urlize(target="_blank") }}
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+    {% endif %}
+
   <ac:layout-section ac:type="single">
     <ac:layout-cell>
       <h1>{{ gettext('Columns') }}</h1>

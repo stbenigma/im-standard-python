@@ -32,7 +32,7 @@ def ODM2json(pdebug=False) -> JSModel:
     dbConnect.write_git_reversion(new_git_revision, dbConnect.getdbcon())
 
     ODMjson = JSModel(pmodel=sql2json(pdbname=dbConnect.getDBname()))
-    ODMjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
+    ODMjson.git_revision = new_git_revision
 
     if pdebug:
         debugfilepath =  str(getodmparams().dbFilePath()).replace('.db','_odm.db')
@@ -57,22 +57,20 @@ def configdir(pconfigdir:Path=None, pmodeldir:Path=None):
     assert retval is None or os.path.isdir(retval), f"Path for configuration files does not exist: {retval}"
     return retval
 
-def destdir(pdestdir:Path= None,pmodeldir:Path= None):
+def destdir(destdirec:Path= None, modeldirec:Path= None):
     """
     fills default for destination directory
 
-    :param pdestdir:  destination directory or None
-    :param pmodeldir:  modelfiledirectory
+    :param destdirec:  destination directory or None
+    :param modeldirec:  modelfiledirectory
     :return: pdestdir if it is not None
             pmodeldir/../DB if is None
-    assertion failure, if directory does not exist
     """
-    assert not (pdestdir is None and pmodeldir is None), f"with no information I would have to guess"
-    if pdestdir is None:
-        retval = Path(os.path.dirname(pmodeldir)) / Parameter.SPODDBDIREC
+    assert not (destdirec is None and modeldirec is None), f"with no information I would have to guess"
+    if destdirec is None:
+        retval = Path(modeldirec).parent / Parameter.SPODDBDIREC
     else:
-        retval = Path(pdestdir) if isinstance(pdestdir, str) else pdestdir
-    assert os.path.isdir(retval), f"Destination path does not exists: {retval} "
+        retval = Path(destdirec) if isinstance(destdirec, str) else destdirec
     return retval
 
 def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None,
@@ -93,18 +91,36 @@ def transferodm2json(pmodelfile, pdefaultlang=None,planguages=None,pdestdir=None
     :return:
     """
     modelname:str = None if pmodelfile is None else Path(pmodelfile).stem
-    modeldir = None if pmodelfile is None else Path(os.path.dirname(os.path.abspath(pmodelfile)))
+    modeldir = None if pmodelfile is None else Path(os.path.abspath(pmodelfile)).parent
     setodmparams(ODMParameter(imdirec=modeldir,
-                            configdirec=configdir(pconfigdir=pconfigdirec,pmodeldir=modeldir),basedirec=os.path.dirname(modeldir),
-                         modelname=modelname,
-                         modellang=pdefaultlang, languages=planguages if planguages is not None else pdefaultlang,
-                         logfilepath=plogfilepath,
-                         dbdirec=destdir(pdestdir=pdestdir,pmodeldir=modeldir)     ))
+                              configdirec=configdir(pconfigdir=pconfigdirec,pmodeldir=modeldir), basedirec=os.path.dirname(modeldir),
+                              modelname=modelname,
+                              modellang=pdefaultlang, languages=planguages if planguages is not None else pdefaultlang,
+                              logfilepath=plogfilepath,
+                              dbdirec=destdir(destdirec=pdestdir, modeldirec=modeldir)))
     logmessages.writelog(f"Transfer ODM to SPOD Model={getodmparams().modelName()}, DB={getodmparams().dbFilePath()}")
     #set global parameter for later use
     ODMjson = ODM2json(pdebug=pdebug)
     return ODMjson
 
+def loadfromodm(modelfilepath,modellang,languages=None,destdirec=None,
+                configdirec=None,modelname=None):
+    """Main program to extract json from ODM"""
+
+    locmodelname= nvl(modelname,Path(modelfilepath).stem)
+    locdestdirec=nvl(destdirec,
+                         destdir(destdirec=destdirec,modeldirec=os.path.dirname(modelfilepath)))
+    destfilepath=Path(locdestdirec  ,str(locmodelname + "_ODM.json"))
+    loclanguages = nvl(languages,modellang)
+
+    loadedjson = transferodm2json(pmodelfile=modelfilepath,
+                                  pdefaultlang=modellang,planguages=loclanguages,
+                                  pconfigdirec=configdirec)
+
+    new_git_revision = parameters.read_git_description(Path(modelfilepath).parent)
+    loadedjson.git_revision = new_git_revision
+    loadedjson.write_json(destfilepath)
+    return loadedjson
 
 def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None, planguages=None,
                 pconfigdirec=None,plogfilepath=None,pverbose=False ):
@@ -159,28 +175,23 @@ def fillmergedb(pdbfilepath, pmodelname=None,pmodelfilepath=None,pmodellang=None
 
     logmessages.initlog('fillDBODM',plogfilepath=plogfilepath)
 
-    """Main program for fillDB"""
-    loadedjson = transferodm2json(pmodelfile=modelfilepath,
-                                  pdefaultlang=modellang,planguages=languages,
-                                  pdestdir=dbdirec,
-                                  pconfigdirec=pconfigdirec)
-
-    new_git_revision = parameters.read_git_description(Path(os.path.dirname(modelfilepath)))
-    loaded_json_file = dbdirec / str(modelname + "_loaded.json")
-    loadedjson.jsmodel['_imprint_']['git-revision'] = new_git_revision
-    loadedjson.write_json(loaded_json_file)
+    loadedjson=loadfromodm(modelfilepath=modelfilepath,
+                modelname=modelname,
+                modellang=modellang,languages=languages,
+                destdirec=dbdirec,
+                configdirec=pconfigdirec)
 
     if not existsDB(dbfile):
-        logging.info(f"Created SPOD for git revision {new_git_revision}")
+        logging.info(f"Created SPOD for git revision {loadedjson.git_revision}")
         createnewDB(pdbfilepath=dbfile)
-        dbConnect.write_git_reversion(new_git_revision, dbConnect.getdbcon())
+        dbConnect.write_git_reversion(loadedjson.git_revision, dbConnect.getdbcon())
         dbConnect.closeDB()
     else:
         ####??? braucht es das?
         dbConnect.openDB(pfilepath=dbfile)
         old_git_revision = dbConnect.read_git_revision(dbConnect.getdbcon())
         logging.info(f"Opening DB '{dbfile}' for upgrade from git revision '{old_git_revision}'"
-                     f" to git revision '{new_git_revision}'")
+                     f" to git revision '{loadedjson.git_revision}'")
         dbConnect.closeDB()
     # fi
 

@@ -22,16 +22,6 @@ class test_createDB(unittest.TestCase):
         self.debugpath = Path.home() / "Downloads"  # try local debug path
         if not Path.exists(self.debugpath):
             self.debugpath = None
-
-    def test_applysqlscript(self):
-        self.assertTrue( 1==1)
-
-    def test_insertdiagtypes(self):
-        assert True
-
-    def test_insert_base_data(self):
-        assert True
-
     def test_exists_db(self):
         self.assertFalse(existsDB(pfilepath=''))
         self.assertFalse(existsDB(pfilepath='bar.db'))
@@ -95,16 +85,6 @@ class test_createDB(unittest.TestCase):
 
             return
         #with
-
-
-    def test_version(self):
-        assert True
-
-    def test_getlistofupgrfiles(self):
-        assert True
-
-    def test_applyupgrades(self):
-        assert True
 
     def test_upgrade_db(self):
         with tempfile.TemporaryDirectory() as tempdir:
@@ -193,7 +173,7 @@ class test_createDB(unittest.TestCase):
             shutil.rmtree('DB/')
 
         # test with testmodel-2
-        dbdirecpath = os.path.join(testsrc.testmodels_dir(), testsrc.TESTMODEL2, 'DB')
+        dbdirecpath = os.path.join(testsrc.path_to_testmodels(), testsrc.TESTMODEL2, 'DB')
         dbfilepath = os.path.join(dbdirecpath, testsrc.TESTMODEL2 + '.db')
         if os.path.exists(dbfilepath):
             shutil.rmtree(dbdirecpath)

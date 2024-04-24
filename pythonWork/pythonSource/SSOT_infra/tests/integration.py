@@ -18,6 +18,7 @@ DATASPOT: str = 'dataspot'
 
 
 def crmmapentityhack(jscrm):
+    # TODO remove unused code
     return
     ##ist jetzt bei filldb gemacht
     # DEBUG set up special mapping as load from odm does not yet work
@@ -36,7 +37,7 @@ class ModelHelper:
     def __init__(self, modelname, modeldir: Path = None):
         self.modelname = modelname
         if modeldir is None:
-            modeldir = testmodels_dir()
+            modeldir = path_to_testmodels()
         self.modeldir = modeldir / modelname
         self.modelfile = modeldir / modelname / 'IM' / (modelname + '.dmd')
         self.logfile = self.modeldir / (modelname + '.log')
@@ -127,16 +128,16 @@ def source_root() -> Path:
     return resolve_project_root() / ROOT_MARKER / "pythonSource"
 
 
-def testenvironment_root() -> Path:
+def path_to_testenvironment_root() -> Path:
     return source_root() / 'testenvironment'
 
 
-def testmodels_dir() -> Path:
-    return testenvironment_root() / 'testmodels'
+def path_to_testmodels() -> Path:
+    return path_to_testenvironment_root() / 'testmodels'
 
 
 def riddle_json() -> Path:
-    return testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
+    return path_to_testmodels() / RIDDLE / 'DB' / (RIDDLE + '.json')
 
 
 def odmtestmodelnames():

@@ -644,9 +644,7 @@ def createAllMapping(pjsonfile, pdestination, plang=None,pstatus = None,pdiagram
 
     lang = plang if plang is not None else jsmodel.jsmodel.get("model").get("language")
     writedatmxls(pfilename=str(pdestination), pmodel=jsmodel, plang=lang)
-    print("Model {}: \n  => created in file {}"
-          .format(jsmodel.jsmodel.get("model").get("name")
-                  , pdestination))
+    print(f"Mapping for model {jsmodel.modelname()} from file {pjsonfile}: \n  => created into file {pdestination}")
     return str(pdestination)
 
 

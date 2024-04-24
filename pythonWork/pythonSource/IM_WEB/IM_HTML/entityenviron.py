@@ -325,26 +325,27 @@ def printline(pstartx, pstarty, plenx, pleny, plinecolor=blacklinecolor):
     return line
 
 
-def printlinedio(pstartx, pstarty, plenx, pleny, psrcid=None, prelatext=None):
+def printlinedio(pstartx, pstarty, plenx, pleny, prelatext=None, plinecolor=blacklinecolor):
     uuid = uuid4()
-    line = """<mxCell id="{id}" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" 
+    line = f"""<mxCell id="{uuid}" value="" 
+                style="stroke={plinecolor};endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" 
                 edge="1" parent="1" >
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="{startx}" y="{starty}" as="sourcePoint" />
-            <mxPoint x="{endx}" y="{endy}" as="targetPoint" />
+            <mxPoint x="{pstartx}" y="{pstarty}" as="sourcePoint" />
+            <mxPoint x="{pstartx + plenx}" y="{pstarty + pleny}" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-            """.format(id=uuid, startx=pstartx, starty=pstarty
-                       , endx=pstartx + plenx, endy=pstarty + pleny)
+            """
     # source="{srcid}"
     if prelatext is not None:
-        relatext = """<mxCell id="{id}" value="{assoc}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" 
+        relatext = f"""<mxCell id="{str(uuid) + "xx"}" value="{translate_and_encode(prelatext[:MAXRELACHARS])}" 
+        style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" 
         parent="{uuid}">
           <mxGeometry x="-0.5672" relative="1" as="geometry">
             <mxPoint x="14" y="-10" as="offset" />
           </mxGeometry>
-        </mxCell>""".format(id=str(uuid) + "xx", assoc=translate_and_encode(prelatext[:MAXRELACHARS]), uuid=uuid)
+        </mxCell>"""
         line += relatext
     # fi
     return line
@@ -548,16 +549,18 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
             lenx = entistartx + CELLWIDTH - ENTIWIDTH
             if vkey != 0:
                 lenx -= LINESHORTEN
-            drawiotext += printlinedio(psrcid=cellleft.getentiid(), pstartx=entistartx + ENTIWIDTH, pstarty=linestarty
-                                       , plenx=lenx, pleny=0)
+            drawiotext += printlinedio(pstartx=entistartx + ENTIWIDTH, pstarty=linestarty
+                                       , plenx=lenx, pleny=0,
+                                 plinecolor=linecolor(cellleft.getassocindirect()))
             superlineendy = linestarty
 
         elif cellcenter.gettype() == EntityCell.PARENT:
             drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty, unique=f'-p{vkey}')
             linelength = ENTIWIDTH
-            drawiotext += printlinedio(psrcid=cellcenter.getentiid(), pstartx=entistartx + ENTIWIDTH, pstarty=linestarty
+            drawiotext += printlinedio(pstartx=entistartx + ENTIWIDTH, pstarty=linestarty
                                        , plenx=linelength, pleny=0
-                                       , prelatext=cellcenter.getassoc())
+                                       , prelatext=cellcenter.getassoc(),
+                                 plinecolor=linecolor(cellcenter.getassocindirect()))
             parentlinestarty = nvl(parentlinestarty, linestarty)
         else:
             pass
@@ -578,15 +581,17 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
             lenx = CELLWIDTH - ENTIWIDTH
             if vkey != 0:
                 lenx -= LINESHORTEN
-            drawiotext += printlinedio(psrcid=cellright.getentiid(), pstartx=entistartx, pstarty=linestarty,
-                                       plenx=-lenx, pleny=0)
+            drawiotext += printlinedio(pstartx=entistartx, pstarty=linestarty,
+                                       plenx=-lenx, pleny=0,
+                                 plinecolor=linecolor(cellright.getassocindirect()))
             rolelinestarty = nvl(rolelinestarty, linestarty)
         elif cellcenter.gettype() == EntityCell.CHILD:
             drawiotext += printentidio(pcell=cellcenter, pposx=entistartx, pposy=entistarty, unique=f'-c{vkey}')
             linelength = ENTIWIDTH
-            drawiotext += printlinedio(psrcid=cellcenter.getentiid(), pstartx=entistartx - ENTIWIDTH, pstarty=linestarty
+            drawiotext += printlinedio(pstartx=entistartx - ENTIWIDTH, pstarty=linestarty
                                        , plenx=linelength, pleny=0
-                                       , prelatext=cellcenter.getassoc())
+                                       , prelatext=cellcenter.getassoc(),
+                                 plinecolor=linecolor(cellcenter.getassocindirect()))
             childlineendy = linestarty
         else:
             pass
@@ -595,16 +600,16 @@ etag="NJmVZbbCXh2EGukjSn06" version="14.6.13" type="device">
     # for
     # print vertical lines
     if superlineendy is not None and (superlineendy - superlinestarty > 0):
-        drawiotext += printlinedio(psrcid="", pstartx=CELLWIDTH - LINESHORTEN, pstarty=superlinestarty
+        drawiotext += printlinedio(pstartx=CELLWIDTH - LINESHORTEN, pstarty=superlinestarty
                                    , plenx=0, pleny=superlineendy - superlinestarty)
     if parentlinestarty is not None and (parentlineendy - parentlinestarty > 0):
-        drawiotext += printlinedio(psrcid="", pstartx=2 * ENTIWIDTH, pstarty=parentlinestarty
+        drawiotext += printlinedio(pstartx=2 * ENTIWIDTH, pstarty=parentlinestarty
                                    , plenx=0, pleny=parentlineendy - parentlinestarty)
     if childlineendy is not None and (childlineendy - childlinestarty > 0):
-        drawiotext += printlinedio(psrcid="", pstartx=2 * CELLWIDTH - ENTIWIDTH, pstarty=childlinestarty
+        drawiotext += printlinedio(pstartx=2 * CELLWIDTH - ENTIWIDTH, pstarty=childlinestarty
                                    , plenx=0, pleny=childlineendy - childlinestarty)
     if rolelinestarty is not None and (rolelineendy - rolelinestarty > 0):
-        drawiotext += printlinedio(psrcid="", pstartx=(2 * CELLWIDTH) - (LINESHORTEN / 2), pstarty=rolelinestarty
+        drawiotext += printlinedio(pstartx=(2 * CELLWIDTH) - (LINESHORTEN / 2), pstarty=rolelinestarty
                                    , plenx=0, pleny=rolelineendy - rolelinestarty)
 
     drawiotext += diagramfoot

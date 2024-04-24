@@ -122,7 +122,10 @@ def main(basefolder: Path, argv: []):
         basefolder = Path.cwd()
 
     script_file = Path(basefolder, arguments.notebook)
-    targets = notebook_to_python_script([ script_file],  destination_folder, strip_cells_with_tags)
+    renderfile=Path(basefolder,"notebooks","confluence-export","Renderer.ipynb")
+    uploadfile=Path(basefolder,"notebooks","confluence-export","Uploader.ipynb")
+    targets = notebook_to_python_script([ script_file,renderfile,uploadfile],
+                                        destination_folder, strip_cells_with_tags)
     target = targets[0]
 
     version_file = Path(basefolder) / 'pythonWork' / \
@@ -152,12 +155,14 @@ def main(basefolder: Path, argv: []):
         vfile.write(version_string + '\n')
 
     windows_runner = basefolder / 'run.bat'
+    tasksfile = basefolder / 'tasks.py'
 
     tools = basefolder / 'pythonWork' / 'pythonSource'
 
     with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as zip:
         zip.write(target, target.relative_to(target.parent))
         zip.write(stamp_file, stamp_file.relative_to(stamp_file.parent))
+        zip.write(tasksfile, tasksfile.relative_to(tasksfile.parent))
         zip.write(windows_runner, windows_runner.relative_to(basefolder))
         zipdir(tools, zip, basefolder)
         # add resources

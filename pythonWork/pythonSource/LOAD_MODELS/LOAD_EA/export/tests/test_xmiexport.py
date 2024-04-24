@@ -9,7 +9,7 @@ from lxml import etree
 
 from LOAD_MODELS.LOAD_EA.export.xmiexport import XMIBuilder
 from SSOT_db.IM_JSON import JSModel
-from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir
+from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, path_to_testmodels
 
 MODEL_REPOSITORY = 'testdata/fyyccim-refmodels'
 
@@ -93,7 +93,7 @@ class IntegrationTestXMIExport(IntegrationTest):
         return json_model, model
 
     def load_riddle_model(self) -> (json, JSModel):
-        json_model = self.load_model(testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json'))
+        json_model = self.load_model(path_to_testmodels() / RIDDLE / 'DB' / (RIDDLE + '.json'))
         model = JSModel(pmodel=json_model)
         return json_model, model
 

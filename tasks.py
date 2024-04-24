@@ -22,12 +22,13 @@ from datetime import datetime
 try:
     from invoke import task
 except ModuleNotFoundError:
-    print("Python module 'invoke' not found. Install using 'conda install invoke' or 'pip install invoke'")
+    print("Python module 'invoke' not found. Install with 'pip install invoke'")
     print("See: https://www.pyinvoke.org/")
     exit(-1)
 
 PROJECT_ROOT = Path(__file__).parent.resolve()
 SOURCE_FOLDER = PROJECT_ROOT / 'pythonWork' / 'pythonSource'
+NOTEBOOK_FOLDER = PROJECT_ROOT / 'notebooks'
 TESTMODELS_BASE = SOURCE_FOLDER / 'testenvironment' / 'testmodels'
 TEST_MODEL = TESTMODELS_BASE / 'riddle'
 TEST_MODEL_DB = TEST_MODEL / 'DB' / 'riddle.db'
@@ -70,12 +71,6 @@ def load_tools_library():
 
 
 @task
-def update_infrastructure(c):
-    """Update conda infrastructure"""
-    c.run('conda env update --file conda-base-environment.yaml')
-
-
-@task
 def translate(c):
     """Create translation dictionaries (*.mo Files in ./pythonWork/pythonSource/SSOT_infra/locales) from *.po sources"""
     locales = Path(SOURCE_FOLDER, 'SSOT_infra', 'locales')
@@ -83,6 +78,13 @@ def translate(c):
     for po in locales.rglob('**/*.po'):
         dest = po.with_suffix('.mo')
         c.run(f"msgfmt -v -o {dest} {po}")
+
+    locales = Path(NOTEBOOK_FOLDER, 'confluence-export', 'locale')
+    assert locales.is_dir()
+    for po in locales.rglob('**/*.po'):
+        dest = po.with_suffix('.mo')
+        c.run(f"msgfmt -v -o {dest} {po}")
+    return
 
 
 @task(translate)
@@ -102,6 +104,17 @@ def package(c):
         print(f"Running custom 'deploy' task in {pathlib.Path.cwd()} for {PROJECT_ROOT}")
         c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
         print(f"Created package {c.package}")
+
+@task()
+def deploynotebook(c):
+    """ build python files for confluence notebooks"""
+    sys.path.append(f"{SOURCE_FOLDER}")
+    from tools import deploy
+    confluence_folder = os.path.join (NOTEBOOK_FOLDER,'confluence-export')
+    deploy.notebook_to_python_script(scripts=[os.path.join (confluence_folder,"Renderer.ipynb"),
+                                            os.path.join (confluence_folder,"Uploader.ipynb")
+                                              ])
+    return
 
 
 @task(pre=[package], aliases=['verify', 'check'])
@@ -141,6 +154,7 @@ def generator(c, model=None,
               version=False,
               verbose=False,
               ssod_only=False,
+              destination=None,
               ):
     if model is None:
         model = TEST_MODEL / 'IM'
@@ -179,6 +193,10 @@ def generator(c, model=None,
 
     if link_udpr is not None:
         optargs.append("--link-udpr=" + link_udpr)
+
+    if destination is not None:
+        optargs.append("--destination=" + destination)
+
 
     if profile:
         print("⏱⏱⏱ Running in profiler mode: This might take some time  ⏱⏱⏱")
@@ -314,7 +332,7 @@ def bootstrap_integration_tests(c):
 @task(aliases=['filldb'],
       help={
           'source': "JSON source [mandatory]",
-          'srcname': "Name of the source",
+          'srcname': "Name of the source-system",
           'output': "Path of the destination file. Source path with .db extension if undefined",
           'nomerge': "Overwrite current database"})
 def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=False):
@@ -420,6 +438,7 @@ def json2db(c, source, srcname, output=None, nomerge=False, verbose=True, dry=Fa
     else:
         print(f"\x1b[32mWould have sucessfully\x1b[39m created database {out_path} from json SSOD {src_path}."
               " But its a dry run 🌵🏜🐪")
+    return
 
 
 def count(connection, table: str) -> int:
@@ -481,6 +500,7 @@ def db2json(c, source, output=None):
         model.write_json(out_path)
     print("Summary:\n" + json.dumps(model._repr_json_(), indent=4))
     print(f"\x1b[32mSucessfully\x1b[39m created {out_path} from SSOD {src_path}")
+    return
 
 
 def verify_content(fh, filepath):
@@ -498,6 +518,7 @@ def verify_content(fh, filepath):
             raise ValueError(f"Found absolute path prefix '/Users/' found in {filepath}")
     except Exception as e:
         logging.warning("Skipping issue", exc_info=e)
+    return
 
 
 @task
@@ -517,6 +538,7 @@ def createtestmodeldbs(c):
         fillone(integration.TESTMODEL2)
         fillone(integration.CRMTEST)
         fillone(integration.RIDDLE)
+    return
 
 
 @task
@@ -524,6 +546,7 @@ def unittest(c):
     """Run unittests tests using pytest"""
     import pytest as pt
     pt.main(['-m', 'not integration'])
+    return
 
 
 @task
@@ -531,12 +554,14 @@ def integrationtest(c):
     """Run integration tests using pytest"""
     import pytest as pt
     pt.main(['-m', 'integration'])
+    return
 
 
 @task(pre=[unittest, integrationtest])
 def test(c):
     """Virtual target running all tests"""
     pass
+    return
 
 
 @task
@@ -546,3 +571,268 @@ def version(c):
     from SSOT_infra import version
     ver = version()
     print(f"Version {ver['TOOLVERSION']}, schema {ver['DBVERSION']}, json {ver['JSONVERSION']}")
+    return
+
+
+@task(help={
+    'source': "jsonfile to filter",
+    'output': "filtered jsonfile. default: <sourcename>_FILTERED.json",
+    'status': "PUBL,GTOP,DRAFT. default DRAFT (=no filtering takes place",
+    'diagrams': "comma separated list of diagrams to be containted in the filtered json"
+})
+def filterjson(c, source, output=None, status=None, diagrams=""):
+    """
+    create filtered json file containing only elements of listed diagrams in chosen status
+    """
+    initialize_logging("filterjson")
+    load_tools_library()
+    src_path = Path(source)
+
+    if source is None:
+        raise ValueError("no source json defined")
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if output is None:
+        out_path = src_path.with_stem(src_path.stem + "_FILTERED")
+    else:
+        out_path = Path(output)
+
+    assert (status in [None, "PUBL", "GTOP", "DRAFT"]), f'status mus be in [None,"PUBL","GTOP","DRAFT"]'
+    if diagrams is None or diagrams == '':
+        diagramlist = None
+    else:
+        diagramlist = diagrams.split(",")
+
+    from SSOT_db.IM_JSON import JSModel, FILTEREDJSModel
+
+    jsmodel = JSModel.readfromfile(src_path)
+    filteredjsmodel = FILTEREDJSModel(pmodel=jsmodel.jsmodel, ppublstatus=status, pimdiagrams=diagramlist)
+    filteredjsmodel.write_json(out_path)
+    print(f"filter applied to jsonfile {src_path}: status={status}, diagrams{diagramlist}")
+    print(f"outputfile {out_path} created")
+    return
+
+@task(help={
+    'source': "ODM-dmd-file to convert",
+    'destdir': "destination json filepath. default: <source-Path>/../DB/<modelname>_ODM.json",
+    'modellanguage': "default model language. default: taken from dmd file or else 'en'",
+    'languages': "comma separated list of languages for the model. default <modellanguage>",
+    'configdirec': "directory containing configurations files of ODM-model. default <source-path/../[CK]onfiguration"
+})
+def odm2json(c, source, destdir=None,
+             modellanguage=None, languages=None,
+             configdirec=None):
+    """
+    create filtered json file containing only elements of listed diagrams in chosen status
+    """
+
+    initialize_logging("odm2json")
+    load_tools_library()
+    src_path = Path(source)
+
+    from LOAD_MODELS.LOAD_ODM import fillDB
+
+    if source is None:
+        raise ValueError("no source dmd defined")
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    fillDB.loadfromodm(modelfilepath=source,modellang=modellanguage,
+                languages=languages,destdirec=destdir,
+                configdirec=configdirec)
+    return
+
+@task(aliases=['merge2db'],
+      help={
+          'source': "JSON source to be merged [mandatory]",
+          'database': "Path of the database file [mandatory]",
+          'verbose': "provide more information, default False",
+          'dry': "dry run, do not change database, create jsonfile ..._DRY.json output. default False"
+      })
+def mergeintodb(c, source, database, verbose=False, dry=False):
+    """
+    merge json-file into SPOD database.
+    if a data base exists, the json file is merged into it.
+    if no data base exists, a new one is created. This is the only way to create a new database.
+    dry=False: if it is not a dry run, a json file <modelname>.json will always be created, containing the latest version of the database
+    dry=True: a jsonfile <modelname>_DRY.json will be created
+    """
+    initialize_logging("mergeintodb")
+    load_tools_library()
+
+    from LOAD_MODELS.LOAD_INFRA import mergedbs
+    from SSOT_db.SQL_INFRA import dbConnect
+    from SSOT_db.IM_JSON import JSModel
+    from SSOT_db import createnewDB,existsDB
+
+    if source is None:
+        raise ValueError("no source json defined")
+
+    src_path = Path(source)
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if database is None:
+        raise ValueError("no database defined")
+
+    db_path = Path(database)
+    if db_path.is_file():
+        logging.info(f"merging file {src_path.resolve()} into database {db_path.resolve()}")
+    else:
+        logging.info(f"filling file {src_path.resolve()} into new database {db_path.resolve()}")
+
+    model = JSModel.readfromfile(src_path)
+
+    if not existsDB(db_path):
+        logging.info(f"Created SPOD database {db_path}")
+        conn=createnewDB(pdbfilepath=db_path)
+        dbConnect.write_git_reversion(model.git_revision, conn)
+        dbConnect.closeDB()
+
+    mergedmodel= mergedbs.mergejs2db(pdbfile=db_path, pmodel=model,pverbose=verbose,pdryrun=dry)
+    outpath = db_path.with_name(db_path.stem+"_DRY.json") if dry else db_path.with_suffix(".json")
+    with open(outpath, 'w') as out:
+        json.dump(mergedmodel.jsmodel, out, indent=2)
+        print(f"Wrote new json file to '{outpath.resolve()}")
+    return
+
+@task(help={
+    'source': "json-file to check for consistency",
+    'verbose': "print detail checkresults, default False",
+})
+def checkjson(c, source,verbose=False):
+    """
+    check json file for consistency
+    """
+
+    initialize_logging("odm2json")
+
+    load_tools_library()
+    src_path = Path(source)
+
+    from LOAD_MODELS.LOAD_INFRA import mergedbs
+    from SSOT_db.IM_JSON import JSModel
+
+    if source is None:
+        raise ValueError("no source json defined")
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    model = JSModel.readfromfile(src_path)
+    checkok = mergedbs.checkjsonmodel(pmodel=model,pverbose=verbose)
+    if checkok:
+        print (f"json file {src_path} passed checks")
+    else:
+        print (f"******** check errors in jsonfile {src_path}")
+
+    return
+
+@task(help={
+    'source': "json-file to be transferred to webpages",
+    'webdirec': "destination directory for weboutput. default: <source-Path>/../Web/",
+    'filetype': "type of webfile ['html', 'aspx']. default 'html'",
+    'singlefile': "create output into a single file (as opposed to a file per page). default False",
+})
+def json2web(c, source,webdirec=None,singlefile=False,filetype="html"):
+    """
+    create html-output for jsonfile
+    """
+
+    initialize_logging("json2html")
+
+    load_tools_library()
+    src_path = Path(source)
+
+    from IM_WEB import listWebdoku
+
+    if source is None:
+        raise ValueError("no source json defined")
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if webdirec is None:
+        destination = src_path.parent.parent / "Web"
+    else:
+        destination = webdirec
+    listWebdoku.webmain(pjsonfilepath=src_path,pwebdirec=destination,
+                        pfiletype=filetype,singlefile=singlefile)
+
+    print (f"Webstructure generated ({filetype}) into {destination}")
+
+    return
+
+@task(help={
+    'source': "json-file to be transferred to mapping-excel",
+    'language': "language for information model names, default model-default-language",
+    'destination': "outputfile, mapping excel, default. <sourcefilename_datamapping>.xlsx",
+})
+def mappingexcel(c, source,destination=None,language=None):
+    """
+    create excel with all mapping information (datamodel - information model)
+    """
+
+    initialize_logging("mapexcel")
+
+    load_tools_library()
+    src_path = Path(source)
+
+    from tools.excel.datamapping import listmapping
+
+    if source is None:
+        raise ValueError("no source json defined")
+
+    if not src_path.is_file():
+        raise Exception(f"Source '{src_path.resolve()}' is not a file")
+
+    if destination is None:
+        destination = src_path.with_name(src_path.stem+"_mapping.xlsx")
+
+    listmapping.createAllMapping(pjsonfile=src_path,
+                                pdestination=destination,
+                                 plang=language)
+
+    return
+
+
+@task()
+def deploynotebook(c):
+    """ build python files for confluence notebooks"""
+    sys.path.append(f"{SOURCE_FOLDER}")
+    from tools import deploy
+    notebooks = os.path.join (NOTEBOOK_FOLDER,'confluence-export')
+    destfolder=PROJECT_ROOT / 'dist'
+    deploy.notebook_to_python_script(scripts=[os.path.join (notebooks,"Renderer.ipynb"),
+                                            os.path.join (notebooks,"Uploader.ipynb")
+                                              ],
+                                     destination_folder=destfolder,
+                                     strip_cells_with_tags=("test", "visual", "debug"))
+    return
+
+
+@task(pre=[deploynotebook], help={
+    'configfile': "yaml-file containting confluence parameters"
+    })
+def renderconfluence(c, configfile):
+    resconfigfile=Path(configfile).resolve()
+    command = f"python dist/Renderer.py '{resconfigfile}'"
+    with c.cd(PROJECT_ROOT):
+        print(f"Starting Renderer with: {command} in {PROJECT_ROOT}/dist")
+        c.run(command)
+
+
+
+@task(pre=[deploynotebook], help={
+    'configfile': "yaml-file containting confluence parameters"
+    })
+def uploadconfluence(c, configfile):
+    resconfigfile=Path(configfile).resolve()
+    command = f"python dist/Uploader.py '{resconfigfile}'"
+    with c.cd(PROJECT_ROOT):
+        print(f"Starting Uploader with: {command} in {PROJECT_ROOT}/dist")
+        c.run(command)
+    return

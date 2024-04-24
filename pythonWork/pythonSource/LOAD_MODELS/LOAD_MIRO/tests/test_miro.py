@@ -165,7 +165,9 @@ class TestMiro(unittest.TestCase):
         lightgray = "#f3f3f3"
         ma: MiroAccess = MiroAccess(credentialfile=self.testcredentials)
         boards = ma._requestboards()
-        board = MiroBoardModel(mirointerface=self.mirointerface, board=boards[0], withload=True,
+        board = MiroBoardModel(mirointerface=self.mirointerface,
+                               board=self.mirointerface.getboard(name="SPOD Test Board"),
+                               withload=True,
                                framenames=["IM-1", "IM-2"])
 
         for frame in board.diagrams():
@@ -508,19 +510,19 @@ class TestMiro(unittest.TestCase):
 
         return
 
-    def self_testrealmiro(self):
+    def test_realmiro(self):
         if self.baarcredentials.exists():
             self.capsys.readouterr()  # empty stdoutput
             miromodel.listboards(credentialfile=self.baarcredentials, boardname="IK")
             captured = self.capsys.readouterr()
-            self.assertTrue("IKBuch" in captured.out)
+            self.assertTrue("IK Vermitteln" in captured.out)
             with self.capsys.disabled(): print(captured.out)
 
             miromodel.listframes(credentialfile=self.baarcredentials,
                                  boardname="IK")
 
-            miromodel.diagram2miro(credentialfile=self.baarcredentials, boardname="stb diverses",
-                                   updatejsonfile=False, jsonfile=self.testmodel2.jsonfile,
+            miromodel.diagram2miro(credentialfile=self.baarcredentials, boardname="Miro API Test",
+                                   jsonfile=self.testmodel2.jsonfile,
                                    diagramname="Main-View"
                                    )
 

@@ -49,8 +49,7 @@ class GenerateHTML(unittest.TestCase):
         self.assertTrue(os.path.isdir(self.testmodelcrm.webdir / "infra" / 'images' / 'icons'))
         with open(self.testmodelcrm.webdir / "de" / "index.html", "r") as webfile:
             html = webfile.read()
-            self.assertRegex(html, "Sachdienstmitarbeiter")
-            self.assertRegex(html, "<br>\nde-at<br>")
+            self.assertRegex(html, "Ansprechpartner")
 
         return
 

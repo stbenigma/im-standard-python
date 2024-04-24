@@ -13,7 +13,6 @@ import sys
 import SSOT_infra.tests.integration as testsrc
 from LOAD_MODELS.LOAD_INFRA import mergedbs
 from LOAD_MODELS.LOAD_ODM import fillDB
-from LOAD_MODELS.LOAD_ODM.transferModel import transferODMModel
 from SSOT_db import createnewDB
 from SSOT_db.IM_JSON import JSModel, sql2json, jsbusinessrule, jsguid, jsactorroles
 from SSOT_db.IM_OBJECTS import *
@@ -148,7 +147,7 @@ class TestMergeJson(unittest.TestCase):
         sys.stdout = sys.__stdout__  # Reset redirect.
         stdprint = capturedOutput.getvalue()
         # don't care about other errors I only test the dry-run-merge
-        self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
+        self.assertTrue(stdprint.startswith("Merge result: Errors 0, Warnings 0, C"))
 
         # set up my model in memory to reuse it for several tests
         createnewDB(pdbfilepath=None)  # create in memory
@@ -335,6 +334,9 @@ class TestMergeJson(unittest.TestCase):
         jstm1.jsmodel["entities"][enti1key]["name"]['en'] = ''
         jstm1.jsmodel["entities"][enti2key]["name"]['en'] = ''
         jstm1.printmodel(pfilepath="/tmp", pfilename="test.json")
+        print ("TEST checkjsonfile: ================================================================================")
+        print ("TEST checkjsonfile: expected provoked sql-errors (including follow up errors) ")
+        print ("TEST checkjsonfile: ================================================================================")
         self.assertFalse(mergedbs.checkjsonfile(pjsonfilepath="/tmp/test.json", pverbose=False))
         jstm1 = JSModel.readfromfile(self.testmodel1.jsonfile)
         jstm1.jsmodel["entities"][enti1key]["name"]['en'] = None
@@ -352,6 +354,10 @@ class TestMergeJson(unittest.TestCase):
             self.assertTrue(mergedbs.checkjsonfile(pjsonfilepath=self.testmodel2.jsonfile, pverbose=False))
             self.assertTrue(mergedbs.checkjsonfile(pjsonfilepath=self.testmodelcrm.jsonfile, pverbose=False))
             self.assertTrue(mergedbs.checkjsonfile(pjsonfilepath=self.riddle.jsonfile, pverbose=False))
+
+        print ("TEST checkjsonfile: ================================================================================")
+        print ("TEST checkjsonfile: expected provoked sql-errors (including follow up errors) ")
+        print ("TEST checkjsonfile: ================================================================================")
 
     def set_defaults(self, element: dict):
         defaults = {'uc': 'test', 'dc': '2022-02-02',
@@ -382,7 +388,7 @@ class TestMergeJson(unittest.TestCase):
         sys.stdout = sys.__stdout__  # Reset redirect.
         stdprint = capturedOutput.getvalue()
         # don't care about other errors I only test the dry-run-merge
-        self.assertTrue(stdprint.startswith("***** dry merge-run on db"))
+        self.assertTrue(stdprint.startswith("Merge result: Errors 0, Warnings 0, C"))
 
         # set up my model in memory to reuse it for several tests
 

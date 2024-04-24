@@ -205,8 +205,8 @@ def doattrmapping(pcolmappings):
         if (colmap["rtype"] == Odmmapping.RELKEYTYPE and colmap['ltype'] == Odmmapping.KEYTYPE):
             continue
         attrid = Externalref.getmodeid(psrcid=colmap['lID'], psrcname=transferModel.SOURCE_ODM)
-        colu = Externalref.getmodeid(psrcid=colmap['rID'], psrcname=transferModel.SOURCE_ODM)
-        if ((colu is None) or (attrid is None)):
+        coluid = Externalref.getmodeid(psrcid=colmap['rID'], psrcname=transferModel.SOURCE_ODM)
+        if ((coluid is None) or (attrid is None)):
             logmessages.writelog("Column-Reference ({}:{}) or Attribute Reference ({}:{}) not found"
                                  .format(colmap['rtype'], colmap['rID'], colmap['ltype'], colmap['lID']))
             continue
@@ -215,7 +215,7 @@ def doattrmapping(pcolmappings):
         colmap = ColAttrMap()
         colmap.coam_seq = 1
         colmap.coam_direction = ColAttrMap.INBOUND
-        colmap.coam_colu_id = colu
+        colmap.coam_colu_id = coluid
         colmap.coam_attr_id = attrid
         colmap.insert()
 

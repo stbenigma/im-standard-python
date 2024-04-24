@@ -1,4 +1,3 @@
-import json
 import os
 import unittest
 from contextlib import closing
@@ -111,15 +110,15 @@ class TestFillDatabase(unittest.TestCase):
         # create model for testmodel1. no param file
 
         tm1 = testsrc.ModelHelper(testsrc.TESTMODEL1)
-        tm1.modeldir = testsrc.testmodels_dir() / tm1.modelname
+        tm1.modeldir = testsrc.path_to_testmodels() / tm1.modelname
         if os.path.exists(tm1.dbfile):
             os.remove(tm1.dbfile)
         os.chdir(tm1.modeldir)
         fillDB.fillmergedb(pmodelname=tm1.modelname, pdbfilepath=tm1.dbfile, plogfilepath=tm1.logfile)
 
         self.assertTrue(os.path.exists(tm1.dbfile), f"DB file not created where assumed {tm1.dbfile}")
-        self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_loaded.json')),
-                        f"json file not where assumed {tm1.dbdir / (tm1.modelname + '_loaded.json')}")
+        self.assertTrue(os.path.exists(tm1.dbdir / (tm1.modelname + '_ODM.json')),
+                        f"json file not where assumed {tm1.dbdir / (tm1.modelname + '_ODM.json')}")
         self.assertTrue(os.path.exists(tm1.jsonfile),
                         f"json file not where assumed {tm1.jsonfile}")
         self.assertTrue(os.path.exists(tm1.logfile),
@@ -174,8 +173,8 @@ class TestFillDatabase(unittest.TestCase):
                           pmodelfilepath=testmodelcrm.modelfile,
                           plogfilepath=testmodelcrm.logfile)
         self.assertTrue(os.path.exists(testmodelcrm.dbfile), f"DB file not created where assumed {testmodelcrm.dbfile}")
-        self.assertTrue(os.path.exists(testmodelcrm.dbdir / (testmodelcrm.modelname + '_loaded.json')),
-                        f"json file not where assumed {testmodelcrm.dbdir / (testmodelcrm.modelname + '_loaded.json')}")
+        self.assertTrue(os.path.exists(testmodelcrm.dbdir / (testmodelcrm.modelname + '_ODM.json')),
+                        f"json file not where assumed {testmodelcrm.dbdir / (testmodelcrm.modelname + '_ODM.json')}")
         self.assertTrue(os.path.exists(testmodelcrm.jsonfile),
                         f"json file not where assumed {testmodelcrm.jsonfile}")
         self.assertTrue(os.path.exists(testmodelcrm.logfile),
@@ -198,8 +197,8 @@ class TestFillDatabase(unittest.TestCase):
                           plogfilepath=testmodelriddle.logfile)
         self.assertTrue(os.path.exists(testmodelriddle.dbfile),
                         f"DB file not created where assumed {testmodelriddle.dbfile}")
-        self.assertTrue(os.path.exists(testmodelriddle.dbdir / (testmodelriddle.modelname + '_loaded.json')),
-                        f"json file not where assumed {testmodelriddle.dbdir / (testmodelriddle.modelname + '_loaded.json')}")
+        self.assertTrue(os.path.exists(testmodelriddle.dbdir / (testmodelriddle.modelname + '_ODM.json')),
+                        f"json file not where assumed {testmodelriddle.dbdir / (testmodelriddle.modelname + '_ODM.json')}")
         self.assertTrue(os.path.exists(testmodelriddle.jsonfile),
                         f"json file not where assumed {testmodelriddle.jsonfile}")
         self.assertTrue(os.path.exists(testmodelriddle.logfile),
@@ -244,11 +243,9 @@ class TestFillDatabase(unittest.TestCase):
         assertion failure, if directory does not exist  
         """
         with self.assertRaises(Exception):
-            _ = fillDB.destdir(pdestdir=None, pmodeldir=None)
-        with self.assertRaises(Exception):
-            _ = fillDB.destdir(pdestdir=tm2.modeldir / 'XX')
-        self.assertEqual(tm2.modeldir / 'DB', fillDB.destdir(pmodeldir=tm2.modeldir / 'IM'))
-        self.assertEqual(tm2.modeldir / 'DB', fillDB.destdir(pdestdir=tm2.modeldir / 'DB'))
+            _ = fillDB.destdir(destdirec=None, modeldirec=None)
+        self.assertEqual(tm2.modeldir / 'DB', fillDB.destdir(modeldirec=tm2.modeldir / 'IM'))
+        self.assertEqual(tm2.modeldir / 'DB', fillDB.destdir(destdirec=tm2.modeldir / 'DB'))
 
         return
 
@@ -312,4 +309,45 @@ class TestFillDatabase(unittest.TestCase):
         tm2db = tm2.dbdir / (tm2.modelname + "_odm.db")
         self.assertTrue(tm2db.is_file())
         tm2db.unlink(missing_ok=False)
+        return
+
+    def test_odm2json2(self):
+        import tempfile
+        tm = testsrc.ModelHelper(testsrc.TESTMODEL1)
+        loadedjson=Path(tm.dbfile).with_name(tm.modelname+"_ODM.json")
+        os.remove(str(loadedjson))
+        loaded = fillDB.loadfromodm(modelfilepath=tm.modelfile,
+                           modelname=None,
+                           modellang=None,
+                           languages=None,
+                           destdirec=None,
+                           configdirec=None
+                           )
+        self.assertTrue(os.path.exists(str(loadedjson)))
+        json = JSModel.readfromfile(str(loadedjson))
+        self.assertEqual("en",json.modellanguage())
+        self.assertEqual("en", loaded.modellanguage())
+
+        with self.assertRaises(Exception) as e:
+            fillDB.loadfromodm(modelfilepath=tm.modelfile,
+                                        modelname=None,
+                                        modellang="de",
+                                        languages=None,
+                                        destdirec=None,
+                                        configdirec=Path(tm.modelfile).parent / "BlaBla"
+                                        )
+
+        with tempfile.TemporaryDirectory() as tempdir:
+            loaded = fillDB.loadfromodm(modelfilepath=tm.modelfile,
+                                        modelname=None,
+                                        modellang="de",
+                                        languages=None,
+                                        destdirec=Path(tempdir),
+                                        configdirec=None
+                                        )
+            self.assertTrue(os.path.exists(tempdir + "/" + tm.modelname+"_ODM.json"))
+            json = JSModel.readfromfile(tempdir + "/" + tm.modelname+"_ODM.json")
+            self.assertEqual("de",json.modellanguage())
+            self.assertEqual("de",loaded.modellanguage())
+
         return

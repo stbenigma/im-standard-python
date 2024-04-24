@@ -1,4 +1,3 @@
-import html
 import logging
 import os
 import re
@@ -54,7 +53,7 @@ class HTMLExport(HTMLParameter):
         return self.model.getbyid(js_element_id)
 
     def getmodel(self):
-        return(self.model)
+        return (self.model)
 
     @property
     def model(self):
@@ -115,7 +114,6 @@ class HTMLExport(HTMLParameter):
     #                          ptarget='target="{}"'.format('_self' if ((htmlfile == '') or pself) else '_blank'),
     #                          pdispl=html.escape(displ))
 
-
     def getreffilename(self, destid,
                        curdatmid=0, destdatmid=0,
                        desttype=None, destlang=None,
@@ -126,34 +124,34 @@ class HTMLExport(HTMLParameter):
         if self.singlefile:
             retval = ''
             if desttype in ('model',):
-                if not (curdatmid == destdatmid and destlang in (curlang, '',None)):
-                  retval = f"{basedirec}{destlang}/{destfilename}"
+                if not (curdatmid == destdatmid and destlang in (curlang, '', None)):
+                    retval = f"{basedirec}{destlang}/{destfilename}"
             elif desttype in ('datamodels', 'tables', 'columns'):
                 if not (curdatmid == destdatmid):
-                    retval = basedirec  + destfilename
+                    retval = basedirec + destfilename
             else:
-                if not (curdatmid == destdatmid and destlang in (curlang, '',None)) :
+                if not (curdatmid == destdatmid and destlang in (curlang, '', None)):
                     retval = f"{basedirec}{destlang}/{destfilename}"
             # fi
-            #append destid to jump within index or current file
+            # append destid to jump within index or current file
             retval = retval + ("" if destid is None else f"#{destid}")
         else:
             # multiplefile framework
             if desttype in ('model',):
                 retval = f"{basedirec}{destlang}/{destfilename}"
             elif desttype in ('datamodels', 'tables', 'columns'):
-                if curdatmid == destdatmid :
+                if curdatmid == destdatmid:
                     retval = ''
                 else:
-                    retval= basedirec + destfilename
+                    retval = basedirec + destfilename
                 retval = retval + ("" if destid is None else f"#{destid}")
             else:
-                retval = f"{basedirec}{nvl(destlang,curlang)}/elements/{desttype}/{self.fullwebfilename(destid)}"
+                retval = f"{basedirec}{nvl(destlang, curlang)}/elements/{desttype}/{self.fullwebfilename(destid)}"
             # fi
         # fi
         return retval
 
-    def gettarget(self,desttype,curdatmid=0,destdatmid=0):
+    def gettarget(self, desttype, curdatmid=0, destdatmid=0):
         if self.singlefile:
             if (curdatmid != destdatmid):
                 # different datamodels: new tab in browser
@@ -161,7 +159,8 @@ class HTMLExport(HTMLParameter):
             else:
                 target = '_self'  # same tab
         else:
-            if desttype in ("model","datamodels","tables","columns"):
+            #if desttype in ("model", "datamodels", "tables", "columns"):
+            if desttype in ("model", "tables", "columns"):
                 target = '_self'  # same tab
             else:
                 target = 'contentIframe'  # use my contentframe
@@ -171,7 +170,7 @@ class HTMLExport(HTMLParameter):
                    curdatmid=0, destdatmid=0,
                    curlang='', destlang=None,
                    desttype=None, basedirec=''):
-        #assert destdatmid is not None, "destdatmid must be set"
+        # assert destdatmid is not None, "destdatmid must be set"
         if destdatmid == 0:
             # go to information model page
             destlang = nvl(destlang, curlang)
@@ -182,10 +181,10 @@ class HTMLExport(HTMLParameter):
                 destid = None  # no anker for datamodelfiles
         # fi
 
-        filename= self.getreffilename(destid=destid,
-                                      curdatmid=curdatmid, destdatmid=destdatmid,
-                                      desttype=desttype, destlang=destlang,
-                                      basedirec=basedirec, curlang=curlang)
+        filename = self.getreffilename(destid=destid,
+                                       curdatmid=curdatmid, destdatmid=destdatmid,
+                                       desttype=desttype, destlang=destlang,
+                                       basedirec=basedirec, curlang=curlang)
         try:
             retval = self.ataghref(phref=filename, pdispl=name,
                                    ptarget=self.gettarget(curdatmid=curdatmid,
@@ -239,7 +238,8 @@ class HTMLExport(HTMLParameter):
                 if (value['origin'] == Domain.DOMAIN
                     and value['datamodel-id'] == pdatmid)}
 
-    def type2name(self, ptyp, plang=None):
+    @classmethod
+    def type2name(cls, ptyp, plang=None):
         if ptyp == Modelelemtype.ENTI:
             return transl('Entität', plang)
         elif ptyp == Modelelemtype.ATTR:
@@ -297,19 +297,19 @@ class HTMLExport(HTMLParameter):
             return ptyp
         # fi
 
-    def replacesvghrefs(self, svg,curlang,basedirec):
-        replacetypes = ["ENTI","ATTR"] # needs dest-datm-id but where does it come from,"TABL","COLU"]
+    def replacesvghrefs(self, svg, curlang, basedirec):
+        replacetypes = ["ENTI", "ATTR"]  # needs dest-datm-id but where does it come from,"TABL","COLU"]
 
         # replace href to entity #ENTInnnn by relative href
         for idtype in replacetypes:
-            href = self.getreffilename(curlang=curlang,destlang=curlang,
-                                              destid="\\1",
-                                              desttype=self.type2elemtype(idtype),
-                                              basedirec=basedirec)
+            href = self.getreffilename(curlang=curlang, destlang=curlang,
+                                       destid="\\1",
+                                       desttype=self.type2elemtype(idtype),
+                                       basedirec=basedirec)
             svg = re.sub(r'href="#({idtype}[0-9]+)"'.format(idtype=idtype),
-                            r'href="{ref}" {target}'.format(ref=href,
-                                                                target=self.gettarget(desttype=self.type2elemtype(idtype))),
-                            svg)
+                         r'href="{ref}" {target}'.format(ref=href,
+                                                         target=self.gettarget(desttype=self.type2elemtype(idtype))),
+                         svg)
         return svg
 
     def createlib(self):

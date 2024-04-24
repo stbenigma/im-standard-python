@@ -34,8 +34,11 @@ class MyTestCase(unittest.TestCase):
 
     @pytest.mark.integration
     def test_localODMs(self):
+        self.skipTest("to be tested locally outside general test")
 
         localmodeldir = testdata_root() / LOCALTESTMODELS
+        if not os.path.isdir(localmodeldir):
+            self.skipTest("keine lokalen Modelle zu testen")
 
         def check1ODMmodel(modelfilepath, basedirec):
             print(f"***** checking model {modelfilepath}")
@@ -84,10 +87,10 @@ class MyTestCase(unittest.TestCase):
             if os.path.exists(imdir):
                 models = stable_file_list(folder=imdir,removehidden=True)
                 for model in filter (lambda m : m.endswith('.dmd'), models):
-                    if model != "IM_GEBERIT.dmd": continue
+                    if model == "IM_GEBERIT.dmd": continue
                     # if model != 'EZV_Stammdaten.dmd': continue
                     # if model != 'DC-IM.dmd': continue
-                    # if model != 'ModellModell_neu.dmd': continue
+                    #if model != 'ModellModell_neu.dmd': continue
                     shutil.rmtree(basedirec / DBDIREC, ignore_errors=True)
                     shutil.rmtree(basedirec / WEBDIRC, ignore_errors=True)
                     if os.path.exists(basedirec / (model[:-4]+ ".log")): os.remove(basedirec / (model[:-4]+ ".log"))

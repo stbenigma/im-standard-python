@@ -106,7 +106,10 @@ class MiroBoardModel():
 
 
     def _isenti(self, enti):
-        return enti["data"]["shape"] == MiroEntity.ELEMTYPE_ENTITY and \
+        entidata = enti.get("data")
+        if entidata is None: #shapes that are not supported
+            return False
+        return entidata["shape"] == MiroEntity.ELEMTYPE_ENTITY and \
                self._frameidisIM(self._entiparentid(enti))
 
 

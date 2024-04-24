@@ -245,7 +245,7 @@ class SvgDiagram:
         svgenti = SvgEntity(width=entiui["ui"]["width"], height=entiui["ui"]["height"],
                             name=entijson["name"][self._lang],
                             elemid=entiid,
-                            elemtooltip=entijson["descr"][self._lang]+"\n\n"+"\n".join(ex[self._lang] for ex in entijson["examples"])
+                            elemtooltip=entijson["descr"][self._lang][:200]+"\n\n"+"\n".join(ex[self._lang] for ex in entijson["examples"][:3])
                             if entijson["tooltip"][self._lang] == ""
                             else entijson["tooltip"][self._lang],
                             x=entiui["relpos_x"], y=entiui["relpos_y"],

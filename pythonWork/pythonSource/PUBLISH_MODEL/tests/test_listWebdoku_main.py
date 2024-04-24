@@ -27,7 +27,7 @@ class TestListWebDocumentation(unittest.TestCase):
         self.testmodelcrm = testsrc.ModelHelper(testsrc.CRMTEST)
 
         assert os.path.isdir(
-            testsrc.testmodels_dir()), f"Cannot find testmodels {os.path.abspath(testsrc.testmodels_dir())}"
+            testsrc.path_to_testmodels()), f"Cannot find testmodels {os.path.abspath(testsrc.path_to_testmodels())}"
         return
 
     def test_main(self):
@@ -46,8 +46,8 @@ class TestListWebDocumentation(unittest.TestCase):
             with self.assertRaises(AssertionError):
                 listWebdoku.webmain(pjsonfilepath='x')
 
-        os.chdir(testsrc.testmodels_dir() / testsrc.TESTMODEL1)  # we need a current directory
+        os.chdir(testsrc.path_to_testmodels() / testsrc.TESTMODEL1)  # we need a current directory
         listWebdoku.webmain(
-            pjsonfilepath=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'DB' / (testsrc.TESTMODEL1 + '.json'),
-            pwebdirec=testsrc.testmodels_dir() / testsrc.TESTMODEL1 / 'Web')
+            pjsonfilepath=testsrc.path_to_testmodels() / testsrc.TESTMODEL1 / 'DB' / (testsrc.TESTMODEL1 + '.json'),
+            pwebdirec=testsrc.path_to_testmodels() / testsrc.TESTMODEL1 / 'Web')
 

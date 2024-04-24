@@ -128,7 +128,7 @@ class TablEntiMap(Baseobject):
         super().__init__()
 
     def insert(self, pdoerrhdlng=True):
-        logging.warning(f"TablEntiMap.insert should be replaced by ModeMap-method")
+        #logging.warning(f"TablEntiMap.insert should be replaced by ModeMap-method")
         # if mapping does not exists, create one
         tabl = Table().getbyid(self.tema_tabl_id)
         mapping = Mapping.selectorcreate(maptype=Mapping.MAPTYPE_DATM_IM,
@@ -233,7 +233,7 @@ class ColAttrMap(Baseobject):
         return entitypairs
 
     def insert(self, pdoerrhdlng=True):
-        logging.warning(f"ColAttrMap.insert should be replaced by ModeMap-method")
+        #logging.warning(f"ColAttrMap.insert should be replaced by ModeMap-method")
         # if mapping does not exists, create one
         colu = Column().getbyid(self.coam_colu_id)
         tabl = Table().getbyid(colu.colu_tabl_id)

@@ -51,6 +51,64 @@ class FilteredJson(unittest.TestCase):
                 shutil.copy(destfile, Path.home() / "Downloads")
                 print(f"DEBUG: copied filtered json to {Path.home() / 'Downloads'}")
             self.assertLess(0,len(cmp))
+
+        return
+
+    def test_datmproblem(self):
+        jsmodel = JSModel.readfromfile(pfilename=self.crm.jsonfile)
+
+        removedtabs=[]
+        removedcols=[]
+        mappedentis=[]
+        mappedattrs=[]
+        dmremoved=None
+        onetab,onecol=None,None #for next test
+        #set all tables of one datamodel to DRAFT -> data model should no longer be mapped in entities
+        for key,dm in jsmodel.getelements("datamodels").items():
+            if dm.get('name')=='TestMapping':
+                dmremoved=key
+                for tabid in dm.get('tables+'):
+                    tab=jsmodel.getbyid(tabid)
+                    if tab.get("name")=='ColAttr':
+                        mappedentis=tab.get('entitiesmapped')
+                        for colid in tab.get("columns+"):
+                            col = jsmodel.getbyid(colid)
+                            col["publstatus"]='DRAFT'
+                            removedcols.append(colid)
+                            mappedattrs += ([am[0] for am in col.get('attributesmapped')])
+                            if len(col.get('attributesmapped')) > 0:
+                                onetab,onecol=tab,col #for later test
+
+                    if onetab is None:
+                        onetab=tab
+
+                    removedtabs.append(tabid)
+                    tab["publstatus"]='DRAFT'
+
+        self.assertEqual(4,len(mappedentis))
+        self.assertEqual(5,len(jsmodel.getelements("datamodels")))
+
+        filteredmodel = filterjson.filterjson(pjsmodel=jsmodel, pstatus="GTOP", pdiagrams=["Kunde"])
+        self.assertEqual(4,len(filteredmodel.getelements("datamodels")))
+        for e in mappedentis:
+            enti = filteredmodel.getbyid(e)
+            self.assertTrue(dmremoved not in enti.get('tablesmapped+').keys())
+        for a in mappedattrs:
+            attr = filteredmodel.getbyid(a)
+            self.assertTrue(dmremoved not in attr.get('columnsmapped+').keys())
+
+        onetab["publstatus"]='GTOP'
+        onecol["publstatus"]='GTOP'
+        filteredmodel = filterjson.filterjson(pjsmodel=jsmodel, pstatus="GTOP", pdiagrams=["Kunde"])
+        self.assertEqual(5,len(filteredmodel.getelements("datamodels")))
+        for e in mappedentis:
+            enti = filteredmodel.getbyid(e)
+            self.assertEqual(1,len(enti.get('tablesmapped+')[dmremoved]))
+        for a in mappedattrs:
+            attr = filteredmodel.getbyid(a)
+            self.assertTrue(len(attr.get('columnsmapped+')[dmremoved])<2)
+
+
         return
 
     def test_call(self):
@@ -66,6 +124,9 @@ class FilteredJson(unittest.TestCase):
                 filterjson.__file__,
                 '--destination', testfile,
                 str(self.crm.jsonfile)
+                #'-s', 'PUBL',
+                #'--diagrams=Organisation-Detail,Organisaton-Overview',
+                #'/Users/stb/Documents/Projekte/FYAYC_intern/FYAIM/DB/FYAYC_intern.json'
             ]
             filterjson.main()
             self.assertTrue(os.path.isfile(testfile))

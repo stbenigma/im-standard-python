@@ -193,6 +193,14 @@ class FILTEREDJSModel(JSModel):
                         if map[0] in pfilteredidlist and (map[1] is None or map[1] in pfilteredidlist):
                             new.append(map)
                     elem[key] = new
+                elif key in ("tablesmapped+","columnsmapped+"):
+                    removedatms = set(elem[key].keys()).difference(pfilteredidlist)
+                    for datm in removedatms:
+                        del elem[key][datm]
+                    #remove tables and columns from reference
+                    for elemkey,elemlist in elem[key].items():
+                        elem[key][elemkey] = list(set(elemlist).intersection(pfilteredidlist))
+
         return
 
     def removeelements(self, pelements):

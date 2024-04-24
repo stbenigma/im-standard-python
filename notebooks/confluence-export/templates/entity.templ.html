@@ -9,6 +9,15 @@
       <h2>{{ gettext('Synonyms') }}</h2>
       <p>{% for syno in entity['synonyms'] %}{{ syno[util.language] }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
       <p>
+        {% if entity['examples'] | length > 0 %}
+        <h2>{{ gettext('Examples') }}</h2>
+        <ul>{% for expl in entity['examples'] %}
+              <li>{{ util.translate_text(expl) }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      </p>
+      <p>
 
       </p>
     </ac:layout-cell>
@@ -50,6 +59,12 @@
           <li>{{ util.soft_link(subtype) }}</li>{% endfor %}
         </ul>
         {% endif %}
+        {% if entity['roles+']|length > 0 %}
+        <h2>{{ gettext('Roles') }}</h2>
+        <ul>{% for role in entity['roles+'] %}
+          <li>{{ util.soft_link(role) }}</li>{% endfor %}
+        </ul>
+        {% endif %}
       </p>
     </ac:layout-cell>
   </ac:layout-section>
@@ -75,6 +90,28 @@
         {% endfor %}
       </tbody></table>
     </ac:layout-cell>
+      {% if "inheritedattributes+" in entity and entity['inheritedattributes+']|length > 0 %}
+    <ac:layout-cell>
+      <h1>{{ gettext('Inherited attributes') }}</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th>{{ gettext('Name') }}</th>
+          <th>{{ gettext('Type') }}</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for attribute_key in entity['inheritedattributes+'] %}
+        <tr>
+          <td>{{ util.soft_link(attribute_key) }}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+    {% endif %}
   </ac:layout-section>
 
   <ac:layout-section ac:type="single">
@@ -99,6 +136,45 @@
             <th>{{ gettext('Linked entity') }}</th>
           </tr>
           {% for relation in entity['relations+'] %}
+            {% if (data['relations'][relation]['type'] not in ('ISAR','ISAS')) %}
+
+             {% set other_end = util.relation_other(key, relation) %}
+             <tr>
+            <td>{{ data['relations'][relation]['type'] }}</td>
+            <td>{{ util.relation_self(key, relation)['cardstr+'] }}</td>
+            <td>{{ util.translate(util.relation_self(key, relation)['assoc']) }}</td>
+            <td class="highlight-grey" colspan="1" data-highlight-colour="grey" title="Background colour : Grey"></td>
+            <td>{{ util.translate(other_end['assoc']) }}</td>
+            <td>{{ other_end['cardstr+'] }}</td>
+            <td>{{ util.soft_link(other_end['enti']) }}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </ac:layout-cell>
+      {% if "inheritedrelations+" in entity and entity["inheritedrelations+"]|count > 0 %}
+    <ac:layout-cell>
+      <h1>{{ gettext('Inherited relations') }}</h1>
+      <table class="relative-table" style="width: 100%;">
+        <colgroup>
+          <col style="width: 10.0%;"/>
+          <col style="width: 20.0%;"/>
+          <col style="width: 5.0%;"/>
+          <col style="width: 20.4773%;"/>
+          <col/>
+        </colgroup>
+        <tbody>
+          <tr>
+            <th>{{ gettext('Type') }}</th>
+            <th>{{ gettext('Cardinality') }}</th>
+            <th>{{ gettext('Relation') }}</th>
+            <th class="highlight-grey" colspan="1" data-highlight-colour="grey" title="Background colour : Grey"></th>
+            <th>{{ gettext('Relation') }}</th>
+            <th>{{ gettext('Cardinality') }}</th>
+            <th>{{ gettext('Linked entity') }}</th>
+          </tr>
+          {% for relation in entity['inheritedrelations+'] %}
           {% set other_end = util.relation_other(key, relation) %}
           <tr>
             <td>{{ data['relations'][relation]['type'] }}</td>
@@ -113,6 +189,7 @@
         </tbody>
       </table>
     </ac:layout-cell>
+    {% endif %}
   </ac:layout-section>
 
   <ac:layout-section ac:type="single">
@@ -131,5 +208,28 @@
       </tbody></table>
     </ac:layout-cell>
   </ac:layout-section>
+
+    {% if  entity["referencedby"]|count > 0 %}
+ <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <h1>{{ gettext('Documents') }}</h1>
+      <table class="relative-table" style="width: 100%;">
+      <tbody>
+        <tr>
+          <th width="50%">{{ gettext('Document') }}</th>
+          <th width="50%">{{ gettext('Document link') }}</th>
+        </tr>
+        {% for docuid in entity['referencedby'] %}
+        <tr>
+            <td>{{ util.soft_link(docuid) }}</td>
+            <td>
+                {{ util.getelem(docuid)["reference"]|urlize(target="_blank") }}
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody></table>
+    </ac:layout-cell>
+  </ac:layout-section>
+    {% endif %}
   {% include 'footer.templ.html' %}
 </ac:layout>

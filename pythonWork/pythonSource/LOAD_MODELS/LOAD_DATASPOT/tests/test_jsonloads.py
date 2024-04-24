@@ -12,7 +12,7 @@ class TestDSMIRO(unittest.TestCase):
     @pytest.mark.integration
     def test_manualexports(self):
         curpath =  os.getcwd()
-        mypath = testsrc.testmodels_dir() / testsrc.DATASPOT
+        mypath = testsrc.path_to_testmodels() / testsrc.DATASPOT
         mirocredentialfile = Path.home() / ".miro" / "credentials-mirobaar.yaml"
         testboardname = "Miro API Test"
         os.chdir(mypath)

@@ -156,8 +156,8 @@ def webmain(pjsonfilepath=None, pwebdirec=None, pmodelname=None, plogfilepath=No
     assert (pjsonfilepath is not None and pwebdirec is not None), \
         f"jsonsource and destination directory must be given"
 
-    singlefile = kwargs.get("singlefile")
-    diagtype = nvl(kwargs.get("diagtype"), 'ODM')
+    singlefile = kwargs.get("singlefile",False)
+    diagtype = kwargs.get("diagtype", "FYAYC")
 
     if pjsonfilepath is not None:
         jsonfilepath = Path(pjsonfilepath).resolve()

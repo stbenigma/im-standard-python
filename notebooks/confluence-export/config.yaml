@@ -1,10 +1,112 @@
+#template configuration for uploading the foryouandyourcustomer model to a confluence space
+# copy this file to your local envionment and add the proper path's and credentials
+
 confluence:
-  apiurl: 'https://foryouandyourteam.com'
-  space: '~bue'
-  rootpage: 'foryouandyourcustomers internal IM'
+  apiurl: 'https://informationskartografie.atlassian.net/wiki/rest/api'
+  space: 'IF'
+  rootpage : 'Informationsmodell'
+  credentials:
+    user: xxx@foryouandyourcustomers.com
+    token: 'ATATT3...A2015'
+  
+sample_confluence:
+  apiurl: 'https://foryouandyourcustomers.atlassian.net/wiki/rest/api'
+  space: 'FYYCYIM'
+  rootpage : 'Information Model of foryouandyourcustomers'
+  credentials:
+    user: xxx@foryouandyourcustomers.com
+    token: 'ATATT3...A2015'
 
-credentials:
-  username: bue
-  password: 'OB7P,aXLAEZ9%bBzYyV+x`'
 
-verify_ssl: true
+# Abort processing if pages with same title exist outside of the specified document root
+cautious: true
+
+# datasource
+json: ./testdata/FYAYC_intern.json
+
+# translations to _publishable
+# first language listed here is not placed in a language subfolder
+# and titles will not be suffixed
+languages:
+  - 'de'
+  - 'en'
+
+locale: ./locale
+
+# output structure
+content:
+  diagrams:
+    title: Diagrams [TOC]
+    template: diagram.templ.html
+    labels:
+      - diagram
+      - IM
+
+  entities:
+    title: Entities [TOC]
+    template: entity.templ.html
+    labels:
+      - entity
+      - IM
+
+    content:
+      attributes:
+        title: Attributes [TOC]
+        template: attribute.templ.html
+        labels:
+          - attribute
+          - IM
+
+  documents:
+    title: Documents [TOC]
+    template: document.templ.html
+    labels:
+      - domain
+      - IM
+
+  domains:
+    title: Domains [TOC]
+    template: domain.templ.html
+    filter: "'DER' in item.get('origin','') == False"
+    labels:
+      - domain
+      - IM
+
+  datamodels:
+    title: Datamodels [TOC]
+    template: datamodel.templ.html
+    labels:
+      - system
+      - DM
+
+    content:
+      tables:
+        title: Tables [TOC]
+        template: table.templ.html
+        manual-documentation:
+          template: children.templ.html
+          title-format: '{parent_title} - Table-Documentation'
+          labels:
+            - table
+            - DM
+            - documentation
+            - manual
+        labels:
+          - table
+          - DM
+
+        content:
+          columns:
+            title: Columns [TOC]
+            template: column.templ.html
+            manual-documentation:
+              template: manual-documentation.templ.html
+              labels:
+                - column
+                - DM
+                - manual
+                - documentation
+            labels:
+              - column
+              - DM
+

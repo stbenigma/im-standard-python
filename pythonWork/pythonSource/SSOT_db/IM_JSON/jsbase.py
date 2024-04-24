@@ -97,6 +97,20 @@ class JSModel:
         self.languages = {}  # langid:iso2
         self._jsfile = kwargs.get('jsonfile')
 
+    @property
+    def git_revision(self):
+        imprint=self.jsmodel['_imprint_']
+        if imprint is not None:
+            return imprint.get('git-revision')
+        else:
+            return None
+    @git_revision.setter
+    def git_revision(self,git_revision):
+        imprint = self.jsmodel['_imprint_']
+        if imprint is not None:
+            imprint['git-revision'] = git_revision
+        return
+
     @classmethod
     def emptyjsonmodel(cls):
         return {val: {} for val in JSModel._elemtype2label.values()}

@@ -14,7 +14,7 @@
 									<td class="attribute">{{ getnvl(elem["format+"]) }}</td>
 									{% set ref = getnvl(elem['reference']) %}
 									{% if ref.startswith("http")%}
-										<td class="attribute">{{ ref|urlize }}</td>
+										<td class="attribute">{{ ref|urlize(target="_blank") }}</td>
 									{% else %}
 										<td class="attribute">{{ ref }}</td>
 									{% endif %}

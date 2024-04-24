@@ -7,7 +7,7 @@ import pytest
 
 from IM_WEB.IM_HTML import entityenviron
 from SSOT_db.IM_JSON import JSModel
-from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, testmodels_dir, ModelHelper, TESTMODEL2
+from SSOT_infra.tests.integration import IntegrationTest, RIDDLE, path_to_testmodels, ModelHelper, TESTMODEL2
 
 
 class MockTranslator:
@@ -52,7 +52,7 @@ class test_environment(unittest.TestCase):
 
 
 class EnvironDiagramGeneration(IntegrationTest):
-    RIDDLEPATH = testmodels_dir() / RIDDLE / 'DB' / (RIDDLE + '.json')
+    RIDDLEPATH = path_to_testmodels() / RIDDLE / 'DB' / (RIDDLE + '.json')
 
     @pytest.fixture(autouse=True)
     def init(self, tmp_path):

@@ -86,9 +86,14 @@ def html_tooltip(entity, translator) -> str:
 
     tooltip_text = [f"""<h2>{translate_and_encode(entity['name'], translator)}</h2>"""]
 
-    description = translate_and_encode(entity.get('descr'), translator)
-    if description is not None and len(description) > 0:
-        tooltip_text.append(f"<p>{description}<p>")
+    descr = translate_and_encode(entity.get('descr'), translator)
+    exmpls = [translate_and_encode(ex, translator) for ex in entity.get('examples')]
+    if descr is not None:
+        description = descr[:200] + \
+                      ("\n...\n" if len(descr) > 200 else "\n\n") + \
+                      "\n".join(ex for ex in exmpls[:3])
+        if len(description) > 0:
+            tooltip_text.append(f"<p>{description}<p>")
 
     synonyms = entity['synonyms']
     if synonyms is not None and len(synonyms) > 0:
@@ -122,9 +127,9 @@ def add_entities(diagram, model: JSModel, translator, root: etree):
         # Tooltip (https://www.diagrams.net/doc/faq/tooltips) is an alternative, but does not support Key Value display as do attributes
         uo.set(next(prefix_generator) + gettext("Name"), translator.tr(enti['name']))
 
-        description = translate_and_encode(enti.get('descr'), translator)
-        if description is not None and len(description) > 0:
-            uo.set(next(prefix_generator) + gettext("Beschreibung"), description)
+        descr = translate_and_encode(enti.get('descr'), translator)
+        if descr is not None and len(descr) > 0:
+            uo.set(next(prefix_generator) + gettext("Beschreibung"), descr)
 
         synonyms = enti['synonyms']
         if synonyms is not None and len(synonyms) > 0:

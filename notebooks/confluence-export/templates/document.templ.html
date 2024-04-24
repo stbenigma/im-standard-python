@@ -12,7 +12,7 @@
         </colgroup>
         <tr>
           <th>{{ gettext('Link') }}</th>
-          <td><a href="{{ document['reference'] }}">Dokument</a></td>
+          <td>{{ document['reference']|urlize(target="_blank") }}</td>
         </tr>
         <tr>
           <th>{{ gettext('Format') }}</th>
@@ -20,14 +20,54 @@
         </tr>
         <tr>
           <th>{{ gettext('Reference count') }}</th>
-          <td>{{ str(len(document['references+'])) }}</td>
+            <td>{{ document['references+'] | length }}</td>
         </tr>
         <tr>
           <th>{{ gettext('Parent') }}</th>
           <td>{{ util.soft_link(document['parent']) }}</td>
         </tr>
+        <tr>
+          <th>{{ gettext('Children') }}</th>
+          <td>
+              {% for childid,childdoc in util.json_data['documents'].items() %}
+                {% if childdoc['parent'] == key %}
+                    {{ util.soft_link(childid) }}
+                {% endif %}
+              {% endfor %}
+        </td>
+        </tr>
+
       </table>
     </ac:layout-cell>
+					<!--references-->
+    {% if document["references+"] | count > 0 %}
+    <ac:layout-cell>
+      <h1>{{ gettext('References') }}</h1>
+      <table class="relative-table" style="width: 100%;"><tbody>
+        <tr>
+            <th>{{ gettext("Typ") }}</th>
+            <th>{{ gettext("Referenz") }}</th>
+        </tr>
+        {% for refid in document["references+"] %}
+            {% set refelem = util.getelem(refid) %}
+            {% set apdx = "" %}
+            {% if refid[0:3] == 'TABL' %}
+                {% set apdx = " ({})".format(refelem["datamodel-name+"]) %}
+            {% elif refid[0:3] == 'COLU' %}
+                {% set apdx = " ({}: {})".format(refelem["table-name+"],refelem["datamodel-name+"]) %}
+            {% endif %}
+            {% if refelem %}
+                <tr>
+                    <td>{{ util.type_name_from_key(refid) }}</td>
+                    <td>{{ util.soft_link(refid) }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+          </tbody>
+    </table>
+    </ac:layout-cell>
+    {% endif %}
+
     <ac:layout-cell>
       {% include 'international.templ.html' %}
       <p>

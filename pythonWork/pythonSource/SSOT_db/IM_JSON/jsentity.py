@@ -131,7 +131,7 @@ def entityemptymodel():
                       category='',
                       exptuple='', prefix='',
                       supertypeentity='',
-                      xsubtypellevel='',
+                      subtypellevel='',
                       uc='', dc='', um='', dm='',
                       minzoomlevel=0, maxzoomlevel=4, publstatus='DRAFT',
                       icon=entityicon(),

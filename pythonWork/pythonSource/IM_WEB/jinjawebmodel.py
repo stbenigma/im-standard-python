@@ -48,7 +48,7 @@ def jinjawebmodelim(export, curlang, diagrams):
                          actorroles=sorted([[key, f"{value['name']} ({str(len(value['concerns']))})"] for key, value in
                                             export.model.jsmodel["actorroles"].items()],
                                            key=lambda x: x[1].upper()),
-                         systems=sorted(
+                         datamodels=sorted(
                              [[key, value["name"]] for key, value in export.model.jsmodel["datamodels"].items()],
                              key=lambda x: x[1].upper()),
                          diagrams=diagrams)

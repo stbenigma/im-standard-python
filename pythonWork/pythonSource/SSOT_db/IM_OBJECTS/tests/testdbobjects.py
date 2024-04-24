@@ -47,7 +47,7 @@ class MyTestCase(unittest.TestCase):
     def test_actorrole(self):
         try:
             dbConnect.openDB(pfilepath=self.testmodel1.dbfile)
-            actr = Actorrole(srcid='123123',srcname='test',
+            actr = Actorrole(srcid='123123',srcname='tests',
                          actr_name='testrole1',actr_descr='what is it')
             actrid = actr.insert()
             attr=Attribute.select()[0]
@@ -58,7 +58,7 @@ class MyTestCase(unittest.TestCase):
             actcs = actrs[0].getchildren()
             self.assertTrue(attr.attr_id in (act.actc_mode_id for act in actcs))
             self.assertTrue(actrid in (act.actc_actr_id for act in actcs))
-            self.assertEqual(actrid,Externalref.getmodeid(psrcname='test',psrcid='123123'))
+            self.assertEqual(actrid,Externalref.getmodeid(psrcname='tests',psrcid='123123'))
             self.assertEqual(Attribute , type(actcs[0].getelement()))
             self.assertEqual('R' , actcs[0].getraci())
         finally:

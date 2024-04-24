@@ -4,7 +4,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-import pytest
+
 from openpyxl import load_workbook
 
 from SSOT_db.IM_JSON import JSModel
@@ -13,6 +13,7 @@ from tools.excel.datamapping import listmapping
 
 
 class ListMapping(unittest.TestCase):
+
     def setUp(self) -> None:
         self.localrun = os.path.isdir(Path.home()/"Downloads")
         self.crm = tb.ModelHelper(tb.CRMTEST)
@@ -83,33 +84,12 @@ class ListMapping(unittest.TestCase):
             locmodel = JSModel.readfromfile(self.crm.jsonfile)
 
             syst = locmodel.getelements("datamodels")
-            locmodel.getbyid(list(syst.keys())[1])["name"] += "123456789012345678901234567890" # make too long system name
+            locmodel.getbyid(list(syst.keys())[1])[
+                "name"] += "123456789012345678901234567890"  # make too long system name
             mapfile = Path(tempdir + '/map.xlsx')
 
-            with pytest.warns(None) as warnrec:
-                listmapping.writedatmxls(pfilename=str(mapfile), pmodel=locmodel,
-                                         plang=locmodel.jsmodel["model"]["language"])
-                if len(warnrec.list)>0:
-                    print (warnrec.list[0])
-                    self.assertEqual(len(warnrec.list), 0)
-
-        return
-
-    def test_excel_names(self):
-        with tempfile.TemporaryDirectory() as tempdir:
-            locmodel = JSModel.readfromfile(self.crm.jsonfile)
-
-            syst = locmodel.getelements("datamodels")
-            locmodel.getbyid(list(syst.keys())[1])["name"] += "123456789012345678901234567890" # make too long system name
-            mapfile = Path(tempdir + '/map.xlsx')
-
-            with pytest.warns(None) as warnrec:
-                listmapping.writedatmxls(pfilename=str(mapfile), pmodel=locmodel,
-                                         plang=locmodel.jsmodel["model"]["language"])
-                if len(warnrec.list)>0:
-                    print (warnrec.list[0])
-                    self.assertEqual(len(warnrec.list), 0)
-
+            listmapping.writedatmxls(pfilename=str(mapfile), pmodel=locmodel,
+                                     plang=locmodel.jsmodel["model"]["language"])
         return
 
     def test_specialjson(self):

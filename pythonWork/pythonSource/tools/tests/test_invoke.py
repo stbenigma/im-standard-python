@@ -1,4 +1,5 @@
 import logging
+import os
 import subprocess
 from pathlib import Path
 import json
@@ -24,6 +25,22 @@ class TestInvoke(unittest.TestCase):
         super().setUp()
         self.root = ti.resolve_project_root()
         self.testmodel = ti.ModelHelper(ti.RIDDLE)
+        # Ensure working directory exists
+        os.chdir(Path(__file__).parent)
+
+    def test_invoke_infrastructure(self):
+        try:
+            generate = [
+                'invoke',
+                '--list',
+            ]
+            print(f"Starting subprocess {' '.join(generate)} in {os.getcwd()}")
+            result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print(f"return code: {result.returncode}")
+            print(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"Invoke failed:\nstderr:{e.stderr}\nstdout:{e.stdout}", e)
+            raise e
 
     def test_version(self):
         generate = [
@@ -31,10 +48,11 @@ class TestInvoke(unittest.TestCase):
             'version',
         ]
         print(f"Running {' '.join(generate)}")
-        result = subprocess.check_output(generate).decode('utf-8')
+        result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(result.stderr, result.stdout, result.returncode)
         from SSOT_infra import version
         ver = version()
-        self.assertIn(ver['TOOLVERSION'], result)
+        self.assertIn(ver['TOOLVERSION'], result.stdout.decode())
 
     def test_info(self):
         generate = [
@@ -127,8 +145,8 @@ class TestInvoke(unittest.TestCase):
                         f"Expecting SSOD json in '{tm.jsonfile.resolve()}'")
         print(f"SSOD created in {tm.dbfile} / {jsonfile}")
         logging.debug(f"Generator output:\n{result}")
-        ssod:JSModel = JSModel.readfromfile(jsonfile)
-        #with open(jsonfile, "r") as src:
+        ssod: JSModel = JSModel.readfromfile(jsonfile)
+        # with open(jsonfile, "r") as src:
         #    ssod = json.load(src)
 
         entity1 = next(iter(ssod.jsmodel['entities'].values()))

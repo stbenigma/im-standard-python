@@ -1,4 +1,3 @@
-import logging
 import re
 
 import pytest
@@ -7,8 +6,7 @@ from pathlib import Path
 import shutil
 
 import SSOT_infra.tests.integration as testsrc
-from LOAD_MODELS.LOAD_INFRA import mergedbs
-from LOAD_MODELS.LOAD_MIRO import miromodel, miromergemodel
+from LOAD_MODELS.LOAD_MIRO import miromodel
 from LOAD_MODELS.LOAD_MIRO.miroboardmodel import *
 from LOAD_MODELS.LOAD_MIRO.mirointerface import *
 from SSOT_db.IM_JSON import JSModel
@@ -36,7 +34,7 @@ class MyTestCase(unittest.TestCase):
 
         self.crmt=testsrc.ModelHelper(testsrc.CRMTEST)
 
-        self.testpath = testsrc.testmodels_dir() / testsrc.DATASPOT
+        self.testpath = testsrc.path_to_testmodels() / testsrc.DATASPOT
 
         #file updated by load to miro, used for merge in second test
         self.crmmirojsonfile= self.crmt.dbdir / "miroboardversion.json"

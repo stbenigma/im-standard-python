@@ -128,91 +128,101 @@
 {%- endmacro %}
 
 {% macro referencelist(webmodel,elemid,elem,basedirec='') -%}
-						<div class="table-responsive">
-							<table class="table borderless" >
-								<tbody>
-									<tr>
-										<th>{{ webmodel.gettransltext("Typ") }}</th>
-										<th>{{ webmodel.gettransltext("Referenz") }}</th>
-										{% if webmodel.getelem(elemid) == 'businessrules' %}
-										<th>
-											 {{ webmodel.gettransltext("R/W") }}
-										</th>
-										{% elif webmodel.getelem(elemid) == 'actorroles' %}
-										<th>
-											 {{ webmodel.gettransltext("RACI") }}
-										</th>
-										{% endif %}
-									</tr>
-									{% for refid in elem %}
-									{% set refelem = webmodel.getelem(refid) %}
-									<tr>
-										<td>{{ webmodel.displelemtype(refid)}}</td>
-										{% set displ = webmodel.getlangstr(refelem["name"]) %}
-										{% if webmodel.elemtype(refid) == 'tables' %}
-											{% set displ = displ ~ " ({})".format(refelem["datamodel-name+"]) %}
-										{% elif webmodel.elemtype(refid) == 'columns' %}
-											{% set displ = displ ~ " ({}: {})".format(refelem["table-name+"],refelem["datamodel-name+"]) %}
-										{% endif %}
-										<td>{% if (webmodel.elemtype(elemid) == 'businessrules' and webmodel.elemtype(refid) == 'relations' ) %}
-												{% set refid1 = webmodel.getelem(refid)["from-to"]["enti"] %}
-												{% set displ1 = webmodel.getlangstr(webmodel.getelem(refid1)["name"]) %}
-												{% set refid2 = webmodel.getelem(refid)["to-from"]["enti"] %}
-												{% set displ2 = webmodel.getlangstr(webmodel.getelem(refid2)["name"]) %}
-												{{ displ ~ ': ' ~ webmodel.getreflink(name=displ1
-												   ,destid=refid1,desttype=webmodel.elemtype(refid1)
-												   ,destdatmid=webmodel.getelemdatmid(refid1),basedirec=basedirec)|safe }}
-												{{ '   <->   ' ~ webmodel.getreflink(name=displ2
-												   ,destid=refid2,desttype=webmodel.elemtype(refid2)
-												   ,destdatmid=webmodel.getelemdatmid(refid2),basedirec=basedirec)|safe }}
-											{% else %}
-												{{ webmodel.getreflink(name=displ
-												   ,destid=refid
-												   ,destdatmid=webmodel.getelemdatmid(refid)
-                                                      ,desttype=webmodel.elemtype(refid)
-                                                       , basedirec=basedirec)|safe }}
-											{% endif %}
-										</td>
-										{% if webmodel.elemtype(elemid) == 'businessrules' %}
-										<td>
-											 {{ elem[refid]["r/w"] }}
-										</td>
-										{% elif webmodel.elemtype(elemid) == 'actorroles' %}
-										<td>
-											 {{ elem[refid] }}
-										</td>
-										{% endif %}
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div> 
+            <div class="table-responsive">
+                <table class="table borderless" >
+                    <tbody>
+                        <tr>
+                            <th>{{ webmodel.gettransltext("Typ") }}</th>
+                            <th>{{ webmodel.gettransltext("Referenz") }}</th>
+                            {% if webmodel.getelem(elemid) == 'businessrules' %}
+                            <th>
+                                 {{ webmodel.gettransltext("R/W") }}
+                            </th>
+                            {% elif webmodel.getelem(elemid) == 'actorroles' %}
+                            <th>
+                                 {{ webmodel.gettransltext("RACI") }}
+                            </th>
+                            {% endif %}
+                        </tr>
+                        {% for refid in elem %}
+                        {% set refelem = webmodel.getelem(refid) %}
+                        <tr>
+                            <td>{{ webmodel.displelemtype(refid)}}</td>
+                            {% set displ = webmodel.getlangstr(refelem["name"]) %}
+                            {% if webmodel.elemtype(refid) == 'tables' %}
+                                {% set displ = displ ~ " ({})".format(refelem["datamodel-name+"]) %}
+                            {% elif webmodel.elemtype(refid) == 'columns' %}
+                                {% set displ = displ ~ " ({}: {})".format(refelem["table-name+"],refelem["datamodel-name+"]) %}
+                            {% elif webmodel.elemtype(refid) == 'attributes' %}
+                                {% set displ = displ ~ " ({})".format(webmodel.getlangstr(webmodel.getelem(refelem["entity"])["name"])) %}
+                            {% endif %}
+                            <td>{% if (webmodel.elemtype(elemid) == 'businessrules' and webmodel.elemtype(refid) == 'relations' ) %}
+                                    {% set refid1 = webmodel.getelem(refid)["from-to"]["enti"] %}
+                                    {% set displ1 = webmodel.getlangstr(webmodel.getelem(refid1)["name"]) %}
+                                    {% set refid2 = webmodel.getelem(refid)["to-from"]["enti"] %}
+                                    {% set displ2 = webmodel.getlangstr(webmodel.getelem(refid2)["name"]) %}
+                                    {{ displ ~ ': ' ~ webmodel.getreflink(name=displ1
+                                       ,destid=refid1,desttype=webmodel.elemtype(refid1)
+                                       ,destdatmid=webmodel.getelemdatmid(refid1),basedirec=basedirec)|safe }}
+                                    {{ '   <->   ' ~ webmodel.getreflink(name=displ2
+                                       ,destid=refid2,desttype=webmodel.elemtype(refid2)
+                                       ,destdatmid=webmodel.getelemdatmid(refid2),basedirec=basedirec)|safe }}
+                                {% else %}
+                                    {{ webmodel.getreflink(name=displ
+                                       ,destid=refid
+                                       ,destdatmid=webmodel.getelemdatmid(refid)
+                                          ,desttype=webmodel.elemtype(refid)
+                                           , basedirec=basedirec)|safe }}
+                                {% endif %}
+                            </td>
+                            {% if webmodel.elemtype(elemid) == 'businessrules' %}
+                            <td>
+                                 {{ elem[refid]["r/w"] }}
+                            </td>
+                            {% elif webmodel.elemtype(elemid) == 'actorroles' %}
+                            <td>
+                                 {{ elem[refid] }}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 {%- endmacro %}
 
 {% macro refbylist(webmodel, elemid,elem,basedirec='') -%}
-						<div class="table-responsive">
-							<table class="table borderless" >
-								<tbody>
-									<tr>
-										<th>{{ webmodel.gettransltext("Typ") }}</th>
-										<th>{{ webmodel.gettransltext("Reference") }}</th>
-									</tr>
-									{% for refid in elem["referencedby"] %}
-									{% set refelem = webmodel.getelem(refid) %}
-									<tr>
-										<td>{{ webmodel.displelemtype(refid)}}</td>
-										<td>{{ webmodel.getreflink(name=webmodel.getlangstr(refelem["name"])
-											   ,destid=refid
-											   ,curdatmid=webmodel.getelemdatmid(elemid)
-											   ,destdatmid=webmodel.getelemdatmid(refid)
-                                                ,desttype=webmodel.elemtype(refid)
-                                                ,basedirec=basedirec)|safe }}
-										</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div> 
+                <div class="table-responsive">
+                    <table class="table borderless" >
+                        <tbody>
+                            <tr>
+                                <th width="10%">{{ webmodel.gettransltext("Typ") }}</th>
+                                <th width="45%">{{ webmodel.gettransltext("Referenz") }}</th>
+                                <th width="45%">{{ webmodel.gettransltext("Dokument link") }}</th>
+                            </tr>
+                            {% for refid in elem["referencedby"] %}
+                                {% set refelem = webmodel.getelem(refid) %}
+                            <tr>
+                                <td>{{ webmodel.displelemtype(refid)}}</td>
+                                <td>{{ webmodel.getreflink(name=webmodel.getlangstr(refelem["name"])
+                                       ,destid=refid
+                                       ,curdatmid=webmodel.getelemdatmid(elemid)
+                                       ,destdatmid=webmodel.getelemdatmid(refid)
+                                        ,desttype=webmodel.elemtype(refid)
+                                        ,basedirec=basedirec)|safe }}
+                                </td>
+                                <td>
+                                    {% if webmodel.elemtype(refid) == 'documents' %}
+                                        {{ refelem["reference"]|urlize(target="_blank") }}
+                                    {% else %}
+                                        {{ "" }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 {%- endmacro %}
 
 {% macro reflist(webmodel, elemid, refs,basedirec='') -%}
