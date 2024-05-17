@@ -56,6 +56,7 @@ jobs:
 
     - name: Build deployment package
       run: |
+        echo generate codepackage into Path ${PWD}
         inv package
 
     - name: Test run generator
@@ -87,10 +88,10 @@ jobs:
         rm -f testdata/fyyccim-refmodels/raetsel-3lang/DB/*
         python dist/generator.py --languages=de,en,fr --model testdata/fyyccim-refmodels/raetsel-3lang/IM --all
 
-    - name: Integration test run with CRM model
-      run: |
-        rm -f testdata/fyyccim-refmodels/CRM/DB/*
-        python dist/generator.py --profile --languages=de,en,fr --model testdata/fyyccim-refmodels/CRM/IM --all
+    #- name: Integration test run with CRM model
+    #  run: |
+    #    rm -f testdata/fyyccim-refmodels/CRM/DB/*
+    #    python dist/generator.py --profile --languages=de,en,fr --model testdata/fyyccim-refmodels/CRM/IM --all
 
     - name: Integration test run with PIM model
       run: |

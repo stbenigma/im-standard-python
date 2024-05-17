@@ -84,6 +84,8 @@ def notebook_to_python_script(scripts: [Path], destination_folder: Path, strip_c
     exporter = PythonExporter(config=c)
     targets = []
     for script in scripts:
+        if not os.path.exists(script):
+            continue #skip non existing notebooks, as is the case in production environment
         script_file = str(script)
         filename = os.path.basename(script_file)
         noext, _ = os.path.splitext(filename)
@@ -120,16 +122,18 @@ def main(basefolder: Path, argv: []):
 
     if basefolder is None:
         basefolder = Path.cwd()
+    pythonsourcefolder= basefolder / 'pythonWork' / 'pythonSource'
+    confluencefolder= basefolder / "notebooks" / "confluence-export"
 
     script_file = Path(basefolder, arguments.notebook)
-    renderfile=Path(basefolder,"notebooks","confluence-export","Renderer.ipynb")
-    uploadfile=Path(basefolder,"notebooks","confluence-export","Uploader.ipynb")
+    renderfile= confluencefolder /"Renderer.ipynb"
+    uploadfile = confluencefolder / "Uploader.ipynb"
     targets = notebook_to_python_script([ script_file,renderfile,uploadfile],
                                         destination_folder, strip_cells_with_tags)
-    target = targets[0]
+    targetgenerator = targets[0]
 
-    version_file = Path(basefolder) / 'pythonWork' / \
-                   'pythonSource' / 'SSOT_infra' / 'versions.json'
+
+    version_file = pythonsourcefolder / 'SSOT_infra' / 'versions.json'
     if version_file.is_file():
         with open(version_file, 'r') as src:
             version = json.load(src)
@@ -137,7 +141,7 @@ def main(basefolder: Path, argv: []):
     else:
         logging.warning(f"Cannot read version file {version_file.resolve()}")
 
-    hardcode_version("VERSION_TAG = '" + version_mark + "'", r"VERSION_TAG\s*=\s*['\"].+['\"]", target)
+    hardcode_version("VERSION_TAG = '" + version_mark + "'", r"VERSION_TAG\s*=\s*['\"].+['\"]", targetgenerator)
 
     git_tag = parameters.toolversion()
 
@@ -157,16 +161,21 @@ def main(basefolder: Path, argv: []):
     windows_runner = basefolder / 'run.bat'
     tasksfile = basefolder / 'tasks.py'
 
-    tools = basefolder / 'pythonWork' / 'pythonSource'
+    confluencelocale = confluencefolder / "locale"
+    confluencejinja = confluencefolder / "templates"
+
 
     with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as zip:
-        zip.write(target, target.relative_to(target.parent))
+        for target in targets:
+            zip.write(target,  target.relative_to(target.parent.parent))
         zip.write(stamp_file, stamp_file.relative_to(stamp_file.parent))
         zip.write(tasksfile, tasksfile.relative_to(tasksfile.parent))
         zip.write(windows_runner, windows_runner.relative_to(basefolder))
-        zipdir(tools, zip, basefolder)
+        zipdir(pythonsourcefolder, zip, basefolder)
+        zipdir(confluencelocale, zip, basefolder, lambda f: not f.endswith('DS_Store'))
+        zipdir(confluencejinja, zip, basefolder, lambda f: not f.endswith('DS_Store'))
         # add resources
-        zipdir(basefolder / 'res', zip, basefolder, lambda all: True)
+        zipdir(basefolder / 'res', zip, basefolder, lambda f: not f.endswith('DS_Store'))
 
     log(f"Packed up archive {archive}")
     return archive
@@ -220,9 +229,10 @@ def zipdir(path, ziph, content_root, path_filter=accept):
     for root, dirs, files in os.walk(path):
         for file in files:
             path = os.path.join(root, file)
-            if path_filter(os.path.relpath(path, content_root)):
+            relpath=os.path.relpath(path, content_root)
+            if path_filter(relpath):
                 log(f"Packing {path}")
-                ziph.write(path, os.path.relpath(path, content_root))
+                ziph.write(path, relpath)
 
 
 if __name__ == '__main__':

@@ -120,7 +120,7 @@ def resolve_project_root(folder: Path = __file__) -> Path:
     return project_root
 
 
-def testdata_root() -> Path:
+def path_to_testdata() -> Path:
     return resolve_project_root() / 'testdata'
 
 

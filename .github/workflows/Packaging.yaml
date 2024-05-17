@@ -46,7 +46,7 @@ jobs:
           unzip '../dist/model2diagram-*.zip'
           echo "Create SPOD from ODM and generate output"
           rm -f ../pythonWork/pythonSource/testenvironment/testmodels/riddle/DB/riddle.db
-          python generator.py --all --languages=en -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
+          python dist/generator.py --all --languages=en -m ../pythonWork/pythonSource/testenvironment/testmodels/riddle/IM
 
       - name: Upload packed deployment to github
         uses: xresloader/upload-to-github-release@v1

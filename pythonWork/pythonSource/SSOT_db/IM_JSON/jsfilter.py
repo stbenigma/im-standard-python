@@ -162,9 +162,22 @@ class FILTEREDJSModel(JSModel):
                             pcondition=lambda elem, ref: not (len(elem["references+"]) == 0
                                                               or set(elem["references+"]).intersection(ref)))
         # remove documents not referenced by any remaining elements
-        self._removeelement(pelemtype=Modelelemtype.DOCU,
-                            pcondition=lambda elem, ref: not (len(elem["references+"]) == 0
-                                                              or set(elem["references+"]).intersection(ref)))
+        # documents can also be referenced by other documents
+        docus=set(self.getelements(pelemtype=Modelelemtype.DOCU).keys())
+        #get first all referenced docus
+        keepdocus=[key for key, elem in self.getelements(pelemtype=Modelelemtype.DOCU).items()
+                        if (len(elem["references+"]) == 0 \
+                        or set(elem["references+"]).intersection(self._filteredidlist))]
+        keepparents = {None}
+        #now loop to get all parents of referenced
+        while len(keepparents)>0:
+            elements= [self.getbyid(key) for key in keepdocus]
+            keepparents={None if e is None else e.get("parent") for e in elements}.difference(set(keepdocus) )
+            keepparents.difference({None,""})
+            keepdocus.extend(list(keepparents))
+        #all that are not referenced or not parent of referenced: discard
+        for key in docus.difference(keepdocus):
+            self._filteredidlist.discard(key)
 
         # remove businessrules, not referenced by any remaining elements
         self._removeelement(pelemtype=Modelelemtype.BURU,

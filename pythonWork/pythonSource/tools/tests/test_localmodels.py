@@ -8,7 +8,7 @@ from IM_WEB import listWebdoku
 from tools.LANGTRANSL import exportdata
 from LOAD_MODELS.LOAD_ODM import fillDB
 from LOAD_MODELS.LOAD_INFRA.handleXML import stable_file_list
-from SSOT_infra.tests.integration import testdata_root
+from SSOT_infra.tests.integration import path_to_testdata
 from tools.excel.datamapping import listmapping
 
 LOCALTESTMODELS: str = 'localtestmodels'
@@ -36,7 +36,7 @@ class MyTestCase(unittest.TestCase):
     def test_localODMs(self):
         self.skipTest("to be tested locally outside general test")
 
-        localmodeldir = testdata_root() / LOCALTESTMODELS
+        localmodeldir = path_to_testdata() / LOCALTESTMODELS
         if not os.path.isdir(localmodeldir):
             self.skipTest("keine lokalen Modelle zu testen")
 

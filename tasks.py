@@ -13,6 +13,7 @@ from contextlib import closing
 from pathlib import Path
 import sys
 import zipfile as zlib
+import yaml
 
 import logging
 import os
@@ -104,17 +105,6 @@ def package(c):
         print(f"Running custom 'deploy' task in {pathlib.Path.cwd()} for {PROJECT_ROOT}")
         c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
         print(f"Created package {c.package}")
-
-@task()
-def deploynotebook(c):
-    """ build python files for confluence notebooks"""
-    sys.path.append(f"{SOURCE_FOLDER}")
-    from tools import deploy
-    confluence_folder = os.path.join (NOTEBOOK_FOLDER,'confluence-export')
-    deploy.notebook_to_python_script(scripts=[os.path.join (confluence_folder,"Renderer.ipynb"),
-                                            os.path.join (confluence_folder,"Uploader.ipynb")
-                                              ])
-    return
 
 
 @task(pre=[package], aliases=['verify', 'check'])
@@ -263,8 +253,8 @@ def upgradedb(c, model=None):
             model = modelpath.stem
         dbfile = modelpath.resolve()
         if not dbfile.is_file():
-            print(f"{dbfile} is not file")
-            exit(10)
+            print(f"{dbfile} is not file. Nothing done")
+            return None
         with c.cd(PROJECT_ROOT):
             from SSOT_db import createDB
             path = createDB(pupgrade=True, pdestination=dbfile, pmodelname=model)
@@ -277,6 +267,7 @@ def upgradedb(c, model=None):
             upgrade1db(model)
     else:
         db_file = upgrade1db(model)
+        if db_file is None: return
         from SSOT_db.IM_JSON import JSModel, sql2json
         from SSOT_db.SQL_INFRA.dbConnect import openDB, closeDB
         with closing(openDB(db_file)) as conn:
@@ -576,11 +567,11 @@ def version(c):
 
 @task(help={
     'source': "jsonfile to filter",
-    'output': "filtered jsonfile. default: <sourcename>_FILTERED.json",
+    'output': "filtered jsonfile. default: <sourcename>_<status>.json",
     'status': "PUBL,GTOP,DRAFT. default DRAFT (=no filtering takes place",
-    'diagrams': "comma separated list of diagrams to be containted in the filtered json"
+    'diagrams': "comma separated string or list of diagrams to be containted in the filtered json"
 })
-def filterjson(c, source, output=None, status=None, diagrams=""):
+def filterjson(c, source, output=None, status=None, diagrams=None):
     """
     create filtered json file containing only elements of listed diagrams in chosen status
     """
@@ -595,13 +586,15 @@ def filterjson(c, source, output=None, status=None, diagrams=""):
         raise Exception(f"Source '{src_path.resolve()}' is not a file")
 
     if output is None:
-        out_path = src_path.with_stem(src_path.stem + "_FILTERED")
+        out_path = src_path.with_stem(src_path.stem + f"_{status if status else ''}")
     else:
         out_path = Path(output)
 
-    assert (status in [None, "PUBL", "GTOP", "DRAFT"]), f'status mus be in [None,"PUBL","GTOP","DRAFT"]'
+    assert (status in [None, "PUBL", "GTOP", "DRAFT"]), f'status must be in [None,"PUBL","GTOP","DRAFT"]'
     if diagrams is None or diagrams == '':
         diagramlist = None
+    elif type(diagrams) == list:
+        diagramlist = diagrams
     else:
         diagramlist = diagrams.split(",")
 
@@ -791,6 +784,7 @@ def mappingexcel(c, source,destination=None,language=None):
 
     if destination is None:
         destination = src_path.with_name(src_path.stem+"_mapping.xlsx")
+    os.makedirs(name=destination.parent,exist_ok=True)
 
     listmapping.createAllMapping(pjsonfile=src_path,
                                 pdestination=destination,
@@ -802,37 +796,160 @@ def mappingexcel(c, source,destination=None,language=None):
 @task()
 def deploynotebook(c):
     """ build python files for confluence notebooks"""
+    #if in production environment, do not deploy the notebooks.
+    if not Path(NOTEBOOK_FOLDER, 'mig').is_dir():
+        return
     sys.path.append(f"{SOURCE_FOLDER}")
     from tools import deploy
-    notebooks = os.path.join (NOTEBOOK_FOLDER,'confluence-export')
     destfolder=PROJECT_ROOT / 'dist'
-    deploy.notebook_to_python_script(scripts=[os.path.join (notebooks,"Renderer.ipynb"),
-                                            os.path.join (notebooks,"Uploader.ipynb")
+    deploy.notebook_to_python_script(scripts=[os.path.join (NOTEBOOK_FOLDER, 'mig', 'generator.ipynb'),
+                                              os.path.join (NOTEBOOK_FOLDER, 'confluence-export', 'Renderer.ipynb'),
+                                              os.path.join (NOTEBOOK_FOLDER, 'confluence-export', 'Uploader.ipynb')
                                               ],
                                      destination_folder=destfolder,
                                      strip_cells_with_tags=("test", "visual", "debug"))
     return
 
 
-@task(pre=[deploynotebook], help={
-    'configfile': "yaml-file containting confluence parameters"
+@task(pre=[deploynotebook,translate], help={
+    'configfile': "yaml-file containting confluence parameters",
+    'jsonfile': "json file to be rendered for confluence"
     })
-def renderconfluence(c, configfile):
+def renderconfluence(c, configfile,jsonfile):
     resconfigfile=Path(configfile).resolve()
-    command = f"python dist/Renderer.py '{resconfigfile}'"
+    resjsonfile=Path(jsonfile).resolve()
+    command = f"python dist/Renderer.py '{resconfigfile}' '{resjsonfile}'"
     with c.cd(PROJECT_ROOT):
         print(f"Starting Renderer with: {command} in {PROJECT_ROOT}/dist")
         c.run(command)
-
+    return
 
 
 @task(pre=[deploynotebook], help={
-    'configfile': "yaml-file containting confluence parameters"
+    'configfile': "yaml-file containting confluence parameters",
+    'contentdir': "directory containing confluencepages"
     })
-def uploadconfluence(c, configfile):
+def uploadconfluence(c, configfile,contentdir):
     resconfigfile=Path(configfile).resolve()
-    command = f"python dist/Uploader.py '{resconfigfile}'"
+    rescontentdir=Path(contentdir).resolve()
+    command = f"python dist/Uploader.py '{resconfigfile}' '{rescontentdir}'"
     with c.cd(PROJECT_ROOT):
         print(f"Starting Uploader with: {command} in {PROJECT_ROOT}/dist")
         c.run(command)
+    return
+
+@task(help={
+    'basedir': "base directory for all model specific input or output",
+    'source': "ODM-dmd-file to convert",
+    'outputlist': "list of artefacts to generate, Default ['FILTER','MAPP','WEB','CONFLUENCE']"
+})
+def generator_2 (c, basedir, source,outputlist=['FILTER','MAPP','WEB','CONFLUENCE']):
+    """
+    task chain for generation all possible artefacts
+    always generated:
+        odm2json:
+            <basedir>/DB/<modelname>_ODM.json   odm model (from source) transferred into json
+        mergeintodb:
+            <basedir>/DB/<modelname>.db   database with odm-jsonfile merged into it
+            <basedir>/DB/<modelname>.json   json-copy of database
+
+    if in outputlist
+        FILTER:
+            <basedir>/DB/<modelname>_PUBL.JSON   filtered jsonfile PUBLished elements
+            <basedir>/DB/<modelname>_GTOP.JSON   filtered jsonfile GOodToPrint elements
+        MAPP:
+            <basedir>/DB/<modelname>_mapping.xlsx   mapping of dataelements
+            if FILTER was present:
+            <basedir>/DB/<modelname>_PUBL_mapping.xlsx   mapping of dataelements  from PUBL jsonfile
+            <basedir>/DB/<modelname>_GTOP_mapping.xlsx   mapping of dataelements  from GTOP jsonfile
+        WEB:
+            HTML-file structure in directory <basedir>/Web
+            if FILTER was present:
+            HTML-file structure in directory <basedir>/WebPUBL
+            HTML-file structure in directory <basedir>/WebGTOP
+
+        CONFLUENCE:
+            if FILTER was present:
+                Confluence file structure for PUBL json in directory
+            else:
+                Confluence file structure for general json in directory
+
+    """
+
+    initialize_logging("generate_2")
+    load_tools_library()
+    if source is None:
+        raise ValueError("no source dmd defined")
+
+
+    base_path = Path(basedir)
+    if not base_path.is_dir():
+            raise Exception(f"basedir '{base_path.resolve()}' is not a directory")
+
+    source_file= Path(source)
+    if not source_file.is_absolute():
+        source_file = base_path / source_file
+
+    if not source_file.is_file():
+        raise Exception(f"Source '{source_file}' is not a file")
+
+    modelname = Path(source_file).stem
+    GITPATH = source_file.parent.parent
+    DBDIREC = base_path / 'DB'
+    DBFILE = DBDIREC / (modelname + '.db')
+    MAPPINGDIREC = base_path / "mapping"
+    JSONFILE = DBDIREC / (modelname + '.json')
+    ODMJSONFILE = DBDIREC / (modelname + '_ODM.json')
+    PUBLJSONFILE = DBDIREC / (modelname + '_PUBL.json')
+    GTOPJSONFILE = DBDIREC / (modelname + '_GTOP.json')
+    YAMLSTRUCTFILE = GITPATH / f"{modelname}.yaml"
+    YAMLCONFLCRED = Path.home() / ".fyyccim" / "fyayc-intern.yaml"
+    YAMLCONFLCRED = Path.home() / ".fyyccim" / "fyayc-intern_dev.yaml"
+
+    with open(YAMLSTRUCTFILE) as f:
+        config = yaml.safe_load(f)
+    assert len(config) > 0, f'Config is empty :-('
+    renderjson = config['renderjson']
+    filterdiagrams = config['diagrams']
+
+    os.makedirs(MAPPINGDIREC, exist_ok=True)
+    os.makedirs(DBDIREC, exist_ok=True)
+
+    print(f"upgradedb: upgrade DB  {DBFILE}")
+    upgradedb(c,model=DBFILE)
+
+    print (f"odm2json: transfer model {source_file} to json file {ODMJSONFILE}")
+    odm2json(c,source=source_file, destdir=DBDIREC)
+    print (f"mergeintodb: merge odmjsonfile  {ODMJSONFILE} into database {DBFILE}")
+    mergeintodb(c,source=ODMJSONFILE, database=DBFILE)
+
+    print (f"filterjson: from {JSONFILE} create filtered jsonfile {PUBLJSONFILE}")
+    filterjson (c, source=JSONFILE, status='PUBL',diagrams=filterdiagrams['PUBL'])
+    print (f"filterjson: from {JSONFILE} create filtered jsonfile {GTOPJSONFILE}")
+    filterjson (c, source=JSONFILE, status='GTOP',diagrams=filterdiagrams['GTOP'])
+
+    print (f"mappingexcel: {PUBLJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx')}")
+    mappingexcel (c, source=PUBLJSONFILE, destination=MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx'))
+    print (f"mappingexcel: {GTOPJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx')}")
+    mappingexcel (c, source=GTOPJSONFILE, destination=MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx'))
+    print (f"mappingexcel: {JSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_mapping.xlsx')}")
+    mappingexcel (c, source=JSONFILE, destination=MAPPINGDIREC / (modelname + '_mapping.xlsx'))
+
+    print (f"json2web: from {PUBLJSONFILE} create web-html in {base_path / 'WebPUBL'}")
+    json2web (c, source=PUBLJSONFILE, webdirec=base_path / 'WebPUBL', filetype='html')
+    print (f"json2web: from {GTOPJSONFILE} create web-html in {base_path / 'WebGTOP'}")
+    json2web (c, source=GTOPJSONFILE, webdirec=base_path / 'WebGTOP', filetype='html')
+    print (f"json2web: from {JSONFILE} create web-html in {base_path / 'Web'}")
+    json2web (c, source=JSONFILE, webdirec=base_path / 'Web', filetype='html')
+
+    print (f"renderconfluence: from {YAMLSTRUCTFILE} create confluence-pages  in {base_path / 'confluence-content'}")
+    renderconfluence (c, jsonfile=PUBLJSONFILE if renderjson=='PUBL' \
+                                else GTOPJSONFILE if renderjson=='GTOP' \
+                                else JSONFILE,
+                        configfile=YAMLSTRUCTFILE)
+
+    print ("=============================================================================")
+    print ("Publish rendered model with uploadtestconfluence or uploadprodconfluence")
+    print ("=============================================================================")
+
     return

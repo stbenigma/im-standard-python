@@ -54,6 +54,39 @@ class FilteredJson(unittest.TestCase):
 
         return
 
+    def test_recursivdocumentsfilter(self):
+        with tempfile.TemporaryDirectory() as tempdir:
+            # Test mit lokalem spezialfile
+            if os.path.exists('/Users/stb/Documents/Projekte/FYAYC_intern/FYAIM/DB/FYAYC_intern.json'):
+                testfile = Path(tempdir + "/testfile2.json")
+                filteredfile = Path(tempdir + "/testfiltered2.json")
+                shutil.copy('/Users/stb/Documents/Projekte/FYAYC_intern/FYAIM/DB/FYAYC_intern.json', testfile)
+                jsmodel = JSModel.readfromfile(pfilename=testfile)
+                destmodel= filterjson.filterjson(pjsmodel=jsmodel,
+                                                    pstatus="PUBL",
+                                                 pdiagrams=["Organisation-Overview","Organisation-Detail",
+                                                            "Who-Why-How-Base","Who-Why-How-Overview"])
+                self.assertTrue(len(destmodel.getbyfield(ptype="documents",pvalue="TQMI-Roles"))>0)
+
+            testfile = Path(tempdir + "/testfile2.json")
+            shutil.copy(self.crm.jsonfile, testfile)
+            jsmodel = JSModel.readfromfile(pfilename=testfile)
+            diag=jsmodel.getbyfield(ptype="diagrams",pvalue="DUMMY")
+            entiid=diag[0][1]["elements"]["entity"][0]["element"] #first entity on this diagram
+            enti=jsmodel.getbyid(entiid)
+            docu=jsmodel.getbyfield(ptype="documents",pvalue="webbild") #has unreferenced parent
+            docu2id= docu[0][1]["parent"]
+            docu2=jsmodel.getbyid(docu2id) #has unreferenced parent
+            enti["referencedby"].append(docu[0][0]) #entity referenced by child
+            docu[0][1]["references+"].append(entiid) #docu points to entity
+            for elemid in docu2["references+"]:
+                elem=jsmodel.getbyid(elemid)
+                elem["referencedby"].remove(docu2id)
+            docu2["references+"]=["ENTI9999"] #parent docu has no reference
+            filterjs= filterjson.filterjson(jsmodel,pstatus=None, pdiagrams=["DUMMY"])
+            self.assertTrue(len(filterjs.getbyfield(ptype="documents",pvalue=docu2["name"]))>0)
+        return
+
     def test_datmproblem(self):
         jsmodel = JSModel.readfromfile(pfilename=self.crm.jsonfile)
 

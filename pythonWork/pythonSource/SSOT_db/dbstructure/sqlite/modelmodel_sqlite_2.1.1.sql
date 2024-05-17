@@ -6,7 +6,6 @@ PRAGMA ignore_check_constraints = ON;
 INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (20, 'DATM', 'Datamodel', 'SYS', '2023-12-29');
 INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (21, 'MAPS', 'Mapping', 'SYS', '2023-12-29');
 INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (22, 'SYST', 'System', 'SYS', '2023-12-29');
-INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (23, 'EXPL', 'Example', 'SYS', '2023-12-29');
 UPDATE modelelem_type SET melt_name = 'Datatype', melt_um = 'SYS', melt_dc = '2023-12-29' WHERE melt_shortname = 'DATY';
 
 

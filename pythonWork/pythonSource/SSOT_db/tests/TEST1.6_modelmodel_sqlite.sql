@@ -1038,6 +1038,7 @@ INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc
 INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (14, 'DOCU', 'Document', 'SYS', '2023-12-29');
 INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (15, 'DGRM', 'Domaingroupmember', 'SYS', '2023-12-29');
 INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (16, 'DIAG', 'Diagram', 'SYS', '2023-12-29');
+INSERT INTO modelelem_type (melt_id, melt_shortname, melt_name, melt_uc, melt_dc) VALUES (17, 'EXPL', 'Example', 'SYS', '2023-12-29');
 
 
 create view dbversion as select '1.6' as version, datetime() as installedtime;

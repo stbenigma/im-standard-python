@@ -32,7 +32,7 @@ class IntegrationTestXMIExport(IntegrationTest):
     @pytest.mark.integration
     def test_crm_xmi(self):
         json_model, model = self.load_crm_model()
-        if json_model is None:return #no referencetestmodel found
+        if json_model is None: return #no referencetestmodel found
         entities = json_model['entities']
 
         exporter = XMIBuilder(model, 'en')
@@ -67,7 +67,7 @@ class IntegrationTestXMIExport(IntegrationTest):
     @pytest.mark.integration
     def test_crm_extended(self):
         json_model, model = self.load_crm_model()
-        if json_model is None:return #no referencetestmodel found
+        if json_model is None: return #no referencetestmodel found
         entities = json_model['entities']
 
         exporter = XMIBuilder(model, 'en')
@@ -85,8 +85,12 @@ class IntegrationTestXMIExport(IntegrationTest):
 
     def load_crm_model(self) -> (json, JSModel):
         refmodeldir = self.project_root / MODEL_REPOSITORY
+
         if not refmodeldir.exists():
             logging.warning(f"Skipping integration test due to missing resource {refmodeldir.resolve()}")
+            return None,None
+        if not os.path.isfile(refmodeldir / 'CRM/DB/IM_CRM_FYAYC.json'):
+            logging.warning(f"Skipping integration test due to missing jsonf file {refmodeldir / 'CRM/DB/IM_CRM_FYAYC.json'}")
             return None,None
         json_model = self.load_model(refmodeldir / 'CRM/DB/IM_CRM_FYAYC.json')
         model = JSModel(pmodel=json_model)
@@ -153,6 +157,7 @@ class IntegrationTestXMIExport(IntegrationTest):
     def load_model(self, model_json_file):
         self.assertTrue(os.path.isfile(model_json_file),
                         f"JSON source not found {model_json_file}")
+        json_model = None
         with open(model_json_file, 'r') as src:
             json_model = json.load(src)
         return json_model
