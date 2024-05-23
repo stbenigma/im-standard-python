@@ -14,10 +14,10 @@ class HTMLParameter(Parameter):
     DATAMODELDIREC="datamodels"
     INFRADIREC="infra"
     IMAGEDEFAULTDIREC = 'images'
+    ICONEFAULTDIREC = IMAGEDEFAULTDIREC + '/icons'
     JSSDEFAULTDIREC = 'js'
     JINJADEFAULTDIREC = 'jinjatemplates'
-    CSDEFAULTDIREC = 'css'
-    ICONEFAULTDIREC = 'icons'
+    CSSDEFAULTDIREC = 'css'
     HTML = 'html'
     ASPX = 'aspx'
 
@@ -35,10 +35,10 @@ class HTMLParameter(Parameter):
         self._webFileExtension = nvl(kwargs.get("webFileExtension"), self.HTML)
         self._imageDirec = nvl(kwargs.get("imageDirec"),
                                os.path.join(self.webDirec,self.INFRADIREC,self.IMAGEDEFAULTDIREC))
-        self._cssDirec = nvl(kwargs.get("cssDirec"),
-                             os.path.join(self.webDirec, self.INFRADIREC,self.CSDEFAULTDIREC))
         self._iconDirec = nvl(kwargs.get("iconDirec"),
-                              os.path.join(self.webDirec, self.INFRADIREC,self.ICONEFAULTDIREC))
+                              os.path.join(self.webDirec,self.INFRADIREC,self.ICONEFAULTDIREC))
+        self._cssDirec = nvl(kwargs.get("cssDirec"),
+                             os.path.join(self.webDirec, self.INFRADIREC, self.CSSDEFAULTDIREC))
         self._jsDirec = nvl(kwargs.get("jsDirec"),
                             os.path.join(self.webDirec, self.INFRADIREC,self.JSSDEFAULTDIREC))
         self._jinjaDirec = nvl(kwargs.get("jinjaDirec"),

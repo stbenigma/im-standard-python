@@ -314,13 +314,15 @@ class HTMLExport(HTMLParameter):
 
     def createlib(self):
         if not os.path.exists(self.cssDirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'css'), self.cssDirec)
+            shutil.copytree(os.path.join(self.libSourceDirec, HTMLParameter.CSSDEFAULTDIREC), self.cssDirec)
         if not os.path.exists(self.jsDirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'js'), self.jsDirec)
+            shutil.copytree(os.path.join(self.libSourceDirec, HTMLParameter.JSSDEFAULTDIREC), self.jsDirec)
         if not os.path.exists(self.imageDirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'image'), self.imageDirec)
+            shutil.copytree(os.path.join(self.libSourceDirec, HTMLParameter.IMAGEDEFAULTDIREC), self.imageDirec)
+        if not os.path.exists(self.iconDirec):
+            shutil.copytree(os.path.join(self.libSourceDirec, HTMLParameter.ICONEFAULTDIREC), self.iconDirec)
         if not os.path.exists(self.jinjaDirec):
-            shutil.copytree(os.path.join(self.libSourceDirec, 'jinjatemplates'), self.jinjaDirec)
+            shutil.copytree(os.path.join(self.libSourceDirec, HTMLParameter.JINJADEFAULTDIREC), self.jinjaDirec)
         return
 
     def copyimages(self):

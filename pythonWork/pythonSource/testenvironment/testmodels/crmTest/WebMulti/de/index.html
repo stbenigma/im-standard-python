@@ -1,0 +1,620 @@
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>crmTest</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../infra/image/imicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../infra/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../infra/js/jscode.js"></script>
+    <script src="../infra/js/IM.js"></script>
+	<script src="../infra/js/svg-pan-zoom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="../infra/images/icons/favicon/favicon-16x16.png?v=2" sizes="16x16">
+	<link rel="icon" type="image/png" href="../infra/images/icons/favicon/favicon-32x32.png?v=2" sizes="32x32">
+	<link rel="icon" type="image/png" href="../infra/images/icons/favicon/favicon-96x96.png?v=2" sizes="96x96">
+	<link rel="shortcut icon" type="image/x-icon" href="../infra/images/icons/favicon/favicon.ico?v=2">
+</head>
+
+<body>
+	<div class="header" id="TopBar">
+		<h4>foryouandyourcustomers</h4>
+		<h4>crmTest</h4>
+		<h4>2024-05-20 16:35:35.791741</h4>
+		<img src="../infra/image/logo.jpg" alt="foryouandyourcustomers" id="LLogo">
+	</div>
+	<button id="btnF" type="button" class="btn btn-info" data-toggle="modal" data-target="#MobileSearch">
+		<img class="icon-filter" alt="filter" src="../infra/images/icons/search.svg">
+	</button>
+	<div class="container" id="sidebar">
+		<div id="toc_list">
+			<div class="form-wrapper">
+				<form autocomplete="off">
+					<div class="form-group focused">
+						<label class="form-label" for="first">search key</label>
+						<input id="first" class="form-input" type="text" onkeyup="$d_Find('toc_list',this.value,'a')">
+						<img id="searchclear" alt="plus" class="icon-times" src="../infra/images/icons/cross.svg" type="display: none;">
+						<img class="icon-search" alt="minus" src="../infra/images/icons/search.svg" id="searcher">
+					</div>
+				</form>
+			</div>
+			<h3>Hits:</h3>
+			<output id="count"></output>
+			<div class="contentView">
+
+				<!--diagrams-->
+				
+				<div class="panel-body" id="DiagramL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardiag">
+							<label class="label0">Diagramme</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardiag">
+						
+					<ol class="tree" id="DiagramList">
+						
+							<li class="obj"><a href="../de/elements/diagrams/DIAG786.html" target="contentIframe">DUMMY</a>
+						
+							<li class="obj"><a href="../de/elements/diagrams/DIAG787.html" target="contentIframe">Kunde</a>
+						
+							<li class="obj"><a href="../de/elements/diagrams/DIAG788.html" target="contentIframe">Kunde mit Bilder</a>
+						
+					</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--entites-->
+				<div class="panel-body" id="EntitesL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barenti">
+							<label class="label0">Entitäten</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barenti">
+						
+						<ol class="tree" id="EntitesList">
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI102.html" target="contentIframe">Administrativgebiet</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI63.html" target="contentIframe">Adresse</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI94.html" target="contentIframe">Agent</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI64.html" target="contentIframe">Allg. Information</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI65.html" target="contentIframe">Ansprechpartner</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI66.html" target="contentIframe">Besitzer</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI67.html" target="contentIframe">Eigentümer</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI95.html" target="contentIframe">Filiale</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI96.html" target="contentIframe">Finanzierungspartner</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI97.html" target="contentIframe">Gebiet</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI68.html" target="contentIframe">Gebietssprache</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI69.html" target="contentIframe">Geografische Einheit</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI70.html" target="contentIframe">Geschäftsfähige Einheit</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI71.html" target="contentIframe">Handelseinheit</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI72.html" target="contentIframe">Haushalt</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI73.html" target="contentIframe">Händler</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI74.html" target="contentIframe">Importeur</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI75.html" target="contentIframe">Installateur</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI76.html" target="contentIframe">Interessent</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI77.html" target="contentIframe">Juristische Person</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI78.html" target="contentIframe">Kundeninformation</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI103.html" target="contentIframe">Käufer</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI79.html" target="contentIframe">Land</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI104.html" target="contentIframe">Leasingnehmer</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI80.html" target="contentIframe">Ländergruppe</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI105.html" target="contentIframe">Mieter</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI93.html" target="contentIframe">natürliche Person</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI98.html" target="contentIframe">Nutzer</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI81.html" target="contentIframe">Organisationseinheit</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI82.html" target="contentIframe">Partnerinformation</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI83.html" target="contentIframe">Personenrolle</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI99.html" target="contentIframe">PLZ-Gebiet</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI84.html" target="contentIframe">Potenzieller Interessent</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI85.html" target="contentIframe">Produktinformation</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI86.html" target="contentIframe">Produktinstanz</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI87.html" target="contentIframe">Qualifizierter Interessent</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI88.html" target="contentIframe">Servicepartner</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI89.html" target="contentIframe">Sprache</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI90.html" target="contentIframe">Standort</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI100.html" target="contentIframe">Vertriebskunde</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI101.html" target="contentIframe">Vertriebspartner</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI91.html" target="contentIframe">Vertriebsteilnehmer</a>
+							
+							<li class="obj"><a href="../de/elements/entities/ENTI92.html" target="contentIframe">Wettbewerber</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+				<!--attributes-->
+				<div class="panel-body" id="AttrsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barattr">
+							<label class="label0">Attribute</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barattr">
+						
+						<ol class="tree" id="AttrsList">
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR134.html" target="contentIframe">*Zweck (Ländergruppe)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR163.html" target="contentIframe">Administrativebene (Administrativgebiet)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR137.html" target="contentIframe">Adresstyp (Adresse)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR162.html" target="contentIframe">Anzahl Leute (Haushalt)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR155.html" target="contentIframe">Beschreibung (Personenrolle)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR154.html" target="contentIframe">Bezeichnung (Personenrolle)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR157.html" target="contentIframe">bisdat (Personenrolle)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR158.html" target="contentIframe">Dauer (Personenrolle)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR152.html" target="contentIframe">Geburtsdatum (natürliche Person)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR140.html" target="contentIframe">Gebäudename (Adresse)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR171.html" target="contentIframe">GeoInformation (Geografische Einheit)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR141.html" target="contentIframe">Geokoordinate (Adresse)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR153.html" target="contentIframe">Geschlecht (natürliche Person)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR168.html" target="contentIframe">Gesellschaftsform (Juristische Person)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR164.html" target="contentIframe">Gültigkeitsperiode (Ansprechpartner)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR139.html" target="contentIframe">Hausnr (Adresse)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR160.html" target="contentIframe">ISO-SprachLand_Code (Gebietssprache)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR149.html" target="contentIframe">ISO2-Code (Sprache)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR142.html" target="contentIframe">ISO2_Code (Land)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR150.html" target="contentIframe">ISO3-Code (Sprache)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR143.html" target="contentIframe">ISO3_Code (Land)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR145.html" target="contentIframe">ISO_Code_numerisch (Land)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR148.html" target="contentIframe">Name (Sprache)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR159.html" target="contentIframe">Name (Gebietssprache)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR161.html" target="contentIframe">Name (Organisationseinheit)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR167.html" target="contentIframe">Name (Standort)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR170.html" target="contentIframe">Name (Geografische Einheit)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR172.html" target="contentIframe">Name (Geschäftsfähige Einheit)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR144.html" target="contentIframe">NichtAnzeigen1 (Land)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR147.html" target="contentIframe">NichtAnzeigen2 (Land)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR136.html" target="contentIframe">PLZ-Ebene (PLZ-Gebiet)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR135.html" target="contentIframe">Postleitzahl (PLZ-Gebiet)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR165.html" target="contentIframe">Professionalisierungsgrad (Handelseinheit)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR166.html" target="contentIframe">Serie-Nr (Produktinstanz)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR138.html" target="contentIframe">Strassenname (Adresse)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR146.html" target="contentIframe">TopLevelDomain (Land)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR133.html" target="contentIframe">Typ (Ländergruppe)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR169.html" target="contentIframe">UID Nr (Juristische Person)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR156.html" target="contentIframe">vondat (Personenrolle)</a>
+							
+							
+							
+							<li class="obj"><a href="../de/elements/attributes/ATTR151.html" target="contentIframe">Vorname (natürliche Person)</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+
+				<!--domains-->       
+				
+				<div class="panel-body" id="DomainsL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardoma">
+							<label class="label0">Wertebereiche</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardoma">
+						
+						<ol class="tree" id="DomainList">
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA25.html" target="contentIframe">Anzahl</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA26.html" target="contentIframe">Artikel ID</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA27.html" target="contentIframe">Beschreibung</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA28.html" target="contentIframe">Boolean</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA29.html" target="contentIframe">Business Rule</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA35.html" target="contentIframe">Datum</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA57.html" target="contentIframe">email Address</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA36.html" target="contentIframe">Geschlecht</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA37.html" target="contentIframe">ISO-2-Code</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA38.html" target="contentIframe">Komponente Typ</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA39.html" target="contentIframe">Koordinate</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA42.html" target="contentIframe">Name</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA43.html" target="contentIframe">Phys. Einheit</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA44.html" target="contentIframe">Position Nr</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA45.html" target="contentIframe">Regular Expression</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA46.html" target="contentIframe">SDO_GEOMETRY</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA47.html" target="contentIframe">Stellen#</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA49.html" target="contentIframe">Surrogate key</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA50.html" target="contentIframe">Unknown</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA51.html" target="contentIframe">Version-Nr</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA52.html" target="contentIframe">X</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA53.html" target="contentIframe">XMLTYPE</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA58.html" target="contentIframe">xx</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA54.html" target="contentIframe">Zahlgranularität</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA55.html" target="contentIframe">Zeitpunkt</a>
+							
+							<li class="obj"><a href="../de/elements/domains/DOMA56.html" target="contentIframe">Zeitpunktgranularität</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--business rules-->
+				
+				<div class="panel-body" id="BurusL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barburu">
+							<label class="label0">Business Rules</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barburu">
+						
+						<ol class="tree" id="BuruList">
+							
+							<li class="obj"><a href="../de/elements/businessrules/BURU783.html" target="contentIframe">Personenrolle.BESCHREIBUNG_CHECK</a>
+							
+							<li class="obj"><a href="../de/elements/businessrules/BURU784.html" target="contentIframe">Personenrolle.DAUER_CALC</a>
+							
+							<li class="obj"><a href="../de/elements/businessrules/BURU789.html" target="contentIframe">test-BR1</a>
+							
+							<li class="obj"><a href="../de/elements/businessrules/BURU785.html" target="contentIframe">vonbis</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--Documents-->
+				
+				<div class="panel-body" id="DocusL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardocu">
+							<label class="label0">Dokumente</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardocu">
+						
+						<ol class="tree" id="DocusList">
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU13.html" target="contentIframe">Dokument online (3)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU12.html" target="contentIframe">Dok_2 (2)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU9.html" target="contentIframe">Dok_4 (6)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU11.html" target="contentIframe">ENTITY-ICONS (0)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU10.html" target="contentIframe">fyayc_BR_catalog (2)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU16.html" target="contentIframe">icon_145_channel_contract (2)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU15.html" target="contentIframe">telephone (1)</a>
+							
+							<li class="obj"><a href="../de/elements/documents/DOCU14.html" target="contentIframe">webbild (1)</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--OrgUnits-->       
+				
+				<div class="panel-body" id="OrgusL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#barorgu">
+							<label class="label0">Org. Einheiten</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="barorgu">
+						
+						<ol class="tree" id="OrguList">
+							
+							<li class="obj"><a href="../de/elements/orgunits/ORGU19.html" target="contentIframe">Marketing (6)</a>
+							
+							<li class="obj"><a href="../de/elements/orgunits/ORGU17.html" target="contentIframe">Marketing - Verkauf (2)</a>
+							
+							<li class="obj"><a href="../de/elements/orgunits/ORGU18.html" target="contentIframe">Verkauf (3)</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				<!--ActorRoles-->
+				
+
+
+				<!--datamodels-->
+				
+				<div class="panel-body" id="datmL">
+					<div class="panel">
+						<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bardatm">
+							<label class="label0">Datenmodelle</label>
+							<img class="icon-minus" alt="minus" src="../infra/images/icons/minus.svg">
+							<img class="icon-plus" alt="plus" src="../infra/images/icons/plus.svg">
+						</div>
+					</div>
+					<!-- The inside div eliminates the 'jumping' animation. -->
+					<div class="collapse" id="bardatm">
+						
+						<ol class="tree" id="DatmList">
+							
+							<li class="obj"><a href="../datamodels/CRM-Salesforce/index.html" target="contentIframe">CRM-Salesforce</a>
+							
+							<li class="obj"><a href="../datamodels/ERP-SAP3/index.html" target="contentIframe">ERP-SAP3</a>
+							
+							<li class="obj"><a href="../datamodels/MDM/index.html" target="contentIframe">MDM</a>
+							
+							<li class="obj"><a href="../datamodels/PIM-Step/index.html" target="contentIframe">PIM-Step</a>
+							
+							<li class="obj"><a href="../datamodels/TestMapping/index.html" target="contentIframe">TestMapping</a>
+							
+						</ol>
+				
+					</div>
+				</div>
+				
+
+				</div>
+			</div>
+		</div>
+
+
+    
+         <div class="wrapper">
+    		<div class="top-container">
+			
+			
+				
+				EN <a href="../en/index.html" target="_self"><img class="icon-check" alt="EN" src="../infra/images/icons/gb.png"></a>
+			
+				
+				FR <a href="../fr/index.html" target="_self"><img class="icon-check" alt="FR" src="../infra/images/icons/fr.png"></a>
+			
+            <br><button onclick=location.reload()>Diagram(s)</button>
+		</div>
+		<hr>
+             <div style="margin:2rem;position:relative;height:1000px">
+		        <iframe name="contentIframe" loading="lazy" style="position:absolute;top:0;left:0;"
+                        height="100%" width="100%"
+                        src="../de/elements/diagrams/mainview.html"></iframe>
+             </div>
+    	</div>
+    
+
+    <div class="modal" id="MobileSearch" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeM0">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeM1">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

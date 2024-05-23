@@ -62,7 +62,7 @@ class GenerateHTML(unittest.TestCase):
                                  webDirec=self.testmodel2.modeldir / 'WebMulti',
                                  singlefile=False
                                  )
-        copy_tree(os.path.join(html_export.libSourceDirec, 'image'), html_export.imageDirec)
+        copy_tree(os.path.join(html_export.libSourceDirec, 'images'), html_export.imageDirec)
         copy_tree(os.path.join(html_export.libSourceDirec, 'jinjatemplates'), html_export.jinjaDirec)
 
         js_model = JSModel.readfromfile(self.testmodel2.jsonfile)
@@ -79,7 +79,7 @@ class GenerateHTML(unittest.TestCase):
                                  webDirec=self.testmodelcrm.modeldir / 'WebMulti',
                                  singlefile=False
                                  )
-        copy_tree(os.path.join(html_export.libSourceDirec, 'image'), html_export.imageDirec)
+        copy_tree(os.path.join(html_export.libSourceDirec, 'images'), html_export.imageDirec)
         copy_tree(os.path.join(html_export.libSourceDirec, 'jinjatemplates'), html_export.jinjaDirec)
 
         js_model = JSModel.readfromfile(self.testmodelcrm.jsonfile)

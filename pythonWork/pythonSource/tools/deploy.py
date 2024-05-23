@@ -160,6 +160,7 @@ def main(basefolder: Path, argv: []):
 
     windows_runner = basefolder / 'run.bat'
     tasksfile = basefolder / 'tasks.py'
+    requirementsfile = basefolder / 'requirements.txt'
 
     confluencelocale = confluencefolder / "locale"
     confluencejinja = confluencefolder / "templates"
@@ -170,6 +171,7 @@ def main(basefolder: Path, argv: []):
             zip.write(target,  target.relative_to(target.parent.parent))
         zip.write(stamp_file, stamp_file.relative_to(stamp_file.parent))
         zip.write(tasksfile, tasksfile.relative_to(tasksfile.parent))
+        zip.write(requirementsfile, requirementsfile.relative_to(requirementsfile.parent))
         zip.write(windows_runner, windows_runner.relative_to(basefolder))
         zipdir(pythonsourcefolder, zip, basefolder)
         zipdir(confluencelocale, zip, basefolder, lambda f: not f.endswith('DS_Store'))
@@ -214,6 +216,8 @@ def accept(path: str):
     if file_path.match('**/dbstructure/sqlite/*.*'): return True
 
     if file_path.match('**/IM_WEB/html-lib/**/*.*'): return True
+    if file_path.match('**/IM_WEB/html-lib/images/icons/*.*'): return True
+    if file_path.match('**/IM_WEB/html-lib/images/icons/**/*.*'): return True
 
     if 'modelmodel_sqlite.sql' in file: return True
     if 'versions.json' in file: return True

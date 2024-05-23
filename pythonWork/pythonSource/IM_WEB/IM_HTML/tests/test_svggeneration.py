@@ -12,7 +12,7 @@ class TestSVGGeneration(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def init(self, tmp_path):
         self.temp_folder = Path(tmp_path)
-        self.debugpath = Path.home() / 'Downloadsx'
+        self.debugpath = Path.home() / 'Downloads'
         if not self.debugpath.is_dir():
             self.debugpath = self.temp_folder / 'debug'
             self.debugpath.mkdir(exist_ok=True)

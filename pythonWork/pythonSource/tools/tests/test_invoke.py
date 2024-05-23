@@ -25,6 +25,7 @@ class TestInvoke(unittest.TestCase):
         super().setUp()
         self.root = ti.resolve_project_root()
         self.testmodel = ti.ModelHelper(ti.RIDDLE)
+        self.test2model=ti.ModelHelper(ti.TESTMODEL2)
         # Ensure working directory exists
         os.chdir(Path(__file__).parent)
 
@@ -120,6 +121,7 @@ class TestInvoke(unittest.TestCase):
                         f"Expecting created database in '{json_destination}'")
         self.assertIn('riddle.json', result,
                       f"Expecting database name in output")
+        return
 
     def test_invoke_create_and_alter(self):
         tm = self.testmodel

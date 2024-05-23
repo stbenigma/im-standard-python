@@ -2,6 +2,7 @@ import json
 import os
 import tempfile
 import unittest
+from pathlib import Path
 
 from SSOT_db import createJSON
 from SSOT_db.IM_OBJECTS import BusinessRule, BusinessruleElement, Attribute, Entity, Languagetext, Relation,Language,Table,Column
@@ -19,6 +20,11 @@ class MyTestCase(unittest.TestCase):
             self.assertTrue(os.path.exists(fullpath))
             jsfile = open(fullpath)
             js = json.load(jsfile)
+            #debugpath = Path.home() / 'Downloads'
+            #if debugpath.exists():
+            #    with open(debugpath / filename, 'w') as jsonfile:
+            #        jsonfile.write(json.dumps(js, indent=3))
+            #        print(f"empty json file printed to {jsonfile.name}")
             self.assertTrue('entities' in js)
             self.assertTrue('businessrules' in js)
         return

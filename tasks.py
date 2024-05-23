@@ -6,7 +6,6 @@
 #
 
 import json
-import pathlib
 import shutil
 import tempfile
 from contextlib import closing
@@ -102,7 +101,7 @@ def package(c):
     except ValueError:
         pass
     with c.cd(PROJECT_ROOT):
-        print(f"Running custom 'deploy' task in {pathlib.Path.cwd()} for {PROJECT_ROOT}")
+        print(f"Running custom 'deploy' task in {Path.cwd()} for {PROJECT_ROOT}")
         c.package = deploy.main(basefolder=PROJECT_ROOT, argv=argv)
         print(f"Created package {c.package}")
 
@@ -156,7 +155,7 @@ def generator(c, model=None,
     if not model.is_absolute():
         abs_rel = Path(PROJECT_ROOT, model)
         if not abs_rel.is_dir():
-            cwd = pathlib.Path.cwd()
+            cwd = Path.cwd()
             model = cwd / model
         else:
             model = abs_rel
@@ -784,7 +783,9 @@ def mappingexcel(c, source,destination=None,language=None):
 
     if destination is None:
         destination = src_path.with_name(src_path.stem+"_mapping.xlsx")
-    os.makedirs(name=destination.parent,exist_ok=True)
+    else:
+        destination = Path(destination)
+    os.makedirs(name=str(destination.parent),exist_ok=True)
 
     listmapping.createAllMapping(pjsonfile=src_path,
                                 pdestination=destination,
@@ -838,12 +839,13 @@ def uploadconfluence(c, configfile,contentdir):
         c.run(command)
     return
 
-@task(help={
+@task(optional=['outputlist'],
+      help={
     'basedir': "base directory for all model specific input or output",
     'source': "ODM-dmd-file to convert",
-    'outputlist': "list of artefacts to generate, Default ['FILTER','MAPP','WEB','CONFLUENCE']"
+    'outputlist': "list of artefacts to generate, Default 'FILTER,MAPP,WEB,CONFLUENCE'"
 })
-def generator_2 (c, basedir, source,outputlist=['FILTER','MAPP','WEB','CONFLUENCE']):
+def generator_2 (c, basedir, source,outputlist='FILTER,MAPP,WEB,CONFLUENCE'):
     """
     task chain for generation all possible artefacts
     always generated:
@@ -869,12 +871,12 @@ def generator_2 (c, basedir, source,outputlist=['FILTER','MAPP','WEB','CONFLUENC
             HTML-file structure in directory <basedir>/WebGTOP
 
         CONFLUENCE:
-            if FILTER was present:
-                Confluence file structure for PUBL json in directory
-            else:
-                Confluence file structure for general json in directory
+            Confluence file structure for json (PUBL,GTOP,normal, depending on renderjson in yaml file
 
     """
+
+    outputs=outputlist.split(',')
+    print(f"===> generate outputs for DB,json and {outputs}")
 
     initialize_logging("generate_2")
     load_tools_library()
@@ -912,44 +914,66 @@ def generator_2 (c, basedir, source,outputlist=['FILTER','MAPP','WEB','CONFLUENC
     renderjson = config['renderjson']
     filterdiagrams = config['diagrams']
 
-    os.makedirs(MAPPINGDIREC, exist_ok=True)
     os.makedirs(DBDIREC, exist_ok=True)
 
-    print(f"upgradedb: upgrade DB  {DBFILE}")
+    finalmessage=[f"=====> upgradedb: upgrade DB  {DBFILE}"]
+    print(f"=====> upgradedb: upgrade DB  {DBFILE}")
     upgradedb(c,model=DBFILE)
 
-    print (f"odm2json: transfer model {source_file} to json file {ODMJSONFILE}")
+    finalmessage.append(f"=====> odm2json: transfer model {source_file} to json file {ODMJSONFILE}")
+    print (f"=====> odm2json: transfer model {source_file} to json file {ODMJSONFILE}")
     odm2json(c,source=source_file, destdir=DBDIREC)
-    print (f"mergeintodb: merge odmjsonfile  {ODMJSONFILE} into database {DBFILE}")
+
+    finalmessage.append(f"=====> mergeintodb: merge odmjsonfile  {ODMJSONFILE} into database {DBFILE}")
+    print (f"=====> mergeintodb: merge odmjsonfile  {ODMJSONFILE} into database {DBFILE}")
     mergeintodb(c,source=ODMJSONFILE, database=DBFILE)
 
-    print (f"filterjson: from {JSONFILE} create filtered jsonfile {PUBLJSONFILE}")
-    filterjson (c, source=JSONFILE, status='PUBL',diagrams=filterdiagrams['PUBL'])
-    print (f"filterjson: from {JSONFILE} create filtered jsonfile {GTOPJSONFILE}")
-    filterjson (c, source=JSONFILE, status='GTOP',diagrams=filterdiagrams['GTOP'])
+    if "FILTER" in outputs:
+        finalmessage.append(f"=====> filterjson: from {JSONFILE} create filtered jsonfile {PUBLJSONFILE}")
+        print (f"=====> filterjson: from {JSONFILE} create filtered jsonfile {PUBLJSONFILE}")
+        filterjson (c, source=JSONFILE, status='PUBL',diagrams=filterdiagrams['PUBL'])
+        finalmessage.append(f"=====> filterjson: from {JSONFILE} create filtered jsonfile {GTOPJSONFILE}")
+        print (f"=====> filterjson: from {JSONFILE} create filtered jsonfile {GTOPJSONFILE}")
+        filterjson (c, source=JSONFILE, status='GTOP',diagrams=filterdiagrams['GTOP'])
 
-    print (f"mappingexcel: {PUBLJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx')}")
-    mappingexcel (c, source=PUBLJSONFILE, destination=MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx'))
-    print (f"mappingexcel: {GTOPJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx')}")
-    mappingexcel (c, source=GTOPJSONFILE, destination=MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx'))
-    print (f"mappingexcel: {JSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_mapping.xlsx')}")
-    mappingexcel (c, source=JSONFILE, destination=MAPPINGDIREC / (modelname + '_mapping.xlsx'))
+    if "MAPP" in outputs:
+        os.makedirs(MAPPINGDIREC, exist_ok=True)
+        if "FILTER" in outputs:
+            finalmessage.append(f"=====> mappingexcel: {PUBLJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx')}")
+            print (f"=====> mappingexcel: {PUBLJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx')}")
+            mappingexcel (c, source=PUBLJSONFILE, destination=MAPPINGDIREC / (modelname + '_PUBL_mapping.xlsx'))
+            finalmessage.append(f"=====> mappingexcel: {GTOPJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx')}")
+            print (f"=====> mappingexcel: {GTOPJSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx')}")
+            mappingexcel (c, source=GTOPJSONFILE, destination=MAPPINGDIREC / (modelname + '_GTOP_mapping.xlsx'))
+        finalmessage.append(f"=====> mappingexcel: {JSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_mapping.xlsx')}")
+        print (f"=====> mappingexcel: {JSONFILE} create mapping excel {MAPPINGDIREC / (modelname + '_mapping.xlsx')}")
+        mappingexcel (c, source=JSONFILE, destination=MAPPINGDIREC / (modelname + '_mapping.xlsx'))
 
-    print (f"json2web: from {PUBLJSONFILE} create web-html in {base_path / 'WebPUBL'}")
-    json2web (c, source=PUBLJSONFILE, webdirec=base_path / 'WebPUBL', filetype='html')
-    print (f"json2web: from {GTOPJSONFILE} create web-html in {base_path / 'WebGTOP'}")
-    json2web (c, source=GTOPJSONFILE, webdirec=base_path / 'WebGTOP', filetype='html')
-    print (f"json2web: from {JSONFILE} create web-html in {base_path / 'Web'}")
-    json2web (c, source=JSONFILE, webdirec=base_path / 'Web', filetype='html')
+    if "WEB" in outputs:
+        if "FILTER" in outputs:
+            finalmessage.append(f"=====> json2web: from {PUBLJSONFILE} create web-html in {base_path / 'WebPUBL'}")
+            print (f"=====> json2web: from {PUBLJSONFILE} create web-html in {base_path / 'WebPUBL'}")
+            json2web (c, source=PUBLJSONFILE, webdirec=base_path / 'WebPUBL', filetype='html')
+            finalmessage.append(f"=====> json2web: from {GTOPJSONFILE} create web-html in {base_path / 'WebGTOP'}")
+            print (f"=====> json2web: from {GTOPJSONFILE} create web-html in {base_path / 'WebGTOP'}")
+            json2web (c, source=GTOPJSONFILE, webdirec=base_path / 'WebGTOP', filetype='html')
+        finalmessage.append(f"=====> json2web: from {JSONFILE} create web-html in {base_path / 'Web'}")
+        print (f"=====> json2web: from {JSONFILE} create web-html in {base_path / 'Web'}")
+        json2web (c, source=JSONFILE, webdirec=base_path / 'Web', filetype='html')
 
-    print (f"renderconfluence: from {YAMLSTRUCTFILE} create confluence-pages  in {base_path / 'confluence-content'}")
-    renderconfluence (c, jsonfile=PUBLJSONFILE if renderjson=='PUBL' \
-                                else GTOPJSONFILE if renderjson=='GTOP' \
-                                else JSONFILE,
-                        configfile=YAMLSTRUCTFILE)
+    if "CONFLUENCE" in outputs:
+        finalmessage.append(f"=====> renderconfluence: from {YAMLSTRUCTFILE} create confluence-pages  in {base_path / 'confluence-content'}")
+        print (f"=====> renderconfluence: from {YAMLSTRUCTFILE} create confluence-pages  in {base_path / 'confluence-content'}")
+        renderconfluence (c, jsonfile=PUBLJSONFILE if renderjson=='PUBL' \
+                                    else GTOPJSONFILE if renderjson=='GTOP' \
+                                    else JSONFILE,
+                            configfile=YAMLSTRUCTFILE)
 
-    print ("=============================================================================")
-    print ("Publish rendered model with uploadtestconfluence or uploadprodconfluence")
-    print ("=============================================================================")
+        print ("=============================================================================")
+        print ("Publish rendered model with uploadtestconfluence or uploadprodconfluence")
 
+    print("=============================================================================")
+    for m in finalmessage:
+        print (m)
+    print("=============================================================================")
     return
