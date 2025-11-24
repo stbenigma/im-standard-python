@@ -1,0 +1,73 @@
+# stibostep.yml
+
+# configuration of dataspot enhancement for Stibo-Step elements
+# author: stb
+# Version 2025-6
+#   for id and datatype in the sourcesystem, use externalreferences.yaml
+#   Stibo-Step specific attributes:
+
+DataDomain:
+  groups:
+    STEP:
+      label: Step properties
+      title: Step domains are halfway attributes. They define properties belonging to attributes in dataspot models.
+      order: 1
+
+  properties:
+  customProperties:
+    DIMENSIONREF:
+              label: Step Dimension ref
+              title: Attribute Dimension Ref ID
+              order: 20
+              baseType: STRING
+              group: STEP
+    ATTRGRPREF:
+              label: Step Attr. group ref
+              title: AttributeGroup Ref ID 
+              order: 21
+              cardinality: MANY
+              baseType: STRING
+              group: STEP
+    ATTRMAND:
+              label: Step mandatory
+              title: Attribute must have a value
+              order: 22
+              baseType: BOOLEAN
+              group: STEP
+    ATTRCALC:
+              label: Step calcualted
+              title: Attribute calculated from other attributes
+              order: 23
+              baseType: BOOLEAN
+              group: STEP
+    ATTRMULTIVALUE:
+              label: Step multivalue
+              title: a multivalued attribute can take many values of the same datatype
+              baseType: BOOLEAN
+              order: 24
+              group: STEP
+    ATTRMULTILANG:
+              label: Step mehrsprachig
+              labelEn: Step multilingual
+              title: multilingual attribute value. (derived from dimension ref:language)
+              baseType: BOOLEAN
+              order: 25
+              group: STEP
+    ATTRFULLTEXT:
+              label: Step Fulltext search
+              title: Attribute FullText
+              order: 26
+              baseType: BOOLEAN
+              group: STEP
+    ATTRDISPLSEQ:
+              label: Step display seq.
+              title: by default copied to ordinal No of asset
+              order: 27
+              baseType: INTEGER
+              group: STEP
+    PROCMODE:
+              label: Step ProductMode
+              order: 28
+              baseType: STRING
+              group: STEP
+             

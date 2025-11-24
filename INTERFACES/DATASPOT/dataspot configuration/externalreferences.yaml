@@ -1,0 +1,80 @@
+# externalreferences.yml
+
+# configuration of dataspot enhancement for externally loaded elements
+# author: stb
+# Version 2025-6
+#   Sources attributes (ID and datatype) from the origin system
+
+ReferenceObject:
+  groups:
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+    
+  customProperties:
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DATATYPE:
+      label: Source-datatype
+      title: datatype in source system
+      order: 5
+      baseType: STRING
+      group: SOURCE
+
+DataDomain:
+  groups:
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+      
+  customProperties:
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DATATYPE:
+      label: Source-datatype
+      title: datatype in source system
+      order: 5
+      baseType: STRING
+      group: SOURCE
+
+UmlAttribute:
+  groups:
+    SOURCE:
+      label: Source system attributes
+      order: 2
+
+  customProperties:      
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DATATYPE:
+      label: Source-datatype
+      title: datatype in source system
+      order: 5
+      baseType: STRING
+      group: SOURCE
+
+UmlClass:
+  groups:
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+
+  customProperties:      
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE

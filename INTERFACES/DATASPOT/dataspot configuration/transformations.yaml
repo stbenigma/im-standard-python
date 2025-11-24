@@ -1,0 +1,22 @@
+# transformations.yml
+
+# configuration of dataspot for a transformation enhancement
+# author: stb
+# version 2025-7
+#   transformation-rules
+#     trigger-condition and code of rule
+
+Rule:
+  customProperties:
+    condition:
+      label: Condition
+      title: Condition to be true to execute the rule. Placeholders $ and {} possible.
+      width: 2
+      baseType: TEXT
+      order: 1
+    code:
+      label: Code
+      title: Code, rule to execute. Placeholders $ and {} possible.
+      width: 2
+      baseType: TEXT
+      order: 2

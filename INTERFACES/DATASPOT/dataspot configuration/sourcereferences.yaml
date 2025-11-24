@@ -1,0 +1,87 @@
+# sourcereferences.yml
+
+# author: stb
+# version 2025-6
+# Extension for referenceobjects, used as Source-description
+#   Sterotypes for reference model
+#    Source (usage as a source description)
+#    Enumeration (the traditional reference object)
+#   Types of reference entry
+#      lov-value
+#      book (with ISBN)
+#      web (with URL)
+#      document (with file reference)
+
+ReferenceDataModel:
+# Referenzdatenmodell als Dokumentationsreferenz (vs. enumerations) definieren
+  properties:
+    stereotype:
+      label: Referenzmodelltyp
+      labelEn: Type of reference model
+      title: Referenztmodelle sind vom Typ Quellenverzeichnis (Standards, Vorgaben, Dokumente) oder Enumerationen (LOV, Datentyp mit vordefinierten Werten)
+      titleEn: Reference models are of the type Sources (standards, specifications, documents) or enumerations (LOV, data type with predefined values)
+      defaultValue: enumerations
+      literals:
+        documents:
+          label: Quellenverzeichnis
+          labelEn: Sources
+          icon: book
+        enumerations:
+          label: Enumeration
+          labelEn: Enumeration
+          icon: list-tree      
+          
+
+ReferenceObject:
+  customProperties:
+    aspect:
+      label: PP Aspekte
+      labelEn: PP aspects
+      cardinality: MANY
+      literals:
+        sust:
+          label: Sustainability
+        circ:
+          label: Circuilarility
+        mat:
+          label: Material
+          
+#type of referencews
+  properties:
+    stereotype:   
+      label: Elementtyp
+      labelEn: Element type
+      literals:
+        REFLIST:
+          label: Werteaufzählung
+          labelEn: ListOfValues
+          title: klassisches Element, 1 Wert aus der Liste der erlaubten Werte
+          titleEn: Classic element, 1 value from the list of permitted values
+          icon: list-tree      
+        BUCH:
+          label: Buch
+          labelEn: Book
+          customProperties:
+            ISBN:
+              label: ISBN
+              baseType: STRING
+          icon: books
+        WEB:
+          label: Webseite
+          labelEn: Website
+          customProperties:
+            URL:
+              label: URL
+              baseType: STRING
+              cardinality: MANY
+          icon: globe-pointer
+        DOC:
+          label: Dokument
+          labelEn: Document
+          customProperties:
+            FILEREF:
+              label: Filereferenz
+              labelEn: File reference
+              baseType: STRING
+              cardinality: MANY
+          icon: file

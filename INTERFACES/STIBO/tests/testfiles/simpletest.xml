@@ -1,0 +1,1564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration:
+<STEP-ProductInformation ResolveInlineRefs="true" FollowOverrideSubProducts="true">
+<UserTypes ExportSize="Minimum"/>
+<EdgeTypes/>
+<CrossReferenceTypes ExportSize="Minimum"/>
+<ListOfValuesGroupList/>
+<ListsOfValues ExportSize="Minimum"/>
+<AttributeGroupList ExportSize="Minimum"/>
+<AttributeList ExportSize="Minimum"/>
+<Entities ExportSize="Minimum">
+<Entity>
+<Name/><AttributeLink/><ClassificationCrossReference/><Entity/>
+<ProductCrossReference/><AssetCrossReference/><EntityCrossReference/><ContextCrossReference/></Entity></Entities>
+<DataContainerTypes ExportSize="Minimum"/>
+<Products ExportSize="Minimum">
+<Product>
+<Name/><AttributeLink/><DataContainerTypeLink/><ClassificationReference/><Product/>
+<ProductCrossReference/><AssetCrossReference/><EntityCrossReference/><ClassificationCrossReference/><OverrideSubProduct/></Product></Products>
+</STEP-ProductInformation>
+
+Export from PERSHER Product Root
+Effective date: 2025-09-22 13:34:03
+Classifications All
+Products "prd_persher_pph_root_1356079"
+Assets All
+
+Exported by domain exporter.
+-->
+<!-- comment: file to test concepts of stibo export. maintained manually-->
+
+<STEP-ProductInformation ExportTime="2025-09-22 13:34:04" ExportContext="Global" ContextID="Global" WorkspaceID="Main"
+                         UseContextLocale="false">
+
+    <UserTypes>
+        <UserType ID="product_usertype_root" ManuallySorted="false" AllowInDesignTemplate="false"
+                  AllowQuarkTemplate="false" IsCategory="false" ReferenceTargetLockPolicy="Relaxed"
+                  IDPattern="prd_persher_pph_root_[id]" Referenced="true">
+            <Name>Product user-type root</Name>
+            <Icon>H4s</Icon>
+        </UserType>
+        <UserType ID="product_hierarchy_root" ManuallySorted="false" AllowInDesignTemplate="false"
+                  AllowQuarkTemplate="false" IsCategory="false" ReferenceTargetLockPolicy="Relaxed"
+                  IDPattern="prd_persher_pph_root_[id]" Referenced="true">
+            <Name>Product Hierarchy Root</Name>
+            <Icon>H4s</Icon>
+            <UserTypeLink UserTypeID="product_usertype_root"/>
+        </UserType>
+        <UserType ID="missingparent_root" ManuallySorted="false" AllowInDesignTemplate="false"
+                  AllowQuarkTemplate="false" IsCategory="false" ReferenceTargetLockPolicy="Relaxed"
+                  Referenced="true">
+            <Name>MISSING PARENT root</Name>
+            <UserTypeLink UserTypeID="NONEXISTENT USERTTYPE"/>
+        </UserType>
+        <UserType ID="packaging_root" ManuallySorted="false" AllowInDesignTemplate="false"
+                  AllowQuarkTemplate="false" IsCategory="false" ReferenceTargetLockPolicy="Relaxed"
+                  Referenced="true">
+            <Name>Packaging</Name>
+            <AttributeGroupLink AttributeGroupID="Dimension"/>
+            <AttributeLink AttributeID="Gewicht"/>
+        </UserType>
+        <UserType ID="logistic_packaging" ManuallySorted="false" AllowInDesignTemplate="false"
+                  AllowQuarkTemplate="false" IsCategory="false" ReferenceTargetLockPolicy="Relaxed"
+                  Referenced="true">
+            <Name>Logistic Packaging</Name>
+            <UserTypeLink UserTypeID="packaging_root"/>
+        </UserType>
+        <UserType ID="product_packaging" ManuallySorted="false" AllowInDesignTemplate="false"
+              AllowQuarkTemplate="false" IsCategory="false" ReferenceTargetLockPolicy="Relaxed"
+              Referenced="true">
+            <Name>Product Packaging</Name>
+            <UserTypeLink UserTypeID="packaging_root"/>
+        </UserType>
+        <UserType ID="product_group" ManuallySorted="false" AllowInDesignTemplate="false" AllowQuarkTemplate="false"
+                  IsCategory="false" ReferenceTargetLockPolicy="Relaxed" IDPattern="prd_persher_dpp_product_group_[id]"
+                  Referenced="true">
+            <Name>Product Group</Name>
+            <Icon>
+                H4sIAAAAAAAA/11QsW6DMBDd8xUnd+5hn21sVyFDvWRo1wzdqkIBiQJKKOTzeyahqrr47j37vTu//WWuYWnLqSkEGQFN1dbNdOvntlqeh2shJEggA4n7bLuuEP3QVwKuX11/KUQzTeNTli3LgovG4VxnJKXM2FgcdvvxfWpW1eP5u6sKUc1VP5SlgI+uHf9zZSFeidCCQcse6qgUOp1HLtbkfqOBsXY6YR20CgmTDwyJjFQvSqI2BIQ6wchQemdBoVc514CWi2ZsgjMBWL+NQxsl5k5Zpzcy/R0VU4E7jTJxJ1KRaTYkb+BXsa7OsrU5piOS5iX4zXqVMrxr1vaU3+wiI3ufsQm2r/6N423L/8EZT9GLjANOQR92P50m9C3IAQAA
+            </Icon>
+            <UserTypeLink UserTypeID="product_hierarchy_root"/>
+        </UserType>
+        <UserType ID="product_category" ManuallySorted="false" AllowInDesignTemplate="false" AllowQuarkTemplate="false"
+                  IsCategory="false" ReferenceTargetLockPolicy="Relaxed" IDPattern="prd_persher_pph_root_[id]"
+                  Referenced="true">
+            <Name>Product category</Name>
+            <Icon>H4s</Icon>
+            <UserTypeLink UserTypeID="product_group"/>
+        </UserType>
+        <UserType ID="product_type" ManuallySorted="false" AllowInDesignTemplate="false" AllowQuarkTemplate="false"
+                  IsCategory="false" ReferenceTargetLockPolicy="Relaxed" IDPattern="prd_persher_pph_root_[id]"
+                  Referenced="true">
+            <Name>Product type</Name>
+            <Icon>H4s</Icon>
+            <UserTypeLink UserTypeID="product_category"/>
+            <AttributeLink AttributeID="AttrLOV"/>
+            <AttributeLink AttributeID="Attr1"/>
+            <AttributeLink AttributeID="Length"/>
+            <AttributeGroupLink AttributeGroupID="Dimension"/>
+        </UserType>
+        <UserType ID="product_instance" ManuallySorted="false" AllowInDesignTemplate="false" AllowQuarkTemplate="false"
+                  IsCategory="false" ReferenceTargetLockPolicy="Relaxed" IDPattern="prd_persher_pph_root_[id]"
+                  Referenced="true">
+            <Name>Product item</Name>
+            <Icon>H4s</Icon>
+            <UserTypeLink UserTypeID="product_category"/>
+        </UserType>
+        <UserType ID="product_variant" ManuallySorted="false" AllowInDesignTemplate="false" AllowQuarkTemplate="false"
+                  IsCategory="false" ReferenceTargetLockPolicy="Relaxed" IDPattern="prd_persher_pph_root_[id]"
+                  Referenced="true">
+            <Name>Product variant</Name>
+            <UserTypeLink UserTypeID="product_type"/>
+        </UserType>
+
+    </UserTypes>
+
+    <CrossReferenceTypes>
+        <EntityCrossReferenceType ID="packaging-with" Inherited="true" Accumulated="false"
+                                  Revised="true" Mandatory="false" MultiValued="true" Referenced="true">
+            <Name>Variant Packaging</Name>
+            <UserTypeLink UserTypeID="product_variant"/>
+            <UserTypeLink UserTypeID="product_type"/>
+            <TargetUserTypeLink UserTypeID="packaging_root"/>
+        </EntityCrossReferenceType>
+        <EntityCrossReferenceType ID="packaging_logistic with" Inherited="true" Accumulated="false"
+                                  Revised="true" Mandatory="false" MultiValued="true" Referenced="true">
+            <Name>logistic Packaging</Name>
+            <UserTypeLink UserTypeID="product_variant"/>
+            <UserTypeLink UserTypeID="product_type"/>
+            <TargetUserTypeLink UserTypeID="logistic_packaging"/>
+            <AttributeLink AttributeID="Attr1"/>
+            <AttributeLink AttributeID="Length"/>
+            <AttributeGroupLink AttributeGroupID="Dimension"/>
+        </EntityCrossReferenceType>
+        <EntityCrossReferenceType ID="packaging_product with" Inherited="true" Accumulated="false"
+                                  Revised="true" Mandatory="false" MultiValued="true" Referenced="true">
+            <Name>logistic Packaging</Name>
+            <UserTypeLink UserTypeID="logistic_packaging"/>
+            <UserTypeLink UserTypeID="MISSING usertype"/>
+            <TargetUserTypeLink UserTypeID="product_category"/>
+            <TargetUserTypeLink UserTypeID="product_instance"/>
+        </EntityCrossReferenceType>
+        <EntityCrossReferenceType ID="MISSING TARGET" Inherited="true" Accumulated="false"
+                                  Revised="true" Mandatory="false" MultiValued="true" Referenced="true">
+            <Name>logistic Packaging</Name>
+            <UserTypeLink UserTypeID="logistic_packaging"/>
+            <TargetUserTypeLink UserTypeID="MISSING usertype"/>
+        </EntityCrossReferenceType>
+        <EntityCrossReferenceType ID="MISSING SOURCE" Inherited="true" Accumulated="false"
+                                  Revised="true" Mandatory="false" MultiValued="true" Referenced="true">
+            <Name>logistic Packaging</Name>
+            <TargetUserTypeLink UserTypeID="logistic_packaging"/>
+            <UserTypeLink UserTypeID="MISSING usertype"/>
+            <UserTypeLink UserTypeID="MISSING usertype 2"/>
+        </EntityCrossReferenceType>
+
+    </CrossReferenceTypes>
+
+    <ListOfValuesGroupList>
+        <ListOfValuesGroup ID="List Of Values group root">
+            <Name>Lists of Values 1</Name>
+            <ListOfValuesGroup ID="lovs_1">
+                <Name>LOVGroup 1</Name>
+                <ListOfValuesGroup ID="lovs_1_1">
+                    <Name>LOVGroup 1-1</Name>
+                </ListOfValuesGroup>
+            </ListOfValuesGroup>
+            <ListOfValuesGroup ID="lovs_2">
+                <Name>LOVGroup 2</Name>
+            </ListOfValuesGroup>
+        </ListOfValuesGroup>
+    </ListOfValuesGroupList>
+    <ListsOfValues>
+        <ListOfValue ID="unit" ParentID="lovs_1" AllowUserValueAddition="false" UseValueID="true"
+                     Referenced="true">
+            <Name>Einheit</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="5" InputMask=""/>
+            <Value ID="kg">kg</Value>
+            <Value ID="m">m</Value>
+            <Value ID="lt">lt</Value>
+            <Value ID="m3">m^3</Value>
+            <Value ID="m2">quadratmeter</Value>
+            <Value ID="mm">milimeter</Value>
+            <Value ID="cm">centimeter</Value>
+        </ListOfValue>
+        <ListOfValue ID="trueFalse" ParentID="lovs_1_1" AllowUserValueAddition="false" UseValueID="true"
+                     Referenced="true">
+            <Name>true/false</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <Value ID="false">False</Value>
+            <Value ID="true">True</Value>
+        </ListOfValue>
+        <ListOfValue ID="batteryStatus" ParentID="lovs_2" AllowUserValueAddition="false"
+                     UseValueID="true" Referenced="true">
+            <Name>Battery Status</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <Value ID="4">remanufactured</Value>
+            <Value ID="3">re-used</Value>
+            <Value ID="1">original</Value>
+            <Value ID="5">waste</Value>
+            <Value ID="2">repurposed</Value>
+        </ListOfValue>
+    </ListsOfValues>
+
+    <AttributeGroupList>
+        <AttributeGroup ID="group1" ShowInWorkbench="false" ManuallySorted="false">
+            <AttributeGroup ID="group1-1" ShowInWorkbench="true" ManuallySorted="false">
+                <AttributeGroup ID="group1-1-1" ShowInWorkbench="false" ManuallySorted="false">
+                    <AttributeGroup ID="Group 2. Stufe" ShowInWorkbench="false" ManuallySorted="false"
+                                    Referenced="true"/>
+                </AttributeGroup>
+            </AttributeGroup>
+            <AttributeGroup ID="group-1-2" ShowInWorkbench="false" ManuallySorted="false" Referenced="true">
+            </AttributeGroup>
+            <AttributeGroup ID="Dimension">
+                <Name>Dimension (LxBxH)</Name>
+            </AttributeGroup>
+        </AttributeGroup>
+        <AttributeGroup ID="group2" ShowInWorkbench="true" ManuallySorted="false">
+            <Name>Gruppe 2</Name>
+        </AttributeGroup>
+    </AttributeGroupList>
+
+    <AttributeList>
+        <Attribute ID="AttrLOV" MultiValued="false" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="true" Derived="false" HierarchicalFiltering="false"
+                   ClassificationHierarchicalFiltering="false" Referenced="true" Mandatory="false">
+            <Name>Lov-Attribut TF</Name>
+            <ListOfValueLink ListOfValueID="trueFalse"/>
+            <AttributeGroupLink AttributeGroupID="group2"/>
+            <UserTypeLink UserTypeID="product_type"/>
+        </Attribute>
+
+        <Attribute ID="Attr1" MultiValued="true" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="10000" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <ListOfValueLink ListOfValueID="LOV NONEXISTANT"/>
+            <AttributeGroupLink AttributeGroupID="group-1-2"/>
+            <AttributeGroupLink AttributeGroupID="NO ATTRIBUTE GROUP"/>
+            <UserTypeLink UserTypeID="product_category"/>
+            <UserTypeLink UserTypeID="product_type"/>
+        </Attribute>
+        <Attribute ID="Gewicht" MultiValued="true" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="number" MinValue="0" MaxValue="9999.99" MaxLength="" InputMask=""/>
+        </Attribute>
+        <Attribute ID="Length" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Länge in mm</Name>
+            <Validation BaseType="number" MinValue="0" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Dimension"/>
+        </Attribute>
+        <Attribute ID="Higth" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Höhe in mm</Name>
+            <Validation BaseType="number" MinValue="0" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Dimension"/>
+        </Attribute>
+        <Attribute ID="Width" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Breite in mm</Name>
+            <Validation BaseType="number" MinValue="0" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Dimension"/>
+        </Attribute>
+    </AttributeList>
+
+<!--
+        <Attribute ID="VariantPriority" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>DisplaySequence</Name>
+            <Validation BaseType="number" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <AttributeGroupLink AttributeGroupID="agr_persdki_privilege_2"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <LinkType LinkTypeID="PA"/>
+            <LinkType LinkTypeID="CA"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_SHOPWARE_ID" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="36"
+                        InputMask="00000000-0000-0000-0000-000000000000"/>
+            <MetaData>
+                <Value AttributeID="ATTR_SHOPWARE_ID">00000000-0000-0000-0000-000000000611</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <AttributeGroupLink AttributeGroupID="ATTRG_MAPPED_RMSHOP"/>
+            <UserTypeLink UserTypeID="OBJ_BRAND"/>
+            <UserTypeLink UserTypeID="OBJ_BRAND_FOLDER"/>
+            <UserTypeLink UserTypeID="OBJ_VERKAUFSKATEGORIEN_RM24"/>
+            <UserTypeLink UserTypeID="OBJ_ART_PIM"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="OBJ_PRODUCT"/>
+            <UserTypeLink UserTypeID="OBJ_ORDNER_RMVK"/>
+            <UserTypeLink UserTypeID="OBJ_ORDNER_RM24VK"/>
+            <UserTypeLink UserTypeID="OBJ_BRAND_ROOT"/>
+            <UserTypeLink UserTypeID="OBJ_VERKAUFSKATEGORIEN_RM"/>
+            <UserTypeLink UserTypeID="OBJ_ART_PIM_DISPLAY"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_DependsOn" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced Depends On</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding ID of the
+                    Attribute that the current Attribute is depending on
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+        </Attribute>
+
+        <Attribute ID="PERSGEK_BUNDLE_QTY" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>DisplaySequence</Name>
+            <Validation BaseType="integer" MinValue="1" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <AttributeGroupLink AttributeGroupID="agr_persdki_privilege_2"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_Description" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced Description</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding the description
+                    of the ECLASS Advanced specific data model components
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationAspect"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+            <UserTypeLink UserTypeID="Unit Group"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationBlock"/>
+            <UserTypeLink UserTypeID="Unit"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_ReferenceTarget" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced Reference Target</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding the ID of the
+                    Block that this Attribute is referencing to
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="ETIM_Feature_ID" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>ETIM Feature ID</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="10" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_DataContainerLinkTypeAttribute" MultiValued="false" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="true" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>eClass Advanced Data Container Link Type Attribute</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">Determines which Attribute is used to hold the Meta Information for the
+                    Data Container Link. Is used for Level Type and Axis Type Data Containers.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_DEFAULTVALUE_Z" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Default Value for Z</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_AttributeType" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced Attribute Type</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding the Type of the
+                    property based on the ECLASS definition
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_ratedCapacity" MultiValued="false" DefaultUnitID="unece.unit.AMH"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Rated Capacity</Name>
+            <Validation BaseType="number" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.AMH"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The rated capacity is the total number of ampere-hours (Ah) that
+                    can be withdrawn from a fully charged battery under reference conditions (see BattReg Annex IV (1)).
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_minimumVoltage" MultiValued="false" DefaultUnitID="unece.unit.VLT"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Minimum Voltage</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.VLT"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The battery passport must include information on the minimal
+                    voltage, with temperature ranges when relevant.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_PropertyDomainType" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced Property Domain Type</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding the property
+                    domain type based on the ECLASS definition
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_MAPPING_IRIS_IMPCOLUMN" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="50" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping IRIS-Import-Spalte(1)</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_DISPLAYNAME" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Ausgabename</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="Reference-Type user-type root"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_temperatureRange" MultiValued="false" DefaultUnitID="unece.unit.CEL"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="true"
+                   Referenced="true" Mandatory="false">
+            <Name>Temperature Range</Name>
+            <Validation BaseType="numberrange" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.CEL"/>
+            </Validation>
+            <ValueTemplate>&lt;derive expr=&quot;Concatenate(
+                &#10; value('atr_persher_variant_lowerTemperature'),
+                &#10; ('°C - '),
+                &#10; value('atr_persher_variant_upperTemperature'), ('°C')
+                &#10;)&quot;/&gt;
+            </ValueTemplate>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The temperature range the battery can withstand when not in use.
+                    (Lower boundary temperature - upper boundary temperature in °C)
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_batteryCellProducer" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Battery Cell Producer</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The name of the cell producing company.</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="EclassPrimaryKey" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Primary Key</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding the eclass id
+                    (harmonized, but without prefix).
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationAspect"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="Unit Group"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationBlock"/>
+        </Attribute>
+
+        <Attribute ID="CompletenessScore" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+            <LinkType LinkTypeID="PA"/>
+            <LinkType LinkTypeID="CA"/>
+        </Attribute>
+
+        <Attribute ID="atr_fyycppim_MandatoryInAllSIMUSClasses" MultiValued="false" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="true" Derived="false" HierarchicalFiltering="false"
+                   ClassificationHierarchicalFiltering="false" Referenced="true" Mandatory="false">
+            <Name>FYYCPIM Mandatory in All SIMUS Classes</Name>
+            <ListOfValueLink ListOfValueID="YesNo_fyycpim"/>
+            <AttributeGroupLink AttributeGroupID="agr_fyycpim_meta_attributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_cellAmount" MultiValued="false" ProductMode="Normal" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Amount of cells per battery</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The number of individual cells in a battery pack (can be skipped
+                    for virtual batteries).
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_DEFAULTVALUE_R" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Default Value for R</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_hybSource" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Hybris Source Reference</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="1500" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="agr_ArticleArticle_ref"/>
+            <UserTypeLink UserTypeID="obj_asset_CAD"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_site"/>
+            <UserTypeLink UserTypeID="obj_prd_productCategory"/>
+            <UserTypeLink UserTypeID="obj_prd_Logo"/>
+            <UserTypeLink UserTypeID="product_usertype_root"/>
+            <UserTypeLink UserTypeID="obj_asset_logo"/>
+            <UserTypeLink UserTypeID="obj_asset_pictogram"/>
+            <UserTypeLink UserTypeID="obj_prd_article"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedNone"/>
+            <UserTypeLink UserTypeID="obj_asset_catImage"/>
+            <UserTypeLink UserTypeID="obj_asset_document"/>
+            <UserTypeLink UserTypeID="obj_prd_Picto"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedPartial"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedFull"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+            <UserTypeLink UserTypeID="obj_asset_image"/>
+            <UserTypeLink UserTypeID="obj_cls_main_level"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_root"/>
+            <UserTypeLink UserTypeID="Configuration"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="ownProductHierarchy"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetRoot"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <UserTypeLink UserTypeID="ProductBrandLibraryRoot"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetLevel"/>
+            <UserTypeLink UserTypeID="AssetRoot"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_level"/>
+            <UserTypeLink UserTypeID="obj_cls_main_root"/>
+            <UserTypeLink UserTypeID="PictogramLibraryRoot"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="obj_asset_image_bw"/>
+            <UserTypeLink UserTypeID="obj_prd_LogoStructure"/>
+            <UserTypeLink UserTypeID="obj_prd_PictoStructure"/>
+            <UserTypeLink UserTypeID="obj_asset_ApplicationIllustration"/>
+            <UserTypeLink UserTypeID="obj_prd_product"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_lowerTemperature" MultiValued="false" DefaultUnitID="unece.unit.CEL"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Lower Boundary Temperature</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.CEL"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The temperature refers to the lower boundary of the surrounding
+                    temperature range.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_totalEnergy" MultiValued="false" DefaultUnitID="unece.unit.KWH"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Total Energy</Name>
+            <Validation BaseType="number" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.KWH"/>
+            </Validation>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_LIITDCC_IE_Description" MultiValued="true" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="10000" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <AttributeGroupLink AttributeGroupID="atg_LIITDCC_IE_Meta"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="Operator user-type root"/>
+            <UserTypeLink UserTypeID="Group user-type root"/>
+            <UserTypeLink UserTypeID="cls_LIITDCC_HierarchyDomain"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_upperTemperature" MultiValued="false" DefaultUnitID="unece.unit.CEL"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Upper Boundary Temperature</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.CEL"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The temperature refers to the upper boundary of the surrounding
+                    temperature range.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="EclassID" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eCl@ss ID</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationAspect"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="Unit Group"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationBlock"/>
+        </Attribute>
+
+        <Attribute ID="ValidationErrorMessage" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Validation Error Message</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="400" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_weight" MultiValued="false" DefaultUnitID="unece.unit.KGM"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Weight</Name>
+            <Validation BaseType="number" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.KGM"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The physical weight (mass) of a battery in kg.</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_ane_met" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Display name Alex</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="agr_persane_metadata"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_MAPPING_IPIM" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="50" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping IRIS-DB-Datentyp</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_DisplaySequence" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>DisplaySequence (Default)</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="atg_persume"/>
+            <AttributeGroupLink AttributeGroupID="agr_exv_ecom_generic"/>
+            <AttributeGroupLink AttributeGroupID="agr_exv_print_inbt_generic"/>
+            <AttributeGroupLink AttributeGroupID="agr_ArticleArticle_ref"/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <UserTypeLink UserTypeID="obj_cls_main_level"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_root"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_site"/>
+            <UserTypeLink UserTypeID="obj_cls_main_root"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_level"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <LinkType LinkTypeID="PA"/>
+            <LinkType LinkTypeID="CA"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_batteryCellType" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Battery Cell Type</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The battery cell type indicates the physical format of the
+                    battery cell.
+                    Common types include cylindrical, prismatic, pouch, blade, or other.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="AttributeHelpText" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>AttributeHelpText</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="500" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <UserTypeLink UserTypeID="obj_cls_main_level"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_root"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_site"/>
+            <UserTypeLink UserTypeID="obj_cls_main_root"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_level"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_cls_customer_assortment"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_INTERN" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping Int-Name</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="Completeness Score" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <UserTypeLink UserTypeID="Reference-Type user-type root"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="CP-Link-Type user-type root"/>
+            <LinkType LinkTypeID="PA"/>
+            <LinkType LinkTypeID="CA"/>
+        </Attribute>
+
+        <Attribute ID="atr_fyycppim_validInSimusClass" MultiValued="true" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>FYYCPIM Valid in SIMUS Class</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="agr_fyycpim_meta_attributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <UserTypeLink UserTypeID="obj_fyycpim_article"/>
+        </Attribute>
+
+        <Attribute ID="ETIM_ID" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>ETIM ID</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="10" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Classification Type"/>
+            <UserTypeLink UserTypeID="Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Classification Type"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Group Type"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_CONDITIONATTRIBUTE" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="condition" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="ATTRG_SIDEATTRIBUTES"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <LinkType LinkTypeID="PA"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_MAPPING_IRIS_IMPDESCRICTION" MultiValued="false" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="200" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping IRIS-Import-Bezeichnung</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="ETIM_Description" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>ETIM Description</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="80" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Classification Type"/>
+            <UserTypeLink UserTypeID="Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Classification Type"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Group Type"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_batteryChemistry" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Battery Chemistry</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The battery passport must contain information on the battery
+                    chemistry of the battery.
+                    The battery chemistry must also be provided on the battery label.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_ART_DQ_SAP_READY" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="Futter_Category"/>
+            <UserTypeLink UserTypeID="Futter_Empfehlung"/>
+            <UserTypeLink UserTypeID="ENT_ROOT"/>
+            <UserTypeLink UserTypeID="ENT_CHANNEL"/>
+            <UserTypeLink UserTypeID="PROD_LISTING_OBJECT"/>
+            <UserTypeLink UserTypeID="OBJ_ART_VEP"/>
+            <UserTypeLink UserTypeID="Futter_Root"/>
+            <UserTypeLink UserTypeID="ENT_CHANNELS"/>
+            <UserTypeLink UserTypeID="OBJ_ART_PIM"/>
+            <UserTypeLink UserTypeID="PROD_LISTING_ROOT"/>
+            <UserTypeLink UserTypeID="Reference-Type user-type root"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+            <LinkType LinkTypeID="PA"/>
+            <LinkType LinkTypeID="CA"/>
+        </Attribute>
+
+        <Attribute ID="Purpose" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="255" InputMask=""/>
+            <DimensionLink DimensionID="Language"/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Verwendungszweck</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_MAINTANANCE_CM"/>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="ATTRG_MAINTANANCE_DP"/>
+            <UserTypeLink UserTypeID="Real qualifier"/>
+            <UserTypeLink UserTypeID="AutoClassificationRuleSetsRoot"/>
+            <UserTypeLink UserTypeID="VideoRoot"/>
+            <UserTypeLink UserTypeID="SmartSheetConfigurationsRoot"/>
+            <UserTypeLink UserTypeID="Context qualifier"/>
+            <UserTypeLink UserTypeID="ExportConfigurationsLevel2"/>
+            <UserTypeLink UserTypeID="Group user-type root"/>
+            <UserTypeLink UserTypeID="OBJ_EBENE"/>
+            <UserTypeLink UserTypeID="OBJ_PRODUCT_FAMILY"/>
+            <UserTypeLink UserTypeID="OBJ_ART_PIM"/>
+            <UserTypeLink UserTypeID="AssetPushConfigurationsRoot"/>
+            <UserTypeLink UserTypeID="ImportConfigurationsLevel1"/>
+            <UserTypeLink UserTypeID="Reference-Type user-type root"/>
+            <UserTypeLink UserTypeID="ImportConfigurationsRoot"/>
+            <UserTypeLink UserTypeID="PortalConfigurationsRoot"/>
+            <UserTypeLink UserTypeID="OBJ_PRODUCT"/>
+            <UserTypeLink UserTypeID="CP-Link-Type user-type root"/>
+            <UserTypeLink UserTypeID="ImportConfigurationsLevel2"/>
+            <UserTypeLink UserTypeID="List Of Values group type"/>
+            <UserTypeLink UserTypeID="ExportConfigurationsLevel1"/>
+            <UserTypeLink UserTypeID="PortalConfigurationsLevel1"/>
+            <UserTypeLink UserTypeID="OBJ_ART_PIM_DISPLAY"/>
+            <UserTypeLink UserTypeID="ExportConfigurationsRoot"/>
+            <UserTypeLink UserTypeID="IllustrationRoot"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="AssetLevel1"/>
+            <UserTypeLink UserTypeID="AssetLevel2"/>
+            <UserTypeLink UserTypeID="LogoRoot"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <UserTypeLink UserTypeID="IconRoot"/>
+            <UserTypeLink UserTypeID="ProductImageRoot"/>
+            <UserTypeLink UserTypeID="OwnersManualRoot"/>
+            <UserTypeLink UserTypeID="InstallationManualRoot"/>
+            <UserTypeLink UserTypeID="MSDSRoot"/>
+            <UserTypeLink UserTypeID="AssetRoot"/>
+            <UserTypeLink UserTypeID="ConfigurationsRoot"/>
+            <UserTypeLink UserTypeID="BusinessRulesDownloadsRoot"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_evOem" MultiValued="false" ProductMode="Normal" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>EV OEM</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The name of the OEM company, which placed a particular battery
+                    into the EV
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_MAPPING_IRIS_TABPAGE_FIELDNAME" MultiValued="false" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping IRIS-Tabpage/Feldname</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_manufacturingDate" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Manufacturing Date</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The actual date of battery manufacturing.
+                    It must consist of the month and year of the date of manufacture (month and year).
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodVariant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_batteryProducer" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Battery Producer</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The name of the battery pack producing company.</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_ingrPercentage" MultiValued="false" DefaultUnitID="unece.unit.P1"
+                   ProductMode="Property" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Ingredients Percentage</Name>
+            <Validation BaseType="number" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.P1"/>
+            </Validation>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prod_ref"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_expectedLifetime" MultiValued="false" DefaultUnitID="count_in_cycles"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Expected Lifetime</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="count_in_cycles"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The battery passport must include information about the expected
+                    battery lifetime expressed in cycles, and reference test used, except for non-cycle applications.
+                    The reference test must consider reference conditions for which the battery has been designed.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_IRDI" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced IRDI</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created meta data attribute holding the ECLASS
+                    IRDI.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationAspect"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="DataContainerType user-type root"/>
+            <UserTypeLink UserTypeID="eClassAdv_ClassificationBlock"/>
+            <UserTypeLink UserTypeID="Unit"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_energyDensity" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="true" Referenced="true"
+                   Mandatory="false">
+            <Name>Energy Density</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <ValueTemplate>&lt;derive expr=&quot;round(value('atr_persher_variant_totalEnergy') * 1000 /
+                value('atr_persher_variant_weight'), 2)&quot;/&gt;
+            </ValueTemplate>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_DEFAULTVALUE_A" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Default Value for A</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_fyycpfp_meta_external_id" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>External Attribute ID</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="atg_fyycpfp_meta"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_batteryStatus" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" HierarchicalFiltering="false"
+                   ClassificationHierarchicalFiltering="false" Referenced="true" Mandatory="false">
+            <Name>Battery Status</Name>
+            <ListOfValueLink ListOfValueID="lov_persher_batteryStatus"/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The status of the battery. It must be defined as ‘original’,
+                    ‘repurposed’, ‘re-used’, ‘remanufactured’ or ‘waste’.
+                    A new battery passport must be issued when a battery was subject to remanufacturing, repurpose or
+                    one of the treatment operations preparing for re-use and preparing for repurpose and is placed on
+                    the market again.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodVariant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+        </Attribute>
+
+        <Attribute ID="atr_hybPK" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Hybris Primary Key</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="1000" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="atg_Links"/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="agr_ArticleArticle_ref"/>
+            <UserTypeLink UserTypeID="obj_asset_CAD"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_site"/>
+            <UserTypeLink UserTypeID="obj_prd_productCategory"/>
+            <UserTypeLink UserTypeID="obj_prd_Logo"/>
+            <UserTypeLink UserTypeID="product_usertype_root"/>
+            <UserTypeLink UserTypeID="obj_asset_logo"/>
+            <UserTypeLink UserTypeID="obj_asset_pictogram"/>
+            <UserTypeLink UserTypeID="obj_prd_article"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedNone"/>
+            <UserTypeLink UserTypeID="obj_asset_catImage"/>
+            <UserTypeLink UserTypeID="obj_asset_document"/>
+            <UserTypeLink UserTypeID="obj_prd_Picto"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedPartial"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedFull"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+            <UserTypeLink UserTypeID="obj_asset_image"/>
+            <UserTypeLink UserTypeID="obj_cls_main_level"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_root"/>
+            <UserTypeLink UserTypeID="Configuration"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="ownProductHierarchy"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_prd_Link"/>
+            <UserTypeLink UserTypeID="obj_cls_customer_assortment"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetRoot"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <UserTypeLink UserTypeID="ProductBrandLibraryRoot"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetLevel"/>
+            <UserTypeLink UserTypeID="AssetRoot"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_level"/>
+            <UserTypeLink UserTypeID="obj_cls_main_root"/>
+            <UserTypeLink UserTypeID="PictogramLibraryRoot"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="obj_asset_image_bw"/>
+            <UserTypeLink UserTypeID="obj_prd_LogoStructure"/>
+            <UserTypeLink UserTypeID="obj_prd_PictoStructure"/>
+            <UserTypeLink UserTypeID="obj_asset_ApplicationIllustration"/>
+            <UserTypeLink UserTypeID="obj_prd_product"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_nominalVoltage" MultiValued="false" DefaultUnitID="unece.unit.VLT"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Nominal Voltage</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.VLT"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The battery passport must include information about the nominal
+                    voltage, with temperature ranges when relevant.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="eClassAdv_DCAttributeOrder" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="true" Derived="false" Referenced="true" Mandatory="false">
+            <Name>eClass Advanced Data Container Attribute Order</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="Purpose">This is a Stibo Systems created Meta Data determine the order of the
+                    attribute how it is shown in the WebUI within the Data Container (Level Type and Axis Type)
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="eClassAdv_MetaAttributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_serialNumber" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Serial Number</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">A physical number on a particular battery limited to the first 20
+                    symbols only.
+                    It can be skipped when passport is generated for a batch of batteries or for a virtual battery.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodVariant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+        </Attribute>
+
+        <Attribute ID="ETIM_Abbreviation" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>ETIM Abbreviation</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Classification Type"/>
+            <UserTypeLink UserTypeID="Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Classification Type"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Group Type"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Group Type"/>
+        </Attribute>
+
+        <Attribute ID="atr_hybMigMsg" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Hybris Migration Message</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="20000" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="agr_ArticleArticle_ref"/>
+            <UserTypeLink UserTypeID="obj_asset_CAD"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_site"/>
+            <UserTypeLink UserTypeID="obj_prd_productCategory"/>
+            <UserTypeLink UserTypeID="obj_prd_Logo"/>
+            <UserTypeLink UserTypeID="product_usertype_root"/>
+            <UserTypeLink UserTypeID="obj_asset_logo"/>
+            <UserTypeLink UserTypeID="obj_asset_pictogram"/>
+            <UserTypeLink UserTypeID="obj_prd_article"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedNone"/>
+            <UserTypeLink UserTypeID="obj_asset_catImage"/>
+            <UserTypeLink UserTypeID="obj_asset_document"/>
+            <UserTypeLink UserTypeID="obj_prd_Picto"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedPartial"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedFull"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+            <UserTypeLink UserTypeID="obj_asset_image"/>
+            <UserTypeLink UserTypeID="obj_cls_main_level"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_root"/>
+            <UserTypeLink UserTypeID="Configuration"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="ownProductHierarchy"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_cls_customer_assortment"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetRoot"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <UserTypeLink UserTypeID="ProductBrandLibraryRoot"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetLevel"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_level"/>
+            <UserTypeLink UserTypeID="obj_cls_main_root"/>
+            <UserTypeLink UserTypeID="PictogramLibraryRoot"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="obj_asset_image_bw"/>
+            <UserTypeLink UserTypeID="obj_prd_LogoStructure"/>
+            <UserTypeLink UserTypeID="obj_prd_PictoStructure"/>
+            <UserTypeLink UserTypeID="obj_asset_ApplicationIllustration"/>
+            <UserTypeLink UserTypeID="obj_prd_product"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_batteryModel" MultiValued="false" ProductMode="Normal"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>Battery Model</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">A simple description of the battery model.</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_hybTableName" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>Hybris Table Name</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="1500" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="atg_Links"/>
+            <AttributeGroupLink AttributeGroupID="Metadata"/>
+            <AttributeGroupLink AttributeGroupID="agr_ArticleArticle_ref"/>
+            <UserTypeLink UserTypeID="obj_asset_CAD"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_site"/>
+            <UserTypeLink UserTypeID="obj_prd_productCategory"/>
+            <UserTypeLink UserTypeID="obj_prd_Logo"/>
+            <UserTypeLink UserTypeID="product_usertype_root"/>
+            <UserTypeLink UserTypeID="obj_asset_logo"/>
+            <UserTypeLink UserTypeID="obj_asset_pictogram"/>
+            <UserTypeLink UserTypeID="obj_prd_article"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedNone"/>
+            <UserTypeLink UserTypeID="obj_asset_catImage"/>
+            <UserTypeLink UserTypeID="obj_asset_document"/>
+            <UserTypeLink UserTypeID="obj_prd_Picto"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedPartial"/>
+            <UserTypeLink UserTypeID="obj_asset_DrawingDimensionedFull"/>
+            <UserTypeLink UserTypeID="obj_cls_main_entity"/>
+            <UserTypeLink UserTypeID="obj_asset_image"/>
+            <UserTypeLink UserTypeID="obj_cls_main_level"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_root"/>
+            <UserTypeLink UserTypeID="Configuration"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+            <UserTypeLink UserTypeID="ownProductHierarchy"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_prd_Link"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetRoot"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <UserTypeLink UserTypeID="ProductBrandLibraryRoot"/>
+            <UserTypeLink UserTypeID="obj_ast_ownAssetLevel"/>
+            <UserTypeLink UserTypeID="AssetRoot"/>
+            <UserTypeLink UserTypeID="obj_cls_shop_level"/>
+            <UserTypeLink UserTypeID="obj_cls_main_root"/>
+            <UserTypeLink UserTypeID="PictogramLibraryRoot"/>
+            <UserTypeLink UserTypeID="Unit"/>
+            <UserTypeLink UserTypeID="obj_asset_image_bw"/>
+            <UserTypeLink UserTypeID="obj_prd_LogoStructure"/>
+            <UserTypeLink UserTypeID="obj_prd_PictoStructure"/>
+            <UserTypeLink UserTypeID="obj_asset_ApplicationIllustration"/>
+            <UserTypeLink UserTypeID="obj_prd_product"/>
+        </Attribute>
+
+        <Attribute ID="ETIM_Change_Code" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>ETIM Change Code</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="80" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="ETIM_Metadata_Attributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="ETIM9-D Article Classification Type"/>
+            <UserTypeLink UserTypeID="Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM7 Article Classification Type"/>
+            <UserTypeLink UserTypeID="ETIM8 Article Classification Type"/>
+            <UserTypeLink UserTypeID="Unit"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_RAMOS_TYPE" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping Ramos Feldtyp</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="atr_displaySequenceForPicker" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Name>DisplaySequence (Default)</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="atg_persume"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="stibo.grouping attribute"/>
+            <LinkType LinkTypeID="PA"/>
+            <LinkType LinkTypeID="CA"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_ingrIsRelevantForPass" MultiValued="false" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="true" Derived="false" HierarchicalFiltering="false"
+                   ClassificationHierarchicalFiltering="false" Referenced="true" Mandatory="false">
+            <Name>Ingredient is relevant for Passport</Name>
+            <ListOfValueLink ListOfValueID="lov_persher_trueFalse"/>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prod_ref"/>
+        </Attribute>
+
+        <Attribute ID="atr_persher_variant_maximumVoltage" MultiValued="false" DefaultUnitID="unece.unit.VLT"
+                   ProductMode="Normal" FullTextIndexed="false" ExternallyMaintained="false" Derived="false"
+                   Referenced="true" Mandatory="false">
+            <Name>Maximum Voltage</Name>
+            <Validation BaseType="integer" MinValue="" MaxValue="" MaxLength="" InputMask="">
+                <UnitLink UnitID="unece.unit.VLT"/>
+            </Validation>
+            <MetaData>
+                <Value AttributeID="AttributeHelpText">The battery passport must include information about the maximum
+                    voltage, with temperature ranges when relevant.
+                </Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="atg_persher_dpp_demo_prodType"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_passport"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_variant"/>
+            <UserTypeLink UserTypeID="obj_persher_dpp_product_type"/>
+        </Attribute>
+
+        <Attribute ID="atr_fyycppim_MandatoryInSIMUSClasses" MultiValued="true" ProductMode="Property"
+                   FullTextIndexed="false" ExternallyMaintained="false" Derived="false" Referenced="true"
+                   Mandatory="false">
+            <Name>FYYCPIM Mandatory in SIMUS Classes</Name>
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <AttributeGroupLink AttributeGroupID="agr_fyycpim_meta_attributes"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="obj_fyycpim_article"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_RAMOS_FIELD_LENGTH" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_RAMOS_FIELD_LENGTH">5</Value>
+                <Value AttributeID="ATTR_DISPLAYNAME">Ausgabename</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="Reference-Type user-type root"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_DEFAULTVALUE_K" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="100" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Default Value for K</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_RAMOS" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping Alias-Name</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLink UserTypeID="stibo.normalattribute"/>
+        </Attribute>
+
+        <Attribute ID="ATTR_IRIS" MultiValued="false" ProductMode="Property" FullTextIndexed="false"
+                   ExternallyMaintained="false" Derived="false" Referenced="true" Mandatory="false">
+            <Validation BaseType="text" MinValue="" MaxValue="" MaxLength="" InputMask=""/>
+            <MetaData>
+                <Value AttributeID="ATTR_DISPLAYNAME">Mapping IRIS-DB-Tabelle.Spalte</Value>
+            </MetaData>
+            <AttributeGroupLink AttributeGroupID="ATTRG_METADATA"/>
+            <UserTypeLin
+            +7k UserTypeID="stibo.normalattribute"/>
+            <UserTypeLink UserTypeID="Domain user-type root"/>
+        </Attribute>
+
+-->
+<!--
+    <Qualifiers>
+        <Qualifier ID="Qualifier root">
+            <DimensionPointLink DimensionPointID="Qualifier root"/>
+            <Context ID="US_en-US" Priority="4"/>
+        </Qualifier>
+        <Qualifier ID="en-US">
+            <DimensionPointLink DimensionPointID="en-US"/>
+            <Context ID="US_en-US" Priority="1"/>
+        </Qualifier>
+        <Qualifier ID="AllCountries">
+            <DimensionPointLink DimensionPointID="AllCountries"/>
+            <Context ID="US_en-US" Priority="6"/>
+        </Qualifier>
+        <Qualifier ID="std.lang.all">
+            <DimensionPointLink DimensionPointID="std.lang.all"/>
+            <Context ID="US_en-US" Priority="3"/>
+        </Qualifier>
+        <Qualifier ID="US">
+            <DimensionPointLink DimensionPointID="US"/>
+            <Context ID="US_en-US" Priority="5"/>
+        </Qualifier>
+        <Qualifier ID="AND 28369386">
+            <DimensionPointLink DimensionPointID="AllCountries"/>
+            <DimensionPointLink DimensionPointID="std.lang.all"/>
+            <Context ID="US_en-US" Priority="2"/>
+        </Qualifier>
+    </Qualifiers>
+-->
+<!--
+    <Products>
+        <Product ID="Product hierarchy root" UserTypeID="product_usertype_root" Selected="false">
+            <Name>Primary Product Hierarchy</Name>
+            <Product ID="X52_prd_root_101101" UserTypeID="X52_obj_root" Selected="false">
+                <Name>Bosch BT Product Structures</Name>
+                <Product ID="X52_prd_pb_root_101105" UserTypeID="X52_obj_pb_root" Selected="false">
+                    <Name>01 BT Product Hierarchy</Name>
+                    <ClassificationReference ClassificationID="X52_cls_pricelist_l1_295206"
+                                             Type="X52_ref_pbCTN2PricelistRSO"/>
+                    <MetaData>
+                        <Value AttributeID="X52_agr_usv_ref_rso_removed">0</Value>
+                        <Value AttributeID="X52_atr_usv_ref_rso_deleted">0</Value>
+                    </MetaData>
+                </Product>
+                <Product ID="X52_prd_pb_prod_mat_790543" UserTypeID="X52_obj_pb_mat">
+                    <Name>F.01U.379.283</Name>
+                    <ProductCrossReference ProductID="X52_prd_sap_matnr_379847" Type="X52_ref_pbMAT2sapMATNR"/>
+                    <ProductCrossReference ProductID="X52_prd_pb_prod_mat_1809403"
+                                           Type="X52_ref_pbMAT2pbMATNR_productBundle">
+                        <MetaData>
+                            <Value AttributeID="X52_atr_ib_ref_sap_componentQuantValue">20.200</Value>
+                            <Value AttributeID="X52_atr_ib_ref_sap_ComponentQuantFix">0</Value>
+                            <Value AttributeID="X52_atr_ib_ref_sap_ComponentQuantUom">MIN</Value>
+                            <Value AttributeID="X52_atr_ib_ref_sap_componentName" Derived="true"
+                                   DerivedContextID="US_en-US">Commissioning Video
+                            </Value>
+                        </MetaData>
+                    </ProductCrossReference>
+                    <EntityCrossReference EntityID="X52_ent_sap_vkorg_101936" Type="X52_ref_marketingMatnr2vkorg">
+                        <MetaData>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_status">S5</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_shipmax">00000</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_herkl">PT</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_stawn">8525894000</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_stockqnt">0.0</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_yywtyper">00060</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_aumng">1</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_scmng">1.0</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_alnum">EAR99</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_plifz">64</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_shipmin">00000</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_lfmng">1</Value>
+                            <Value AttributeID="X52_atr_sap_ref_yycomtype2vkorg_yyabcind">A</Value>
+                        </MetaData>
+
+                    </EntityCrossReference>
+                    <DataContainers>
+
+                        <MultiDataContainer Type="X52_dcn_mat_logistic"/>
+                        <DataContainer ID="X52_dcn_mat_logistic_55771278">
+                            <Values>
+                                <Value AttributeID="X52_atr_mat_log_deliveryUnit">1.0</Value>
+                                <Value AttributeID="X52_atr_mat_log_abcIndicator">A</Value>
+                                <Value AttributeID="X52_atr_mat_log_dualUse">EAR99</Value>
+                                <Value AttributeID="X52_atr_mat_log_entry_origin" ID="PC4">PC4</Value>
+                                <Value AttributeID="X52_atr_mat_log_dispatchTimeAvgMin">00000</Value>
+                                <Value AttributeID="X52_atr_mat_log_entry_sorg" ID="45B9">Mexico (45B9)</Value>
+                                <Value AttributeID="X52_atr_mat_log_countryOfOrigin">PT</Value>
+                                <Value AttributeID="X52_atr_mat_log_commodityCode">8525899904</Value>
+                                <Value AttributeID="X52_atr_mat_log_minOrderQuantity">1</Value>
+                                <Value AttributeID="X52_atr_mat_log_multiPackQuantity">1</Value>
+                                <Value AttributeID="X52_atr_mat_log_entry_updated">2025-05-16 07:26:13</Value>
+                                <Value AttributeID="X52_atr_mat_log_discountCategory">1A</Value>
+                                <Value AttributeID="X52_atr_mat_log_deliveryTime">29</Value>
+                                <Value AttributeID="X52_atr_mat_log_dispatchTimeAvgMax">00000</Value>
+                                <Value AttributeID="X52_atr_mat_log_availabilityStatus">S5</Value>
+                                <Value AttributeID="X52_atr_mat_log_stockQuantity">0.0</Value>
+                                <Value AttributeID="X52_atr_mat_log_warrantyPeriod">00060</Value>
+                            </Values>
+                        </DataContainer>
+
+
+                    </DataContainers>
+                </Product>
+            </Product>
+        </Product>
+    </Products>
+-->
+</STEP-ProductInformation>

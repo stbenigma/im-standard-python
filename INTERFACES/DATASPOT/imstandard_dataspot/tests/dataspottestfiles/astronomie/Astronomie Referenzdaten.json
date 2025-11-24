@@ -1,0 +1,901 @@
+[ {
+  "_type" : "Collection",
+  "id" : "6b00b706-abc1-4063-a8ad-829d49c20062",
+  "href" : "/web/foryouandyourcustomers/collections/6b00b706-abc1-4063-a8ad-829d49c20062",
+  "label" : "Astronomische Referenzwerte",
+  "description" : "Referenzwerte (List of values) für astonomische Attribute",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750170593748,
+  "Description:en" : "Reference values (list of values) for astronomical attributes",
+  "Label:en" : "Astronomical reference values"
+}, {
+  "_type" : "Collection",
+  "id" : "6531d521-313b-4adf-b891-6945b623f070",
+  "href" : "/web/foryouandyourcustomers/collections/6531d521-313b-4adf-b891-6945b623f070",
+  "label" : "Standard Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340580235
+}, {
+  "_type" : "ReferenceObject",
+  "id" : "03315db9-6cdd-47fc-b479-2eb9cd62a569",
+  "href" : "/web/foryouandyourcustomers/enumerations/03315db9-6cdd-47fc-b479-2eb9cd62a569",
+  "label" : "Leuchtklasse",
+  "description" : "Leuchtkraftklassen (Helligkeitstypen) \nI\tÜberriesen\tBetelgeuse (M1I)\nII\tHelle Riesen\t\nIII\tRiesen\tAldebaran (K5III)\nIV\tUnterriesen\t\nV\tHauptreihe (normale Sterne)\tSonne (G2V)\nVI\tUnterzwerge\t\nD\tWeiße Zwerge\tSirius B",
+  "examples" : [ "I", "V", "D" ],
+  "inCollection" : "Astronomische Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171693326,
+  "Description:en" : "Luminosity classes (brightness types)\nI Supergiant Betelgeuse (M1I)\nII Bright giants\nIII Giants Aldebaran (K5III)\nIV Subgiants\nV Main sequence (normal stars) Sun (G2V)\nVI Subdwarfs\nD White dwarfs Sirius B",
+  "Label:en" : "Luminosity class"
+}, {
+  "_type" : "ReferenceObject",
+  "id" : "c2d10bd2-da5d-462e-a1a5-181ddda446e8",
+  "href" : "/web/foryouandyourcustomers/enumerations/c2d10bd2-da5d-462e-a1a5-181ddda446e8",
+  "label" : "Oberflächenbeschaffenheit",
+  "description" : "Beschaffenheit der Oberläche eines Planeten.\nFest, Gas, Eis",
+  "inCollection" : "Astronomische Referenzwerte",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750335538871,
+  "Description:en" : "Nature of the surface of a planet.\nSolid, gas, ice",
+  "Label:en" : "Surface composition"
+}, {
+  "_type" : "ReferenceObject",
+  "id" : "b0b7d965-4535-49e2-a739-2bacdb791d74",
+  "href" : "/web/foryouandyourcustomers/enumerations/b0b7d965-4535-49e2-a739-2bacdb791d74",
+  "label" : "Unterleuchtklasse",
+  "subordinateOf" : "Leuchtklasse",
+  "title" : "Unterklasse zur Leuchtklasse I",
+  "description" : "Unterteilung der Überriesen nach abnehmender Leuchtkraft",
+  "inCollection" : "Astronomische Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350319451
+}, {
+  "_type" : "ReferenceObject",
+  "id" : "52b3b83d-77c8-414b-aec6-c43e119e10c7",
+  "href" : "/web/foryouandyourcustomers/enumerations/52b3b83d-77c8-414b-aec6-c43e119e10c7",
+  "label" : "Zeitangabe",
+  "description" : "Liste der Zeitangaben für Umlaufdauern \nStunde, Tag, Jahr",
+  "examples" : [ "std", "tag" ],
+  "inCollection" : "Astronomische Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750170612770,
+  "Label:en" : "Time indication"
+}, {
+  "_type" : "ReferenceObject",
+  "id" : "749e0ad4-44b5-4b3b-816b-43d02b778e89",
+  "href" : "/web/foryouandyourcustomers/enumerations/749e0ad4-44b5-4b3b-816b-43d02b778e89",
+  "label" : "Kalender Einheiten",
+  "title" : "standardisierte (SI) physikalische Einheiten",
+  "inCollection" : "Standard Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340621166,
+  "Description:en" : "Standardised (SI) physical units",
+  "Label:en" : "Physical unit"
+}, {
+  "_type" : "ReferenceObject",
+  "id" : "0c45b99a-6734-42dc-bbd6-6165d5c16a36",
+  "href" : "/web/foryouandyourcustomers/enumerations/0c45b99a-6734-42dc-bbd6-6165d5c16a36",
+  "label" : "Physikalische Einheit",
+  "title" : "standardisierte (SI) physikalische Einheiten",
+  "inCollection" : "Standard Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340621166,
+  "Description:en" : "Standardised (SI) physical units",
+  "Label:en" : "Physical unit"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "0ab16fe1-6e0a-47fa-9f6e-058f90da979f",
+  "href" : "/web/foryouandyourcustomers/literals/0ab16fe1-6e0a-47fa-9f6e-058f90da979f",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342342319,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "year",
+    "shortText" : "Jahr",
+    "longText" : "Kalenderjahr (365, 366 Tage)"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "24238e86-50b7-455d-a6f9-8ec99adc4a97",
+  "href" : "/web/foryouandyourcustomers/literals/24238e86-50b7-455d-a6f9-8ec99adc4a97",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341591372,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "sem",
+    "shortText" : "Semester",
+    "longText" : "2 Quartale, 6 Monate"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "247c0f67-0ecb-4a2a-9bbd-410e2abae9a8",
+  "href" : "/web/foryouandyourcustomers/literals/247c0f67-0ecb-4a2a-9bbd-410e2abae9a8",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341505927,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "min",
+    "shortText" : "Minute",
+    "longText" : "60 Sekunden"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "323c9f8c-9f0f-4300-9bcd-95a607cbc3f2",
+  "href" : "/web/foryouandyourcustomers/literals/323c9f8c-9f0f-4300-9bcd-95a607cbc3f2",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341591372,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "week",
+    "shortText" : "Woche",
+    "longText" : "7 Tage"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "41c5a641-caf4-48da-b328-65f237327a30",
+  "href" : "/web/foryouandyourcustomers/literals/41c5a641-caf4-48da-b328-65f237327a30",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "s",
+    "shortText" : "Sekunde",
+    "longText" : "Grundeinheit"
+  } ],
+  "LongText:en" : "Duration of time",
+  "ShortText:en" : "second"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "4a62243e-ea11-4b41-8f58-234c15d6c226",
+  "href" : "/web/foryouandyourcustomers/literals/4a62243e-ea11-4b41-8f58-234c15d6c226",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341505927,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "day",
+    "shortText" : "Tag",
+    "longText" : "24 Stunden"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "4e8fe537-4075-4e77-818f-545401c0a5a1",
+  "href" : "/web/foryouandyourcustomers/literals/4e8fe537-4075-4e77-818f-545401c0a5a1",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342320382,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "mon",
+    "shortText" : "Monat",
+    "longText" : "Kalendermonat mit 28-31 Tagen"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "4f3a13bd-1ed0-4556-8156-424aa149bf5f",
+  "href" : "/web/foryouandyourcustomers/literals/4f3a13bd-1ed0-4556-8156-424aa149bf5f",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341529109,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "hour",
+    "shortText" : "Stunde",
+    "longText" : "60 Minuten"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "536471f2-b6ad-4788-98a1-7cb1be82963b",
+  "href" : "/web/foryouandyourcustomers/literals/536471f2-b6ad-4788-98a1-7cb1be82963b",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341591372,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "q",
+    "shortText" : "Quartal",
+    "longText" : "3 Monate"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "b4e5d61a-1da4-42ac-9299-0a23833cfd34",
+  "href" : "/web/foryouandyourcustomers/literals/b4e5d61a-1da4-42ac-9299-0a23833cfd34",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341351550,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "ns",
+    "shortText" : "Nanosekunde",
+    "longText" : "10^-9 s"
+  } ],
+  "LongText:en" : "10^-9 s",
+  "ShortText:en" : "nanosecond"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "f9d4b98e-e894-4dcc-9533-da020edfca1e",
+  "href" : "/web/foryouandyourcustomers/literals/f9d4b98e-e894-4dcc-9533-da020edfca1e",
+  "literalOf" : "Kalender Einheiten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341351550,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "ms",
+    "shortText" : "Millisekunde",
+    "longText" : "1/1000 s"
+  } ],
+  "LongText:en" : "1/1000 s",
+  "ShortText:en" : "millisecond"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "23d1aae5-3a56-450b-9b48-6ec9a9a79ed7",
+  "href" : "/web/foryouandyourcustomers/literals/23d1aae5-3a56-450b-9b48-6ec9a9a79ed7",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171766528,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "VI",
+    "shortText" : "Unterzwerge",
+    "longText" : "auch sd, Betelgeuse (M1I)"
+  } ],
+  "ShortText:en" : "Subdwarfs"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "474e3a70-b714-4b69-ad5f-14196daafe7c",
+  "href" : "/web/foryouandyourcustomers/literals/474e3a70-b714-4b69-ad5f-14196daafe7c",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171732633,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "III",
+    "shortText" : "Riesen",
+    "longText" : "Aldebaran (K5III)"
+  } ],
+  "ShortText:en" : "Giants"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "556aa5d9-c816-4743-951c-3fbe3bc6b808",
+  "href" : "/web/foryouandyourcustomers/literals/556aa5d9-c816-4743-951c-3fbe3bc6b808",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171709986,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "I",
+    "shortText" : "Überriese",
+    "longText" : "Unterteilung der Überriesen nach abnehmender Leuchtkraft Ia-0, Ia, Iab, Ib"
+  } ],
+  "ShortText:en" : "Supergiant"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "7e42e56b-e101-4cbd-a5a3-e311d6ea1fd6",
+  "href" : "/web/foryouandyourcustomers/literals/7e42e56b-e101-4cbd-a5a3-e311d6ea1fd6",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171755836,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "V",
+    "shortText" : "Hauptreihe",
+    "longText" : "normale Stern, Sonne (G2V)"
+  } ],
+  "ShortText:en" : "Main sequence"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "88228554-ac84-4fe2-8cbb-aca02406ce75",
+  "href" : "/web/foryouandyourcustomers/literals/88228554-ac84-4fe2-8cbb-aca02406ce75",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171709986,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "0",
+    "shortText" : "Hyperriese",
+    "longText" : "Deneb, S Doradus"
+  } ],
+  "ShortText:en" : "Supergiant"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "917d917a-4e34-422e-a64e-15cabdb18342",
+  "href" : "/web/foryouandyourcustomers/literals/917d917a-4e34-422e-a64e-15cabdb18342",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171788987,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "VII",
+    "shortText" : "Weiße Zwerge",
+    "longText" : "Auch D,  Sirius B"
+  } ],
+  "ShortText:en" : "White dwarf"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "d7590937-08d0-41e3-a62b-c5787700793e",
+  "href" : "/web/foryouandyourcustomers/literals/d7590937-08d0-41e3-a62b-c5787700793e",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171739942,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "IV",
+    "shortText" : "Unterriesen"
+  } ],
+  "ShortText:en" : "Subgiants"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "ea8e0e38-4cb1-4510-9967-544a9b4839af",
+  "href" : "/web/foryouandyourcustomers/literals/ea8e0e38-4cb1-4510-9967-544a9b4839af",
+  "literalOf" : "Leuchtklasse",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750171720202,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "II",
+    "shortText" : "Helle Riesen"
+  } ],
+  "ShortText:en" : "Bright Giants"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "a89a6e04-8d91-4577-bff2-64c958f8d570",
+  "href" : "/web/foryouandyourcustomers/literals/a89a6e04-8d91-4577-bff2-64c958f8d570",
+  "literalOf" : "Oberflächenbeschaffenheit",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750335766840,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "Eis",
+    "shortText" : "",
+    "longText" : "Wasser, Ammoniak und Methan in Form von Eis, keine feste Oberfläche."
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "e38df9b2-2f94-42e1-89fc-16c10b3d1788",
+  "href" : "/web/foryouandyourcustomers/literals/e38df9b2-2f94-42e1-89fc-16c10b3d1788",
+  "literalOf" : "Oberflächenbeschaffenheit",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750335766840,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "Gestein",
+    "shortText" : "",
+    "longText" : "Gestein und Metallen, feste Oberfläche."
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "f88d4830-75c0-42d5-812e-ac122b3223f4",
+  "href" : "/web/foryouandyourcustomers/literals/f88d4830-75c0-42d5-812e-ac122b3223f4",
+  "literalOf" : "Oberflächenbeschaffenheit",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750335766840,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "Gas",
+    "shortText" : "",
+    "longText" : "Wasserstoff und Helium, keine feste Oberfläche."
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "2103907f-c7b8-4b80-82b5-ee9edc9975af",
+  "href" : "/web/foryouandyourcustomers/literals/2103907f-c7b8-4b80-82b5-ee9edc9975af",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "mol",
+    "shortText" : "Mol",
+    "longText" : "Stoffmenge"
+  } ],
+  "LongText:en" : "Amount of substance",
+  "ShortText:en" : "mol"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "2314b793-a127-4006-85f7-d3024ad0a6e0",
+  "href" : "/web/foryouandyourcustomers/literals/2314b793-a127-4006-85f7-d3024ad0a6e0",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "K",
+    "shortText" : "Kelvin",
+    "longText" : "Temperatur"
+  } ],
+  "LongText:en" : "Temperature",
+  "ShortText:en" : "kelvin"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "48474c96-ee65-440c-b830-9bab5253d05b",
+  "href" : "/web/foryouandyourcustomers/literals/48474c96-ee65-440c-b830-9bab5253d05b",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "kg",
+    "shortText" : "Kilogramm",
+    "longText" : "Masse"
+  } ],
+  "LongText:en" : "Mass",
+  "ShortText:en" : "kilogram"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "70450a54-53b2-4386-8e0d-660561a8fc63",
+  "href" : "/web/foryouandyourcustomers/literals/70450a54-53b2-4386-8e0d-660561a8fc63",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "A",
+    "shortText" : "Ampere",
+    "longText" : "Elektrische Stromstärke"
+  } ],
+  "LongText:en" : "Electric current",
+  "ShortText:en" : "ampere"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "9076a044-4818-444b-90b6-80e9e5f0a77a",
+  "href" : "/web/foryouandyourcustomers/literals/9076a044-4818-444b-90b6-80e9e5f0a77a",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341351550,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "t",
+    "shortText" : "Tonne",
+    "longText" : "1000 kg"
+  } ],
+  "LongText:en" : "1000 kg",
+  "ShortText:en" : "ton"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "a2dfc4f3-0933-4ffd-af07-453b37c1888f",
+  "href" : "/web/foryouandyourcustomers/literals/a2dfc4f3-0933-4ffd-af07-453b37c1888f",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "s",
+    "shortText" : "Sekunde",
+    "longText" : "Zeitdauer"
+  } ],
+  "LongText:en" : "Duration of time",
+  "ShortText:en" : "second"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "da94b558-11f1-47b9-ae98-ca04107a3263",
+  "href" : "/web/foryouandyourcustomers/literals/da94b558-11f1-47b9-ae98-ca04107a3263",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "cd",
+    "shortText" : "Candela",
+    "longText" : "Lichtstärke"
+  } ],
+  "LongText:en" : "Luminous intensity",
+  "ShortText:en" : "candela"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "e75115c2-0491-4c78-b3bc-2dad5b39c58c",
+  "href" : "/web/foryouandyourcustomers/literals/e75115c2-0491-4c78-b3bc-2dad5b39c58c",
+  "literalOf" : "Physikalische Einheit",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750340776240,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "m",
+    "shortText" : "Meter",
+    "longText" : "Länge, Distanz"
+  } ],
+  "LongText:en" : "Length, distance",
+  "ShortText:en" : "meter"
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "66fcee06-4aeb-40c9-b54f-c528d0eee7eb",
+  "href" : "/web/foryouandyourcustomers/literals/66fcee06-4aeb-40c9-b54f-c528d0eee7eb",
+  "literalOf" : "Unterleuchtklasse",
+  "subordinateOf" : "Leuchtklasse/I",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350348064,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "ab",
+    "shortText" : "dritthellste"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "7e591e82-dc22-457e-9fd8-6cfdef2b9304",
+  "href" : "/web/foryouandyourcustomers/literals/7e591e82-dc22-457e-9fd8-6cfdef2b9304",
+  "literalOf" : "Unterleuchtklasse",
+  "subordinateOf" : "Leuchtklasse/I",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350333527,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "b",
+    "shortText" : "dunklste"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "c30c3b23-723e-46ec-bb9b-ffc352f7869a",
+  "href" : "/web/foryouandyourcustomers/literals/c30c3b23-723e-46ec-bb9b-ffc352f7869a",
+  "literalOf" : "Unterleuchtklasse",
+  "subordinateOf" : "Leuchtklasse/I",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350333527,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "a",
+    "shortText" : "zweithellste"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "f1a4f256-7bc6-420c-8e5c-664c66a3bac3",
+  "href" : "/web/foryouandyourcustomers/literals/f1a4f256-7bc6-420c-8e5c-664c66a3bac3",
+  "literalOf" : "Unterleuchtklasse",
+  "subordinateOf" : "Leuchtklasse/I",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350333527,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "a-0",
+    "shortText" : "hellste"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "4488ad4f-e3d5-49f6-bab6-52022c250f1a",
+  "href" : "/web/foryouandyourcustomers/literals/4488ad4f-e3d5-49f6-bab6-52022c250f1a",
+  "literalOf" : "Zeitangabe",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750170619195,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "tag",
+    "shortText" : "Tag"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "acc73c79-bf1e-4ceb-9bed-29071b1241fb",
+  "href" : "/web/foryouandyourcustomers/literals/acc73c79-bf1e-4ceb-9bed-29071b1241fb",
+  "literalOf" : "Zeitangabe",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750170619195,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "std",
+    "shortText" : "Stunde"
+  } ]
+}, {
+  "_type" : "ReferenceValue",
+  "id" : "b3920e70-1359-488d-8291-b242690c011e",
+  "href" : "/web/foryouandyourcustomers/literals/b3920e70-1359-488d-8291-b242690c011e",
+  "literalOf" : "Zeitangabe",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750170619195,
+  "timeSeries" : [ {
+    "validFrom" : -2208988800000,
+    "validTo" : 32503593600000,
+    "code" : "jahr",
+    "shortText" : "Jahr"
+  } ]
+}, {
+  "_type" : "Mapping",
+  "id" : "0a5a9f06-9ec4-4095-add6-cdc50a8ab852",
+  "href" : "/web/foryouandyourcustomers/mappings/0a5a9f06-9ec4-4095-add6-cdc50a8ab852",
+  "label" : "Astro Zeit zu Kalender",
+  "mapsFrom" : "Zeitangabe",
+  "mapsTo" : "Kalender Einheiten",
+  "inCollection" : "Astronomische Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342969989
+}, {
+  "_type" : "Mapping",
+  "id" : "939abaf5-15ff-4272-811d-50389604b105",
+  "href" : "/web/foryouandyourcustomers/mappings/939abaf5-15ff-4272-811d-50389604b105",
+  "label" : "kalender-Einheiten",
+  "mapsFrom" : "Kalender Einheiten",
+  "mapsTo" : "Kalender Einheiten",
+  "inCollection" : "Standard Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342712326
+}, {
+  "_type" : "Mapping",
+  "id" : "d344b9eb-381d-4c58-9648-4e5093afdf2a",
+  "href" : "/web/foryouandyourcustomers/mappings/d344b9eb-381d-4c58-9648-4e5093afdf2a",
+  "label" : "Kalender - physikalische Einh.",
+  "mapsFrom" : "Kalender Einheiten",
+  "mapsTo" : "Physikalische Einheit",
+  "inCollection" : "Standard Referenzwerte",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750341935907
+}, {
+  "_type" : "Translation",
+  "id" : "807e9250-ff58-4cdb-a150-c9c20af944fb",
+  "href" : "/web/foryouandyourcustomers/translations/807e9250-ff58-4cdb-a150-c9c20af944fb",
+  "translationIn" : "Astro Zeit zu Kalender",
+  "translatesFrom" : "Zeitangabe/std",
+  "translatesTo" : "Kalender Einheiten/hour",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342998459
+}, {
+  "_type" : "Translation",
+  "id" : "f24fe4de-0737-42dd-a38a-20e29c8bde07",
+  "href" : "/web/foryouandyourcustomers/translations/f24fe4de-0737-42dd-a38a-20e29c8bde07",
+  "translationIn" : "Astro Zeit zu Kalender",
+  "translatesFrom" : "Zeitangabe/jahr",
+  "translatesTo" : "Kalender Einheiten/year",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342989536
+}, {
+  "_type" : "Translation",
+  "id" : "fd775f28-c472-4031-b24e-d3d87e034abc",
+  "href" : "/web/foryouandyourcustomers/translations/fd775f28-c472-4031-b24e-d3d87e034abc",
+  "translationIn" : "Astro Zeit zu Kalender",
+  "translatesFrom" : "Zeitangabe/tag",
+  "translatesTo" : "Kalender Einheiten/day",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342981316
+}, {
+  "_type" : "Translation",
+  "id" : "28861550-8bfc-48b4-a2b6-be9a1c267ebd",
+  "href" : "/web/foryouandyourcustomers/translations/28861550-8bfc-48b4-a2b6-be9a1c267ebd",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/sem",
+  "translatesTo" : "Kalender Einheiten/q",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:2",
+  "description" : "1 Semester = 2 Quartale",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342758859
+}, {
+  "_type" : "Translation",
+  "id" : "33548529-62ea-4b34-be10-bde115c0339a",
+  "href" : "/web/foryouandyourcustomers/translations/33548529-62ea-4b34-be10-bde115c0339a",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/mon",
+  "translatesTo" : "Kalender Einheiten/day",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "description" : "1 Monat = 28, 30 oder 31 Tage",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342730844
+}, {
+  "_type" : "Translation",
+  "id" : "51db7149-2252-4df7-9265-b07ad2769db3",
+  "href" : "/web/foryouandyourcustomers/translations/51db7149-2252-4df7-9265-b07ad2769db3",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/year",
+  "translatesTo" : "Kalender Einheiten/sem",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:2",
+  "description" : "1 Jahr = 2 Semster",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342758859
+}, {
+  "_type" : "Translation",
+  "id" : "6a919100-ddb2-4208-ad4b-93ff0e09030d",
+  "href" : "/web/foryouandyourcustomers/translations/6a919100-ddb2-4208-ad4b-93ff0e09030d",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/ms",
+  "translatesTo" : "Kalender Einheiten/s",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:10^-3",
+  "description" : "1 ms = 1/1000 s",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350578586
+}, {
+  "_type" : "Translation",
+  "id" : "86f5f4b8-3b44-426e-8ebf-cfc22d1b1d4e",
+  "href" : "/web/foryouandyourcustomers/translations/86f5f4b8-3b44-426e-8ebf-cfc22d1b1d4e",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/week",
+  "translatesTo" : "Kalender Einheiten/day",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:7",
+  "description" : "1 week = 7 day",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350563705
+}, {
+  "_type" : "Translation",
+  "id" : "8fd2d19c-eff0-45a5-9014-1c8cfae23279",
+  "href" : "/web/foryouandyourcustomers/translations/8fd2d19c-eff0-45a5-9014-1c8cfae23279",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/ns",
+  "translatesTo" : "Kalender Einheiten/s",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:10^-9",
+  "description" : "1 ns = 10^-9 s",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350589341
+}, {
+  "_type" : "Translation",
+  "id" : "bee623d5-5c24-4064-b648-134589a2e389",
+  "href" : "/web/foryouandyourcustomers/translations/bee623d5-5c24-4064-b648-134589a2e389",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/hour",
+  "translatesTo" : "Kalender Einheiten/min",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:60",
+  "description" : "1 hour = 60 min",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350534869
+}, {
+  "_type" : "Translation",
+  "id" : "c6bf2829-fe87-48c8-bac8-515415383f37",
+  "href" : "/web/foryouandyourcustomers/translations/c6bf2829-fe87-48c8-bac8-515415383f37",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/min",
+  "translatesTo" : "Kalender Einheiten/s",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:60",
+  "description" : "1 min = 60 s",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350519175
+}, {
+  "_type" : "Translation",
+  "id" : "f9129d6a-9d10-478d-ab01-db9f8777c972",
+  "href" : "/web/foryouandyourcustomers/translations/f9129d6a-9d10-478d-ab01-db9f8777c972",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/day",
+  "translatesTo" : "Kalender Einheiten/hour",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:24",
+  "description" : "1 day = 24h",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750350534869
+}, {
+  "_type" : "Translation",
+  "id" : "fc7a2849-f9a0-438d-bcdb-f4fe458d0267",
+  "href" : "/web/foryouandyourcustomers/translations/fc7a2849-f9a0-438d-bcdb-f4fe458d0267",
+  "translationIn" : "kalender-Einheiten",
+  "translatesFrom" : "Kalender Einheiten/q",
+  "translatesTo" : "Kalender Einheiten/mon",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:3",
+  "description" : "1 Quartal = 3 Monate",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342749006
+}, {
+  "_type" : "Translation",
+  "id" : "be4cc56f-2d34-48c6-86dc-cc535adc0478",
+  "href" : "/web/foryouandyourcustomers/translations/be4cc56f-2d34-48c6-86dc-cc535adc0478",
+  "translationIn" : "Kalender - physikalische Einh.",
+  "translatesFrom" : "Kalender Einheiten/s",
+  "translatesTo" : "Physikalische Einheit/s",
+  "validFrom" : -2208988800000,
+  "validTo" : 32503593600000,
+  "title" : "1:1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1750342501437
+} ]
