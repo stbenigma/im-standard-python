@@ -268,14 +268,9 @@ class DataspotElements():
         def readjson(path, modelname=None):
             with open(path) as f:
                 struct = json.load(f)
-                # store structure for later reference
-                # if modelname is not None:
-                #    self._dsmodels[modelname] = struct
-                # do only analyze model exports. a list of dicts starting with _type
                 if type(struct) == dict or len(struct)==0 or "_type" not in struct[0]:
                     return  # non modelfiles
                 self.fillids(modelname=modelname, struct=struct)
-                #self.setjsmodel(struct=struct)
             return
 
         if path.is_file():

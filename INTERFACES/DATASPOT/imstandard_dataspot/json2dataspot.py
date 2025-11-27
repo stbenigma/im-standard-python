@@ -31,6 +31,7 @@ class Json2dataspot(JsonSchema):
         self.domainsname = domainsname
         self.systemsname = systemsname
         self.refdomainsname = refdomainsname
+        self.curlang=self.mainlang
         return
 
     @staticmethod
@@ -129,7 +130,7 @@ class Json2dataspot(JsonSchema):
                     False return what you find
         """
         langs = set(self.languages).difference({self.mainlang})
-        retval = {}
+        retval = dict()
         for lang in langs:
             for fname in fields:
                 if fname not in elem: continue
@@ -145,7 +146,7 @@ class Json2dataspot(JsonSchema):
         @return:
             additional propierties, language transformed if applicable, pure otherwise
         """
-        additionalprops = nvl(element.get("additionalProps"), {})
+        additionalprops = element.get("additionalProps", dict())
         additionalprops.update(self.mlvalues(*props, elem=element, default=False))
         retval=dict()
         for aps, val in additionalprops.items():
@@ -167,7 +168,7 @@ class Json2dataspot(JsonSchema):
         retval = []
         for catg in categories:
             if catg.get("categorytype") != catgtype: continue
-            if catglist is not None and catg.get("name") not in catglist: continue
+            if catglist is not None and catg.get("elementid") not in catglist: continue
 
             catgname = self.escapestr(self.mlvalue(catg.get("name")))
             additionalprops=self.extractadditionalprops(element=catg,
@@ -248,7 +249,7 @@ class Json2dataspot(JsonSchema):
             multilangassoc.update({f"inverseName:{key[-2:]}": val for key, val in
                                    self.mlvalues("assoctext", elem=rela["fwd"], default=False).items()})
 
-            additionalprops = nvl(rela.get("additionalProps"), {})
+            additionalprops = rela.get("additionalProps", dict())
             additionalprops.update(multilangassoc)
             destinationtype = "UmlAssociation" if modeltype == "DM" else "Relationship"
             retval.append(self.fillstruct(elementtype=destinationtype,
@@ -286,7 +287,7 @@ class Json2dataspot(JsonSchema):
         """
         if domainid is None: return None
         if type(domainid)==dict:
-            modelname=nvl(domainid.get("modelname"), self.imname)
+            modelname=domainid.get("modelname", self.imname)
             domaid=domainid.get("domainid")
         else:
             modelname=self.imname
@@ -306,7 +307,7 @@ class Json2dataspot(JsonSchema):
         # TODO add ranges
         entiref = self.fullescapestr(self.mlvalue(entity.get("name")))
 
-        attrlist = nvl(entity.get("attributes"), [])
+        attrlist = entity.get("attributes", [])
         retval = []
         for attr in attrlist:
             additionalprops = self.extractadditionalprops(element=attr,
@@ -353,10 +354,10 @@ class Json2dataspot(JsonSchema):
         # TODO mit Vater dazu
         donecolunames = []
 
-        colulist = nvl(table.get("columns"), [])
+        colulist = table.get("columns", [])
         retval = []
         for colu in colulist:
-            additionalprops = nvl(colu.get("additionalProps"), dict())
+            additionalprops = colu.get("additionalProps", dict())
             # additionalprops.update(self.mlvalues("name", "description", "shortdescr",
             #                                     elem=attr, default=False))
             coluname = self.makeunique(name=self.escapestr(colu.get("name")),
@@ -401,7 +402,7 @@ class Json2dataspot(JsonSchema):
 
     def entitylist(self) -> list:
         # TODO resolve subcategories, requiring a parent categoriy as reference
-        entities = nvl(self.jsonschemamodel.get("Entities"),[])
+        entities = self.jsonschemamodel.get("Entities",[])
         doneentitynames = []
         retval = []
         for enti in entities:
@@ -422,7 +423,7 @@ class Json2dataspot(JsonSchema):
                                           title=self.mlvalue(enti.get("shortdescr")),
                                           description=self.escapestr(nvl(self.mlvalue(enti.get("description")))),
                                           examples=enti.get("examples"),
-                                          synonyms=[self.mlvalue(e) for e in nvl(enti.get("synonyms"), [])],
+                                          synonyms=[self.mlvalue(e) for e in enti.get("synonyms", [])],
                                           inCollection=self.collectionname(catgid=enti.get("categoryid")),
                                           favorite=False,
                                           additionalProps=additionalprops
@@ -431,7 +432,7 @@ class Json2dataspot(JsonSchema):
         return retval
 
     def lovdomains(self):
-        domains = nvl(self.jsonschemamodel.get("domains"),[])
+        domains = self.jsonschemamodel.get("Domains",[])
         donedomainnames = []
         retval = []
         for idx, doma in enumerate(domains):
@@ -457,7 +458,7 @@ class Json2dataspot(JsonSchema):
                                           additionalProps=additionalprops
                                           )
                           )
-            for val in nvl(doma.get("values"), []):
+            for val in doma.get("values", []):
                 retval.append(self.fillstruct(elementtype="ReferenceValue",
                                               literalOf=self.fullescapestr(
                                                   self.mlvalue(doma.get("name"), lang=self.mainlang)),
@@ -479,7 +480,7 @@ class Json2dataspot(JsonSchema):
         return None if val is None else int(val)
 
     def domainlist(self) -> list:
-        domains = nvl(self.jsonschemamodel.get("domains"),[])
+        domains = self.jsonschemamodel.get("Domains",[])
         donedomainnames = []
         retval = []
         for doma in domains:
@@ -528,7 +529,7 @@ class Json2dataspot(JsonSchema):
         return retval
 
     def systemlist(self) -> list:
-        systems = nvl(self.jsonschemamodel.get("Systems"), [])
+        systems = self.jsonschemamodel.get("Systems", [])
         donenames = []
         retval = []
         for syst in systems:
@@ -574,13 +575,15 @@ class Json2dataspot(JsonSchema):
                 for doma in self.jsonschemamodel["Domains"]
                 if doma.get("domaintype") == "Domain"]
 
-    def getmycategories(self,categoryids,withparents=False):
-        retval=[catg for catg in self.jsonschemamodel["Categories"] if catg.get("elementid")in categoryids]
+    def getmycategoryidtree(self, categoryids, withparents=False):
+        retval = categoryids
+        mycategories=[catg for catg in self.jsonschemamodel["Categories"] if catg.get("elementid")in categoryids]
+        #TODO MANY in jsonschema
         parents=[]
-        for catg in retval:
+        for catg in mycategories:
             if withparents and catg.get("parent") is not None \
-                    and catg.get("parent") not in [c.get("elementid") for c in retval+parents]:
-                parents.extend(self.getmycategories(categoryids=[catg.get("parent")],withparents=True))
+                    and catg.get("parent") not in retval+parents:
+                parents.extend(self.getmycategoryidtree(categoryids=[catg.get("parent")], withparents=True))
         retval.extend(parents)
         return retval
 
@@ -588,10 +591,10 @@ class Json2dataspot(JsonSchema):
         retval = list()
         retval += self.lovdomains()
         if len(retval) > 0:
-            refdomains=[doma for doma in nvl(self.jsonschemamodel.get("Domains"),[]) if doma.get("domaintype")=="LOVDomain"]
-            retval= self.categories(catgtype="DOMAINS",
-                                    catglist=self.getmycategories(categoryids=[d.get("categoryid") for d in refdomains],
-                                                                    withparents=True)
+            refdomains=[doma for doma in self.jsonschemamodel.get("Domains",[]) if doma.get("domaintype")=="LOVDomain"]
+            retval+= self.categories(catgtype="DOMAIN",
+                                    catglist=self.getmycategoryidtree(categoryids=list(set(d.get("categoryid") for d in refdomains)),
+                                                                      withparents=True)
                                     )
 
             retval.append(self.fillstruct(elementtype="Collection",
@@ -605,8 +608,12 @@ class Json2dataspot(JsonSchema):
     def dsdomainjson(self):
         retval = list()
         retval += self.domainlist()
-        if len(retval)>0:
-            retval += self.categories(catgtype="DOMAIN")
+        if len(retval) > 0:
+            domains=[doma for doma in self.jsonschemamodel.get("Domains",[]) if doma.get("domaintype")!="LOVDomain"]
+            retval+= self.categories(catgtype="DOMAIN",
+                                    catglist=self.getmycategoryidtree(categoryids=list(set(d.get("categoryid") for d in domains)),
+                                                                      withparents=True)
+                                    )
 
             retval.append(self.fillstruct(elementtype="Collection",
                                           label=self.DUMMYCOLLECTION,
@@ -642,12 +649,12 @@ class Json2dataspot(JsonSchema):
         return secondtablename
 
     def tablelist(self):
-        tables=nvl(self.jsonschemamodel.get("Tables"), [])
+        tables=self.jsonschemamodel.get("Tables", [])
         donetablenames = []
         retval = []
         retval += self.categories(catgtype="DATAOBJECT")
         for tabl in tables:
-            additionalprops = nvl(tabl.get("additionalProps"), dict())
+            additionalprops = tabl.get("additionalProps", dict())
 
             self.tableneeddummycatg = self.tableneeddummycatg or tabl.get("categoryid") is None
             tablename = self.makeunique(name=self.escapestr(tabl.get("name")),
@@ -658,7 +665,7 @@ class Json2dataspot(JsonSchema):
                                           title=tabl.get("shortdescr"),
                                           description=self.escapestr(nvl(tabl.get("description"))),
                                           examples=tabl.get("examples"),
-                                          synonyms=[e for e in nvl(tabl.get("synonyms"), [])],
+                                          synonyms=[e for e in tabl.get("synonyms", [])],
                                           inCollection=self.collectionname(catgid=tabl.get("categoryid")),
                                           favorite=False,
                                           additionalProps=additionalprops
@@ -686,7 +693,7 @@ def dumpmodel(outpath,modelname,elements):
     if modelname is not None and len(elements)>0:
         with open(Path(outpath) / f"{modelname}.json", "w") as modelfile:
             json.dump(elements, modelfile, indent=2, ensure_ascii=False)
-            logging.info(f'Model {Path(outpath) / f"{modelname}.json"} generated:')
+            print(f'Model {Path(outpath) / f"{modelname}.json"}')
 
 def json2dataspot(injson, outpath,
                   imname=None,
@@ -709,12 +716,13 @@ def json2dataspot(injson, outpath,
                            refdomainsname=refdomainsname,
                            domainsname=domainsname,
                            systemsname=systemsname)
-    logging.info(f"From file {injson} generated:")
+    print(f"\nFrom file {injson} generated:")
     dumpmodel(outpath=outpath,modelname=imname,elements=dsjson.dsentityjson())
     dumpmodel(outpath=outpath,modelname=domainsname,elements=dsjson.dsdomainjson())
     dumpmodel(outpath=outpath,modelname=refdomainsname,elements=dsjson.dsreferencejson())
     dumpmodel(outpath=outpath,modelname=dmname,elements=dsjson.dsdmjson())
     dumpmodel(outpath=outpath,modelname=systemsname,elements=dsjson.dssystemjson())
+    return
 
 if __name__ == '__main__':
     import sys

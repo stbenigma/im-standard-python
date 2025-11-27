@@ -156,19 +156,25 @@ class JsonSchema(JsonElements):
                     value[lang] if lang is not None and lang in dict
                     value[curlang] if lang is None and curlang in dict
                     value[mainlanguage] if default = True
-                    else return value
+                    else return value of first element in value-list
             """
         if value is None:
             return ""
         elif type(value) is str:
             return value
         elif type(value) is dict:
+            #is whish language in the dict
             if lang is not None and lang in value.keys():
                 return value.get(lang)
+            #is the current language of the generation in the dict
             if self.curlang is not None and self.curlang in value.keys():
                 return value.get(self.curlang)
+            #do we accept defaults and is the mainlanguage (=defaultlanguage) in the dict
             if default and self.mainlang in value.keys():
                 return value.get(self.mainlang)
+            # do we accept defaults and is their any language in the dict
+            if default and len(value.keys()>0):
+                return value.get(list(value.keys())[0])
         return value
 
     def multilangstring_is(self):

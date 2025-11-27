@@ -16,11 +16,8 @@ class Testjson2dataspot(unittest.TestCase):
         self.temppath = Path(tmp_path)
 
     def setUp(self) -> None:
-        self.testjsonpath=Path(__file__).parent.parent.parent.parent/ "IM_STANDARD"/\
-                          "im-schema-json" /"test-models" / \
-                          "IM" / "valid" / "astronomie-1.json"
-        with open(self.testjsonpath) as infile:
-            self.testjson = json.load(fp=infile)
+        self.imstandardbasedirec=Path(__file__).parent.parent.parent.parent.parent.parent/ "Information-model-standard"
+        self.astronomietestjsonpath =self.imstandardbasedirec / "Example models" /"Astronomie" /  "astronomie-schema.json"
 
         self.mydebugpath=(Path.home() / "Downloads") if  (Path.home() / "Downloads").exists() else self.temppath
         return
@@ -44,29 +41,65 @@ class Testjson2dataspot(unittest.TestCase):
 
         return
 
+
+
+    def test_astronomiesingle(self):
+        with open(self.astronomietestjsonpath) as infile:
+            testjson = json.load(fp=infile)
+
+        dsclass = Json2dataspot(standardjson=testjson,
+                                imname="Informationmodel",
+                                refdomainsname="Referencemodell",
+                                domainsname="Domainmodel")
+
+
     def test_astronomie(self):
-        dsclass = Json2dataspot(standardjson=self.testjson,
+        with open(self.astronomietestjsonpath) as infile:
+            testjson = json.load(fp=infile)
+
+        dsclass = Json2dataspot(standardjson=testjson,
                                     imname="Informationmodel",
                   refdomainsname="Referencemodell",
                   domainsname="Domainmodel")
         dsjson = dsclass.dsentityjson()
-        self.dumptodebug(filename="dsentityjson.json", jsonstruct=dsjson)
-        print('\n', self.mydebugpath / "dsentityjons.json", " created")
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])>2)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="BusinessObject"])>5)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Relationship"])>5)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="BusinessObject" and elem.get("label")=="Zwergplanet"])==1)
 
-        json2dataspot(injson=self.testjsonpath,
+        dsjson=dsclass.dsdomainjson()
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])>3)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="DataDomain"])>6)
+        self.assertFalse('Standard Referenzwerte' in [elem.get("label") for elem in dsjson if elem.get("_type")=="Collection"])
+
+        dsjson=dsclass.dsreferencejson()
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])>2)
+        all_collection_names=[elem.get("label") for elem in dsjson if elem.get("_type")=="Collection"]
+        self.assertEqual(len(all_collection_names),len(set(all_collection_names)))
+        self.assertFalse ('Astronomie Wertebereiche' in all_collection_names)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="ReferenceObject"])>3)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="ReferenceValue"])>6)
+
+        #self.dumptodebug(filename="dsentityjson.json", jsonstruct=dsjson)
+        #print('\n', self.mydebugpath / "dsentityjons.json", " created")
+
+        json2dataspot(injson=self.astronomietestjsonpath,
                       outpath=self.mydebugpath,
-                      imname="Business object model")
+                      imname="Astronomie model")
+
         return
 
     def test_divfiles(self):
         self.caplog.set_level(logging.INFO)
-        testfilepath=Path(__file__).parent / "dataspottestfiles" / "standardjsons"
-        testfile=testfilepath/"astronomie-ohneaddprops.json"
+        testfile=self.imstandardbasedirec/"im-model-model"/"im-model-model.json"
+        if not testfile.exists():
+            self.skipTest(f"file does not exist {str(testfile)}")
+
         json2dataspot(injson=testfile,
                       outpath=self.mydebugpath,
-                      imname="IM",
-                      refdomainsname="references",
-                      domainsname="domains")
+                      imname="IMmodelmodel",
+                      refdomainsname="IMmodelmodel reference model",
+                      domainsname="IMmodelmodel domain model")
         print ("\n".join(self.caplog.messages))
         return
 

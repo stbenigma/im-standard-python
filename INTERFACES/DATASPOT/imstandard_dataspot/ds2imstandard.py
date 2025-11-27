@@ -201,6 +201,46 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                  val=self.generate1attribute(element=element))
         return
 
+    def generatedomains(self):
+        for element in self.domains.values():
+            self.standardjson.addelementinstance(name="Domains",
+                                                 val=self.generate1domain(doma=element))
+        return
+
+    def generate1domain(self, doma):
+        jsonstruct = []
+        catgid = self.findelementid(elems=self.categories,
+                                    modelname=doma.get("DSMODEL"),
+                                    name=doma.get("inCollection"), notnull=True)
+        additionalprops = self.additionalprops(elem=doma,
+                                               specialkeys=["minInclusive",
+                                                            "maxInclusive",
+                                                            "minLength", "maxLength",
+                                                            "integerDigits",
+                                                            "fractionDigits",
+                                                            "baseType",
+                                                            "Unit", "pattern"
+                                                            ])
+
+        self.standardjson.optionalprop(destobject=additionalprops,
+                                       propname="SOURCE-DATATYPE",
+                                       value=doma.get("baseType"))
+        subtypeproperties = {"description": self.mutlilangvalue(fieldname="description",
+                                                                value=doma.get("description"),
+                                                                addprops=additionalprops)
+                             }
+        self.setdomainsubtype(element=doma, subtypeproperties=subtypeproperties)
+
+        subtypeproperties["additionalProps"] = additionalprops
+        jsonstruct.append(self.standardjson.domainjson(elementid=doma.get("ID"),
+                                                  name=self.mutlilangvalue(fieldname="label",
+                                                                           value=doma.get("label"),
+                                                                           addprops=additionalprops),
+                                                  categoryid=catgid,
+                                                  **subtypeproperties
+                                                  ))
+        return jsonstruct
+
     def generatejson(self, modelname,
                      modelversion="0.0",
                      targetenv=None,
