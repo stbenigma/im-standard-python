@@ -5,8 +5,8 @@ from pathlib import Path
 
 import xmltodict
 
-from SSOT_infra import nvl, alwayslist
-from STIBO.mygraph import Graph
+from IM_STANDARD import nvl, alwayslist
+from INTERFACES.STIBO.mygraph import Graph
 
 
 class LoadStep:

@@ -244,9 +244,9 @@ class Json2dataspot(JsonSchema):
             temporal=rela["bwd"].get("historicised") or rela["fwd"].get("historicised")
             identifying = rela.get("elementid") in self.getentikeys(enti=rangeobj) or \
                           rela.get("elementid") in self.getentikeys(enti=domainobj)
-            multilangassoc = {f"name:{key[-2:]}": val for key, val in
+            multilangassoc = {f"Label:{key[-2:]}": val for key, val in
                               self.mlvalues("assoctext", elem=rela["bwd"], default=False).items()}
-            multilangassoc.update({f"inverseName:{key[-2:]}": val for key, val in
+            multilangassoc.update({f"Reversedname:{key[-2:]}": val for key, val in
                                    self.mlvalues("assoctext", elem=rela["fwd"], default=False).items()})
 
             additionalprops = rela.get("additionalProps", dict())
@@ -303,16 +303,16 @@ class Json2dataspot(JsonSchema):
 
         return f"/{modelname}/{self.mlvalue(doma.get('name'))}"
 
-    def attrlist(self, entity: dict) -> list:
+    def attrlist(self, parentobj: dict) -> list:
         # TODO add ranges
-        entiref = self.fullescapestr(self.mlvalue(entity.get("name")))
-
-        attrlist = entity.get("attributes", [])
+        attributes=[a for a in self.jsonschemamodel.get("Attributes",[]) if a.get("parentid")==parentobj.get("elementid")]
+        entiref = self.fullescapestr(self.mlvalue(parentobj.get("name")))
+        attrtype = "BusinessAttribute" if parentobj.get("elementid").startswith("ENTI") else "DataAttribute"
         retval = []
-        for attr in attrlist:
+        for attr in attributes:
             additionalprops = self.extractadditionalprops(element=attr,
                                                           props=["name", "description", "shortdescr"])
-            retval.append(self.fillstruct(elementtype="BusinessAttribute",
+            retval.append(self.fillstruct(elementtype=attrtype,
                                           hasDomain=entiref,
                                           label=self.escapestr(self.mlvalue(attr.get("name"))),
                                           title=self.escapestr(self.mlvalue(attr.get("shortdescr"))),
@@ -428,7 +428,7 @@ class Json2dataspot(JsonSchema):
                                           favorite=False,
                                           additionalProps=additionalprops
                                           ))
-            retval += self.attrlist(entity=enti)
+            retval += self.attrlist(parentobj=enti)
         return retval
 
     def lovdomains(self):
@@ -458,8 +458,9 @@ class Json2dataspot(JsonSchema):
                                           additionalProps=additionalprops
                                           )
                           )
-            for val in doma.get("values", []):
+            for idx,val in enumerate(doma.get("values", [])):
                 retval.append(self.fillstruct(elementtype="ReferenceValue",
+                                              favorite=idx <3,
                                               literalOf=self.fullescapestr(
                                                   self.mlvalue(doma.get("name"), lang=self.mainlang)),
                                               timeSeries=[{
@@ -610,6 +611,9 @@ class Json2dataspot(JsonSchema):
         retval += self.domainlist()
         if len(retval) > 0:
             domains=[doma for doma in self.jsonschemamodel.get("Domains",[]) if doma.get("domaintype")!="LOVDomain"]
+            for doma in domains:
+                retval += self.attrlist(parentobj=doma)
+
             retval+= self.categories(catgtype="DOMAIN",
                                     catglist=self.getmycategoryidtree(categoryids=list(set(d.get("categoryid") for d in domains)),
                                                                       withparents=True)

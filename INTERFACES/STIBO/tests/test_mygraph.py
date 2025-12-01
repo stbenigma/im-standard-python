@@ -1,5 +1,5 @@
 import unittest
-from STIBO.mygraph import Graph
+from INTERFACES.STIBO.mygraph import Graph
 
 class MyTestCase(unittest.TestCase):
     def test_descendants(self):

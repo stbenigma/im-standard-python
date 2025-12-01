@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from STIBO.loadstep import LoadStep
+from INTERFACES.STIBO.loadstep import LoadStep
 
 
 class MyTestCase(unittest.TestCase):

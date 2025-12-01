@@ -2,9 +2,9 @@ import json
 import logging
 from pathlib import Path
 
-from DATASPOT.imstandard_dataspot import Json2dataspot
-from SSOT_infra import nvl, alwayslist
-from STIBO.loadstep import LoadStep
+from INTERFACES.DATASPOT.imstandard_dataspot import Json2dataspot
+from IM_STANDARD import nvl, alwayslist
+from INTERFACES.STIBO.loadstep import LoadStep
 
 
 class Step2Dataspot:

@@ -1,7 +1,7 @@
 
 import re
 
-from IM_STANDARD import JsonElements
+from IM_STANDARD import JsonElements,alwayslist
 
 class ElementId:
     """ give unique new id with every call"""
@@ -130,20 +130,6 @@ class JsonSchema(JsonElements):
         """
         return self.languages+[self.mainlang]
 
-    def alwayslist(self, x):
-        """
-        :param x: element to be converted into list
-        :return: [] for x is None
-                x for type(x) is list
-                list(x) else
-        """
-        if x is None:
-            return []
-        elif type(x) == list:
-            return x
-        else:
-            return [x]
-
     def modelismultilingual(self):
         return len(self.languages) > 0
 
@@ -173,7 +159,7 @@ class JsonSchema(JsonElements):
             if default and self.mainlang in value.keys():
                 return value.get(self.mainlang)
             # do we accept defaults and is their any language in the dict
-            if default and len(value.keys()>0):
+            if default and len(value.keys())>0:
                 return value.get(list(value.keys())[0])
         return value
 
@@ -309,7 +295,7 @@ class JsonSchema(JsonElements):
         """
         if catgid is None: return []
         catgtree = []
-        for catg in self.alwayslist(self.getelementinstances(elementname="Categories")):
+        for catg in alwayslist(self.getelementinstances(elementname="Categories")):
             if catg.get("elementid") == catgid:
                 catgtree.append(self.mlvalue(catg.get("name")))
                 catgtree = self.categorytree(catg.get("parent")) + catgtree

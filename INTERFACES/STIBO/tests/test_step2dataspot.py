@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from STIBO import LoadStep, Step2Dataspot, GenerateReferences, \
+from INTERFACES.STIBO import LoadStep, Step2Dataspot, GenerateReferences, \
     GenerateDomains, GenerateDatamodel, generatemodels
 
 

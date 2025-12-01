@@ -77,7 +77,8 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
     def entityjson(self, element):
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["subtypeOf"])
-
+        #for dataspot mark entites as favorites
+        additionalprops.append({"favorite": element.get("favorite")})
         jsonstruct = self.standardjson.entityjson(elementid=element.get("ID"),
                                                   name=self.mutlilangvalue(fieldname="label",
                                                                            value=self._deref(element.get("label")),

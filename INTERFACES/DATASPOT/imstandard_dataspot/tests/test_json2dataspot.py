@@ -7,7 +7,6 @@ import pytest
 
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot,json2dataspot
 
-
 class Testjson2dataspot(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def inject_fixtures(self, caplog, tmp_path, capsys):
@@ -47,33 +46,39 @@ class Testjson2dataspot(unittest.TestCase):
         with open(self.astronomietestjsonpath) as infile:
             testjson = json.load(fp=infile)
 
-        dsclass = Json2dataspot(standardjson=testjson,
-                                imname="Informationmodel",
-                                refdomainsname="Referencemodell",
-                                domainsname="Domainmodel")
+        json2dataspot(injson=self.astronomietestjsonpath,
+                      outpath=self.mydebugpath,
+                      imname="Astronomie model",
+                      refdomainsname="TestReference",
+                      domainsname="testdomain",
+                      systemsname="Systems_model"
+                      )
+        return
 
 
-    def test_astronomie(self):
-        with open(self.astronomietestjsonpath) as infile:
+    def test_astronomie_generated(self):
+        with open(self.astronomietestjsonpath.with_stem("astronomie-schema-generated")) as infile:
             testjson = json.load(fp=infile)
 
         dsclass = Json2dataspot(standardjson=testjson,
                                     imname="Informationmodel",
-                  refdomainsname="Referencemodell",
-                  domainsname="Domainmodel")
+                  refdomainsname="TestReference",
+                  domainsname="testdomain")
         dsjson = dsclass.dsentityjson()
         self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])>2)
         self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="BusinessObject"])>5)
         self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Relationship"])>5)
         self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="BusinessObject" and elem.get("label")=="Zwergplanet"])==1)
+        self.assertFalse([elem for elem in dsjson if elem.get("_type")=="BusinessAttribute" and elem.get("label")=="Aphel"][0].get("favorite"))
 
         dsjson=dsclass.dsdomainjson()
         self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])>3)
         self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="DataDomain"])>6)
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="DataAttribute"])>6)
         self.assertFalse('Standard Referenzwerte' in [elem.get("label") for elem in dsjson if elem.get("_type")=="Collection"])
 
         dsjson=dsclass.dsreferencejson()
-        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])>2)
+        self.assertEqual(2,len([elem for elem in dsjson if elem.get("_type")=="Collection"]))
         all_collection_names=[elem.get("label") for elem in dsjson if elem.get("_type")=="Collection"]
         self.assertEqual(len(all_collection_names),len(set(all_collection_names)))
         self.assertFalse ('Astronomie Wertebereiche' in all_collection_names)
@@ -85,7 +90,11 @@ class Testjson2dataspot(unittest.TestCase):
 
         json2dataspot(injson=self.astronomietestjsonpath,
                       outpath=self.mydebugpath,
-                      imname="Astronomie model")
+                      imname="Astronomie model",
+                      refdomainsname="TestReference",
+                      domainsname="testdomain",
+                      systemsname="Systems_model"
+                      )
 
         return
 
@@ -117,7 +126,6 @@ class Testjson2dataspot(unittest.TestCase):
                       systemsname="systems")
         print ("\n".join(self.caplog.messages))
         return
-
 
 
 if __name__ == '__main__':

@@ -5,6 +5,20 @@ def nvl(v,d=""):
     """
     return v if v is not None else d
 
+def alwayslist(x):
+        """
+        :param x: element to be converted into list
+        :return: [] if x is None
+                x if type(x) is list
+                list(x) else
+        """
+        if x is None:
+            return []
+        elif type(x) == list:
+            return x
+        else:
+            return [x]
+
 from .jsonelements import *
 from .myjsonschema import *
 from .standardmodeljson import *

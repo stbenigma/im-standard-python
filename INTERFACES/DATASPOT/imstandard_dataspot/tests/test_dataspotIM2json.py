@@ -39,6 +39,9 @@ class Test_dataspot2im(unittest.TestCase):
         inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)
         self.assertTrue(len(dsschema.categories)>3)
+        domacatg=[c for c in dsschema.categories.values() if c.get("TYPE")=="DOMAIN"]
+        self.assertTrue(len(domacatg)>3)
+        self.assertEqual(1,len([d for d in domacatg if d.get("label")=='Astronomische Referenzwerte']))
         self.assertTrue(len([a for a in dsschema.attributes.values() if a.get("_type")=="DataAttribute"])>3)
         self.assertTrue(len([a for a in dsschema.attributes.values() if a.get("_type")=="BusinessAttribute"])>3)
         self.assertEqual(1,len([a for a in dsschema.attributes.values() if a.get("label")=="Dauer"]))
@@ -51,6 +54,11 @@ class Test_dataspot2im(unittest.TestCase):
         self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a.get("parentid").startswith("ENTI")])>5)
         self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a.get("parentid").startswith("DOMA")])>5)
         self.assertEqual(0,len([a for a in jsonstruct.get("Domains") if not a.get("elementid").startswith("DOMA")]))
+
+        attr=self.getelement(jsonstruct,"Attributes","Aphel")
+        self.assertFalse(attr.get("descriptive"))
+        attr=self.getelement(jsonstruct,"Attributes","Umlaufdauer")
+        self.assertTrue(attr.get("descriptive"))
 
         dauer=self.getelement(jsonstruct,"Attributes","Dauer")
         doma= self.getelement(jsonstruct,"Domains","Dezimalzahl")
