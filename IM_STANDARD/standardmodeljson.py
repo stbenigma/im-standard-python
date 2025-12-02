@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from IM_STANDARD.jsonvalidation import validate_jsonfile_as_schema  # local due to recusrive import
 
 
 class StandardJsonModel:
@@ -8,7 +9,8 @@ class StandardJsonModel:
     def __init__(self,modelfilepath):
         self._schema = self._loadjsonfile(path=modelfilepath)
 
-    def _loadjsonfile(self, path: Path):
+    @staticmethod
+    def _loadjsonfile(path: Path):
         with open(path) as infile:
             return json.load(infile)
 
@@ -80,7 +82,6 @@ class IMStandardJsonModel(StandardJsonModel):
     def __init__(self):
         super().__init__(modelfilepath= self.IMDEFINITIONFILEPATH)
         #make sure, my reference is a correct json-schema
-        from IM_STANDARD import validate_jsonfile_as_schema #local due to recusrive import
         validate_jsonfile_as_schema(json_file_path=self.IMDEFINITIONFILEPATH)
 
 

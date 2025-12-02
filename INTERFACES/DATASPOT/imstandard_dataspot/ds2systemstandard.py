@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 from IM_STANDARD import JsonSchema,nvl
+from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 
 class Dataspot2SYSTJsonschema(Dataspot2Jsonbase):
     """

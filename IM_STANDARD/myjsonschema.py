@@ -3,6 +3,7 @@ import re
 
 from IM_STANDARD import JsonElements,alwayslist
 
+
 class ElementId:
     """ give unique new id with every call"""
     OBJNAMES = {"ENTI": "Entities",
@@ -17,6 +18,7 @@ class ElementId:
                 "SYST": "Systems",
                 "DIAG": "Diagrams",
                 "DIAE": "Diagram elements",
+                "MAPP": "Mappings",
                 "TRAF": "Transformations"
                 }
     idmax = {key: 0 for key in OBJNAMES.keys()}
@@ -76,6 +78,11 @@ class JsonSchema(JsonElements):
     """
     common functions and jsonstructures to be used in  jsonSchemas organized according to the standard
     """
+
+    MAINELEMENTS=["Entities", "Domains", "Categories",
+                           "Attributes",
+                           "Relations", 'BusinessRules'
+                        ,"DataObjects", 'Systems']
 
     def __init__(self, model=None, **kwargs):
         self._model = model if model is not None else \
@@ -199,6 +206,40 @@ class JsonSchema(JsonElements):
             raise Exception(f"illegal type of value '{type(val)}'")
         return
 
+    def getanyelementsbyfield(self,name,
+                           field="name"):
+        """
+        find the name in the field of any element
+
+        :param name: value to search for (multilingual)
+        :param field: name of the field to search
+        :return: list of all elements found
+        """
+        elements = []
+        for elemtype in self.MAINELEMENTS:
+            elements+= self.getelementsbyfield(elementtype=elemtype,
+                                              name=name,field=field)
+        return elements
+
+    def getanyelementbyfield(self,name,
+                           field="name"):
+        """
+        find the name in the field in any element
+
+        :param name: value to search for (multilingual)
+        :param field: name of the field to search
+        :return: [] if nothing found
+                error if more than one was found
+                element if exactly one was found
+        """
+        elements = self.getanyelementsbyfield(name=name,field=field)
+        if len(elements)==0:
+            return []
+        elif len(elements)>1:
+            raise Exception("Too many elements with {name} found")
+        else:
+            return elements[0]
+
     def getelementsbyfield(self, elementtype,
                            name,
                            field="name"):
@@ -207,8 +248,8 @@ class JsonSchema(JsonElements):
             where the field is present and its value equals to name
 
         """
-        elements = self.jsonschemamodel[elementtype]
-        retval = [elem for elem in elements if elem.get(field) == name]
+        elements = self.jsonschemamodel.get(elementtype,[])
+        retval = [elem for elem in elements if self.mlvalue(elem.get(field)) == name]
         return retval
 
     def getelementbyfield(self,
@@ -217,7 +258,7 @@ class JsonSchema(JsonElements):
                           field="name"):
         """
 
-        @param elementtype:  Dntities, Relations, Attributes, Domains...
+        @param elementtype:  Entities, Relations, Attributes, Domains...
         @param name: value to search for
         @param field: field in element containing the valu
         @return: the element , if exactly one was found
@@ -256,11 +297,8 @@ class JsonSchema(JsonElements):
                     retval.extend(father[elementname])
             return retval
 
-        if elementname in ("Entities", "Domains", "Categories",
-                           "Attributes", "DataObjects",
-                           "Relations", 'BusinessRules','Systems'
-                           ):
-            retval = self.jsonschemamodel.get(elementname, [])
+        if elementname in self.MAINELEMENTS:
+            retval = self.jsonschemamodel.get(elementname,[])
         elif elementname in ("Keys"):
             retval = subelements(fathername="Entities",
                                  elementname=elementname.lower())
@@ -277,13 +315,9 @@ class JsonSchema(JsonElements):
             any ID iw unique over all type of elements
             """
         retval = []
-        for elemtype in ("Entities", "Domains", "Categories",
-                         "DataObjects", "Attributes", "Columns",
-                         "Relations", "Columns", 'BusinessRules',
-                         'Systems'
-                         ):
+        for elemtype in self.MAINELEMENTS:
             retval.extend([elem for elem in self.getelementinstances(elementname=elemtype)
-                           if elem["elementid"] == elementid])
+                           if elem.get("elementid") == elementid])
 
         assert len(retval) < 2, f"id {elementid} found twice"
         return retval[0] if len(retval) == 1 else None

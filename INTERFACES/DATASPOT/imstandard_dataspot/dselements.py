@@ -3,9 +3,8 @@ import logging
 from pathlib import Path
 
 
+from IM_STANDARD import nvl,ElementId
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
-from IM_STANDARD.myjsonschema import ElementId
-from IM_STANDARD import nvl
 
 
 class DataspotElements():
@@ -30,6 +29,7 @@ class DataspotElements():
         self.columns = dict()
         self.relationships = dict()
         self.transformations = dict()
+        self.mappings = dict()
         self.rules = dict()
         self.deployments = dict()
         self.dependencies = dict()
@@ -213,10 +213,10 @@ class DataspotElements():
                 name = nvl(entry["PARENT2"]) + ">" + nvl(entry.get("qualifier"))
                 self.derivations[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Mapping":
-                entry["ID"] = ElementId.nextid("TRAF")
+                entry["ID"] = ElementId.nextid("MAPP")
                 entry["TYPE"] = "VALUES"
                 entry["PARENT"] = entry.get('inCollection')
-                self.transformations[self.entryid(entry=entry, name=name)] = entry
+                self.mappings[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Translation":
                 entry["TYPE"] = "VALUES"
                 entry["PARENT"] = entry.get('translationIn')

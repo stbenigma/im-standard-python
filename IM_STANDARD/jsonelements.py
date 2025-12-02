@@ -1,4 +1,5 @@
 from IM_STANDARD import nvl
+
 class JsonElements:
 
     """ all functions to create standard json structures"""
@@ -24,6 +25,18 @@ class JsonElements:
             else:
                 raise Exception(f"unkown type to add property {type(destobject)}")
         return
+
+    @staticmethod
+    def getadditionalprop(elem,name):
+        adprop=elem.get("additionalProps",[])
+        if len(adprop) ==0:
+            return None
+        prop=[p.get(name) for p in adprop if name in p]
+        assert len(prop)<2,f"property {name} found twice {prop}"
+        if len(prop)==0:
+            return None
+        else:
+            return prop[0]
 
     @staticmethod
     def additionalprops(props):
@@ -189,6 +202,20 @@ class JsonElements:
             jsonstruct["rule"] = "??? missing rule ???"
 
         return jsonstruct
+
+    def derivationjson(self, derivationtype,sourceelementname, **kwargs):
+        jsonstruct = {"derivationtype": derivationtype,
+                      "sourceelementname": sourceelementname
+                      }
+        for key, value in kwargs.items():
+            self.optionalprop(destobject=jsonstruct,
+                              propname=key,
+                              value=value
+                              )
+
+
+        return jsonstruct
+
 
     def refvaluejson(self, value, **kwargs):
         jsonstruct = {"value": value}

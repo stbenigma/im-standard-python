@@ -6,12 +6,6 @@ from jsonschema import Draft7Validator, RefResolver, validate, SchemaError,proto
 
 from IM_STANDARD import nvl
 
-
-def listUnique(x):
-    """True if sorted lists in list are unique"""
-    seen = list()
-    return not any(sorted(i) in seen or seen.append(sorted(i)) for i in x)
-
 def purevalidate(tovalidatejs, validattionjs, resolver, verbose=True):
     """
     :param tovalidatejs: json struct to be validatd
@@ -163,6 +157,12 @@ class ValidateJsonModel:
 
         return []
 
+    @staticmethod
+    def listUnique(x):
+        """True if sorted lists in list are unique"""
+        seen = list()
+        return not any(sorted(i) in seen or seen.append(sorted(i)) for i in x)
+
     def _checkadditionalrules(self, verbose=True):
         errors=[]
         # validate the additional rules, not covered by the model itself.
@@ -227,7 +227,7 @@ class ValidateJsonModel:
                               ]
                              for rela in myschema.getelementinstances(name="Relations")
                              ]
-            if not listUnique(relationskeys):
+            if not self.listUnique(relationskeys):
                 #if verbose: logging.error(f"Duplicate relations (enti-enti-multilangassoctext) in model")
                 errors.append(f"Duplicate relations (enti-enti-multilangassoctext) in model")
 
@@ -277,7 +277,7 @@ class ValidateJsonModel:
                 errors.append(f"Missing synonym name in main language in entity {enti.get('name')}")
 
             # synonyms names must be unique in all languages within an entity
-            if self.model.modelismultilingual() and not listUnique([[myschema.mlvalue(syno, lang)
+            if self.model.modelismultilingual() and not self.listUnique([[myschema.mlvalue(syno, lang)
                                                                      for lang in myschema.languages
                                                                      ] for syno in synos
                                                                     ]):
@@ -291,7 +291,7 @@ class ValidateJsonModel:
                           for lang in myschema.languages
                           ] for attr in entyattrs
                          ]
-            if not listUnique(attrnames):
+            if not self.listUnique(attrnames):
                 #if verbose: logging.error(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
                 errors.append(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
 
@@ -462,7 +462,6 @@ class ValidateJsonModel:
         errors += self._checkadditionalrules(verbose=verbose)
         return errors
 
-
 def validateschema(instance,
                    schemafile,
                    verbose=False,
@@ -500,8 +499,7 @@ def remove_key_from_json(obj, key_to_remove):
     if isinstance(obj, dict):
         return {
             key: remove_key_from_json(value, key_to_remove)
-            for key, value in obj.items()
-            if key != key_to_remove
+             for key, value in obj.items() if key != key_to_remove
         }
     elif isinstance(obj, list):
         return [remove_key_from_json(item, key_to_remove) for item in obj]
@@ -510,14 +508,4 @@ def remove_key_from_json(obj, key_to_remove):
 
 
 if __name__ == '__main__':
-    import sys, json
-
-    # mainpath="/Users/stb/Library/Mobile Documents/com~apple~CloudDocs/Arbeit/dataspot addons/access/chem-x"
-    schemadefpath = Path(__file__).parent / "im-schema-json"
-    imschemapath = schemadefpath / "InformationModel-schema.json"
-    inpath = sys.argv[1]
-    with open(inpath) as infile:
-        instance = json.load(fp=infile)
-    validateschema(instance=instance,
-                   schemafile=imschemapath,
-                   verbose=True)
+    pass

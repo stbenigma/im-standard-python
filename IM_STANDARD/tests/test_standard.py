@@ -7,7 +7,8 @@ from pathlib import Path
 import pytest
 from jsonschema import Draft7Validator
 
-from IM_STANDARD import purevalidate,ValidateJsonModel
+from IM_STANDARD import ValidateJsonModel
+from IM_STANDARD.jsonvalidation import purevalidate
 
 
 class MyTestCase(unittest.TestCase):

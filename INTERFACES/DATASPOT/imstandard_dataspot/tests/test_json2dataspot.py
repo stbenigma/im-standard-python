@@ -33,11 +33,18 @@ class Testjson2dataspot(unittest.TestCase):
     def test_diverse(self):
         self.assertEqual('"abc/d"', Json2dataspot.fullescapestr("abc/d"))
         self.assertEqual('a\\"b\\"cd', Json2dataspot.escapestr('a"b"cd'))
+        self.assertEqual([],Json2dataspot.custom_split(input_string=None,delimiter="/",quote='"'))
+        self.assertEqual([""],Json2dataspot.custom_split(input_string="",delimiter="/",quote='"'))
+        self.assertEqual(["","abc","def"],Json2dataspot.custom_split(input_string="/abc/def",delimiter="/",quote='"'))
+        self.assertEqual(["ab/c","def"],Json2dataspot.custom_split(input_string="\"ab/c\"/def",delimiter="/",quote='"'))
+        self.assertEqual(["","ab.c","","def"],Json2dataspot.custom_split(input_string="/ab.c//def",delimiter="/",quote='"'))
+        self.assertEqual(["","abc","","def",""],Json2dataspot.custom_split(input_string="/abc/""/def/",delimiter="/",quote='"'))
         self.assertEqual("1",Json2dataspot._multiplicity(card=1,mand=True))
         self.assertEqual("0..1",Json2dataspot._multiplicity(card="1",mand=False))
         self.assertEqual("1..*",Json2dataspot._multiplicity(card="M",mand=True))
         self.assertEqual("0..*",Json2dataspot._multiplicity(card="M",mand=False))
 
+        Json2dataspot
         return
 
 

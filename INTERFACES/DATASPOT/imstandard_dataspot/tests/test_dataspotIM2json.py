@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from IM_STANDARD import remove_key_from_json, IMStandardJsonModel
 from INTERFACES.DATASPOT import exportIM2standard,Dataspot2IMJsonschema
+from IM_STANDARD import remove_key_from_json, IMStandardJsonModel
 
 class Test_dataspot2im(unittest.TestCase):
     @pytest.fixture(autouse=True)
@@ -65,7 +65,27 @@ class Test_dataspot2im(unittest.TestCase):
         self.assertEqual(dauer.get("domainid"),doma.get("elementid"))
         return
 
-    def test_ds2im_astronomie(self):
+    def test_ds2im_schwipsti_load(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
+        dsschema = Dataspot2IMJsonschema(indirec=inpath)
+
+        derivations = [c for c in dsschema.derivations.values()]
+        self.assertTrue(len(derivations)>0)
+        transformations = [c for c in dsschema.transformations.values()]
+        self.assertTrue(len(transformations)>0)
+        rules = [c for c in dsschema.rules.values()]
+        self.assertTrue(len(rules)>0)
+        mappings = [c for c in dsschema.mappings.values()]
+        self.assertTrue(len(mappings)>0)
+
+        jsonstruct=dsschema.generatejson(modelname=inpath.name,
+                                       modelversion="0.0",
+                                       targetenv="Test",
+                                       language="de",
+                                       languages=["en"])
+        return
+
+    def test_ds2im_schwipsti(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
         instance = exportIM2standard(inpath=inpath,
                                      outpath=self.mydebugpath,

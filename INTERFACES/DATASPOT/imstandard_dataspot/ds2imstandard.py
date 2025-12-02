@@ -1,10 +1,10 @@
 import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
+from IM_STANDARD import JsonSchema, ElementId, nvl
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
-from IM_STANDARD import JsonSchema, ElementId,nvl
 
 
 class Dataspot2IMJsonschema(Dataspot2Jsonbase):
@@ -37,6 +37,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                    )
         self.generatekeys()
 
+        self.generatederivations()
         return
 
     # def lookupid(self, elemtype, name):
@@ -77,8 +78,8 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
     def entityjson(self, element):
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["subtypeOf"])
-        #for dataspot mark entites as favorites
-        additionalprops.append({"favorite": element.get("favorite")})
+        # for dataspot mark entites as favorites
+        additionalprops["favorite"]= element.get("favorite")
         jsonstruct = self.standardjson.entityjson(elementid=element.get("ID"),
                                                   name=self.mutlilangvalue(fieldname="label",
                                                                            value=self._deref(element.get("label")),
@@ -115,19 +116,20 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                notnull=True)
                 self.standardjson.addelementinstance(name="Relations",
                                                      val=self.relationjsonbase(relationtype="SUBTYPE",
-                                                                         entityid1=entityid1,
-                                                                         entityid2=element.get("ID"),
-                                                                         element={
-                                                                             "hasDomain": element.get("subtypeOf"),
-                                                                             "name": self.standardjson.multilangstring_is(),
-                                                                             "hasRange": element.get("label"),
-                                                                             "inverseName": self.standardjson.multilangstring_is(),
-                                                                             "domainMultiplicity": "1",
-                                                                             "rangeMultiplicity": "1",
-                                                                             "ARC-12": None,
-                                                                             "ARC-21": 0,
-                                                                             "ID": ElementId.nextid("RELA")
-                                                                         }))
+                                                                               entityid1=entityid1,
+                                                                               entityid2=element.get("ID"),
+                                                                               element={
+                                                                                   "hasDomain": element.get(
+                                                                                       "subtypeOf"),
+                                                                                   "name": self.standardjson.multilangstring_is(),
+                                                                                   "hasRange": element.get("label"),
+                                                                                   "inverseName": self.standardjson.multilangstring_is(),
+                                                                                   "domainMultiplicity": "1",
+                                                                                   "rangeMultiplicity": "1",
+                                                                                   "ARC-12": None,
+                                                                                   "ARC-21": 0,
+                                                                                   "ID": ElementId.nextid("RELA")
+                                                                               }))
 
         return
 
@@ -154,15 +156,15 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         for element in elements:
             self.standardjson.addelementinstance(name=elementname,
                                                  val=self.relationjson(relationtype=self._relationtype(element),
-                                                                 modelname=element.get("DSMODEL"),
-                                                                 element=element)
+                                                                       modelname=element.get("DSMODEL"),
+                                                                       element=element)
                                                  )
         return
 
     def generate1attribute(self, element):
         parentid = self.getentityid(element.get("hasDomain"))
         if parentid is None:
-            parentid=self.getdomainid(element.get("hasDomain"))
+            parentid = self.getdomainid(element.get("hasDomain"))
         domainname = element.get("hasRange")
         domainid = None if type(domainname) is not str else self.getdomainid(
             domaname=j2d.custom_split(domainname, "/")[-1])
@@ -234,13 +236,44 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
         subtypeproperties["additionalProps"] = additionalprops
         jsonstruct.append(self.standardjson.domainjson(elementid=doma.get("ID"),
-                                                  name=self.mutlilangvalue(fieldname="label",
-                                                                           value=doma.get("label"),
-                                                                           addprops=additionalprops),
-                                                  categoryid=catgid,
-                                                  **subtypeproperties
-                                                  ))
+                                                       name=self.mutlilangvalue(fieldname="label",
+                                                                                value=doma.get("label"),
+                                                                                addprops=additionalprops),
+                                                       categoryid=catgid,
+                                                       **subtypeproperties
+                                                       ))
         return jsonstruct
+    def getadditionalprop(self,elem:dict,propname:str):
+        addprops=elem.get("additionalProps",[])
+
+        return
+    def findqualielement(self,fullpath:str):
+        frommodel, frompath, fromelement = self.namedreference2struct(fullpath)
+        elements = self.standardjson.getanyelementsbyfield(name=fromelement,
+                                                                field="name")
+        retval = []
+        for elem in elements:
+            pass
+        return None
+
+    def generatederivations(self):
+        """ read all derivations and add them to the element mentioned in the TO part of the derivation
+        """
+        for keyderiv, deriv, in self.derivations.items():
+            sourceelement=self.findqualielement(fullpath=deriv.get("derivedFrom"))
+            targetelement = self.findqualielement(fullpath=deriv.get("derivedTo"))
+            if sourceelement is not None:
+                newelem:dict()=self.standardjson.getbyid(sourceelement)
+                #add drivation to this element
+
+                newelem.setdefault("derivations",[])
+                newelem["derivations"].append(self.standardjson.derivationjson
+                                              (derivationtype=deriv.get("qualifier"),
+                                               sourceelementname=deriv.get("derivedFrom")
+                                              )
+                                              )
+
+        return
 
     def generatejson(self, modelname,
                      modelversion="0.0",
@@ -250,14 +283,14 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         now = datetime.now().replace(microsecond=0).isoformat()
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=self.standardjson.modelinfojson(
-                                           modelname=modelname,
-                                           modeltype="Information model",
-                                           mainlanguage=language,
-                                           languages=languages,
-                                           dc=now,
-                                           modelversion=modelversion,
-                                           targetenvironment=targetenv,
-                                           origintool=self.ORIGINTOOL))
+                                               modelname=modelname,
+                                               modeltype="Information model",
+                                               mainlanguage=language,
+                                               languages=languages,
+                                               dc=now,
+                                               modelversion=modelversion,
+                                               targetenvironment=targetenv,
+                                               origintool=self.ORIGINTOOL))
 
         self.generatecategories(catgtype="DOMAIN")
         self.generatecategories(catgtype="ENTITY")
@@ -267,12 +300,12 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         return self.standardjson.jsonschemamodel
 
 
-def exportIM2standard(inpath, outpath, modelname=None,modelversion='0.0',
+def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                       targetenv=None,
                       language='en', languages=[]):
     indirec = Path(inpath)
     dsschema = Dataspot2IMJsonschema(indirec=indirec)
-    jsonstruct = dsschema.generatejson(modelname=nvl(modelname,indirec.name),
+    jsonstruct = dsschema.generatejson(modelname=nvl(modelname, indirec.name),
                                        modelversion=modelversion,
                                        targetenv=targetenv,
                                        language=language,

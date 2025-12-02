@@ -1,10 +1,7 @@
 import json
-import logging
 from pathlib import Path
 
-
 from IM_STANDARD import JsonSchema,JsonElements,nvl
-
 
 class Json2dataspot(JsonSchema):
     DUMMYCOLLECTION = "DEFAULTCOLLECTION"
@@ -61,6 +58,11 @@ class Json2dataspot(JsonSchema):
 
     @staticmethod
     def escapestr(instr):
+        """
+        escape all characters in a string not suitable for dataspot
+        :param instr:
+        :return:
+        """
         if instr is None: return instr
         retval = instr.replace('"', '\\"').\
                     replace("\n", " ").\
@@ -71,8 +73,9 @@ class Json2dataspot(JsonSchema):
 
     @staticmethod
     def fullescapestr(instr):
+        """ escape string and then enclose string in "" if it contains / or . """
         retval = Json2dataspot.escapestr(instr)
-        if ("/" in instr) or ('.' in instr):
+        if retval is not None and (("/" in instr) or ('.' in instr)):
             retval = f'"{retval}"'
         return retval
 
@@ -81,6 +84,7 @@ class Json2dataspot(JsonSchema):
         result = []
         current_segment = []
         in_quotes = False
+        if input_string is None: return result
 
         for char in input_string:
             if char == quote:

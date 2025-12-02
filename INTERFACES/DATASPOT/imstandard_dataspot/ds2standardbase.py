@@ -2,9 +2,9 @@ import copy
 import logging
 from datetime import datetime
 
-from IM_STANDARD.myjsonschema import ElementId, JsonSchema
 from INTERFACES.DATASPOT.imstandard_dataspot.dselements import DataspotElements
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
+from IM_STANDARD import ElementId,alwayslist,nvl,JsonSchema
 
 
 def mseconds2date(seconds):
@@ -49,19 +49,19 @@ class Dataspot2Jsonbase(DataspotElements):
             for otherlang in self.standardjson.languages:
                 if otherlang == self.standardjson.mainlang: continue
                 translkey = f"{fieldname}:{otherlang}"
-                othervalue = {key: val for ap in addprops for key, val in ap.items()}.get(translkey)
+                othervalue = addprops.get(translkey)
                 if othervalue is not None:
                     retval[otherlang] = othervalue
                     # remove this property from this additionalproperties
-                    addprops.remove({translkey: othervalue})
+                    del addprops[translkey]
                 else:
                     capitalize = lambda s: s[0].upper() + s[1:]
                     translkey = f"{capitalize(fieldname)}:{otherlang}"
-                    othervalue = {key: val for ap in addprops for key, val in ap.items()}.get(translkey)
+                    othervalue = addprops.get(translkey)
                     if othervalue is not None:
                         retval[otherlang] = othervalue
                         # remove this property from this additionalproperties
-                        addprops.remove({translkey: othervalue})
+                        del addprops[translkey]
             # if allvalues in all languages are none, return None
             if len([val for val in retval.values() if val not in (None, "")]) == 0:
                 retval = None
@@ -177,8 +177,7 @@ class Dataspot2Jsonbase(DataspotElements):
                  for attr in self.standardjson.getelementinstances(elementname="Attributes")
                  if attr.get("parentid") in (entiid, domaid) and
                  modelname in
-                 [v for ap in attr.get("additionalProps", [])
-                  for k, v in ap.items() if k == "SOURCE-MODEL"]
+                 [val for key,val in attr.get("additionalProps", dict()).items() if key == "SOURCE-MODEL"]
                  }
         return attrs.get(self._deref(attrname))
 
@@ -219,6 +218,42 @@ class Dataspot2Jsonbase(DataspotElements):
                                                     additionalProps=additionalprops)
         return jsonstruct
 
+    @staticmethod
+    def namedreference2struct(namedref:str):
+        """ separates a refrence to an object into its components
+            [/<modelname>]/[<elementpath>/]*<elementname>
+            alle Namen die ein "/" oder ein Spezialzeichen enthalten sind in ""
+            return
+            modelname: None or firstname after /
+            elementpath : list of names between
+
+        """
+        if namedref is None: return (None,None,None)
+        parts=j2d.custom_split(input_string=namedref,delimiter="/")
+        if namedref.startswith("/"):
+            modelname=parts[1]
+
+            parts=parts[2:]  #remove modelnam
+        else:
+            modelname=None
+        elementname=parts[-1]
+        elementpath=parts[0:-1]
+        return modelname,elementpath,elementname
+
+    @staticmethod
+    def refparts2namedreference(elementname:str,modelname:str=None,elementpath:list=None):
+        """ combines the element-path-parts into a single string
+            /<modelname>]/[<elementpath>/]*<elementname>
+            all names containing "/" or . are enclosed in ""
+        """
+        retval = ""
+        if modelname is not None:
+            retval += "/" + j2d.fullescapestr(modelname) + "/"
+        if len(alwayslist(elementpath))>0:
+            retval += "/".join([j2d.fullescapestr(ep) for ep in elementpath]) + "/"
+        retval += nvl(j2d.fullescapestr(elementname))
+        return retval
+
     def findelement(self, elems, modelname, name, fullname=False):
         if name is None:
             return None
@@ -244,7 +279,7 @@ class Dataspot2Jsonbase(DataspotElements):
         return None if elem is None else elem.get("ID")
 
     @classmethod
-    def additionalprops(cls, elem, specialkeys):
+    def additionalprops(cls, elem, specialkeys)->dict:
         defaultfields = ["_type", "label",
                          "id", "href",
                          "examples", "synonyms", "favorite",
@@ -252,9 +287,9 @@ class Dataspot2Jsonbase(DataspotElements):
                          "status", "createdBy", "dateCreated",
                          "hasDomain", "hasRange", "stereotype",
                          "ID", "TYPE", "DSMODEL", "PARENT", "PARENT2"]
-        retval = [{key: val} for key, val in elem.items() if key not in (defaultfields + specialkeys)]
-        if "id" in elem: retval.append({"SOURCE-ID": elem.get("id")})
-        if "DSMODEL" in elem: retval.append({"SOURCE-MODEL": elem.get("DSMODEL")})
+        retval = {key: val for key, val in elem.items() if key not in (defaultfields + specialkeys)}
+        if "id" in elem: retval["SOURCE-ID"]= elem.get("id")
+        if "DSMODEL" in elem: retval["SOURCE-MODEL"]= elem.get("DSMODEL")
         return retval
 
     @staticmethod
