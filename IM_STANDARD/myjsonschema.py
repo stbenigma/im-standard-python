@@ -1,7 +1,7 @@
 
 import re
 
-from IM_STANDARD import JsonElements,alwayslist
+from IM_STANDARD import JsonElement,alwayslist
 
 
 class ElementId:
@@ -74,7 +74,7 @@ class ElementId:
         return {val: key for key, val in ElementId.OBJNAMES.items()}.get(objname)
 
 
-class JsonSchema(JsonElements):
+class JsonSchema():
     """
     common functions and jsonstructures to be used in  jsonSchemas organized according to the standard
     """
@@ -86,7 +86,7 @@ class JsonSchema(JsonElements):
 
     def __init__(self, model=None, **kwargs):
         self._model = model if model is not None else \
-            {"ModelInfo": dict()} #create legal json-schema
+            {"ModelInfo": None} #create legal json-schema
         self._curlang = None
         return
 
@@ -101,7 +101,7 @@ class JsonSchema(JsonElements):
 
     @property
     def modelname(self):
-        return self.jsonschemamodel["ModelInfo"].get("modelname")
+        return self.jsonschemamodel["ModelInfo"]["modelname"]
 
     @property
     def curlang(self):
@@ -113,22 +113,22 @@ class JsonSchema(JsonElements):
 
     @property
     def modeldescr(self):
-        return self.jsonschemamodel["ModelInfo"].get("description")
+        return self.jsonschemamodel["ModelInfo"]["description"]
 
     @property
     def modeltype(self):
-        return self.jsonschemamodel["ModelInfo"].get("modeltype")
+        return self.jsonschemamodel["ModelInfo"]["modeltype"]
 
     @property
     def mainlang(self):
-        return self.jsonschemamodel["ModelInfo"].get("mainlanguage")
+        return self.jsonschemamodel["ModelInfo"]["mainlanguage"]
 
     @property
     def languages(self):
         """"
             return additional languages for model empty if nonexistent
         """
-        return self.jsonschemamodel["ModelInfo"].get("languages",[])
+        return alwayslist(self.jsonschemamodel["ModelInfo"]["languages"])
 
     @property
     def alllanguages(self):
@@ -189,6 +189,35 @@ class JsonSchema(JsonElements):
         else:
             return _istransl(self.mainlang)
 
+    def getpath(self,elem:JsonElement):
+        retval= ""
+        if elem is None: return retval
+        if elem.elemtype in ("Entity","Domain"):
+            parentprop="categoryid"
+        elif elem.elemtype==("Attribute","Category"):
+            parentprop="parentid"
+        elif elem.elemtype=="BusinessRule":
+            parentprop=None
+        elif elem.elemtype == "Relation":
+            parentprop=None
+        elif elem.elemtype == "System":
+            parentprop=None
+        if parentprop is not None:
+            retval = self.getpath(elem.data.get(parentprop))+elem.getname()
+        else:
+            pass
+        return retval+"/"
+
+    def getfullpath(self,elem:JsonElement,
+                            lang=None):
+        """
+        get the full path of an element from its name up to the model levewl, with all parents
+        :return: /modelname/{parent.name/}/elementname
+        """
+        retval= f"/{elem.getadditionalprop('SOURCE-MODEL')}/{self.getpath(elem=elem)}/{self.mlvalue(value=elem.getname(),lang=lang)}"
+        #TODO read all parents and define all names
+        return retval
+
     def setschemaelement(self, name, val):
         self.jsonschemamodel[name] = val
         return
@@ -198,9 +227,9 @@ class JsonSchema(JsonElements):
         """
         #create element if not present
         self.jsonschemamodel.setdefault(name, [])
-        if type(val) == list:
+        if isinstance(val, list):
             self.jsonschemamodel[name].extend(val)
-        elif type(val) == dict:
+        elif isinstance(val,dict) or isinstance(val,JsonElement):
             self.jsonschemamodel[name].append(val)
         else:
             raise Exception(f"illegal type of value '{type(val)}'")
@@ -249,7 +278,7 @@ class JsonSchema(JsonElements):
 
         """
         elements = self.jsonschemamodel.get(elementtype,[])
-        retval = [elem for elem in elements if self.mlvalue(elem.get(field)) == name]
+        retval = [elem for elem in elements if self.mlvalue(elem[field]) == name]
         return retval
 
     def getelementbyfield(self,
@@ -317,7 +346,7 @@ class JsonSchema(JsonElements):
         retval = []
         for elemtype in self.MAINELEMENTS:
             retval.extend([elem for elem in self.getelementinstances(elementname=elemtype)
-                           if elem.get("elementid") == elementid])
+                           if elem.getid() == elementid])
 
         assert len(retval) < 2, f"id {elementid} found twice"
         return retval[0] if len(retval) == 1 else None
@@ -330,9 +359,9 @@ class JsonSchema(JsonElements):
         if catgid is None: return []
         catgtree = []
         for catg in alwayslist(self.getelementinstances(elementname="Categories")):
-            if catg.get("elementid") == catgid:
-                catgtree.append(self.mlvalue(catg.get("name")))
-                catgtree = self.categorytree(catg.get("parent")) + catgtree
+            if catg.getid() == catgid:
+                catgtree.append(self.mlvalue(catg["name"]))
+                catgtree = self.categorytree(catg["parent"]) + catgtree
         return catgtree
 
     def maketechnicalname(self, name):
@@ -341,5 +370,5 @@ class JsonSchema(JsonElements):
     def _gettechnicalname(self, elem):
         return elem.get("technicalname",
                    self.maketechnicalname(self.mlvalue(
-                       elem.get("name"))))  # TODO generate technical names in domainstechname=elem.get("technicalname")
+                       elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalname""]
 

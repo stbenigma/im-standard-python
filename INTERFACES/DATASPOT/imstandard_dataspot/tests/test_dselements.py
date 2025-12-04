@@ -55,5 +55,10 @@ class Testjson2dataspot(unittest.TestCase):
         self.assertEqual('x/abcd',Dataspot2Jsonbase.refparts2namedreference(modelname=None,elementpath=["x"],elementname="abcd"))
         self.assertEqual('x/abcd',Dataspot2Jsonbase.refparts2namedreference(elementpath=["x"],elementname="abcd"))
 
+        self.assertEqual('/Y/x/abcd',Dataspot2Jsonbase.addmodeltonamedreference(namedref="x/abcd",modelname="Y"))
+        self.assertEqual('/Y/x/abcd', Dataspot2Jsonbase.addmodeltonamedreference(namedref="/Y/x/abcd", modelname="Z"))
+        self.assertEqual('/Y/abcd', Dataspot2Jsonbase.addmodeltonamedreference(namedref="/Y/abcd", modelname="Z"))
+        self.assertEqual('/Z/abcd', Dataspot2Jsonbase.addmodeltonamedreference(namedref="abcd", modelname="Z"))
+
 if __name__ == '__main__':
     unittest.main()

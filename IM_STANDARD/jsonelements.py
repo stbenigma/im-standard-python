@@ -1,12 +1,37 @@
 from IM_STANDARD import nvl
 
-class JsonElements:
 
+class JsonElement:
     """ all functions to create standard json structures"""
 
-    def __init__(self):
-        """ only static functions, no instance code"""
+    ELEMENT_TYPES={"Entity":"name",
+                   "Domain":"name",
+                   "Category":"name",
+                   "Attribute":"name",
+                   "BusinessRule":None,
+                   "System":"name",
+                   "Column":"name",
+                   "Relation":None
+                   }
+    def __init__(self, **kwargs):
+        self.data = kwargs
+        self.elemtype = "undefined"
         return
+
+    def __getitem__(self, attribute_name):
+        """
+        Enables bracket notation access (person['name']).
+        Relies on getattr() internally.
+        """
+        return self.data.get(attribute_name)
+
+    def setproperty(self, propname, val):
+        """ sets value into the datastructure of this element"""
+        self.data[propname] = val
+
+    def __str__(self):
+        return f"{self.elemtype}:{nvl(self.data.get('label'),nvl(self.data.get('name')))}"
+
 
     ##### General functions
     @staticmethod
@@ -15,33 +40,52 @@ class JsonElements:
            the value is not empty (None, "", [], {})
            if intvalue: value is set as integer, not as string
           """
-        if not (value is None or value == "" or \
+        if not (value is None or value == "" or
                 (type(value) in (list, dict) and len(value) == 0)):
             # property is only set, if it is not null or not empty
             if type(destobject) == dict:
                 destobject[propname] = int(float(value)) if intvalue else value
-            elif type(destobject)== list:
+            elif type(destobject) == list:
                 destobject.append({propname: int(float(value)) if intvalue else value})
             else:
                 raise Exception(f"unkown type to add property {type(destobject)}")
         return
 
-    @staticmethod
-    def getadditionalprop(elem,name):
-        adprop=elem.get("additionalProps",[])
-        if len(adprop) ==0:
-            return None
-        prop=[p.get(name) for p in adprop if name in p]
-        assert len(prop)<2,f"property {name} found twice {prop}"
-        if len(prop)==0:
-            return None
+    def addoptionalprop(self, propname, value, intvalue=None):
+        """sets a value into a json structure as propname if
+           the value is not empty (None, "", [], {})
+           if intvalue: value is set as integer, not as string
+          """
+        JsonElement.optionalprop(destobject=self.data,
+                                 propname=propname,
+                                 value=value,
+                                 intvalue=intvalue)
+
+        return
+
+    def getadditionalprops(self):
+        return self.data.get("additionalProps", dict())
+
+    def getadditionalprop(self, name):
+        return self.getadditionalprops().get(name)
+
+    def getid(self):
+        return self.data.get("elementid", None)
+
+    def getname(self):
+        nameprop=self.ELEMENT_TYPES[self.elemtype]
+        if nameprop is not None:
+            return self.data.get(nameprop)
         else:
-            return prop[0]
+            if self.elemtype=="Relation":
+                #build name for relation
+                #TODO translate further up
+                return self.data["fwd"].get("assoctext") + "->" + self.data["bwd"].get("assoctext")
 
     @staticmethod
-    def additionalprops(props):
+    def filterprops(props):
         """
-        @param props: dictionary with properties to be collected as additional properties
+        @param props: dictionary with properties to be filtered for emtpy entries
         @return: dictionary with all properties which are not empty (None, "", [], {}
                 None if props is None
         """
@@ -50,33 +94,33 @@ class JsonElements:
         else:
             retval = dict()
             for key, val in props.items():
-                JsonElements.optionalprop(destobject=retval,
-                                        propname=key,
-                                        value=val
-                                        )
+                JsonElement.optionalprop(destobject=retval,
+                                         propname=key,
+                                         value=val
+                                         )
         return retval
 
-    def add_restprops(self, jsonstruct, fields, **kwargs):
+    def add_restprops(self, fields, **kwargs):
         """
         add all values of kwargs beeing in fields to the jsonstruct (as optional elements).
         add all elementws (except additionalprops to additionalprops
-        add additionalprops optionally to jsonstruct
-        @param jsonstruct: structure to fill
+        add additionalprops optionally to the element
         @param fields: fieldnames to be added normally
         @param kwargs: fields to be added normally or as additional props
-        @return: adjustd jsonstruct
+        @return: adjustd self.data
         """
         # prepare existing or empty additionalProps dictionary
-        additionalprops = list()
+        additionalprops = dict()
         for name, value in kwargs.items():
             if name in fields:
-                self.optionalprop(jsonstruct, name, value)
+                self.addoptionalprop(name, value)
             elif name != "additionalProps":
-                additionalprops.append({name: value})
+                additionalprops[name] = value
         # add additionalProps back to the structure (only if it is not empty)
-        self.optionalprop(jsonstruct, "additionalProps", additionalprops)
+        self.addoptionalprop("additionalProps", additionalprops)
         return
 
+    ##### information model
     def modelinfojson(self, modelname, modeltype, mainlanguage,
                       modelversion, **kwargs):
         fields = ["modelname", "modeltype",
@@ -87,22 +131,14 @@ class JsonElements:
                   'datetimecreated', 'additionalProps'
                   ]
         """updates the modelinfo in the already created modelinfo"""
-        jsonstruct = self.jsonschemamodel["ModelInfo"]
-        jsonstruct["modelname"] = modelname
-        jsonstruct["modeltype"] = modeltype
-        jsonstruct["mainlanguage"] = nvl(mainlanguage, "en")
-        jsonstruct["modelversion"] = nvl(modelversion, "0.0")
-        self.add_restprops(jsonstruct=jsonstruct,
-                           fields=fields,
+        self.elemtype = "ModelInfo"
+        self.data["modelname"] = modelname
+        self.data["modeltype"] = modeltype
+        self.data["mainlanguage"] = nvl(mainlanguage, "en")
+        self.data["modelversion"] = nvl(modelversion, "0.0")
+        self.add_restprops(fields=fields,
                            **kwargs)
-        # additionalprops=nvl(kwargs.get("additionalProps"),dict())
-        # for name, value in kwargs.items():
-        #    if name in fields:
-        #        self.optionalprop(jsonstruct, name, value)
-        ##    elif name != "additionalProps":
-        #        additionalprops[name]=value
-        # self.optionalprop(jsonstruct, "additionalProps", additionalprops)
-        return jsonstruct
+        return self
 
     def categoryjson(self, elementid, name, categorytype, **kwargs):
         fields = ["elementid", "name",
@@ -111,121 +147,123 @@ class JsonElements:
                   'parent',  # "color",
                   'additionalProps'
                   ]
-        jsonstruct = {"elementid": elementid,
-                      "name": name,
-                      "categorytype": categorytype
-                      }
-        self.optionalprop(jsonstruct, "description", kwargs.get("descr"))
-        self.optionalprop(jsonstruct, "color", kwargs.get("color"))
-        self.optionalprop(jsonstruct, "parent", kwargs.get("parent"))
-        # self.optionalprop(jsonstruct, "additionalProps", kwargs.get("additionalProps"))
-        self.add_restprops(jsonstruct=jsonstruct,
-                           fields=fields,
+        self.elemtype = "Category"
+        self.data = {"elementid": elementid,
+                     "name": name,
+                     "categorytype": categorytype
+                     }
+        self.addoptionalprop(propname="description", value=kwargs.get("descr"))
+        self.addoptionalprop(propname="color", value=kwargs.get("color"))
+        self.addoptionalprop(propname="parentid", value=kwargs.get("parentid"))
+        self.add_restprops(fields=fields,
                            **kwargs)
-        return jsonstruct
+        return self
 
-
-    ##### information model
-    def entityjson(self, elementid, name,  **kwargs):
-        jsonstruct = {"elementid": elementid,
-                      "name": name
-                      }
+    def entityjson(self, elementid, name, **kwargs):
+        self.elemtype = "Entity"
+        self.data = {"elementid": elementid,
+                     "name": name
+                     }
         for key, val in kwargs.items():
-            self.optionalprop(jsonstruct, key, val)
-        return jsonstruct
-
+            self.addoptionalprop(propname=key, value=val)
+        return self
 
     def attributejson(self, elementid, name, domainid, mandatory, parentid, **kwargs):
-        jsonstruct = {"elementid": elementid,
-                      "name": name,
-                      "mandatory": mandatory,
-                      "parentid": parentid
-                      }
-        self.optionalprop(jsonstruct, "domainid",
-                          self.domainref(domainid=domainid,
-                                 modelname=kwargs.get("domainmodelname"))),
+        self.elemtype = "Attribute"
+        self.data = {"elementid": elementid,
+                     "name": name,
+                     "mandatory": mandatory,
+                     "parentid": parentid
+                     }
+        self.addoptionalprop(propname="domainid",
+                             value=self.domainref(domainid=domainid,
+                                                  modelname=kwargs.get("domainmodelname"))),
         for key, val in kwargs.items():
-            self.optionalprop(jsonstruct, key, val)
+            self.addoptionalprop(propname=key, value=val)
 
-        return jsonstruct
+        return self
 
     def keysjson(self, keys: list):
         """ keys are currently a list of list of keyelements,
             which are already passed as parameters"""
+        assert False, "should not be used unless structure of keys changes"
         return keys
 
     def relationendjson(self, assoctext, cardinality, mandatory,
                         entityid=None, tableid=None,
                         historicised=None,
                         arcnumber=None):
-        jsonstruct = dict()
+        self.elemtype == "RelationEnd"
+
         if entityid is not None:
-            jsonstruct["entityid"] = entityid
+            self.data["entityid"] = entityid
         else:
-            jsonstruct["tableid"] = tableid
+            self.data["tableid"] = tableid
 
-        jsonstruct["assoctext"] = assoctext
-        jsonstruct["cardinality"] = cardinality
-        jsonstruct["mandatory"] = mandatory
-        self.optionalprop(jsonstruct, "historicised", historicised)
-        self.optionalprop(jsonstruct, "arcnumber", arcnumber if arcnumber is None else int(arcnumber))
+        self.data["assoctext"] = assoctext
+        self.data["cardinality"] = cardinality
+        self.data["mandatory"] = mandatory
+        self.addoptionalprop("historicised", historicised)
+        self.addoptionalprop("arcnumber",
+                             arcnumber if arcnumber is None else int(arcnumber))
 
-        return jsonstruct
+        return self
 
     def relationjson(self, elementid, relationtype, fwd, bwd, **kwargs):
-        jsonstruct = {"elementid": elementid,
-                      "relationtype": relationtype
-                      }
-        jsonstruct["fwd"] = fwd
-        jsonstruct["bwd"] = bwd
+        self.elemtype = "elem.getadditionalprop('SOURCE-MODEL')"
+        self.data = {"elementid": elementid,
+                     "relationtype": relationtype
+                     }
+        self.data["fwd"] = fwd.data if isinstance(fwd, JsonElement) else fwd
+        self.data["bwd"] = bwd.data if isinstance(bwd, JsonElement) else bwd
 
-        self.optionalprop(jsonstruct, "examples", kwargs.get("examples"))
-        self.optionalprop(jsonstruct, "additionalProps",
-                          kwargs.get("additionalProps"))
-        return jsonstruct
+        self.addoptionalprop("examples", kwargs.get("examples"))
+        self.addoptionalprop("additionalProps",
+                             kwargs.get("additionalProps"))
+        return self
 
     def businessrulejson(self, elementid, restrictedelems: list, **kwargs):
-        jsonstruct = {"elementid": elementid,
-                      "restrictedelements": restrictedelems
-                      }
+        self.elemtype = "BusinessRule"
+        self.data = {"elementid": elementid,
+                     "restrictedelements": restrictedelems
+                     }
 
-        self.optionalprop(destobject=jsonstruct,
-                          propname="description",
-                          value=kwargs.get("description")
-                          )
-        self.optionalprop(destobject=jsonstruct,
-                          propname="rule",
-                          value=kwargs.get("rule")
-                          )
+        self.addoptionalprop(propname="description",
+                             value=kwargs.get("description")
+                             )
+        self.addoptionalprop(propname="rule",
+                             value=kwargs.get("rule")
+                             )
         if kwargs.get("rule") is None and kwargs.get("description") is None:
             # illegal either must be not None, make sure json is still valid
-            jsonstruct["rule"] = "??? missing rule ???"
+            self.data["rule"] = "??? missing rule ???"
 
-        return jsonstruct
+        return self
 
-    def derivationjson(self, derivationtype,sourceelementname, **kwargs):
-        jsonstruct = {"derivationtype": derivationtype,
-                      "sourceelementname": sourceelementname
-                      }
+    def derivationjson(self, derivationtype, targetelement, sourceelement, **kwargs):
+        self.elemtype = "Derivation"
+        self.data = {"targetelement": targetelement,
+                     "sourceelement": sourceelement
+                     }
+        self.addoptionalprop(propname="derivationtype",
+                             value=derivationtype
+                             )
         for key, value in kwargs.items():
-            self.optionalprop(destobject=jsonstruct,
-                              propname=key,
-                              value=value
-                              )
+            self.addoptionalprop(propname=key,
+                                 value=value
+                                 )
 
-
-        return jsonstruct
-
+        return self
 
     def refvaluejson(self, value, **kwargs):
-        jsonstruct = {"value": value}
+        self.elemtype = "ReferenceValue"
+        self.data = {"value": value}
         for key, value in kwargs.items():
-            self.optionalprop(destobject=jsonstruct,
-                              propname=key,
-                              value=value,
-                              intvalue=key in ()
-                              )
-        return jsonstruct
+            self.addoptionalprop(propname=key,
+                                 value=value,
+                                 intvalue=key in ()
+                                 )
+        return self
 
     def domainref(self, domainid, modelname):
         return domainid if modelname is None \
@@ -234,21 +272,22 @@ class JsonElements:
                   }
 
     def domainjson(self, elementid, name, **kwargs):
-        jsonstruct = {"elementid": elementid,
-                      "name": name,
-                      "domaintype": kwargs["domaintype"]
-                      }
+        self.elemtype = "Domain"
+        self.data = {"elementid": elementid,
+                     "name": name,
+                     "domaintype": kwargs.get("domaintype")
+                     }
         for key, value in kwargs.items():
             if key == "domaintype": continue
-            self.optionalprop(destobject=jsonstruct,
-                              propname=key,
-                              value=value,
-                              intvalue=key in ("maxlength", "minlength",
-                                               "minvalue", "maxvalue",
-                                               "fractdigits",
-                                               )
-                              )
-        return jsonstruct
+            self.addoptionalprop(propname=key,
+                                 value=value,
+                                 intvalue=key in ("maxlength", "minlength",
+                                                  "minvalue", "maxvalue",
+                                                  "fractdigits",
+                                                  )
+                                 )
+        return self
+
     ##### data models
     def datamodeljson(self, modelname):
         return {"ModelInfo": {"modelname": modelname},
@@ -257,47 +296,50 @@ class JsonElements:
                 "Categories": []}
 
     def dataobjectjson(self, key, name, categoryid, columns, **kwargs):
-        jsonstruct = {"elementid": key,
-                      "name": name,
-                      "categoryid": categoryid,
-                      "columns": columns
-                      }
+        self.elemtype == "DataObject"
+        self.data = {"elementid": key,
+                     "name": name,
+                     "categoryid": categoryid,
+                     "columns": columns
+                     }
         for key, val in kwargs.items():
-            self.optionalprop(jsonstruct, key, val)
+            self.addoptionalprop(key, val)
 
-        return jsonstruct
+        return self
 
     def columnjson(self, key, name, domainid, mandatory, **kwargs):
-        jsonstruct = {"elementid": key,
-                      "name": name,
-                      "domainid": self.domainref(domainid=domainid,
-                                          modelname=kwargs.get("domainmodelname")),
-                      "mandatory": mandatory
-                      }
+        self.elemtype == "Column"
+        self.data = {"elementid": key,
+                     "name": name,
+                     "domainid": self.domainref(domainid=domainid,
+                                                modelname=kwargs.get("domainmodelname")),
+                     "mandatory": mandatory
+                     }
         for key, val in kwargs.items():
-            self.optionalprop(jsonstruct, key, val)
+            self.addoptionalprop(key, val)
 
-        return jsonstruct
+        return self
 
     ##### Systems
     @staticmethod
     def systemjson(self, elementid, name, **kwargs):
-        jsonstruct = {"elementid": elementid,
-                      "name": name
-                      }
+        self.elemtype == "System"
+        self.data = {"elementid": elementid,
+                     "name": name
+                     }
         for key, val in kwargs.items():
-            self.optionalprop(jsonstruct, key, val)
-        return jsonstruct
+            self.addoptionalprop(key, val)
+        return self
 
     ##### Mapping
-    @staticmethod
-    def mappingjson(self, name, **kwargs):
-        jsonstruct = {"name": name}
-        for key, val in kwargs.items():
-            self.optionalprop(jsonstruct, key, val)
+    def mappingjson(self, targetelement, sourceelement, **kwargs):
+        self.elemtype == "Mapping"
+        self.data = {"targetelement": targetelement,
+                     "sourceelement": sourceelement
+                     }
+        for key, value in kwargs.items():
+            self.addoptionalprop(propname=key,
+                                 value=value
+                                 )
 
-        return jsonstruct
-
-
-
-
+        return self

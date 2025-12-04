@@ -32,7 +32,7 @@ class Test_dataspot2im(unittest.TestCase):
         return
 
     def getelement(self,instance,elemtype,name):
-        element=[e for e in instance.get(elemtype, []) if e.get("name").get('de')==name]
+        element=[e for e in instance.get(elemtype, []) if e["name"].get('de')==name]
         return None if len(element)==0 else element[0]
 
     def test_ds2im_astronomie_load(self):
@@ -51,9 +51,9 @@ class Test_dataspot2im(unittest.TestCase):
                                        targetenv="Test",
                                        language="de",
                                        languages=["en"])
-        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a.get("parentid").startswith("ENTI")])>5)
-        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a.get("parentid").startswith("DOMA")])>5)
-        self.assertEqual(0,len([a for a in jsonstruct.get("Domains") if not a.get("elementid").startswith("DOMA")]))
+        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a["parentid"].startswith("ENTI")])>5)
+        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a["parentid"].startswith("DOMA")])>5)
+        self.assertEqual(0,len([a for a in jsonstruct.get("Domains") if not a["elementid"].startswith("DOMA")]))
 
         attr=self.getelement(jsonstruct,"Attributes","Aphel")
         self.assertFalse(attr.get("descriptive"))
@@ -62,7 +62,7 @@ class Test_dataspot2im(unittest.TestCase):
 
         dauer=self.getelement(jsonstruct,"Attributes","Dauer")
         doma= self.getelement(jsonstruct,"Domains","Dezimalzahl")
-        self.assertEqual(dauer.get("domainid"),doma.get("elementid"))
+        self.assertEqual(dauer["domainid"],doma.get("elementid"))
         return
 
     def test_ds2im_schwipsti_load(self):
@@ -96,13 +96,13 @@ class Test_dataspot2im(unittest.TestCase):
                                      )
 
         self.assertNotEqual(0, len(instance.get("Categories", [])))
-        self.assertEqual("GroupDomain",self.getelement(instance,"Domains","Umlaufdauer").get("domaintype"))
+        self.assertEqual("GroupDomain",self.getelement(instance,"Domains","Umlaufdauer")["domaintype"])
         dauer = self.getelement(instance,"Attributes","Dauer")
         self.assertIsNotNone(dauer)
         dauer=self.getelement(instance,"Attributes","Dauer")
         doma= self.getelement(instance,"Domains","Dezimalzahl")
         self.assertEqual(dauer.get("domainid"),doma.get("elementid"))
-        self.assertEqual("NumericDomain",doma.get("domaintype"))
+        self.assertEqual("NumericDomain",doma["domaintype"])
 
         # check generated json
         from IM_STANDARD import validateschema

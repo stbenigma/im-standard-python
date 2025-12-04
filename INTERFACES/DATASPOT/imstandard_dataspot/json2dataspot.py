@@ -1,9 +1,9 @@
 import json
 from pathlib import Path
 
-from IM_STANDARD import JsonSchema,JsonElements,nvl
+from IM_STANDARD import JsonSchema,JsonElement,nvl
 
-class Json2dataspot(JsonSchema):
+class Json2dataspot():
     DUMMYCOLLECTION = "DEFAULTCOLLECTION"
     # Translation of standardmodel properties into additional properties in dataspot
     MULTILANGADDPROPS = {"name": "Name",
@@ -49,11 +49,11 @@ class Json2dataspot(JsonSchema):
             if key in ("_type", "_status"): continue
             if key == "additionalProps" and val is not None:
                 for apkey, apval in val.items():
-                    JsonElements.optionalprop(jsonstruct, apkey, apval)
+                    JsonElement.optionalprop(jsonstruct, apkey, apval)
             elif key.startswith("ARC_"):
-                JsonElements.optionalprop(jsonstruct, key.replace('_', '-'), val)
+                JsonElement.optionalprop(jsonstruct, key.replace('_', '-'), val)
             else:
-                JsonElements.optionalprop(jsonstruct, key, val)
+                JsonElement.optionalprop(jsonstruct, key, val)
         return jsonstruct
 
     @staticmethod

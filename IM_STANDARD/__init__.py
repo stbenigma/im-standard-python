@@ -19,7 +19,7 @@ def alwayslist(x):
         else:
             return [x]
 
-from .jsonelements import JsonElements
+from .jsonelements import JsonElement
 from .myjsonschema import ElementId,JsonSchema
 from .standardmodeljson import StandardJsonModel,IMStandardJsonModel
 from .jsonvalidation import ValidateJsonModel,validateschema,remove_key_from_json

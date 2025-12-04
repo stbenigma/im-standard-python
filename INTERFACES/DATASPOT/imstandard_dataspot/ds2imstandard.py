@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import JsonSchema, ElementId, nvl
+from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
 
@@ -38,76 +38,72 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         self.generatekeys()
 
         self.generatederivations()
+        self.generatemappings()
         return
 
-    # def lookupid(self, elemtype, name):
-    #     elems = {e.get("name"): e.get("elementid") for e in self.model.get(elemtype)}
-    #     return elems.get(name)
-    #
-    # def catgid(self, catgname):
-    #     return self.lookupid(elemtype="Categories", name=catgname)
-    #
     def generatekeys(self):
         """ get all keys from attributes and relations and fill the entities keys property
             assume attributes and relationships are already done"""
         for enti in self.standardjson.getelementinstances("Entities"):
-            entiid = enti.get("elementid")
+            entiid = enti.getid()
             keyelements = []
-            for attr in enti.get('attributes', []):
-                origattr = self.getelementbyid(elements=self.attributes,
-                                               id=attr.get("elementid"))
-                if origattr.get("identifying"):
-                    keyelements.append(attr.get("elementid"))
+            for attr in self.standardjson.getelementinstances("Attributes"):
+                if attr["parentid"] == entiid:
+                    origattr = self.getelementbyid(elements=self.attributes,
+                                                   id=attr.getid())
+                    if origattr.get("identifying"):
+                        keyelements.append(attr.getid())
             # find relationships with keys
             for rela in self.standardjson.getelementinstances("Relations"):
-                if ((entiid == rela.get("fwd").get("entityid") and rela.get("fwd").get("cardinality") == "1")
-                        or (entiid == rela.get("bwd").get("entityid") and rela.get("bwd").get("cardinality") == "1")):
+                if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
+                        or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
                     origrela = self.getelementbyid(elements=self.relationships,
-                                                   id=rela.get("elementid"))
+                                                   id=rela.getid())
                     # generated relations (subtypes) have no original
                     if origrela is not None and origrela.get("identifying"):
-                        keyelements.append(rela.get("elementid"))
+                        keyelements.append(rela.getid())
                     # TODO inherited keys (Mond erbt von Begleiter den Key)
                     # TODO different keys if relationships are in arc
 
             if len(keyelements) > 0:
                 # standard keys are a list of keyelementlists
-                enti["keys"] = self.standardjson.keysjson(keys=[keyelements])
+                enti.setproperty("keys", [keyelements])
         return
 
     def entityjson(self, element):
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["subtypeOf"])
         # for dataspot mark entites as favorites
-        additionalprops["favorite"]= element.get("favorite")
-        jsonstruct = self.standardjson.entityjson(elementid=element.get("ID"),
-                                                  name=self.mutlilangvalue(fieldname="label",
-                                                                           value=self._deref(element.get("label")),
+        additionalprops["favorite"] = element.get("favorite")
+        elementi = JsonElement().entityjson(elementid=element.get("ID"),
+                                            name=self.mutlilangvalue(fieldname="label",
+                                                                     value=self._deref(element.get("label")),
+                                                                     addprops=additionalprops),
+                                            categoryid=self.findelementid(elems=self.categories,
+                                                                          modelname=element.get("DSMODEL"),
+                                                                          name=self._deref(
+                                                                              element.get("inCollection")),
+                                                                          notnull=True
+                                                                          ),
+                                            synonyms=element.get("synonyms"),
+                                            description=self.mutlilangvalue(fieldname="description",
+                                                                            value=self._deref(
+                                                                                element.get("description")),
+                                                                            addprops=additionalprops),
+                                            shortdescr=self.mutlilangvalue(fieldname="title",
+                                                                           value=self._deref(
+                                                                               element.get("title")),
                                                                            addprops=additionalprops),
-                                                  categoryid=self.findelementid(elems=self.categories,
-                                                                                modelname=element.get("DSMODEL"),
-                                                                                name=self._deref(
-                                                                                    element.get("inCollection")),
-                                                                                notnull=True
-                                                                                ),
-                                                  synonyms=element.get("synonyms"),
-                                                  description=self.mutlilangvalue(fieldname="description",
-                                                                                  value=self._deref(
-                                                                                      element.get("description")),
-                                                                                  addprops=additionalprops),
-                                                  shortdescr=self.mutlilangvalue(fieldname="title",
-                                                                                 value=self._deref(
-                                                                                     element.get("title")),
-                                                                                 addprops=additionalprops),
-                                                  examples=element.get("examples"),
-                                                  additionalProps=additionalprops
-                                                  )
+                                            examples=element.get("examples"),
+                                            additionalProps=additionalprops
+                                            )
         # attributes and keys are added later
-        return jsonstruct
+        return elementi
 
     def generateentities(self, elementname, elements):
         for element in nvl(elements, []):
-            self.standardjson.addelementinstance(name=elementname, val=self.entityjson(element))
+            self.standardjson.addelementinstance(name=elementname,
+                                                 val=self.entityjson(element))
         for element in nvl(elements, []):
             if element.get("subtypeOf") is not None:
                 entityid1 = self.findelementid(elems=self.entities,
@@ -172,31 +168,31 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                specialkeys=["order", "cardinality", "required",
                                                             "temporal", "MULTILINGUAL", "identifying"])
         # "computation",
-        jsonstruct = self.standardjson.attributejson(elementid=element.get("ID"),
-                                                     name=self.mutlilangvalue(fieldname="label",
-                                                                              value=self._deref(element.get("label")),
+        elemattr = JsonElement().attributejson(elementid=element.get("ID"),
+                                               name=self.mutlilangvalue(fieldname="label",
+                                                                        value=self._deref(element.get("label")),
+                                                                        addprops=additionalprops),
+                                               mandatory=element.get("required") == "MANDATORY",
+                                               domainid=domainid,
+                                               parentid=parentid,
+                                               displayseq=element.get("order"),
+                                               description=self.mutlilangvalue(fieldname="description",
+                                                                               value=self._deref(
+                                                                                   element.get("description")),
+                                                                               addprops=additionalprops),
+                                               shortdescr=self.mutlilangvalue(fieldname="title",
+                                                                              value=self._deref(
+                                                                                  element.get("title")),
                                                                               addprops=additionalprops),
-                                                     mandatory=element.get("required") == "MANDATORY",
-                                                     domainid=domainid,
-                                                     parentid=parentid,
-                                                     displayseq=element.get("order"),
-                                                     description=self.mutlilangvalue(fieldname="description",
-                                                                                     value=self._deref(
-                                                                                         element.get("description")),
-                                                                                     addprops=additionalprops),
-                                                     shortdescr=self.mutlilangvalue(fieldname="title",
-                                                                                    value=self._deref(
-                                                                                        element.get("title")),
-                                                                                    addprops=additionalprops),
-                                                     examples=element.get("examples"),
-                                                     descriptive=element.get("favorite"),
-                                                     historicised=element.get("temporal"),
-                                                     repeated=True if element.get("cardinality") == "MANY" else None,
-                                                     translated=element.get("MULTILINGUAL"),
-                                                     additionalProps=additionalprops
-                                                     )
+                                               examples=element.get("examples"),
+                                               descriptive=element.get("favorite"),
+                                               historicised=element.get("temporal"),
+                                               repeated=True if element.get("cardinality") == "MANY" else None,
+                                               translated=element.get("MULTILINGUAL"),
+                                               additionalProps=additionalprops
+                                               )
 
-        return jsonstruct
+        return elemattr
 
     def generateattributes(self, elements):
         for element in nvl(elements, []):
@@ -211,7 +207,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         return
 
     def generate1domain(self, doma):
-        jsonstruct = []
+
         catgid = self.findelementid(elems=self.categories,
                                     modelname=doma.get("DSMODEL"),
                                     name=doma.get("inCollection"), notnull=True)
@@ -225,9 +221,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                             "Unit", "pattern"
                                                             ])
 
-        self.standardjson.optionalprop(destobject=additionalprops,
-                                       propname="SOURCE-DATATYPE",
-                                       value=doma.get("baseType"))
+        JsonElement.optionalprop(destobject=additionalprops,
+                                 propname="SOURCE-DATATYPE",
+                                 value=doma.get("baseType"))
         subtypeproperties = {"description": self.mutlilangvalue(fieldname="description",
                                                                 value=doma.get("description"),
                                                                 addprops=additionalprops)
@@ -235,45 +231,118 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         self.setdomainsubtype(element=doma, subtypeproperties=subtypeproperties)
 
         subtypeproperties["additionalProps"] = additionalprops
-        jsonstruct.append(self.standardjson.domainjson(elementid=doma.get("ID"),
-                                                       name=self.mutlilangvalue(fieldname="label",
-                                                                                value=doma.get("label"),
-                                                                                addprops=additionalprops),
-                                                       categoryid=catgid,
-                                                       **subtypeproperties
-                                                       ))
-        return jsonstruct
-    def getadditionalprop(self,elem:dict,propname:str):
-        addprops=elem.get("additionalProps",[])
+        elemdoma = JsonElement().domainjson(elementid=doma.get("ID"),
+                                            name=self.mutlilangvalue(fieldname="label",
+                                                                     value=doma.get("label"),
+                                                                     addprops=additionalprops),
+                                            categoryid=catgid,
+                                            **subtypeproperties
+                                            )
+        return elemdoma
 
-        return
-    def findqualielement(self,fullpath:str):
+    def findqualielement(self, fullpath: str,
+                         elemtype: str = None):
         frommodel, frompath, fromelement = self.namedreference2struct(fullpath)
         elements = self.standardjson.getanyelementsbyfield(name=fromelement,
-                                                                field="name")
+                                                           field="name")
         retval = []
         for elem in elements:
-            pass
-        return None
+            elemmodel,elempath,elemname=self.namedreference2struct(namedref=self.standardjson.getfullpath(elem=elem))
+            assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
+            if (frommodel == elemmodel) and \
+                (frompath == elempath) and \
+                (elemtype is None or
+                     (elemtype == elem.elemtype)
+                    ):
+                retval.append(elem)
+        if len(retval) == 1:
+            return retval[0]
+        else:
+            return None
 
     def generatederivations(self):
-        """ read all derivations and add them to the element mentioned in the TO part of the derivation
+        """ read all derivations and add them to the derivations of the model, if the target is in this model
         """
         for keyderiv, deriv, in self.derivations.items():
-            sourceelement=self.findqualielement(fullpath=deriv.get("derivedFrom"))
-            targetelement = self.findqualielement(fullpath=deriv.get("derivedTo"))
-            if sourceelement is not None:
-                newelem:dict()=self.standardjson.getbyid(sourceelement)
-                #add drivation to this element
+            sourceelement = self.findqualielement(
+                fullpath=self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
+                                                       modelname=deriv.get("DSMODEL")))
+            targetelement = self.findqualielement(
+                fullpath=self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
+                                                       modelname=deriv.get("DSMODEL")))
+            if targetelement is None:
+                # target not found, is not part of the current model
+                continue
 
-                newelem.setdefault("derivations",[])
-                newelem["derivations"].append(self.standardjson.derivationjson
-                                              (derivationtype=deriv.get("qualifier"),
-                                               sourceelementname=deriv.get("derivedFrom")
-                                              )
-                                              )
+            # add derivation to found element
+            if sourceelement is None:
+                sourceelementid = deriv.get("derivedFrom")
+            else:
+                sourceelementid = sourceelement.getid()
+
+            additionalprops = self.additionalprops(elem=deriv,
+                                                   specialkeys=["derivedTo",
+                                                                "derivedFrom",
+                                                                "qualifier"
+                                                                ])
+
+            self.standardjson.addelementinstance(name="Derivations",
+                                                 val=JsonElement().derivationjson
+                                                 (derivationtype=deriv.get("qualifier"),
+                                                  targetelement=targetelement.getid(),
+                                                  sourceelement=sourceelementid,
+                                                  additionalProps=additionalprops
+                                                  )
+                                                 )
 
         return
+
+    def generatemappings(self):
+        """ read all mappings and add them to the element
+        """
+        for mapkey, mapping, in self.mappings.items():
+            sourceelement = self.findqualielement(
+                fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsFrom"),
+                                                       modelname=mapping.get("DSMODEL")),
+                elemtype="Domain")
+            targetelement = self.findqualielement(fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsTo"),
+                                                                                         modelname=mapping.get(
+                                                                                             "DSMODEL")),
+                                                  elemtype="Domain")
+            if targetelement is None:
+                # target not found, is not part of the current model
+                continue
+
+            # add derivation to found element
+            if sourceelement is None:
+                sourceelementid = mapping.get("derivedFrom")
+            else:
+                sourceelementid = sourceelement.getid()
+
+            additionalprops = self.additionalprops(elem=mapping,
+                                                   specialkeys=["mapsTo",
+                                                                "mapsFrom"
+                                                                ])
+
+            self.standardjson.addelementinstance(name="Mappings",
+                                                 val=JsonElement().mappingjson
+                                                 (derivationtype=mapping.get("qualifier"),
+                                                  targetelement=targetelement.getid(),
+                                                  sourceelement=sourceelementid,
+                                                  additionalProps=additionalprops
+                                                  )
+                                                 )
+
+        return
+
+    def model2json(self, model: dict):
+        retval = dict()
+        for key, elem in model.items():
+            if isinstance(elem, JsonElement):
+                retval[key] = elem.data
+            else:
+                retval[key] = [oneelem.data for oneelem in elem]
+        return retval
 
     def generatejson(self, modelname,
                      modelversion="0.0",
@@ -281,8 +350,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                      language="en",
                      languages=[]):
         now = datetime.now().replace(microsecond=0).isoformat()
+
         self.standardjson.setschemaelement(name="ModelInfo",
-                                           val=self.standardjson.modelinfojson(
+                                           val=JsonElement().modelinfojson(
                                                modelname=modelname,
                                                modeltype="Information model",
                                                mainlanguage=language,
@@ -297,7 +367,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         self.generatedomains()
         self.generatebusinessmodel()
 
-        return self.standardjson.jsonschemamodel
+        return self.model2json(self.standardjson.jsonschemamodel)
 
 
 def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
