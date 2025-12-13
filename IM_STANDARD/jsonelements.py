@@ -23,7 +23,7 @@ class JsonElement:
         Enables bracket notation access (person['name']).
         Relies on getattr() internally.
         """
-        return self.data.get(attribute_name)
+        return self.elemtype if attribute_name == "elemtype" else self.data.get(attribute_name)
 
     def setproperty(self, propname, val):
         """ sets value into the datastructure of this element"""
@@ -117,7 +117,7 @@ class JsonElement:
             elif name != "additionalProps":
                 additionalprops[name] = value
         # add additionalProps back to the structure (only if it is not empty)
-        self.addoptionalprop("additionalProps", additionalprops)
+        self.addoptionalprop(propname="additionalProps", value=additionalprops)
         return
 
     ##### information model
@@ -144,7 +144,7 @@ class JsonElement:
         fields = ["elementid", "name",
                   "categorytype",  # mandatory fields
                   "description",
-                  'parent',  # "color",
+                  'parentid',  # "color",
                   'additionalProps'
                   ]
         self.elemtype = "Category"
@@ -152,9 +152,9 @@ class JsonElement:
                      "name": name,
                      "categorytype": categorytype
                      }
+        self.addoptionalprop(propname="parentid", value=kwargs.get("parentid"))
         self.addoptionalprop(propname="description", value=kwargs.get("descr"))
         self.addoptionalprop(propname="color", value=kwargs.get("color"))
-        self.addoptionalprop(propname="parentid", value=kwargs.get("parentid"))
         self.add_restprops(fields=fields,
                            **kwargs)
         return self
@@ -242,8 +242,8 @@ class JsonElement:
 
     def derivationjson(self, derivationtype, targetelement, sourceelement, **kwargs):
         self.elemtype = "Derivation"
-        self.data = {"targetelement": targetelement,
-                     "sourceelement": sourceelement
+        self.data = {"sourceelement": sourceelement,
+                     "targetelement": targetelement
                      }
         self.addoptionalprop(propname="derivationtype",
                              value=derivationtype
@@ -296,7 +296,7 @@ class JsonElement:
                 "Categories": []}
 
     def dataobjectjson(self, key, name, categoryid, columns, **kwargs):
-        self.elemtype == "DataObject"
+        self.elemtype = "DataObject"
         self.data = {"elementid": key,
                      "name": name,
                      "categoryid": categoryid,
@@ -308,7 +308,7 @@ class JsonElement:
         return self
 
     def columnjson(self, key, name, domainid, mandatory, **kwargs):
-        self.elemtype == "Column"
+        self.elemtype = "Column"
         self.data = {"elementid": key,
                      "name": name,
                      "domainid": self.domainref(domainid=domainid,
@@ -323,7 +323,7 @@ class JsonElement:
     ##### Systems
     @staticmethod
     def systemjson(self, elementid, name, **kwargs):
-        self.elemtype == "System"
+        self.elemtype = "System"
         self.data = {"elementid": elementid,
                      "name": name
                      }
@@ -332,12 +332,46 @@ class JsonElement:
         return self
 
     ##### Mapping
-    def mappingjson(self, targetelement, sourceelement, **kwargs):
-        self.elemtype == "Mapping"
-        self.data = {"targetelement": targetelement,
-                     "sourceelement": sourceelement
+    def mappingjson(self, sourcedomain, targetdomain, **kwargs):
+        self.elemtype = "Mapping"
+        self.data = {"sourcedomain": sourcedomain,
+                     "targetdomain": targetdomain
+
                      }
+        self.addoptionalprop(propname="valuemappings",value=kwargs.get("valuemappings"),
+                             intvalue=isinstance(kwargs.get("valuemappings"),int))
         for key, value in kwargs.items():
+            if key in ("valuemappings"): continue
+            self.addoptionalprop(propname=key,
+                                 value=value
+                                 )
+
+        return self
+
+    def transformationrulejson(self, rule:str, condition:str, **kwargs):
+        self.elemtype = "TransformationRule"
+        self.addoptionalprop(propname="rule",value=rule)
+        self.addoptionalprop(propname="condition", value=condition)
+        for key, value in kwargs.items():
+            self.addoptionalprop(propname=key, value=value,
+                                     intvalue=isinstance(value,int))
+        return self
+
+    def transformationjson(self, sourceelements:list,targetelements:list, **kwargs):
+        self.elemtype = "Transformation"
+        self.data = {"sourceelements": sourceelements,
+                     "targetelements": targetelements,
+                     "is1to1":len(sourceelements)<=1>=len(targetelements)
+                     }
+
+        self.addoptionalprop(propname="fwd",
+                             value=kwargs.get("fwd",JsonElement()).data
+                             )
+        self.addoptionalprop(propname="bwd",
+                             value=kwargs.get("bwd",JsonElement()).data
+                             )
+        for key, value in kwargs.items():
+            if key in ("fwd","bwd"): continue
             self.addoptionalprop(propname=key,
                                  value=value
                                  )

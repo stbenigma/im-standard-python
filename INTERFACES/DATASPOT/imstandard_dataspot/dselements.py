@@ -2,21 +2,20 @@ import json
 import logging
 from pathlib import Path
 
-
-from IM_STANDARD import nvl,ElementId
+from IM_STANDARD import nvl, ElementId
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
 
 
 class DataspotElements():
-    def __init__(self, indirec=None,**kwargs):
+    def __init__(self, indirec=None, **kwargs):
         # models
         # self._dsmodels = dict()
 
         # all elements grouped by modeltype
-        #self._modeltypeelements = dict()
+        # self._modeltypeelements = dict()
         self.modelcategories = dict()
 
-        self.modelname=kwargs.get("modelname")
+        self.modelname = kwargs.get("modelname")
 
         # elements from dataspot according to their type
         self.categories = dict()
@@ -31,6 +30,7 @@ class DataspotElements():
         self.transformations = dict()
         self.mappings = dict()
         self.rules = dict()
+        self.translations = dict()
         self.deployments = dict()
         self.dependencies = dict()
         self.derivations = dict()
@@ -174,19 +174,20 @@ class DataspotElements():
                 entry["TYPE"] = "DATA"
                 entry["PARENT"] = entry.get('hasDomain')
                 entry["PARENT2"] = entry.get('hasRange')
+                name = entry.get("name") + ">" + \
+                       j2d.custom_split(entry.get('hasRange'), "/")[-1]
                 self.relationships[self.entryid(entry=entry,
-                                                name=entry.get("name") + ">" + \
-                                                     j2d.custom_split(entry.get('hasRange'), "/")[-1]
-                                                )
-                ] = entry
+                                                name=name
+                                                )] = entry
             elif entry.get("_type") == "Relationship":
                 entry["ID"] = ElementId.nextid("RELA")
                 entry["TYPE"] = "IM"
                 entry["PARENT"] = entry.get('hasDomain')
                 entry["PARENT2"] = entry.get('hasRange')
+                name = entry.get("name") + ">" + \
+                       j2d.custom_split(entry.get('hasRange'), "/")[-1]
                 self.relationships[self.entryid(entry=entry,
-                                                name=entry.get("name") + ">" + \
-                                                     j2d.custom_split(entry.get('hasRange'), "/")[-1])] = entry
+                                                name=name)] = entry
             elif entry.get("_type") == "ReferenceObject":
                 entry["ID"] = ElementId.nextid("DOMA")
                 entry["TYPE"] = "LOV"
@@ -210,7 +211,7 @@ class DataspotElements():
             elif entry.get("_type") == "Derivation":
                 entry["PARENT"] = entry.get('derivedFrom')
                 entry["PARENT2"] = entry.get('derivedTo')
-                name = nvl(entry["PARENT2"]) + ">" + nvl(entry.get("qualifier"))
+                name = nvl(entry["PARENT2"]) + "" if entry.get("qualifier") is None else (">" + entry.get("qualifier"))
                 self.derivations[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Mapping":
                 entry["ID"] = ElementId.nextid("MAPP")
@@ -220,32 +221,8 @@ class DataspotElements():
             elif entry.get("_type") == "Translation":
                 entry["TYPE"] = "VALUES"
                 entry["PARENT"] = entry.get('translationIn')
-                self.rules[self.entryid(entry=entry, name=entry.get("id"))] = entry
-                # TODO
-                """{
-                "_type" : "Mapping",
-                "id" : "5547bef9-170d-4247-a7f6-973dcf0b4dac",
-                "href" : "/web/basf-agriculture/mappings/5547bef9-170d-4247-a7f6-973dcf0b4dac",
-                "label" : "xxxtest",
-                "mapsFrom" : "Portfolio life cycle status",
-                "mapsTo" : "Country status",
-                "inCollection" : "Vegetables",
-                "status" : "WORKING",
-                "createdBy" : "stb@foryouandyourcustomers.com",
-                "dateCreated" : 1746430127105
-                }, {
-                "_type" : "Translation",
-                "id" : "770a74ea-ee89-4a02-bc64-c99ef04c65dd",
-                "href" : "/web/basf-agriculture/translations/770a74ea-ee89-4a02-bc64-c99ef04c65dd",
-                "translationIn" : "xxxtest",
-                "translatesFrom" : "DUMP DISC",
-                "translatesTo" : "Inactive",
-                "validFrom" : -2208988800000,
-                "validTo" : 32503593600000,
-                "status" : "WORKING",
-                "createdBy" : "stb@foryouandyourcustomers.com",
-                "dateCreated" : 1746430138521
-                }"""
+                name=entry.get("id")
+                self.translations[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Project":
                 entry["ID"] = ElementId.nextid("DIAG")
                 entry["PARENT"] = entry.get('inCollection')
@@ -253,35 +230,36 @@ class DataspotElements():
             elif entry.get("_type") == "Usage":
                 entry["ID"] = ElementId.nextid("DIAE")
                 entry["PARENT"] = entry.get('usedBy')
-                self.diagelements[self.entryid(entry=entry, name=entry.get('usedBy') + ">" +
-                                                                 entry.get('usageOf'))] = entry
+                name=entry.get('usedBy') + "" if entry.get("usageOf") is None else (">" + entry.get("usageOf"))
+                self.diagelements[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "BusinessConstraint":
                 entry["ID"] = ElementId.nextid("BURU")
                 entry["PARENT"] = entry.get('constraintOn')
-                self.businessrules[self.entryid(entry=entry, name=entry.get('label'))] = entry
+                entry.get('label')
+                self.businessrules[self.entryid(entry=entry, name=name)] = entry
             else:
                 pass
                 # logging.warning(f"dataspot type '{entry.get('_type')}' is not yet handled from output")
+            entry["FULLPATH"] = f"{modelname}:{entry.get('PARENT')}/{j2d.fullescapestr(name)}"
         return
 
     def readmodels(self, path: Path):
         def readjson(path, modelname=None):
             with open(path) as f:
                 struct = json.load(f)
-                if type(struct) == dict or len(struct)==0 or "_type" not in struct[0]:
+                if type(struct) == dict or len(struct) == 0 or "_type" not in struct[0]:
                     return  # non modelfiles
                 self.fillids(modelname=modelname, struct=struct)
             return
 
         if path.is_file():
-            self.modelname=nvl(self.modelname, path.stem)
+            self.modelname = nvl(self.modelname, path.stem)
             readjson(path=path, modelname=self.modelname)
         elif path.is_dir():
             for onepath in path.iterdir():
                 if onepath.suffix == '.json':
-                    self.modelname=onepath.stem
+                    self.modelname = onepath.stem
                     readjson(path=onepath, modelname=self.modelname)
         else:
             raise Exception(f"path must be file or directory {path.__str__()}")
         return
-

@@ -1,7 +1,6 @@
-
 import re
 
-from IM_STANDARD import JsonElement,alwayslist
+from IM_STANDARD import JsonElement, alwayslist
 
 
 class ElementId:
@@ -25,7 +24,7 @@ class ElementId:
 
     @staticmethod
     def reset():
-        ElementId.idmax == {key: 0 for key in ElementId.OBJNAMES.keys()}
+        ElementId.idmax = {key: 0 for key in ElementId.OBJNAMES.keys()}
 
     @staticmethod
     def setnextid(objtype, id):
@@ -79,14 +78,14 @@ class JsonSchema():
     common functions and jsonstructures to be used in  jsonSchemas organized according to the standard
     """
 
-    MAINELEMENTS=["Entities", "Domains", "Categories",
-                           "Attributes",
-                           "Relations", 'BusinessRules'
-                        ,"DataObjects", 'Systems']
+    MAINELEMENTS = ["Entities", "Domains", "Categories",
+                    "Attributes",
+                    "Relations", 'BusinessRules'
+        , "DataObjects", 'Systems']
 
     def __init__(self, model=None, **kwargs):
         self._model = model if model is not None else \
-            {"ModelInfo": None} #create legal json-schema
+            {"ModelInfo": None}  # create legal json-schema
         self._curlang = None
         return
 
@@ -135,7 +134,7 @@ class JsonSchema():
         """"
             return additional languages for model
         """
-        return self.languages+[self.mainlang]
+        return self.languages + [self.mainlang]
 
     def modelismultilingual(self):
         return len(self.languages) > 0
@@ -156,17 +155,17 @@ class JsonSchema():
         elif type(value) is str:
             return value
         elif type(value) is dict:
-            #is whish language in the dict
+            # is whish language in the dict
             if lang is not None and lang in value.keys():
                 return value.get(lang)
-            #is the current language of the generation in the dict
+            # is the current language of the generation in the dict
             if self.curlang is not None and self.curlang in value.keys():
                 return value.get(self.curlang)
-            #do we accept defaults and is the mainlanguage (=defaultlanguage) in the dict
+            # do we accept defaults and is the mainlanguage (=defaultlanguage) in the dict
             if default and self.mainlang in value.keys():
                 return value.get(self.mainlang)
             # do we accept defaults and is their any language in the dict
-            if default and len(value.keys())>0:
+            if default and len(value.keys()) > 0:
                 return value.get(list(value.keys())[0])
         return value
 
@@ -189,33 +188,49 @@ class JsonSchema():
         else:
             return _istransl(self.mainlang)
 
-    def getpath(self,elem:JsonElement):
-        retval= ""
-        if elem is None: return retval
-        if elem.elemtype in ("Entity","Domain"):
-            parentprop="categoryid"
-        elif elem.elemtype==("Attribute","Category"):
-            parentprop="parentid"
-        elif elem.elemtype=="BusinessRule":
-            parentprop=None
+    def getparentid(self,elem:JsonElement):
+        """ returns the parentid or whatever a parent is called in this element
+            None if there is no parentprop or there is no partentid """
+        if elem.elemtype in ("Entity", "Domain"):
+            parentprop = "categoryid"
+        elif elem.elemtype in ("Attribute", "Category"):
+            parentprop = "parentid"
+        elif elem.elemtype == "BusinessRule":
+            parentprop = None
         elif elem.elemtype == "Relation":
-            parentprop=None
+            parentprop = None
         elif elem.elemtype == "System":
-            parentprop=None
-        if parentprop is not None:
-            retval = self.getpath(elem.data.get(parentprop))+elem.getname()
+            parentprop = None
         else:
-            pass
-        return retval+"/"
+            parentprop = None
+        if parentprop is None:
+            return None
+        else:
+            return elem[parentprop]
 
-    def getfullpath(self,elem:JsonElement,
-                            lang=None):
+    def getpath(self, elem: JsonElement):
         """
-        get the full path of an element from its name up to the model levewl, with all parents
+        :param elem:
+        :return the names of all parents separated by / up to the root.
+                "" if object has no parent or elem is None
+        """
+        retval = ""
+        if elem is None: return retval
+        parentelem:JsonElement =self.getbyid(self.getparentid(elem))
+        if parentelem is not None:
+            retval += self.getpath(parentelem)
+            retval += self.mlvalue(parentelem.getname())
+            retval += "/"
+        return retval
+
+    def getfullpath(self, elem: JsonElement,
+                    lang=None):
+        """
+        get the full path of an element from its name up to the model level, with all parents
         :return: /modelname/{parent.name/}/elementname
         """
-        retval= f"/{elem.getadditionalprop('SOURCE-MODEL')}/{self.getpath(elem=elem)}/{self.mlvalue(value=elem.getname(),lang=lang)}"
-        #TODO read all parents and define all names
+        retval = f"{elem.getadditionalprop('SOURCE-MODEL')}:{self.getpath(elem=elem)}{self.mlvalue(value=elem.getname(), lang=lang)}"
+        # TODO read all parents and define all names
         return retval
 
     def setschemaelement(self, name, val):
@@ -225,18 +240,18 @@ class JsonSchema():
     def addelementinstance(self, name, val):
         """ add an instance to the element 'name'
         """
-        #create element if not present
+        # create element if not present
         self.jsonschemamodel.setdefault(name, [])
         if isinstance(val, list):
             self.jsonschemamodel[name].extend(val)
-        elif isinstance(val,dict) or isinstance(val,JsonElement):
+        elif isinstance(val, dict) or isinstance(val, JsonElement):
             self.jsonschemamodel[name].append(val)
         else:
             raise Exception(f"illegal type of value '{type(val)}'")
         return
 
-    def getanyelementsbyfield(self,name,
-                           field="name"):
+    def getanyelementsbyfield(self, name,
+                              field="name"):
         """
         find the name in the field of any element
 
@@ -246,12 +261,12 @@ class JsonSchema():
         """
         elements = []
         for elemtype in self.MAINELEMENTS:
-            elements+= self.getelementsbyfield(elementtype=elemtype,
-                                              name=name,field=field)
+            elements += self.getelementsbyfield(elementtype=elemtype,
+                                                name=name, field=field)
         return elements
 
-    def getanyelementbyfield(self,name,
-                           field="name"):
+    def getanyelementbyfield(self, name,
+                             field="name"):
         """
         find the name in the field in any element
 
@@ -261,10 +276,10 @@ class JsonSchema():
                 error if more than one was found
                 element if exactly one was found
         """
-        elements = self.getanyelementsbyfield(name=name,field=field)
-        if len(elements)==0:
+        elements = self.getanyelementsbyfield(name=name, field=field)
+        if len(elements) == 0:
             return []
-        elif len(elements)>1:
+        elif len(elements) > 1:
             raise Exception("Too many elements with {name} found")
         else:
             return elements[0]
@@ -277,7 +292,7 @@ class JsonSchema():
             where the field is present and its value equals to name
 
         """
-        elements = self.jsonschemamodel.get(elementtype,[])
+        elements = self.jsonschemamodel.get(elementtype, [])
         retval = [elem for elem in elements if self.mlvalue(elem[field]) == name]
         return retval
 
@@ -327,7 +342,7 @@ class JsonSchema():
             return retval
 
         if elementname in self.MAINELEMENTS:
-            retval = self.jsonschemamodel.get(elementname,[])
+            retval = self.jsonschemamodel.get(elementname, [])
         elif elementname in ("Keys"):
             retval = subelements(fathername="Entities",
                                  elementname=elementname.lower())
@@ -369,6 +384,5 @@ class JsonSchema():
 
     def _gettechnicalname(self, elem):
         return elem.get("technicalname",
-                   self.maketechnicalname(self.mlvalue(
-                       elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalname""]
-
+                        self.maketechnicalname(self.mlvalue(
+                            elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalname""]

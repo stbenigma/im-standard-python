@@ -69,6 +69,8 @@ class Test_dataspot2im(unittest.TestCase):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)
 
+        categories = [c for c in dsschema.categories.values() if c.get("PARENT") is not None]
+        self.assertTrue(len(categories)>0)
         derivations = [c for c in dsschema.derivations.values()]
         self.assertTrue(len(derivations)>0)
         transformations = [c for c in dsschema.transformations.values()]
@@ -77,15 +79,27 @@ class Test_dataspot2im(unittest.TestCase):
         self.assertTrue(len(rules)>0)
         mappings = [c for c in dsschema.mappings.values()]
         self.assertTrue(len(mappings)>0)
+        translations = [c for c in dsschema.translations.values()]
+        self.assertTrue(len(translations)>0)
 
         jsonstruct=dsschema.generatejson(modelname=inpath.name,
                                        modelversion="0.0",
                                        targetenv="Test",
                                        language="de",
                                        languages=["en"])
+        categories2=[c for c in jsonstruct.get("Categories") if c.get("parentid") is not None]
+        self.assertTrue(len(categories2)>0)
+        derivations2=[c for c in jsonstruct.get("Derivations",[]) ]
+        self.assertTrue(len(derivations2)>20)
+        mappings2=[c for c in jsonstruct.get("Mappings",[]) ]
+        self.assertEqual(len(mappings),len(mappings2))
+        self.assertTrue(len(mappings2[0].get("valuemappings",[]))>0)
+        transformations2= [t for t in jsonstruct.get("Transformations",[]) if not t.get("is1to1")]
+        for t in transformations2:
+            self.assertTrue(len(t.get("sourceelements"))!=1 or len(t.get("targetelements"))!=1)
         return
 
-    def test_ds2im_schwipsti(self):
+    def test_ds2im_astro(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
         instance = exportIM2standard(inpath=inpath,
                                      outpath=self.mydebugpath,
@@ -145,7 +159,7 @@ class Test_dataspot2im(unittest.TestCase):
                                                          ))
         return
 
-    def test_ds2im_schwipsy(self):
+    def test_ds2im_schwipsti(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         instance = exportIM2standard(inpath=inpath,
                                      outpath=self.mydebugpath,

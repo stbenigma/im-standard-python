@@ -39,6 +39,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
         self.generatederivations()
         self.generatemappings()
+        self.generatetransformations()
         return
 
     def generatekeys(self):
@@ -110,43 +111,25 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                modelname=element.get("DSMODEL"),
                                                name=element.get("subtypeOf"),
                                                notnull=True)
-                self.standardjson.addelementinstance(name="Relations",
-                                                     val=self.relationjsonbase(relationtype="SUBTYPE",
-                                                                               entityid1=entityid1,
-                                                                               entityid2=element.get("ID"),
-                                                                               element={
-                                                                                   "hasDomain": element.get(
-                                                                                       "subtypeOf"),
-                                                                                   "name": self.standardjson.multilangstring_is(),
-                                                                                   "hasRange": element.get("label"),
-                                                                                   "inverseName": self.standardjson.multilangstring_is(),
-                                                                                   "domainMultiplicity": "1",
-                                                                                   "rangeMultiplicity": "1",
-                                                                                   "ARC-12": None,
-                                                                                   "ARC-21": 0,
-                                                                                   "ID": ElementId.nextid("RELA")
-                                                                               }))
+                self.standardjson.addelementinstance\
+                    (name="Relations",
+                     val=self.relationjsonbase(relationtype="SUBTYPE",
+                                               entityid1=entityid1,
+                                               entityid2=element.get("ID"),
+                                               element={
+                                                   "hasDomain": element.get(
+                                                       "subtypeOf"),
+                                                   "name": self.standardjson.multilangstring_is(),
+                                                   "hasRange": element.get("label"),
+                                                   "inverseName": self.standardjson.multilangstring_is(),
+                                                   "domainMultiplicity": "1",
+                                                   "rangeMultiplicity": "1",
+                                                   "ARC-12": None,
+                                                   "ARC-21": 0,
+                                                   "ID": ElementId.nextid("RELA")
+                                               }))
 
         return
-
-    def relationtype(self, element):
-        """ get the relationship type from the elementdefinition"""
-        frommany = self._cardinality(element.get("rangeMultiplicity")) == 'M'
-        tomany = self._cardinality(element.get("domainMultiplicity")) == 'M'
-        frommand = self._mandatory(element.get("rangeMultiplicity"))
-        tomand = self._mandatory(element.get("domainMultiplicity"))
-        fromarc = element.get("ARC-12") is not None
-        toarc = element.get("ARC-21") is not None
-        if frommany and tomany:
-            return "M:N"
-        elif frommany != tomany:
-            return "M:1"
-        elif not frommany and not tomany and (frommand != tomand):
-            return "ROLE"  # 1:1 1opt 1mand
-        elif not frommany and not tomany and frommand and tomand and (fromarc or toarc):
-            return "SUBTYPE"  # 1:1 2mand 1 in arc
-        else:
-            return "1:1"  # 1:1 not subtype not role
 
     def generaterelations(self, elementname, elements):
         for element in elements:
@@ -247,13 +230,14 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                            field="name")
         retval = []
         for elem in elements:
-            elemmodel,elempath,elemname=self.namedreference2struct(namedref=self.standardjson.getfullpath(elem=elem))
-            assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
+            elemmodel, elempath, elemname = self.namedreference2struct(
+                namedref=self.standardjson.getfullpath(elem=elem))
+            #assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
             if (frommodel == elemmodel) and \
-                (frompath == elempath) and \
-                (elemtype is None or
-                     (elemtype == elem.elemtype)
-                    ):
+                    ((len(frompath) <= len(elempath)) and #both paths are equal from the end to the beginning of the frompath
+                     ((frompath==[]) or (frompath[-len(frompath):]==elempath[-len(frompath):]))) and \
+                    (elemtype is None or
+                     (elemtype == elem.elemtype)):
                 retval.append(elem)
         if len(retval) == 1:
             return retval[0]
@@ -264,19 +248,19 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         """ read all derivations and add them to the derivations of the model, if the target is in this model
         """
         for keyderiv, deriv, in self.derivations.items():
-            sourceelement = self.findqualielement(
-                fullpath=self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
-                                                       modelname=deriv.get("DSMODEL")))
-            targetelement = self.findqualielement(
-                fullpath=self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
-                                                       modelname=deriv.get("DSMODEL")))
+            sourcepath=self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
+                                                       modelname=deriv.get("DSMODEL"))
+            sourceelement = self.findqualielement(fullpath=sourcepath)
+            targetpath=self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
+                                                       modelname=deriv.get("DSMODEL"))
+            targetelement = self.findqualielement(fullpath=targetpath)
             if targetelement is None:
                 # target not found, is not part of the current model
                 continue
 
             # add derivation to found element
             if sourceelement is None:
-                sourceelementid = deriv.get("derivedFrom")
+                sourceelementid = sourcepath
             else:
                 sourceelementid = sourceelement.getid()
 
@@ -289,35 +273,68 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             self.standardjson.addelementinstance(name="Derivations",
                                                  val=JsonElement().derivationjson
                                                  (derivationtype=deriv.get("qualifier"),
-                                                  targetelement=targetelement.getid(),
                                                   sourceelement=sourceelementid,
+                                                  targetelement=targetelement.getid(),
                                                   additionalProps=additionalprops
                                                   )
                                                  )
 
         return
 
+    def generatetransformations(self):
+        """ read all transformations and add them to the element
+        """
+        for trakey, transf, in self.transformations.items():
+            transpath = transf.get("transformationOf")+"/"+transf.get("label")
+
+            additionalprops = self.additionalprops(elem=transf,
+                                                   specialkeys=["transformationOf"])
+            rules=[r for r in self.rules.values() if r.get("ruleOf") == transpath]
+            for rule in rules:
+                sourceelements=[nvl(self.findqualielement(
+                            fullpath=self.addmodeltonamedreference(namedref=t,modelname=rule.get("DSMODEL"))),t)
+                                for t in rule.get("transformsFrom",[])]
+                sourceelements=[se.getid() if isinstance(se,JsonElement) else se for se in sourceelements]
+                targetelements=[nvl(self.findqualielement(
+                            fullpath=self.addmodeltonamedreference(namedref=t,modelname=rule.get("DSMODEL"))),t)
+                                    for t in rule.get("transformsTo",[])]
+                targetelements=[se.getid() if isinstance(se,JsonElement) else se for se in targetelements]
+                self.standardjson.addelementinstance(name="Transformations",
+                                                  val=JsonElement().transformationjson
+                                                  (targetelements=targetelements,
+                                                   sourceelements=sourceelements,
+                                                   fwd=JsonElement().transformationrulejson(rule=rule.get("code"),condition=rule.get("condition")),
+                                                   bwd=JsonElement().transformationrulejson(rule=None,condition=None),
+                                                   additionalProps=additionalprops
+                                                   )
+                                                  )
+        return
+
+    def valuemappings(self,rules):
+        retval=[[rule.get("translatesFrom"),rule.get("translatesTo")] for rule in rules]
+        return retval
+
     def generatemappings(self):
         """ read all mappings and add them to the element
         """
         for mapkey, mapping, in self.mappings.items():
-            sourceelement = self.findqualielement(
+            sourcedomain = self.findqualielement(
                 fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsFrom"),
                                                        modelname=mapping.get("DSMODEL")),
                 elemtype="Domain")
-            targetelement = self.findqualielement(fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsTo"),
+            targetdomain = self.findqualielement(fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsTo"),
                                                                                          modelname=mapping.get(
                                                                                              "DSMODEL")),
                                                   elemtype="Domain")
-            if targetelement is None:
+            if targetdomain is None:
                 # target not found, is not part of the current model
                 continue
 
             # add derivation to found element
-            if sourceelement is None:
+            if sourcedomain is None:
                 sourceelementid = mapping.get("derivedFrom")
             else:
-                sourceelementid = sourceelement.getid()
+                sourceelementid = sourcedomain.getid()
 
             additionalprops = self.additionalprops(elem=mapping,
                                                    specialkeys=["mapsTo",
@@ -327,8 +344,11 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             self.standardjson.addelementinstance(name="Mappings",
                                                  val=JsonElement().mappingjson
                                                  (derivationtype=mapping.get("qualifier"),
-                                                  targetelement=targetelement.getid(),
-                                                  sourceelement=sourceelementid,
+                                                  targetdomain=targetdomain.getid(),
+                                                  sourcedomain=sourceelementid,
+                                                  valuemappings=self.valuemappings
+                                                      (rules=[r for r in self.translations.values()
+                                                              if r.get('translationIn')==mapping.get("label")]),
                                                   additionalProps=additionalprops
                                                   )
                                                  )

@@ -205,7 +205,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                     modelname=element.get("DSMODEL"),
                                     name=parentname, fullname=True)
 
-        additionalprops = self.additionalprops(elem=element, specialkeys=[])
+        additionalprops = self.additionalprops(elem=element, specialkeys=["parentid"])
         jsonstruct = JsonElement().categoryjson(elementid=element.get("ID"),
                                                     name=self.mutlilangvalue(fieldname="label",
                                                                              value=element.get("label"),
@@ -221,7 +221,7 @@ class Dataspot2Jsonbase(DataspotElements):
     @staticmethod
     def namedreference2struct(namedref:str):
         """ separates a refrence to an object into its components
-            [/<modelname>]/[<elementpath>/]*<elementname>
+            [/<modelname>]:[<elementpath>/]*<elementname>
             alle Namen die ein "/" oder ein Spezialzeichen enthalten sind in ""
             return
             modelname: None or firstname after /
@@ -229,13 +229,17 @@ class Dataspot2Jsonbase(DataspotElements):
 
         """
         if namedref is None: return (None,None,None)
-        parts=j2d.custom_split(input_string=namedref,delimiter="/")
-        if namedref.startswith("/"):
-            modelname=parts[1]
-
-            parts=parts[2:]  #remove modelnam
+        if ":" in namedref:
+            parts = j2d.custom_split(input_string=namedref, delimiter=":")
+            modelname=parts[0]
+            parts = [parts[1]]
         else:
-            modelname=None
+            parts = j2d.custom_split(input_string=namedref, delimiter="/")
+            if namedref.startswith("/"):
+                modelname=parts[1]
+                parts = parts[2:]  # remove modelnam
+            else:
+                modelname=None
         elementname=parts[-1]
         elementpath=parts[0:-1]
         return modelname,elementpath,elementname
@@ -245,19 +249,20 @@ class Dataspot2Jsonbase(DataspotElements):
         """ if namedreference starts with / do nothing (it starts with a model)
             if not, create a new namedreference, starting with /modelname/
         """
-        if namedref.startswith("/"):return namedref
-        _,elementpath,elementname=Dataspot2Jsonbase.namedreference2struct(namedref)
-        return Dataspot2Jsonbase.refparts2namedreference(modelname=modelname,elementpath=elementpath,elementname=elementname)
+        #if namedref.startswith("/"): return namedref
+        modelname2,elementpath,elementname=Dataspot2Jsonbase.namedreference2struct(namedref)
+        return Dataspot2Jsonbase.refparts2namedreference(modelname=nvl(modelname2,modelname),
+                                                         elementpath=elementpath,elementname=elementname)
 
     @staticmethod
     def refparts2namedreference(elementname:str,modelname:str=None,elementpath:list=None):
         """ combines the element-path-parts into a single string
-            /<modelname>]/[<elementpath>/]*<elementname>
+            [<modelname>]:[<elementpath>/]*<elementname>
             all names containing "/" or . are enclosed in ""
         """
         retval = ""
         if modelname is not None:
-            retval += "/" + j2d.fullescapestr(modelname) + "/"
+            retval += j2d.fullescapestr(modelname) + ":"
         if len(alwayslist(elementpath))>0:
             retval += "/".join([j2d.fullescapestr(ep) for ep in elementpath]) + "/"
         retval += nvl(j2d.fullescapestr(elementname))
