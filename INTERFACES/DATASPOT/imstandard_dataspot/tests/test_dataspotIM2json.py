@@ -87,7 +87,7 @@ class Test_dataspot2im(unittest.TestCase):
                                        targetenv="Test",
                                        language="de",
                                        languages=["en"])
-        categories2=[c for c in jsonstruct.get("Categories") if c.get("parentid") is not None]
+        categories2=[c for c in jsonstruct.get("Categories") if c.get("categoryid") is not None]
         self.assertTrue(len(categories2)>0)
         derivations2=[c for c in jsonstruct.get("Derivations",[]) ]
         self.assertTrue(len(derivations2)>20)
@@ -164,7 +164,7 @@ class Test_dataspot2im(unittest.TestCase):
         instance = exportIM2standard(inpath=inpath,
                                      outpath=self.mydebugpath,
                                      modelversion='0.9',
-                                     targetenv="Standard example of dataspot environment",
+                                     targetenv="Sandbox",
                                      language='de'
                                      )
 

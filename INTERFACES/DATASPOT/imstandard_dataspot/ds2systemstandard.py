@@ -14,7 +14,6 @@ class Dataspot2SYSTJsonschema(Dataspot2Jsonbase):
     def __init__(self, indirec=None, **kwargs):
         super().__init__(standardjson=JsonSchema(),
                          indirec=indirec, **kwargs)
-        self.createmultimodelcategories()
         return
 
 

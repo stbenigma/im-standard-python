@@ -1,0 +1,83 @@
+[ {
+  "_type" : "Collection",
+  "id" : "b6981a76-c7cd-4ab7-8778-f3356d84ef82",
+  "href" : "/web/foryouandyourcustomers/collections/b6981a76-c7cd-4ab7-8778-f3356d84ef82",
+  "label" : "Objects",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087276449
+}, {
+  "_type" : "UmlClass",
+  "id" : "57577eb5-4c71-489f-aab8-975ebb11abc8",
+  "href" : "/web/foryouandyourcustomers/classifiers/57577eb5-4c71-489f-aab8-975ebb11abc8",
+  "label" : "receiving object",
+  "inCollection" : "Objects",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087296127
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "7674144b-d6d1-41d3-af4f-a85e3dda9069",
+  "href" : "/web/foryouandyourcustomers/attributes/7674144b-d6d1-41d3-af4f-a85e3dda9069",
+  "hasDomain" : "Objects/receiving object",
+  "label" : "receiving attribute1",
+  "description" : "dies ist ein 2zeiliger text\n\ndies ist die 2. Zeile\noder die 3.",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087305210,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "1a4f8cfe-0387-497c-b043-29ea690d343b",
+  "href" : "/web/foryouandyourcustomers/attributes/1a4f8cfe-0387-497c-b043-29ea690d343b",
+  "hasDomain" : "Objects/receiving object",
+  "label" : "receiving attribute2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087305210,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "63d0d715-1d23-435d-a5b3-9300361d1f44",
+  "href" : "/web/foryouandyourcustomers/attributes/63d0d715-1d23-435d-a5b3-9300361d1f44",
+  "hasDomain" : "Objects/receiving object",
+  "label" : "receiving attribute3",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087305210,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "Transformation",
+  "id" : "ae010a01-1387-486d-b1ef-43494a8e2034",
+  "href" : "/web/foryouandyourcustomers/transformations/ae010a01-1387-486d-b1ef-43494a8e2034",
+  "transformationOf" : "Objects/receiving object",
+  "label" : "receivefromsource",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087352043
+}, {
+  "_type" : "Rule",
+  "id" : "e782d493-2c5d-4012-805c-e35b5e881671",
+  "href" : "/web/foryouandyourcustomers/rules/e782d493-2c5d-4012-805c-e35b5e881671",
+  "ruleOf" : "Objects/receiving object/receivefromsource",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087404308,
+  "transformsFrom" : [ "/testuploadexcel datamodel/Deststructure Model/Attributes/Label" ],
+  "transformsTo" : [ "Objects/receiving object/receiving attribute1" ]
+}, {
+  "_type" : "Rule",
+  "id" : "76d605b0-6f16-443f-bef8-e6486a5aedae",
+  "href" : "/web/foryouandyourcustomers/rules/76d605b0-6f16-443f-bef8-e6486a5aedae",
+  "ruleOf" : "Objects/receiving object/receivefromsource",
+  "label" : "2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1753087431332,
+  "transformsFrom" : [ "/testuploadexcel datamodel/Deststructure Model/Attributes/Description", "/testuploadexcel datamodel/Deststructure Model/Attributes/Integer Places" ],
+  "transformsTo" : [ "Objects/receiving object/receiving attribute2", "Objects/receiving object/receiving attribute3" ]
+} ]

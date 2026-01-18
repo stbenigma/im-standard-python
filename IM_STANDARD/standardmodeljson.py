@@ -1,12 +1,13 @@
 import json
 from pathlib import Path
+
 from IM_STANDARD.jsonvalidation import validate_jsonfile_as_schema  # local due to recusrive import
 
 
 class StandardJsonModel:
-    SCHEMADEFPATH = Path(__file__).parent.parent.parent  / "Information-model-standard" / "im-standard"
+    SCHEMADEFPATH = Path(__file__).parent.parent.parent / "Information-model-standard" / "im-standard"
 
-    def __init__(self,modelfilepath):
+    def __init__(self, modelfilepath):
         self._schema = self._loadjsonfile(path=modelfilepath)
 
     @staticmethod
@@ -29,9 +30,9 @@ class StandardJsonModel:
                 false: else
         """
         components = self.schema.get("components", dict())
-        return (self.schema.get("$id", "").startswith(componentname + "-schema")) \
-               or (componentname in components.get("schemas", dict())) \
-               or (componentname in components.get("$defs", dict()))
+        return ((self.schema.get("$id", "").startswith(componentname + "-schema"))
+                or (componentname in components.get("schemas", dict()))
+                or (componentname in components.get("$defs", dict())))
 
     def getcomponent(self, componentname) -> dict:
         """
@@ -62,30 +63,30 @@ class StandardJsonModel:
         else:
             return dict()
 
-    def getproperty(self, componentname,propertyname) -> dict:
-        """
-        :param componentname:
-        :param propertyname:
-        :return: "property with this name
-                 exception if component was not found
-                 None if property was not found
-        """
-        if self.inschema(componentname):
-            return self.getcomponent(componentname).get("properties", dict())
-        else:
-            return dict()
+    # def getproperty(self, componentname,propertyname) -> dict:
+    #     """
+    #     :param componentname:
+    #     :param propertyname:
+    #     :return: "property with this name
+    #              exception if component was not found
+    #              None if property was not found
+    #     """
+    #     if self.inschema(componentname):
+    #         return self.getcomponent(componentname).get("properties", dict())
+    #     else:
+    #         return dict()
+
 
 class IMStandardJsonModel(StandardJsonModel):
     DEFAULTLANGUAGE = "en"
     IMDEFINITIONFILEPATH = StandardJsonModel.SCHEMADEFPATH / "InformationModel-schema.json"
 
     def __init__(self):
-        super().__init__(modelfilepath= self.IMDEFINITIONFILEPATH)
-        #make sure, my reference is a correct json-schema
+        super().__init__(modelfilepath=self.IMDEFINITIONFILEPATH)
+        # make sure, my reference is a correct json-schema
         validate_jsonfile_as_schema(json_file_path=self.IMDEFINITIONFILEPATH)
 
-
-    def getimelements(self,)->list():
+    def getimelements(self, ) -> list():
         """
             returns list of all elements of information model
             =  propery with given name
@@ -93,7 +94,7 @@ class IMStandardJsonModel(StandardJsonModel):
         """
         return self.schema.get("properties")
 
-    def getimelement(self,elementname:str)->dict():
+    def getimelement(self, elementname: str) -> dict():
         """
             returns element of information model
             =  propery with given name
@@ -102,3 +103,27 @@ class IMStandardJsonModel(StandardJsonModel):
         return self.getimelements().get(elementname)
 
 
+class DMStandardJsonModel(StandardJsonModel):
+    DEFAULTLANGUAGE = "en"
+    DMDEFINITIONFILEPATH = StandardJsonModel.SCHEMADEFPATH / "DataModel-schema.json"
+
+    def __init__(self):
+        super().__init__(modelfilepath=self.IMDEFINITIONFILEPATH)
+        # make sure, my reference is a correct json-schema
+        validate_jsonfile_as_schema(json_file_path=self.DMDEFINITIONFILEPATH)
+
+    def getimelements(self, ) -> list():
+        """
+            returns list of all elements of the model
+            =  propery with given name
+        None if not found
+        """
+        return self.schema.get("properties")
+
+    def getimelement(self, elementname: str) -> dict():
+        """
+            returns element of information model
+            =  propery with given name
+        None if not found
+        """
+        return self.getimelements().get(elementname)

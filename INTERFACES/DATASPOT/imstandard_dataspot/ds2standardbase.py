@@ -106,6 +106,8 @@ class Dataspot2Jsonbase(DataspotElements):
         typemulticatg(models=diffdomainmodels, catgtype='DOMAIN')
         diffsystemmodels = set(c.get("DSMODEL") for c in self.categories.values() if c.get("TYPE") == "SYSTEM")
         typemulticatg(models=diffsystemmodels, catgtype='SYSTEM')
+        diffsystemmodels = set(c.get("DSMODEL") for c in self.categories.values() if c.get("TYPE") == "DATAMODEL")
+        typemulticatg(models=diffsystemmodels, catgtype='DATAMODEL')
 
         return
 
@@ -138,7 +140,7 @@ class Dataspot2Jsonbase(DataspotElements):
                         del restcatgs[key]
                     else:
                         pass
-        self.modelcategories[catgtype] = donecatgs
+        #self.modelcategories[catgtype] = doxnecatgs
         self.standardjson.addelementinstance(name="Categories", val=newcategories)
         return
 
@@ -214,7 +216,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                                                     value=element.get("description"),
                                                                                     addprops=additionalprops),
                                                     categorytype=categorytype,
-                                                    parentid=parentid,
+                                                    categoryid=parentid,
                                                     additionalProps=additionalprops)
         return jsonstruct
 
@@ -341,8 +343,8 @@ class Dataspot2Jsonbase(DataspotElements):
 
     def relationjsonbase(self, relationtype,
                          element,
-                         entityid1=None, tableid1=None,
-                         entityid2=None, tableid2=None
+                         entityid1=None, dataobjectid1=None,
+                         entityid2=None, dataobjectid2=None
                          ):
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["name",
@@ -355,7 +357,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "ARC-21", "ARC-12"])
         intval = lambda x: None if element.get(x) is None else int(element.get(x))
         fwdend = JsonElement().relationendjson(entityid=entityid1,
-                                                   tableid=tableid1,
+                                                   dataobjectid=dataobjectid1,
                                                    assoctext=self.mutlilangvalue(
                                                        fieldname="name",
                                                        value=self._deref(element.get("name")),
@@ -368,7 +370,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                    arcnumber=intval("ARC-12")
                                                    )
         bwdend = JsonElement().relationendjson(entityid=entityid2,
-                                                   tableid=tableid2,
+                                                   dataobjectid=dataobjectid2,
                                                    assoctext=self.mutlilangvalue(
                                                        fieldname="inverseName",
                                                        value=self._deref(
@@ -395,21 +397,21 @@ class Dataspot2Jsonbase(DataspotElements):
         entityid1 = self.findelementid(elems=self.entities,
                                        modelname=modelname,
                                        name=self._deref(element.get("PARENT")))
-        tableid1 = self.findelementid(elems=self.tables,
+        dataobjectid1 = self.findelementid(elems=self.tables,
                                       modelname=modelname,
                                       name=self._deref(element.get("PARENT")))
         entityid2 = self.findelementid(elems=self.entities,
                                        modelname=modelname,
                                        name=self._deref(element.get("PARENT2")))
-        tableid2 = self.findelementid(elems=self.tables,
+        dataobjectid2 = self.findelementid(elems=self.tables,
                                       modelname=modelname,
                                       name=self._deref(element.get("PARENT2")))
-        assert entityid1 is not None or tableid1 is not None, f"Missing entity/table parent {element.get('PARENT')}->{element.get('PARENT2')}"
-        assert entityid2 is not None or tableid2 is not None, f"Missing entity/table parent {element.get('PARENT2')}->{element.get('PARENT')}"
+        assert entityid1 is not None or dataobjectid1 is not None, f"Missing entity/table parent {element.get('PARENT')}->{element.get('PARENT2')}"
+        assert entityid2 is not None or dataobjectid2 is not None, f"Missing entity/table parent {element.get('PARENT2')}->{element.get('PARENT')}"
 
         return self.relationjsonbase(relationtype=relationtype,
-                                     entityid1=entityid1, tableid1=tableid1,
-                                     entityid2=entityid2, tableid2=tableid2,
+                                     entityid1=entityid1, dataobjectid1=dataobjectid1,
+                                     entityid2=entityid2, dataobjectid2=dataobjectid2,
                                      element=element)
 
     def fillrelation(self, modelname, rela):
@@ -563,6 +565,46 @@ class Dataspot2Jsonbase(DataspotElements):
                                                                                     element=element)
                                                  )
         return
+
+    def generatedomains(self):
+        for element in self.domains.values():
+            self.standardjson.addelementinstance(name="Domains",
+                                                 val=self.generate1domain(doma=element))
+        return
+
+    def generate1domain(self, doma):
+
+        catgid = self.findelementid(elems=self.categories,
+                                    modelname=doma.get("DSMODEL"),
+                                    name=doma.get("inCollection"), notnull=True)
+        additionalprops = self.additionalprops(elem=doma,
+                                               specialkeys=["minInclusive",
+                                                            "maxInclusive",
+                                                            "minLength", "maxLength",
+                                                            "integerDigits",
+                                                            "fractionDigits",
+                                                            "baseType",
+                                                            "Unit", "pattern"
+                                                            ])
+
+        JsonElement.optionalprop(destobject=additionalprops,
+                                 propname="SOURCE-DATATYPE",
+                                 value=doma.get("baseType"))
+        subtypeproperties = {"description": self.mutlilangvalue(fieldname="description",
+                                                                value=doma.get("description"),
+                                                                addprops=additionalprops)
+                             }
+        self.setdomainsubtype(element=doma, subtypeproperties=subtypeproperties)
+
+        subtypeproperties["additionalProps"] = additionalprops
+        elemdoma = JsonElement().domainjson(elementid=doma.get("ID"),
+                                            name=self.mutlilangvalue(fieldname="label",
+                                                                     value=doma.get("label"),
+                                                                     addprops=additionalprops),
+                                            categoryid=catgid,
+                                            **subtypeproperties
+                                            )
+        return elemdoma
 
     def findanyid(self, modelname, name, notnull=False):
         retval = self.findelementid(elems=self.attributes,

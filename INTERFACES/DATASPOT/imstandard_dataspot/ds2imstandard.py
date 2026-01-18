@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement
+from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
 
@@ -111,7 +111,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                modelname=element.get("DSMODEL"),
                                                name=element.get("subtypeOf"),
                                                notnull=True)
-                self.standardjson.addelementinstance\
+                self.standardjson.addelementinstance \
                     (name="Relations",
                      val=self.relationjsonbase(relationtype="SUBTYPE",
                                                entityid1=entityid1,
@@ -183,46 +183,6 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                  val=self.generate1attribute(element=element))
         return
 
-    def generatedomains(self):
-        for element in self.domains.values():
-            self.standardjson.addelementinstance(name="Domains",
-                                                 val=self.generate1domain(doma=element))
-        return
-
-    def generate1domain(self, doma):
-
-        catgid = self.findelementid(elems=self.categories,
-                                    modelname=doma.get("DSMODEL"),
-                                    name=doma.get("inCollection"), notnull=True)
-        additionalprops = self.additionalprops(elem=doma,
-                                               specialkeys=["minInclusive",
-                                                            "maxInclusive",
-                                                            "minLength", "maxLength",
-                                                            "integerDigits",
-                                                            "fractionDigits",
-                                                            "baseType",
-                                                            "Unit", "pattern"
-                                                            ])
-
-        JsonElement.optionalprop(destobject=additionalprops,
-                                 propname="SOURCE-DATATYPE",
-                                 value=doma.get("baseType"))
-        subtypeproperties = {"description": self.mutlilangvalue(fieldname="description",
-                                                                value=doma.get("description"),
-                                                                addprops=additionalprops)
-                             }
-        self.setdomainsubtype(element=doma, subtypeproperties=subtypeproperties)
-
-        subtypeproperties["additionalProps"] = additionalprops
-        elemdoma = JsonElement().domainjson(elementid=doma.get("ID"),
-                                            name=self.mutlilangvalue(fieldname="label",
-                                                                     value=doma.get("label"),
-                                                                     addprops=additionalprops),
-                                            categoryid=catgid,
-                                            **subtypeproperties
-                                            )
-        return elemdoma
-
     def findqualielement(self, fullpath: str,
                          elemtype: str = None):
         frommodel, frompath, fromelement = self.namedreference2struct(fullpath)
@@ -232,10 +192,11 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         for elem in elements:
             elemmodel, elempath, elemname = self.namedreference2struct(
                 namedref=self.standardjson.getfullpath(elem=elem))
-            #assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
+            # assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
             if (frommodel == elemmodel) and \
-                    ((len(frompath) <= len(elempath)) and #both paths are equal from the end to the beginning of the frompath
-                     ((frompath==[]) or (frompath[-len(frompath):]==elempath[-len(frompath):]))) and \
+                    ((len(frompath) <= len(
+                        elempath)) and  # both paths are equal from the end to the beginning of the frompath
+                     ((frompath == []) or (frompath[-len(frompath):] == elempath[-len(frompath):]))) and \
                     (elemtype is None or
                      (elemtype == elem.elemtype)):
                 retval.append(elem)
@@ -248,10 +209,10 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         """ read all derivations and add them to the derivations of the model, if the target is in this model
         """
         for keyderiv, deriv, in self.derivations.items():
-            sourcepath=self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
+            sourcepath = self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
                                                        modelname=deriv.get("DSMODEL"))
             sourceelement = self.findqualielement(fullpath=sourcepath)
-            targetpath=self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
+            targetpath = self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
                                                        modelname=deriv.get("DSMODEL"))
             targetelement = self.findqualielement(fullpath=targetpath)
             if targetelement is None:
@@ -285,33 +246,36 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         """ read all transformations and add them to the element
         """
         for trakey, transf, in self.transformations.items():
-            transpath = transf.get("transformationOf")+"/"+transf.get("label")
+            transpath = transf.get("transformationOf") + "/" + transf.get("label")
 
             additionalprops = self.additionalprops(elem=transf,
                                                    specialkeys=["transformationOf"])
-            rules=[r for r in self.rules.values() if r.get("ruleOf") == transpath]
+            rules = [r for r in self.rules.values() if r.get("ruleOf") == transpath]
             for rule in rules:
-                sourceelements=[nvl(self.findqualielement(
-                            fullpath=self.addmodeltonamedreference(namedref=t,modelname=rule.get("DSMODEL"))),t)
-                                for t in rule.get("transformsFrom",[])]
-                sourceelements=[se.getid() if isinstance(se,JsonElement) else se for se in sourceelements]
-                targetelements=[nvl(self.findqualielement(
-                            fullpath=self.addmodeltonamedreference(namedref=t,modelname=rule.get("DSMODEL"))),t)
-                                    for t in rule.get("transformsTo",[])]
-                targetelements=[se.getid() if isinstance(se,JsonElement) else se for se in targetelements]
+                sourceelements = [nvl(self.findqualielement(
+                    fullpath=self.addmodeltonamedreference(namedref=t, modelname=rule.get("DSMODEL"))), t)
+                    for t in rule.get("transformsFrom", [])]
+                sourceelements = [se.getid() if isinstance(se, JsonElement) else se for se in sourceelements]
+                targetelements = [nvl(self.findqualielement(
+                    fullpath=self.addmodeltonamedreference(namedref=t, modelname=rule.get("DSMODEL"))), t)
+                    for t in rule.get("transformsTo", [])]
+                targetelements = [se.getid() if isinstance(se, JsonElement) else se for se in targetelements]
                 self.standardjson.addelementinstance(name="Transformations",
-                                                  val=JsonElement().transformationjson
-                                                  (targetelements=targetelements,
-                                                   sourceelements=sourceelements,
-                                                   fwd=JsonElement().transformationrulejson(rule=rule.get("code"),condition=rule.get("condition")),
-                                                   bwd=JsonElement().transformationrulejson(rule=None,condition=None),
-                                                   additionalProps=additionalprops
-                                                   )
-                                                  )
+                                                     val=JsonElement().transformationjson
+                                                     (targetelements=targetelements,
+                                                      sourceelements=sourceelements,
+                                                      fwd=JsonElement().transformationrulejson(rule=rule.get("code"),
+                                                                                               condition=rule.get(
+                                                                                                   "condition")),
+                                                      bwd=JsonElement().transformationrulejson(rule=None,
+                                                                                               condition=None),
+                                                      additionalProps=additionalprops
+                                                      )
+                                                     )
         return
 
-    def valuemappings(self,rules):
-        retval=[[rule.get("translatesFrom"),rule.get("translatesTo")] for rule in rules]
+    def valuemappings(self, rules):
+        retval = [[rule.get("translatesFrom"), rule.get("translatesTo")] for rule in rules]
         return retval
 
     def generatemappings(self):
@@ -323,9 +287,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                        modelname=mapping.get("DSMODEL")),
                 elemtype="Domain")
             targetdomain = self.findqualielement(fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsTo"),
-                                                                                         modelname=mapping.get(
-                                                                                             "DSMODEL")),
-                                                  elemtype="Domain")
+                                                                                        modelname=mapping.get(
+                                                                                            "DSMODEL")),
+                                                 elemtype="Domain")
             if targetdomain is None:
                 # target not found, is not part of the current model
                 continue
@@ -347,22 +311,13 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                   targetdomain=targetdomain.getid(),
                                                   sourcedomain=sourceelementid,
                                                   valuemappings=self.valuemappings
-                                                      (rules=[r for r in self.translations.values()
-                                                              if r.get('translationIn')==mapping.get("label")]),
+                                                  (rules=[r for r in self.translations.values()
+                                                          if r.get('translationIn') == mapping.get("label")]),
                                                   additionalProps=additionalprops
                                                   )
                                                  )
 
         return
-
-    def model2json(self, model: dict):
-        retval = dict()
-        for key, elem in model.items():
-            if isinstance(elem, JsonElement):
-                retval[key] = elem.data
-            else:
-                retval[key] = [oneelem.data for oneelem in elem]
-        return retval
 
     def generatejson(self, modelname,
                      modelversion="0.0",
@@ -370,34 +325,50 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                      language="en",
                      languages=[]):
         now = datetime.now().replace(microsecond=0).isoformat()
+        modeltype = "Information model"
 
+        additionalprops = {"FULLPATH": f"{nvl(targetenv,self.tenant.get('name',''))}:{modeltype}:{modelname}",
+                           "SOURCE-SERVER": self.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
+                           "SOURCE-DB": self.tenant.get('db'),  # foryouandyourcustomers
+                           "SOURCE-TENANT": self.tenant.get("name"),  # Sandbox"
+                           "SOURCE-HREF": f"{self.tenant.get('server')}{self.tenant.get('db')}/schemes/a54fed8f-8fed-39a0-a192-92310c56cfd6"
+                           }
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                                modelname=modelname,
-                                               modeltype="Information model",
+                                               modeltype=modeltype,
                                                mainlanguage=language,
                                                languages=languages,
                                                dc=now,
                                                modelversion=modelversion,
                                                targetenvironment=targetenv,
-                                               origintool=self.ORIGINTOOL))
+                                               origintool=self.ORIGINTOOL,
+                                               originuri=None,
+                                               additionalProps=additionalprops
+                                           )
+                                           )
 
         self.generatecategories(catgtype="DOMAIN")
         self.generatecategories(catgtype="ENTITY")
         self.generatedomains()
         self.generatebusinessmodel()
 
-        return self.model2json(self.standardjson.jsonschemamodel)
+        return model2json(self.standardjson.jsonschemamodel)
 
 
 def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                       targetenv=None,
                       language='en', languages=[]):
     indirec = Path(inpath)
-    dsschema = Dataspot2IMJsonschema(indirec=indirec)
+    dsschema = Dataspot2IMJsonschema(indirec=indirec, tenant={"name": targetenv,
+                                                              "id": None,
+                                                              "uri": None,
+                                                              "db": "foryouandyourcustomers",
+                                                              "server": "https://partner.dataspot.io/rest/"}
+                                     )
     jsonstruct = dsschema.generatejson(modelname=nvl(modelname, indirec.name),
                                        modelversion=modelversion,
-                                       targetenv=targetenv,
+                                       targetenv=dsschema.tenant.get("name"),
                                        language=language,
                                        languages=languages)
 

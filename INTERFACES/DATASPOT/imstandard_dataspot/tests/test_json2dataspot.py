@@ -6,6 +6,7 @@ import pytest
 
 
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot,json2dataspot
+from IM_STANDARD import StandardJsonModel
 
 class Testjson2dataspot(unittest.TestCase):
     @pytest.fixture(autouse=True)
@@ -15,10 +16,9 @@ class Testjson2dataspot(unittest.TestCase):
         self.temppath = Path(tmp_path)
 
     def setUp(self) -> None:
-        self.imstandardbasedirec=Path(__file__).parent.parent.parent.parent.parent.parent/ "Information-model-standard"
-        self.astronomietestjsonpath =self.imstandardbasedirec / "Example models" /"Astronomie" /  "astronomie-schema.json"
+        self.astronomietestjsonpath = StandardJsonModel.SCHEMADEFPATH.parent / "Example models"/"Astronomie"
 
-        self.mydebugpath=(Path.home() / "Downloads") if  (Path.home() / "Downloads").exists() else self.temppath
+        self.mydebugpath = (Path.home() / "Downloads") if (Path.home() / "Downloads").exists() else self.temppath
         return
 
     def dumptodebug(self,filename,jsonstruct):
@@ -28,7 +28,6 @@ class Testjson2dataspot(unittest.TestCase):
                 json.dump(jsonstruct, outfile, indent=2)
                 print('\n', debugpath / filename, " written")
         return
-
 
     def test_diverse(self):
         self.assertEqual('"abc/d"', Json2dataspot.fullescapestr("abc/d"))
@@ -47,24 +46,23 @@ class Testjson2dataspot(unittest.TestCase):
         Json2dataspot
         return
 
-
-
-    def test_astronomiesingle(self):
-        with open(self.astronomietestjsonpath) as infile:
+    def test_IM_astronomiesingle(self):
+        astronomietestjsonfile= self.astronomietestjsonpath /"astronomie-schema.json"
+        with open(astronomietestjsonfile) as infile:
             testjson = json.load(fp=infile)
 
-        json2dataspot(injson=self.astronomietestjsonpath,
+        json2dataspot(injson=astronomietestjsonfile,
                       outpath=self.mydebugpath,
-                      imname="Astronomie model",
-                      refdomainsname="TestReference",
-                      domainsname="testdomain",
-                      systemsname="Systems_model"
+                      imname="dsimport IM",
+                      refdomainsname="dsimport ref model",
+                      domainsname="dsimport domain model",
+                      systemsname="dsimport Systems model"
                       )
         return
 
-
-    def test_astronomie_generated(self):
-        with open(self.astronomietestjsonpath.with_stem("astronomie-schema-generated")) as infile:
+    def test_IM_astronomie_generated(self):
+        astronomietestjsonfile= self.astronomietestjsonpath /"astronomie-schema-generated.json"
+        with open(astronomietestjsonfile) as infile:
             testjson = json.load(fp=infile)
 
         dsclass = Json2dataspot(standardjson=testjson,
@@ -95,19 +93,40 @@ class Testjson2dataspot(unittest.TestCase):
         #self.dumptodebug(filename="dsentityjson.json", jsonstruct=dsjson)
         #print('\n', self.mydebugpath / "dsentityjons.json", " created")
 
-        json2dataspot(injson=self.astronomietestjsonpath,
+        json2dataspot(injson=astronomietestjsonfile,
                       outpath=self.mydebugpath,
-                      imname="Astronomie model",
-                      refdomainsname="TestReference",
-                      domainsname="testdomain",
-                      systemsname="Systems_model"
+                      imname="dsimport IM",
+                      refdomainsname="dsimport ref model",
+                      domainsname="dsimport domain model",
+                      systemsname="dsimport Systems model"
                       )
 
         return
 
+    def test_DM_astronomiesingle(self):
+        astronomietestjsonfile= self.astronomietestjsonpath /"Astronomie-DM-schema.json"
+        with open(astronomietestjsonfile) as infile:
+            testjson = json.load(fp=infile)
+
+        dsclass = Json2dataspot(standardjson=testjson,
+                                    imname="Informationmodel",
+                  refdomainsname="TestReference",
+                  domainsname="testdomain")
+        dsjson = dsclass.dsdmjson()
+        self.assertTrue(len([elem for elem in dsjson if elem.get("_type")=="Collection"])==1)
+
+        json2dataspot(injson=astronomietestjsonfile,
+                      outpath=self.mydebugpath,
+                      dmname="dsastro DM",
+                      refdomainsname="dsastro ref model",
+                      domainsname="dsastro domain model",
+                      systemsname="dsastro systems model"
+                      )
+        return
+
     def test_divfiles(self):
         self.caplog.set_level(logging.INFO)
-        testfile=self.imstandardbasedirec/"im-model-model"/"im-model-model.json"
+        testfile=StandardJsonModel.SCHEMADEFPATH.parent/"im-model-model"/"im-model-model.json"
         if not testfile.exists():
             self.skipTest(f"file does not exist {str(testfile)}")
 
@@ -133,7 +152,6 @@ class Testjson2dataspot(unittest.TestCase):
                       systemsname="systems")
         print ("\n".join(self.caplog.messages))
         return
-
 
 if __name__ == '__main__':
     unittest.main()

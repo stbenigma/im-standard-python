@@ -9,12 +9,9 @@ from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot 
 class DataspotElements():
     def __init__(self, indirec=None, **kwargs):
         # models
-        # self._dsmodels = dict()
+        self.tenant = kwargs.get("tenant")
 
-        # all elements grouped by modeltype
-        # self._modeltypeelements = dict()
-        self.modelcategories = dict()
-
+        self.dsmodels = dict()
         self.modelname = kwargs.get("modelname")
 
         # elements from dataspot according to their type
@@ -37,43 +34,48 @@ class DataspotElements():
         self.diagrams = dict()
         self.diagelements = dict()
         self.businessrules = dict()
+        self.dataobjects = dict()
+        self.dataattributes = dict()
 
         if indirec is not None:
             self.readmodels(indirec)
         return
 
     def modeltype(self, struct):
-        keyset = set([elem.get("_type") for elem in struct])
-        if keyset.intersection({"Collection",
-                                "BusinessObject"}) == {"Collection",
-                                                       "BusinessObject"}:
-            return "BUSINESSMODEL"
-        elif keyset.intersection({"Collection",
-                                  "ReferenceObject"}) == {"Collection",
-                                                          "ReferenceObject"}:
-            return "REFERENCE"
-        elif keyset.intersection({"Collection",
-                                  "DataDomain"}) == {"Collection",
-                                                     "DataDomain"}:
-            return "DATATYPE"
-        elif keyset.intersection({"Collection",
-                                  "UmlClass"}) \
-                == {"Collection",
-                    "UmlClass"}:
-            return "DATAMODEL"
-        elif keyset.intersection({"Collection",
-                                  "System"}) \
-                == {"Collection",
-                    "System"}:
-            return "SYSTEMS"
-        elif keyset.intersection({"Collection",
-                                  "Project"}) \
-                == {"Collection",
-                    "Project"}:
-            return "PROJECT"
+        if type(struct) == list:
+            keyset = set([elem.get("_type") for elem in struct])
+            if keyset.intersection({"Collection",
+                                    "BusinessObject"}) == {"Collection",
+                                            "BusinessObject"}:
+                return "BUSINESSMODEL"
+            elif keyset.intersection({"Collection",
+                                      "ReferenceObject"}) == {"Collection",
+                                                              "ReferenceObject"}:
+                return "REFERENCE"
+            elif keyset.intersection({"Collection",
+                                      "DataDomain"}) == {"Collection",
+                                                         "DataDomain"}:
+                return "DATATYPE"
+            elif keyset.intersection({"Collection",
+                                      "UmlClass"}) \
+                    == {"Collection",
+                        "UmlClass"}:
+                return "DATAMODEL"
+            elif keyset.intersection({"Collection",
+                                      "System"}) \
+                    == {"Collection",
+                        "System"}:
+                return "SYSTEMS"
+            elif keyset.intersection({"Collection",
+                                      "Project"}) \
+                    == {"Collection",
+                        "Project"}:
+                return "PROJECT"
+            else:
+                logging.warning(f"inputfiletype not yet handled for {set([elem.get('_type') for elem in struct])}")
+                return None
         else:
-            print(set([elem.get("_type") for elem in struct]))
-            return None
+            raise Exception(f"no list in file but '{type(struct)}'")
 
     def entryid(self, entry, name):
         model = entry.get('DSMODEL')
@@ -94,7 +96,34 @@ class DataspotElements():
         else:
             logging.warning(f"{modeltype} not known")
 
-    def fillids(self, modelname, struct):
+    def metainfo(self, struct: dict):
+        """
+        :param struct: put the struct-info in its appropriate container
+        :return: nothing
+        """
+        if struct.get("_type") == "Tenant":
+            self.tenant["name"]=struct.get("tenantName")
+            self.tenant["id"]=struct.get("id")
+            self.tenant["db"]=struct.get("db")
+            self.tenant["uri"]=struct.get("_links",dict()).get("self",dict()).get("href")
+
+        elif struct.get("_type") == "BusinessDataModel":
+            self.dsmodels[struct.get('label')] = {"name":struct.get('label'),
+                                                  "id":struct.get("id"),
+                                                  "parentid":struct.get("tenantId"),
+                                                  "description":struct.get("description"),
+                                                  "title":struct.get("title")
+                                                  }
+        else:
+            others = ["ReferenceDataModel",
+                      "UmlModel",
+                      "SystemCatalog",
+                      "DataDomainModel",
+                      "ProjectDirectory"]
+            logging.warning(f"not yet handled modeltype {struct.get('_type')}")
+        return
+
+    def fillids(self, modelname, struct: list):
         """create spod id for every element and add element by natural name to its proper list.
            the name of the file is used as the model name in which the element was found
         """
@@ -221,7 +250,7 @@ class DataspotElements():
             elif entry.get("_type") == "Translation":
                 entry["TYPE"] = "VALUES"
                 entry["PARENT"] = entry.get('translationIn')
-                name=entry.get("id")
+                name = entry.get("id")
                 self.translations[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Project":
                 entry["ID"] = ElementId.nextid("DIAG")
@@ -230,7 +259,7 @@ class DataspotElements():
             elif entry.get("_type") == "Usage":
                 entry["ID"] = ElementId.nextid("DIAE")
                 entry["PARENT"] = entry.get('usedBy')
-                name=entry.get('usedBy') + "" if entry.get("usageOf") is None else (">" + entry.get("usageOf"))
+                name = entry.get('usedBy') + "" if entry.get("usageOf") is None else (">" + entry.get("usageOf"))
                 self.diagelements[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "BusinessConstraint":
                 entry["ID"] = ElementId.nextid("BURU")
@@ -238,8 +267,7 @@ class DataspotElements():
                 entry.get('label')
                 self.businessrules[self.entryid(entry=entry, name=name)] = entry
             else:
-                pass
-                # logging.warning(f"dataspot type '{entry.get('_type')}' is not yet handled from output")
+                logging.warning(f"dataspot type '{entry.get('_type')}' is not yet handled from output")
             entry["FULLPATH"] = f"{modelname}:{entry.get('PARENT')}/{j2d.fullescapestr(name)}"
         return
 
@@ -247,9 +275,11 @@ class DataspotElements():
         def readjson(path, modelname=None):
             with open(path) as f:
                 struct = json.load(f)
-                if type(struct) == dict or len(struct) == 0 or "_type" not in struct[0]:
-                    return  # non modelfiles
-                self.fillids(modelname=modelname, struct=struct)
+
+                if type(struct) == dict and "_type" in struct:
+                    self.metainfo(struct)
+                elif type(struct) == list and len(struct) > 0 and "_type" in struct[0]:
+                    self.fillids(modelname=modelname, struct=struct)
             return
 
         if path.is_file():
@@ -261,5 +291,6 @@ class DataspotElements():
                     self.modelname = onepath.stem
                     readjson(path=onepath, modelname=self.modelname)
         else:
+            raise Exception(f"path must be file or directory {path.__str__()}")
             raise Exception(f"path must be file or directory {path.__str__()}")
         return

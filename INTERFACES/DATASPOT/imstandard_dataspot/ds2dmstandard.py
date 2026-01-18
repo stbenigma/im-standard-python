@@ -1,6 +1,6 @@
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
-from IM_STANDARD.myjsonschema import ElementId, JsonSchema
+from IM_STANDARD.myjsonschema import ElementId, JsonSchema,JsonElement
 
 
 class Dataspot2DMJsonschema(Dataspot2Jsonbase):
@@ -58,7 +58,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
     def generatedataobjects(self, elementname, elements):
         for element in elements:
             self.standardjson.addelementinstance(name=elementname,
-                                                 val=self.standardjson.dataobjectjson(key=element.get("ID"),
+                                                 val=JsonElement().dataobjectjson(elementid=element.get("ID"),
                                                                                 name=element.get("label"),
                                                                                 columns=[],
                                                                                 description=element.get("description"),
@@ -78,7 +78,8 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
             domainname = subelem.get("hasRange")
             domainid = None if type(domainname) is not str else self.getdomainid(
                 domaname=j2d.custom_split(domainname, "/")[-1])
-            jsonstruct = self.standardjson.columnjson(key=ElementId.nextid("COLU"),
+            jsonstruct = JsonElement().dataattributejson(elementid=ElementId.nextid("COLU"),
+                                                      dataobjectid=datoid,
                                                       name=subelem.get("label"),
                                                       domainid=domainid,
                                                       mandatory=subelem.get("required") == "MANDATORY",
@@ -87,18 +88,8 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
                                                       tooltip=subelem.get("title"),
                                                       additionalProps={"SOURCE-ID": subelem.get("id")}
                                                       )
-            table = self.standardjson.getbyid(datoid)
-            table.setdefault("columns", [])
-            table["columns"].append(jsonstruct)
+            self.standardjson.addelementinstance(name="DataAttributes",val=jsonstruct)
         return
-
-    # def generatebusinessrules(self, elementname, elements):
-    #     for element in elements:
-    #         self.addelementinstance(name=elementname,
-    #                           val=self.businessrulejson(key=ElementId.nextid("BURU"),
-    #                                                     element=element)
-    #                           )
-    #     return
 
     def fillrules(self, transformation):
         rules = []
@@ -152,7 +143,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
 
     def generatejson(self, modelname, targetenv=None, **kwargs):
         self.standardjson.setschemaelement(name="ModelInfo",
-                                           val=self.standardjson.modelinfojson(
+                                           val=JsonElement().modelinfojson(
                                            modelname=modelname,
                                            modeltype="Information model",
                                            mainlanguage=kwargs.get("language", "en"),
@@ -167,7 +158,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
         self.generatedomains()
         self.generatedatamodel()
 
-        return self.standardjson.jsonschemamodel
+        return self.standardjson
 
 
 if __name__ == '__main__':

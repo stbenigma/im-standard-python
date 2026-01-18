@@ -1,21 +1,52 @@
 from IM_STANDARD import nvl
 
+nullfunction = lambda x: x
+
+
+def model2json(model: dict, idfunc=nullfunction):
+    """
+      transforms a dict with lists of JsonElement into
+      a dict of lists of dicts
+    """
+
+    def transform_json(elem, func):
+        if isinstance(elem, JsonElement):
+            # Apply to keys and values recursively
+            func(elem)
+            return elem.data
+        elif isinstance(elem, dict):
+            # Apply to keys and values recursively
+            return {k: transform_json(v, func) for k, v in elem.items()}
+        elif isinstance(elem, list):
+            # Apply to every item in the list recursively
+            return [transform_json(item, func) for item in elem]
+        else:
+            # It's a leaf node (int, str, bool, None) -> apply the function
+            return elem
+
+    return transform_json(model, idfunc)
+
 
 class JsonElement:
-    """ all functions to create standard json structures"""
+    """ all functions to create standard json structures
+        as defined in the Standard definitions
 
-    ELEMENT_TYPES={"Entity":"name",
-                   "Domain":"name",
-                   "Category":"name",
-                   "Attribute":"name",
-                   "BusinessRule":None,
-                   "System":"name",
-                   "Column":"name",
-                   "Relation":None
-                   }
-    def __init__(self, **kwargs):
+    """
+
+    ELEMENT_TYPES = {"Entity": "name",
+                     "Domain": "name",
+                     "Category": "name",
+                     "Attribute": "name",
+                     "BusinessRule": "name",
+                     "System": "name",
+                     "DataAttribute": "name",
+                     "DataObject": "name",
+                     "Relation": None
+                     }
+
+    def __init__(self, elemtype="undefined", **kwargs):
         self.data = kwargs
-        self.elemtype = "undefined"
+        self.elemtype = elemtype
         return
 
     def __getitem__(self, attribute_name):
@@ -25,13 +56,22 @@ class JsonElement:
         """
         return self.elemtype if attribute_name == "elemtype" else self.data.get(attribute_name)
 
+    def __setitem__(self, key, val):
+        """
+        Enables bracket notation access (person['name']) FOR DATA-ATTRIBUTES ONL>
+        """
+        if key in self.data:
+            self.data[key] = val
+        else:
+            raise Exception(f"'{key}' is not part of the data of the element")
+        return
+
     def setproperty(self, propname, val):
         """ sets value into the datastructure of this element"""
         self.data[propname] = val
 
     def __str__(self):
-        return f"{self.elemtype}:{nvl(self.data.get('label'),nvl(self.data.get('name')))}"
-
+        return f"{self.elemtype}:{nvl(self.data.get('label'), nvl(self.getname()))}"
 
     ##### General functions
     @staticmethod
@@ -73,14 +113,17 @@ class JsonElement:
         return self.data.get("elementid", None)
 
     def getname(self):
-        nameprop=self.ELEMENT_TYPES[self.elemtype]
+        nameprop = self.ELEMENT_TYPES[self.elemtype]
         if nameprop is not None:
             return self.data.get(nameprop)
         else:
-            if self.elemtype=="Relation":
-                #build name for relation
-                #TODO translate further up
+            if self.elemtype == "Relation":
+                # build name for relation
+                # TODO translate further up
                 return self.data["fwd"].get("assoctext") + "->" + self.data["bwd"].get("assoctext")
+                # elif self.elemtype=="BusinessRule":
+            else:
+                return f"{self.elemtype}:???"
 
     @staticmethod
     def filterprops(props):
@@ -102,7 +145,7 @@ class JsonElement:
 
     def add_restprops(self, fields, **kwargs):
         """
-        add all values of kwargs beeing in fields to the jsonstruct (as optional elements).
+        add all values of kwargs being in fields to the jsonstruct (as optional elements).
         add all elementws (except additionalprops to additionalprops
         add additionalprops optionally to the element
         @param fields: fieldnames to be added normally
@@ -114,21 +157,23 @@ class JsonElement:
         for name, value in kwargs.items():
             if name in fields:
                 self.addoptionalprop(name, value)
-            elif name != "additionalProps":
+            elif name == "additionalProps":
+                additionalprops = additionalprops | value
+            else:
                 additionalprops[name] = value
         # add additionalProps back to the structure (only if it is not empty)
         self.addoptionalprop(propname="additionalProps", value=additionalprops)
         return
 
     ##### information model
-    def modelinfojson(self, modelname, modeltype, mainlanguage,
-                      modelversion, **kwargs):
+    def modelinfojson(self, modelname, modeltype, mainlanguage="en",
+                      modelversion="0.0", **kwargs):
         fields = ["modelname", "modeltype",
                   "mainlanguage", "modelversion",  # mandatory fields
                   "mainlanguage", 'languages',
                   'description', 'targetenvironment',
-                  'origintool', 'originref',
-                  'datetimecreated', 'additionalProps'
+                  'origintool', 'originuri',
+                  'datetimecreated'
                   ]
         """updates the modelinfo in the already created modelinfo"""
         self.elemtype = "ModelInfo"
@@ -136,6 +181,7 @@ class JsonElement:
         self.data["modeltype"] = modeltype
         self.data["mainlanguage"] = nvl(mainlanguage, "en")
         self.data["modelversion"] = nvl(modelversion, "0.0")
+
         self.add_restprops(fields=fields,
                            **kwargs)
         return self
@@ -144,7 +190,7 @@ class JsonElement:
         fields = ["elementid", "name",
                   "categorytype",  # mandatory fields
                   "description",
-                  'parentid',  # "color",
+                  'categoryid',  # "color",
                   'additionalProps'
                   ]
         self.elemtype = "Category"
@@ -152,7 +198,7 @@ class JsonElement:
                      "name": name,
                      "categorytype": categorytype
                      }
-        self.addoptionalprop(propname="parentid", value=kwargs.get("parentid"))
+        self.addoptionalprop(propname="categoryid", value=kwargs.get("categoryid"))
         self.addoptionalprop(propname="description", value=kwargs.get("descr"))
         self.addoptionalprop(propname="color", value=kwargs.get("color"))
         self.add_restprops(fields=fields,
@@ -190,7 +236,7 @@ class JsonElement:
         return keys
 
     def relationendjson(self, assoctext, cardinality, mandatory,
-                        entityid=None, tableid=None,
+                        entityid=None, dataobjectid=None,
                         historicised=None,
                         arcnumber=None):
         self.elemtype == "RelationEnd"
@@ -198,7 +244,7 @@ class JsonElement:
         if entityid is not None:
             self.data["entityid"] = entityid
         else:
-            self.data["tableid"] = tableid
+            self.data["dataobjectid"] = dataobjectid
 
         self.data["assoctext"] = assoctext
         self.data["cardinality"] = cardinality
@@ -234,6 +280,11 @@ class JsonElement:
         self.addoptionalprop(propname="rule",
                              value=kwargs.get("rule")
                              )
+        for key, value in kwargs.items():
+            self.addoptionalprop(propname=key,
+                                 value=value
+                                 )
+
         if kwargs.get("rule") is None and kwargs.get("description") is None:
             # illegal either must be not None, make sure json is still valid
             self.data["rule"] = "??? missing rule ???"
@@ -266,10 +317,10 @@ class JsonElement:
         return self
 
     def domainref(self, domainid, modelname):
-        return domainid if modelname is None \
-            else {"domainid": domainid,
-                  "modelname": modelname
-                  }
+        return (domainid if modelname is None
+                else {"domainid": domainid,
+                      "modelname": modelname
+                      })
 
     def domainjson(self, elementid, name, **kwargs):
         self.elemtype = "Domain"
@@ -292,31 +343,33 @@ class JsonElement:
     def datamodeljson(self, modelname):
         return {"ModelInfo": {"modelname": modelname},
                 "Domains": [],
-                "Tables": [],
+                "DataObjects": [],
+                "DataAttributes": [],
                 "Categories": []}
 
-    def dataobjectjson(self, key, name, categoryid, columns, **kwargs):
+    def dataobjectjson(self, elementid, name, **kwargs):
         self.elemtype = "DataObject"
-        self.data = {"elementid": key,
-                     "name": name,
-                     "categoryid": categoryid,
-                     "columns": columns
+        self.data = {"elementid": elementid,
+                     "name": name
                      }
         for key, val in kwargs.items():
             self.addoptionalprop(key, val)
 
         return self
 
-    def columnjson(self, key, name, domainid, mandatory, **kwargs):
-        self.elemtype = "Column"
-        self.data = {"elementid": key,
+    def dataattributejson(self, elementid, name, mandatory, dataobjectid, **kwargs):
+        self.elemtype = "DataAttribute"
+        self.data = {"elementid": elementid,
                      "name": name,
-                     "domainid": self.domainref(domainid=domainid,
-                                                modelname=kwargs.get("domainmodelname")),
-                     "mandatory": mandatory
+                     "mandatory": mandatory,
+                     "dataobjectid": dataobjectid
                      }
         for key, val in kwargs.items():
-            self.addoptionalprop(key, val)
+            if key == "domainid":
+                self.addoptionalprop(key, self.domainref(domainid=val,
+                                                         modelname=kwargs.get("domainmodelname")))
+            else:
+                self.addoptionalprop(key, val)
 
         return self
 
@@ -338,8 +391,8 @@ class JsonElement:
                      "targetdomain": targetdomain
 
                      }
-        self.addoptionalprop(propname="valuemappings",value=kwargs.get("valuemappings"),
-                             intvalue=isinstance(kwargs.get("valuemappings"),int))
+        self.addoptionalprop(propname="valuemappings", value=kwargs.get("valuemappings"),
+                             intvalue=isinstance(kwargs.get("valuemappings"), int))
         for key, value in kwargs.items():
             if key in ("valuemappings"): continue
             self.addoptionalprop(propname=key,
@@ -348,30 +401,30 @@ class JsonElement:
 
         return self
 
-    def transformationrulejson(self, rule:str, condition:str, **kwargs):
+    def transformationrulejson(self, rule: str, condition: str, **kwargs):
         self.elemtype = "TransformationRule"
-        self.addoptionalprop(propname="rule",value=rule)
+        self.addoptionalprop(propname="rule", value=rule)
         self.addoptionalprop(propname="condition", value=condition)
         for key, value in kwargs.items():
             self.addoptionalprop(propname=key, value=value,
-                                     intvalue=isinstance(value,int))
+                                 intvalue=isinstance(value, int))
         return self
 
-    def transformationjson(self, sourceelements:list,targetelements:list, **kwargs):
+    def transformationjson(self, sourceelements: list, targetelements: list, **kwargs):
         self.elemtype = "Transformation"
         self.data = {"sourceelements": sourceelements,
                      "targetelements": targetelements,
-                     "is1to1":len(sourceelements)<=1>=len(targetelements)
+                     "is1to1": len(sourceelements) <= 1 >= len(targetelements)
                      }
 
         self.addoptionalprop(propname="fwd",
-                             value=kwargs.get("fwd",JsonElement()).data
+                             value=kwargs.get("fwd", JsonElement()).data
                              )
         self.addoptionalprop(propname="bwd",
-                             value=kwargs.get("bwd",JsonElement()).data
+                             value=kwargs.get("bwd", JsonElement()).data
                              )
         for key, value in kwargs.items():
-            if key in ("fwd","bwd"): continue
+            if key in ("fwd", "bwd"): continue
             self.addoptionalprop(propname=key,
                                  value=value
                                  )

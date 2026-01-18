@@ -1,6 +1,6 @@
 import re
 
-from IM_STANDARD import JsonElement, alwayslist
+from IM_STANDARD import JsonElement, alwayslist, nvl, model2json
 
 
 class ElementId:
@@ -13,6 +13,7 @@ class ElementId:
                 "DOMA": "Domains",
                 "BURU": "BusinessRules",
                 "DATO": "Dataobjects",
+                "DATA": "Dataattributes",
                 "COLU": "Columns",
                 "SYST": "Systems",
                 "DIAG": "Diagrams",
@@ -81,11 +82,11 @@ class JsonSchema():
     MAINELEMENTS = ["Entities", "Domains", "Categories",
                     "Attributes",
                     "Relations", 'BusinessRules'
-        , "DataObjects", 'Systems']
+        , "DataObjects", "DataAttributes", 'Systems']
 
     def __init__(self, model=None, **kwargs):
-        self._model = model if model is not None else \
-            {"ModelInfo": None}  # create legal json-schema
+        self._model = (model if model is not None else
+                       {"ModelInfo": None})  # create legal json-schema
         self._curlang = None
         return
 
@@ -97,6 +98,10 @@ class JsonSchema():
     def jsonschemamodel(self, value):
         self._model = value
         return
+
+    @property
+    def targetenvironment(self):
+        return self.jsonschemamodel["ModelInfo"]["targetenvironment"]
 
     @property
     def modelname(self):
@@ -127,7 +132,9 @@ class JsonSchema():
         """"
             return additional languages for model empty if nonexistent
         """
-        return alwayslist(self.jsonschemamodel["ModelInfo"]["languages"])
+        if type(self.jsonschemamodel["ModelInfo"]) == dict:
+            return alwayslist(self.jsonschemamodel["ModelInfo"].get("languages"))
+        else: return alwayslist(self.jsonschemamodel["ModelInfo"]["languages"])
 
     @property
     def alllanguages(self):
@@ -188,35 +195,66 @@ class JsonSchema():
         else:
             return _istransl(self.mainlang)
 
-    def getparentid(self,elem:JsonElement):
+    def fillparentid(self, elem: JsonElement):
+        """ fills $id into the element
+             """
+        if "$id" in elem.data: return
+        if elem.elemtype in ("ModelInfo",):
+            elem.setproperty("$id", f'{self.targetenvironment}:{self.modelname}')
+        if elem.elemtype in ("Entity", "DataObject", "Domain", "BusinessRule"):
+            elem.setproperty("$id", f'{self.targetenvironment}:{self.modelname}:{nvl(elem.getname(), elem.getid())}')
+        elif elem.elemtype in ("Attribute", "DataAttribute"):
+            parent = self.getbyid(elem[self.parentidfieldname(elem)])
+            elem.setproperty("$id", f'{parent["$id"]}:{elem.getname()}')
+        elif elem.elemtype in ("Category"):
+            parentcatg = self.getbyid(elem[self.parentidfieldname(elem)])
+            if parentcatg is None:
+                parent = f'{self.targetenvironment}:{self.modelname}'
+            else:
+                if "$id" not in parentcatg.data:
+                    self.fillparentid(parentcatg)
+                parent = parentcatg["$id"]
+            elem.setproperty("$id", f'{parent}:{elem.getname()}')
+        elif elem.elemtype == "Relation":
+            parent1 = self.getbyid(elem["fwd"].get("entityid"))
+            parent2 = self.getbyid(elem["bwd"].get("entityid"))
+            elem.setproperty("$id",
+                             f'{parent1["$id"]}:{parent2.getname()}->{self.mlvalue(value=elem["fwd"]["assoctext"])}')
+        elif elem.elemtype == "System":
+            elem.setproperty("$id", f'{self.targetenvironment}:{elem.getname()}')
+        return
+
+    @staticmethod
+    def parentidfieldname(elem: JsonElement):
         """ returns the parentid or whatever a parent is called in this element
             None if there is no parentprop or there is no partentid """
-        if elem.elemtype in ("Entity", "Domain"):
+        if elem.elemtype in ("Entity", "DataObject", "Domain", "Category"):
             parentprop = "categoryid"
-        elif elem.elemtype in ("Attribute", "Category"):
+        elif elem.elemtype in ("Attribute"):
             parentprop = "parentid"
         elif elem.elemtype == "BusinessRule":
             parentprop = None
+        elif elem.elemtype == "DataAttribute":
+            parentprop = "dataobjectid"
         elif elem.elemtype == "Relation":
             parentprop = None
         elif elem.elemtype == "System":
             parentprop = None
         else:
             parentprop = None
-        if parentprop is None:
-            return None
-        else:
-            return elem[parentprop]
+
+        return parentprop
 
     def getpath(self, elem: JsonElement):
         """
         :param elem:
         :return the names of all parents separated by / up to the root.
-                "" if object has no parent or elem is None
+                "" if object has no parent
+                None if elem is None
         """
+        if elem is None: return None
         retval = ""
-        if elem is None: return retval
-        parentelem:JsonElement =self.getbyid(self.getparentid(elem))
+        parentelem: JsonElement = self.getbyid(JsonSchema.parentidfieldname(elem))
         if parentelem is not None:
             retval += self.getpath(parentelem)
             retval += self.mlvalue(parentelem.getname())
@@ -386,3 +424,11 @@ class JsonSchema():
         return elem.get("technicalname",
                         self.maketechnicalname(self.mlvalue(
                             elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalname""]
+
+    def getjsonmodel(self, withids=True):
+        """
+        :parameter: withids add $id to every element read
+        :return: the model in pure json (JsonElement replaced)
+        """
+
+        return model2json(model=self.jsonschemamodel, idfunc=self.fillparentid)

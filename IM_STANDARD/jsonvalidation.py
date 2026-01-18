@@ -4,6 +4,41 @@ import json
 from pathlib import Path
 from jsonschema import Draft7Validator, RefResolver, validate, SchemaError,protocols
 
+#TODO RefResolver ersetzen
+import json
+from pathlib import Path
+from jsonschema import validate
+from referencing import Registry, Resource
+
+# # 1. Lade das lokale Basis-Schema
+# base_path = Path("base.json")
+# base_content = json.loads(base_path.read_text())
+#
+# # 2. Erstelle eine Resource und füge sie einer Registry hinzu
+# # Die URI muss exakt der im Schema genutzten entsprechen
+# resource = Resource.from_contents(base_content)
+# registry = Registry().with_resource("http://mein-projekt.local/base.json", resource)
+#
+# Wenn du in base.json eine Sub-Definition referenzieren willst, die in einer ganz anderen Datei (z.B. types.json) liegt, müsstest du auch diese types.json in die Registry laden:
+# registry = (
+#     Registry()
+#     .with_resource("http://mein-projekt.local/base.json", res_base)
+#     .with_resource("http://mein-projekt.local/types.json", res_types)
+# )
+#
+# # 3. Das Haupt-Schema nutzt die Referenz
+# main_schema = {
+#     "$schema": "https://json-schema.org/draft/2020-12/schema",
+#     "type": "array",
+#     "items": { "$ref": "http://mein-projekt.local/base.json#/definitions/user" }
+# }
+#
+# # 4. Validierung mit der Registry
+# data = [{"name": "Max"}, {"name": "Erika"}]
+#
+# validate(instance=data, schema=main_schema, registry=registry)
+# print("Validierung erfolgreich!")
+
 from IM_STANDARD import nvl
 
 def purevalidate(tovalidatejs, validattionjs, resolver, verbose=True):
@@ -100,11 +135,6 @@ class ValidateJsonModel:
                                          curjson=self.refschemajs,
                                          referencepath=self._schemareferences(self.referencefilepath.parent)
                                          )
-        # jsonschema.validators.RefResolver(base_uri="file://" + str(self.referencefilepath),
-        #                                            referrer=self.refschemajs,
-        #                                            store=self.resolverschema(referencepath=referenceschemapath)
-        #                                            )
-        # check the refschema for errors
         protocols.Validator.check_schema(self.refschemajs)
         self.model = None
         return
@@ -331,41 +361,41 @@ class ValidateJsonModel:
                     errors.append(f"Entity {rela.get('bwd').get('entityid')} in relation {rela.get('elementid')} not found.")
 
                 # relationship types require specific end-properties
-                if rela.get("relationtype") == "M:1" \
+                if (rela.get("relationtype") == "M:1"
                         and (rela.get("fwd").get("cardinality")
-                             == rela.get("bwd").get("cardinality")):
+                             == rela.get("bwd").get("cardinality"))):
                     #if verbose: logging.error(
                     #    f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
                     errors.append(f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
-                if rela.get("relationtype") == "M:N" \
+                if (rela.get("relationtype") == "M:N"
                         and (rela.get("fwd").get("cardinality") == "1"
-                             or rela.get("bwd").get("cardinality") == "1"):
+                             or rela.get("bwd").get("cardinality") == "1")):
                     #if verbose: logging.error(
                     #    f"M:N relationship must have M a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"M:N relationship must have M a both ends in relationship {rela.get('elementid')}")
-                if rela.get("relationtype") == "1:1" \
+                if (rela.get("relationtype") == "1:1"
                         and (rela.get("fwd").get("cardinality") == "M"
-                             or rela.get("bwd").get("cardinality") == "M"):
+                             or rela.get("bwd").get("cardinality") == "M")):
                     #if verbose: logging.error(
                     #    f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                if rela.get("relationtype") == "ROLE" \
+                if (rela.get("relationtype") == "ROLE"
                         and (rela.get("fwd").get("cardinality") == "M"
                              or rela.get("bwd").get("cardinality") == "M"
                              or (rela.get("fwd").get("mandatory") ==
                                  rela.get("bwd").get("mandatory"))
-                ):
+                )):
                     #if verbose: logging.error(
                     #    f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                if rela.get("relationtype") == "SUBTYPE" \
+                if (rela.get("relationtype") == "SUBTYPE"
                         and (rela.get("fwd").get("cardinality") == "M"
                              or rela.get("bwd").get("cardinality") == "M"
                              or rela.get("fwd").get("mandatory") is False
                              or rela.get("bwd").get("mandatory") == False
                              or (rela.get("fwd").get("arcnumber") is None
                                  and rela.get("bwd").get("arcnumber") is None)
-                ):
+                )):
                     #if verbose: logging.error(
                     #    f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
@@ -437,8 +467,8 @@ class ValidateJsonModel:
         """
 
         error = []
-        jsmodel = instance if type(instance) is dict \
-            else self.readjsonfromfile(filepath=Path(instance))
+        jsmodel = (instance if type(instance) is dict
+                        else self.readjsonfromfile(filepath=Path(instance)))
 
 
         error += self.purevalidate(tovalidatejs=jsmodel,
