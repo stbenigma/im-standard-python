@@ -12,52 +12,7 @@ def initLower(text):
 
 
 class Json2JsonSchema:
-    ENUMTEMPLATE = {
-        "type": "string",
-        "enum": [
-            "BillOfMaterial",
-            "Model3D",
-            "DismantlingManual",
-            "RemovalManual",
-            "OtherManual",
-            "Drawing"
-        ]
-    }
-
-    DATATYPETEMPLATE = {
-        "type": "string",
-        "description": None
-    }
-
-    ATTRGROUPTEMPLATE = {
-        "description": None,
-        "type": "object",
-        "properties": {}
-    }
-
-    LISTTEMPLATE = {
-        "description": None,
-        "type": "array",
-        "items": {
-            "$ref": "#/components/schemas/DismantlingandRemovalDocumentation"
-        }
-    }
-
-    REFTEMPLATE = {
-        "description": None,
-        "$ref": "#/components/schemas/SetOfDocumentation"
-    }
-    # "x-samm-aspect-model-urn": "urn:samm:BatteryPass:1.0.0#Circularity",
-    JSONSCHEMATEMPLATE = {"$schema": None,
-                          "urn": None,
-                          "description": None,
-                          "type": "object",
-                          "components": {
-                              "schemas": {}
-                          },
-                          "properties": {},
-                          "required": []
-                          }
+    # TODO für alle "x-samm-aspect-model-urn": "urn:samm:BatteryPass:1.0.0#Circularity",
 
     def __init__(self, jsonstruct):
         self.jsstruct = jsonstruct
@@ -86,17 +41,17 @@ class Json2JsonSchema:
                         val == list() or
                         val == dict())}
 
+    def addobject(self, entry, subcat, **kwargs):
+        defs = self.jsschemastruct["components"][subcat]
+        if entry in defs: return
+        defs[entry] = self.notnulldict(**kwargs)
+        return f"#/components/{subcat}/{entry}"
+
     def setdefsobject(self, entry, **kwargs):
-        schemas = self.jsschemastruct["components"]["$defs"]
-        if entry in schemas: return
-        schemas[entry] = self.notnulldict(**kwargs)
-        return
+        return self.addobject(entry=entry, subcat="$defs", **kwargs)
 
     def setschemaobject(self, entry, **kwargs):
-        schemas = self.jsschemastruct["components"]["schemas"]
-        if entry in schemas: return
-        schemas[entry] = self.notnulldict(**kwargs)
-        return
+        return self.addobject(entry=entry, subcat="schemas", **kwargs)
 
     def getobject(self, objtype, objid):
         objs = [o for o in self.jsstruct.get(objtype) if o.get("elementid") == objid]
@@ -117,24 +72,40 @@ class Json2JsonSchema:
         else:
             return f"??{type(struct)}??"
 
-    def fillcategory(self, dest, catg):
-        objname = initLower(
-            catg.get("additionalProps", dict()).get("TechnicalName", self.getmlvalue(catg.get("name", "???"))))
-        refobjname = f"{objname}"
-        dest[objname] = self.notnulldict(description=catg.get("description", None),
-                                         _ref=f"#/components/schemas/{refobjname}")
+    def fillcategory(self, catg):
+        objname = initLower(self.getname(catg))
+        children = self.categorychildren(catg)
+        self.jsschemastruct.update(self.notnulldict(description=catg.get("description",
+                                                                         "Group of elements")),
+                                   type="object",
+                                   properties=children,
+                                   required=list(children.keys())
+                                   )
+        self.jsschemastruct["urn"] = self.urn(nid=self.nid,
+                                              localid=self.urnid(
+                                                  model=objname,
+                                                  name=objname,
+                                                  version=self.modelversion)
+                                              )
+
+        return objname
+
+    def addcategory(self, dest, catg):
+        objname = initLower(self.getname(catg))
+        refobj = self.setschemaobject(entry=objname,
+                                      description=catg.get("description", "Grouping elements"),
+                                      type="object",
+                                      properties=self.categorychildren(catg),
+                                      required=[]
+                                      )
+
+        dest[objname] = self.notnulldict(description=catg.get("description", "Group of elements"),
+                                         _ref=refobj)
         descr = catg.get("description")
-        self.setschemaobject(entry=refobjname,
-                             description=f"{objname} group" if descr is None else descr,
-                             type="object",
-                             properties=self.categorychildren(catg))
-        return
+        return refobj
 
     def adddomain(self, doma):
-        domaname = initLower(doma.get("additionalProps",
-                                      dict()).get("TechnicalName",
-                                                  self.getmlvalue(doma.get("name", "???"))
-                                                  ))
+        domaname = initLower(self.getname(doma))
         pattern = doma.get("pattern")
         minLength = doma.get("minLength")
         maxLength = doma.get("maxLength")
@@ -171,66 +142,95 @@ class Json2JsonSchema:
         else:
             objtype = "???"
             logging.warning(f"datatype '{doma.get('domaintype')}' not yet handled")
-        self.setdefsobject(entry=domaname,
-                           description=doma.get("description"),
-                           type=objtype,
-                           pattern=pattern,
-                           minLength=minLength,
-                           maxLength=maxLength,
-                           format=format,
-                           minimum=minimum,
-                           maximum=maximum,
-                           unit=unit,
-                           enum=enum,
-                           properties=properties,
-                           required=required,
-                           examples=doma.get("examples")
-                           )
-        return domaname
+        domaref = self.setdefsobject(entry=domaname,
+                                     description=doma.get("description"),
+                                     type=objtype,
+                                     pattern=pattern,
+                                     minLength=minLength,
+                                     maxLength=maxLength,
+                                     format=format,
+                                     minimum=minimum,
+                                     maximum=maximum,
+                                     unit=unit,
+                                     enum=enum,
+                                     properties=properties,
+                                     required=required,
+                                     examples=doma.get("examples")
+                                     )
+        return domaref
 
     def getattributes(self, enti):
         attributes = dict()
         for attr in [c for c in self.jsstruct.get("Attributes", list()) \
                      if c.get("parentid") == enti.get("elementid")]:
-            objname = initLower(attr.get("additionalProps",
-                                         dict()).get("TechnicalName",
-                                                     self.getmlvalue(attr.get("name", "???"))
-                                                     ))
+            objname = initLower(self.getname(attr))
 
             doma = self.getobject(objtype="Domains", objid=attr.get("domainid"))
             if doma is None:
-                domainref = None
+                typeref = None
             else:
-                domaname = self.adddomain(doma=doma)
-                domainref = {"$ref": f"#/components/$defs/{domaname}"}
+                typeref = self.getname(doma).lower()
+                if typeref in ("integer", "decimal", "number","text", "string", "boolean"):
+                    typeref = {"integer": "integer",
+                               "decimal": "number",
+                               "number": "number",
+                               "text": "string",
+                               "string": "string",
+                               "boolean": "boolean"}[typeref]
+                else:
+                    domaref = self.adddomain(doma=doma)
+                    typeref = {"$ref": domaref}
             attrstruct = self.notnulldict(description=attr.get("description"),
-                                          type=domainref,
                                           examples=attr.get("examples")
                                           )
             if attr.get("cardinality") in (None, "1", "one"):
-                if domainref is not None:
-                    attrstruct["type"] = domainref
+                if typeref is not None:
+                    attrstruct["type"] = typeref
             else:
                 attrstruct["type"] = "array"
-                attrstruct["items"] = [{"type": domainref}]
+                if typeref is not None:
+                    attrstruct["items"] = [{"type": typeref}]
             attributes[objname] = attrstruct
         return attributes
 
-    def fillentity(self, dest, enti):
-        objname = initLower(enti.get("additionalProps",
-                                     dict()).get("TechnicalName",
-                                                 self.getmlvalue(enti.get("name", "???"))
-                                                 ))
-        refobjname = f"{objname}"
+    def getrelations(self, enti):
+        relations = dict()
+        return relations
+
+    def getname(self, struct):
+        return struct.get("additionalProps",
+                          dict()).get("TechnicalName",
+                                      self.getmlvalue(struct.get("name", "???"))
+                                      )
+
+    def addentity(self, dest, enti):
+        objname = initLower(self.getname(enti))
+        children = self.getattributes(enti) | self.getrelations(enti)
+        refobjname = self.setschemaobject(entry=objname,
+                                          description=enti.get("description"),
+                                          type="object",
+                                          examples=enti.get("examples"),
+                                          properties=children,
+                                          required=list(children.keys())
+                                          )
         dest[objname] = self.notnulldict(description=enti.get("description", None),
-                                         _ref=f"#/components/schemas/{refobjname}")
+                                         _ref=refobjname)
+        return
+
+    def fillentity(self, enti):
+        objname = initLower(self.getname(enti))
+        refobjname = f"{objname}"
+        self.jsschemastruct[objname] = self.notnulldict(description=enti.get("description",
+                                                                             None),
+                                                        _ref=f"#/components/schemas/{refobjname}")
         self.setschemaobject(entry=refobjname,
                              description=enti.get("description"),
                              type="object",
-                             examples=enti.get("examples"),
-                             properties=self.getattributes(enti),
-                             required=[]
+                             examples=enti.get("examples")
                              )
+        properties = self.getattributes(enti) | self.getrelations(enti)
+        required = []
+
         return
 
     def categorychildren(self, catg):
@@ -239,33 +239,40 @@ class Json2JsonSchema:
         for catgchild in [c for c in self.jsstruct.get("Categories", list()) \
                           if c.get("categorytype") == "ENTITY" and \
                              c.get("categoryid") == catg.get("elementid")]:
-            self.fillcategory(dest=children, catg=catgchild)
+            self.addcategory(dest=children, catg=catgchild)
         # entichildren
         for entichild in [c for c in self.jsstruct.get("Entities", list()) \
                           if c.get("categoryid") == catg.get("elementid")]:
-            self.fillentity(dest=children, enti=entichild)
+            self.addentity(dest=children, enti=entichild)
         return children
 
-    def generate(self, collections=list(),
+    def generate(self, _schema=None,
+                 nid=None,
+                 collections=list(),
                  entities=list(),
                  domains=list(),
                  **kwargs):
-        self.jsschemastruct = self.JSONSCHEMATEMPLATE
         # HEADER
+        self.nid = nid
+        self._schema = _schema
         modelinfo = self.jsstruct.get("ModelInfo")
+
         if modelinfo is None:
             logging.error(f"'ModelInfo' not found in structure")
             modelinfo = dict()
+
+        self.modelname = modelinfo.get("modelname", '???')
+        self.modelversion = modelinfo.get("modelversion", '0.0')
+
         self.jsschemastruct = self.notnulldict(
-            _schema=kwargs.get("_schema",
-                               "http://json-schema.org/draft-04/schema"),
+            _schema=_schema,
             urn=kwargs.get("urn",
-                           self.urn(nid=kwargs.get("nid", "???"),
+                           self.urn(nid=self.nid,
                                     localid=self.urnid(
-                                        model=modelinfo.get("modelname", "????"),
-                                        name=modelinfo.get("modelname", "????"),
-                                        version=modelinfo.get("modelversion",
-                                                              "????"))
+                                        model=self.modelname,
+                                        name=self.modelname,
+                                        version=self.modelversion
+                                    )
                                     )
                            ),
             description=modelinfo.get("description"),
@@ -281,29 +288,43 @@ class Json2JsonSchema:
 
         # properties, start with categories
         if len(domains) > 0:
-            for enti in [c for c in self.jsstruct.get("Entities", list()) \
-                         if self.getmlvalue(c.get("name")) in entities]:
-                assert False
-                self.adddomain(dest=self.jsschemastruct, enti=enti)
+            if len(entities) > 1:
+                logging.error(f"restriction: only one domain can be exported: {domains}")
+            else:
+                for doma in [c for c in self.jsstruct.get("Domains", list()) \
+                             if self.getmlvalue(c.get("name")) in entities]:
+                    assert False
+                    self.adddomain(dest=self.jsschemastruct, enti=enti)
         elif len(entities) > 0:
-            for enti in [c for c in self.jsstruct.get("Entities", list()) \
-                         if self.getmlvalue(c.get("name")) in entities]:
-                self.fillentity(dest=self.jsschemastruct, enti=enti)
+            if len(entities) > 1:
+                logging.error(f"restriction: only one entity can be exported: {entities}")
+            else:
+                for enti in [c for c in self.jsstruct.get("Entities", list()) \
+                             if self.getmlvalue(c.get("name")) in entities]:
+                    assert False
+                    self.fillentity(enti=enti)
         else:
             for catg in [catg for catg in self.jsstruct.get("Categories", list()) \
                          if catg.get("categorytype") == "ENTITY"
                          ]:
                 # either in list or list is empty and I am top collection
-                if (self.getmlvalue(catg.get("name")) in collections) or \
+                cnt = 0
+                catgname = self.getname(catg)
+                if (catgname in collections) or (self.getmlvalue(catg.get("name")) in collections) or \
                         (len(collections) == 0 and catg.get("categoryid") is None):
-                    self.fillcategory(dest=self.jsschemastruct["properties"],
-                                      catg=catg)
+                    if cnt > 0:
+                        logging.error(f"restriction: only one collection can be exported.")
+                    else:
+                        cnt += 1
+                        self.fillcategory(catg=catg)
 
         return self.jsschemastruct
 
 
 def generatejsonschema(jsonfilepath=None,
                        jsonstruct=None,
+                       _schema=None,
+                       nid=None,
                        collections=[],
                        entities=[],
                        domains=[],
@@ -318,7 +339,9 @@ def generatejsonschema(jsonfilepath=None,
         logging.error("No input given")
         return None
 
-    jsschema = Json2JsonSchema(jsonstruct=jsstruct).generate(collections=collections,
+    jsschema = Json2JsonSchema(jsonstruct=jsstruct).generate(nid=nid,
+                                                             _schema=_schema,
+                                                             collections=collections,
                                                              entities=entities,
                                                              domains=domains,
                                                              **kwargs)

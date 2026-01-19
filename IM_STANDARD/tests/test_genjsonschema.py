@@ -80,7 +80,7 @@ class MyTestCase(unittest.TestCase):
                   "CHeM-X-DMP"/ \
                   "CHEM-X-DMP-standard.json"
         jsschema=generatejsonschema(jsonfilepath=testfile,
-                                    _schema="https:www.chem-x.com",
+                                    _schema="http://json-schema.org/draft-04/schema",
                                     nid="chem-x",
                                     #collections=["MVP DMP"],
                                     collections=["MaterialDeclaration"],
@@ -88,8 +88,8 @@ class MyTestCase(unittest.TestCase):
                                     domains=[]
                                     )
         print ("\n".join([record.message for record in self.caplog.records if record.levelno == logging.WARNING]))
-        self.assertEqual("https:www.chem-x.com",jsschema.get("$schema"))
-        self.assertEqual("urn:chem-x:CHEM-X-DMP:0.9#CHEM-X-DMP",jsschema.get("urn"),)
+        self.assertEqual("http://json-schema.org/draft-04/schema",jsschema.get("$schema"))
+        self.assertEqual("urn:chem-x:materialDeclaration:0.9#materialDeclaration",jsschema.get("urn"),)
         with open(self.downloadpath /(testfile.stem+"-schema.json") ,"w") as outfile:
             json.dump(jsschema,outfile,indent=2)
 
