@@ -1,0 +1,2728 @@
+{
+  "ModelInfo": {
+    "modelname": "dataspotforyoumodels",
+    "modeltype": "Information model",
+    "mainlanguage": "en",
+    "modelversion": "0.9",
+    "targetenvironment": "local test for dataspotforyoumodels",
+    "origintool": "dataspot",
+    "additionalProps": {
+      "dc": "2026-01-22T13:08:03",
+      "FULLPATH": "local test for dataspotforyoumodels:Information model:dataspotforyoumodels",
+      "SOURCE-SERVER": "https://partner.dataspot.io/rest/",
+      "SOURCE-DB": "foryouandyourcustomers",
+      "SOURCE-TENANT": "local test for dataspotforyoumodels",
+      "SOURCE-HREF": "https://partner.dataspot.io/rest/foryouandyourcustomers/schemes/a54fed8f-8fed-39a0-a192-92310c56cfd6"
+    }
+  },
+  "Categories": [
+    {
+      "elementid": "CATG67",
+      "name": "Allgemeine Dom\u00e4nen",
+      "categorytype": "DOMAIN",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:None/Allgemeine Dom\u00e4nen",
+        "SOURCE-ID": "71684834-ccbf-4899-8fbc-1d6e30d870bd",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "elementid": "CATG68",
+      "name": "test domains",
+      "categorytype": "DOMAIN",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:None/test domains",
+        "SOURCE-ID": "25a35d81-7cfc-4edc-9071-c1023e33261a",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "elementid": "CATG86",
+      "name": "Lebenszyklus",
+      "categorytype": "DOMAIN",
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:None/Lebenszyklus",
+        "SOURCE-ID": "94561400-3293-4e42-b7c9-7aedb79654fb",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    },
+    {
+      "elementid": "CATG70",
+      "name": "Dienstleistungen",
+      "categorytype": "ENTITY",
+      "additionalProps": {
+        "backgroundColor": "#BCDDDD",
+        "FULLPATH": "forusandourselves:None/Dienstleistungen",
+        "SOURCE-ID": "a18e8115-680c-4b86-bb13-4befb06e5e5a",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG71",
+      "name": "Organisation",
+      "categorytype": "ENTITY",
+      "additionalProps": {
+        "backgroundColor": "#cccc00",
+        "FULLPATH": "forusandourselves:None/Organisation",
+        "SOURCE-ID": "28e073bb-2376-440d-b88d-55231e1fad92",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG72",
+      "name": "Umwelt",
+      "categorytype": "ENTITY",
+      "additionalProps": {
+        "backgroundColor": "#ffffff",
+        "FULLPATH": "forusandourselves:None/Umwelt",
+        "SOURCE-ID": "a0bb18d5-5f40-4084-b25b-9e56e1d2511c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG73",
+      "name": "Zivilisation",
+      "categorytype": "ENTITY",
+      "additionalProps": {
+        "backgroundColor": "#9999ff",
+        "FULLPATH": "forusandourselves:None/Zivilisation",
+        "SOURCE-ID": "5d40a01f-e657-4d26-8717-1591e485d72c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG74",
+      "name": "Kunden",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG70",
+      "additionalProps": {
+        "backgroundColor": "#DAEFEF",
+        "FULLPATH": "forusandourselves:Dienstleistungen/Kunden",
+        "SOURCE-ID": "bd766e0d-e530-4fcb-b210-f3f8d3633ba5",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG75",
+      "name": "Partner",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG70",
+      "additionalProps": {
+        "backgroundColor": "#DAEFEF",
+        "FULLPATH": "forusandourselves:Dienstleistungen/Partner",
+        "SOURCE-ID": "5660f30f-0f93-4f49-8807-d961c9e793f7",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG76",
+      "name": "Projekte",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG70",
+      "additionalProps": {
+        "backgroundColor": "#DAEFEF",
+        "FULLPATH": "forusandourselves:Dienstleistungen/Projekte",
+        "SOURCE-ID": "280a1ff1-cd05-4ea6-97f1-79d1d8fde072",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG77",
+      "name": "Kultur",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG71",
+      "additionalProps": {
+        "backgroundColor": "#E1E139",
+        "FULLPATH": "forusandourselves:Organisation/Kultur",
+        "SOURCE-ID": "cbd9d988-3ae5-4d17-bc4d-63215cd2d8e2",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG78",
+      "name": "Struktur",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG71",
+      "additionalProps": {
+        "backgroundColor": "#E1E139",
+        "FULLPATH": "forusandourselves:Organisation/Struktur",
+        "SOURCE-ID": "fcd09e48-92a4-4e30-af0b-df6ba5c29e8c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG79",
+      "name": "Kunst",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG72",
+      "additionalProps": {
+        "backgroundColor": "#F6F6F6",
+        "FULLPATH": "forusandourselves:Umwelt/Kunst",
+        "SOURCE-ID": "9b904d30-8453-4607-9115-a59787ab97ef",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG80",
+      "name": "Naturgesetze",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG72",
+      "additionalProps": {
+        "backgroundColor": "#F6F6F6",
+        "FULLPATH": "forusandourselves:Umwelt/Naturgesetze",
+        "SOURCE-ID": "caa34afa-17b7-47eb-a9fa-62a81cab2ef3",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG81",
+      "name": "Wissen",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG72",
+      "additionalProps": {
+        "backgroundColor": "#F6F6F6",
+        "FULLPATH": "forusandourselves:Umwelt/Wissen",
+        "SOURCE-ID": "9fbf2339-99f2-4f91-8520-60e459c108e7",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG82",
+      "name": "Finanzen",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG73",
+      "additionalProps": {
+        "backgroundColor": "#C1C1FF",
+        "FULLPATH": "forusandourselves:Zivilisation/Finanzen",
+        "SOURCE-ID": "a84dd784-aa8b-45b1-a850-7a64a2aff582",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG83",
+      "name": "Firmen",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG73",
+      "additionalProps": {
+        "backgroundColor": "#C1C1FF",
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen",
+        "SOURCE-ID": "c778220d-29ed-4790-a10e-c6c12380d88b",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG84",
+      "name": "Geografie",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG73",
+      "additionalProps": {
+        "backgroundColor": "#C1C1FF",
+        "FULLPATH": "forusandourselves:Zivilisation/Geografie",
+        "SOURCE-ID": "57d8edc1-a630-497c-8187-a2362d080b41",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "CATG85",
+      "name": "Rechtliches",
+      "categorytype": "ENTITY",
+      "categoryid": "CATG73",
+      "additionalProps": {
+        "backgroundColor": "#C1C1FF",
+        "FULLPATH": "forusandourselves:Zivilisation/Rechtliches",
+        "SOURCE-ID": "e738be36-1774-4333-8049-a3f30c9ee79c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    }
+  ],
+  "Domains": [
+    {
+      "elementid": "DOMA282",
+      "name": "Betrag",
+      "domaintype": "NumericDomain",
+      "categoryid": "CATG67",
+      "totaldigits": 10,
+      "fractdigits": 2,
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:Allgemeine Dom\u00e4nen/Betrag",
+        "SOURCE-ID": "e60eed5f-c787-4340-b1c2-cce7dfcd23b0",
+        "SOURCE-MODEL": "IM-Domaenen",
+        "SOURCE-DATATYPE": "DECIMAL"
+      }
+    },
+    {
+      "elementid": "DOMA283",
+      "name": "Boolean",
+      "domaintype": "BooleanDomain",
+      "categoryid": "CATG67",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:Allgemeine Dom\u00e4nen/Boolean",
+        "SOURCE-ID": "1a822403-8723-4866-8b30-5d4b8fb83281",
+        "SOURCE-MODEL": "IM-Domaenen",
+        "SOURCE-DATATYPE": "BOOLEAN"
+      }
+    },
+    {
+      "elementid": "DOMA284",
+      "name": "Kurzname",
+      "domaintype": "TextDomain",
+      "categoryid": "CATG67",
+      "description": "Sollte nicht l\u00e4nger als ca 8 Zeichen sein. H\u00e4ufig in Grossbuchstaben",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:Allgemeine Dom\u00e4nen/Kurzname",
+        "SOURCE-ID": "51b3ceb8-6767-40f0-8fe3-494da32cf060",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "elementid": "DOMA285",
+      "name": "Text",
+      "domaintype": "TextDomain",
+      "categoryid": "CATG67",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:Allgemeine Dom\u00e4nen/Text",
+        "SOURCE-ID": "23673b94-328a-44ff-9897-8fb9f5c42c19",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "elementid": "DOMA286",
+      "name": "Zeitpunkt",
+      "domaintype": "DatetimeDomain",
+      "categoryid": "CATG67",
+      "granularity": "MINUTE",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:Allgemeine Dom\u00e4nen/Zeitpunkt",
+        "SOURCE-ID": "a2ff1007-8894-4d7f-9272-855251648d86",
+        "SOURCE-MODEL": "IM-Domaenen",
+        "SOURCE-DATATYPE": "DATETIME"
+      }
+    },
+    {
+      "elementid": "DOMA287",
+      "name": "testdomain group",
+      "domaintype": "GroupDomain",
+      "categoryid": "CATG68",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:test domains/testdomain group",
+        "SOURCE-ID": "2e49ef10-55e2-44a5-98e7-e82574c42633",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "elementid": "DOMA288",
+      "name": "C11",
+      "domaintype": "LOVDomain",
+      "categoryid": "CATG86",
+      "values": [
+        {
+          "value": "C11",
+          "additionalProps": {
+            "subordinateOf": "C1",
+            "FULLPATH": "foryou Referenzdaten:C11/C11",
+            "SOURCE-ID": "b12a5a5c-e9b7-4bdf-81b0-3dc272659b08",
+            "SOURCE-MODEL": "foryou Referenzdaten"
+          }
+        }
+      ],
+      "additionalProps": {
+        "subordinateOf": "test",
+        "FULLPATH": "foryou Referenzdaten:Lebenszyklus/C11",
+        "SOURCE-ID": "56ac1b75-0d9d-48c5-8931-54710789af05",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    },
+    {
+      "elementid": "DOMA289",
+      "name": "Organistionseinheit Status",
+      "domaintype": "LOVDomain",
+      "categoryid": "CATG86",
+      "values": [
+        {
+          "value": "fragw\u00fcrdig",
+          "displayvalue": "quest?",
+          "description": "fragw\u00fcrdig, operativ aber unter Beobachtung",
+          "additionalProps": {
+            "FULLPATH": "foryou Referenzdaten:Organistionseinheit Status/fragw\u00fcrdig",
+            "SOURCE-ID": "04dd0153-cb08-4333-9030-7e869f417143",
+            "SOURCE-MODEL": "foryou Referenzdaten"
+          }
+        },
+        {
+          "value": "in Planung",
+          "displayvalue": "plan",
+          "description": "in Planung, noch nicht operativ",
+          "additionalProps": {
+            "FULLPATH": "foryou Referenzdaten:Organistionseinheit Status/in Planung",
+            "SOURCE-ID": "3d625c95-9d6b-44a5-932a-617abfe789eb",
+            "SOURCE-MODEL": "foryou Referenzdaten"
+          }
+        },
+        {
+          "value": "Aktiv",
+          "displayvalue": "Aktiv",
+          "description": "Aktiv, operationell",
+          "additionalProps": {
+            "FULLPATH": "foryou Referenzdaten:Organistionseinheit Status/Aktiv",
+            "SOURCE-ID": "4ab4d803-3e0e-4357-a691-4d9f546877be",
+            "SOURCE-MODEL": "foryou Referenzdaten"
+          }
+        },
+        {
+          "value": "geschlossen",
+          "displayvalue": "closed",
+          "description": "geschlossen, nicht mehr operativ",
+          "additionalProps": {
+            "FULLPATH": "foryou Referenzdaten:Organistionseinheit Status/geschlossen",
+            "SOURCE-ID": "57e6b86d-e9f6-411e-88c3-52c79d53b0a9",
+            "SOURCE-MODEL": "foryou Referenzdaten"
+          }
+        }
+      ],
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:Lebenszyklus/Organistionseinheit Status",
+        "SOURCE-ID": "fb53ac65-c76d-4220-b9a2-cdd1785f8580",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    },
+    {
+      "elementid": "DOMA290",
+      "name": "test",
+      "domaintype": "LOVDomain",
+      "categoryid": "CATG86",
+      "values": [
+        {
+          "value": "C1",
+          "additionalProps": {
+            "FULLPATH": "foryou Referenzdaten:test/C1",
+            "SOURCE-ID": "128818ee-51c3-41ab-b3d2-609548923a35",
+            "SOURCE-MODEL": "foryou Referenzdaten"
+          }
+        }
+      ],
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:Lebenszyklus/test",
+        "SOURCE-ID": "52252912-9d9f-4024-9fa0-a29e15e30580",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "elementid": "ENTI61",
+      "name": "andere Firma",
+      "categoryid": "CATG83",
+      "description": "Firma, die nicht zur foryouandyourcustomers Gruppe geh\u00f6rt.\nDiese k\u00f6nnen als Kunden, Lieferanten, Partner etc. mit uns in Kontakt stehen.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/andere Firma",
+        "SOURCE-ID": "9ea05c8e-7522-4e16-b792-0bf8c08aa7b1",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI62",
+      "name": "foryouandyourcustomers Baar AG",
+      "categoryid": "CATG83",
+      "description": "Stammhaus\" der Firmengruppe foryouandyourcustomers.\n\nBeispiel:\nforyouandyourcustomers Baar AG",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/foryouandyourcustomers Baar AG",
+        "SOURCE-ID": "a63c0033-adf1-4ad1-a763-754f8135c954",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI63",
+      "name": "foryouandyourcustomers Firma",
+      "categoryid": "CATG83",
+      "description": "Firma die zur foryouandyourcustomersgruppe geh\u00f6rt.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/foryouandyourcustomers Firma",
+        "SOURCE-ID": "843357ac-55e3-41b1-b611-90e880dccf36",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI64",
+      "name": "Gesch\u00e4ftsf\u00fchrer",
+      "categoryid": "CATG83",
+      "description": "Person, die damit beauftragt ist, f\u00fcr jemanden, einen Verein, Verband, eine Organisation o.\u00a0\u00c4. die rechtsgesch\u00e4ftlichen Interessen wahrzunehmen",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/Gesch\u00e4ftsf\u00fchrer",
+        "SOURCE-ID": "060cb584-218f-4378-ae01-cecd8b66ff7f",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI65",
+      "name": "Inhaber",
+      "categoryid": "CATG83",
+      "description": "Person, die Anteilscheine an der foryouandyourcustomers Baar AG hat",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/Inhaber",
+        "SOURCE-ID": "1e57b864-e0f8-4c1d-a512-89eb7c8f9956",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI66",
+      "name": "Juristische Einheit",
+      "categoryid": "CATG83",
+      "description": "Rechtlich eingetragene Firma, die gegen\u00fcber Vertragspartnern und Staat auftritt.\n\n\nBOD meeting in Juni 2022: als Entit\u00e4tsbegriff daf\u00fcr \"Company\" verwenden. So wird dies in Frankfurt gelebt. tbchecked\n\nBsp: \nStammhaus (fyayc Baar AG)\nforyouandyourcustomers AG CH\nforyouandyourcustomers GmbH\nforyouandyourcustomers Athens",
+      "shortdescr": "Eine Organsiation die rechtlich agieren darf",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/Juristische Einheit",
+        "SOURCE-ID": "da5111fc-561d-4ab4-a4eb-4fcac0820fc6",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI67",
+      "name": "Standort",
+      "categoryid": "CATG83",
+      "description": "Ein Standort ist ein physischer Standort (B\u00fcror\u00e4umlichkeiten) regelm\u00e4ssig betrieben oder genutzt von  Mitarbeitenden.\nStandorte sind typischerweise die definierten Arbeitsorte der Mitarbeitenden.\n\nIn der Regel der prim\u00e4re Standort der Zelle (der der Zelle den Namen gab). Dar\u00fcber hinaus: Eine Zelle kann Mitarbeiter besch\u00e4ftigen, die ihren Lebensmittelpunkt nicht am Hauptstandort haben. F\u00fcr diese Mitarbeiter mietet die Zelle einen anderen Standort an. Der Standort agiert nicht unabh\u00e4ngig, sondern ist ein integraler Bestandteil der Zelle.  Zum einen, um auf dem Markt wahrgenommen zu werden, zum anderen, um diesen Standort m\u00f6glicherweise zu einer eigenst\u00e4ndigen Zelle zu entwickeln.\n\nStandorte k\u00f6nnen von mehreren Zellen betrieben werden (z.B. Frankfurt B\u00f6rsenplatz und Hauptwache).Z\u00fcrich Stadelhofen ist ein Standort, der von mehreren Zellen genutzt wird, der aber keiner Zelle als Hauptstandort dient.\n\nBeispiele:\nBaar\nStuttgart\nRegensburg\nAthen\nZ\u00fcrich Stadelhofen\nFrankfurt",
+      "shortdescr": "Geb\u00e4ude, Ort an dem wir B\u00fcropl\u00e4tze besetzen",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/Standort",
+        "SOURCE-ID": "cf9772be-cb0e-4cf8-a333-7f5a0e156d09",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      },
+      "keys": [
+        [
+          "ATTR259"
+        ]
+      ]
+    },
+    {
+      "elementid": "ENTI68",
+      "name": "Tochterfirma",
+      "categoryid": "CATG83",
+      "description": "Legale Einheit die mehrheitlich  der foryouyouandyourcustomers Baar AG geh\u00f6rt.\nSie befolgt  die  lokalen rechtlichen und finanztechnischen Verbindlichkeiten.\nSie sind berechtigt von Gesetztes wegen Vertr\u00e4ge (mit Kunden, Lieferanten und Angestellten) abzuschliessen.\n\nBeispiele:\nforyouandyourcustomers Amsterdam B.V.\nforyouandyourcustomers Pty Ltd\nforyouandyourcustomers Sofia Ltd.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Firmen/Tochterfirma",
+        "SOURCE-ID": "870fc360-19d9-4cd8-a455-6a94b03186e9",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI69",
+      "name": "Adresse",
+      "categoryid": "CATG84",
+      "description": "Postalische Angabe f\u00fcr die geografische und postalische Erreichbarkeit eines Standorts, einer Firma oder eines Menschen.\n\nDie legale Adresse legt fest, wo eine Entit\u00e4t gemeldet ist und welche rechtlichen Regeln (Land, Kanton, Bundesland... ) f\u00fcr diese Entit\u00e4t gelten.\n\nTyp:\nLegale Adresse\nLieferadresse\nRechnungsadresse\nKorrespondenzadresse",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Geografie/Adresse",
+        "SOURCE-ID": "66c84c21-0881-45b3-a351-4fb2b3d77d2c",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI70",
+      "name": "Land",
+      "categoryid": "CATG84",
+      "description": "Land gem\u00f6ss ISO-3166",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Geografie/Land",
+        "SOURCE-ID": "e190f16f-4a62-4480-a4b7-d53a033e58d6",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI71",
+      "name": "Kunde",
+      "categoryid": "CATG74",
+      "description": "Eine externe gesch\u00e4ftsf\u00e4hige Einheit, welche von foryouandyourcustomers Leistungen oder Waren bezieht, bezogen hat oder wahrscheinlich beziehen wird.\n\nBeispiele:\nKomax\nGeberit\nAgravis\nBosch PT",
+      "shortdescr": "Firma, f\u00fcr die wir eine Dienstleistung erbringen",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Dienstleistungen/Kunden/Kunde",
+        "SOURCE-ID": "3bf15b56-effb-4171-b96f-0151f5cdadd6",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI72",
+      "name": "internes Projekt",
+      "categoryid": "CATG76",
+      "additionalProps": {
+        "locked": false,
+        "FULLPATH": "forusandourselves:Dienstleistungen/Projekte/internes Projekt",
+        "SOURCE-ID": "9f9239b8-4ec3-4688-aac2-ae9d31021253",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": false
+      }
+    },
+    {
+      "elementid": "ENTI73",
+      "name": "Kundenprojekt",
+      "categoryid": "CATG76",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Dienstleistungen/Projekte/Kundenprojekt",
+        "SOURCE-ID": "61ee55e4-f238-43b7-b790-2ef64ace5ce3",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": false
+      }
+    },
+    {
+      "elementid": "ENTI74",
+      "name": "Projekt",
+      "categoryid": "CATG76",
+      "shortdescr": "Etwas an dem wir arbeiten",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Dienstleistungen/Projekte/Projekt",
+        "SOURCE-ID": "76d61172-c76d-4f17-b97c-1e3b63840030",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": false
+      }
+    },
+    {
+      "elementid": "ENTI75",
+      "name": "Anstellung",
+      "categoryid": "CATG85",
+      "description": "Vertragliche vereinbarung, Arbeitsvertrag der juristisch die Zusammenarbeit eines Menschen mit einer Firma regelt.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Rechtliches/Anstellung",
+        "SOURCE-ID": "4793c8c3-d231-4058-8300-93282597ecb9",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI76",
+      "name": "Zeichnungs berechtige/r",
+      "categoryid": "CATG85",
+      "description": "Person, die f\u00fcr eine juristische Einheit rechtsg\u00fcltig (allein oder gemeinsam) unterschreiben darf.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zivilisation/Rechtliches/\"Zeichnungs berechtige/r\"",
+        "SOURCE-ID": "07b4c06c-e751-45ea-8da9-bf597527a7aa",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI77",
+      "name": "Board of Directors (BoD)",
+      "categoryid": "CATG78",
+      "description": "Gremium das gemeinsam die Zellengruppe f\u00fchrt. Organisatorischer Vorstand der Zellengruppe.\nEs tagt in der Regel w\u00f6chentlich am Montag Morgen.\nIhm geh\u00f6ren alle Zellen CEO's an.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Board of Directors (BoD)",
+        "SOURCE-ID": "48c24201-625a-49b4-8705-09d7f5f4af56",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI78",
+      "name": "externer Mitarbeiter",
+      "categoryid": "CATG78",
+      "description": "Person, die f\u00fcr foryouandyourcustomers arbeitet, aber keinen Arbeitsvertrag mit uns hat.\nContractor, Freelancer",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/externer Mitarbeiter",
+        "SOURCE-ID": "5875efa4-98ce-40f5-bef6-f29b1a49b354",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI79",
+      "name": "Funktionsrolle",
+      "categoryid": "CATG78",
+      "description": "Eine funktionale Rolle die von einem Menschen wahrgenommen wird.\nRolle ist demnach der Mensch, der gewisse Aufgaben und Verantwortlichkeiten wahrnimmt oder Eigenschaften hat.\nDer Rollentyp beschreibt, welche Rechte, Pflichten, Aufgaben, etc. der Mensch in dieser Rolle hat.\n\nEs sind nur die wichtigsten Rollen namentlich erw\u00e4hnt.\nAndere Rollen gibt es viele (siehe Rollentyp. Diese sind im TQMI beschrieben.\n\nBeispiele:\nProzessverantwortlicher\nQualit\u00e4tmanager\nCEOG\nHCS",
+      "shortdescr": "Welche Rollen gibt es in unserer interner Organisation",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Funktionsrolle",
+        "SOURCE-ID": "b02fb421-49da-4b9d-9068-d4fc99536347",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI80",
+      "name": "Gruppe",
+      "categoryid": "CATG78",
+      "description": "Organisationseinheit: Gesamtheit aller Zellen.\nAktuell gibt es nur 1 Zellengruppe, die alle Zellen umfasst.\nIn dieser Gruppe wird \u00fcber Belange diskutiert und entschieden, die alle Zellen betreffen.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Gruppe",
+        "SOURCE-ID": "7b825b21-372e-455f-8dea-36541988bd97",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI81",
+      "name": "Gruppen CEO",
+      "categoryid": "CATG78",
+      "description": "Gesch\u00e4ftsf\u00fchrer der foryouandyourcustomers Baar AG",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Gruppen CEO",
+        "SOURCE-ID": "3a96e6b3-2f97-4758-ba0e-26d7623cfdd3",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI82",
+      "name": "interner Mitarbeiter",
+      "categoryid": "CATG78",
+      "description": "Person, die von einer foryouandyourcustomers Firma angestellt ist und \u00fcber eine g\u00fcltige Anstellung verf\u00fcgt",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/interner Mitarbeiter",
+        "SOURCE-ID": "da416b32-aa78-4605-a35e-002be22285ff",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI83",
+      "name": "Mitarbeiter",
+      "categoryid": "CATG78",
+      "description": "Person, die f\u00fcr eine Zelle von foryouandyourcustomers arbeitet. Sei es intern als Angestellter oder als externer Gelegenheits- oder Vertragsmitarbeiter.",
+      "shortdescr": "Jemand der f\u00fcr uns arbeitet",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Mitarbeiter",
+        "SOURCE-ID": "652d8bcb-dc7f-426a-8998-b7cb6d103b32",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI84",
+      "name": "Operative Zelle",
+      "categoryid": "CATG78",
+      "description": "Zelle die wirtschaftliche Gesch\u00e4fte macht",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Operative Zelle",
+        "SOURCE-ID": "f1d39883-9208-4f99-9e90-f8457220fe12",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI85",
+      "name": "Rollenzuweisung",
+      "categoryid": "CATG78",
+      "shortdescr": "Wer eine bestimmte Rolle besetzt",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Rollenzuweisung",
+        "SOURCE-ID": "c3274662-f679-4fb2-87ae-6730d75cd919",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI86",
+      "name": "Stammhaus",
+      "categoryid": "CATG78",
+      "description": "Das Stammhaus ist eine virtuelle Zelle f\u00fcr die Abwicklung der Belange der Gesamtheit aller Zellen (Zellengruppe).",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Stammhaus",
+        "SOURCE-ID": "19187922-d57a-4a8a-bddf-04b74c8cbdad",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI87",
+      "name": "Standortleiter",
+      "categoryid": "CATG78",
+      "description": "Person, die einen Standort administrativ f\u00fchrt.\nFalls ein Standort ein Zusatzstandort einer Zelle ist, vertritt der Standortleiter den Zellen CEO vor Ort.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Standortleiter",
+        "SOURCE-ID": "9175a8da-e54b-4320-b368-ddf680cb602c",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    },
+    {
+      "elementid": "ENTI88",
+      "name": "Zeiteintrag",
+      "categoryid": "CATG78",
+      "shortdescr": "geleistete Zeit eines Mitarbeiters",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Zeiteintrag",
+        "SOURCE-ID": "80f03a69-eb6a-46cd-8fe9-a12d5effb2cf",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": false
+      },
+      "keys": [
+        [
+          "RELA121"
+        ]
+      ]
+    },
+    {
+      "elementid": "ENTI89",
+      "name": "Zelle",
+      "categoryid": "CATG78",
+      "description": "Zelle ist eine Organisationseinheit.\nIst eine Gruppe von max. 32 Menschen (25 FTEs), die zusammenarbeitet und von einer Person (Zellen-CEO) gef\u00fchrt wird.\nJede Zelle hat ihre eigene Identit\u00e4t (Zweck, Arbeitsgebiete, Teambildung, Budgethoheit,) aber direkt keine Rechte und Pflichten dem Staat gegen\u00fcber.\n\nZellen entstehen, wenn ein/e Mitarbeitende/r eine gr\u00fcnden m\u00f6chte und intern Unterst\u00fctzung findet.\n\nAktiv: Ein Zellen-CEO (Mitglied des BOD) leitet die Zelle mit seinen Mitarbeitenden an einem oder mehreren Standorten. Die Zelle kann Leistungen verkaufen, vereinbaren und erbringen. Die Zelle hat mindestens einen eigenen Standort und kommuniziert ihre Leistungen und Identit\u00e4t. Die Zelle ist erfolgreich im Umgang mit den Mitarbeitenden, Kunden und Lieferanten.  Dis Zelle ist juristisch eigenst\u00e4ndig (z.B. GmbH) oder ist juristisch einer anderen Zelle als Zweigstelle angeh\u00e4ngt, agiert aber eigenst\u00e4ndig (z.B. Kundenbetreuung, Verrechnung, etc.). \nDies ist der Soll-Zustand einer Zelle.\n\nIn Planung: Irgendjemand hat eine Idee oder die Gr\u00f6ssenlimite von 25 FTE ist erreicht. Er / sie will eine Zelle gr\u00fcnden oder weiss, dass jemand das Potenzial dazu hat, eine Zelle zu gr\u00fcnden. \u00dcber diesen Status brauchen wir uns keine grossen Gedanken zu machen, denn es betrifft nur die diesbez\u00fcglich agierenden Personen. Diese \"Zelle\" wird nicht kommuniziert.\n\nFragezeichen: Die finanzielle Leistungsf\u00e4higkeit (Entwicklung) einer Zelle ist fraglich oder der CEO ist nicht bereit oder in der Lage, die Zelle ohne einen geeignete*n Nachfolger*in weiterzuf\u00fchren.\n\nGeschlossen: Es gab mal eine Zelle. Aber es hat sich nicht entwickelt. Es gibt kein Kommunikationsbed\u00fcrfnis mehr. Die Zelle ist abgewickelt.\n\nBeispiele:\nBaar (BA)\nStammhaus (SH)\nFrankfurt Hauptwache (FH)\nStuttgart (ST)\nFeldkirch (FK)\nWien  (WI)",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Zelle",
+        "SOURCE-ID": "a9dac9ad-0293-48b1-9a76-cb4659690ad8",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      },
+      "keys": [
+        [
+          "ATTR268"
+        ]
+      ]
+    },
+    {
+      "elementid": "ENTI90",
+      "name": "Zellen-CEO",
+      "categoryid": "CATG78",
+      "description": "Ein Zellenleiter wird vom Gruppen CEO berufen.\nEr oder sie f\u00fchrt  eine Zelle und alle Mitarbeitenden, die dieser Zelle angegliedert sind.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Organisation/Struktur/Zellen-CEO",
+        "SOURCE-ID": "ccd86aae-5382-4993-9c30-a02bc05328b8",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI91",
+      "name": "Mensch",
+      "categoryid": "CATG72",
+      "description": "Ein Mensch, der mit uns zusammenarbeitet oder in irgend einer Funktion etwas zu tun hat. \nIst der Teil YOU in foryouandyourcustomers. Wir legen Wert darauf, dass Menschen gef\u00f6rdert und als m\u00fcndige Wesen akzeptiert werden.",
+      "shortdescr": "Das Wesen, das in vielen Rollen auftritt",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Umwelt/Mensch",
+        "SOURCE-ID": "7ebfc421-3929-445f-97df-8cab125a945f",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": true
+      }
+    },
+    {
+      "elementid": "ENTI92",
+      "name": "Quelle",
+      "categoryid": "CATG81",
+      "description": "Mensch, der etwas besonderes weiss oder kann. Der f\u00fcr ein Thema Spezialist oder Begr\u00fcnder der Idee ist.",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Umwelt/Wissen/Quelle",
+        "SOURCE-ID": "33d5e950-c470-4295-a250-37acaff6c315",
+        "SOURCE-MODEL": "forusandourselves",
+        "favorite": null
+      }
+    }
+  ],
+  "Relations": [
+    {
+      "elementid": "RELA126",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI66",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI61",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA127",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI63",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI62",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA128",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI66",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI63",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA129",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI63",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI68",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA130",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI74",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI72",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA131",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI74",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI73",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA132",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI83",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI78",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA133",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI83",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI82",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA134",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI89",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI84",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA135",
+      "relationtype": "SUBTYPE",
+      "fwd": {
+        "entityid": "ENTI89",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI86",
+        "assoctext": "is",
+        "cardinality": "1",
+        "mandatory": true,
+        "arcnumber": 0
+      }
+    },
+    {
+      "elementid": "RELA90",
+      "relationtype": "ROLE",
+      "fwd": {
+        "entityid": "ENTI69",
+        "assoctext": "lokalisiert",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI91",
+        "assoctext": "erreichbar an",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "ARC": 2,
+        "FULLPATH": "forusandourselves:Adresse/lokalisiert>Mensch",
+        "SOURCE-ID": "70d3244c-8366-4e50-805b-8b89e58d5442",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA91",
+      "relationtype": "ROLE",
+      "fwd": {
+        "entityid": "ENTI61",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI71",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:andere Firma/ist>Kunde",
+        "SOURCE-ID": "f8ca65fe-a405-41ff-88e9-cc6babb0647d",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA92",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI75",
+        "assoctext": "ist f\u00fcr",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI91",
+        "assoctext": "angestellt mittels",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Anstellung/ist f\u00fcr>Mensch",
+        "SOURCE-ID": "8dc69c91-fbf9-407a-8c7a-3312f9267b98",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA93",
+      "relationtype": "1:1",
+      "fwd": {
+        "entityid": "ENTI77",
+        "assoctext": "geleitet von",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI81",
+        "assoctext": "leitet",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Board of Directors (BoD)/geleitet von>Gruppen CEO",
+        "SOURCE-ID": "39a7deb9-7787-4fda-8c02-818f5f1bbd16",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA94",
+      "relationtype": "1:1",
+      "fwd": {
+        "entityid": "ENTI77",
+        "assoctext": "f\u00fchrt integral",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI80",
+        "assoctext": "integral gef\u00fchrt von",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Board of Directors (BoD)/f\u00fchrt integral>Gruppe",
+        "SOURCE-ID": "6acc0ca8-9189-4084-bee3-1df7a286c36c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA95",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI63",
+        "assoctext": "verantwortet",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI75",
+        "assoctext": "verantwortet durch",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:foryouandyourcustomers Firma/verantwortet>Anstellung",
+        "SOURCE-ID": "37b4285e-29d5-4551-b011-82689fc3d7d6",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA96",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI63",
+        "assoctext": "gef\u00fchrt von",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI64",
+        "assoctext": "f\u00fchrt",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:foryouandyourcustomers Firma/gef\u00fchrt von>Gesch\u00e4ftsf\u00fchrer",
+        "SOURCE-ID": "477dc662-8e67-4cb7-bdce-5ef7949b621d",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA97",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI63",
+        "assoctext": "ist juristisch verantwortlich f\u00fcr",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI67",
+        "assoctext": "ist juristisch verantwortet durch",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:foryouandyourcustomers Firma/ist juristisch verantwortlich f\u00fcr>Standort",
+        "SOURCE-ID": "7f81dec6-9f01-4872-9378-45d7ec104c23",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA98",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI63",
+        "assoctext": "betreibt",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI89",
+        "assoctext": "wirtschaftlich betrieben von",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:foryouandyourcustomers Firma/betreibt>Zelle",
+        "SOURCE-ID": "91ff7482-f60d-4fbb-b54c-6bad54b1acc9",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA99",
+      "relationtype": "ROLE",
+      "fwd": {
+        "entityid": "ENTI80",
+        "assoctext": "umfasst",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI89",
+        "assoctext": "zusammengefasst in",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Gruppe/umfasst>Zelle",
+        "SOURCE-ID": "52d2bbc1-ae95-4c41-adb2-49032449f483",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA100",
+      "relationtype": "1:1",
+      "fwd": {
+        "entityid": "ENTI81",
+        "assoctext": "f\u00fchrt",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI62",
+        "assoctext": "gef\u00fchrt von",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Gruppen CEO/f\u00fchrt>foryouandyourcustomers Baar AG",
+        "SOURCE-ID": "892be1c8-c4ba-4c18-b564-f1765c100bf3",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA101",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI65",
+        "assoctext": "ist beteiligt an",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI62",
+        "assoctext": "geh\u00f6rt",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Inhaber/ist beteiligt an>foryouandyourcustomers Baar AG",
+        "SOURCE-ID": "9f1b7268-937d-4dcf-8bdd-5b39a012d5d4",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA102",
+      "relationtype": "ROLE",
+      "fwd": {
+        "entityid": "ENTI82",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI90",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:interner Mitarbeiter/ist>Zellen-CEO",
+        "SOURCE-ID": "097e727f-289b-42d0-bc6c-8a3cddeeb4bd",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA103",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI82",
+        "assoctext": "ist",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI87",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:interner Mitarbeiter/ist>Standortleiter",
+        "SOURCE-ID": "b0090c12-7a86-4ed7-969b-389fb01c8cb8",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA104",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI72",
+        "assoctext": "ist f\u00fcr",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI89",
+        "assoctext": "betreut",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:internes Projekt/ist f\u00fcr>Zelle",
+        "SOURCE-ID": "1d0ce546-f24c-4ef5-b471-e0e3379e3bfd",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA105",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI66",
+        "assoctext": "erreichbar an",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI69",
+        "assoctext": "lokalisiert",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "BCKWARC": 2,
+        "FULLPATH": "forusandourselves:Juristische Einheit/erreichbar an>Adresse",
+        "SOURCE-ID": "53f3991f-4ed5-470a-b853-a3ff27f4fca6",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA106",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI66",
+        "assoctext": "besitzt",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI66",
+        "assoctext": "geh\u00f6rt",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Juristische Einheit/besitzt>Juristische Einheit",
+        "SOURCE-ID": "8526239c-1cf4-4bc4-9046-718c1f7335e4",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA107",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI71",
+        "assoctext": "beauftragt",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI73",
+        "assoctext": "beauftragt von",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Kunde/beauftragt>Kundenprojekt",
+        "SOURCE-ID": "7da9b4b5-b962-4acb-a8f3-e04349fd6d10",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA108",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI70",
+        "assoctext": "umfasst",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI69",
+        "assoctext": "ist in",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Land/umfasst>Adresse",
+        "SOURCE-ID": "cc658efb-4af2-4515-81c8-a2d02cc74635",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA109",
+      "relationtype": "ROLE",
+      "fwd": {
+        "entityid": "ENTI83",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI81",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mitarbeiter/ist>Gruppen CEO",
+        "SOURCE-ID": "abe5c0dc-8c56-4735-b829-c582bb71d56f",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA110",
+      "relationtype": "1:1",
+      "fwd": {
+        "entityid": "ENTI83",
+        "assoctext": "fachlich gef\u00fchrt von",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI90",
+        "assoctext": "f\u00fchrt fachlich",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mitarbeiter/fachlich gef\u00fchrt von>Zellen-CEO",
+        "SOURCE-ID": "be992398-85e1-4a5a-bbaf-9e5e75e936cf",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA111",
+      "relationtype": "ROLE",
+      "fwd": {
+        "entityid": "ENTI83",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI91",
+        "assoctext": null,
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mitarbeiter/ist>Mensch",
+        "SOURCE-ID": "e7209d28-c1d8-44c0-88ce-299c3f81020c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA112",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI92",
+        "assoctext": "ist",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI91",
+        "assoctext": "ist",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Quelle/ist>Mensch",
+        "SOURCE-ID": "be181467-7896-4951-b094-88bb62ff49c5",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA113",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI85",
+        "assoctext": "weist zu",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI83",
+        "assoctext": "besetzt",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Rollenzuweisung/weist zu>Mitarbeiter",
+        "SOURCE-ID": "6d55db6c-81a0-4b96-aeee-89e53506a820",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA114",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI85",
+        "assoctext": "ist f\u00fcr",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI79",
+        "assoctext": "zugewiesen mittels",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Rollenzuweisung/ist f\u00fcr>Funktionsrolle",
+        "SOURCE-ID": "825dccfd-c53d-4c45-93fc-18a138d73056",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA115",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI67",
+        "assoctext": "erreichbar an",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI69",
+        "assoctext": "lokalisiert",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "BCKWARC": 2,
+        "FULLPATH": "forusandourselves:Standort/erreichbar an>Adresse",
+        "SOURCE-ID": "1162dd00-d666-46fc-996b-b2495a1d0321",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA116",
+      "relationtype": "M:N",
+      "fwd": {
+        "entityid": "ENTI67",
+        "assoctext": "wird genutzt von",
+        "cardinality": "M",
+        "mandatory": false,
+        "historicised": true
+      },
+      "bwd": {
+        "entityid": "ENTI89",
+        "assoctext": "nutzt",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "examples": [
+        "Standort Baar wird genutzt von Zelle Baar",
+        "Standort M\u00fcnchen wird genutzt von den Zellen M\u00fcnchen Isar und M\u00fcnchen Eisbach"
+      ],
+      "additionalProps": {
+        "temporal": true,
+        "FULLPATH": "forusandourselves:Standort/wird genutzt von>Zelle",
+        "SOURCE-ID": "3ee5fd95-8cad-483f-bc97-79770993424a",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA117",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI67",
+        "assoctext": "geleitet von",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI87",
+        "assoctext": "leitet",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Standort/geleitet von>Standortleiter",
+        "SOURCE-ID": "adecdb89-7e5d-48f1-bdae-2a57c9f1c9d6",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA118",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI68",
+        "assoctext": "vertraglich gebunden an",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI71",
+        "assoctext": "vertraglich gebunden an",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Tochterfirma/vertraglich gebunden an>Kunde",
+        "SOURCE-ID": "c6fd77e3-659c-4f50-bdc1-05974ec15b24",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA119",
+      "relationtype": "1:1",
+      "fwd": {
+        "entityid": "ENTI76",
+        "assoctext": "vertritt juristisch",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI63",
+        "assoctext": "juristisch vertreten durch",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:\"Zeichnungs berechtige/r\"/vertritt juristisch>foryouandyourcustomers Firma",
+        "SOURCE-ID": "095d24ff-7bef-4d64-bb8e-f3f34752bf57",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA120",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI88",
+        "assoctext": "geleistet f\u00fcr",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI74",
+        "assoctext": "profitiert von",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zeiteintrag/geleistet f\u00fcr>Projekt",
+        "SOURCE-ID": "3dd99cfe-db96-41d0-8bae-50615253b88c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA121",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI88",
+        "assoctext": "geleistet von",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "bwd": {
+        "entityid": "ENTI83",
+        "assoctext": "leistete",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "identifying": true,
+        "FULLPATH": "forusandourselves:Zeiteintrag/geleistet von>Mitarbeiter",
+        "SOURCE-ID": "e04716fe-1b82-44fb-b242-09d66f2f3671",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA122",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI89",
+        "assoctext": "betreut",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI71",
+        "assoctext": "betreut von",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zelle/betreut>Kunde",
+        "SOURCE-ID": "0d5cf7d9-17ea-4594-a63c-5fe15400d34c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA123",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI89",
+        "assoctext": "besch\u00e4ftigt",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI83",
+        "assoctext": "eingeteilt in",
+        "cardinality": "1",
+        "mandatory": true
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zelle/besch\u00e4ftigt>Mitarbeiter",
+        "SOURCE-ID": "5770ceca-a515-484b-ab87-cabee281029d",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA124",
+      "relationtype": "1:1",
+      "fwd": {
+        "entityid": "ENTI89",
+        "assoctext": "geleitet von",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI90",
+        "assoctext": "leitet",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zelle/geleitet von>Zellen-CEO",
+        "SOURCE-ID": "58fe1d73-ac51-4cb9-968e-81087cc198c2",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "RELA125",
+      "relationtype": "M:1",
+      "fwd": {
+        "entityid": "ENTI90",
+        "assoctext": "ist in",
+        "cardinality": "M",
+        "mandatory": false
+      },
+      "bwd": {
+        "entityid": "ENTI77",
+        "assoctext": "besteht aus",
+        "cardinality": "1",
+        "mandatory": false
+      },
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zellen-CEO/ist in>Board of Directors (BoD)",
+        "SOURCE-ID": "49b33c9a-15b2-447d-b749-da3b11affa68",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    }
+  ],
+  "Attributes": [
+    {
+      "elementid": "ATTR226",
+      "name": "Adresstyp",
+      "mandatory": true,
+      "parentid": "ENTI69",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Adresse/Adresstyp",
+        "SOURCE-ID": "0b504cd2-0ff5-4f70-88d9-b1d308707afe",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR227",
+      "name": "Geb\u00e4udename",
+      "mandatory": false,
+      "parentid": "ENTI69",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Adresse/Geb\u00e4udename",
+        "SOURCE-ID": "4704d7c1-c28c-46dc-97fd-78454eea1411",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR228",
+      "name": "Hausnr",
+      "mandatory": false,
+      "parentid": "ENTI69",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Adresse/Hausnr",
+        "SOURCE-ID": "e725960d-d6db-436e-b94a-90a5fc610f91",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR229",
+      "name": "Ort",
+      "mandatory": false,
+      "parentid": "ENTI69",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Adresse/Ort",
+        "SOURCE-ID": "d5ee1b37-5be4-4333-9289-d8fa2e3922b1",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR230",
+      "name": "Postleitzahl",
+      "mandatory": false,
+      "parentid": "ENTI69",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Adresse/Postleitzahl",
+        "SOURCE-ID": "4c59f091-9802-4178-a4c3-0cc569234b44",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR231",
+      "name": "Strassenname",
+      "mandatory": false,
+      "parentid": "ENTI69",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Adresse/Strassenname",
+        "SOURCE-ID": "5f604f0e-a287-4bc8-86d0-b8338305666b",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR232",
+      "name": "Anstellungstyp",
+      "mandatory": true,
+      "parentid": "ENTI75",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Anstellung/Anstellungstyp",
+        "SOURCE-ID": "0a705aa7-f3ed-490d-a739-0b19396afc69",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR233",
+      "name": "Endedatum",
+      "mandatory": false,
+      "parentid": "ENTI75",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Anstellung/Endedatum",
+        "SOURCE-ID": "d697bc34-3d37-4bed-bdb8-79500b73ba3c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR234",
+      "name": "Entsch\u00e4digung",
+      "mandatory": true,
+      "parentid": "ENTI75",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Anstellung/Entsch\u00e4digung",
+        "SOURCE-ID": "1ae5378d-eda4-4369-9cd2-511fed28e37a",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR235",
+      "name": "Pensum",
+      "mandatory": true,
+      "parentid": "ENTI75",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Anstellung/Pensum",
+        "SOURCE-ID": "b06f7287-7938-44a2-9b56-b1b8f466b5ba",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR236",
+      "name": "Startdatum",
+      "mandatory": true,
+      "parentid": "ENTI75",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Anstellung/Startdatum",
+        "SOURCE-ID": "55cca2a4-eb12-4a38-9dc0-c199ffec91c9",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR237",
+      "name": "Beschreibung",
+      "mandatory": true,
+      "parentid": "ENTI79",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Funktionsrolle/Beschreibung",
+        "SOURCE-ID": "2581ba7a-c000-42bc-b91a-6dc3abbd1ec1",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR238",
+      "name": "K\u00fcrzel",
+      "mandatory": true,
+      "parentid": "ENTI79",
+      "shortdescr": "Kurzname (max 5 Zeichen) der Rolle",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Funktionsrolle/K\u00fcrzel",
+        "SOURCE-ID": "08071c5b-b8df-4a80-b5be-ecf2556056c9",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR239",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI79",
+      "shortdescr": "Langname der Rolle",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Funktionsrolle/Name",
+        "SOURCE-ID": "ad09c21a-0c69-434c-8d03-cc04aded202b",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR240",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI80",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Gruppe/Name",
+        "SOURCE-ID": "c863977a-e6a5-4628-a97b-fc8739fc35f9",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR241",
+      "name": "Stimmrecht (J/N)",
+      "mandatory": true,
+      "parentid": "ENTI65",
+      "domainid": "DOMA283",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Inhaber/\"Stimmrecht (J/N)\"",
+        "SOURCE-ID": "87e354b9-373e-4518-9854-117a1c7c29b3",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR242",
+      "name": "Mitarbeiterk\u00fczrel",
+      "mandatory": false,
+      "parentid": "ENTI82",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:interner Mitarbeiter/Mitarbeiterk\u00fczrel",
+        "SOURCE-ID": "5b36e635-c121-47cc-aa89-8afba6c1c590",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR243",
+      "name": "Juristischer Name",
+      "mandatory": true,
+      "parentid": "ENTI66",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Juristische Einheit/Juristischer Name",
+        "SOURCE-ID": "3bd4ab1e-9086-45be-8c5c-d5ec939ae2f1",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR244",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI66",
+      "domainid": "DOMA285",
+      "shortdescr": "offizielle Bezeichnung der Firma",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Juristische Einheit/Name",
+        "SOURCE-ID": "45e8cfca-bada-4d0e-9aab-97ced4e6e145",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR245",
+      "name": "UIDNr",
+      "mandatory": false,
+      "parentid": "ENTI66",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Juristische Einheit/UIDNr",
+        "SOURCE-ID": "037ca4e0-4f75-4d38-9d14-c5dc82c0e628",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR246",
+      "name": "Kundenk\u00fcrzel",
+      "mandatory": false,
+      "parentid": "ENTI71",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Kunde/Kundenk\u00fcrzel",
+        "SOURCE-ID": "0a013b5b-2361-4135-9d1c-a0acc36054d6",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR247",
+      "name": "Kundennummer",
+      "mandatory": false,
+      "parentid": "ENTI71",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Kunde/Kundennummer",
+        "SOURCE-ID": "39e11d70-2e45-4fb5-9224-1aeb76685a48",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR248",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI71",
+      "description": "Entspricht dem Firmennamen",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Kunde/Name",
+        "SOURCE-ID": "b1d045fd-e1de-4796-b159-b6b7dab7bfcd",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR249",
+      "name": "ISO-Code",
+      "mandatory": false,
+      "parentid": "ENTI70",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Land/ISO-Code",
+        "SOURCE-ID": "6596ef83-3199-41b0-8cbe-c7277e3f7141",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR250",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI70",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Land/Name",
+        "SOURCE-ID": "dde59b95-0e8e-4911-b043-ac7ea00b5b51",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR251",
+      "name": "Geburtsdatum",
+      "mandatory": false,
+      "parentid": "ENTI91",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mensch/Geburtsdatum",
+        "SOURCE-ID": "5cf105f9-d3dd-4186-bf2d-e76d4e34a48d",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR252",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI91",
+      "domainid": "DOMA285",
+      "shortdescr": "Nachname",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mensch/Name",
+        "SOURCE-ID": "0b5aec31-6e06-4ced-993f-2aeba6f1b23e",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR253",
+      "name": "Vorname",
+      "mandatory": false,
+      "parentid": "ENTI91",
+      "domainid": "DOMA285",
+      "shortdescr": "Offizieller Rufname des Menschen",
+      "examples": [
+        "Peter",
+        "Stefan",
+        "Stephan",
+        "Susanne",
+        "Jens"
+      ],
+      "descriptive": true,
+      "repeated": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mensch/Vorname",
+        "SOURCE-ID": "d0dce906-92d2-48f2-ba61-ab10fb293dc5",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR254",
+      "name": "eMail",
+      "mandatory": true,
+      "parentid": "ENTI83",
+      "shortdescr": "foryouandyourcustomers email",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mitarbeiter/eMail",
+        "SOURCE-ID": "8ec64d86-92ee-4a59-9478-c03a61f9a274",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR255",
+      "name": "Mitarbeiterk\u00fcrzel",
+      "mandatory": false,
+      "parentid": "ENTI83",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Mitarbeiter/Mitarbeiterk\u00fcrzel",
+        "SOURCE-ID": "efd93dfe-7e37-442b-9a8a-53e176272e64",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR256",
+      "name": "Projektk\u00fcrzel",
+      "mandatory": false,
+      "parentid": "ENTI74",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Projekt/Projektk\u00fcrzel",
+        "SOURCE-ID": "79c6411e-6cb2-4add-a1a8-73b0b5bdb12b",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR257",
+      "name": "Thema",
+      "mandatory": true,
+      "parentid": "ENTI92",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Quelle/Thema",
+        "SOURCE-ID": "b7dc78b4-b67b-4d7f-9aa8-94c2d61c1531",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR258",
+      "name": "Periode",
+      "mandatory": false,
+      "parentid": "ENTI85",
+      "shortdescr": "Zeitsptanne, w\u00e4hrend der die Rolle besetzt wurde",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Rollenzuweisung/Periode",
+        "SOURCE-ID": "195e093e-3f4a-42f8-9c24-7ebdf5dd6b53",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR259",
+      "name": "K\u00fcrzel",
+      "mandatory": false,
+      "parentid": "ENTI67",
+      "domainid": "DOMA284",
+      "description": "2-buchstabies K\u00fcrzel des Standorts",
+      "examples": [
+        "AT",
+        "BA",
+        "MU",
+        "ZS",
+        "FF"
+      ],
+      "historicised": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Standort/K\u00fcrzel",
+        "SOURCE-ID": "f140a415-b586-4199-8c6c-bbc256eba18f",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR260",
+      "name": "Name",
+      "mandatory": true,
+      "parentid": "ENTI67",
+      "shortdescr": "Bezeichnung des Standortes / Offices",
+      "examples": [
+        "Baar",
+        "M\u00fcnchen",
+        "Uster",
+        "Frankfurt"
+      ],
+      "descriptive": true,
+      "historicised": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Standort/Name",
+        "SOURCE-ID": "e0686bed-8de3-4aea-9fca-9cf4e38a0e03",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR261",
+      "name": "Status",
+      "mandatory": false,
+      "parentid": "ENTI67",
+      "domainid": "DOMA289",
+      "shortdescr": "Aktueller Status der Zelle",
+      "historicised": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Standort/Status",
+        "SOURCE-ID": "56d5b5d5-16d7-4b4b-b452-acf058d4ede1",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR262",
+      "name": "Zellenhauptstandort (j/n)",
+      "mandatory": true,
+      "parentid": "ENTI67",
+      "domainid": "DOMA283",
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Standort/\"Zellenhauptstandort (j/n)\"",
+        "SOURCE-ID": "421f4014-00c9-46a3-ab3a-68c994b20137",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR263",
+      "name": "Status",
+      "mandatory": false,
+      "parentid": "ENTI68",
+      "domainid": "DOMA289",
+      "repeated": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Tochterfirma/Status",
+        "SOURCE-ID": "37a12403-2e31-41be-b667-17d1bddc795c",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR264",
+      "name": "Beschreibung",
+      "mandatory": true,
+      "parentid": "ENTI88",
+      "shortdescr": "Was wurde geleistet",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zeiteintrag/Beschreibung",
+        "SOURCE-ID": "2ef7bfd1-1f7b-4d47-901c-595690805613",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR265",
+      "name": "Datum",
+      "mandatory": true,
+      "parentid": "ENTI88",
+      "shortdescr": "Tag an dem die Zeit gearbeitet wurde",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zeiteintrag/Datum",
+        "SOURCE-ID": "9485fa93-ea3f-4a45-822f-a599b3d625d8",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR266",
+      "name": "verrechenbar",
+      "mandatory": true,
+      "parentid": "ENTI88",
+      "domainid": "DOMA283",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zeiteintrag/verrechenbar",
+        "SOURCE-ID": "a70c4640-f6eb-4267-9b60-eecbac4dd584",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR267",
+      "name": "Zeit",
+      "mandatory": true,
+      "parentid": "ENTI88",
+      "shortdescr": "geleistete Zeit in Stunden",
+      "descriptive": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zeiteintrag/Zeit",
+        "SOURCE-ID": "8bcbc18d-7a90-4eb4-bf08-145cd7cd5b75",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR268",
+      "name": "K\u00fcrzel",
+      "mandatory": false,
+      "parentid": "ENTI89",
+      "domainid": "DOMA284",
+      "examples": [
+        "BA",
+        "EB",
+        "MU",
+        "AT"
+      ],
+      "descriptive": true,
+      "historicised": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zelle/K\u00fcrzel",
+        "SOURCE-ID": "e0a6ef5a-a53c-4e97-b1ea-3cc3059f18ff",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR269",
+      "name": "Name",
+      "mandatory": false,
+      "parentid": "ENTI89",
+      "examples": [
+        "Baar",
+        "M\u00fcnchen Eisbach",
+        "M\u00fcnchen Isar",
+        "Athens"
+      ],
+      "descriptive": true,
+      "historicised": true,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zelle/Name",
+        "SOURCE-ID": "954e30cd-2212-4726-80bf-8ca7007862e6",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR270",
+      "name": "Status",
+      "mandatory": false,
+      "parentid": "ENTI89",
+      "domainid": "DOMA289",
+      "shortdescr": "operationeller Status der Zelle",
+      "descriptive": false,
+      "additionalProps": {
+        "FULLPATH": "forusandourselves:Zelle/Status",
+        "SOURCE-ID": "3bc81ae9-8be1-4687-b2df-59c1c50ca4d1",
+        "SOURCE-MODEL": "forusandourselves"
+      }
+    },
+    {
+      "elementid": "ATTR224",
+      "name": "Attr 1",
+      "mandatory": false,
+      "parentid": "DOMA287",
+      "domainid": "DOMA282",
+      "additionalProps": {
+        "minInclusive": 9999.0,
+        "FULLPATH": "IM-Domaenen:testdomain group/Attr 1",
+        "SOURCE-ID": "51889847-6d12-412e-ab4e-78c699fabb1e",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "elementid": "ATTR225",
+      "name": "attr2",
+      "mandatory": false,
+      "parentid": "DOMA287",
+      "domainid": "DOMA283",
+      "displayseq": 5,
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:testdomain group/attr2",
+        "SOURCE-ID": "cdc64d55-3011-4ebb-b9a2-a823ccd5c7b1",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    }
+  ],
+  "BusinessRules": [
+    {
+      "elementid": "BURU35",
+      "restrictedelements": [
+        "DOMA282"
+      ],
+      "rule": "??? missing rule ???"
+    },
+    {
+      "elementid": "BURU36",
+      "restrictedelements": [
+        "DOMA287"
+      ],
+      "rule": "Formel f\u00fcr testBR"
+    }
+  ],
+  "Derivations": [
+    {
+      "sourceelement": "forusandourselves:Anstellung/Endedatum",
+      "targetelement": "DOMA282",
+      "derivationtype": "GOLD",
+      "additionalProps": {
+        "FULLPATH": "IM-Domaenen:/forusandourselves/Anstellung/Endedatum/>GOLD",
+        "SOURCE-MODEL": "IM-Domaenen"
+      }
+    },
+    {
+      "sourceelement": "forusandourselves:Anstellung/Pensum",
+      "targetelement": "DOMA290",
+      "derivationtype": "GOLD",
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:/forusandourselves/Anstellung/Pensum/>GOLD",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    },
+    {
+      "sourceelement": "forusandourselves:Anstellung/ist f\u00fcr>Mensch",
+      "targetelement": "DOMA290",
+      "derivationtype": "SPOT",
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:/forusandourselves/Anstellung/ist f\u00fcr>Mensch/>SPOT",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    }
+  ],
+  "Mappings": [
+    {
+      "sourcedomain": "DOMA288",
+      "targetdomain": "DOMA289",
+      "valuemappings": [
+        [
+          "C11",
+          "fragw\u00fcrdig"
+        ],
+        [
+          "C11",
+          "in Planung"
+        ]
+      ],
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:Lebenszyklus/mapquer",
+        "SOURCE-ID": "64c1b372-e9c6-48ad-af09-347132b2d0fb",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    },
+    {
+      "sourcedomain": "DOMA289",
+      "targetdomain": "DOMA289",
+      "valuemappings": [
+        [
+          "Aktiv",
+          "in Planung"
+        ]
+      ],
+      "additionalProps": {
+        "FULLPATH": "foryou Referenzdaten:Lebenszyklus/Maptoitself",
+        "SOURCE-ID": "61a8974b-27c2-4f8b-b2a6-18a5f8afc74a",
+        "SOURCE-MODEL": "foryou Referenzdaten"
+      }
+    }
+  ],
+  "Transformations": [
+    {
+      "sourceelements": [
+        "Mitarbeiter/BA-Ferienplanung/Ferienstunden",
+        "Mitarbeiter/BA-Ferienplanung/Tag"
+      ],
+      "targetelements": [
+        "Mitarbeiter/BA-Stundensaldo/Ferienstunden",
+        "Mitarbeiter/BA-Stundensaldo/Monat"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Mitarbeiter/BA-Stundensaldo/Ferien",
+        "SOURCE-ID": "6c860c92-58e9-49d3-b576-d1f3f222c79a",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/interner Mitarbeiter/Mitarbeiterk\u00fczrel",
+        "/forusandourselves/Zelle/K\u00fcrzel",
+        "/forusandourselves/Zeiteintrag/Zeit",
+        "/forusandourselves/Zeiteintrag/verrechenbar",
+        "/forusandourselves/Zeiteintrag/geleistet f\u00fcr>Projekt",
+        "/forusandourselves/Anstellung/Pensum"
+      ],
+      "targetelements": [
+        "Mitarbeiter/BA-Stundensaldo/Anstellungsgrad",
+        "Mitarbeiter/BA-Stundensaldo/Mitarbeiter",
+        "Mitarbeiter/BA-Stundensaldo/Monat",
+        "Mitarbeiter/BA-Stundensaldo/Billable Stunden",
+        "Mitarbeiter/BA-Stundensaldo/Totalstunden",
+        "Mitarbeiter/BA-Stundensaldo/Ferienstunden"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Mitarbeiter/BA-Stundensaldo/Im mitarb",
+        "SOURCE-ID": "eba5cc47-7588-436a-9913-5b9a09e5ea89",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "/Mite DM/Mite/Time Entry/Day",
+        "/Mite DM/Mite/Time Entry/Work time",
+        "/Mite DM/Mite/Services/\"Billable (y/n)\"",
+        "/Mite DM/Mite/Projects/Name",
+        "/Mite DM/Mite/Time Entry/Projects_ProjectID",
+        "/Mite DM/Mite/Users/Name"
+      ],
+      "targetelements": [
+        "Mitarbeiter/BA-Stundensaldo/Billable Stunden",
+        "Mitarbeiter/BA-Stundensaldo/Totalstunden",
+        "Mitarbeiter/BA-Stundensaldo/Mitarbeiter",
+        "Mitarbeiter/BA-Stundensaldo/Monat"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Mitarbeiter/BA-Stundensaldo/Mite",
+        "SOURCE-ID": "1506bd71-f293-48d0-8426-3ba01ede1054",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "ENTI71"
+      ],
+      "targetelements": [
+        "Kunden/Kundenliste"
+      ],
+      "is1to1": true,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Kunden/Kundenliste/IM Cust",
+        "SOURCE-ID": "32612e10-d7ca-4205-a6e8-22ce0c6395dd",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "ENTI63",
+        "/forusandourselves/Juristische Einheit/Name",
+        "/forusandourselves/foryouandyourcustomers Firma/betreibt>Zelle",
+        "/forusandourselves/foryouandyourcustomers Firma/ist juristisch verantwortlich f\u00fcr>Standort"
+      ],
+      "targetelements": [
+        "Organisation/Overview Organisation life cycle/Company Name",
+        "Organisation/Overview Organisation life cycle/Company Status"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Organisation/Overview Organisation life cycle/IM link",
+        "SOURCE-ID": "628dfe3c-dae2-49cd-bed0-b5e48592cd3a",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Zelle/Name",
+        "/forusandourselves/Zelle/Status",
+        "/forusandourselves/Zelle/K\u00fcrzel"
+      ],
+      "targetelements": [
+        "Organisation/Overview Organisation life cycle/Cell Name",
+        "Organisation/Overview Organisation life cycle/Cell Status",
+        "Organisation/Overview Organisation life cycle/Cell Abbreviation"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Organisation/Overview Organisation life cycle/IM link",
+        "SOURCE-ID": "628dfe3c-dae2-49cd-bed0-b5e48592cd3a",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Standort/Name",
+        "/forusandourselves/Standort/K\u00fcrzel",
+        "/forusandourselves/Standort/Status",
+        "/forusandourselves/Standort/\"Zellenhauptstandort (j/n)\""
+      ],
+      "targetelements": [
+        "Organisation/Overview Organisation life cycle/Location name",
+        "Organisation/Overview Organisation life cycle/Location Abbreviation",
+        "Organisation/Overview Organisation life cycle/Location Status"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Organisation/Overview Organisation life cycle/IM link",
+        "SOURCE-ID": "628dfe3c-dae2-49cd-bed0-b5e48592cd3a",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "ENTI90",
+        "/forusandourselves/interner Mitarbeiter/ist>Zellen-CEO",
+        "/forusandourselves/interner Mitarbeiter/Mitarbeiterk\u00fczrel"
+      ],
+      "targetelements": [
+        "Organisation/Overview Organisation life cycle/eBOD",
+        "Organisation/Overview Organisation life cycle/Godfather",
+        "Organisation/Overview Organisation life cycle/BOD"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Organisation/Overview Organisation life cycle/IM link",
+        "SOURCE-ID": "628dfe3c-dae2-49cd-bed0-b5e48592cd3a",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "ENTI73"
+      ],
+      "targetelements": [
+        "Projekte/Projekte"
+      ],
+      "is1to1": true,
+      "additionalProps": {
+        "FULLPATH": "TQMI-Data:Projekte/Projekte/Im kd projekt",
+        "SOURCE-ID": "cf211cb3-19ef-4caf-82fc-0e4117b936e9",
+        "SOURCE-MODEL": "TQMI-Data"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Kunde/Kundenk\u00fcrzel"
+      ],
+      "targetelements": [
+        "Mite/Customers/Name"
+      ],
+      "is1to1": true,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Customers/IM Customer",
+        "SOURCE-ID": "19bc9981-2083-4eba-bc10-33fb927b3578",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/TQMI-Data/Kunden/Kundenliste"
+      ],
+      "targetelements": [
+        "Mite/Customers"
+      ],
+      "is1to1": true,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Customers/TQMI cust",
+        "SOURCE-ID": "bccef3ec-2d8f-43ad-a990-3581efcb30d8",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Projekt/Projektk\u00fcrzel",
+        "/forusandourselves/Kunde/beauftragt>Kundenprojekt"
+      ],
+      "targetelements": [
+        "Mite/Projects/Customers_CustomerID",
+        "Mite/Projects/Name"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Projects/IM Projekt",
+        "SOURCE-ID": "c5cb7251-ad58-403f-96df-7b306a08b50b",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/TQMI-Data/Kunden/Kundenliste"
+      ],
+      "targetelements": [
+        "Mite/Projects"
+      ],
+      "is1to1": true,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Projects/TQMI",
+        "SOURCE-ID": "dea3aa89-e1a2-496e-8260-0604a1f57dbb",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/TQMI-Data/Projekte/Projekte"
+      ],
+      "targetelements": [
+        "Mite/Projects"
+      ],
+      "is1to1": true,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Projects/TQMI",
+        "SOURCE-ID": "dea3aa89-e1a2-496e-8260-0604a1f57dbb",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Zeiteintrag/Beschreibung",
+        "/forusandourselves/Zeiteintrag/Datum",
+        "/forusandourselves/Zeiteintrag/Zeit"
+      ],
+      "targetelements": [
+        "Mite/Time Entry/Day",
+        "Mite/Time Entry/Note",
+        "Mite/Time Entry/Work time"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Time Entry/IM Service",
+        "SOURCE-ID": "89e92151-22b0-4ebb-9ca0-f00b8839fab7",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Zeiteintrag/geleistet f\u00fcr>Projekt",
+        "/forusandourselves/Zeiteintrag/geleistet von>Mitarbeiter",
+        "ENTI88"
+      ],
+      "targetelements": [
+        "Mite/Time Entry/for>Projects",
+        "Mite/Time Entry/from>Users",
+        "Mite/Time Entry/Services_ServiceID"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Time Entry/IM Service",
+        "SOURCE-ID": "89e92151-22b0-4ebb-9ca0-f00b8839fab7",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    },
+    {
+      "sourceelements": [
+        "/forusandourselves/Mitarbeiter/Mitarbeiterk\u00fcrzel",
+        "/forusandourselves/Mensch/Vorname",
+        "/forusandourselves/Mensch/Name"
+      ],
+      "targetelements": [
+        "Mite/Users/Name"
+      ],
+      "is1to1": false,
+      "additionalProps": {
+        "FULLPATH": "Mite DM:Mite/Users/zu IM",
+        "SOURCE-ID": "595a42f4-f8f9-4409-adaa-85efdea7332a",
+        "SOURCE-MODEL": "Mite DM"
+      }
+    }
+  ]
+}

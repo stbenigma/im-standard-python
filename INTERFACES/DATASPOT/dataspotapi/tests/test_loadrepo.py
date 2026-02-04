@@ -1,3 +1,4 @@
+import json
 import unittest
 import pytest
 from pathlib import Path
@@ -46,6 +47,40 @@ class MyTestCase(unittest.TestCase):
         #attributesbymodel=repo.dsaccess.getattributes(modelid=mymodel.get("modelId"))
         repo.loadmodels(modelnamepattern="^Information.*model$")
         return
+
+    def writejson(self,js,name):
+        outfilepath=self.debugpath/f"{name}.json"
+        with open(outfilepath,"w") as outfile:
+            json.dump(js,outfile,indent=2)
+
+    def test_loadmodelfiles(self):
+        if not Path.exists(self.credentialfile):
+            self.skipTest("\nno credentials found skip test with real credentials")
+
+        # check default access with credentialfile
+        repo=dataspotAPI(credentialfile=self.credentialfile,
+                         reponame=self.reponame,
+                         repoowner=self.repoowner)
+
+
+        tenant=repo.gettenant()
+        if tenant is not None: repo.tenantname=tenant.get("tenantName")
+        models=repo.getmodels(filtercondition=lambda x: x.get("tenantId")==tenant.get("tenantId"))
+        self.writejson(js=tenant,name=f"{self.repoowner}-tenant")
+        self.writejson(js=models,name=f"{self.repoowner}-models")
+
+        starturl=repo.dsaccess._basehttprequest(reqtype='api')
+        for model in models:
+            url=starturl + \
+                f"/schemes/{model.get('id')}/download?format=json&v=3"
+            # -L follows redirects, -s is silent mode
+            filename=self.debugpath/f"{repo.tenantname}-{model.get('label')}.json"
+            c.run(f"curl -L -s '{url}' -u '{repo.dsaccess.__un}:{repo.dsaccess.__pw}' -o {filename}")
+            print(f"model saved to {filename}")
+
+            #modelcont = repo.get1model(modelname=model.get("id"), outpath="test.json")
+            #self.writejson(js=modelcont, name=f"{self.repoowner}-{model.get('label')}")
+
 
 
 

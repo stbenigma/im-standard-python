@@ -9,7 +9,7 @@ from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot 
 class DataspotElements():
     def __init__(self, indirec=None, **kwargs):
         # models
-        self.tenant = kwargs.get("tenant")
+        self.tenant = kwargs.get("tenant",dict())
 
         self.dsmodels = dict()
         self.modelname = kwargs.get("modelname")

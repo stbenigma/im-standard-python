@@ -19,10 +19,24 @@ def alwayslist(x):
         else:
             return [x]
 
+def version() -> dict:
+    from pathlib import Path
+    import yaml
+    version_file = Path(__file__).parent / 'versions.yaml'
+    assert version_file.is_file(), f"Cannot read version file {version_file}"
+    with open(version_file, 'r') as src:
+        ver = yaml.safe_load(src)
+        return ver
+
+__version__ = version()
+
+
 from .jsonelements import JsonElement,model2json
 from .myjsonschema import ElementId,JsonSchema
 from .standardmodeljson import StandardJsonModel,IMStandardJsonModel,DMStandardJsonModel
 from .jsonvalidation import ValidateJsonModel,validateschema,remove_key_from_json
-from .genjsonschema import *
+from .genjsonschema import generatejsonschema,JsonExample,Json2JsonSchema
+
+
 
 

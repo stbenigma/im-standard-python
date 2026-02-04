@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime
 from pathlib import Path
 
@@ -372,10 +373,9 @@ def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                                        language=language,
                                        languages=languages)
 
-    outfilepath = Path(outpath) / (indirec.name + ".json")
+    outfilepath = Path(outpath)
     with open(outfilepath, 'w') as outfile:
         json.dump(jsonstruct, outfile, indent=2)
-        print('\n', outfilepath, " written")
 
     return jsonstruct
 

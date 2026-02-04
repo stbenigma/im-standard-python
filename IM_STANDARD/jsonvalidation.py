@@ -133,7 +133,7 @@ class ValidateJsonModel:
         # base uri for files referefencedin the refschemajs
         self.resolver = self.getresolver(basefile=str(self.referencefilepath),
                                          curjson=self.refschemajs,
-                                         referencepath=self._schemareferences(self.referencefilepath.parent)
+                                         referencepath=self._schemareferences(Path(self.referencefilepath).parent)
                                          )
         protocols.Validator.check_schema(self.refschemajs)
         self.model = None
@@ -160,6 +160,7 @@ class ValidateJsonModel:
         return retval
 
     @staticmethod
+
     def readjsonfromfile(filepath: Path):
         with open(filepath) as infile:
             myschemajs = json.load(fp=infile)

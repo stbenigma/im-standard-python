@@ -13,7 +13,7 @@ def getcredentials(credentialfile):
                 firstandonlykey=list (credentials.keys())[0]
                 firstcredential = credentials.get(firstandonlykey)
             else:
-                raise Exception(f"no proper credentials found for tenant {tenant} in file {credentialfile}")
+                raise Exception(f"no proper credentials found in file {credentialfile}")
     except Exception as exp:
         raise exp
 

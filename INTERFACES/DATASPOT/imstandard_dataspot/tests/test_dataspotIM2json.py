@@ -65,6 +65,57 @@ class Test_dataspot2im(unittest.TestCase):
         self.assertEqual(dauer["domainid"],doma.get("elementid"))
         return
 
+    def test_ds2im_astro(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
+        instance = exportIM2standard(inpath=inpath,
+                                     outpath=self.mydebugpath,
+                                     modelname="Astronomie Beispiel",
+                                     modelversion='0.9',
+                                     targetenv="Astronomie Beispiel",
+                                     language='de', languages=['en']
+                                     )
+
+        self.assertNotEqual(0, len(instance.get("Categories", [])))
+        self.assertEqual("GroupDomain", self.getelement(instance, "Domains", "Umlaufdauer")["domaintype"])
+        dauer = self.getelement(instance, "Attributes", "Dauer")
+        self.assertIsNotNone(dauer)
+        dauer = self.getelement(instance, "Attributes", "Dauer")
+        doma = self.getelement(instance, "Domains", "Dezimalzahl")
+        self.assertEqual(dauer.get("domainid"), doma.get("elementid"))
+        self.assertEqual("NumericDomain", doma["domaintype"])
+
+        # check generated json
+        from IM_STANDARD import validateschema
+        errors = validateschema(instance=instance,
+                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
+                                verbose=True)
+        if len(errors) > 0:
+            print("\n".join(errors))
+            self.assertTrue(False)
+
+        self.dumptodebug(filename=self.mydebugpath / "astronomie-schema-purejson.json",
+                         jsonstruct=remove_key_from_json(obj=instance,
+                                                         key_to_remove="additionalProps"
+                                                         ))
+        return
+
+    def test_ds2im_astro_assets(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie-assets"
+        instance = exportIM2standard(inpath=inpath,
+                                     outpath=self.mydebugpath,
+                                     modelname="Astronomie Assets",
+                                     modelversion='0.1',
+                                     targetenv="Astronomie Assets",
+                                     language='de', languages=['en']
+                                     )
+
+        self.dumptodebug(filename=self.mydebugpath / "astronomie-asset-purejson.json",
+                         jsonstruct=remove_key_from_json(obj=instance,
+                                                         key_to_remove="additionalProps"
+                                                         ))
+        return
+
+
     def test_ds2im_schwipsti_load(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)
@@ -97,40 +148,6 @@ class Test_dataspot2im(unittest.TestCase):
         transformations2= [t for t in jsonstruct.get("Transformations",[]) if not t.get("is1to1")]
         for t in transformations2:
             self.assertTrue(len(t.get("sourceelements"))!=1 or len(t.get("targetelements"))!=1)
-        return
-
-    def test_ds2im_astro(self):
-        inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
-        instance = exportIM2standard(inpath=inpath,
-                                     outpath=self.mydebugpath,
-                                     modelname="Astronomie Beispiel",
-                                     modelversion='0.9',
-                                     targetenv="Astronomie Beispiel",
-                                     language='de', languages=['en']
-                                     )
-
-        self.assertNotEqual(0, len(instance.get("Categories", [])))
-        self.assertEqual("GroupDomain",self.getelement(instance,"Domains","Umlaufdauer")["domaintype"])
-        dauer = self.getelement(instance,"Attributes","Dauer")
-        self.assertIsNotNone(dauer)
-        dauer=self.getelement(instance,"Attributes","Dauer")
-        doma= self.getelement(instance,"Domains","Dezimalzahl")
-        self.assertEqual(dauer.get("domainid"),doma.get("elementid"))
-        self.assertEqual("NumericDomain",doma["domaintype"])
-
-        # check generated json
-        from IM_STANDARD import validateschema
-        errors = validateschema(instance=instance,
-                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
-                                verbose=True)
-        if len(errors) > 0:
-            print("\n".join(errors))
-            self.assertTrue(False)
-
-        self.dumptodebug(filename=self.mydebugpath / "astronomie-schema-purejson.json",
-                         jsonstruct=remove_key_from_json(obj=instance,
-                                                         key_to_remove="additionalProps"
-                                                         ))
         return
 
     def test_ds2im_modelmodel(self):

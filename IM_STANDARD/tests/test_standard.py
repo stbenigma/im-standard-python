@@ -104,6 +104,10 @@ class MyTestCase(unittest.TestCase):
                                              referencepath=self.schemareferences )))
         return
 
+    def test_version(self):
+        import IM_STANDARD as imstd
+        ver=imstd.version()
+        self.assertTrue(imstd.__version__["im-standard"]["main"],ver["im-standard"]["main"])
 
 if __name__ == '__main__':
     unittest.main()
