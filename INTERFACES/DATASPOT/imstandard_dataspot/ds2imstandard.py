@@ -52,7 +52,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             for attr in self.standardjson.getelementinstances("Attributes"):
                 if attr["parentid"] == entiid:
                     origattr = self.getelementbyid(elements=self.attributes,
-                                                   id=attr.getid())
+                                                   elemid=attr.getid())
                     if origattr.get("identifying"):
                         keyelements.append(attr.getid())
             # find relationships with keys
@@ -60,7 +60,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                 if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
                         or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
                     origrela = self.getelementbyid(elements=self.relationships,
-                                                   id=rela.getid())
+                                                   elemid=rela.getid())
                     # generated relations (subtypes) have no original
                     if origrela is not None and origrela.get("identifying"):
                         keyelements.append(rela.getid())
@@ -77,6 +77,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                specialkeys=["subtypeOf"])
         # for dataspot mark entites as favorites
         additionalprops["favorite"] = element.get("favorite")
+        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
         elementi = JsonElement().entityjson(elementid=element.get("ID"),
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
@@ -152,6 +153,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                specialkeys=["order", "cardinality", "required",
                                                             "temporal", "MULTILINGUAL", "identifying"])
         # "computation",
+        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
         elemattr = JsonElement().attributejson(elementid=element.get("ID"),
                                                name=self.mutlilangvalue(fieldname="label",
                                                                         value=self._deref(element.get("label")),
@@ -330,9 +332,8 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
         additionalprops = {"FULLPATH": f"{nvl(targetenv,self.tenant.get('name',''))}:{modeltype}:{modelname}",
                            "SOURCE-SERVER": self.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
-                           "SOURCE-DB": self.tenant.get('db'),  # foryouandyourcustomers
                            "SOURCE-TENANT": self.tenant.get("name"),  # Sandbox"
-                           "SOURCE-HREF": f"{self.tenant.get('server')}{self.tenant.get('db')}/schemes/a54fed8f-8fed-39a0-a192-92310c56cfd6"
+                           "SOURCE-HREF": f"{self.tenant.get('server')}{self.tenant.get('uri')}"
                            }
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
@@ -359,17 +360,18 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
 def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                       targetenv=None,
-                      language='en', languages=[]):
+                      language='en', languages=[],
+                      server="https://myserver.io"):
     indirec = Path(inpath)
     dsschema = Dataspot2IMJsonschema(indirec=indirec, tenant={"name": targetenv,
                                                               "id": None,
                                                               "uri": None,
-                                                              "db": "foryouandyourcustomers",
-                                                              "server": "https://partner.dataspot.io/rest/"}
+                                                              "db": None,
+                                                              "server": server}
                                      )
     jsonstruct = dsschema.generatejson(modelname=nvl(modelname, indirec.name),
                                        modelversion=modelversion,
-                                       targetenv=dsschema.tenant.get("name"),
+                                       targetenv=nvl(targetenv,dsschema.tenant.get("name")),
                                        language=language,
                                        languages=languages)
 

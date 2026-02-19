@@ -91,6 +91,7 @@ class JSModel:
 
         self.languages = {}  # langid:iso2
         self._jsfile = kwargs.get('jsonfile')
+        self._checked = None
 
     @property
     def git_revision(self):
@@ -428,7 +429,7 @@ class JSModel:
                         "1.0": upgr00_10}
         destversion = "0.0"#parameters.jsonversion()
         curversion = self.getjsversion()
-        while curversion < destversion:
+        while curversion.__str__ < destversion:
             if curversion.major < destversion.major and curversion.minor < 99:
                 curversion = version.Version(f"{curversion.major}.{curversion.minor + 1}")
             else:

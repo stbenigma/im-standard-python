@@ -106,14 +106,14 @@ class Json2dataspot():
         result.append(Json2dataspot.escapestr(''.join(current_segment)))
         return result
 
-    def getelembyid(self, id, elemtype):
+    def getelembyid(self, elemid, elemtype):
         for e in self.model.jsonschemamodel[elemtype]:
-            if e.get("elementid") == id:
+            if e.get("elementid") == elemid:
                 return e
-        assert False, f"Id {id} not found in elementtype {elemtype}"
+        assert False, f"Id {elemid} not found in elementtype {elemtype}"
 
-    def getfieldbyid(self, id, elemtype, field="name"):
-        elem = self.getelembyid(id=id, elemtype=elemtype)
+    def getfieldbyid(self, elemid, elemtype, field="name"):
+        elem = self.getelembyid(elemid=elemid, elemtype=elemtype)
         retval = elem.get(field)
         if field in ("name", "shortdescr", "description"):
             return self.model.mlvalue(retval)
@@ -122,7 +122,7 @@ class Json2dataspot():
 
     def getcategoryname(self, catgid):
         if catgid is None: return ""  # stop recursion
-        catg = self.getelembyid(id=catgid, elemtype="Categories")
+        catg = self.getelembyid(elemid=catgid, elemtype="Categories")
         retval = self.fullescapestr(self.model.mlvalue(catg.get("name")))
         if catg.get("parent") is not None:
             retval = self.getcategoryname(catgid=catg.get("parent")) + "/" + retval
@@ -214,7 +214,7 @@ class Json2dataspot():
                                                                  "maxcardinality",
                                                                  "refdataobjectid",
                                                                  "attributeref"])
-            todato = self.getelembyid(id=dataref.get("refdataobjectid"),
+            todato = self.getelembyid(elemid=dataref.get("refdataobjectid"),
                                       elemtype="DataObjects")
             retval.append(self.fillstruct(elementtype="UmlAssociation",
                                           hasDomain=self.dataobjecteref(catgid=dataobject.get('categoryid'),
@@ -252,15 +252,15 @@ class Json2dataspot():
             assoc12 = self.model.mlvalue(rela["fwd"].get("assoctext"))
             assoc12 = "is" if nvl(assoc12) == "" else assoc12.strip()
             arc_12 = rela["fwd"].get("arcnumber")
-            rangeobj = self.getelembyid(id=rela["fwd"].get("entityid"), elemtype="Entities") if modeltype == "IM" \
-                else self.getelembyid(id=rela["fwd"].get("dataobjectid"), elemtype="DataObjects")
+            rangeobj = self.getelembyid(elemid=rela["fwd"].get("entityid"), elemtype="Entities") if modeltype == "IM" \
+                else self.getelembyid(elemid=rela["fwd"].get("dataobjectid"), elemtype="DataObjects")
 
             relamult21 = self._multiplicity(card=rela["bwd"].get("cardinality"), mand=rela["bwd"].get("mandatory"))
             assoc21 = self.model.mlvalue(rela["bwd"].get("assoctext"))
             assoc21 = "is" if nvl(assoc21) == "" else assoc21.strip()
             arc_21 = rela["bwd"].get("arcnumber")
-            domainobj = self.getelembyid(id=rela["bwd"].get("entityid"), elemtype="Entities") if modeltype == "IM" \
-                else self.getelembyid(id=rela["bwd"].get("dataobjectid"), elemtype="DataObjects")
+            domainobj = self.getelembyid(elemid=rela["bwd"].get("entityid"), elemtype="Entities") if modeltype == "IM" \
+                else self.getelembyid(elemid=rela["bwd"].get("dataobjectid"), elemtype="DataObjects")
 
             """ define the direction of the relationship in dataspot
                 1->M  1 ist first (domainid) direction RANGE
@@ -383,7 +383,7 @@ class Json2dataspot():
 
     def path(self, catgid):
         if catgid is None: return None
-        catg = self.getelembyid(id=catgid, elemtype="Categories")  # self.jsonschemamodel["Categories"].get(catgid)
+        catg = self.getelembyid(elemid=catgid, elemtype="Categories")  # self.jsonschemamodel["Categories"].get(catgid)
         retval = None
         if catg is not None:
             if catg.get("parent") is None:
@@ -410,7 +410,7 @@ class Json2dataspot():
         datalist = self.model.jsonschemamodel.get("DataAttributes", [])
         retval = []
         for data in datalist:
-            dataobject = self.getelembyid(id=data.get("dataobjectid"), elemtype="DataObjects")
+            dataobject = self.getelembyid(elemid=data.get("dataobjectid"), elemtype="DataObjects")
             additionalprops = data.get("additionalProps", dict())
             additionalprops.update(self.mlvalues("name", "description", "shortdescr",
                                                  elem=data, default=False))
@@ -452,13 +452,6 @@ class Json2dataspot():
         else:
             collectionname = self.getcategoryname(catgid=catgid)
         return collectionname
-
-    def collectionfullname(self, catgid):
-        if catgid is None:
-            collpath = self.DUMMYCOLLECTION
-        else:
-            collectionname = self.getcategoryname(catgid=catgid)
-        return collpath
 
     def entitylist(self) -> list:
         # TODO resolve subcategories, requiring a parent categoriy as reference
@@ -520,9 +513,9 @@ class Json2dataspot():
                                           additionalProps=additionalprops
                                           )
                           )
-            for idx, val in enumerate(doma.get("values", [])):
+            for idx2, val in enumerate(doma.get("values", [])):
                 retval.append(self.fillstruct(elementtype="ReferenceValue",
-                                              favorite=idx < 3,
+                                              favorite=idx2 < 3,
                                               literalOf=self.fullescapestr(
                                                   self.model.mlvalue(doma.get("name"), lang=self.model.mainlang)),
                                               timeSeries=[{

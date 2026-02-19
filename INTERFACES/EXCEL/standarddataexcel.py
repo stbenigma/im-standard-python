@@ -86,7 +86,7 @@ class StandardDataExcel(StandardExcel):
                         except:
                             isdate = False
 
-                    self.dataattributes.append(JsonElement().dataattributejson(elementid=ElementId.nextid("DATA"),
+                        self.dataattributes.append(JsonElement().dataattributejson(elementid=ElementId.nextid("DATA"),
                                                                                name=cell.value,
                                                                                mandatory=None,
                                                                                dataobjectid=datoid,

@@ -337,8 +337,7 @@ class ValidateJsonModel:
             # all attributes must have a value in the main mainlanguage
             if not (type(attr.get("name")) == str or myschema.mainlang in attr.get("name")):
                 #if verbose: logging.error(
-                #    f"Missing attribute name {attr.get('name')} in main language in entity {enti.get('name')}")
-                errors.append(f"Missing attribute name {attr.get('name')} in main language in entity {enti.get('name')}")
+                errors.append(f"Missing attribute name {attr.get('name')} in main language in entity {attr.get('parentid')}")
 
             # all referenced domains must exist in the domainlist
             domaid = attr.get("domainid")
@@ -457,7 +456,7 @@ class ValidateJsonModel:
                 error.append(ex.args[0])
         return error
 
-    def validateschemaonly(self, instance, verbose=False) -> int:
+    def validateschemaonly(self, instance, verbose=False) -> list:
         """
 
         @param instance:
@@ -478,7 +477,7 @@ class ValidateJsonModel:
                                       verbose=verbose)
         return error
 
-    def validatemodel(self, instance, verbose=False) -> int:
+    def validatemodel(self, instance, verbose=False) -> list:
         """
         @param instance:
             dict or path to json file to be validated against my schemafile
@@ -496,7 +495,7 @@ class ValidateJsonModel:
 def validateschema(instance,
                    schemafile,
                    verbose=False,
-                   schemaonly=False) -> bool:
+                   schemaonly=False) -> list:
     """
     validatemodel the instance of an informationmodel schemafile in a file against the json-schemafile of the informationmodel
 

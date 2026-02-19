@@ -144,13 +144,13 @@ class Dataspot2Jsonbase(DataspotElements):
         self.standardjson.addelementinstance(name="Categories", val=newcategories)
         return
 
-    def getelementbyid(self, elements, id):
-        elem = [e for e in elements.values() if e.get("ID") == id]
+    def getelementbyid(self, elements, elemid):
+        elem = [e for e in elements.values() if e.get("ID") == elemid]
         if len(elem) == 0:
             return None
         elif len(elem) == 1:
             return elem[0]
-        assert False, f"element id {id} found more than once"
+        assert False, f"element id {elemid} found more than once"
 
     def getelementid(self, elementtype, elementname):
         """ beware of translated names with mlvalue() """
@@ -208,6 +208,8 @@ class Dataspot2Jsonbase(DataspotElements):
                                     name=parentname, fullname=True)
 
         additionalprops = self.additionalprops(elem=element, specialkeys=["parentid"])
+        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
+
         jsonstruct = JsonElement().categoryjson(elementid=element.get("ID"),
                                                     name=self.mutlilangvalue(fieldname="label",
                                                                              value=element.get("label"),
@@ -355,6 +357,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "cardinality",
                                                             "navigable",
                                                             "ARC-21", "ARC-12"])
+        #additionalprops["SOURCE-HREF"]= self.sourcehref(element)
         intval = lambda x: None if element.get(x) is None else int(element.get(x))
         fwdend = JsonElement().relationendjson(entityid=entityid1,
                                                    dataobjectid=dataobjectid1,
@@ -417,7 +420,7 @@ class Dataspot2Jsonbase(DataspotElements):
     def fillrelation(self, modelname, rela):
         self.imjson.addelementinstance(name="Relations",
                                        val=self.relationjson(modelname=modelname,
-                                                             key=ElementId.nextid("RELA"),
+                                                             #key=ElementId.nextid("RELA"),
                                                              relationtype=self._relationtype(rela),
                                                              element=rela)
                                        )
@@ -586,6 +589,8 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "baseType",
                                                             "Unit", "pattern"
                                                             ])
+        additionalprops["SOURCE-HREF"]= self.sourcehref(doma)
+
 
         JsonElement.optionalprop(destobject=additionalprops,
                                  propname="SOURCE-DATATYPE",

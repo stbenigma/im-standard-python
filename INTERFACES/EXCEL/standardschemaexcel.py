@@ -45,7 +45,7 @@ class StandardSchemaExcel(StandardExcel):
                               )
         return dataobject
 
-    def getrowvalue(selfr,row,index):
+    def getrowvalue(self,row,index):
         #index is 1..n, rows are 0..n-1
         return None if index is None else row[index-1].value
 
@@ -68,8 +68,7 @@ class StandardSchemaExcel(StandardExcel):
                 elif cell.column not in headers.values():
                     name=sheet.cell(row=headerline,column=cell.column).value
                     additionalprops[name]=cell.value
-
-            additionalprops = {"SOURCE-ID": f"{sheet.title}:{cell.coordinate}"}
+                additionalprops["SOURCE-ID"]= f"{sheet.title}:{cell.coordinate}"
             attributes.append(JsonElement().dataattributejson(elementid=dataid,
                                                               name=self.getrowvalue(row,headers.get("Name")),
                                                               mandatory=

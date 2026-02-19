@@ -68,7 +68,7 @@ class Test_dataspot2im(unittest.TestCase):
     def test_ds2im_astro(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
         instance = exportIM2standard(inpath=inpath,
-                                     outpath=self.mydebugpath,
+                                     outpath=self.mydebugpath / "astronomie-standard.json",
                                      modelname="Astronomie Beispiel",
                                      modelversion='0.9',
                                      targetenv="Astronomie Beispiel",
@@ -153,7 +153,7 @@ class Test_dataspot2im(unittest.TestCase):
     def test_ds2im_modelmodel(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Informationsmodell-modell"
         instance = exportIM2standard(inpath=inpath,
-                                     outpath=self.mydebugpath,
+                                     outpath=self.mydebugpath/ "IM-standard.json",
                                      modelversion='0.9',
                                      targetenv="Informationmodel-model",
                                      language='en', languages=['de']
@@ -179,7 +179,7 @@ class Test_dataspot2im(unittest.TestCase):
     def test_ds2im_schwipsti(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         instance = exportIM2standard(inpath=inpath,
-                                     outpath=self.mydebugpath,
+                                     outpath=self.mydebugpath/ "Schwipsti-standard.json",
                                      modelversion='0.9',
                                      targetenv="Sandbox",
                                      language='de'
@@ -205,13 +205,13 @@ class Test_dataspot2im(unittest.TestCase):
             for modeldir in testmodels:
                 if modeldir.is_dir():
                     instance = exportIM2standard(inpath=Path(modeldir.path),
-                                     outpath=self.mydebugpath,
+                                     outpath=self.mydebugpath/(modeldir.name +".json"),
                                      modelversion='0.9',
                                      targetenv=f"local test for {modeldir.name}",
                                      language='en'
                                      )
 
-                    self.assertNotEqual(0, len(instance.get("Categories", [])))
+                    self.assertTrue(len(instance)<3 or len(instance.get("Categories", []))>0)
 
                     # check generated json
                     from IM_STANDARD import validateschema

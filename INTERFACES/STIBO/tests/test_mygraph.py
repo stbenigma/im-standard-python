@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
         ])
         self.assertSetEqual(set('D'),g.get_descendants('E'))
         self.assertSetEqual(set(),g.get_descendants('X'))
-        self.assertSetEqual(set(['B','D','C']),g.get_descendants('A'))
+        self.assertSetEqual({'B', 'D', 'C'}, g.get_descendants('A'))
 
     def test_predecessors(self):
         g = Graph(graph=[
@@ -23,8 +23,8 @@ class MyTestCase(unittest.TestCase):
             ('E', 'D'),
         ])
         self.assertSetEqual(set(),g.get_predecessors('A'))
-        self.assertSetEqual(set(['A']),g.get_predecessors('B'))
-        self.assertSetEqual(set(['A','E','C','B']),g.get_predecessors('D'))
+        self.assertSetEqual({'A'}, g.get_predecessors('B'))
+        self.assertSetEqual({'A', 'E', 'C', 'B'}, g.get_predecessors('D'))
 
 if __name__ == '__main__':
     unittest.main()

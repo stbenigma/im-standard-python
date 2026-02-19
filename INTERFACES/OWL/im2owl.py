@@ -2,7 +2,7 @@ import json
 
 
 def generate_owl_turtle_from_im(im_data: dict,
-                                base_uri: str = "http://ihre-firma.com/ontology/im#") -> str:
+                                base_uri: str = "https://ihre-firma.com/ontology/im#") -> str:
     """
     Transformiert ein Informationsmodell (JSON) in eine OWL-Turtle-Repräsentation.
 

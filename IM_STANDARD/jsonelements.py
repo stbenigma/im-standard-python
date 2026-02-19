@@ -239,7 +239,6 @@ class JsonElement:
                         entityid=None, dataobjectid=None,
                         historicised=None,
                         arcnumber=None):
-        self.elemtype == "RelationEnd"
 
         if entityid is not None:
             self.data["entityid"] = entityid

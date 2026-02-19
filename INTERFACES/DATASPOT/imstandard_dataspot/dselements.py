@@ -41,6 +41,9 @@ class DataspotElements():
             self.readmodels(indirec)
         return
 
+    def sourcehref(self,element):
+        return  f"{self.tenant.get('server')}{element.get('href').replace('/web/','/rest/')}"
+
     def modeltype(self, struct):
         if type(struct) == list:
             keyset = set([elem.get("_type") for elem in struct])
@@ -272,8 +275,8 @@ class DataspotElements():
         return
 
     def readmodels(self, path: Path):
-        def readjson(path, modelname=None):
-            with open(path) as f:
+        def readjson(lpath, modelname=None):
+            with open(lpath) as f:
                 struct = json.load(f)
 
                 if type(struct) == dict and "_type" in struct:
@@ -284,12 +287,12 @@ class DataspotElements():
 
         if path.is_file():
             self.modelname = nvl(self.modelname, path.stem)
-            readjson(path=path, modelname=self.modelname)
+            readjson(lpath=path, modelname=self.modelname)
         elif path.is_dir():
             for onepath in path.iterdir():
                 if onepath.suffix == '.json':
                     self.modelname = onepath.stem
-                    readjson(path=onepath, modelname=self.modelname)
+                    readjson(lpath=onepath, modelname=self.modelname)
         else:
             raise Exception(f"path must be file or directory {path.__str__()}")
             raise Exception(f"path must be file or directory {path.__str__()}")

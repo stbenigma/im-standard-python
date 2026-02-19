@@ -44,7 +44,8 @@ class Testjson2dataspot(unittest.TestCase):
             self.dumptodebug(filename="dataspotstandard.json",jsonstruct=jsonstruct)
             with open(Path(tempdir) / "dataspotstandard.json", "w") as outfile:
                 json.dump(jsonstruct, outfile, indent=2)
-            smjs.validateschema(instance=jsonstruct, verbose=True,schemaonly=True)
+            smjs.validateschema(instance=jsonstruct, schemafile=Path(tempdir) / "dataspotstandard.json",
+                                verbose=True,schemaonly=True)
             return
             j2d.json2dataspot(injson=Path(tempdir) / "dataspotstandard.json",
                               outpath=Path(tempdir))
@@ -63,7 +64,8 @@ class Testjson2dataspot(unittest.TestCase):
             self.dumptodebug(filename="dataspotstandard.json",jsonstruct=jsonstruct)
             with open(Path(tempdir) / "dataspotstandard.json", "w") as outfile:
                 json.dump(jsonstruct, outfile, indent=2)
-                smjs.validateschema(instance=jsonstruct, verbose=True,schemaonly=True)
+                smjs.validateschema(instance=jsonstruct, schemafile=Path(tempdir) / "dataspotstandard.json",
+                                    verbose=True,schemaonly=True)
 
             j2d.json2dataspot(injson=Path(tempdir) / "dataspotstandard.json",
                               outpath=Path(tempdir))

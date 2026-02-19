@@ -50,15 +50,15 @@ class TestModelSchema(unittest.TestCase):
                                                    targetenv="Standard IM",
                                                    description=None)
         puremodel=model2json(instance.jsonschemamodel)
-        self.assertTrue(validateschema(instance=puremodel,
+        self.assertTrue(len(validateschema(instance=puremodel,
                                                 schemafile=self.myschemafile,
                                                 verbose=True,
-                                                schemaonly=True)
+                                                schemaonly=True))==0
                          )
-        self.assertTrue(validateschema(instance=puremodel,
+        self.assertTrue(0==len(validateschema(instance=puremodel,
                                             schemafile=self.myschemafile,
                                             verbose=True,
-                                            schemaonly=False)
+                                            schemaonly=False))
                         )
         if self.mydebugpath.exists():
             debugfile = self.mydebugpath / 'imstandardstandardjson.json'
@@ -128,11 +128,13 @@ class TestModelSchema(unittest.TestCase):
 
     def test_myMmodels(self):
         for imstandardmodelfilepath in [#Path("/Users/stb/Documents/Projekte/BOBTDCC/DB/BOSCH_BT_ENG.json"),
-                                        Path("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-ModellModell/gitHub/DB/ModellModell_neu.json")]:
-                # Path("/Users/stb/Documents/Projekte/GEBININF/DB/IM_GEBERIT.json")
+                    # Path("/Users/stb/Documents/Projekte/GEBININF/DB/IM_GEBERIT.json")
+            Path("/Users/stb/Documents/Projekte/FYAYC_intern/FYAIM/DB/FYAYC_intern_GTOP.json"),
+            Path("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-ModellModell/gitHub/DB/ModellModell_neu.json")
+        ]:
             if not imstandardmodelfilepath.is_file():
+                print (f"local im {imstandardmodelfilepath.stem} standardfile not found")
                 continue
-                #print self.skipTest(f"local im {imstandardmodelfilepath.stem} standardfile not found")
             imstandardmodel = JSModel.readfromfile(imstandardmodelfilepath)
             spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
             instance = spodschema.generatestandardjson(modeltype="Information model",

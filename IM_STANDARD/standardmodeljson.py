@@ -22,7 +22,6 @@ class StandardJsonModel:
     # Standard functions for json-schema-handling
     def inschema(self, componentname: str) -> bool:
         """
-        :param schema: schema to parse
         :param componentname: name of component object to find
         :return: true if component is schemas main object (according to $id
                         or if component is in "components/schemas"
@@ -63,19 +62,6 @@ class StandardJsonModel:
         else:
             return dict()
 
-    # def getproperty(self, componentname,propertyname) -> dict:
-    #     """
-    #     :param componentname:
-    #     :param propertyname:
-    #     :return: "property with this name
-    #              exception if component was not found
-    #              None if property was not found
-    #     """
-    #     if self.inschema(componentname):
-    #         return self.getcomponent(componentname).get("properties", dict())
-    #     else:
-    #         return dict()
-
 
 class IMStandardJsonModel(StandardJsonModel):
     DEFAULTLANGUAGE = "en"
@@ -84,23 +70,7 @@ class IMStandardJsonModel(StandardJsonModel):
     def __init__(self):
         super().__init__(modelfilepath=self.IMDEFINITIONFILEPATH)
         # make sure, my reference is a correct json-schema
-        validate_jsonfile_as_schema(json_file_path=self.IMDEFINITIONFILEPATH)
-
-    def getimelements(self, ) -> list():
-        """
-            returns list of all elements of information model
-            =  propery with given name
-        None if not found
-        """
-        return self.schema.get("properties")
-
-    def getimelement(self, elementname: str) -> dict():
-        """
-            returns element of information model
-            =  propery with given name
-        None if not found
-        """
-        return self.getimelements().get(elementname)
+        validate_jsonfile_as_schema(json_file_path=str(self.IMDEFINITIONFILEPATH))
 
 
 class DMStandardJsonModel(StandardJsonModel):
@@ -108,22 +78,7 @@ class DMStandardJsonModel(StandardJsonModel):
     DMDEFINITIONFILEPATH = StandardJsonModel.SCHEMADEFPATH / "DataModel-schema.json"
 
     def __init__(self):
-        super().__init__(modelfilepath=self.IMDEFINITIONFILEPATH)
+        super().__init__(modelfilepath=self.DMDEFINITIONFILEPATH)
         # make sure, my reference is a correct json-schema
-        validate_jsonfile_as_schema(json_file_path=self.DMDEFINITIONFILEPATH)
+        validate_jsonfile_as_schema(json_file_path=str(self.DMDEFINITIONFILEPATH))
 
-    def getimelements(self, ) -> list():
-        """
-            returns list of all elements of the model
-            =  propery with given name
-        None if not found
-        """
-        return self.schema.get("properties")
-
-    def getimelement(self, elementname: str) -> dict():
-        """
-            returns element of information model
-            =  propery with given name
-        None if not found
-        """
-        return self.getimelements().get(elementname)

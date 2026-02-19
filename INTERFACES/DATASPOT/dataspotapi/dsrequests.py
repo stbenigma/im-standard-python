@@ -39,6 +39,7 @@ class DSRequest:
         self.__pw=None
         self.__accesskey=None
         self.__token=None
+        lclientid = None
         if username is None:
             if credentialfile is None:
                 credentialfile = self.DEFAULT_CREDENTIALS
@@ -54,11 +55,9 @@ class DSRequest:
             except Exception as exp:
                 logging.error(exp)
                 raise exp
-
         else:
             self.__un = username
             self.__pw = password
-            lclientid = None
             self.__accesskey = None
 
         if viaazure:

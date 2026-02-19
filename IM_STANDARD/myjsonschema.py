@@ -28,9 +28,9 @@ class ElementId:
         ElementId.idmax = {key: 0 for key in ElementId.OBJNAMES.keys()}
 
     @staticmethod
-    def setnextid(objtype, id):
+    def setnextid(objtype, objid):
         if objtype in ElementId.idmax:
-            ElementId.idmax[objtype] = id
+            ElementId.idmax[objtype] = objid
         return
 
     @staticmethod

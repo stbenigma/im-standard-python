@@ -2,7 +2,7 @@ import json
 import logging
 from pathlib import Path
 
-from INTERFACES.DATASPOT.imstandard_dataspot import Json2dataspot
+from INTERFACES.DATASPOT.imstandard_dataspot import Json2dataspot,JsonElement
 from IM_STANDARD import nvl, alwayslist
 from INTERFACES.STIBO.loadstep import LoadStep
 
@@ -55,15 +55,15 @@ class Step2Dataspot:
     def doinattrgroup(self, groups, attrgroup, source, outmodelname,
                       parent, path,
                       grouptype):
-        id = attrgroup.get("@ID")
-        mypath = path + self._attrgrppath(attrgroup) + [id]
+        grpid = attrgroup.get("@ID")
+        mypath = path + self._attrgrppath(attrgroup) + [grpid]
         children = alwayslist(attrgroup.get(grouptype))
-        if self.loadedstep.getelement(groups, id) is not None:
-            logging.warning(f"Duplicate {grouptype} {id} from source {source}")
+        if self.loadedstep.getelement(groups, grpid) is not None:
+            logging.warning(f"Duplicate {grouptype} {grpid} from source {source}")
 
         else:
             group = {"name": attrgroup.get("Name"),
-                     "ID": id,
+                     "ID": grpid,
                      "MODEL": outmodelname,
                      "PARENT": parent,
                      "SOURCE": source,
@@ -75,7 +75,7 @@ class Step2Dataspot:
             self.doinattrgroup(groups=groups,
                                attrgroup=subattrgroup,
                                outmodelname=outmodelname,
-                               parent=id,
+                               parent=grpid,
                                source=source,
                                path=mypath,
                                grouptype=grouptype)
@@ -113,7 +113,7 @@ class Step2Dataspot:
         lcoll = Json2dataspot.fillstruct(elementtype="Collection",
                                          label=coll.get("ID")
                                          )
-        Json2dataspot.optionalprop(destobject=lcoll,
+        JsonElement.optionalprop(destobject=lcoll,
                                    propname="title",
                                    value=self.multilang(coll.get("name"))
                                    )
@@ -121,7 +121,7 @@ class Step2Dataspot:
         colpath = None if parent is None else coll.get("PATH")[:-1]
         # (with "_coll" endings if required)
         if withcoll: colpath = self._addcollname(colpath)
-        Json2dataspot.optionalprop(destobject=lcoll,
+        JsonElement.optionalprop(destobject=lcoll,
                                    propname="inCollection",
                                    value=self.joinpath(colpath)
                                    )
@@ -327,9 +327,9 @@ class GenerateReferences(Step2Dataspot):
                                            label=refobj.get("ID"),
                                            title=self.multilang(refobj.get("Name")).__str__()
                                            )
-        Json2dataspot.optionalprop(lovjson, "inCollection",
+        JsonElement.optionalprop(lovjson, "inCollection",
                                    self.joinpath(collectionpath))
-        Json2dataspot.optionalprop(lovjson, "subordinateOf", parent)
+        JsonElement.optionalprop(lovjson, "subordinateOf", parent)
         return lovjson
 
     def _generate1value(self, valueobj, parent, idx):
@@ -341,9 +341,9 @@ class GenerateReferences(Step2Dataspot):
                                                  "code": Json2dataspot.escapestr(valueobj.get("code"))
                                              }]
                                              )
-        Json2dataspot.optionalprop(valuejson["timeSeries"][0], "shortText",
+        JsonElement.optionalprop(valuejson["timeSeries"][0], "shortText",
                                    Json2dataspot.escapestr(self.multilang(valueobj.get("text")).__str__()))
-        Json2dataspot.optionalprop(valuejson, "favorite", idx < 3)
+        JsonElement.optionalprop(valuejson, "favorite", idx < 3)
         return valuejson
 
     def _generatelovs(self, jsonstruct):
@@ -373,7 +373,7 @@ class GenerateReferences(Step2Dataspot):
                     valueobj = {"code": val.__str__() if vid is None else vid.__str__(),
                                 "text": val.__str__()}
                 else:
-                    valueobj = {"code": val.__str__(),
+                    valueobj = {"code": value.__str__(),
                                 "text": None}
 
                 jsonstruct.append(self._generate1value(
@@ -405,11 +405,11 @@ class GenerateDomains(Step2Dataspot):
             lcoll = Json2dataspot.fillstruct(elementtype="Collection",
                                              label=collname
                                              )
-            Json2dataspot.optionalprop(destobject=lcoll,
+            JsonElement.optionalprop(destobject=lcoll,
                                        propname="title",
                                        value=self.multilang(attrgroup.get("name"))
                                        )
-            Json2dataspot.optionalprop(destobject=lcoll,
+            JsonElement.optionalprop(destobject=lcoll,
                                        propname="inCollection",
                                        value=self.joinpath(parentpath)
                                        )
@@ -444,25 +444,25 @@ class GenerateDomains(Step2Dataspot):
                                           inCollection=self.joinpath(collectionname),
                                           examples=attrgroup.get("examples")
                                           )
-        Json2dataspot.optionalprop(destobject=domain, propname="DIMENSIONREF", value=attrgroup.get("DimensionRef"))
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRGRPREF", value=[agl.get("@AttributeGroupID")
+        JsonElement.optionalprop(destobject=domain, propname="DIMENSIONREF", value=attrgroup.get("DimensionRef"))
+        JsonElement.optionalprop(destobject=domain, propname="ATTRGRPREF", value=[agl.get("@AttributeGroupID")
                                                                                     for agl in alwayslist(
                 attrgroup.get("AttributeGroupLink"))] if "AttributeGroupLink" in attrgroup else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRCALC", value=attrgroup.get("Derived") == 'true' \
+        JsonElement.optionalprop(destobject=domain, propname="ATTRCALC", value=attrgroup.get("Derived") == 'true' \
             if "Derived" in attrgroup else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRMAND", value=attrgroup.get("Mandatory") == 'true'
+        JsonElement.optionalprop(destobject=domain, propname="ATTRMAND", value=attrgroup.get("Mandatory") == 'true'
         if "Mandatory" in attrgroup else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRMULTIVALUE",
+        JsonElement.optionalprop(destobject=domain, propname="ATTRMULTIVALUE",
                                    value=attrgroup.get("MultiValued") == 'true'
                                    if "MultiValued" in attrgroup else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="PROCMODE", value=attrgroup.get("ProductMode"))
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRDISPLSEQ", value=attrgroup.get("displ"))
+        JsonElement.optionalprop(destobject=domain, propname="PROCMODE", value=attrgroup.get("ProductMode"))
+        JsonElement.optionalprop(destobject=domain, propname="ATTRDISPLSEQ", value=attrgroup.get("displ"))
 
         domains.append(domain)
         # fill group attributes
         idx = 0
         for grpattr in groupchildren:
-            range = self._attrgrppath(grpattr)
+            lrange = self._attrgrppath(grpattr)
             path = collectionname + [grpid]
             idx += 1
             attribut = Json2dataspot.fillstruct(elementtype="DataAttribute",
@@ -470,7 +470,7 @@ class GenerateDomains(Step2Dataspot):
                                                 description=Json2dataspot.escapestr("see where?"),
                                                 order=str(idx),
                                                 hasDomain=self.joinpath(path),
-                                                hasRange=self.joinpath(range + [grpattr.get("ID")]),
+                                                hasRange=self.joinpath(lrange + [grpattr.get("ID")]),
                                                 # stereotype=self.STIBOSTEREOTYPE,
                                                 favorite=idx < 3,
                                                 derived=grpattr.get("Derived") == 'true',
@@ -502,8 +502,8 @@ class GenerateDomains(Step2Dataspot):
             if domaintype == "TextDomain":
                 domain["pattern"] = validation.get("@InputMask")
                 domain["baseType"] = "STRING"
-                Json2dataspot.optionalprop(destobject=domain, propname="maxLength", value=validation.get("@MaxLength"))
-                # Json2dataspot.optionalprop(destobject=domainid, propname="minLength", value=validation.get("@MinLength"))
+                JsonElement.optionalprop(destobject=domain, propname="maxLength", value=validation.get("@MaxLength"))
+                # JsonElement.optionalprop(destobject=domainid, propname="minLength", value=validation.get("@MinLength"))
                 domain["minInclusive"] = None
                 domain["maxInclusive"] = None
                 domain["minExclusive"] = None
@@ -512,9 +512,9 @@ class GenerateDomains(Step2Dataspot):
                 domain["fractionDigits"] = None
             elif domaintype == "NumericDomain":
                 domain["baseType"] = "DECIMAL"
-                Json2dataspot.optionalprop(destobject=domain, propname="minInclusive",
+                JsonElement.optionalprop(destobject=domain, propname="minInclusive",
                                            value=validation.get("@MinValue"))
-                Json2dataspot.optionalprop(destobject=domain, propname="maxInclusive",
+                JsonElement.optionalprop(destobject=domain, propname="maxInclusive",
                                            value=validation.get("@MaxValue"))
                 domain["minLength"] = None
                 domain["maxLength"] = None
@@ -526,23 +526,23 @@ class GenerateDomains(Step2Dataspot):
                 domain["integerDigits"] = None
                 domain["fractionDigits"] = None
 
-        Json2dataspot.optionalprop(destobject=domain, propname="DIMENSIONREF", value=doma.get("DimensionRef"))
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRGRPREF", value=[agl.get("@AttributeGroupID")
+        JsonElement.optionalprop(destobject=domain, propname="DIMENSIONREF", value=doma.get("DimensionRef"))
+        JsonElement.optionalprop(destobject=domain, propname="ATTRGRPREF", value=[agl.get("@AttributeGroupID")
                                                                                     for agl in alwayslist(
                 doma.get("AttributeGroupLink"))]
         if "AttributeGroupLink" in doma else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRCALC", value=doma.get("Derived") == 'true' \
+        JsonElement.optionalprop(destobject=domain, propname="ATTRCALC", value=doma.get("Derived") == 'true' \
             if "Derived" in doma else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRMAND", value=doma.get("Mandatory") == 'true'
+        JsonElement.optionalprop(destobject=domain, propname="ATTRMAND", value=doma.get("Mandatory") == 'true'
         if "Mandatory" in doma else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRMULTIVALUE", value=doma.get("MultiValued") == 'true'
+        JsonElement.optionalprop(destobject=domain, propname="ATTRMULTIVALUE", value=doma.get("MultiValued") == 'true'
         if "MultiValued" in doma else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRFULLTEXT",
+        JsonElement.optionalprop(destobject=domain, propname="ATTRFULLTEXT",
                                    value=doma.get("FullTextIndexed") == 'true' \
                                        if "FullTextIndexed" in doma else None)
-        Json2dataspot.optionalprop(destobject=domain, propname="PROCMODE", value=doma.get("ProductMode"))
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRDISPLSEQ", value=doma.get("displ"))
-        Json2dataspot.optionalprop(destobject=domain, propname="ATTRMULTILANG",
+        JsonElement.optionalprop(destobject=domain, propname="PROCMODE", value=doma.get("ProductMode"))
+        JsonElement.optionalprop(destobject=domain, propname="ATTRDISPLSEQ", value=doma.get("displ"))
+        JsonElement.optionalprop(destobject=domain, propname="ATTRMULTILANG",
                                    value="Language" in {d.get("@DimensionID") for d in
                                                         alwayslist(doma.get("@DimensionLink"))}
                                    if "@DimensionLink" in doma else None)
@@ -657,7 +657,7 @@ class GenerateDatamodel(Step2Dataspot):
                                             favorite=False
                                             )
 
-        # Json2dataspot.optionalprop(usertype, "", None)
+        # JsonElement.optionalprop(usertype, "", None)
         jsonstruct.append(usertype)
 
         parentpath = collectionpath + [ut.get("ID")]

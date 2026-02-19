@@ -43,7 +43,6 @@ class Testjson2dataspot(unittest.TestCase):
         self.assertEqual("1..*",Json2dataspot._multiplicity(card="M",mand=True))
         self.assertEqual("0..*",Json2dataspot._multiplicity(card="M",mand=False))
 
-        Json2dataspot
         return
 
     def test_IM_astronomiesingle(self):

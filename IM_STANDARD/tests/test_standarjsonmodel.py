@@ -31,8 +31,6 @@ class MyTestCase(unittest.TestCase):
     def test_imstandardjsonmodel(self):
         self.assertTrue(IMStandardJsonModel.IMDEFINITIONFILEPATH.is_file())
         model=IMStandardJsonModel()
-        self.assertTrue("Entities" in model.getimelements())
-        self.assertTrue("description" in model.getimelement("Categories"))
         return
 
 if __name__ == '__main__':

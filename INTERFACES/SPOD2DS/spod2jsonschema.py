@@ -187,8 +187,8 @@ class Spod2Jsonschema():
             udps = dict()
             for udp in userdefprops.values():
                 for udpgrp in udp.values():
-                    for udp in udpgrp.values():
-                        udps[udp.get("name")] = udp.get("value")
+                    for udp2 in udpgrp.values():
+                        udps[udp2.get("name")] = udp2.get("value")
         return udps
 
     def entityjson(self, key, element):

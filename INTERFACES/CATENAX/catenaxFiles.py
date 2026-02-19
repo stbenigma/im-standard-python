@@ -7,7 +7,7 @@ from pathlib import Path
 class CatenaxFiles:
 
     @staticmethod
-    def findfiles(basepath,elementregexp)->Path:
+    def findfiles(basepath,elementregexp)->list:
         retval = []
         try:
             with os.scandir(basepath) as localdirec:

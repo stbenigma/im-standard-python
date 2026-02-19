@@ -172,7 +172,7 @@ class Json2JsonSchema:
         unit = doma.get("unit")
         minimum = doma.get("minimum")
         maximum = doma.get("maximum")
-        format = None
+        lformat = None
         enum = None
         properties = None
         required = None
@@ -195,10 +195,10 @@ class Json2JsonSchema:
         elif doma.get("domaintype") == "DatetimeDomain":
             objtype = "string"
             if doma.get("granularity") in ("DAY"):
-                format = "date"
+                lformat = "date"
             elif doma.get("granularity") in ("HOUR", "MINUTE",
                                              "SECOND", "MILISECOND"):
-                format = "date-time"
+                lformat = "date-time"
         else:
             objtype = "???"
             logging.warning(f"datatype '{doma.get('domaintype')}' not yet handled")
@@ -215,7 +215,7 @@ class Json2JsonSchema:
                                      pattern=pattern,
                                      minLength=minLength,
                                      maxLength=maxLength,
-                                     format=format,
+                                     format=lformat,
                                      minimum=minimum,
                                      maximum=maximum,
                                      unit=unit,
@@ -604,9 +604,9 @@ class JsonExample:
     def generateexamples(self)->dict:
         jsexample=dict()
 
-        def doallprops(deststruct,object):
-            doprops(deststruct,object.get("properties",dict()))
-            for allprops in object.get("allOf",[]):
+        def doallprops(deststruct, lobject):
+            doprops(deststruct, lobject.get("properties", dict()))
+            for allprops in lobject.get("allOf", []):
                 doprops(deststruct,allprops.get("properties",dict()))
 
         def doprops(deststruct,props:dict):
@@ -661,7 +661,7 @@ def generatejsonschema(jsonfilepath=None,
                        domain=None,
                        outfilepath=None,
                        examplepath=None,
-                       **kwargs) -> dict:
+                       **kwargs) -> (dict,dict):
     if jsonstruct is not None:
         jsstruct = jsonstruct
     elif jsonfilepath is not None:

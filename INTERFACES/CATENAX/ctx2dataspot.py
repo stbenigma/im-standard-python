@@ -408,31 +408,31 @@ class CTXGenerateDSJson:
                 UrnInfra(dom).full].items():
                 if "$ref" in prop:
                     # property references a schema, which I see as range (domain, second entity)
-                    range = prop.get("$ref")
+                    lrange = prop.get("$ref")
 
                     cardinality = "ONE"
-                    if range in self.analyzedelements["lovs"]:
+                    if lrange in self.analyzedelements["lovs"]:
                         rangemodel = self.referencemodelname
-                    elif range in self.analyzedelements["domains"]:
+                    elif lrange in self.analyzedelements["domains"]:
                         rangemodel = self.domainmodelname
-                    elif range in self.analyzedelements["groupattributes"]:
+                    elif lrange in self.analyzedelements["groupattributes"]:
                         rangemodel = self.domainmodelname
-                    elif range in self.analyzedelements["arrays"]:
+                    elif lrange in self.analyzedelements["arrays"]:
                         rangemodel = self.domainmodelname
                         cardinality = "MANY"
-                        range = self.analyzedelements["arrays"][range][0]
+                        lrange = self.analyzedelements["arrays"][lrange][0]
                     else:
                         raise Exception(
-                            f"no range type found {range}, probably object referenced in groupattribute {propurn}")
-                    rangeref = UrnInfra(range)
+                            f"no range type found {lrange}, probably object referenced in groupattribute {propurn}")
+                    rangeref = UrnInfra(lrange)
 
                     self.generateattribute(jsonstruct=domainmodel,
                                            attrkey=propname,
                                            attribute=prop,
                                            objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(UrnInfra(propparenturn).name)}',
-                                           range=f'/{rangemodel}/{Json2dataspot.fullescapestr(rangeref.name)}',
+                                           lrange=f'/{rangemodel}/{Json2dataspot.fullescapestr(rangeref.name)}',
                                            derived=False,
-                                           mandatory=propname in reqproperties,
+                                           mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
                                            cardinality=cardinality,
                                            favorite=idx < 3)
                     idx += 1
@@ -441,34 +441,34 @@ class CTXGenerateDSJson:
 
         return domainmodel
 
-    def generateattribute(self, jsonstruct, attrkey, attribute, objectname, range=None,
+    def generateattribute(self, jsonstruct, attrkey, attribute, objectname, lrange=None,
                           derived=False, mandatory="OPTIONAL", cardinality="ONE",
                           favorite=False):
         self.generateelement(elementtype="DataAttribute",
                              jsonstruct=jsonstruct,
                              key=attrkey, elem=attribute,
                              objectname=objectname,
-                             range=range,
+                             lrange=lrange,
                              derived=derived,
                              mandatory=mandatory, cardinality=cardinality,
                              favorite=favorite)
         return
 
     def generatecolumn(self,
-                       jsonstruct, colkey, column, objectname, range=None,
+                       jsonstruct, colkey, column, objectname, lrange=None,
                        derived=False, mandatory="OPTIONAL", cardinality="ONE",
                        favorite=False):
         self.generateelement(elementtype="UmlAttribute",
                              jsonstruct=jsonstruct,
                              key=colkey, elem=column,
                              objectname=objectname,
-                             range=range,
+                             lrange=lrange,
                              derived=derived,
                              mandatory=mandatory, cardinality=cardinality,
                              favorite=favorite)
         return
 
-    def generateelement(self, elementtype, jsonstruct, key, elem, objectname, range=None,
+    def generateelement(self, elementtype, jsonstruct, key, elem, objectname, lrange=None,
                         derived=False, mandatory="OPTIONAL", cardinality="ONE",
                         favorite=False):
         jsonstruct.append(Json2dataspot.fillstruct(elementtype=elementtype,
@@ -477,7 +477,7 @@ class CTXGenerateDSJson:
                                                    description=Json2dataspot.escapestr(
                                                        elem.get("description")),
                                                    hasDomain=objectname,
-                                                   hasRange=range,
+                                                   hasRange=lrange,
                                                    favorite=favorite,
                                                    derived=derived,
                                                    required="MANDATORY" if mandatory else "OPTIONAL",
@@ -574,9 +574,9 @@ class CTXGenerateDSJson:
                                             colkey=propname,
                                             column=prop,
                                             objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(UrnInfra(propparenturn).name)}',
-                                            range=f'/{self.domainmodelname}/{proptype}',
+                                            lrange=f'/{self.domainmodelname}/{proptype}',
                                             derived=False,
-                                            mandatory=propname in reqproperties,
+                                            mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
                                             cardinality="MANY",
                                             favorite=idx < 3)
                         idx += 1
@@ -632,24 +632,24 @@ class CTXGenerateDSJson:
                                         colkey=propname,
                                         column=prop,
                                         objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(UrnInfra(propparenturn).name)}',
-                                        range=f'/{rangemodel}/{Json2dataspot.fullescapestr(UrnInfra(rangeurn).name)}',
+                                        lrange=f'/{rangemodel}/{Json2dataspot.fullescapestr(UrnInfra(rangeurn).name)}',
                                         derived=False,
-                                        mandatory=propname in reqproperties,
+                                        mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
                                         cardinality="MANY" if multivalue else "ONE",
                                         favorite=idx < 3)
                     idx += 1
             else:
                 proptype = prop.get("type")
                 if proptype != "string":
-                    logging.error(f'datatpyes other than string in item {UrnInfra(rangeurn).name} {proptype}')
+                    logging.error(f'datatpyes other than string in {proptype}')
 
                 self.generatecolumn(jsonstruct=jsonstruct,
                                     colkey=propname,
                                     column=prop,
                                     objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{parentkey}',
-                                    range=f'/{self.domainmodelname}/{proptype}',
+                                    lrange=f'/{self.domainmodelname}/{proptype}',
                                     derived=False,
-                                    mandatory=propname in reqproperties,
+                                    mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
                                     cardinality="ONE",
                                     favorite=idx < 3)
                 idx += 1

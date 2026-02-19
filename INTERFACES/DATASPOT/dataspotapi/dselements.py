@@ -265,7 +265,7 @@ class DSModel(DSIMElement):
                              parentid=tenantid, **kwargs)
             self._modelname = modelname
             self._modeltype = modeltype
-            self._filepaths = set((filepath,))
+            self._filepaths = {filepath}
         else:
             # online models have a tenantId
             assert model.get("_type") in DSAccess.KnownModelTypes, f"unknown model type \"{model.get('_type')}\""

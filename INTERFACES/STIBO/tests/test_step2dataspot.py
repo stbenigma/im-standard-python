@@ -81,9 +81,9 @@ class MyTestCase(unittest.TestCase):
         return
 
     def test_localstep1(self):
-        testfile = Path(__file__).parent.parent.parent.parent.parent.parent \
-                   / "testdata" /"localtestmodels" /"coop" \
-                   / "testfile-PIM-exported-2025-03-17_10.14.09.xml"
+        testfile = Path(__file__).parent.parent.parent.parent \
+                   / "localtestmodels" /"pimexports"\
+                   / "coop-PIM-exported-2025-03-17_10.14.09.xml"
         if not testfile.is_file():
             self.skipTest("Testpath does not exist")
 
