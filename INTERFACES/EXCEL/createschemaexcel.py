@@ -302,6 +302,9 @@ class CreateSchemaExcel:
 
         return
 
+    def _sheetnames(self,name):
+        return name.replace("/","")
+
     def writeexcel(self, outfilepath):
         wb = Workbook()
         wb.remove(wb.active)
@@ -310,7 +313,7 @@ class CreateSchemaExcel:
         self.writeoverview(ws=self._overview_ws)
 
         for enti in self._standardjson.getelementinstances(elementname="Entities"):
-            self._writesheet(ws=wb.create_sheet(self._mlvalue(enti, "name")),
+            self._writesheet(ws=wb.create_sheet(self._sheetnames(self._mlvalue(enti, "name"))),
                              elem=enti,isentity=True)
 
         # fill group domains
@@ -320,7 +323,7 @@ class CreateSchemaExcel:
             if doma.get("elementid") in donegroupdomains:
                 continue
 
-            self._writesheet(ws=wb.create_sheet(self._mlvalue(doma, "name")),
+            self._writesheet(ws=wb.create_sheet(self._sheetnames(self._mlvalue(doma, "name"))),
                              elem=doma)
             self._overview_ws.append([self._mlvalue(doma, "name")])
             donegroupdomains.append(doma.get("elementid"))  # mark as done

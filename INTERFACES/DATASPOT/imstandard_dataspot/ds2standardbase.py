@@ -170,6 +170,8 @@ class Dataspot2Jsonbase(DataspotElements):
                     for elem in self.standardjson.jsonschemamodel.get(elementtype, [])}
         return elements.get(self._deref(elementname)) if elements else None
 
+    def getrelationid(self,**kwargs):
+        return None
     def getentityid(self, entiname):
         return self.getelementid(elementtype="Entities", elementname=entiname)
 

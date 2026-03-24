@@ -27,6 +27,7 @@ class MyTestCase(unittest.TestCase):
     def test_IM(self):
         self.imtestjsonpath = Path(__file__).parent.parent.parent.parent / \
                                       "IM_STANDARD" /"tests" / "json-test-standard-files" / "Informationsmodell-modell-standard.json"
+        self.imtestjsonpath = Path("/Users/stb/Library/Mobile Documents/com~apple~CloudDocs/Arbeit/dataspot/access/Sandbox Stefan/exports/Sandbox Stefan-standard.json")
         CreateSchemaExcel(standardjson=self.imtestjsonpath,
                           lang="en").writeexcel(outfilepath=self.mydebugpath / (self.imtestjsonpath.stem+".xlsx"))
         return
