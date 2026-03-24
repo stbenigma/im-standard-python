@@ -2,9 +2,9 @@ import copy
 import logging
 from datetime import datetime
 
+from IM_STANDARD import ElementId, alwayslist, nvl, JsonSchema, JsonElement
 from INTERFACES.DATASPOT.imstandard_dataspot.dselements import DataspotElements
 from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
-from IM_STANDARD import ElementId,alwayslist,nvl,JsonSchema,JsonElement
 
 
 def mseconds2date(seconds):
@@ -23,6 +23,34 @@ class Dataspot2Jsonbase(DataspotElements):
         super().__init__(indirec=indirec, **kwargs)
         self.standardjson: JsonSchema = standardjson
         return
+
+    @staticmethod
+    def _multilangvalue(value,
+                        mainlang: str,
+                        langs: list,
+                        fieldname: str,
+                        addprops: dict):
+        retval = {} if value is None else {mainlang: value}
+        for otherlang in langs:
+            if otherlang == mainlang: continue
+            translkey = f"{fieldname}:{otherlang}"
+            othervalue = addprops.get(translkey)
+            if othervalue is not None:
+                retval[otherlang] = othervalue
+                # remove this property from this additionalproperties
+                del addprops[translkey]
+            else:
+                capitalize = lambda s: s[0].upper() + s[1:]
+                translkey = f"{capitalize(fieldname)}:{otherlang}"
+                othervalue = addprops.get(translkey)
+                if othervalue is not None:
+                    retval[otherlang] = othervalue
+                    # remove this property from this additionalproperties
+                    del addprops[translkey]
+        # if allvalues in all languages are none, return None
+        if len([val for val in retval.values() if val not in (None, "")]) == 0:
+            retval = None
+        return retval
 
     def mutlilangvalue(self, fieldname, value, addprops):
         """
@@ -45,27 +73,11 @@ class Dataspot2Jsonbase(DataspotElements):
         elif not self.standardjson.modelismultilingual():
             return value
         else:
-            retval = {} if value is None else {self.standardjson.mainlang: value}
-            for otherlang in self.standardjson.languages:
-                if otherlang == self.standardjson.mainlang: continue
-                translkey = f"{fieldname}:{otherlang}"
-                othervalue = addprops.get(translkey)
-                if othervalue is not None:
-                    retval[otherlang] = othervalue
-                    # remove this property from this additionalproperties
-                    del addprops[translkey]
-                else:
-                    capitalize = lambda s: s[0].upper() + s[1:]
-                    translkey = f"{capitalize(fieldname)}:{otherlang}"
-                    othervalue = addprops.get(translkey)
-                    if othervalue is not None:
-                        retval[otherlang] = othervalue
-                        # remove this property from this additionalproperties
-                        del addprops[translkey]
-            # if allvalues in all languages are none, return None
-            if len([val for val in retval.values() if val not in (None, "")]) == 0:
-                retval = None
-            return retval
+            return self._multilangvalue(value=value,
+                                        mainlang=self.standardjson.mainlang,
+                                        langs=self.standardjson.languages,
+                                        fieldname=fieldname,
+                                        addprops=addprops)
 
     def createmultimodelcategories(self):
         def typemulticatg(models, catgtype):
@@ -140,7 +152,7 @@ class Dataspot2Jsonbase(DataspotElements):
                         del restcatgs[key]
                     else:
                         pass
-        #self.modelcategories[catgtype] = doxnecatgs
+        # self.modelcategories[catgtype] = doxnecatgs
         self.standardjson.addelementinstance(name="Categories", val=newcategories)
         return
 
@@ -179,7 +191,7 @@ class Dataspot2Jsonbase(DataspotElements):
                  for attr in self.standardjson.getelementinstances(elementname="Attributes")
                  if attr["parentid"] in (entiid, domaid) and
                  modelname in
-                 [val for key,val in attr.getadditionalprops().items() if key == "SOURCE-MODEL"]
+                 [val for key, val in attr.getadditionalprops().items() if key == "SOURCE-MODEL"]
                  }
         return attrs.get(self._deref(attrname))
 
@@ -208,22 +220,22 @@ class Dataspot2Jsonbase(DataspotElements):
                                     name=parentname, fullname=True)
 
         additionalprops = self.additionalprops(elem=element, specialkeys=["parentid"])
-        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
+        additionalprops["SOURCE-HREF"] = self.sourcehref(element)
 
         jsonstruct = JsonElement().categoryjson(elementid=element.get("ID"),
-                                                    name=self.mutlilangvalue(fieldname="label",
-                                                                             value=element.get("label"),
-                                                                             addprops=additionalprops),
-                                                    description=self.mutlilangvalue(fieldname="description",
-                                                                                    value=element.get("description"),
-                                                                                    addprops=additionalprops),
-                                                    categorytype=categorytype,
-                                                    categoryid=parentid,
-                                                    additionalProps=additionalprops)
+                                                name=self.mutlilangvalue(fieldname="label",
+                                                                         value=element.get("label"),
+                                                                         addprops=additionalprops),
+                                                description=self.mutlilangvalue(fieldname="description",
+                                                                                value=element.get("description"),
+                                                                                addprops=additionalprops),
+                                                categorytype=categorytype,
+                                                categoryid=parentid,
+                                                additionalProps=additionalprops)
         return jsonstruct
 
     @staticmethod
-    def namedreference2struct(namedref:str):
+    def namedreference2struct(namedref: str):
         """ separates a refrence to an object into its components
             [/<modelname>]:[<elementpath>/]*<elementname>
             alle Namen die ein "/" oder ein Spezialzeichen enthalten sind in ""
@@ -232,34 +244,36 @@ class Dataspot2Jsonbase(DataspotElements):
             elementpath : list of names between
 
         """
-        if namedref is None: return (None,None,None)
+        if namedref is None: return (None, None, None)
         if ":" in namedref:
             parts = j2d.custom_split(input_string=namedref, delimiter=":")
-            modelname=parts[0]
-            parts = [parts[1]]
+            modelname = parts[0]
+            restpath = parts[1]
         else:
-            parts = j2d.custom_split(input_string=namedref, delimiter="/")
-            if namedref.startswith("/"):
-                modelname=parts[1]
-                parts = parts[2:]  # remove modelnam
-            else:
-                modelname=None
-        elementname=parts[-1]
-        elementpath=parts[0:-1]
-        return modelname,elementpath,elementname
+            modelname = None
+            restpath=namedref
+
+        parts = j2d.custom_split(input_string=restpath, delimiter="/")
+        if restpath.startswith("/"):
+            modelname = parts[1]
+            parts = parts[2:]  # remove modelname
+
+        elementname = parts[-1]
+        elementpath = parts[0:-1]
+        return modelname, elementpath, elementname
 
     @staticmethod
-    def addmodeltonamedreference(namedref:str,modelname:str):
+    def addmodeltonamedreference(namedref: str, modelname: str):
         """ if namedreference starts with / do nothing (it starts with a model)
             if not, create a new namedreference, starting with /modelname/
         """
-        #if namedref.startswith("/"): return namedref
-        modelname2,elementpath,elementname=Dataspot2Jsonbase.namedreference2struct(namedref)
-        return Dataspot2Jsonbase.refparts2namedreference(modelname=nvl(modelname2,modelname),
-                                                         elementpath=elementpath,elementname=elementname)
+        # if namedref.startswith("/"): return namedref
+        modelname2, elementpath, elementname = Dataspot2Jsonbase.namedreference2struct(namedref)
+        return Dataspot2Jsonbase.refparts2namedreference(modelname=nvl(modelname2, modelname),
+                                                         elementpath=elementpath, elementname=elementname)
 
     @staticmethod
-    def refparts2namedreference(elementname:str,modelname:str=None,elementpath:list=None):
+    def refparts2namedreference(elementname: str, modelname: str = None, elementpath: list = None):
         """ combines the element-path-parts into a single string
             [<modelname>]:[<elementpath>/]*<elementname>
             all names containing "/" or . are enclosed in ""
@@ -267,7 +281,7 @@ class Dataspot2Jsonbase(DataspotElements):
         retval = ""
         if modelname is not None:
             retval += j2d.fullescapestr(modelname) + ":"
-        if len(alwayslist(elementpath))>0:
+        if len(alwayslist(elementpath)) > 0:
             retval += "/".join([j2d.fullescapestr(ep) for ep in elementpath]) + "/"
         retval += nvl(j2d.fullescapestr(elementname))
         return retval
@@ -301,7 +315,7 @@ class Dataspot2Jsonbase(DataspotElements):
         return None if elem is None else elem.get("ID")
 
     @classmethod
-    def additionalprops(cls, elem, specialkeys)->dict:
+    def additionalprops(cls, elem, specialkeys) -> dict:
         defaultfields = ["_type", "label",
                          "id", "href",
                          "examples", "synonyms", "favorite",
@@ -310,8 +324,8 @@ class Dataspot2Jsonbase(DataspotElements):
                          "hasDomain", "hasRange", "stereotype",
                          "ID", "TYPE", "DSMODEL", "PARENT", "PARENT2"]
         retval = {key: val for key, val in elem.items() if key not in (defaultfields + specialkeys)}
-        if "id" in elem: retval["SOURCE-ID"]= elem.get("id")
-        if "DSMODEL" in elem: retval["SOURCE-MODEL"]= elem.get("DSMODEL")
+        if "id" in elem: retval["SOURCE-ID"] = elem.get("id")
+        if "DSMODEL" in elem: retval["SOURCE-MODEL"] = elem.get("DSMODEL")
         return retval
 
     @staticmethod
@@ -343,6 +357,13 @@ class Dataspot2Jsonbase(DataspotElements):
         else:
             return "1:1"  # 1:1 not subtype not role
 
+    # def _relationname(self, entiid1, assoc, entiid2):
+    #     startenti = self.standardjson.getbyid(entiid1)
+    #     endenti = self.standardjson.getbyid(entiid2)
+    #     return self.standardjson.mlvalue(startenti.getname()) + \
+    #            "/" + nvl(self.standardjson.mlvalue(assoc), 'is') + \
+    #            ">" + self.standardjson.mlvalue(endenti.getname())
+
     def relationjsonbase(self, relationtype,
                          element,
                          entityid1=None, dataobjectid1=None,
@@ -357,41 +378,45 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "cardinality",
                                                             "navigable",
                                                             "ARC-21", "ARC-12"])
-        #additionalprops["SOURCE-HREF"]= self.sourcehref(element)
+        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
         intval = lambda x: None if element.get(x) is None else int(element.get(x))
         fwdend = JsonElement().relationendjson(entityid=entityid1,
-                                                   dataobjectid=dataobjectid1,
-                                                   assoctext=self.mutlilangvalue(
-                                                       fieldname="name",
-                                                       value=self._deref(element.get("name")),
-                                                       addprops=additionalprops),
-                                                   cardinality=self._cardinality(
-                                                       element.get("rangeMultiplicity")),
-                                                   mandatory=self._mandatory(
-                                                       element.get("rangeMultiplicity")),
-                                                   historicised=element.get("temporal"),
-                                                   arcnumber=intval("ARC-12")
-                                                   )
+                                               dataobjectid=dataobjectid1,
+                                               assoctext=self.mutlilangvalue(
+                                                   fieldname="name",
+                                                   value=self._deref(element.get("name")),
+                                                   addprops=additionalprops),
+                                               cardinality=self._cardinality(
+                                                   element.get("rangeMultiplicity")),
+                                               mandatory=self._mandatory(
+                                                   element.get("rangeMultiplicity")),
+                                               historicised=element.get("temporal"),
+                                               arcnumber=intval("ARC-12")
+                                               )
         bwdend = JsonElement().relationendjson(entityid=entityid2,
-                                                   dataobjectid=dataobjectid2,
-                                                   assoctext=self.mutlilangvalue(
-                                                       fieldname="inverseName",
-                                                       value=self._deref(
-                                                           element.get("inverseName")),
-                                                       addprops=additionalprops),
-                                                   cardinality=self._cardinality(
-                                                       element.get("domainMultiplicity")),
-                                                   mandatory=self._mandatory(
-                                                       element.get("domainMultiplicity")),
-                                                   historicised=None,
-                                                   arcnumber=intval("ARC-21"))
+                                               dataobjectid=dataobjectid2,
+                                               assoctext=self.mutlilangvalue(
+                                                   fieldname="inverseName",
+                                                   value=self._deref(
+                                                       element.get("inverseName")),
+                                                   addprops=additionalprops),
+                                               cardinality=self._cardinality(
+                                                   element.get("domainMultiplicity")),
+                                               mandatory=self._mandatory(
+                                                   element.get("domainMultiplicity")),
+                                               historicised=None,
+                                               arcnumber=intval("ARC-21"))
         elemrela = JsonElement().relationjson(elementid=element.get("ID"),
-                                                    relationtype=relationtype,
-                                                    fwd=fwdend,
-                                                    bwd=bwdend,
-                                                    examples=element.get("examples"),
-                                                    additionalProps=additionalprops
-                                                    )
+                                              relationtype=relationtype,
+                                              # relaname=self._relationname(entiid1=entityid1,
+                                              #                             assoc=fwdend.data.get("assoctext"),
+                                              #                             entiid2=entityid2
+                                              #                             ),
+                                              fwd=fwdend,
+                                              bwd=bwdend,
+                                              examples=element.get("examples"),
+                                              additionalProps=additionalprops
+                                              )
 
         # TODO  examples in relationships (generate them?)
         return elemrela
@@ -401,14 +426,14 @@ class Dataspot2Jsonbase(DataspotElements):
                                        modelname=modelname,
                                        name=self._deref(element.get("PARENT")))
         dataobjectid1 = self.findelementid(elems=self.tables,
-                                      modelname=modelname,
-                                      name=self._deref(element.get("PARENT")))
+                                           modelname=modelname,
+                                           name=self._deref(element.get("PARENT")))
         entityid2 = self.findelementid(elems=self.entities,
                                        modelname=modelname,
                                        name=self._deref(element.get("PARENT2")))
         dataobjectid2 = self.findelementid(elems=self.tables,
-                                      modelname=modelname,
-                                      name=self._deref(element.get("PARENT2")))
+                                           modelname=modelname,
+                                           name=self._deref(element.get("PARENT2")))
         assert entityid1 is not None or dataobjectid1 is not None, f"Missing entity/table parent {element.get('PARENT')}->{element.get('PARENT2')}"
         assert entityid2 is not None or dataobjectid2 is not None, f"Missing entity/table parent {element.get('PARENT2')}->{element.get('PARENT')}"
 
@@ -420,7 +445,7 @@ class Dataspot2Jsonbase(DataspotElements):
     def fillrelation(self, modelname, rela):
         self.imjson.addelementinstance(name="Relations",
                                        val=self.relationjson(modelname=modelname,
-                                                             #key=ElementId.nextid("RELA"),
+                                                             # key=ElementId.nextid("RELA"),
                                                              relationtype=self._relationtype(rela),
                                                              element=rela)
                                        )
@@ -469,7 +494,7 @@ class Dataspot2Jsonbase(DataspotElements):
             if element.get("integerDigits") is not None or element.get("fractionDigits") is not None:
                 subtypeproperties["totaldigits"] = element.get("integerDigits", 0) + element.get("fractionDigits", 0)
             JsonElement.optionalprop(subtypeproperties, "fractdigits", element.get("fractionDigits"),
-                                           intvalue=True)
+                                     intvalue=True)
             JsonElement.optionalprop(subtypeproperties, "unit", element.get("Unit"))
         elif domaintype == "GROUP":
             # NO group domains have sometimes a string rep and therefore a pattern
@@ -513,17 +538,17 @@ class Dataspot2Jsonbase(DataspotElements):
                                                                                  "code",
                                                                                  "shortText", "longText"])
                 newvalue = JsonElement().refvaluejson(value=val.get("code"),
-                                                          displayvalue=self.mutlilangvalue(fieldname="shortText",
-                                                                                           value=val.get("shortText"),
-                                                                                           addprops=valadditionalprops),
-                                                          description=self.mutlilangvalue(fieldname="longText",
-                                                                                          value=val.get("longText"),
-                                                                                          addprops=valadditionalprops),
-                                                          additionalProps=valadditionalprops
-                                                          )
+                                                      displayvalue=self.mutlilangvalue(fieldname="shortText",
+                                                                                       value=val.get("shortText"),
+                                                                                       addprops=valadditionalprops),
+                                                      description=self.mutlilangvalue(fieldname="longText",
+                                                                                      value=val.get("longText"),
+                                                                                      addprops=valadditionalprops),
+                                                      additionalProps=valadditionalprops
+                                                      )
                 # TODO subvalues unter values auch beim Domain!
                 newvalue.addoptionalprop(propname="additionalProps",
-                                               value=valadditionalprops)
+                                         value=valadditionalprops)
                 values.append(newvalue.data)
 
             subtypeproperties["values"] = values
@@ -554,10 +579,10 @@ class Dataspot2Jsonbase(DataspotElements):
                                                coluname=restricted[1])
 
         jsonstruct = JsonElement().businessrulejson(elementid=key,
-                                                        restrictedelems=[restrid],
-                                                        description=element.get("description"),
-                                                        rule=element.get("computation")
-                                                        )
+                                                    restrictedelems=[restrid],
+                                                    description=element.get("description"),
+                                                    rule=element.get("computation")
+                                                    )
 
         return jsonstruct
 
@@ -565,7 +590,7 @@ class Dataspot2Jsonbase(DataspotElements):
         for element in elements:
             self.standardjson.addelementinstance(name=elementname,
                                                  val=self.businessrulejson(key=ElementId.nextid("BURU"),
-                                                                                    element=element)
+                                                                           element=element)
                                                  )
         return
 
@@ -589,8 +614,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "baseType",
                                                             "Unit", "pattern"
                                                             ])
-        additionalprops["SOURCE-HREF"]= self.sourcehref(doma)
-
+        additionalprops["SOURCE-HREF"] = self.sourcehref(doma)
 
         JsonElement.optionalprop(destobject=additionalprops,
                                  propname="SOURCE-DATATYPE",

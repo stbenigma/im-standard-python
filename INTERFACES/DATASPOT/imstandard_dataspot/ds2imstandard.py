@@ -1,5 +1,4 @@
 import json
-import logging
 from datetime import datetime
 from pathlib import Path
 
@@ -38,9 +37,6 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                    )
         self.generatekeys()
 
-        self.generatederivations()
-        self.generatemappings()
-        self.generatetransformations()
         return
 
     def generatekeys(self):
@@ -77,7 +73,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                specialkeys=["subtypeOf"])
         # for dataspot mark entites as favorites
         additionalprops["favorite"] = element.get("favorite")
-        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
+        additionalprops["SOURCE-HREF"] = self.sourcehref(element)
         elementi = JsonElement().entityjson(elementid=element.get("ID"),
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
@@ -128,8 +124,10 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                    "rangeMultiplicity": "1",
                                                    "ARC-12": None,
                                                    "ARC-21": 0,
-                                                   "ID": ElementId.nextid("RELA")
-                                               }))
+                                                   "ID": ElementId.nextid("RELA"),
+                                                   "href":  self.sourcehref(element)
+
+                }))
 
         return
 
@@ -153,7 +151,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                specialkeys=["order", "cardinality", "required",
                                                             "temporal", "MULTILINGUAL", "identifying"])
         # "computation",
-        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
+        additionalprops["SOURCE-HREF"] = self.sourcehref(element)
         elemattr = JsonElement().attributejson(elementid=element.get("ID"),
                                                name=self.mutlilangvalue(fieldname="label",
                                                                         value=self._deref(element.get("label")),
@@ -188,21 +186,29 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
     def findqualielement(self, fullpath: str,
                          elemtype: str = None):
+        """ find element fully qualified by fullpathj"""
         frommodel, frompath, fromelement = self.namedreference2struct(fullpath)
         elements = self.standardjson.getanyelementsbyfield(name=fromelement,
-                                                           field="name")
+                                                           field="name") + \
+                   self.standardjson.getelementinstances("Relations")
+
         retval = []
         for elem in elements:
-            elemmodel, elempath, elemname = self.namedreference2struct(
-                namedref=self.standardjson.getfullpath(elem=elem))
-            # assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
-            if (frommodel == elemmodel) and \
-                    ((len(frompath) <= len(
-                        elempath)) and  # both paths are equal from the end to the beginning of the frompath
-                     ((frompath == []) or (frompath[-len(frompath):] == elempath[-len(frompath):]))) and \
-                    (elemtype is None or
-                     (elemtype == elem.elemtype)):
+            # if FULLPATH ist defined, use it
+            if elem.getname() == fullpath:  # getadditionalprop("FULLPATH")
                 retval.append(elem)
+            else:
+                elemmodel, elempath, elemname = self.namedreference2struct(
+                    namedref=self.standardjson.getfullpath(elem=elem))
+                # assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
+                if (frommodel == elemmodel) and \
+                        (fromelement == elemname) and \
+                        (len(frompath) <= len(
+                            elempath) and  # both paths are equal from the end to the beginning of the frompath
+                         (frompath == [] or frompath[-len(frompath):] == elempath[-len(frompath):])) and \
+                        (elemtype is None or
+                         (elemtype == elem.elemtype)):
+                    retval.append(elem)
         if len(retval) == 1:
             return retval[0]
         else:
@@ -243,6 +249,36 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                   )
                                                  )
 
+        return
+
+    def _diagusage(self, elems):
+        usages = []
+        for elem in elems:
+            sourcepath = self.addmodeltonamedreference(namedref=elem.get("usageOf"),
+                                                       modelname=elem.get("DSMODEL"))
+
+            sourceelement = self.findqualielement(fullpath=sourcepath)
+            if sourceelement is None:
+                sourceelementid = sourcepath
+            else:
+                sourceelementid = sourceelement.getid()
+            usages.append(sourceelementid)
+        return usages
+
+    def generatediagrams(self):
+        """ read all transformations and add them to the element
+        """
+        for diagkey, diag, in self.diagrams.items():
+            additionalprops = self.additionalprops(elem=diag,
+                                                   specialkeys=[])
+            elems = [r for r in self.diagelements.values() if r.get("usedBy") == diag.get("label")]
+            self.standardjson.addelementinstance(name="Diagrams",
+                                                 val=JsonElement().diagramjson(elementid=diag.get("ID"),
+                                                                               name=diag.get("label"),
+                                                                               # position=dict()=,
+                                                                               # size=,
+                                                                               elements=self._diagusage(elems),
+                                                                               additionalProps=additionalprops))
         return
 
     def generatetransformations(self):
@@ -330,7 +366,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         now = datetime.now().replace(microsecond=0).isoformat()
         modeltype = "Information model"
 
-        additionalprops = {"FULLPATH": f"{nvl(targetenv,self.tenant.get('name',''))}:{modeltype}:{modelname}",
+        additionalprops = {"FULLPATH": f"{nvl(targetenv, self.tenant.get('name', ''))}:{modeltype}:{modelname}",
                            "SOURCE-SERVER": self.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
                            "SOURCE-TENANT": self.tenant.get("name"),  # Sandbox"
                            "SOURCE-HREF": f"{self.tenant.get('server')}{self.tenant.get('uri')}"
@@ -354,6 +390,10 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         self.generatecategories(catgtype="ENTITY")
         self.generatedomains()
         self.generatebusinessmodel()
+        self.generatederivations()
+        self.generatemappings()
+        self.generatetransformations()
+        self.generatediagrams()
 
         return model2json(self.standardjson.jsonschemamodel)
 
@@ -371,11 +411,15 @@ def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                                      )
     jsonstruct = dsschema.generatejson(modelname=nvl(modelname, indirec.name),
                                        modelversion=modelversion,
-                                       targetenv=nvl(targetenv,dsschema.tenant.get("name")),
+                                       targetenv=nvl(targetenv, dsschema.tenant.get("name")),
                                        language=language,
                                        languages=languages)
 
     outfilepath = Path(outpath)
+    if outfilepath.is_dir():
+        # add filename
+        outfilepath = outfilepath / (
+                    jsonstruct.get("ModelInfo", dict()).get("modelname", "whatever") + "-standard.json")
     with open(outfilepath, 'w') as outfile:
         json.dump(jsonstruct, outfile, indent=2)
 

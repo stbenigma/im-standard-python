@@ -9,6 +9,10 @@ from IM_STANDARD import JsonSchema, nvl
 
 
 class CreateSchemaExcel:
+    TITLEFONT=Font(size=20, bold=True)
+    LARGEFONT=Font(size=16, bold=True)
+    BOLDFONT=Font(bold=True)
+
     def __init__(self, standardjson, lang=None, nid=None):
         if type(standardjson) == dict:
             self._infilepath = None
@@ -28,11 +32,23 @@ class CreateSchemaExcel:
                "ValeDataType": 15,
                "Cardinality": 10,
                "Mand./Opt.": 10,
-               "Example": 35,
+               "Examples": 35,
                "Comment/Rule": 30,
                "Dataspot": 10,
-               "Dataspot Link to Datapoint/attribute": 60
+               "Dataspot Link to element": 60
                }
+    _relaheader = {"Relation to": 35,
+                   "Entity": 45,
+                   "Relation from": 15,
+                   "Relation type": 15,
+                   "\t": 10,
+                   " ": 10,
+                   "Examples": 35,
+                   "Comment/Rule": 30,
+                   "Dataspot": 10,
+                   "Dataspot Link to element": 60
+                   }
+
     _wrapped = ["C", "H"]
 
     def _mlvalue(self, struct, name):
@@ -40,7 +56,7 @@ class CreateSchemaExcel:
 
     @staticmethod
     def _addprop(struct, name):
-        return struct.get("additionalProps").get(name)
+        return struct.get("additionalProps",{}).get(name)
 
     @staticmethod
     def _domavalues(doma):
@@ -83,7 +99,7 @@ class CreateSchemaExcel:
             retval = domain.get("syntaxrule")
         elif domatype == "NumericDomain":
             int2str = lambda x: "" if x is None else str(x)
-            locstr=[]
+            locstr = []
             if domain.get("totaldigits", 0) != 0:
                 if domain.get("fractdigits") is None:
                     locstr.append(f'Digits: {str(domain.get("totaldigits"))}')
@@ -92,7 +108,7 @@ class CreateSchemaExcel:
 
             if domain.get("minvalue") is not None or domain.get("maxvalue") is not None:
                 locstr.append(f'Range: {int2str(domain.get("minvalue"))} - {int2str(domain.get("maxvalue"))}')
-            retval= '\n'.join(locstr)
+            retval = '\n'.join(locstr)
         elif domatype == "DatetimeDomain":
             if domain.get("granularity") != "DAY":
                 retval = f'Granularity: {domain.get("granularity")}'
@@ -108,9 +124,58 @@ class CreateSchemaExcel:
 
         return retval[0] if len(retval) == 1 else None
 
-    def _createentitysheet(self, ws, elem):
+    def _relatype(self,rela,fromto,tofrom):
+        retval = ""
+        if rela.get("relationtype")== "SUBTYPE":
+            if rela.get(fromto).get("arcnumber") is None:
+                retval = "Supertype"
+            else:
+                retval = "Subtype"
+        elif rela.get("relationtype")== "ROLE":
+            if rela.get(fromto).get("mandatory"):
+                retval = "Supertype"
+            else:
+                retval = "Subtype"
+        else:
+            retval += "" if rela.get(fromto).get("mandatory")\
+                else "0.."
+            retval += rela.get(fromto).get("cardinality")
+            retval += " : "
+            retval += "" if rela.get(tofrom).get("mandatory")\
+                else "0.."
+            retval += rela.get(tofrom).get("cardinality")
+        return retval
+
+    def _relacond(self,rela,fromto,tofrom):
+        retval = ""
+        if rela.get("relationtype") == "SUBTYPE":
+            if rela.get(tofrom).get('arcnumber') is not None:
+                retval = f"in Arc {str(rela.get(tofrom).get('arcnumber'))}"
+        else:
+            if rela.get(fromto).get("arcnumber") is not None:
+                retval = f"in Arc {str(rela.get(fromto).get('arcnumber'))}"
+        return retval
+
+    def _append(self, ws, row, font, colcnt):
+        ws.append(row)
+        for c in range(1,colcnt+1):
+            ws[get_column_letter(c) + str(ws.max_row)].font = font
+        return
+
+    def _createentitysheet(self, ws, elem,isentity):
+
+        self._append(ws=ws, row=[self._mlvalue(elem,"name")],
+                     font=self.TITLEFONT,
+                     colcnt=1)
+
+        self._append(ws=ws, row=["Attributes"],
+                     font=self.LARGEFONT,
+                     colcnt=1)
 
         ws.append(list(self._header.keys()))
+        headers=ws[ws.max_row]
+        for c in headers:
+            c.font = self.BOLDFONT
 
         for attr in self._standardjson.getelementinstances("Attributes"):
             if attr.get("parentid") == elem.get("elementid"):
@@ -137,22 +202,62 @@ class CreateSchemaExcel:
                        domaname,
                        "N" if attr.get("repeated") else "1",
                        "mandatory" if attr.get("mandatory") else "optional",
-                       "" if len(attr.get("examples", [])) == 0 else attr.get("examples")[0],
+                       "" if len(attr.get("examples", [])) == 0 else '\n'.join(attr.get("examples")),
                        self._comments(domain),
                        1,
                        link
                        ]
                 ws.append(row)
+
+        if isentity:
+            ws.append([])
+            self._append(ws=ws, row=["Relations"],
+                         font=self.LARGEFONT,
+                         colcnt=1)
+            self._append(ws=ws, row=list(self._relaheader.keys()),
+                         font=self.BOLDFONT,
+                         colcnt=len(self._relaheader)
+                         )
+
+            for rela in self._standardjson.getelementinstances("Relations"):
+                if elem.get("elementid") in [rela.get("fwd").get("entityid"),
+                                             rela.get("bwd").get("entityid")]:
+
+                    link = nvl(self._addprop(rela, "SOURCE-HREF")).replace("/rest/", "/web/")
+
+                    fromto,tofrom=("fwd","bwd") if elem.get("elementid") == rela.get("fwd").get("entityid")\
+                         else ("bwd","fwd")
+                    otherenti = self._getbyid("Entities", rela.get(tofrom).get("entityid")) \
+
+                    ws.append([self._mlvalue(rela.get(fromto), "assoctext"),
+                               self._mlvalue(otherenti, "name"),
+                               "" if rela.get("relationtype")in ("SUBTYPE","ROLE") \
+                                     else self._mlvalue(rela.get(tofrom), "assoctext"),
+                               self._relatype(rela=rela,fromto=fromto,tofrom=tofrom),
+                               " ",#rela.get(fromto).get("cardinality"),
+                               " ",#"mandatory" if rela.get("fwd").get("mandatory") else "optional",
+                               rela.get(fromto).get("examples"),
+                               self._relacond(rela=rela,fromto=fromto,tofrom=tofrom),
+                               1,
+                               link])
+
+        ws.append([])
+        ws.append([])
+        self._append(ws=ws, row=["Examples"],
+                     font=self.LARGEFONT,
+                     colcnt=1)
+        for expl in elem.get("examples",[]):
+            ws.append([expl])
+
         return
 
-    def _writesheet(self, ws, elem):
+    def _writesheet(self, ws, elem,isentity=False):
 
-        self._createentitysheet(ws=ws, elem=elem)
+
+        self._createentitysheet(ws=ws, elem=elem,isentity=isentity)
         linkcolumn = 10
         for i, headsize in enumerate(self._header.values(), start=1):
-
             ws.column_dimensions[get_column_letter(i)].width = headsize
-            ws[get_column_letter(i) + "1"].font = Font(bold=True)
 
             wrap_alignment = Alignment(wrapText=True, vertical='top')
             for cell in ws[get_column_letter(i)]:
@@ -161,9 +266,39 @@ class CreateSchemaExcel:
         # color links
         for i, cell in enumerate(ws[get_column_letter(linkcolumn)], start=1):
             if i == 1: continue
-            if cell.value not in ("", None):
+            if cell.value not in ("Dataspot Link to element","", None):
                 cell.hyperlink = cell.value
                 cell.font = Font(color="0000FF", underline="single")
+
+        return
+
+    def writeoverview(self,ws):
+
+        self._append(ws=ws,row=["Model",self._standardjson.modelname],
+                     font=self.BOLDFONT,colcnt=1)
+        self._append(ws=ws,row=["Language",self._standardjson.curlang],
+                     font=self.BOLDFONT,colcnt=1)
+        self._append(ws=ws,row=["Target environment",self._standardjson.targetenvironment],
+                     font=self.BOLDFONT,colcnt=1)
+        self._append(ws=ws,row=["dataspot link",self._standardjson.sourcehref],
+                     font=self.BOLDFONT,colcnt=1)
+        ws["B"+str(ws.max_row)].font = Font(color="0000FF", underline="single")
+
+        ws.append([])
+        self._append(ws=ws,row=["Entites"],
+                     font=self.BOLDFONT,colcnt=1)
+        entinames= [self._mlvalue(enti,"name") for enti in self._standardjson.getelementinstances(elementname="Entities")]
+        entinames.sort()
+        for entiname in entinames:
+            ws.append([entiname])
+
+        ws.append([])
+        self._append(ws=ws,row=["Group domains"],
+                     font=self.BOLDFONT,colcnt=1)
+
+
+        ws.column_dimensions["A"].width = 35
+        ws.column_dimensions["B"].width = 70
 
         return
 
@@ -171,9 +306,12 @@ class CreateSchemaExcel:
         wb = Workbook()
         wb.remove(wb.active)
 
+        self._overview_ws=wb.create_sheet("Overview")
+        self.writeoverview(ws=self._overview_ws)
+
         for enti in self._standardjson.getelementinstances(elementname="Entities"):
             self._writesheet(ws=wb.create_sheet(self._mlvalue(enti, "name")),
-                             elem=enti)
+                             elem=enti,isentity=True)
 
         # fill group domains
         donegroupdomains = []
@@ -184,6 +322,7 @@ class CreateSchemaExcel:
 
             self._writesheet(ws=wb.create_sheet(self._mlvalue(doma, "name")),
                              elem=doma)
+            self._overview_ws.append([self._mlvalue(doma, "name")])
             donegroupdomains.append(doma.get("elementid"))  # mark as done
 
         wb.save(outfilepath)

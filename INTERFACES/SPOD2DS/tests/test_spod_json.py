@@ -129,8 +129,9 @@ class TestModelSchema(unittest.TestCase):
     def test_myMmodels(self):
         for imstandardmodelfilepath in [#Path("/Users/stb/Documents/Projekte/BOBTDCC/DB/BOSCH_BT_ENG.json"),
                     # Path("/Users/stb/Documents/Projekte/GEBININF/DB/IM_GEBERIT.json")
-            Path("/Users/stb/Documents/Projekte/FYAYC_intern/FYAIM/DB/FYAYC_intern_GTOP.json"),
-            Path("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-ModellModell/gitHub/DB/ModellModell_neu.json")
+            #Path("/Users/stb/Documents/Projekte/FYAYC_intern/FYAIM/DB/FYAYC_intern_GTOP.json"),
+            #Path("/Users/stb/Documents/Projekte/FYAYC_intern/fyyccim-ModellModell/gitHub/DB/ModellModell_neu.json")
+            Path("/Users/stb/Documents/Projekte/BASF/gitHub/DB/BASFMDM.json")
         ]:
             if not imstandardmodelfilepath.is_file():
                 print (f"local im {imstandardmodelfilepath.stem} standardfile not found")

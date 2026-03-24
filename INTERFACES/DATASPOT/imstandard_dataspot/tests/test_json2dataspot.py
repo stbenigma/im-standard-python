@@ -61,6 +61,9 @@ class Testjson2dataspot(unittest.TestCase):
 
     def test_IM_astronomie_generated(self):
         astronomietestjsonfile= self.astronomietestjsonpath /"astronomie-schema-generated.json"
+        if not astronomietestjsonfile.is_file():
+            self.skipTest(f"testfile not found.{astronomietestjsonfile}")
+
         with open(astronomietestjsonfile) as infile:
             testjson = json.load(fp=infile)
 

@@ -17,7 +17,6 @@ class ElementId:
                 "COLU": "Columns",
                 "SYST": "Systems",
                 "DIAG": "Diagrams",
-                "DIAE": "Diagram elements",
                 "MAPP": "Mappings",
                 "TRAF": "Transformations"
                 }
@@ -100,6 +99,10 @@ class JsonSchema():
         return
 
     @property
+    def sourcehref(self):
+        return self.jsonschemamodel["ModelInfo"].get("additionalProps",{}).get('SOURCE-HREF')
+
+    @property
     def targetenvironment(self):
         return self.jsonschemamodel["ModelInfo"]["targetenvironment"]
 
@@ -146,35 +149,45 @@ class JsonSchema():
     def modelismultilingual(self):
         return len(self.languages) > 0
 
+    @staticmethod
+    def _mlvalue(value:dict, lang=None, defaultlang=None):
+        """Multilanguage value
+            returns
+                None if value is None or empty dict
+                value if value is not dict
+                value[lang] if lang is not None and lang in dict
+                value[default]lang] if lang is None and defaultlang in dict
+                else return value of first element in value-list
+            """
+        if value is None:
+            return None
+        elif type(value) is dict:
+            if len(value) == 0:
+                return None
+            else:
+                if lang is not None and lang in value.keys():
+                    return value.get(lang)
+                if defaultlang is not None and defaultlang in value.keys():
+                    return value.get(defaultlang)
+                return list(value.values())[0]
+        else:
+            return value
+
     def mlvalue(self, value, lang=None, default=True):
         """Multilanguage value
             returns
                 "" if value is None
-                value if it is string
-                if value ist dict:
+                value if it is no dict
+                if value is dict:
                     value[lang] if lang is not None and lang in dict
-                    value[curlang] if lang is None and curlang in dict
-                    value[mainlanguage] if default = True
+                    value[self.curlang] if lang is None and curlang in dict
+                    value[self.mainlanguage] if default = True
                     else return value of first element in value-list
             """
-        if value is None:
-            return ""
-        elif type(value) is str:
-            return value
-        elif type(value) is dict:
-            # is whish language in the dict
-            if lang is not None and lang in value.keys():
-                return value.get(lang)
-            # is the current language of the generation in the dict
-            if self.curlang is not None and self.curlang in value.keys():
-                return value.get(self.curlang)
-            # do we accept defaults and is the mainlanguage (=defaultlanguage) in the dict
-            if default and self.mainlang in value.keys():
-                return value.get(self.mainlang)
-            # do we accept defaults and is their any language in the dict
-            if default and len(value.keys()) > 0:
-                return value.get(list(value.keys())[0])
-        return value
+        return nvl(self._mlvalue(value=value,
+                                lang=lang if lang is not None else self.curlang,
+                                defaultlang=None if not default else self.mainlang
+                                ))
 
     def multilangstring_is(self):
         """ "is" translated into a multilingual string """
@@ -254,7 +267,8 @@ class JsonSchema():
         """
         if elem is None: return None
         retval = ""
-        parentelem: JsonElement = self.getbyid(JsonSchema.parentidfieldname(elem))
+
+        parentelem: JsonElement = self.getbyid(elem[JsonSchema.parentidfieldname(elem)])
         if parentelem is not None:
             retval += self.getpath(parentelem)
             retval += self.mlvalue(parentelem.getname())

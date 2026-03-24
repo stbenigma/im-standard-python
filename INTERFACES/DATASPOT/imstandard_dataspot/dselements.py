@@ -25,6 +25,7 @@ class DataspotElements():
         self.columns = dict()
         self.relationships = dict()
         self.transformations = dict()
+        self.usages = dict()
         self.mappings = dict()
         self.rules = dict()
         self.translations = dict()
@@ -260,9 +261,9 @@ class DataspotElements():
                 entry["PARENT"] = entry.get('inCollection')
                 self.diagrams[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Usage":
-                entry["ID"] = ElementId.nextid("DIAE")
+                entry["ID"] = None
                 entry["PARENT"] = entry.get('usedBy')
-                name = entry.get('usedBy') + "" if entry.get("usageOf") is None else (">" + entry.get("usageOf"))
+                name = entry.get('usedBy') + ("" if entry.get("usageOf") is None else (">" + entry.get("usageOf")))
                 self.diagelements[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "BusinessConstraint":
                 entry["ID"] = ElementId.nextid("BURU")
@@ -294,6 +295,5 @@ class DataspotElements():
                     self.modelname = onepath.stem
                     readjson(lpath=onepath, modelname=self.modelname)
         else:
-            raise Exception(f"path must be file or directory {path.__str__()}")
             raise Exception(f"path must be file or directory {path.__str__()}")
         return

@@ -48,10 +48,12 @@ class MyTestCase(unittest.TestCase):
                                                            schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
                                                            schemaonly=False,
                                                            verbose=True), [])
+            print(f'Json written : {outfilepath}')
 
         dataexcel = CreateDataExcel(standardjson=outfilepath)
         dataexcel.writeemptyexcel(outfilepath=Path(self.mydebugpath) / (self.infilepath.stem + "-data.xlsx"),
                                   withexamples=True)
+        print(f'Excelfile written : {Path(self.mydebugpath) / (self.infilepath.stem + "-data.xlsx")}')
 
         return
 
@@ -70,6 +72,7 @@ class MyTestCase(unittest.TestCase):
                                           schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
                                           schemaonly=False,
                                           verbose=True)
+            print (f"jsonfile written : {Path(self.mydebugpath) / (self.infilepath.stem + '-standard.json')}")
         return
 
     def test_write_dataexel(self):
@@ -113,6 +116,30 @@ class MyTestCase(unittest.TestCase):
                                   withexamples=True)
         print (f"Written data example excel to  {outfilepath}")
         return
+
+
+    def test_write_dataexcel2(self):
+        self.astronomietestjsonpath = self.testfilepath / "datafiles" / "Astronomie-schema.json"
+        with open(self.astronomietestjsonpath) as infile:
+            injson=json.load(infile)
+        dataexcel = CreateDataExcel(standardjson=injson)
+        outfilepath = Path(self.mydebugpath) / (self.astronomietestjsonpath.stem + "-data.xlsx")
+        dataexcel.writeemptyexcel(outfilepath=outfilepath,
+                                  withexamples=True)
+        print(f"Written data example excel to  {outfilepath}")
+
+        inpath = Path(self.mydebugpath) / "DMP-standard.json"
+        if inpath.exists():
+
+            with open(inpath) as infile:
+                injson=json.load(infile)
+            dataexcel = CreateDataExcel(standardjson=injson)
+            outfilepath = Path(self.mydebugpath) / (inpath.stem + "-data.xlsx")
+            dataexcel.writeemptyexcel(outfilepath=outfilepath,
+                                      withexamples=True)
+            print(f"Written data example excel to  {outfilepath}")
+        return
+
 
 if __name__ == '__main__':
     unittest.main()

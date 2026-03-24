@@ -1,0 +1,51 @@
+{
+  "model": {
+    "id": "123123123",
+    "name": "testmodell",
+    "um": "stb",
+    "dm": "2026-12-03-11:00",
+    "project": "teste die Funktionalität",
+    "language": "de"
+  },
+  "nodes": [
+    {
+      "id": "2",
+      "label": "Strecke\nFahrstrecke\noder so",
+      "x": 469,
+      "y": 57,
+      "width": 180,
+      "height": 136,
+      "color": "#10b981",
+      "examples": [
+        "Ex1",
+        "Beispiel mit\nZeilenumbruch",
+        "Beispiel2"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "e3",
+      "sourceId": "2",
+      "targetId": "4",
+      "sourceLabel": "enthält\nbetrifft",
+      "targetLabel": "liegt an",
+      "waypoints": [
+        {
+          "x": 560,
+          "y": 341
+        }
+      ],
+      "sourceEnd": "crowsfoot",
+      "targetEnd": "circle",
+      "sourceAnchor": {
+        "side": "bottom",
+        "pos": 0.5
+      },
+      "targetAnchor": {
+        "side": "right",
+        "pos": 0.5
+      }
+    }
+  ]
+}

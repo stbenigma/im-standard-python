@@ -24,6 +24,13 @@ class MyTestCase(unittest.TestCase):
                           lang="en").writeexcel(outfilepath=self.mydebugpath / "astronomie-schema.xlsx")
         return
 
+    def test_IM(self):
+        self.imtestjsonpath = Path(__file__).parent.parent.parent.parent / \
+                                      "IM_STANDARD" /"tests" / "json-test-standard-files" / "Informationsmodell-modell-standard.json"
+        CreateSchemaExcel(standardjson=self.imtestjsonpath,
+                          lang="en").writeexcel(outfilepath=self.mydebugpath / (self.imtestjsonpath.stem+".xlsx"))
+        return
+
 
 if __name__ == '__main__':
     unittest.main()

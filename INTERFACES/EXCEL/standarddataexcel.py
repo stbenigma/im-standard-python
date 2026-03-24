@@ -42,7 +42,7 @@ class CreateDataExcel:
             # Loop through columns 1 to 10 (A through J)
             for i in range(1, rowlen + 1):
                 ws.column_dimensions[get_column_letter(i)].width = desired_width
-            wb.save(outfilepath)
+        wb.save(outfilepath)
         return
 
 

@@ -119,9 +119,10 @@ class JsonElement:
         else:
             if self.elemtype == "Relation":
                 # build name for relation
-                # TODO translate further up
-                return self.data["fwd"].get("assoctext") + "->" + self.data["bwd"].get("assoctext")
-                # elif self.elemtype=="BusinessRule":
+                fp= self.getadditionalprop("FULLPATH")
+                fp=None if fp is None else fp[fp.index(":")+1:]
+                return fp if fp is not None else self.getid()
+            # elif self.elemtype=="BusinessRule":
             else:
                 return f"{self.elemtype}:???"
 
@@ -255,13 +256,12 @@ class JsonElement:
         return self
 
     def relationjson(self, elementid, relationtype, fwd, bwd, **kwargs):
-        self.elemtype = "elem.getadditionalprop('SOURCE-MODEL')"
+        self.elemtype = "Relation"
         self.data = {"elementid": elementid,
                      "relationtype": relationtype
                      }
         self.data["fwd"] = fwd.data if isinstance(fwd, JsonElement) else fwd
         self.data["bwd"] = bwd.data if isinstance(bwd, JsonElement) else bwd
-
         self.addoptionalprop("examples", kwargs.get("examples"))
         self.addoptionalprop("additionalProps",
                              kwargs.get("additionalProps"))
@@ -429,3 +429,14 @@ class JsonElement:
                                  )
 
         return self
+
+    def diagramjson(self, elementid, name, elements, **kwargs):
+        self.elemtype = "Diagram"
+        self.data = {"elementid": elementid,
+                     "name": name,
+                     "elements":elements
+                     }
+        for key, val in kwargs.items():
+            self.addoptionalprop(key, val)
+        return self
+
