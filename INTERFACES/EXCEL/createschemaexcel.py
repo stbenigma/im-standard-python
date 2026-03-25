@@ -167,6 +167,8 @@ class CreateSchemaExcel:
         self._append(ws=ws, row=[self._mlvalue(elem,"name")],
                      font=self.TITLEFONT,
                      colcnt=1)
+        ws.merge_cells('A1:B1')
+        ws.row_dimensions[1].height = 30
 
         self._append(ws=ws, row=["Attributes"],
                      font=self.LARGEFONT,
