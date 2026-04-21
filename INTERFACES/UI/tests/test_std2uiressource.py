@@ -1,11 +1,11 @@
 import json
+import logging
 import unittest
 from pathlib import Path
 
 import pytest
-import logging
 
-from INTERFACES.UI import std2uiressource
+from INTERFACES.UI import std2uiressource, creatediagramui
 
 
 class MyTestCase(unittest.TestCase):
@@ -36,10 +36,10 @@ class MyTestCase(unittest.TestCase):
         uijson = ui.generate_uiressource(diagname="Visualsierung Astronomie",
                                          uitype="miro",
                                          lang=None)
-        print ('\n'.join(m for m in self.caplog.messages))
-        self.assertTrue(len(uijson.get("elements").get("categories"))>0)
-        self.assertTrue(len(uijson.get("elements").get("entities"))>0)
-        self.assertTrue(len(uijson.get("elements").get("relationships"))>0)
+        print('\n'.join(m for m in self.caplog.messages))
+        self.assertTrue(len(uijson.get("elements").get("categories")) > 0)
+        self.assertTrue(len(uijson.get("elements").get("elements")) > 0)
+        self.assertTrue(len(uijson.get("elements").get("relationships")) > 0)
         self.dumpjson(self.debugpath / f"{infilepath.stem}-ui.json", uijson)
         return
 
@@ -53,9 +53,9 @@ class MyTestCase(unittest.TestCase):
             destjson = json.load(destfile)
 
         # remove an entity a category and a relationship
-        entities=destjson.get("elements").get("entities")
-        categories=destjson.get("elements").get("categories")
-        relationships=destjson.get("elements").get("relationships")
+        entities = destjson.get("elements").get("entities")
+        categories = destjson.get("elements").get("categories")
+        relationships = destjson.get("elements").get("relationships")
         del entities[2]
         del categories[1]
         del relationships[0]
@@ -68,7 +68,7 @@ class MyTestCase(unittest.TestCase):
                                          uitype="miro",
                                          lang=None
                                          )
-        print ('\n'.join(m for m in self.caplog.messages))
+        print('\n'.join(m for m in self.caplog.messages))
         self.dumpjson(self.debugpath / f"{infilepath.stem}-ui.json", uijson)
         return
 
@@ -84,13 +84,13 @@ class MyTestCase(unittest.TestCase):
                              ui._getitems(elements=diagjson.get("elements").get("categories"),
                                           condition=lambda e: e.get("name") == "Sternsystem"))
         self.assertEqual("Einzelentität",
-                            ui._getdestelements(elementname="entities",
-                                          condition=lambda e: e.get("name") == "Einzelentität")[0].get("name")
+                         ui._getdestelements(elementname="entities",
+                                             condition=lambda e: e.get("name") == "Einzelentität")[0].get("name")
                          )
 
         self.assertEqual(None,
-                            ui._getdestelement(elementname="entities",
-                                          condition=lambda e: e.get("elementid") == "xxxxx")
+                         ui._getdestelement(elementname="entities",
+                                            condition=lambda e: e.get("elementid") == "xxxxx")
                          )
         with self.assertRaises(Exception):
             ui._getdestelement(elementname="relationships",
@@ -98,13 +98,13 @@ class MyTestCase(unittest.TestCase):
 
         self.caplog.clear()
         self.caplog.set_level(logging.INFO)
-        ui.destentities=[{"name":'Mond',
-                                     "additionalProps": {"SOURCE-HREF":"srclink123123"}
-                                     },
-                                    {"name":'Planet',
-                                     "additionalProps": {"SOURCE-HREF":"srclink111111"}},
-                                    {"name":'Begleiter',
-                                     "additionalProps": {"SOURCE-HREF":"srclink98765"}}]
+        ui.destentities = [{"name": 'Mond',
+                            "additionalProps": {"SOURCE-HREF": "srclink123123"}
+                            },
+                           {"name": 'Planet',
+                            "additionalProps": {"SOURCE-HREF": "srclink111111"}},
+                           {"name": 'Begleiter',
+                            "additionalProps": {"SOURCE-HREF": "srclink98765"}}]
 
         self.assertTrue(ui._existselement(elementname="relationships",
                                           name='Planet->umkreist von->Mond',
@@ -114,14 +114,16 @@ class MyTestCase(unittest.TestCase):
                                           link="https://myserver.io/rest/foryouandyourcustomers/classifiers/3482ee88-dc3d-40c9-8df6-4c53802a6e22"))
 
         ui._checkproblems()
-        self.assertTrue(len(self.caplog.messages)>0)
-        print ('\n'.join(m for m in self.caplog.messages))
+        self.assertTrue(len(self.caplog.messages) > 0)
+        print('\n'.join(m for m in self.caplog.messages))
 
         return
 
     def test_local_diagramui(self):
         """ create miro ui file from std im file"""
         infilepath = Path().home() / "Downloads" / "testmiro.json"
+        if not infilepath.is_file():
+            self.skipTest(f"file no found: {str(infilepath)}")
         with open(infilepath) as infile:
             stdjson = json.load(infile)
 
@@ -133,6 +135,28 @@ class MyTestCase(unittest.TestCase):
                                          uitype="miro",
                                          lang=None)
         self.dumpjson(self.debugpath / f"{infilepath.stem}-ui.json", uijson)
+
+        # call the finished function
+        creatediagramui(infile=infilepath,
+                        outfile=Path().home() / "Downloads" / "testmiro-ui2.json",
+                        diagname="Geschäftspartner",
+                        lang="de")
+        # call the finished function
+        creatediagramui(infile=infilepath,
+                        outfile=Path().home() / "Downloads" / "testmiro-ui-system.json",
+                        diagname="System Overview",
+                        lang="de")
+
+        self.caplog.clear()
+        self.caplog.set_level(logging.INFO)
+
+        # call the finished function
+        creatediagramui(infile=infilepath,
+                        outfile=None,
+                        diagname="System Overview",
+                        lang=None)
+        print('\n'.join(m for m in self.caplog.messages))
+
         return
 
     def test_local_injectdiagram(self):
@@ -141,7 +165,10 @@ class MyTestCase(unittest.TestCase):
         with open(infilepath) as infile:
             stdjson = json.load(infile)
 
-        mergefilepath=self.debugpath / "miro-readback.json"
+        mergefilepath = self.debugpath / "miro-readback.json"
+        if not mergefilepath.exists():
+            self.skipTest(f"{str(mergefilepath)} not found")
+
         with open(mergefilepath) as infile:
             injson = json.load(infile)
 
@@ -150,13 +177,14 @@ class MyTestCase(unittest.TestCase):
 
         ui = std2uiressource.UiRessource(stdmodel=stdjson)
         uijson = ui.generate_uiressource(diagname="Geschäftspartner",
-                                         uitype="miro",
-                                         lang=None,
-                                         injson=injson)
+                                     uitype="miro",
+                                     lang=None,
+                                     injson=injson)
         print()
-        print ('\n'.join(self.caplog.messages))
+        print('\n'.join(self.caplog.messages))
         self.dumpjson(self.debugpath / f"{infilepath.stem}-merged.json", uijson)
         return
+
 
 if __name__ == '__main__':
     unittest.main()

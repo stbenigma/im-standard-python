@@ -4,25 +4,47 @@ from datetime import datetime
 
 from IM_STANDARD import ElementId, alwayslist, nvl, JsonSchema, JsonElement
 from INTERFACES.DATASPOT.imstandard_dataspot.dselements import DataspotElements
-from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
+from .dslib import fullescapestr,custom_split,escapestr
 
 
 def mseconds2date(seconds):
     return datetime.utcfromtimestamp(seconds / 1000)
 
-
 def date2mseconds(date):
     # todo timezone
     return int(date.timestamp() * 1000)
 
-
-class Dataspot2Jsonbase(DataspotElements):
+class Dataspot2Jsonbase():
     ORIGINTOOL = "dataspot"
 
-    def __init__(self, standardjson: JsonSchema, indirec=None, **kwargs):
-        super().__init__(indirec=indirec, **kwargs)
+    def __init__(self, standardjson: JsonSchema, dsmodels=None, indirec=None, **kwargs):
+        #super().__init__(indirec=indirec, **kwargs)
+        self.dsmodels=dsmodels if dsmodels is not None else DataspotElements(indirec=indirec, **kwargs)
         self.standardjson: JsonSchema = standardjson
         return
+
+    @staticmethod
+    def checkstatus(elem, filterstatus):
+        """
+
+        :param elem: element to be checked
+        :param filterstatus: PUBL,GTOP,ALL,None
+        :return:
+        true, if elem.get("status") is empty or fullfils the filterstatus
+        false else
+        """
+        if filterstatus in ("ALL", None):
+            return True
+        status = elem.get("status")
+        if status is None:
+            return True
+        if filterstatus == "PUBL" and status in ("PUBLISHED",):
+            return True
+        if filterstatus == "GTOP" and status in ("PUBLISHED",
+                                                 "ACCEPTED",
+                                                 "FINAL"):
+            return True
+        return False
 
     @staticmethod
     def _multilangvalue(value,
@@ -87,19 +109,19 @@ class Dataspot2Jsonbase(DataspotElements):
                     else "dataspot model translated into a top level category in standard model"
                 for model in models:
                     replacedkeys = []
-                    for key, catg in self.categories.items():
+                    for key, catg in self.dsmodels.categories.items():
                         if catg.get("TYPE") == catgtype and catg.get("DSMODEL") == model:
                             if catg.get("PARENT") is None:
                                 catg["PARENT"] = model
                                 catg["inCollection"] = model
                             replacedkeys.append(key)
                     for key in replacedkeys:
-                        self.categories[f"{model}/{key}"] = self.categories[key]
-                        del self.categories[key]
+                        self.dsmodels.categories[f"{model}/{key}"] = self.dsmodels.categories[key]
+                        del self.dsmodels.categories[key]
 
                     nextid = ElementId.nextid("CATG")
 
-                    self.categories[f"{model}/{model}"] = {'_type': 'Collection',
+                    self.dsmodels.categories[f"{model}/{model}"] = {'_type': 'Collection',
                                                            'label': model,
                                                            'description': descr,
                                                            'DSMODEL': model,
@@ -112,19 +134,21 @@ class Dataspot2Jsonbase(DataspotElements):
             which are combined in standard model.
             Create top level categories for the models (if  there is more than one) above all top level models
         """
-        diffimmodels = set(c.get("DSMODEL") for c in self.categories.values() if c.get("TYPE") == "ENTITY")
+        diffimmodels = set(c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "ENTITY")
         typemulticatg(models=diffimmodels, catgtype='ENTITY')
-        diffdomainmodels = set(c.get("DSMODEL") for c in self.categories.values() if c.get("TYPE") == "DOMAIN")
+        diffdomainmodels = set(c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "DOMAIN")
         typemulticatg(models=diffdomainmodels, catgtype='DOMAIN')
-        diffsystemmodels = set(c.get("DSMODEL") for c in self.categories.values() if c.get("TYPE") == "SYSTEM")
+        diffsystemmodels = set(c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "SYSTEM")
         typemulticatg(models=diffsystemmodels, catgtype='SYSTEM')
-        diffsystemmodels = set(c.get("DSMODEL") for c in self.categories.values() if c.get("TYPE") == "DATAMODEL")
+        diffsystemmodels = set(c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "DATAMODEL")
         typemulticatg(models=diffsystemmodels, catgtype='DATAMODEL')
 
         return
 
-    def generatecategories(self, catgtype):
-        categories = {key: val for key, val in self.categories.items() if val.get("TYPE") == catgtype}
+    def generatecategories(self, catgtype, status=None):
+        categories = {key: val for key, val in self.dsmodels.categories.items()
+                      if val.get("TYPE") == catgtype \
+                      and self.checkstatus(val, status)}
         donecatgs = dict()
         newcategories = []
         cnt = 0
@@ -170,8 +194,9 @@ class Dataspot2Jsonbase(DataspotElements):
                     for elem in self.standardjson.jsonschemamodel.get(elementtype, [])}
         return elements.get(self._deref(elementname)) if elements else None
 
-    def getrelationid(self,**kwargs):
+    def getrelationid(self, **kwargs):
         return None
+
     def getentityid(self, entiname):
         return self.getelementid(elementtype="Entities", elementname=entiname)
 
@@ -207,35 +232,6 @@ class Dataspot2Jsonbase(DataspotElements):
                  for colu in parent[subelementsname]}
         return colus.get(self._deref(coluname))
 
-    def categoryid(self, modeltype, categoryname):
-        modelcatg = self.modelcategories.get(modeltype)
-        if modelcatg is None:
-            return None
-        else:
-            return modelcatg.get(categoryname)
-
-    def catgjson(self, element, categorytype):
-        parentname = element.get("PARENT")
-        parentid = None if parentname is None \
-            else self.findelementid(elems=self.categories,
-                                    modelname=element.get("DSMODEL"),
-                                    name=parentname, fullname=True)
-
-        additionalprops = self.additionalprops(elem=element, specialkeys=["parentid"])
-        additionalprops["SOURCE-HREF"] = self.sourcehref(element)
-
-        jsonstruct = JsonElement().categoryjson(elementid=element.get("ID"),
-                                                name=self.mutlilangvalue(fieldname="label",
-                                                                         value=element.get("label"),
-                                                                         addprops=additionalprops),
-                                                description=self.mutlilangvalue(fieldname="description",
-                                                                                value=element.get("description"),
-                                                                                addprops=additionalprops),
-                                                categorytype=categorytype,
-                                                categoryid=parentid,
-                                                additionalProps=additionalprops)
-        return jsonstruct
-
     @staticmethod
     def namedreference2struct(namedref: str):
         """ separates a refrence to an object into its components
@@ -248,14 +244,14 @@ class Dataspot2Jsonbase(DataspotElements):
         """
         if namedref is None: return (None, None, None)
         if ":" in namedref:
-            parts = j2d.custom_split(input_string=namedref, delimiter=":")
+            parts = custom_split(input_string=namedref, delimiter=":")
             modelname = parts[0]
             restpath = parts[1]
         else:
             modelname = None
-            restpath=namedref
+            restpath = namedref
 
-        parts = j2d.custom_split(input_string=restpath, delimiter="/")
+        parts = custom_split(input_string=restpath, delimiter="/")
         if restpath.startswith("/"):
             modelname = parts[1]
             parts = parts[2:]  # remove modelname
@@ -282,22 +278,23 @@ class Dataspot2Jsonbase(DataspotElements):
         """
         retval = ""
         if modelname is not None:
-            retval += j2d.fullescapestr(modelname) + ":"
+            retval += fullescapestr(modelname) + ":"
         if len(alwayslist(elementpath)) > 0:
-            retval += "/".join([j2d.fullescapestr(ep) for ep in elementpath]) + "/"
-        retval += nvl(j2d.fullescapestr(elementname))
+            retval += "/".join([fullescapestr(ep) for ep in elementpath]) + "/"
+        retval += nvl(fullescapestr(elementname))
         return retval
 
     @staticmethod
     def getadditionalprop(elem: JsonElement, propname: str):
         return elem.getadditionalprop(propname)
 
-    def findelement(self, elems, modelname, name, fullname=False):
+    @staticmethod
+    def findelement(elems, modelname, name, fullname=False):
         if name is None:
             return None
         elif name.startswith("/"):
             # name is in other model
-            namepath = j2d.custom_split(name, "/")
+            namepath = custom_split(name, "/")
             elem = [val for key, val in elems.items() if
                     key.startswith(namepath[1]) and key.endswith("/" + "/".join(namepath[2:]))]
         else:
@@ -380,7 +377,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "cardinality",
                                                             "navigable",
                                                             "ARC-21", "ARC-12"])
-        additionalprops["SOURCE-HREF"]= self.sourcehref(element)
+        additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
         intval = lambda x: None if element.get(x) is None else int(element.get(x))
         fwdend = JsonElement().relationendjson(entityid=entityid1,
                                                dataobjectid=dataobjectid1,
@@ -424,16 +421,16 @@ class Dataspot2Jsonbase(DataspotElements):
         return elemrela
 
     def relationjson(self, modelname, relationtype, element):
-        entityid1 = self.findelementid(elems=self.entities,
+        entityid1 = self.findelementid(elems=self.dsmodels.entities,
                                        modelname=modelname,
                                        name=self._deref(element.get("PARENT")))
-        dataobjectid1 = self.findelementid(elems=self.tables,
+        dataobjectid1 = self.findelementid(elems=self.dsmodels.tables,
                                            modelname=modelname,
                                            name=self._deref(element.get("PARENT")))
-        entityid2 = self.findelementid(elems=self.entities,
+        entityid2 = self.findelementid(elems=self.dsmodels.entities,
                                        modelname=modelname,
                                        name=self._deref(element.get("PARENT2")))
-        dataobjectid2 = self.findelementid(elems=self.tables,
+        dataobjectid2 = self.findelementid(elems=self.dsmodels.tables,
                                            modelname=modelname,
                                            name=self._deref(element.get("PARENT2")))
         assert entityid1 is not None or dataobjectid1 is not None, f"Missing entity/table parent {element.get('PARENT')}->{element.get('PARENT2')}"
@@ -455,8 +452,8 @@ class Dataspot2Jsonbase(DataspotElements):
         return
 
     def domasubattrs(self, element):
-        domattrs = [da for da in self.attributes.values()
-                    if element.get("ID") == self.findelementid(elems=self.domains,
+        domattrs = [da for da in self.dsmodels.attributes.values()
+                    if element.get("ID") == self.findelementid(elems=self.dsmodels.domains,
                                                                modelname=da.get("DSMODEL"),
                                                                name=da.get("hasDomain")
                                                                )]
@@ -518,7 +515,7 @@ class Dataspot2Jsonbase(DataspotElements):
             pass
         elif domaintype == "LOV":
             domaname = element.get("label")
-            refvalues = [val for val in self.LOVvalues.values() \
+            refvalues = [val for val in self.dsmodels.LOVvalues.values() \
                          if val.get("_type") == "ReferenceValue" and \
                          val.get("literalOf") == domaname]
             values = []
@@ -557,7 +554,7 @@ class Dataspot2Jsonbase(DataspotElements):
         return
 
     def businessrulejson(self, key, element):
-        restricted = j2d.custom_split(element.get("constraintOn"), "/")
+        restricted = custom_split(element.get("constraintOn"), "/")
         if len(restricted) == 1:
             # assume entitiy or domainid or dataobject
             restrid = self.getentityid(entiname=restricted[0])
@@ -596,15 +593,16 @@ class Dataspot2Jsonbase(DataspotElements):
                                                  )
         return
 
-    def generatedomains(self):
-        for element in self.domains.values():
-            self.standardjson.addelementinstance(name="Domains",
-                                                 val=self.generate1domain(doma=element))
+    def generatedomains(self, status=None):
+        for element in self.dsmodels.domains.values():
+            if self.checkstatus(element, status):
+                self.standardjson.addelementinstance(name="Domains",
+                                                     val=self.generate1domain(doma=element))
         return
 
     def generate1domain(self, doma):
 
-        catgid = self.findelementid(elems=self.categories,
+        catgid = self.findelementid(elems=self.dsmodels.categories,
                                     modelname=doma.get("DSMODEL"),
                                     name=doma.get("inCollection"), notnull=True)
         additionalprops = self.additionalprops(elem=doma,
@@ -616,7 +614,7 @@ class Dataspot2Jsonbase(DataspotElements):
                                                             "baseType",
                                                             "Unit", "pattern"
                                                             ])
-        additionalprops["SOURCE-HREF"] = self.sourcehref(doma)
+        additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(doma)
 
         JsonElement.optionalprop(destobject=additionalprops,
                                  propname="SOURCE-DATATYPE",
@@ -637,45 +635,152 @@ class Dataspot2Jsonbase(DataspotElements):
                                             )
         return elemdoma
 
+    def generatederivations(self,status=None):
+        """ read all derivations and add them to the derivations of the model, if the target is in this model
+        """
+        for keyderiv, deriv in self.dsmodels.derivations.items():
+            if not self.checkstatus(deriv,status): continue
+            sourcepath = self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
+                                                       modelname=deriv.get("DSMODEL"))
+            sourceelement = self.findqualielement(fullpath=sourcepath)
+            targetpath = self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
+                                                       modelname=deriv.get("DSMODEL"))
+            targetelement = self.findqualielement(fullpath=targetpath)
+            if targetelement is None:
+                # target not found, is not part of the current model
+                continue
+
+            # add derivation to found element
+            if sourceelement is None:
+                sourceelementid = sourcepath
+            else:
+                sourceelementid = sourceelement.getid()
+
+            additionalprops = self.additionalprops(elem=deriv,
+                                                   specialkeys=["derivedTo",
+                                                                "derivedFrom",
+                                                                "qualifier"
+                                                                ])
+
+            self.standardjson.addelementinstance(name="Derivations",
+                                                 val=JsonElement().derivationjson
+                                                 (derivationtype=deriv.get("qualifier"),
+                                                  sourceelement=sourceelementid,
+                                                  targetelement=targetelement.getid(),
+                                                  additionalProps=additionalprops
+                                                  )
+                                                 )
+
+        return
+
+    def generatetransformations(self,status=None):
+        """ read all transformations and add them to the element
+        """
+        for trakey, transf, in self.dsmodels.transformations.items():
+            if not self.checkstatus(transf, status): continue
+            transpath = transf.get("transformationOf") + "/" + transf.get("label")
+
+            additionalprops = self.additionalprops(elem=transf,
+                                                   specialkeys=["transformationOf"])
+            transfname=self.mutlilangvalue(fieldname="label",
+                                        value=transf.get("label"),
+                                        addprops=additionalprops)
+            rules = [r for r in self.dsmodels.rules.values() if r.get("ruleOf") == transpath]
+            for rule in rules:
+                sourceelements = [nvl(self.findqualielement(
+                    fullpath=self.addmodeltonamedreference(namedref=t, modelname=rule.get("DSMODEL"))), t)
+                    for t in rule.get("transformsFrom", [])]
+                sourceelements = [se.getid() if isinstance(se, JsonElement) else se for se in sourceelements]
+                targetelements = [nvl(self.findqualielement(
+                    fullpath=self.addmodeltonamedreference(namedref=t, modelname=rule.get("DSMODEL"))), t)
+                    for t in rule.get("transformsTo", [])]
+                targetelements = [se.getid() if isinstance(se, JsonElement) else se for se in targetelements]
+                self.standardjson.addelementinstance(name="Transformations",
+                                                     val=JsonElement().transformationjson
+                                                     (name=transfname,
+                                                      targetelements=targetelements,
+                                                      sourceelements=sourceelements,
+                                                      fwd=JsonElement().transformationrulejson(rule=rule.get("code"),
+                                                                                               condition=rule.get(
+                                                                                                   "condition")),
+                                                      bwd=JsonElement().transformationrulejson(rule=None,
+                                                                                               condition=None),
+                                                      additionalProps=additionalprops
+                                                      )
+                                                     )
+        return
+
+
     def findanyid(self, modelname, name, notnull=False):
-        retval = self.findelementid(elems=self.attributes,
+        retval = self.findelementid(elems=self.dsmodels.attributes,
                                     modelname=modelname,
                                     name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.entities,
+            retval = self.findelementid(elems=self.dsmodels.entities,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.tables,
+            retval = self.findelementid(elems=self.dsmodels.tables,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.columns,
+            retval = self.findelementid(elems=self.dsmodels.columns,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.categories,
+            retval = self.findelementid(elems=self.dsmodels.categories,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.relationships,
+            retval = self.findelementid(elems=self.dsmodels.relationships,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.domains,
+            retval = self.findelementid(elems=self.dsmodels.domains,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.systems,
+            retval = self.findelementid(elems=self.dsmodels.systems,
                                         modelname=modelname,
                                         name=name)
         if retval is None:
-            retval = self.findelementid(elems=self.transformations,
+            retval = self.findelementid(elems=self.dsmodels.transformations,
                                         modelname=modelname,
                                         name=name)
 
         assert not (retval is None and notnull), f"{name} in {modelname} not found"
         return retval
+
+    def findqualielement(self, fullpath: str,
+                         elemtype: str = None):
+        """ find element fully qualified by fullpathj"""
+        frommodel, frompath, fromelement = self.namedreference2struct(fullpath)
+        elements = self.standardjson.getanyelementsbyfield(name=fromelement,
+                                                           field="name") + \
+                   self.standardjson.getelementinstances("Relations")
+
+        retval = []
+        for elem in elements:
+            # if FULLPATH ist defined, use it
+            if elem.getname() == fullpath:  # getadditionalprop("FULLPATH")
+                retval.append(elem)
+            else:
+                elemmodel, elempath, elemname = self.namedreference2struct(
+                    namedref=self.standardjson.getfullpath(elem=elem))
+                # assert len(frompath) <= 1, "mehrfach path muss noch gemacht werden"
+                if (frommodel == elemmodel) and \
+                        (fromelement == elemname) and \
+                        (len(frompath) <= len(
+                            elempath) and  # both paths are equal from the end to the beginning of the frompath
+                         (frompath == [] or frompath[-len(frompath):] == elempath[-len(frompath):])) and \
+                        (elemtype is None or
+                         (elemtype == elem.elemtype)):
+                    retval.append(elem)
+        if len(retval) == 1:
+            return retval[0]
+        else:
+            return None
+
 
     @staticmethod
     def _deref(name: str):

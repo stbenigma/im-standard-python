@@ -1,5 +1,5 @@
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
-from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
+from .dslib import custom_split
 from IM_STANDARD.myjsonschema import ElementId, JsonSchema,JsonElement
 
 
@@ -74,10 +74,10 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
 
     def generatecolumns(self, elements):
         for subelem in elements:
-            datoid = self.getdatoid(j2d.custom_split(subelem.get("hasDomain"), "/")[-1])
+            datoid = self.getdatoid(custom_split(subelem.get("hasDomain"), "/")[-1])
             domainname = subelem.get("hasRange")
             domainid = None if type(domainname) is not str else self.getdomainid(
-                domaname=j2d.custom_split(domainname, "/")[-1])
+                domaname=custom_split(domainname, "/")[-1])
             jsonstruct = JsonElement().dataattributejson(elementid=ElementId.nextid("COLU"),
                                                       dataobjectid=datoid,
                                                       name=subelem.get("label"),
@@ -98,10 +98,10 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
         for types in [elem for elem in self.modeltypeelements.values()]:
             sources = []
             for rule in [entry for entry in types if entry.get("_type") == "Rule" and
-                                                     j2d.custom_split(entry.get("ruleOf"), "/")[
+                                                     custom_split(entry.get("ruleOf"), "/")[
                                                          -1] == transformation.get(
                 "label")]:
-                sources.extend([j2d.custom_split(tf, "/")[1] for tf in rule.get("transformsFrom", [])])
+                sources.extend([custom_split(tf, "/")[1] for tf in rule.get("transformsFrom", [])])
                 rules.append({"sequenceno": rule.get("label"),
                               "description": None,
                               "rule": rule.get("label")})
@@ -126,7 +126,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
 
     def generatedatamodel(self):
         self.generatedataobjects(elementname="DataObjects",
-                                 elements=[elem for elem in self.tables.values()])
+                                 elements=[elem for elem in self.dsmodels.tables.values()])
         self.generatecolumns(elements=[elem for elem in self.columns.values()
                                        if elem.get("_type") == "UmlAttribute"])
         self.generaterelations(elementname="Relations",
@@ -153,10 +153,11 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
                                            targetenvironment=targetenv,
                                            origintool=self.ORIGINTOOL))
 
-        self.generatecategories(catgtype="DOMAIN")
-        self.generatecategories(catgtype="DATAOBJECT")
-        self.generatedomains()
-        self.generatedatamodel()
+        self.generatecategories(catgtype="DOMAIN",status=status)
+        self.generatecategories(catgtype="DATAOBJECT",status=status)
+        self.generatedomains(status=status)
+        self.generatedatamodel(status=status)
+        self.generatedatamodel(status=status)
 
         return self.standardjson
 

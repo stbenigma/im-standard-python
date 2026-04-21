@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 
-from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot,json2dataspot
+from INTERFACES.DATASPOT import Json2dataspot,json2dataspot,custom_split,escapestr,fullescapestr
 from IM_STANDARD import StandardJsonModel
 
 class Testjson2dataspot(unittest.TestCase):
@@ -30,14 +30,14 @@ class Testjson2dataspot(unittest.TestCase):
         return
 
     def test_diverse(self):
-        self.assertEqual('"abc/d"', Json2dataspot.fullescapestr("abc/d"))
-        self.assertEqual('a\\"b\\"cd', Json2dataspot.escapestr('a"b"cd'))
-        self.assertEqual([],Json2dataspot.custom_split(input_string=None,delimiter="/",quote='"'))
-        self.assertEqual([""],Json2dataspot.custom_split(input_string="",delimiter="/",quote='"'))
-        self.assertEqual(["","abc","def"],Json2dataspot.custom_split(input_string="/abc/def",delimiter="/",quote='"'))
-        self.assertEqual(["ab/c","def"],Json2dataspot.custom_split(input_string="\"ab/c\"/def",delimiter="/",quote='"'))
-        self.assertEqual(["","ab.c","","def"],Json2dataspot.custom_split(input_string="/ab.c//def",delimiter="/",quote='"'))
-        self.assertEqual(["","abc","","def",""],Json2dataspot.custom_split(input_string="/abc/""/def/",delimiter="/",quote='"'))
+        self.assertEqual('"abc/d"', fullescapestr("abc/d"))
+        self.assertEqual('a\\"b\\"cd', escapestr('a"b"cd'))
+        self.assertEqual([],custom_split(input_string=None,delimiter="/",quote='"'))
+        self.assertEqual([""],custom_split(input_string="",delimiter="/",quote='"'))
+        self.assertEqual(["","abc","def"],custom_split(input_string="/abc/def",delimiter="/",quote='"'))
+        self.assertEqual(["ab/c","def"],custom_split(input_string="\"ab/c\"/def",delimiter="/",quote='"'))
+        self.assertEqual(["","ab.c","","def"],custom_split(input_string="/ab.c//def",delimiter="/",quote='"'))
+        self.assertEqual(["","abc","","def",""],custom_split(input_string="/abc/""/def/",delimiter="/",quote='"'))
         self.assertEqual("1",Json2dataspot._multiplicity(card=1,mand=True))
         self.assertEqual("0..1",Json2dataspot._multiplicity(card="1",mand=False))
         self.assertEqual("1..*",Json2dataspot._multiplicity(card="M",mand=True))

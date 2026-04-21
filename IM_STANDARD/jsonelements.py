@@ -166,6 +166,9 @@ class JsonElement:
         self.addoptionalprop(propname="additionalProps", value=additionalprops)
         return
 
+    def get(self,label,defvalue=None):
+        return self.data.get(label,defvalue)
+
     ##### information model
     def modelinfojson(self, modelname, modeltype, mainlanguage="en",
                       modelversion="0.0", **kwargs):
@@ -373,8 +376,7 @@ class JsonElement:
         return self
 
     ##### Systems
-    @staticmethod
-    def systemjson(self, elementid, name, **kwargs):
+    def systemjson(self,elementid, name, **kwargs):
         self.elemtype = "System"
         self.data = {"elementid": elementid,
                      "name": name
@@ -416,6 +418,9 @@ class JsonElement:
                      "is1to1": len(sourceelements) <= 1 >= len(targetelements)
                      }
 
+        self.addoptionalprop(propname="name",
+                             value=kwargs.get("name")
+                             )
         self.addoptionalprop(propname="fwd",
                              value=kwargs.get("fwd", JsonElement()).data
                              )
@@ -423,7 +428,7 @@ class JsonElement:
                              value=kwargs.get("bwd", JsonElement()).data
                              )
         for key, value in kwargs.items():
-            if key in ("fwd", "bwd"): continue
+            if key in ("fwd", "bwd","name"): continue
             self.addoptionalprop(propname=key,
                                  value=value
                                  )

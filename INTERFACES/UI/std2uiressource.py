@@ -66,11 +66,12 @@ class GenericUiRessource():
         self.destentities = []
         self.destrelationships = []
         self.destcategories = []
+        self.destsystems = []
+        self.destdataflows = []
         return
 
     def _mlvalue(self, value):
         return JsonSchema._mlvalue(value=value, lang=self._lang, defaultlang=self._defaultlang)
-
 
     def modeljson(self, modelid, name, ui, **kwargs):
         assert False, f"function must be implemented in subobject"
@@ -159,7 +160,7 @@ class UiRessource(GenericUiRessource):
 
     def _updateentiui(self):
         entibyname = dict() if self._destjson is None \
-            else {enti.get("name"): enti for enti in self._destjson.get("elements", dict()).get("entities")}
+            else {enti.get("name"): enti for enti in self._destjson.get("elements", dict()).get("elements")}
         for enti in self.destentities:
             try:
                 samelink = self._getdestelement("entities",
@@ -256,6 +257,16 @@ class UiRessource(GenericUiRessource):
                                       heigth=self.diaglayout.CATEGORYHEIGHT)
         return catgs
 
+    def _linktods(self, url, name):
+        return f"<p><a href=\"{url}\">{name}</a></p>"
+
+    def _relaend(self, card: str, mand: bool):
+        endshapes = {"MT": "erd_many",
+                     "1F": "oval",
+                     "MF": "erd_zero_or_many",
+                     "1T": "none"}
+        return endshapes[card + ("T" if mand else "F")]
+
     def _entitiesui(self):
         entities = []
         for enti in self.destentities:
@@ -265,6 +276,10 @@ class UiRessource(GenericUiRessource):
                                        link=self._href(enti)):
                 entity = self.entijson(entityid=self._structid(enti),
                                        name=self._mlvalue(enti.get("name")),
+                                       displname=self._linktods(url=self._href(enti),
+                                                                name=self._mlvalue(enti.get("name"))),
+                                       elemtype="Entity",
+                                       examples=enti.get("examples"),
                                        pos_x=self.diaglayout.startx,
                                        pos_y=self.diaglayout.starty,
                                        srclink=self._href(enti),
@@ -277,6 +292,36 @@ class UiRessource(GenericUiRessource):
                 logging.info(f'Entität "{entity.get("name")}" hinzugefügt')
 
         return entities
+
+    def _systemsui(self):
+        systems = []
+        for syst in self.destsystems:
+            parts = syst.split("/")
+            # skip createion if already in destination
+            if not self._existselement(elementname="systems",
+                                       name=parts[-1],
+                                       link=None):
+                system = self.entijson(entityid=syst,
+                                       name=parts[-1],
+                                       pos_x=self.diaglayout.startx,
+                                       pos_y=self.diaglayout.starty,
+                                       srclink=None,
+                                       ui=self.uijson(width=DiagramLayout.ENTITYWIDTH,
+                                                      height=DiagramLayout.ENTITYHEIGHT
+                                                      )
+                                       )
+                systems.append(system)
+                self.diaglayout._nextentity()
+                logging.info(f'System "{syst}" hinzugefügt')
+
+        return systems
+
+    def _dataflowsui(self):
+        dataflows = []
+        for syst in self.destdataflows:
+            pass
+
+        return dataflows
 
     def _getentity(self, entiid):
         enti = [e for e in self.destentities if e.get("elementid") == entiid]
@@ -331,6 +376,29 @@ class UiRessource(GenericUiRessource):
         fwdcaption = self._mlvalue(fwd.get("assoctext")) if "assoctext" in fwd else fwd.get("caption", {}).get("text")
         return f'{fwdname}->{fwdcaption}->{bwdname}'
 
+    def _captions(self, fwd: dict, bwd: dict):
+        captions = []
+        fwdarc = fwd.get("arcnumber")
+        startpos = 15
+        endpos = 85
+        if fwdarc:
+            captions.append({"content": "/" * int(fwdarc), "position": startpos})
+            startpos += 15
+        if self._mlvalue(bwd.get("assoctext")) in (None, ""):
+            startpos = 50  # only one text
+
+        captions.append({"content": self._mlvalue(fwd.get("assoctext")), "position": startpos})
+
+        bwdarc = bwd.get("arcnumber")
+        if bwdarc:
+            captions.append({"content": "/" * int(bwdarc), "position": endpos})
+            endpos -= 15
+
+        if self._mlvalue(bwd.get("assoctext")) not in (None, ""):
+            # two texts
+            captions.append({"content": self._mlvalue(bwd.get("assoctext")), "position": endpos})
+        return captions
+
     def _relationsui(self):
         relations = []
         for rela in self.destrelationships:
@@ -340,11 +408,33 @@ class UiRessource(GenericUiRessource):
                                        ):
                 # TODO Subtype relations are not on a project in dataspot how to capture them anyway
                 fwd, bwd = rela.get("fwd"), rela.get("bwd")
+
+                """                  "caption": {
+                      "text": kwargs.get("captiontext"),
+                      "position": kwargs.get("captionposition")
+                  }"""
                 relation = self.relajson(relaid=self._structid(rela),
                                          name=self._relaname(rela),
+                                         fromElement=self._structid(self._getentity(fwd.get("entityid"))),
+                                         toElement=self._structid(self._getentity(bwd.get("entityid"))),
+                                         startposition={"x": 50, "y": 100},
+                                         endposition={"x": 0, "y": 50},
+                                         captions=self._captions(fwd=fwd, bwd=bwd),
+                                         shape="elbowed",
+                                         style={
+                                             "startStrokeCap": self._relaend(card=fwd.get("cardinality"),
+                                                                             mand=fwd.get("mandatory")),
+                                             "endStrokeCap": self._relaend(card=bwd.get("cardinality"),
+                                                                             mand=bwd.get("mandatory")),
+                                             "strokeWidth": "1.0",
+                                             "strokeStyle": "normal",
+                                             "strokeColor": "#000000",
+                                             "color": "#1a1a1a",
+                                             "textOrientation": "horizontal",
+                                             "fontSize": "10"
+                                         },
                                          fwd=self._relaendui(relaend=fwd, edge="E"),
-                                         bwd=self._relaendui(relaend=bwd, edge="W"),
-                                         srclink=self._href(rela)
+                                         bwd=self._relaendui(relaend=bwd, edge="W")
                                          )
                 relations.append(relation)
                 logging.info(f'Beziehung "{relation.get("name")}" hinzugefügt')
@@ -397,7 +487,7 @@ class UiRessource(GenericUiRessource):
 
         return
 
-    def modeljson(self, modelid, name,  **kwargs):
+    def modeljson(self, modelid, name, **kwargs):
         retval = {"elementid": modelid,
                   "name": name,
                   "type": "Entity"}
@@ -418,13 +508,15 @@ class UiRessource(GenericUiRessource):
     def entijson(self, entityid, name, ui, **kwargs):
         retval = {
             "elementid": entityid,
-            "name": name,
-            "index": kwargs.get("index", 0),
-            "pos_x": kwargs.get("pos_x"),
-            "pos_y": kwargs.get("pos_y"),
-            "srclink": kwargs.get("srclink"),
-            "ui": ui
+            "name": name
         }
+        for key, val in kwargs.items():
+            if key == "index":
+                val = nvl(val, 0)
+            if key == "displname":
+                val = nvl(val, name)
+            retval[key] = val
+        retval["ui"] = ui
         return retval
 
     def relajson(self, relaid, name, fwd, bwd, **kwargs):
@@ -432,9 +524,14 @@ class UiRessource(GenericUiRessource):
             "elementid": relaid,
             "name": name,
             "fwd": fwd,
-            "bwd": bwd,
-            "srclink": kwargs.get("srclink")
+            "bwd": bwd
         }
+        for key, val in kwargs.items():
+            if key == "index":
+                val = nvl(val, 0)
+            if key == "displname":
+                val = nvl(val, name)
+            retval[key] = val
         return retval
 
     def uijson(self, width, height, **kwargs):
@@ -472,6 +569,7 @@ class UiRessource(GenericUiRessource):
 
         mainlang = self._stdmodel.get("ModelInfo").get("mainlanguage")
         self._lang = nvl(lang, mainlang)
+        # set defaultlanguage for replacement of missing translations
         if self._lang == mainlang:
             self._defaultlang = None
         else:
@@ -479,6 +577,7 @@ class UiRessource(GenericUiRessource):
 
         self._destjson = injson
 
+        # get one and only diagram
         diagrams = [diag for diag in self._stdmodel.get("Diagrams", []) if diag.get("name") == diagname]
         assert len(diagrams) == 1, f"Diagram '{diagname} not found in standard json"
         diagram = diagrams[0]
@@ -489,16 +588,23 @@ class UiRessource(GenericUiRessource):
                                   elem.get("elementid") in diagram.get("elements")]
         self.destcategories = [elem for elem in self._stdmodel.get("Categories", []) if elem.get("elementid") in \
                                [enti.get("categoryid") for enti in self.destentities]]
-        self.diaglayout = DiagramLayout(entitycnt=len(self.destentities))
+        self.destsystems = [elem for elem in self._stdmodel.get("Systems", []) if
+                            elem.get("elementid") in diagram.get("elements")] + \
+                           [elem[len("Systems:"):] for elem in diagram.get("elements") if elem.startswith("Systems:")]
+
+        self.destdataflows = [elem for elem in self._stdmodel.get("Systems", []) if
+                              elem.get("elementid") in diagram.get("elements")] + \
+                             [elem[len("Systems:"):] for elem in diagram.get("elements") if elem.startswith("Systems:")]
+        self.diaglayout = DiagramLayout(entitycnt=max(len(self.destentities), len(self.destsystems)))
         if self._destjson is None:
             self._destjson = self.modeljson(modelid=self._structid(diagram),
                                             name=diagram.get("name"),
-                                            width= DiagramLayout.DIAGMINWIDTH,
-                                                height= DiagramLayout.DIAGMINHEIGHT,
+                                            width=DiagramLayout.DIAGMINWIDTH,
+                                            height=DiagramLayout.DIAGMINHEIGHT,
                                             dc=str(datetime.now()),
                                             srclink=self._href(diagram),
                                             elements={"categories": [],
-                                                      "entities": [],
+                                                      "elements": [],
                                                       "relationships": []
                                                       }
                                             )
@@ -515,6 +621,8 @@ class UiRessource(GenericUiRessource):
         self._updatecatgui()
         self._updateentiui()
         self._updaterelaui()
+        # TODO self._updatesystui()
+        # TODO self._updatedataflowui()
         # add new categories and entities to destjson
 
         # new elements below the existing ones
@@ -523,7 +631,7 @@ class UiRessource(GenericUiRessource):
 
         if "categories" in self._destjson["elements"]:
             self._destjson["elements"]["categories"].extend(self._catgsui())
-        self._destjson["elements"]["entities"].extend(self._entitiesui())
+        self._destjson["elements"]["elements"].extend(self._entitiesui())
         self._destjson["elements"]["relationships"].extend(self._relationsui())
 
         self._destjson["width"] = self.diaglayout.diagwidth
@@ -531,15 +639,36 @@ class UiRessource(GenericUiRessource):
         return self._destjson
 
 
-def creatediagramui(infile, ):
+def creatediagramui(infile, diagname, outfile=None, lang=None):
+    """
+    create an outfile with user interace content
+    infile: filepath of json standard file
+    diagname: Name of the diagram to output
+    outfile: filepath for output. Defulat: infile with "-ui" added to name
+    lang: Languagecode for texts. Default mainlanguage of the standardjson
+    """
     logging.getLogger().setLevel(logging.INFO)
 
-    if Path(infile).is_file():
-        with open(infile) as infile:
-            stdjson = json.load(infile)
+    assert Path(infile).is_file(), f"not a file {infile}"
+    with open(infile) as inputfile:
+        stdjson = json.load(inputfile)
 
-    ui = UiRessource(stdmodel=stdjson)
-    uijson = ui.generate_uiressource(diagname="Visualsierung Astronomie",
-                                     uitype="miro",
-                                     lang=None)
+    # default outfile
+    if outfile is None:
+        myoutfile = Path(infile).with_stem(Path(infile).stem + "-ui")
+    else:
+        myoutfile = Path(outfile)
+
+    # default lang
+    if lang is None:
+        lang = stdjson.get("ModelInfo").get("mainlanguage")
+
+    uijson = UiRessource(stdmodel=stdjson).generate_uiressource(diagname=diagname,
+                                                                uitype="miro",
+                                                                lang=lang)
+    with open(myoutfile, "w") as outjson:
+        json.dump(uijson, outjson, indent=2)
+
+    logging.info(f"jsonfile written : {str(myoutfile)}")
+
     return uijson

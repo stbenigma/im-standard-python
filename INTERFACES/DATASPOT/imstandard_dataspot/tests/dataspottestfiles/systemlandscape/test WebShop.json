@@ -1,0 +1,1464 @@
+[ {
+  "_type" : "Collection",
+  "id" : "867244b5-4f88-46ff-a072-d47934171ced",
+  "href" : "/web/foryouandyourcustomers/collections/867244b5-4f88-46ff-a072-d47934171ced",
+  "label" : "Vertrieb",
+  "title" : "Vertriebsdatenbank",
+  "description" : "Vertriebsdatenbank",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272626844
+}, {
+  "_type" : "UmlClass",
+  "id" : "67d1d1d7-1d9b-4d75-87f3-2bb8054483c5",
+  "href" : "/web/foryouandyourcustomers/classifiers/67d1d1d7-1d9b-4d75-87f3-2bb8054483c5",
+  "label" : "DW_CUSTOMER",
+  "title" : "Kunde der SW GmbH",
+  "description" : "Als Kunde werden alle natürlichen bzw. juristischen Personen bezeichnet, die bei der SW GmbH als Kunden registriert sind. Registriert werden alle Kunden die einen Einkauf tätigen. Tätigt ein Kunde mehr als 6 Monate keinen Einkauf, wird dieser als inaktiv gekennzeichnet.",
+  "synonyms" : [ "Auftraggeber", "Besteller" ],
+  "inCollection" : "Vertrieb",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677262
+}, {
+  "_type" : "UmlClass",
+  "id" : "84be0e08-d28a-4b70-ba75-51ccfa38503f",
+  "href" : "/web/foryouandyourcustomers/classifiers/84be0e08-d28a-4b70-ba75-51ccfa38503f",
+  "label" : "DW_ORDER",
+  "title" : "Bestellung eines Kunden der SW Gmbh",
+  "description" : "Die Bestellung eines Produkts bezeichnet eine abgeschlossene Transaktion zwischen der SW GmbH und einem Kunden.",
+  "synonyms" : [ "Auftrag", "Kundenauftrag" ],
+  "inCollection" : "Vertrieb",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677256
+}, {
+  "_type" : "UmlClass",
+  "id" : "e14784d8-1dad-4513-912a-55f6c9652aa8",
+  "href" : "/web/foryouandyourcustomers/classifiers/e14784d8-1dad-4513-912a-55f6c9652aa8",
+  "label" : "DW_ORDERITEM",
+  "title" : "Bestellposition zu Kundenauftrag",
+  "description" : "Die Spezifizierung einer Bestellung bzw. eines Verkaufs an Kunden wird über die Bestellpositionen vorgenommen. Die Summe der Bestellpositionen pro Bestellung ergibt den Bestellauftrag.",
+  "synonyms" : [ "Bestellposten" ],
+  "inCollection" : "Vertrieb",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677241
+}, {
+  "_type" : "UmlClass",
+  "id" : "bf569a70-5061-433b-9447-5f981901eabb",
+  "href" : "/web/foryouandyourcustomers/classifiers/bf569a70-5061-433b-9447-5f981901eabb",
+  "label" : "DW_PRODKAT",
+  "title" : "Produktkatalog",
+  "description" : "Der Produktkatalog beinhaltet 3 Ebenen und enthält alle Produkte die von der SW GmbH vertrieben werden.",
+  "inCollection" : "Vertrieb",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677268
+}, {
+  "_type" : "UmlClass",
+  "id" : "d3eb6bef-ad57-4cbb-8802-c0a3c21f3fb0",
+  "href" : "/web/foryouandyourcustomers/classifiers/d3eb6bef-ad57-4cbb-8802-c0a3c21f3fb0",
+  "label" : "DW_PRODKON",
+  "title" : "Produktkonditionen",
+  "description" : "Die Konditionen der einzelnen Produkte für den Verkauf.",
+  "synonyms" : [ "Preise" ],
+  "examples" : [ "EUR 8,50 je Flasche" ],
+  "inCollection" : "Vertrieb",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677272
+}, {
+  "_type" : "UmlClass",
+  "id" : "7129fbdd-69da-4d36-8d06-8bfcb3df15a9",
+  "href" : "/web/foryouandyourcustomers/classifiers/7129fbdd-69da-4d36-8d06-8bfcb3df15a9",
+  "label" : "DW_PRODUCT",
+  "title" : "Produkt für den Verkauf",
+  "description" : "Das Produkt ist ein dem Kunden angebotenes Getränk oder Zubehör, das von der SW GmbH verkauft wird.",
+  "synonyms" : [ "Getränke" ],
+  "examples" : [ "FRANZ - der GRÜNe Veltliner" ],
+  "inCollection" : "Vertrieb",
+  "favorite" : true,
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677277
+}, {
+  "_type" : "UmlEnumeration",
+  "id" : "be916008-b587-4731-b8d6-24c7cab0daf7",
+  "href" : "/web/foryouandyourcustomers/enumerations/be916008-b587-4731-b8d6-24c7cab0daf7",
+  "label" : "Ja / Nein",
+  "title" : "Ja/Nein-Werteliste",
+  "description" : "Werteliste zur Abbilung von Ja/Nein-Ausprägungen",
+  "inCollection" : "Vertrieb",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1586335521036
+}, {
+  "_type" : "UmlDatatype",
+  "id" : "a23c60ec-4ffa-4869-83f9-185a202e22ae",
+  "href" : "/web/foryouandyourcustomers/datatypes/a23c60ec-4ffa-4869-83f9-185a202e22ae",
+  "label" : "Ja/Nein",
+  "inCollection" : "Vertrieb",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1586335494027,
+  "baseType" : "BOOLEAN"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "87937cf9-5868-46e0-b9fd-4ce8c88f3225",
+  "href" : "/web/foryouandyourcustomers/attributes/87937cf9-5868-46e0-b9fd-4ce8c88f3225",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_city",
+  "order" : 12,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "1866b68a-f3b2-4611-a255-c62bbbd5bbaf",
+  "href" : "/web/foryouandyourcustomers/attributes/1866b68a-f3b2-4611-a255-c62bbbd5bbaf",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_country",
+  "order" : 13,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "ce8129f4-8dae-4e92-be22-c6ab237dbf9f",
+  "href" : "/web/foryouandyourcustomers/attributes/ce8129f4-8dae-4e92-be22-c6ab237dbf9f",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_creationdate",
+  "order" : 14,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "062eedef-b6d0-4a0b-9bc5-ed25f7974aed",
+  "href" : "/web/foryouandyourcustomers/attributes/062eedef-b6d0-4a0b-9bc5-ed25f7974aed",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_customergroup",
+  "order" : 7,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "423c4bb1-3762-41ad-a587-73b03979dc43",
+  "href" : "/web/foryouandyourcustomers/attributes/423c4bb1-3762-41ad-a587-73b03979dc43",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_customernumber",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "2353d7f8-588f-40be-8c0e-0862c1daec87",
+  "href" : "/web/foryouandyourcustomers/attributes/2353d7f8-588f-40be-8c0e-0862c1daec87",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_customerstatus",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "030fb2e5-5659-4520-b4f8-e2473696f2b2",
+  "href" : "/web/foryouandyourcustomers/attributes/030fb2e5-5659-4520-b4f8-e2473696f2b2",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_dateofbirth",
+  "order" : 5,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "1765cd7d-dc5e-4af2-a67d-f67ebe4053bd",
+  "href" : "/web/foryouandyourcustomers/attributes/1765cd7d-dc5e-4af2-a67d-f67ebe4053bd",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_email",
+  "order" : 8,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "b8da5226-f24b-4732-820a-ffd5c9c0cc29",
+  "href" : "/web/foryouandyourcustomers/attributes/b8da5226-f24b-4732-820a-ffd5c9c0cc29",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_firstname",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "6d190a01-74bd-4db2-b3e4-d2b44e2e17f7",
+  "href" : "/web/foryouandyourcustomers/attributes/6d190a01-74bd-4db2-b3e4-d2b44e2e17f7",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_hascustomercard",
+  "order" : 17,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "0ad32df0-f4a2-4b99-8c44-c0b3e2eb2faf",
+  "href" : "/web/foryouandyourcustomers/attributes/0ad32df0-f4a2-4b99-8c44-c0b3e2eb2faf",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_lastname",
+  "order" : 4,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "5e3ce170-5d53-482d-915e-c3d18c3ee0da",
+  "href" : "/web/foryouandyourcustomers/attributes/5e3ce170-5d53-482d-915e-c3d18c3ee0da",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_sex",
+  "order" : 6,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "af452126-6fc0-4565-aa2e-07497e270a33",
+  "href" : "/web/foryouandyourcustomers/attributes/af452126-6fc0-4565-aa2e-07497e270a33",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_streetname",
+  "order" : 9,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "4be87c6e-c284-4674-a4c0-3beb257390cf",
+  "href" : "/web/foryouandyourcustomers/attributes/4be87c6e-c284-4674-a4c0-3beb257390cf",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_streetnumber",
+  "order" : 10,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "dd3367ee-6ab9-4836-abcd-d4573cc293f4",
+  "href" : "/web/foryouandyourcustomers/attributes/dd3367ee-6ab9-4836-abcd-d4573cc293f4",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "label" : "dwh_zipcode",
+  "order" : 11,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "ce682aa3-ce28-4197-b628-526279997982",
+  "href" : "/web/foryouandyourcustomers/attributes/ce682aa3-ce28-4197-b628-526279997982",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "label" : "dwh_amount",
+  "order" : 4,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "ade69111-94e6-4414-a462-0c32e02bea0d",
+  "href" : "/web/foryouandyourcustomers/attributes/ade69111-94e6-4414-a462-0c32e02bea0d",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "label" : "dwh_currency",
+  "order" : 6,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "a98ee18a-c1e6-4bf4-a8bc-f13556561914",
+  "href" : "/web/foryouandyourcustomers/attributes/a98ee18a-c1e6-4bf4-a8bc-f13556561914",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "label" : "dwh_deliverydate",
+  "order" : 5,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "4666283c-e798-4866-ba07-1d694e073e56",
+  "href" : "/web/foryouandyourcustomers/attributes/4666283c-e798-4866-ba07-1d694e073e56",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "label" : "dwh_orderdate",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "440f9a8e-5770-4450-8577-b6103e131a6a",
+  "href" : "/web/foryouandyourcustomers/attributes/440f9a8e-5770-4450-8577-b6103e131a6a",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "label" : "dwh_ordernumber",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "97fb4910-0076-45f1-8717-f9838b72866b",
+  "href" : "/web/foryouandyourcustomers/attributes/97fb4910-0076-45f1-8717-f9838b72866b",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "label" : "dwh_orderstatus",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "80cac05e-6495-4318-95ff-b0b8178f9d2f",
+  "href" : "/web/foryouandyourcustomers/attributes/80cac05e-6495-4318-95ff-b0b8178f9d2f",
+  "hasDomain" : "Vertrieb/DW_ORDERITEM",
+  "label" : "dwh_discount",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "c1f4b807-26e8-4998-bca4-4242d4e0b0ab",
+  "href" : "/web/foryouandyourcustomers/attributes/c1f4b807-26e8-4998-bca4-4242d4e0b0ab",
+  "hasDomain" : "Vertrieb/DW_ORDERITEM",
+  "label" : "dwh_expecteddeliverydate",
+  "order" : 4,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "5a572f25-3eba-4a6b-b450-2e5468233e48",
+  "href" : "/web/foryouandyourcustomers/attributes/5a572f25-3eba-4a6b-b450-2e5468233e48",
+  "hasDomain" : "Vertrieb/DW_ORDERITEM",
+  "label" : "dwh_itemnumber",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "96b1faef-bc62-481f-9776-9a2c9aed0ed3",
+  "href" : "/web/foryouandyourcustomers/attributes/96b1faef-bc62-481f-9776-9a2c9aed0ed3",
+  "hasDomain" : "Vertrieb/DW_ORDERITEM",
+  "label" : "dwh_quantity",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "12d73b8f-54a2-43f8-89cc-0d797d6880af",
+  "href" : "/web/foryouandyourcustomers/attributes/12d73b8f-54a2-43f8-89cc-0d797d6880af",
+  "hasDomain" : "Vertrieb/DW_PRODKAT",
+  "label" : "Ebene 1 - Produktgruppe",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "5b192596-5167-41d4-aac9-af263be78c87",
+  "href" : "/web/foryouandyourcustomers/attributes/5b192596-5167-41d4-aac9-af263be78c87",
+  "hasDomain" : "Vertrieb/DW_PRODKAT",
+  "label" : "Ebene 2 - Produktart",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "6330b7c8-321f-406f-b193-90c64341b9b9",
+  "href" : "/web/foryouandyourcustomers/attributes/6330b7c8-321f-406f-b193-90c64341b9b9",
+  "hasDomain" : "Vertrieb/DW_PRODKAT",
+  "label" : "Ebene 3 - Produkt",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "d0747f15-492f-41fa-af54-f7bc4305d1c0",
+  "href" : "/web/foryouandyourcustomers/attributes/d0747f15-492f-41fa-af54-f7bc4305d1c0",
+  "hasDomain" : "Vertrieb/DW_PRODKON",
+  "label" : "Anlass Sonderrabatt",
+  "order" : 6,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "f95c2dbc-4c73-47d1-a23e-41ab4d46ea49",
+  "href" : "/web/foryouandyourcustomers/attributes/f95c2dbc-4c73-47d1-a23e-41ab4d46ea49",
+  "hasDomain" : "Vertrieb/DW_PRODKON",
+  "label" : "Anzahl Mengenrabatt",
+  "order" : 5,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "3787521a-1c56-4f05-86fc-845896009d34",
+  "href" : "/web/foryouandyourcustomers/attributes/3787521a-1c56-4f05-86fc-845896009d34",
+  "hasDomain" : "Vertrieb/DW_PRODKON",
+  "label" : "Mengenrabatt",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "b6d919b2-19a6-4759-9922-fc706fb985dd",
+  "href" : "/web/foryouandyourcustomers/attributes/b6d919b2-19a6-4759-9922-fc706fb985dd",
+  "hasDomain" : "Vertrieb/DW_PRODKON",
+  "label" : "Mögliche Abgabemengen",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "927c12af-5f9d-4f94-9318-e7ea4ddbf4b1",
+  "href" : "/web/foryouandyourcustomers/attributes/927c12af-5f9d-4f94-9318-e7ea4ddbf4b1",
+  "hasDomain" : "Vertrieb/DW_PRODKON",
+  "label" : "Preis",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "4fbbb02b-a11d-48bd-9973-82c73690ee71",
+  "href" : "/web/foryouandyourcustomers/attributes/4fbbb02b-a11d-48bd-9973-82c73690ee71",
+  "hasDomain" : "Vertrieb/DW_PRODKON",
+  "label" : "Sonderrabatt",
+  "order" : 4,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "900769b6-37ac-4f6c-b418-9f6895db6feb",
+  "href" : "/web/foryouandyourcustomers/attributes/900769b6-37ac-4f6c-b418-9f6895db6feb",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_alcoholicstrength",
+  "order" : 15,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "cff5eec0-29e8-41fd-9947-91fb26f9c4f3",
+  "href" : "/web/foryouandyourcustomers/attributes/cff5eec0-29e8-41fd-9947-91fb26f9c4f3",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_award",
+  "order" : 26,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "d4c05133-2397-41e5-98d6-1b416bb7eb67",
+  "href" : "/web/foryouandyourcustomers/attributes/d4c05133-2397-41e5-98d6-1b416bb7eb67",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_beertype",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "523fb59d-072a-4418-8338-69ac50e3a5b2",
+  "href" : "/web/foryouandyourcustomers/attributes/523fb59d-072a-4418-8338-69ac50e3a5b2",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_costcenter",
+  "order" : 5,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "1b91ba64-4c22-42e6-a9d9-bce92363739a",
+  "href" : "/web/foryouandyourcustomers/attributes/1b91ba64-4c22-42e6-a9d9-bce92363739a",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_dimensions",
+  "order" : 14,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "5c4270e3-b864-4d02-a805-166cb5637420",
+  "href" : "/web/foryouandyourcustomers/attributes/5c4270e3-b864-4d02-a805-166cb5637420",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_fillingcapacity",
+  "order" : 7,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "ab391d50-85ea-44bb-9640-315973d4135b",
+  "href" : "/web/foryouandyourcustomers/attributes/ab391d50-85ea-44bb-9640-315973d4135b",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_kilocalories",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "b977432b-6300-4335-9c1b-c5316255accc",
+  "href" : "/web/foryouandyourcustomers/attributes/b977432b-6300-4335-9c1b-c5316255accc",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_material",
+  "order" : 12,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "183788b0-dfaf-4e32-bdc2-83e7c2532c27",
+  "href" : "/web/foryouandyourcustomers/attributes/183788b0-dfaf-4e32-bdc2-83e7c2532c27",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_nonalcoholicbeveragetype",
+  "order" : 8,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "e76fdc44-b2f4-4349-a79e-e9f38adb87c5",
+  "href" : "/web/foryouandyourcustomers/attributes/e76fdc44-b2f4-4349-a79e-e9f38adb87c5",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_optimaldrinkingtemperature",
+  "order" : 9,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "f54b2bab-a3a6-4bc0-a0bd-03febbe6719b",
+  "href" : "/web/foryouandyourcustomers/attributes/f54b2bab-a3a6-4bc0-a0bd-03febbe6719b",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_origin",
+  "order" : 18,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "469283cf-b8f1-42be-ba93-aaf8f53573c6",
+  "href" : "/web/foryouandyourcustomers/attributes/469283cf-b8f1-42be-ba93-aaf8f53573c6",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_origincountry",
+  "order" : 6,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "264e42ce-8393-4ef1-ab53-228b7a00afe2",
+  "href" : "/web/foryouandyourcustomers/attributes/264e42ce-8393-4ef1-ab53-228b7a00afe2",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_parkerscore",
+  "order" : 19,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "a1b3b208-d310-4699-9b14-4f5eb011e1ff",
+  "href" : "/web/foryouandyourcustomers/attributes/a1b3b208-d310-4699-9b14-4f5eb011e1ff",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_position",
+  "order" : 11,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "7df2b36f-96ad-468f-93cb-ee5208592c99",
+  "href" : "/web/foryouandyourcustomers/attributes/7df2b36f-96ad-468f-93cb-ee5208592c99",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_productname",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "1d841ba8-bb9a-4521-99e3-77e2630564d4",
+  "href" : "/web/foryouandyourcustomers/attributes/1d841ba8-bb9a-4521-99e3-77e2630564d4",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_productnumber",
+  "order" : 4,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "b7b33179-d6c4-452c-bde5-f59cbe15910e",
+  "href" : "/web/foryouandyourcustomers/attributes/b7b33179-d6c4-452c-bde5-f59cbe15910e",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_qualityindicator",
+  "order" : 17,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "446cce37-667d-4c90-995b-67b62e033365",
+  "href" : "/web/foryouandyourcustomers/attributes/446cce37-667d-4c90-995b-67b62e033365",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_spirittype",
+  "order" : 10,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "ae5c8dcc-9b9a-46a3-b690-3b21d1a6eb1c",
+  "href" : "/web/foryouandyourcustomers/attributes/ae5c8dcc-9b9a-46a3-b690-3b21d1a6eb1c",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_storage",
+  "order" : 28,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "01c0f8dc-8e72-43db-84a3-27c2abff54e2",
+  "href" : "/web/foryouandyourcustomers/attributes/01c0f8dc-8e72-43db-84a3-27c2abff54e2",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_terroir",
+  "order" : 24,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "00a3aa18-4399-448b-85e6-6e68c2f990de",
+  "href" : "/web/foryouandyourcustomers/attributes/00a3aa18-4399-448b-85e6-6e68c2f990de",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_vine",
+  "order" : 27,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "edfb7f61-55ad-48a6-a9ab-3b4ef850cdd8",
+  "href" : "/web/foryouandyourcustomers/attributes/edfb7f61-55ad-48a6-a9ab-3b4ef850cdd8",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_vintage",
+  "order" : 16,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "e9498aae-e0c8-40ca-8ef8-d5c73963f5ba",
+  "href" : "/web/foryouandyourcustomers/attributes/e9498aae-e0c8-40ca-8ef8-d5c73963f5ba",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_weight",
+  "order" : 13,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "5a349683-7294-48ab-a62f-5e92f084c1b2",
+  "href" : "/web/foryouandyourcustomers/attributes/5a349683-7294-48ab-a62f-5e92f084c1b2",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_winecolour",
+  "order" : 22,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "aec979ab-71c5-4480-ac3c-b25613a058b5",
+  "href" : "/web/foryouandyourcustomers/attributes/aec979ab-71c5-4480-ac3c-b25613a058b5",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_wineid",
+  "order" : 21,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "b97c5b8d-5e95-4ac5-917d-659e44136ac6",
+  "href" : "/web/foryouandyourcustomers/attributes/b97c5b8d-5e95-4ac5-917d-659e44136ac6",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_winepurity",
+  "order" : 25,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "f687dc5c-56b3-4c03-97eb-28c3bdc16233",
+  "href" : "/web/foryouandyourcustomers/attributes/f687dc5c-56b3-4c03-97eb-28c3bdc16233",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_winestyle",
+  "order" : 20,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAttribute",
+  "id" : "259b0c6e-0df7-4bea-8495-a053c4ccb98e",
+  "href" : "/web/foryouandyourcustomers/attributes/259b0c6e-0df7-4bea-8495-a053c4ccb98e",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "label" : "dwh_winetype",
+  "order" : 23,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944436845,
+  "required" : "OPTIONAL",
+  "cardinality" : "ONE"
+}, {
+  "_type" : "UmlAssociation",
+  "id" : "3dd6e4bf-d1be-4f3b-9269-60857aba8486",
+  "href" : "/web/foryouandyourcustomers/associations/3dd6e4bf-d1be-4f3b-9269-60857aba8486",
+  "hasDomain" : "Vertrieb/DW_CUSTOMER",
+  "name" : "tätigt",
+  "hasRange" : "Vertrieb/DW_ORDER",
+  "order" : 1,
+  "title" : "tätigt",
+  "description" : "Ein Kunde tätigt eine Bestellung bei der SW GmbH.",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677658,
+  "navigable" : "RANGE",
+  "rangeMultiplicity" : "0..*",
+  "required" : "OPTIONAL",
+  "cardinality" : "MANY"
+}, {
+  "_type" : "UmlAssociation",
+  "id" : "f50aac13-40f2-46ae-b322-564a64c1d275",
+  "href" : "/web/foryouandyourcustomers/associations/f50aac13-40f2-46ae-b322-564a64c1d275",
+  "hasDomain" : "Vertrieb/DW_ORDER",
+  "name" : "setzt sich zusammen aus",
+  "hasRange" : "Vertrieb/DW_ORDERITEM",
+  "order" : 1,
+  "title" : "setzt sich zusammen aus",
+  "description" : "Eine Bestellung besteht aus mindestens einer Bestellposition.",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677651,
+  "navigable" : "RANGE",
+  "rangeMultiplicity" : "0..*",
+  "required" : "OPTIONAL",
+  "cardinality" : "MANY"
+}, {
+  "_type" : "UmlAssociation",
+  "id" : "1ab6871c-20b9-4c11-9cd8-56b677b0d61f",
+  "href" : "/web/foryouandyourcustomers/associations/1ab6871c-20b9-4c11-9cd8-56b677b0d61f",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "name" : "wird verkauft in",
+  "hasRange" : "Vertrieb/DW_ORDERITEM",
+  "order" : 3,
+  "title" : "wird verkauft",
+  "description" : "Die von Kunden ausgewählten Produkte werden über Bestellpositionen einer Bestellung hinzugefügt.",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677673,
+  "navigable" : "RANGE",
+  "rangeMultiplicity" : "0..*",
+  "required" : "OPTIONAL",
+  "cardinality" : "MANY"
+}, {
+  "_type" : "UmlAssociation",
+  "id" : "465ff822-6479-4c80-ae3f-6e5fc9ffe4e4",
+  "href" : "/web/foryouandyourcustomers/associations/465ff822-6479-4c80-ae3f-6e5fc9ffe4e4",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "name" : "hat",
+  "hasRange" : "Vertrieb/DW_PRODKON",
+  "order" : 1,
+  "title" : "hat",
+  "description" : "Ein Produkt wird zu bestimmten Konditionen vertrieben.",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677664,
+  "navigable" : "RANGE",
+  "rangeMultiplicity" : "0..*",
+  "required" : "OPTIONAL",
+  "cardinality" : "MANY"
+}, {
+  "_type" : "UmlAssociation",
+  "id" : "fcfc7b92-bc33-4b57-8181-8c919d5588f1",
+  "href" : "/web/foryouandyourcustomers/associations/fcfc7b92-bc33-4b57-8181-8c919d5588f1",
+  "hasDomain" : "Vertrieb/DW_PRODUCT",
+  "name" : "ist beschrieben in",
+  "hasRange" : "Vertrieb/DW_PRODKAT",
+  "order" : 2,
+  "title" : "ist beschrieben in",
+  "description" : "Ein Produkt wird einer Kategorie zugewiesen und beschrieben.",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1560272677669,
+  "navigable" : "RANGE",
+  "rangeMultiplicity" : "0..*",
+  "required" : "OPTIONAL",
+  "cardinality" : "MANY"
+}, {
+  "_type" : "UmlLiteral",
+  "id" : "50589a33-921e-4f9c-a30c-7e8c71757bf6",
+  "href" : "/web/foryouandyourcustomers/literals/50589a33-921e-4f9c-a30c-7e8c71757bf6",
+  "literalOf" : "Vertrieb/\"Ja / Nein\"",
+  "label" : "J",
+  "title" : "Ja",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1586335527328
+}, {
+  "_type" : "UmlLiteral",
+  "id" : "06da1e35-df2f-45c7-9cf1-fb628f75fff0",
+  "href" : "/web/foryouandyourcustomers/literals/06da1e35-df2f-45c7-9cf1-fb628f75fff0",
+  "literalOf" : "Vertrieb/\"Ja / Nein\"",
+  "label" : "N",
+  "title" : "Nein",
+  "status" : "WORKING",
+  "createdBy" : "bkainz",
+  "dateCreated" : 1586335531487
+}, {
+  "_type" : "Transformation",
+  "id" : "69f355d3-e8a5-4f18-b9c2-4260c75f61fb",
+  "href" : "/web/foryouandyourcustomers/transformations/69f355d3-e8a5-4f18-b9c2-4260c75f61fb",
+  "transformationOf" : "Vertrieb/DW_CUSTOMER",
+  "label" : "Bestelldaten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774945223099
+}, {
+  "_type" : "Transformation",
+  "id" : "536187c2-f12f-4316-ab61-5188d8b7a62a",
+  "href" : "/web/foryouandyourcustomers/transformations/536187c2-f12f-4316-ab61-5188d8b7a62a",
+  "transformationOf" : "Vertrieb/DW_CUSTOMER",
+  "label" : "Kundendaten",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610372234429
+}, {
+  "_type" : "Transformation",
+  "id" : "c702ee48-7d49-4012-9455-cc51cf7eb351",
+  "href" : "/web/foryouandyourcustomers/transformations/c702ee48-7d49-4012-9455-cc51cf7eb351",
+  "transformationOf" : "Vertrieb/DW_ORDER",
+  "label" : "Bestelldaten",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610023157336
+}, {
+  "_type" : "Transformation",
+  "id" : "3b7f1342-f868-4cc3-81cb-3f0766639f64",
+  "href" : "/web/foryouandyourcustomers/transformations/3b7f1342-f868-4cc3-81cb-3f0766639f64",
+  "transformationOf" : "Vertrieb/DW_ORDER",
+  "label" : "FDM2DWH (SPOT)",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610021993445
+}, {
+  "_type" : "Transformation",
+  "id" : "2a8e357d-5425-4671-bd4f-1f5e873950e7",
+  "href" : "/web/foryouandyourcustomers/transformations/2a8e357d-5425-4671-bd4f-1f5e873950e7",
+  "transformationOf" : "Vertrieb/DW_ORDERITEM",
+  "label" : "Bestelldaten",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610016744991
+}, {
+  "_type" : "Transformation",
+  "id" : "8add80d7-4452-4163-9bf7-c8c9176543cf",
+  "href" : "/web/foryouandyourcustomers/transformations/8add80d7-4452-4163-9bf7-c8c9176543cf",
+  "transformationOf" : "Vertrieb/DW_ORDERITEM",
+  "label" : "FDM2DWH (SPOT)",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610019976674
+}, {
+  "_type" : "Transformation",
+  "id" : "0d858c73-a018-495a-b303-701082f7d2fb",
+  "href" : "/web/foryouandyourcustomers/transformations/0d858c73-a018-495a-b303-701082f7d2fb",
+  "transformationOf" : "Vertrieb/DW_PRODKAT",
+  "label" : "DL2DWH",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610371246791
+}, {
+  "_type" : "Transformation",
+  "id" : "33e77f44-5e80-4154-bf9f-d025aba16343",
+  "href" : "/web/foryouandyourcustomers/transformations/33e77f44-5e80-4154-bf9f-d025aba16343",
+  "transformationOf" : "Vertrieb/DW_PRODKAT",
+  "label" : "FDM2DWH (SPOT)",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610381656990
+}, {
+  "_type" : "Transformation",
+  "id" : "a1cc50bf-8cf2-4be5-ac50-3cfb39d85295",
+  "href" : "/web/foryouandyourcustomers/transformations/a1cc50bf-8cf2-4be5-ac50-3cfb39d85295",
+  "transformationOf" : "Vertrieb/DW_PRODKON",
+  "label" : "DL2DWH",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610371246791
+}, {
+  "_type" : "Transformation",
+  "id" : "945b9b82-f886-4129-831b-64b1c1fbe0d9",
+  "href" : "/web/foryouandyourcustomers/transformations/945b9b82-f886-4129-831b-64b1c1fbe0d9",
+  "transformationOf" : "Vertrieb/DW_PRODKON",
+  "label" : "FDM2DWH (SPOT)",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610381656990
+}, {
+  "_type" : "Transformation",
+  "id" : "32953dc2-a7f7-4700-ac40-c9f20b12cfd0",
+  "href" : "/web/foryouandyourcustomers/transformations/32953dc2-a7f7-4700-ac40-c9f20b12cfd0",
+  "transformationOf" : "Vertrieb/DW_PRODUCT",
+  "label" : "FDM2DWH (SPOT)",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610370746568
+}, {
+  "_type" : "Transformation",
+  "id" : "796199b3-4fc1-4b9e-88f2-50f62eecdba9",
+  "href" : "/web/foryouandyourcustomers/transformations/796199b3-4fc1-4b9e-88f2-50f62eecdba9",
+  "transformationOf" : "Vertrieb/DW_PRODUCT",
+  "label" : "Produktdaten",
+  "status" : "WORKING",
+  "createdBy" : "weiche",
+  "dateCreated" : 1610371246791
+}, {
+  "_type" : "Rule",
+  "id" : "0a686496-e095-4c11-82ed-7645ef7f7d14",
+  "href" : "/web/foryouandyourcustomers/rules/0a686496-e095-4c11-82ed-7645ef7f7d14",
+  "ruleOf" : "Vertrieb/DW_CUSTOMER/Bestelldaten",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774945254490,
+  "transformsFrom" : [ "/test ERP/Vertrieb/CUSTOMER/tätigt>ORDER" ],
+  "transformsTo" : [ "Vertrieb/DW_CUSTOMER/dwh_customernumber" ]
+}, {
+  "_type" : "Rule",
+  "id" : "47c9fe06-fb5f-45a4-8dcd-ae9fe42a63c7",
+  "href" : "/web/foryouandyourcustomers/rules/47c9fe06-fb5f-45a4-8dcd-ae9fe42a63c7",
+  "ruleOf" : "Vertrieb/DW_ORDER/Bestelldaten",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774945020285,
+  "transformsFrom" : [ "/test ERP/Vertrieb/ORDER/order_number" ],
+  "transformsTo" : [ "Vertrieb/DW_ORDER/dwh_ordernumber" ]
+}, {
+  "_type" : "Rule",
+  "id" : "71d8794c-023f-4782-bf57-1ff183e21c8f",
+  "href" : "/web/foryouandyourcustomers/rules/71d8794c-023f-4782-bf57-1ff183e21c8f",
+  "ruleOf" : "Vertrieb/DW_ORDERITEM/Bestelldaten",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774945407749,
+  "transformsFrom" : [ "/test ERP/Vertrieb/ORDERITEM/item_number" ],
+  "transformsTo" : [ "Vertrieb/DW_ORDERITEM/dwh_itemnumber" ]
+}, {
+  "_type" : "Rule",
+  "id" : "786de63d-ba06-46df-9ce5-5e3f35870c67",
+  "href" : "/web/foryouandyourcustomers/rules/786de63d-ba06-46df-9ce5-5e3f35870c67",
+  "ruleOf" : "Vertrieb/DW_ORDER/Bestelldaten",
+  "label" : "2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774945363341,
+  "transformsFrom" : [ "/test ERP/Vertrieb/ORDERITEM/item_number" ],
+  "transformsTo" : [ "Vertrieb/DW_ORDER/setzt sich zusammen aus>DW_ORDERITEM" ]
+}, {
+  "_type" : "Rule",
+  "id" : "3e86ac5a-dc1b-44d9-85a0-5f1e3783c2de",
+  "href" : "/web/foryouandyourcustomers/rules/3e86ac5a-dc1b-44d9-85a0-5f1e3783c2de",
+  "ruleOf" : "Vertrieb/DW_ORDER/Bestelldaten",
+  "label" : "3",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774945527601,
+  "transformsFrom" : [ "/test ERP/Vertrieb/CUSTOMER/tätigt>ORDER" ],
+  "transformsTo" : [ "Vertrieb/DW_ORDER/dwh_ordernumber" ]
+}, {
+  "_type" : "Rule",
+  "id" : "abac1778-4103-41ec-85c7-2bd301bd2c24",
+  "href" : "/web/foryouandyourcustomers/rules/abac1778-4103-41ec-85c7-2bd301bd2c24",
+  "ruleOf" : "Vertrieb/DW_CUSTOMER/Kundendaten",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944549745,
+  "transformsFrom" : [ "/test crm/Kontakte/Kontakt/Last Name" ],
+  "transformsTo" : [ "Vertrieb/DW_CUSTOMER/dwh_lastname" ]
+}, {
+  "_type" : "Rule",
+  "id" : "ccfaaeee-3678-4dbc-b239-f7b84211f5e4",
+  "href" : "/web/foryouandyourcustomers/rules/ccfaaeee-3678-4dbc-b239-f7b84211f5e4",
+  "ruleOf" : "Vertrieb/DW_CUSTOMER/Kundendaten",
+  "label" : "2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944579127,
+  "transformsFrom" : [ "/test crm/Kontakte/Kontakt/First Name" ],
+  "transformsTo" : [ "Vertrieb/DW_CUSTOMER/dwh_firstname" ]
+}, {
+  "_type" : "Rule",
+  "id" : "c17dd626-7fa4-4d3e-8f32-dea9a11789ba",
+  "href" : "/web/foryouandyourcustomers/rules/c17dd626-7fa4-4d3e-8f32-dea9a11789ba",
+  "ruleOf" : "Vertrieb/DW_CUSTOMER/Kundendaten",
+  "label" : "3",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944661853,
+  "transformsFrom" : [ "/test crm/Kontakte/Unternehmen/\"Country/Region\"", "/test crm/Kontakte/Kontakt/ist beschäftigt bei>Unternehmen" ],
+  "transformsTo" : [ "Vertrieb/DW_CUSTOMER/dwh_country" ]
+}, {
+  "_type" : "Rule",
+  "id" : "d3fde65f-1577-4ddb-8e79-d9f846b88436",
+  "href" : "/web/foryouandyourcustomers/rules/d3fde65f-1577-4ddb-8e79-d9f846b88436",
+  "ruleOf" : "Vertrieb/DW_PRODUCT/Produktdaten",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774944770622,
+  "transformsFrom" : [ "/test ERP/Vertrieb/PRODUCT/product_name" ],
+  "transformsTo" : [ "Vertrieb/DW_PRODUCT/dwh_productname" ]
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDERITEM",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKAT",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON/Anlass Sonderrabatt",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON/Anzahl Mengenrabatt",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_alcoholicstrength",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/dwh_amount",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_award",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_beertype",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_city",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_costcenter",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_country",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_creationdate",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/dwh_currency",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_customergroup",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_customernumber",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_customerstatus",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_dateofbirth",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/dwh_deliverydate",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_dimensions",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDERITEM/dwh_discount",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_email",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDERITEM/dwh_expecteddeliverydate",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_fillingcapacity",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_firstname",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_hascustomercard",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDERITEM/dwh_itemnumber",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_kilocalories",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_lastname",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_material",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_nonalcoholicbeveragetype",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_optimaldrinkingtemperature",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/dwh_orderdate",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/dwh_ordernumber",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/dwh_orderstatus",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_origin",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_origincountry",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_parkerscore",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_position",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_productname",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_productnumber",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_qualityindicator",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDERITEM/dwh_quantity",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_sex",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_spirittype",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_storage",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_streetname",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_streetnumber",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_terroir",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_vine",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_vintage",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_weight",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_winecolour",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_wineid",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_winepurity",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_winestyle",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/dwh_winetype",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/dwh_zipcode",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKAT/Ebene 1 - Produktgruppe",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKAT/Ebene 2 - Produktart",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKAT/Ebene 3 - Produkt",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON/Mengenrabatt",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON/Mögliche Abgabemengen",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON/Preis",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODKON/Sonderrabatt",
+  "deployedIn" : "/test systems/WebShop"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/wird verkauft in>DW_ORDERITEM",
+  "deployedIn" : "/test systems/WebShop",
+  "qualifier" : "GOLD"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_CUSTOMER/tätigt>DW_ORDER",
+  "deployedIn" : "/test systems/WebShop",
+  "qualifier" : "GOLD"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/hat>DW_PRODKON",
+  "deployedIn" : "/test systems/WebShop",
+  "qualifier" : "GOLD"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_ORDER/setzt sich zusammen aus>DW_ORDERITEM",
+  "deployedIn" : "/test systems/WebShop",
+  "qualifier" : "GOLD"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Vertrieb/DW_PRODUCT/ist beschrieben in>DW_PRODKAT",
+  "deployedIn" : "/test systems/WebShop",
+  "qualifier" : "GOLD"
+} ]

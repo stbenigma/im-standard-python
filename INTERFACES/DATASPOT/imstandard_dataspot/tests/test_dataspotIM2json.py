@@ -38,13 +38,13 @@ class Test_dataspot2im(unittest.TestCase):
     def test_ds2im_astronomie_load(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)
-        self.assertTrue(len(dsschema.categories)>3)
-        domacatg=[c for c in dsschema.categories.values() if c.get("TYPE")=="DOMAIN"]
+        self.assertTrue(len(dsschema.dsmodels.categories)>3)
+        domacatg=[c for c in dsschema.dsmodels.categories.values() if c.get("TYPE")=="DOMAIN"]
         self.assertTrue(len(domacatg)>3)
         self.assertEqual(1,len([d for d in domacatg if d.get("label")=='Astronomische Referenzwerte']))
-        self.assertTrue(len([a for a in dsschema.attributes.values() if a.get("_type")=="DataAttribute"])>3)
-        self.assertTrue(len([a for a in dsschema.attributes.values() if a.get("_type")=="BusinessAttribute"])>3)
-        self.assertEqual(1,len([a for a in dsschema.attributes.values() if a.get("label")=="Dauer"]))
+        self.assertTrue(len([a for a in dsschema.dsmodels.attributes.values() if a.get("_type")=="DataAttribute"])>3)
+        self.assertTrue(len([a for a in dsschema.dsmodels.attributes.values() if a.get("_type")=="BusinessAttribute"])>3)
+        self.assertEqual(1,len([a for a in dsschema.dsmodels.attributes.values() if a.get("label")=="Dauer"]))
 
         jsonstruct=dsschema.generatejson(modelname=inpath.name,
                                        modelversion="0.0",
@@ -115,22 +115,37 @@ class Test_dataspot2im(unittest.TestCase):
                                                          ))
         return
 
+    def test_ds2im_astro_full(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie-full"
+        instance = exportIM2standard(inpath=inpath,
+                                     outpath=self.mydebugpath,
+                                     modelname="Astronomie full",
+                                     modelversion='0.1',
+                                     targetenv="Astronomie full",
+                                     language='de', languages=['en']
+                                     )
+
+        self.dumptodebug(filename=self.mydebugpath / "astronomie-full-purejson.json",
+                         jsonstruct=remove_key_from_json(obj=instance,
+                                                         key_to_remove="additionalProps"
+                                                         ))
+        return
 
     def test_ds2im_schwipsti_load(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)
 
-        categories = [c for c in dsschema.categories.values() if c.get("PARENT") is not None]
+        categories = [c for c in dsschema.dsmodels.categories.values() if c.get("PARENT") is not None]
         self.assertTrue(len(categories)>0)
-        derivations = [c for c in dsschema.derivations.values()]
+        derivations = [c for c in dsschema.dsmodels.derivations.values()]
         self.assertTrue(len(derivations)>0)
-        transformations = [c for c in dsschema.transformations.values()]
+        transformations = [c for c in dsschema.dsmodels.transformations.values()]
         self.assertTrue(len(transformations)>0)
-        rules = [c for c in dsschema.rules.values()]
+        rules = [c for c in dsschema.dsmodels.rules.values()]
         self.assertTrue(len(rules)>0)
-        mappings = [c for c in dsschema.mappings.values()]
+        mappings = [c for c in dsschema.dsmodels.mappings.values()]
         self.assertTrue(len(mappings)>0)
-        translations = [c for c in dsschema.translations.values()]
+        translations = [c for c in dsschema.dsmodels.translations.values()]
         self.assertTrue(len(translations)>0)
 
         jsonstruct=dsschema.generatejson(modelname=inpath.name,
@@ -174,6 +189,53 @@ class Test_dataspot2im(unittest.TestCase):
                          jsonstruct=remove_key_from_json(obj=instance,
                                                          key_to_remove="additionalProps"
                                                          ))
+        return
+
+    def test_ds2im_status(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "Informationsmodell-modell"
+        dsschema = Dataspot2IMJsonschema(indirec=inpath)
+
+        with self.assertRaises(Exception):
+            jsonstruct = dsschema.generatejson(modelname=inpath.name,
+                                               modelversion="0.0",
+                                               targetenv="Test",
+                                               language="de",
+                                               languages=["en"],
+                                               status="XXL")
+
+        jsonstructall=dsschema.generatejson(modelname=inpath.name,
+                                       modelversion="0.0",
+                                       targetenv="Test",
+                                       language="de",
+                                       languages=["en"])
+        self.assertEqual(27,len(jsonstructall.get("Entities",[])))
+        jsonstructall2=dsschema.generatejson(modelname=inpath.name,
+                                       modelversion="0.0",
+                                       targetenv="Test",
+                                       language="de",
+                                       languages=["en"],
+                                         status="ALL")
+        self.assertDictEqual(jsonstructall2,jsonstructall2)
+        dsschema.dsmodels.entities['Informationsmodell/Kernmodell/Beziehungen/Beziehung']["status"]="SUBMITTED"
+        dsschema.dsmodels.entities['Informationsmodell/Kernmodell/Entitäten/Attribut']["status"]="ACCEPTED"
+        dsschema.dsmodels.entities['Informationsmodell/Kernmodell/Entitäten/Entität']["status"]="PUBLISHED"
+        jsonstructallgtop=dsschema.generatejson(modelname=inpath.name,
+                                       modelversion="0.0",
+                                       targetenv="Test",
+                                       language="de",
+                                       languages=["en"],
+                                         status="GTOP")
+        self.assertEqual(2,len(jsonstructallgtop.get("Entities",[])))
+        jsonstructallpubl=dsschema.generatejson(modelname=inpath.name,
+                                       modelversion="0.0",
+                                       targetenv="Test",
+                                       language="de",
+                                       languages=["en"],
+                                         status="PUBL")
+
+        self.assertEqual(1,len(jsonstructallpubl.get("Entities",[])))
+        #self.dumptodebug(filename=self.mydebugpath / "informationmodel-schema-published.json",
+        #                 jsonstruct=jsonstruct)
         return
 
     def test_ds2im_schwipsti(self):
@@ -223,6 +285,17 @@ class Test_dataspot2im(unittest.TestCase):
                         print("\n".join(errors))
                         self.assertTrue(False)
 
+        return
+
+    def test_ds2systemlandscape(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "systemlandscape"
+        if not inpath.is_dir(): self.skipTest("no localtestmodels found")
+        instance = exportIM2standard(inpath=inpath,
+                                     outpath=self.mydebugpath/ "sydstemlandscape.json",
+                                     modelversion='0.9',
+                                     targetenv="systemlandscape",
+                                     language='en', languages=['de']
+                                     )
         return
 
 if __name__ == '__main__':

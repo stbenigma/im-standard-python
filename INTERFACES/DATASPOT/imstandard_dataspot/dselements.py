@@ -3,13 +3,18 @@ import logging
 from pathlib import Path
 
 from IM_STANDARD import nvl, ElementId
-from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot as j2d
-
+from .dslib import custom_split
 
 class DataspotElements():
     def __init__(self, indirec=None, **kwargs):
         # models
-        self.tenant = kwargs.get("tenant",dict())
+        tenant=kwargs.get("tenant")
+        if type(tenant) is str:
+            self.tenant = {"name":tenant}
+        elif type(tenant) is dict:
+            self.tenant = tenant
+        else:
+            self.tenant=dict()
 
         self.dsmodels = dict()
         self.modelname = kwargs.get("modelname")
@@ -86,6 +91,45 @@ class DataspotElements():
         parent = entry.get('PARENT')
         return f"""{model}/{"" if parent is None else (parent + '/')}{nvl(name)}"""
 
+    def elementname(self,entry):
+        """
+        depending on elemtype construct  a name for the element
+        :param entry: json-structure from dataspot
+        :return: unique name of the element
+        """
+
+        if entry.get("_type") in ('UmlAssociation','Relationship'):
+            retval = entry.get("name") + "->" + \
+                   custom_split(entry.get('hasRange'), "/")[-1]
+        elif entry.get("_type") == 'ReferenceValue':
+            retval = entry.get("timeSeries")[0]["code"]
+        elif entry.get("_type") == 'Translation':
+            retval = entry.get("translationIn")+\
+                            "/"+ \
+                    custom_split(entry.get("translatesFrom"),'/')[-1]+ \
+                    custom_split(entry.get("translatesTo"),'/')[-1]
+        elif entry.get("_type") == 'Derivation':
+            retval = nvl(entry.get("PARENT2")) + ("" if entry.get("qualifier") is None \
+                    else (">" + entry.get("qualifier")))
+        elif entry.get("_type") == 'Dependency':
+            retval = entry.get("stereotype","")+">"+ \
+                     nvl(entry.get('dependsOn'))
+        elif entry.get("_type") == 'Usage':
+            retval = entry.get('usedBy') + ("" if entry.get("usageOf") is None
+                                            else (">" + entry.get("usageOf")))
+        else:
+            retval = entry.get('label')
+        return retval
+
+    def elementfullpath(self,modelname,entry):
+        if entry.get("_type") in ('UmlAssociation', 'Relationship'):
+            pathstart=entry.get('hasDomain') + "->"
+        elif entry.get("_type") in ('Dependency', ):
+                pathstart = entry.get('PARENT') + ">"
+        else:
+            pathstart =nvl(entry.get('PARENT')) + "/"
+        return f"{modelname}:{pathstart}{self.elementname(entry)}"
+
     def _categorytype(self, modeltype):
         if modeltype == "BUSINESSMODEL":
             return "ENTITY"
@@ -111,7 +155,10 @@ class DataspotElements():
             self.tenant["db"]=struct.get("db")
             self.tenant["uri"]=struct.get("_links",dict()).get("self",dict()).get("href")
 
-        elif struct.get("_type") == "BusinessDataModel":
+        elif struct.get("_type") in ("BusinessDataModel",
+                                     "UmlModel",
+                                     "SystemCatalog",
+                                     "ProjectDirectory"):
             self.dsmodels[struct.get('label')] = {"name":struct.get('label'),
                                                   "id":struct.get("id"),
                                                   "parentid":struct.get("tenantId"),
@@ -120,10 +167,8 @@ class DataspotElements():
                                                   }
         else:
             others = ["ReferenceDataModel",
-                      "UmlModel",
-                      "SystemCatalog",
                       "DataDomainModel",
-                      "ProjectDirectory"]
+                      ]
             logging.warning(f"not yet handled modeltype {struct.get('_type')}")
         return
 
@@ -136,7 +181,7 @@ class DataspotElements():
             return
         for entry in struct:
             entry["DSMODEL"] = modelname
-            name = entry.get('label')
+            name = self.elementname(entry=entry)
             if entry.get("_type") == "Collection":
                 entry["ID"] = ElementId.nextid("CATG")
                 entry["TYPE"] = self._categorytype(modeltype)
@@ -207,8 +252,6 @@ class DataspotElements():
                 entry["TYPE"] = "DATA"
                 entry["PARENT"] = entry.get('hasDomain')
                 entry["PARENT2"] = entry.get('hasRange')
-                name = entry.get("name") + ">" + \
-                       j2d.custom_split(entry.get('hasRange'), "/")[-1]
                 self.relationships[self.entryid(entry=entry,
                                                 name=name
                                                 )] = entry
@@ -217,8 +260,6 @@ class DataspotElements():
                 entry["TYPE"] = "IM"
                 entry["PARENT"] = entry.get('hasDomain')
                 entry["PARENT2"] = entry.get('hasRange')
-                name = entry.get("name") + ">" + \
-                       j2d.custom_split(entry.get('hasRange'), "/")[-1]
                 self.relationships[self.entryid(entry=entry,
                                                 name=name)] = entry
             elif entry.get("_type") == "ReferenceObject":
@@ -230,7 +271,6 @@ class DataspotElements():
                 entry["ID"] = None
                 entry["PARENT"] = entry.get('literalOf')
                 # TODO values with timeseries, Code type of lov code
-                name = entry.get("timeSeries")[0]["code"]
                 self.LOVvalues[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "DataDomain":
                 entry["ID"] = ElementId.nextid("DOMA")
@@ -244,7 +284,6 @@ class DataspotElements():
             elif entry.get("_type") == "Derivation":
                 entry["PARENT"] = entry.get('derivedFrom')
                 entry["PARENT2"] = entry.get('derivedTo')
-                name = nvl(entry["PARENT2"]) + "" if entry.get("qualifier") is None else (">" + entry.get("qualifier"))
                 self.derivations[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Mapping":
                 entry["ID"] = ElementId.nextid("MAPP")
@@ -254,7 +293,6 @@ class DataspotElements():
             elif entry.get("_type") == "Translation":
                 entry["TYPE"] = "VALUES"
                 entry["PARENT"] = entry.get('translationIn')
-                name = entry.get("id")
                 self.translations[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "Project":
                 entry["ID"] = ElementId.nextid("DIAG")
@@ -263,7 +301,6 @@ class DataspotElements():
             elif entry.get("_type") == "Usage":
                 entry["ID"] = None
                 entry["PARENT"] = entry.get('usedBy')
-                name = entry.get('usedBy') + ("" if entry.get("usageOf") is None else (">" + entry.get("usageOf")))
                 self.diagelements[self.entryid(entry=entry, name=name)] = entry
             elif entry.get("_type") == "BusinessConstraint":
                 entry["ID"] = ElementId.nextid("BURU")
@@ -272,7 +309,7 @@ class DataspotElements():
                 self.businessrules[self.entryid(entry=entry, name=name)] = entry
             else:
                 logging.warning(f"dataspot type '{entry.get('_type')}' is not yet handled from output")
-            entry["FULLPATH"] = f"{modelname}:{entry.get('PARENT')}/{j2d.fullescapestr(name)}"
+            entry["FULLPATH"] = self.elementfullpath(modelname=modelname,entry=entry)
         return
 
     def readmodels(self, path: Path):

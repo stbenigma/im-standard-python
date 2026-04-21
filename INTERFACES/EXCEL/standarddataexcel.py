@@ -47,12 +47,21 @@ class CreateDataExcel:
 
 
 class StandardDataExcel(StandardExcel):
+    """
+    reads an typical data excel analyzes it and returns JsonSchema object with all standardized elements
+
+    """
     def __init__(self, filespec=None):
         super().__init__(filespec=filespec)
         self.readExcel()
         return
 
     def analyzeExcel(self, headerline=1):
+        """
+
+        :param headerline: Number of line containing headers of following data
+        :return: Nothing, model object in baseclass filled
+        """
         if self.myexcel is None:
             raise Exception("No excel loaded")
 
@@ -81,6 +90,11 @@ class StandardDataExcel(StandardExcel):
                     if cell is not None and cell.value is not None:
                         # get example row below header row
                         valuecell = sheet[cell.column_letter + str(cell.row + 1)]
+                        myvalues=[sheet[cell.column_letter + str(cell.row + i)].value
+                                   for i in range(1,sheet.max_row - cell.row +1)]
+                        examples=[expl for expl in set(myvalues) if expl is not None][:4]
+                        mandatory= None not in myvalues
+                        if None in examples: examples.remove(None)
                         try:
                             isdate = valuecell.is_date
                         except:
@@ -88,11 +102,11 @@ class StandardDataExcel(StandardExcel):
 
                         self.dataattributes.append(JsonElement().dataattributejson(elementid=ElementId.nextid("DATA"),
                                                                                name=cell.value,
-                                                                               mandatory=None,
+                                                                               mandatory=mandatory,
                                                                                dataobjectid=datoid,
                                                                                technicaldatatype=valuecell.data_type,
                                                                                basedatatype=StandardExcel.excel2standarddatatypes(valuecell.data_type),
-                                                                               examples=[valuecell.value],
+                                                                               examples=examples,
                                                                                additionalProps={"EXCELSOURCE":f"{dataobjectname}:{cell.coordinate}"}
                                                                                )
                                                )
@@ -100,5 +114,4 @@ class StandardDataExcel(StandardExcel):
         self.model.jsonschemamodel.setdefault("DataObjects", self.dataobjects)
         self.model.jsonschemamodel.setdefault("DataAttributes", self.dataattributes)
 
-        return
         return

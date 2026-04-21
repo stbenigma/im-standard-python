@@ -1,0 +1,113 @@
+[ {
+  "_type" : "Collection",
+  "id" : "1685b2c2-393b-40cb-b47a-86436a7cc197",
+  "href" : "/web/foryouandyourcustomers/collections/1685b2c2-393b-40cb-b47a-86436a7cc197",
+  "label" : "Applikationen",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774941254386
+}, {
+  "_type" : "Collection",
+  "id" : "45bdb7d9-7123-4efc-8a65-1812138c69a7",
+  "href" : "/web/foryouandyourcustomers/collections/45bdb7d9-7123-4efc-8a65-1812138c69a7",
+  "label" : "Infrastruktur Systeme",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774882922582
+}, {
+  "_type" : "System",
+  "id" : "a3a7db4c-7462-4d8f-a262-a4aff939c7a7",
+  "href" : "/web/foryouandyourcustomers/systems/a3a7db4c-7462-4d8f-a262-a4aff939c7a7",
+  "label" : "crm DB",
+  "stereotype" : "application",
+  "inCollection" : "Applikationen",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774883067725
+}, {
+  "_type" : "System",
+  "id" : "78a8c453-2900-4648-94c9-e8066d4a2851",
+  "href" : "/web/foryouandyourcustomers/systems/78a8c453-2900-4648-94c9-e8066d4a2851",
+  "label" : "ERP",
+  "stereotype" : "application",
+  "title" : "Produkteverwaltung",
+  "inCollection" : "Applikationen",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774883067725
+}, {
+  "_type" : "System",
+  "id" : "4c9fd02a-3186-4ce5-8db3-864090df8559",
+  "href" : "/web/foryouandyourcustomers/systems/4c9fd02a-3186-4ce5-8db3-864090df8559",
+  "label" : "WebShop",
+  "stereotype" : "application",
+  "title" : "Bestellsystem für Kunden",
+  "inCollection" : "Applikationen",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774883067725
+}, {
+  "_type" : "System",
+  "id" : "a7f18e7a-ba08-45ce-aa8f-00c362f8cbff",
+  "href" : "/web/foryouandyourcustomers/systems/a7f18e7a-ba08-45ce-aa8f-00c362f8cbff",
+  "label" : "Bestellungen",
+  "subsystemOf" : "ERP",
+  "stereotype" : "application",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774941555436
+}, {
+  "_type" : "System",
+  "id" : "f1b13578-dc71-4b2a-9e2b-cc99721284a1",
+  "href" : "/web/foryouandyourcustomers/systems/f1b13578-dc71-4b2a-9e2b-cc99721284a1",
+  "label" : "Lager",
+  "subsystemOf" : "ERP",
+  "stereotype" : "application",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774941555436
+}, {
+  "_type" : "System",
+  "id" : "48d7b9be-a180-41f3-bc12-a21c9a9cd0f4",
+  "href" : "/web/foryouandyourcustomers/systems/48d7b9be-a180-41f3-bc12-a21c9a9cd0f4",
+  "label" : "Produkte",
+  "subsystemOf" : "ERP",
+  "stereotype" : "application",
+  "title" : "Verwaltung aller produke",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774941555436
+}, {
+  "_type" : "System",
+  "id" : "59c70cff-348a-49e1-93b4-1c60112e6df6",
+  "href" : "/web/foryouandyourcustomers/systems/59c70cff-348a-49e1-93b4-1c60112e6df6",
+  "label" : "DB-Server",
+  "stereotype" : "infrastructure",
+  "inCollection" : "Infrastruktur Systeme",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774882935625,
+  "virtual" : true
+}, {
+  "_type" : "System",
+  "id" : "edf1cf0f-c01d-46d0-905e-1dc14e14ae7f",
+  "href" : "/web/foryouandyourcustomers/systems/edf1cf0f-c01d-46d0-905e-1dc14e14ae7f",
+  "label" : "Linux-Server",
+  "stereotype" : "infrastructure",
+  "title" : "HW inhouse",
+  "inCollection" : "Infrastruktur Systeme",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1774882935625,
+  "virtual" : true
+}, {
+  "_type" : "Dependency",
+  "dependentOf" : "crm DB",
+  "dependsOn" : "DB-Server",
+  "stereotype" : "runson"
+}, {
+  "_type" : "Dependency",
+  "dependentOf" : "DB-Server",
+  "dependsOn" : "Linux-Server",
+  "stereotype" : "runson"
+} ]

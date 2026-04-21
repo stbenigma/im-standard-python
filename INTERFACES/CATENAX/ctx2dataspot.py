@@ -3,7 +3,8 @@ import logging
 import re
 
 from CATENAX import CatenaxFiles
-from DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot
+from INTERFACES.DATASPOT import Json2dataspot,escapestr,fullescapestr
+
 
 
 def nvl(a, b=""): return a if a is not None else b
@@ -308,7 +309,7 @@ class CTXGenerateDSJson:
             parentname = UrnInfra(parent).name + "_coll"
             lovjson = Json2dataspot.fillstruct("ReferenceObject",
                                                label=lovname,
-                                               description=Json2dataspot.escapestr(lov.get("description")),
+                                               description=escapestr(lov.get("description")),
                                                title=UrnInfra(lov).full
                                                )
             Json2dataspot.optionalprop(lovjson, "inCollection", parentname)
@@ -320,7 +321,7 @@ class CTXGenerateDSJson:
                                                      timeSeries=[{
                                                          "validFrom": -2208988800000,
                                                          "validTo": 32503593600000,
-                                                         "code": Json2dataspot.escapestr(lovval)
+                                                         "code": escapestr(lovval)
                                                      }])
                 referencemodel.append(valuejson)
 
@@ -362,7 +363,7 @@ class CTXGenerateDSJson:
             domainjson = Json2dataspot.fillstruct(elementtype="DataDomain",
                                                   label=domname,
                                                   title=UrnInfra(dom).full,
-                                                  description=Json2dataspot.escapestr(dom.get("description")),
+                                                  description=escapestr(dom.get("description")),
                                                   inCollection=parentname
                                                   )
             domainjson["minInclusive"] = None
@@ -397,7 +398,7 @@ class CTXGenerateDSJson:
             domainjson = Json2dataspot.fillstruct(elementtype="DataDomain",
                                                   label=domname,
                                                   title=UrnInfra(dom).full,
-                                                  description=Json2dataspot.escapestr(dom.get("description")),
+                                                  description=escapestr(dom.get("description")),
                                                   inCollection=parentcoll
                                                   )
             domainmodel.append(domainjson)
@@ -429,8 +430,8 @@ class CTXGenerateDSJson:
                     self.generateattribute(jsonstruct=domainmodel,
                                            attrkey=propname,
                                            attribute=prop,
-                                           objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(UrnInfra(propparenturn).name)}',
-                                           lrange=f'/{rangemodel}/{Json2dataspot.fullescapestr(rangeref.name)}',
+                                           objectname=f'{fullescapestr(parentcoll)}/{fullescapestr(UrnInfra(propparenturn).name)}',
+                                           lrange=f'/{rangemodel}/{fullescapestr(rangeref.name)}',
                                            derived=False,
                                            mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
                                            cardinality=cardinality,
@@ -474,7 +475,7 @@ class CTXGenerateDSJson:
         jsonstruct.append(Json2dataspot.fillstruct(elementtype=elementtype,
                                                    label=key,
                                                    title=elem.get("x-samm-aspect-model-urn"),
-                                                   description=Json2dataspot.escapestr(
+                                                   description=escapestr(
                                                        elem.get("description")),
                                                    hasDomain=objectname,
                                                    hasRange=lrange,
@@ -536,8 +537,8 @@ class CTXGenerateDSJson:
         endobjcoll = self.analyzedelements["collections"]["objects"] \
             [rangeobj[1]][1].name
         jsonstruct.append(self._defaultrelation(
-            startobj=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(parentkey)}',
-            endobj=f'{Json2dataspot.fullescapestr(endobjcoll + "_coll")}/{Json2dataspot.fullescapestr(rangename)}',
+            startobj=f'{fullescapestr(parentcoll)}/{fullescapestr(parentkey)}',
+            endobj=f'{fullescapestr(endobjcoll + "_coll")}/{fullescapestr(rangename)}',
             title=rangeurn,
             name=attrname,
             description=description,
@@ -573,7 +574,7 @@ class CTXGenerateDSJson:
                         self.generatecolumn(jsonstruct=jsonstruct,
                                             colkey=propname,
                                             column=prop,
-                                            objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(UrnInfra(propparenturn).name)}',
+                                            objectname=f'{fullescapestr(parentcoll)}/{fullescapestr(UrnInfra(propparenturn).name)}',
                                             lrange=f'/{self.domainmodelname}/{proptype}',
                                             derived=False,
                                             mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
@@ -609,7 +610,7 @@ class CTXGenerateDSJson:
                         rangename = UrnInfra(rangeurn).name
                     self.generaterelation(jsonstruct=jsonstruct,
                                           rangeobj=self.analyzedelements["objects"][rangeurn],
-                                          rangename=Json2dataspot.fullescapestr(rangename),
+                                          rangename=fullescapestr(rangename),
                                           attrname=propname,
                                           rangeurn=rangeurn,
                                           parentcoll=parentcoll,
@@ -631,8 +632,8 @@ class CTXGenerateDSJson:
                     self.generatecolumn(jsonstruct=jsonstruct,
                                         colkey=propname,
                                         column=prop,
-                                        objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{Json2dataspot.fullescapestr(UrnInfra(propparenturn).name)}',
-                                        lrange=f'/{rangemodel}/{Json2dataspot.fullescapestr(UrnInfra(rangeurn).name)}',
+                                        objectname=f'{fullescapestr(parentcoll)}/{fullescapestr(UrnInfra(propparenturn).name)}',
+                                        lrange=f'/{rangemodel}/{fullescapestr(UrnInfra(rangeurn).name)}',
                                         derived=False,
                                         mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
                                         cardinality="MANY" if multivalue else "ONE",
@@ -646,7 +647,7 @@ class CTXGenerateDSJson:
                 self.generatecolumn(jsonstruct=jsonstruct,
                                     colkey=propname,
                                     column=prop,
-                                    objectname=f'{Json2dataspot.fullescapestr(parentcoll)}/{parentkey}',
+                                    objectname=f'{fullescapestr(parentcoll)}/{parentkey}',
                                     lrange=f'/{self.domainmodelname}/{proptype}',
                                     derived=False,
                                     mandatory="MANDATORY" if propname in reqproperties else "OPTIONAL",
@@ -660,7 +661,7 @@ class CTXGenerateDSJson:
         jsonstruct.append(Json2dataspot.fillstruct(elementtype="UmlClass",
                                                    label=key,
                                                    title=dataref.full,
-                                                   description=Json2dataspot.escapestr(
+                                                   description=escapestr(
                                                        nvl(dataobject.get("description"))),
                                                    # examples=refobj.get("examples"),
                                                    inCollection=collectionname,

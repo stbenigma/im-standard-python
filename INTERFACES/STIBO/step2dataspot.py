@@ -2,7 +2,7 @@ import json
 import logging
 from pathlib import Path
 
-from INTERFACES.DATASPOT.imstandard_dataspot import Json2dataspot,JsonElement
+from INTERFACES.DATASPOT import Json2dataspot,JsonElement,escapestr,fullescapestr
 from IM_STANDARD import nvl, alwayslist
 from INTERFACES.STIBO.loadstep import LoadStep
 
@@ -185,7 +185,7 @@ class Step2Dataspot:
     def joinpath(elements):
         if elements is None or len(elements) == 0:
             return None
-        return "/".join([Json2dataspot.fullescapestr(e) for e in elements])
+        return "/".join([fullescapestr(e) for e in elements])
 
     @staticmethod
     def multilang(mlvalue, lang="std.lang.all"):
@@ -253,7 +253,7 @@ class Step2Dataspot:
                                             label=attr.get("ID"),
                                             title=self.multilang(attr.get("Name")).__str__(),
                                             order=str(dsplseq),
-                                            description=Json2dataspot.escapestr(descr),
+                                            description=escapestr(descr),
                                             hasDomain=self.joinpath(parentpath),
                                             hasRange=self.joinpath(rangepath),
                                             favorite=idx < 3,
@@ -334,15 +334,15 @@ class GenerateReferences(Step2Dataspot):
 
     def _generate1value(self, valueobj, parent, idx):
         valuejson = Json2dataspot.fillstruct(elementtype="ReferenceValue",
-                                             literalOf=Json2dataspot.fullescapestr(parent),
+                                             literalOf=fullescapestr(parent),
                                              timeSeries=[{
                                                  "validFrom": -2208988800000,
                                                  "validTo": 32503593600000,
-                                                 "code": Json2dataspot.escapestr(valueobj.get("code"))
+                                                 "code": escapestr(valueobj.get("code"))
                                              }]
                                              )
         JsonElement.optionalprop(valuejson["timeSeries"][0], "shortText",
-                                   Json2dataspot.escapestr(self.multilang(valueobj.get("text")).__str__()))
+                                   escapestr(self.multilang(valueobj.get("text")).__str__()))
         JsonElement.optionalprop(valuejson, "favorite", idx < 3)
         return valuejson
 
@@ -440,7 +440,7 @@ class GenerateDomains(Step2Dataspot):
                                           label=grpid,
                                           title=self.multilang(name).__str__(),
                                           stereotype=self.STIBOSTEREOTYPE,
-                                          description=Json2dataspot.escapestr(attrgroup.get("description")),
+                                          description=escapestr(attrgroup.get("description")),
                                           inCollection=self.joinpath(collectionname),
                                           examples=attrgroup.get("examples")
                                           )
@@ -467,7 +467,7 @@ class GenerateDomains(Step2Dataspot):
             idx += 1
             attribut = Json2dataspot.fillstruct(elementtype="DataAttribute",
                                                 label=grpattr.get("ID"),
-                                                description=Json2dataspot.escapestr("see where?"),
+                                                description=escapestr("see where?"),
                                                 order=str(idx),
                                                 hasDomain=self.joinpath(path),
                                                 hasRange=self.joinpath(lrange + [grpattr.get("ID")]),
@@ -491,7 +491,7 @@ class GenerateDomains(Step2Dataspot):
                                           label=domaid,
                                           title=self.multilang(name).__str__(),
                                           stereotype=self.STIBOSTEREOTYPE,
-                                          description=Json2dataspot.escapestr(doma.get("description")),
+                                          description=escapestr(doma.get("description")),
                                           inCollection=self.joinpath(collectionname),
                                           examples=doma.get("examples")
                                           )
@@ -651,7 +651,7 @@ class GenerateDatamodel(Step2Dataspot):
         usertype = Json2dataspot.fillstruct(elementtype="UmlClass",
                                             label=ut.get("ID"),
                                             title=self.multilang(ut.get("Name")).__str__(),
-                                            description=Json2dataspot.escapestr(nvl(ut.get("description"))),
+                                            description=escapestr(nvl(ut.get("description"))),
                                             examples=ut.get("examples"),
                                             inCollection=self.joinpath(collectionpath),
                                             favorite=False
@@ -695,7 +695,7 @@ class GenerateDatamodel(Step2Dataspot):
                                                 label=attr.get("ID"),
                                                 title=self.multilang(attr.get("Name")).__str__(),
                                                 order=str(idx),
-                                                description=Json2dataspot.escapestr(attr.get("Description")),
+                                                description=escapestr(attr.get("Description")),
                                                 hasDomain=self.joinpath(parentpath),
                                                 hasRange=self.joinpath(rangepath),
                                                 favorite=idx < 3,
