@@ -1,4 +1,5 @@
 from IM_STANDARD import nvl
+from datetime import datetime
 
 nullfunction = lambda x: x
 
@@ -22,6 +23,8 @@ def model2json(model: dict, idfunc=nullfunction):
             return [transform_json(item, func) for item in elem]
         else:
             # It's a leaf node (int, str, bool, None) -> apply the function
+            if isinstance(elem, datetime):
+                return str(elem)
             if elem is None or type(elem) in (bool,int,str,float):
                 return elem
             else:

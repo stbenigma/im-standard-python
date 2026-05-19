@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
 
         myroot=Path(__file__).parent.parent.parent.parent
         self.basepath =  myroot / "Information-model-standard"
-        self.schemadefpath =  self.basepath / "im-standard"
+        self.schemadefpath =  self.basepath / "im-standard-json"
         self.examplepath =  self.basepath / "Example models"
         self.schemareferences=self._schemareferences(self.schemadefpath)
         self.testmodelpath = self.schemadefpath / "testmodels"

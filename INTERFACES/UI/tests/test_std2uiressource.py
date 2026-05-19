@@ -56,7 +56,6 @@ class MyTestCase(unittest.TestCase):
         entities = destjson.get("elements").get("entities")
         categories = destjson.get("elements").get("categories")
         relationships = destjson.get("elements").get("relationships")
-        del entities[2]
         del categories[1]
         del relationships[0]
         self.caplog.clear()

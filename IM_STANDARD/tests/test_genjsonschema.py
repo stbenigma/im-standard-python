@@ -117,14 +117,14 @@ class MyTestCase(unittest.TestCase):
         return
 
     def test_astronomy(self):
-        testfile =  self.standardtestilfespath/ "astronomie-standard.json"
+        testfile =  self.standardtestilfespath/ "astronomie-assets-standard.json"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
                                       _schema="https:sbb.ch",
                                       nid="Astronomy",
                                       collection="Sternsystem"
                                       )
         self.assertEqual("https:sbb.ch", jsschema.get("$schema"))
-        self.assertEqual("urn:Astronomy:Sternsystem:0.9#Sternsystem", jsschema.get("urn"))
+        self.assertEqual("urn:Astronomy:Astronomie Assets:0.1#Astronomie Assets", jsschema.get("urn"))
 
         self.caplog.set_level(logging.WARNING)
         print()

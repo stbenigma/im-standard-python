@@ -1,4 +1,5 @@
 import json
+import re
 import logging
 
 from openpyxl import Workbook
@@ -309,8 +310,7 @@ class CreateSchemaExcel:
 
 
     def _sheetnames(self,name):
-        sname=name
-        sname.replace(":\\/\?\*\[\]","")
+        sname=re.sub("[:/*\\\?\[\]]","",name)
         if len(sname)>31:
             sname=sname[:28]+"_"+str(self.sheetnamesindex)
             self.sheetnamesindex =+ 1
