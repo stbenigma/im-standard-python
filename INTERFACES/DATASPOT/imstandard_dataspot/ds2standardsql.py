@@ -508,8 +508,13 @@ class Dataspot2SQLdatabase():
                                            mode_type="DOMA",
                                            mode_dc=ds2timestamp(doma.get("dateCreated")).isoformat(),
                                            mode_uc=doma.get("createdBy", "loadedfromds"))
+
+            values=[val for key,val in self.dsmodel.LOVvalues.items()
+                  if val["literalOf"]==doma["label"]
+                    ]
             self.generate1domain(doma=doma,
-                                 modeid=mode_id)
+                                 modeid=mode_id,
+                                 values=values)
         return
 
     def _dt2sql(self,val:str)->str:
@@ -523,7 +528,7 @@ class Dataspot2SQLdatabase():
                        }
         return dt2sql[val]
 
-    def generate1domain(self, doma, modeid):
+    def generate1domain(self, doma:dict, modeid:int,values:list):
         tablename = "domains"
 
         subtypeprops=dict()
@@ -563,6 +568,16 @@ class Dataspot2SQLdatabase():
             self.sqldb.rowinsert(tablename="examples",
                                  expl_value=expl,
                                  expl_doma_id=modeid)
+        for idx,value in enumerate(values,1):
+            firstval=value.get("timeSeries")[0]
+            shortt=firstval.get("shortText")
+            self.sqldb.rowinsert(tablename="lov_values",
+                                  lovv_value=firstval.get("code"),
+                                  lovv_displ=None if shortt=="" else shortt,
+                                  lovv_descr=firstval.get("longText"),
+                                  lovv_sort_order=idx,
+                                  lovv_doma_id=modeid)
+
 
         return
 
