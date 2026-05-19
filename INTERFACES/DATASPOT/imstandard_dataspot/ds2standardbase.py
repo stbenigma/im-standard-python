@@ -4,47 +4,26 @@ from datetime import datetime
 
 from IM_STANDARD import ElementId, alwayslist, nvl, JsonSchema, JsonElement
 from INTERFACES.DATASPOT.imstandard_dataspot.dselements import DataspotElements
-from .dslib import fullescapestr,custom_split,escapestr
+from .dslib import fullescapestr, custom_split
 
 
 def mseconds2date(seconds):
     return datetime.utcfromtimestamp(seconds / 1000)
 
+
 def date2mseconds(date):
     # todo timezone
     return int(date.timestamp() * 1000)
 
-class Dataspot2Jsonbase():
+
+class Dataspot2Jsonbase:
     ORIGINTOOL = "dataspot"
 
     def __init__(self, standardjson: JsonSchema, dsmodels=None, indirec=None, **kwargs):
-        #super().__init__(indirec=indirec, **kwargs)
-        self.dsmodels=dsmodels if dsmodels is not None else DataspotElements(indirec=indirec, **kwargs)
+        # super().__init__(indirec=indirec, **kwargs)
+        self.dsmodels = dsmodels if dsmodels is not None else DataspotElements(indirec=indirec, **kwargs)
         self.standardjson: JsonSchema = standardjson
         return
-
-    @staticmethod
-    def checkstatus(elem, filterstatus):
-        """
-
-        :param elem: element to be checked
-        :param filterstatus: PUBL,GTOP,ALL,None
-        :return:
-        true, if elem.get("status") is empty or fullfils the filterstatus
-        false else
-        """
-        if filterstatus in ("ALL", None):
-            return True
-        status = elem.get("status")
-        if status is None:
-            return True
-        if filterstatus == "PUBL" and status in ("PUBLISHED",):
-            return True
-        if filterstatus == "GTOP" and status in ("PUBLISHED",
-                                                 "ACCEPTED",
-                                                 "FINAL"):
-            return True
-        return False
 
     @staticmethod
     def _multilangvalue(value,
@@ -122,12 +101,12 @@ class Dataspot2Jsonbase():
                     nextid = ElementId.nextid("CATG")
 
                     self.dsmodels.categories[f"{model}/{model}"] = {'_type': 'Collection',
-                                                           'label': model,
-                                                           'description': descr,
-                                                           'DSMODEL': model,
-                                                           'ID': nextid,
-                                                           'TYPE': catgtype,
-                                                           'PARENT': None}
+                                                                    'label': model,
+                                                                    'description': descr,
+                                                                    'DSMODEL': model,
+                                                                    'ID': nextid,
+                                                                    'TYPE': catgtype,
+                                                                    'PARENT': None}
             return
 
         """ dataspot allows several models of the same type (Information model, domainid model, referencemodel)
@@ -140,7 +119,8 @@ class Dataspot2Jsonbase():
         typemulticatg(models=diffdomainmodels, catgtype='DOMAIN')
         diffsystemmodels = set(c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "SYSTEM")
         typemulticatg(models=diffsystemmodels, catgtype='SYSTEM')
-        diffsystemmodels = set(c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "DATAMODEL")
+        diffsystemmodels = set(
+            c.get("DSMODEL") for c in self.dsmodels.categories.values() if c.get("TYPE") == "DATAMODEL")
         typemulticatg(models=diffsystemmodels, catgtype='DATAMODEL')
 
         return
@@ -148,7 +128,7 @@ class Dataspot2Jsonbase():
     def generatecategories(self, catgtype, status=None):
         categories = {key: val for key, val in self.dsmodels.categories.items()
                       if val.get("TYPE") == catgtype \
-                      and self.checkstatus(val, status)}
+                      and DataspotElements.checkstatus(val, status)}
         donecatgs = dict()
         newcategories = []
         cnt = 0
@@ -161,17 +141,18 @@ class Dataspot2Jsonbase():
                 catg = restcatgs[key]
                 parentname = catg.get("inCollection")
                 if parentname is None:
-                    newcategories.append(self.catgjson(element=catg
-                                                       , categorytype=catgtype)
+                    newcategories.append(JsonElement().categoryjson(elementid=catg.get("ID"),
+                                                                    name=catg.get("label"),
+                                                                    categorytype=catgtype)
                                          )
                     donecatgs[catg.get("label")] = catg.get("ID")
                     del restcatgs[key]
                 else:
                     fullname = parentname + "/" + catg.get("label")
                     if parentname not in restcatgs:  # parent was alredy processed
-                        newcategories.append(self.catgjson(element=catg
-                                                           , categorytype=catgtype)
-                                             )
+                        newcategories.append(JsonElement().categoryjson(elementid=catg.get("ID"),
+                                                                        name=catg.get("label"),
+                                                                        categorytype=catgtype))
                         donecatgs[fullname] = catg.get("ID")
                         del restcatgs[key]
                     else:
@@ -307,8 +288,9 @@ class Dataspot2Jsonbase():
         else:
             return elem[0]
 
-    def findelementid(self, elems, modelname, name, notnull=False, fullname=False):
-        elem = self.findelement(elems=elems, modelname=modelname,
+    @staticmethod
+    def findelementid(elems, modelname, name, notnull=False, fullname=False):
+        elem = Dataspot2Jsonbase.findelement(elems=elems, modelname=modelname,
                                 name=name, fullname=fullname)
         assert not (elem is None and notnull), f"{modelname}-{name} not found"
         return None if elem is None else elem.get("ID")
@@ -316,7 +298,7 @@ class Dataspot2Jsonbase():
     @classmethod
     def additionalprops(cls, elem, specialkeys) -> dict:
         defaultfields = ["_type", "label",
-                         "id", "href",
+                         "id", "href", "subtypeOf",
                          "examples", "synonyms", "favorite",
                          "description", "title", "inCollection",
                          "status", "createdBy", "dateCreated",
@@ -459,7 +441,8 @@ class Dataspot2Jsonbase():
                                                                )]
         return domattrs
 
-    def setdomainsubtype(self, element, subtypeproperties):
+    @staticmethod
+    def _filldomaproperties(element,subtypeproperties):
         domaintypes = {"STRING": "TextDomain",
                        "TEXT": "TextDomain",
                        "ID": "TextDomain",
@@ -473,16 +456,12 @@ class Dataspot2Jsonbase():
                        "BINARY": "BinaryDomain",
                        "BOOLEAN": "BooleanDomain"
                        }
-        subattrs = self.domasubattrs(element=element)
         if element.get("_type") == "ReferenceObject":
             domaintype = "LOV"
-        elif len(subattrs) > 0:
-            domaintype = "GROUP"
         else:
             domaintype = element.get("baseType", "STRING")
 
         subtypeproperties["domaintype"] = domaintypes[domaintype]
-
         if domaintype in ("STRING", "TEXT"):
             JsonElement.optionalprop(subtypeproperties, "maxlength", element.get("maxLength"), intvalue=True)
             JsonElement.optionalprop(subtypeproperties, "syntaxrule", element.get("pattern"))
@@ -496,14 +475,6 @@ class Dataspot2Jsonbase():
                                      intvalue=True)
             JsonElement.optionalprop(subtypeproperties, "unit", element.get("Unit"))
         elif domaintype == "GROUP":
-            # NO group domains have sometimes a string rep and therefore a pattern
-            # JsonElement.optionalprop(subtypeproperties, "maxlength", element.get("maxLength"), intvalue=True)
-            # JsonElement.optionalprop(subtypeproperties, "syntaxrule", element.get("pattern"))
-            # JsonElement.optionalprop(subtypeproperties, "minlength", element.get("minlength"), intvalue=True)
-            # subtypeproperties["elements"] = [
-            #    self.attributejson(modelname=element.get("DSMODEL"),
-            #                       element=elem)
-            #    for elem in subattrs]
             pass
         elif domaintype == "DATETIME":
             subtypeproperties["granularity"] = "MINUTE"
@@ -511,9 +482,17 @@ class Dataspot2Jsonbase():
             subtypeproperties["granularity"] = "DAY"
         elif domaintype == "TIME":
             subtypeproperties["syntaxrule"] = "^[0-1][0-9]:[0-5][0-9]$"
-        elif domaintype == "BOOLEAN":
-            pass
-        elif domaintype == "LOV":
+
+        return
+
+    def setdomainsubtype(self, element, subtypeproperties):
+        self._filldomaproperties(element=element,
+                                 subtypeproperties=subtypeproperties)
+
+        if len(self.domasubattrs(element=element)) > 0:
+            subtypeproperties["domaintype"] =  "GroupDomain"
+
+        if subtypeproperties["domaintype"] =="LOVDomain" :
             domaname = element.get("label")
             refvalues = [val for val in self.dsmodels.LOVvalues.values() \
                          if val.get("_type") == "ReferenceValue" and \
@@ -595,7 +574,7 @@ class Dataspot2Jsonbase():
 
     def generatedomains(self, status=None):
         for element in self.dsmodels.domains.values():
-            if self.checkstatus(element, status):
+            if DataspotElements.checkstatus(element, status):
                 self.standardjson.addelementinstance(name="Domains",
                                                      val=self.generate1domain(doma=element))
         return
@@ -635,11 +614,11 @@ class Dataspot2Jsonbase():
                                             )
         return elemdoma
 
-    def generatederivations(self,status=None):
+    def generatederivations(self, status=None):
         """ read all derivations and add them to the derivations of the model, if the target is in this model
         """
         for keyderiv, deriv in self.dsmodels.derivations.items():
-            if not self.checkstatus(deriv,status): continue
+            if not DataspotElements.checkstatus(deriv, status): continue
             sourcepath = self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
                                                        modelname=deriv.get("DSMODEL"))
             sourceelement = self.findqualielement(fullpath=sourcepath)
@@ -673,18 +652,18 @@ class Dataspot2Jsonbase():
 
         return
 
-    def generatetransformations(self,status=None):
+    def generatetransformations(self, status=None):
         """ read all transformations and add them to the element
         """
         for trakey, transf, in self.dsmodels.transformations.items():
-            if not self.checkstatus(transf, status): continue
+            if not DataspotElements.checkstatus(transf, status): continue
             transpath = transf.get("transformationOf") + "/" + transf.get("label")
 
             additionalprops = self.additionalprops(elem=transf,
                                                    specialkeys=["transformationOf"])
-            transfname=self.mutlilangvalue(fieldname="label",
-                                        value=transf.get("label"),
-                                        addprops=additionalprops)
+            transfname = self.mutlilangvalue(fieldname="label",
+                                             value=transf.get("label"),
+                                             addprops=additionalprops)
             rules = [r for r in self.dsmodels.rules.values() if r.get("ruleOf") == transpath]
             for rule in rules:
                 sourceelements = [nvl(self.findqualielement(
@@ -697,7 +676,7 @@ class Dataspot2Jsonbase():
                 targetelements = [se.getid() if isinstance(se, JsonElement) else se for se in targetelements]
                 self.standardjson.addelementinstance(name="Transformations",
                                                      val=JsonElement().transformationjson
-                                                     (name=transfname,
+                                                     (name=transf.get("label"),
                                                       targetelements=targetelements,
                                                       sourceelements=sourceelements,
                                                       fwd=JsonElement().transformationrulejson(rule=rule.get("code"),
@@ -709,7 +688,6 @@ class Dataspot2Jsonbase():
                                                       )
                                                      )
         return
-
 
     def findanyid(self, modelname, name, notnull=False):
         retval = self.findelementid(elems=self.dsmodels.attributes,
@@ -780,7 +758,6 @@ class Dataspot2Jsonbase():
             return retval[0]
         else:
             return None
-
 
     @staticmethod
     def _deref(name: str):

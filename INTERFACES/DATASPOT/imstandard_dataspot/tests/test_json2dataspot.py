@@ -126,19 +126,20 @@ class Testjson2dataspot(unittest.TestCase):
                       )
         return
 
-    def test_divfiles(self):
-        self.caplog.set_level(logging.INFO)
-        testfile=StandardJsonModel.SCHEMADEFPATH.parent/"im-model-model"/"im-model-model.json"
-        if not testfile.exists():
-            self.skipTest(f"file does not exist {str(testfile)}")
+    def test_localfile_DM(self):
+        localfile= self.mydebugpath / "zhcustomer_standard.json"
+        if not localfile.is_file():
+            self.skipTest(f"file not found {str(localfile)}")
 
-        json2dataspot(injson=testfile,
+        json2dataspot(injson=localfile,
                       outpath=self.mydebugpath,
-                      imname="IMmodelmodel",
-                      refdomainsname="IMmodelmodel reference model",
-                      domainsname="IMmodelmodel domain model")
-        print ("\n".join(self.caplog.messages))
+                      dmname="test zh cust DM",
+                      refdomainsname="test zh cust ref model",
+                      domainsname="test zh cust domain model",
+                      systemsname="test zh cust systems model"
+                      )
         return
+
 
     def test_systems(self):
         self.caplog.set_level(logging.INFO)

@@ -5,7 +5,7 @@ from IM_STANDARD.jsonvalidation import validate_jsonfile_as_schema  # local due 
 
 
 class StandardJsonModel:
-    SCHEMADEFPATH = Path(__file__).parent.parent.parent / "Information-model-standard" / "im-standard"
+    SCHEMADEFPATH = Path(__file__).parent.parent.parent / "Information-model-standard" / "im-standard-json"
 
     def __init__(self, modelfilepath):
         self._schema = self._loadjsonfile(path=modelfilepath)

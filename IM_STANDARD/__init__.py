@@ -30,7 +30,7 @@ def version() -> dict:
 
 __version__ = version()
 
-
+from .SQL import StandardSqlModel
 from .jsonelements import JsonElement,model2json
 from .myjsonschema import ElementId,JsonSchema
 from .standardmodeljson import StandardJsonModel,IMStandardJsonModel,DMStandardJsonModel

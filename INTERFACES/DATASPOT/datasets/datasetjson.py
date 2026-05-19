@@ -1,4 +1,4 @@
-from IM_STANDARD import JsonSchema, nvl
+from IM_STANDARD import JsonSchema, nvl,model2json
 from INTERFACES.DATASPOT import Json2dataspot
 
 TYPETRANSLATE={"Number":"Decimal",
@@ -71,5 +71,5 @@ def generatedatasetjson(jsonschema: JsonSchema,
                                                         exmpls=nvl(_examples(dataattr.get("examples")))
                                                         ))
 
-    return datasetjson
+    return model2json(datasetjson)
 

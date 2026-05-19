@@ -455,6 +455,7 @@ class Json2JsonSchema:
                              name=entiname,
                              version=self.modelversion)
                          ),
+            sourcelink=enti.get("additionalProps",{}).get("SOURCE-HREF"),
             _type="object",
             examples=enti.get("examples"),
             references=self.getderivations(enti))
@@ -554,6 +555,7 @@ class Json2JsonSchema:
                                     )
                                     )
                            ),
+            sourcelink=modelinfo.get("additionalProps",{}).get("SOURCE-HREF"),
             description=modelinfo.get("description"),
             _type="object",
             components={

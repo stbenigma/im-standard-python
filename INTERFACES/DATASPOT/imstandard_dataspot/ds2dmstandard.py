@@ -62,10 +62,10 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
                                                                                 name=element.get("label"),
                                                                                 columns=[],
                                                                                 description=element.get("description"),
-                                                                                categoryid=self.categoryid(
-                                                                                    modeltype="DATAOBJECT",
-                                                                                    categoryname=self._deref(
-                                                                                        element.get("inCollection"))),
+                                                                                #categoryid=self.categoryid(
+                                                                                #    modeltype="DATAOBJECT",
+                                                                                #    categoryname=self._deref(
+                                                                                #        element.get("inCollection"))),
                                                                                 additionalProps=self.additionalprops(
                                                                                     elem=element,
                                                                                     specialkeys=[])
@@ -124,7 +124,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
                               )
         return
 
-    def generatedatamodel(self):
+    def generatedatamodel(self,status:str):
         self.generatedataobjects(elementname="DataObjects",
                                  elements=[elem for elem in self.dsmodels.tables.values()])
         self.generatecolumns(elements=[elem for elem in self.columns.values()
@@ -142,6 +142,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
         return
 
     def generatejson(self, modelname, targetenv=None, **kwargs):
+        status=kwargs.get("status")
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                            modelname=modelname,

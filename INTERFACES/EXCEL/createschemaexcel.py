@@ -24,6 +24,7 @@ class CreateSchemaExcel:
         self._standardjson.curlang = lang if lang is not None else self._standardjson.mainlang
         self._nid = nid
         self._usedgroupdomains = []
+        self.sheetnamesindex=0
         return
 
     _header = {"Name": 35,
@@ -34,6 +35,7 @@ class CreateSchemaExcel:
                "Mand./Opt.": 10,
                "Examples": 35,
                "Comment/Rule": 30,
+               #"MVP scope": 10,
                "Dataspot": 10,
                "Dataspot Link to element": 60
                }
@@ -206,6 +208,7 @@ class CreateSchemaExcel:
                        "mandatory" if attr.get("mandatory") else "optional",
                        "" if len(attr.get("examples", [])) == 0 else '\n'.join(attr.get("examples")),
                        self._comments(domain),
+                       #attr.get("MVPScope"),
                        1,
                        link
                        ]
@@ -304,8 +307,14 @@ class CreateSchemaExcel:
 
         return
 
+
     def _sheetnames(self,name):
-        return name.replace("/","")
+        sname=name
+        sname.replace(":\\/\?\*\[\]","")
+        if len(sname)>31:
+            sname=sname[:28]+"_"+str(self.sheetnamesindex)
+            self.sheetnamesindex =+ 1
+        return sname
 
     def writeexcel(self, outfilepath):
         wb = Workbook()

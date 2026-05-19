@@ -5,16 +5,17 @@ from pathlib import Path
 from IM_STANDARD import nvl, ElementId
 from .dslib import custom_split
 
+
 class DataspotElements():
     def __init__(self, indirec=None, **kwargs):
         # models
-        tenant=kwargs.get("tenant")
+        tenant = kwargs.get("tenant")
         if type(tenant) is str:
-            self.tenant = {"name":tenant}
+            self.tenant = {"name": tenant}
         elif type(tenant) is dict:
             self.tenant = tenant
         else:
-            self.tenant=dict()
+            self.tenant = dict()
 
         self.dsmodels = dict()
         self.modelname = kwargs.get("modelname")
@@ -47,15 +48,15 @@ class DataspotElements():
             self.readmodels(indirec)
         return
 
-    def sourcehref(self,element):
-        return  f"{self.tenant.get('server')}{element.get('href').replace('/web/','/rest/')}"
+    def sourcehref(self, element):
+        return f"{self.tenant.get('server')}{element.get('href').replace('/web/', '/rest/')}"
 
     def modeltype(self, struct):
         if type(struct) == list:
             keyset = set([elem.get("_type") for elem in struct])
             if keyset.intersection({"Collection",
                                     "BusinessObject"}) == {"Collection",
-                                            "BusinessObject"}:
+                                                           "BusinessObject"}:
                 return "BUSINESSMODEL"
             elif keyset.intersection({"Collection",
                                       "ReferenceObject"}) == {"Collection",
@@ -91,28 +92,28 @@ class DataspotElements():
         parent = entry.get('PARENT')
         return f"""{model}/{"" if parent is None else (parent + '/')}{nvl(name)}"""
 
-    def elementname(self,entry):
+    def elementname(self, entry):
         """
         depending on elemtype construct  a name for the element
         :param entry: json-structure from dataspot
         :return: unique name of the element
         """
 
-        if entry.get("_type") in ('UmlAssociation','Relationship'):
+        if entry.get("_type") in ('UmlAssociation', 'Relationship'):
             retval = entry.get("name") + "->" + \
-                   custom_split(entry.get('hasRange'), "/")[-1]
+                     custom_split(entry.get('hasRange'), "/")[-1]
         elif entry.get("_type") == 'ReferenceValue':
             retval = entry.get("timeSeries")[0]["code"]
         elif entry.get("_type") == 'Translation':
-            retval = entry.get("translationIn")+\
-                            "/"+ \
-                    custom_split(entry.get("translatesFrom"),'/')[-1]+ \
-                    custom_split(entry.get("translatesTo"),'/')[-1]
+            retval = entry.get("translationIn") + \
+                     "/" + \
+                     custom_split(entry.get("translatesFrom"), '/')[-1] + \
+                     custom_split(entry.get("translatesTo"), '/')[-1]
         elif entry.get("_type") == 'Derivation':
             retval = nvl(entry.get("PARENT2")) + ("" if entry.get("qualifier") is None \
-                    else (">" + entry.get("qualifier")))
+                                                      else (">" + entry.get("qualifier")))
         elif entry.get("_type") == 'Dependency':
-            retval = entry.get("stereotype","")+">"+ \
+            retval = entry.get("stereotype", "") + ">" + \
                      nvl(entry.get('dependsOn'))
         elif entry.get("_type") == 'Usage':
             retval = entry.get('usedBy') + ("" if entry.get("usageOf") is None
@@ -121,13 +122,13 @@ class DataspotElements():
             retval = entry.get('label')
         return retval
 
-    def elementfullpath(self,modelname,entry):
+    def elementfullpath(self, modelname, entry):
         if entry.get("_type") in ('UmlAssociation', 'Relationship'):
-            pathstart=entry.get('hasDomain') + "->"
-        elif entry.get("_type") in ('Dependency', ):
-                pathstart = entry.get('PARENT') + ">"
+            pathstart = entry.get('hasDomain') + "->"
+        elif entry.get("_type") in ('Dependency',):
+            pathstart = entry.get('PARENT') + ">"
         else:
-            pathstart =nvl(entry.get('PARENT')) + "/"
+            pathstart = nvl(entry.get('PARENT')) + "/"
         return f"{modelname}:{pathstart}{self.elementname(entry)}"
 
     def _categorytype(self, modeltype):
@@ -144,26 +145,65 @@ class DataspotElements():
         else:
             logging.warning(f"{modeltype} not known")
 
+    @staticmethod
+    def checkstatus(elem, filterstatus):
+        """
+
+        :param elem: element to be checked
+        :param filterstatus: PUBL,GTOP,ALL,None
+        :return:
+        true, if elem.get("status") is empty or fullfils the filterstatus
+        false else
+        """
+        if filterstatus in ("ALL", None):
+            return True
+        status = elem.get("status")
+        if status is None:
+            return True
+        if filterstatus == "PUBL" and status in ("PUBLISHED",):
+            return True
+        if filterstatus == "GTOP" and status in ("PUBLISHED",
+                                                 "ACCEPTED",
+                                                 "FINAL"):
+            return True
+        return False
+
+    @staticmethod
+    def filterelements(element: dict,
+                       elemtype: str = None,
+                       status: str = None) -> dict:
+        """
+        returns the dictionary filtered by type and status.
+
+        :param element: dictionnary of dataspot elements
+        :param elemtype: "TYPE" attribute in dictionnary
+        :param status:  status attribute ("PUBL", "GTOP", "ALL",None)
+        :return: dictionnary of filtered entries
+        """
+        return {key: val for key, val in element.items()
+                if (elemtype is None or val.get("TYPE") == elemtype) \
+                and (status is None or DataspotElements.checkstatus(val, status))}
+
     def metainfo(self, struct: dict):
         """
         :param struct: put the struct-info in its appropriate container
         :return: nothing
         """
         if struct.get("_type") == "Tenant":
-            self.tenant["name"]=struct.get("tenantName")
-            self.tenant["id"]=struct.get("id")
-            self.tenant["db"]=struct.get("db")
-            self.tenant["uri"]=struct.get("_links",dict()).get("self",dict()).get("href")
+            self.tenant["name"] = struct.get("tenantName")
+            self.tenant["id"] = struct.get("id")
+            self.tenant["db"] = struct.get("db")
+            self.tenant["uri"] = struct.get("_links", dict()).get("self", dict()).get("href")
 
         elif struct.get("_type") in ("BusinessDataModel",
                                      "UmlModel",
                                      "SystemCatalog",
                                      "ProjectDirectory"):
-            self.dsmodels[struct.get('label')] = {"name":struct.get('label'),
-                                                  "id":struct.get("id"),
-                                                  "parentid":struct.get("tenantId"),
-                                                  "description":struct.get("description"),
-                                                  "title":struct.get("title")
+            self.dsmodels[struct.get('label')] = {"name": struct.get('label'),
+                                                  "id": struct.get("id"),
+                                                  "parentid": struct.get("tenantId"),
+                                                  "description": struct.get("description"),
+                                                  "title": struct.get("title")
                                                   }
         else:
             others = ["ReferenceDataModel",
@@ -309,7 +349,7 @@ class DataspotElements():
                 self.businessrules[self.entryid(entry=entry, name=name)] = entry
             else:
                 logging.warning(f"dataspot type '{entry.get('_type')}' is not yet handled from output")
-            entry["FULLPATH"] = self.elementfullpath(modelname=modelname,entry=entry)
+            entry["FULLPATH"] = self.elementfullpath(modelname=modelname, entry=entry)
         return
 
     def readmodels(self, path: Path):

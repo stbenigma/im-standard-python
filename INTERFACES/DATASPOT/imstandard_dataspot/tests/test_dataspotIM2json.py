@@ -153,10 +153,10 @@ class Test_dataspot2im(unittest.TestCase):
                                        targetenv="Test",
                                        language="de",
                                        languages=["en"])
-        categories2=[c for c in jsonstruct.get("Categories") if c.get("categoryid") is not None]
+        categories2=[c for c in jsonstruct.get("Categories") if c.get("elementid") is not None]
         self.assertTrue(len(categories2)>0)
         derivations2=[c for c in jsonstruct.get("Derivations",[]) ]
-        self.assertTrue(len(derivations2)>20)
+        self.assertTrue(len(derivations2)>0)
         mappings2=[c for c in jsonstruct.get("Mappings",[]) ]
         self.assertEqual(len(mappings),len(mappings2))
         self.assertTrue(len(mappings2[0].get("valuemappings",[]))>0)

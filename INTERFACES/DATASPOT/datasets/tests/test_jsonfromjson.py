@@ -82,25 +82,26 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual("y", outjson[7].get("subsetOf"))
 
         self.caplog.set_level(logging.WARNING)
-        outjson = self._gen1(jds=json2ds,
-                             model={"name": "Multilevel",
-                                    "repeated": [1, 2, 3, 4],
-                                    "sub1": {"x": "1",
-                                             "y": {"von": 123.123,
-                                                   "sub1": [{"subbis1": "subbis1",
-                                                             "subbis2": ["subbis2", "x", "y"]
-                                                             }]
-                                                   }
-                                             },
-                                    "sub2rep": [{"element1": 9999},
-                                                {"id": [True, False]}],
-                                    "sub2": {"x": None,
-                                             "y": {"tag": 1,
-                                                   "monat": 2,
-                                                   "jahr": 1955
-                                                   }
-                                             }
-                                    }
+
+        model={"name": "Multilevel",
+                                        "repeated": [1, 2, 3, 4],
+                                        "sub1": {"x": "1",
+                                                 "y": {"von": 123.123,
+                                                       "sub1": [{"subbis1": "subbis1",
+                                                                 "subbis2": ["subbis2", "x", "y"]
+                                                                 }]
+                                                       }
+                                                 },
+                                        "sub2rep": [{"element1": 9999},
+                                                    {"id": [True, False]}],
+                                        "sub2": {"x": None,
+                                                 "y": {"tag": 1,
+                                                       "monat": 2,
+                                                       "jahr": 1955
+                                                       }
+                                                 }
+                                        }
+        outjson = self._gen1(jds=json2ds,model=model
                              )
         self.assertEqual(21, len(outjson))
         self.assertEqual("Composition", outjson[3].get("_type"))
@@ -117,9 +118,10 @@ class MyTestCase(unittest.TestCase):
         return
 
     def test_toplevelproc(self):
-        outjson = jsondata2dataset(jsonschema={"name": {"x": "1",
+        model={"name": {"x": "1",
                                                         "y": False}
-                                               },
+                                               }
+        outjson = jsondata2dataset(jsonschema=model,
                                    datasetmodelpath="/templ dataset model/jsons",
                                    modelname="testmodel",
                                    domainmodelpath="/templ Domain model/Standard Wertebereiche/Basis Wertebereiche")
@@ -138,6 +140,7 @@ class MyTestCase(unittest.TestCase):
         with open(self.temppath / "testjson.json", 'r') as testinfile:
             model=json.load(testinfile)
         self.assertDictEqual(testmodel,model)
+
         return
 
     def test_localfile(self):

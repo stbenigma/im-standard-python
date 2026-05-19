@@ -2,7 +2,7 @@ import unittest
 from pathlib import Path
 import pytest
 
-from INTERFACES.EXCEL import CreateSchemaExcel
+from INTERFACES.EXCEL import CreateSchemaExcel,createexcel
 
 
 class MyTestCase(unittest.TestCase):
@@ -19,9 +19,19 @@ class MyTestCase(unittest.TestCase):
 
     def test_astronomie(self):
         self.astronomietestjsonpath = Path(__file__).parent.parent.parent.parent / \
-                                      "IM_STANDARD" /"tests" / "json-test-standard-files" / "astronomie-standard.json"
+                                      "IM_STANDARD" /"tests" / "json-test-standard-files" / "astronomie-assets-standard.json"
         CreateSchemaExcel(standardjson=self.astronomietestjsonpath,
                           lang="en").writeexcel(outfilepath=self.mydebugpath / "astronomie-schema.xlsx")
+        return
+
+    def test_longnames(self):
+        self.astronomietestjsonpath = Path(__file__).parent.parent.parent.parent / \
+                                      "IM_STANDARD" /"tests" / "json-test-standard-files" / "astronomie-assets-standard.json"
+        excel=CreateSchemaExcel(standardjson=self.astronomietestjsonpath,
+                          lang="en")
+        excel._standardjson.jsonschemamodel["Entities"][0]["name"]["de"]="VielzulangerNameVielzulangerNameVielzulangerNameVielzulangerName"
+        excel._standardjson.jsonschemamodel["Entities"][1]["name"]["de"]="VielzulangerNameVielzulangerNameVielzulangerNameVielzulangerName"
+        excel.writeexcel(outfilepath=self.mydebugpath / "astronomie-schema-langname.xlsx")
         return
 
     def test_IM(self):
@@ -31,6 +41,15 @@ class MyTestCase(unittest.TestCase):
         CreateSchemaExcel(standardjson=self.imtestjsonpath,
                           lang="en").writeexcel(outfilepath=self.mydebugpath / (self.imtestjsonpath.stem+".xlsx"))
         return
+
+    def test_localfile(self):
+        inpath  = Path(__file__).parent.parent.parent.parent / "localtestmodels" / "CHEM-X-DMP" / "MVP-DMP-standard.json"
+
+        excel= CreateSchemaExcel(standardjson=inpath,
+                          lang="en")
+        createexcel(jsonfilepath=inpath,
+                                  outfilepath=self.mydebugpath / (inpath.stem+".xlsx")
+                                  )
 
 
 if __name__ == '__main__':

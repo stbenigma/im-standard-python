@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json
-from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
+from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase,DataspotElements
 from .dslib import custom_split
 
 
@@ -23,25 +23,25 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
     def generatebusinessmodel(self,status=None):
         self.generateentities(elementname="Entities",
                               elements=[elem for elem in self.dsmodels.entities.values()
-                                        if self.checkstatus(elem,status)])
+                                        if DataspotElements.checkstatus(elem,status)])
         self.generaterelations(elementname="Relations",
                                elements=[elem for elem in self.dsmodels.relationships.values()
                                          if elem.get("_type") == "Relationship" and
-                                            self.checkstatus(elem, status)
+                                            self.dsmodels.checkstatus(elem, status)
                                          ]
                                )
         self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
                                           if elem.get("_type") == "BusinessAttribute" and
-                                            self.checkstatus(elem, status)
+                                            self.dsmodels.checkstatus(elem, status)
                                           ])
         self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
                                           if elem.get("_type") == "DataAttribute" and
-                                            self.checkstatus(elem, status)
+                                            self.dsmodels.checkstatus(elem, status)
                                           ])
         self.generatebusinessrules(elementname="BusinessRules",
                                    elements=[elem for elem in self.dsmodels.businessrules.values()
                                              if elem.get("_type") == "BusinessConstraint" and
-                                            self.checkstatus(elem, status)
+                                            self.dsmodels.checkstatus(elem, status)
                                              ]
                                    )
         self.generatekeys()
@@ -211,7 +211,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         """ read all transformations and add them to the element
         """
         for diagkey, diag, in self.dsmodels.diagrams.items():
-            if not self.checkstatus(diag, status): continue
+            if not self.dsmodels.checkstatus(diag, status): continue
             additionalprops = self.additionalprops(elem=diag,
                                                    specialkeys=[])
             elems = [r for r in self.dsmodels.diagelements.values() if r.get("usedBy") == diag.get("label")]
@@ -232,7 +232,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         """ read all mappings and add them to the element
         """
         for mapkey, mapping, in self.dsmodels.mappings.items():
-            if not self.checkstatus(mapping, status): continue
+            if not self.dsmodels.checkstatus(mapping, status): continue
             sourcedomain = self.findqualielement(
                 fullpath=self.addmodeltonamedreference(namedref=mapping.get("mapsFrom"),
                                                        modelname=mapping.get("DSMODEL")),

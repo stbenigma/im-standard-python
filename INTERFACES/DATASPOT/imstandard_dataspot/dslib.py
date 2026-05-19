@@ -1,3 +1,5 @@
+from datetime import datetime
+
 """
 Library functions for special string handling
 """
@@ -49,3 +51,5 @@ def fullescapestr(instr):
         retval = f'"{retval}"'
     return retval
 
+def ds2timestamp(miliseconds:int)->datetime:
+    return datetime.fromtimestamp(miliseconds/1000)
