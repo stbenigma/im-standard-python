@@ -2,10 +2,10 @@ import copy
 import re
 from datetime import datetime
 
-from IM_STANDARD import ElementId, nvl, JsonElement, StandardSqlModel
+from IM_STANDARD import nvl, JsonElement, StandardSqlModel
 from IM_STANDARD.SQL.SQL_INFRA import DbDML, dbval
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import DataspotElements, Dataspot2Jsonbase
-from .dslib import custom_split, ds2timestamp
+from .dslib import ds2timestamp
 
 
 class Dataspot2SQLdatabase():
@@ -26,20 +26,22 @@ class Dataspot2SQLdatabase():
         self.entitycatgstranslate = {}
         self.entitytranslate = {}
         self.domaintranslate = {}
+        self.attributetranslate = {}
+        self.relationtranslate = {}
 
         return
 
     @staticmethod
-    def _bool2sql(val:bool)->str:
+    def _bool2sql(val: bool) -> str:
         """ returns TRUE or FALSE
             Noe is FALSE
             """
         return "TRUE" if val else "FALSE"
 
-    def _sql2bool(val:str)->bool:
+    def _sql2bool(val: str) -> bool:
         """ returns True or False
             """
-        return val.uppper in ("TRUE","T")
+        return val.uppper in ("TRUE", "T")
 
     def _fillimstandarddb(self):
         with open(self.STANDARD_IM_SQLFILE, "r", encoding="utf-8") as sqlfile:
@@ -64,11 +66,11 @@ class Dataspot2SQLdatabase():
         # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(catg)
         for lang in self.languages:
             for prop, val in additionalprops.items():
-                if prop.endswith(f":{lang}"):
-                    continue  # TODO
+                propname = prop[:prop.find(":")]
+                if prop.endswith(f":{lang}") and propname in mapfields:
                     self._insertmlvalue(mlvalue=val,
                                         modeid=modeid,
-                                        attrname=mapfields[prop[:prop.find(":")]],
+                                        attrname=mapfields[propname],
                                         lang=lang
                                         )
 
@@ -76,65 +78,67 @@ class Dataspot2SQLdatabase():
         additionalprops = Dataspot2Jsonbase.additionalprops(elem=elem, specialkeys=[])
         # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(catg)
         for prop, val in additionalprops.items():
-            if re.match(".*:[a-z]{2}$", prop): continue #skip multilang entries
+            if re.match(".*:[a-z]{2}$", prop): continue  # skip multilang entries
             self.sqldb.rowinsert(tablename="user_defined_props",
                                  udpv_name=prop,
                                  udpv_mode_id=modeid,
-                                 udpv_value=val if type(val)is not list else ", ".join(val)
+                                 udpv_value=val if type(val) is not list else ", ".join(val)
                                  )
         return
+
+    def _insertexpls(self,expls:list,modeid:int):
+        for expl in expls:
+            self.sqldb.rowinsert(tablename="examples",
+                             expl_value=expl,
+                             expl_mode_id=modeid)
 
     def generatebusinessmodel(self, status=None):
         self.generateentities(status=status)
         self.generateattributes(status=status)
-        return
-        self.generaterelations(elementname="Relations",
-                               elements=[elem for elem in self.dsmodels.relationships.values()
-                                         if elem.get("_type") == "Relationship" and
-                                         self.checkstatus(elem, status)
-                                         ]
-                               )
-        self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
-                                          if elem.get("_type") == "DataAttribute" and
-                                          self.checkstatus(elem, status)
-                                          ])
-        self.generatebusinessrules(elementname="BusinessRules",
-                                   elements=[elem for elem in self.dsmodels.businessrules.values()
-                                             if elem.get("_type") == "BusinessConstraint" and
-                                             self.checkstatus(elem, status)
-                                             ]
-                                   )
+        self.generaterelations(status=status)
         self.generatekeys()
-
+        self.generatebusinessrules(status=status)
         return
 
     def generatekeys(self):
         """ get all keys from attributes and relations and fill the entities keys property
             assume attributes and relationships are already done"""
-        for enti in self.standardjson.getelementinstances("Entities"):
-            entiid = enti.getid()
-            keyelements = []
-            for attr in self.standardjson.getelementinstances("Attributes"):
-                if attr["parentid"] == entiid:
-                    origattr = self.getelementbyid(elements=self.dsmodels.attributes,
-                                                   elemid=attr.getid())
-                    if origattr.get("identifying"):
-                        keyelements.append(attr.getid())
-            # find relationships with keys
-            for rela in self.standardjson.getelementinstances("Relations"):
-                if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
-                        or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
-                    origrela = self.getelementbyid(elements=self.dsmodels.relationships,
-                                                   elemid=rela.getid())
-                    # generated relations (subtypes) have no original
-                    if origrela is not None and origrela.get("identifying"):
-                        keyelements.append(rela.getid())
-                    # TODO inherited keys (Mond erbt von Begleiter den Key)
-                    # TODO different keys if relationships are in arc
 
-            if len(keyelements) > 0:
-                # standard keys are a list of keyelementlists
-                enti.setproperty("keys", [keyelements])
+        entities = {key: val for key, val in DataspotElements.filterelements(
+            element=self.dsmodel.entities).items()
+                    if val.get("label") in self.entitytranslate}
+
+        for entikey, enti in entities.items():
+            entiname = enti.get("label")
+            entiid = self.entitytranslate[entiname]
+            attrkeyelements = []
+            attrs = [val for key, val in DataspotElements.filterelements(
+                element=self.dsmodel.attributes).items()
+                     if val.get("hasDomain") == entiname
+                     ]
+            for attr in attrs:
+                if attr.get("identifying"):
+                    attrkeyelements.append(self.attributetranslate[f"{entiid}:{attr.get('label')}"])
+
+            # find relationships with keys
+            # for rela in self.standardjson.getelementinstances("Relations"):
+            #     if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
+            #             or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
+            #         origrela = self.getelementbyid(elements=self.dsmodels.relationships,
+            #                                        elemid=rela.getid())
+            #         # generated relations (subtypes) have no original
+            #         if origrela is not None and origrela.get("identifying"):
+            #             attrkeyelements.append(rela.getid())
+            #         # TODO inherited keys (Mond erbt von Begleiter den Key)
+            #         # TODO different keys if relationships are in arc
+
+            keynum = 1
+            for key in attrkeyelements:
+                self.sqldb.rowinsert(tablename="keys",
+                                     keys_name=f"{entiname}_{str(keynum)}",
+                                     keys_enti_id=entiid,
+                                     keys_attr_id=key)
+
         return
 
     def entityjson(self, element):
@@ -168,21 +172,22 @@ class Dataspot2SQLdatabase():
         # attributes and keys are added later
         return elementi
 
-    def generateentities(self, status=None):
+
+    def generateentities(self, status: str = None):
 
         entities = {key: val for key, val in DataspotElements.filterelements(element=self.dsmodel.entities,
                                                                              status=status).items()}
         tablename = "entities"
         for enti in entities.values():
-            mode_id = self.sqldb.rowinsert(tablename="modelelements",
+            modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="ENTI",
                                            mode_dc=ds2timestamp(enti.get("dateCreated")).isoformat(),
                                            mode_uc=enti.get("createdBy", "loadedfromds"))
 
             try:
-                entiname=enti.get("label")
+                entiname = enti.get("label")
                 self.sqldb.rowinsert(tablename=tablename,
-                                     enti_id=mode_id,
+                                     enti_id=modeid,
                                      enti_name=entiname,
                                      enti_descr=enti.get("description"),
                                      enti_short_name=None,
@@ -190,9 +195,9 @@ class Dataspot2SQLdatabase():
                                      enti_enca_id=self.entitycatgstranslate[enti.get("inCollection")],
                                      enti_prefix=None)
             except  DbDML.UK_VIOLATED as nd:
-                entiname=f"{enti.get('FULLPATH')}-{enti.get('label')}"
+                entiname = f"{enti.get('FULLPATH')}-{enti.get('label')}"
                 self.sqldb.rowinsert(tablename=tablename,
-                                     enti_id=mode_id,
+                                     enti_id=modeid,
                                      enti_name=entiname,
                                      enti_descr=enti.get("description"),
                                      enti_short_name=None,
@@ -200,35 +205,32 @@ class Dataspot2SQLdatabase():
                                      enti_enca_id=self.entitycatgstranslate[enti.get("inCollection")],
                                      enti_prefix=None)
 
-            self.entitytranslate[entiname]=mode_id
+            self.entitytranslate[entiname] = modeid
             self._insertmultilang(elem=enti,
-                                  modeid=mode_id,
+                                  modeid=modeid,
                                   mapfields={"Label": "enti_name",
                                              "Description": "enti_descr",
                                              "Title": "enti_descr"}
                                   )
-            self._insertudpvs(elem=enti,modeid=mode_id)
+            self._insertudpvs(elem=enti, modeid=modeid)
 
-            for expl in enti.get("examples", []):
-                self.sqldb.rowinsert(tablename="examples",
-                                     expl_value=expl,
-                                     expl_enti_id=mode_id)
+            self._insertexpls(expls=enti.get("examples", []),modeid=modeid)
 
             for syno in enti.get("synonyms", []):
                 self.sqldb.rowinsert(tablename="synonyms",
                                      syno_name=syno,
-                                     syno_enti_id=mode_id)
+                                     syno_enti_id=modeid)
 
         for enti in entities.values():
             if enti.get("subtypeOf") is None: continue
-            entiid=self.entitytranslate[enti.get("label")] #TODO doppelte FullpathNamen siehe oben
-            entiidsup = self.entitytranslate[enti.get("subtypeOf")] #TODO doppelte FullpathNamen siehe oben
-            sql="""update entities set enti_superenti_id =:enti_superenti_id
+            entiid = self.entitytranslate[enti.get("label")]  # TODO doppelte FullpathNamen siehe oben
+            entiidsup = self.entitytranslate[enti.get("subtypeOf")]  # TODO doppelte FullpathNamen siehe oben
+            sql = """update entities set enti_superenti_id =:enti_superenti_id
                      where enti_id = :enti_id
                      """
-            self.sqldb.execsql(sql=sql,enti_id=entiid,enti_superenti_id=entiidsup)
+            self.sqldb.execsql(sql=sql, enti_id=entiid, enti_superenti_id=entiidsup)
 
-            #TODO add relation
+            # TODO add relation
             # self.standardjson.addelementinstance \
             #     (name="Relations",
             #      val=self.relationjsonbase(relationtype="SUBTYPE",
@@ -251,30 +253,68 @@ class Dataspot2SQLdatabase():
 
         return
 
-    def generaterelations(self, elementname, elements):
-        for element in elements:
-            self.standardjson.addelementinstance(name=elementname,
-                                                 val=self.relationjson(relationtype=self._relationtype(element),
-                                                                       modelname=element.get("DSMODEL"),
-                                                                       element=element)
-                                                 )
+    def generaterelations(self, status: str = None):
+        tablename = "relations"
+        relas = {'/'.join(key.split('/')[1:]): val for key, val in
+                 DataspotElements.filterelements(element=self.dsmodel.relationships,
+                                                 status=status).items()}
+        for relaname, rela in relas.items():
+            modeid = self.sqldb.rowinsert(tablename="modelelements",
+                                           mode_type="RELA",
+                                           mode_dc=ds2timestamp(rela.get("dateCreated")).isoformat(),
+                                           mode_uc=rela.get("createdBy", "loadedfromds"))
+
+            self.sqldb.rowinsert(tablename=tablename,
+                                 rela_id=modeid,
+                                 rela_name=relaname,
+                                 rela_type=Dataspot2Jsonbase._relationtype(element=rela),
+                                 rela_arc_no_from=None if rela.get("ARC-12") is None else int(rela.get("ARC-12")),
+                                 rela_arc_no_to=None if rela.get("ARC-21") is None else int(rela.get("ARC-21")),
+                                 rela_assoc_from_to=rela.get("name"),
+                                 rela_assoc_to_from=rela.get("inverseName"),
+                                 rela_enti_id_from=self.entitytranslate[rela.get("hasDomain")],
+                                 rela_enti_id_to=self.entitytranslate[rela.get("hasRange")],
+                                 rela_hist_from_to=self._bool2sql(rela.get("temporal", False)),
+                                 rela_hist_to_from='FALSE',
+                                 rela_mandatory_from_to=self._bool2sql('0' in rela.get("domainMultiplicity", "")),
+                                 rela_mandatory_to_from=self._bool2sql('0' in rela.get("rangeMultiplicity", "")),
+                                 rela_maptype_from_to=Dataspot2Jsonbase._cardinality(rela.get("rangeMultiplicity")),
+                                 rela_maptype_to_from=Dataspot2Jsonbase._cardinality(rela.get("domainMultiplicity"))
+                                 )
+
+            self.relationtranslate[relaname] = modeid
+
+            self._insertmultilang(elem=rela,
+                                  modeid=modeid,
+                                  mapfields={"name": "rela_assoc_from_to",
+                                             "inverseName": "rela_assoc_to_from"}
+                                  )
+
+            self._insertudpvs(elem=rela, modeid=modeid)
+
+            self._insertexpls(expls=rela.get("examples", []),modeid=modeid)
+
         return
 
     def generate1attribute(self, attr, modeid):
         tablename = "attributes"
-        entiid,grpdomaid= self.entitytranslate[attr.get("hasDomain")],None
-        if entiid is None:
-            entiid,grpdomaid = None,self.domaintranslate[attr.get("hasDomain")]
-        domaref=attr.get("hasRange")
-        if domaref is None:
-            domaid=None
+        parent = attr.get("hasDomain")
+        if parent in self.entitytranslate:
+            entiid, grpdomaid = self.entitytranslate[parent], None
+        elif parent in self.domaintranslate:
+            entiid, grpdomaid = None, self.domaintranslate[parent]
         else:
-            domaid=self.domaintranslate[domaref.split("/")[-1]]
-        #additionalprops = self.additionalprops(elem=attr,
+            assert False, f"{parent} is weder entity noch domain"
+        domaref = attr.get("hasRange")
+        if domaref is None:
+            domaid = None
+        else:
+            domaid = self.domaintranslate[domaref.split("/")[-1]]
+        # additionalprops = self.additionalprops(elem=attr,
         #                                       specialkeys=["order", "cardinality", "required",
         #                                                    "temporal", "MULTILINGUAL", "identifying"])
         # "computation",
-        #additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(attr)
+        # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(attr)
         self.sqldb.rowinsert(tablename=tablename,
                              attr_id=modeid,
                              attr_tech_name=attr.get("label"),
@@ -285,14 +325,14 @@ class Dataspot2SQLdatabase():
                              attr_doma_id=domaid,
                              attr_doma_group_id=grpdomaid,
                              attr_displ_seq=attr.get("order"),
-                             attr_is_mandatory=self._bool2sql(attr.get("required")=="MANDATORY"),
+                             attr_is_mandatory=self._bool2sql(attr.get("required") == "MANDATORY"),
                              attr_is_encrypted=self._bool2sql(attr.get("encrypted")),
                              attr_is_historicised=self._bool2sql(attr.get("temporal")),
-                             attr_is_repeated=self._bool2sql(attr.get("cardinality")=="MANY"),
+                             attr_is_repeated=self._bool2sql(attr.get("cardinality") == "MANY"),
                              attr_is_translated=self._bool2sql(attr.get("MULTILANG")),
                              attr_is_descriptive=self._bool2sql(attr.get("favorite"))
                              )
-
+        self.attributetranslate[f"{str(entiid if entiid is not None else grpdomaid)}:{attr.get('label')}"] = modeid
         self._insertmultilang(elem=attr,
                               modeid=modeid,
                               mapfields={"Label": "attr_displ_name",
@@ -301,10 +341,7 @@ class Dataspot2SQLdatabase():
                               )
         self._insertudpvs(elem=attr, modeid=modeid)
 
-        for expl in attr.get("examples", []):
-            self.sqldb.rowinsert(tablename="examples",
-                                 expl_value=expl,
-                                 expl_attr_id=modeid)
+        self._insertexpls(expls=attr.get("examples", []), modeid=modeid)
 
         # elemattr = JsonElement().attributejson(elementid=attr.get("ID"),
         #                                        name=self.mutlilangvalue(fieldname="label",
@@ -332,7 +369,7 @@ class Dataspot2SQLdatabase():
         # try:
         #     attrname = attr.get("label")
         #     self.sqldb.rowinsert(tablename=tablename,
-        #                          attr_id=mode_id,
+        #                          attr_id=modeid,
         #                          attr_name=attrname,
         #                          attr_descr=attr.get("description"),
         #                          attr_tooltip=attr.get("title"),
@@ -343,16 +380,57 @@ class Dataspot2SQLdatabase():
 
     def generateattributes(self, status):
         attributes = {key: val for key, val in DataspotElements.filterelements(element=self.dsmodel.attributes,
-                                                                             status=status).items()
-                      if val.get("hasDomain") in self.entitytranslate}
+                                                                               status=status).items()
+                      if val.get("hasDomain") in self.entitytranslate
+                      or val.get("hasDomain") in self.domaintranslate}
         for attr in attributes.values():
-            mode_id = self.sqldb.rowinsert(tablename="modelelements",
+            modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="ATTR",
                                            mode_dc=ds2timestamp(attr.get("dateCreated")).isoformat(),
                                            mode_uc=attr.get("createdBy", "loadedfromds"))
 
             self.generate1attribute(attr=attr,
-                                    modeid=mode_id)
+                                    modeid=modeid)
+        return
+
+    def generatebusinessrules(self, status: str):
+        tablename = "business_rules"
+        burus = [val for key, val in DataspotElements.filterelements(element=self.dsmodel.businessrules,
+                                                                     status=status).items()
+                 ]
+        for buru in burus:
+            modeid = self.sqldb.rowinsert(tablename="modelelements",
+                                           mode_type="BURU",
+                                           mode_dc=ds2timestamp(buru.get("dateCreated")).isoformat(),
+                                           mode_uc=buru.get("createdBy", "loadedfromds"))
+            # dereference constraintOn (Master) of busienss rule
+            refelem = buru.get("constraintOn").split('/')  # one enti/domain element or enti/domain + attrielement
+            if len(refelem) == 1 and refelem[0] in self.entitytranslate:
+                elemrefid, level = self.entitytranslate[refelem[0]], "ENTI"
+            elif len(refelem) == 1 and refelem[0] in self.domaintranslate:
+                elemrefid, level = self.domaintranslate[refelem[0]], "TUPL"
+            elif refelem[0] in self.entitytranslate:
+                elemrefid = self.attributetranslate[f"{str(self.entitytranslate[refelem[0]])}:{refelem[1]}"]
+                level = "ATTR"
+            elif refelem[0] in self.domaintranslate:
+                elemrefid = self.attributetranslate[f"{str(self.domaintranslate[refelem[0]])}:{refelem[1]}"]
+                level = "ATTR"
+            else:
+                assert False, f"{refelem} is weder entity noch domain noch attribut noch Groupdomain oder relation"
+
+            self.sqldb.rowinsert(tablename=tablename,
+                                 buru_id=modeid,
+                                 buru_name=buru.get("label"),
+                                 buru_descr=buru.get("description"),
+                                 buru_rule=buru.get("rule", buru.get("description")),
+                                 buru_type="CHECK",
+                                 buru_level=level
+                                 )
+            self.sqldb.rowinsert(tablename="businessrule_elements",
+                                 bure_buru_id=modeid,
+                                 bure_mode_id=elemrefid
+                                 )
+
         return
 
     def _diagusage(self, elems):
@@ -432,28 +510,28 @@ class Dataspot2SQLdatabase():
 
         return
 
-    def _inserttotalcategory(self,catg:dict,tablename:str,parentid:int=None):
-        mode_id = self.sqldb.rowinsert(tablename="modelelements",
+    def _inserttotalcategory(self, catg: dict, tablename: str, parentid: int = None):
+        modeid = self.sqldb.rowinsert(tablename="modelelements",
                                        mode_type="ECAT",
                                        mode_dc=ds2timestamp(catg.get("dateCreated")).isoformat(),
                                        mode_uc=catg.get("createdBy", "loadfromds"))
 
-        enca={"enca_id": mode_id,
-         "enca_name": catg.get("label"),
-         "enca_descr": nvl(catg.get("description"), catg.get("title"))
-              }
+        enca = {"enca_id": modeid,
+                "enca_name": catg.get("label"),
+                "enca_descr": nvl(catg.get("description"), catg.get("title"))
+                }
         if parentid is not None:
             enca["enca_enca_id"] = parentid
 
-        self.sqldb.rowinsert(tablename=tablename,**enca)
+        self.sqldb.rowinsert(tablename=tablename, **enca)
         self._insertmultilang(elem=catg,
-                              modeid=mode_id,
+                              modeid=modeid,
                               mapfields={"Label": "enca_name",
                                          "Description": "enca_descr",
                                          "Title": None}
                               )
-        self._insertudpvs(elem=catg, modeid=mode_id)
-        return mode_id
+        self._insertudpvs(elem=catg, modeid=modeid)
+        return modeid
 
     def generatecategories(self, catgtype: str, status: str):
 
@@ -476,23 +554,23 @@ class Dataspot2SQLdatabase():
                 catg = restcatgs[key]
                 parentname = catg.get("inCollection")
                 if parentname is None:
-                    mode_id=self._inserttotalcategory(catg=catg,
-                                                      tablename=tablename)
+                    modeid = self._inserttotalcategory(catg=catg,
+                                                        tablename=tablename)
                     # elementi = JsonElement().entityjson(elementid=element.get("ID"),
                     #                                     name=self.mutlilangvalue(fieldname="label",
                     #                                                              value=self._deref(
                     #                                                                  element.get("label")),
                     #                                                              addprops=additionalprops),
                     #
-                    donecatgs[catg.get("label")] = mode_id
+                    donecatgs[catg.get("label")] = modeid
                     del restcatgs[key]
                 else:
                     fullname = parentname + "/" + catg.get("label")
                     if parentname not in restcatgs:  # parent was alredy processed
-                        mode_id=self._inserttotalcategory(catg=catg,tablename=tablename,
-                                                          parentid=donecatgs[parentname])
+                        modeid = self._inserttotalcategory(catg=catg, tablename=tablename,
+                                                            parentid=donecatgs[parentname])
 
-                        donecatgs[fullname] = mode_id
+                        donecatgs[fullname] = modeid
                         del restcatgs[key]
                     else:
                         pass
@@ -501,41 +579,41 @@ class Dataspot2SQLdatabase():
 
     def generatedomains(self, status):
         domains = {key: val for key, val in DataspotElements.filterelements(element=self.dsmodel.domains,
-                                                                             status=status).items()
-                }
+                                                                            status=status).items()
+                   }
         for doma in domains.values():
-            mode_id = self.sqldb.rowinsert(tablename="modelelements",
+            modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="DOMA",
                                            mode_dc=ds2timestamp(doma.get("dateCreated")).isoformat(),
                                            mode_uc=doma.get("createdBy", "loadedfromds"))
 
-            values=[val for key,val in self.dsmodel.LOVvalues.items()
-                  if val["literalOf"]==doma["label"]
-                    ]
+            values = [val for key, val in self.dsmodel.LOVvalues.items()
+                      if val["literalOf"] == doma["label"]
+                      ]
             self.generate1domain(doma=doma,
-                                 modeid=mode_id,
+                                 modeid=modeid,
                                  values=values)
         return
 
-    def _dt2sql(self,val:str)->str:
-        dt2sql = {"TextDomain":"TXT",
-                       "GroupDomain":"GRP",
-                       "LOVDomain":"LOV",
-                       "NumericDomain":"NUM",
-                       "DatetimeDomain":"DAT",
-                       "BinaryDomain":"BIN",
-                       "BooleanDomain":"BOO"
-                       }
+    def _dt2sql(self, val: str) -> str:
+        dt2sql = {"TextDomain": "TXT",
+                  "GroupDomain": "GRP",
+                  "LOVDomain": "LOV",
+                  "NumericDomain": "NUM",
+                  "DatetimeDomain": "DAT",
+                  "BinaryDomain": "BIN",
+                  "BooleanDomain": "BOO"
+                  }
         return dt2sql[val]
 
-    def generate1domain(self, doma:dict, modeid:int,values:list):
+    def generate1domain(self, doma: dict, modeid: int, values: list):
         tablename = "domains"
 
-        subtypeprops=dict()
+        subtypeprops = dict()
         Dataspot2Jsonbase._filldomaproperties(element=doma,
-                                           subtypeproperties=subtypeprops)
-        domaname=doma.get("label")
-        self.domaintranslate[domaname]=modeid
+                                              subtypeproperties=subtypeprops)
+        domaname = doma.get("label")
+        self.domaintranslate[domaname] = modeid
         self.sqldb.rowinsert(tablename=tablename,
                              doma_id=modeid,
                              doma_name=domaname,
@@ -564,20 +642,17 @@ class Dataspot2SQLdatabase():
                               )
         self._insertudpvs(elem=doma, modeid=modeid)
 
-        for expl in doma.get("examples", []):
-            self.sqldb.rowinsert(tablename="examples",
-                                 expl_value=expl,
-                                 expl_doma_id=modeid)
-        for idx,value in enumerate(values,1):
-            firstval=value.get("timeSeries")[0]
-            shortt=firstval.get("shortText")
-            self.sqldb.rowinsert(tablename="lov_values",
-                                  lovv_value=firstval.get("code"),
-                                  lovv_displ=None if shortt=="" else shortt,
-                                  lovv_descr=firstval.get("longText"),
-                                  lovv_sort_order=idx,
-                                  lovv_doma_id=modeid)
+        self._insertexpls(expls=doma.get("examples", []),modeid=modeid)
 
+        for idx, value in enumerate(values, 1):
+            firstval = value.get("timeSeries")[0]
+            shortt = firstval.get("shortText")
+            self.sqldb.rowinsert(tablename="lov_values",
+                                 lovv_value=firstval.get("code"),
+                                 lovv_displ=None if shortt == "" else shortt,
+                                 lovv_descr=firstval.get("longText"),
+                                 lovv_sort_order=idx,
+                                 lovv_doma_id=modeid)
 
         return
 

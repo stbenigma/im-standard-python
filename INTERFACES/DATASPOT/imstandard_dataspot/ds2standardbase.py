@@ -291,7 +291,7 @@ class Dataspot2Jsonbase:
     @staticmethod
     def findelementid(elems, modelname, name, notnull=False, fullname=False):
         elem = Dataspot2Jsonbase.findelement(elems=elems, modelname=modelname,
-                                name=name, fullname=fullname)
+                                             name=name, fullname=fullname)
         assert not (elem is None and notnull), f"{modelname}-{name} not found"
         return None if elem is None else elem.get("ID")
 
@@ -302,7 +302,12 @@ class Dataspot2Jsonbase:
                          "examples", "synonyms", "favorite",
                          "description", "title", "inCollection",
                          "status", "createdBy", "dateCreated",
-                         "hasDomain", "hasRange", "stereotype",
+                         "hasDomain", "hasRange", "stereotype", "name", "inverseName", "navigable",
+                         "domainMultiplicity","rangeMultiplicity",
+                         "identifying","baseType","maxLength","pattern",
+                         "minInclusive","maxInclusive",
+                         "integerDigits","fractionDigits",
+                         "required","cardinality","ARC-21","ARC-12"
                          "ID", "TYPE", "DSMODEL", "PARENT", "PARENT2"]
         retval = {key: val for key, val in elem.items() if key not in (defaultfields + specialkeys)}
         if "id" in elem: retval["SOURCE-ID"] = elem.get("id")
@@ -319,12 +324,13 @@ class Dataspot2Jsonbase:
         """translate 0..*,1,0..1,* into true or false"""
         return multiplicity in ("1", "*")
 
-    def _relationtype(self, element):
+    @staticmethod
+    def _relationtype(element):
         """ get the relationship type from the elementdefinition"""
-        frommany = self._cardinality(element.get("rangeMultiplicity")) == 'M'
-        tomany = self._cardinality(element.get("domainMultiplicity")) == 'M'
-        frommand = self._mandatory(element.get("rangeMultiplicity"))
-        tomand = self._mandatory(element.get("domainMultiplicity"))
+        frommany = Dataspot2Jsonbase._cardinality(element.get("rangeMultiplicity")) == 'M'
+        tomany = Dataspot2Jsonbase._cardinality(element.get("domainMultiplicity")) == 'M'
+        frommand = Dataspot2Jsonbase._mandatory(element.get("rangeMultiplicity"))
+        tomand = Dataspot2Jsonbase._mandatory(element.get("domainMultiplicity"))
         fromarc = element.get("ARC-12") is not None
         toarc = element.get("ARC-21") is not None
         if frommany and tomany:
@@ -337,13 +343,6 @@ class Dataspot2Jsonbase:
             return "SUBTYPE"  # 1:1 2mand 1 in arc
         else:
             return "1:1"  # 1:1 not subtype not role
-
-    # def _relationname(self, entiid1, assoc, entiid2):
-    #     startenti = self.standardjson.getbyid(entiid1)
-    #     endenti = self.standardjson.getbyid(entiid2)
-    #     return self.standardjson.mlvalue(startenti.getname()) + \
-    #            "/" + nvl(self.standardjson.mlvalue(assoc), 'is') + \
-    #            ">" + self.standardjson.mlvalue(endenti.getname())
 
     def relationjsonbase(self, relationtype,
                          element,
@@ -442,7 +441,7 @@ class Dataspot2Jsonbase:
         return domattrs
 
     @staticmethod
-    def _filldomaproperties(element,subtypeproperties):
+    def _filldomaproperties(element, subtypeproperties):
         domaintypes = {"STRING": "TextDomain",
                        "TEXT": "TextDomain",
                        "ID": "TextDomain",
@@ -490,9 +489,9 @@ class Dataspot2Jsonbase:
                                  subtypeproperties=subtypeproperties)
 
         if len(self.domasubattrs(element=element)) > 0:
-            subtypeproperties["domaintype"] =  "GroupDomain"
+            subtypeproperties["domaintype"] = "GroupDomain"
 
-        if subtypeproperties["domaintype"] =="LOVDomain" :
+        if subtypeproperties["domaintype"] == "LOVDomain":
             domaname = element.get("label")
             refvalues = [val for val in self.dsmodels.LOVvalues.values() \
                          if val.get("_type") == "ReferenceValue" and \

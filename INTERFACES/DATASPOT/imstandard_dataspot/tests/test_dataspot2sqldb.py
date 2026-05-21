@@ -27,7 +27,7 @@ class Test_dataspot2sql(unittest.TestCase):
                                 mydb=mydb)
 
         self.assertFalse(basedb.dbisempty())
-        self.assertEqual(11,len(mydb.gettablelist()))
+        self.assertEqual(15,len(mydb.gettablelist()))
         self.assertTrue("examples" in  mydb.gettablelist())
 
         db.filldatabase(modelname=inpath.stem,languages=["de","en"],language="en")
