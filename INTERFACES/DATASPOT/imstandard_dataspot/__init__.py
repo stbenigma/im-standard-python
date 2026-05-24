@@ -5,4 +5,5 @@ from .json2dataspot import *
 from .ds2imstandard import *
 from .ds2dmstandard import *
 from .ds2systemstandard import *
+from .sql2imstandard import *
 from .ds2standardsql import *

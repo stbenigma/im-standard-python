@@ -1,1 +1,2 @@
-from .standardmodelsql import StandardSqlModel
+from IM_STANDARD.SQL.SQL_INFRA import *
+from IM_STANDARD.SQL.SQL_STANDARD import *

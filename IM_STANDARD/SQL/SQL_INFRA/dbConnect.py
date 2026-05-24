@@ -2,11 +2,16 @@ import logging
 import sqlite3
 
 def dbval(val):
-    """translates None into NULL, string into 'string' """
+    """translates None into NULL,
+    str(int) if integer
+    string into 'string'
+    boolean into TRUE/FALSE
+    """
     return 'NULL' if val is None \
-        else str(val) if type(val) == int \
-        else ('TRUE' if val else "FALSE") if type(val) == bool \
+        else ('TRUE' if val else "FALSE") if isinstance(val, bool) \
+        else str(val) if isinstance(val,int) or isinstance(val,float) \
         else val
+
 
 
 def dict_factory(cursor, row):

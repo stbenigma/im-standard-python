@@ -1,6 +1,6 @@
 import sqlite3
 
-from IM_STANDARD.SQL.SQL_INFRA import DbDDL
+from IM_STANDARD.SQL.SQL_INFRA import DbDDL,SqliteDb
 
 class DbDML(DbDDL):
     class NO_DATA_FOUND(Exception):
@@ -19,9 +19,65 @@ class DbDML(DbDDL):
         """Raised when in an update or insert an fk constraint is violated"""
         pass
 
-    def __init__(self,
-                 connection: sqlite3.Connection):
-        super().__init__(connection=connection)
+    class CHECK_VIOLATED(Exception):
+        """Raised when in an update or insert an fk constraint is violated"""
+        pass
+
+    def __init__(self,basedb:SqliteDb=None,
+                 connection: sqlite3.Connection=None):
+        if basedb is not None:
+            self.basedb=basedb
+            locconn=basedb.connection
+        elif connection is not None:
+            self.basedb=None
+            locconn = connection
+        else:
+            assert False
+        super().__init__(connection=locconn)
+        return
+
+    @staticmethod
+    def dictgroup(keycolname:str,valcolname:str=None,
+                  subdict:dict=None,
+                  sublist:list=None)->str:
+        """
+        creates a select part selecting a dictrionary in a groupconcat
+        to be used in a subselect
+        group_concat('''' ||lang_iso_code2||''':''' ||lgtx_text||'''',',')
+        param: keycolname name of the column for the key
+        param: valcolname name of the column for the value
+        param: subddict dictionary for the value
+        param: sublist list for the value
+        :return: string to be used in subselect
+                """
+        if valcolname is not None:
+            retval= f"""group_concat('"' ||{keycolname} ||'":"' || REPLACE({valcolname}, '"', '\\"')||'"',',')"""
+        elif subdict is not None:
+            retval = f"""group_concat('"' ||{keycolname} ||'":"' || {subdict}||'"',',')"""
+        elif sublist is not None:
+            retval = f"""group_concat('"' ||{keycolname} ||'":"' || {sublist}||'"',',')"""
+        else:
+            assert False,"value, dict or list must be provided"
+        return retval
+
+    @staticmethod
+    def listgroup(colname:str)->str:
+        """
+        creates a select part selecting a list in a groupconcat
+        to be used in a subselect
+        group_concat('''' ||lang_iso_code2||'''',',')
+        :return: string to be used in subselect
+                """
+        return f"""group_concat('"' || REPLACE({colname}, '"', '\\"') || '"', ',')"""
+
+    def writedbtofile(self, filepath):
+        """
+        makes a backup of the open database to a file
+        :param filepath: filenpath to write the database to
+
+        """
+        assert self.basedb is not None,"writetofile exists only for baseddb dml"
+        self.basedb.writedbtofile(filepath=filepath)
         return
 
     def execsql(self,
@@ -139,6 +195,9 @@ class DbDML(DbDDL):
                 raise self.UK_VIOLATED(str(ei))
             if str(ei).startswith("FOREIGN KEY constraint failed"):
                 raise self.FK_VIOLATED(str(ei))
+            if str(ei).startswith("CHECK constraint failed"):
+                raise self.CHECK_VIOLATED(str(ei))
+
             raise ei
         except sqlite3.Error as e:
             raise e

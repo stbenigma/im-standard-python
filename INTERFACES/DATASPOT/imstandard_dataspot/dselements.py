@@ -7,7 +7,7 @@ from .dslib import custom_split
 
 
 class DataspotElements():
-    def __init__(self, indirec=None, **kwargs):
+    def __init__(self, indirec:Path=None, **kwargs):
         # models
         tenant = kwargs.get("tenant")
         if type(tenant) is str:

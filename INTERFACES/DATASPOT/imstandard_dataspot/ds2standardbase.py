@@ -304,7 +304,8 @@ class Dataspot2Jsonbase:
                          "status", "createdBy", "dateCreated",
                          "hasDomain", "hasRange", "stereotype", "name", "inverseName", "navigable",
                          "domainMultiplicity","rangeMultiplicity",
-                         "identifying","baseType","maxLength","pattern",
+                         "identifying","baseType","minLength",
+                         "minValue","maxValue","maxLength","pattern",
                          "minInclusive","maxInclusive",
                          "integerDigits","fractionDigits",
                          "required","cardinality","ARC-21","ARC-12"

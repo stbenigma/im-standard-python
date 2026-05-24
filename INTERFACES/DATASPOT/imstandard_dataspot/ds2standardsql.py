@@ -2,14 +2,12 @@ import copy
 import re
 from datetime import datetime
 
-from IM_STANDARD import nvl, JsonElement, StandardSqlModel
+from IM_STANDARD import nvl, JsonElement
 from IM_STANDARD.SQL.SQL_INFRA import DbDML, dbval
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import DataspotElements, Dataspot2Jsonbase
-from .dslib import ds2timestamp
-
+from INTERFACES.DATASPOT.imstandard_dataspot.dslib import ds2timestamp
 
 class Dataspot2SQLdatabase():
-    STANDARD_IM_SQLFILE = StandardSqlModel.SCHEMADEFPATH / "im-standard-ddl-sqlite.sql"
 
     """
     extract all elements from the dataspot json exports and create a
@@ -20,7 +18,6 @@ class Dataspot2SQLdatabase():
 
         self.dsmodel = DataspotElements(indirec=indirec)
         self.sqldb = mydb
-        self._fillimstandarddb()
         self.language = "en"
         self.languages = [self.language]
         self.entitycatgstranslate = {}
@@ -36,18 +33,13 @@ class Dataspot2SQLdatabase():
         """ returns TRUE or FALSE
             Noe is FALSE
             """
-        return "TRUE" if val else "FALSE"
+        return None if val is None else "TRUE" if val else "FALSE"
 
     def _sql2bool(val: str) -> bool:
         """ returns True or False
             """
         return val.uppper in ("TRUE", "T")
 
-    def _fillimstandarddb(self):
-        with open(self.STANDARD_IM_SQLFILE, "r", encoding="utf-8") as sqlfile:
-            sql = sqlfile.read()
-        self.sqldb.execscript(sql=sql)
-        return
 
     def _insertmlvalue(self, mlvalue: str, lang, attrname, modeid):
         if attrname is None or modeid is None or lang is None: return
@@ -181,7 +173,8 @@ class Dataspot2SQLdatabase():
         for enti in entities.values():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="ENTI",
-                                           mode_dc=ds2timestamp(enti.get("dateCreated")).isoformat(),
+                                          mode_modl_id=self.model_id,
+                                          mode_dc=ds2timestamp(enti.get("dateCreated")).isoformat(),
                                            mode_uc=enti.get("createdBy", "loadedfromds"))
 
             try:
@@ -261,7 +254,8 @@ class Dataspot2SQLdatabase():
         for relaname, rela in relas.items():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="RELA",
-                                           mode_dc=ds2timestamp(rela.get("dateCreated")).isoformat(),
+                                          mode_modl_id=self.model_id,
+                                          mode_dc=ds2timestamp(rela.get("dateCreated")).isoformat(),
                                            mode_uc=rela.get("createdBy", "loadedfromds"))
 
             self.sqldb.rowinsert(tablename=tablename,
@@ -330,7 +324,7 @@ class Dataspot2SQLdatabase():
                              attr_is_historicised=self._bool2sql(attr.get("temporal")),
                              attr_is_repeated=self._bool2sql(attr.get("cardinality") == "MANY"),
                              attr_is_translated=self._bool2sql(attr.get("MULTILANG")),
-                             attr_is_descriptive=self._bool2sql(attr.get("favorite"))
+                             attr_is_descriptive=self._bool2sql(attr.get("favorite")==True)
                              )
         self.attributetranslate[f"{str(entiid if entiid is not None else grpdomaid)}:{attr.get('label')}"] = modeid
         self._insertmultilang(elem=attr,
@@ -386,7 +380,8 @@ class Dataspot2SQLdatabase():
         for attr in attributes.values():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="ATTR",
-                                           mode_dc=ds2timestamp(attr.get("dateCreated")).isoformat(),
+                                          mode_modl_id=self.model_id,
+                                          mode_dc=ds2timestamp(attr.get("dateCreated")).isoformat(),
                                            mode_uc=attr.get("createdBy", "loadedfromds"))
 
             self.generate1attribute(attr=attr,
@@ -401,7 +396,8 @@ class Dataspot2SQLdatabase():
         for buru in burus:
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="BURU",
-                                           mode_dc=ds2timestamp(buru.get("dateCreated")).isoformat(),
+                                          mode_modl_id=self.model_id,
+                                          mode_dc=ds2timestamp(buru.get("dateCreated")).isoformat(),
                                            mode_uc=buru.get("createdBy", "loadedfromds"))
             # dereference constraintOn (Master) of busienss rule
             refelem = buru.get("constraintOn").split('/')  # one enti/domain element or enti/domain + attrielement
@@ -513,6 +509,7 @@ class Dataspot2SQLdatabase():
     def _inserttotalcategory(self, catg: dict, tablename: str, parentid: int = None):
         modeid = self.sqldb.rowinsert(tablename="modelelements",
                                        mode_type="ECAT",
+                                      mode_modl_id=self.model_id,
                                        mode_dc=ds2timestamp(catg.get("dateCreated")).isoformat(),
                                        mode_uc=catg.get("createdBy", "loadfromds"))
 
@@ -584,7 +581,8 @@ class Dataspot2SQLdatabase():
         for doma in domains.values():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                            mode_type="DOMA",
-                                           mode_dc=ds2timestamp(doma.get("dateCreated")).isoformat(),
+                                          mode_modl_id=self.model_id,
+                                          mode_dc=ds2timestamp(doma.get("dateCreated")).isoformat(),
                                            mode_uc=doma.get("createdBy", "loadedfromds"))
 
             values = [val for key, val in self.dsmodel.LOVvalues.items()
@@ -614,19 +612,20 @@ class Dataspot2SQLdatabase():
                                               subtypeproperties=subtypeprops)
         domaname = doma.get("label")
         self.domaintranslate[domaname] = modeid
+        domatype=self._dt2sql(subtypeprops.get("domaintype"))
         self.sqldb.rowinsert(tablename=tablename,
                              doma_id=modeid,
                              doma_name=domaname,
                              doma_descr=doma.get("description"),
-                             doma_type=self._dt2sql(subtypeprops.get("domaintype")),
+                             doma_type=domatype,
                              doma_bin_contenttype=subtypeprops.get("contenttype"),
                              doma_bin_storageformat=subtypeprops.get("storageformat"),
                              doma_dat_granularity=subtypeprops.get("granularity"),
-                             doma_dat_minvalue=subtypeprops.get("minvalue"),
-                             doma_dat_maxvalue=subtypeprops.get("maxvalue"),
+                             doma_dat_minvalue=None if domatype != 'DAT' else subtypeprops.get("minvalue"),
+                             doma_dat_maxvalue=None if domatype != 'DAT' else subtypeprops.get("maxvalue"),
                              doma_num_fract_digits=subtypeprops.get("fractdigits"),
-                             doma_num_maxvalue=subtypeprops.get("maxvalue"),
-                             doma_num_minvalue=subtypeprops.get("minvalue"),
+                             doma_num_maxvalue=None if domatype != 'NUM' else subtypeprops.get("maxvalue"),
+                             doma_num_minvalue=None if domatype != 'NUM' else subtypeprops.get("minvalue"),
                              doma_num_physunit=subtypeprops.get("unit"),
                              doma_num_round_value=subtypeprops.get("round"),
                              doma_num_total_digits=subtypeprops.get("totaldigits"),
@@ -666,19 +665,37 @@ class Dataspot2SQLdatabase():
 
         now = datetime.now().replace(microsecond=0).isoformat()
         modeltype = "Information model"
-        self.language = language
-        self.languages = languages
-        baselangid = self.sqldb.rowinsert(tablename="languages",
-                                          lang_iso_code2=language,
-                                          lang_is_base_lang=dbval(True))
-        for lang in languages:
-            if lang == language: continue
-            self.sqldb.rowinsert(tablename="languages",
-                                 lang_iso_code2=lang,
-                                 lang_is_base_lang=dbval(False),
-                                 lang_lang_id=baselangid)
+        self.model_id = self.sqldb.rowinsert(tablename="modelelements",
+                                      mode_type="MODL",
+                                      mode_dc=datetime.now().isoformat(),
+                                        #       ds2timestamp(enti.get("dateCreated")).isoformat(),
+                                        mode_uc = "ich")  # enti.get("createdBy", "loadedfromds"))
 
-        # self.standardjson.setschemaelement(name="ModelInfo",
+        self.sqldb.rowinsert(tablename="models",
+                             modl_id=self.model_id,
+                             modl_name="Test",
+                            modl_type="IM")
+
+        self.language = language
+        baselangid = self.sqldb.rowinsert(tablename="languages",
+                                      lang_iso_code2=language)
+
+        self.languages = languages
+        for lang in languages:
+            if lang ==language :
+                langid=baselangid
+            else:
+                langid=self.sqldb.rowinsert(tablename="languages",
+                                 lang_iso_code2=lang,
+                                 lang_lang_id=baselangid)
+            self.sqldb.rowinsert(tablename="model_languages",
+                                 mola_lang_id=langid,
+                                 mola_modl_id=self.model_id,
+                                 mola_mainlanguage=dbval(lang==language)
+                                 )
+
+
+                                          # self.standardjson.setschemaelement(name="ModelInfo",
         #                                    val=JsonElement().modelinfojson(
         #                                        modelname=modelname,
         #                                        modeltype=modeltype,
