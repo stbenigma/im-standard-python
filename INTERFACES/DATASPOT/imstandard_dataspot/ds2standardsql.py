@@ -299,6 +299,7 @@ class Dataspot2SQLdatabase():
             entiid, grpdomaid = None, self.domaintranslate[parent]
         else:
             assert False, f"{parent} is weder entity noch domain"
+
         domaref = attr.get("hasRange")
         if domaref is None:
             domaid = None
@@ -610,6 +611,9 @@ class Dataspot2SQLdatabase():
         subtypeprops = dict()
         Dataspot2Jsonbase._filldomaproperties(element=doma,
                                               subtypeproperties=subtypeprops)
+        if len(Dataspot2Jsonbase.domasubattrs(element=doma,dsmodels=self.dsmodel)) > 0:
+            subtypeprops["domaintype"] = "GroupDomain"
+
         domaname = doma.get("label")
         self.domaintranslate[domaname] = modeid
         domatype=self._dt2sql(subtypeprops.get("domaintype"))

@@ -433,9 +433,10 @@ class Dataspot2Jsonbase:
 
         return
 
-    def domasubattrs(self, element):
-        domattrs = [da for da in self.dsmodels.attributes.values()
-                    if element.get("ID") == self.findelementid(elems=self.dsmodels.domains,
+    @staticmethod
+    def domasubattrs(element,dsmodels):
+        domattrs = [da for da in dsmodels.attributes.values()
+                    if element.get("ID") == Dataspot2Jsonbase.findelementid(elems=dsmodels.domains,
                                                                modelname=da.get("DSMODEL"),
                                                                name=da.get("hasDomain")
                                                                )]
@@ -489,7 +490,7 @@ class Dataspot2Jsonbase:
         self._filldomaproperties(element=element,
                                  subtypeproperties=subtypeproperties)
 
-        if len(self.domasubattrs(element=element)) > 0:
+        if len(Dataspot2Jsonbase.domasubattrs(element=element,dsmodels=self.dsmodels)) > 0:
             subtypeproperties["domaintype"] = "GroupDomain"
 
         if subtypeproperties["domaintype"] == "LOVDomain":

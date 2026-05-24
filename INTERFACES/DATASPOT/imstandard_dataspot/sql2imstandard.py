@@ -195,9 +195,9 @@ class Sql2IMJsonschema():
                                fkname="attr_id")} as name,
             {self._langtextsql(colname="attr_descr",
                                fkname="attr_id")} as description,
-            'DOMA' || attr_doma_group_id as domainid,
+            'DOMA' || attr_doma_id as domainid,
              case when attr_enti_id is null 
-                    THEN 'DOMA' || attr_doma_id
+                    THEN 'DOMA' || attr_doma_group_id
                     else 'ENTI' || attr_enti_id 
             end as parentid,
             attr_displ_name as dispname,
