@@ -110,7 +110,7 @@ class DSRequest:
         locrequest = self._basehttprequest(reqtype=reqtype) + request
         # response = req.get(locrequest, auth=self._auth, headers=self._buildheader(accesskey=self.accesskey))
         try:
-            response = req.get(locrequest, headers=self._buildheader(accesskey=self.accesskey),
+            response = req.get(locrequest, headers=self._buildheader(accesskey=self.__accesskey),
                                params=params)
         except Exception as e:
             raise e

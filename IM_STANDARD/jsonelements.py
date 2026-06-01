@@ -82,18 +82,20 @@ class JsonElement:
 
     ##### General functions
     @staticmethod
-    def optionalprop(destobject, propname, value, intvalue=None):
+    def optionalprop(destobject, propname, value, intvalue=False,floatvalue=False):
         """sets a value into a json structure as propname if
            the value is not empty (None, "", [], {})
-           if intvalue: value is set as integer, not as string
+           if intvalue: value is set as integer or float, not as string
           """
         if not (value is None or value == "" or
-                (type(value) in (list, dict) and len(value) == 0)):
+                ((isinstance(value,list) or isinstance(value, dict)) and len(value) == 0)):
             # property is only set, if it is not null or not empty
             if type(destobject) == dict:
-                destobject[propname] = int(float(value)) if intvalue else value
+                destobject[propname] = int(value) if intvalue \
+                                    else float(value) if floatvalue else value
             elif type(destobject) == list:
-                destobject.append({propname: int(float(value)) if intvalue else value})
+                destobject.append({propname: int(value) if intvalue \
+                                    else float(value) if floatvalue else value})
             else:
                 raise Exception(f"unkown type to add property {type(destobject)}")
         return

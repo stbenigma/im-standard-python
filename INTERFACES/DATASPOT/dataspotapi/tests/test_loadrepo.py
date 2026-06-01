@@ -2,6 +2,7 @@ import json
 import unittest
 import pytest
 from pathlib import Path
+import subprocess as c
 
 
 from INTERFACES.DATASPOT import dataspotAPI
@@ -75,7 +76,7 @@ class MyTestCase(unittest.TestCase):
                 f"/schemes/{model.get('id')}/download?format=json&v=3"
             # -L follows redirects, -s is silent mode
             filename=self.debugpath/f"{repo.tenantname}-{model.get('label')}.json"
-            c.run(f"curl -L -s '{url}' -u '{repo.dsaccess.__un}:{repo.dsaccess.__pw}' -o {filename}")
+            c.run(f"curl -L -s '{url}' -u '{repo.dsaccess._DSRequest__un}:{repo.dsaccess._DSRequest__pw}' -o {filename}")
             print(f"model saved to {filename}")
 
             #modelcont = repo.get1model(modelname=model.get("id"), outpath="test.json")

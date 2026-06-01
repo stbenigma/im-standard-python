@@ -302,13 +302,15 @@ class Dataspot2Jsonbase:
                          "examples", "synonyms", "favorite",
                          "description", "title", "inCollection",
                          "status", "createdBy", "dateCreated",
-                         "hasDomain", "hasRange", "stereotype", "name", "inverseName", "navigable",
+                         "hasDomain", "hasRange", "stereotype",
+                         "name", "inverseName", "navigable",
                          "domainMultiplicity","rangeMultiplicity",
                          "identifying","baseType","minLength",
                          "minValue","maxValue","maxLength","pattern",
                          "minInclusive","maxInclusive",
                          "integerDigits","fractionDigits",
-                         "required","cardinality","ARC-21","ARC-12"
+                         "required","cardinality","ARC-21","ARC-12",
+                         "rangeAggregation","domainAggregation",
                          "ID", "TYPE", "DSMODEL", "PARENT", "PARENT2"]
         retval = {key: val for key, val in elem.items() if key not in (defaultfields + specialkeys)}
         if "id" in elem: retval["SOURCE-ID"] = elem.get("id")
@@ -468,8 +470,10 @@ class Dataspot2Jsonbase:
             JsonElement.optionalprop(subtypeproperties, "syntaxrule", element.get("pattern"))
             JsonElement.optionalprop(subtypeproperties, "minlength", element.get("minlength"), intvalue=True)
         elif domaintype in ("DECIMAL", "INTEGER"):
-            JsonElement.optionalprop(subtypeproperties, "minvalue", element.get("minInclusive"), intvalue=True)
-            JsonElement.optionalprop(subtypeproperties, "maxvalue", element.get("maxInclusive"), intvalue=True)
+            JsonElement.optionalprop(subtypeproperties, "minvalue",
+                                     element.get("minInclusive"), floatvalue=True)
+            JsonElement.optionalprop(subtypeproperties, "maxvalue",
+                                     element.get("maxInclusive"), floatvalue=True)
             if element.get("integerDigits") is not None or element.get("fractionDigits") is not None:
                 subtypeproperties["totaldigits"] = element.get("integerDigits", 0) + element.get("fractionDigits", 0)
             JsonElement.optionalprop(subtypeproperties, "fractdigits", element.get("fractionDigits"),
