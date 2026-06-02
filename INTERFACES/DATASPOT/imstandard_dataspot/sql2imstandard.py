@@ -584,6 +584,7 @@ class Sql2IMJsonschema(Sql2IMJson):
 
         models = self.selmodeljson()
 
+
         #STANDARD
         for model in models:
             model["targetenvironment"]='???'
@@ -591,7 +592,8 @@ class Sql2IMJsonschema(Sql2IMJson):
                                 colnames=["uc","dc","um","dm"]
                                 )
         #TODO Standard list of models
-        self._addlist(elements=models[0],
+        if len(models)>0:
+            self._addlist(elements=models[0],
                       elementname="ModelInfo")
 
         # self.generatecategories(catgtype="DOMAIN", status=status)

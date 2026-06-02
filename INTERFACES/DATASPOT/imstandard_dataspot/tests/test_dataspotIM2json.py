@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from INTERFACES.DATASPOT import exportIM2standard,Dataspot2IMJsonschema
+from INTERFACES.DATASPOT import exportIM2standard,Dataspot2IMJsonschema,exportIM2sqlstandard
 from IM_STANDARD import remove_key_from_json, IMStandardJsonModel
 
 class Test_dataspot2im(unittest.TestCase):
@@ -96,7 +96,18 @@ class Test_dataspot2im(unittest.TestCase):
         self.dumptodebug(filename=self.mydebugpath / "astronomie-schema-purejson.json",
                          jsonstruct=remove_key_from_json(obj=instance,
                                                          key_to_remove="additionalProps"
+
+
                                                          ))
+
+        instance = exportIM2sqlstandard(inpath=inpath,
+                                        outpath=self.mydebugpath,
+                                        modelname="Astronomie",
+                                        modelversion='0.1',
+                                        targetenv="Astronomie full",
+                                        language='de', languages=['en']
+
+                                        )
         return
 
     def test_ds2im_astro_assets(self):
@@ -129,6 +140,14 @@ class Test_dataspot2im(unittest.TestCase):
                          jsonstruct=remove_key_from_json(obj=instance,
                                                          key_to_remove="additionalProps"
                                                          ))
+        instance = exportIM2sqlstandard(inpath=inpath,
+                                     outpath=self.mydebugpath,
+                                     modelname="Astronomie full",
+                                     modelversion='0.1',
+                                     targetenv="Astronomie full",
+                                     language='de', languages=['en']
+                                     )
+
         return
 
     def test_ds2im_schwipsti_load(self):

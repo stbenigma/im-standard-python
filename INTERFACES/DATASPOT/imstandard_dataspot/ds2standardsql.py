@@ -1,12 +1,13 @@
 import copy
+import json
 import logging
 import re
 from datetime import datetime
+from pathlib import Path
 
 from IM_STANDARD import nvl, JsonElement
-from IM_STANDARD.SQL.SQL_INFRA import DbDML, dbval
-from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import DataspotElements, Dataspot2Jsonbase
-from INTERFACES.DATASPOT.imstandard_dataspot.dslib import ds2timestamp
+from IM_STANDARD.SQL import DbDML, dbval, SqliteDb, StandardSqlModel
+from INTERFACES.DATASPOT.imstandard_dataspot import ds2timestamp, Sql2IMJsonschema, DataspotElements, Dataspot2Jsonbase
 
 
 class Dataspot2SQLdatabase():
@@ -57,7 +58,7 @@ class Dataspot2SQLdatabase():
         additionalprops = Dataspot2Jsonbase.additionalprops(elem=elem, specialkeys=[])
         # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(catg)
         mainvalue = []
-        initlower= lambda x:x[0].lower()+x[1:]
+        initlower = lambda x: x[0].lower() + x[1:]
         for lang in self.languages:
             if lang == self.language:
                 for dsfield, attrname in mapfields.items():
@@ -75,7 +76,8 @@ class Dataspot2SQLdatabase():
                     if prop.endswith(f":{lang}") and propname in mapfields:
                         attrname = mapfields[propname]
                         if attrname not in mainvalue:
-                            logging.warning(f"WARNING: element {str(modeid)}, attr {attrname} has translation but no value. (entry ignored)")
+                            logging.warning(
+                                f"WARNING: element {str(modeid)}, attr {attrname} has translation but no value. (entry ignored)")
                         else:
                             self._insertmlvalue(mlvalue=val,
                                                 modeid=modeid,
@@ -83,7 +85,7 @@ class Dataspot2SQLdatabase():
                                                 lang=lang
                                                 )
 
-    def _insertudpvs(self, elem, modeid,specialkeys=[]):
+    def _insertudpvs(self, elem, modeid, specialkeys=[]):
         additionalprops = Dataspot2Jsonbase.additionalprops(elem=elem, specialkeys=specialkeys)
         # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(catg)
         for prop, val in additionalprops.items():
@@ -204,7 +206,8 @@ class Dataspot2SQLdatabase():
                                      enti_enca_id=self.entitycatgstranslate[enti.get("inCollection")],
                                      enti_prefix=None)
             except  DbDML.UK_VIOLATED as nd:
-                entiname = f"{enti.get('FULLPATH')}-{enti.get('label')}"
+                logging.error(f"Duplicate entity name {entiname} in {enti.get('FULLPATH')}.")
+                entiname = f"{enti.get('FULLPATH')}"
                 self.sqldb.rowinsert(tablename=tablename,
                                      enti_id=modeid,
                                      enti_name=entiname,
@@ -286,8 +289,10 @@ class Dataspot2SQLdatabase():
                                  rela_enti_id_to=self.entitytranslate[rela.get("hasRange")],
                                  rela_hist_from_to=self._bool2sql(rela.get("temporal")),
                                  rela_hist_to_from=None,
-                                 rela_mandatory_from_to=self._bool2sql(rela.get("rangeMultiplicity", "").startswith('1')),
-                                 rela_mandatory_to_from=self._bool2sql(rela.get("domainMultiplicity", "").startswith('1')),
+                                 rela_mandatory_from_to=self._bool2sql(
+                                     rela.get("rangeMultiplicity", "").startswith('1')),
+                                 rela_mandatory_to_from=self._bool2sql(
+                                     rela.get("domainMultiplicity", "").startswith('1')),
                                  rela_maptype_from_to=Dataspot2Jsonbase._cardinality(rela.get("rangeMultiplicity")),
                                  rela_maptype_to_from=Dataspot2Jsonbase._cardinality(rela.get("domainMultiplicity"))
                                  )
@@ -659,7 +664,7 @@ class Dataspot2SQLdatabase():
                               mapfields={"Label": "doma_name",
                                          "Description": "doma_descr"}
                               )
-        self._insertudpvs(elem=doma, modeid=modeid,specialkeys=['Unit']) #exclude from udp
+        self._insertudpvs(elem=doma, modeid=modeid, specialkeys=['Unit'])  # exclude from udp
 
         self._insertexpls(expls=doma.get("examples", []), modeid=modeid)
 
@@ -700,10 +705,11 @@ class Dataspot2SQLdatabase():
             group by lang_id,lang_iso_code2,lgtx_attrname,defaultvalue
             having count(*) > 1
         """
-        multilanguks=self.sqldb.select(sql=uniquetranslationsql)
+        multilanguks = self.sqldb.select(sql=uniquetranslationsql)
         for mluk in multilanguks:
-            logging.error(f"ERROR: translated value not unique: Attribute {mluk.get('attrname')}, value={mluk.get('defaultvalue')}")
-        return len(multilanguks)==0
+            logging.error(
+                f"ERROR: translated value not unique: Attribute {mluk.get('attrname')}, value={mluk.get('defaultvalue')}")
+        return len(multilanguks) == 0
 
     def filldatabase(self, modelname,
                      modelversion="0.0",
@@ -774,6 +780,36 @@ class Dataspot2SQLdatabase():
         self.generatediagrams(status=status)
 
         return
+
+
+def exportIM2sqlstandard(inpath, outpath, modelname=None, modelversion='0.0',
+                         targetenv=None,
+                         language='en', languages=[],
+                         server="https://myserver.io",
+                         status=None,
+                         withdbexport=True):
+    indirec: Path = Path(inpath)
+    outjsonfilepath = outpath / (modelname + ".json")
+    outdbfilepath = outjsonfilepath.with_suffix(".db")
+
+    mydb = DbDML(basedb=SqliteDb())
+    StandardSqlModel.createimstandarddb(db=mydb)
+    db = Dataspot2SQLdatabase(indirec=indirec, mydb=mydb)
+    db.filldatabase(modelname=modelname,
+                    languages=languages, language=language)
+
+    if withdbexport:
+        mydb.writedbtofile(filepath=outdbfilepath)
+        print(f'{outdbfilepath} written')
+
+    sql2json = Sql2IMJsonschema(mydb=mydb)
+    bmodel = sql2json.generatejson(status=status)
+
+    with open(Path(outjsonfilepath), 'w') as outf:
+        json.dump(bmodel, outf, indent=2)
+        print(f'{Path(outjsonfilepath)} written')
+
+    return
 
 
 if __name__ == '__main__':

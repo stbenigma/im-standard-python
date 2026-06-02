@@ -319,13 +319,13 @@ class Dataspot2Jsonbase:
 
     @staticmethod
     def _cardinality(multiplicity):
-        """translate 0..*,1,0..1,* into 1 or M"""
-        return "1" if multiplicity is None else "1" if "1" in multiplicity else "M"
+        """translate 1..*,1,0..1,* into 1 or M"""
+        return "M" if multiplicity is None else "M" if "*" in multiplicity else "1"
 
     @staticmethod
     def _mandatory(multiplicity):
         """translate 0..*,1,0..1,* into true or false"""
-        return multiplicity in ("1", "*")
+        return multiplicity.startswith("1")
 
     @staticmethod
     def _relationtype(element):
