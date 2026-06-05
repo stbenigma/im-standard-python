@@ -160,7 +160,6 @@ class ValidateJsonModel:
         return retval
 
     @staticmethod
-
     def readjsonfromfile(filepath: Path):
         with open(filepath) as infile:
             myschemajs = json.load(fp=infile)

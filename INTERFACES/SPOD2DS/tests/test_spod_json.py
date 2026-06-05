@@ -46,7 +46,7 @@ class TestModelSchema(unittest.TestCase):
             self.skipTest(f"local im {imstandardmodelfilepath.stem} standardfile not found")
         imstandardmodel = JSModel.readfromfile(imstandardmodelfilepath)
         spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
-        instance = spodschema.generatestandardjson(modeltype="Information model",
+        instance = spodschema.generatestandardjson(modeltype="Information Model",
                                                    targetenv="Standard IM",
                                                    description=None)
         puremodel=model2json(instance.jsonschemamodel)
@@ -98,7 +98,7 @@ class TestModelSchema(unittest.TestCase):
                           ]
              }
         spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
-        instance = spodschema.generatestandardjson(modeltype="Information model",
+        instance = spodschema.generatestandardjson(modeltype="Information Model",
                                                    targetenv="Standard IM",
                                                    description=None)
         puremodel=model2json(instance.jsonschemamodel)
@@ -138,7 +138,7 @@ class TestModelSchema(unittest.TestCase):
                 continue
             imstandardmodel = JSModel.readfromfile(imstandardmodelfilepath)
             spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
-            instance = spodschema.generatestandardjson(modeltype="Information model",
+            instance = spodschema.generatestandardjson(modeltype="Information Model",
                                                        targetenv="Standard IM",
                                                        description=None)
 

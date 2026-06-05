@@ -7,6 +7,14 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1772718754613
 }, {
+  "_type" : "Collection",
+  "id" : "5da048ba-1a86-409a-8c01-eb60586058e4",
+  "href" : "/web/foryouandyourcustomers/collections/5da048ba-1a86-409a-8c01-eb60586058e4",
+  "label" : "Listen",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776266689335
+}, {
   "_type" : "Dataset",
   "id" : "32c8870f-bbd8-4a79-85ad-c99c7a8643c0",
   "href" : "/web/foryouandyourcustomers/datasets/32c8870f-bbd8-4a79-85ad-c99c7a8643c0",
@@ -17,6 +25,24 @@
   "dateCreated" : 1772718762272
 }, {
   "_type" : "Dataset",
+  "id" : "d2a40116-3632-4bb0-ae5c-d5631765c90a",
+  "href" : "/web/foryouandyourcustomers/datasets/d2a40116-3632-4bb0-ae5c-d5631765c90a",
+  "label" : "Stern Datenblatt",
+  "inCollection" : "Datenblätter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263113172
+}, {
+  "_type" : "Dataset",
+  "id" : "83b9ae23-3685-432e-8d23-c232badb08d3",
+  "href" : "/web/foryouandyourcustomers/datasets/83b9ae23-3685-432e-8d23-c232badb08d3",
+  "label" : "Planetenliste",
+  "inCollection" : "Listen",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263680378
+}, {
+  "_type" : "Dataset",
   "id" : "250bd2e1-78f2-4bbb-afa6-11d85b444fce",
   "href" : "/web/foryouandyourcustomers/datasets/250bd2e1-78f2-4bbb-afa6-11d85b444fce",
   "label" : "Mondmissionen",
@@ -24,6 +50,33 @@
   "status" : "WORKING",
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1772718919592
+}, {
+  "_type" : "Dataset",
+  "id" : "193be6a4-c9de-459b-9f32-b9ca87624fbf",
+  "href" : "/web/foryouandyourcustomers/datasets/193be6a4-c9de-459b-9f32-b9ca87624fbf",
+  "label" : "Planet",
+  "subsetOf" : "Mond Datenblatt",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776239596528
+}, {
+  "_type" : "Dataset",
+  "id" : "57d455e9-573f-45ab-a5ff-26bd52518bd8",
+  "href" : "/web/foryouandyourcustomers/datasets/57d455e9-573f-45ab-a5ff-26bd52518bd8",
+  "label" : "Asteroiden",
+  "subsetOf" : "Stern Datenblatt",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263200052
+}, {
+  "_type" : "Dataset",
+  "id" : "5a94fff7-0673-433c-bf34-3631eab54464",
+  "href" : "/web/foryouandyourcustomers/datasets/5a94fff7-0673-433c-bf34-3631eab54464",
+  "label" : "Planeten",
+  "subsetOf" : "Stern Datenblatt",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263200052
 }, {
   "_type" : "Composition",
   "id" : "e71ee264-5c2d-4e2f-a46d-1f0530957bfd",
@@ -156,6 +209,7 @@
   "label" : "Mission Zeitraum",
   "composedOf" : "/Astronomie Wertebereiche/String",
   "order" : 6,
+  "qualifier" : "GROUP",
   "status" : "WORKING",
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1772719148923
@@ -165,8 +219,9 @@
   "href" : "/web/foryouandyourcustomers/compositions/69322e41-ef3f-41ae-8d65-026807a8a667",
   "componentOf" : "Mond Datenblatt/Mondmissionen",
   "label" : "Raumfahrtsunternehmen",
-  "composedOf" : "/Astronomie Wertebereiche/Name",
+  "composedOf" : "/Astronomie Informationsmodell/Raumfahrt Unternehmen/Name",
   "order" : 4,
+  "qualifier" : "GROUP",
   "description" : "Liste der Unternehmen, die an der Mission beteiligt sind.",
   "status" : "WORKING",
   "createdBy" : "stb@foryouandyourcustomers.com",
@@ -182,6 +237,246 @@
   "status" : "WORKING",
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1772779558568
+}, {
+  "_type" : "Composition",
+  "id" : "809832fd-a75e-47e8-8db1-3b07fe79dff3",
+  "href" : "/web/foryouandyourcustomers/compositions/809832fd-a75e-47e8-8db1-3b07fe79dff3",
+  "componentOf" : "Mond Datenblatt/Planet",
+  "label" : "Name",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Name",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776239705047
+}, {
+  "_type" : "Composition",
+  "id" : "7f3aaafb-31cb-4ac3-8c98-6a6ed4394104",
+  "href" : "/web/foryouandyourcustomers/compositions/7f3aaafb-31cb-4ac3-8c98-6a6ed4394104",
+  "componentOf" : "Mond Datenblatt/Planet",
+  "label" : "Reihenfolge",
+  "composedOf" : "/Astronomie Wertebereiche/Integer",
+  "title" : "Position im Sonnensystem",
+  "description" : "Reihenfolge gemäss mittleren Abständen vom Stern ab innerstem Planet",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776239778423
+}, {
+  "_type" : "Composition",
+  "id" : "011deb69-e807-4135-8380-26b5da49879c",
+  "href" : "/web/foryouandyourcustomers/compositions/011deb69-e807-4135-8380-26b5da49879c",
+  "componentOf" : "Mond Datenblatt/Planet",
+  "label" : "Rotationsdauer",
+  "composedOf" : "/Astronomie Informationsmodell/Planet/Rotationsdauer",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776239798667
+}, {
+  "_type" : "Composition",
+  "id" : "4723bcee-658c-4344-86cb-06fc3de3b811",
+  "href" : "/web/foryouandyourcustomers/compositions/4723bcee-658c-4344-86cb-06fc3de3b811",
+  "componentOf" : "Mond Datenblatt/Planet",
+  "label" : "Sonnenabstand",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/mittlerer Abstand",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776239816119
+}, {
+  "_type" : "Composition",
+  "id" : "68e8149c-ea82-4619-956a-f91bdd35e02e",
+  "href" : "/web/foryouandyourcustomers/compositions/68e8149c-ea82-4619-956a-f91bdd35e02e",
+  "componentOf" : "Stern Datenblatt/Planeten",
+  "label" : "Monde",
+  "composedOf" : "Mond Datenblatt",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263270219
+}, {
+  "_type" : "Composition",
+  "id" : "27641c76-0250-4441-921b-6e71420ff59f",
+  "href" : "/web/foryouandyourcustomers/compositions/27641c76-0250-4441-921b-6e71420ff59f",
+  "componentOf" : "Stern Datenblatt/Planeten",
+  "label" : "Planet",
+  "composedOf" : "/Astronomie Informationsmodell/Planet",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263432150
+}, {
+  "_type" : "Composition",
+  "id" : "40e4ccfc-c971-4c8e-b1de-f57d6c60cab6",
+  "href" : "/web/foryouandyourcustomers/compositions/40e4ccfc-c971-4c8e-b1de-f57d6c60cab6",
+  "componentOf" : "Stern Datenblatt/Planeten",
+  "label" : "Planet (als Begleiter)",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263415177
+}, {
+  "_type" : "Composition",
+  "id" : "3b807836-adb9-44f1-a2e9-a6b939d1eec9",
+  "href" : "/web/foryouandyourcustomers/compositions/3b807836-adb9-44f1-a2e9-a6b939d1eec9",
+  "componentOf" : "Planetenliste",
+  "label" : "Aphel",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Aphel",
+  "order" : 11,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "6d3119af-7923-4fce-a1d2-4954e173e01e",
+  "href" : "/web/foryouandyourcustomers/compositions/6d3119af-7923-4fce-a1d2-4954e173e01e",
+  "componentOf" : "Planetenliste",
+  "label" : "Durchmesser",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Durchmesser",
+  "order" : 5,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "8258b01f-f395-49e7-8f50-5979333ffaf5",
+  "href" : "/web/foryouandyourcustomers/compositions/8258b01f-f395-49e7-8f50-5979333ffaf5",
+  "componentOf" : "Planetenliste",
+  "label" : "Entdeckungsjahr",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Entdeckungsjahr",
+  "order" : 2,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "b33a0840-e98b-4434-81bf-cd57ab589755",
+  "href" : "/web/foryouandyourcustomers/compositions/b33a0840-e98b-4434-81bf-cd57ab589755",
+  "componentOf" : "Planetenliste",
+  "label" : "mittlerer Abstand",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/mittlerer Abstand",
+  "order" : 9,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "4e57fa68-ca1f-45e3-ba91-049461883317",
+  "href" : "/web/foryouandyourcustomers/compositions/4e57fa68-ca1f-45e3-ba91-049461883317",
+  "componentOf" : "Planetenliste",
+  "label" : "Mondliste",
+  "composedOf" : "/Astronomie Wertebereiche/Text",
+  "order" : 13,
+  "title" : "Liste der Namen seiner Monde",
+  "description" : "Kommagetrennte Liste der Namen aller Monde dieses Planeten.",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776266430433
+}, {
+  "_type" : "Composition",
+  "id" : "264a65e7-d41c-4589-99f3-f9d3c27cc546",
+  "href" : "/web/foryouandyourcustomers/compositions/264a65e7-d41c-4589-99f3-f9d3c27cc546",
+  "componentOf" : "Planetenliste",
+  "label" : "Name",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Name",
+  "order" : 1,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "40f3ea35-df20-4c7f-ba2b-d9a037bd7035",
+  "href" : "/web/foryouandyourcustomers/compositions/40f3ea35-df20-4c7f-ba2b-d9a037bd7035",
+  "componentOf" : "Planetenliste",
+  "label" : "Oberfläche",
+  "composedOf" : "/Astronomie Wertebereiche/Dezimalzahl",
+  "order" : 6,
+  "title" : "Oberfläche des Planeten in km^2",
+  "description" : "\n\nGerechnet als abgeplattetes Ellipsoid aus:\nÄquatorradius (a): = <Äquatordurchmesser> /2\nPolradius (p) = <Poldurchmesser> / 2\na > c\ne = sqrt(1 - (c^2 > a^2))\n\nO = 2 * π * a^2 * ( 1 + (1 - e^2 / e * artanh(e) )\n\nFalls nur der mittlere Durchmesser (md) bekannt ist\t\nO = 4 * π * (md/2)^2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776265510690
+}, {
+  "_type" : "Composition",
+  "id" : "4d5f58e1-f905-47e5-9f7a-47e7b4a43d62",
+  "href" : "/web/foryouandyourcustomers/compositions/4d5f58e1-f905-47e5-9f7a-47e7b4a43d62",
+  "componentOf" : "Planetenliste",
+  "label" : "Oberflächentyp",
+  "composedOf" : "/Astronomie Informationsmodell/Planet/Oberflächentyp",
+  "order" : 3,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "bd884cf4-379c-414a-b9eb-490fa34f20a1",
+  "href" : "/web/foryouandyourcustomers/compositions/bd884cf4-379c-414a-b9eb-490fa34f20a1",
+  "componentOf" : "Planetenliste",
+  "label" : "Periphel",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Periphel",
+  "order" : 12,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "c3fbde70-2227-465b-bdb1-36072f3b8edd",
+  "href" : "/web/foryouandyourcustomers/compositions/c3fbde70-2227-465b-bdb1-36072f3b8edd",
+  "componentOf" : "Planetenliste",
+  "label" : "Position",
+  "composedOf" : "/Astronomie Wertebereiche/Integer",
+  "order" : 8,
+  "title" : "Nr der Position ab dem Stern gezählt",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264837589
+}, {
+  "_type" : "Composition",
+  "id" : "4b9573b1-f610-40ac-87cf-35123aa986d0",
+  "href" : "/web/foryouandyourcustomers/compositions/4b9573b1-f610-40ac-87cf-35123aa986d0",
+  "componentOf" : "Planetenliste",
+  "label" : "Rotationsdauer",
+  "composedOf" : "/Astronomie Informationsmodell/Planet/Rotationsdauer",
+  "order" : 4,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "79073989-10d2-469c-a6fd-2ba3cd888201",
+  "href" : "/web/foryouandyourcustomers/compositions/79073989-10d2-469c-a6fd-2ba3cd888201",
+  "componentOf" : "Planetenliste",
+  "label" : "Stern",
+  "composedOf" : "/Astronomie Wertebereiche/Name",
+  "order" : 7,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "24b6b1bd-4146-4999-a4de-9053d5cbd7ad",
+  "href" : "/web/foryouandyourcustomers/compositions/24b6b1bd-4146-4999-a4de-9053d5cbd7ad",
+  "componentOf" : "Planetenliste",
+  "label" : "Umlaufdauer",
+  "composedOf" : "/Astronomie Informationsmodell/Begleiter/Umlaufdauer",
+  "order" : 10,
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264204496
+}, {
+  "_type" : "Composition",
+  "id" : "38063634-cd35-427f-970e-236cc9c3deb1",
+  "href" : "/web/foryouandyourcustomers/compositions/38063634-cd35-427f-970e-236cc9c3deb1",
+  "componentOf" : "Stern Datenblatt",
+  "label" : "Bezeichnung",
+  "composedOf" : "/Astronomie Informationsmodell/Stern/Bezeichnung",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263130394
+}, {
+  "_type" : "Composition",
+  "id" : "bb99c44a-c887-4e8d-9baf-31380617e546",
+  "href" : "/web/foryouandyourcustomers/compositions/bb99c44a-c887-4e8d-9baf-31380617e546",
+  "componentOf" : "Stern Datenblatt",
+  "label" : "Durchmesser",
+  "composedOf" : "/Astronomie Informationsmodell/Stern/Durchmesser",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776263130394
 }, {
   "_type" : "Transformation",
   "id" : "2da6f616-96b8-4d3f-a11c-859461bd1f6d",
@@ -200,6 +495,46 @@
   "status" : "WORKING",
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1772719165989
+}, {
+  "_type" : "Transformation",
+  "id" : "c1c4a2c5-dd88-49c8-9dca-708b50ea1442",
+  "href" : "/web/foryouandyourcustomers/transformations/c1c4a2c5-dd88-49c8-9dca-708b50ea1442",
+  "transformationOf" : "Mond Datenblatt/Planet",
+  "label" : "im2mond",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776240135383
+}, {
+  "_type" : "Transformation",
+  "id" : "9c59faeb-2bda-43b6-ac35-1fcf37e8e271",
+  "href" : "/web/foryouandyourcustomers/transformations/9c59faeb-2bda-43b6-ac35-1fcf37e8e271",
+  "transformationOf" : "Planetenliste",
+  "label" : "IM2Planeten",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264554646
+}, {
+  "_type" : "Rule",
+  "id" : "11c4617a-e9d7-41e5-b0d1-567ab20f90c6",
+  "href" : "/web/foryouandyourcustomers/rules/11c4617a-e9d7-41e5-b0d1-567ab20f90c6",
+  "ruleOf" : "Mond Datenblatt/Planet/im2mond",
+  "label" : "2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776241652560,
+  "transformsFrom" : [ "/Astronomie Informationsmodell/Mond", "/Astronomie Informationsmodell/Planet/umkreist von>Mond", "/Astronomie Informationsmodell/Zwergplanet/umkreist von>Mond", "/Astronomie Informationsmodell/Begleiter/mittlerer Abstand" ],
+  "transformsTo" : [ "Mond Datenblatt/Planet" ]
+}, {
+  "_type" : "Rule",
+  "id" : "6a2587cf-35c2-4ae9-9700-3e34aba3b11c",
+  "href" : "/web/foryouandyourcustomers/rules/6a2587cf-35c2-4ae9-9700-3e34aba3b11c",
+  "ruleOf" : "Mond Datenblatt/Planet/im2mond",
+  "label" : "3",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776240141552,
+  "transformsFrom" : [ "/Astronomie Informationsmodell/Planet/umkreist von>Mond", "/Astronomie Informationsmodell/Begleiter/mittlerer Abstand", "/Astronomie Informationsmodell/Planet/ist>Begleiter", "/Astronomie Informationsmodell/Stern/umkreist von>Planet", "/Astronomie Informationsmodell/Stern/umkreist von>Zwergplanet" ],
+  "transformsTo" : [ "Mond Datenblatt/Planet/Reihenfolge" ]
 }, {
   "_type" : "Rule",
   "id" : "13f8cd1e-7687-47c4-841c-b47135a065b2",
@@ -226,17 +561,6 @@
   "code" : "f\"{<Startdatum>: %B %Y) - {<Endeatum>: %B %Y}\""
 }, {
   "_type" : "Rule",
-  "id" : "1bbe28c1-706b-478b-8a38-406e4359c06a",
-  "href" : "/web/foryouandyourcustomers/rules/1bbe28c1-706b-478b-8a38-406e4359c06a",
-  "ruleOf" : "Mond Datenblatt/Mondmissionen/IM2MONDDB",
-  "label" : "2",
-  "status" : "WORKING",
-  "createdBy" : "stb@foryouandyourcustomers.com",
-  "dateCreated" : 1772779160854,
-  "transformsFrom" : [ "/Astronomie Informationsmodell/Raumfahrt Unternehmen/Name" ],
-  "transformsTo" : [ "Mond Datenblatt/Mondmissionen/Raumfahrtsunternehmen" ]
-}, {
-  "_type" : "Rule",
   "id" : "680a9570-d667-431a-b661-97fc27075ec1",
   "href" : "/web/foryouandyourcustomers/rules/680a9570-d667-431a-b661-97fc27075ec1",
   "ruleOf" : "Mond Datenblatt/IM2MONDDB",
@@ -246,4 +570,62 @@
   "dateCreated" : 1772719831022,
   "transformsFrom" : [ "/Astronomie Informationsmodell/Mond", "/Astronomie Informationsmodell/Begleiter/Name" ],
   "transformsTo" : [ "Mond Datenblatt/Name" ]
+}, {
+  "_type" : "Rule",
+  "id" : "fbcce120-f2ae-45f9-952e-5e8bfa8bf63c",
+  "href" : "/web/foryouandyourcustomers/rules/fbcce120-f2ae-45f9-952e-5e8bfa8bf63c",
+  "ruleOf" : "Planetenliste/IM2Planeten",
+  "label" : "1",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264576982,
+  "transformsFrom" : [ "/Astronomie Informationsmodell/Stern/Name" ],
+  "transformsTo" : [ "Planetenliste/Stern" ]
+}, {
+  "_type" : "Rule",
+  "id" : "8c832f42-b705-49cd-8543-59b8cf158d44",
+  "href" : "/web/foryouandyourcustomers/rules/8c832f42-b705-49cd-8543-59b8cf158d44",
+  "ruleOf" : "Planetenliste/IM2Planeten",
+  "label" : "2",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264695839,
+  "transformsFrom" : [ "/Astronomie Informationsmodell/Planet/ist>Begleiter" ],
+  "transformsTo" : [ "Planetenliste" ]
+}, {
+  "_type" : "Rule",
+  "id" : "81db663c-6718-49bd-9d34-5c32a2bfb2ed",
+  "href" : "/web/foryouandyourcustomers/rules/81db663c-6718-49bd-9d34-5c32a2bfb2ed",
+  "ruleOf" : "Planetenliste/IM2Planeten",
+  "label" : "3",
+  "description" : "Nummer des Planeten gezählt ab dem Stern in aufsteigender Reihenfolge der mittleren Abstände.",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776264946978,
+  "transformsFrom" : [ "/Astronomie Informationsmodell/Begleiter/mittlerer Abstand", "/Astronomie Informationsmodell/Stern/umkreist von>Planet" ],
+  "transformsTo" : [ "Planetenliste/Position" ],
+  "code" : "phyton:  \nmalist = \"aufsteigend sortierte liste des Attributs mittlerer-abstand aller planeten die \"meinen\" Stern umkreisesn\"\nmalist.index(<mittlerer Abstand>)"
+}, {
+  "_type" : "Rule",
+  "id" : "80c979dd-7a6b-4dcd-bf19-f65a62e092b4",
+  "href" : "/web/foryouandyourcustomers/rules/80c979dd-7a6b-4dcd-bf19-f65a62e092b4",
+  "ruleOf" : "Planetenliste/IM2Planeten",
+  "label" : "4",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776266517573,
+  "transformsFrom" : [ "/Astronomie Informationsmodell/Planet/umkreist von>Mond", "/Astronomie Informationsmodell/Begleiter/Name", "/Astronomie Informationsmodell/Mond/ist>Begleiter" ],
+  "transformsTo" : [ "Planetenliste/Mondliste" ]
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Mond Datenblatt",
+  "deployedIn" : "/Astronomie Systeme/Abgeleitete Systeme/Mondmission"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Mond Datenblatt/Mondmissionen",
+  "deployedIn" : "/Astronomie Systeme/Abgeleitete Systeme/Mondmission"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Mond Datenblatt/Planet",
+  "deployedIn" : "/Astronomie Systeme/Abgeleitete Systeme/Mondmission"
 } ]

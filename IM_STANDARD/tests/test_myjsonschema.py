@@ -10,7 +10,7 @@ class MyTestCase(unittest.TestCase):
     def test_idschema(self):
         schema = JsonSchema(model={"ModelInfo": JsonElement(elemtype="ModelInfo",
                                                             modelname="IM-standard",
-                                                            modeltype="Information model",
+                                                            modeltype="Information Model",
                                                             mainlanguage="en",
                                                             modelversion="1.1",
                                                             targetenvironment="Testtarget"),

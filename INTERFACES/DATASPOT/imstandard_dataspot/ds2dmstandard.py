@@ -146,7 +146,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                            modelname=modelname,
-                                           modeltype="Information model",
+                                           modeltype="Information Model",
                                            mainlanguage=kwargs.get("language", "en"),
                                            languages=kwargs.get("languages"),
                                            dc=None,

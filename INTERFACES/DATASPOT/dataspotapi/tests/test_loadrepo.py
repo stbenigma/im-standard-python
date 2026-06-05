@@ -43,7 +43,7 @@ class MyTestCase(unittest.TestCase):
         test=repo.dsaccess._getelements(elemtype="attributes")
         #test= repo.dsaccess._doget(request="/schemes/Information model/classifiers/attributes")
         #entities= repo.dsaccess.getbusinessobjects(modelname="Information model")
-        #attributesfiltered=repo.dsaccess.getmodelattributes(modelname="Information model",
+        #attributesfiltered=repo.dsaccess.getmodelattributes(modelname="Information Model",
         #            entities=[e.get("label") for e in entities])
         #attributesbymodel=repo.dsaccess.getattributes(modelid=mymodel.get("modelId"))
         repo.loadmodels(modelnamepattern="^Information.*model$")

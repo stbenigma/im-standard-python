@@ -277,7 +277,7 @@ class Spod2Jsonschema():
 
         return
 
-    def generatestandardjson(self, modeltype="Information model",
+    def generatestandardjson(self, modeltype="Information Model",
                              targetenv="", description=None):
         if self.jsmodel is None:
             return

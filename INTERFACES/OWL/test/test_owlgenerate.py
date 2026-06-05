@@ -8,7 +8,7 @@ class MyTestCase(unittest.TestCase):
         {
   "ModelInfo": {
     "modelname": "Beispielmodell Astronomie",
-    "modeltype": "Information model",
+    "modeltype": "Information Model",
     "mainlanguage": "de",
     "modelversion": "0.9",
     "languages": [
