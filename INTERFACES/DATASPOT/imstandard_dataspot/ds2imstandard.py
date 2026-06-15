@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json
-from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase,DataspotElements
+from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase, DataspotElements
 from .dslib import custom_split
 
 
@@ -20,28 +20,28 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                          indirec=indirec, **kwargs)
         return
 
-    def generatebusinessmodel(self,status=None):
+    def generatebusinessmodel(self, status=None):
         self.generateentities(elementname="Entities",
                               elements=[elem for elem in self.dsmodels.entities.values()
-                                        if DataspotElements.checkstatus(elem,status)])
+                                        if DataspotElements.checkstatus(elem, status)])
         self.generaterelations(elementname="Relations",
                                elements=[elem for elem in self.dsmodels.relationships.values()
                                          if elem.get("_type") == "Relationship" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                         self.dsmodels.checkstatus(elem, status)
                                          ]
                                )
         self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
                                           if elem.get("_type") == "BusinessAttribute" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                          self.dsmodels.checkstatus(elem, status)
                                           ])
         self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
                                           if elem.get("_type") == "DataAttribute" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                          self.dsmodels.checkstatus(elem, status)
                                           ])
         self.generatebusinessrules(elementname="BusinessRules",
                                    elements=[elem for elem in self.dsmodels.businessrules.values()
                                              if elem.get("_type") == "BusinessConstraint" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                             self.dsmodels.checkstatus(elem, status)
                                              ]
                                    )
         self.generatekeys()
@@ -74,7 +74,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
             if len(keyelements) > 0:
                 # standard keys are a list of keyelementlists
-                enti.setproperty("keys", [keyelements])
+                enti.setproperty("keys", [{"name": "key1",
+                                           "elements": keyelements}
+                                          ])
         return
 
     def entityjson(self, element):
@@ -134,9 +136,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                    "ARC-12": None,
                                                    "ARC-21": 0,
                                                    "ID": ElementId.nextid("RELA"),
-                                                   "href":  self.dsmodels.sourcehref(element)
+                                                   "href": self.dsmodels.sourcehref(element)
 
-                }))
+                                               }))
 
         return
 
@@ -207,7 +209,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             usages.append(sourceelementid)
         return usages
 
-    def generatediagrams(self,status=None):
+    def generatediagrams(self, status=None):
         """ read all transformations and add them to the element
         """
         for diagkey, diag, in self.dsmodels.diagrams.items():
@@ -228,7 +230,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         retval = [[rule.get("translatesFrom"), rule.get("translatesTo")] for rule in rules]
         return retval
 
-    def generatemappings(self,status=None):
+    def generatemappings(self, status=None):
         """ read all mappings and add them to the element
         """
         for mapkey, mapping, in self.dsmodels.mappings.items():
@@ -280,13 +282,14 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
         now = datetime.now().replace(microsecond=0).isoformat()
-        modeltype = "Information model"
+        modeltype = "Information Model"
 
-        additionalprops = {"FULLPATH": f"{nvl(targetenv, self.dsmodels.tenant.get('name', ''))}:{modeltype}:{modelname}",
-                           "SOURCE-SERVER": self.dsmodels.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
-                           "SOURCE-TENANT": self.dsmodels.tenant.get("name"),  # Sandbox"
-                           "SOURCE-HREF": f"{self.dsmodels.tenant.get('server')}{self.dsmodels.tenant.get('uri')}"
-                           }
+        additionalprops = {
+            "FULLPATH": f"{nvl(targetenv, self.dsmodels.tenant.get('name', ''))}:{modeltype}:{modelname}",
+            "SOURCE-SERVER": self.dsmodels.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
+            "SOURCE-TENANT": self.dsmodels.tenant.get("name"),  # Sandbox"
+            "SOURCE-HREF": f"{self.dsmodels.tenant.get('server')}{self.dsmodels.tenant.get('uri')}"
+            }
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                                modelname=modelname,
@@ -302,8 +305,8 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                            )
                                            )
 
-        self.generatecategories(catgtype="DOMAIN",status=status)
-        self.generatecategories(catgtype="ENTITY",status=status)
+        self.generatecategories(catgtype="DOMAIN", status=status)
+        self.generatecategories(catgtype="ENTITY", status=status)
         self.generatedomains(status=status)
         self.generatebusinessmodel(status=status)
         self.generatederivations(status=status)
@@ -332,13 +335,13 @@ def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                                        targetenv=nvl(targetenv, dsschema.dsmodels.tenant.get("name")),
                                        language=language,
                                        languages=languages,
-                                     status=status)
+                                       status=status)
 
     outfilepath = Path(outpath)
     if outfilepath.is_dir():
         # add filename
         outfilepath = outfilepath / (
-                    jsonstruct.get("ModelInfo", dict()).get("modelname", "whatever") + "-standard.json")
+                jsonstruct.get("ModelInfo", dict()).get("modelname", "whatever") + "-standard.json")
     with open(outfilepath, 'w') as outfile:
         json.dump(jsonstruct, outfile, indent=2)
 

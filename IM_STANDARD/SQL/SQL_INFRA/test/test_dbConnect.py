@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 import logging
 
-from IM_STANDARD.SQL.SQL_INFRA import SqliteDb,dict_factory
+from SQL.SQL_INFRA import SqliteDb,dict_factory
 
 
 class MyTestCase(unittest.TestCase):

@@ -2,10 +2,10 @@ import json
 from pathlib import Path
 
 from IM_STANDARD.jsonvalidation import validate_jsonfile_as_schema  # local due to recusrive import
+from IM_STANDARD import StandardSqlModel
 
 
 class StandardJsonModel:
-    SCHEMADEFPATH = Path(__file__).parent.parent.parent / "Information-model-standard" / "im-standard-json"
 
     def __init__(self, modelfilepath):
         self._schema = self._loadjsonfile(path=modelfilepath)
@@ -65,7 +65,7 @@ class StandardJsonModel:
 
 class IMStandardJsonModel(StandardJsonModel):
     DEFAULTLANGUAGE = "en"
-    IMDEFINITIONFILEPATH = StandardJsonModel.SCHEMADEFPATH / "InformationModel-schema.json"
+    IMDEFINITIONFILEPATH =StandardSqlModel.SCHEMADEFPATH /"Model"/"im-standard-schema" /"InformationModel" / "InformationModel-schema.json"
 
     def __init__(self):
         super().__init__(modelfilepath=self.IMDEFINITIONFILEPATH)
@@ -75,7 +75,7 @@ class IMStandardJsonModel(StandardJsonModel):
 
 class DMStandardJsonModel(StandardJsonModel):
     DEFAULTLANGUAGE = "en"
-    DMDEFINITIONFILEPATH = StandardJsonModel.SCHEMADEFPATH / "DataModel-schema.json"
+    DMDEFINITIONFILEPATH = StandardSqlModel.SCHEMADEFPATH /"Model"/"im-standard-schema" / "DataModel" / "DataModel-schema.json"
 
     def __init__(self):
         super().__init__(modelfilepath=self.DMDEFINITIONFILEPATH)

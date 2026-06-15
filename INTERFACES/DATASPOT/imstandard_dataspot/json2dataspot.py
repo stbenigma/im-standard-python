@@ -700,7 +700,7 @@ class Json2dataspot():
     def dsdmjson(self) -> list:
         """create from a datamodel standardjson a dataspot load-json"""
         retval = list()
-        if self.model.modeltype != "Data model": return retval
+        if self.model.modeltype != "Data Model": return retval
         retval += self.dataobjectlist()
         if len(retval) > 0:
             retval += self.categories(catgtype="DATAOBJECT")

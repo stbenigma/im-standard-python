@@ -150,6 +150,22 @@ class Test_dataspot2im(unittest.TestCase):
 
         return
 
+    def test_ds2im_standard(self):
+        inpath = Path("/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/Information-model-standard/Modelling Tools/dataspot/IM-Stand-2026-06")
+        if not inpath.is_dir():
+            self.skipTest(f"directory does not exist {inpath}")
+        instance = exportIM2sqlstandard(inpath=inpath,
+                                     outpath=self.mydebugpath,
+                                     modelname="IM-Standard",
+                                     modelversion='0.9',
+                                     targetenv="IM-Standard",
+                                     language='de', languages=['en']
+                                     )
+
+        return
+
+
+
     def test_ds2im_schwipsti_load(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)

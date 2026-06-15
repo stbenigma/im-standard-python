@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from IM_STANDARD import jsonvalidation,validateschema,StandardJsonModel
+from IM_STANDARD import jsonvalidation
 
 
 class MyTestCase(unittest.TestCase):
@@ -26,41 +26,31 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(Exception):
             jsonvalidation.validate_json_as_schema(schema=jsonschema)
 
-    def test_validateschema(self):
-        testinstance=StandardJsonModel.SCHEMADEFPATH / "testmodels" / "Attribute" / "valid"/ "maximum.json"
-        testinstanceinvalid=StandardJsonModel.SCHEMADEFPATH / "testmodels" / "Attribute" / "invalid"/ "noparent.json"
-        attributeschemapath=StandardJsonModel.SCHEMADEFPATH / "Attribute-schema.json"
-        self.assertEqual(0,len(validateschema(instance=testinstance,
-                                       schemafile=attributeschemapath,
-                                       verbose=False,
-                                       schemaonly=True))
-                        )
+    def test_removekey(self):
+        removekey = "abc"
+        obj = {"key1": {removekey: [0, 1, 2],
+                        "def": [{removekey: 99},
+                                {"xyz": removekey}]
+                        },
+               removekey: 1}
+        newobj = jsonvalidation.remove_key_from_json(obj, "abc")
+        self.assertTrue(removekey not in newobj)
+        self.assertTrue(removekey in obj)
+        self.assertTrue(removekey in obj["key1"])
+        self.assertEqual(removekey, obj["key1"]["def"][1]["xyz"])
+        #print(json.dumps(obj, indent=2))
+        #print(json.dumps(newobj, indent=2))
+        self.assertDictEqual(newobj,
+                             {"key1": {"def": [{},
+                                               {"xyz": "abc"}
+                                               ]
+                                       }
+                              }
+                             )
+        newobj = jsonvalidation.remove_key_from_json(obj, "???")
+        self.assertDictEqual(newobj,obj)
 
-        with open(testinstance) as infile:
-            schema=json.load(infile)
-        self.assertEqual(0,len(validateschema(instance=schema,
-                                       schemafile=attributeschemapath,
-                                       verbose=False,
-                                       schemaonly=True))
-                        )
-
-        self.assertNotEqual(0,
-                        len(validateschema(instance=testinstanceinvalid,
-                                       schemafile=attributeschemapath,
-                                       verbose=False,
-                                       schemaonly=True))
-                        )
-
-        self.assertEqual(0,len(validateschema(instance=testinstance,
-                                       schemafile=attributeschemapath,
-                                       verbose=False,
-                                       schemaonly=False))
-                        )
-        self.assertNotEqual(0,len(validateschema(instance=testinstanceinvalid,
-                                       schemafile=attributeschemapath,
-                                       verbose=False,
-                                       schemaonly=False))
-                        )
+        return
 
 
 if __name__ == '__main__':

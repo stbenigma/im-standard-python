@@ -61,6 +61,24 @@ class Test_dataspot2sql(unittest.TestCase):
         mydb.writedbtofile(filepath=self.mydebugpath/"multilang_sqldb.db")
         return
 
+    def test_createdimstandard(self):
+        mydb=DbDML(basedb=SqliteDb())
+        StandardSqlModel.createimstandarddb(db=mydb)
+        inpath = Path("/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/Information-model-standard/Modelling Tools/dataspot/IM-Stand-2026-06")
+        if not inpath.is_dir():
+            self.skipTest(f"directory does not exist {inpath}")
+        db=Dataspot2SQLdatabase(indirec=inpath,
+                                mydb=mydb)
+        db.filldatabase(modelname=inpath.stem,
+                        languages=["de","en"],
+                        language="de"
+                        )
+        print ("\n".join(self.caplog.messages))
+
+        mydb.writedbtofile(filepath=self.mydebugpath/"IM-standard.db")
+        return
+
+
     def _validate(self,jsonpath):
         generate = [
             'invoke',

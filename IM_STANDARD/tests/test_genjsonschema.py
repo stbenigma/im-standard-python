@@ -53,7 +53,7 @@ class MyTestCase(unittest.TestCase):
                 "modelname": "Testmodel",
                 "targetenvironment": "information model Test",
                 "modelversion": "0.1",
-                "modeltype": "Information model"
+                "modeltype": "Information Model"
             }
         }
 
@@ -118,19 +118,19 @@ class MyTestCase(unittest.TestCase):
 
     def test_astronomy(self):
         testfile =  self.standardtestilfespath/ "astronomie-assets-standard.json"
+        testfile=Path("/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/Information-model-standard/Example models/Astronomie/astronomie-information-model.json")
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="https:sbb.ch",
+                                      _schema="https:stefanberner.ch",
                                       nid="Astronomy",
-                                      collection="Sternsystem"
+                                      #collection="Sternsystem",
+                                    examplepath=Path("/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/Information-model-standard/Example models/Astronomie/astronomie-information-model_sample.json")
                                       )
-        self.assertEqual("https:sbb.ch", jsschema.get("$schema"))
-        self.assertEqual("urn:Astronomy:Astronomie Assets:0.1#Astronomie Assets", jsschema.get("urn"))
 
+        self.assertEqual("https:stefanberner.ch", jsschema.get("$schema"))
+        self.assertEqual("urn:Astronomy:Astronomie Beispiel:0.9#Astronomie Beispiel", jsschema.get("urn"))
         self.caplog.set_level(logging.WARNING)
         print()
         print("\n".join([t for t in self.caplog.messages]))
-        with open(self.downloadpath / ("Sternsystem" + "-schema.json"), "w") as outfile:
-            json.dump(jsschema, outfile, indent=2)
 
         return
 

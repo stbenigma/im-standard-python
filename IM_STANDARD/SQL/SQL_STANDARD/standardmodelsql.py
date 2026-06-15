@@ -3,8 +3,8 @@ import sqlite3
 from IM_STANDARD.SQL import DbDML
 
 class StandardSqlModel:
-    SCHEMADEFPATH = Path(__file__).parent.parent.parent.parent.parent / "Information-model-standard" / "im-standard-sql"
-    STANDARD_IM_SQLFILE = SCHEMADEFPATH / "im-standard-ddl-sqlite.sql"
+    SCHEMADEFPATH = Path(__file__).parent.parent.parent.parent.parent / "Information-model-standard"
+    STANDARD_IM_SQLFILE = SCHEMADEFPATH / "Model" / "im-standard-sql" / "im-standard-ddl-sqlite.sql"
 
     def __init__(self,connection:sqlite3.Connection):
         self.mydb:DbDML = DbDML(connection=connection)

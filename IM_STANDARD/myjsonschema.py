@@ -119,8 +119,12 @@ class JsonSchema():
         self._curlang = val
 
     @property
+    def modelversion(self):
+        return self.jsonschemamodel["ModelInfo"].get("modelversion")
+
+    @property
     def modeldescr(self):
-        return self.jsonschemamodel["ModelInfo"]["description"]
+        return self.jsonschemamodel["ModelInfo"].get("description")
 
     @property
     def modeltype(self):

@@ -1,125 +1,44 @@
+import json
 import logging
 import os
-import json
+from copy import deepcopy
 from pathlib import Path
-from jsonschema import Draft7Validator, RefResolver, validate, SchemaError,protocols
 
-#TODO RefResolver ersetzen
-import json
-from pathlib import Path
-from jsonschema import validate
-from referencing import Registry, Resource
-
-# # 1. Lade das lokale Basis-Schema
-# base_path = Path("base.json")
-# base_content = json.loads(base_path.read_text())
-#
-# # 2. Erstelle eine Resource und füge sie einer Registry hinzu
-# # Die URI muss exakt der im Schema genutzten entsprechen
-# resource = Resource.from_contents(base_content)
-# registry = Registry().with_resource("http://mein-projekt.local/base.json", resource)
-#
-# Wenn du in base.json eine Sub-Definition referenzieren willst, die in einer ganz anderen Datei (z.B. types.json) liegt, müsstest du auch diese types.json in die Registry laden:
-# registry = (
-#     Registry()
-#     .with_resource("http://mein-projekt.local/base.json", res_base)
-#     .with_resource("http://mein-projekt.local/types.json", res_types)
-# )
-#
-# # 3. Das Haupt-Schema nutzt die Referenz
-# main_schema = {
-#     "$schema": "https://json-schema.org/draft/2020-12/schema",
-#     "type": "array",
-#     "items": { "$ref": "http://mein-projekt.local/base.json#/definitions/user" }
-# }
-#
-# # 4. Validierung mit der Registry
-# data = [{"name": "Max"}, {"name": "Erika"}]
-#
-# validate(instance=data, schema=main_schema, registry=registry)
-# print("Validierung erfolgreich!")
+from jsonschema import Draft7Validator, RefResolver, protocols
+from jsonschema.exceptions import SchemaError
+from jsonschema.validators import validator_for
 
 from IM_STANDARD import nvl
 
-def purevalidate(tovalidatejs, validattionjs, resolver, verbose=True):
-    """
-    :param tovalidatejs: json struct to be validatd
-    :param validattionjs:  json-schema to validate against
-    :param resolver:  resolver path for referenced sub schemas
-    :param verbose: True add source of problem to logging
-    :return:  True if ok
-            False if not ok  + errorlog if verbose
-    """
-    try:
-        validator = Draft7Validator(schema=validattionjs,
-                                               resolver=resolver)
-
-        validator.validate(tovalidatejs)
-    except protocols.ValidationError as ve:
-        error = ve.message
-        if verbose:
-            fullstr = str(ve)
-            error += '\n'
-            error += fullstr[fullstr.find("On instance"):]
-            logging.error(error)
-        return False
-        #
-    except Exception as ex:
-        try:
-            error = ex.message
-        except Exception:
-            error = ex.args[0]
-
-        logging.error(error)
-        return False
-    return True
 
 def validate_json_as_schema(schema: dict):
-    META_SCHEMA_URI = "https://json-schema.org/draft/2020-12/schema"
     """
     Prüft, ob eine gegebene JSON-Datei ein gültiges JSON Schema (Draft 2020-12) ist.
     """
+    ValidatorClass = validator_for(schema)
+
     try:
-        # 2. Lade das Meta-Schema (optional, da jsonschema die URI oft selbst auflösen kann)
-        # In den meisten Umgebungen kann jsonschema das Meta-Schema über die URI abrufen.
-        # Wenn Sie offline arbeiten, müssen Sie es möglicherweise manuell laden.
-
-        # 3. Validierung des Dokuments gegen das Meta-Schema
-        # Wir verwenden das Meta-Schema als Schema, um das Dokument (das Schema sein soll) zu prüfen.
-
-        # Die 'validate'-Funktion verwendet automatisch das Meta-Schema, das im
-        # '$schema'-Feld des Dokuments angegeben ist (oder die übergebene URI).
-        validate(
-            instance=schema,
-            # Hier verwenden wir die URI des Meta-Schemas.
-            schema={"$ref": META_SCHEMA_URI}
-        )
-
+        ValidatorClass.check_schema(schema)
     except json.JSONDecodeError as e:
-        print(f"❌ Fehler: Ungültiges JSON-Format in der Datei: {e}")
+        logging.error(f"❌ Fehler: Ungültiges JSON-Format in der Datei: {e}")
         raise e
     except SchemaError as e:
-        # Dies fängt Fehler ab, wenn das META_SCHEMA_URI selbst ungültig wäre (sehr unwahrscheinlich).
-        print(f"❌ Interner Fehler: Das Meta-Schema ist selbst ungültig: {e}")
+        logging.error(f"❌ Interner Fehler: Das Meta-Schema ist selbst ungültig: {e}")
         raise e
     except Exception as e:
         # Dies fängt ValidationErrors ab, wenn das Dokument das Meta-Schema verletzt.
-        print(f"❌  '{schema}' ist KEIN gültiges JSON Schema.")
-        print(f"Validierungsfehler: {e}")
+        logging.error(f"❌  '{schema}' ist KEIN gültiges JSON Schema.")
+        logging.error(f"Validierungsfehler: {e}")
         raise e
-
     return
+
 
 def validate_jsonfile_as_schema(json_file_path: str):
-    try:
-        with open(json_file_path, 'r', encoding='utf-8') as f:
-            document_to_validate = json.load(f)
-        validate_json_as_schema(schema=document_to_validate)
-
-    except FileNotFoundError as ex:
-        print(f"❌ Fehler: Datei nicht gefunden unter {json_file_path}")
-        raise ex
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        document_to_validate = json.load(f)
+    validate_json_as_schema(schema=document_to_validate)
     return
+
 
 class ValidateJsonModel:
     """
@@ -177,14 +96,13 @@ class ValidateJsonModel:
             for lang in self.model.languages:
                 duplicates = find_duplicates([self.model.mlvalue(elem.get("name"), lang) for elem in nvl(elements, [])])
                 if len(duplicates) > 0:
-                    #if verbose: logging.error(f"Duplicate name (in any language) in {duplicates}")
+                    # if verbose: logging.error(f"Duplicate name (in any language) in {duplicates}")
                     return [f"Duplicate name (in any language) in {duplicates}"]
         else:
             duplicates = find_duplicates([elem.get("name") for elem in nvl(elements, [])])
             if len(duplicates) > 0:
-                #if verbose: logging.error(f"Duplicate name in {duplicates}")
+                # if verbose: logging.error(f"Duplicate name in {duplicates}")
                 return [f"Duplicate name in {duplicates}"]
-
         return []
 
     @staticmethod
@@ -194,7 +112,7 @@ class ValidateJsonModel:
         return not any(sorted(i) in seen or seen.append(sorted(i)) for i in x)
 
     def _checkadditionalrules(self, verbose=True):
-        errors=[]
+        errors = []
         # validate the additional rules, not covered by the model itself.
         myschema = self.model
         if self.model is None:
@@ -220,27 +138,27 @@ class ValidateJsonModel:
 
         # all businessrule id's must be unique over the model
         if len(buruids) > len(set(buruids)):
-            #if verbose: logging.error(f"Duplicate businessrule-id's in model")
+            # if verbose: logging.error(f"Duplicate businessrule-id's in model")
             errors.append(f"Duplicate businessrule-id's in model")
 
         # all entity id's must be unique over the model
         if len(entityids) > len(set(entityids)):
-            #if verbose: logging.error(f"Duplicate entity-id's in model")
+            # if verbose: logging.error(f"Duplicate entity-id's in model")
             errors.append(f"Duplicate entity-id's in model")
 
         # all attribute id's must be unique over all entities
         if len(attrids) > len(set(attrids)):
-            #if verbose: logging.error(f"Duplicate attribute-id's in model")
+            # if verbose: logging.error(f"Duplicate attribute-id's in model")
             errors.append(f"Duplicate attribute-id's in model")
 
         # all column id's must be unique over all tables
         if len(columnids) > len(set(columnids)):
-            #if verbose: logging.error(f"Duplicate Column-id's in model")
+            # if verbose: logging.error(f"Duplicate Column-id's in model")
             errors.append(f"Duplicate Column-id's in model")
 
         # all relation id's must be unique
         if len(relaids) > len(set(relaids)):
-            #if verbose: logging.error(f"Duplicate relation-id's in model")
+            # if verbose: logging.error(f"Duplicate relation-id's in model")
             errors.append(f"Duplicate relation-id's in model")
             # relationships must be unique (assoc and entities)
             relationskeys = [[rela.get("fwd").get("entityid") + "-"
@@ -258,60 +176,61 @@ class ValidateJsonModel:
                              for rela in myschema.getelementinstances(name="Relations")
                              ]
             if not self.listUnique(relationskeys):
-                #if verbose: logging.error(f"Duplicate relations (enti-enti-multilangassoctext) in model")
+                # if verbose: logging.error(f"Duplicate relations (enti-enti-multilangassoctext) in model")
                 errors.append(f"Duplicate relations (enti-enti-multilangassoctext) in model")
 
         # rules within domains
         for doma in myschema.getelementinstances(name="Domains"):
             # categories exist
             if doma.get("categoryid") is not None and doma.get("categoryid") not in catgids:
-                #if verbose: logging.error(f"Category-id {doma.get('categoryid')} not in categories")
+                # if verbose: logging.error(f"Category-id {doma.get('categoryid')} not in categories")
                 errors.append(f"Category-id {doma.get('categoryid')} not in categories")
             # all referenced domains (in groupdomains) must exist in the domainlist
             if doma.get("domaintype") == "GroupDomain":
                 for elem in doma.get("elements", []):
                     domainid = elem.get("domainid")
                     if domainid is not None and domainid not in domainids:
-                        #if verbose: logging.error(
+                        # if verbose: logging.error(
                         #    f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementid')} not found.")
-                        errors.append(f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementid')} not found.")
+                        errors.append(
+                            f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementid')} not found.")
 
         # rules for categories
         if len(catgids) > len(set(catgids)):
-            #if verbose: logging.error(f"Duplicate Category-id's in model")
+            # if verbose: logging.error(f"Duplicate Category-id's in model")
             errors.append(f"Duplicate Category-id's in model")
 
         for catg in myschema.getelementinstances(name="Categories"):
             # name must have a value in the main mainlanguage
             if not (type(catg.get("name")) is str or myschema.mainlang in catg.get("name")):
-                #if verbose: logging.error(f"No name in main language in category {catg.get('name')}")
+                # if verbose: logging.error(f"No name in main language in category {catg.get('name')}")
                 errors.append(f"No name in main language in category {catg.get('name')}")
 
         # rules within entities
         for enti in myschema.getelementinstances(name="Entities"):
             # categories exist
             if enti.get("categoryid") is not None and enti.get("categoryid") not in catgids:
-                #if verbose: logging.error(f"Category-id {enti.get('categoryid')} not in categories")
+                # if verbose: logging.error(f"Category-id {enti.get('categoryid')} not in categories")
                 errors.append(f"Category-id {enti.get('categoryid')} not in categories")
 
             # name must have a value in the main mainlanguage
             if not (type(enti.get("name")) is str or myschema.mainlang in enti.get("name")):
-                #if verbose: logging.error(f"No name in main language in entity {enti.get('name')}")
+                # if verbose: logging.error(f"No name in main language in entity {enti.get('name')}")
                 errors.append(f"No name in main language in entity {enti.get('name')}")
 
             # rules for synonyms
             # all synonyms must have a value in the main mainlanguage
             synos = enti.get("synonyms", [])
             if not (all([(type(syno) == str or myschema.mainlang in syno) for syno in synos])):
-                #if verbose: logging.error(f"Missing synonym name in main language in entity {enti.get('name')}")
+                # if verbose: logging.error(f"Missing synonym name in main language in entity {enti.get('name')}")
                 errors.append(f"Missing synonym name in main language in entity {enti.get('name')}")
 
             # synonyms names must be unique in all languages within an entity
             if self.model.modelismultilingual() and not self.listUnique([[myschema.mlvalue(syno, lang)
-                                                                     for lang in myschema.languages
-                                                                     ] for syno in synos
-                                                                    ]):
-                #if verbose: logging.error(f"Duplicate synonym in entity {enti.get('name')}")
+                                                                          for lang in myschema.languages
+                                                                          ] for syno in synos
+                                                                         ]):
+                # if verbose: logging.error(f"Duplicate synonym in entity {enti.get('name')}")
                 errors.append(f"Duplicate synonym in entity {enti.get('name')}")
 
             entyattrs = [attr for attr in myschema.getelementinstances(name="Attributes") if
@@ -322,26 +241,27 @@ class ValidateJsonModel:
                           ] for attr in entyattrs
                          ]
             if not self.listUnique(attrnames):
-                #if verbose: logging.error(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
+                # if verbose: logging.error(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
                 errors.append(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
 
         # rules for attributes
         for attr in myschema.getelementinstances(name="Attributes"):
             # attribute parent must be entity
             if attr.get("parentid") not in entityids:
-                #if verbose: logging.error(
+                # if verbose: logging.error(
                 #    f"Entity {attr.get('parentid')} in attribute {attr.get('elementid')} not found.")
                 errors.append(f"Entity {attr.get('parentid')} in attribute {attr.get('elementid')} not found.")
 
             # all attributes must have a value in the main mainlanguage
             if not (type(attr.get("name")) == str or myschema.mainlang in attr.get("name")):
-                #if verbose: logging.error(
-                errors.append(f"Missing attribute name {attr.get('name')} in main language in entity {attr.get('parentid')}")
+                # if verbose: logging.error(
+                errors.append(
+                    f"Missing attribute name {attr.get('name')} in main language in entity {attr.get('parentid')}")
 
             # all referenced domains must exist in the domainlist
             domaid = attr.get("domainid")
             if domaid is not None and domaid not in domainids:
-                #if verbose: logging.error(
+                # if verbose: logging.error(
                 #    f"Domain {domaid} in attribute {attr.get('elementid')} not found.")
                 errors.append(f"Domain {domaid} in attribute {attr.get('elementid')} not found.")
 
@@ -350,32 +270,35 @@ class ValidateJsonModel:
             if myschema.modeltype == "Information model":
                 # all referenced entities must exist
                 if rela.get("fwd").get("entityid") not in entityids:
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"Entity {rela.get('fwd').get('entityid')} in relation {rela.get('elementid')} not found.")
-                    errors.append(f"Entity {rela.get('fwd').get('entityid')} in relation {rela.get('elementid')} not found.")
+                    errors.append(
+                        f"Entity {rela.get('fwd').get('entityid')} in relation {rela.get('elementid')} not found.")
 
                 if rela.get("bwd").get("entityid") not in entityids:
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"Entity {rela.get('bwd').get('entityid')} in relation {rela.get('elementid')} not found.")
-                    errors.append(f"Entity {rela.get('bwd').get('entityid')} in relation {rela.get('elementid')} not found.")
+                    errors.append(
+                        f"Entity {rela.get('bwd').get('entityid')} in relation {rela.get('elementid')} not found.")
 
                 # relationship types require specific end-properties
                 if (rela.get("relationtype") == "M:1"
                         and (rela.get("fwd").get("cardinality")
                              == rela.get("bwd").get("cardinality"))):
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
-                    errors.append(f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
+                    errors.append(
+                        f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
                 if (rela.get("relationtype") == "M:N"
                         and (rela.get("fwd").get("cardinality") == "1"
                              or rela.get("bwd").get("cardinality") == "1")):
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"M:N relationship must have M a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"M:N relationship must have M a both ends in relationship {rela.get('elementid')}")
                 if (rela.get("relationtype") == "1:1"
                         and (rela.get("fwd").get("cardinality") == "M"
                              or rela.get("bwd").get("cardinality") == "M")):
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                 if (rela.get("relationtype") == "ROLE"
@@ -383,8 +306,8 @@ class ValidateJsonModel:
                              or rela.get("bwd").get("cardinality") == "M"
                              or (rela.get("fwd").get("mandatory") ==
                                  rela.get("bwd").get("mandatory"))
-                )):
-                    #if verbose: logging.error(
+                        )):
+                    # if verbose: logging.error(
                     #    f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                     errors.append(f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
                 if (rela.get("relationtype") == "SUBTYPE"
@@ -394,26 +317,29 @@ class ValidateJsonModel:
                              or rela.get("bwd").get("mandatory") == False
                              or (rela.get("fwd").get("arcnumber") is None
                                  and rela.get("bwd").get("arcnumber") is None)
-                )):
-                    #if verbose: logging.error(
+                        )):
+                    # if verbose: logging.error(
                     #    f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                    errors.append(f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
+                    errors.append(
+                        f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
 
-            elif myschema.modeltype == "Data model":
+            elif myschema.modeltype == "Data Model":
                 # all referenced entities must exist
                 if rela.get("fwd").get("tableid") not in tableids:
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementid')} not found.")
-                    errors.append(f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementid')} not found.")
+                    errors.append(
+                        f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementid')} not found.")
                 if rela.get("bwd").get("tableid") not in tableids:
-                    #if verbose: logging.error(
+                    # if verbose: logging.error(
                     #    f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementid')} not found.")
-                    errors.append(f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementid')} not found.")
+                    errors.append(
+                        f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementid')} not found.")
                 # all referenced columns must exist
                 for direc in ("fwd", "bwd"):
                     for c in rela.get(direc).get("fkcolumns", []):
                         if c not in columnids:
-                            #if verbose: logging.error(f"Column {c} in relation {rela.get('elementid')} not found.")
+                            # if verbose: logging.error(f"Column {c} in relation {rela.get('elementid')} not found.")
                             errors.append(f"Column {c} in relation {rela.get('elementid')} not found.")
 
         # rules for businessrules
@@ -421,7 +347,7 @@ class ValidateJsonModel:
             # all referenced objects must exist
             for elem in buru.get("restrictedElements"):
                 if elem not in domaattrids + attrids + relaids + entityids + domainids:
-                    #if verbose: logging.error(f"ID {elem} in businessrule {buru.get('elementid')} not found.")
+                    # if verbose: logging.error(f"ID {elem} in businessrule {buru.get('elementid')} not found.")
                     errors.append(f"ID {elem} in businessrule {buru.get('elementid')} not found.")
 
         return errors
@@ -438,7 +364,7 @@ class ValidateJsonModel:
         error = []
         try:
             validator = Draft7Validator(schema=validattionjs,
-                                                   resolver=resolver)
+                                        resolver=resolver)
 
             validator.validate(tovalidatejs)
         except protocols.ValidationError as ve:
@@ -467,13 +393,12 @@ class ValidateJsonModel:
 
         error = []
         jsmodel = (instance if type(instance) is dict
-                        else self.readjsonfromfile(filepath=Path(instance)))
-
+                   else self.readjsonfromfile(filepath=Path(instance)))
 
         error += self.purevalidate(tovalidatejs=jsmodel,
-                                      validattionjs=self.refschemajs,
-                                      resolver=self.resolver,
-                                      verbose=verbose)
+                                   validattionjs=self.refschemajs,
+                                   resolver=self.resolver,
+                                   verbose=verbose)
         return error
 
     def validatemodel(self, instance, verbose=False) -> list:
@@ -490,6 +415,7 @@ class ValidateJsonModel:
         errors += self.validateschemaonly(instance=instance, verbose=verbose)
         errors += self._checkadditionalrules(verbose=verbose)
         return errors
+
 
 def validateschema(instance,
                    schemafile,
@@ -525,15 +451,24 @@ def validateschema(instance,
 
 
 def remove_key_from_json(obj, key_to_remove):
-    if isinstance(obj, dict):
+    """
+    removes the key named in key_to_remove from all elements in a json structure
+    the original json structure will not be changed
+
+    :param obj: json to be cleansed
+    :param key_to_remove:  name of key to remove
+    :return: json object with removed key
+    """
+    locobj = deepcopy(obj)
+    if isinstance(locobj, dict):
         return {
             key: remove_key_from_json(value, key_to_remove)
-             for key, value in obj.items() if key != key_to_remove
+            for key, value in locobj.items() if key != key_to_remove
         }
     elif isinstance(obj, list):
-        return [remove_key_from_json(item, key_to_remove) for item in obj]
+        return [remove_key_from_json(item, key_to_remove) for item in locobj]
     else:
-        return obj
+        return locobj
 
 
 if __name__ == '__main__':

@@ -3,7 +3,8 @@ import logging
 
 
 import pytest
-from IM_STANDARD import IMStandardJsonModel,StandardJsonModel
+from IM_STANDARD import IMStandardJsonModel,StandardJsonModel, StandardSqlModel
+
 
 
 class MyTestCase(unittest.TestCase):
@@ -17,8 +18,9 @@ class MyTestCase(unittest.TestCase):
         self.testschema="Attribute-schema.json"
 
     def test_standardjsonmodel(self):
-        self.assertTrue((StandardJsonModel.SCHEMADEFPATH/self.testschema).exists())
-        model=StandardJsonModel(modelfilepath=StandardJsonModel.SCHEMADEFPATH/self.testschema)
+        testpath=(StandardSqlModel.SCHEMADEFPATH/ "Model" /"im-standard-schema" / "InformationModel"/ self.testschema)
+        self.assertTrue(testpath.exists())
+        model=StandardJsonModel(modelfilepath=testpath)
         self.assertTrue(model.inschema("Attribute"))
         self.assertTrue(model.inschema("BaseAttribute"))
         self.assertTrue(model.inschema("AttributeId"))

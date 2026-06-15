@@ -216,6 +216,8 @@ class Dataspot2SQLdatabase():
                                      enti_tooltip=enti.get("title"),
                                      enti_enca_id=self.entitycatgstranslate[enti.get("inCollection")],
                                      enti_prefix=None)
+            except KeyError:
+                raise KeyError(f"entity '{entiname}': parent not found in categories '{enti.get('inCollection')}'")
 
             self.entitytranslate[entiname] = modeid
             self._insertmultilang(elem=enti,
@@ -325,12 +327,10 @@ class Dataspot2SQLdatabase():
         if domaref is None:
             domaid = None
         else:
-            domaid = self.domaintranslate[domaref.split("/")[-1]]
-        # additionalprops = self.additionalprops(elem=attr,
-        #                                       specialkeys=["order", "cardinality", "required",
-        #                                                    "temporal", "MULTILINGUAL", "identifying"])
-        # "computation",
-        # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(attr)
+            domaname=domaref.split("/")[-1]
+            if domaname not in self.domaintranslate:
+                logging.error(f"Attribute '{attr.get('label')}': Domain '{domaname}' not found. DOMAIN FOR ATTRIBUTE IGNORED")
+            domaid = self.domaintranslate.get(domaname)
         self.sqldb.rowinsert(tablename=tablename,
                              attr_id=modeid,
                              attr_tech_name=attr.get("label"),
@@ -563,11 +563,10 @@ class Dataspot2SQLdatabase():
 
         donecatgs = dict()
         newcategories = []
-        cnt = 0
+        #cnt = 0
         restcatgs = copy.deepcopy(categories)
         while len(restcatgs) > 0:
-            cnt += 1
-            assert cnt < 30
+            check_progress= len(restcatgs)
             todocatgs = list(restcatgs.keys())
             for key in todocatgs:
                 catg = restcatgs[key]
@@ -575,25 +574,25 @@ class Dataspot2SQLdatabase():
                 if parentname is None:
                     modeid = self._inserttotalcategory(catg=catg,
                                                        tablename=tablename)
-                    # elementi = JsonElement().entityjson(elementid=element.get("ID"),
-                    #                                     name=self.mutlilangvalue(fieldname="label",
-                    #                                                              value=self._deref(
-                    #                                                                  element.get("label")),
-                    #                                                              addprops=additionalprops),
-                    #
                     donecatgs[catg.get("label")] = modeid
                     del restcatgs[key]
                 else:
                     fullname = parentname + "/" + catg.get("label")
-                    if parentname not in restcatgs:  # parent was alredy processed
+                    if parentname in donecatgs:  # parent was alredy processed
+                        #if parentname not in donecatgs:
+                        #    raise Exception (f"Cateogry '{catg.get('label')}': parent '{parentname}' not in model")
                         modeid = self._inserttotalcategory(catg=catg, tablename=tablename,
                                                            categoryid=donecatgs[parentname])
 
                         donecatgs[fullname] = modeid
                         del restcatgs[key]
                     else:
-                        pass
+                        pass #next loop
 
+            #if no catgegory was removed in this run, a category is missing.
+            if len(restcatgs)==check_progress:
+                lf="\n"
+                raise Exception(f"Cateogryparent missing: \n{lf.join(restcatgs.keys())}")
         return donecatgs
 
     def generatedomains(self, status):
@@ -720,7 +719,7 @@ class Dataspot2SQLdatabase():
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
         now = datetime.now().replace(microsecond=0).isoformat()
-        modeltype = "Information model"
+        modeltype = "IM" #
         self.model_id = self.sqldb.rowinsert(tablename="modelelements",
                                              mode_type="MODL",
                                              mode_dc=datetime.now().isoformat(),
@@ -729,17 +728,19 @@ class Dataspot2SQLdatabase():
 
         self.sqldb.rowinsert(tablename="models",
                              modl_id=self.model_id,
-                             modl_name="Test",
-                             modl_type="IM")
+                             modl_name=modelname,
+                             modl_targetenvironment=targetenv,
+                             modl_type=modeltype)
 
         self.language = language
         baselangid = self.sqldb.rowinsert(tablename="languages",
                                           lang_iso_code2=language,
                                           lang_is_base_lang=dbval(True))
 
-        self.languages = languages
-        for lang in languages:
-            if lang == language:
+        #make sure the baselanguage is in the set of all languages
+        self.languages = list(set(languages).union(set([language])))
+        for lang in self.languages:
+            if lang == self.language:
                 langid = baselangid
             else:
                 langid = self.sqldb.rowinsert(tablename="languages",
@@ -748,23 +749,9 @@ class Dataspot2SQLdatabase():
             self.sqldb.rowinsert(tablename="model_languages",
                                  mola_lang_id=langid,
                                  mola_modl_id=self.model_id,
-                                 mola_mainlanguage=dbval(lang == language)
+                                 mola_mainlanguage=dbval(lang == self.language)
                                  )
 
-            # self.standardjson.setschemaelement(name="ModelInfo",
-        #                                    val=JsonElement().modelinfojson(
-        #                                        modelname=modelname,
-        #                                        modeltype=modeltype,
-        #                                        mainlanguage=language,
-        #                                        languages=languages,
-        #                                        dc=now,
-        #                                        modelversion=modelversion,
-        #                                        targetenvironment=targetenv,
-        #                                        origintool=self.ORIGINTOOL,
-        #                                        originuri=None,
-        #                                        additionalProps=additionalprops
-        #                                    )
-        #                                    )
 
         # self.generatecategories(catgtype="DOMAIN",status=status)
         self.entitycatgstranslate = self.generatecategories(catgtype="ENTITY", status=status)
@@ -789,14 +776,17 @@ def exportIM2sqlstandard(inpath, outpath, modelname=None, modelversion='0.0',
                          status=None,
                          withdbexport=True):
     indirec: Path = Path(inpath)
-    outjsonfilepath = outpath / (modelname + ".json")
+    if Path(outpath).is_dir():
+        outjsonfilepath = Path(outpath) / (modelname + ".json")
+    else:
+        outjsonfilepath= Path(outpath)
     outdbfilepath = outjsonfilepath.with_suffix(".db")
-
     mydb = DbDML(basedb=SqliteDb())
     StandardSqlModel.createimstandarddb(db=mydb)
     db = Dataspot2SQLdatabase(indirec=indirec, mydb=mydb)
     db.filldatabase(modelname=modelname,
-                    languages=languages, language=language)
+                    languages=languages, language=language,
+                    )
 
     if withdbexport:
         mydb.writedbtofile(filepath=outdbfilepath)
