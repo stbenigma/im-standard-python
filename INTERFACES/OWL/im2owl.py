@@ -40,10 +40,10 @@ im:Informationsmodell a owl:Ontology ;
         "DOMA9": "xsd:integer",  # Reihenfolge Nummer (NumericDomain)
     }
 
-    entity_map = {e['elementid']: e for e in im_data.get('Entities', [])}
+    entity_map = {e['elementId']: e for e in im_data.get('Entities', [])}
 
     for entity in im_data.get('Entities', []):
-        entity_id = entity['elementid']
+        entity_id = entity['elementId']
         name_de = entity['name'].get('de', 'UnbekannteEntitaet')
         description_de = entity.get('description',{}).get('de', 'Keine Beschreibung verfügbar.').replace('"', '\\"')
 
@@ -62,9 +62,9 @@ im:{entity_id} a owl:Class ;
     for entity in im_data.get('Entities', []):
         attribute_data = entity.get('attributes', [])
         for attr in attribute_data:
-            attr_id = attr['elementid']
+            attr_id = attr['elementId']
             name_de = attr['name']#.get('de', 'UnbekanntesAttribut')
-            parent_id = entity.get("elementid")#attr['parentid']
+            parent_id = entity.get("elementId")#attr['parentId']
             domain_id = attr.get('domainid')
             description_de = attr.get('description')
 
@@ -94,16 +94,16 @@ im:{entity_id} a owl:Class ;
 """
 
     for rel in im_data.get('Relations', []):
-        rel_id = rel['elementid']
+        rel_id = rel['elementId']
         # Vorwärts-Richtung (fwd)
-        fwd_entity_id = rel['fwd']['entityid']
-        fwd_assoctext_de = rel['fwd']['assoctext'].get('de', f"{rel_id}_fwd")
+        fwd_entity_id = rel['fwd']['entityId']
+        fwd_assoctext_de = rel['fwd']['assocText'].get('de', f"{rel_id}_fwd")
         fwd_cardinality = rel['fwd']['cardinality']
         fwd_mandatory = rel['fwd']['mandatory']
 
         # Rückwärts-Richtung (bwd)
-        bwd_entity_id = rel['bwd']['entityid']
-        bwd_assoctext_de = rel['bwd']['assoctext'].get('de', f"{rel_id}_bwd")
+        bwd_entity_id = rel['bwd']['entityId']
+        bwd_assoctext_de = rel['bwd']['assocText'].get('de', f"{rel_id}_bwd")
         bwd_cardinality = rel['bwd']['cardinality']
         bwd_mandatory = rel['bwd']['mandatory']
 

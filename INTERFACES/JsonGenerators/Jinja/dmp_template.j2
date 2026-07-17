@@ -1,0 +1,12 @@
+{%- import '_macros.j2' as m -%}
+{
+  "dmpId": {{ dmpId | tojson }},
+  {%- if createdAt %}"createdAt": {{ createdAt | tojson }},{% endif %}
+  {%- if version %}"version": {{ version | tojson }},{% endif %}
+  "nameplate": {{ nameplate | tojson }},
+  "components": [
+    {%- for c in components %}
+    {{ m.component(c) }}{{ "," if not loop.last }}
+    {%- endfor %}
+  ]
+}

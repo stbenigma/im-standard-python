@@ -41,28 +41,28 @@ class ElementId:
             return '????0'
 
     @staticmethod
-    def separateid(elementid):
+    def separateid(elementId):
         """
-        :param elementid: ZZZZnn
+        :param elementId: ZZZZnn
         :return: ZZZZ,nn
         """
-        return (elementid[0:4], elementid[4:])
+        return (elementId[0:4], elementId[4:])
 
     @staticmethod
-    def idtype(elementid):
+    def idtype(elementId):
         """
-        :param elementid: ZZZZnn
+        :param elementId: ZZZZnn
         :return: ZZZZ
         """
-        return ElementId.separateid(elementid)[0]
+        return ElementId.separateid(elementId)[0]
 
     @staticmethod
-    def idnumber(elementid):
+    def idnumber(elementId):
         """
-        :param elementid: ZZZZnn
+        :param elementId: ZZZZnn
         :return: nn
         """
-        return ElementId.separateid(elementid)[1]
+        return ElementId.separateid(elementId)[1]
 
     @staticmethod
     def short2long(objname):
@@ -104,11 +104,11 @@ class JsonSchema():
 
     @property
     def targetenvironment(self):
-        return self.jsonschemamodel["ModelInfo"]["targetenvironment"]
+        return self.jsonschemamodel["ModelInfo"]["targetEnvironment"]
 
     @property
     def modelname(self):
-        return self.jsonschemamodel["ModelInfo"]["modelname"]
+        return self.jsonschemamodel["ModelInfo"]["modelName"]
 
     @property
     def curlang(self):
@@ -120,7 +120,7 @@ class JsonSchema():
 
     @property
     def modelversion(self):
-        return self.jsonschemamodel["ModelInfo"].get("modelversion")
+        return self.jsonschemamodel["ModelInfo"].get("modelVersion")
 
     @property
     def modeldescr(self):
@@ -128,11 +128,11 @@ class JsonSchema():
 
     @property
     def modeltype(self):
-        return self.jsonschemamodel["ModelInfo"]["modeltype"]
+        return self.jsonschemamodel["ModelInfo"]["modelType"]
 
     @property
     def mainlang(self):
-        return self.jsonschemamodel["ModelInfo"]["mainlanguage"]
+        return self.jsonschemamodel["ModelInfo"]["mainLanguage"]
 
     @property
     def languages(self):
@@ -233,10 +233,10 @@ class JsonSchema():
                 parent = parentcatg["$id"]
             elem.setproperty("$id", f'{parent}:{elem.getname()}')
         elif elem.elemtype == "Relation":
-            parent1 = self.getbyid(elem["fwd"].get("entityid"))
-            parent2 = self.getbyid(elem["bwd"].get("entityid"))
+            parent1 = self.getbyid(elem["fwd"].get("entityId"))
+            parent2 = self.getbyid(elem["bwd"].get("entityId"))
             elem.setproperty("$id",
-                             f'{parent1["$id"]}:{parent2.getname()}->{self.mlvalue(value=elem["fwd"]["assoctext"])}')
+                             f'{parent1["$id"]}:{parent2.getname()}->{self.mlvalue(value=elem["fwd"]["assocText"])}')
         elif elem.elemtype == "System":
             elem.setproperty("$id", f'{self.targetenvironment}:{elem.getname()}')
         return
@@ -246,13 +246,13 @@ class JsonSchema():
         """ returns the parentid or whatever a parent is called in this element
             None if there is no parentprop or there is no partentid """
         if elem.elemtype in ("Entity", "DataObject", "Domain", "Category"):
-            parentprop = "categoryid"
+            parentprop = "categoryId"
         elif elem.elemtype in ("Attribute"):
-            parentprop = "parentid"
+            parentprop = "parentId"
         elif elem.elemtype == "BusinessRule":
             parentprop = None
         elif elem.elemtype == "DataAttribute":
-            parentprop = "dataobjectid"
+            parentprop = "dataObjectId"
         elif elem.elemtype == "Relation":
             parentprop = None
         elif elem.elemtype == "System":
@@ -409,7 +409,7 @@ class JsonSchema():
             retval = []
         return retval
 
-    def getbyid(self, elementid):
+    def getbyid(self, elementId):
         """get any element of any type with the given ID"
             as ID's contain elementtype (ENTI..., DOMA...)
             any ID iw unique over all type of elements
@@ -417,9 +417,9 @@ class JsonSchema():
         retval = []
         for elemtype in self.MAINELEMENTS:
             retval.extend([elem for elem in self.getelementinstances(elementname=elemtype)
-                           if elem.getid() == elementid])
+                           if elem.getid() == elementId])
 
-        assert len(retval) < 2, f"id {elementid} found twice"
+        assert len(retval) < 2, f"id {elementId} found twice"
         return retval[0] if len(retval) == 1 else None
 
     def categorytree(self, catgid):
@@ -439,9 +439,9 @@ class JsonSchema():
         return re.sub(r'[^a-zA-Z0-9_$]', '', name)
 
     def _gettechnicalname(self, elem):
-        return elem.get("technicalname",
+        return elem.get("technicalName",
                         self.maketechnicalname(self.mlvalue(
-                            elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalname""]
+                            elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalName""]
 
     def getjsonmodel(self, withids=True):
         """

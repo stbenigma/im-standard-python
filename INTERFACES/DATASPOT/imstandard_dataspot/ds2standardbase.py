@@ -141,7 +141,7 @@ class Dataspot2Jsonbase:
                 catg = restcatgs[key]
                 parentname = catg.get("inCollection")
                 if parentname is None:
-                    newcategories.append(JsonElement().categoryjson(elementid=catg.get("ID"),
+                    newcategories.append(JsonElement().categoryjson(elementId=catg.get("ID"),
                                                                     name=catg.get("label"),
                                                                     categorytype=catgtype)
                                          )
@@ -150,7 +150,7 @@ class Dataspot2Jsonbase:
                 else:
                     fullname = parentname + "/" + catg.get("label")
                     if parentname not in restcatgs:  # parent was alredy processed
-                        newcategories.append(JsonElement().categoryjson(elementid=catg.get("ID"),
+                        newcategories.append(JsonElement().categoryjson(elementId=catg.get("ID"),
                                                                         name=catg.get("label"),
                                                                         categorytype=catgtype))
                         donecatgs[fullname] = catg.get("ID")
@@ -197,7 +197,7 @@ class Dataspot2Jsonbase:
         domaid = None if domaparent is None else domaparent.getid()
         attrs = {self.standardjson.mlvalue(attr["name"]): attr.getid()
                  for attr in self.standardjson.getelementinstances(elementname="Attributes")
-                 if attr["parentid"] in (entiid, domaid) and
+                 if attr["parentId"] in (entiid, domaid) and
                  modelname in
                  [val for key, val in attr.getadditionalprops().items() if key == "SOURCE-MODEL"]
                  }
@@ -325,7 +325,7 @@ class Dataspot2Jsonbase:
     @staticmethod
     def _mandatory(multiplicity):
         """translate 0..*,1,0..1,* into true or false"""
-        return multiplicity.startswith("1")
+        return multiplicity is None or multiplicity.startswith("1")
 
     @staticmethod
     def _relationtype(element):
@@ -389,10 +389,10 @@ class Dataspot2Jsonbase:
                                                    element.get("domainMultiplicity")),
                                                historicised=None,
                                                arcnumber=intval("ARC-21"))
-        elemrela = JsonElement().relationjson(elementid=element.get("ID"),
+        elemrela = JsonElement().relationjson(elementId=element.get("ID"),
                                               relationtype=relationtype,
                                               # relaname=self._relationname(entiid1=entityid1,
-                                              #                             assoc=fwdend.data.get("assoctext"),
+                                              #                             assoc=fwdend.data.get("assocText"),
                                               #                             entiid2=entityid2
                                               #                             ),
                                               fwd=fwdend,
@@ -464,19 +464,19 @@ class Dataspot2Jsonbase:
         else:
             domaintype = element.get("baseType", "STRING")
 
-        subtypeproperties["domaintype"] = domaintypes[domaintype]
+        subtypeproperties["domainType"] = domaintypes[domaintype]
         if domaintype in ("STRING", "TEXT"):
-            JsonElement.optionalprop(subtypeproperties, "maxlength", element.get("maxLength"), intvalue=True)
-            JsonElement.optionalprop(subtypeproperties, "syntaxrule", element.get("pattern"))
-            JsonElement.optionalprop(subtypeproperties, "minlength", element.get("minlength"), intvalue=True)
+            JsonElement.optionalprop(subtypeproperties, "maxLength", element.get("maxLength"), intvalue=True)
+            JsonElement.optionalprop(subtypeproperties, "syntaxRule", element.get("pattern"))
+            JsonElement.optionalprop(subtypeproperties, "minLength", element.get("minLength"), intvalue=True)
         elif domaintype in ("DECIMAL", "INTEGER"):
-            JsonElement.optionalprop(subtypeproperties, "minvalue",
+            JsonElement.optionalprop(subtypeproperties, "minValue",
                                      element.get("minInclusive"), floatvalue=True)
-            JsonElement.optionalprop(subtypeproperties, "maxvalue",
+            JsonElement.optionalprop(subtypeproperties, "maxValue",
                                      element.get("maxInclusive"), floatvalue=True)
             if element.get("integerDigits") is not None or element.get("fractionDigits") is not None:
-                subtypeproperties["totaldigits"] = element.get("integerDigits", 0) + element.get("fractionDigits", 0)
-            JsonElement.optionalprop(subtypeproperties, "fractdigits", element.get("fractionDigits"),
+                subtypeproperties["totalDigits"] = element.get("integerDigits", 0) + element.get("fractionDigits", 0)
+            JsonElement.optionalprop(subtypeproperties, "fractDigits", element.get("fractionDigits"),
                                      intvalue=True)
             JsonElement.optionalprop(subtypeproperties, "unit", element.get("Unit"))
         elif domaintype == "GROUP":
@@ -486,7 +486,7 @@ class Dataspot2Jsonbase:
         elif domaintype == "DATE":
             subtypeproperties["granularity"] = "DAY"
         elif domaintype == "TIME":
-            subtypeproperties["syntaxrule"] = "^[0-1][0-9]:[0-5][0-9]$"
+            subtypeproperties["syntaxRule"] = "^[0-1][0-9]:[0-5][0-9]$"
 
         return
 
@@ -495,9 +495,9 @@ class Dataspot2Jsonbase:
                                  subtypeproperties=subtypeproperties)
 
         if len(Dataspot2Jsonbase.domasubattrs(element=element,dsmodels=self.dsmodels)) > 0:
-            subtypeproperties["domaintype"] = "GroupDomain"
+            subtypeproperties["domainType"] = "GroupDomain"
 
-        if subtypeproperties["domaintype"] == "LOVDomain":
+        if subtypeproperties["domainType"] == "LOVDomain":
             domaname = element.get("label")
             refvalues = [val for val in self.dsmodels.LOVvalues.values() \
                          if val.get("_type") == "ReferenceValue" and \
@@ -561,7 +561,7 @@ class Dataspot2Jsonbase:
                     restrid = self.getcolumnid(datoname=restricted[0],
                                                coluname=restricted[1])
 
-        jsonstruct = JsonElement().businessrulejson(elementid=key,
+        jsonstruct = JsonElement().businessrulejson(elementId=key,
                                                     restrictedelems=[restrid],
                                                     description=element.get("description"),
                                                     rule=element.get("computation")
@@ -610,7 +610,7 @@ class Dataspot2Jsonbase:
         self.setdomainsubtype(element=doma, subtypeproperties=subtypeproperties)
 
         subtypeproperties["additionalProps"] = additionalprops
-        elemdoma = JsonElement().domainjson(elementid=doma.get("ID"),
+        elemdoma = JsonElement().domainjson(elementId=doma.get("ID"),
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=doma.get("label"),
                                                                      addprops=additionalprops),
@@ -626,19 +626,19 @@ class Dataspot2Jsonbase:
             if not DataspotElements.checkstatus(deriv, status): continue
             sourcepath = self.addmodeltonamedreference(namedref=deriv.get("derivedFrom"),
                                                        modelname=deriv.get("DSMODEL"))
-            sourceelement = self.findqualielement(fullpath=sourcepath)
+            sourceElement = self.findqualielement(fullpath=sourcepath)
             targetpath = self.addmodeltonamedreference(namedref=deriv.get("derivedTo"),
                                                        modelname=deriv.get("DSMODEL"))
-            targetelement = self.findqualielement(fullpath=targetpath)
-            if targetelement is None:
+            targetElement = self.findqualielement(fullpath=targetpath)
+            if targetElement is None:
                 # target not found, is not part of the current model
                 continue
 
             # add derivation to found element
-            if sourceelement is None:
-                sourceelementid = sourcepath
+            if sourceElement is None:
+                sourceElementid = sourcepath
             else:
-                sourceelementid = sourceelement.getid()
+                sourceElementid = sourceElement.getid()
 
             additionalprops = self.additionalprops(elem=deriv,
                                                    specialkeys=["derivedTo",
@@ -648,9 +648,9 @@ class Dataspot2Jsonbase:
 
             self.standardjson.addelementinstance(name="Derivations",
                                                  val=JsonElement().derivationjson
-                                                 (derivationtype=deriv.get("qualifier"),
-                                                  sourceelement=sourceelementid,
-                                                  targetelement=targetelement.getid(),
+                                                 (derivationType=deriv.get("qualifier"),
+                                                  sourceElement=sourceElementid,
+                                                  targetElement=targetElement.getid(),
                                                   additionalProps=additionalprops
                                                   )
                                                  )
@@ -671,19 +671,19 @@ class Dataspot2Jsonbase:
                                              addprops=additionalprops)
             rules = [r for r in self.dsmodels.rules.values() if r.get("ruleOf") == transpath]
             for rule in rules:
-                sourceelements = [nvl(self.findqualielement(
+                sourceElements = [nvl(self.findqualielement(
                     fullpath=self.addmodeltonamedreference(namedref=t, modelname=rule.get("DSMODEL"))), t)
                     for t in rule.get("transformsFrom", [])]
-                sourceelements = [se.getid() if isinstance(se, JsonElement) else se for se in sourceelements]
-                targetelements = [nvl(self.findqualielement(
+                sourceElements = [se.getid() if isinstance(se, JsonElement) else se for se in sourceElements]
+                targetElements = [nvl(self.findqualielement(
                     fullpath=self.addmodeltonamedreference(namedref=t, modelname=rule.get("DSMODEL"))), t)
                     for t in rule.get("transformsTo", [])]
-                targetelements = [se.getid() if isinstance(se, JsonElement) else se for se in targetelements]
+                targetElements = [se.getid() if isinstance(se, JsonElement) else se for se in targetElements]
                 self.standardjson.addelementinstance(name="Transformations",
                                                      val=JsonElement().transformationjson
                                                      (name=transf.get("label"),
-                                                      targetelements=targetelements,
-                                                      sourceelements=sourceelements,
+                                                      targetElements=targetElements,
+                                                      sourceElements=sourceElements,
                                                       fwd=JsonElement().transformationrulejson(rule=rule.get("code"),
                                                                                                condition=rule.get(
                                                                                                    "condition")),

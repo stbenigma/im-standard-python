@@ -1,23 +1,30 @@
 import logging
 import sqlite3
 
-from IM_STANDARD.SQL.SQL_INFRA import dict_factory
-
+from IM_STANDARD.SQL.SQL_INFRA import SqliteDb,dict_factory
 
 class DbDDL():
 
-    def __init__(self, connection):
-        self.connection: sqlite3.Connection = connection
+    """
+        a collection of metadata functions for a sqlite-database
+    """
+
+    def __init__(self, sqlitedb:SqliteDb):
+        self.sqlitedb:SqliteDb= sqlitedb
         return
 
-    def getcursor(self, factory=dict_factory) -> sqlite3.Cursor:
-        self.connection.row_factory = factory
-        return self.connection.cursor()
+    def getcursor(self, factory=None) -> sqlite3.Cursor: #dict_factory
+        """
+        get a cursor for my connection
+        :param factory: transformation factory to change output of cursor
+        :return:
+        """
+        self.sqlitedb.connection.row_factory = factory
+        return self.sqlitedb.connection.cursor()
 
     def execscript(self, sql):
         """
-            execute the sqlstatement in sql
-            in case of error, raise error
+            execute the sqlstatements in sql-script
         """
         cursor = self.getcursor()
         try:

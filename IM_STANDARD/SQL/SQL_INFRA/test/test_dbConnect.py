@@ -23,6 +23,9 @@ class MyTestCase(unittest.TestCase):
         conn=SqliteDb()
         self.assertTrue(conn.dbisempty())
 
+        with self.assertRaises(Exception) as exp:
+            conn.writedbtofile() #no filepath ever given
+
         testdbfilepath=self.tmp_path/"testemptydb.db"
         conn.writedbtofile(filepath=testdbfilepath)
         self.assertTrue(testdbfilepath.is_file())

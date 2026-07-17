@@ -6,7 +6,8 @@ import pytest
 
 
 from INTERFACES.DATASPOT import Json2dataspot,json2dataspot,custom_split,escapestr,fullescapestr
-from IM_STANDARD import StandardJsonModel
+from IM_STANDARD import IMSTANDARDPATH
+
 
 class Testjson2dataspot(unittest.TestCase):
     @pytest.fixture(autouse=True)
@@ -16,7 +17,7 @@ class Testjson2dataspot(unittest.TestCase):
         self.temppath = Path(tmp_path)
 
     def setUp(self) -> None:
-        self.astronomietestjsonpath = StandardJsonModel.SCHEMADEFPATH.parent / "Example models"/"Astronomie"
+        self.astronomietestjsonpath = IMSTANDARDPATH / "Example models"/"Astronomie"
 
         self.mydebugpath = (Path.home() / "Downloads") if (Path.home() / "Downloads").exists() else self.temppath
         return
@@ -46,7 +47,9 @@ class Testjson2dataspot(unittest.TestCase):
         return
 
     def test_IM_astronomiesingle(self):
-        astronomietestjsonfile= self.astronomietestjsonpath /"astronomie-schema.json"
+        astronomietestjsonfile= self.astronomietestjsonpath /"astronomie-information-model.json"
+        if not astronomietestjsonfile.is_file():
+            self.skipTest(f"testfile not found.{astronomietestjsonfile}")
         with open(astronomietestjsonfile) as infile:
             testjson = json.load(fp=infile)
 
@@ -107,6 +110,8 @@ class Testjson2dataspot(unittest.TestCase):
 
     def test_DM_astronomiesingle(self):
         astronomietestjsonfile= self.astronomietestjsonpath /"Astronomie-DM-schema.json"
+        if not astronomietestjsonfile.is_file():
+            self.skipTest(f"testinput not found: '{astronomietestjsonfile}'")
         with open(astronomietestjsonfile) as infile:
             testjson = json.load(fp=infile)
 

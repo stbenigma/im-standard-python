@@ -4,8 +4,7 @@ from pathlib import Path
 import pytest
 import tempfile
 
-from IM_STANDARD import JsonSchema
-from archive import standardmodeljson as smjs
+from IM_STANDARD import JsonSchema,standardmodeljson as smjs
 
 from INTERFACES.DATASPOT.imstandard_dataspot import DataspotElements,ElementId, ds2dmstandard as d2j, json2dataspot as j2d
 
@@ -91,9 +90,9 @@ class Testjson2dataspot(unittest.TestCase):
 
         jsonstructdm = dsschema.generatejson(modelname="MyModelname")
         purejson=jsonstructdm.getjsonmodel()
-        self.dumptodebug(filename=f"{purejson.get('ModelInfo').get('modelname')}.json", jsonstruct=purejson)
+        self.dumptodebug(filename=f"{purejson.get('ModelInfo').get('modelName')}.json", jsonstruct=purejson)
         with tempfile.TemporaryDirectory() as tempdir:
-            with open(Path(tempdir) / f"{purejson.get('ModelInfo').get('modelname')}.json", "w") as outfile:
+            with open(Path(tempdir) / f"{purejson.get('ModelInfo').get('modelName')}.json", "w") as outfile:
                 json.dump(purejson, outfile, indent=2)
 
             if not smjs.validateschema(instance=purejson,

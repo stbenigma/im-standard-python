@@ -7,128 +7,128 @@ class MyTestCase(unittest.TestCase):
         ttl=generate_owl_turtle_from_im(im_data =
         {
   "ModelInfo": {
-    "modelname": "Beispielmodell Astronomie",
-    "modeltype": "Information Model",
-    "mainlanguage": "de",
-    "modelversion": "0.9",
+    "modelName": "Beispielmodell Astronomie",
+    "modelType": "Information Model",
+    "mainLanguage": "de",
+    "modelVersion": "0.9",
     "languages": [
       "de",
       "en"
     ],
-    "targetenvironment": "Informatiosmodell Standard",
-    "origintool": "dataspot"
+    "targetEnvironment": "Informatiosmodell Standard",
+    "originTool": "dataspot"
   },
   "Categories": [
     {
-      "elementid": "CATG10",
+      "elementId": "CATG10",
       "name": {
         "de": "Astronomie Wertebereiche"
       },
-      "categorytype": "DOMAIN"
+      "categoryType": "DOMAIN"
     },
     {
-      "elementid": "CATG11",
+      "elementId": "CATG11",
       "name": {
         "de": "Astronomie Referenzdaten"
       },
-      "categorytype": "DOMAIN"
+      "categoryType": "DOMAIN"
     },
     {
-      "elementid": "CATG1",
+      "elementId": "CATG1",
       "name": {
         "de": "Astronomische Wertebereiche"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "parent": "CATG10"
     },
     {
-      "elementid": "CATG2",
+      "elementId": "CATG2",
       "name": {
         "de": "Standard Datatypen",
         "en": "Standard data domains"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "parent": "CATG10"
     },
     {
-      "elementid": "CATG3",
+      "elementId": "CATG3",
       "name": {
         "de": "Basis Wertebereiche",
         "en": "Base data domains"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "parent": "CATG2"
     },
     {
-      "elementid": "CATG4",
+      "elementId": "CATG4",
       "name": {
         "de": "Physikalische Datentypen",
         "en": "Physical datatypes"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "parent": "CATG2"
     },
     {
-      "elementid": "CATG10",
+      "elementId": "CATG10",
       "name": {
         "de": "Astronomie Wertebereiche"
       },
-      "categorytype": "DOMAIN"
+      "categoryType": "DOMAIN"
     },
     {
-      "elementid": "CATG5",
+      "elementId": "CATG5",
       "name": {
         "de": "Astronomische Referenzwerte",
         "en": "Astronomical reference values"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "parent": "CATG11"
     },
     {
-      "elementid": "CATG6",
+      "elementId": "CATG6",
       "name": {
         "de": "Standard Referenzwerte"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "parent": "CATG11"
     },
     {
-      "elementid": "CATG11",
+      "elementId": "CATG11",
       "name": {
         "de": "Astronomie Referenzdaten"
       },
-      "categorytype": "DOMAIN"
+      "categoryType": "DOMAIN"
     },
     {
-      "elementid": "CATG7",
+      "elementId": "CATG7",
       "name": {
         "de": "Sternsystem",
         "en": "Star system"
       },
-      "categorytype": "ENTITY"
+      "categoryType": "ENTITY"
     },
     {
-      "elementid": "CATG8",
+      "elementId": "CATG8",
       "name": {
         "de": "Grosse Objekte",
         "en": "Large objects"
       },
-      "categorytype": "ENTITY",
+      "categoryType": "ENTITY",
       "parent": "CATG7"
     },
     {
-      "elementid": "CATG9",
+      "elementId": "CATG9",
       "name": {
         "de": "Kleine Objekte",
         "en": "Small objects"
       },
-      "categorytype": "ENTITY",
+      "categoryType": "ENTITY",
       "parent": "CATG7"
     }
   ],
   "Domains": [
     {
-      "elementid": "DOMA26",
+      "elementId": "DOMA26",
       "name": {
         "de": "Leuchtklasse",
         "en": "Luminosity class"
@@ -137,12 +137,12 @@ class MyTestCase(unittest.TestCase):
         "de": "Leuchtkraftklassen (Helligkeitstypen) \nI\t\u00dcberriesen\tBetelgeuse (M1I)\nII\tHelle Riesen\t\nIII\tRiesen\tAldebaran (K5III)\nIV\tUnterriesen\t\nV\tHauptreihe (normale Sterne)\tSonne (G2V)\nVI\tUnterzwerge\t\nD\tWei\u00dfe Zwerge\tSirius B",
         "en": "Luminosity classes (brightness types)\nI Supergiant Betelgeuse (M1I)\nII Bright giants\nIII Giants Aldebaran (K5III)\nIV Subgiants\nV Main sequence (normal stars) Sun (G2V)\nVI Subdwarfs\nD White dwarfs Sirius B"
       },
-      "categoryid": "CATG5",
-      "domaintype": "LOVDomain",
+      "categoryId": "CATG5",
+      "domainType": "LOVDomain",
       "values": [
         {
           "value": "VI",
-          "displayvalue": {
+          "displayValue": {
             "de": "Unterzwerge",
             "en": "Subdwarfs"
           },
@@ -152,7 +152,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "III",
-          "displayvalue": {
+          "displayValue": {
             "de": "Riesen",
             "en": "Giants"
           },
@@ -162,7 +162,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "I",
-          "displayvalue": {
+          "displayValue": {
             "de": "\u00dcberriese",
             "en": "Supergiant"
           },
@@ -172,7 +172,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "V",
-          "displayvalue": {
+          "displayValue": {
             "de": "Hauptreihe",
             "en": "Main sequence"
           },
@@ -182,7 +182,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "0",
-          "displayvalue": {
+          "displayValue": {
             "de": "Hyperriese",
             "en": "Supergiant"
           },
@@ -192,7 +192,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "VII",
-          "displayvalue": {
+          "displayValue": {
             "de": "Wei\u00dfe Zwerge",
             "en": "White dwarf"
           },
@@ -202,14 +202,14 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "IV",
-          "displayvalue": {
+          "displayValue": {
             "de": "Unterriesen",
             "en": "Subgiants"
           }
         },
         {
           "value": "II",
-          "displayvalue": {
+          "displayValue": {
             "de": "Helle Riesen",
             "en": "Bright Giants"
           }
@@ -217,7 +217,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA27",
+      "elementId": "DOMA27",
       "name": {
         "de": "Oberfl\u00e4chenbeschaffenheit",
         "en": "Surface composition"
@@ -226,8 +226,8 @@ class MyTestCase(unittest.TestCase):
         "de": "Beschaffenheit der Oberl\u00e4che eines Planeten.\nFest, Gas, Eis",
         "en": "Nature of the surface of a planet.\nSolid, gas, ice"
       },
-      "categoryid": "CATG5",
-      "domaintype": "LOVDomain",
+      "categoryId": "CATG5",
+      "domainType": "LOVDomain",
       "values": [
         {
           "value": "Eis",
@@ -250,44 +250,44 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA28",
+      "elementId": "DOMA28",
       "name": {
         "de": "Unterleuchtklasse"
       },
       "description": {
         "de": "Unterteilung der \u00dcberriesen nach abnehmender Leuchtkraft"
       },
-      "categoryid": "CATG5",
-      "domaintype": "LOVDomain",
+      "categoryId": "CATG5",
+      "domainType": "LOVDomain",
       "values": [
         {
           "value": "ab",
-          "displayvalue": {
+          "displayValue": {
             "de": "dritthellste"
           }
         },
         {
           "value": "b",
-          "displayvalue": {
+          "displayValue": {
             "de": "dunklste"
           }
         },
         {
           "value": "a",
-          "displayvalue": {
+          "displayValue": {
             "de": "zweithellste"
           }
         },
         {
           "value": "a-0",
-          "displayvalue": {
+          "displayValue": {
             "de": "hellste"
           }
         }
       ]
     },
     {
-      "elementid": "DOMA29",
+      "elementId": "DOMA29",
       "name": {
         "de": "Zeitangabe",
         "en": "Time indication"
@@ -295,31 +295,31 @@ class MyTestCase(unittest.TestCase):
       "description": {
         "de": "Liste der Zeitangaben f\u00fcr Umlaufdauern \nStunde, Tag, Jahr"
       },
-      "categoryid": "CATG5",
-      "domaintype": "LOVDomain",
+      "categoryId": "CATG5",
+      "domainType": "LOVDomain",
       "values": [
         {
           "value": "tag",
-          "displayvalue": {
+          "displayValue": {
             "de": "Tag"
           }
         },
         {
           "value": "std",
-          "displayvalue": {
+          "displayValue": {
             "de": "Stunde"
           }
         },
         {
           "value": "jahr",
-          "displayvalue": {
+          "displayValue": {
             "de": "Jahr"
           }
         }
       ]
     },
     {
-      "elementid": "DOMA30",
+      "elementId": "DOMA30",
       "name": {
         "de": "Kalender Einheiten",
         "en": "Physical unit"
@@ -327,12 +327,12 @@ class MyTestCase(unittest.TestCase):
       "description": {
         "en": "Standardised (SI) physical units"
       },
-      "categoryid": "CATG6",
-      "domaintype": "LOVDomain",
+      "categoryId": "CATG6",
+      "domainType": "LOVDomain",
       "values": [
         {
           "value": "year",
-          "displayvalue": {
+          "displayValue": {
             "de": "Jahr"
           },
           "description": {
@@ -341,7 +341,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "sem",
-          "displayvalue": {
+          "displayValue": {
             "de": "Semester"
           },
           "description": {
@@ -350,7 +350,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "min",
-          "displayvalue": {
+          "displayValue": {
             "de": "Minute"
           },
           "description": {
@@ -359,7 +359,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "week",
-          "displayvalue": {
+          "displayValue": {
             "de": "Woche"
           },
           "description": {
@@ -368,7 +368,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "s",
-          "displayvalue": {
+          "displayValue": {
             "de": "Sekunde",
             "en": "second"
           },
@@ -379,7 +379,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "day",
-          "displayvalue": {
+          "displayValue": {
             "de": "Tag"
           },
           "description": {
@@ -388,7 +388,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "mon",
-          "displayvalue": {
+          "displayValue": {
             "de": "Monat"
           },
           "description": {
@@ -397,7 +397,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "hour",
-          "displayvalue": {
+          "displayValue": {
             "de": "Stunde"
           },
           "description": {
@@ -406,7 +406,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "q",
-          "displayvalue": {
+          "displayValue": {
             "de": "Quartal"
           },
           "description": {
@@ -415,7 +415,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "ns",
-          "displayvalue": {
+          "displayValue": {
             "de": "Nanosekunde",
             "en": "nanosecond"
           },
@@ -426,7 +426,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "ms",
-          "displayvalue": {
+          "displayValue": {
             "de": "Millisekunde",
             "en": "millisecond"
           },
@@ -438,7 +438,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA31",
+      "elementId": "DOMA31",
       "name": {
         "de": "Physikalische Einheit",
         "en": "Physical unit"
@@ -446,12 +446,12 @@ class MyTestCase(unittest.TestCase):
       "description": {
         "en": "Standardised (SI) physical units"
       },
-      "categoryid": "CATG6",
-      "domaintype": "LOVDomain",
+      "categoryId": "CATG6",
+      "domainType": "LOVDomain",
       "values": [
         {
           "value": "mol",
-          "displayvalue": {
+          "displayValue": {
             "de": "Mol",
             "en": "mol"
           },
@@ -462,7 +462,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "K",
-          "displayvalue": {
+          "displayValue": {
             "de": "Kelvin",
             "en": "kelvin"
           },
@@ -473,7 +473,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "kg",
-          "displayvalue": {
+          "displayValue": {
             "de": "Kilogramm",
             "en": "kilogram"
           },
@@ -484,7 +484,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "A",
-          "displayvalue": {
+          "displayValue": {
             "de": "Ampere",
             "en": "ampere"
           },
@@ -495,7 +495,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "t",
-          "displayvalue": {
+          "displayValue": {
             "de": "Tonne",
             "en": "ton"
           },
@@ -506,7 +506,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "s",
-          "displayvalue": {
+          "displayValue": {
             "de": "Sekunde",
             "en": "second"
           },
@@ -517,7 +517,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "cd",
-          "displayvalue": {
+          "displayValue": {
             "de": "Candela",
             "en": "candela"
           },
@@ -528,7 +528,7 @@ class MyTestCase(unittest.TestCase):
         },
         {
           "value": "m",
-          "displayvalue": {
+          "displayValue": {
             "de": "Meter",
             "en": "meter"
           },
@@ -540,7 +540,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA1",
+      "elementId": "DOMA1",
       "name": {
         "de": "Galaktische Entfernung",
         "en": "Galactical distance"
@@ -549,72 +549,72 @@ class MyTestCase(unittest.TestCase):
         "de": "Abstand zwischen 2 Objekten im galaktischen Umfeld\n \nEinheit sind Lichtjahre. Ein LJ entspricht 63241 AE oder \u2248 9.46 Billionen km",
         "en": "Distance between 2 objects in the galactic neighbourhood\n \nThe unit is light years. One LJ corresponds to 63241 AU or \u2248 9.46 trillion kilometres"
       },
-      "categoryid": "CATG1",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
-      "maxvalue": 150000,
-      "totaldigits": 9,
-      "fractdigits": 3,
+      "categoryId": "CATG1",
+      "domainType": "NumericDomain",
+      "minValue": 0,
+      "maxValue": 150000,
+      "totalDigits": 9,
+      "fractDigits": 3,
       "unit": "LJ"
     },
     {
-      "elementid": "DOMA2",
+      "elementId": "DOMA2",
       "name": {
         "de": "Himmelsk\u00f6rper Durchmesser",
         "en": "Celestial body diameter"
       },
-      "categoryid": "CATG1",
-      "domaintype": "GroupDomain",
+      "categoryId": "CATG1",
+      "domainType": "GroupDomain",
       "elements": [
         {
-          "elementid": "ATTR3",
+          "elementId": "ATTR3",
           "name": {
             "de": "\u00c4quatordurchmesser",
             "en": "Equator diameter"
           },
           "mandatory": False,
-          "displayseq": 3,
+          "displaySeq": 3,
           "description": {
             "de": "Typischerweise der l\u00e4ngste Durchmesser.\nWegen der Rotation sind kugelf\u00f6rmige Himmelsk\u00f6per am \u00c4quator *ausgebeult*",
             "en": "Typically the longest diameter.\nDue to rotation, spherical celestial bodies are *dent out* at the equator"
           },
-          "shortdescr": {
+          "shortDescr": {
             "de": "Durchmesser 90\u00ba zur Rotationsaches",
             "en": "Diameter 90\u00ba to the axis of rotation"
           },
           "repeated": False
         },
         {
-          "elementid": "ATTR4",
+          "elementId": "ATTR4",
           "name": {
             "de": "Mittlerer Durchmesser",
             "en": "Average diameter"
           },
           "mandatory": True,
-          "displayseq": 1,
+          "displaySeq": 1,
           "description": {
             "de": "Der Durchmesser, den man bei nicht sehr genauen angaben oder einfachen astronomischen / pyhsikalischen Berechnungen verwendet",
             "en": "The diameter used for not very precise specifications or simple astronomical / physical calculations"
           },
-          "shortdescr": {
+          "shortDescr": {
             "de": "Mittlerer Durchmesser einer idealen Kugel",
             "en": "Average diameter of an ideal sphere"
           },
           "repeated": False
         },
         {
-          "elementid": "ATTR5",
+          "elementId": "ATTR5",
           "name": {
             "de": "Poldurchmesser",
             "en": "Pole diameter"
           },
           "mandatory": False,
-          "displayseq": 2,
+          "displaySeq": 2,
           "description": {
             "de": "Typischerweise der kleinste Durchmesser.\nWegen der Rotation sind kugelf\u00f6rmige Himmelsk\u00f6per am \u00c4quator *ausgebeult*",
             "en": "Typically the smallest diameter.\nDue to rotation, spherical celestial bodies are *dent out* at the equator"
           },
-          "shortdescr": {
+          "shortDescr": {
             "de": "Durchmesser entlang der Rotationsachse",
             "en": "Diameter along the axis of rotation"
           },
@@ -623,7 +623,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA3",
+      "elementId": "DOMA3",
       "name": {
         "de": "Jahrzahl",
         "en": "Year"
@@ -632,14 +632,14 @@ class MyTestCase(unittest.TestCase):
         "de": "Bei Berechnungen mit Jahrzahlen (Anzahl Jahre zwischen 2 Jahrzahlen) ist zu ber\u00fccksichtigen, dass es die Jahrzahl 0 nicht gibt",
         "en": "When calculating with year numbers (number of years between 2 year numbers), it must be taken into account that the year 0 does not exist"
       },
-      "categoryid": "CATG1",
-      "domaintype": "NumericDomain",
-      "minvalue": -5000,
-      "maxvalue": 5000,
-      "totaldigits": 4
+      "categoryId": "CATG1",
+      "domainType": "NumericDomain",
+      "minValue": -5000,
+      "maxValue": 5000,
+      "totalDigits": 4
     },
     {
-      "elementid": "DOMA4",
+      "elementId": "DOMA4",
       "name": {
         "de": "Sternsystem Entfernung",
         "en": "Startsystem distance"
@@ -648,14 +648,14 @@ class MyTestCase(unittest.TestCase):
         "de": "Abstand zwischen 2 Punkten oder Objekten innerhalb eines Sternensystems\n\nDie Einheit ist 1000km. \n\nDie Abst\u00e4nde sind in der Gr\u00f6ssenordnung des Durchmessers eines Sternensystems. D.h. bis ca 200 Astronomsiche Einheiten (AE) (=30*10^9km)\n\nEine AE entspricht ca 150Mio Km (genau 149.597.870,7) (entspricht 8,317\u00a0Lichtminuten",
         "en": "Distance between 2 points or objects within a star system\n\nThe unit is 1000km.\n\nThe distances are in the order of magnitude of the diameter of a star system. I.e. up to approx. 200 astronomical units (AU) (=30*10^9km)\n\nOne AU corresponds to approx. 150 million kilometres (exactly 149,597,870.7) (corresponds to 8.317 light minutes\")."
       },
-      "categoryid": "CATG1",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
-      "maxvalue": 10000000,
+      "categoryId": "CATG1",
+      "domainType": "NumericDomain",
+      "minValue": 0,
+      "maxValue": 10000000,
       "unit": "10^3 km"
     },
     {
-      "elementid": "DOMA5",
+      "elementId": "DOMA5",
       "name": {
         "de": "Umlaufdauer",
         "en": "Cycle time"
@@ -664,41 +664,41 @@ class MyTestCase(unittest.TestCase):
         "de": "Dauer die ein Begleiter braucht um sein Mutterobjekt zu umkreisen.\nGruppenattribut mit Wert und Einheit (Stunde, Tag, Jahr).",
         "en": "Duration that a companion needs to orbit its parent object.\nGroup attribute with value and unit (hour, day, year)."
       },
-      "categoryid": "CATG1",
-      "domaintype": "GroupDomain",
+      "categoryId": "CATG1",
+      "domainType": "GroupDomain",
       "elements": [
         {
-          "elementid": "ATTR8",
+          "elementId": "ATTR8",
           "name": {
             "de": "Dauer",
             "en": "Duration"
           },
           "mandatory": True,
           "domainid": "DOMA8",
-          "displayseq": 1,
+          "displaySeq": 1,
           "description": {
             "de": "Anzahl der Einheiten, die im Schwesterfeld definiert ist",
             "en": "Number of units defined in the sister field"
           },
-          "shortdescr": {
+          "shortDescr": {
             "de": "Anzahl Zeiteinheiten",
             "en": "Number of time units"
           },
           "repeated": False,
-          "minvalue": 1.0
+          "minValue": 1.0
         },
         {
-          "elementid": "ATTR9",
+          "elementId": "ATTR9",
           "name": {
             "de": "Einheit"
           },
           "mandatory": True,
           "domainid": "DOMA29",
-          "displayseq": 2,
+          "displaySeq": 2,
           "description": {
             "de": "Zeiteinheit als Stunde, Tag oder Jahr"
           },
-          "shortdescr": {
+          "shortDescr": {
             "de": "Zeiteinheit"
           },
           "repeated": False
@@ -706,16 +706,16 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA6",
+      "elementId": "DOMA6",
       "name": {
         "de": "Booelan",
         "en": "Boolean"
       },
-      "categoryid": "CATG3",
-      "domaintype": "BooleanDomain"
+      "categoryId": "CATG3",
+      "domainType": "BooleanDomain"
     },
     {
-      "elementid": "DOMA7",
+      "elementId": "DOMA7",
       "name": {
         "de": "Datum",
         "en": "Date"
@@ -724,48 +724,48 @@ class MyTestCase(unittest.TestCase):
         "de": "Negative Daten (vor unserer Zeit) werden mit VUZ markiert",
         "en": "Negative dates (before our time) are marked with VUZ"
       },
-      "categoryid": "CATG3",
-      "domaintype": "DatetimeDomain",
+      "categoryId": "CATG3",
+      "domainType": "DatetimeDomain",
       "granularity": "DAY"
     },
     {
-      "elementid": "DOMA8",
+      "elementId": "DOMA8",
       "name": {
         "de": "Dezimalzahl",
         "en": "Decimal"
       },
-      "categoryid": "CATG3",
-      "domaintype": "NumericDomain"
+      "categoryId": "CATG3",
+      "domainType": "NumericDomain"
     },
     {
-      "elementid": "DOMA9",
+      "elementId": "DOMA9",
       "name": {
         "de": "Integer",
         "en": "Ganzzahl"
       },
-      "categoryid": "CATG3",
-      "domaintype": "NumericDomain"
+      "categoryId": "CATG3",
+      "domainType": "NumericDomain"
     },
     {
-      "elementid": "DOMA10",
+      "elementId": "DOMA10",
       "name": {
         "de": "String",
         "en": "String"
       },
-      "categoryid": "CATG3",
-      "domaintype": "TextDomain"
+      "categoryId": "CATG3",
+      "domainType": "TextDomain"
     },
     {
-      "elementid": "DOMA11",
+      "elementId": "DOMA11",
       "name": {
         "de": "Text",
         "en": "Text"
       },
-      "categoryid": "CATG3",
-      "domaintype": "TextDomain"
+      "categoryId": "CATG3",
+      "domainType": "TextDomain"
     },
     {
-      "elementid": "DOMA12",
+      "elementId": "DOMA12",
       "name": {
         "de": "Uhrzeit",
         "en": "Time of day"
@@ -774,12 +774,12 @@ class MyTestCase(unittest.TestCase):
         "de": "Zeit innerhalb des Tages\n00:00:00 - 23:59:59",
         "en": "Time within the day\n00:00:00 - 23:59:59"
       },
-      "categoryid": "CATG3",
-      "domaintype": "TextDomain",
-      "syntaxrule": "^[0-1][0-9]:[0-5][0-9]$"
+      "categoryId": "CATG3",
+      "domainType": "TextDomain",
+      "syntaxRule": "^[0-1][0-9]:[0-5][0-9]$"
     },
     {
-      "elementid": "DOMA13",
+      "elementId": "DOMA13",
       "name": {
         "de": "Zeitstempel",
         "en": "Timestamp"
@@ -788,51 +788,51 @@ class MyTestCase(unittest.TestCase):
         "de": "Punkt auf der Zeitachse auf die Milisekunde genau",
         "en": "Point on the time axis accurate to the millisecond"
       },
-      "categoryid": "CATG3",
-      "domaintype": "DatetimeDomain",
+      "categoryId": "CATG3",
+      "domainType": "DatetimeDomain",
       "granularity": "MINUTE"
     },
     {
-      "elementid": "DOMA14",
+      "elementId": "DOMA14",
       "name": {
         "de": "Distanz [km]",
         "en": "Distance [km]"
       },
-      "categoryid": "CATG4",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
-      "totaldigits": 13,
-      "fractdigits": 3,
+      "categoryId": "CATG4",
+      "domainType": "NumericDomain",
+      "minValue": 0,
+      "totalDigits": 13,
+      "fractDigits": 3,
       "unit": "km"
     },
     {
-      "elementid": "DOMA15",
+      "elementId": "DOMA15",
       "name": {
         "de": "Distanz [m]",
         "en": "Distance [m]"
       },
-      "categoryid": "CATG4",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
-      "totaldigits": 9,
-      "fractdigits": 3,
+      "categoryId": "CATG4",
+      "domainType": "NumericDomain",
+      "minValue": 0,
+      "totalDigits": 9,
+      "fractDigits": 3,
       "unit": "m"
     },
     {
-      "elementid": "DOMA16",
+      "elementId": "DOMA16",
       "name": {
         "de": "Distanz [mm]",
         "en": "Distance [m]"
       },
-      "categoryid": "CATG4",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
-      "totaldigits": 9,
-      "fractdigits": 3,
+      "categoryId": "CATG4",
+      "domainType": "NumericDomain",
+      "minValue": 0,
+      "totalDigits": 9,
+      "fractDigits": 3,
       "unit": "mm"
     },
     {
-      "elementid": "DOMA17",
+      "elementId": "DOMA17",
       "name": {
         "de": "Distanz [nm]",
         "en": "Distance [nm]"
@@ -841,15 +841,15 @@ class MyTestCase(unittest.TestCase):
         "de": "1 Nanometer = 10^-9 Meter",
         "en": "1 Nanometer = 10^-9 meter"
       },
-      "categoryid": "CATG4",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
-      "totaldigits": 9,
-      "fractdigits": 3,
+      "categoryId": "CATG4",
+      "domainType": "NumericDomain",
+      "minValue": 0,
+      "totalDigits": 9,
+      "fractDigits": 3,
       "unit": "nm"
     },
     {
-      "elementid": "DOMA18",
+      "elementId": "DOMA18",
       "name": {
         "de": "Einheitsmenge",
         "en": "Unit quantity"
@@ -858,34 +858,34 @@ class MyTestCase(unittest.TestCase):
         "de": "Menge von Einheiten als Gruppenattribut mit Menge und (physikalischer) Einheit, in der diese Menge gemessen wurde.",
         "en": "Group attribute: Quantity together with the (physical) unit in which this quantity was measured."
       },
-      "categoryid": "CATG4",
-      "domaintype": "GroupDomain",
+      "categoryId": "CATG4",
+      "domainType": "GroupDomain",
       "elements": [
         {
-          "elementid": "ATTR1",
+          "elementId": "ATTR1",
           "name": {
             "de": "Einheit",
             "en": "Unit"
           },
           "mandatory": True,
           "domainid": "DOMA31",
-          "displayseq": 2,
-          "shortdescr": {
+          "displaySeq": 2,
+          "shortDescr": {
             "de": "Physikalische Einheit",
             "en": "physical unit"
           },
           "repeated": False
         },
         {
-          "elementid": "ATTR2",
+          "elementId": "ATTR2",
           "name": {
             "de": "Menge",
             "en": "Quantity"
           },
           "mandatory": True,
           "domainid": "DOMA20",
-          "displayseq": 1,
-          "shortdescr": {
+          "displaySeq": 1,
+          "shortDescr": {
             "de": "Anzahl der Einheiten",
             "en": "Number of units"
           },
@@ -894,18 +894,18 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA19",
+      "elementId": "DOMA19",
       "name": {
         "de": "Masse",
         "en": "Mass"
       },
-      "categoryid": "CATG4",
-      "domaintype": "NumericDomain",
-      "minvalue": 0,
+      "categoryId": "CATG4",
+      "domainType": "NumericDomain",
+      "minValue": 0,
       "unit": "kg"
     },
     {
-      "elementid": "DOMA20",
+      "elementId": "DOMA20",
       "name": {
         "de": "Menge",
         "en": "Quantity"
@@ -913,11 +913,11 @@ class MyTestCase(unittest.TestCase):
       "description": {
         "de": "decimal"
       },
-      "categoryid": "CATG4",
-      "domaintype": "NumericDomain"
+      "categoryId": "CATG4",
+      "domainType": "NumericDomain"
     },
     {
-      "elementid": "DOMA21",
+      "elementId": "DOMA21",
       "name": {
         "de": "Messwert",
         "en": "Measured value"
@@ -926,39 +926,39 @@ class MyTestCase(unittest.TestCase):
         "de": "Gemessene oder erhobene Werte werden h\u00e4ufig mit einem Vertrauensintervall angegeben, das die maximale Abweichung nach oben oder unten in % angibt.",
         "en": "Measured or collected values are often specified with a confidence interval, which indicates the maximum deviation upwards or downwards in %."
       },
-      "categoryid": "CATG4",
-      "domaintype": "GroupDomain",
+      "categoryId": "CATG4",
+      "domainType": "GroupDomain",
       "elements": [
         {
-          "elementid": "ATTR6",
+          "elementId": "ATTR6",
           "name": {
             "de": "Vertrauensintervall",
             "en": "Confidence interval"
           },
           "mandatory": False,
           "domainid": "DOMA24",
-          "displayseq": 5,
+          "displaySeq": 5,
           "description": {
             "de": "Bereich (als Prozent des Messwertes) um den der gemessene Wert nach oben oder unten abweichen kann.",
             "en": "Range (as a percentage of the measured value) by which the measured value can deviate upwards or downwards."
           },
-          "shortdescr": {
+          "shortDescr": {
             "de": "vermutete relative/r Abweichung / Fehlerbereich",
             "en": "Presumed relative deviation / error range"
           },
           "repeated": False,
-          "minvalue": 0.0
+          "minValue": 0.0
         },
         {
-          "elementid": "ATTR7",
+          "elementId": "ATTR7",
           "name": {
             "de": "Wert",
             "en": "Value"
           },
           "mandatory": True,
           "domainid": "DOMA18",
-          "displayseq": 1,
-          "shortdescr": {
+          "displaySeq": 1,
+          "shortDescr": {
             "de": "der gemessene Wert (mit Einheit)",
             "en": "measured value (with unit)"
           },
@@ -967,7 +967,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "DOMA22",
+      "elementId": "DOMA22",
       "name": {
         "de": "ISO Zeitpunkt",
         "en": "ISO Datetime"
@@ -976,12 +976,12 @@ class MyTestCase(unittest.TestCase):
         "de": "Die Universal Coordinate Time ist die Zeit am Nullmeridian in der N\u00e4he von Greenwich, England. UTC ist ein Datumswert, der die ISO 8601-Grundform yyyymmddThhmmss+|-hhmm oder die erweiterte ISO 8601-Form yyyy-mm-ddThh:mm:ss+|-hh:mm verwendet.",
         "en": "Universal Coordinate Time is the time at the zero meridian, near Greenwich, England. UTC is a datetime value that uses the ISO 8601 basic form yyyymmddThhmmss+|\u2013hhmm or the ISO 8601 extended form yyyy-mm-ddThh:mm:ss+|\u2013hh:mm."
       },
-      "categoryid": "CATG2",
-      "domaintype": "DatetimeDomain",
+      "categoryId": "CATG2",
+      "domainType": "DatetimeDomain",
       "granularity": "MINUTE"
     },
     {
-      "elementid": "DOMA23",
+      "elementId": "DOMA23",
       "name": {
         "de": "Name",
         "en": "Name"
@@ -990,11 +990,11 @@ class MyTestCase(unittest.TestCase):
         "de": "Nichtleere Zeichenfolge, benutzt um etwas zu benennen",
         "en": "Nonempty sequence of arbitrary chaeracters, used to name a thing."
       },
-      "categoryid": "CATG2",
-      "domaintype": "TextDomain"
+      "categoryId": "CATG2",
+      "domainType": "TextDomain"
     },
     {
-      "elementid": "DOMA24",
+      "elementId": "DOMA24",
       "name": {
         "de": "Prozent (dezimal)",
         "en": "Percentage (decimal)"
@@ -1003,14 +1003,14 @@ class MyTestCase(unittest.TestCase):
         "de": "Prozentzahl,gerundet auf 3 Nachkommastellen",
         "en": "Percentage, rounded to 3 fractional digits"
       },
-      "categoryid": "CATG2",
-      "domaintype": "NumericDomain",
-      "totaldigits": 7,
-      "fractdigits": 3,
+      "categoryId": "CATG2",
+      "domainType": "NumericDomain",
+      "totalDigits": 7,
+      "fractDigits": 3,
       "unit": "%"
     },
     {
-      "elementid": "DOMA25",
+      "elementId": "DOMA25",
       "name": {
         "de": "Prozent (integer)",
         "en": "Percentage (integer)"
@@ -1019,20 +1019,20 @@ class MyTestCase(unittest.TestCase):
         "de": "Prozentzahl, auf ganze Zahl gerundet.",
         "en": "Percentage, rounded to a whole number."
       },
-      "categoryid": "CATG2",
-      "domaintype": "NumericDomain",
-      "totaldigits": 4,
+      "categoryId": "CATG2",
+      "domainType": "NumericDomain",
+      "totalDigits": 4,
       "unit": "%"
     }
   ],
   "Entities": [
     {
-      "elementid": "ENTI1",
+      "elementId": "ENTI1",
       "name": {
         "de": "Mond",
         "en": "Planets Moon"
       },
-      "shortdescr": {
+      "shortDescr": {
         "de": "Fester Himmelsk\u00f6rper der um einen Planeten kreist",
         "en": "Fixed celestial body orbiting a planet"
       },
@@ -1055,11 +1055,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "ENTI2",
+      "elementId": "ENTI2",
       "name": {
         "de": "Planet"
       },
-      "shortdescr": {
+      "shortDescr": {
         "de": "Fester oder gasf\u00f6rmiger Himmelsk\u00f6rper der um einen Stern kreist",
         "en": "Solid or gaseous celestial body orbiting a star"
       },
@@ -1073,12 +1073,12 @@ class MyTestCase(unittest.TestCase):
       ],
       "attributes": [
         {
-          "elementid": "ATTR17",
+          "elementId": "ATTR17",
           "name": "Oberfl\u00e4chentyp",
           "mandatory": False,
           "domainid": "DOMA27",
           "description": "Material, das die \u00e4usserste Schicht des Himmelsk\u00f6pers bildet.",
-          "shortdescr": "Zustandsform der Oberfl\u00e4che",
+          "shortDescr": "Zustandsform der Oberfl\u00e4che",
           "examples": [
             "Feststoff",
             "Gas",
@@ -1093,7 +1093,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "ENTI3",
+      "elementId": "ENTI3",
       "name": {
         "de": "Stern",
         "en": "Star"
@@ -1102,7 +1102,7 @@ class MyTestCase(unittest.TestCase):
         "astronomisches Objekt",
         "Sonne"
       ],
-      "shortdescr": {
+      "shortDescr": {
         "de": "Am Himmel sichtbarer, selbstleuchtender Gasball. (Stern, Sonne)",
         "en": "Self-luminous ball of gas visible in the sky. (star, sun)"
       },
@@ -1116,13 +1116,13 @@ class MyTestCase(unittest.TestCase):
       ],
       "attributes": [
         {
-          "elementid": "ATTR18",
+          "elementId": "ATTR18",
           "name": "Bezeichnung",
           "mandatory": False,
           "domainid": "DOMA23",
-          "displayseq": 1,
+          "displaySeq": 1,
           "description": "Bezeichnung gem\u00e4ss Henry-Draper-Katalog (HD-Katalog)",
-          "shortdescr": "Bezeichnung des Sterns im Katalog",
+          "shortDescr": "Bezeichnung des Sterns im Katalog",
           "examples": [
             "HD 209458"
           ],
@@ -1130,13 +1130,13 @@ class MyTestCase(unittest.TestCase):
           "repeated": True
         },
         {
-          "elementid": "ATTR19",
+          "elementId": "ATTR19",
           "name": "Durchmesser",
           "mandatory": False,
           "domainid": "DOMA2",
-          "displayseq": 5,
+          "displaySeq": 5,
           "description": "Der Durchmesser kann in 3 Werten angegeben werden. (Pol-, \u00c4quator- und mittlerer Durchmesser)",
-          "shortdescr": "Durchmesser eines Sterns",
+          "shortDescr": "Durchmesser eines Sterns",
           "examples": [
             "3000 km",
             "15000 km",
@@ -1144,11 +1144,11 @@ class MyTestCase(unittest.TestCase):
           ]
         },
         {
-          "elementid": "ATTR20",
+          "elementId": "ATTR20",
           "name": "Entdeckungsjahr",
           "mandatory": False,
           "domainid": "DOMA3",
-          "displayseq": 6,
+          "displaySeq": 6,
           "description": "Jahr, in dem dieser Stern entdeckt wurde.",
           "examples": [
             "1752",
@@ -1157,13 +1157,13 @@ class MyTestCase(unittest.TestCase):
           ]
         },
         {
-          "elementid": "ATTR21",
+          "elementId": "ATTR21",
           "name": "Entfernung",
           "mandatory": False,
           "domainid": "DOMA1",
-          "displayseq": 4,
+          "displaySeq": 4,
           "description": "Distanz in Lichtjahren",
-          "shortdescr": "Distanz eines Sterns von unserer Sonne",
+          "shortDescr": "Distanz eines Sterns von unserer Sonne",
           "examples": [
             "1.3 Mio LJ",
             "365 lj"
@@ -1171,13 +1171,13 @@ class MyTestCase(unittest.TestCase):
           "descriptive": True
         },
         {
-          "elementid": "ATTR22",
+          "elementId": "ATTR22",
           "name": "Leuchtklasse",
           "mandatory": False,
           "domainid": "DOMA26",
-          "displayseq": 3,
+          "displaySeq": 3,
           "description": "Die\u00a0Leuchtkraftklasse\u00a0eines Sterns ist durch Eigenschaften bestimmt, die von seiner\u00a0Leuchtkraft\u00a0abh\u00e4ngen; dies sind insbesondere die\u00a0Breite\u00a0und die St\u00e4rke (H\u00f6he) der\u00a0Spektrallinien. So haben Riesensterne eine geringere\u00a0Schwerebeschleunigung\u00a0in ihrer\u00a0Photosph\u00e4re\u00a0als Zwergsterne gleicher Temperatur, was eine geringere\u00a0Druckverbreiterung\u00a0der Linien bewirkt, wogegen die\u00a0Spektralklasse\u00a0Eigenschaften ber\u00fccksichtigt, die prim\u00e4r von seiner Oberfl\u00e4chentemperatur abh\u00e4ngen.\n\nQuelle: https://de.wikipedia.org/wiki/Klassifizierung_der_Sterne#Leuchtkraftklassen_(Entwicklungszustand)",
-          "shortdescr": "Leuchtkraftklasse",
+          "shortDescr": "Leuchtkraftklasse",
           "examples": [
             "I",
             "V",
@@ -1187,13 +1187,13 @@ class MyTestCase(unittest.TestCase):
           "descriptive": True
         },
         {
-          "elementid": "ATTR23",
+          "elementId": "ATTR23",
           "name": "Name",
           "mandatory": True,
           "domainid": "DOMA23",
-          "displayseq": 2,
+          "displaySeq": 2,
           "description": "ca 500 Sterne haben eigene Namen, vergeben durch die Internationale Astronomische Union (IAU)",
-          "shortdescr": "Eigenname eines Sterns",
+          "shortDescr": "Eigenname eines Sterns",
           "examples": [
             "Alpha Centauri",
             "Beta Orionis",
@@ -1209,12 +1209,12 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "ENTI4",
+      "elementId": "ENTI4",
       "name": {
         "de": "Zwergplanet",
         "en": "Dwarf planet"
       },
-      "shortdescr": {
+      "shortDescr": {
         "de": "Feste Himmelsk\u00f6rper, kleiner als Planeten",
         "en": "Solid celestial bodies, smaller than planets"
       },
@@ -1226,12 +1226,12 @@ class MyTestCase(unittest.TestCase):
       ],
       "attributes": [
         {
-          "elementid": "ATTR24",
+          "elementId": "ATTR24",
           "name": "Oberfl\u00e4chentyp",
           "mandatory": False,
           "domainid": "DOMA27",
           "description": "Material, das die \u00e4usserste Schicht des Himmelsk\u00f6pers bildet.",
-          "shortdescr": "Zustandsform der Oberfl\u00e4che",
+          "shortDescr": "Zustandsform der Oberfl\u00e4che",
           "examples": [
             "Feststoff",
             "Gas",
@@ -1246,7 +1246,7 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "ENTI5",
+      "elementId": "ENTI5",
       "name": {
         "de": "Asteroid",
         "en": "Asteroid"
@@ -1270,12 +1270,12 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "ENTI6",
+      "elementId": "ENTI6",
       "name": {
         "de": "Komet",
         "en": "Comet"
       },
-      "shortdescr": {
+      "shortDescr": {
         "de": "Komet im Sonnensystem",
         "en": "Comet in the solar system"
       },
@@ -1292,44 +1292,44 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "ENTI7",
+      "elementId": "ENTI7",
       "name": {
         "de": "Begleiter",
         "en": "Companion"
       },
-      "shortdescr": {
+      "shortDescr": {
         "de": "Irgend ein Himmelsobjekt, das uns bekannt ist und einen anderes Himmelsobjekt umkreist",
         "en": "Any celestial object that is known to us and that orbits another celestial object"
       },
       "attributes": [
         {
-          "elementid": "ATTR10",
+          "elementId": "ATTR10",
           "name": "Aphel",
           "mandatory": False,
           "domainid": "DOMA4",
-          "displayseq": 6,
+          "displaySeq": 6,
           "description": "Der am weitesten enfernte Punkt einer Umlaufbahn eines Begleiters um sein Mutterobjekt\n\nDie H\u00e4lfte des l\u00e4nsten Durchmessers einer Ellipse",
-          "shortdescr": "Der enternteste Punkt der Umlaufbahn eines Begleiters"
+          "shortDescr": "Der enternteste Punkt der Umlaufbahn eines Begleiters"
         },
         {
-          "elementid": "ATTR11",
+          "elementId": "ATTR11",
           "name": "Durchmesser",
           "mandatory": False,
           "domainid": "DOMA2",
-          "displayseq": 2,
+          "displaySeq": 2,
           "description": "Der Durchmesser kann in 3 Werten angegeben werden. (Pol-, \u00c4quator- und mittlerer Durchmesser)",
-          "shortdescr": "Durchmesser der Kugel eines grossen Objektes",
+          "shortDescr": "Durchmesser der Kugel eines grossen Objektes",
           "examples": [
             "6112 km"
           ],
           "descriptive": True
         },
         {
-          "elementid": "ATTR12",
+          "elementId": "ATTR12",
           "name": "Entdeckungsjahr",
           "mandatory": False,
           "domainid": "DOMA3",
-          "displayseq": 7,
+          "displaySeq": 7,
           "description": "Jahr, in dem dieser Begleiter entdeckt wurde.",
           "examples": [
             "1752",
@@ -1338,11 +1338,11 @@ class MyTestCase(unittest.TestCase):
           ]
         },
         {
-          "elementid": "ATTR13",
+          "elementId": "ATTR13",
           "name": "mittlerer Abstand",
           "mandatory": False,
           "domainid": "DOMA4",
-          "displayseq": 4,
+          "displaySeq": 4,
           "description": "Mittlerer Abstand des Himmelsk\u00f6rpers vom Mutterobjekt. W\u00e4re der Kreisradius, wenn die Umlaufbahn kreisf\u00f6rmig w\u00e4re.",
           "examples": [
             "1 AE",
@@ -1352,11 +1352,11 @@ class MyTestCase(unittest.TestCase):
           "descriptive": True
         },
         {
-          "elementid": "ATTR14",
+          "elementId": "ATTR14",
           "name": "Name",
           "mandatory": False,
           "domainid": "DOMA23",
-          "displayseq": 1,
+          "displaySeq": 1,
           "examples": [
             "(Erd-)Mond",
             "Phobos",
@@ -1372,20 +1372,20 @@ class MyTestCase(unittest.TestCase):
           "descriptive": True
         },
         {
-          "elementid": "ATTR15",
+          "elementId": "ATTR15",
           "name": "Perihel",
           "mandatory": False,
           "domainid": "DOMA4",
-          "displayseq": 5,
+          "displaySeq": 5,
           "description": "Der n\u00e4chste Punkt der Umlaufbahn eines Begleiters um sein Mutterobjekt.\n\nDie kleine Halbachse der Ellipse",
-          "shortdescr": "Der am n\u00e4chsten liegende Punkt der Umlaufbahn eines Begleiters"
+          "shortDescr": "Der am n\u00e4chsten liegende Punkt der Umlaufbahn eines Begleiters"
         },
         {
-          "elementid": "ATTR16",
+          "elementId": "ATTR16",
           "name": "Umlaufdauer",
           "mandatory": False,
           "domainid": "DOMA5",
-          "displayseq": 3,
+          "displaySeq": 3,
           "description": "Zeit die ein Begleiter braucht um das Mutterobjekt zu umkreisen. (Wert + Zeiteinheit)",
           "examples": [
             "1 Jahr",
@@ -1404,11 +1404,11 @@ class MyTestCase(unittest.TestCase):
   ],
   "Relations": [
     {
-      "elementid": "RELA8",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA8",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI7",
-        "assoctext": {
+        "entityId": "ENTI7",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1416,22 +1416,22 @@ class MyTestCase(unittest.TestCase):
         "mandatory": True
       },
       "bwd": {
-        "entityid": "ENTI1",
-        "assoctext": {
+        "entityId": "ENTI1",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": True,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA9",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA9",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI7",
-        "assoctext": {
+        "entityId": "ENTI7",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1439,22 +1439,22 @@ class MyTestCase(unittest.TestCase):
         "mandatory": True
       },
       "bwd": {
-        "entityid": "ENTI2",
-        "assoctext": {
+        "entityId": "ENTI2",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": True,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA10",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA10",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI7",
-        "assoctext": {
+        "entityId": "ENTI7",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1462,22 +1462,22 @@ class MyTestCase(unittest.TestCase):
         "mandatory": True
       },
       "bwd": {
-        "entityid": "ENTI4",
-        "assoctext": {
+        "entityId": "ENTI4",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": True,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA11",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA11",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI7",
-        "assoctext": {
+        "entityId": "ENTI7",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1485,22 +1485,22 @@ class MyTestCase(unittest.TestCase):
         "mandatory": True
       },
       "bwd": {
-        "entityid": "ENTI5",
-        "assoctext": {
+        "entityId": "ENTI5",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": True,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA12",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA12",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI7",
-        "assoctext": {
+        "entityId": "ENTI7",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1508,22 +1508,22 @@ class MyTestCase(unittest.TestCase):
         "mandatory": True
       },
       "bwd": {
-        "entityid": "ENTI6",
-        "assoctext": {
+        "entityId": "ENTI6",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": True,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA1",
-      "relationtype": "M:1",
+      "elementId": "RELA1",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI5",
-        "assoctext": {
+        "entityId": "ENTI5",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1531,14 +1531,14 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI5",
-        "assoctext": {
+        "entityId": "ENTI5",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
         "cardinality": "1",
         "mandatory": False,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "examples": [
         "Remus umkreist Sylvia",
@@ -1546,11 +1546,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "RELA2",
-      "relationtype": "M:1",
+      "elementId": "RELA2",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI2",
-        "assoctext": {
+        "entityId": "ENTI2",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1558,14 +1558,14 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI1",
-        "assoctext": {
+        "entityId": "ENTI1",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
         "cardinality": "1",
         "mandatory": False,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "examples": [
         "Triton umkreisst Neptun",
@@ -1575,11 +1575,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "RELA3",
-      "relationtype": "M:1",
+      "elementId": "RELA3",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI3",
-        "assoctext": {
+        "entityId": "ENTI3",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1587,8 +1587,8 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI2",
-        "assoctext": {
+        "entityId": "ENTI2",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
@@ -1603,11 +1603,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "RELA4",
-      "relationtype": "M:1",
+      "elementId": "RELA4",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI3",
-        "assoctext": {
+        "entityId": "ENTI3",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1615,8 +1615,8 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI6",
-        "assoctext": {
+        "entityId": "ENTI6",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
@@ -1628,11 +1628,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "RELA5",
-      "relationtype": "M:1",
+      "elementId": "RELA5",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI3",
-        "assoctext": {
+        "entityId": "ENTI3",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1640,8 +1640,8 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI4",
-        "assoctext": {
+        "entityId": "ENTI4",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
@@ -1653,11 +1653,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "RELA6",
-      "relationtype": "M:1",
+      "elementId": "RELA6",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI3",
-        "assoctext": {
+        "entityId": "ENTI3",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1665,14 +1665,14 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI5",
-        "assoctext": {
+        "entityId": "ENTI5",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
         "cardinality": "1",
         "mandatory": False,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "examples": [
         "Ida umkreist Sonne",
@@ -1680,11 +1680,11 @@ class MyTestCase(unittest.TestCase):
       ]
     },
     {
-      "elementid": "RELA7",
-      "relationtype": "M:1",
+      "elementId": "RELA7",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI4",
-        "assoctext": {
+        "entityId": "ENTI4",
+        "assocText": {
           "de": "umkreist von",
           "en": "orbited by"
         },
@@ -1692,14 +1692,14 @@ class MyTestCase(unittest.TestCase):
         "mandatory": False
       },
       "bwd": {
-        "entityid": "ENTI1",
-        "assoctext": {
+        "entityId": "ENTI1",
+        "assocText": {
           "de": "umkreist",
           "en": "orbits"
         },
         "cardinality": "1",
         "mandatory": False,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "examples": [
         "Charon umkreist Pluto"
@@ -1708,14 +1708,14 @@ class MyTestCase(unittest.TestCase):
   ],
   "BusinessRules": [
     {
-      "elementid": "BURU3",
+      "elementId": "BURU3",
       "restrictedElements": [
         "ENTI5"
       ],
       "description": "Ein Asteriod umkreist immer genau einen Stern oder einen Asteroiden (aber nicht sich selbst)"
     },
     {
-      "elementid": "BURU4",
+      "elementId": "BURU4",
       "restrictedElements": [
         "ENTI1"
       ],

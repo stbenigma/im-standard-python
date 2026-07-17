@@ -26,7 +26,7 @@ modeldiags = dict()
 
 
 def entiidbyname(name):
-    nameid = {elem["shortname"]: lkey for lkey, elem in modelenties.items()}
+    nameid = {elem["shortName"]: lkey for lkey, elem in modelenties.items()}
     retval = nameid[name]
     return retval
 

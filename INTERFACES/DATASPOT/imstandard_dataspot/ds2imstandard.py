@@ -55,15 +55,15 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             entiid = enti.getid()
             keyelements = []
             for attr in self.standardjson.getelementinstances("Attributes"):
-                if attr["parentid"] == entiid:
+                if attr["parentId"] == entiid:
                     origattr = self.getelementbyid(elements=self.dsmodels.attributes,
                                                    elemid=attr.getid())
                     if origattr.get("identifying"):
                         keyelements.append(attr.getid())
             # find relationships with keys
             for rela in self.standardjson.getelementinstances("Relations"):
-                if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
-                        or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
+                if ((entiid == rela["fwd"].get("entityId") and rela["fwd"].get("cardinality") == "1")
+                        or (entiid == rela["bwd"].get("entityId") and rela["bwd"].get("cardinality") == "1")):
                     origrela = self.getelementbyid(elements=self.dsmodels.relationships,
                                                    elemid=rela.getid())
                     # generated relations (subtypes) have no original
@@ -85,7 +85,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         # for dataspot mark entites as favorites
         additionalprops["favorite"] = element.get("favorite")
         additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
-        elementi = JsonElement().entityjson(elementid=element.get("ID"),
+        elementi = JsonElement().entityjson(elementId=element.get("ID"),
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
                                                                      addprops=additionalprops),
@@ -160,10 +160,10 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             domaname=custom_split(domainname, "/")[-1])
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["order", "cardinality", "required",
-                                                            "temporal", "MULTILINGUAL", "identifying"])
+                                                            "temporal", "multilingual", "identifying"])
         # "computation",
         additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
-        elemattr = JsonElement().attributejson(elementid=element.get("ID"),
+        elemattr = JsonElement().attributejson(elementId=element.get("ID"),
                                                name=self.mutlilangvalue(fieldname="label",
                                                                         value=self._deref(element.get("label")),
                                                                         addprops=additionalprops),
@@ -183,7 +183,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                descriptive=element.get("favorite"),
                                                historicised=element.get("temporal"),
                                                repeated=True if element.get("cardinality") == "MANY" else None,
-                                               translated=element.get("MULTILINGUAL"),
+                                               translated=element.get("multilingual"),
                                                additionalProps=additionalprops
                                                )
 
@@ -201,12 +201,12 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             sourcepath = self.addmodeltonamedreference(namedref=elem.get("usageOf"),
                                                        modelname=elem.get("DSMODEL"))
 
-            sourceelement = self.findqualielement(fullpath=sourcepath)
-            if sourceelement is None:
-                sourceelementid = sourcepath
+            sourceElement = self.findqualielement(fullpath=sourcepath)
+            if sourceElement is None:
+                sourceElementid = sourcepath
             else:
-                sourceelementid = sourceelement.getid()
-            usages.append(sourceelementid)
+                sourceElementid = sourceElement.getid()
+            usages.append(sourceElementid)
         return usages
 
     def generatediagrams(self, status=None):
@@ -218,7 +218,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                    specialkeys=[])
             elems = [r for r in self.dsmodels.diagelements.values() if r.get("usedBy") == diag.get("label")]
             self.standardjson.addelementinstance(name="Diagrams",
-                                                 val=JsonElement().diagramjson(elementid=diag.get("ID"),
+                                                 val=JsonElement().diagramjson(elementId=diag.get("ID"),
                                                                                name=diag.get("label"),
                                                                                # position=dict()=,
                                                                                # size=,
@@ -249,9 +249,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
             # add derivation to found element
             if sourcedomain is None:
-                sourceelementid = mapping.get("derivedFrom")
+                sourceElementid = mapping.get("derivedFrom")
             else:
-                sourceelementid = sourcedomain.getid()
+                sourceElementid = sourcedomain.getid()
 
             additionalprops = self.additionalprops(elem=mapping,
                                                    specialkeys=["mapsTo",
@@ -260,9 +260,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
             self.standardjson.addelementinstance(name="Mappings",
                                                  val=JsonElement().mappingjson
-                                                 (derivationtype=mapping.get("qualifier"),
+                                                 (derivationType=mapping.get("qualifier"),
                                                   targetdomain=targetdomain.getid(),
-                                                  sourcedomain=sourceelementid,
+                                                  sourcedomain=sourceElementid,
                                                   valuemappings=self.valuemappings
                                                   (rules=[r for r in self.dsmodels.translations.values()
                                                           if r.get('translationIn') == mapping.get("label")]),
@@ -341,7 +341,7 @@ def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
     if outfilepath.is_dir():
         # add filename
         outfilepath = outfilepath / (
-                jsonstruct.get("ModelInfo", dict()).get("modelname", "whatever") + "-standard.json")
+                jsonstruct.get("ModelInfo", dict()).get("modelName", "whatever") + "-standard.json")
     with open(outfilepath, 'w') as outfile:
         json.dump(jsonstruct, outfile, indent=2)
 

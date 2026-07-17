@@ -3,10 +3,10 @@ import logging
 import re
 import unicodedata
 
-from IM_STANDARD import nvl
+from IM_STANDARD import nvl,StandardJsonModel
 
 """
-    generate a json-schema and a json-sample file of a standard information model json file
+    generate a json-schema and a json-sample file out of a standard model json file
     assume jsonstruct is validated against the standard IM schema
 """
 
@@ -86,7 +86,7 @@ class Json2JsonSchema:
         return self.addobject(entry=entry, subcat="schemas", **kwargs)
 
     def getobject(self, objtype, objid):
-        objs = [o for o in self.jsstruct.get(objtype) if o.get("elementid") == objid]
+        objs = [o for o in self.jsstruct.get(objtype) if o.get("elementId") == objid]
         if len(objs) == 1:
             return objs[0]
         else:
@@ -94,11 +94,11 @@ class Json2JsonSchema:
             return None
 
     def getmainlang(self):
-        return self.jsstruct.get("ModelInfo").get("mainlanguage", "en")
+        return self.jsstruct.get("ModelInfo").get("mainLanguage", "en")
 
     @property
     def isassetmodel(self):
-        return self.jsstruct.get("ModelInfo").get("modeltype")=="Asset model"
+        return self.jsstruct.get("ModelInfo").get("modelType")=="Asset model"
 
     def getmlvalue(self, struct):
         if type(struct) == str:
@@ -176,23 +176,23 @@ class Json2JsonSchema:
         enum = None
         properties = None
         required = None
-        if doma.get("domaintype") == "TextDomain":
+        if doma.get("domainType") == "TextDomain":
             objtype = "string"
-        elif doma.get("domaintype") == "GroupDomain":
+        elif doma.get("domainType") == "GroupDomain":
             objtype = "object"
             properties, mandatory = self.getattributes(doma)
             required = []
-        elif doma.get("domaintype") == "BooleanDomain":
+        elif doma.get("domainType") == "BooleanDomain":
             objtype = "boolean"
-        elif doma.get("domaintype") == "LOVDomain":
+        elif doma.get("domainType") == "LOVDomain":
             objtype = "string"
             enum = [v.get("value") for v in doma.get("values", list())]
-        elif doma.get("domaintype") == "NumericDomain":
-            if doma.get("fractdigits", 0) == 0:
+        elif doma.get("domainType") == "NumericDomain":
+            if doma.get("fractDigits", 0) == 0:
                 objtype = "integer"
             else:
                 objtype = "decimal"
-        elif doma.get("domaintype") == "DatetimeDomain":
+        elif doma.get("domainType") == "DatetimeDomain":
             objtype = "string"
             if doma.get("granularity") in ("DAY"):
                 lformat = "date"
@@ -201,7 +201,7 @@ class Json2JsonSchema:
                 lformat = "date-time"
         else:
             objtype = "???"
-            logging.warning(f"datatype '{doma.get('domaintype')}' not yet handled")
+            logging.warning(f"datatype '{doma.get('domainType')}' not yet handled")
         domaref = self.setdefsobject(entry=domaname,
                                      description=doma.get("description"),
                                      _id=self.getid(doma),
@@ -231,8 +231,8 @@ class Json2JsonSchema:
         attributes = dict()
         mandatory = []
         attrs=[c for c in self.jsstruct.get("Attributes", list()) \
-                     if c.get("parentid") == enti.get("elementid")]
-        attrs.sort(key=lambda x:x.get("displayseq",9999))
+                     if c.get("parentId") == enti.get("elementId")]
+        attrs.sort(key=lambda x:x.get("displaySeq",9999))
         for attr in attrs:
             objname = initLower(self.getname(attr))
 
@@ -277,8 +277,8 @@ class Json2JsonSchema:
     def getderivations(self, enti):
         refs = []
         for ref in [c for c in self.jsstruct.get("Derivations", list())
-                    if c.get("targetelement") == enti.get("elementid")]:
-            refs.append(ref.get("sourceelement"))
+                    if c.get("targetElement") == enti.get("elementId")]:
+            refs.append(ref.get("sourceElement"))
         return list(set(refs))
 
     def getroles(self, enti):
@@ -286,21 +286,21 @@ class Json2JsonSchema:
         # TODO return mandatory as well (similar in getattributes)
         # TODO protect arc with oneOf
         for rela in [c for c in self.jsstruct.get("Relations", list())
-                     if c.get("relationtype") == "ROLE"]:
+                     if c.get("relationType") == "ROLE"]:
             fwd, bwd = rela.get("fwd"), rela.get("bwd")
-            if fwd.get("entityid") == enti.get("elementid") and \
+            if fwd.get("entityId") == enti.get("elementId") and \
                     fwd.get("mandatory"):
-                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityid"))
-                roles.append(self.notnulldict(description=f"{self.getmlvalue(fwd.get('assoctext'))} " + \
+                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityId"))
+                roles.append(self.notnulldict(description=f"{self.getmlvalue(fwd.get('assocText'))} " + \
                                                           f"{self.getmlvalue(otherenti.get('name'))} ",
                                               _id=self.getid(rela),
                                               type={"$ref": self.entiref(enti=otherenti)}
                                               )
                              )
-            elif bwd.get("entityid") == enti.get("elementid") and \
+            elif bwd.get("entityId") == enti.get("elementId") and \
                     bwd.get("mandatory"):
-                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityid"))
-                roles.append(self.notnulldict(description=f"{self.getmlvalue(bwd.get('assoctext'))} " + \
+                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityId"))
+                roles.append(self.notnulldict(description=f"{self.getmlvalue(bwd.get('assocText'))} " + \
                                                           f"{self.getmlvalue(otherenti.get('name'))} ",
                                               _id=self.getid(rela),
                                               type={"$ref": self.entiref(enti=otherenti)}
@@ -314,21 +314,21 @@ class Json2JsonSchema:
         # TODO return mandatory as well (similar in getattributes)
         # TODO protect arc with oneOf
         for rela in [c for c in self.jsstruct.get("Relations", list())
-                     if c.get("relationtype") == "SUBTYPE"]:
+                     if c.get("relationType") == "SUBTYPE"]:
             fwd, bwd = rela.get("fwd"), rela.get("bwd")
-            if fwd.get("entityid") == enti.get("elementid") and \
-                    bwd.get("arcnumber") is not None:
-                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityid"))
-                subtypes.append(self.notnulldict(description=f"{self.getmlvalue(fwd.get('assoctext'))} " + \
+            if fwd.get("entityId") == enti.get("elementId") and \
+                    bwd.get("arcNumber") is not None:
+                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityId"))
+                subtypes.append(self.notnulldict(description=f"{self.getmlvalue(fwd.get('assocText'))} " + \
                                                              f"{self.getmlvalue(otherenti.get('name'))} ",
                                                  _id=self.getid(rela),
                                                  type={"$ref": self.entiref(enti=otherenti)}
                                                  )
                                 )
-            elif bwd.get("entityid") == enti.get("elementid") and \
-                    fwd.get("arcnumber") is not None:
-                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityid"))
-                subtypes.append(self.notnulldict(description=f"{self.getmlvalue(bwd.get('assoctext'))} " + \
+            elif bwd.get("entityId") == enti.get("elementId") and \
+                    fwd.get("arcNumber") is not None:
+                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityId"))
+                subtypes.append(self.notnulldict(description=f"{self.getmlvalue(bwd.get('assocText'))} " + \
                                                              f"{self.getmlvalue(otherenti.get('name'))} ",
                                                  _id=self.getid(rela),
                                                  type={"$ref": self.entiref(enti=otherenti)}
@@ -337,9 +337,9 @@ class Json2JsonSchema:
         return subtypes
 
     def getM2Nrelations(self,enti):
-        for rela in [c for c in self.jsstruct.get("Relations", list()) if c.get("relationtype") in ("M:N")]:
+        for rela in [c for c in self.jsstruct.get("Relations", list()) if c.get("relationType") in ("M:N")]:
 
-            logging.warning(f"Relations of type {rela.get('relationtype')} not yet implemented")
+            logging.warning(f"Relations of type {rela.get('relationType')} not yet implemented")
         return None,None
 
     def getfunctionalrelations(self, enti):
@@ -351,27 +351,27 @@ class Json2JsonSchema:
         mandatory = []
         # TODO return mandatory as well (similar in getattributes)
         # TODO protect arc with oneOf
-        for rela in [c for c in self.jsstruct.get("Relations", list()) if c.get("relationtype") in ("M:1","1:1")]:
+        for rela in [c for c in self.jsstruct.get("Relations", list()) if c.get("relationType") in ("M:1","1:1")]:
             fwd, bwd = rela.get("fwd"), rela.get("bwd")
-            if fwd.get("entityid") == enti.get("elementid") and \
+            if fwd.get("entityId") == enti.get("elementId") and \
                     fwd.get("cardinality") == '1' and \
                     bwd.get("cardinality") in ('M','1'):
-                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityid"))
-                relaname=self.getrelaname(assoc=self.getmlvalue(fwd.get('assoctext')),
+                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityId"))
+                relaname=self.getrelaname(assoc=self.getmlvalue(fwd.get('assocText')),
                                          entiname=self.getmlvalue(otherenti.get('name')))
-                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(fwd.get('assoctext'))} " + \
+                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(fwd.get('assocText'))} " + \
                                                  f"{self.getmlvalue(otherenti.get('name'))} ",
                                      _id=self.getid(rela),
                                      type={"$ref": self.entiref(enti=otherenti)}
                                      )
                 if fwd.get("mandatory") : mandatory.append(relaname)
-            elif bwd.get("entityid") == enti.get("elementid") and \
+            elif bwd.get("entityId") == enti.get("elementId") and \
                     bwd.get("cardinality") == '1' and \
                     fwd.get("cardinality") == 'M':
-                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityid"))
-                relaname=self.getrelaname(assoc=self.getmlvalue(bwd.get('assoctext')),
+                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityId"))
+                relaname=self.getrelaname(assoc=self.getmlvalue(bwd.get('assocText')),
                                          entiname=self.getmlvalue(otherenti.get('name')))
-                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(bwd.get('assoctext'))} " + \
+                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(bwd.get('assocText'))} " + \
                                                  f"{self.getmlvalue(otherenti.get('name'))} ",
                                      _id=self.getid(rela),
                                      type={"$ref": self.entiref(enti=otherenti)}
@@ -389,15 +389,15 @@ class Json2JsonSchema:
         mandatory = []
         # TODO return mandatory as well (similar in getattributes)
         # TODO protect arc with oneOf
-        for rela in [c for c in self.jsstruct.get("Relations", list()) if c.get("relationtype") in ("M:1","1:1")]:
+        for rela in [c for c in self.jsstruct.get("Relations", list()) if c.get("relationType") in ("M:1","1:1")]:
             fwd, bwd = rela.get("fwd"), rela.get("bwd")
-            if fwd.get("entityid") == enti.get("elementid") and \
+            if fwd.get("entityId") == enti.get("elementId") and \
                     fwd.get("cardinality") in ('M','1') and \
                     bwd.get("cardinality") in ('1'):
-                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityid"))
-                relaname=self.getrelaname(assoc=self.getmlvalue(fwd.get('assoctext')),
+                otherenti = self.getobject(objtype="Entities", objid=bwd.get("entityId"))
+                relaname=self.getrelaname(assoc=self.getmlvalue(fwd.get('assocText')),
                                          entiname=self.getmlvalue(otherenti.get('name')))
-                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(fwd.get('assoctext'))} " + \
+                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(fwd.get('assocText'))} " + \
                                                  f"{self.getmlvalue(otherenti.get('name'))} ",
                                      _id=self.getid(rela),
                                      **self.refobject(objref=self.entiref(enti=otherenti),
@@ -405,13 +405,13 @@ class Json2JsonSchema:
                                                           minitems=1 if fwd.get("mandatory") else None)
                                      )
                 if fwd.get("mandatory") : mandatory.append(relaname)
-            elif bwd.get("entityid") == enti.get("elementid") and \
+            elif bwd.get("entityId") == enti.get("elementId") and \
                     bwd.get("cardinality") == ('M','1') and \
                     fwd.get("cardinality") == '1':
-                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityid"))
-                relaname=self.getrelaname(assoc=self.getmlvalue(bwd.get('assoctext')),
+                otherenti = self.getobject(objtype="Entities", objid=fwd.get("entityId"))
+                relaname=self.getrelaname(assoc=self.getmlvalue(bwd.get('assocText')),
                                          entiname=self.getmlvalue(otherenti.get('name')))
-                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(bwd.get('assoctext'))} " + \
+                fkattrs[relaname] = self.notnulldict(description=f"{self.getmlvalue(bwd.get('assocText'))} " + \
                                                  f"{self.getmlvalue(otherenti.get('name'))} ",
                                      _id=self.getid(rela),
                                      **self.refobject(objref=self.entiref(enti=otherenti),
@@ -508,12 +508,12 @@ class Json2JsonSchema:
         children = dict()
         # catgchildren
         for catgchild in [c for c in self.jsstruct.get("Categories", list()) \
-                          if c.get("categorytype") == "ENTITY" and \
-                             c.get("categoryid") == catg.get("elementid")]:
+                          if c.get("categoryType") == "ENTITY" and \
+                             c.get("categoryId") == catg.get("elementId")]:
             self.addcategory(dest=children, catg=catgchild)
         # entichildren
         for entichild in [c for c in self.jsstruct.get("Entities", list()) \
-                          if c.get("categoryid") == catg.get("elementid")]:
+                          if c.get("categoryId") == catg.get("elementId")]:
             refenti = self.addentity(enti=entichild)
             refobject= self.refobject(refenti,
                                       singleobj=False,
@@ -540,8 +540,8 @@ class Json2JsonSchema:
             logging.error(f"'ModelInfo' not found in structure")
             modelinfo = dict()
 
-        self.modelname = modelinfo.get("modelname", '???')
-        self.modelversion = modelinfo.get("modelversion", '0.0')
+        self.modelname = modelinfo.get("modelName", '???')
+        self.modelversion = modelinfo.get("modelVersion", '0.0')
 
         self.explstruct=dict()
         self.jsschemastruct = self.notnulldict(
@@ -577,7 +577,7 @@ class Json2JsonSchema:
                 self.fillentity(enti=enti)
         elif collection is not None:
             for catg in [catg for catg in self.jsstruct.get("Categories", list()) \
-                         if catg.get("categorytype") == "ENTITY" and
+                         if catg.get("categoryType") == "ENTITY" and
                             collection in (self.getname(catg),
                                            self.getmlvalue(catg.get("name")
                                                            )
@@ -588,8 +588,8 @@ class Json2JsonSchema:
             # no restriction, fill all elements from model
             # they start with collections
             self.fillmodel(catgs=[catg for catg in self.jsstruct.get("Categories", list()) \
-                                  if catg.get("categorytype") == "ENTITY" and
-                                  catg.get("categoryid") is None
+                                  if catg.get("categoryType") == "ENTITY" and
+                                  catg.get("categoryId") is None
                                   ])
 
         for enti in [c for c in self.jsstruct.get("Entities", list()) \
@@ -681,13 +681,13 @@ def generatejsonschema(jsonfilepath=None,
 
     jsexample=JsonExample(jsschema).generateexamples()
     if outfilepath is not None:
-        with open(outfilepath, "w") as outfile:
-            json.dump(jsschema, outfile, indent=2)
-            print(f"Schema json written:\n   {outfilepath}")
+        StandardJsonModel.dumpjsonfile(struct=jsschema,
+                                       path=outfilepath,
+                                       verbose=True)
     if examplepath is not None:
-        with open(examplepath, "w") as outfile:
-            json.dump(jsexample, outfile, indent=2)
-            print(f"Sample json written:\n   {examplepath}")
+        StandardJsonModel.dumpjsonfile(struct=jsexample,
+                                       path=examplepath,
+                                       verbose=True)
 
 
     return jsschema,jsexample

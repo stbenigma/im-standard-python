@@ -66,7 +66,7 @@ class DSIMElement():
         self._dm = None  # not yet found
         self._tenant = tenant
         assert self._tenant is not None or self.elemtype == "Tenant"
-        self._modelid = kwargs.get("modelid")
+        self._modelid = kwargs.get("modelId")
         self._parentid = kwargs.get("childid")
         self._source = kwargs.get("source")
         if self._source is None and self._tenant is not None:

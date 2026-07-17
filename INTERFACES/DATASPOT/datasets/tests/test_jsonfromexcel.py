@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         outfilepath=Path(self.mydebugpath) / (self.astronomietestexcelpath.stem + "-dataset.json")
         with open(outfilepath, "w") as outfile:
             json.dump(outjson, outfile, indent=2)
-
+            print (f"json written to {str(outfilepath)}")
         return
 
 if __name__ == '__main__':

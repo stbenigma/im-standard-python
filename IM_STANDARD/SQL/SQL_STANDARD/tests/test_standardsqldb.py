@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from IM_STANDARD.SQL import SqliteDb, DbDML, StandardSqlModel,dbval
+from IM_STANDARD.SQL import SqliteDb, StandardModelDb,dbval
 
 
 class Test_standardsqldb(unittest.TestCase):
@@ -19,15 +19,13 @@ class Test_standardsqldb(unittest.TestCase):
         return
 
     def _createdb(self):
-        self.basedb = SqliteDb()
-        mydb = DbDML(connection=self.basedb.connection)
-        StandardSqlModel.createimstandarddb(db=mydb)
+        mydb=StandardModelDb(sqlitedb=SqliteDb(), withsqlmodel=True)
         return mydb
 
     def test_emptystandarddb(self):
         mydb = self._createdb()
-        self.basedb.writedbtofile(filepath=self.mydebugpath / "testemptydb.db")
-        self.assertEqual(17, len(mydb.gettablelist()))
+        mydb.writedbtofile(filepath=self.mydebugpath / "testemptydb.db")
+        self.assertEqual(18, len(mydb.gettablelist()))
         self.assertTrue("entities" in mydb.gettablelist())
         return
 
@@ -51,18 +49,18 @@ class Test_standardsqldb(unittest.TestCase):
                        mode_id=1003,mode_type="ENTI",
                         mode_modl_id=modlidtest, mode_dc=1,mode_uc=1)
 
-        with self.assertRaises(mydb.CHECK_VIOLATED):
+        with self.assertRaises(SqliteDb.CHECK_VIOLATED):
             mydb.rowinsert(tablename="modelelements",
                        mode_id=7778,mode_type="BURU",
                            mode_modl_id=None,mode_dc=1,mode_uc=1)
 
-        with self.assertRaises(mydb.FK_VIOLATED):
+        with self.assertRaises(SqliteDb.FK_VIOLATED):
             mydb.rowinsert(tablename="models",modl_name="testfalsch",
                        modl_id=7777,modl_type="IM")
-        with self.assertRaises(mydb.UK_VIOLATED):
+        with self.assertRaises(SqliteDb.UK_VIOLATED):
             mydb.rowinsert(tablename="models",modl_name="test",
                        modl_id=modeidmodel,modl_type="IM")
-        with self.assertRaises(mydb.CHECK_VIOLATED):
+        with self.assertRaises(SqliteDb.CHECK_VIOLATED):
             # check recursive
             mydb.rowinsert(tablename="modelelements",
                            mode_type="MODL",

@@ -22,7 +22,7 @@ class System2Json():
     def systemjson(self, element):
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["subsystemOf"])
-        jsonstruct = JsonElement().systemjson(elementid=element.get("ID"),
+        jsonstruct = JsonElement().systemjson(elementId=element.get("ID"),
                                                   name=self.mutlilangvalue(fieldname="label",
                                                                            value=self._deref(element.get("label")),
                                                                            addprops=additionalprops),

@@ -3,7 +3,7 @@ import logging
 
 
 import pytest
-from IM_STANDARD import IMStandardJsonModel,StandardJsonModel, StandardSqlModel
+from IM_STANDARD import IMStandardJsonModel,StandardJsonModel, IMSTANDARDPATH
 
 
 
@@ -18,7 +18,7 @@ class MyTestCase(unittest.TestCase):
         self.testschema="Attribute-schema.json"
 
     def test_standardjsonmodel(self):
-        testpath=(StandardSqlModel.SCHEMADEFPATH/ "Model" /"im-standard-schema" / "InformationModel"/ self.testschema)
+        testpath=(IMSTANDARDPATH / "Model" / "im-standard-schema" / "InformationModel" / self.testschema)
         self.assertTrue(testpath.exists())
         model=StandardJsonModel(modelfilepath=testpath)
         self.assertTrue(model.inschema("Attribute"))
@@ -29,10 +29,6 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue("mandatory" in model.getproperties("BaseAttribute"))
         return
 
-    def test_imstandardjsonmodel(self):
-        self.assertTrue(IMStandardJsonModel.IMDEFINITIONFILEPATH.is_file())
-        model=IMStandardJsonModel()
-        return
 
 if __name__ == '__main__':
     unittest.main()

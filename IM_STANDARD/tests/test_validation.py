@@ -8,7 +8,7 @@ class MyTestCase(unittest.TestCase):
     def test_pureschema(self):
         jsonschema = {
             "$id": "Attribute-schema.json",
-            "$schema": "https://json-schema.org/draft-07/schema",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
             "description": ""
         }
         jsonvalidation.validate_json_as_schema(schema=jsonschema)

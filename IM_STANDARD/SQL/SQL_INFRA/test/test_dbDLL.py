@@ -6,7 +6,7 @@ import logging
 
 from IM_STANDARD.SQL.SQL_INFRA import SqliteDb,DbDDL
 
-def  createtable(conn:sqlite3.Connection,withfk=True):
+def  createtable(ddldb:DbDDL,withfk=True):
     """creates a test tabel (also used in test_dbDML"""
     tablename = "modelelement"
     tablename2="newtable"
@@ -34,9 +34,8 @@ def  createtable(conn:sqlite3.Connection,withfk=True):
                         REFERENCES modelelement (mode_id,model_col4)                        
                 """
     print (crtablesql + (fks if withfk else "")+";")
-    ddlconn=DbDDL(connection=conn)
-    ddlconn.execscript(sql=crtablesql + (fks if withfk else "")+");")
-    ddlconn.execscript(sql=crtable2 )
+    ddldb.execscript(sql=crtablesql + (fks if withfk else "")+");")
+    ddldb.execscript(sql=crtable2 )
     return [tablename,tablename2]
 
 class MyTestCase(unittest.TestCase):
@@ -53,16 +52,15 @@ class MyTestCase(unittest.TestCase):
         return
 
     def test_functions(self):
-        conn=SqliteDb().connection
+        sqldb=SqliteDb()
+        ddldb = DbDDL(sqlitedb=sqldb)
+        tablename=createtable(ddldb=ddldb)
 
-        tablename=createtable(conn=conn)
-
-        ddlconn=DbDDL(connection=conn)
-        tabs=ddlconn.gettablelist()
+        tabs=ddldb.gettablelist()
         self.assertEqual(2,len(tabs))
         self.assertEqual(tablename[0],tabs[0])
 
-        cols=ddlconn.getcolums(tablename=tablename[0])
+        cols=ddldb.getcolums(tablename=tablename[0])
         self.assertEqual(5,len(cols))
         self.assertTrue("mode_id" in cols)
         self.assertEqual(True,cols["mode_id"].get("inpk"))
@@ -72,13 +70,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual("2",cols["mode_col4"].get("default"))
         #print (json.dumps(cols["mode_id"],indent=2))
 
-        uks=ddlconn.getuklist(tablename=tablename[0])
+        uks=ddldb.getuklist(tablename=tablename[0])
         self.assertEqual(2,len(uks))
         self.assertEqual(1,len(list(uks[0].values())[0]))
         self.assertEqual(2,len(list(uks[1].values())[0]))
         #print(json.dumps(uks[1], indent=2))
 
-        fks=ddlconn.getfklist(tablename=tablename[0])
+        fks=ddldb.getfklist(tablename=tablename[0])
         self.assertEqual(2,len(fks))
         self.assertEqual(2,len(fks["fk-0"].get("from")))
         self.assertEqual("CASCADE",fks["fk-1"].get("on_delete"))

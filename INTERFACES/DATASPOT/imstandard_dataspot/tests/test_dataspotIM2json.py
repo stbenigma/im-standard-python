@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from INTERFACES.DATASPOT import exportIM2standard,Dataspot2IMJsonschema,exportIM2sqlstandard
-from IM_STANDARD import remove_key_from_json, IMStandardJsonModel
+from IM_STANDARD import remove_key_from_json, IMStandardJsonModel,validatestruct
 
 class Test_dataspot2im(unittest.TestCase):
     @pytest.fixture(autouse=True)
@@ -51,9 +51,9 @@ class Test_dataspot2im(unittest.TestCase):
                                        targetenv="Test",
                                        language="de",
                                        languages=["en"])
-        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a["parentid"].startswith("ENTI")])>5)
-        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a["parentid"].startswith("DOMA")])>5)
-        self.assertEqual(0,len([a for a in jsonstruct.get("Domains") if not a["elementid"].startswith("DOMA")]))
+        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a["parentId"].startswith("ENTI")])>5)
+        self.assertTrue(len([a for a in jsonstruct.get("Attributes") if a["parentId"].startswith("DOMA")])>5)
+        self.assertEqual(0,len([a for a in jsonstruct.get("Domains") if not a["elementId"].startswith("DOMA")]))
 
         attr=self.getelement(jsonstruct,"Attributes","Aphel")
         self.assertFalse(attr.get("descriptive"))
@@ -62,7 +62,7 @@ class Test_dataspot2im(unittest.TestCase):
 
         dauer=self.getelement(jsonstruct,"Attributes","Dauer")
         doma= self.getelement(jsonstruct,"Domains","Dezimalzahl")
-        self.assertEqual(dauer["domainid"],doma.get("elementid"))
+        self.assertEqual(dauer["domainid"],doma.get("elementId"))
         return
 
     def test_ds2im_astro(self):
@@ -76,19 +76,19 @@ class Test_dataspot2im(unittest.TestCase):
                                      )
 
         self.assertNotEqual(0, len(instance.get("Categories", [])))
-        self.assertEqual("GroupDomain", self.getelement(instance, "Domains", "Umlaufdauer")["domaintype"])
+        self.assertEqual("GroupDomain", self.getelement(instance, "Domains", "Umlaufdauer")["domainType"])
         dauer = self.getelement(instance, "Attributes", "Dauer")
         self.assertIsNotNone(dauer)
         dauer = self.getelement(instance, "Attributes", "Dauer")
         doma = self.getelement(instance, "Domains", "Dezimalzahl")
-        self.assertEqual(dauer.get("domainid"), doma.get("elementid"))
-        self.assertEqual("NumericDomain", doma["domaintype"])
+        self.assertEqual(dauer.get("domainid"), doma.get("elementId"))
+        self.assertEqual("NumericDomain", doma["domainType"])
 
         # check generated json
-        from IM_STANDARD import validateschema
-        errors = validateschema(instance=instance,
-                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
-                                verbose=True)
+        errors = validatestruct(struct=instance,
+                                basepath=IMStandardJsonModel.SCHEMADEFPATH,
+                                startschemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
+                                )
         if len(errors) > 0:
             print("\n".join(errors))
             self.assertTrue(False)
@@ -109,6 +109,32 @@ class Test_dataspot2im(unittest.TestCase):
 
                                         )
         return
+    def test_ds2im_dmp(self):
+        inpath = Path(__file__).parent / "dataspottestfiles" / "DMP-artefact" \
+                                                               ""
+        instance = exportIM2standard(inpath=inpath,
+                                     outpath=self.mydebugpath / "DMP-standard.json",
+                                     modelname="DMP-POC-sync",
+                                     modelversion='0.9',
+                                     targetenv="DMP",
+                                     language='en', languages=['de']
+                                     )
+
+        # check generated json
+        errors = validatestruct(struct=instance,
+                                basepath=IMStandardJsonModel.SCHEMADEFPATH,
+                                startschemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
+                                )
+        if len(errors) > 0:
+            print("\n".join(errors))
+
+        self.dumptodebug(filename=self.mydebugpath / "DMP-standard.json",
+                         jsonstruct=#remove_key_from_json(obj=instance,
+                                    #key_to_remove="additionalProps")
+                         instance)
+
+        return
+
 
     def test_ds2im_astro_assets(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "astronomie-assets"
@@ -164,8 +190,6 @@ class Test_dataspot2im(unittest.TestCase):
 
         return
 
-
-
     def test_ds2im_schwipsti_load(self):
         inpath = Path(__file__).parent / "dataspottestfiles" / "Schwipsti"
         dsschema = Dataspot2IMJsonschema(indirec=inpath)
@@ -188,7 +212,7 @@ class Test_dataspot2im(unittest.TestCase):
                                        targetenv="Test",
                                        language="de",
                                        languages=["en"])
-        categories2=[c for c in jsonstruct.get("Categories") if c.get("elementid") is not None]
+        categories2=[c for c in jsonstruct.get("Categories") if c.get("elementId") is not None]
         self.assertTrue(len(categories2)>0)
         derivations2=[c for c in jsonstruct.get("Derivations",[]) ]
         self.assertTrue(len(derivations2)>0)
@@ -197,7 +221,7 @@ class Test_dataspot2im(unittest.TestCase):
         self.assertTrue(len(mappings2[0].get("valuemappings",[]))>0)
         transformations2= [t for t in jsonstruct.get("Transformations",[]) if not t.get("is1to1")]
         for t in transformations2:
-            self.assertTrue(len(t.get("sourceelements"))!=1 or len(t.get("targetelements"))!=1)
+            self.assertTrue(len(t.get("sourceElements"))!=1 or len(t.get("targetElements"))!=1)
         return
 
     def test_ds2im_modelmodel(self):
@@ -214,8 +238,7 @@ class Test_dataspot2im(unittest.TestCase):
         # check generated json
         from IM_STANDARD import validateschema
         errors = validateschema(instance=instance,
-                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
-                                verbose=True)
+                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH)
         if len(errors) > 0:
             print("\n".join(errors))
             self.assertTrue(False)
@@ -287,8 +310,7 @@ class Test_dataspot2im(unittest.TestCase):
         # check generated json
         from IM_STANDARD import validateschema
         errors = validateschema(instance=instance,
-                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
-                                verbose=True)
+                                schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH)
         if len(errors) > 0:
             print("\n".join(errors))
             self.assertTrue(False)
@@ -313,8 +335,7 @@ class Test_dataspot2im(unittest.TestCase):
                     # check generated json
                     from IM_STANDARD import validateschema
                     errors = validateschema(instance=instance,
-                                            schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH,
-                                            verbose=True)
+                                            schemafile=IMStandardJsonModel.IMDEFINITIONFILEPATH)
                     if len(errors) > 0:
                         print (f"ERROR in {modeldir.name}")
                         print("\n".join(errors))

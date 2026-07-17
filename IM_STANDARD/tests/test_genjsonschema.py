@@ -50,10 +50,10 @@ class MyTestCase(unittest.TestCase):
     def test_generatejson_2(self):
         minimalmodel = {
             "ModelInfo": {
-                "modelname": "Testmodel",
-                "targetenvironment": "information model Test",
-                "modelversion": "0.1",
-                "modeltype": "Information Model"
+                "modelName": "Testmodel",
+                "targetEnvironment": "information model Test",
+                "modelVersion": "0.1",
+                "modelType": "Information Model"
             }
         }
 
@@ -71,7 +71,7 @@ class MyTestCase(unittest.TestCase):
 
         topelement = "Organisation"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="4U",
                                       collection=topelement,
                                       entitiy=None,
@@ -82,7 +82,7 @@ class MyTestCase(unittest.TestCase):
         self.caplog.clear()
         self.caplog.set_level(logging.WARNING)
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="4U",
                                       outfilepath=self.downloadpath / ("full4u" + "-schema.json")
                                       )
@@ -94,7 +94,7 @@ class MyTestCase(unittest.TestCase):
 
         topelement = "InformationModel"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="InformationModel",
                                       collection=None,
                                       entitie=None,
@@ -109,7 +109,7 @@ class MyTestCase(unittest.TestCase):
 
         topelement = "Schwipsti"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="Schwipsti",
                                       outfilepath=self.downloadpath / (topelement + "-schema.json")
                                       )
@@ -161,7 +161,7 @@ class MyTestCase(unittest.TestCase):
         if not testfile.exists(): self.skipTest(f"testfile not found")
         topelement = "MaterialDeclaration"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="chem-x",
                                       # collections=["MVP DMP"],
                                       collection=topelement,
@@ -169,24 +169,26 @@ class MyTestCase(unittest.TestCase):
                                       domain=None
                                       )
         print("\n".join([record.message for record in self.caplog.records if record.levelno == logging.WARNING]))
-        self.assertEqual("http://json-schema.org/draft-04/schema", jsschema.get("$schema"))
+        self.assertEqual("https://json-schema.org/draft/2020-12/schema", jsschema.get("$schema"))
         self.assertEqual("urn:chem-x:materialDeclaration:0.9#materialDeclaration", jsschema.get("urn"), )
         with open(self.downloadpath / (topelement + "-schema.json"), "w") as outfile:
             json.dump(jsschema, outfile, indent=2)
 
         topelement = "MVP DMP"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="chem-x",
                                       collection=topelement,
                                       entity=None
                                       )
         with open(self.downloadpath / (topelement + "-schema.json"), "w") as outfile:
             json.dump(jsschema, outfile, indent=2)
+        with open(self.downloadpath / (topelement + "-sample.json"), "w") as outfile:
+            json.dump(jsexample, outfile, indent=2)
 
         topelement = "MVP-DMP"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="chem-x",
                                       entity=topelement,
                                     outfilepath = self.downloadpath / (topelement + "-schema.json"),
@@ -202,7 +204,7 @@ class MyTestCase(unittest.TestCase):
 
         topelement = "Chemistry"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="chem-x",
                                       # collections=["MVP DMP"],
                                       collection=topelement,
@@ -210,14 +212,14 @@ class MyTestCase(unittest.TestCase):
                                       domain=None
                                       )
         print("\n".join([record.message for record in self.caplog.records if record.levelno == logging.WARNING]))
-        self.assertEqual("http://json-schema.org/draft-04/schema", jsschema.get("$schema"))
+        self.assertEqual("https://json-schema.org/draft/2020-12/schema", jsschema.get("$schema"))
         self.assertEqual("urn:chem-x:Chemistry:0.9#Chemistry", jsschema.get("urn"), )
         with open(self.downloadpath / (topelement + "-schema.json"), "w") as outfile:
             json.dump(jsschema, outfile, indent=2)
 
         topelement = "Substance"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="chem-x",
                                       entity=topelement
                                       )
@@ -228,7 +230,7 @@ class MyTestCase(unittest.TestCase):
         topelement = "Substance group"
         topelement = "Mixture substance"
         jsschema,jsexample = generatejsonschema(jsonfilepath=testfile,
-                                      _schema="http://json-schema.org/draft-04/schema",
+                                      _schema="https://json-schema.org/draft/2020-12/schema",
                                       nid="chem-x",
                                       # collections=["MVP DMP"],
                                       collection=None,

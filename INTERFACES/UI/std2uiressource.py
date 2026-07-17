@@ -176,7 +176,7 @@ class UiRessource(GenericUiRessource):
                         if samelink.get("srclink") is None:
                             # found category with same name but not yet an src link
                             # mark it as dataspot entiry
-                            samelink["elementid"] = self._structid(enti)
+                            samelink["elementId"] = self._structid(enti)
                             samelink["srclink"] = self._href(enti)
                         else:
                             logging.warning(f'entity name present with different dataspot link: {samelink.get("name")}')
@@ -210,7 +210,7 @@ class UiRessource(GenericUiRessource):
                         if samelink.get("srclink") is None:
                             # found realtioship with same name but not yet an src link
                             # mark it as dataspot entiry
-                            samelink["elementid"] = self._structid(rela)
+                            samelink["elementId"] = self._structid(rela)
                             samelink["srclink"] = self._href(rela)
                             samelink["dm"] = str(datetime.now())
                             samelink["um"] = "generated"
@@ -324,18 +324,18 @@ class UiRessource(GenericUiRessource):
         return dataflows
 
     def _getentity(self, entiid):
-        enti = [e for e in self.destentities if e.get("elementid") == entiid]
+        enti = [e for e in self.destentities if e.get("elementId") == entiid]
         return enti[0] if len(enti) == 1 else None
 
     def _getentity_dest(self, entiid, entiname=None):
         enti = [e for e in self._destjson.get("elements", {}).get("entities", [])
-                if e.get("elementid") == entiid or
+                if e.get("elementId") == entiid or
                 e.get("miroid") == entiid or
                 entiname == e.get("name")]
         return enti[0] if len(enti) == 1 else None
 
     def _structid(self, struct):
-        return struct.get("additionalProps", dict()).get("SOURCE-ID", struct.get("elementid"))
+        return struct.get("additionalProps", dict()).get("SOURCE-ID", struct.get("elementId"))
 
     def _href(self, struct):
         return struct.get("additionalProps", dict()).get("SOURCE-HREF")
@@ -349,17 +349,17 @@ class UiRessource(GenericUiRessource):
     def _relaendui(self, relaend, edge):
         edgeval = lambda d, v: v if d == "E" else 100 - v
         relaendui = self.relaendjson(
-            entityid=self._structid(self._getentity(relaend.get("entityid"))),
+            entityid=self._structid(self._getentity(relaend.get("entityId"))),
             edge=edge,
             position=50,
             connector=relaend.get("cardinality"),
             mandatory=relaend.get("mandatory"),
-            captiontext=self._mlvalue(value=relaend.get("assoctext")),
+            captiontext=self._mlvalue(value=relaend.get("assocText")),
             captionposition=edgeval("E", 15)
         )
 
-        if "arcnumber" in relaend:
-            relaendui["arc"] = {"no": relaend.get("arcnumber"),
+        if "arcNumber" in relaend:
+            relaendui["arc"] = {"no": relaend.get("arcNumber"),
                                 "position": edgeval("E", 5)}
         return relaendui
 
@@ -370,33 +370,33 @@ class UiRessource(GenericUiRessource):
         fwd = rela.get("fwd")
         bwd = rela.get("bwd")
         fwdname = fwd.get("entity") if "entity" in fwd else self._getentityname(
-            fwd.get("entityid"))  # depends what sourcejson
+            fwd.get("entityId"))  # depends what sourcejson
         bwdname = bwd.get("entity") if "entity" in bwd else self._getentityname(
-            bwd.get("entityid"))  # depends what sourcejson
-        fwdcaption = self._mlvalue(fwd.get("assoctext")) if "assoctext" in fwd else fwd.get("caption", {}).get("text")
+            bwd.get("entityId"))  # depends what sourcejson
+        fwdcaption = self._mlvalue(fwd.get("assocText")) if "assocText" in fwd else fwd.get("caption", {}).get("text")
         return f'{fwdname}->{fwdcaption}->{bwdname}'
 
     def _captions(self, fwd: dict, bwd: dict):
         captions = []
-        fwdarc = fwd.get("arcnumber")
+        fwdarc = fwd.get("arcNumber")
         startpos = 15
         endpos = 85
         if fwdarc:
             captions.append({"content": "/" * int(fwdarc), "position": startpos})
             startpos += 15
-        if self._mlvalue(bwd.get("assoctext")) in (None, ""):
+        if self._mlvalue(bwd.get("assocText")) in (None, ""):
             startpos = 50  # only one text
 
-        captions.append({"content": self._mlvalue(fwd.get("assoctext")), "position": startpos})
+        captions.append({"content": self._mlvalue(fwd.get("assocText")), "position": startpos})
 
-        bwdarc = bwd.get("arcnumber")
+        bwdarc = bwd.get("arcNumber")
         if bwdarc:
             captions.append({"content": "/" * int(bwdarc), "position": endpos})
             endpos -= 15
 
-        if self._mlvalue(bwd.get("assoctext")) not in (None, ""):
+        if self._mlvalue(bwd.get("assocText")) not in (None, ""):
             # two texts
-            captions.append({"content": self._mlvalue(bwd.get("assoctext")), "position": endpos})
+            captions.append({"content": self._mlvalue(bwd.get("assocText")), "position": endpos})
         return captions
 
     def _relationsui(self):
@@ -415,8 +415,8 @@ class UiRessource(GenericUiRessource):
                   }"""
                 relation = self.relajson(relaid=self._structid(rela),
                                          name=self._relaname(rela),
-                                         fromElement=self._structid(self._getentity(fwd.get("entityid"))),
-                                         toElement=self._structid(self._getentity(bwd.get("entityid"))),
+                                         fromElement=self._structid(self._getentity(fwd.get("entityId"))),
+                                         toElement=self._structid(self._getentity(bwd.get("entityId"))),
                                          startposition={"x": 50, "y": 100},
                                          endposition={"x": 0, "y": 50},
                                          captions=self._captions(fwd=fwd, bwd=bwd),
@@ -488,7 +488,7 @@ class UiRessource(GenericUiRessource):
         return
 
     def modeljson(self, modelid, name, **kwargs):
-        retval = {"elementid": modelid,
+        retval = {"elementId": modelid,
                   "name": name,
                   "type": "Entity"}
         for key, val in kwargs.items():
@@ -496,7 +496,7 @@ class UiRessource(GenericUiRessource):
         return retval
 
     def catgjson(self, catgid, name, ui, **kwargs):
-        retval = {"elementid": catgid,
+        retval = {"elementId": catgid,
                   "name": name,
                   "pos_x": kwargs.get("pos_x"),
                   "pos_y": kwargs.get("pos_y"),
@@ -507,7 +507,7 @@ class UiRessource(GenericUiRessource):
 
     def entijson(self, entityid, name, ui, **kwargs):
         retval = {
-            "elementid": entityid,
+            "elementId": entityid,
             "name": name
         }
         for key, val in kwargs.items():
@@ -521,7 +521,7 @@ class UiRessource(GenericUiRessource):
 
     def relajson(self, relaid, name, fwd, bwd, **kwargs):
         retval = {
-            "elementid": relaid,
+            "elementId": relaid,
             "name": name,
             "fwd": fwd,
             "bwd": bwd
@@ -549,7 +549,7 @@ class UiRessource(GenericUiRessource):
         return retval
 
     def relaendjson(self, entityid, edge, connector, mandatory, **kwargs):
-        retval = {"entityid": entityid,
+        retval = {"entityId": entityid,
                   "entity": self._getentityname(id),
                   "edge": edge,
                   "position": kwargs.get("position", 50),
@@ -567,7 +567,7 @@ class UiRessource(GenericUiRessource):
                              lang=None,
                              injson=None) -> dict:
 
-        mainlang = self._stdmodel.get("ModelInfo").get("mainlanguage")
+        mainlang = self._stdmodel.get("ModelInfo").get("mainLanguage")
         self._lang = nvl(lang, mainlang)
         # set defaultlanguage for replacement of missing translations
         if self._lang == mainlang:
@@ -583,17 +583,17 @@ class UiRessource(GenericUiRessource):
         diagram = diagrams[0]
 
         self.destentities = [elem for elem in self._stdmodel.get("Entities", []) if
-                             elem.get("elementid") in diagram.get("elements")]
+                             elem.get("elementId") in diagram.get("elements")]
         self.destrelationships = [elem for elem in self._stdmodel.get("Relations", []) if
-                                  elem.get("elementid") in diagram.get("elements")]
-        self.destcategories = [elem for elem in self._stdmodel.get("Categories", []) if elem.get("elementid") in \
-                               [enti.get("categoryid") for enti in self.destentities]]
+                                  elem.get("elementId") in diagram.get("elements")]
+        self.destcategories = [elem for elem in self._stdmodel.get("Categories", []) if elem.get("elementId") in \
+                               [enti.get("categoryId") for enti in self.destentities]]
         self.destsystems = [elem for elem in self._stdmodel.get("Systems", []) if
-                            elem.get("elementid") in diagram.get("elements")] + \
+                            elem.get("elementId") in diagram.get("elements")] + \
                            [elem[len("Systems:"):] for elem in diagram.get("elements") if elem.startswith("Systems:")]
 
         self.destdataflows = [elem for elem in self._stdmodel.get("Systems", []) if
-                              elem.get("elementid") in diagram.get("elements")] + \
+                              elem.get("elementId") in diagram.get("elements")] + \
                              [elem[len("Systems:"):] for elem in diagram.get("elements") if elem.startswith("Systems:")]
         self.diaglayout = DiagramLayout(entitycnt=max(len(self.destentities), len(self.destsystems)))
         if self._destjson is None:
@@ -661,7 +661,7 @@ def creatediagramui(infile, diagname, outfile=None, lang=None):
 
     # default lang
     if lang is None:
-        lang = stdjson.get("ModelInfo").get("mainlanguage")
+        lang = stdjson.get("ModelInfo").get("mainLanguage")
 
     uijson = UiRessource(stdmodel=stdjson).generate_uiressource(diagname=diagname,
                                                                 uitype="miro",

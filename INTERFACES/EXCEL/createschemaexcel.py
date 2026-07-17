@@ -75,50 +75,50 @@ class CreateSchemaExcel:
 
     @staticmethod
     def _xsd_type(doma):
-        if doma.get("domaintype") == "LOVDomain":
+        if doma.get("domainType") == "LOVDomain":
             return "<xsd:Enumeration>"
-        elif doma.get("domaintype") == "BooleanDomain":
+        elif doma.get("domainType") == "BooleanDomain":
             return "<xsd:boolean>"
-        elif doma.get("domaintype") in ("DatetimeDomain"):
+        elif doma.get("domainType") in ("DatetimeDomain"):
             if doma.get("granularity") in ("HOUR", "MINUTE",
                                            "SECOND", "MILISECOND"):
                 return "<xsd:datetime>"
             else:
                 return "<xsd:date>"
-        elif doma.get("domaintype") in ("NumericDomain"):
-            if doma.get("fractdigits", 0) == 0:
+        elif doma.get("domainType") in ("NumericDomain"):
+            if doma.get("fractDigits", 0) == 0:
                 return "<xsd:integer>"
             else:
                 return "<xsd:float>"
-        elif doma.get("domaintype") == "TextDomain":
+        elif doma.get("domainType") == "TextDomain":
             return "<xsd:string>"
         return ""
 
     def _groupmembers(self, doma):
         attrs = [attr for attr in self._standardjson.getelementinstances("Attributes")
-                 if attr.get("parentid") == doma.get("elementid")]
-        attrs.sort(key=lambda x: x.get("displayseq", 999))
+                 if attr.get("parentId") == doma.get("elementId")]
+        attrs.sort(key=lambda x: x.get("displaySeq", 999))
         return [self._mlvalue(attr, "name") for attr in attrs]
 
     def _comments(self, domain):
-        domatype = None if domain is None else domain.get("domaintype")
+        domatype = None if domain is None else domain.get("domainType")
         if domatype == "LOVDomain":
             retval = '\n'.join(self._domavalues(domain))
         elif domatype == "GroupDomain":
             retval = '\n'.join(self._groupmembers(domain))
         elif domatype in ["TextDomain"]:
-            retval = domain.get("syntaxrule")
+            retval = domain.get("syntaxRule")
         elif domatype == "NumericDomain":
             int2str = lambda x: "" if x is None else str(x)
             locstr = []
-            if domain.get("totaldigits", 0) != 0:
-                if domain.get("fractdigits") is None:
-                    locstr.append(f'Digits: {str(domain.get("totaldigits"))}')
+            if domain.get("totalDigits", 0) != 0:
+                if domain.get("fractDigits") is None:
+                    locstr.append(f'Digits: {str(domain.get("totalDigits"))}')
                 else:
-                    locstr.append(f'Format: {str(domain.get("totaldigits"))}:{str(domain.get("fractdigits"))}')
+                    locstr.append(f'Format: {str(domain.get("totalDigits"))}:{str(domain.get("fractDigits"))}')
 
-            if domain.get("minvalue") is not None or domain.get("maxvalue") is not None:
-                locstr.append(f'Range: {int2str(domain.get("minvalue"))} - {int2str(domain.get("maxvalue"))}')
+            if domain.get("minValue") is not None or domain.get("maxValue") is not None:
+                locstr.append(f'Range: {int2str(domain.get("minValue"))} - {int2str(domain.get("maxValue"))}')
             retval = '\n'.join(locstr)
         elif domatype == "DatetimeDomain":
             if domain.get("granularity") != "DAY":
@@ -131,18 +131,18 @@ class CreateSchemaExcel:
 
     def _getbyid(self, elemtype, elemid):
         retval = [elem for elem in self._standardjson.getelementinstances(elementname=elemtype)
-                  if elem.get("elementid") == elemid]
+                  if elem.get("elementId") == elemid]
 
         return retval[0] if len(retval) == 1 else None
 
     def _relatype(self, rela, fromto, tofrom):
         retval = ""
-        if rela.get("relationtype") == "SUBTYPE":
-            if rela.get(fromto).get("arcnumber") is None:
+        if rela.get("relationType") == "SUBTYPE":
+            if rela.get(fromto).get("arcNumber") is None:
                 retval = "Supertype"
             else:
                 retval = "Subtype"
-        elif rela.get("relationtype") == "ROLE":
+        elif rela.get("relationType") == "ROLE":
             if rela.get(fromto).get("mandatory"):
                 retval = "Supertype"
             else:
@@ -159,12 +159,12 @@ class CreateSchemaExcel:
 
     def _relacond(self, rela, fromto, tofrom):
         retval = ""
-        if rela.get("relationtype") == "SUBTYPE":
-            if rela.get(tofrom).get('arcnumber') is not None:
-                retval = f"in Arc {str(rela.get(tofrom).get('arcnumber'))}"
+        if rela.get("relationType") == "SUBTYPE":
+            if rela.get(tofrom).get('arcNumber') is not None:
+                retval = f"in Arc {str(rela.get(tofrom).get('arcNumber'))}"
         else:
-            if rela.get(fromto).get("arcnumber") is not None:
-                retval = f"in Arc {str(rela.get(fromto).get('arcnumber'))}"
+            if rela.get(fromto).get("arcNumber") is not None:
+                retval = f"in Arc {str(rela.get(fromto).get('arcNumber'))}"
         return retval
 
     def _append(self, ws, row, font, colcnt):
@@ -191,11 +191,11 @@ class CreateSchemaExcel:
                      font=self.BOLDFONT,
                      colcnt=1)
         ws.merge_cells(f'B{mrs(ws)}:C{mrs(ws)}')
-        self._append(ws=ws, row=["Shortname", self._mlvalue(elem, "shortname")],
+        self._append(ws=ws, row=["Shortname", self._mlvalue(elem, "shortName")],
                      font=self.BOLDFONT,
                      colcnt=1)
         ws.merge_cells(f'B{mrs(ws)}:C{mrs(ws)}')
-        self._append(ws=ws, row=["Tooltip", self._mlvalue(elem, "shortdescr")],
+        self._append(ws=ws, row=["Tooltip", self._mlvalue(elem, "shortDescr")],
                      font=self.BOLDFONT,
                      colcnt=1)
         ws.merge_cells(f'B{mrs(ws)}:C{mrs(ws)}')
@@ -228,7 +228,7 @@ class CreateSchemaExcel:
             c.font = self.BOLDFONT
 
         for attr in self._standardjson.getelementinstances("Attributes"):
-            if attr.get("parentid") == elem.get("elementid"):
+            if attr.get("parentId") == elem.get("elementId"):
                 domain = self._getbyid("Domains", attr.get("domainid"))
                 attrname = self._mlvalue(attr, "name")
                 groupdoma = None
@@ -236,7 +236,7 @@ class CreateSchemaExcel:
                     domatype = None
                     domaname = ""
                 else:
-                    domatype = domain.get("domaintype")
+                    domatype = domain.get("domainType")
                     doma_tecname = self._addprop(domain, "TechnicalName")
                     doma_datatype = self._addprop(domain, "SOURCE-DATATYPE")
                     if domatype == "GroupDomain":
@@ -279,18 +279,18 @@ class CreateSchemaExcel:
                          )
 
             for rela in self._standardjson.getelementinstances("Relations"):
-                if elem.get("elementid") in [rela.get("fwd").get("entityid"),
-                                             rela.get("bwd").get("entityid")]:
+                if elem.get("elementId") in [rela.get("fwd").get("entityId"),
+                                             rela.get("bwd").get("entityId")]:
                     link = nvl(self._addprop(rela, "SOURCE-HREF")).replace("/rest/", "/web/")
 
-                    fromto, tofrom = ("fwd", "bwd") if elem.get("elementid") == rela.get("fwd").get("entityid") \
+                    fromto, tofrom = ("fwd", "bwd") if elem.get("elementId") == rela.get("fwd").get("entityId") \
                         else ("bwd", "fwd")
-                    otherenti = self._getbyid("Entities", rela.get(tofrom).get("entityid"))
-                    ws.append([self._mlvalue(rela.get(fromto), "assoctext"),
+                    otherenti = self._getbyid("Entities", rela.get(tofrom).get("entityId"))
+                    ws.append([self._mlvalue(rela.get(fromto), "assocText"),
                                self._internhyperlink(sheet=self._sheetnames(self._mlvalue(otherenti, "name")),
                                                      display=self._mlvalue(otherenti, "name")),
-                               "" if rela.get("relationtype") in ("SUBTYPE", "ROLE") \
-                                   else self._mlvalue(rela.get(tofrom), "assoctext"),
+                               "" if rela.get("relationType") in ("SUBTYPE", "ROLE") \
+                                   else self._mlvalue(rela.get(tofrom), "assocText"),
                                self._relatype(rela=rela, fromto=fromto, tofrom=tofrom),
                                " ",  # rela.get(fromto).get("cardinality"),
                                " ",  # "mandatory" if rela.get("fwd").get("mandatory") else "optional",
@@ -373,7 +373,7 @@ class CreateSchemaExcel:
         self._append(ws=ws, row=["Entites"],
                      font=self.BOLDFONT, colcnt=1)
         entinames = [(self._mlvalue(enti, "name"),
-                      self._mlvalue(enti, "shortdescr"),
+                      self._mlvalue(enti, "shortDescr"),
                       self._mlvalue(enti, "description")
                       ) for enti in self._standardjson.getelementinstances(elementname="Entities")]
         entinames.sort()

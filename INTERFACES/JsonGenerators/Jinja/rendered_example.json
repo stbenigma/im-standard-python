@@ -1,0 +1,241 @@
+{
+  "dmpId": "urn:uuid:1a2b3c4d-0001-4a00-8000-000000000001",
+  "createdAt": "2026-07-14T10:00:00Z",
+  "version": "1.0",
+  "nameplate": {
+    "batchId": "B-2026-0042",
+    "companyName": "Chemical Company GmbH",
+    "granularity": "batch",
+    "materialId": "urn:uuid:92ef6f0b-a04b-4830-9968-f25f21273fc1",
+    "productId": "A1234",
+    "productName": "SuperFibramide",
+    "tradeProductIdentifier": "4101234560011"
+  },
+  "components": [
+    {
+      "id": "unpacked-product",
+      "type": "unpackaged_product",
+      "granularity": "batch",
+      "materialDeclaration": {
+        "materialDeclaration": {
+          "compositionType": "mixture",
+          "mixture": {
+            "mixtureNames": [
+              {
+                "text": "SuperFibramide Compound",
+                "language": "en"
+              },
+              {
+                "text": "SuperFibramide Verbindung",
+                "language": "de-DE"
+              }
+            ],
+            "asManufactured": true,
+            "euUfiNumbers": [
+              "ABCD-1234-5678-EFGH"
+            ],
+            "mixtureHazardClassification": [
+              {
+                "code": "H315",
+                "texts": [
+                  {
+                    "text": "Causes skin irritation",
+                    "language": "en"
+                  }
+                ],
+                "hazardClass": "Skin corrosion/irritation",
+                "hazardCategoryCode": "Skin Irrit. 2"
+              }
+            ],
+            "reachArt33SvhcAboveThreshold": false,
+            "constituents": [
+              {
+                "role": "main_constituent",
+                "substanceMainFunction": "polymer backbone",
+                "substance": {
+                  "internationalName": "Fibramide base polymer",
+                  "identifiers": {
+                    "casNumber": "1234-56-7",
+                    "trivialName": "Fibramide"
+                  },
+                  "regulatory": {
+                    "activeBiocide": false,
+                    "listedInAnnexVIClp": false,
+                    "nanoform": "no"
+                  },
+                  "hazardStatements": [
+                    {
+                      "code": "H315"
+                    }
+                  ],
+                  "reachArt33SvhcAboveThreshold": false,
+                  "impurities": [
+                    {
+                      "constituentSubstanceCategory": "residual monomer",
+                      "substance": {
+                        "identifiers": {
+                          "casNumber": "9876-54-3"
+                        },
+                        "regulatory": {}
+                      },
+                      "concentration": {
+                        "maxOperator": "<",
+                        "maxValue": 0.05,
+                        "unit": "%"
+                      }
+                    }
+                  ]
+                },
+                "concentration": {
+                  "maxOperator": "<=",
+                  "maxValue": 70,
+                  "minOperator": ">=",
+                  "minValue": 60,
+                  "unit": "%"
+                }
+              },
+              {
+                "role": "additive",
+                "substance": {
+                  "identifiers": {
+                    "casNumber": "111-22-3"
+                  },
+                  "regulatory": {}
+                },
+                "concentration": {
+                  "exactValue": 2.5,
+                  "unit": "%"
+                }
+              }
+            ]
+          },
+          "safeUseInformation": {
+            "identifiedUses": [
+              "industrial fibre production"
+            ],
+            "productLabellingInformationClp": {
+              "hazardPictograms": [
+                "GHS07"
+              ],
+              "precautionaryStatements": [
+                "P210",
+                "P260"
+              ],
+              "signalWord": "Warning"
+            }
+          }
+        }
+      },
+      "sustainability": {
+        "impactCategories": {
+          "productCarbonFootprint": {
+            "allocationInForeground": {
+              "pcfAllocationRecycledCarbon": "Not-applicable",
+              "pcfAllocationWasteIncineration": "Cut-off"
+            },
+            "carbonContent": {
+              "pcfBiogenicCarbonContent": {
+                "uom": "kg",
+                "value": 0.0
+              },
+              "pcfCarbonContentTotal": {
+                "uom": "kg",
+                "value": 0.49
+              }
+            },
+            "ccsCapturing": {
+              "uom": "kg",
+              "value": 0
+            },
+            "ccsTechnologicalCO2CaptureIncluded": false,
+            "ccuCalculationApproach": "not-applicable",
+            "ccuCarbonContent": {
+              "uom": "kg",
+              "value": 0
+            },
+            "ccuCo2Origin": "not applicable",
+            "ccuCreditCertificateScheme": "",
+            "freeAttributionInMassBalancing": false,
+            "lifeCycleStagesAndEmissions": {
+              "productionStage": {
+                "pcfAircraftGhgEmissions": {
+                  "uom": "kg",
+                  "value": 0.0
+                },
+                "pcfExcludingBiogenicUptake": {
+                  "uom": "kg",
+                  "value": 1.2
+                },
+                "pcfIncludingBiogenicUptake": {
+                  "uom": "kg",
+                  "value": 1.2
+                }
+              }
+            },
+            "massBalancingCalculationApproach": "not applicable",
+            "massBalancingCertificateScheme": "",
+            "massBalancingUsed": false,
+            "pcfCharacterizationFactors": "AR6",
+            "pcfCrossSectoralStandards": [
+              "ISO 14067:2018"
+            ],
+            "pcfDateOfIssue": "2026-06-01",
+            "pcfExemptedEmissionsPercent": 1.5,
+            "pcfGeography": {
+              "country": "DE",
+              "regionOrSubregion": "Western Europe"
+            },
+            "pcfId": "urn:uuid:2b2b3c4d-0002-4a00-8000-000000000002",
+            "pcfPartialFull": "cradle-to-gate",
+            "pcfPrimaryDataShare": 80,
+            "pcfProductOrSectorSpecificRules": [],
+            "pcfReferencePeriod": {
+              "end": "2025-12-31",
+              "start": "2025-01-01"
+            },
+            "pcfSecondaryEmissionFactorSources": [
+              "ecoinvent 3.10"
+            ],
+            "pcfStatus": "Active",
+            "pcfValidityPeriod": {
+              "end": "2027-06-01",
+              "start": "2026-06-01"
+            },
+            "pcfVersion": 1,
+            "useCredit": {
+              "uom": "kg",
+              "value": 0
+            },
+            "useCreditCertificateScheme": ""
+          }
+        },
+        "sustainabilityGeneral": {
+          "sustainabilityDeclaredUnitAmount": 1.0,
+          "sustainabilityDeclaredUnitMeasurement": "kg",
+          "sustainabilityProductMassPerDeclaredUnit": 1.0
+        }
+      },
+      "certificatesOfAnalysis": {
+        "dates": {
+          "dateOfIssue": "2026-06-01"
+        },
+        "document": {
+          "checksum": {
+            "algorithm": "SHA-256",
+            "value": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+          },
+          "contentType": "application/pdf",
+          "uri": "https://example.com/coa/12345.pdf"
+        },
+        "reference": {
+          "coaNumber": "COA-2026-0042"
+        }
+      }
+    },
+    {
+      "id": "packaging",
+      "type": "packaging component",
+      "granularity": "model"
+    }
+  ]
+}

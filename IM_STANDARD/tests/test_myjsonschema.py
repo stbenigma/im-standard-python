@@ -15,45 +15,45 @@ class MyTestCase(unittest.TestCase):
                                                             modelversion="1.1",
                                                             targetenvironment="Testtarget"),
                                    "Categories":[JsonElement().categoryjson(categorytype="ENTITY",
-                                                                            elementid="CATG12",
+                                                                            elementId="CATG12",
                                                                             name="mycatg",
                                                                             categoryid="CATG11"),
                                                  JsonElement().categoryjson(categorytype="ENTITY",
-                                                                            elementid="CATG11",
+                                                                            elementId="CATG11",
                                                                             name="mycatg")
                                                  ],
-                                   "Entities":[JsonElement().entityjson(elementid="ENTI12",name="myEntity",
+                                   "Entities":[JsonElement().entityjson(elementId="ENTI12",name="myEntity",
                                                                         categoryid="CATG11")
         ]
                                    # "Domains":
                                    #     [
                                    #         {
-                                   #             "elementid": "DOMA65",
+                                   #             "elementId": "DOMA65",
                                    #             "name": {
                                    #                 "de": "Document format",
                                    #                 "en": "Document format"
                                    #             },
-                                   #             "domaintype": "LOVDomain",
+                                   #             "domainType": "LOVDomain",
                                    #             "values": [{
                                    #                 "value": "FALSE",
-                                   #                 "displayvalue": "unwahr",
-                                   #                 "sortorder": 1
+                                   #                 "displayValue": "unwahr",
+                                   #                 "sortOrder": 1
                                    #             }
                                    #             ]
                                    #         },
                                    #         {
-                                   #             "elementid": "DOMA63",
+                                   #             "elementId": "DOMA63",
                                    #             "name": {
                                    #                 "de": "Dockingkposition",
                                    #                 "en": "Dockingkposition"
                                    #             },
-                                   #             "domaintype": "GroupDomain",
+                                   #             "domainType": "GroupDomain",
                                    #             "elements": [
                                    #                 {
-                                   #                     "elementid": "ATTR100062",
+                                   #                     "elementId": "ATTR100062",
                                    #                     "name": "edge",
                                    #                     "mandatory": False,
-                                   #                     "parentid": "DOMA123",
+                                   #                     "parentId": "DOMA123",
                                    #                     "description": "edge of rectangualr NESW",
                                    #                     "domainid": "DOMA28"
                                    #                 }

@@ -5,10 +5,10 @@ class MyTestCase(unittest.TestCase):
     def test_jsonelements(self):
         elem=JsonElement(start= 42,Ende="string")
         elem=JsonElement()
-        elem.domainjson(elementid="DOMA1",name="meinDomain",Anything=[1,2,3])
-        self.assertEqual("DOMA1",elem["elementid"])
+        elem.domainjson(elementId="DOMA1",name="meinDomain",Anything=[1,2,3])
+        self.assertEqual("DOMA1",elem["elementId"])
         self.assertEqual("DOMA1",elem.getid())
-        self.assertEqual("DOMA1",elem.data.get("elementid"))
+        self.assertEqual("DOMA1",elem.data.get("elementId"))
         self.assertListEqual([1,2,3],elem.data.get("Anything"))
         self.assertEqual({},elem.filterprops({"name": None}))
         self.assertEqual({"abcd":1},elem.filterprops({"abcd":1,"name": None}))
@@ -21,8 +21,8 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(Exception) as e:
             elem["irgendwas!!"]="neuDomain"
 
-        elem=JsonElement(elemtype="Entity",elementid=1,name="myentity")
-        self.assertEqual(1,elem["elementid"])
+        elem=JsonElement(elemtype="Entity",elementId=1,name="myentity")
+        self.assertEqual(1,elem["elementId"])
         self.assertEqual("myentity",elem.data["name"])
         self.assertEqual("Entity",elem.elemtype)
 

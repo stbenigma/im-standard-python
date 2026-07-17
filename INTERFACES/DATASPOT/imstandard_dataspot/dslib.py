@@ -51,5 +51,11 @@ def fullescapestr(instr):
         retval = f'"{retval}"'
     return retval
 
-def ds2timestamp(miliseconds:int)->datetime:
-    return datetime.fromtimestamp(miliseconds/1000)
+def ds2timestamp(datevalue)->datetime:
+    if isinstance(datevalue,int):
+        return datetime.fromtimestamp(datevalue/1000).isoformat()
+    if isinstance(datevalue,str):
+        try:
+            return datetime.fromisoformat(datevalue).isoformat()
+        except:
+            return datevalue

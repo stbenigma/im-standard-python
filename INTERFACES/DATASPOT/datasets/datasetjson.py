@@ -49,7 +49,7 @@ def generatedatasetjson(jsonschema: JsonSchema,
                                                 ))
     for datobj in jsonschema.jsonschemamodel.get("DataObjects"):
         objname = datobj.get("name")
-        objid = datobj.get("elementid")
+        objid = datobj.get("elementId")
         datasetjson.append(Json2dataspot.fillstruct(elementtype="Dataset",
                                                     label=objname,
                                                     subsetOf=jsonschema.modelname,
@@ -59,12 +59,12 @@ def generatedatasetjson(jsonschema: JsonSchema,
                                                     exmpls=nvl(_examples(datobj.get("examples")))
                                                     ))
         for dataattr in jsonschema.jsonschemamodel.get("DataAttributes"):
-            if dataattr.get("dataobjectid")!= objid: continue
+            if dataattr.get("dataObjectId")!= objid: continue
             datasetjson.append(Json2dataspot.fillstruct(elementtype="Composition",
                                                         label=dataattr.get("name"),
                                                         componentOf=objname,
                                                         composedOf=_datatyperef(domainmodel=domainmodel,
-                                                                                basetype=dataattr.get("basedatatype")),
+                                                                                basetype=dataattr.get("baseDatatype")),
                                                         description=nvl(dataattr.get("description")) + \
                                                                     nvl(_sourcedef(dataattr.get("additionalProps"))),
                                                         mand=dataattr.get("mandatory"),

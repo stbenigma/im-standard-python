@@ -422,11 +422,11 @@ class MiroSync:
         print()
 
         # 2. Shapes (Systeme) anlegen ──────────────────────
-        # Mapping: elementid → neue Miro-Shape-ID
+        # Mapping: elementId → neue Miro-Shape-ID
         id_map: dict[str, str] = {}
 
         for i, elem in enumerate(elements, 1):
-            eid = elem.get("elementid", f"sys_{i}")
+            eid = elem.get("elementId", f"sys_{i}")
             sname = elem.get("name", eid)
             dname = elem.get("displname")
             examples = elem.get("examples")
@@ -547,7 +547,7 @@ class MiroSync:
         return frame_id
 
     def _relaname(self,fromid:str,toid:str,captions:list,elements:list):
-        names={e.get("elementid"):e.get("name") for e in elements}
+        names={e.get("elementId"):e.get("name") for e in elements}
         verb = self._strip_html(captions[0].get("content"))
         if verb.startswith("/") and verb.endswith("/"):
             verb=self._strip_html(captions[1].get("content"))
@@ -631,7 +631,7 @@ class MiroSync:
             fsize_num = int(re.sub(r"[^0-9]", "", str(raw_fsize)) or "14")
 
             elements.append({
-                "elementid": shape["id"],
+                "elementId": shape["id"],
                 "name": self._strip_html(shape.get("data", {}).get("content", "")),
                 "displname": self._unescape(shape.get("data", {}).get("content", "")),
                 "examples": example,
@@ -668,7 +668,7 @@ class MiroSync:
             ]
 
             relationships.append({
-                "elementid": conn["id"],
+                "elementId": conn["id"],
                 "name":self._relaname(fromid=start.get("id", ""),
                                       toid=end.get("id", ""),
                                       captions=captions,elements=elements),
@@ -683,7 +683,7 @@ class MiroSync:
 
         # UI-JSON zusammenbauen
         result = {
-            "elementid": frame_id,
+            "elementId": frame_id,
             "name": frame_title,
             "type": contenttype,
             "width": frame_w,

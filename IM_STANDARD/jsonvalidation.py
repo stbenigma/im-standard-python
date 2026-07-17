@@ -1,12 +1,13 @@
 import json
 import logging
-import os
 from copy import deepcopy
 from pathlib import Path
 
-from jsonschema import Draft7Validator, RefResolver, protocols
+from jsonschema import Draft202012Validator
 from jsonschema.exceptions import SchemaError
 from jsonschema.validators import validator_for
+from referencing import Registry, Resource
+from referencing.jsonschema import DRAFT202012
 
 from IM_STANDARD import nvl
 
@@ -15,10 +16,10 @@ def validate_json_as_schema(schema: dict):
     """
     Prüft, ob eine gegebene JSON-Datei ein gültiges JSON Schema (Draft 2020-12) ist.
     """
-    ValidatorClass = validator_for(schema)
+    validatorclass = validator_for(schema)
 
     try:
-        ValidatorClass.check_schema(schema)
+        validatorclass.check_schema(schema)
     except json.JSONDecodeError as e:
         logging.error(f"❌ Fehler: Ungültiges JSON-Format in der Datei: {e}")
         raise e
@@ -42,76 +43,49 @@ def validate_jsonfile_as_schema(json_file_path: str):
 
 class ValidateJsonModel:
     """
-    Validates a json schemafile of an information model against the definition of
-    jsonschema of the information model
+    Validates additional rules for a json schemafile of an information
     """
 
     def __init__(self, referenceschemapath):
         self.referencefilepath = referenceschemapath
         self.refschemajs = self.readjsonfromfile(filepath=self.referencefilepath)
-        # base uri for files referefencedin the refschemajs
-        self.resolver = self.getresolver(basefile=str(self.referencefilepath),
-                                         curjson=self.refschemajs,
-                                         referencepath=self._schemareferences(Path(self.referencefilepath).parent)
-                                         )
-        protocols.Validator.check_schema(self.refschemajs)
         self.model = None
         return
 
     @staticmethod
-    def getresolver(basefile, curjson, referencepath):
-        """get the resolver for local file references for this json"""
-        # base uri for files referefencedin the refschemajs
-        base_uri = "file://" + str(basefile)
-        return RefResolver(base_uri=base_uri,
-                           referrer=curjson,
-                           store=referencepath
-                           )
-
-    def _schemareferences(self, schemapath):
-        retval = {}
-        with os.scandir(schemapath) as schemata:
-            for schema in schemata:
-                if schema.name.endswith("-schema.json"):
-                    with open(schema) as infile:
-                        injson = json.load(infile)
-                    retval[schema.name] = injson
-        return retval
-
-    @staticmethod
-    def readjsonfromfile(filepath: Path):
-        with open(filepath) as infile:
+    def readjsonfromfile(filepath: str | Path):
+        with open(Path(filepath).resolve(), 'r', encoding='utf-8') as infile:
             myschemajs = json.load(fp=infile)
         return myschemajs
 
-    def uniquenames(self, elements, verbose):
+    def uniquenames(self, elements):
         def find_duplicates(input_list):
-            duplicates = set()
+            ukduplicates = set()
             for item in input_list:
                 if input_list.count(item) > 1:
-                    duplicates.add(item)
-            return list(duplicates)
+                    ukduplicates.add(item)
+            return list(ukduplicates)
 
         if self.model.modelismultilingual():
             for lang in self.model.languages:
                 duplicates = find_duplicates([self.model.mlvalue(elem.get("name"), lang) for elem in nvl(elements, [])])
                 if len(duplicates) > 0:
-                    # if verbose: logging.error(f"Duplicate name (in any language) in {duplicates}")
+                    # if verbose: logging.error(f"Duplicate name (in any language) in {ukduplicates}")
                     return [f"Duplicate name (in any language) in {duplicates}"]
         else:
             duplicates = find_duplicates([elem.get("name") for elem in nvl(elements, [])])
             if len(duplicates) > 0:
-                # if verbose: logging.error(f"Duplicate name in {duplicates}")
+                # if verbose: logging.error(f"Duplicate name in {ukduplicates}")
                 return [f"Duplicate name in {duplicates}"]
         return []
 
     @staticmethod
-    def listUnique(x):
+    def listunique(x):
         """True if sorted lists in list are unique"""
         seen = list()
         return not any(sorted(i) in seen or seen.append(sorted(i)) for i in x)
 
-    def _checkadditionalrules(self, verbose=True):
+    def _checkadditionalrules(self):
         errors = []
         # validate the additional rules, not covered by the model itself.
         myschema = self.model
@@ -119,22 +93,21 @@ class ValidateJsonModel:
             return errors
 
         # model spanning rules
-        relaids = [e["elementid"] for e in myschema.getelementinstances(elementname="Relations")]
-        domainids = [e.get("elementid") for e in myschema.getelementinstances(elementname="Domains")]
-        buruids = [e["elementid"] for e in myschema.getelementinstances(elementname="BusinessRules")]
-        entityids = [e.get("elementid") for e in myschema.getelementinstances(elementname="Entities")]
-        attrids = [e["elementid"] for e in myschema.getelementinstances(elementname="Attributes")]
-        domaattrids = [e.get("elementid")
+        relaids = [e["elementId"] for e in myschema.getelementinstances(elementname="Relations")]
+        domainids = [e.get("elementId") for e in myschema.getelementinstances(elementname="Domains")]
+        buruids = [e["elementId"] for e in myschema.getelementinstances(elementname="BusinessRules")]
+        entityids = [e.get("elementId") for e in myschema.getelementinstances(elementname="Entities")]
+        attrids = [e["elementId"] for e in myschema.getelementinstances(elementname="Attributes")]
+        domaattrids = [e.get("elementId")
                        for elems in [doma.get("elements", [])
                                      for doma in myschema.getelementinstances(elementname="Domains")]
                        for e in elems]
-        tableids = [e.get("elementid") for e in myschema.getelementinstances(elementname="Tables")]
-        columnids = [e.get("elementid") for e in myschema.getelementinstances(elementname="Columns")]
-        catgids = [e.get("elementid") for e in myschema.getelementinstances(elementname="Categories")]
+        tableids = [e.get("elementId") for e in myschema.getelementinstances(elementname="Tables")]
+        columnids = [e.get("elementId") for e in myschema.getelementinstances(elementname="Columns")]
+        catgids = [e.get("elementId") for e in myschema.getelementinstances(elementname="Categories")]
 
         # Many  names must be unique in all languages
-        errors += self.uniquenames(elements=myschema.getelementinstances(name="Entities"),
-                                   verbose=verbose)
+        errors += self.uniquenames(elements=myschema.getelementinstances(name="Entities"))
 
         # all businessrule id's must be unique over the model
         if len(buruids) > len(set(buruids)):
@@ -161,39 +134,39 @@ class ValidateJsonModel:
             # if verbose: logging.error(f"Duplicate relation-id's in model")
             errors.append(f"Duplicate relation-id's in model")
             # relationships must be unique (assoc and entities)
-            relationskeys = [[rela.get("fwd").get("entityid") + "-"
-                              + rela.get("bwd").get("entityid") + "-"
-                              + nvl(myschema.mlvalue(rela.get("fwd").get("assoctext")), lang)
+            relationskeys = [[rela.get("fwd").get("entityId") + "-"
+                              + rela.get("bwd").get("entityId") + "-"
+                              + nvl(myschema.mlvalue(rela.get("fwd").get("assocText")), lang)
                               for lang in myschema.languages
                               ]
                              for rela in myschema.getelementinstances(name="Relations")
                              ] + \
-                            [[rela.get("bwd").get("entityid") + "-"
-                              + rela.get("fwd").get("entityid") + "-"
-                              + nvl(myschema.mlvalue(rela.get("bwd").get("assoctext")), lang)
+                            [[rela.get("bwd").get("entityId") + "-"
+                              + rela.get("fwd").get("entityId") + "-"
+                              + nvl(myschema.mlvalue(rela.get("bwd").get("assocText")), lang)
                               for lang in myschema.languages
                               ]
                              for rela in myschema.getelementinstances(name="Relations")
                              ]
-            if not self.listUnique(relationskeys):
+            if not self.listunique(relationskeys):
                 # if verbose: logging.error(f"Duplicate relations (enti-enti-multilangassoctext) in model")
                 errors.append(f"Duplicate relations (enti-enti-multilangassoctext) in model")
 
         # rules within domains
         for doma in myschema.getelementinstances(name="Domains"):
             # categories exist
-            if doma.get("categoryid") is not None and doma.get("categoryid") not in catgids:
-                # if verbose: logging.error(f"Category-id {doma.get('categoryid')} not in categories")
-                errors.append(f"Category-id {doma.get('categoryid')} not in categories")
+            if doma.get("categoryId") is not None and doma.get("categoryId") not in catgids:
+                # if verbose: logging.error(f"Category-id {doma.get('categoryId')} not in categories")
+                errors.append(f"Category-id {doma.get('categoryId')} not in categories")
             # all referenced domains (in groupdomains) must exist in the domainlist
-            if doma.get("domaintype") == "GroupDomain":
+            if doma.get("domainType") == "GroupDomain":
                 for elem in doma.get("elements", []):
                     domainid = elem.get("domainid")
                     if domainid is not None and domainid not in domainids:
                         # if verbose: logging.error(
-                        #    f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementid')} not found.")
+                        #    f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementId')} not found.")
                         errors.append(
-                            f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementid')} not found.")
+                            f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementId')} not found.")
 
         # rules for categories
         if len(catgids) > len(set(catgids)):
@@ -209,9 +182,9 @@ class ValidateJsonModel:
         # rules within entities
         for enti in myschema.getelementinstances(name="Entities"):
             # categories exist
-            if enti.get("categoryid") is not None and enti.get("categoryid") not in catgids:
-                # if verbose: logging.error(f"Category-id {enti.get('categoryid')} not in categories")
-                errors.append(f"Category-id {enti.get('categoryid')} not in categories")
+            if enti.get("categoryId") is not None and enti.get("categoryId") not in catgids:
+                # if verbose: logging.error(f"Category-id {enti.get('categoryId')} not in categories")
+                errors.append(f"Category-id {enti.get('categoryId')} not in categories")
 
             # name must have a value in the main mainlanguage
             if not (type(enti.get("name")) is str or myschema.mainlang in enti.get("name")):
@@ -226,7 +199,7 @@ class ValidateJsonModel:
                 errors.append(f"Missing synonym name in main language in entity {enti.get('name')}")
 
             # synonyms names must be unique in all languages within an entity
-            if self.model.modelismultilingual() and not self.listUnique([[myschema.mlvalue(syno, lang)
+            if self.model.modelismultilingual() and not self.listunique([[myschema.mlvalue(syno, lang)
                                                                           for lang in myschema.languages
                                                                           ] for syno in synos
                                                                          ]):
@@ -234,174 +207,126 @@ class ValidateJsonModel:
                 errors.append(f"Duplicate synonym in entity {enti.get('name')}")
 
             entyattrs = [attr for attr in myschema.getelementinstances(name="Attributes") if
-                         attr.get("parentid") == enti.get("elementid")]
+                         attr.get("parentId") == enti.get("elementId")]
             # attribute names must be unique in all languages within an entity
             attrnames = [[myschema.mlvalue(attr.get("name"), lang)
                           for lang in myschema.languages
                           ] for attr in entyattrs
                          ]
-            if not self.listUnique(attrnames):
+            if not self.listunique(attrnames):
                 # if verbose: logging.error(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
                 errors.append(f"Duplicate multimultilang attributename in entity {enti.get('name')}")
 
         # rules for attributes
         for attr in myschema.getelementinstances(name="Attributes"):
             # attribute parent must be entity
-            if attr.get("parentid") not in entityids:
+            if attr.get("parentId") not in entityids:
                 # if verbose: logging.error(
-                #    f"Entity {attr.get('parentid')} in attribute {attr.get('elementid')} not found.")
-                errors.append(f"Entity {attr.get('parentid')} in attribute {attr.get('elementid')} not found.")
+                #    f"Entity {attr.get('parentId')} in attribute {attr.get('elementId')} not found.")
+                errors.append(f"Entity {attr.get('parentId')} in attribute {attr.get('elementId')} not found.")
 
             # all attributes must have a value in the main mainlanguage
             if not (type(attr.get("name")) == str or myschema.mainlang in attr.get("name")):
                 # if verbose: logging.error(
                 errors.append(
-                    f"Missing attribute name {attr.get('name')} in main language in entity {attr.get('parentid')}")
+                    f"Missing attribute name {attr.get('name')} in main language in entity {attr.get('parentId')}")
 
             # all referenced domains must exist in the domainlist
             domaid = attr.get("domainid")
             if domaid is not None and domaid not in domainids:
                 # if verbose: logging.error(
-                #    f"Domain {domaid} in attribute {attr.get('elementid')} not found.")
-                errors.append(f"Domain {domaid} in attribute {attr.get('elementid')} not found.")
+                #    f"Domain {domaid} in attribute {attr.get('elementId')} not found.")
+                errors.append(f"Domain {domaid} in attribute {attr.get('elementId')} not found.")
 
         # rules for relationships
         for rela in myschema.getelementinstances(name="Relations"):
             if myschema.modeltype == "Information model":
                 # all referenced entities must exist
-                if rela.get("fwd").get("entityid") not in entityids:
+                if rela.get("fwd").get("entityId") not in entityids:
                     # if verbose: logging.error(
-                    #    f"Entity {rela.get('fwd').get('entityid')} in relation {rela.get('elementid')} not found.")
+                    #    f"Entity {rela.get('fwd').get('entityId')} in relation {rela.get('elementId')} not found.")
                     errors.append(
-                        f"Entity {rela.get('fwd').get('entityid')} in relation {rela.get('elementid')} not found.")
+                        f"Entity {rela.get('fwd').get('entityId')} in relation {rela.get('elementId')} not found.")
 
-                if rela.get("bwd").get("entityid") not in entityids:
+                if rela.get("bwd").get("entityId") not in entityids:
                     # if verbose: logging.error(
-                    #    f"Entity {rela.get('bwd').get('entityid')} in relation {rela.get('elementid')} not found.")
+                    #    f"Entity {rela.get('bwd').get('entityId')} in relation {rela.get('elementId')} not found.")
                     errors.append(
-                        f"Entity {rela.get('bwd').get('entityid')} in relation {rela.get('elementid')} not found.")
+                        f"Entity {rela.get('bwd').get('entityId')} in relation {rela.get('elementId')} not found.")
 
                 # relationship types require specific end-properties
-                if (rela.get("relationtype") == "M:1"
+                if (rela.get("relationType") == "M:1"
                         and (rela.get("fwd").get("cardinality")
                              == rela.get("bwd").get("cardinality"))):
                     # if verbose: logging.error(
-                    #    f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
+                    #    f"Functional relationship must have 1 at one end in relationship {rela.get('elementId')}")
                     errors.append(
-                        f"Functional relationship must have 1 at one end in relationship {rela.get('elementid')}")
-                if (rela.get("relationtype") == "M:N"
+                        f"Functional relationship must have 1 at one end in relationship {rela.get('elementId')}")
+                if (rela.get("relationType") == "M:N"
                         and (rela.get("fwd").get("cardinality") == "1"
                              or rela.get("bwd").get("cardinality") == "1")):
                     # if verbose: logging.error(
-                    #    f"M:N relationship must have M a both ends in relationship {rela.get('elementid')}")
-                    errors.append(f"M:N relationship must have M a both ends in relationship {rela.get('elementid')}")
-                if (rela.get("relationtype") == "1:1"
+                    #    f"M:N relationship must have M a both ends in relationship {rela.get('elementId')}")
+                    errors.append(f"M:N relationship must have M a both ends in relationship {rela.get('elementId')}")
+                if (rela.get("relationType") == "1:1"
                         and (rela.get("fwd").get("cardinality") == "M"
                              or rela.get("bwd").get("cardinality") == "M")):
                     # if verbose: logging.error(
-                    #    f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                    errors.append(f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                if (rela.get("relationtype") == "ROLE"
+                    #    f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementId')}")
+                    errors.append(f"1:1 relationship must have 1 a both ends in relationship {rela.get('elementId')}")
+                if (rela.get("relationType") == "ROLE"
                         and (rela.get("fwd").get("cardinality") == "M"
                              or rela.get("bwd").get("cardinality") == "M"
                              or (rela.get("fwd").get("mandatory") ==
                                  rela.get("bwd").get("mandatory"))
-                        )):
+                             )
+                    ):
                     # if verbose: logging.error(
-                    #    f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                    errors.append(f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
-                if (rela.get("relationtype") == "SUBTYPE"
+                    #    f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementId')}")
+                    errors.append(f"ROLE relationship must have 1 a both ends in relationship {rela.get('elementId')}")
+                if (rela.get("relationType") == "SUBTYPE"
                         and (rela.get("fwd").get("cardinality") == "M"
                              or rela.get("bwd").get("cardinality") == "M"
-                             or rela.get("fwd").get("mandatory") is False
-                             or rela.get("bwd").get("mandatory") == False
-                             or (rela.get("fwd").get("arcnumber") is None
-                                 and rela.get("bwd").get("arcnumber") is None)
+                             or not rela.get("fwd").get("mandatory")
+                             or not rela.get("bwd").get("mandatory")
+                             or (rela.get("fwd").get("arcNumber") is None
+                                 and rela.get("bwd").get("arcNumber") is None)
                         )):
                     # if verbose: logging.error(
-                    #    f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
+                    #    f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementId')}")
                     errors.append(
-                        f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementid')}")
+                        f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementId')}")
 
             elif myschema.modeltype == "Data Model":
                 # all referenced entities must exist
                 if rela.get("fwd").get("tableid") not in tableids:
                     # if verbose: logging.error(
-                    #    f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementid')} not found.")
+                    #    f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementId')} not found.")
                     errors.append(
-                        f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementid')} not found.")
+                        f"Table {rela.get('fwd').get('tableid')} in relation {rela.get('elementId')} not found.")
                 if rela.get("bwd").get("tableid") not in tableids:
                     # if verbose: logging.error(
-                    #    f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementid')} not found.")
+                    #    f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementId')} not found.")
                     errors.append(
-                        f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementid')} not found.")
+                        f"Table {rela.get('bwd').get('tableid')} in relation {rela.get('elementId')} not found.")
                 # all referenced columns must exist
                 for direc in ("fwd", "bwd"):
                     for c in rela.get(direc).get("fkcolumns", []):
                         if c not in columnids:
-                            # if verbose: logging.error(f"Column {c} in relation {rela.get('elementid')} not found.")
-                            errors.append(f"Column {c} in relation {rela.get('elementid')} not found.")
+                            # if verbose: logging.error(f"Column {c} in relation {rela.get('elementId')} not found.")
+                            errors.append(f"Column {c} in relation {rela.get('elementId')} not found.")
 
         # rules for businessrules
         for buru in myschema.getelementinstances(name="BusinessRules"):
             # all referenced objects must exist
             for elem in buru.get("restrictedElements"):
                 if elem not in domaattrids + attrids + relaids + entityids + domainids:
-                    # if verbose: logging.error(f"ID {elem} in businessrule {buru.get('elementid')} not found.")
-                    errors.append(f"ID {elem} in businessrule {buru.get('elementid')} not found.")
+                    # if verbose: logging.error(f"ID {elem} in businessrule {buru.get('elementId')} not found.")
+                    errors.append(f"ID {elem} in businessrule {buru.get('elementId')} not found.")
 
         return errors
 
-    def purevalidate(self, tovalidatejs, validattionjs, resolver, verbose=True):
-        """
-        :param tovalidatejs: json struct to be validatd
-        :param validattionjs:  json-schema to validate against
-        :param resolver:  resolver path for referenced sub schemas
-        :param verbose: True add source of problem to logging
-        :return:  None if no errors
-                errormessage else
-        """
-        error = []
-        try:
-            validator = Draft7Validator(schema=validattionjs,
-                                        resolver=resolver)
-
-            validator.validate(tovalidatejs)
-        except protocols.ValidationError as ve:
-            errormsg = ve.message
-            if verbose:
-                fullstr = str(ve)
-                errormsg += '\n'
-                errormsg += fullstr[fullstr.find("On instance"):]
-            error.append(errormsg)
-        except Exception as ex:
-            try:
-                error.append(ex.message)
-            except Exception:
-                error.append(ex.args[0])
-        return error
-
-    def validateschemaonly(self, instance, verbose=False) -> list:
-        """
-
-        @param instance:
-            dict or path to json file to be validated against my schemafile
-        @return:
-            errcnt: 0-> success
-                    >0 -> errors
-        """
-
-        error = []
-        jsmodel = (instance if type(instance) is dict
-                   else self.readjsonfromfile(filepath=Path(instance)))
-
-        error += self.purevalidate(tovalidatejs=jsmodel,
-                                   validattionjs=self.refschemajs,
-                                   resolver=self.resolver,
-                                   verbose=verbose)
-        return error
-
-    def validatemodel(self, instance, verbose=False) -> list:
+    def validatemodel(self) -> list:
         """
         @param instance:
             dict or path to json file to be validated against my schemafile
@@ -411,26 +336,74 @@ class ValidateJsonModel:
                    list of errors
         """
         # TODO errors with my own logging-instance
-        errors = []
-        errors += self.validateschemaonly(instance=instance, verbose=verbose)
-        errors += self._checkadditionalrules(verbose=verbose)
+        errors = self._checkadditionalrules()
         return errors
 
 
-def validateschema(instance,
-                   schemafile,
-                   verbose=False,
+def validatestruct(struct: dict, basepath: str | Path, startschemafile: str | Path) -> list:
+    """
+    Validates a json structure against all json schemas found in basepath and subdirectories.
+
+    :param struct:    json structure to validate
+    :param basepath:  root directory containing all schema files in subdirectories
+    :param schemafile:  path to the schema to validate against (absolute or relative to basepath)
+    :return:          list of error messages, empty list if valid
+    """
+
+    basepath = Path(basepath).resolve()
+
+    startschemafile = Path(startschemafile)
+    if not startschemafile.is_absolute():
+        startschemafile = basepath / startschemafile
+    startschemafile = startschemafile.resolve()
+
+    # Registry aufbauen — alle Schemas mit absoluter file-URI registrieren
+    resources = []
+    for schemafile in basepath.rglob("*-schema.json"):
+        try:
+            schema = json.loads(schemafile.read_text(encoding="utf-8"))
+        except Exception as e:
+            return [f"Cannot read schema {schemafile}: {e}"]
+
+        uri = schemafile.resolve().as_uri()
+        schema["$id"] = uri  # $id auf absolute URI setzen damit relative $ref auflösbar sind
+        resources.append((uri, Resource.from_contents(schema,
+                                                      default_specification=DRAFT202012)))
+
+    registry = Registry().with_resources(resources)
+
+    # Zielschema laden
+    target_uri = startschemafile.as_uri()
+    try:
+        resolved = registry.resolver().lookup(target_uri)
+        target_schema = resolved.contents
+    except Exception as e:
+        return [f"Cannot resolve schema '{target_uri}': {e}"]
+
+    # Validieren
+    errors = []
+    try:
+        validator = Draft202012Validator(schema=target_schema, registry=registry)
+        for error in validator.iter_errors(struct):
+            errors.append(f"{error.message}\n  at: {' -> '.join(str(p) for p in error.absolute_path)}")
+    except Exception as e:
+        errors.append(f"Validation error: {e}")
+
+    return errors
+
+
+def validateschema(instance: dict | Path | str,
+                    schemafile: str | Path,
                    schemaonly=False) -> list:
     """
-    validatemodel the instance of an informationmodel schemafile in a file against the json-schemafile of the informationmodel
+    validatemodel the instance of a schemafile in a file against the reference IM-schema
 
     @param instance:
         filepath of jsonschema to be validated as Path object or as string
         or
         dict() object to be validated
     @param schemafile:
-        filepath of reference schemafile to validatemodel the instance to
-        default the version of the schemafile in this development environment
+        filepath of reference schemafile to validatemodel against
     @param schemaonly:
         True:   only check json-schema
         False:  check my additional rules as well
@@ -439,20 +412,59 @@ def validateschema(instance,
         errors [xxx] nok
     """
 
-    mymodel = ValidateJsonModel(referenceschemapath=schemafile)
-    if schemaonly:
-        errors = mymodel.validateschemaonly(instance=instance,
-                                            verbose=verbose)
+    if isinstance(instance,dict):
+        locinstance=instance
     else:
-        errors = mymodel.validatemodel(instance=instance,
-                                       verbose=verbose)
+        locinstance=ValidateJsonModel.readjsonfromfile(instance)
+
+    locschemafile = Path(schemafile).resolve()
+
+    errors = validatestruct(struct=locinstance,
+                            startschemafile=locschemafile,
+                            basepath=locschemafile.parent.parent)
+    if not schemaonly:
+        print(f"***** additional checks for json not yet implemented")
 
     return errors
 
+def normalize_booleans(data):
+    """
+    changes the obj with all string values "TRUE" "FALSE" in all cases change to True, False
+    :param obj: json with all boolean
+    :return:
+    """
+    if isinstance(data, dict):
+        return {k: normalize_booleans(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        # Recursively apply to list items
+        return [normalize_booleans(item) for item in data]
+    elif isinstance(data, str):
+        # Convert string representations to actual Python booleans
+        if data.upper() == "TRUE":
+            return True
+        elif data.upper() == "FALSE":
+            return False
+    return data
+
+def remove_empty_values(obj):
+    """
+    removes all empty values (None,'',[],{}) removed from all elements in a json structure
+
+    :param obj: json to be cleansed
+    :return: None: passed json object changed
+    """
+    if isinstance(obj, dict):
+        return {
+            key: remove_empty_values(value) for key, value in obj.items() if value not in ('', None, [], {})
+        }
+    elif isinstance(obj, list):
+        return [remove_empty_values(item) for item in obj]
+    else:
+        return obj
 
 def remove_key_from_json(obj, key_to_remove):
     """
-    removes the key named in key_to_remove from all elements in a json structure
+    returns a copy of obj with  keys from key_to_remove removed from all elements in a json structure
     the original json structure will not be changed
 
     :param obj: json to be cleansed

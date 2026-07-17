@@ -1,18 +1,18 @@
 {
   "ModelInfo": {
-    "modelname": "Astronomie",
-    "modeltype": "Data model",
-    "mainlanguage": "en",
-    "modelversion": "0.0",
-    "origintool": "EXCEL",
-    "targetenvironment": "Test",
+    "modelName": "Astronomie",
+    "modelType": "Data model",
+    "mainLanguage": "en",
+    "modelVersion": "0.0",
+    "originTool": "EXCEL",
+    "targetEnvironment": "Test",
     "additionalProps": {
-      "originref": "/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/im-standard-python/INTERFACES/EXCEL/tests/testfiles/datafiles/Astronomie.xlsx"
+      "originRef": "/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/im-standard-python/INTERFACES/EXCEL/tests/testfiles/datafiles/Astronomie.xlsx"
     }
   },
   "DataObjects": [
     {
-      "elementid": "DATO1",
+      "elementId": "DATO1",
       "name": "Stern",
       "additionalProps": {
         "Stern:A1": "Stern",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "elementid": "DATO2",
+      "elementId": "DATO2",
       "name": "Begleiter",
       "additionalProps": {
         "Begleiter:A1": "Begleiter",
@@ -32,12 +32,12 @@
   ],
   "DataAttributes": [
     {
-      "elementid": "DATA1",
+      "elementId": "DATA1",
       "name": "Name",
       "mandatory": null,
-      "dataobjectid": "DATO1",
-      "technicaldatatype": "s",
-      "basedatatype": "Text",
+      "dataObjectId": "DATO1",
+      "technicalDatatype": "s",
+      "baseDatatype": "Text",
       "examples": [
         "Sonne"
       ],
@@ -46,12 +46,12 @@
       }
     },
     {
-      "elementid": "DATA2",
+      "elementId": "DATA2",
       "name": "Leuchtklasse",
       "mandatory": null,
-      "dataobjectid": "DATO1",
-      "technicaldatatype": "s",
-      "basedatatype": "Text",
+      "dataObjectId": "DATO1",
+      "technicalDatatype": "s",
+      "baseDatatype": "Text",
       "examples": [
         "V"
       ],
@@ -60,12 +60,12 @@
       }
     },
     {
-      "elementid": "DATA3",
+      "elementId": "DATA3",
       "name": "Entfernung",
       "mandatory": null,
-      "dataobjectid": "DATO1",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO1",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         0
       ],
@@ -74,12 +74,12 @@
       }
     },
     {
-      "elementid": "DATA4",
+      "elementId": "DATA4",
       "name": "Durchmesser",
       "mandatory": null,
-      "dataobjectid": "DATO1",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO1",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         15000
       ],
@@ -88,12 +88,12 @@
       }
     },
     {
-      "elementid": "DATA5",
+      "elementId": "DATA5",
       "name": "Entdeckungsjahr",
       "mandatory": null,
-      "dataobjectid": "DATO1",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO1",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         null
       ],
@@ -102,12 +102,12 @@
       }
     },
     {
-      "elementid": "DATA6",
+      "elementId": "DATA6",
       "name": "Name",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "s",
-      "basedatatype": "Text",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "s",
+      "baseDatatype": "Text",
       "examples": [
         "Erde"
       ],
@@ -116,12 +116,12 @@
       }
     },
     {
-      "elementid": "DATA7",
+      "elementId": "DATA7",
       "name": "Typ",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "s",
-      "basedatatype": "Text",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "s",
+      "baseDatatype": "Text",
       "examples": [
         "Planet"
       ],
@@ -130,12 +130,12 @@
       }
     },
     {
-      "elementid": "DATA8",
+      "elementId": "DATA8",
       "name": "Stern",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "s",
-      "basedatatype": "Text",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "s",
+      "baseDatatype": "Text",
       "examples": [
         "Sonne"
       ],
@@ -144,12 +144,12 @@
       }
     },
     {
-      "elementid": "DATA9",
+      "elementId": "DATA9",
       "name": "Begleiter",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         null
       ],
@@ -158,12 +158,12 @@
       }
     },
     {
-      "elementid": "DATA10",
+      "elementId": "DATA10",
       "name": "Durchmesser",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         13632
       ],
@@ -172,12 +172,12 @@
       }
     },
     {
-      "elementid": "DATA11",
+      "elementId": "DATA11",
       "name": "Unlaufdauer",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         1.001
       ],
@@ -186,12 +186,12 @@
       }
     },
     {
-      "elementid": "DATA12",
+      "elementId": "DATA12",
       "name": "Mittlerer Abstand",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "n",
-      "basedatatype": "Number",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "n",
+      "baseDatatype": "Number",
       "examples": [
         1
       ],
@@ -200,12 +200,12 @@
       }
     },
     {
-      "elementid": "DATA13",
+      "elementId": "DATA13",
       "name": "Oberfl\u00e4chentyp",
       "mandatory": null,
-      "dataobjectid": "DATO2",
-      "technicaldatatype": "s",
-      "basedatatype": "Text",
+      "dataObjectId": "DATO2",
+      "technicalDatatype": "s",
+      "baseDatatype": "Text",
       "examples": [
         "fest"
       ],
