@@ -3,9 +3,9 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import nvl, JsonElement, StandardJsonModel, Sql2IMJsonschema, Sql2IMJson,StandardSchema
+from IM_STANDARD import nvl, JsonElement, StandardJsonModel, \
+    Sql2IMJsonschema, Sql2IMJson,StandardSchema,json2timestamp
 from IM_STANDARD.SQL import dbval, SqliteDb, StandardModelDb
-from INTERFACES.DATASPOT.imstandard_dataspot import ds2timestamp
 
 
 class Standardmodel2SQLdatabase():
@@ -518,7 +518,7 @@ class Standardmodel2SQLdatabase():
         modeid = self.sqldb.rowinsert(tablename="modelelements",
                                       mode_type="ECAT",
                                       mode_modl_id=self.model_id,
-                                      mode_dc=ds2timestamp(catg.get("dateCreated", self.now)),
+                                      mode_dc=json2timestamp(catg.get("dateCreated", self.now)),
                                       mode_uc=catg.get("createdBy", "loadfromjson"))
         self.entitycatgstranslate[catg.get("elementId")] = modeid
         enca = {"enca_id": modeid,

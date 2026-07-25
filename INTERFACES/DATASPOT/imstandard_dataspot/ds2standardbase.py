@@ -7,14 +7,6 @@ from INTERFACES.DATASPOT.imstandard_dataspot.dselements import DataspotElements
 from .dslib import fullescapestr, custom_split
 
 
-def mseconds2date(seconds):
-    return datetime.utcfromtimestamp(seconds / 1000)
-
-
-def date2mseconds(date):
-    # todo timezone
-    return int(date.timestamp() * 1000)
-
 
 class Dataspot2Jsonbase:
     ORIGINTOOL = "dataspot"
@@ -125,7 +117,7 @@ class Dataspot2Jsonbase:
 
         return
 
-    def generatecategories(self, catgtype, status=None):
+    def generatecategorixes(self, catgtype, status=None):
         categories = {key: val for key, val in self.dsmodels.categories.items()
                       if val.get("TYPE") == catgtype \
                       and DataspotElements.checkstatus(val, status)}

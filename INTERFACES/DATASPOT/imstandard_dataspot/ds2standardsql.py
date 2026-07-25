@@ -4,9 +4,9 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import nvl, JsonElement, StandardJsonModel,Sql2IMJsonschema
+from IM_STANDARD import nvl, JsonElement, StandardJsonModel,Sql2IMJsonschema,json2timestamp
 from IM_STANDARD.SQL import dbval, SqliteDb, StandardModelDb
-from INTERFACES.DATASPOT.imstandard_dataspot import ds2timestamp,  DataspotElements, Dataspot2Jsonbase
+from INTERFACES.DATASPOT.imstandard_dataspot import DataspotElements, Dataspot2Jsonbase
 
 
 class Dataspot2SQLdatabase():
@@ -191,7 +191,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="ENTI",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(enti.get("dateCreated")),
+                                          mode_dc=json2timestamp(enti.get("dateCreated")),
                                           mode_uc=enti.get("createdBy", "loadedfromds"))
 
             try:
@@ -275,7 +275,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="RELA",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(rela.get("dateCreated")),
+                                          mode_dc=json2timestamp(rela.get("dateCreated")),
                                           mode_uc=rela.get("createdBy", "loadedfromds"))
 
             self.sqldb.rowinsert(tablename=tablename,
@@ -403,7 +403,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="ATTR",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(attr.get("dateCreated")),
+                                          mode_dc=json2timestamp(attr.get("dateCreated")),
                                           mode_uc=attr.get("createdBy", "loadedfromds"))
 
             self.generate1attribute(attr=attr,
@@ -419,7 +419,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="BURU",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(buru.get("dateCreated")),
+                                          mode_dc=json2timestamp(buru.get("dateCreated")),
                                           mode_uc=buru.get("createdBy", "loadedfromds"))
             # dereference constraintOn (Master) of busienss rule
             refelem = buru.get("constraintOn").split('/')  # one enti/domain element or enti/domain + attrielement
@@ -532,7 +532,7 @@ class Dataspot2SQLdatabase():
         modeid = self.sqldb.rowinsert(tablename="modelelements",
                                       mode_type="ECAT",
                                       mode_modl_id=self.model_id,
-                                      mode_dc=ds2timestamp(catg.get("dateCreated")),
+                                      mode_dc=json2timestamp(catg.get("dateCreated")),
                                       mode_uc=catg.get("createdBy", "loadfromds"))
 
         enca = {"enca_id": modeid,
@@ -603,7 +603,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="DOMA",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(doma.get("dateCreated")),
+                                          mode_dc=json2timestamp(doma.get("dateCreated")),
                                           mode_uc=doma.get("createdBy", "loadedfromds"))
 
             values = [val for key, val in self.dsmodel.LOVvalues.items()
@@ -723,7 +723,7 @@ class Dataspot2SQLdatabase():
         self.model_id = self.sqldb.rowinsert(tablename="modelelements",
                                              mode_type="MODL",
                                              mode_dc=datetime.now().isoformat(),
-                                             #       ds2timestamp(enti.get("dateCreated")).isoformat(),
+                                             #       json2timestamp(enti.get("dateCreated")).isoformat(),
                                              mode_uc="ich")  # enti.get("createdBy", "loadedfromds"))
 
         self.sqldb.rowinsert(tablename="models",

@@ -1,8 +1,26 @@
 import logging
 import re
+from datetime import datetime
+from dateutil import parser
 
 from IM_STANDARD import JsonElement, alwayslist, nvl, model2json
 
+def json2timestamp(datevalue)->datetime:
+    """ converts a date(time) int,float or str into a python datetime"""
+    if isinstance(datevalue,(int, float)):
+        # Convert milliseconds -> seconds if the number is large (> year 5000 in seconds)
+        if datevalue > 1e11:
+            datevalue /= 1000.0
+        return datetime.fromtimestamp(datevalue).isoformat()
+    if isinstance(datevalue,str):
+        datevalue = datevalue.strip()
+        try:
+            return json2timestamp(float(datevalue))
+        except:
+            try:
+                return parser.parse(datevalue).isoformat()
+            except:
+                return datevalue
 
 class ElementId:
     """ give unique new id with every call"""
