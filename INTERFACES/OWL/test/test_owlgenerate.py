@@ -8,7 +8,7 @@ class MyTestCase(unittest.TestCase):
         {
   "ModelInfo": {
     "modelName": "Beispielmodell Astronomie",
-    "modelType": "Information Model",
+    "modelType": "Information model",
     "mainLanguage": "de",
     "modelVersion": "0.9",
     "languages": [
@@ -674,7 +674,7 @@ class MyTestCase(unittest.TestCase):
             "en": "Duration"
           },
           "mandatory": True,
-          "domainid": "DOMA8",
+          "domainId": "DOMA8",
           "displaySeq": 1,
           "description": {
             "de": "Anzahl der Einheiten, die im Schwesterfeld definiert ist",
@@ -693,7 +693,7 @@ class MyTestCase(unittest.TestCase):
             "de": "Einheit"
           },
           "mandatory": True,
-          "domainid": "DOMA29",
+          "domainId": "DOMA29",
           "displaySeq": 2,
           "description": {
             "de": "Zeiteinheit als Stunde, Tag oder Jahr"
@@ -868,7 +868,7 @@ class MyTestCase(unittest.TestCase):
             "en": "Unit"
           },
           "mandatory": True,
-          "domainid": "DOMA31",
+          "domainId": "DOMA31",
           "displaySeq": 2,
           "shortDescr": {
             "de": "Physikalische Einheit",
@@ -883,7 +883,7 @@ class MyTestCase(unittest.TestCase):
             "en": "Quantity"
           },
           "mandatory": True,
-          "domainid": "DOMA20",
+          "domainId": "DOMA20",
           "displaySeq": 1,
           "shortDescr": {
             "de": "Anzahl der Einheiten",
@@ -936,7 +936,7 @@ class MyTestCase(unittest.TestCase):
             "en": "Confidence interval"
           },
           "mandatory": False,
-          "domainid": "DOMA24",
+          "domainId": "DOMA24",
           "displaySeq": 5,
           "description": {
             "de": "Bereich (als Prozent des Messwertes) um den der gemessene Wert nach oben oder unten abweichen kann.",
@@ -956,7 +956,7 @@ class MyTestCase(unittest.TestCase):
             "en": "Value"
           },
           "mandatory": True,
-          "domainid": "DOMA18",
+          "domainId": "DOMA18",
           "displaySeq": 1,
           "shortDescr": {
             "de": "der gemessene Wert (mit Einheit)",
@@ -1076,7 +1076,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR17",
           "name": "Oberfl\u00e4chentyp",
           "mandatory": False,
-          "domainid": "DOMA27",
+          "domainId": "DOMA27",
           "description": "Material, das die \u00e4usserste Schicht des Himmelsk\u00f6pers bildet.",
           "shortDescr": "Zustandsform der Oberfl\u00e4che",
           "examples": [
@@ -1119,7 +1119,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR18",
           "name": "Bezeichnung",
           "mandatory": False,
-          "domainid": "DOMA23",
+          "domainId": "DOMA23",
           "displaySeq": 1,
           "description": "Bezeichnung gem\u00e4ss Henry-Draper-Katalog (HD-Katalog)",
           "shortDescr": "Bezeichnung des Sterns im Katalog",
@@ -1133,7 +1133,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR19",
           "name": "Durchmesser",
           "mandatory": False,
-          "domainid": "DOMA2",
+          "domainId": "DOMA2",
           "displaySeq": 5,
           "description": "Der Durchmesser kann in 3 Werten angegeben werden. (Pol-, \u00c4quator- und mittlerer Durchmesser)",
           "shortDescr": "Durchmesser eines Sterns",
@@ -1147,7 +1147,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR20",
           "name": "Entdeckungsjahr",
           "mandatory": False,
-          "domainid": "DOMA3",
+          "domainId": "DOMA3",
           "displaySeq": 6,
           "description": "Jahr, in dem dieser Stern entdeckt wurde.",
           "examples": [
@@ -1160,7 +1160,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR21",
           "name": "Entfernung",
           "mandatory": False,
-          "domainid": "DOMA1",
+          "domainId": "DOMA1",
           "displaySeq": 4,
           "description": "Distanz in Lichtjahren",
           "shortDescr": "Distanz eines Sterns von unserer Sonne",
@@ -1174,7 +1174,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR22",
           "name": "Leuchtklasse",
           "mandatory": False,
-          "domainid": "DOMA26",
+          "domainId": "DOMA26",
           "displaySeq": 3,
           "description": "Die\u00a0Leuchtkraftklasse\u00a0eines Sterns ist durch Eigenschaften bestimmt, die von seiner\u00a0Leuchtkraft\u00a0abh\u00e4ngen; dies sind insbesondere die\u00a0Breite\u00a0und die St\u00e4rke (H\u00f6he) der\u00a0Spektrallinien. So haben Riesensterne eine geringere\u00a0Schwerebeschleunigung\u00a0in ihrer\u00a0Photosph\u00e4re\u00a0als Zwergsterne gleicher Temperatur, was eine geringere\u00a0Druckverbreiterung\u00a0der Linien bewirkt, wogegen die\u00a0Spektralklasse\u00a0Eigenschaften ber\u00fccksichtigt, die prim\u00e4r von seiner Oberfl\u00e4chentemperatur abh\u00e4ngen.\n\nQuelle: https://de.wikipedia.org/wiki/Klassifizierung_der_Sterne#Leuchtkraftklassen_(Entwicklungszustand)",
           "shortDescr": "Leuchtkraftklasse",
@@ -1190,7 +1190,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR23",
           "name": "Name",
           "mandatory": True,
-          "domainid": "DOMA23",
+          "domainId": "DOMA23",
           "displaySeq": 2,
           "description": "ca 500 Sterne haben eigene Namen, vergeben durch die Internationale Astronomische Union (IAU)",
           "shortDescr": "Eigenname eines Sterns",
@@ -1229,7 +1229,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR24",
           "name": "Oberfl\u00e4chentyp",
           "mandatory": False,
-          "domainid": "DOMA27",
+          "domainId": "DOMA27",
           "description": "Material, das die \u00e4usserste Schicht des Himmelsk\u00f6pers bildet.",
           "shortDescr": "Zustandsform der Oberfl\u00e4che",
           "examples": [
@@ -1306,7 +1306,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR10",
           "name": "Aphel",
           "mandatory": False,
-          "domainid": "DOMA4",
+          "domainId": "DOMA4",
           "displaySeq": 6,
           "description": "Der am weitesten enfernte Punkt einer Umlaufbahn eines Begleiters um sein Mutterobjekt\n\nDie H\u00e4lfte des l\u00e4nsten Durchmessers einer Ellipse",
           "shortDescr": "Der enternteste Punkt der Umlaufbahn eines Begleiters"
@@ -1315,7 +1315,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR11",
           "name": "Durchmesser",
           "mandatory": False,
-          "domainid": "DOMA2",
+          "domainId": "DOMA2",
           "displaySeq": 2,
           "description": "Der Durchmesser kann in 3 Werten angegeben werden. (Pol-, \u00c4quator- und mittlerer Durchmesser)",
           "shortDescr": "Durchmesser der Kugel eines grossen Objektes",
@@ -1328,7 +1328,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR12",
           "name": "Entdeckungsjahr",
           "mandatory": False,
-          "domainid": "DOMA3",
+          "domainId": "DOMA3",
           "displaySeq": 7,
           "description": "Jahr, in dem dieser Begleiter entdeckt wurde.",
           "examples": [
@@ -1341,7 +1341,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR13",
           "name": "mittlerer Abstand",
           "mandatory": False,
-          "domainid": "DOMA4",
+          "domainId": "DOMA4",
           "displaySeq": 4,
           "description": "Mittlerer Abstand des Himmelsk\u00f6rpers vom Mutterobjekt. W\u00e4re der Kreisradius, wenn die Umlaufbahn kreisf\u00f6rmig w\u00e4re.",
           "examples": [
@@ -1355,7 +1355,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR14",
           "name": "Name",
           "mandatory": False,
-          "domainid": "DOMA23",
+          "domainId": "DOMA23",
           "displaySeq": 1,
           "examples": [
             "(Erd-)Mond",
@@ -1375,7 +1375,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR15",
           "name": "Perihel",
           "mandatory": False,
-          "domainid": "DOMA4",
+          "domainId": "DOMA4",
           "displaySeq": 5,
           "description": "Der n\u00e4chste Punkt der Umlaufbahn eines Begleiters um sein Mutterobjekt.\n\nDie kleine Halbachse der Ellipse",
           "shortDescr": "Der am n\u00e4chsten liegende Punkt der Umlaufbahn eines Begleiters"
@@ -1384,7 +1384,7 @@ class MyTestCase(unittest.TestCase):
           "elementId": "ATTR16",
           "name": "Umlaufdauer",
           "mandatory": False,
-          "domainid": "DOMA5",
+          "domainId": "DOMA5",
           "displaySeq": 3,
           "description": "Zeit die ein Begleiter braucht um das Mutterobjekt zu umkreisen. (Wert + Zeiteinheit)",
           "examples": [

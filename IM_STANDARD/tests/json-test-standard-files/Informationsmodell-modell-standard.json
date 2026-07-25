@@ -1,7 +1,7 @@
 {
   "ModelInfo": {
     "modelName": "Informationsmodell-modell",
-    "modelType": "Information Model",
+    "modelType": "Information model",
     "mainLanguage": "en",
     "modelVersion": "0.9",
     "languages": [
@@ -3102,7 +3102,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI107",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 1,
       "description": {
         "en": "Beschreibung der Regeln, Formeln die festlegen, wie der Wert dieses Attributs aus anderen Attributen des Informationsmodells gerechnet werden kann.\n\nDie Beschreibung kann informell sein, sollte aber auf die exakten Regeln, Programme, Formeln hinweisen."
@@ -3124,7 +3124,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 2,
       "description": {
         "en": "M\u00f6glicherweise \u00fcbersetzter Name eines Attributs f\u00fcr die Anzeige auf Bildschirmmasken und in umgangssprachlich formulierten Dokumenten.\n\nBedeutung: siehe auch beim Attribut *Name* in dieser Entit\u00e4t.\n\nMuss innerhalb der Entit\u00e4t f\u00fcr jede Sprache eindeutig sein.\n"
@@ -3151,7 +3151,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA496",
+      "domainId": "DOMA496",
       "displaySeq": 5,
       "description": {
         "en": "Reihenfolge der Darstellungs dieses Attributs innerhalb der Entit\u00e4t.\nSortiert nach fachlichen Aspekten (Wichtigkeit, Zusammengeh\u00f6rigkeit)"
@@ -3177,7 +3177,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA493",
+      "domainId": "DOMA493",
       "displaySeq": 12,
       "description": {
         "en": "Beispielwerte f\u00fcr ein Attribut. In der Regel 1\u20132 Werte als Beispiele aus der realen Welt . \n\nSie helfen dabei, ein Attribut besser zu verstehen und mit bestehendem Wissen zu verkn\u00fcpfen.\n\nBeispielwerte sollten wiederholt  oder \u00fcber mehrere Elemente hinweg verkn\u00fcpft werden (Entit\u00e4t, Attribut, Beziehung usw.). Auf diese Weise lassen sich konkrete *Geschichten* bilden."
@@ -3200,7 +3200,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 3,
       "description": {
         "en": "Erl\u00e4uterung der Verwendung, Bedeutung die ein Wert dieses Attributs \u00fcber die Entit\u00e4t macht."
@@ -3223,7 +3223,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI102",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 6,
       "description": {
         "en": "Das Attribut charakterisiert diese Entit\u00e4t bzw. dieses Gruppenattribut und ist wichtig f\u00fcr deren Verst\u00e4ndnis."
@@ -3246,7 +3246,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 8,
       "description": {
         "en": "Indikator, der angibt, ob Werte dieses Attributs historisiert werden. D.h. ob die \u00c4nderungsgeschichte (alte Werte + Zeitpunkt der \u00c4nderung) aus fachlicher Sicht nachgef\u00fchrt und in der fachlichen Applikation angeboten wird.\n"
@@ -3269,7 +3269,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 10,
       "description": {
         "en": "Indikator, der angibt, ob der Wert des Attributs in mehreren Sprachen verwaltet werden soll.\n\nNur m\u00f6glich f\u00fcr textbasierte Attribute.\n\nSemantisch ist es **ein** Wert. Das bedeutet, auch wenn er in verschiedenen Sprachen ausgedr\u00fcckt werden kann, muss er immer dasselbe bedeuten.\n\nFalls ein ein Schl\u00fcsselattribut mehrsprachig sein kann, muss die Eindeutigkeit f\u00fcr jede Sprache garantiert werden.\n\nWie viele oder welche Sprachen es sind, ist nicht spezifiziert. \n"
@@ -3292,7 +3292,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI102",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 7,
       "description": {
         "en": "Indikator ob dieses Attribut einen Wert haben muss (*true*) oder ob es leer bleiben kann (\"false*)"
@@ -3314,7 +3314,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 11,
       "description": {
         "en": "Indikator, der angibt, dass Wert in der Datenspeicherung und in gewissen Kommunikationskan\u00e4len zu verschl\u00fcsseln ist."
@@ -3337,7 +3337,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 9,
       "description": {
         "en": "Indikator, der angibt, ob das Attribut mehrere Werte annehmen kann. \n\nAlle Werte sind aus dem gleichen Wertebereich. Wiederholte Attributwerte haben keine definierte Reihenfolge. D.h. die Position in der Liste der Wiederholungen macht keine fachliche Aussage."
@@ -3360,7 +3360,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI102",
-      "domainid": "DOMA481",
+      "domainId": "DOMA481",
       "displaySeq": 4,
       "description": {
         "en": "Kurze Erl\u00e4uterung zur Verwendung, Handhabung und Bedeutung des Attributs, das in Benutzeroberfl\u00e4chen angezeigt werden soll."
@@ -3383,7 +3383,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI102",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 1,
       "description": {
         "en": "Aussagekr\u00e4ftige Bezeichnung des Attributs in nat\u00fcrlicher Sprache. Sagt etwas aus \u00fcber die Rolle, Verwendung oder Herkunft der Werte die das Attribut beschriebt aussagen. Der Namen sollte in der Wirkgungswelt nicht mehrdeutig belegt sein\n\nEindeutig Innerhalb der Entit\u00e4t. \n\n*Offizieller* Name, der in der verbalen Kommunikation und in allen Dokumenten verwendet werden soll. Typischerweise der Name in der Hauptsprache des Modells.\n"
@@ -3406,7 +3406,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI99",
-      "domainid": "DOMA481",
+      "domainId": "DOMA481",
       "displaySeq": 2,
       "examples": [
         "gekauft",
@@ -3431,7 +3431,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI99",
-      "domainid": "DOMA493",
+      "domainId": "DOMA493",
       "displaySeq": 9,
       "examples": [
         "Ein Kunde kauft optional mehrere Produkte",
@@ -3456,7 +3456,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI99",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 5,
       "descriptive": false,
       "historicised": false,
@@ -3475,7 +3475,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI99",
-      "domainid": "DOMA502",
+      "domainId": "DOMA502",
       "displaySeq": 4,
       "descriptive": true,
       "historicised": false,
@@ -3494,7 +3494,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI99",
-      "domainid": "DOMA508",
+      "domainId": "DOMA508",
       "displaySeq": 3,
       "descriptive": true,
       "historicised": false,
@@ -3513,7 +3513,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI99",
-      "domainid": "DOMA506",
+      "domainId": "DOMA506",
       "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
@@ -3532,7 +3532,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI103",
-      "domainid": "DOMA493",
+      "domainId": "DOMA493",
       "displaySeq": 6,
       "description": {
         "en": "Beispielwerte f\u00fcr eine Entit\u00e4t. In der Regel 1\u20132 Werte beschreibender Attribute aus Beispielen aus der realen Welt . \n\nSie helfen dabei, eine Entit\u00e4t besser zu verstehen oder sie schnell in die eigene Erfahrung zu integrieren.\n\nBeispielwerte sollten wiederholt  oder \u00fcber mehrere Elemente hinweg verkn\u00fcpft werden (Entit\u00e4t, Attribut, Beziehung usw.). Auf diese Weise lassen sich konkrete \u201eGeschichten\u201d bilden."
@@ -3559,7 +3559,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI103",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 2,
       "description": {
         "en": "Definition, Bedeutung, Nutzen, Verwendung der Entit\u00e4t.\n"
@@ -3586,7 +3586,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI103",
-      "domainid": "DOMA481",
+      "domainId": "DOMA481",
       "displaySeq": 3,
       "description": {
         "en": "Kurzer Text, der die Bedeutung und Verwendung erkl\u00e4rt. Wird z. B. als Tooltip in der Benutzeroberfl\u00e4che verwendet."
@@ -3609,7 +3609,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI103",
-      "domainid": "DOMA482",
+      "domainId": "DOMA482",
       "displaySeq": 5,
       "description": {
         "en": "Abgek\u00fcrzter Namen f\u00fcr die Entit\u00e4t.\nVerwendet f\u00fcr Erw\u00e4hnungen in Diagrammen, technischen Beschreibungen etc. \n\nEindeutig in diesem Informationsmodell."
@@ -3642,7 +3642,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI103",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 1,
       "description": {
         "en": "Eindeutige m\u00f6glichst aussagekr\u00e4ftige Bezeichnung eines Dings das diese Entit\u00e4t beschreibt.\n\nEindeutig in diesem Informationsmodell.\n\n*Offizieller* Name, der in der verbalen Kommunikation und in allen Dokumenten verwendet werden soll."
@@ -3671,7 +3671,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI103",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 4,
       "description": {
         "en": "Liste der Synonymnamen f\u00fcr dieses Ding, die in alten Systemen oder aus Gewohnheit verwendet werden. Nicht \u00fcber alle Entit\u00e4ten hinweg eindeutig."
@@ -3699,7 +3699,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI100",
-      "domainid": "DOMA487",
+      "domainId": "DOMA487",
       "displaySeq": 1,
       "description": {
         "en": "Nummer zur Unterscheidung mehrerer exklusiver Beziehungsgruppen innerhalb einer Entit\u00e4t.  Sie zu einer exklusiven Beziehungsgruppe machen"
@@ -3721,7 +3721,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI108",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 2,
       "description": {
         "en": "Begr\u00fcndung, Erl\u00e4uterung, Quellen, Konsequenzen f\u00fcr diese Gesch\u00e4ftsregel."
@@ -3748,7 +3748,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI108",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 1,
       "description": {
         "en": "Regel die beschreibt, wie die verkn\u00fcpften Elemente voneinander abh\u00e4ngen."
@@ -3774,7 +3774,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI115",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 4,
       "description": {
         "en": "Beschreibung des Zwecks, der Verwendung und der Zielgruppe dieses Informationsmodells."
@@ -3796,7 +3796,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI115",
-      "domainid": "DOMA500",
+      "domainId": "DOMA500",
       "displaySeq": 5,
       "description": {
         "en": "Sprache in der dieses Modell urspr\u00fcnglich beschrieben ist.\n\nIm Zweifelsfall gilt immer die Beschreibung/Definition der Hauptsprache.\n\nDient als Standardsprache in mehrsprachigen Zeichenfolgen, wenn f\u00fcr eine Sprache keine \u00dcbersetzung vorhanden ist.."
@@ -3820,7 +3820,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI115",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 1,
       "description": {
         "en": "Name des Modells, eindeutig in der Zielumgebung (Firma, Organisation, Fachbereich...)"
@@ -3847,7 +3847,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI115",
-      "domainid": "DOMA500",
+      "domainId": "DOMA500",
       "displaySeq": 6,
       "description": {
         "en": "Liste der Sprachen, in die Modelltextelemente \u00fcbersetzt werden k\u00f6nnen. (excl. Hauptsprache)\n\nMussfelder m\u00fcssen mindestens in der Hauptsprache einen Wert haben. Fehlt eine \u00dcbersetzung in eine der Sprachen, gilt als Default-Wert der Wert in der Hauptsprache."
@@ -3870,7 +3870,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI115",
-      "domainid": "DOMA499",
+      "domainId": "DOMA499",
       "displaySeq": 3,
       "description": {
         "en": "Versionsnummer des in dieser Dokumentation dokumentierten Informationsmodells."
@@ -3896,7 +3896,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI115",
-      "domainid": "DOMA488",
+      "domainId": "DOMA488",
       "displaySeq": 2,
       "description": {
         "en": "Die Zielumgebung (auch als Wirkungswelt bezeichnet) ist die Gemeinschaft (Gruppe von Personen), die mithilfe der im Informationsmodell beschriebenen, genau definierten Sprache miteinander kommunizieren und zusammenarbeiten m\u00f6chte, sollte oder muss."
@@ -3927,7 +3927,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI109",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 2,
       "description": {
         "en": "Grund, Gruppierunsaspekt f\u00fcr diese Kategorie."
@@ -3949,7 +3949,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI109",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 1,
       "description": {
         "en": "Bezeichung der Kategorie, eindeutig innerhalb der Vater-Kategorie."
@@ -3977,7 +3977,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI118",
-      "domainid": "DOMA498",
+      "domainId": "DOMA498",
       "displaySeq": 4,
       "descriptive": false,
       "historicised": false,
@@ -3996,7 +3996,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI118",
-      "domainid": "DOMA498",
+      "domainId": "DOMA498",
       "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
@@ -4015,7 +4015,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI118",
-      "domainid": "DOMA494",
+      "domainId": "DOMA494",
       "displaySeq": 2,
       "descriptive": true,
       "historicised": false,
@@ -4034,7 +4034,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI118",
-      "domainid": "DOMA510",
+      "domainId": "DOMA510",
       "displaySeq": 5,
       "examples": [
         "0.5",
@@ -4058,7 +4058,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI118",
-      "domainid": "DOMA494",
+      "domainId": "DOMA494",
       "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
@@ -4077,7 +4077,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI119",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 2,
       "descriptive": false,
       "historicised": false,
@@ -4095,7 +4095,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI119",
-      "domainid": "DOMA492",
+      "domainId": "DOMA492",
       "displaySeq": 3,
       "descriptive": true,
       "historicised": false,
@@ -4114,7 +4114,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI119",
-      "domainid": "DOMA482",
+      "domainId": "DOMA482",
       "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
@@ -4132,7 +4132,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI120",
-      "domainid": "DOMA497",
+      "domainId": "DOMA497",
       "displaySeq": 2,
       "descriptive": true,
       "historicised": false,
@@ -4151,7 +4151,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI120",
-      "domainid": "DOMA497",
+      "domainId": "DOMA497",
       "displaySeq": 1,
       "descriptive": false,
       "historicised": false,
@@ -4170,7 +4170,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI120",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
@@ -4189,7 +4189,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI121",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 2,
       "descriptive": true,
       "historicised": false,
@@ -4208,7 +4208,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI121",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 4,
       "descriptive": false,
       "historicised": false,
@@ -4227,7 +4227,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI121",
-      "domainid": "DOMA496",
+      "domainId": "DOMA496",
       "displaySeq": 3,
       "descriptive": true,
       "historicised": false,
@@ -4246,7 +4246,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI121",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
@@ -4265,7 +4265,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI122",
-      "domainid": "DOMA493",
+      "domainId": "DOMA493",
       "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
@@ -4285,7 +4285,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI122",
-      "domainid": "DOMA479",
+      "domainId": "DOMA479",
       "displaySeq": 2,
       "descriptive": false,
       "historicised": false,
@@ -4304,7 +4304,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI122",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
@@ -4323,7 +4323,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI124",
-      "domainid": "DOMA503",
+      "domainId": "DOMA503",
       "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
@@ -4342,7 +4342,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI124",
-      "domainid": "DOMA490",
+      "domainId": "DOMA490",
       "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
@@ -4361,7 +4361,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI124",
-      "domainid": "DOMA490",
+      "domainId": "DOMA490",
       "displaySeq": 2,
       "descriptive": false,
       "historicised": false,
@@ -4380,7 +4380,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI114",
-      "domainid": "DOMA483",
+      "domainId": "DOMA483",
       "displaySeq": 1,
       "description": {
         "en": "Name of the attribute that is listed as an additional property for the element."
@@ -4406,7 +4406,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI114",
-      "domainid": "DOMA488",
+      "domainId": "DOMA488",
       "displaySeq": 2,
       "description": {
         "en": "Wert, den eine zus\u00e4tzliche Eigenschaft f\u00fcr dieses Element hat.\n\nWerte sind Zeichenfolgen. Datentyp, Einschr\u00e4nkungen usw. sind von den Personen oder Tools zu handhaben, die die Werte verwalten."

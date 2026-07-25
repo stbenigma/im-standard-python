@@ -614,7 +614,7 @@ class Dataspot2Jsonbase:
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=doma.get("label"),
                                                                      addprops=additionalprops),
-                                            categoryid=catgid,
+                                            categoryId=catgid,
                                             **subtypeproperties
                                             )
         return elemdoma

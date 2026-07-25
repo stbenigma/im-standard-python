@@ -161,12 +161,12 @@ class ValidateJsonModel:
             # all referenced domains (in groupdomains) must exist in the domainlist
             if doma.get("domainType") == "GroupDomain":
                 for elem in doma.get("elements", []):
-                    domainid = elem.get("domainid")
+                    domainid = elem.get("domainId")
                     if domainid is not None and domainid not in domainids:
                         # if verbose: logging.error(
-                        #    f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementId')} not found.")
+                        #    f"Domain {elem.get('domainId')} of groupdomain {doma.get('elementId')} not found.")
                         errors.append(
-                            f"Domain {elem.get('domainid')} of groupdomain {doma.get('elementId')} not found.")
+                            f"Domain {elem.get('domainId')} of groupdomain {doma.get('elementId')} not found.")
 
         # rules for categories
         if len(catgids) > len(set(catgids)):
@@ -232,7 +232,7 @@ class ValidateJsonModel:
                     f"Missing attribute name {attr.get('name')} in main language in entity {attr.get('parentId')}")
 
             # all referenced domains must exist in the domainlist
-            domaid = attr.get("domainid")
+            domaid = attr.get("domainId")
             if domaid is not None and domaid not in domainids:
                 # if verbose: logging.error(
                 #    f"Domain {domaid} in attribute {attr.get('elementId')} not found.")
@@ -297,7 +297,7 @@ class ValidateJsonModel:
                     errors.append(
                         f"SUBTYPE relationship must have 1 a both ends in relationship {rela.get('elementId')}")
 
-            elif myschema.modeltype == "Data Model":
+            elif myschema.modeltype == "Data model":
                 # all referenced entities must exist
                 if rela.get("fwd").get("tableid") not in tableids:
                     # if verbose: logging.error(

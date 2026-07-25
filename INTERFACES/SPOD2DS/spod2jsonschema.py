@@ -75,7 +75,7 @@ class Spod2Jsonschema():
                      "name": elem.get("name").strip(),
                      "mandatory": elem.get("mandatory"),
                      "description": elem.get("descr"),
-                     "domainid": elem.get("domainid"),
+                     "domainId": elem.get("domainId"),
                      "parentId": key
                      }
                     for elem in subelements]
@@ -83,7 +83,7 @@ class Spod2Jsonschema():
                                                  name=nvl(elem.get("name")).strip(),
                                                  mandatory=elem.get("mandatory"),
                                                  description=elem.get("descr"),
-                                                 domainid=elem.get("domainid"),
+                                                 elem.get("domainId"),
                                                  parentid=key
                                                  )
                      for elem in subelements]
@@ -124,7 +124,7 @@ class Spod2Jsonschema():
                                                 name=self.anylingualtext(element.get("name"), stripblanks=True),
                                                 categorytype="ENTITY",
                                                 description=self.anylingualtext(element.get("descr")),
-                                                categoryid=element.get("parent"),
+                                                categoryId=element.get("parent"),
                                                 additionalProps=additionalProps
                                                 )
         return jsonstruct
@@ -151,10 +151,10 @@ class Spod2Jsonschema():
 
         return JsonElement().attributejson(elementId=key,
                                            name=self.anylingualtext(element.get("name"), stripblanks=True),
-                                           domainid=element.get("domainid"),
+                                           element.get("domainId"),
                                            parentid=element.get("entity"),
                                            mandatory=element.get("mandatory"),
-                                           displayseq=element.get("seq"),
+                                           displaySeq=element.get("seq"),
                                            description=self.anylingualtext(element.get("descr")),
                                            title=self.anylingualtext(element.get("tooptip")),
                                            examples=self.modellanguagetexts(element.get("examples")),
@@ -205,7 +205,7 @@ class Spod2Jsonschema():
             additionalProps["SOURCE-" + sourcekey] = source
         jsonstruct = JsonElement().entityjson(elementId=key,
                                               name=self.anylingualtext(element.get("name"), stripblanks=True),
-                                              categoryid=element.get("category"),
+                                              categoryId=element.get("category"),
                                               synonyms=[self.anylingualtext(syno, stripblanks=True) for syno in
                                                         element.get("synonyms")],
                                               keys=[self.keyjson(keyid) for keyid in element.get("keys+")],
@@ -278,7 +278,7 @@ class Spod2Jsonschema():
 
         return
 
-    def generatestandardjson(self, modeltype="Information Model",
+    def generatestandardjson(self, modeltype="Information model",
                              targetenv="", description=None):
         if self.jsmodel is None:
             return
@@ -291,7 +291,7 @@ class Spod2Jsonschema():
             languages=[lang.strip() for lang in
                        nvl(self.jsmodel.get("languages"), dict()).keys()],
             description=description,
-            targetenvironment=targetenv,
+            targetEnvironment=targetenv,
             origintool="SPOD",
             originref=str(self._JSModel.jsfile),
             datetimecreated=self.jsmodel.get("_imprint_").get("created"),

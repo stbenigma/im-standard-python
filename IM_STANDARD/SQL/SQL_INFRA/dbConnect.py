@@ -29,37 +29,44 @@ def dict_factory(cursor, row):
 class SqliteDb:
     class DBError(Exception):
         """Base for all DB errors"""
+
         def __init__(self, msg, original: Exception = None):
             super().__init__(msg)
             self.original = original
 
     class NO_DATA_FOUND(sqlite3.IntegrityError):
         """Raised when a query returns no rows."""
+
         def __init__(self, *args, **kwargs):  # real signature unknown
             pass
 
     class TOO_MANY_ROWS(sqlite3.IntegrityError):
         """Raised when a query returns more rows than expected."""
+
         def __init__(self, *args, **kwargs):  # real signature unknown
             pass
 
     class UK_VIOLATED(sqlite3.IntegrityError):
         """Raised when in an update or insert an uk constraint is violated"""
+
         def __init__(self, *args, **kwargs):  # real signature unknown
             pass
 
     class FK_VIOLATED(sqlite3.IntegrityError):
         """Raised when in an update or insert an fk constraint is violated"""
+
         def __init__(self, *args, **kwargs):  # real signature unknown
             pass
 
     class CHECK_VIOLATED(sqlite3.IntegrityError):
         """Raised when in an update or insert an fk constraint is violated"""
+
         def __init__(self, *args, **kwargs):  # real signature unknown
             pass
 
     class NOTNULL(sqlite3.IntegrityError):
         """Raised when in an update or insert an fk constraint is violated"""
+
         def __init__(self, *args, **kwargs):  # real signature unknown
             pass
 

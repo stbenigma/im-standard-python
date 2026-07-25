@@ -21,7 +21,7 @@ class Test_standard2sql(unittest.TestCase):
   "ModelInfo": {
     "elementId": "MODL1",
     "modelName": "IM-Standard",
-    "modelType": "Information Model",
+    "modelType": "Information model",
     "mainLanguage": "de",
     "modelVersion": "0.0",
     "languages": [

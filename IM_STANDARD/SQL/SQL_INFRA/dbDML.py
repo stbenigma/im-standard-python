@@ -60,7 +60,7 @@ class DbDML(DbDDL):
           kwargs is the set of substitution variables ":x" in the sql statement
         """
 
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
         try:
             rows = cursor.execute(sql, kwargs).rowcount
         except sqlite3.Error as e:
@@ -75,15 +75,16 @@ class DbDML(DbDDL):
         """execute a sql select statement
         kwargs is the dict of substitution variables :x in the sql statement
         returns the resultset of the sql statement
+
         """
-        cursor = self.getcursor(factory=None if aslist else None)#dict_factory)
+        cursor = self.getcursor(factory=None if aslist else dict_factory)
 
         try:
             cursor.execute(sql, kwargs)
         except sqlite3.Error as e:
             raise Exception(f'Statement failed "{sql}"'+
                             f'\n{e.args}') from e
-        result = cursor.fetchone()
+        result = cursor.fetchall()
         return result
 
 
@@ -103,9 +104,9 @@ class DbDML(DbDDL):
              """
         rows= self.select(sql=sql,**kwargs)
         if len(rows)==0:
-            raise self.NO_DATA_FOUND(f"{tablename} for {kwargs} ")
+            raise SqliteDb.NO_DATA_FOUND(f"{tablename} for {kwargs} ")
         if len(rows)>1:
-            raise self.TOO_MANY_ROWS(f"{tablename} for {kwargs} ")
+            raise SqliteDb.TOO_MANY_ROWS(f"{tablename} for {kwargs} ")
         return rows[0]
 
     def lookupvalue(self, tablename: str,
@@ -150,7 +151,7 @@ class DbDML(DbDDL):
             number of inserted rows if rec is a list
             id of inserted row if rec is tuple or dict
         """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
 
         try:
             if type(rec) is list:

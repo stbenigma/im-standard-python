@@ -229,7 +229,7 @@ class CreateSchemaExcel:
 
         for attr in self._standardjson.getelementinstances("Attributes"):
             if attr.get("parentId") == elem.get("elementId"):
-                domain = self._getbyid("Domains", attr.get("domainid"))
+                domain = self._getbyid("Domains", attr.get("domainId"))
                 attrname = self._mlvalue(attr, "name")
                 groupdoma = None
                 if domain is None:

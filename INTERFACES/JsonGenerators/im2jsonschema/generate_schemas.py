@@ -154,7 +154,7 @@ def resolve_domain(domain_id, attr_name_hint=None, _depth=0):
         # gemeinte Feld zu finden und dessen konkreten Typ zu uebernehmen.
         match = find_group_child_by_name(domain_id, attr_name_hint or "") if attr_name_hint else None
         if match and _depth < 4:
-            frag, sub_notes = resolve_domain(match.get("domainid"), match["name"], _depth + 1)
+            frag, sub_notes = resolve_domain(match.get("domainId"), match["name"], _depth + 1)
             notes.append(
                 f"domainid {domain_id} ('{dom['name']}') ist eine Gruppe (GroupDomain). "
                 f"Feld wurde per Namensabgleich auf Gruppenmitglied '{match['name']}' "
@@ -183,7 +183,7 @@ def resolve_domain(domain_id, attr_name_hint=None, _depth=0):
 
 
 def build_property(attr):
-    frag, notes = resolve_domain(attr.get("domainid"), attr["name"])
+    frag, notes = resolve_domain(attr.get("domainId"), attr["name"])
     frag = dict(frag)
 
     title = attr["name"]

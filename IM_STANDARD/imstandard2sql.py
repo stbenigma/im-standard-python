@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import nvl, JsonElement, StandardJsonModel, Sql2IMJsonschema, Sql2IMJson
+from IM_STANDARD import nvl, JsonElement, StandardJsonModel, Sql2IMJsonschema, Sql2IMJson,StandardSchema
 from IM_STANDARD.SQL import dbval, SqliteDb, StandardModelDb
 from INTERFACES.DATASPOT.imstandard_dataspot import ds2timestamp
 
@@ -13,7 +13,7 @@ class Standardmodel2SQLdatabase():
     takes a standard model json  and creates a sql database script
     """
 
-    MODELTYPESREV = {val: key for key, val in Sql2IMJson.MODELTYPES.items()}
+    MODELTYPESREV = {val: key for key, val in StandardSchema.MODELTYPES.items()}
 
     def __init__(self, jsonmodel, mydb: StandardModelDb):
 
@@ -156,7 +156,7 @@ class Standardmodel2SQLdatabase():
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
                                                                      addprops=additionalprops),
-                                            categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                            categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                           modelname=element.get("DSMODEL"),
                                                                           name=self._deref(
                                                                               element.get("inCollection")),
@@ -167,7 +167,7 @@ class Standardmodel2SQLdatabase():
                                                                             value=self._deref(
                                                                                 element.get("description")),
                                                                             addprops=additionalprops),
-                                            shortdescr=self.mutlilangvalue(fieldname="title",
+                                            shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(
                                                                                element.get("title")),
                                                                            addprops=additionalprops),
@@ -318,7 +318,7 @@ class Standardmodel2SQLdatabase():
         else:
             assert False, f"Attribute {parent} is neither entity nor domain"
 
-        domaid = self.domaintranslate.get(attr.get("domainid"))
+        domaid = self.domaintranslate.get(attr.get("domainId"))
 
         self.sqldb.rowinsert(tablename=tablename,
                              attr_id=modeid,
@@ -353,14 +353,14 @@ class Standardmodel2SQLdatabase():
         #                                                                 value=self._deref(attr.get("label")),
         #                                                                 addprops=additionalprops),
         #                                        mandatory=attr.get("required") == "MANDATORY",
-        #                                        #domainid=domainid,
+        #                                        #domainid,
         #                                        parentid=parentid,
-        #                                        displayseq=attr.get("order"),
+        #                                        displaySeq=attr.get("order"),
         #                                        description=self.mutlilangvalue(fieldname="description",
         #                                                                        value=self._deref(
         #                                                                            attr.get("description")),
         #                                                                        addprops=additionalprops),
-        #                                        shortdescr=self.mutlilangvalue(fieldname="title",
+        #                                        shortDescr=self.mutlilangvalue(fieldname="title",
         #                                                                       value=self._deref(
         #                                                                           attr.get("title")),
         #                                                                       addprops=additionalprops),
@@ -510,7 +510,7 @@ class Standardmodel2SQLdatabase():
 
         return
 
-    def _inserttotalcategory(self, catg: dict, tablename: str, categoryid: int = None):
+    def _inserttotalcategory(self, catg: dict, tablename: str, categoryId: int = None):
         # assert self._modpk(catg.get("elementId")) in \
         #        [mi[0] for mi in self.sqldb.select(sql="select mode_id from modelelements",
         #                                                            aslist=True)]:
@@ -524,7 +524,7 @@ class Standardmodel2SQLdatabase():
         enca = {"enca_id": modeid,
                 "enca_name": self.mlvalue(catg.get("name")),
                 "enca_descr": self.mlvalue(nvl(catg.get("description"), catg.get("title"))),
-                "enca_enca_id": categoryid
+                "enca_enca_id": categoryId
                 }
         self.sqldb.rowinsert(tablename=tablename, **enca)
         self._insertmultilang(elem=catg,
@@ -542,7 +542,7 @@ class Standardmodel2SQLdatabase():
                          if catg.get("categoryType") == catgtype and
                             catg.get("categoryId") == parent]:
                 catgid = self._inserttotalcategory(catg=catg, tablename=tablename,
-                                                   categoryid=(None if parent is None \
+                                                   categoryId=(None if parent is None \
                                                                    else self.entitycatgstranslate[parent])
                                                    )
                 _levelcatgs(parent=catg.get("elementId"))

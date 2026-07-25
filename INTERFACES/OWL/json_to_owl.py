@@ -572,7 +572,7 @@ class Converter:
         """Emit one owl:DatatypeProperty or owl:ObjectProperty."""
         t       = self.ttl
         pid     = attr.get("parentId", "")
-        did     = attr.get("domainid", "")
+        did     = attr.get("domainId", "")
         mand    = attr.get("mandatory", False)
         descr   = _lang(attr.get("description") or attr.get("shortDescr", ""), self.main_lang)
 

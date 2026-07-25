@@ -234,7 +234,7 @@ class JsonElement:
                      "mandatory": mandatory,
                      "parentId": parentid
                      }
-        self.addoptionalprop(propname="domainid",
+        self.addoptionalprop(propname="domainId",
                              value=self.domainref(domainid=domainid,
                                                   modelname=kwargs.get("domainmodelname"))),
         for key, val in kwargs.items():
@@ -329,7 +329,7 @@ class JsonElement:
 
     def domainref(self, domainid, modelname):
         return (domainid if modelname is None
-                else {"domainid": domainid,
+                else {"domainId": domainid,
                       "modelName": modelname
                       })
 
@@ -376,7 +376,7 @@ class JsonElement:
                      "dataObjectId": dataobjectid
                      }
         for key, val in kwargs.items():
-            if key == "domainid":
+            if key == "domainId":
                 self.addoptionalprop(key, self.domainref(domainid=val,
                                                          modelname=kwargs.get("domainmodelname")))
             else:

@@ -42,10 +42,10 @@ class StandardExcel:
             self._filespec = filespec
         self.myexcel = load_workbook(self._filespec)
         self.model = JsonSchema(model={"ModelInfo": JsonElement().modelinfojson(modelname=Path(self._filespec).stem,
-                                                                                modeltype="Data Model",
+                                                                                modeltype="Data model",
                                                                                 origintool="EXCEL",
                                                                                 originref=str(self._filespec),
-                                                                                targetenvironment="Test"
+                                                                                targetEnvironment="Test"
                                                                                 )}
                                 )
         return

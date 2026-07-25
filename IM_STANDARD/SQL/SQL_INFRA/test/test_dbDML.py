@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 import test_dbDLL
-from IM_STANDARD.SQL.SQL_INFRA import SqliteDb, DbDML,DbDDL
+from IM_STANDARD.SQL.SQL_INFRA import SqliteDb, DbDML
 
 class MyTestCase(unittest.TestCase):
 
@@ -38,7 +38,7 @@ class MyTestCase(unittest.TestCase):
         self.dmldb.insert(sql=inssql, rec=("abc", None, "def", 1))
         self.assertEqual(1, self.dmldb.rowcount(tablename=self.tablenames[0]))
 
-        cols = self.dmldb.select(sql=selsql)
+        cols = self.dmldb.select(sql=selsql,aslist=False)
         self.assertEqual(1, len(cols))
         self.dmldb.insert(sql=inssql, rec=[("neu", "DRAFT", "usw", 123),
                                              ("neu2", "PUBL", "usw", 7)]

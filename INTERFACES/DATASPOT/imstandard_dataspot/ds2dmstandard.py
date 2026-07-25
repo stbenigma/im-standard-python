@@ -8,6 +8,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
     def __init__(self, indirec=None, **kwargs):
         super().__init__(standardjson=JsonSchema(),
                          indirec=indirec, **kwargs)
+        self.modeltype="DM"
 
         return
 
@@ -62,7 +63,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
                                                                                 name=element.get("label"),
                                                                                 columns=[],
                                                                                 description=element.get("description"),
-                                                                                #categoryid=self.categoryid(
+                                                                                #categoryId=self.categoryId(
                                                                                 #    modeltype="DATAOBJECT",
                                                                                 #    categoryname=self._deref(
                                                                                 #        element.get("inCollection"))),
@@ -81,7 +82,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
             jsonstruct = JsonElement().dataattributejson(elementId=ElementId.nextid("COLU"),
                                                       dataobjectid=datoid,
                                                       name=subelem.get("label"),
-                                                      domainid=domainid,
+                                                      domainId=domainid,
                                                       mandatory=subelem.get("required") == "MANDATORY",
                                                       techname=subelem.get("label").upper(),
                                                       description=subelem.get("description"),
@@ -146,12 +147,12 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                            modelname=modelname,
-                                           modeltype="Information Model",
+                                           modeltype="Data model",
                                            mainlanguage=kwargs.get("language", "en"),
                                            languages=kwargs.get("languages"),
                                            dc=None,
                                            modelversion=kwargs.get("modelVersion"),
-                                           targetenvironment=targetenv,
+                                           targetEnvironment=targetenv,
                                            origintool=self.ORIGINTOOL))
 
         self.generatecategories(catgtype="DOMAIN",status=status)

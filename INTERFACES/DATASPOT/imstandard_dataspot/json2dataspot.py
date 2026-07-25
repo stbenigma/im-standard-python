@@ -289,7 +289,7 @@ class Json2dataspot():
 
         @param domainid:
                 either DOMAxxx
-                or {"domainid": "DOMAxxx",
+                or {"domainId": "DOMAxxx",
                     "modelName": "yyyyy"
                 }
         @return: domainrange for dataspot
@@ -297,7 +297,7 @@ class Json2dataspot():
         if domainid is None: return None
         if type(domainid) == dict:
             modelname = domainid.get("modelName", self.imname)
-            domaid = domainid.get("domainid")
+            domaid = domainid.get("domainId")
         else:
             modelname = self.imname
             domaid = domainid
@@ -328,7 +328,7 @@ class Json2dataspot():
                                           title=escapestr(self.model.mlvalue(attr.get("shortDescr"))),
                                           description=escapestr(self.model.mlvalue(attr.get("description"))),
                                           favorite=attr.get("descriptive"),
-                                          hasRange=self.domainrange(attr.get("domainid")),
+                                          hasRange=self.domainrange(attr.get("domainId")),
                                           examples=attr.get("examples"),
                                           required="MANDATORY" if attr.get("mandatory") else "OPTIONAL",
                                           cardinality="MANY" if attr.get("repeated") else "ONE",
@@ -384,8 +384,8 @@ class Json2dataspot():
                                           title=escapestr(data.get("shortDescr")),
                                           description=escapestr(nvl(data.get("description"))),
                                           favorite=data.get("descriptive"),
-                                          hasRange=self.domainrange(data.get("domainid")),
-                                          displayseq=data.get("displaySeq"),
+                                          hasRange=self.domainrange(data.get("domainId")),
+                                          displaySeq=data.get("displaySeq"),
                                           examples=data.get("examples"),
                                           required="MANDATORY" if data.get("mandatory") else "OPTIONAL",
                                           cardinality="MANY" if data.get("repeated") else "ONE",
@@ -572,7 +572,7 @@ class Json2dataspot():
     def dsentityjson(self) -> list:
         """create from a standardjson a dataspot load-json"""
         retval = list()
-        if self.model.modeltype != "Information model": return retval
+        if self.model.modeltype not in ("Information model","Artefact model"): return retval
         retval += self.entitylist()
         if len(retval) > 0:
             retval += self.categories(catgtype="ENTITY")
@@ -591,16 +591,16 @@ class Json2dataspot():
                 for doma in self.model.jsonschemamodel["Domains"]
                 if doma.get("domainType") == "Domain"]
 
-    def getmycategoryidtree(self, categoryids, withparents=False):
-        retval = categoryids
+    def getmycategoryIdtree(self, categoryIds, withparents=False):
+        retval = categoryIds
         mycategories = [catg for catg in self.model.jsonschemamodel["Categories"] if
-                        catg.get("elementId") in categoryids]
+                        catg.get("elementId") in categoryIds]
         # TODO MANY in jsonschema
         parents = []
         for catg in mycategories:
             if withparents and catg.get("parent") is not None \
                     and catg.get("parent") not in retval + parents:
-                parents.extend(self.getmycategoryidtree(categoryids=[catg.get("parent")], withparents=True))
+                parents.extend(self.getmycategoryIdtree(categoryIds=[catg.get("parent")], withparents=True))
         retval.extend(parents)
         return retval
 
@@ -611,8 +611,8 @@ class Json2dataspot():
             refdomains = [doma for doma in self.model.jsonschemamodel.get("Domains", []) if
                           doma.get("domainType") == "LOVDomain"]
             retval += self.categories(catgtype="DOMAIN",
-                                      catglist=self.getmycategoryidtree(
-                                          categoryids=list(set(d.get("categoryId") for d in refdomains)),
+                                      catglist=self.getmycategoryIdtree(
+                                          categoryIds=list(set(d.get("categoryId") for d in refdomains)),
                                           withparents=True)
                                       )
 
@@ -634,8 +634,8 @@ class Json2dataspot():
                 retval += self.attrlist(parentobj=doma)
 
             retval += self.categories(catgtype="DOMAIN",
-                                      catglist=self.getmycategoryidtree(
-                                          categoryids=list(set(d.get("categoryId") for d in domains)),
+                                      catglist=self.getmycategoryIdtree(
+                                          categoryIds=list(set(d.get("categoryId") for d in domains)),
                                           withparents=True)
                                       )
 
@@ -700,7 +700,7 @@ class Json2dataspot():
     def dsdmjson(self) -> list:
         """create from a datamodel standardjson a dataspot load-json"""
         retval = list()
-        if self.model.modeltype != "Data Model": return retval
+        if self.model.modeltype != "Artefact model": return retval
         retval += self.dataobjectlist()
         if len(retval) > 0:
             retval += self.categories(catgtype="DATAOBJECT")

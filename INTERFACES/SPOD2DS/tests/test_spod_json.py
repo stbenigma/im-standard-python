@@ -46,7 +46,7 @@ class TestModelSchema(unittest.TestCase):
             self.skipTest(f"local im {imstandardmodelfilepath.stem} standardfile not found")
         imstandardmodel = JSModel.readfromfile(imstandardmodelfilepath)
         spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
-        instance = spodschema.generatestandardjson(modeltype="Information Model",
+        instance = spodschema.generatestandardjson(modeltype="Information model",
                                                    targetenv="Standard IM",
                                                    description=None)
         puremodel=model2json(instance.jsonschemamodel)
@@ -87,18 +87,18 @@ class TestModelSchema(unittest.TestCase):
                            "name": "DomainAttr1",
                            "mandatory": True,
                            "descr": "descr des 1. Attributes",
-                           "domainid": "DOMA10"},
+                           "domainId": "DOMA10"},
                           {"elementId": "ATTR998",
                            "name": "DomainAttr2",
                            "mandatory": True,
                            "descr": {"en": "descr of second Attribute",
                                            "de": "descr des zweiten Attr."},
-                           "domainid": "DOMA13"
+                           "domainId": "DOMA13"
                            }
                           ]
              }
         spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
-        instance = spodschema.generatestandardjson(modeltype="Information Model",
+        instance = spodschema.generatestandardjson(modeltype="Information model",
                                                    targetenv="Standard IM",
                                                    description=None)
         puremodel=model2json(instance.jsonschemamodel)
@@ -138,7 +138,7 @@ class TestModelSchema(unittest.TestCase):
                 continue
             imstandardmodel = JSModel.readfromfile(imstandardmodelfilepath)
             spodschema = Spod2Jsonschema(jsmodel=imstandardmodel)
-            instance = spodschema.generatestandardjson(modeltype="Information Model",
+            instance = spodschema.generatestandardjson(modeltype="Information model",
                                                        targetenv="Standard IM",
                                                        description=None)
 

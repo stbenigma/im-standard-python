@@ -10,20 +10,20 @@ class MyTestCase(unittest.TestCase):
     def test_idschema(self):
         schema = JsonSchema(model={"ModelInfo": JsonElement(elemtype="ModelInfo",
                                                             modelname="IM-standard",
-                                                            modeltype="Information Model",
+                                                            modeltype="Information model",
                                                             mainlanguage="en",
                                                             modelversion="1.1",
-                                                            targetenvironment="Testtarget"),
+                                                            targetEnvironment="Testtarget"),
                                    "Categories":[JsonElement().categoryjson(categorytype="ENTITY",
                                                                             elementId="CATG12",
                                                                             name="mycatg",
-                                                                            categoryid="CATG11"),
+                                                                            categoryId="CATG11"),
                                                  JsonElement().categoryjson(categorytype="ENTITY",
                                                                             elementId="CATG11",
                                                                             name="mycatg")
                                                  ],
                                    "Entities":[JsonElement().entityjson(elementId="ENTI12",name="myEntity",
-                                                                        categoryid="CATG11")
+                                                                        categoryId="CATG11")
         ]
                                    # "Domains":
                                    #     [
@@ -55,7 +55,7 @@ class MyTestCase(unittest.TestCase):
                                    #                     "mandatory": False,
                                    #                     "parentId": "DOMA123",
                                    #                     "description": "edge of rectangualr NESW",
-                                   #                     "domainid": "DOMA28"
+                                   #                     "domainId": "DOMA28"
                                    #                 }
                                    #             ]
                                    #         }

@@ -394,12 +394,12 @@ class DSEntity(DSIMElement):
 
     def _checkandresolvecategory(self):
         # check wether parent collection is category
-        self.categoryid = None
+        self.categoryId = None
         catg: DSCategory = self._tenant.getitembyid(self.parentid)
         if catg is None:
             logging.error(f"collection \"{self.self.parentid}\" does not exist")
         elif catg.stereotype == DSCategory.CATG_STEREOTYPE:
-            self.categoryid = catg.elemid
+            self.categoryId = catg.elemid
         else:
             logging.warning(f"Entity \"{self.name}\" has collection instead of category \"{catg.name}\"")
         return
@@ -419,7 +419,7 @@ class DSEntity(DSIMElement):
     def spodjson(self):
         catg = self._tenant.getcategorybyname(name=self.dsstruct.get('inCollection'))
         catgid = self._sourcedivide(catg if catg is None else catg.elemid,
-                                    self.categoryid)
+                                    self.categoryId)
 
         retval = jsonentity(
             name=multilangstring(string=self.name, lang=self._tenant.lang),

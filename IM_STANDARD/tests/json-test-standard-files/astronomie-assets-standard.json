@@ -1,7 +1,7 @@
 {
   "ModelInfo": {
     "modelName": "Astronomie Assets",
-    "modelType": "Asset model",
+    "modelType": "Artefact model",
     "mainLanguage": "de",
     "modelVersion": "0.1",
     "languages": [
@@ -1382,13 +1382,13 @@
           "de": "umfasst"
         },
         "cardinality": "M",
-        "mandatory": false
+        "mandatory": true
       },
       "bwd": {
         "entityId": "ENTI5",
         "assocText": null,
         "cardinality": "1",
-        "mandatory": false
+        "mandatory": true
       },
       "additionalProps": {
         "FULLPATH": "astronomy assets:Missionsdoku/umfasst>Missionsziel",
@@ -1451,7 +1451,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI1",
-      "domainid": "DOMA3",
+      "domainId": "DOMA3",
       "examples": [
         "2031"
       ],
@@ -1468,7 +1468,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI1",
-      "domainid": "DOMA24",
+      "domainId": "DOMA24",
       "examples": [
         "JUICE"
       ],
@@ -1485,7 +1485,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI1",
-      "domainid": "DOMA29",
+      "domainId": "DOMA29",
       "examples": [
         "flyby"
       ],
@@ -1502,7 +1502,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI4",
-      "domainid": "DOMA24",
+      "domainId": "DOMA24",
       "examples": [
         "JUICE"
       ],
@@ -1519,7 +1519,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI4",
-      "domainid": "DOMA8",
+      "domainId": "DOMA8",
       "examples": [
         "2023"
       ],
@@ -1536,7 +1536,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI4",
-      "domainid": "DOMA28",
+      "domainId": "DOMA28",
       "examples": [
         "ongoing"
       ],
@@ -1553,7 +1553,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI4",
-      "domainid": "DOMA24",
+      "domainId": "DOMA24",
       "examples": [
         "ESA"
       ],
@@ -1571,7 +1571,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI5",
-      "domainid": "DOMA3",
+      "domainId": "DOMA3",
       "examples": [
         "2030",
         "2031"
@@ -1589,7 +1589,7 @@
       },
       "mandatory": true,
       "parentId": "ENTI5",
-      "domainid": "DOMA24",
+      "domainId": "DOMA24",
       "examples": [
         "Ganymed",
         "Kallisto"
@@ -1624,7 +1624,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI2",
-      "domainid": "DOMA15",
+      "domainId": "DOMA15",
       "displaySeq": 2,
       "examples": [
         "1.070.400 km"
@@ -1642,7 +1642,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI2",
-      "domainid": "DOMA24",
+      "domainId": "DOMA24",
       "displaySeq": 1,
       "examples": [
         "Ganymed"
@@ -1660,7 +1660,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI2",
-      "domainid": "DOMA6",
+      "domainId": "DOMA6",
       "displaySeq": 2,
       "examples": [
         "7.155 Tag"
@@ -1678,7 +1678,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI3",
-      "domainid": "DOMA24",
+      "domainId": "DOMA24",
       "examples": [
         "Jupiter"
       ],
@@ -1695,7 +1695,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI3",
-      "domainid": "DOMA10",
+      "domainId": "DOMA10",
       "shortDescr": {
         "de": "Reihenfolge der Planeten vom Stern aus gez\u00e4hlt"
       },
@@ -1717,7 +1717,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI3",
-      "domainid": "DOMA4",
+      "domainId": "DOMA4",
       "examples": [
         "9,925h"
       ],
@@ -1734,7 +1734,7 @@
       },
       "mandatory": false,
       "parentId": "ENTI3",
-      "domainid": "DOMA5",
+      "domainId": "DOMA5",
       "examples": [
         "5,204 AE"
       ],
@@ -1752,7 +1752,7 @@
       },
       "mandatory": true,
       "parentId": "DOMA19",
-      "domainid": "DOMA33",
+      "domainId": "DOMA33",
       "displaySeq": 2,
       "shortDescr": {
         "de": "Physikalische Einheit",
@@ -1772,7 +1772,7 @@
       },
       "mandatory": true,
       "parentId": "DOMA19",
-      "domainid": "DOMA21",
+      "domainId": "DOMA21",
       "displaySeq": 1,
       "shortDescr": {
         "de": "Anzahl der Einheiten",
@@ -1792,7 +1792,7 @@
       },
       "mandatory": false,
       "parentId": "DOMA2",
-      "domainid": "DOMA15",
+      "domainId": "DOMA15",
       "displaySeq": 3,
       "description": {
         "de": "Typischerweise der l\u00e4ngste Durchmesser.\nWegen der Rotation sind kugelf\u00f6rmige Himmelsk\u00f6per am \u00c4quator *ausgebeult*",
@@ -1816,7 +1816,7 @@
       },
       "mandatory": true,
       "parentId": "DOMA2",
-      "domainid": "DOMA15",
+      "domainId": "DOMA15",
       "displaySeq": 1,
       "description": {
         "de": "Der Durchmesser, den man bei nicht sehr genauen angaben oder einfachen astronomischen / pyhsikalischen Berechnungen verwendet",
@@ -1840,7 +1840,7 @@
       },
       "mandatory": false,
       "parentId": "DOMA2",
-      "domainid": "DOMA15",
+      "domainId": "DOMA15",
       "displaySeq": 2,
       "description": {
         "de": "Typischerweise der kleinste Durchmesser.\nWegen der Rotation sind kugelf\u00f6rmige Himmelsk\u00f6per am \u00c4quator *ausgebeult*",
@@ -1864,7 +1864,7 @@
       },
       "mandatory": false,
       "parentId": "DOMA22",
-      "domainid": "DOMA25",
+      "domainId": "DOMA25",
       "displaySeq": 5,
       "description": {
         "de": "Bereich (als Prozent des Messwertes) um den der gemessene Wert nach oben oder unten abweichen kann.",
@@ -1891,7 +1891,7 @@
       },
       "mandatory": true,
       "parentId": "DOMA22",
-      "domainid": "DOMA19",
+      "domainId": "DOMA19",
       "displaySeq": 1,
       "shortDescr": {
         "de": "der gemessene Wert (mit Einheit)",
@@ -1911,7 +1911,7 @@
       },
       "mandatory": true,
       "parentId": "DOMA6",
-      "domainid": "DOMA9",
+      "domainId": "DOMA9",
       "displaySeq": 1,
       "description": {
         "de": "Anzahl der Einheiten, die im Schwesterfeld definiert ist",
@@ -1937,7 +1937,7 @@
       },
       "mandatory": true,
       "parentId": "DOMA6",
-      "domainid": "DOMA31",
+      "domainId": "DOMA31",
       "displaySeq": 2,
       "description": {
         "de": "Zeiteinheit als Stunde, Tag oder Jahr"

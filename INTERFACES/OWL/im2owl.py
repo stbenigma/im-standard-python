@@ -65,7 +65,7 @@ im:{entity_id} a owl:Class ;
             attr_id = attr['elementId']
             name_de = attr['name']#.get('de', 'UnbekanntesAttribut')
             parent_id = entity.get("elementId")#attr['parentId']
-            domain_id = attr.get('domainid')
+            domain_id = attr.get('domainId')
             description_de = attr.get('description')
 
             # Bestimme den Datentyp (rdfs:range)

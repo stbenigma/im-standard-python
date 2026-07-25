@@ -6,15 +6,11 @@ from datetime import datetime
 from rdflib import Graph, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, XSD, SKOS, DCTERMS
 
-from IM_STANDARD import nvl,normalize_booleans,remove_empty_values
+from IM_STANDARD import nvl,normalize_booleans,remove_empty_values, StandardSchema
 from IM_STANDARD.SQL.SQL_INFRA import DbDML
 
 
 class Sql2IMJson:
-    MODELTYPES = {"IM": "Information Model",
-                  "DM": "Data Model",
-                  "AM": "Artefact Model"}
-
     FKCOLS = {"synonyms": "syno_enti_id",
               "examples": "expl_mode_id",
               "user_defined_props": "udpv_mode_id",
@@ -161,8 +157,9 @@ class Sql2IMJson:
                 where {self.FKCOLS[tablename]}={idcol})"""
 
     def selelementjson(self, sql):
-        elements = self._mydb.select(sql=sql)
-        return json.loads(elements[0])
+        elements = self._mydb.select(sql=sql,aslist=True)
+        #liefert eine liste von tupeln von json strings
+        return json.loads(elements[0][0])
 
     def selmodeljson(self):
         sql = f"""select 'MODL'||modl_id as elementId,                                                                       
@@ -170,9 +167,9 @@ class Sql2IMJson:
                             modl_descr as description,
                             modl_targetenvironment as targetenvironment,
                             case modl_type
-                            when 'IM' then 'Information Model'
-                            when 'DM' then 'Data Model'
-                            when 'AM' then 'Artefact Model'
+                            when 'IM' then 'Information model'
+                            when 'DM' then 'Data model'
+                            when 'AM' then 'Artefact model'
                             end as modeltype,
                             mode_uc as uc,
                             mode_dc as dc,
@@ -188,14 +185,15 @@ class Sql2IMJson:
                                             and mola_mainlanguage='TRUE')
                     join languages on lang_id = mola_lang_id
         """
-        sql = """select json_group_array(json_object('elementId', 'MODL' || modl_id,
+        sql = """select json_group_array(
+                        json_object('elementId', 'MODL' || modl_id,
                    'modelName', modl_name,
                    'description', modl_descr,
                    'targetEnvironment', modl_targetenvironment,
                    'modelType', case modl_type
-                                    when 'IM' then 'Information Model'
-                                    when 'DM' then 'Data Model'
-                                    when 'AM' then 'Artefact Model'
+                                    when 'IM' then 'Information model'
+                                    when 'DM' then 'Data model'
+                                    when 'AM' then 'Artefact model'
                        end,
                    'uc', mode_uc,
                    'dc', mode_dc,
@@ -283,7 +281,7 @@ class Sql2IMJson:
                                      order by lovv_sort_order
                                 ) ,
             'additionalProps',{self._additionalpropssql(idcol="doma_id")}
-            )) 
+            )) as domas 
         from domains    
         join modelelements on mode_id=doma_id
         """
@@ -332,7 +330,7 @@ class Sql2IMJson:
         'um',mode_um,
         'dm',mode_dm,
         'additionalProps',{self._additionalpropssql(idcol="enti_id")} 
-        ))
+        )) as entis
         from entities    
         join modelelements on mode_id=enti_id
         """
@@ -344,7 +342,7 @@ class Sql2IMJson:
             'name',            attr_tech_name, 
             'description',        {self._langtextsql(colname="attr_descr",
                                                      fkname="attr_id")} ,
-            'domainid',            'DOMA' || attr_doma_id,
+            'domainId',            'DOMA' || attr_doma_id,
             'parentId',         case when attr_enti_id is null 
                             THEN 'DOMA' || attr_doma_group_id
                             else 'ENTI' || attr_enti_id 
@@ -367,7 +365,7 @@ class Sql2IMJson:
             'dm',                            mode_dm,
             'dc',                            mode_dc,
             'additionalProps',        {self._additionalpropssql(idcol="attr_id")} 
-            ))
+            )) as attrs
         from attributes    
         join modelelements on mode_id=attr_id
         """
@@ -418,7 +416,7 @@ class Sql2IMJson:
     'um',        mode_um,
     'dm',        mode_dm,
     'additionalProps',        {self._additionalpropssql(idcol="rela_id")}
-    ))
+    )) as relas
         from relations
         join modelelements on mode_id = rela_id
     """
@@ -454,7 +452,7 @@ class Sql2IMJson:
             'um',            mode_um,
             'dm',            mode_dm,
             'additionalProps',            {self._additionalpropssql(idcol="buru_id")} 
-        ))
+        )) as burus
         from main.business_rules    
         join modelelements on mode_id=buru_id
         """
@@ -902,8 +900,9 @@ class Sql2IMowlschema(Sql2IMJson):
         return
 
     def generatebusinessmodel(self):
-        self.generateentities()
         return
+
+        self.generateentities()
         self.generateattributes()
         self.generaterelations()
         self.generatebusinessrules()
@@ -938,9 +937,9 @@ class Sql2IMowlschema(Sql2IMJson):
                             modl_descr as description,
                             modl_targetenvironment as targetenvironment,
                             case modl_type
-                            when "IM" then "Information Model"
-                            when "DM" then "Data Model"
-                            when "AM" then "Artefact Model"
+                            when "IM" then "Information model"
+                            when "DM" then "Data model"
+                            when "AM" then "Artefact model"
                             end as modeltype,
                             mode_uc as uc,
                             mode_dc as dc,

@@ -161,7 +161,7 @@ class Dataspot2SQLdatabase():
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
                                                                      addprops=additionalprops),
-                                            categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                            categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                           modelname=element.get("DSMODEL"),
                                                                           name=self._deref(
                                                                               element.get("inCollection")),
@@ -172,7 +172,7 @@ class Dataspot2SQLdatabase():
                                                                             value=self._deref(
                                                                                 element.get("description")),
                                                                             addprops=additionalprops),
-                                            shortdescr=self.mutlilangvalue(fieldname="title",
+                                            shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(
                                                                                element.get("title")),
                                                                            addprops=additionalprops),
@@ -364,14 +364,14 @@ class Dataspot2SQLdatabase():
         #                                                                 value=self._deref(attr.get("label")),
         #                                                                 addprops=additionalprops),
         #                                        mandatory=attr.get("required") == "MANDATORY",
-        #                                        #domainid=domainid,
+        #                                        #domainId=domainId,
         #                                        parentid=parentid,
-        #                                        displayseq=attr.get("order"),
+        #                                        displaySeq=attr.get("order"),
         #                                        description=self.mutlilangvalue(fieldname="description",
         #                                                                        value=self._deref(
         #                                                                            attr.get("description")),
         #                                                                        addprops=additionalprops),
-        #                                        shortdescr=self.mutlilangvalue(fieldname="title",
+        #                                        shortDescr=self.mutlilangvalue(fieldname="title",
         #                                                                       value=self._deref(
         #                                                                           attr.get("title")),
         #                                                                       addprops=additionalprops),
@@ -528,7 +528,7 @@ class Dataspot2SQLdatabase():
 
         return
 
-    def _inserttotalcategory(self, catg: dict, tablename: str, categoryid: int = None):
+    def _inserttotalcategory(self, catg: dict, tablename: str, categoryId: int = None):
         modeid = self.sqldb.rowinsert(tablename="modelelements",
                                       mode_type="ECAT",
                                       mode_modl_id=self.model_id,
@@ -539,8 +539,8 @@ class Dataspot2SQLdatabase():
                 "enca_name": catg.get("label"),
                 "enca_descr": nvl(catg.get("description"), catg.get("title"))
                 }
-        if categoryid is not None:
-            enca["enca_enca_id"] = categoryid
+        if categoryId is not None:
+            enca["enca_enca_id"] = categoryId
 
         self.sqldb.rowinsert(tablename=tablename, **enca)
         self._insertmultilang(elem=catg,
@@ -582,7 +582,7 @@ class Dataspot2SQLdatabase():
                         # if parentname not in donecatgs:
                         #    raise Exception (f"Cateogry '{catg.get('label')}': parent '{parentname}' not in model")
                         modeid = self._inserttotalcategory(catg=catg, tablename=tablename,
-                                                           categoryid=donecatgs[parentname])
+                                                           categoryId=donecatgs[parentname])
 
                         donecatgs[fullname] = modeid
                         del restcatgs[key]

@@ -62,7 +62,7 @@ class Test_dataspot2im(unittest.TestCase):
 
         dauer=self.getelement(jsonstruct,"Attributes","Dauer")
         doma= self.getelement(jsonstruct,"Domains","Dezimalzahl")
-        self.assertEqual(dauer["domainid"],doma.get("elementId"))
+        self.assertEqual(dauer["domainId"],doma.get("elementId"))
         return
 
     def test_ds2im_astro(self):
@@ -81,7 +81,7 @@ class Test_dataspot2im(unittest.TestCase):
         self.assertIsNotNone(dauer)
         dauer = self.getelement(instance, "Attributes", "Dauer")
         doma = self.getelement(instance, "Domains", "Dezimalzahl")
-        self.assertEqual(dauer.get("domainid"), doma.get("elementId"))
+        self.assertEqual(dauer.get("domainId"), doma.get("elementId"))
         self.assertEqual("NumericDomain", doma["domainType"])
 
         # check generated json
@@ -109,9 +109,10 @@ class Test_dataspot2im(unittest.TestCase):
 
                                         )
         return
+
     def test_ds2im_dmp(self):
-        inpath = Path(__file__).parent / "dataspottestfiles" / "DMP-artefact" \
-                                                               ""
+        inpath = Path(__file__).parent / "dataspottestfiles" / "DMP-artefact"
+        print (inpath.resolve())
         instance = exportIM2standard(inpath=inpath,
                                      outpath=self.mydebugpath / "DMP-standard.json",
                                      modelname="DMP-POC-sync",
@@ -178,6 +179,7 @@ class Test_dataspot2im(unittest.TestCase):
 
     def test_ds2im_standard(self):
         inpath = Path("/Users/stb/Documents/Projekte/IM-Standard/python-Projekt/Information-model-standard/Modelling Tools/dataspot/IM-Stand-2026-06")
+        inpath = Path("/Users/stb/Library/Mobile Documents/com~apple~CloudDocs/Arbeit/dataspot/access/chem-x/ds2json/dataspotexport")
         if not inpath.is_dir():
             self.skipTest(f"directory does not exist {inpath}")
         instance = exportIM2sqlstandard(inpath=inpath,

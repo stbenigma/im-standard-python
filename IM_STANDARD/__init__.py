@@ -34,7 +34,7 @@ IMSTANDARDPATH = Path(__file__).parent.parent.parent / "Information-model-standa
 
 from .SQL import StandardModelDb
 from .jsonelements import JsonElement,model2json
-from .myjsonschema import ElementId,JsonSchema
+from .myjsonschema import ElementId,JsonSchema,StandardSchema
 from .standardmodeljson import StandardJsonModel,IMStandardJsonModel,DMStandardJsonModel
 from .jsonvalidation import ValidateJsonModel,validateschema,remove_key_from_json,\
     validatestruct,remove_empty_values, normalize_booleans

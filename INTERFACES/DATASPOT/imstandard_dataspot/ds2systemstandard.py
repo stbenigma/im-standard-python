@@ -29,7 +29,7 @@ class System2Json():
                                                     shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(element.get("title")),
                                                                            addprops=additionalprops),
-                                              categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                              categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                                 modelname=element.get("DSMODEL"),
                                                                                 name=self._deref(
                                                                                     element.get("inCollection")),
@@ -86,7 +86,7 @@ class System2Json():
                                            mainlanguage=language,
                                            languages=languages,
                                            modelversion=modelversion,
-                                           targetenvironment=targetenv,
+                                           targetEnvironment=targetenv,
                                            origintool=Dataspot2Jsonbase.ORIGINTOOL))
         self.generatecategories(catgtype="SYSTEM",status=status)
         self.generatederivations(status=status)

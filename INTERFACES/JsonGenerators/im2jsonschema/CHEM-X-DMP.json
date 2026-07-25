@@ -1,14 +1,14 @@
 {
   "ModelInfo": {
     "modelName": "CHEM-X-DMP",
-    "modelType": "Information Model",
+    "modelType": "Information model",
     "mainLanguage": "en",
     "modelVersion": "0.9",
     "targetEnvironment": "local test for CHEM-X-DMP",
     "originTool": "dataspot",
     "additionalProps": {
       "dc": "2026-07-13T15:02:44",
-      "FULLPATH": "local test for CHEM-X-DMP:Information Model:CHEM-X-DMP",
+      "FULLPATH": "local test for CHEM-X-DMP:Information model:CHEM-X-DMP",
       "SOURCE-SERVER": "https://myserver.io",
       "SOURCE-TENANT": "local test for CHEM-X-DMP",
       "SOURCE-HREF": "https://myserver.ioNone"
@@ -1561,7 +1561,7 @@
       "name": "specversion",
       "domainType": "TextDomain",
       "categoryId": "CATG285",
-      "description": "The version of the Data Model Extension specification. The value \nMUST be a string in the format major.minor.patch as defined in \nSemantic Versioning 2.0.0.",
+      "description": "The version of the Data model Extension specification. The value \nMUST be a string in the format major.minor.patch as defined in \nSemantic Versioning 2.0.0.",
       "additionalProps": {
         "FULLPATH": "Information domain model:Specifc model domains/PACT API specifiation domains/specversion",
         "SOURCE-ID": "c472f23e-db2b-4688-9fa4-b54fbea90968",
@@ -6321,7 +6321,7 @@
       "name": "Waste origin - value chain step",
       "mandatory": false,
       "parentId": "ENTI241",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "additionalProps": {
         "TechnicalName": "wasteOriginValueChainStep",
         "FULLPATH": "MVP DMP:CE Declaration/Waste origin - value chain step",
@@ -6335,7 +6335,7 @@
       "name": "Waste origin - value chain step - recycled content contribution",
       "mandatory": false,
       "parentId": "ENTI241",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "repeated": true,
       "additionalProps": {
         "TechnicalName": "wasteOriginValueChainStepRecycledContentContribution",
@@ -6364,7 +6364,7 @@
       "name": "CAS Name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA908",
+      "domainId": "DOMA908",
       "displaySeq": 1,
       "examples": [
         "Butyl acrylate"
@@ -6382,7 +6382,7 @@
       "name": "CAS Number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA909",
+      "domainId": "DOMA909",
       "displaySeq": 2,
       "additionalProps": {
         "TechnicalName": "casNumber",
@@ -6397,7 +6397,7 @@
       "name": "Concentration accuracy",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 32,
       "additionalProps": {
         "TechnicalName": "concentrationAccuracy",
@@ -6412,7 +6412,7 @@
       "name": "Concentration maximum lt",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 31,
       "examples": [
         "3"
@@ -6430,7 +6430,7 @@
       "name": "Concentration minimum geq",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 30,
       "examples": [
         "0,1"
@@ -6448,7 +6448,7 @@
       "name": "Concentration unit of measure",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 34,
       "examples": [
         "%"
@@ -6480,7 +6480,7 @@
       "name": "EU OEL",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA899",
+      "domainId": "DOMA899",
       "displaySeq": 22,
       "additionalProps": {
         "TechnicalName": "euOel",
@@ -6495,7 +6495,7 @@
       "name": "EU REACH registration number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA911",
+      "domainId": "DOMA911",
       "displaySeq": 5,
       "examples": [
         "01-2119471301-50"
@@ -6513,7 +6513,7 @@
       "name": "Hazard statements",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA921",
+      "domainId": "DOMA921",
       "displaySeq": 10,
       "repeated": true,
       "additionalProps": {
@@ -6529,7 +6529,7 @@
       "name": "INCI",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA914",
+      "domainId": "DOMA914",
       "displaySeq": 7,
       "additionalProps": {
         "TechnicalName": "inci",
@@ -6544,7 +6544,7 @@
       "name": "Index name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1100",
+      "domainId": "DOMA1100",
       "displaySeq": 3,
       "examples": [
         "vinyl acetate"
@@ -6562,7 +6562,7 @@
       "name": "index number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA913",
+      "domainId": "DOMA913",
       "displaySeq": 4,
       "description": "A reference number for a substance within the Classification and Labelling (C&L) Inventory, which details its hazardous properties and required labeling under the CLP Regulation (Classification, Labelling and Packaging).",
       "examples": [
@@ -6598,7 +6598,7 @@
       "name": "IUPAC name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA914",
+      "domainId": "DOMA914",
       "displaySeq": 6,
       "examples": [
         "Bis-[4-(2,3- epoxipropoxi)phenyl]propane"
@@ -6630,7 +6630,7 @@
       "name": "SoC type",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA1101",
+      "domainId": "DOMA1101",
       "displaySeq": 11,
       "examples": [
         "Type A"
@@ -6648,7 +6648,7 @@
       "name": "Trivial name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA914",
+      "domainId": "DOMA914",
       "displaySeq": 8,
       "examples": [
         "4-hydroxybutyl acrylate"
@@ -6666,7 +6666,7 @@
       "name": "Geography with region or subregion",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA949",
+      "domainId": "DOMA949",
       "displaySeq": 14,
       "examples": [
         "(Example: \u201cGlobal\u201d, \u201cEurope\u201d, \u201cEastern Europe\u201d)"
@@ -6699,7 +6699,7 @@
       "name": "GWP total Incl. bio. uptake",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "displaySeq": 12,
       "examples": [
         "0.49 kg CO2 e/kg"
@@ -6733,7 +6733,7 @@
       "name": "Reference period end",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 11,
       "examples": [
         "2022-11-20T08:30:00.000Z"
@@ -6750,7 +6750,7 @@
       "name": "Reference period start",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 10,
       "examples": [
         "2021-11-20T08:30:00.000Z"
@@ -6767,7 +6767,7 @@
       "name": "Geography with region or subregion",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA949",
+      "domainId": "DOMA949",
       "displaySeq": 22,
       "examples": [
         "(Example: \u201cGlobal\u201d, \u201cEurope\u201d, \u201cEastern Europe\u201d)"
@@ -6802,7 +6802,7 @@
       "name": "Reference period end",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 21,
       "additionalProps": {
         "TechnicalName": "referencePeriodEnd",
@@ -6817,7 +6817,7 @@
       "name": "Reference period start",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 20,
       "additionalProps": {
         "TechnicalName": "referencePeriodStart",
@@ -6832,7 +6832,7 @@
       "name": "Water scarcity",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 10,
       "examples": [
         "1.8 m3 world equivalent"
@@ -6918,7 +6918,7 @@
       "name": "Waste origin - value chain step",
       "mandatory": false,
       "parentId": "ENTI241",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "description": "Describes the value chain step of the waste from which the reported recycled content contribution under \"Waste origin - value chain step - recycled content  contribution\" originates.\nReference: Circularity Guideline (https://www.chem-x.de/publication/)\n",
       "examples": [
         "Post-consumer (PCR); Post-industrial (PIR)"
@@ -6936,7 +6936,7 @@
       "name": "Waste origin - value chain step - recycled content contribution",
       "mandatory": false,
       "parentId": "ENTI241",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "description": "Amount of recycled content, as faction of material mass, obtained  from waste originating from the value chain step indicated under \"Waste origin - value chain step\".\nReference: Circularity Guideline (https://www.chem-x.de/publication/)",
       "examples": [
         "Physical recycling; Chemical recycling; etc."
@@ -6955,7 +6955,7 @@
       "name": "Active biocide",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA899",
+      "domainId": "DOMA899",
       "displaySeq": 20,
       "description": "Is the substance an active biocide according Regulation (EU) No 528/2012",
       "additionalProps": {
@@ -6971,7 +6971,7 @@
       "name": "CAS Name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA908",
+      "domainId": "DOMA908",
       "displaySeq": 1,
       "description": "The name of a substance associated with the CAS registry number given by Chemical Abstract Service (CAS).",
       "shortDescr": "The name of a substance associated with the CAS registry number",
@@ -6994,7 +6994,7 @@
       "name": "CAS Number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA909",
+      "domainId": "DOMA909",
       "displaySeq": 2,
       "description": "A CAS Registry Number (CAS RN\u00ae) is a unique and unambiguous identifier for a specific substance that allows clear communication and, with the help of CAS scientists, links together all available data and research about that substance. Governmental agencies rely on CAS Registry Numbers for substance identification in regulatory applications because they are unique, easily validated, and internationally recognized.",
       "examples": [
@@ -7014,7 +7014,7 @@
       "name": "Concentration accuracy",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 32,
       "additionalProps": {
         "TechnicalName": "concentrationAccuracy",
@@ -7029,7 +7029,7 @@
       "name": "Concentration maximum lt",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 31,
       "examples": [
         "3"
@@ -7047,7 +7047,7 @@
       "name": "Concentration minimum geq",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 30,
       "examples": [
         "0,1"
@@ -7065,7 +7065,7 @@
       "name": "Concentration unit of measure",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 34,
       "description": "Proportion [%] of substance in this mixture. The proportion of all substances in a mixture must add up to 100%",
       "examples": [
@@ -7086,7 +7086,7 @@
       "name": "CRMA material type substance",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA899",
+      "domainId": "DOMA899",
       "displaySeq": 21,
       "description": "Critical Raw Material rating",
       "additionalProps": {
@@ -7102,7 +7102,7 @@
       "name": "EC Number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA910",
+      "domainId": "DOMA910",
       "description": "The EC-number, i.e. the EINECS, ELINCS or NLP number, is the official number of the substance within the European Union. The EC-number can be obtained from the official publications of EINECS, ELINCS and NLP and of the European Chemicals Agency.\nThe EC-number consists of 7 digits of the type x1x2x3-x4x5x6-x7. The first digit is defined by the list to which the substance belongs",
       "examples": [
         "Formaldehyde EINECS 200-001-8"
@@ -7120,7 +7120,7 @@
       "name": "EU OEL",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA899",
+      "domainId": "DOMA899",
       "displaySeq": 22,
       "description": "Union workplace exposure limits published via EU directives",
       "additionalProps": {
@@ -7136,7 +7136,7 @@
       "name": "EU REACH registration number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA911",
+      "domainId": "DOMA911",
       "displaySeq": 5,
       "description": "A REACh number is an 18-digit identifier assigned by the European Chemicals Agency (ECHA) to substances registered under the EU REACH regulation. This number serves as proof that a company has fulfilled its registration obligations for a particular substance",
       "examples": [
@@ -7155,7 +7155,7 @@
       "name": "Hazard statements Code",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA921",
+      "domainId": "DOMA921",
       "displaySeq": 10,
       "description": "Substance Hazards classification properties according to CLP - short Codes used",
       "examples": [
@@ -7175,7 +7175,7 @@
       "name": "INCI",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA914",
+      "domainId": "DOMA914",
       "displaySeq": 7,
       "description": "INCI names (International Nomenclature Cosmetic Ingredient) are systematic names internationally recognized to identify cosmetic ingredients.",
       "additionalProps": {
@@ -7191,7 +7191,7 @@
       "name": "Index name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA912",
+      "domainId": "DOMA912",
       "displaySeq": 3,
       "description": "International chemical name of substance used in the CLP Annex VI ",
       "examples": [
@@ -7210,7 +7210,7 @@
       "name": "Index number",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA913",
+      "domainId": "DOMA913",
       "displaySeq": 4,
       "description": "A reference number for a substance within the Classification and Labelling (C&L) Inventory, which details its hazardous properties and required labeling under the CLP Regulation (Classification, Labelling and Packaging).",
       "examples": [
@@ -7229,7 +7229,7 @@
       "name": "International Name",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA938",
+      "domainId": "DOMA938",
       "displaySeq": 9,
       "description": "It is a given name of a chemical ingredient in english languge provided by the DMP issuer.",
       "examples": [
@@ -7248,7 +7248,7 @@
       "name": "IUPAC name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA914",
+      "domainId": "DOMA914",
       "displaySeq": 6,
       "description": "IUPAC Nomenclature ensures that each compound (and its various isomers) have only one formally accepted name known as the systematic IUPAC name.",
       "examples": [
@@ -7284,7 +7284,7 @@
       "name": "SoC type",
       "mandatory": true,
       "parentId": "ENTI242",
-      "domainid": "DOMA1101",
+      "domainId": "DOMA1101",
       "displaySeq": 11,
       "description": "Which SoC type according to Regulation (EU) 2024/1781? A substance may be none or at least one SoC type. The SoC types are defined under Chem-X terminology as SoC A to SoC D.\n\n\u2018substance of concern\u2019 means a substance that: (a) meets the criteria laid down in Article 57 of Regulation (EC) No 1907/2006 and is identified in accordance with Article 59(1) of that Regulation; (b) is classified in Part 3 of Annex VI to Regulation (EC) No 1272/2008 in one of the following hazard classes or hazard categories: (i) carcinogenicity categories 1 and 2; (ii) germ cell mutagenicity categories 1 and 2; (iii) reproductive toxicity categories 1 and 2; (iv) endocrine disruption for human health categories 1 and 2; (v) endocrine disruption for the environment categories 1 and 2; (vi) persistent, mobile and toxic or very persistent, very mobile properties; (vii) persistent, bioaccumulative and toxic or very persistent, very bioaccumulative properties; (viii) respiratory sensitisation category 1; (ix) skin sensitisation category 1; (x) hazardous to the aquatic environment \u2014 categories chronic 1 to 4; (xi) hazardous to the ozone layer; (xii) specific target organ toxicity \u2014 repeated exposure categories 1 and 2; (xiii) specific target organ toxicity \u2014 single exposure categories 1 and 2; (c) is regulated under Regulation (EU) 2019/1021; or (d) negatively affects the reuse and recycling of materials in the product in which it is present;",
       "examples": [
@@ -7308,7 +7308,7 @@
       "name": "Trivial name",
       "mandatory": false,
       "parentId": "ENTI242",
-      "domainid": "DOMA914",
+      "domainId": "DOMA914",
       "displaySeq": 8,
       "description": "Retained names are often used for the most fundamental parts of a nomenclature system: almost all the chemical elements have retained names rather than being named systematically, as do the first four alkanes, benzene and most simple heterocyclic compounds. Water and ammonia are other examples of retained names. Retained names may be either semisystematic or completely trivial; that is, they may contain certain elements of systematic nomenclature or none at all.",
       "examples": [
@@ -7328,7 +7328,7 @@
       "name": "Geography with region or subregion",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA949",
+      "domainId": "DOMA949",
       "displaySeq": 14,
       "examples": [
         "(Example: \u201cGlobal\u201d, \u201cEurope\u201d, \u201cEastern Europe\u201d)"
@@ -7361,7 +7361,7 @@
       "name": "GWP total Incl. bio. uptake",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "displaySeq": 12,
       "examples": [
         "0.49 kg CO2 e/kg"
@@ -7378,7 +7378,7 @@
       "name": "Product or sector rules",
       "mandatory": false,
       "parentId": "ENTI244",
-      "domainid": "DOMA1118",
+      "domainId": "DOMA1118",
       "displaySeq": 1,
       "examples": [
         "TfS PCF Guideline V3.0"
@@ -7396,7 +7396,7 @@
       "name": "Reference period end",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 11,
       "examples": [
         "2022-11-20T08:30:00.000Z"
@@ -7413,7 +7413,7 @@
       "name": "Reference period start",
       "mandatory": true,
       "parentId": "ENTI244",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 10,
       "examples": [
         "2021-11-20T08:30:00.000Z"
@@ -7430,7 +7430,7 @@
       "name": "Geography with region or subregion",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA949",
+      "domainId": "DOMA949",
       "displaySeq": 22,
       "examples": [
         "(Example: \u201cGlobal\u201d, \u201cEurope\u201d, \u201cEastern Europe\u201d)"
@@ -7465,7 +7465,7 @@
       "name": "Reference period end",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 21,
       "additionalProps": {
         "TechnicalName": "referencePeriodEnd",
@@ -7480,7 +7480,7 @@
       "name": "Reference period start",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 20,
       "additionalProps": {
         "TechnicalName": "referencePeriodStart",
@@ -7495,7 +7495,7 @@
       "name": "Water scarcity",
       "mandatory": false,
       "parentId": "ENTI245",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 10,
       "examples": [
         "1.8 m3 world equivalent"
@@ -7513,7 +7513,7 @@
       "name": "type",
       "mandatory": true,
       "parentId": "DOMA1021",
-      "domainid": "DOMA1064",
+      "domainId": "DOMA1064",
       "displaySeq": 1,
       "description": "The type of an additional identifier like GTIN, DOI, LEI, etc.\nIt is mandatory to define the key type as additional business rules, like multi-vs single-key, semantic content validation (regex) are based on the type.",
       "shortDescr": "key identifying type like GTIN, DOI, LEI, etc.",
@@ -7529,7 +7529,7 @@
       "name": "value",
       "mandatory": false,
       "parentId": "DOMA1021",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 2,
       "description": "The value of a single indentifier like the GTIN, DOI, LEI, etc.",
       "shortDescr": "single identifier value",
@@ -7545,7 +7545,7 @@
       "name": "values",
       "mandatory": false,
       "parentId": "DOMA1021",
-      "domainid": "DOMA1024",
+      "domainId": "DOMA1024",
       "displaySeq": 3,
       "description": "concatenated idenitfiers or context driven identifiers have multiple type of identifers, e.g. an object id which is only oin the combination with a business partner id unique.\nThis element does contain an array of key-value combinations, which allows the unique idenitifcation of an object",
       "shortDescr": "repeating key value pairs",
@@ -7562,7 +7562,7 @@
       "name": "Gln",
       "mandatory": true,
       "parentId": "DOMA1022",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 1,
       "description": "The Identifier of the Business Partner itself",
       "shortDescr": "Business Partner Identifier",
@@ -7578,7 +7578,7 @@
       "name": "Part id",
       "mandatory": true,
       "parentId": "DOMA1022",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 2,
       "description": "The Business Partner Material reference number",
       "shortDescr": "Material identifier",
@@ -7618,7 +7618,7 @@
       "name": "Accuracy",
       "mandatory": false,
       "parentId": "DOMA1014",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "examples": [
         ">",
         "<"
@@ -7635,7 +7635,7 @@
       "name": "Concentration unit",
       "mandatory": false,
       "parentId": "DOMA1014",
-      "domainid": "DOMA1062",
+      "domainId": "DOMA1062",
       "additionalProps": {
         "FULLPATH": "Information domain model:Concentration/Concentration unit",
         "SOURCE-ID": "28a13fe1-e713-4f1c-b36c-4662b7551fad",
@@ -7648,7 +7648,7 @@
       "name": "Lower value",
       "mandatory": false,
       "parentId": "DOMA1014",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "additionalProps": {
         "FULLPATH": "Information domain model:Concentration/Lower value",
         "SOURCE-ID": "f36409fc-0475-41ee-a35e-c846edcd62bf",
@@ -7661,7 +7661,7 @@
       "name": "Upper value",
       "mandatory": false,
       "parentId": "DOMA1014",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "additionalProps": {
         "FULLPATH": "Information domain model:Concentration/Upper value",
         "SOURCE-ID": "78633b3e-e968-4caa-92cb-a7a09ad7730c",
@@ -7674,7 +7674,7 @@
       "name": "Value",
       "mandatory": false,
       "parentId": "DOMA1014",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "additionalProps": {
         "FULLPATH": "Information domain model:Concentration/Value",
         "SOURCE-ID": "f43493a0-43da-4f8c-84bf-e940989c74bd",
@@ -7705,7 +7705,7 @@
       "name": "Control parameter value",
       "mandatory": false,
       "parentId": "DOMA916",
-      "domainid": "DOMA1020",
+      "domainId": "DOMA1020",
       "displaySeq": 4,
       "additionalProps": {
         "FULLPATH": "Information domain model:Control parameter information/Control parameter value",
@@ -7719,7 +7719,7 @@
       "name": "substance CAS",
       "mandatory": false,
       "parentId": "DOMA916",
-      "domainid": "DOMA909",
+      "domainId": "DOMA909",
       "displaySeq": 2,
       "additionalProps": {
         "FULLPATH": "Information domain model:Control parameter information/substance CAS",
@@ -7733,7 +7733,7 @@
       "name": "Substance name",
       "mandatory": false,
       "parentId": "DOMA916",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:Control parameter information/Substance name",
@@ -7747,7 +7747,7 @@
       "name": "Constituent Substance Category Name",
       "mandatory": false,
       "parentId": "DOMA917",
-      "domainid": "DOMA1093",
+      "domainId": "DOMA1093",
       "additionalProps": {
         "FULLPATH": "Information domain model:Costituent Substance Category/Constituent Substance Category Name",
         "SOURCE-ID": "d6e20dc5-c8e2-4711-baef-f8b9a1f19c02",
@@ -7760,7 +7760,7 @@
       "name": "Cross sectional applied",
       "mandatory": false,
       "parentId": "DOMA931",
-      "domainid": "DOMA1117",
+      "domainId": "DOMA1117",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:Cross-sectoral standards applied extended/Cross sectional applied",
@@ -7774,7 +7774,7 @@
       "name": "Other value",
       "mandatory": false,
       "parentId": "DOMA931",
-      "domainid": "DOMA978",
+      "domainId": "DOMA978",
       "displaySeq": 2,
       "additionalProps": {
         "FULLPATH": "Information domain model:Cross-sectoral standards applied extended/Other value",
@@ -7788,7 +7788,7 @@
       "name": "Odour",
       "mandatory": false,
       "parentId": "DOMA918",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:Data domain Odour/Odour",
@@ -7802,7 +7802,7 @@
       "name": "odour threshold",
       "mandatory": false,
       "parentId": "DOMA918",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 2,
       "additionalProps": {
         "FULLPATH": "Information domain model:Data domain Odour/odour threshold",
@@ -7816,7 +7816,7 @@
       "name": "Odour threshold unit",
       "mandatory": false,
       "parentId": "DOMA918",
-      "domainid": "DOMA1067",
+      "domainId": "DOMA1067",
       "additionalProps": {
         "FULLPATH": "Information domain model:Data domain Odour/Odour threshold unit",
         "SOURCE-ID": "0a0e7dc8-2c4f-41e4-b828-7c173dc0ad82",
@@ -7829,7 +7829,7 @@
       "name": "aggregate state",
       "mandatory": false,
       "parentId": "DOMA919",
-      "domainid": "DOMA1122",
+      "domainId": "DOMA1122",
       "additionalProps": {
         "FULLPATH": "Information domain model:data domain state+form/aggregate state",
         "SOURCE-ID": "1e731ce6-9ebb-4a35-87d2-9e8c8db3c4bf",
@@ -7842,7 +7842,7 @@
       "name": "Form",
       "mandatory": false,
       "parentId": "DOMA919",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "additionalProps": {
         "FULLPATH": "Information domain model:data domain state+form/Form",
         "SOURCE-ID": "5f6f2e10-05e1-4eee-be02-e52d0377758f",
@@ -7855,7 +7855,7 @@
       "name": "measuring conditions",
       "mandatory": false,
       "parentId": "DOMA919",
-      "domainid": "DOMA922",
+      "domainId": "DOMA922",
       "additionalProps": {
         "FULLPATH": "Information domain model:data domain state+form/measuring conditions",
         "SOURCE-ID": "75e2b711-38ff-4b19-8c62-9145165f5483",
@@ -7868,7 +7868,7 @@
       "name": "EINECS",
       "mandatory": false,
       "parentId": "DOMA910",
-      "domainid": "DOMA1067",
+      "domainId": "DOMA1067",
       "displaySeq": 1,
       "shortDescr": "Official EC Number",
       "additionalProps": {
@@ -7925,7 +7925,7 @@
       "name": "ID",
       "mandatory": true,
       "parentId": "DOMA929",
-      "domainid": "DOMA902",
+      "domainId": "DOMA902",
       "displaySeq": 2,
       "shortDescr": "Identifier according to issuer scheme",
       "additionalProps": {
@@ -7940,7 +7940,7 @@
       "name": "issuer of identifier",
       "mandatory": true,
       "parentId": "DOMA929",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 1,
       "shortDescr": "domain name of the organization issuing the identifier",
       "additionalProps": {
@@ -7955,7 +7955,7 @@
       "name": "Latitude",
       "mandatory": true,
       "parentId": "DOMA942",
-      "domainid": "DOMA946",
+      "domainId": "DOMA946",
       "displaySeq": 1,
       "description": "Latitude is a measurement of a location north or south of the Equator. Lines of latitude (also called parallels) are imaginary lines that circle Earth\u2019s surface, running east and west parallel to the Equator. It is measured in degrees (\u00b0), which may be broken down into smaller units called minutes (\u2032) and seconds (\u2033). It can also be expressed in decimal degrees; negative values of decimal degrees represent latitudes in the Southern Hemisphere and longitudes in the Western Hemisphere.\nLines of latitude north of the Equator (the line that marks 0\u00b0 latitude) are numbered from 1\u00b0 to 89\u00b0 N, and those south of the Equator are numbered from 1\u00b0 to 89\u00b0 S.",
       "examples": [
@@ -7976,7 +7976,7 @@
       "name": "Longitude",
       "mandatory": true,
       "parentId": "DOMA942",
-      "domainid": "DOMA947",
+      "domainId": "DOMA947",
       "displaySeq": 2,
       "description": "Lines of longitude (also called meridians) run between the geographic North Pole and the geographic South Pole and are used to measure distances from the prime meridian. It is measured in degrees (\u00b0), which may be broken down into smaller units called minutes (\u2032) and seconds (\u2033). It can also be expressed in decimal degrees; negative values of decimal degrees represent latitudes in the Southern Hemisphere and longitudes in the Western Hemisphere. Lines of longitude east of the prime meridian (the line that marks 0\u00b0 longitude) are numbered from 1\u00b0 to 179\u00b0 east (E). Lines of longitude west of the prime meridian are numbered from 1\u00b0 to 179\u00b0 west (W).",
       "examples": [
@@ -7995,7 +7995,7 @@
       "name": "diameter percentile",
       "mandatory": false,
       "parentId": "DOMA1015",
-      "domainid": "DOMA1018",
+      "domainId": "DOMA1018",
       "displaySeq": 2,
       "additionalProps": {
         "FULLPATH": "Information domain model:Granulometry data/diameter percentile",
@@ -8009,7 +8009,7 @@
       "name": "particle size (nm)",
       "mandatory": false,
       "parentId": "DOMA1015",
-      "domainid": "DOMA1020",
+      "domainId": "DOMA1020",
       "displaySeq": 3,
       "additionalProps": {
         "FULLPATH": "Information domain model:Granulometry data/particle size (nm)",
@@ -8023,7 +8023,7 @@
       "name": "size distribution measuring method",
       "mandatory": false,
       "parentId": "DOMA1015",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 4,
       "additionalProps": {
         "FULLPATH": "Information domain model:Granulometry data/size distribution measuring method",
@@ -8037,7 +8037,7 @@
       "name": "type of particle-size distribution",
       "mandatory": false,
       "parentId": "DOMA1015",
-      "domainid": "DOMA1066",
+      "domainId": "DOMA1066",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:Granulometry data/type of particle-size distribution",
@@ -8051,7 +8051,7 @@
       "name": "GWP Aviation emissions (production gate to customer gate if applicable)",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position H: Aviation emissions occurring in the reported distrubution stage after the production gate until customer gate (if applicable).\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8068,7 +8068,7 @@
       "name": "GWP biogenic CO2-uptake (biogenic CO2 contained in the product)",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position D (negative contributuion): biogenic CO2 uptake in the product. It can be attributed by means of Mass Balancing: in such a case the \"Mass Balancing used\" must be set to \"True\". Apply mandatorily if in \"Biogenic Carbon Content\" a non-\"0\" has been selected.\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8086,7 +8086,7 @@
       "name": "GWP biogenic emissions other than CO2",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position C: non-CO2 biogenic emissions related to agricultural activities. It encompasses emissions as described in PACT v3.0: CH4 emissions from livestock and manure; CH4 emissions from biomass burning and fires; \nCH4 emissions from rice production; CH4 emissions from transformation and degradation (e.g., combustion, digestion, composting, landfilling). It must be noted that N2O from land management activities are not included in this position and are reported in position A and A1 (as a detail).\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8104,7 +8104,7 @@
       "name": "GWP fossil",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position A: includes all fossil emissions, including industrial processes, stationary/mobile combustion and fugitive emissions. This position inlcudes the fossil emissions associated to land management (A1: \"GWP fossil lanf management\")\\n",
       "examples": [
         "0.15 kg CO2 e/kg"
@@ -8122,7 +8122,7 @@
       "name": "GWP fossil land management",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position A1: fossil emissions occurring in land management activities. This is a detailed, which must be included in the total position A \"GWP fossil\". It encompasses emissions as described in PACT v3.0: N2O emissions from fertilizers; fossil CO2 emissions from soil management; CO2 emissions from soil amendments (such as lime, urea and other inputs); land management production emissions (including CO2 emissions from on-site machinery, and emissions from manufacturing of production inputs such as fertilizers and chemical inputs,); hydrofluorocarbons (HFCs) and perfluorocarbons (PFCs) emissions from air-conditioning and refrigerant use; emissions from on-site waste or wastewater management; indirect emissions from purchased energy associated with land management production activities.\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8140,7 +8140,7 @@
       "name": "GWP Land Management CO2 Emissions",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position F: carbon stock losses occurring within the same land use category or subcategory due to agricultural practices such as tillage, field preparations, pruning and harvest. Land Management CO2 emissions measures biogenic CO2 emissions from a net loss in carbon stock within one land use category or subcategory. This includes impact on the land-carbon pools,including above- and below-ground biomass, dead organic matter, and soil carbon pools. If the carbon stock increases within the same land use category and the conditions to report removals are met, this may be calculated as a Land management CO2 removal (position G). Refer to PACT v3.0 for details.\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8158,7 +8158,7 @@
       "name": "GWP Land Management CO2 Removals",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position G (negative contribution): Land management removals are net CO2 removals resulting from net increases to carbon stored in land-based carbon pools (biomass, dead organic matter and soil carbon pools) due to ongoing land management practices. This extra net carbon stock is gained over the crop rotation or crop cultivation cycle (e.g., multiple years for perennial crops and multiple years in a rotation that includes annual crops). Refer to PACT v3.0 for details.\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8176,7 +8176,7 @@
       "name": "GWP land use change (LUC, excluding iLUC)",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position E: Emissions from LUC constitute a release of GHG emissions due to a change in land use from one land use category or subcategory to another, such as primary forest to agricultural land, or peat land (type of wetland) to cropland. This position encompasses dLUC (direct land use change) emissions. If that data is not available, companies should account for LUC using statistical land-use change (sLUC) emissions. iLUC emissions are excluded. Refer to PACT v3.0 for details. \\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8194,7 +8194,7 @@
       "name": "GWP Removals (BECCS)",
       "mandatory": false,
       "parentId": "DOMA1007",
-      "domainid": "DOMA1006",
+      "domainId": "DOMA1006",
       "description": "Position B (negative contribution): carbon capture and geologic storage of CO2 emissions and counting as removal (e.g. technology capture of biogenic CO2 emissions / BECCS - refer to PACT v3.0). Apply mandatorily only if in \"CCS/BECCS applied\" the option \"True\" has been selected, AND only if the case of \"removal\" (e.g. BECCS) applies. If it's not a removal, the field should be declared as \"0\".\\n",
       "examples": [
         "0.0 kg CO2 e/kg"
@@ -8248,7 +8248,7 @@
       "name": "Index Name",
       "mandatory": false,
       "parentId": "DOMA912",
-      "domainid": "DOMA938",
+      "domainId": "DOMA938",
       "additionalProps": {
         "FULLPATH": "Information domain model:Index Name CLP Annex VI Tab 3/Index Name",
         "SOURCE-ID": "ebe1da81-1af8-4518-a574-8deab8ea8427",
@@ -8261,7 +8261,7 @@
       "name": "consecutive number in element",
       "mandatory": false,
       "parentId": "DOMA913",
-      "domainid": "DOMA903",
+      "domainId": "DOMA903",
       "additionalProps": {
         "FULLPATH": "Information domain model:Index Number CLP Annex VI Tab 3/consecutive number in element",
         "SOURCE-ID": "0a85cbe0-a884-45e4-afcd-5775da929b2f",
@@ -8274,7 +8274,7 @@
       "name": "control number",
       "mandatory": false,
       "parentId": "DOMA913",
-      "domainid": "DOMA903",
+      "domainId": "DOMA903",
       "description": "X + Integer ",
       "additionalProps": {
         "FULLPATH": "Information domain model:Index Number CLP Annex VI Tab 3/control number",
@@ -8288,7 +8288,7 @@
       "name": "Element identifier",
       "mandatory": false,
       "parentId": "DOMA913",
-      "domainid": "DOMA903",
+      "domainId": "DOMA903",
       "additionalProps": {
         "FULLPATH": "Information domain model:Index Number CLP Annex VI Tab 3/Element identifier",
         "SOURCE-ID": "a3ee5140-a184-4f29-9821-383c4bde22b8",
@@ -8301,7 +8301,7 @@
       "name": "Form number",
       "mandatory": false,
       "parentId": "DOMA913",
-      "domainid": "DOMA903",
+      "domainId": "DOMA903",
       "additionalProps": {
         "FULLPATH": "Information domain model:Index Number CLP Annex VI Tab 3/Form number",
         "SOURCE-ID": "39156a9d-a9bf-45a2-b9e0-3e2dc057539a",
@@ -8314,7 +8314,7 @@
       "name": "two letter code language",
       "mandatory": false,
       "parentId": "DOMA935",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "additionalProps": {
         "FULLPATH": "Information domain model:ISO code language/two letter code language",
         "SOURCE-ID": "18b3a2d0-6634-415f-96f9-1a2f5892415c",
@@ -8327,7 +8327,7 @@
       "name": "ISO country code",
       "mandatory": false,
       "parentId": "DOMA943",
-      "domainid": "DOMA944",
+      "domainId": "DOMA944",
       "additionalProps": {
         "FULLPATH": "Information domain model:ISO complete subdivision code/ISO country code",
         "SOURCE-ID": "7bf58066-7c8b-4fe6-a669-b60f0f703dfc",
@@ -8340,7 +8340,7 @@
       "name": "ISO subdivision code",
       "mandatory": false,
       "parentId": "DOMA943",
-      "domainid": "DOMA945",
+      "domainId": "DOMA945",
       "additionalProps": {
         "FULLPATH": "Information domain model:ISO complete subdivision code/ISO subdivision code",
         "SOURCE-ID": "d6e70dc8-7ba6-45b7-9be4-a3fdcc1d36a2",
@@ -8353,7 +8353,7 @@
       "name": "Key",
       "mandatory": true,
       "parentId": "DOMA1024",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 1,
       "description": "Describes the type of the additional identifer, if a key consists of several values.\nE.g. an identifier consists of a business partner- and an object identifier. The key describes if the value belongs to the buiseness partner or the object.",
       "shortDescr": "Type of the additional identifier",
@@ -8369,7 +8369,7 @@
       "name": "Value",
       "mandatory": false,
       "parentId": "DOMA1024",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 2,
       "description": "The value of the additional identifer, described by the key",
       "shortDescr": "Additional identifier value",
@@ -8385,7 +8385,7 @@
       "name": "Accuracy",
       "mandatory": false,
       "parentId": "DOMA1017",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 5,
       "description": "May describe variability in the data",
       "examples": [
@@ -8406,7 +8406,7 @@
       "name": "Average value",
       "mandatory": false,
       "parentId": "DOMA1017",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 4,
       "repeated": true,
       "additionalProps": {
@@ -8421,7 +8421,7 @@
       "name": "High Value",
       "mandatory": false,
       "parentId": "DOMA1017",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 2,
       "repeated": true,
       "additionalProps": {
@@ -8436,7 +8436,7 @@
       "name": "Low Value",
       "mandatory": false,
       "parentId": "DOMA1017",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 1,
       "repeated": true,
       "additionalProps": {
@@ -8451,7 +8451,7 @@
       "name": "Result / Valuation",
       "mandatory": false,
       "parentId": "DOMA1017",
-      "domainid": "DOMA901",
+      "domainId": "DOMA901",
       "displaySeq": 3,
       "repeated": true,
       "additionalProps": {
@@ -8466,7 +8466,7 @@
       "name": "Others",
       "mandatory": false,
       "parentId": "DOMA922",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 3,
       "shortDescr": "Other non-numeric conditions",
       "repeated": true,
@@ -8482,7 +8482,7 @@
       "name": "Pressure",
       "mandatory": false,
       "parentId": "DOMA922",
-      "domainid": "DOMA1020",
+      "domainId": "DOMA1020",
       "displaySeq": 2,
       "shortDescr": "Standard Condition ( 1013 hPa) or p defined",
       "examples": [
@@ -8501,7 +8501,7 @@
       "name": "Temperature",
       "mandatory": false,
       "parentId": "DOMA922",
-      "domainid": "DOMA1020",
+      "domainId": "DOMA1020",
       "displaySeq": 1,
       "shortDescr": "Standard Condition (T=23\u00b0C, ) or T defined",
       "examples": [
@@ -8521,7 +8521,7 @@
       "name": "Nano definition",
       "mandatory": false,
       "parentId": "DOMA923",
-      "domainid": "DOMA1096",
+      "domainId": "DOMA1096",
       "additionalProps": {
         "FULLPATH": "Information domain model:Nano query/Nano definition",
         "SOURCE-ID": "c9af5e76-6c5d-4437-9684-e701b1e4cb40",
@@ -8534,7 +8534,7 @@
       "name": "Nano substance?",
       "mandatory": false,
       "parentId": "DOMA923",
-      "domainid": "DOMA899",
+      "domainId": "DOMA899",
       "additionalProps": {
         "FULLPATH": "Information domain model:Nano query/Nano substance?",
         "SOURCE-ID": "56b55c49-30ed-41b6-b4fa-eb1500ba82bb",
@@ -8547,7 +8547,7 @@
       "name": "Concentration",
       "mandatory": false,
       "parentId": "DOMA924",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 5,
       "additionalProps": {
         "FULLPATH": "Information domain model:Numerical PhysChem property/Concentration",
@@ -8561,7 +8561,7 @@
       "name": "Measured value",
       "mandatory": false,
       "parentId": "DOMA924",
-      "domainid": "DOMA1017",
+      "domainId": "DOMA1017",
       "displaySeq": 3,
       "additionalProps": {
         "FULLPATH": "Information domain model:Numerical PhysChem property/Measured value",
@@ -8575,7 +8575,7 @@
       "name": "Measurement Condition",
       "mandatory": false,
       "parentId": "DOMA924",
-      "domainid": "DOMA922",
+      "domainId": "DOMA922",
       "displaySeq": 6,
       "description": "Condition under which the physical properties were measured.\nIf NULL, the default values 23\u00baC or 101.3 kPa apply",
       "shortDescr": "Contiditions (temperature, pressure, others) applied for measurement",
@@ -8619,7 +8619,7 @@
       "name": "Name of value",
       "mandatory": false,
       "parentId": "DOMA924",
-      "domainid": "DOMA1065",
+      "domainId": "DOMA1065",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:Numerical PhysChem property/Name of value",
@@ -8647,7 +8647,7 @@
       "name": "Unit",
       "mandatory": false,
       "parentId": "DOMA924",
-      "domainid": "DOMA1067",
+      "domainId": "DOMA1067",
       "displaySeq": 4,
       "additionalProps": {
         "FULLPATH": "Information domain model:Numerical PhysChem property/Unit",
@@ -8661,7 +8661,7 @@
       "name": "percentile",
       "mandatory": false,
       "parentId": "DOMA1018",
-      "domainid": "DOMA903",
+      "domainId": "DOMA903",
       "displaySeq": 2,
       "additionalProps": {
         "FULLPATH": "Information domain model:Percentiles/percentile",
@@ -8675,7 +8675,7 @@
       "name": "value",
       "mandatory": false,
       "parentId": "DOMA1018",
-      "domainid": "DOMA1065",
+      "domainId": "DOMA1065",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:Percentiles/value",
@@ -8689,7 +8689,7 @@
       "name": "Enddate",
       "mandatory": false,
       "parentId": "DOMA937",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 2,
       "description": "Day the period started or is going to end.\nEmpty -> period end is undefined, the period is still ongoing",
       "additionalProps": {
@@ -8704,7 +8704,7 @@
       "name": "Startdate",
       "mandatory": true,
       "parentId": "DOMA937",
-      "domainid": "DOMA900",
+      "domainId": "DOMA900",
       "displaySeq": 1,
       "description": "Day the period started or is going to start.",
       "additionalProps": {
@@ -8736,7 +8736,7 @@
       "name": "CLP Annex VI M-factor",
       "mandatory": false,
       "parentId": "DOMA925",
-      "domainid": "DOMA903",
+      "domainId": "DOMA903",
       "displaySeq": 13,
       "additionalProps": {
         "FULLPATH": "Information domain model:Product hazard Classificiation info/CLP Annex VI M-factor",
@@ -8750,7 +8750,7 @@
       "name": "CLP Annex VI Notes",
       "mandatory": false,
       "parentId": "DOMA925",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 14,
       "description": "Special conditions for classification if listed substance is present in product",
       "repeated": true,
@@ -8766,7 +8766,7 @@
       "name": "CLP Annex VI specific concentration limits",
       "mandatory": false,
       "parentId": "DOMA925",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 11,
       "description": "If substance has a SCL published in CLP it is triggering a hazard classification if present in a certain percentage",
       "shortDescr": "SCL",
@@ -8783,7 +8783,7 @@
       "name": "Hazard Class and Category Code",
       "mandatory": false,
       "parentId": "DOMA925",
-      "domainid": "DOMA921",
+      "domainId": "DOMA921",
       "displaySeq": 6,
       "examples": [
         "STOT RE 1",
@@ -8802,7 +8802,7 @@
       "name": "Hazard Statement Code",
       "mandatory": false,
       "parentId": "DOMA925",
-      "domainid": "DOMA1095",
+      "domainId": "DOMA1095",
       "displaySeq": 7,
       "description": "Short Code of Hazard statement Phrase.",
       "examples": [
@@ -8867,7 +8867,7 @@
       "name": "Additional identifiers",
       "mandatory": false,
       "parentId": "DOMA1025",
-      "domainid": "DOMA1021",
+      "domainId": "DOMA1021",
       "displaySeq": 3,
       "additionalProps": {
         "FULLPATH": "Information domain model:Product identifiers/Additional identifiers",
@@ -8881,7 +8881,7 @@
       "name": "Business partner part ids",
       "mandatory": false,
       "parentId": "DOMA1025",
-      "domainid": "DOMA1022",
+      "domainId": "DOMA1022",
       "displaySeq": 2,
       "description": "A customer can request the usage of there own material identifier by the supplier, meaning that offers, letter of confirmation, delifery notes, etc. contains the customer material identifer instead of the manufacturer part id. \nThe material identifier of the customer is only unique in the context of the corresponding customer. So this set consist of the buiness partner identifier (Gln) and the corresponding Part id.",
       "shortDescr": "Business partner product reference number",
@@ -8898,7 +8898,7 @@
       "name": "Manufacturer part id",
       "mandatory": true,
       "parentId": "DOMA1025",
-      "domainid": "DOMA904",
+      "domainId": "DOMA904",
       "displaySeq": 1,
       "description": "The unique identifier of the manufacturer",
       "shortDescr": "unique identifier provided by the manufacturer",
@@ -8914,7 +8914,7 @@
       "name": "CAS number",
       "mandatory": false,
       "parentId": "DOMA927",
-      "domainid": "DOMA909",
+      "domainId": "DOMA909",
       "displaySeq": 3,
       "additionalProps": {
         "FULLPATH": "Information domain model:regulatory nano information/CAS number",
@@ -8928,7 +8928,7 @@
       "name": "concentration Nano substance",
       "mandatory": false,
       "parentId": "DOMA927",
-      "domainid": "DOMA1014",
+      "domainId": "DOMA1014",
       "displaySeq": 5,
       "additionalProps": {
         "FULLPATH": "Information domain model:regulatory nano information/concentration Nano substance",
@@ -8942,7 +8942,7 @@
       "name": "Nanodefinition",
       "mandatory": false,
       "parentId": "DOMA927",
-      "domainid": "DOMA1096",
+      "domainId": "DOMA1096",
       "displaySeq": 1,
       "additionalProps": {
         "FULLPATH": "Information domain model:regulatory nano information/Nanodefinition",
@@ -8980,7 +8980,7 @@
       "name": "Nano substance?",
       "mandatory": false,
       "parentId": "DOMA927",
-      "domainid": "DOMA899",
+      "domainId": "DOMA899",
       "displaySeq": 2,
       "additionalProps": {
         "FULLPATH": "Information domain model:regulatory nano information/Nano substance?",
@@ -8994,7 +8994,7 @@
       "name": "Substance name",
       "mandatory": false,
       "parentId": "DOMA927",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "displaySeq": 4,
       "additionalProps": {
         "FULLPATH": "Information domain model:regulatory nano information/Substance name",
@@ -9008,7 +9008,7 @@
       "name": "CAS Name",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA908",
+      "domainId": "DOMA908",
       "description": "The name of a substance associated with the CAS registry number",
       "repeated": true,
       "additionalProps": {
@@ -9023,7 +9023,7 @@
       "name": "CAS number",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA909",
+      "domainId": "DOMA909",
       "description": "A CAS Registry Number (CAS RN\u00ae) is a unique and unambiguous identifier for a specific substance that allows clear communication and, with the help of CAS scientists, links together all available data and research about that substance. Governmental agencies rely on CAS Registry Numbers for substance identification in regulatory applications because they are unique, easily validated, and internationally recognized.",
       "additionalProps": {
         "FULLPATH": "Information domain model:Substance identifier/CAS number",
@@ -9037,7 +9037,7 @@
       "name": "CLP Annex VI Chemical name",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA912",
+      "domainId": "DOMA912",
       "displaySeq": 3,
       "description": "Name of substance used in the CLP Annex VI ",
       "additionalProps": {
@@ -9052,7 +9052,7 @@
       "name": "CLP Annex VI index number (Index No)",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA913",
+      "domainId": "DOMA913",
       "displaySeq": 2,
       "description": "A reference number for a substance within the Classification and Labelling (C&L) Inventory, which details its hazardous properties and required labeling under the CLP Regulation (Classification, Labelling and Packaging).",
       "additionalProps": {
@@ -9067,7 +9067,7 @@
       "name": "EC Number",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA910",
+      "domainId": "DOMA910",
       "description": "The EC-number, i.e. the EINECS, ELINCS or NLP number, is the official number of the substance within the European Union. The EC-number can be obtained from the official publications of EINECS, ELINCS and NLP and of the European Chemicals Agency.",
       "repeated": true,
       "additionalProps": {
@@ -9082,7 +9082,7 @@
       "name": "EU REACH registration number",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA911",
+      "domainId": "DOMA911",
       "description": "The European Chemicals Agency shall assign a submission number to each registration, which is to be used for\nall correspondence regarding the registration until the registration is deemed to be\ncomplete.",
       "repeated": true,
       "additionalProps": {
@@ -9111,7 +9111,7 @@
       "name": "IUPAC Name",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "description": "IUPAC Nomenclature ensures that each compound (and its various isomers) have only one formally accepted name known as the systematic IUPAC name.",
       "repeated": true,
       "additionalProps": {
@@ -9126,7 +9126,7 @@
       "name": "Substance name as REACH registered",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "additionalProps": {
         "FULLPATH": "Information domain model:Substance identifier/Substance name as REACH registered",
         "SOURCE-ID": "d9f291e3-c89d-442a-a2b3-a2b144f3c831",
@@ -9139,7 +9139,7 @@
       "name": "Trivial name",
       "mandatory": false,
       "parentId": "DOMA914",
-      "domainid": "DOMA905",
+      "domainId": "DOMA905",
       "description": "Retained names are often used for the most fundamental parts of a nomenclature system: almost all the chemical elements have retained names rather than being named systematically, as do the first four alkanes, benzene and most simple heterocyclic compounds. Water and ammonia are other examples of retained names.",
       "examples": [
         "water",
@@ -9158,7 +9158,7 @@
       "name": "Date of issue",
       "mandatory": true,
       "parentId": "DOMA933",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 3,
       "description": "The time stamp at which the Circularity Content (e.g., Recycled, Renewable), has been declared, independently of when or if it has been shared. This represents the validity period start unless specified seperately.",
       "examples": [
@@ -9177,7 +9177,7 @@
       "name": "Reference period end",
       "mandatory": true,
       "parentId": "DOMA933",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 2,
       "description": "End of time period of data collection for primary data sources",
       "examples": [
@@ -9196,7 +9196,7 @@
       "name": "Reference period start",
       "mandatory": true,
       "parentId": "DOMA933",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 1,
       "description": "Start of time period of data collection for primary data sources (this does not refer to publication dates of secondary data)",
       "examples": [
@@ -9215,7 +9215,7 @@
       "name": "Validity period end",
       "mandatory": true,
       "parentId": "DOMA933",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 5,
       "description": "Time stamp declaring the expected end of the use period for this declaration or date of expected update (i.e. when does the data validity period end?).",
       "examples": [
@@ -9234,7 +9234,7 @@
       "name": "Validity period start",
       "mandatory": false,
       "parentId": "DOMA933",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 4,
       "additionalProps": {
         "Label:de": "validityPeriodStart",
@@ -9249,7 +9249,7 @@
       "name": "Date of issue",
       "mandatory": true,
       "parentId": "DOMA934",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 3,
       "description": "The time stamp at which the Circularity Content (e.g., Recycled, Renewable), has been declared, independently of when or if it has been shared. This represents the validity period start unless specified seperately.",
       "examples": [
@@ -9268,7 +9268,7 @@
       "name": "Reference period end",
       "mandatory": true,
       "parentId": "DOMA934",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 2,
       "description": "End of time period of data collection for primary data sources",
       "examples": [
@@ -9287,7 +9287,7 @@
       "name": "Reference period start",
       "mandatory": true,
       "parentId": "DOMA934",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 1,
       "description": "Start of time period of data collection for primary data sources (this does not refer to publication dates of secondary data)",
       "examples": [
@@ -9306,7 +9306,7 @@
       "name": "Validity period end",
       "mandatory": true,
       "parentId": "DOMA934",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 5,
       "description": "Time stamp declaring the expected end of the use period for this declaration or date of expected update (i.e. when does the data validity period end?).",
       "examples": [
@@ -9326,7 +9326,7 @@
       "name": "Validity period start",
       "mandatory": false,
       "parentId": "DOMA934",
-      "domainid": "DOMA936",
+      "domainId": "DOMA936",
       "displaySeq": 4,
       "additionalProps": {
         "Title:de": "validityPeriodStart",
@@ -9341,7 +9341,7 @@
       "name": "Quantity",
       "mandatory": false,
       "parentId": "DOMA1020",
-      "domainid": "DOMA1019",
+      "domainId": "DOMA1019",
       "additionalProps": {
         "FULLPATH": "Information domain model:Unit quantity/Quantity",
         "SOURCE-ID": "48b5dd11-ad1d-435a-82c0-e288a57cfc57",
@@ -9354,7 +9354,7 @@
       "name": "Unit",
       "mandatory": false,
       "parentId": "DOMA1020",
-      "domainid": "DOMA1067",
+      "domainId": "DOMA1067",
       "additionalProps": {
         "FULLPATH": "Information domain model:Unit quantity/Unit",
         "SOURCE-ID": "8e016619-6789-4f12-9856-6968b9485752",

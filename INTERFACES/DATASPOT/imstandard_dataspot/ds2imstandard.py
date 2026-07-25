@@ -1,8 +1,9 @@
 import json
+import logging
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json
+from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json, StandardSchema
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase, DataspotElements
 from .dslib import custom_split
 
@@ -15,9 +16,10 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
     and categories (to group entities and domains)
     """
 
-    def __init__(self, indirec=None, **kwargs):
+    def __init__(self, indirec=None, modeltype: str = "IM", **kwargs):
         super().__init__(standardjson=JsonSchema(),
                          indirec=indirec, **kwargs)
+        self.modeltypeabrev = modeltype
         return
 
     def generatebusinessmodel(self, status=None):
@@ -89,7 +91,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
                                                                      addprops=additionalprops),
-                                            categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                            categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                           modelname=element.get("DSMODEL"),
                                                                           name=self._deref(
                                                                               element.get("inCollection")),
@@ -100,7 +102,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                                             value=self._deref(
                                                                                 element.get("description")),
                                                                             addprops=additionalprops),
-                                            shortdescr=self.mutlilangvalue(fieldname="title",
+                                            shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(
                                                                                element.get("title")),
                                                                            addprops=additionalprops),
@@ -133,8 +135,8 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                    "inverseName": self.standardjson.multilangstring_is(),
                                                    "domainMultiplicity": "1",
                                                    "rangeMultiplicity": "1",
-                                                   "ARC-12": None,
-                                                   "ARC-21": 0,
+                                                   "ARC-12": 0,
+                                                   "ARC-21": None,
                                                    "ID": ElementId.nextid("RELA"),
                                                    "href": self.dsmodels.sourcehref(element)
 
@@ -151,6 +153,34 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                  )
         return
 
+    def containsrelation(self, attr: dict, entiid: str):
+        """
+        an attribute having another entity as a domain is treated as a relationship
+        """
+        entiid2 = self.getentityid(attr.get("hasDomain"))
+
+        rela = self.relationjsonbase(relationtype=("1" if attr.get("cardinality") == "ONE"
+                                                   else "M")
+                                                  + ":1",
+                                     entityid1=entiid2,
+                                     entityid2=entiid,
+                                     element={
+                                         # "hasDomain": attr.get("subtypeOf"),
+                                         "name": self.standardjson.multilangstring_is(stdstr="contains"),
+                                         "hasRange": attr.get("label"),
+                                         "inverseName": None,  # self.standardjson.multilangstring_is(),
+                                         "domainMultiplicity": "1",
+                                         "rangeMultiplicity": ("" if attr.get("required") == "MANDATORY"
+                                                               else "0..") + \
+                                                              ("1" if attr.get("cardinality") == "ONE"
+                                                               else "*"),
+                                         "ARC-12": None,
+                                         "ARC-21": None,
+                                         "ID": ElementId.nextid("RELA"),
+                                         "href": self.dsmodels.sourcehref(attr)
+                                     })
+        return rela
+
     def generate1attribute(self, element):
         parentid = self.getentityid(element.get("hasDomain"))
         if parentid is None:
@@ -158,10 +188,20 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         domainname = element.get("hasRange")
         domainid = None if type(domainname) is not str else self.getdomainid(
             domaname=custom_split(domainname, "/")[-1])
+        if domainid is None:
+            if parentid.startswith("ENTI"):
+                # look for range as another entity
+                rangeentityid = self.getentityid(entiname=domainname)
+                if rangeentityid is not None:
+                    return ("Relations", self.containsrelation(attr=element, entiid=rangeentityid))
+            else:
+                logging.warning(
+                    f"Domaingroup attributes referencing entities not handled. Attibute {element.get('ID')}")
+
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["order", "cardinality", "required",
                                                             "temporal", "multilingual", "identifying"])
-        # "computation",
+
         additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
         elemattr = JsonElement().attributejson(elementId=element.get("ID"),
                                                name=self.mutlilangvalue(fieldname="label",
@@ -170,12 +210,12 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                mandatory=element.get("required") == "MANDATORY",
                                                domainid=domainid,
                                                parentid=parentid,
-                                               displayseq=element.get("order"),
+                                               displaySeq=element.get("order"),
                                                description=self.mutlilangvalue(fieldname="description",
                                                                                value=self._deref(
                                                                                    element.get("description")),
                                                                                addprops=additionalprops),
-                                               shortdescr=self.mutlilangvalue(fieldname="title",
+                                               shortDescr=self.mutlilangvalue(fieldname="title",
                                                                               value=self._deref(
                                                                                   element.get("title")),
                                                                               addprops=additionalprops),
@@ -187,12 +227,13 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                additionalProps=additionalprops
                                                )
 
-        return elemattr
+        return ("Attributes", elemattr)
 
     def generateattributes(self, elements):
         for element in nvl(elements, []):
-            self.standardjson.addelementinstance(name="Attributes",
-                                                 val=self.generate1attribute(element=element))
+            elemtype, attrval = self.generate1attribute(element=element)
+            self.standardjson.addelementinstance(name=elemtype,
+                                                 val=attrval)
         return
 
     def _diagusage(self, elems):
@@ -282,14 +323,14 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
         now = datetime.now().replace(microsecond=0).isoformat()
-        modeltype = "Information Model"
+        modeltype = StandardSchema.MODELTYPES[self.modeltypeabrev]
 
         additionalprops = {
             "FULLPATH": f"{nvl(targetenv, self.dsmodels.tenant.get('name', ''))}:{modeltype}:{modelname}",
             "SOURCE-SERVER": self.dsmodels.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
             "SOURCE-TENANT": self.dsmodels.tenant.get("name"),  # Sandbox"
             "SOURCE-HREF": f"{self.dsmodels.tenant.get('server')}{self.dsmodels.tenant.get('uri')}"
-            }
+        }
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                                modelname=modelname,
@@ -298,7 +339,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                languages=languages,
                                                dc=now,
                                                modelversion=modelversion,
-                                               targetenvironment=targetenv,
+                                               targetEnvironment=targetenv,
                                                origintool=self.ORIGINTOOL,
                                                originuri=None,
                                                additionalProps=additionalprops
@@ -318,17 +359,19 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         return model2json(self.standardjson.jsonschemamodel)
 
 
-def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
-                      targetenv=None,
-                      language='en', languages=[],
-                      server="https://myserver.io",
-                      status=None):
+def _exportModel2standard(inpath, outpath, modelname, modelversion,
+                          targetenv,
+                          language, languages,
+                          server,
+                          status,
+                          modeltype):
     indirec = Path(inpath)
     dsschema = Dataspot2IMJsonschema(indirec=indirec, tenant={"name": targetenv,
                                                               "id": None,
                                                               "uri": None,
                                                               "db": None,
-                                                              "server": server}
+                                                              "server": server},
+                                     modeltype=modeltype
                                      )
     jsonstruct = dsschema.generatejson(modelname=nvl(modelname, indirec.name),
                                        modelversion=modelversion,
@@ -344,8 +387,32 @@ def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
                 jsonstruct.get("ModelInfo", dict()).get("modelName", "whatever") + "-standard.json")
     with open(outfilepath, 'w') as outfile:
         json.dump(jsonstruct, outfile, indent=2)
+        print(f'{outfilepath} written')
 
     return jsonstruct
+
+
+def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
+                      targetenv=None,
+                      language='en', languages=[],
+                      server="https://myserver.io",
+                      status=None):
+    return _exportModel2standard(inpath=inpath, outpath=outpath,
+                                 modelname=modelname, modelversion=modelversion,
+                                 targetenv=targetenv, language=language,languages=languages,
+                                 server=server, status=status,modeltype="IM")
+
+
+def exportAM2standard(inpath, outpath, modelname=None, modelversion='0.0',
+                      targetenv=None,
+                      language='en', languages=[],
+                      server="https://myserver.io",
+                      status=None):
+    return _exportModel2standard(inpath=inpath, outpath=outpath,
+                                 modelname=modelname, modelversion=modelversion,
+                                 targetenv=targetenv, language=language,languages=languages,
+                                 server=server, status=status,
+                                 modeltype="AM")
 
 
 if __name__ == '__main__':
