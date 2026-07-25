@@ -793,7 +793,7 @@ def exportIM2sqlstandard(inpath, outpath, modelname=None, modelversion='0.0',
     sql2json = Sql2IMJsonschema(mydb=mydb)
     bmodel = sql2json.generatejson(status=status)
 
-    StandardJsonModel.dumpjsonfile(path=Path(outjsonfilepath),
+    StandardJsonModel.dumpjsonfile(outpath=Path(outjsonfilepath),
                                    struct=bmodel, verbose=True)
 
     return

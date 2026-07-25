@@ -83,7 +83,7 @@ class Spod2Jsonschema():
                                                  name=nvl(elem.get("name")).strip(),
                                                  mandatory=elem.get("mandatory"),
                                                  description=elem.get("descr"),
-                                                 elem.get("domainId"),
+                                                 domainid=elem.get("domainId"),
                                                  parentid=key
                                                  )
                      for elem in subelements]
@@ -151,7 +151,7 @@ class Spod2Jsonschema():
 
         return JsonElement().attributejson(elementId=key,
                                            name=self.anylingualtext(element.get("name"), stripblanks=True),
-                                           element.get("domainId"),
+                                           domainid=element.get("domainId"),
                                            parentid=element.get("entity"),
                                            mandatory=element.get("mandatory"),
                                            displaySeq=element.get("seq"),

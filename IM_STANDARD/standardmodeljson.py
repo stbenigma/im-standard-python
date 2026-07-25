@@ -19,22 +19,23 @@ class StandardJsonModel:
 
     @staticmethod
     def dumpjsonfile(struct: dict | list | None,
-                     path: Path,
+                     outpath: Path,
                      verbose=False,
                      ensure_ascii=False):
         """
         writes a json to file
         :param struct: json-strcture
-        :param path: path to write
+        :param outpath: path to write
         :param verbose: print success-message with path
         :param ensure_ascii: True: make sure all special characters are escaped Ü = \u00dc
                              False: write Ü
         :return:
         """
-        with open(path, "w", encoding='utf-8') as outfile:
+        with open(outpath, "w", encoding='utf-8') as outfile:
             json.dump(struct, outfile, indent=2,ensure_ascii=ensure_ascii)
             if verbose:
-                print(f"json written to: '{path}'")
+                print(f"json written to: '{outpath}'")
+        return
 
     @property
     def schema(self):

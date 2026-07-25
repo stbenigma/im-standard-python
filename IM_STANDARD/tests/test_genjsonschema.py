@@ -232,7 +232,7 @@ class MyTestCase(unittest.TestCase):
                                                    _schema="https://json-schema.org/draft/2020-12/schema",
                                                    nid="Astronomy-asset",
                                                    entity="Missionsdoku",
-                                                   singlefile=True,
+                                                   singlefile=False,
                                                    outfilepath=self.downloadpath / "astro1",
                                                    samplespath=self.downloadpath / "samples"
                                                    )
@@ -243,7 +243,7 @@ class MyTestCase(unittest.TestCase):
                                                    _schema="https://json-schema.org/draft/2020-12/schema",
                                                    nid="Astronomy-asset",
                                                    entity="Mond Datenblatt",
-                                                   singlefile=True,
+                                                   singlefile=False,
                                                    outfilepath=self.downloadpath / "astro2",
                                                    samplespath=self.downloadpath/ "samples"
                                                    )

@@ -37,11 +37,11 @@ class Test_sql2standard(unittest.TestCase):
         sql2json = Sql2IMJsonschema(mydb=mydb)
         bmodel = sql2json.generatejson(status="ALL",notnullonly=False)
         smallbmodel=sql2json.generatejson(status="ALL")
-        StandardJsonModel.dumpjsonfile(path=self.mydebugpath / "astrosqljsonfull.json",
+        StandardJsonModel.dumpjsonfile(outpath=self.mydebugpath / "astrosqljsonfull.json",
                                        struct=bmodel,
                                        verbose=True)
         smallbmodel=remove_empty_values(bmodel)
-        StandardJsonModel.dumpjsonfile(path=self.mydebugpath / "astrosqljson.json",
+        StandardJsonModel.dumpjsonfile(outpath=self.mydebugpath / "astrosqljson.json",
                                        struct=smallbmodel,
                                        verbose=True)
 
@@ -53,7 +53,7 @@ class Test_sql2standard(unittest.TestCase):
         sql2json = Sql2IMJsonschema(mydb=mydb)
         bmodel = sql2json.generatejson(status="ALL")
 
-        StandardJsonModel.dumpjsonfile(path=self.mydebugpath / "IMsqljson.json",
+        StandardJsonModel.dumpjsonfile(outpath=self.mydebugpath / "IMsqljson.json",
                                        struct=bmodel,
                                        verbose=True)
 

@@ -720,7 +720,7 @@ class Json2dataspot():
 
 def dumpmodel(outpath, modelname, elements):
     if modelname is not None and len(elements) > 0:
-        StandardJsonModel.dumpjsonfile(path=Path(outpath) / f"{modelname}.json",
+        StandardJsonModel.dumpjsonfile(outpath=Path(outpath) / f"{modelname}.json",
                                        struct=elements,
                                        verbose=True)
 

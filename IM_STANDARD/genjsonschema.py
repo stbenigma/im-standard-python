@@ -926,7 +926,7 @@ def generatejsonschema(jsonfilepath=None,
     if outfilepath is not None:
         for jsschema in jsschemas:
             StandardJsonModel.dumpjsonfile(struct=jsschema[1],
-                                           path=outfilepath / jsschema[0],
+                                           outpath=outfilepath / jsschema[0],
                                            verbose=True,
                                            ensure_ascii=True)
     jsexamples = []
@@ -936,7 +936,7 @@ def generatejsonschema(jsonfilepath=None,
             explfilename = jsschema[0].replace("schema", "example")
             jsexamples.append((explfilename, jsexample))
             StandardJsonModel.dumpjsonfile(struct=jsexample,
-                                           path=samplespath / explfilename,
+                                           outpath=samplespath / explfilename,
                                            verbose=True,
                                            ensure_ascii=True)
 

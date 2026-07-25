@@ -30,6 +30,7 @@ class TestInvoke(unittest.TestCase):
         ]
         print(f"Running {' '.join(generate)}")
         result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.assertEqual(0,result.returncode)
         print(result.stderr, result.stdout, result.returncode)
 
         self.assertIn("im-standard", result.stdout.decode())
@@ -39,6 +40,7 @@ class TestInvoke(unittest.TestCase):
             '--element', 'im-standard'
         ]
         result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.assertEqual(0,result.returncode)
         print(result.stderr, result.stdout, result.returncode)
         self.assertNotIn("im-standard", result.stdout.decode())
         self.assertIn("json-schema", result.stdout.decode())
@@ -49,11 +51,12 @@ class TestInvoke(unittest.TestCase):
             'invoke',
             'validateStandard',
             "--injson",
-            str(StandardJsonModel.SCHEMADEFPATH.parent / "Example models" / "Astronomie" / "astronomie-schema.json")
+            #str(StandardJsonModel.SCHEMADEFPATH.parent / "Example models" / "Astronomie" / "astronomie-schema.json")
+            str(StandardJsonModel.SCHEMADEFPATH.parent.parent / "Example models" / "Astronomie" / "astronomie-information-model.json")
         ]
         result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        self.assertEqual(0, result.returncode)
         print(result.stderr, result.stdout, result.returncode)
+        self.assertEqual(0, result.returncode)
 
         generate = [
             'invoke',
@@ -83,28 +86,45 @@ class TestInvoke(unittest.TestCase):
                     ]
         result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(result.returncode,result.stderr, result.stdout)
+        self.assertEqual(0,result.returncode)
 
-        self.assertIn("assets-schema.json written",str(result.stdout))
-        self.assertEqual(0, result.returncode)
-        self.assertTrue(outfile.is_file())
+        self.assertIn("assets-schema.db written",str(result.stdout))
+
         return
 
     def test_standard2schema(self):
         outfile=self.temp_folder / "astronomie-assets-schema.json"
+        (self.temp_folder/"samples").mkdir(parents=True,exist_ok=True)
         generate = ['invoke',
                     'std2schema',
                     "--inpath", str(Path(
                 __file__).parent.parent / "IM_STANDARD" / "tests" / "json-test-standard-files" / "astronomie-assets-standard.json"),
-                    "--outpath", str(outfile),
+                    "--outpath", str(self.temp_folder),
                     "--entity", "Mond Datenblatt",
                     "-w",
                     "--nid", "myastronomy"
                     ]
         result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(result.returncode,result.stderr, result.stdout)
-        self.assertIn("Schema json w",str(result.stdout))
-        self.assertTrue(outfile.is_file())
+        self.assertIn("json written to",str(result.stdout))
+        self.assertIn("Mond Datenblatt.schema.json",str(result.stdout))
         return
+
+    def test_createexcel(self):
+
+        generate = ['invoke',
+                    'std2excel',
+                    "--inpath", str(StandardJsonModel.SCHEMADEFPATH.parent.parent / "Example models" / "Astronomie" / "astronomie-information-model.json"),
+                    "--outpath", str(self.temp_folder/"astronomie-excel.xlsx"),
+                    "--nid", "mymodel"
+                    ]
+        result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(result.returncode,result.stderr, result.stdout)
+        self.assertEqual(0,result.returncode)
+        self.assertIn("Schema excel written",str(result.stdout))
+        self.assertTrue((self.temp_folder/"astronomie-excel.xlsx").is_file())
+        return
+
 
 
 if __name__ == '__main__':
