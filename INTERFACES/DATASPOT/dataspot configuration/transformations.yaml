@@ -3,20 +3,47 @@
 # configuration of dataspot for a transformation enhancement
 # author: stb
 # version 2025-7
-#   transformation-rules
-#     trigger-condition and code of rule
 
 Rule:
+  properties:
+    stereotype:
+      label: Transformationstyp
+      labelEn: Transformation type
+      literals:
+        ONE2ONE:
+          label: 1:1
+          order: 10
+          icon: clone
+        SPLIT:
+          label: Trennen
+          labelEn: Split
+          order: 20
+          icon: lock
+        JOIN:
+          label: Vereinen
+          labelEn: Join
+          order: 30
+          icon: comments
+        DESCRIBED:
+          label: Berechnen
+          labelEn: calculate
+          order: 40
+          icon: gears
   customProperties:
     condition:
-      label: Condition
-      title: Condition to be true to execute the rule. Placeholders $ and {} possible.
+      label: Bedingung
+      labelEn: Condition
+      title: Bedingung die erfüllt sein muss um die Transformationsregel anzuwenden. Platzhalter für Attribute $ und {} sind möglich.
+      titleEn: Condition to be true to execute the rule. Placeholders for attributes $ and {} possible.
       width: 2
       baseType: TEXT
       order: 1
     code:
       label: Code
-      title: Code, rule to execute. Placeholders $ and {} possible.
+      title: Code, Regel die antzwenden ist. Platzhalter für Attribute $ znd {} möglich.
+      titleEn: Code, rule to execute. Placeholders for attribgutes $ and {} possible.
       width: 2
       baseType: TEXT
       order: 2
+
+   

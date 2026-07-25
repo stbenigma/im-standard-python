@@ -1,395 +1,516 @@
 # multilingualDE.yml
 
 # configuration of dataspot 
+# german texts for all describing text fields
+#
+# mutlilingual elemens added in other configuraions are marked there as **MULTILINGUAL** 
+# an here with the yaml file their original property is defined e.g. **InformationModel**
+#
 # author: stb
-# V2025-06
-# Extension for multilingual modelcontent (base language DE)
-#   english translations for
-#    Labels, Titles, Descriptions
-#    Name, reverseName in relations
-#    Short- and Longname in reference values
+# V2026-06
 
 BusinessDataModel:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
-      order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
-      baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
-      order: 51
-      baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
-      order: 52
-      baseType: TEXT
-      group: EN
-      
+    #the model must know its main and secondary languages      
+    mainlanguage:
+      label:
+        de: Hauptsprache
+        en: Master language
+      title:
+        de: Sprache in der die offizielle Version formuliert wird.
+        en: Language of the official version of any entry.
+      order: 10
+      layout:
+        width: 2
+      literals: 
+        DE:
+          label: de
+          order: 1
+        EN:
+          label: en
+          order: 2
+        FR:
+          label: fr
+          order: 3
+        IT:
+          label: it
+          order: 4
+        ES:
+          label: es
+          order: 5
+    secondlanguage:
+      label:
+        de: Sekundärsprachen
+        en: Secondary languages
+      title:
+        de: Sprachen für die Übersetzung von Texten.
+        en: Language of the translation of text entries.
+      cardinality: MANY
+      order: 11
+      literals: 
+        DE:
+          label: de
+          order: 1
+        EN:
+          label: en
+          order: 2
+        FR:
+          label: fr
+          order: 3
+        IT:
+          label: it
+          order: 4
+        ES:
+          label: es
+          order: 5
 
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en: Label:de
+      title: 
+        de: Deutsche Bezeichnung des Elementes
+        en: German label of the asset 
+      baseType: STRING
+      group: DE
+      order: 5
+    title:de:
+      label: 
+        de: Titel:de
+        en: Title:de
+      title: 
+        de: Deutsche Langbezeichnung des Elementes
+        en: German title (long name) of the asset 
+      order: 6
+      baseType: STRING
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title: 
+        de: Deutsche Erläuterung des Elementes
+        en: German description of the asset 
+      order: 7
+      baseType: TEXT
+      group: DE
+
+    #**InformationModel**
+    delimitation:de:
+      label: 
+        de: Abgrenzung:en
+        en: Delimitation:en
+      title: 
+        de: Semantische Abgrenzung des Elements. Was ist es nicht!
+        en: Semantic delimitation of the element. What it is not!
+      baseType: TEXT
+      layout:
+        width: 12
+      group: DE
+      
 Collection:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German Version
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
-      order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en: Label:de
+      order: 5
+      title: 
+        de: Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
-      order: 51
+      group: DE
+    title:de:
+      label: 
+        de: Titel:de
+        en: Title:de
+      title: 
+        de: Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
+      order: 6
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
-      order: 52
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title: 
+        de: Englische Erläuterung des Elementes
+        en: German description of the asset 
+      order: 7
       baseType: TEXT
-      group: EN
+      group: DE
 
 BusinessObject:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label: 
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
       
-
 BusinessAttribute:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label: 
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
 
 DataAttribute:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label: 
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
       
-
 ReferenceDataModel:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label: 
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
       
-
 ReferenceObject:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
 
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label: 
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label: 
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
 
 ReferenceValue:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
 
   customProperties:
-    ShortText:en:
-      label: Kurztext:en
-      labelEn: Short text:en
-      title: Englischer Kurztext des Wertes
-      titleEn: English short text of the value
+    shortText:de:
+      label: 
+        de: Kurztext:de
+        en:  Short text:de
+      title:
+        de:  Englischer Kurztext des Wertes
+        en: German short text of the value
       order: 50
       baseType: STRING
-      group: EN
-    LongText:en:
-      label: Langtext:en
-      labelEn: Long text:en
-      title: Englischer Langtext des Wertes
-      titleEn: English long text of the value
+      group: DE
+    longText:de:
+      label: 
+        de: Langtext:de
+        en:  Long text:de
+      title:
+        de:  Englischer Langtext des Wertes
+        en: German long text of the value
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label: 
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
-            
+      group: DE
+      
 DataDomainModel:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label: 
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label:
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label:
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label:
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
 
 DataDomain:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label:
+        de: Deutsche Texte
+        en: German texts
       order: 5
 
   customProperties:
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
+    label:de:
+      label:
+        de: Bezeichnung:de
+        en:  Label:de
       order: 50
-      title: Englische Bezeichnung des Elementes
-      titleEn: English label of the asset 
+      title:
+        de:  Englische Bezeichnung des Elementes
+        en: German label of the asset 
       baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
+      group: DE
+    title:de:
+      label:
+        de: Titel:de
+        en:  Title:de
+      title:
+        de:  Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
       order: 51
       baseType: STRING
-      group: EN
-    Description:en:
-      label: Beschreibung:en
-      labelEn: Description:en
-      title: Englische Erläuterung des Elementes
-      titleEn: English description of the asset 
+      group: DE
+    description:de:
+      label:
+        de: Beschreibung:de
+        en: Description:de
+      title:
+        de:  Englische Erläuterung des Elementes
+        en: German description of the asset 
       order: 52
       baseType: TEXT
-      group: EN
+      group: DE
 
 Relationship:
   groups:
-    EN:
-      label: Englische Version
-      labelEn: English Version
+    DE:
+      label:
+        de: Deutsche Texte
+        en: German texts
       order: 5
     
   customProperties:
-    name:en:
-      label: Name:en
-      labelEn: Name:en
+    name:de:
+      label:
+        de: Assoziation 1->2:de
+        en: Association 1->2:de
       order: 50
-      title: Englischer Assotziationstext vom 1. Geschäftobjekt zum 2.
-      titleEn: English assotziation text from the 1st business object to the 2nd.
+      title:
+        de: Deutsches Verb, das die 1. Entität mit 2. verbindet
+        en: German verb, connecting first entity with 2nd.
       baseType: STRING
-      group: EN
-    inverseName:en:
-      label: Reversed name:en
+      group: DE
+    inverseName:de:
+      label:
+        de: Assoziation 2->1:de
+        en: Association 2->1:de
       order: 51
-      title: Englischer Assotziationstext vom 2. Geschäftobjekt zurück zum 1. 
-      titleEn: English assotziation text from the 2nd business object back to the 1st.
+      title:
+        de: Englisches verb, das 2. Entität mir 1. verbindet. 
+        en: German verb, connecting 2nd entity to first.
       baseType: STRING
-      group: EN    
-    Label:en:
-      label: Bezeichnung:en
-      labelEn: Label:en
-      order: 50
-      title: Englischer Assotziationstext vom 1. Geschäftobjekt zum 2.
-      titleEn: English assotziation text from the 1st business object to the 2nd.
+      group: DE
+    title:de:
+      label:
+        de: Titel:de
+        en:  Title:de
+      title:
+        de: Englische Titel (Langbezeichnung) des Elementes
+        en: German title (long name) of the asset 
+      order: 52
       baseType: STRING
-      group: EN
-    Reversedname:en:
-      label: Umgekehrter Name:en
-      labelEn: Reversed name:en
-      order: 51
-      title: Englischer Assotziationstext vom 2. Geschäftobjekt zurück zum 1. 
-      titleEn: English assotziation text from the 2nd business object back to the 1st.
-      baseType: STRING
-      group: EN
-    Title:en:
-      label: Titel:en
-      labelEn: Title:en
-      title: Englische Titel (Langbezeichnung) des Elementes
-      titleEn: English title (long name) of the asset 
-      order: 53
-      baseType: STRING
-      group: EN
-
-
-
+      group: DE

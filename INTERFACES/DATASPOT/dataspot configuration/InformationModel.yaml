@@ -1,0 +1,440 @@
+# InformationModel.yaml
+
+# configuration of dataspot 
+# attributes (and attribute hidings) to make a business data model look like a 
+# standard information model
+#
+# see www.informationmodellierung.ch
+#
+# some properties are translated as well.
+# their translations are in the multilingual yaml-files, marked with "#**IM**"
+#
+# author: stb
+# V2025-12
+Theme:
+  instances:
+    LIGHT:
+      appFont: Nunito Sans
+      
+Asset:
+  properties:
+    tags:
+      layout:
+        hidden: true
+        
+BusinessDataModel:
+  label: 
+    de: Informationsmodell|Informationsmodelle
+    en: Information model|Information models
+  title: 
+    de: Ein Modell für die fachlichen Namen und Bedeutungen
+    en: A model the business names and meanings
+  properties:
+    synonyms:
+      layout:
+        hidden: true
+
+  customProperties:  
+    #**MULTILINGUAL**
+    delimitation:
+      label: 
+        de: Abgrenzung|Abgrenzungen
+        en: Delimitation|Delimitations
+      title: 
+        de: Semantische Abgrenzung des Elements. Was ist es nicht!
+        en: Semantic delimitation of the element. What it is not!
+      baseType: TEXT
+      layout:
+        width: 12
+        position: 15
+      
+Collection:
+  properties:
+    synonyms:
+      layout:
+        hidden: true
+      
+BusinessObject:
+  label:
+    de: Entität|Entitäten
+    en: Entity|Entities
+  title:
+    de: Ding in der Realität, für dessen Eigenschaften und Beziehungen wir uns interessieren.
+    en: Thing in reality, of which we are interested in properties and relations.    
+  properties:
+    label:
+      label:
+        de: Entitätsname|Entitätsnamen
+        en: Entity name|Entity names
+    title:
+      label:
+        de: Kurzbeschrieb (tooltip)
+        en: Short description (tooltip)
+    dataProtectionCategory:
+      layout:
+        hidden: true
+
+  customProperties:
+#    Delimitation:
+#      label: 
+#        de: XXAbgrenzung
+    delimitation:
+      label: 
+        de: Abgrenzung|Abgrenzungen
+        en: Delimitation|Delimitations
+      title: 
+        de: Semantische Abgrenzung des Elements. Was ist es nicht!
+        en: Semantic delimitation of the element. What it is not!
+      baseType: TEXT
+      layout:
+        width: 12
+        position: 15
+        
+BusinessAttribute:
+  title:
+    de: Eigenschaft, Merkmal einer Entität. Eingeschränkt durch Wertebereich.
+    en: Property of an entity. Restricted by a value range (domain).
+  properties:
+    label:
+      label:
+        de: Attributname|Attributnamen
+        en: Attribute name|Attribute names
+    title:
+      label:
+        de: Kurzbeschrieb (tooltip)
+        en: Short description (tooltip)
+    dataProtectionCategory:
+      layout:
+        hidden: true
+    identifying:
+      layout:
+        hidden: true
+    cardinality:
+      layout:
+        width: 4
+  customProperties:
+    inkeys:
+      label:
+        de: Schlüsselelement
+        en: Key element
+      title:
+        de: Liste von Entitäts Schlüssel(nummer)n in der das Attribut als Bestandteil vorkommt.
+        en: List of entity key(number)s of which the attribute is an element of.
+      cardinality: MANY
+      baseType: STRING
+      layout:       
+        position: 10
+        width: 6
+#    MULTILINGUAL:
+#      label: XXMehrsprachig
+    multilingual:    
+      label: 
+       de: Mehrsprachig
+       en: Multilingual
+      title: 
+        de: Ein mehrsprachiges Attribut ist ein Text, der in der Applikation mehrsprachig verwaltet wird.
+        en: a multilingual attribute is a text, which is managed in several languages in the destination application
+      baseType: BOOLEAN
+      layout:
+        position: 18
+#    Unit:
+#      label: XXUnit
+    unit:
+      label:
+        de: phys. Einheit
+        en: phys. unit
+      title:
+        de: Physikalische Einheit des Wertes (nur für Zahlen sinnvoll)
+        en: phyiscal unit of value (only makes sense for numbers)
+      baseType: STRING
+      layout:
+        newline: true
+        width: 6
+        position: 20
+#    DefaultValue:
+#      label: XXVorgabewert
+    defaultValue:
+      label: 
+        de: Vorgabewert|Vorgabewerte
+        en: Default value|Default values
+      title: 
+        de: Wert, mit dem das Attribut gefüllt wird, im Falle dass leer angeliefert wird
+        en: Value with which the attribute is filled if it is supplied empty
+      order: 11
+      baseType: STRING
+      layout:
+        newline: false
+        width: 6
+        position: 21
+    
+Relationship:
+  groups:
+    doc:
+      label:
+        de: Dokumentation
+        en: Documentation
+      order: 5
+  title:
+    de: Beziehung zwischen genau 2 Entitäten
+    en: Relation between exactly 2 entities
+  properties:
+    identifying:
+      layout:
+        hidden: true
+    hasDomain:
+      label:
+        de: 1. Entität
+        en: 1. Entity
+      title:
+        de: Entität, von der die (Vorwärts-)Beziehung ausgeht.
+        en: Entity, where the (forward-)relationship starts.
+    hasRange:
+      label:
+        de: 2. Entität
+        en: 2. Entity
+      title:
+        de: Entität, bei  der die (Vorwärts-)Beziehung endet.
+        en: Entity, where the (forward-)relationship ends.
+    examples:
+      group: doc
+      layout:
+        width: 12
+        position: 1
+    title:
+      group: doc
+      layout:
+        position: 2
+    description:
+      group: doc
+      layout:
+        position: 3
+    name:
+      label:
+        de: Assoziation 1->2
+        en: Association 1->2
+      title:
+        de: Verb, das die 1. mit der 2. Entität verknüpft.
+        en: Verb, connection 1. with 2. entity
+    rangeMultiplicity:
+      layout:
+        position: 11
+        width: 4
+        newline: true
+        align: start
+    inverseName:
+      label:
+        de: Assoziation 2->1
+        en: Association 2->1
+      title:
+        de: Verb, das die 2. mit der 1. Entität verknüpft.
+        en: Verb, connection 2. with 1. entity
+      layout:
+        newline: false
+        position: 12
+        width: 4
+    domainMultiplicity:
+      layout:
+        newline: false
+        position: 13
+        width: 4
+        align: end
+    navigable:
+      title:
+        de: macht nur Sinn für von Rolle oder Subtype oder von funktional abhängigker Entität zum Master 
+        en: only makes sense to set an entity that is a role, a subtypea functional dependency
+      layout:
+        position: 15
+    synonyms:
+      layout:
+        hidden: true
+    dataProtectionCategory:
+      layout:
+        hidden: true
+    domainRole:
+      layout:
+        hidden: true
+    rangeRole:
+      layout:
+        hidden: true
+    linksDomain:
+      layout:
+        hidden: true
+    linksRange:
+      layout:
+        hidden: true                
+    rangeAggregation:
+      label:
+        de: Rolle/Subtyp 2. Entität
+        en: Role/Subtype 2. entity
+      title:
+        de: 1:1 Beziehung verknüpft 2. Entität mit Rolle (optional) oder Subtyp (exklusiv, zwingend)
+        en: 1:1 relatioship links 2. entity to role (optional) or subtype (exclusive, mandatory) 
+      literals:
+        SHARED:
+          label: 
+            de: Rolle
+            en: Role
+          title: 
+            de: Diese 1:1 Beziehung verknüpft die Entität mit einer (optionalen) Rolle (mit Vererbung)
+            en: This 1:1 relationship links the entity with (optional) role (with inheritance)
+        COMPOSITE:
+          label: 
+            de: Subtyp
+            en: Subtype
+          title: 
+            de: Diese 1:1 Beziehung verknüpft die Entität mit einem (exklusiven, zwingenden) Subtyp (mit Vererbung)
+            en: This 1:1 relationship links the entity with a (exclusive, mandatory) subtype (with inheritance)
+    domainAggregation:
+      label:
+        de: Rolle/Subtyp 1. Entität
+        en: Role/Subtype 1. entity
+      title:
+        de: 1:1 Beziehung ist Rolle (optional) oder Subtyp (exklusiv, zwingend)
+        en: 1:1 relatioship is role (optional) or subtype (exclusive, mandatory) 
+      literals:
+        SHARED:
+          label: 
+            de: Rolle
+            en: Role
+          title: 
+            de: Diese 1:1 Beziehung verknüpft die Entität mit einer (optionalen) Rolle (mit Vererbung)
+            en: This 1:1 relationship links the entity to (optional) role (with inheritance)
+        COMPOSITE:
+          label: 
+            de: Subtyp
+            en: Subtype
+          title: 
+            de: Diese 1:1 Beziehung verknüpft die Entität mit einem (exklusiven, zwingenden) Subtyp (mit Vererbung)
+            en: This 1:1 relationship links the entity to a (exclusive, mandatory) subtype (with inheritance)
+  customProperties:
+    inkeys:
+      label:
+        de: Schlüsselelement
+        en: Key element
+      title:
+        de: Liste von Entitäts Schlüssel(nummer)n in der das Attribut als Bestandteil vorkommt.
+        en: List of entity key(number)s of which the attribute is an element of.
+      cardinality: MANY
+      baseType: STRING
+      layout:
+        width: 6
+#    ARC-12:
+#      label: XXArc 1->2
+#      group: more
+#    ARC-21:
+#      label: XXArc 2->1      
+#      group: more
+    exclusiv-1-2:
+      label: 
+        de: Exklusiv 1->2
+        en: Exclusiv 1->2
+      title: 
+        de: Nr der Gruppe exklusiver Beziehungen, zu der diese Beziehunung gehört. Ausgehend von der 1. Entität
+        en: No of group of exclusive relationships, to which this relationship belongs. Starting from the first entity
+      order: 5
+      group: more
+      baseType: INTEGER
+      layout:
+        width: 6
+    exclusiv-2-1:
+      label: 
+        de: Exklusiv 2->1
+        en: Exclusiv 2->1
+      title: 
+        de: Nr der Gruppe exklusiver Beziehungen, zu der diese Beziehunung gehört. Ausgehend von der 2. Entität
+        en: No of group of exclusive relationships, to which this relationship belongs. Starting from the second entity
+      order: 5
+      baseType: INTEGER
+      group: more
+      layout:
+        width: 6
+
+BusinessConstraint:
+  properties:
+    qualityDimension:
+      layout:
+        hidden: true
+  customProperties:
+    rule:
+      label:
+        de: Regel, Formel für diesen Einschränkung
+        en: Rule, formule for this restriction
+      title:
+        de: Regel, Formel in möglichster formaler Form (Programmiersprache, logische Ausdrücke)
+        en: Rule, formule as formal as possible (codeing, logical operators)
+      baseType: TEXT
+
+DataDomainModel:
+  properties:
+    synonyms:
+      layout:
+        hidden: true
+
+DataDomain:
+  properties:
+    synonyms:
+      layout:
+        hidden: true
+
+DataAttribute:
+  properties:
+    identifying:
+      layout:
+        hidden: true
+  customProperties:
+    multilingual:    
+      label: 
+       de: Mehrsprachig
+       en: Multilingual
+      title: 
+        de: Ein mehrsprachiges Attribut ist ein Text, der in der Applikation mehrsprachig verwaltet wird.
+        en: a multilingual attribute is a text, which is managed in several languages in the destination application
+      baseType: BOOLEAN
+      layout:
+        position: 18
+    unit:
+      label:
+        de: phys. Einheit
+        en: phys. unit
+      title:
+        de: Physikalische Einheit des Wertes (nur für Zahlen sinnvoll)
+        en: phyiscal unit of value (only makes sense for numbers)
+      baseType: STRING
+      layout:
+        newline: true
+        width: 6
+        position: 20
+    defaultValue:
+      label: 
+        de: Vorgabewert|Vorgabewerte
+        en: Default value|Default values
+      title: 
+        de: Wert, mit dem das Attribut gefüllt wird, im Falle dass leer angeliefert wird
+        en: Value with which the attribute is filled if it is supplied empty
+      order: 11
+      baseType: STRING
+      layout:
+        newline: false
+        width: 6
+        position: 21
+
+ReferenceObject:
+  properties:
+    synonyms:
+      layout:
+        hidden: true
+    validFrom:
+      layout:
+        hidden: true
+    validTo:
+      layout:
+        hidden: true
+    stringType:
+      layout:
+        hidden: true
+
+ReferenceValue:
+  properties:
+    synonyms:
+      layout:
+        hidden: true

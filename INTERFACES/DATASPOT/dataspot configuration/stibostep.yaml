@@ -1,73 +1,175 @@
 # stibostep.yml
 
-# configuration of dataspot enhancement for Stibo-Step elements
+# configuration of dataspot 
+# database https://https://demo2.dataspot.io/web/basf-agriculture/organizations/45c9685e-b0f2-4e55-b6ad-6a5589138649
+# tenant: ADAM
 # author: stb
 # Version 2025-6
-#   for id and datatype in the sourcesystem, use externalreferences.yaml
-#   Stibo-Step specific attributes:
+# fontawesom.com for icons    
+
+ReferenceObject:
+  groups:
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+    
+  customProperties:
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DATATYPE:
+      label: Source-datatype
+      title: datatype in source system
+      order: 5
+      baseType: STRING
+      group: SOURCE
+    SOURCE-ALLOW-VALUE-ADDITION:
+      label: Source-lov allows values addition
+      title: flag for lovs in source system
+      order: 6
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DIMENSIONLINK:
+      label: Source-Dimensionlink
+      title: dimension in source system
+      order: 7
+      baseType: STRING
+      group: SOURCE
 
 DataDomain:
   groups:
     STEP:
       label: Step properties
-      title: Step domains are halfway attributes. They define properties belonging to attributes in dataspot models.
       order: 1
-
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+      
   properties:
-  customProperties:
-    DIMENSIONREF:
+    stereotype:   
+      label: Zielsystem
+      labelEn: Targetsystem
+      defaultValue: STANDARD
+      literals:
+        STANDARD:
+          label: Standard dataspot
+        STIBO:
+          label: Stibo-step domain
+          customProperties:
+            DIMENSIONREF:
               label: Step Dimension ref
               title: Attribute Dimension Ref ID
-              order: 20
+              order: 6
               baseType: STRING
               group: STEP
-    ATTRGRPREF:
+            ATTRGRPREF:
               label: Step Attr. group ref
               title: AttributeGroup Ref ID 
-              order: 21
+              order: 7
               cardinality: MANY
               baseType: STRING
               group: STEP
-    ATTRMAND:
+            ATTRMAND:
               label: Step mandatory
               title: Attribute must have a value
-              order: 22
+              order: 10
               baseType: BOOLEAN
               group: STEP
-    ATTRCALC:
+            ATTRCALC:
               label: Step calcualted
               title: Attribute calculated from other attributes
-              order: 23
+              order: 11
               baseType: BOOLEAN
               group: STEP
-    ATTRMULTIVALUE:
+            ATTRMULTIVALUE:
               label: Step multivalue
               title: a multivalued attribute can take many values of the same datatype
               baseType: BOOLEAN
-              order: 24
+              order: 12
               group: STEP
-    ATTRMULTILANG:
+            ATTRMULTILANG:
               label: Step mehrsprachig
               labelEn: Step multilingual
               title: multilingual attribute value. (derived from dimension ref:language)
               baseType: BOOLEAN
-              order: 25
+              order: 13
               group: STEP
-    ATTRFULLTEXT:
+            ATTRFULLTEXT:
               label: Step Fulltext search
               title: Attribute FullText
-              order: 26
+              order: 14
               baseType: BOOLEAN
               group: STEP
-    ATTRDISPLSEQ:
+            ATTRDISPLSEQ:
               label: Step display seq.
               title: by default copied to ordinal No of asset
-              order: 27
+              order: 15
               baseType: INTEGER
               group: STEP
-    PROCMODE:
+            PROCMODE:
               label: Step ProductMode
-              order: 28
+              order: 18
               baseType: STRING
               group: STEP
              
+  customProperties:
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DATATYPE:
+      label: Source-datatype
+      title: datatype in source system
+      order: 5
+      baseType: STRING
+      group: SOURCE
+
+UmlAttribute:
+  groups:
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+    STIBO:
+      label: Stibo Step
+      order: 3
+
+  customProperties:      
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE
+    SOURCE-DATATYPE:
+      label: Source-datatype
+      title: datatype in source system
+      order: 5
+      baseType: STRING
+      group: SOURCE
+    ATTR-GROUPS:
+      label: Attribute groups
+      title: List of attributes groups
+      order: 8
+      baseType: STRING
+      cardinality: MANY
+      group: STIBO
+      
+
+UmlClass:
+  groups:
+    SOURCE:
+      label: Source system Attributes
+      order: 2
+
+  customProperties:      
+    SOURCE-ID:
+      label: Source-ID
+      title: ID in source system
+      order: 1
+      baseType: STRING
+      group: SOURCE

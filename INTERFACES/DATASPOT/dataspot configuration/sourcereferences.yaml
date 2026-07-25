@@ -1,16 +1,10 @@
 # sourcereferences.yml
 
+# configuration of dataspot 
+# tenant: Chem-X
 # author: stb
 # version 2025-6
-# Extension for referenceobjects, used as Source-description
-#   Sterotypes for reference model
-#    Source (usage as a source description)
-#    Enumeration (the traditional reference object)
-#   Types of reference entry
-#      lov-value
-#      book (with ISBN)
-#      web (with URL)
-#      document (with file reference)
+# fontawesom.com for icons    
 
 ReferenceDataModel:
 # Referenzdatenmodell als Dokumentationsreferenz (vs. enumerations) definieren
@@ -31,7 +25,6 @@ ReferenceDataModel:
           labelEn: Enumeration
           icon: list-tree      
           
-
 ReferenceObject:
   customProperties:
     aspect:
