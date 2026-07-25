@@ -46,8 +46,7 @@ class MyTestCase(unittest.TestCase):
             json.dump(purejson, outfile, indent=2)
             self.assertEqual(jsonvalidation.validateschema(instance=purejson,
                                                            schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
-                                                           schemaonly=False,
-                                                           verbose=True), [])
+                                                           schemaonly=False), [])
             print(f'Json written : {outfilepath}')
 
         dataexcel = CreateDataExcel(standardjson=outfilepath)
@@ -70,8 +69,7 @@ class MyTestCase(unittest.TestCase):
             json.dump(purejson, outfile, indent=2)
             jsonvalidation.validateschema(instance=purejson,
                                           schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
-                                          schemaonly=False,
-                                          verbose=True)
+                                          schemaonly=False)
             print (f"jsonfile written : {Path(self.mydebugpath) / (self.infilepath.stem + '-standard.json')}")
         return
 
@@ -106,8 +104,7 @@ class MyTestCase(unittest.TestCase):
             json.dump(purejson,outfile,indent=2)
         jsonvalidation.validateschema(instance=purejson,
                                           schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
-                                          schemaonly=False,
-                                          verbose=True)
+                                          schemaonly=False)
 
 
         dataexcel = CreateDataExcel(standardjson=purejson)
