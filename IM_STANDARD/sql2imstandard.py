@@ -6,7 +6,7 @@ from datetime import datetime
 from rdflib import Graph, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, XSD, SKOS, DCTERMS
 
-from IM_STANDARD import nvl
+from IM_STANDARD import nvl,normalize_booleans,remove_empty_values, StandardSchema
 from IM_STANDARD.SQL.SQL_INFRA import DbDML
 
 
@@ -25,6 +25,7 @@ class Sql2IMJson:
                  "BIN": "BinaryDomain",
                  "BOO": "BooleanDomain"
                  }
+    DOMATYPESREV = {val: key for key, val in DOMATYPES.items()}
 
     BURUTYPES = {'CALC': 'calculation',
                  'CHECK': 'check',
@@ -71,11 +72,10 @@ class Sql2IMJson:
         """
         return "'" + val + "'"
 
-    @staticmethod
-    def _listsql(tablename: str,
+    def _listsql(self, tablename: str,
                  colname: str,
                  idcol: str) -> str:
-        return f"""(select '[' || group_concat('"'||REPLACE({colname}, '"', '\\"')||'"',',')||']' 
+        return f"""(select {self._mydb.listgroup(colname=colname)}  
                from {tablename}
                 where {Sql2IMJson.FKCOLS[tablename]}={idcol})"""
 
@@ -111,14 +111,14 @@ class Sql2IMJson:
                join languages on lgtx_lang_id = lang_id
 
         """
-        defaultsql=f"""(select  {self._dictgroup(keycolname=keycolname,
-                                   valcolname='defaultvalue')}
+        defaultsql = f"""(select  {self._dictgroup(keycolname=keycolname,
+                                                   valcolname='defaultvalue')}
                     from translatedvalues
                    where lgtx_attrname='{colname}'  
                    and lgtx_mode_id={fkname})"""
 
-        realsql=    f"""(select {self._dictgroup(keycolname=keycolname,
-                                   valcolname=valcolname)} 
+        realsql = f"""(select {self._dictgroup(keycolname=keycolname,
+                                               valcolname=valcolname)} 
                from lang_texts
                join languages on lgtx_lang_id = lang_id
                    where lgtx_attrname='{colname}'  
@@ -131,7 +131,7 @@ class Sql2IMJson:
         """
          :return: subselect for list of lang_iso_code2 in model_languages
         """
-        return f"""(select '[' || {self._mydb.listgroup(colname="lang_iso_code2")} ||']' 
+        return f"""(select {self._mydb.listgroup(colname="lang_iso_code2")}  
                from languages
                join model_languages on mola_lang_id=lang_id               
                 where mola_modl_id=modl_id)"""
@@ -143,34 +143,33 @@ class Sql2IMJson:
                              valcolname="udpv_value",
                              idcol=idcol)
 
-    def _dictgroup(self,keycolname:str,valcolname:str):
-        return f"""'{{' || {self._mydb.dictgroup(keycolname=keycolname,
-                                   valcolname=valcolname)}
-                    || '}}'"""
+    def _dictgroup(self, keycolname: str, valcolname: str):
+        return self._mydb.dictgroup(keycolname=keycolname,
+                                    valcolname=valcolname)
 
     def _dictsql(self, tablename: str,
                  keycolname: str,
                  valcolname: str,
                  idcol: str) -> str:
         return f"""(select {self._dictgroup(keycolname=keycolname,
-                                   valcolname=valcolname)} 
+                                            valcolname=valcolname)} 
                from {tablename}
                 where {self.FKCOLS[tablename]}={idcol})"""
 
     def selelementjson(self, sql):
-        elements = self._mydb.select(sql=sql)
-        self._str2json(elements)
-        return elements
+        elements = self._mydb.select(sql=sql,aslist=True)
+        #liefert eine liste von tupeln von json strings
+        return json.loads(elements[0][0])
 
     def selmodeljson(self):
-        sql = f"""select 'MODL'||modl_id as elementid,                                                                       
+        sql = f"""select 'MODL'||modl_id as elementId,                                                                       
                             modl_name as modelname,
                             modl_descr as description,
                             modl_targetenvironment as targetenvironment,
                             case modl_type
-                            when 'IM' then 'Information Model'
-                            when 'DM' then 'Data Model'
-                            when 'AM' then 'Artefact Model'
+                            when 'IM' then 'Information model'
+                            when 'DM' then 'Data model'
+                            when 'AM' then 'Artefact model'
                             end as modeltype,
                             mode_uc as uc,
                             mode_dc as dc,
@@ -186,144 +185,187 @@ class Sql2IMJson:
                                             and mola_mainlanguage='TRUE')
                     join languages on lang_id = mola_lang_id
         """
-        elements=self.selelementjson(sql=sql)
+        sql = """select json_group_array(
+                        json_object('elementId', 'MODL' || modl_id,
+                   'modelName', modl_name,
+                   'description', modl_descr,
+                   'targetEnvironment', modl_targetenvironment,
+                   'modelType', case modl_type
+                                    when 'IM' then 'Information model'
+                                    when 'DM' then 'Data model'
+                                    when 'AM' then 'Artefact model'
+                       end,
+                   'uc', mode_uc,
+                   'dc', mode_dc,
+                   'um', mode_um,
+                   'dm', mode_dm,
+                   'mainLanguage', lang_iso_code2,
+                   'modelVersion', '0.0',
+                   'languages', (select json_group_array(lang_iso_code2)
+                                 from languages
+                                    join model_languages on mola_lang_id = lang_id
+                                 where mola_modl_id = modl_id),
+                   'additionalProps', (select json_group_object(udpv_name, udpv_value)
+
+                                       from user_defined_props
+                                       where udpv_mode_id = modl_id)
+           ))as models
+            from models
+                     join modelelements on mode_id = modl_id
+                     join model_languages on (mola_modl_id = modl_id
+                            and mola_mainlanguage = 'TRUE')
+                     join languages on lang_id = mola_lang_id"""
+        elements = self.selelementjson(sql=sql)
         return elements
 
     def selcategoryjson(self):
-        sql = f"""select 'CATG' ||enca_id as elementid,
-            {self._langtextsql(colname="enca_name",
-                               fkname="enca_id")} as name,
-            {self._langtextsql(colname="enca_descr",
-                               fkname="enca_id")} as description,   
-            case when enca_enca_id is null then null else 'CATG' || enca_enca_id end  as categoryid,
-            'MODL' ||mode_modl_id as modelid,                                                                       
-            mode_dc as dc,
-            mode_uc as uc,
-            mode_um as um,
-            mode_dm as dm,
-            {self._additionalpropssql(idcol="enca_id")}  as additionalProps
-        from entity_categories    
-        join modelelements on mode_id=enca_id
-        """
+        sql = f"""select json_group_array(
+        json_object('elementId','CATG' ||enca_id,
+            'name',{self._langtextsql(colname="enca_name", fkname="enca_id")},
+            'description',{self._langtextsql(colname="enca_descr",
+                                             fkname="enca_id")},
+            'modelId',case when enca_enca_id is null then null
+                                    else 'CATG' || enca_enca_id
+                                    end,
+           'modelId', 'MODL' ||mode_modl_id ,
+            'dc',mode_dc ,
+            'uc',mode_uc ,
+            'um',mode_um ,
+            'dm',mode_dm,
+            'additionalProps', {self._additionalpropssql(idcol="enca_id")}
+            ))as catgs
+        from entity_categories
+        join modelelements on mode_id=enca_id"""
 
         return self.selelementjson(sql=sql)
 
     def seldomainjson(self):
-        sql = f"""select 'DOMA' ||doma_id as elementid,
-            {self._langtextsql(colname="doma_name",
-                               fkname="doma_id")} as name,
-            {self._langtextsql(colname="doma_descr",
-                               fkname="doma_id")} as description,
-            {self._mapstring(col="doma_type", mapping=self.DOMATYPES)} as domaintype,
-            doma_txt_maxlng as maxlength,
-            doma_txt_minlng as minlength,
-            doma_txt_syntaxrule as pattern,
-            case 
+        sql = f"""select json_group_array(
+            json_object('elementId','DOMA' ||doma_id ,
+            'name',{self._langtextsql(colname="doma_name",
+                                      fkname="doma_id")},
+            'description',{self._langtextsql(colname="doma_descr",
+                                             fkname="doma_id")} ,
+            'domainType',{self._mapstring(col="doma_type", mapping=self.DOMATYPES)} ,
+            'maxLength',doma_txt_maxlng ,
+            'minLength',doma_txt_minlng ,
+            'syntaxRule',doma_txt_syntaxrule,
+            'minValue',case 
                 when doma_num_minvalue is null then doma_dat_minvalue 
                 else doma_num_minvalue 
-            end as minvalue,
-            case 
+            end ,
+            'maxValue',case 
                 when doma_num_maxvalue is null then doma_dat_maxvalue 
                 else doma_num_maxvalue 
-            end as maxvalue,
-            doma_num_fract_digits as fractdigits,
-            doma_num_total_digits as totaldigits,
-            doma_num_round_value as roundto,
-            doma_num_physunit as physunit,
-            doma_dat_granularity as granularity,
-            {self._listsql(tablename="examples",
-                           colname="expl_value",
-                           idcol="doma_id")} as examples,
-            'MODL'||mode_modl_id as modelid,                                                                       
-            mode_dc as dc,
-            mode_uc as uc,
-            mode_um as um,
-            mode_dm as dm,
-            {self._additionalpropssql(idcol="doma_id")}  as additionalProps
+            end,
+            'fractDigits',doma_num_fract_digits ,
+            'totalDigits',doma_num_total_digits ,
+            'roundto',doma_num_round_value ,
+            'physunit',doma_num_physunit,
+            'granularity',doma_dat_granularity ,
+            'examples',{self._listsql(tablename="examples",
+                                      colname="expl_value",
+                                      idcol="doma_id")} ,
+            'modelId','MODL'||mode_modl_id ,                                                                       
+            'dc',mode_dc,
+            'uc',mode_uc ,
+            'um',mode_um ,
+            'uc',mode_dm ,
+            'values',(select json_group_array(json_object('value', lovv_value,
+                                                        'displayValue', lovv_displ,
+                                                        'sortOrder', lovv_sort_order,
+                                                        'description', lovv_descr)
+                                                    )
+                                     from lov_values
+                                     where lovv_doma_id = doma_id
+                                     order by lovv_sort_order
+                                ) ,
+            'additionalProps',{self._additionalpropssql(idcol="doma_id")}
+            )) as domas 
         from domains    
         join modelelements on mode_id=doma_id
         """
-        """        subtypeproperties["domaintype"] = domaintypes[domaintype]
-        elif domaintype == "DATETIME":
-            subtypeproperties["granularity"] = "MINUTE"
-        elif domaintype == "DATE":
-            subtypeproperties["granularity"] = "DAY"
-            """
+
         elements = self.selelementjson(sql=sql)
 
-        for doma in elements:
-            lovvalsql = f"""select lovv_value as lovvalue,
-                            lovv_displ as display,
-                         lovv_sort_order as sortorder,
-                         lovv_descr as description
-                   from lov_values
-                    where lovv_doma_id={doma.get("elementid")[4:]}
-                    order by lovv_sort_order
-                    """
-            lovvals = self._mydb.select(sql=lovvalsql)
-            if len(lovvals) > 0:
-                self._str2json(lovvals)
-                doma["lovvalues"] = {val.get("lovvalue"):
-                                         {key2: val2 for key2, val2 in val.items()
-                                          if (key2 != "lovvalue" and nvl(val2) != "")}
-                                     for val in lovvals}
         return elements
 
     def selentityjson(self):
-        sql = f"""select 'ENTI' || enti_id as elementid,
-            {self._langtextsql(colname="enti_name",
-                               fkname="enti_id")} as name,
-            {self._langtextsql(colname="enti_descr",
-                               fkname="enti_id")} as description,
-            enti_tooltip as shortdescr,
-            enti_prefix as prefix,
-            enti_short_name as shortname,                         
-            case when enti_enca_id is null then null else 'CATG' || enti_enca_id end  as categoryid,
-            {self._listsql(tablename="synonyms",
-                           colname="syno_name",
-                           idcol="enti_id")} as synonyms,
-            {self._listsql(tablename="examples",
-                           colname="expl_value",
-                           idcol="enti_id")} as examples,
-            'MODL'||mode_modl_id as modelid,                                                                       
-            mode_dc as dc,
-            mode_uc as uc,
-                mode_um as um,
-                mode_dm as dm,
-            {self._additionalpropssql(idcol="enti_id")}  as additionalProps
+        sql = f"""select json_group_array(
+        json_object(
+        'elementId','ENTI' || enti_id,
+        'name', {self._langtextsql(colname="enti_name",
+                                   fkname="enti_id")} ,
+        'description',{self._langtextsql(colname="enti_descr",
+                                         fkname="enti_id")} ,
+        'shortDescr', enti_tooltip,
+        'prefix',enti_prefix,
+        'shortName',enti_short_name,                         
+        'categoryId', case when enti_enca_id is null then null else 'CATG' || enti_enca_id end ,
+         'synonyms',{self._listsql(tablename="synonyms",
+                                   colname="syno_name",
+                                   idcol="enti_id")},
+        'examples',{self._listsql(tablename="examples",
+                                  colname="expl_value",
+                                  idcol="enti_id")},
+        'keys',(SELECT json_group_array(
+                   json_object(
+                       'name', keys_name,
+                       'elements', json(elements))
+                    )
+                FROM (
+                    SELECT
+                        keys_name ,
+                        json_group_array(mode_type || mode_id) AS elements
+                    FROM keys 
+                    LEFT JOIN modelelements 
+                        ON mode_type IN ('ATTR', 'RELA')
+                        AND (mode_id = keys_attr_id OR mode_id = keys_rela_id)
+                 WHERE keys_enti_id = enti_id
+                    GROUP BY keys_name
+                )),                                  
+        'modelId', 'MODL'||mode_modl_id,                                                                       
+        'dc',mode_dc,
+        'uc',mode_uc,
+        'um',mode_um,
+        'dm',mode_dm,
+        'additionalProps',{self._additionalpropssql(idcol="enti_id")} 
+        )) as entis
         from entities    
         join modelelements on mode_id=enti_id
         """
         return self.selelementjson(sql=sql)
 
     def selattributejson(self):
-        sql = f"""select 'ATTR' ||attr_id as elementid,
-            attr_tech_name as name, 
-            {self._langtextsql(colname="attr_descr",
-                               fkname="attr_id")} as description,
-            'DOMA' || attr_doma_id as domainid,
-             case when attr_enti_id is null 
-                    THEN 'DOMA' || attr_doma_group_id
-                    else 'ENTI' || attr_enti_id 
-            end as parentid,
-            {self._langtextsql(colname="attr_displ_name",
-                               fkname="attr_id")} as displname,
-            attr_tooltip as tooltip,
-            attr_displ_seq as sortorder,
-            attr_is_mandatory as mandatory,
-            attr_is_descriptive as descriptive,
-            attr_is_historicised as temporal,
-            attr_is_translated as multilang,
-            attr_is_repeated as repeated,
-            attr_is_encrypted as encrypted,
-            {self._listsql(tablename="examples",
-                           colname="expl_value",
-                           idcol="attr_id")} as examples,
-            mode_uc as uc,
-                            mode_um as um,
-                            mode_dm as dm,
-
-            {self._additionalpropssql(idcol="attr_id")}  as additionalProps
+        sql = f"""select json_group_array(
+                json_object('elementId','ATTR' ||attr_id ,
+            'name',            attr_tech_name, 
+            'description',        {self._langtextsql(colname="attr_descr",
+                                                     fkname="attr_id")} ,
+            'domainId',            'DOMA' || attr_doma_id,
+            'parentId',         case when attr_enti_id is null 
+                            THEN 'DOMA' || attr_doma_group_id
+                            else 'ENTI' || attr_enti_id 
+                    end ,
+            'displname',        {self._langtextsql(colname="attr_displ_name",
+                                                   fkname="attr_id")} ,
+        'tooltip',            attr_tooltip,
+            'sortOrder',            attr_displ_seq,
+            'mandatory',            attr_is_mandatory,
+            'descriptive',            attr_is_descriptive,
+            'temporal',            attr_is_historicised,
+            'multilang',            attr_is_translated,
+            'repeated',            attr_is_repeated,
+            'encrypted',            attr_is_encrypted,
+            'examples',        {self._listsql(tablename="examples",
+                                              colname="expl_value",
+                                              idcol="attr_id")} ,
+            'uc',            mode_uc,
+            'um',                            mode_um,
+            'dm',                            mode_dm,
+            'dc',                            mode_dc,
+            'additionalProps',        {self._additionalpropssql(idcol="attr_id")} 
+            )) as attrs
         from attributes    
         join modelelements on mode_id=attr_id
         """
@@ -332,10 +374,10 @@ class Sql2IMJson:
 
     def selrelationjson(self):
         """
-        "relationtype": "SUBTYPE",
+        "relationType": "SUBTYPE",
         "fwd": {
-            "entityid": "ENTI98",
-            "assoctext": {
+            "entityId": "ENTI98",
+            "assocText": {
                 "de": "ist",
                 "en": "is"
             },
@@ -345,61 +387,72 @@ class Sql2IMJson:
 
         """
         sql = f"""
-        select
-        'RELA' || rela_id as elementid,
-        {self._langtextsql(colname="rela_name",
-                           fkname="rela_id")} as name,
-        {self._mapstring(col="rela_type", mapping=self.RELATYPES)} as relationtype,
-        '{{ }}' as fwd,
-        '{{ }}' as bwd,
-        'ENTI' || rela_enti_id_from as entityid_from,
-        'ENTI' || rela_enti_id_to as entityid_to,
-        rela_hist_from_to as historicised_from,
-        rela_hist_to_from as historicised_to,
-        rela_maptype_from_to as cardinality_from,
-        rela_maptype_to_from as cardinality_to,
-        rela_mandatory_from_to as mandatory_from,
-        rela_mandatory_to_from as mandatory_to,
-        rela_arc_no_from as arcnumber_from,
-        rela_arc_no_to as arcnumber_to,
-        {self._langtextsql(colname="rela_assoc_from_to",
-                           fkname="rela_id")}
-            as assoctext_from,
-        {self._langtextsql(colname="rela_assoc_to_from",
-                           fkname="rela_id")}
-            as assoctext_to,
-        {self._listsql(tablename="examples",
-                       colname="expl_value",
-                       idcol="rela_id")} as examples,
-        mode_dc as dc,
-        mode_uc as uc,
-        mode_um as um,
-        mode_dm as dm,
-        {self._additionalpropssql(idcol="rela_id")} as additionalProps
+        select json_group_array(
+                json_object('elementId',        'RELA' || rela_id,
+    'name',    {self._langtextsql(colname="rela_name",
+                                  fkname="rela_id")},
+    'relationType',    {self._mapstring(col="rela_type", mapping=self.RELATYPES)} ,
+    'fwd',        '',
+    'bwd',        '',
+    'entityid_from',        'ENTI' || rela_enti_id_from,
+    'entityid_to',        'ENTI' || rela_enti_id_to,
+    'historicised_from',        rela_hist_from_to,
+    'historicised_to',        rela_hist_to_from,
+    'cardinality_from',        rela_maptype_from_to,
+    'cardinality_to',        rela_maptype_to_from,
+    'mandatory_from',        rela_mandatory_from_to,
+    'mandatory_to',        rela_mandatory_to_from,
+    'arcnumber_from',        rela_arc_no_from,
+    'arcnumber_to',        rela_arc_no_to,
+    'assoctext_from',    {self._langtextsql(colname="rela_assoc_from_to",
+                                            fkname="rela_id")},
+    'assoctext_to',    {self._langtextsql(colname="rela_assoc_to_from",
+                                          fkname="rela_id")},
+    'examples',    {self._listsql(tablename="examples",
+                                  colname="expl_value",
+                                  idcol="rela_id")},
+    'dc',        mode_dc,
+    'uc',        mode_uc,
+    'um',        mode_um,
+    'dm',        mode_dm,
+    'additionalProps',        {self._additionalpropssql(idcol="rela_id")}
+    )) as relas
         from relations
         join modelelements on mode_id = rela_id
     """
         return self.selelementjson(sql=sql)
 
     def selbusinessrulejson(self):
-        sql = f"""select 'BURU' ||buru_id as elementid,
-            {self._langtextsql(colname="buru_name",
-                               fkname="buru_id")} as name,
-            {self._langtextsql(colname="buru_descr",
-                               fkname="buru_id")} as description,
-            {self._mapstring(col="buru_type", mapping=self.BURUTYPES)} as type,
-            {self._mapstring(col="buru_level", mapping=self.BURULEVEL)} as level,
-            buru_rule as rule,
-            buru_errormsg as errormessage,
-            {self._listsql(tablename="examples",
-                           colname="expl_value",
-                           idcol="buru_id")} as examples,
-            'MODL'||mode_modl_id as modelid,                                                                       
-           mode_dc as dc,
-            mode_uc as uc,
-            mode_um as um,
-            mode_dm as dm,
-            {self._additionalpropssql(idcol="buru_id")}  as additionalProps
+        sql = f"""select json_group_array(
+           json_object(
+            'elementId','BURU' ||buru_id,
+            'name',        {self._langtextsql(colname="buru_name",
+                                              fkname="buru_id")} ,
+            'description',        {self._langtextsql(colname="buru_descr",
+                                                     fkname="buru_id")},
+            'type',            {self._mapstring(col="buru_type", mapping=self.BURUTYPES)},
+            'level',            {self._mapstring(col="buru_level", mapping=self.BURULEVEL)},
+            'rule',            buru_rule,
+            'errormessage',            buru_errormsg,
+            'examples',        {self._listsql(tablename="examples",
+                                              colname="expl_value",
+                                              idcol="buru_id")}  ,
+            'restrictedElements',(select json_group_array(mode_type || bure_mode_id)
+                                       from businessrule_elements
+                                    join modelelements on mode_id = bure_mode_id
+                                    where bure_buru_id=buru_id),
+            'affectedElements',(select json_group_array(mode_type || bure_mode_id)
+                                       from businessrule_elements
+                                    join modelelements on mode_id = bure_mode_id
+                                    where bure_buru_id=buru_id
+                                    and bure_writeable='TRUE'),
+            'modelId',            'MODL'||mode_modl_id,                                                                       
+            'dc',           mode_dc,
+            'uc',            mode_uc,
+            'um',            mode_um,
+            'dm',            mode_dm,
+            'additionalProps',            {self._additionalpropssql(idcol="buru_id")} 
+        )) as burus
         from main.business_rules    
         join modelelements on mode_id=buru_id
         """
@@ -420,7 +473,7 @@ class Sql2IMJsonschema(Sql2IMJson):
 
     def _addlist(self,
                  elementname: str,
-                 elements = None ):
+                 elements=None):
         if elementname in self.standardjson:
             self.standardjson[elementname].extend(elements)
         else:
@@ -429,35 +482,35 @@ class Sql2IMJsonschema(Sql2IMJson):
         return
 
     def generatecategories(self, catgtype: str):
-        elements=self.selcategoryjson()
-        #STANDARD
+        elements = self.selcategoryjson()
+        # STANDARD
         for elem in elements:
             self.movetosubentry(elem=elem,
-                            colnames=["uc", "dc", "um", "dm"]
-                            )
-            elem["categorytype"]=catgtype
+                                colnames=["uc", "dc", "um", "dm"]
+                                )
+            elem["categoryType"] = catgtype
 
         self._addlist(elements=elements,
                       elementname="Categories")
         return
 
     def generatedomains(self):
-        elements=self.seldomainjson()
+        elements = self.seldomainjson()
         for elem in elements:
             self.movetosubentry(elem=elem,
-                            colnames=["uc", "dc", "um", "dm"]
-                            )
+                                colnames=["uc", "dc", "um", "dm"]
+                                )
 
         self._addlist(elements=elements,
                       elementname="Domains")
         return
 
     def generateentities(self):
-        elements=self.selentityjson()
+        elements = self.selentityjson()
         for elem in elements:
             self.movetosubentry(elem=elem,
-                            colnames=["uc", "dc", "um", "dm"]
-                            )
+                                colnames=["uc", "dc", "um", "dm"]
+                                )
         self._addlist(elements=elements,
                       elementname="Entities")
         return
@@ -466,45 +519,26 @@ class Sql2IMJsonschema(Sql2IMJson):
         elements = self.selattributejson()
         for elem in elements:
             self.movetosubentry(elem=elem,
-                            colnames=["uc", "dc", "um", "dm"]
-                            )
+                                colnames=["uc", "dc", "um", "dm"]
+                                )
         self._addlist(elements=elements, elementname="Attributes")
-        return
-
-    def generatekeys(self):
-        sql = f"""select 
-                keys_name              as name,
-                '['||group_concat((select '"'||mode_type||mode_id||'"'
-                from modelelements
-                where mode_type in ('ATTR','RELA')
-                and (mode_id = keys_attr_id
-                    or mode_id = keys_rela_id)),
-                ',') 
-                || ']'as elements
-        from keys
-        where keys_enti_id=:entiid
-        group by name;   
-        """
-        for enti in self.standardjson.get("Entities"):
-            keys = self._mydb.select(sql=sql, entiid=enti.get("elementid")[4:])
-            if len(keys) > 0:
-                self._str2json(keys)
-                enti["keys"] = keys
         return
 
     def generaterelations(self):
         elements = self.selrelationjson()
         for elem in elements:
             self.movetosubentry(elem=elem,
-                            colnames=["uc", "dc", "um", "dm"]
-                            )
+                                colnames=["uc", "dc", "um", "dm"]
+                                )
         for elem in elements:
-            for field in ("entityid",
-                          "assoctext",
+            elem["fwd"] = {}
+            elem["bwd"] = {}
+            for field in ("entityId",
+                          "assocText",
                           "mandatory",
                           "cardinality",
                           "historicised",
-                          "arcnumber"
+                          "arcNumber"
                           ):
                 # move rela-end attributes to fwd and bwd
                 endfield = field + "_from"
@@ -526,23 +560,9 @@ class Sql2IMJsonschema(Sql2IMJson):
         elements = self.selbusinessrulejson()
         for elem in elements:
             self.movetosubentry(elem=elem,
-                            colnames=["uc", "dc", "um", "dm"]
-                            )
-
-            buresql = f"""select mode_type || bure_mode_id as elemid,
-                            bure_writeable as writeable
-                   from businessrule_elements
-                   join modelelements on mode_id = bure_mode_id
-                    where bure_buru_id={elem.get("elementid")[4:]}
-                    """
-            bures = self._mydb.select(sql=buresql)
-            if len(bures) > 0:
-                self._str2json(bures)
-                elem["restrictedelements"] = [val.get("elemid") for val in bures]
-                affectedelements = [val.get("elemid") for val in bures if val.get("writeable")]
-                if len(affectedelements) > 0:
-                    elem["affectedelements"] = affectedelements
-            else:
+                                colnames=["uc", "dc", "um", "dm"]
+                                )
+            if elem.get('restricted') in (None,[]):
                 logging.error(f"Business rules must have at least one element they restrict, {elem.get('name')}")
 
         self._addlist(elements=elements, elementname="BusinessRules")
@@ -553,11 +573,10 @@ class Sql2IMJsonschema(Sql2IMJson):
         self.generateattributes()
         self.generaterelations()
         self.generatebusinessrules()
-        self.generatekeys()
         return
 
-    def movetosubentry(self,elem:dict,
-                         colnames:list,
+    def movetosubentry(self, elem: dict,
+                       colnames: list,
                        subentryname="additionalProps"):
         """
         move the namec columns in colname within the element into the subentry in the element
@@ -566,17 +585,17 @@ class Sql2IMJsonschema(Sql2IMJson):
         :return: nothin, elem object is changed
         """
         for colname in colnames:
-            if colname in elem :
-                val=elem.get(colname)
+            if colname in elem:
+                val = elem.get(colname)
                 if val not in [None, "", {}, []]:
                     # get or set the subgroup in the element
                     subgroup = elem.setdefault(subentryname, {})
                     # move it to the subgroup if it is not empty
-                    subgroup[colname]=val
-                del elem[colname] #delete anyway
+                    subgroup[colname] = val
+                del elem[colname]  # delete anyway
         return
 
-    def generatejson(self, status=None):
+    def generatejson(self, status=None,notnullonly:bool=True):
         self.standardjson = dict()
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
@@ -584,15 +603,16 @@ class Sql2IMJsonschema(Sql2IMJson):
 
         models = self.selmodeljson()
 
-        #STANDARD
+        # STANDARD
         for model in models:
-            model["targetenvironment"]='???'
+            model["targetEnvironment"] = '???'
             self.movetosubentry(elem=model,
-                                colnames=["uc","dc","um","dm"]
+                                colnames=["uc", "dc", "um", "dm"]
                                 )
-        #TODO Standard list of models
-        self._addlist(elements=models[0],
-                      elementname="ModelInfo")
+        # TODO Standard list of models
+        if len(models) > 0:
+            self._addlist(elements=models[0],
+                          elementname="ModelInfo")
 
         # self.generatecategories(catgtype="DOMAIN", status=status)
         self.generatecategories(catgtype="ENTITY")
@@ -603,7 +623,9 @@ class Sql2IMJsonschema(Sql2IMJson):
         # self.generatetransformations(status=status)
         # self.generatediagrams(status=status)
         # self.generatediagrams(status=status)
-
+        self.standardjson=normalize_booleans(self.standardjson)
+        if notnullonly:
+            self.standardjson=remove_empty_values(self.standardjson)
         return self.standardjson
 
 
@@ -613,11 +635,9 @@ class Sql2IMowlschema(Sql2IMJson):
     file
     """
 
-
-
     def __init__(self, mydb: DbDML):
         self._mydb: DbDML = mydb
-        self.graph=None
+        self.graph = None
 
         return
 
@@ -639,7 +659,7 @@ class Sql2IMowlschema(Sql2IMJson):
         return
 
     def generatedomains(self):
-        sql = f"""select 'DOMA' ||doma_id as elementid,
+        sql = f"""select 'DOMA' ||doma_id as elementId,
             {self._langtextsql(colname="doma_name",
                                fkname="doma_id")} as name,
             {self._langtextsql(colname="doma_descr",
@@ -647,7 +667,7 @@ class Sql2IMowlschema(Sql2IMJson):
             {self._mapstring(col="doma_type", mapping=self.DOMATYPES)} as domaintype,
             doma_txt_maxlng as maxlength,
             doma_txt_minlng as minlength,
-            doma_txt_syntaxrule as pattern,
+            doma_txt_syntaxrule as syntaxrule,
             case 
                 when doma_num_minvalue is null then doma_dat_minvalue 
                 else doma_num_minvalue 
@@ -673,7 +693,7 @@ class Sql2IMowlschema(Sql2IMJson):
         from domains    
         join modelelements on mode_id=doma_id
         """
-        """        subtypeproperties["domaintype"] = domaintypes[domaintype]
+        """        subtypeproperties["domainType"] = domaintypes[domaintype]
         elif domaintype == "DATETIME":
             subtypeproperties["granularity"] = "MINUTE"
         elif domaintype == "DATE":
@@ -683,28 +703,27 @@ class Sql2IMowlschema(Sql2IMJson):
         self._str2json(elements)
 
         for doma in elements:
-            lovvalsql = f"""select lovv_value as lovvalue,
-                            lovv_displ as display,
+            lovvalsql = f"""select lovv_value as value,
+                            lovv_displ as displayvalue,
                          lovv_sort_order as sortorder,
                          lovv_descr as description
                    from lov_values
-                    where lovv_doma_id={doma.get("elementid")[4:]}
+                    where lovv_doma_id={doma.get("elementId")[4:]}
                     order by lovv_sort_order
                     """
             lovvals = self._mydb.select(sql=lovvalsql)
             if len(lovvals) > 0:
                 self._str2json(lovvals)
-                doma["lovvalues"] = {val.get("lovvalue"):
-                                         {key2: val2 for key2, val2 in val.items()
-                                          if (key2 != "lovvalue" and nvl(val2) != "")}
-                                     for val in lovvals}
+                doma["values"] = [{key2: val2 for key2, val2 in val.items()
+                                   if (nvl(val2) != "")}
+                                  for val in lovvals]
 
         self._addlist(elements=elements, elementname="Domains")
 
         return
 
     def generateentities(self):
-        elements=self.selentityjson()
+        elements = self.selentityjson()
 
         for enti in elements:
 
@@ -712,21 +731,20 @@ class Sql2IMowlschema(Sql2IMJson):
             self.graph.add((entity_class, RDF.type, OWL.Class))
             for lang, val in enti.get("name", {}).items():
                 self.graph.add((entity_class, RDFS.label, Literal(val, lang=lang)))
-            self.graph.add((entity_class, RDFS.comment, Literal(enti.get("shortname"))))
+            self.graph.add((entity_class, RDFS.comment, Literal(enti.get("shortName"))))
             for lang, val in enti.get("description", {}).items():
                 self.graph.add((entity_class, DCTERMS.description, Literal(val, lang=lang)))
-            self.graph.add((entity_class, self.short_descr_prop, Literal(enti.get("shortdescr"))))
+            self.graph.add((entity_class, self.short_descr_prop, Literal(enti.get("shortDescr"))))
             self.graph.add((entity_class, SKOS.altLabel, Literal(enti.get("prefix"))))
 
             # dcterms:description ist der weltweite Standard für Volltext-Beschreibungen
             # self.graph.add((entity_class, RDFS.tooltip, Literal(enti.get("enti_tooltip"))))
             # self.graph.add((entity_class, RDFS.prefix, Literal(enti.get("enti_prefix"))))
 
-
         return
 
     def generateattributes(self):
-        sql = f"""select 'ATTR' ||attr_id as elementid,
+        sql = f"""select 'ATTR' ||attr_id as elementId,
             {self._langtextsql(colname="attr_tech_name",
                                fkname="attr_id")} as name,
             {self._langtextsql(colname="attr_descr",
@@ -762,34 +780,14 @@ class Sql2IMowlschema(Sql2IMJson):
         self._addlist(sql=sql, elementname="Attributes")
         return
 
-    def generatekeys(self):
-        sql = f"""select 
-                keys_name              as name,
-                '['||group_concat((select '"'||mode_type||mode_id||'"'
-                from modelelements
-                where mode_type in ('ATTR','RELA')
-                and (mode_id = keys_attr_id
-                    or mode_id = keys_rela_id)),
-                ',') 
-                || ']'as elements
-        from keys
-        where keys_enti_id=:entiid
-        group by name;   
-        """
-        for enti in self.standardjson.get("Entities"):
-            keys = self._mydb.select(sql=sql, entiid=enti.get("elementid")[4:])
-            if len(keys) > 0:
-                self._str2json(keys)
-                enti["keys"] = keys
-        return
 
     def generaterelations(self):
         """
 
-              "relationtype": "SUBTYPE",
+              "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -798,7 +796,7 @@ class Sql2IMowlschema(Sql2IMJson):
       },
 
         """
-        sql = f"""select 'RELA' ||rela_id as elementid,
+        sql = f"""select 'RELA' ||rela_id as elementId,
             {self._langtextsql(colname="rela_name",
                                fkname="rela_id")} as name,
             {self._mapstring(col="rela_type", mapping=self.RELATYPES)} as relationtype,
@@ -836,12 +834,12 @@ class Sql2IMowlschema(Sql2IMJson):
         elements = self._mydb.select(sql=sql)
         self._str2json(elements)
         for elem in elements:
-            for field in ("entityid",
-                          "assoctext",
+            for field in ("entityId",
+                          "assocText",
                           "mandatory",
                           "cardinality",
                           "historicised",
-                          "arcnumber"
+                          "arcNumber"
                           ):
                 # move rela-end attributes to fwd and bwd
                 endfield = field + "_from"
@@ -860,7 +858,7 @@ class Sql2IMowlschema(Sql2IMJson):
         return
 
     def generatebusinessrules(self):
-        sql = f"""select 'BURU' ||buru_id as elementid,
+        sql = f"""select 'BURU' ||buru_id as elementId,
             {self._langtextsql(colname="buru_name",
                                fkname="buru_id")} as name,
             {self._langtextsql(colname="buru_descr",
@@ -888,7 +886,7 @@ class Sql2IMowlschema(Sql2IMJson):
                             bure_writeable as writeable
                    from businessrule_elements
                    join modelelements on mode_id = bure_mode_id
-                    where bure_buru_id={buru.get("elementid")[4:]}
+                    where bure_buru_id={buru.get("elementId")[4:]}
                     """
             bures = self._mydb.select(sql=buresql)
             if len(bures) > 0:
@@ -896,18 +894,18 @@ class Sql2IMowlschema(Sql2IMJson):
                 buru["elements"] = [val.get("elemid") for val in bures]
                 affectedelements = [val.get("elemid") for val in bures if val.get("writeable")]
                 if len(affectedelements) > 0:
-                    buru["affectedelements"] = affectedelements
+                    buru["affectedElements"] = affectedelements
 
         self._addlist(elements=elements, elementname="BusinessRules")
         return
 
     def generatebusinessmodel(self):
-        self.generateentities()
         return
+
+        self.generateentities()
         self.generateattributes()
         self.generaterelations()
         self.generatebusinessrules()
-        self.generatekeys()
         return
 
     def generatejson(self, status=None):
@@ -916,7 +914,7 @@ class Sql2IMowlschema(Sql2IMJson):
 
         now = datetime.now().replace(microsecond=0).isoformat()
 
-        self.graph= Graph()
+        self.graph = Graph()
         # 2. Namespaces definieren und an den Graphen binden (für schöne Prefixes im TTL)
         self.EX = Namespace("http://information-model.org/model/")
         self.graph.bind("ex", self.EX)
@@ -932,16 +930,16 @@ class Sql2IMowlschema(Sql2IMJson):
         self.graph.add((self.short_descr_prop, RDFS.label, Literal("Short Description", lang="en")))
         self.graph.add((self.short_descr_prop, RDFS.label, Literal("Kurzbeschreibung", lang="de")))
         self.graph.add((self.short_descr_prop, RDFS.comment,
-               Literal("Eine kurze, prägnante Beschreibung für Benutzeroberflächen.")))
+                        Literal("Eine kurze, prägnante Beschreibung für Benutzeroberflächen.")))
 
         modelsel = f"""select 'MODL'||modl_id as modelid,                                                                       
                             modl_name as modelname,
                             modl_descr as description,
                             modl_targetenvironment as targetenvironment,
                             case modl_type
-                            when "IM" then "Information Model"
-                            when "DM" then "Data Model"
-                            when "AM" then "Artefact Model"
+                            when "IM" then "Information model"
+                            when "DM" then "Data model"
+                            when "AM" then "Artefact model"
                             end as modeltype,
                             mode_uc as uc,
                             mode_dc as dc,
@@ -957,11 +955,11 @@ class Sql2IMowlschema(Sql2IMJson):
                                             and mola_mainlanguage='TRUE')
                     join languages on lang_id = mola_lang_id
         """
+
         elements = self._mydb.select(sql=modelsel)
 
         for model in elements:
             pass
-
 
         # self.generatecategories(catgtype="DOMAIN", status=status)
         # self.generatecategories(catgtype="ENTITY")

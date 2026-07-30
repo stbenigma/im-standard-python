@@ -1,1 +1,1 @@
-from .standardmodelsql import StandardSqlModel
+from .standardmodelsql import StandardModelDb

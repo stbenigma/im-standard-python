@@ -8,6 +8,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
     def __init__(self, indirec=None, **kwargs):
         super().__init__(standardjson=JsonSchema(),
                          indirec=indirec, **kwargs)
+        self.modeltype="DM"
 
         return
 
@@ -58,11 +59,11 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
     def generatedataobjects(self, elementname, elements):
         for element in elements:
             self.standardjson.addelementinstance(name=elementname,
-                                                 val=JsonElement().dataobjectjson(elementid=element.get("ID"),
+                                                 val=JsonElement().dataobjectjson(elementId=element.get("ID"),
                                                                                 name=element.get("label"),
                                                                                 columns=[],
                                                                                 description=element.get("description"),
-                                                                                #categoryid=self.categoryid(
+                                                                                #categoryId=self.categoryId(
                                                                                 #    modeltype="DATAOBJECT",
                                                                                 #    categoryname=self._deref(
                                                                                 #        element.get("inCollection"))),
@@ -78,10 +79,10 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
             domainname = subelem.get("hasRange")
             domainid = None if type(domainname) is not str else self.getdomainid(
                 domaname=custom_split(domainname, "/")[-1])
-            jsonstruct = JsonElement().dataattributejson(elementid=ElementId.nextid("COLU"),
+            jsonstruct = JsonElement().dataattributejson(elementId=ElementId.nextid("COLU"),
                                                       dataobjectid=datoid,
                                                       name=subelem.get("label"),
-                                                      domainid=domainid,
+                                                      domainId=domainid,
                                                       mandatory=subelem.get("required") == "MANDATORY",
                                                       techname=subelem.get("label").upper(),
                                                       description=subelem.get("description"),
@@ -93,7 +94,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
 
     def fillrules(self, transformation):
         rules = []
-        models = [{"modelname": self.jsonschemamodel["ModelInfo"].get("modelname"),
+        models = [{"modelName": self.jsonschemamodel["ModelInfo"].get("modelName"),
                    "sourcemodelurl": None}]
         for types in [elem for elem in self.modeltypeelements.values()]:
             sources = []
@@ -106,7 +107,7 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
                               "description": None,
                               "rule": rule.get("label")})
                 # models.extend(list({tf.split("/")[0] for tf in rule.get("transformsTo", [])}))
-            models.extend([{"modelname": s,
+            models.extend([{"modelName": s,
                             "sourcemodelurl": None} for s in list(set(sources))])
         return models, rules
 
@@ -146,12 +147,12 @@ class Dataspot2DMJsonschema(Dataspot2Jsonbase):
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                            modelname=modelname,
-                                           modeltype="Information model",
+                                           modeltype="Data model",
                                            mainlanguage=kwargs.get("language", "en"),
                                            languages=kwargs.get("languages"),
                                            dc=None,
-                                           modelversion=kwargs.get("modelversion"),
-                                           targetenvironment=targetenv,
+                                           modelversion=kwargs.get("modelVersion"),
+                                           targetEnvironment=targetenv,
                                            origintool=self.ORIGINTOOL))
 
         self.generatecategories(catgtype="DOMAIN",status=status)

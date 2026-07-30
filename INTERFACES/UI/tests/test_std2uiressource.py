@@ -89,7 +89,7 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(None,
                          ui._getdestelement(elementname="entities",
-                                            condition=lambda e: e.get("elementid") == "xxxxx")
+                                            condition=lambda e: e.get("elementId") == "xxxxx")
                          )
         with self.assertRaises(Exception):
             ui._getdestelement(elementname="relationships",

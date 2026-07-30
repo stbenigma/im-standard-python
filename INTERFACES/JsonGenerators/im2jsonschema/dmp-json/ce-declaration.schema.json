@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chem-x.de/models/mvp-dmp/ce-declaration.schema.json",
+  "title": "CE Declaration",
+  "type": "object",
+  "properties": {
+    "certfiedShareBiogenicContent": {
+      "type": "string",
+      "title": "Certified share - Biogenic",
+      "description": "Biogenic fraction of material mass which has been certified by an accepted conformity assessment party regarding the traceable sustainable sourcing of the raw materials and/or manufacturing of the product, and the related determination of the share. | Beispiel(e): 0,95",
+      "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+    },
+    "certifiedShareRecycledContent": {
+      "type": "string",
+      "title": "Certified share - Recycled",
+      "description": "Fraction of recycled material mass which has been certified by an accepted conformity assessment party regarding the traceable sustainable sourcing of the raw materials and/or manufacturing of the product, and the related determination of the share. | Beispiel(e): 0.2",
+      "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+    },
+    "totalBiogenicContent": {
+      "type": "string",
+      "title": "Total biogenic content",
+      "description": "Fraction of material mass content classified as biogenic.\nNote 1: Can be attributed by means of a mass balance chain of custody model as defined in ISO 22095, where applicable by sector specific rules.\nNote 2: This includes all molecules/atoms (carbon and non-carbon like nitrogen) derived from biomass and excluding added water. | Beispiel(e): 0,6",
+      "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+    },
+    "totalRecycledContent": {
+      "type": "string",
+      "title": "Total recycled content",
+      "description": "Fraction of material mass content classified as recycled.\nNote 1: Can be attributed by means of a mass balance chain of custody model as defined in ISO 22095. Note 2: CO2-based content for captured CO2 is classified as recycled content. | Beispiel(e): 0.2",
+      "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+    },
+    "wasteOriginValueChainStep": {
+      "type": "string",
+      "title": "Waste origin - value chain step",
+      "description": "Describes the value chain step of the waste from which the reported recycled content contribution under \"Waste origin - value chain step - recycled content  contribution\" originates.\nReference: Circularity Guideline (https://www.chem-x.de/publication/) | Beispiel(e): Post-consumer (PCR); Post-industrial (PIR)"
+    },
+    "wasteOriginValueChainStepRecycledContentContribution": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "title": "Waste origin - value chain step - recycled content contribution",
+        "description": "Amount of recycled content, as faction of material mass, obtained  from waste originating from the value chain step indicated under \"Waste origin - value chain step\".\nReference: Circularity Guideline (https://www.chem-x.de/publication/) | Beispiel(e): Physical recycling; Chemical recycling; etc."
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,10 +1,9 @@
 import unittest
 import logging
-
+from pathlib import Path
 
 import pytest
-from IM_STANDARD import IMStandardJsonModel,StandardJsonModel
-
+from IM_STANDARD import StandardJsonModel,ImStandardGithub
 
 class MyTestCase(unittest.TestCase):
     @pytest.fixture(autouse=True)
@@ -14,11 +13,13 @@ class MyTestCase(unittest.TestCase):
         self.capsys = capsys
 
     def setUp(self) -> None:
-        self.testschema="Attribute-schema.json"
+        self.mydebugpath = (Path.home() / "Downloads") if (Path.home() / "Downloads").exists() else self.temppath
+        return
+
 
     def test_standardjsonmodel(self):
-        self.assertTrue((StandardJsonModel.SCHEMADEFPATH/self.testschema).exists())
-        model=StandardJsonModel(modelfilepath=StandardJsonModel.SCHEMADEFPATH/self.testschema)
+        testschemfile="im-standard-schema/InformationModel/Attribute-schema.json"
+        model=StandardJsonModel(modeljson=ImStandardGithub._getstdjsonschema(githuburl=ImStandardGithub.CONTENTBASEURL+testschemfile))
         self.assertTrue(model.inschema("Attribute"))
         self.assertTrue(model.inschema("BaseAttribute"))
         self.assertTrue(model.inschema("AttributeId"))
@@ -27,10 +28,11 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue("mandatory" in model.getproperties("BaseAttribute"))
         return
 
-    def test_imstandardjsonmodel(self):
-        self.assertTrue(IMStandardJsonModel.IMDEFINITIONFILEPATH.is_file())
-        model=IMStandardJsonModel()
+    def test_validation(self):
+
         return
+
+
 
 if __name__ == '__main__':
     unittest.main()

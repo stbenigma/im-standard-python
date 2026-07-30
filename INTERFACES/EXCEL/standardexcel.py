@@ -45,7 +45,7 @@ class StandardExcel:
                                                                                 modeltype="Data model",
                                                                                 origintool="EXCEL",
                                                                                 originref=str(self._filespec),
-                                                                                targetenvironment="Test"
+                                                                                targetEnvironment="Test"
                                                                                 )}
                                 )
         return

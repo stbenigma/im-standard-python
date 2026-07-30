@@ -18,7 +18,7 @@ class DataspotElements():
             self.tenant = dict()
 
         self.dsmodels = dict()
-        self.modelname = kwargs.get("modelname")
+        self.modelname = kwargs.get("modelName")
 
         # elements from dataspot according to their type
         self.categories = dict()
@@ -201,7 +201,7 @@ class DataspotElements():
                                      "ProjectDirectory"):
             self.dsmodels[struct.get('label')] = {"name": struct.get('label'),
                                                   "id": struct.get("id"),
-                                                  "parentid": struct.get("tenantId"),
+                                                  "parentId": struct.get("tenantId"),
                                                   "description": struct.get("description"),
                                                   "title": struct.get("title")
                                                   }

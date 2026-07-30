@@ -21,7 +21,7 @@ class StandardSchemaExcel(StandardExcel):
     def do1sheet(self, sheet, headerline: int):
         dataobjectname = sheet.title
         datoid = ElementId.nextid("DATO")
-        dataobject = JsonElement().dataobjectjson(elementid=datoid,
+        dataobject = JsonElement().dataobjectjson(elementId=datoid,
                                                   name=dataobjectname)
 
         additionalProperties = dict()
@@ -58,7 +58,7 @@ class StandardSchemaExcel(StandardExcel):
                 if cell.column == headers.get("Restriction"):
                     if cell.value is not None:
                         self.businessrules.append(JsonElement().
-                                              businessrulejson(elementid=ElementId.nextid("BURU"),
+                                              businessrulejson(elementId=ElementId.nextid("BURU"),
                                                                restrictedelems=[dataid],
                                                                description=None,
                                                                rule=cell.value,
@@ -69,7 +69,7 @@ class StandardSchemaExcel(StandardExcel):
                     name=sheet.cell(row=headerline,column=cell.column).value
                     additionalprops[name]=cell.value
                 additionalprops["SOURCE-ID"]= f"{sheet.title}:{cell.coordinate}"
-            attributes.append(JsonElement().dataattributejson(elementid=dataid,
+            attributes.append(JsonElement().dataattributejson(elementId=dataid,
                                                               name=self.getrowvalue(row,headers.get("Name")),
                                                               mandatory=
                                                                   "0" not in str(self.getrowvalue(row,headers.get("Cardinality"))),

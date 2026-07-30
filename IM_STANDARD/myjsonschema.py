@@ -1,7 +1,26 @@
+import logging
 import re
+from datetime import datetime
+from dateutil import parser
 
 from IM_STANDARD import JsonElement, alwayslist, nvl, model2json
 
+def json2timestamp(datevalue)->datetime:
+    """ converts a date(time) int,float or str into a python datetime"""
+    if isinstance(datevalue,(int, float)):
+        # Convert milliseconds -> seconds if the number is large (> year 5000 in seconds)
+        if datevalue > 1e11:
+            datevalue /= 1000.0
+        return datetime.fromtimestamp(datevalue).isoformat()
+    if isinstance(datevalue,str):
+        datevalue = datevalue.strip()
+        try:
+            return json2timestamp(float(datevalue))
+        except:
+            try:
+                return parser.parse(datevalue).isoformat()
+            except:
+                return datevalue
 
 class ElementId:
     """ give unique new id with every call"""
@@ -41,28 +60,28 @@ class ElementId:
             return '????0'
 
     @staticmethod
-    def separateid(elementid):
+    def separateid(elementId):
         """
-        :param elementid: ZZZZnn
+        :param elementId: ZZZZnn
         :return: ZZZZ,nn
         """
-        return (elementid[0:4], elementid[4:])
+        return (elementId[0:4], elementId[4:])
 
     @staticmethod
-    def idtype(elementid):
+    def idtype(elementId):
         """
-        :param elementid: ZZZZnn
+        :param elementId: ZZZZnn
         :return: ZZZZ
         """
-        return ElementId.separateid(elementid)[0]
+        return ElementId.separateid(elementId)[0]
 
     @staticmethod
-    def idnumber(elementid):
+    def idnumber(elementId):
         """
-        :param elementid: ZZZZnn
+        :param elementId: ZZZZnn
         :return: nn
         """
-        return ElementId.separateid(elementid)[1]
+        return ElementId.separateid(elementId)[1]
 
     @staticmethod
     def short2long(objname):
@@ -71,6 +90,122 @@ class ElementId:
     @staticmethod
     def long2short(objname):
         return {val: key for key, val in ElementId.OBJNAMES.items()}.get(objname)
+
+
+class StandardSchema:
+    MODELTYPES = {"IM": "Information model",
+                  "DM": "Data model",
+                  "AM": "Artefact model"}
+
+
+    """
+    contains basic functions to manage a json standard schema
+    """
+
+    def __init__(self, schema: dict):
+        self._schema = schema
+        return
+
+    @property
+    def schema(self):
+        return self._schema
+
+    def elements(self, elementname: str):
+        """
+        the list of elements in the standard structure
+        (in case of ModelInfo, a dictionary)
+        :param elementname:
+        :return:
+        """
+        return self.schema.get(elementname,
+                               dict() if elementname == "ModelInfo" else list()
+                               )
+
+    @staticmethod
+    def getadditionalprop(struct, propname, defval=None):
+        """
+        returns a property of the additionalProps dictionary
+        :param self:
+        :param struct: strcture containing additionalProps
+        :param propname: name of proerty in additionalProps
+        :param defval: default value if not found
+        :return:
+        """
+        return struct.get("additionalProps", dict()).get(propname, defval)
+
+    @staticmethod
+    def _mlvalue(value: dict, lang=None, defaultlang=None):
+        """Multilanguage value
+            returns
+                None if value is None or empty dict
+                value if value is not dict
+                value[lang] if lang is not None and lang in dict
+                value[default]lang] if lang is None and defaultlang in dict
+                else return value of first element in value-list
+            """
+        if value is None:
+            return None
+        elif type(value) is dict:
+            if len(value) == 0:
+                return None
+            else:
+                if lang is not None and lang in value.keys():
+                    return value.get(lang)
+                if defaultlang is not None and defaultlang in value.keys():
+                    return value.get(defaultlang)
+                #language not found issue warning
+                logging.warning(f"Languages '{lang}' and '{defaultlang}' not found in {value}")
+                return list(value.values())[0]
+        else:
+            return value
+
+
+    def getbyid(self, elemid: str):
+        """
+        returns an element with the given ID
+        :param elemid:
+        :return: None if not found, the element if found
+        """
+        for elemtype in ElementId.OBJNAMES.values():
+            elem = self.getbyfield(elements=self._schema.get(elemtype, []),
+                                   val=elemid,
+                                   fieldname="elementId",
+                                   unique=True)
+            if elem is not None:
+                return elem
+        return None
+
+    def getbyfield(self, elements: list,
+                   val: str,
+                   fieldname: str = "name",
+                   fieldname2: str = None,
+                   unique=False):
+        """
+        returns all elements with the given field-value
+        :param: elements: list of elements-dicts to search
+        :param val: value to search for
+        :param fieldname: fieldname containing value
+        :param fieldname2: name of a property in the property fieldname
+        :prarm: unique: true, assumes unique, false assumes
+        :return: None if not found and unique
+                [] if not found and not unique
+                 one element if 1 found and unique
+                 a list of elements if found several times and not unique
+                 an exception if found several and unique
+        """
+        retval = [elem for elem in elements
+                  if val == (elem.get(fieldname)if fieldname2 is None
+                             else elem.get(fieldname, dict()).get(fieldname2)
+                             )
+                  ]
+        if unique and len(retval) == 1:
+            return retval[0]
+        elif unique and len(retval) == 0:
+            return None
+        elif unique and len(retval) > 1:
+            raise Exception(f"more than 1 value for {fieldname}={val}")
+        else:
+            return retval
 
 
 class JsonSchema():
@@ -100,15 +235,15 @@ class JsonSchema():
 
     @property
     def sourcehref(self):
-        return self.jsonschemamodel["ModelInfo"].get("additionalProps",{}).get('SOURCE-HREF')
+        return self.jsonschemamodel.get("ModelInfo", dict()).get("additionalProps", {}).get('SOURCE-HREF')
 
     @property
     def targetenvironment(self):
-        return self.jsonschemamodel["ModelInfo"]["targetenvironment"]
+        return self.jsonschemamodel.get("ModelInfo", dict())["targetEnvironment"]
 
     @property
     def modelname(self):
-        return self.jsonschemamodel["ModelInfo"]["modelname"]
+        return self.jsonschemamodel.get("ModelInfo", dict())["modelName"]
 
     @property
     def curlang(self):
@@ -119,16 +254,20 @@ class JsonSchema():
         self._curlang = val
 
     @property
+    def modelversion(self):
+        return self.jsonschemamodel["ModelInfo"].get("modelVersion")
+
+    @property
     def modeldescr(self):
-        return self.jsonschemamodel["ModelInfo"]["description"]
+        return self.jsonschemamodel["ModelInfo"].get("description")
 
     @property
     def modeltype(self):
-        return self.jsonschemamodel["ModelInfo"]["modeltype"]
+        return self.jsonschemamodel["ModelInfo"]["modelType"]
 
     @property
     def mainlang(self):
-        return self.jsonschemamodel["ModelInfo"]["mainlanguage"]
+        return self.jsonschemamodel["ModelInfo"]["mainLanguage"]
 
     @property
     def languages(self):
@@ -137,7 +276,8 @@ class JsonSchema():
         """
         if type(self.jsonschemamodel["ModelInfo"]) == dict:
             return alwayslist(self.jsonschemamodel["ModelInfo"].get("languages"))
-        else: return alwayslist(self.jsonschemamodel["ModelInfo"]["languages"])
+        else:
+            return alwayslist(self.jsonschemamodel["ModelInfo"]["languages"])
 
     @property
     def alllanguages(self):
@@ -150,7 +290,7 @@ class JsonSchema():
         return len(self.languages) > 0
 
     @staticmethod
-    def _mlvalue(value:dict, lang=None, defaultlang=None):
+    def _mlvalue(value: dict, lang=None, defaultlang=None):
         """Multilanguage value
             returns
                 None if value is None or empty dict
@@ -185,23 +325,34 @@ class JsonSchema():
                     else return value of first element in value-list
             """
         return nvl(self._mlvalue(value=value,
-                                lang=lang if lang is not None else self.curlang,
-                                defaultlang=None if not default else self.mainlang
-                                ))
+                                 lang=lang if lang is not None else self.curlang,
+                                 defaultlang=None if not default else self.mainlang
+                                 ))
 
-    def multilangstring_is(self):
+    def multilangstring_is(self, stdstr="is"):
         """ "is" translated into a multilingual string """
         IS_TRANSL = {"de": "ist",
                      "en": "is",
                      "fr": "est",
                      "it": "e",
                      "es": "es"}
+        CONTAINS_TRANSL = {"de": "enthält",
+                           "en": "contains",
+                           "fr": "contien",
+                           "it": "contiene",
+                           "es": "contiene"}
 
         def _istransl(lang):
-            if lang in IS_TRANSL:
-                return IS_TRANSL[lang]
+            if lang in translstr:
+                return translstr[lang]
             else:
-                return self.IS_TRANSL["en"]
+                return translstr["en"]
+
+        assert stdstr in ("is", "contains")
+        if stdstr == 'is':
+            translstr = IS_TRANSL
+        elif stdstr == "contains":
+            translstr = CONTAINS_TRANSL
 
         if self.modelismultilingual():
             return {lang: _istransl(lang) for lang in self.alllanguages}
@@ -229,10 +380,10 @@ class JsonSchema():
                 parent = parentcatg["$id"]
             elem.setproperty("$id", f'{parent}:{elem.getname()}')
         elif elem.elemtype == "Relation":
-            parent1 = self.getbyid(elem["fwd"].get("entityid"))
-            parent2 = self.getbyid(elem["bwd"].get("entityid"))
+            parent1 = self.getbyid(elem["fwd"].get("entityId"))
+            parent2 = self.getbyid(elem["bwd"].get("entityId"))
             elem.setproperty("$id",
-                             f'{parent1["$id"]}:{parent2.getname()}->{self.mlvalue(value=elem["fwd"]["assoctext"])}')
+                             f'{parent1["$id"]}:{parent2.getname()}->{self.mlvalue(value=elem["fwd"]["assocText"])}')
         elif elem.elemtype == "System":
             elem.setproperty("$id", f'{self.targetenvironment}:{elem.getname()}')
         return
@@ -242,13 +393,13 @@ class JsonSchema():
         """ returns the parentid or whatever a parent is called in this element
             None if there is no parentprop or there is no partentid """
         if elem.elemtype in ("Entity", "DataObject", "Domain", "Category"):
-            parentprop = "categoryid"
+            parentprop = "categoryId"
         elif elem.elemtype in ("Attribute"):
-            parentprop = "parentid"
+            parentprop = "parentId"
         elif elem.elemtype == "BusinessRule":
             parentprop = None
         elif elem.elemtype == "DataAttribute":
-            parentprop = "dataobjectid"
+            parentprop = "dataObjectId"
         elif elem.elemtype == "Relation":
             parentprop = None
         elif elem.elemtype == "System":
@@ -405,7 +556,7 @@ class JsonSchema():
             retval = []
         return retval
 
-    def getbyid(self, elementid):
+    def getbyid(self, elementId):
         """get any element of any type with the given ID"
             as ID's contain elementtype (ENTI..., DOMA...)
             any ID iw unique over all type of elements
@@ -413,9 +564,9 @@ class JsonSchema():
         retval = []
         for elemtype in self.MAINELEMENTS:
             retval.extend([elem for elem in self.getelementinstances(elementname=elemtype)
-                           if elem.getid() == elementid])
+                           if elem.getid() == elementId])
 
-        assert len(retval) < 2, f"id {elementid} found twice"
+        assert len(retval) < 2, f"id {elementId} found twice"
         return retval[0] if len(retval) == 1 else None
 
     def categorytree(self, catgid):
@@ -435,9 +586,9 @@ class JsonSchema():
         return re.sub(r'[^a-zA-Z0-9_$]', '', name)
 
     def _gettechnicalname(self, elem):
-        return elem.get("technicalname",
+        return elem.get("technicalName",
                         self.maketechnicalname(self.mlvalue(
-                            elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalname""]
+                            elem["name"])))  # TODO generate technical names in domainstechname=elem["technicalName""]
 
     def getjsonmodel(self, withids=True):
         """

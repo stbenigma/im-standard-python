@@ -3,7 +3,8 @@ from pathlib import Path
 import pytest
 import logging
 
-from IM_STANDARD.SQL.SQL_INFRA import SqliteDb,dict_factory
+from pathlib import Path
+from SQL.SQL_INFRA.dbConnect import SqliteDb, dict_factory
 
 
 class MyTestCase(unittest.TestCase):
@@ -22,6 +23,9 @@ class MyTestCase(unittest.TestCase):
     def test_newdb(self):
         conn=SqliteDb()
         self.assertTrue(conn.dbisempty())
+
+        with self.assertRaises(Exception) as exp:
+            conn.writedbtofile() #no filepath ever given
 
         testdbfilepath=self.tmp_path/"testemptydb.db"
         conn.writedbtofile(filepath=testdbfilepath)

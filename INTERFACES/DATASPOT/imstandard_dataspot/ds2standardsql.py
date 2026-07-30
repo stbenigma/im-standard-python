@@ -2,11 +2,12 @@ import copy
 import logging
 import re
 from datetime import datetime
+from pathlib import Path
 
-from IM_STANDARD import nvl, JsonElement
-from IM_STANDARD.SQL.SQL_INFRA import DbDML, dbval
-from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import DataspotElements, Dataspot2Jsonbase
-from INTERFACES.DATASPOT.imstandard_dataspot.dslib import ds2timestamp
+from IM_STANDARD import nvl, JsonElement, StandardJsonModel,Sql2IMJsonschema,json2timestamp
+from IM_STANDARD.SQL.SQL_INFRA import dbval, SqliteDb
+from IM_STANDARD.SQL.SQL_STANDARD import StandardModelDb
+from INTERFACES.DATASPOT.imstandard_dataspot import DataspotElements, Dataspot2Jsonbase
 
 
 class Dataspot2SQLdatabase():
@@ -15,7 +16,7 @@ class Dataspot2SQLdatabase():
     sql database script
     """
 
-    def __init__(self, indirec, mydb: DbDML):
+    def __init__(self, indirec, mydb: StandardModelDb):
 
         self.dsmodel = DataspotElements(indirec=indirec)
         self.sqldb = mydb
@@ -57,7 +58,7 @@ class Dataspot2SQLdatabase():
         additionalprops = Dataspot2Jsonbase.additionalprops(elem=elem, specialkeys=[])
         # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(catg)
         mainvalue = []
-        initlower= lambda x:x[0].lower()+x[1:]
+        initlower = lambda x: x[0].lower() + x[1:]
         for lang in self.languages:
             if lang == self.language:
                 for dsfield, attrname in mapfields.items():
@@ -75,7 +76,8 @@ class Dataspot2SQLdatabase():
                     if prop.endswith(f":{lang}") and propname in mapfields:
                         attrname = mapfields[propname]
                         if attrname not in mainvalue:
-                            logging.warning(f"WARNING: element {str(modeid)}, attr {attrname} has translation but no value. (entry ignored)")
+                            logging.warning(
+                                f"WARNING: element {str(modeid)}, attr {attrname} has translation but no value. (entry ignored)")
                         else:
                             self._insertmlvalue(mlvalue=val,
                                                 modeid=modeid,
@@ -83,7 +85,7 @@ class Dataspot2SQLdatabase():
                                                 lang=lang
                                                 )
 
-    def _insertudpvs(self, elem, modeid,specialkeys=[]):
+    def _insertudpvs(self, elem, modeid, specialkeys=[]):
         additionalprops = Dataspot2Jsonbase.additionalprops(elem=elem, specialkeys=specialkeys)
         # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(catg)
         for prop, val in additionalprops.items():
@@ -131,8 +133,8 @@ class Dataspot2SQLdatabase():
 
             # find relationships with keys
             # for rela in self.standardjson.getelementinstances("Relations"):
-            #     if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
-            #             or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
+            #     if ((entiid == rela["fwd"].get("entityId") and rela["fwd"].get("cardinality") == "1")
+            #             or (entiid == rela["bwd"].get("entityId") and rela["bwd"].get("cardinality") == "1")):
             #         origrela = self.getelementbyid(elements=self.dsmodels.relationships,
             #                                        elemid=rela.getid())
             #         # generated relations (subtypes) have no original
@@ -156,11 +158,11 @@ class Dataspot2SQLdatabase():
         # for dataspot mark entites as favorites
         additionalprops["favorite"] = element.get("favorite")
         additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
-        elementi = JsonElement().entityjson(elementid=element.get("ID"),
+        elementi = JsonElement().entityjson(elementId=element.get("ID"),
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
                                                                      addprops=additionalprops),
-                                            categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                            categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                           modelname=element.get("DSMODEL"),
                                                                           name=self._deref(
                                                                               element.get("inCollection")),
@@ -171,7 +173,7 @@ class Dataspot2SQLdatabase():
                                                                             value=self._deref(
                                                                                 element.get("description")),
                                                                             addprops=additionalprops),
-                                            shortdescr=self.mutlilangvalue(fieldname="title",
+                                            shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(
                                                                                element.get("title")),
                                                                            addprops=additionalprops),
@@ -190,7 +192,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="ENTI",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(enti.get("dateCreated")).isoformat(),
+                                          mode_dc=json2timestamp(enti.get("dateCreated")),
                                           mode_uc=enti.get("createdBy", "loadedfromds"))
 
             try:
@@ -203,8 +205,9 @@ class Dataspot2SQLdatabase():
                                      enti_tooltip=enti.get("title"),
                                      enti_enca_id=self.entitycatgstranslate[enti.get("inCollection")],
                                      enti_prefix=None)
-            except  DbDML.UK_VIOLATED as nd:
-                entiname = f"{enti.get('FULLPATH')}-{enti.get('label')}"
+            except  SqliteDb.UK_VIOLATED as nd:
+                logging.error(f"Duplicate entity name {entiname} in {enti.get('FULLPATH')}.")
+                entiname = f"{enti.get('FULLPATH')}"
                 self.sqldb.rowinsert(tablename=tablename,
                                      enti_id=modeid,
                                      enti_name=entiname,
@@ -213,6 +216,8 @@ class Dataspot2SQLdatabase():
                                      enti_tooltip=enti.get("title"),
                                      enti_enca_id=self.entitycatgstranslate[enti.get("inCollection")],
                                      enti_prefix=None)
+            except KeyError:
+                raise KeyError(f"entity '{entiname}': parent not found in categories '{enti.get('inCollection')}'")
 
             self.entitytranslate[entiname] = modeid
             self._insertmultilang(elem=enti,
@@ -271,7 +276,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="RELA",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(rela.get("dateCreated")).isoformat(),
+                                          mode_dc=json2timestamp(rela.get("dateCreated")),
                                           mode_uc=rela.get("createdBy", "loadedfromds"))
 
             self.sqldb.rowinsert(tablename=tablename,
@@ -286,8 +291,10 @@ class Dataspot2SQLdatabase():
                                  rela_enti_id_to=self.entitytranslate[rela.get("hasRange")],
                                  rela_hist_from_to=self._bool2sql(rela.get("temporal")),
                                  rela_hist_to_from=None,
-                                 rela_mandatory_from_to=self._bool2sql(rela.get("rangeMultiplicity", "").startswith('1')),
-                                 rela_mandatory_to_from=self._bool2sql(rela.get("domainMultiplicity", "").startswith('1')),
+                                 rela_mandatory_from_to=self._bool2sql(
+                                     rela.get("rangeMultiplicity", "").startswith('1')),
+                                 rela_mandatory_to_from=self._bool2sql(
+                                     rela.get("domainMultiplicity", "").startswith('1')),
                                  rela_maptype_from_to=Dataspot2Jsonbase._cardinality(rela.get("rangeMultiplicity")),
                                  rela_maptype_to_from=Dataspot2Jsonbase._cardinality(rela.get("domainMultiplicity"))
                                  )
@@ -320,12 +327,11 @@ class Dataspot2SQLdatabase():
         if domaref is None:
             domaid = None
         else:
-            domaid = self.domaintranslate[domaref.split("/")[-1]]
-        # additionalprops = self.additionalprops(elem=attr,
-        #                                       specialkeys=["order", "cardinality", "required",
-        #                                                    "temporal", "MULTILINGUAL", "identifying"])
-        # "computation",
-        # additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(attr)
+            domaname = domaref.split("/")[-1]
+            if domaname not in self.domaintranslate:
+                logging.error(
+                    f"Attribute '{attr.get('label')}': Domain '{domaname}' not found. DOMAIN FOR ATTRIBUTE IGNORED")
+            domaid = self.domaintranslate.get(domaname)
         self.sqldb.rowinsert(tablename=tablename,
                              attr_id=modeid,
                              attr_tech_name=attr.get("label"),
@@ -354,19 +360,19 @@ class Dataspot2SQLdatabase():
 
         self._insertexpls(expls=attr.get("examples", []), modeid=modeid)
 
-        # elemattr = JsonElement().attributejson(elementid=attr.get("ID"),
+        # elemattr = JsonElement().attributejson(elementId=attr.get("ID"),
         #                                        name=self.mutlilangvalue(fieldname="label",
         #                                                                 value=self._deref(attr.get("label")),
         #                                                                 addprops=additionalprops),
         #                                        mandatory=attr.get("required") == "MANDATORY",
-        #                                        #domainid=domainid,
+        #                                        #domainId=domainId,
         #                                        parentid=parentid,
-        #                                        displayseq=attr.get("order"),
+        #                                        displaySeq=attr.get("order"),
         #                                        description=self.mutlilangvalue(fieldname="description",
         #                                                                        value=self._deref(
         #                                                                            attr.get("description")),
         #                                                                        addprops=additionalprops),
-        #                                        shortdescr=self.mutlilangvalue(fieldname="title",
+        #                                        shortDescr=self.mutlilangvalue(fieldname="title",
         #                                                                       value=self._deref(
         #                                                                           attr.get("title")),
         #                                                                       addprops=additionalprops),
@@ -398,7 +404,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="ATTR",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(attr.get("dateCreated")).isoformat(),
+                                          mode_dc=json2timestamp(attr.get("dateCreated")),
                                           mode_uc=attr.get("createdBy", "loadedfromds"))
 
             self.generate1attribute(attr=attr,
@@ -414,7 +420,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="BURU",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(buru.get("dateCreated")).isoformat(),
+                                          mode_dc=json2timestamp(buru.get("dateCreated")),
                                           mode_uc=buru.get("createdBy", "loadedfromds"))
             # dereference constraintOn (Master) of busienss rule
             refelem = buru.get("constraintOn").split('/')  # one enti/domain element or enti/domain + attrielement
@@ -452,12 +458,12 @@ class Dataspot2SQLdatabase():
             sourcepath = self.addmodeltonamedreference(namedref=elem.get("usageOf"),
                                                        modelname=elem.get("DSMODEL"))
 
-            sourceelement = self.findqualielement(fullpath=sourcepath)
-            if sourceelement is None:
-                sourceelementid = sourcepath
+            sourceElement = self.findqualielement(fullpath=sourcepath)
+            if sourceElement is None:
+                sourceElementid = sourcepath
             else:
-                sourceelementid = sourceelement.getid()
-            usages.append(sourceelementid)
+                sourceElementid = sourceElement.getid()
+            usages.append(sourceElementid)
         return usages
 
     def generatediagrams(self, status=None):
@@ -469,7 +475,7 @@ class Dataspot2SQLdatabase():
                                                    specialkeys=[])
             elems = [r for r in self.dsmodels.diagelements.values() if r.get("usedBy") == diag.get("label")]
             self.standardjson.addelementinstance(name="Diagrams",
-                                                 val=JsonElement().diagramjson(elementid=diag.get("ID"),
+                                                 val=JsonElement().diagramjson(elementId=diag.get("ID"),
                                                                                name=diag.get("label"),
                                                                                # position=dict()=,
                                                                                # size=,
@@ -500,9 +506,9 @@ class Dataspot2SQLdatabase():
 
             # add derivation to found element
             if sourcedomain is None:
-                sourceelementid = mapping.get("derivedFrom")
+                sourceElementid = mapping.get("derivedFrom")
             else:
-                sourceelementid = sourcedomain.getid()
+                sourceElementid = sourcedomain.getid()
 
             additionalprops = self.additionalprops(elem=mapping,
                                                    specialkeys=["mapsTo",
@@ -511,9 +517,9 @@ class Dataspot2SQLdatabase():
 
             self.standardjson.addelementinstance(name="Mappings",
                                                  val=JsonElement().mappingjson
-                                                 (derivationtype=mapping.get("qualifier"),
+                                                 (derivationType=mapping.get("qualifier"),
                                                   targetdomain=targetdomain.getid(),
-                                                  sourcedomain=sourceelementid,
+                                                  sourcedomain=sourceElementid,
                                                   valuemappings=self.valuemappings
                                                   (rules=[r for r in self.dsmodels.translations.values()
                                                           if r.get('translationIn') == mapping.get("label")]),
@@ -523,19 +529,19 @@ class Dataspot2SQLdatabase():
 
         return
 
-    def _inserttotalcategory(self, catg: dict, tablename: str, categoryid: int = None):
+    def _inserttotalcategory(self, catg: dict, tablename: str, categoryId: int = None):
         modeid = self.sqldb.rowinsert(tablename="modelelements",
                                       mode_type="ECAT",
                                       mode_modl_id=self.model_id,
-                                      mode_dc=ds2timestamp(catg.get("dateCreated")).isoformat(),
+                                      mode_dc=json2timestamp(catg.get("dateCreated")),
                                       mode_uc=catg.get("createdBy", "loadfromds"))
 
         enca = {"enca_id": modeid,
                 "enca_name": catg.get("label"),
                 "enca_descr": nvl(catg.get("description"), catg.get("title"))
                 }
-        if categoryid is not None:
-            enca["enca_enca_id"] = categoryid
+        if categoryId is not None:
+            enca["enca_enca_id"] = categoryId
 
         self.sqldb.rowinsert(tablename=tablename, **enca)
         self._insertmultilang(elem=catg,
@@ -558,11 +564,10 @@ class Dataspot2SQLdatabase():
 
         donecatgs = dict()
         newcategories = []
-        cnt = 0
+        # cnt = 0
         restcatgs = copy.deepcopy(categories)
         while len(restcatgs) > 0:
-            cnt += 1
-            assert cnt < 30
+            check_progress = len(restcatgs)
             todocatgs = list(restcatgs.keys())
             for key in todocatgs:
                 catg = restcatgs[key]
@@ -570,25 +575,25 @@ class Dataspot2SQLdatabase():
                 if parentname is None:
                     modeid = self._inserttotalcategory(catg=catg,
                                                        tablename=tablename)
-                    # elementi = JsonElement().entityjson(elementid=element.get("ID"),
-                    #                                     name=self.mutlilangvalue(fieldname="label",
-                    #                                                              value=self._deref(
-                    #                                                                  element.get("label")),
-                    #                                                              addprops=additionalprops),
-                    #
                     donecatgs[catg.get("label")] = modeid
                     del restcatgs[key]
                 else:
                     fullname = parentname + "/" + catg.get("label")
-                    if parentname not in restcatgs:  # parent was alredy processed
+                    if parentname in donecatgs:  # parent was alredy processed
+                        # if parentname not in donecatgs:
+                        #    raise Exception (f"Cateogry '{catg.get('label')}': parent '{parentname}' not in model")
                         modeid = self._inserttotalcategory(catg=catg, tablename=tablename,
-                                                           categoryid=donecatgs[parentname])
+                                                           categoryId=donecatgs[parentname])
 
                         donecatgs[fullname] = modeid
                         del restcatgs[key]
                     else:
-                        pass
+                        pass  # next loop
 
+            # if no catgegory was removed in this run, a category is missing.
+            if len(restcatgs) == check_progress:
+                lf = "\n"
+                raise Exception(f"Cateogryparent missing: \n{lf.join(restcatgs.keys())}")
         return donecatgs
 
     def generatedomains(self, status):
@@ -599,7 +604,7 @@ class Dataspot2SQLdatabase():
             modeid = self.sqldb.rowinsert(tablename="modelelements",
                                           mode_type="DOMA",
                                           mode_modl_id=self.model_id,
-                                          mode_dc=ds2timestamp(doma.get("dateCreated")).isoformat(),
+                                          mode_dc=json2timestamp(doma.get("dateCreated")),
                                           mode_uc=doma.get("createdBy", "loadedfromds"))
 
             values = [val for key, val in self.dsmodel.LOVvalues.items()
@@ -628,30 +633,30 @@ class Dataspot2SQLdatabase():
         Dataspot2Jsonbase._filldomaproperties(element=doma,
                                               subtypeproperties=subtypeprops)
         if len(Dataspot2Jsonbase.domasubattrs(element=doma, dsmodels=self.dsmodel)) > 0:
-            subtypeprops["domaintype"] = "GroupDomain"
+            subtypeprops["domainType"] = "GroupDomain"
 
         domaname = doma.get("label")
         self.domaintranslate[domaname] = modeid
-        domatype = self._dt2sql(subtypeprops.get("domaintype"))
+        domatype = self._dt2sql(subtypeprops.get("domainType"))
         self.sqldb.rowinsert(tablename=tablename,
                              doma_id=modeid,
                              doma_name=domaname,
                              doma_descr=doma.get("description"),
                              doma_type=domatype,
-                             doma_bin_contenttype=subtypeprops.get("contenttype"),
+                             doma_bin_contenttype=subtypeprops.get("contentType"),
                              doma_bin_storageformat=subtypeprops.get("storageformat"),
                              doma_dat_granularity=subtypeprops.get("granularity"),
-                             doma_dat_minvalue=None if domatype != 'DAT' else subtypeprops.get("minvalue"),
-                             doma_dat_maxvalue=None if domatype != 'DAT' else subtypeprops.get("maxvalue"),
-                             doma_num_fract_digits=subtypeprops.get("fractdigits"),
-                             doma_num_minvalue=None if domatype != 'NUM' else subtypeprops.get("minvalue"),
-                             doma_num_maxvalue=None if domatype != 'NUM' else subtypeprops.get("maxvalue"),
+                             doma_dat_minvalue=None if domatype != 'DAT' else subtypeprops.get("minValue"),
+                             doma_dat_maxvalue=None if domatype != 'DAT' else subtypeprops.get("maxValue"),
+                             doma_num_fract_digits=subtypeprops.get("fractDigits"),
+                             doma_num_minvalue=None if domatype != 'NUM' else subtypeprops.get("minValue"),
+                             doma_num_maxvalue=None if domatype != 'NUM' else subtypeprops.get("maxValue"),
                              doma_num_physunit=subtypeprops.get("unit"),
                              doma_num_round_value=subtypeprops.get("round"),
-                             doma_num_total_digits=subtypeprops.get("totaldigits"),
+                             doma_num_total_digits=subtypeprops.get("totalDigits"),
                              doma_txt_minlng=subtypeprops.get("minlng"),
                              doma_txt_maxlng=subtypeprops.get("maxlng"),
-                             doma_txt_syntaxrule=subtypeprops.get("syntaxrule")
+                             doma_txt_syntaxrule=subtypeprops.get("syntaxRule")
                              )
 
         self._insertmultilang(elem=doma,
@@ -659,7 +664,7 @@ class Dataspot2SQLdatabase():
                               mapfields={"Label": "doma_name",
                                          "Description": "doma_descr"}
                               )
-        self._insertudpvs(elem=doma, modeid=modeid,specialkeys=['Unit']) #exclude from udp
+        self._insertudpvs(elem=doma, modeid=modeid, specialkeys=['Unit'])  # exclude from udp
 
         self._insertexpls(expls=doma.get("examples", []), modeid=modeid)
 
@@ -700,10 +705,11 @@ class Dataspot2SQLdatabase():
             group by lang_id,lang_iso_code2,lgtx_attrname,defaultvalue
             having count(*) > 1
         """
-        multilanguks=self.sqldb.select(sql=uniquetranslationsql)
+        multilanguks = self.sqldb.select(sql=uniquetranslationsql)
         for mluk in multilanguks:
-            logging.error(f"ERROR: translated value not unique: Attribute {mluk.get('attrname')}, value={mluk.get('defaultvalue')}")
-        return len(multilanguks)==0
+            logging.error(
+                f"ERROR: translated value not unique: Attribute {mluk.get('attrname')}, value={mluk.get('defaultvalue')}")
+        return len(multilanguks) == 0
 
     def filldatabase(self, modelname,
                      modelversion="0.0",
@@ -714,26 +720,28 @@ class Dataspot2SQLdatabase():
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
         now = datetime.now().replace(microsecond=0).isoformat()
-        modeltype = "Information model"
+        modeltype = "IM"  #
         self.model_id = self.sqldb.rowinsert(tablename="modelelements",
                                              mode_type="MODL",
                                              mode_dc=datetime.now().isoformat(),
-                                             #       ds2timestamp(enti.get("dateCreated")).isoformat(),
+                                             #       json2timestamp(enti.get("dateCreated")).isoformat(),
                                              mode_uc="ich")  # enti.get("createdBy", "loadedfromds"))
 
         self.sqldb.rowinsert(tablename="models",
                              modl_id=self.model_id,
-                             modl_name="Test",
-                             modl_type="IM")
+                             modl_name=modelname,
+                             modl_targetenvironment=targetenv,
+                             modl_type=modeltype)
 
         self.language = language
         baselangid = self.sqldb.rowinsert(tablename="languages",
                                           lang_iso_code2=language,
                                           lang_is_base_lang=dbval(True))
 
-        self.languages = languages
-        for lang in languages:
-            if lang == language:
+        # make sure the baselanguage is in the set of all languages
+        self.languages = list(set(languages).union(set([language])))
+        for lang in self.languages:
+            if lang == self.language:
                 langid = baselangid
             else:
                 langid = self.sqldb.rowinsert(tablename="languages",
@@ -742,23 +750,8 @@ class Dataspot2SQLdatabase():
             self.sqldb.rowinsert(tablename="model_languages",
                                  mola_lang_id=langid,
                                  mola_modl_id=self.model_id,
-                                 mola_mainlanguage=dbval(lang == language)
+                                 mola_mainlanguage=dbval(lang == self.language)
                                  )
-
-            # self.standardjson.setschemaelement(name="ModelInfo",
-        #                                    val=JsonElement().modelinfojson(
-        #                                        modelname=modelname,
-        #                                        modeltype=modeltype,
-        #                                        mainlanguage=language,
-        #                                        languages=languages,
-        #                                        dc=now,
-        #                                        modelversion=modelversion,
-        #                                        targetenvironment=targetenv,
-        #                                        origintool=self.ORIGINTOOL,
-        #                                        originuri=None,
-        #                                        additionalProps=additionalprops
-        #                                    )
-        #                                    )
 
         # self.generatecategories(catgtype="DOMAIN",status=status)
         self.entitycatgstranslate = self.generatecategories(catgtype="ENTITY", status=status)
@@ -774,6 +767,37 @@ class Dataspot2SQLdatabase():
         self.generatediagrams(status=status)
 
         return
+
+
+def exportIM2sqlstandard(inpath, outpath, modelname=None, modelversion='0.0',
+                         targetenv=None,
+                         language='en', languages=[],
+                         server="https://myserver.io",
+                         status=None,
+                         withdbexport=True):
+    indirec: Path = Path(inpath)
+    if Path(outpath).is_dir():
+        outjsonfilepath = Path(outpath) / (modelname + ".json")
+    else:
+        outjsonfilepath = Path(outpath)
+    outdbfilepath = outjsonfilepath.with_suffix(".db")
+    mydb = StandardModelDb(sqlitedb=SqliteDb(), withsqlmodel=True)
+    db = Dataspot2SQLdatabase(indirec=indirec, mydb=mydb)
+    db.filldatabase(modelname=modelname,
+                    languages=languages, language=language,
+                    )
+
+    if withdbexport:
+        mydb.writedbtofile(filepath=outdbfilepath)
+        print(f'{outdbfilepath} written')
+
+    sql2json = Sql2IMJsonschema(mydb=mydb)
+    bmodel = sql2json.generatejson(status=status)
+
+    StandardJsonModel.dumpjsonfile(outpath=Path(outjsonfilepath),
+                                   struct=bmodel, verbose=True)
+
+    return
 
 
 if __name__ == '__main__':

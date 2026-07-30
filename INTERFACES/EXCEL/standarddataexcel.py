@@ -26,9 +26,9 @@ class CreateDataExcel:
             row2 = []
             rowlen = 0
             for dataattr in self.standardjson.get("DataAttributes", []):
-                if dataattr.get("dataobjectid") == dataobj.get("elementid"):
+                if dataattr.get("dataObjectId") == dataobj.get("elementId"):
                     rowlen += 1
-                    row.append(nvl(dataattr.get("technicalname"), dataattr.get("name")))
+                    row.append(nvl(dataattr.get("technicalName"), dataattr.get("name")))
                     examples = dataattr.get("examples")
                     if type(examples) == list:
                         example = nvl(examples, [None])[0]
@@ -79,7 +79,7 @@ class StandardDataExcel(StandardExcel):
                         additionalProps[dataobjectname + ":" + cell.coordinate] = cell.value
             additionalProps["EXCELSOURCE"] = f"{dataobjectname}"
 
-            dataobject = JsonElement().dataobjectjson(elementid=datoid,
+            dataobject = JsonElement().dataobjectjson(elementId=datoid,
                                                       name=dataobjectname,
                                                       additionalProps=additionalProps)
 
@@ -100,7 +100,7 @@ class StandardDataExcel(StandardExcel):
                         except:
                             isdate = False
 
-                        self.dataattributes.append(JsonElement().dataattributejson(elementid=ElementId.nextid("DATA"),
+                        self.dataattributes.append(JsonElement().dataattributejson(elementId=ElementId.nextid("DATA"),
                                                                                name=cell.value,
                                                                                mandatory=mandatory,
                                                                                dataobjectid=datoid,

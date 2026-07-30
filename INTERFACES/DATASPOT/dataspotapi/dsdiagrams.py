@@ -25,7 +25,7 @@ def diagenties(jsonmodel: JSModel,entities):
     return retval, linewidth + 100, posy + entiheight + 100
 
 
-def adddsdiagram(jsonmodel: JSModel, diagname,categoryid=None):
+def adddsdiagram(jsonmodel: JSModel, diagname,categoryId=None):
     """add a dummy diagram to the jsonmodel
         containing all entities in a grid and all relationships going from south to north
     """
@@ -34,7 +34,7 @@ def adddsdiagram(jsonmodel: JSModel, diagname,categoryid=None):
     diag["sourceref"] = {"DATSPOT": [diagname, str(datetime.today())]}
 
     diagentities = {key:val for key,val in jsonmodel.getelements("entities").items()
-                    if categoryid is None or val["category"]==categoryid
+                    if categoryId is None or val["category"]==categoryId
                     }
     entis, diagwidth, diagheight = diagenties(jsonmodel=jsonmodel,
                                               entities=diagentities)

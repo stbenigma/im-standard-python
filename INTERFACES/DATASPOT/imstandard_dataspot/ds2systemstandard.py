@@ -22,14 +22,14 @@ class System2Json():
     def systemjson(self, element):
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["subsystemOf"])
-        jsonstruct = JsonElement().systemjson(elementid=element.get("ID"),
+        jsonstruct = JsonElement().systemjson(elementId=element.get("ID"),
                                                   name=self.mutlilangvalue(fieldname="label",
                                                                            value=self._deref(element.get("label")),
                                                                            addprops=additionalprops),
                                                     shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(element.get("title")),
                                                                            addprops=additionalprops),
-                                              categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                              categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                                 modelname=element.get("DSMODEL"),
                                                                                 name=self._deref(
                                                                                     element.get("inCollection")),
@@ -86,7 +86,7 @@ class System2Json():
                                            mainlanguage=language,
                                            languages=languages,
                                            modelversion=modelversion,
-                                           targetenvironment=targetenv,
+                                           targetEnvironment=targetenv,
                                            origintool=Dataspot2Jsonbase.ORIGINTOOL))
         self.generatecategories(catgtype="SYSTEM",status=status)
         self.generatederivations(status=status)

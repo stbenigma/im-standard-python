@@ -50,6 +50,3 @@ def fullescapestr(instr):
     if retval is not None and (("/" in instr) or ('.' in instr)):
         retval = f'"{retval}"'
     return retval
-
-def ds2timestamp(miliseconds:int)->datetime:
-    return datetime.fromtimestamp(miliseconds/1000)

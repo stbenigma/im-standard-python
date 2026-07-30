@@ -71,19 +71,19 @@ class Spod2Jsonschema():
                        }
         domaintype = domaintypes[element.get("type")]
         subelements = element.get("elements") if "elements" in element else []
-        subattrs = [{"elementid": ElementId.nextid("ATTR"),
+        subattrs = [{"elementId": ElementId.nextid("ATTR"),
                      "name": elem.get("name").strip(),
                      "mandatory": elem.get("mandatory"),
                      "description": elem.get("descr"),
-                     "domainid": elem.get("domainid"),
-                     "parentid": key
+                     "domainId": elem.get("domainId"),
+                     "parentId": key
                      }
                     for elem in subelements]
-        subattrs2 = [JsonElement().attributejson(elementid=ElementId.nextid("ATTR"),
+        subattrs2 = [JsonElement().attributejson(elementId=ElementId.nextid("ATTR"),
                                                  name=nvl(elem.get("name")).strip(),
                                                  mandatory=elem.get("mandatory"),
                                                  description=elem.get("descr"),
-                                                 domainid=elem.get("domainid"),
+                                                 domainid=elem.get("domainId"),
                                                  parentid=key
                                                  )
                      for elem in subelements]
@@ -91,19 +91,19 @@ class Spod2Jsonschema():
         for sourcekey, source in nvl(element.get("sourceref"), dict()).items():
             additionalProps["SOURCE-" + sourcekey] = source
 
-        jsonstruct = JsonElement().domainjson(elementid=key,
+        jsonstruct = JsonElement().domainjson(elementId=key,
                                               name=self.anylingualtext(element.get("name"), stripblanks=True),
                                               domaintype=domaintype,
                                               parentid=key,
                                               description=self.anylingualtext(element.get("description")),
                                               maxlength=element.get("maxlng"),
-                                              syntaxrule=element.get("syntaxrule"),
-                                              minvalue=element.get("minvalue"),
-                                              maxvalue=element.get("maxvalue"),
+                                              syntaxrule=element.get("syntaxRule"),
+                                              minvalue=element.get("minValue"),
+                                              maxvalue=element.get("maxValue"),
                                               granularity=element.get("granularity"),
-                                              totaldigits=element.get("totaldigits"),
-                                              fractdigits=element.get("fractdigits"),
-                                              roundvalue=element.get("roundvalue"),
+                                              totaldigits=element.get("totalDigits"),
+                                              fractdigits=element.get("fractDigits"),
+                                              roundvalue=element.get("roundValue"),
                                               unit=None if element.get("unit") is None else {
                                                   "symbol": element.get("unit")},
                                               elements=subattrs,
@@ -120,17 +120,17 @@ class Spod2Jsonschema():
         for sourcekey, source in nvl(element.get("sourceref"), dict()).items():
             additionalProps["SOURCE-" + sourcekey] = source
 
-        jsonstruct = JsonElement().categoryjson(elementid=key,
+        jsonstruct = JsonElement().categoryjson(elementId=key,
                                                 name=self.anylingualtext(element.get("name"), stripblanks=True),
                                                 categorytype="ENTITY",
                                                 description=self.anylingualtext(element.get("descr")),
-                                                categoryid=element.get("parent"),
+                                                categoryId=element.get("parent"),
                                                 additionalProps=additionalProps
                                                 )
         return jsonstruct
 
     def documentjson(self, key, element):
-        jsonstruct = {"elementid": key,
+        jsonstruct = {"elementId": key,
                       "name": element.get("name")
                       }
         self.optionalprop(jsonstruct, "description", element.get("content"))
@@ -149,12 +149,12 @@ class Spod2Jsonschema():
         for sourcekey, source in nvl(element.get("sourceref"), dict()).items():
             additionalProps["SOURCE-" + sourcekey] = source
 
-        return JsonElement().attributejson(elementid=key,
+        return JsonElement().attributejson(elementId=key,
                                            name=self.anylingualtext(element.get("name"), stripblanks=True),
-                                           domainid=element.get("domainid"),
+                                           domainid=element.get("domainId"),
                                            parentid=element.get("entity"),
                                            mandatory=element.get("mandatory"),
-                                           displayseq=element.get("seq"),
+                                           displaySeq=element.get("seq"),
                                            description=self.anylingualtext(element.get("descr")),
                                            title=self.anylingualtext(element.get("tooptip")),
                                            examples=self.modellanguagetexts(element.get("examples")),
@@ -173,7 +173,8 @@ class Spod2Jsonschema():
     def keyjson(self, keyid):
         key = self._JSModel.getbyid(keyid)
         keyelems = key.get("key-elements").get("attributes") + key.get("key-elements").get("relations")
-        return keyelems
+        return {"name":key.get("name"),
+                "elements":keyelems}
 
     def filldocureferences(self, element, reflist):
         return  # for minimal model disabled
@@ -202,13 +203,13 @@ class Spod2Jsonschema():
         additionalProps = nvl(self.userdefprops(element.get("userdefprops")), dict())
         for sourcekey, source in nvl(element.get("sourceref"), dict()).items():
             additionalProps["SOURCE-" + sourcekey] = source
-        jsonstruct = JsonElement().entityjson(elementid=key,
+        jsonstruct = JsonElement().entityjson(elementId=key,
                                               name=self.anylingualtext(element.get("name"), stripblanks=True),
-                                              categoryid=element.get("category"),
+                                              categoryId=element.get("category"),
                                               synonyms=[self.anylingualtext(syno, stripblanks=True) for syno in
                                                         element.get("synonyms")],
                                               keys=[self.keyjson(keyid) for keyid in element.get("keys+")],
-                                              shortname=element.get("shortname"),
+                                              shortname=element.get("shortName"),
                                               description=self.anylingualtext(element.get("descr")),
                                               title=self.anylingualtext(element.get("tooltip")),
                                               examples=self.modellanguagetexts(element.get("examples")),
@@ -266,7 +267,7 @@ class Spod2Jsonschema():
             relatype = relationtypes[rela.get("type")]
             fwd = self.relationendjson(relaend=rela.get("from-to"))
             bwd = self.relationendjson(relaend=rela.get("to-from"))
-            self.standardjson.jsonschemamodel["Relations"].append( JsonElement().relationjson(elementid=relaid,
+            self.standardjson.jsonschemamodel["Relations"].append( JsonElement().relationjson(elementId=relaid,
                                                                         relationtype=relatype,
                                                                         fwd=fwd.data, bwd=bwd.data,
                                                                         relatype=relatype,
@@ -290,7 +291,7 @@ class Spod2Jsonschema():
             languages=[lang.strip() for lang in
                        nvl(self.jsmodel.get("languages"), dict()).keys()],
             description=description,
-            targetenvironment=targetenv,
+            targetEnvironment=targetenv,
             origintool="SPOD",
             originref=str(self._JSModel.jsfile),
             datetimecreated=self.jsmodel.get("_imprint_").get("created"),

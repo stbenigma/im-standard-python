@@ -1,9 +1,10 @@
 import json
+import logging
 from datetime import datetime
 from pathlib import Path
 
-from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json
-from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase,DataspotElements
+from IM_STANDARD import JsonSchema, ElementId, nvl, JsonElement, model2json, StandardSchema
+from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase, DataspotElements
 from .dslib import custom_split
 
 
@@ -15,33 +16,34 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
     and categories (to group entities and domains)
     """
 
-    def __init__(self, indirec=None, **kwargs):
+    def __init__(self, indirec=None, modeltype: str = "IM", **kwargs):
         super().__init__(standardjson=JsonSchema(),
                          indirec=indirec, **kwargs)
+        self.modeltypeabrev = modeltype
         return
 
-    def generatebusinessmodel(self,status=None):
+    def generatebusinessmodel(self, status=None):
         self.generateentities(elementname="Entities",
                               elements=[elem for elem in self.dsmodels.entities.values()
-                                        if DataspotElements.checkstatus(elem,status)])
+                                        if DataspotElements.checkstatus(elem, status)])
         self.generaterelations(elementname="Relations",
                                elements=[elem for elem in self.dsmodels.relationships.values()
                                          if elem.get("_type") == "Relationship" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                         self.dsmodels.checkstatus(elem, status)
                                          ]
                                )
         self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
                                           if elem.get("_type") == "BusinessAttribute" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                          self.dsmodels.checkstatus(elem, status)
                                           ])
         self.generateattributes(elements=[elem for elem in self.dsmodels.attributes.values()
                                           if elem.get("_type") == "DataAttribute" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                          self.dsmodels.checkstatus(elem, status)
                                           ])
         self.generatebusinessrules(elementname="BusinessRules",
                                    elements=[elem for elem in self.dsmodels.businessrules.values()
                                              if elem.get("_type") == "BusinessConstraint" and
-                                            self.dsmodels.checkstatus(elem, status)
+                                             self.dsmodels.checkstatus(elem, status)
                                              ]
                                    )
         self.generatekeys()
@@ -55,15 +57,15 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             entiid = enti.getid()
             keyelements = []
             for attr in self.standardjson.getelementinstances("Attributes"):
-                if attr["parentid"] == entiid:
+                if attr["parentId"] == entiid:
                     origattr = self.getelementbyid(elements=self.dsmodels.attributes,
                                                    elemid=attr.getid())
                     if origattr.get("identifying"):
                         keyelements.append(attr.getid())
             # find relationships with keys
             for rela in self.standardjson.getelementinstances("Relations"):
-                if ((entiid == rela["fwd"].get("entityid") and rela["fwd"].get("cardinality") == "1")
-                        or (entiid == rela["bwd"].get("entityid") and rela["bwd"].get("cardinality") == "1")):
+                if ((entiid == rela["fwd"].get("entityId") and rela["fwd"].get("cardinality") == "1")
+                        or (entiid == rela["bwd"].get("entityId") and rela["bwd"].get("cardinality") == "1")):
                     origrela = self.getelementbyid(elements=self.dsmodels.relationships,
                                                    elemid=rela.getid())
                     # generated relations (subtypes) have no original
@@ -74,7 +76,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
             if len(keyelements) > 0:
                 # standard keys are a list of keyelementlists
-                enti.setproperty("keys", [keyelements])
+                enti.setproperty("keys", [{"name": "key1",
+                                           "elements": keyelements}
+                                          ])
         return
 
     def entityjson(self, element):
@@ -83,11 +87,11 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         # for dataspot mark entites as favorites
         additionalprops["favorite"] = element.get("favorite")
         additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
-        elementi = JsonElement().entityjson(elementid=element.get("ID"),
+        elementi = JsonElement().entityjson(elementId=element.get("ID"),
                                             name=self.mutlilangvalue(fieldname="label",
                                                                      value=self._deref(element.get("label")),
                                                                      addprops=additionalprops),
-                                            categoryid=self.findelementid(elems=self.dsmodels.categories,
+                                            categoryId=self.findelementid(elems=self.dsmodels.categories,
                                                                           modelname=element.get("DSMODEL"),
                                                                           name=self._deref(
                                                                               element.get("inCollection")),
@@ -98,7 +102,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                                             value=self._deref(
                                                                                 element.get("description")),
                                                                             addprops=additionalprops),
-                                            shortdescr=self.mutlilangvalue(fieldname="title",
+                                            shortDescr=self.mutlilangvalue(fieldname="title",
                                                                            value=self._deref(
                                                                                element.get("title")),
                                                                            addprops=additionalprops),
@@ -131,12 +135,12 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                    "inverseName": self.standardjson.multilangstring_is(),
                                                    "domainMultiplicity": "1",
                                                    "rangeMultiplicity": "1",
-                                                   "ARC-12": None,
-                                                   "ARC-21": 0,
+                                                   "ARC-12": 0,
+                                                   "ARC-21": None,
                                                    "ID": ElementId.nextid("RELA"),
-                                                   "href":  self.dsmodels.sourcehref(element)
+                                                   "href": self.dsmodels.sourcehref(element)
 
-                }))
+                                               }))
 
         return
 
@@ -149,6 +153,34 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                  )
         return
 
+    def containsrelation(self, attr: dict, entiid: str):
+        """
+        an attribute having another entity as a domain is treated as a relationship
+        """
+        entiid2 = self.getentityid(attr.get("hasDomain"))
+
+        rela = self.relationjsonbase(relationtype=("1" if attr.get("cardinality") == "ONE"
+                                                   else "M")
+                                                  + ":1",
+                                     entityid1=entiid2,
+                                     entityid2=entiid,
+                                     element={
+                                         # "hasDomain": attr.get("subtypeOf"),
+                                         "name": self.standardjson.multilangstring_is(stdstr="contains"),
+                                         "hasRange": attr.get("label"),
+                                         "inverseName": None,  # self.standardjson.multilangstring_is(),
+                                         "domainMultiplicity": "1",
+                                         "rangeMultiplicity": ("" if attr.get("required") == "MANDATORY"
+                                                               else "0..") + \
+                                                              ("1" if attr.get("cardinality") == "ONE"
+                                                               else "*"),
+                                         "ARC-12": None,
+                                         "ARC-21": None,
+                                         "ID": ElementId.nextid("RELA"),
+                                         "href": self.dsmodels.sourcehref(attr)
+                                     })
+        return rela
+
     def generate1attribute(self, element):
         parentid = self.getentityid(element.get("hasDomain"))
         if parentid is None:
@@ -156,24 +188,34 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         domainname = element.get("hasRange")
         domainid = None if type(domainname) is not str else self.getdomainid(
             domaname=custom_split(domainname, "/")[-1])
+        if domainid is None:
+            if parentid.startswith("ENTI"):
+                # look for range as another entity
+                rangeentityid = self.getentityid(entiname=domainname)
+                if rangeentityid is not None:
+                    return ("Relations", self.containsrelation(attr=element, entiid=rangeentityid))
+            else:
+                logging.warning(
+                    f"Domaingroup attributes referencing entities not handled. Attibute {element.get('ID')}")
+
         additionalprops = self.additionalprops(elem=element,
                                                specialkeys=["order", "cardinality", "required",
-                                                            "temporal", "MULTILINGUAL", "identifying"])
-        # "computation",
+                                                            "temporal", "multilingual", "identifying"])
+
         additionalprops["SOURCE-HREF"] = self.dsmodels.sourcehref(element)
-        elemattr = JsonElement().attributejson(elementid=element.get("ID"),
+        elemattr = JsonElement().attributejson(elementId=element.get("ID"),
                                                name=self.mutlilangvalue(fieldname="label",
                                                                         value=self._deref(element.get("label")),
                                                                         addprops=additionalprops),
                                                mandatory=element.get("required") == "MANDATORY",
                                                domainid=domainid,
                                                parentid=parentid,
-                                               displayseq=element.get("order"),
+                                               displaySeq=element.get("order"),
                                                description=self.mutlilangvalue(fieldname="description",
                                                                                value=self._deref(
                                                                                    element.get("description")),
                                                                                addprops=additionalprops),
-                                               shortdescr=self.mutlilangvalue(fieldname="title",
+                                               shortDescr=self.mutlilangvalue(fieldname="title",
                                                                               value=self._deref(
                                                                                   element.get("title")),
                                                                               addprops=additionalprops),
@@ -181,16 +223,17 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                descriptive=element.get("favorite"),
                                                historicised=element.get("temporal"),
                                                repeated=True if element.get("cardinality") == "MANY" else None,
-                                               translated=element.get("MULTILINGUAL"),
+                                               translated=element.get("multilingual"),
                                                additionalProps=additionalprops
                                                )
 
-        return elemattr
+        return ("Attributes", elemattr)
 
     def generateattributes(self, elements):
         for element in nvl(elements, []):
-            self.standardjson.addelementinstance(name="Attributes",
-                                                 val=self.generate1attribute(element=element))
+            elemtype, attrval = self.generate1attribute(element=element)
+            self.standardjson.addelementinstance(name=elemtype,
+                                                 val=attrval)
         return
 
     def _diagusage(self, elems):
@@ -199,15 +242,15 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
             sourcepath = self.addmodeltonamedreference(namedref=elem.get("usageOf"),
                                                        modelname=elem.get("DSMODEL"))
 
-            sourceelement = self.findqualielement(fullpath=sourcepath)
-            if sourceelement is None:
-                sourceelementid = sourcepath
+            sourceElement = self.findqualielement(fullpath=sourcepath)
+            if sourceElement is None:
+                sourceElementid = sourcepath
             else:
-                sourceelementid = sourceelement.getid()
-            usages.append(sourceelementid)
+                sourceElementid = sourceElement.getid()
+            usages.append(sourceElementid)
         return usages
 
-    def generatediagrams(self,status=None):
+    def generatediagrams(self, status=None):
         """ read all transformations and add them to the element
         """
         for diagkey, diag, in self.dsmodels.diagrams.items():
@@ -216,7 +259,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                    specialkeys=[])
             elems = [r for r in self.dsmodels.diagelements.values() if r.get("usedBy") == diag.get("label")]
             self.standardjson.addelementinstance(name="Diagrams",
-                                                 val=JsonElement().diagramjson(elementid=diag.get("ID"),
+                                                 val=JsonElement().diagramjson(elementId=diag.get("ID"),
                                                                                name=diag.get("label"),
                                                                                # position=dict()=,
                                                                                # size=,
@@ -228,7 +271,7 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         retval = [[rule.get("translatesFrom"), rule.get("translatesTo")] for rule in rules]
         return retval
 
-    def generatemappings(self,status=None):
+    def generatemappings(self, status=None):
         """ read all mappings and add them to the element
         """
         for mapkey, mapping, in self.dsmodels.mappings.items():
@@ -247,9 +290,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
             # add derivation to found element
             if sourcedomain is None:
-                sourceelementid = mapping.get("derivedFrom")
+                sourceElementid = mapping.get("derivedFrom")
             else:
-                sourceelementid = sourcedomain.getid()
+                sourceElementid = sourcedomain.getid()
 
             additionalprops = self.additionalprops(elem=mapping,
                                                    specialkeys=["mapsTo",
@@ -258,9 +301,9 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
 
             self.standardjson.addelementinstance(name="Mappings",
                                                  val=JsonElement().mappingjson
-                                                 (derivationtype=mapping.get("qualifier"),
+                                                 (derivationType=mapping.get("qualifier"),
                                                   targetdomain=targetdomain.getid(),
-                                                  sourcedomain=sourceelementid,
+                                                  sourcedomain=sourceElementid,
                                                   valuemappings=self.valuemappings
                                                   (rules=[r for r in self.dsmodels.translations.values()
                                                           if r.get('translationIn') == mapping.get("label")]),
@@ -280,13 +323,14 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
         now = datetime.now().replace(microsecond=0).isoformat()
-        modeltype = "Information model"
+        modeltype = StandardSchema.MODELTYPES[self.modeltypeabrev]
 
-        additionalprops = {"FULLPATH": f"{nvl(targetenv, self.dsmodels.tenant.get('name', ''))}:{modeltype}:{modelname}",
-                           "SOURCE-SERVER": self.dsmodels.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
-                           "SOURCE-TENANT": self.dsmodels.tenant.get("name"),  # Sandbox"
-                           "SOURCE-HREF": f"{self.dsmodels.tenant.get('server')}{self.dsmodels.tenant.get('uri')}"
-                           }
+        additionalprops = {
+            "FULLPATH": f"{nvl(targetenv, self.dsmodels.tenant.get('name', ''))}:{modeltype}:{modelname}",
+            "SOURCE-SERVER": self.dsmodels.tenant.get('server'),  # "https://partner.dataspot.io/rest/"
+            "SOURCE-TENANT": self.dsmodels.tenant.get("name"),  # Sandbox"
+            "SOURCE-HREF": f"{self.dsmodels.tenant.get('server')}{self.dsmodels.tenant.get('uri')}"
+        }
         self.standardjson.setschemaelement(name="ModelInfo",
                                            val=JsonElement().modelinfojson(
                                                modelname=modelname,
@@ -295,15 +339,15 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
                                                languages=languages,
                                                dc=now,
                                                modelversion=modelversion,
-                                               targetenvironment=targetenv,
+                                               targetEnvironment=targetenv,
                                                origintool=self.ORIGINTOOL,
                                                originuri=None,
                                                additionalProps=additionalprops
                                            )
                                            )
 
-        self.generatecategories(catgtype="DOMAIN",status=status)
-        self.generatecategories(catgtype="ENTITY",status=status)
+        self.generatecategories(catgtype="DOMAIN", status=status)
+        self.generatecategories(catgtype="ENTITY", status=status)
         self.generatedomains(status=status)
         self.generatebusinessmodel(status=status)
         self.generatederivations(status=status)
@@ -315,34 +359,60 @@ class Dataspot2IMJsonschema(Dataspot2Jsonbase):
         return model2json(self.standardjson.jsonschemamodel)
 
 
-def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
-                      targetenv=None,
-                      language='en', languages=[],
-                      server="https://myserver.io",
-                      status=None):
+def _exportModel2standard(inpath, outpath, modelname, modelversion,
+                          targetenv,
+                          language, languages,
+                          server,
+                          status,
+                          modeltype):
     indirec = Path(inpath)
     dsschema = Dataspot2IMJsonschema(indirec=indirec, tenant={"name": targetenv,
                                                               "id": None,
                                                               "uri": None,
                                                               "db": None,
-                                                              "server": server}
+                                                              "server": server},
+                                     modeltype=modeltype
                                      )
     jsonstruct = dsschema.generatejson(modelname=nvl(modelname, indirec.name),
                                        modelversion=modelversion,
                                        targetenv=nvl(targetenv, dsschema.dsmodels.tenant.get("name")),
                                        language=language,
                                        languages=languages,
-                                     status=status)
+                                       status=status)
 
     outfilepath = Path(outpath)
     if outfilepath.is_dir():
         # add filename
         outfilepath = outfilepath / (
-                    jsonstruct.get("ModelInfo", dict()).get("modelname", "whatever") + "-standard.json")
+                jsonstruct.get("ModelInfo", dict()).get("modelName", "whatever") + "-standard.json")
     with open(outfilepath, 'w') as outfile:
         json.dump(jsonstruct, outfile, indent=2)
+        print(f'{outfilepath} written')
 
     return jsonstruct
+
+
+def exportIM2standard(inpath, outpath, modelname=None, modelversion='0.0',
+                      targetenv=None,
+                      language='en', languages=[],
+                      server="https://myserver.io",
+                      status=None):
+    return _exportModel2standard(inpath=inpath, outpath=outpath,
+                                 modelname=modelname, modelversion=modelversion,
+                                 targetenv=targetenv, language=language,languages=languages,
+                                 server=server, status=status,modeltype="IM")
+
+
+def exportAM2standard(inpath, outpath, modelname=None, modelversion='0.0',
+                      targetenv=None,
+                      language='en', languages=[],
+                      server="https://myserver.io",
+                      status=None):
+    return _exportModel2standard(inpath=inpath, outpath=outpath,
+                                 modelname=modelname, modelversion=modelversion,
+                                 targetenv=targetenv, language=language,languages=languages,
+                                 server=server, status=status,
+                                 modeltype="AM")
 
 
 if __name__ == '__main__':

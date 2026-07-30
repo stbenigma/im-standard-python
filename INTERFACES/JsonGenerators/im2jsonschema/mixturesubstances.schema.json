@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chem-x.de/models/mvp-dmp/mixturesubstances.schema.json",
+  "title": "MixtureSubstances",
+  "type": "object",
+  "properties": {
+    "casName": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "The name of a substance associated with the CAS registry number given by Chemical Abstract Service (CAS). | Beispiel(e): Butyl acrylate, Water, Formaldehyde",
+        "title": "CAS Name"
+      }
+    },
+    "casNumber": {
+      "type": "string",
+      "maxLength": 12,
+      "pattern": "[0-9]{7}+-[0-9]{2}-[0-9]{1}",
+      "description": "A CAS Registry Number (CAS RN®) is a unique and unambiguous identifier for a specific substance that allows clear communication and, with the help of CAS scientists, links together all available data and research about that substance. Governmental agencies rely on CAS Registry Numbers for substance identification in regulatory applications because they are unique, easily validated, and internationally recognized. | Beispiel(e): 50-00-0, 101-68-8",
+      "title": "CAS Number",
+      "$comment": "Business-Regel: One of the three numbers must be filled to create a EC Number\n* ENECS\n* ELINCS\n* NLP"
+    },
+    "indexName": {
+      "type": "string",
+      "pattern": "^\\S.*\\S$|^(\\S)$",
+      "description": "International chemical name of substance used in the CLP Annex VI | Beispiel(e): vinyl acetate",
+      "title": "Index name",
+      "$comment": "domainid DOMA912 ('Index Name CLP Annex VI Tab 3') ist eine Gruppe (GroupDomain). Feld wurde per Namensabgleich auf Gruppenmitglied 'Index Name' (ATTR1104) gemappt."
+    },
+    "indexNumber": {
+      "type": "string",
+      "description": "A reference number for a substance within the Classification and Labelling (C&L) Inventory, which details its hazardous properties and required labeling under the CLP Regulation (Classification, Labelling and Packaging). | Beispiel(e): 607-023-00-0",
+      "title": "Index number",
+      "$comment": "domainid DOMA913 ('Index Number CLP Annex VI Tab 3') ist eine Gruppe (GroupDomain) mit mehreren Feldern; das Quellmodell spezifiziert nicht, welches Gruppenfeld gemeint ist. Fallback auf 'string' - BITTE MANUELL PRUEFEN."
+    },
+    "euReachRegistrationNumber": {
+      "type": "string",
+      "maxLength": 18,
+      "description": "A REACh number is an 18-digit identifier assigned by the European Chemicals Agency (ECHA) to substances registered under the EU REACH regulation. This number serves as proof that a company has fulfilled its registration obligations for a particular substance | Beispiel(e): 01-2119471301-50",
+      "title": "EU REACH registration number"
+    },
+    "iupacName": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "IUPAC Nomenclature ensures that each compound (and its various isomers) have only one formally accepted name known as the systematic IUPAC name. | Beispiel(e): Bis-[4-(2,3- epoxipropoxi)phenyl]propane",
+        "title": "IUPAC name",
+        "$comment": "domainid DOMA914 ('Substance identifier') ist eine Gruppe (GroupDomain). Feld wurde per Namensabgleich auf Gruppenmitglied 'IUPAC Name' (ATTR1162) gemappt. / Business-Regel: At least one unambiguous identifier must be provided for a substance"
+      }
+    },
+    "inci": {
+      "type": "string",
+      "description": "INCI names (International Nomenclature Cosmetic Ingredient) are systematic names internationally recognized to identify cosmetic ingredients.",
+      "title": "INCI",
+      "$comment": "domainid DOMA914 ('Substance identifier') ist eine Gruppe (GroupDomain). Feld wurde per Namensabgleich auf Gruppenmitglied 'INCI' (ATTR1161) gemappt. / Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'. / Business-Regel: At least one unambiguous identifier must be provided for a substance"
+    },
+    "trivialName": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Retained names are often used for the most fundamental parts of a nomenclature system: almost all the chemical elements have retained names rather than being named systematically, as do the first four alkanes, benzene and most simple heterocyclic compounds. Water and ammonia are other examples of retained names. Retained names may be either semisystematic or completely trivial; that is, they may contain certain elements of systematic nomenclature or none at all. | Beispiel(e): 4-hydroxybutyl acrylate",
+        "title": "Trivial name",
+        "$comment": "domainid DOMA914 ('Substance identifier') ist eine Gruppe (GroupDomain). Feld wurde per Namensabgleich auf Gruppenmitglied 'Trivial name' (ATTR1164) gemappt. / Business-Regel: At least one unambiguous identifier must be provided for a substance"
+      }
+    },
+    "internationalName": {
+      "type": "string",
+      "pattern": "^\\S.*\\S$|^(\\S)$",
+      "description": "It is a given name of a chemical ingredient in english languge provided by the DMP issuer. | Beispiel(e): 4-hydroxybutyl acrylate",
+      "title": "International Name"
+    },
+    "hazardStatementsCode": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "title": "Hazard statements Code",
+        "description": "Substance Hazards classification properties according to CLP - short Codes used | Beispiel(e): H300",
+        "$comment": "domainid DOMA921 ('Hazard class+code range') ist eine Gruppe (GroupDomain) mit mehreren Feldern; das Quellmodell spezifiziert nicht, welches Gruppenfeld gemeint ist. Fallback auf 'string' - BITTE MANUELL PRUEFEN."
+      }
+    },
+    "socType": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "not a substance of concern",
+          "Substance of concern C",
+          "Substance of concern A",
+          "Substance of concern B",
+          "Substance of concern D"
+        ],
+        "description": "Which SoC type according to Regulation (EU) 2024/1781? A substance may be none or at least one SoC type. The SoC types are defined under Chem-X terminology as SoC A to SoC D.\n\n‘substance of concern’ means a substance that: (a) meets the criteria laid down in Article 57 of Regulation (EC) No 1907/2006 and is identified in accordance with Article 59(1) of that Regulation; (b) is classified in Part 3 of Annex VI to Regulation (EC) No 1272/2008 in one of the following hazard classes or hazard categories: (i) carcinogenicity categories 1 and 2; (ii) germ cell mutagenicity categories 1 and 2; (iii) reproductive toxicity categories 1 and 2; (iv) endocrine disruption for human health categories 1 and 2; (v) endocrine disruption for the environment categories 1 and 2; (vi) persistent, mobile and toxic or very persistent, very mobile properties; (vii) persistent, bioaccumulative and toxic or very persistent, very bioaccumulative properties; (viii) respiratory sensitisation category 1; (ix) skin sensitisation category 1; (x) hazardous to the aquatic environment — categories chronic 1 to 4; (xi) hazardous to the ozone layer; (xii) specific target organ toxicity — repeated exposure categories 1 and 2; (xiii) specific target organ toxicity — single exposure categories 1 and 2; (c) is regulated under Regulation (EU) 2019/1021; or (d) negatively affects the reuse and recycling of materials in the product in which it is present; | Beispiel(e): Type A, Type B, Type C, Type D, None",
+        "title": "SoC type"
+      }
+    },
+    "activeBiocide": {
+      "type": "boolean",
+      "title": "Active biocide",
+      "description": "Is the substance an active biocide according Regulation (EU) No 528/2012"
+    },
+    "crmaMaterialTypeSubstance": {
+      "type": "boolean",
+      "title": "CRMA material type substance",
+      "description": "Critical Raw Material rating"
+    },
+    "euOel": {
+      "type": "boolean",
+      "title": "EU OEL",
+      "description": "Union workplace exposure limits published via EU directives"
+    },
+    "nationalOel": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "title": "National OEL",
+        "description": "Occupation Exposure Limits published by national authorities e.g. via TRGS900 for Germany",
+        "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+      }
+    },
+    "concentrationMinimumGeq": {
+      "type": "string",
+      "description": "Beispiel(e): 0,1",
+      "title": "Concentration minimum geq",
+      "$comment": "domainid DOMA1014 ('Concentration') ist eine Gruppe (GroupDomain) mit mehreren Feldern; das Quellmodell spezifiziert nicht, welches Gruppenfeld gemeint ist. Fallback auf 'string' - BITTE MANUELL PRUEFEN."
+    },
+    "concentrationMaximumLt": {
+      "type": "string",
+      "description": "Beispiel(e): 3",
+      "title": "Concentration maximum lt",
+      "$comment": "domainid DOMA1014 ('Concentration') ist eine Gruppe (GroupDomain) mit mehreren Feldern; das Quellmodell spezifiziert nicht, welches Gruppenfeld gemeint ist. Fallback auf 'string' - BITTE MANUELL PRUEFEN."
+    },
+    "concentrationAccuracy": {
+      "type": "string",
+      "description": "amount of an entity in proportion to the total amount",
+      "title": "Concentration accuracy",
+      "$comment": "domainid DOMA1014 ('Concentration') ist eine Gruppe (GroupDomain). Feld wurde per Namensabgleich auf Gruppenmitglied 'Accuracy' (ATTR1063) gemappt."
+    },
+    "concentrationUom": {
+      "type": "string",
+      "enum": [
+        "volume percentage",
+        "mass percentage",
+        "ppb",
+        "ppm"
+      ],
+      "description": "Proportion [%] of substance in this mixture. The proportion of all substances in a mixture must add up to 100% | Beispiel(e): %, PPM, PPB",
+      "title": "Concentration unit of measure",
+      "$comment": "domainid DOMA1014 ('Concentration') ist eine Gruppe (GroupDomain). Feld wurde per Namensabgleich auf Gruppenmitglied 'Concentration unit' (ATTR1064) gemappt."
+    },
+    "ecNumber": {
+      "type": "string",
+      "description": "The EC-number, i.e. the EINECS, ELINCS or NLP number, is the official number of the substance within the European Union. The EC-number can be obtained from the official publications of EINECS, ELINCS and NLP and of the European Chemicals Agency.\nThe EC-number consists of 7 digits of the type x1x2x3-x4x5x6-x7. The first digit is defined by the list to which the substance belongs | Beispiel(e): Formaldehyde EINECS 200-001-8",
+      "title": "EC Number",
+      "$comment": "domainid DOMA910 ('EC Number') ist eine Gruppe (GroupDomain) mit mehreren Feldern; das Quellmodell spezifiziert nicht, welches Gruppenfeld gemeint ist. Fallback auf 'string' - BITTE MANUELL PRUEFEN. / Business-Regel: One of the three numbers must be filled to create a EC Number\n* ENECS\n* ELINCS\n* NLP\n* List Number (non-official)"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Chemical Substance that is part of a chemical product that must be declared in section 3 of an EU SDS.",
+  "required": [
+    "internationalName",
+    "socType",
+    "activeBiocide",
+    "crmaMaterialTypeSubstance",
+    "euOel"
+  ]
+}

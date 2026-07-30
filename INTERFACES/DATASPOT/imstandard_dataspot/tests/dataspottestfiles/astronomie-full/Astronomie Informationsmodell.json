@@ -58,7 +58,6 @@
   "id" : "4b01b20c-0ed4-4aa3-80dd-b1c11eb14a9d",
   "href" : "/web/foryouandyourcustomers/classifiers/4b01b20c-0ed4-4aa3-80dd-b1c11eb14a9d",
   "label" : "Mond",
-  "subtypeOf" : "Begleiter",
   "title" : "Fester Himmelskörper der um einen Planeten kreist",
   "examples" : [ "(Erd-)Mond", "Phobos", "Deimos", "Io", "Europa", "Ganymed", "Triton", "Charon" ],
   "inCollection" : "Sternsystem/Grosse Objekte",
@@ -73,7 +72,6 @@
   "id" : "82edb111-5467-4e74-902d-ead720f36b82",
   "href" : "/web/foryouandyourcustomers/classifiers/82edb111-5467-4e74-902d-ead720f36b82",
   "label" : "Planet",
-  "subtypeOf" : "Begleiter",
   "title" : "Fester oder gasförmiger Himmelskörper der um einen Stern kreist",
   "examples" : [ "Jupiter", "Mars", "Neptun", "LHS 1140 b", "Proxima Centauri b", "Kepler-186f" ],
   "inCollection" : "Sternsystem/Grosse Objekte",
@@ -104,7 +102,6 @@
   "id" : "3ef9dd2a-af38-461e-80d1-383b48352cb4",
   "href" : "/web/foryouandyourcustomers/classifiers/3ef9dd2a-af38-461e-80d1-383b48352cb4",
   "label" : "Zwergplanet",
-  "subtypeOf" : "Begleiter",
   "title" : "Feste Himmelskörper, kleiner als Planeten",
   "description" : "Zwergplaneten sind kleiner als Planeten. Sie sind gross genug, dass sie eine Runde Form (und meist eine Eigenrotation) haben.\nAber nicht gross genug, dass sie ihre Sonnenumlaufbahn von anderen Objektren befreit haben.",
   "examples" : [ "Pluto", "Eris", "Haumea", "Makemake" ],
@@ -121,7 +118,6 @@
   "id" : "098ee8cb-2225-4724-a625-e85dec5dbfb8",
   "href" : "/web/foryouandyourcustomers/classifiers/098ee8cb-2225-4724-a625-e85dec5dbfb8",
   "label" : "Asteroid",
-  "subtypeOf" : "Begleiter",
   "description" : "Asteroiden sind kleine, felsige Objekte, die die Sonne oder einen anderen Asteroiden umkreisen.\n\nSind nicht gross genug dass sie eine Runde Form (und meist auch eine Eigenrotation) haben\n\nAsteroiden können Monde haben. \nDiese Monde sind oft kleinere Asteroiden, die den größeren Asteroiden umkreisen. Solche Systeme werden als binäre Asteroiden bezeichnet, wenn ein Asteroid einen Mond hat, oder als ternäre Systeme, wenn ein Asteroid zwei Monde hat.\n\nIda und Dactyl:\nIda: Ein Asteroid im Asteroidengürtel zwischen Mars und Jupiter.\nDactyl: Der Mond von Ida, der 1993 von der Galileo-Sonde entdeckt wurde. Dactyl ist der erste bestätigte Mond eines Asteroiden.\n\nEugenia und Petit-Prince:\nEugenia: Ein großer Asteroid im Asteroidengürtel.\nPetit-Prince: Der größere der beiden Monde von Eugenia, der 1998 entdeckt wurde. Eugenia hat auch einen zweiten, kleineren Mond namens S/2004 (45) 1.\n\nSylvia und ihre Monde Romulus und Remus:\nSylvia: Ein großer Asteroid im Asteroidengürtel.\nRomulus und Remus: Zwei Monde, die Sylvia umkreisen. Romulus wurde 2001 und Remus 2005 entdeckt.\nDidymos und Dimorphos:",
   "examples" : [ "Ida", "Eugenia", "Sylvia", "Didymos", "Dactyl", "Petit-Prince", "Romulus", "Remus" ],
   "inCollection" : "Sternsystem/Kleine Objekte",
@@ -136,7 +132,6 @@
   "id" : "99cb4655-700f-4505-9543-551d421dd8e7",
   "href" : "/web/foryouandyourcustomers/classifiers/99cb4655-700f-4505-9543-551d421dd8e7",
   "label" : "Komet",
-  "subtypeOf" : "Begleiter",
   "title" : "Komet im Sonnensystem",
   "description" : "Ein Komet ist ein Himmelskörper, der hauptsächlich aus Eis, Staub und Gestein besteht. Er stammt meist aus den äußeren Bereichen unseres Sonnensystems, zum Beispiel der Oortschen Wolke oder dem Kuipergürtel.\n\n**Merkmale eines Kometen:**\n*Kern*: Der feste, zentrale Teil, meist nur einige Kilometer groß. Besteht aus Eis (Wasser, CO₂, Methan usw.) und Staub – man spricht oft von einem „schmutzigen Schneeball“.\n\n*Koma*: Wenn ein Komet sich der Sonne nähert, erwärmen sich die Eisteile, verdampfen, und bilden mit dem ausgestoßenen Staub eine leuchtende Hülle um den Kern.\n\n*Schweif*: Der Sonnenwind und die Strahlung drücken die Koma nach hinten, sodass ein Schweif entsteht, der immer von der Sonne weg zeigt. Es gibt oft zwei Schweife:\nStaubschweif (gebogen)\nIonenschweif (gerade, bläulich)",
   "examples" : [ "Halleyscher Komet", "NEOWISE (2020)", "67P/Churyumov-Gerasimenko" ],
@@ -590,6 +585,22 @@
   "Title:en" : "State form of the surface"
 }, {
   "_type" : "Relationship",
+  "id" : "21400965-216b-49f4-8329-114654a3545e",
+  "href" : "/web/foryouandyourcustomers/associations/21400965-216b-49f4-8329-114654a3545e",
+  "hasDomain" : "Asteroid",
+  "name" : "ist",
+  "hasRange" : "Begleiter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776242015613,
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
+  "rangeMultiplicity" : "1",
+  "required" : "MANDATORY",
+  "cardinality" : "ONE",
+  "rangeAggregation" : "COMPOSITE"
+}, {
+  "_type" : "Relationship",
   "id" : "3f115561-2fcf-4176-ac2a-3c7c62355be3",
   "href" : "/web/foryouandyourcustomers/associations/3f115561-2fcf-4176-ac2a-3c7c62355be3",
   "hasDomain" : "Asteroid",
@@ -600,15 +611,32 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1750147679096,
   "inverseName" : "umkreist",
-  "navigable" : "RANGE",
-  "domainMultiplicity" : "0..1",
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
   "rangeMultiplicity" : "0..*",
   "identifying" : true,
   "required" : "OPTIONAL",
   "cardinality" : "MANY",
+  "rangeAggregation" : "COMPOSITE",
   "ARC-21" : "1",
   "inverseName:en" : "orbits",
   "name:en" : "orbited by"
+}, {
+  "_type" : "Relationship",
+  "id" : "66818cbf-cba4-4ed0-b36b-410901149d17",
+  "href" : "/web/foryouandyourcustomers/associations/66818cbf-cba4-4ed0-b36b-410901149d17",
+  "hasDomain" : "Komet",
+  "name" : "ist",
+  "hasRange" : "Begleiter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776242015613,
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
+  "rangeMultiplicity" : "1",
+  "required" : "MANDATORY",
+  "cardinality" : "ONE",
+  "rangeAggregation" : "COMPOSITE"
 }, {
   "_type" : "Relationship",
   "id" : "06b892fa-ddd8-4a19-a59d-f36a334cc943",
@@ -620,11 +648,12 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1769259320507,
   "inverseName" : "dient als",
-  "navigable" : "RANGE",
+  "navigable" : "NONE",
   "domainMultiplicity" : "0..*",
   "rangeMultiplicity" : "1",
   "required" : "MANDATORY",
   "cardinality" : "ONE",
+  "domainAggregation" : "COMPOSITE",
   "ARC-12" : "1"
 }, {
   "_type" : "Relationship",
@@ -637,11 +666,12 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1769259320507,
   "inverseName" : "dient als",
-  "navigable" : "RANGE",
+  "navigable" : "NONE",
   "domainMultiplicity" : "0..*",
   "rangeMultiplicity" : "1",
   "required" : "MANDATORY",
   "cardinality" : "ONE",
+  "domainAggregation" : "COMPOSITE",
   "ARC-12" : "1"
 }, {
   "_type" : "Relationship",
@@ -654,11 +684,27 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1769259525222,
   "inverseName" : "berücksichtigt in",
-  "navigable" : "RANGE",
+  "navigable" : "NONE",
   "domainMultiplicity" : "0..*",
   "rangeMultiplicity" : "0..*",
   "required" : "OPTIONAL",
   "cardinality" : "MANY"
+}, {
+  "_type" : "Relationship",
+  "id" : "07c95c40-08c6-42b9-825d-54ebd9d0babf",
+  "href" : "/web/foryouandyourcustomers/associations/07c95c40-08c6-42b9-825d-54ebd9d0babf",
+  "hasDomain" : "Mond",
+  "name" : "ist",
+  "hasRange" : "Begleiter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776242015613,
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
+  "rangeMultiplicity" : "1",
+  "required" : "MANDATORY",
+  "cardinality" : "ONE",
+  "rangeAggregation" : "COMPOSITE"
 }, {
   "_type" : "Relationship",
   "id" : "2047ad47-11a7-436d-b1cf-54f7c9bfa77e",
@@ -677,9 +723,26 @@
   "identifying" : true,
   "required" : "OPTIONAL",
   "cardinality" : "MANY",
+  "rangeAggregation" : "COMPOSITE",
   "ARC-21" : "1",
   "inverseName:en" : "orbits",
   "name:en" : "orbited by"
+}, {
+  "_type" : "Relationship",
+  "id" : "7116ba4c-e13d-4503-92b4-84005ffbb239",
+  "href" : "/web/foryouandyourcustomers/associations/7116ba4c-e13d-4503-92b4-84005ffbb239",
+  "hasDomain" : "Planet",
+  "name" : "ist",
+  "hasRange" : "Begleiter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776242015613,
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
+  "rangeMultiplicity" : "1",
+  "required" : "MANDATORY",
+  "cardinality" : "ONE",
+  "rangeAggregation" : "COMPOSITE"
 }, {
   "_type" : "Relationship",
   "id" : "c5e652b8-92f1-41b7-a366-6e82d9288902",
@@ -708,7 +771,7 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1750147679096,
   "inverseName" : "umkreist",
-  "navigable" : "RANGE",
+  "navigable" : "NONE",
   "domainMultiplicity" : "1",
   "rangeMultiplicity" : "0..*",
   "identifying" : true,
@@ -728,7 +791,7 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1750147679096,
   "inverseName" : "umkreist",
-  "navigable" : "RANGE",
+  "navigable" : "NONE",
   "domainMultiplicity" : "1",
   "rangeMultiplicity" : "0..*",
   "identifying" : true,
@@ -748,7 +811,7 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1750147679096,
   "inverseName" : "umkreist",
-  "navigable" : "RANGE",
+  "navigable" : "NONE",
   "domainMultiplicity" : "1",
   "rangeMultiplicity" : "0..*",
   "identifying" : true,
@@ -769,15 +832,32 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1750147679096,
   "inverseName" : "umkreist",
-  "navigable" : "RANGE",
-  "domainMultiplicity" : "0..1",
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
   "rangeMultiplicity" : "0..*",
   "identifying" : true,
   "required" : "OPTIONAL",
   "cardinality" : "MANY",
+  "rangeAggregation" : "COMPOSITE",
   "ARC-21" : "1",
   "inverseName:en" : "orbits",
   "name:en" : "orbited by"
+}, {
+  "_type" : "Relationship",
+  "id" : "daf9476e-54ee-46e4-b070-e18ad99f345c",
+  "href" : "/web/foryouandyourcustomers/associations/daf9476e-54ee-46e4-b070-e18ad99f345c",
+  "hasDomain" : "Zwergplanet",
+  "name" : "ist",
+  "hasRange" : "Begleiter",
+  "status" : "WORKING",
+  "createdBy" : "stb@foryouandyourcustomers.com",
+  "dateCreated" : 1776242015613,
+  "navigable" : "NONE",
+  "domainMultiplicity" : "1",
+  "rangeMultiplicity" : "1",
+  "required" : "MANDATORY",
+  "cardinality" : "ONE",
+  "rangeAggregation" : "COMPOSITE"
 }, {
   "_type" : "Relationship",
   "id" : "e8855922-2a79-45f9-88aa-2e1122f9a9e7",
@@ -796,6 +876,7 @@
   "identifying" : true,
   "required" : "OPTIONAL",
   "cardinality" : "MANY",
+  "rangeAggregation" : "COMPOSITE",
   "ARC-21" : "1",
   "inverseName:en" : "orbits",
   "name:en" : "orbited by"
@@ -820,4 +901,44 @@
   "createdBy" : "stb@foryouandyourcustomers.com",
   "dateCreated" : 1750323143736,
   "computation" : "Mond berehchnet"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Asteroid",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Begleiter",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Komet",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Mission Ziel",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Mond",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Planet",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Raumfahrt Mission",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Raumfahrt Unternehmen",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Stern",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
+}, {
+  "_type" : "Deployment",
+  "deploymentOf" : "Zwergplanet",
+  "deployedIn" : "/Astronomie Systeme/Informationsmodell"
 } ]

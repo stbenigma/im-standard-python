@@ -143,33 +143,33 @@ class Converter:
         self.data = data
         info: dict = data.get("ModelInfo", {})
 
-        self.main_lang: str      = info.get("mainlanguage", "de")
+        self.main_lang: str      = info.get("mainLanguage", "de")
         self.extra_langs: list   = info.get("languages", [])
         self.info                = info
 
-        slug = re.sub(r"[^a-z0-9]", "", info.get("modelname", "model").lower())
+        slug = re.sub(r"[^a-z0-9]", "", info.get("modelName", "model").lower())
         self.base_iri = f"urn:imstd:org.eclipse.{slug}:1.0.0#"
 
         # ── index maps ────────────────────────────────────────────────────────
-        self.categories = {c["elementid"]: c for c in data.get("Categories", [])}
-        self.domains    = {d["elementid"]: d for d in data.get("Domains", [])}
-        self.entities   = {e["elementid"]: e for e in data.get("Entities", [])}
-        self.relations  = {r["elementid"]: r for r in data.get("Relations", [])}
+        self.categories = {c["elementId"]: c for c in data.get("Categories", [])}
+        self.domains    = {d["elementId"]: d for d in data.get("Domains", [])}
+        self.entities   = {e["elementId"]: e for e in data.get("Entities", [])}
+        self.relations  = {r["elementId"]: r for r in data.get("Relations", [])}
         self.attributes: list[dict] = data.get("Attributes", [])
         self.biz_rules:  list[dict] = data.get("BusinessRules", [])
 
         # ── ENTITY category local IRIs ────────────────────────────────────────
         self.entity_cat_local: dict[str, str] = {}
         for cid, cat in self.categories.items():
-            if cat.get("categorytype") == "ENTITY":
+            if cat.get("categoryType") == "ENTITY":
                 label = _lang(cat["name"], self.main_lang)
                 self.entity_cat_local[cid] = _safe(_local(label))
 
         # ── SUBTYPE parent map (child → parent entity id) ─────────────────────
         self.subtype_parent: dict[str, str] = {}
         for rel in self.relations.values():
-            if rel.get("relationtype") == "SUBTYPE":
-                self.subtype_parent[rel["bwd"]["entityid"]] = rel["fwd"]["entityid"]
+            if rel.get("relationType") == "SUBTYPE":
+                self.subtype_parent[rel["bwd"]["entityId"]] = rel["fwd"]["entityId"]
 
         # ── entity / domain local IRI maps ────────────────────────────────────
         self.entity_local: dict[str, str] = {
@@ -184,8 +184,8 @@ class Converter:
         # ── GroupDomain child attributes ──────────────────────────────────────
         self.group_attrs: dict[str, list[dict]] = {}
         for attr in self.attributes:
-            pid = attr.get("parentid", "")
-            if pid in self.domains and self.domains[pid].get("domaintype") == "GroupDomain":
+            pid = attr.get("parentId", "")
+            if pid in self.domains and self.domains[pid].get("domainType") == "GroupDomain":
                 self.group_attrs.setdefault(pid, []).append(attr)
 
         # relation-id → prop local IRI (filled during _write_object_properties)
@@ -230,8 +230,8 @@ class Converter:
     def _write_header(self):
         t = self.ttl
         ml   = self.main_lang
-        name = _escape(_lang(self.info.get("modelname", "Model"), ml))
-        ver  = self.info.get("modelversion", "0.0")
+        name = _escape(_lang(self.info.get("modelName", "Model"), ml))
+        ver  = self.info.get("modelVersion", "0.0")
         t.sep("Ontologie-Header")
         t.line()
         t.line(": a owl:Ontology ;")
@@ -247,7 +247,7 @@ class Converter:
     def _write_entity_category_classes(self):
         t = self.ttl
         items = [(cid, c) for cid, c in self.categories.items()
-                 if c.get("categorytype") == "ENTITY"]
+                 if c.get("categoryType") == "ENTITY"]
         if not items:
             return
         t.sep("Klassenhierarchie – Kategorien (ENTITY-Kategorien)")
@@ -255,7 +255,7 @@ class Converter:
         for cid, cat in items:
             local     = self.entity_cat_local[cid]
             descr     = _lang(cat.get("description", ""), self.main_lang)
-            parent_id = cat.get("categoryid", "")
+            parent_id = cat.get("categoryId", "")
             triples   = ["a owl:Class"]
             triples  += self._label_triples(cat["name"])
             if parent_id in self.entity_cat_local:
@@ -273,17 +273,17 @@ class Converter:
         t = self.ttl
         scalar = {"NumericDomain", "TextDomain", "DatetimeDomain", "BooleanDomain"}
         items  = [(did, d) for did, d in self.domains.items()
-                  if d.get("domaintype") in scalar]
+                  if d.get("domainType") in scalar]
         if not items:
             return
         t.sep("Datentypen / Datatypes (aus Domains)")
         t.line()
         for did, dom in items:
             local   = self.domain_local[did]
-            dt      = dom.get("domaintype", "TextDomain")
+            dt      = dom.get("domainType", "TextDomain")
             descr   = _lang(dom.get("description", ""), self.main_lang)
             unit    = dom.get("unit", "")
-            syntax  = dom.get("syntaxrule", "")
+            syntax  = dom.get("syntaxRule", "")
 
             if dt == "DatetimeDomain":
                 base = self._GRANULARITY_XSD.get(dom.get("granularity", ""), "xsd:dateTime")
@@ -298,14 +298,14 @@ class Converter:
 
             # xsd restriction facets
             restr: list[str] = []
-            if "minvalue" in dom:
-                restr.append(f'[ xsd:minInclusive "{dom["minvalue"]}"^^{base} ]')
-            if "maxvalue" in dom:
-                restr.append(f'[ xsd:maxInclusive "{dom["maxvalue"]}"^^{base} ]')
-            if "totaldigits" in dom:
-                restr.append(f'[ xsd:totalDigits "{dom["totaldigits"]}"^^xsd:positiveInteger ]')
-            if "fractdigits" in dom:
-                restr.append(f'[ xsd:fractionDigits "{dom["fractdigits"]}"^^xsd:nonNegativeInteger ]')
+            if "minValue" in dom:
+                restr.append(f'[ xsd:minInclusive "{dom["minValue"]}"^^{base} ]')
+            if "maxValue" in dom:
+                restr.append(f'[ xsd:maxInclusive "{dom["maxValue"]}"^^{base} ]')
+            if "totalDigits" in dom:
+                restr.append(f'[ xsd:totalDigits "{dom["totalDigits"]}"^^xsd:positiveInteger ]')
+            if "fractDigits" in dom:
+                restr.append(f'[ xsd:fractionDigits "{dom["fractDigits"]}"^^xsd:nonNegativeInteger ]')
             if syntax:
                 restr.append(f'[ xsd:pattern "{_escape(syntax)}" ]')
             if restr:
@@ -324,7 +324,7 @@ class Converter:
     def _write_lov_domains(self):
         t = self.ttl
         items = [(did, d) for did, d in self.domains.items()
-                 if d.get("domaintype") == "LOVDomain"]
+                 if d.get("domainType") == "LOVDomain"]
         if not items:
             return
         t.sep("Enumerationen / List-of-Values (LOVDomain)")
@@ -349,7 +349,7 @@ class Converter:
             for v in values:
                 val_local = f":{local}_{_safe(v['value'])}"
                 inst      = [f"a :{local}", f'skos:notation "{_escape(v["value"])}"']
-                inst     += self._label_triples(v.get("displayvalue", {}))
+                inst     += self._label_triples(v.get("displayValue", {}))
                 vd = _lang(v.get("description", ""), self.main_lang)
                 if vd:
                     inst.append(f'rdfs:comment "{_escape(vd)}"@{self.main_lang}')
@@ -362,7 +362,7 @@ class Converter:
     def _write_group_domains(self):
         t = self.ttl
         items = [(did, d) for did, d in self.domains.items()
-                 if d.get("domaintype") == "GroupDomain"]
+                 if d.get("domainType") == "GroupDomain"]
         if not items:
             return
         t.sep("Hilfsklassen für GroupDomains (strukturierte Wertebereiche)")
@@ -378,7 +378,7 @@ class Converter:
             t.block(f":{local}", triples)
             t.line()
             for attr in sorted(self.group_attrs.get(did, []),
-                               key=lambda a: a.get("displayseq", 999)):
+                               key=lambda a: a.get("displaySeq", 999)):
                 self._emit_attribute(attr, parent_local=local)
             t.line()
         t.line()
@@ -393,9 +393,9 @@ class Converter:
         t.line()
         for eid, ent in self.entities.items():
             local    = self.entity_local[eid]
-            cat_id   = ent.get("categoryid", "")
+            cat_id   = ent.get("categoryId", "")
             parent_eid = self.subtype_parent.get(eid)
-            descr    = _lang(ent.get("description") or ent.get("shortdescr", ""), self.main_lang)
+            descr    = _lang(ent.get("description") or ent.get("shortDescr", ""), self.main_lang)
             synonyms = ent.get("synonyms", [])
 
             triples = ["a owl:Class"]
@@ -419,7 +419,7 @@ class Converter:
     def _write_object_properties(self):
         t = self.ttl
         assoc = [(rid, r) for rid, r in self.relations.items()
-                 if r.get("relationtype") != "SUBTYPE"]
+                 if r.get("relationType") != "SUBTYPE"]
         if not assoc:
             return
         t.sep("Object Properties – Relationen (aus Relations)")
@@ -427,7 +427,7 @@ class Converter:
 
         # detect a common "orbits" verb to build a super-property
         has_umkreist = any(
-            "umkreist" in _lang(r.get("bwd", {}).get("assoctext", ""), self.main_lang).lower()
+            "umkreist" in _lang(r.get("bwd", {}).get("assocText", ""), self.main_lang).lower()
             for _, r in assoc
         )
         if has_umkreist:
@@ -444,12 +444,12 @@ class Converter:
 
         for rid, rel in assoc:
             fwd = rel.get("fwd", {}); bwd = rel.get("bwd", {})
-            from_eid = bwd.get("entityid", ""); to_eid = fwd.get("entityid", "")
+            from_eid = bwd.get("entityId", ""); to_eid = fwd.get("entityId", "")
             if from_eid not in self.entity_local or to_eid not in self.entity_local:
                 continue
             from_local = self.entity_local[from_eid]
             to_local   = self.entity_local[to_eid]
-            bwd_text   = _lang(bwd.get("assoctext", {}), self.main_lang)
+            bwd_text   = _lang(bwd.get("assocText", {}), self.main_lang)
             prop_local = _safe(_prop_name(f"{from_local}_{bwd_text}_{to_local}"))
             self._rel_prop_map[rid] = prop_local
 
@@ -471,15 +471,15 @@ class Converter:
     def _write_entity_attributes(self):
         t = self.ttl
         ent_attrs = [a for a in self.attributes
-                     if a.get("parentid", "") in self.entities]
+                     if a.get("parentId", "") in self.entities]
         if not ent_attrs:
             return
         t.sep("Datatype Properties – Attribute der Entitäten")
         t.line()
         cur_parent = None
         for attr in sorted(ent_attrs,
-                           key=lambda a: (a.get("parentid", ""), a.get("displayseq", 999))):
-            pid = attr.get("parentid", "")
+                           key=lambda a: (a.get("parentId", ""), a.get("displaySeq", 999))):
+            pid = attr.get("parentId", "")
             if pid != cur_parent:
                 t.comment(f"--- {_lang(self.entities[pid]['name'], self.main_lang)} ({pid}) ---")
                 t.line()
@@ -502,10 +502,10 @@ class Converter:
 
         # Mandatory M:1 cardinalities
         for rid, rel in self.relations.items():
-            if rel.get("relationtype") == "SUBTYPE":
+            if rel.get("relationType") == "SUBTYPE":
                 continue
             fwd = rel.get("fwd", {}); bwd = rel.get("bwd", {})
-            from_eid = bwd.get("entityid", ""); to_eid = fwd.get("entityid", "")
+            from_eid = bwd.get("entityId", ""); to_eid = fwd.get("entityId", "")
             if from_eid not in self.entity_local or to_eid not in self.entity_local:
                 continue
             prop_local = self._rel_prop_map.get(rid)
@@ -527,12 +527,12 @@ class Converter:
         # Business rules
         for rule in self.biz_rules:
             descr    = _escape(rule.get("description", rule.get("rule", "")))
-            elem_ids = rule.get("restrictedelements", [])
+            elem_ids = rule.get("restrictedElements", [])
             for eid in elem_ids:
                 if eid in self.entity_local:
                     header()
                     local = self.entity_local[eid]
-                    t.comment(f"{rule['elementid']}: {descr}")
+                    t.comment(f"{rule['elementId']}: {descr}")
                     t.line(f":{local} rdfs:subClassOf [")
                     t.line( "    a owl:Restriction ;")
                     t.line(f'    rdfs:comment "{descr}"@{self.main_lang}')
@@ -571,10 +571,10 @@ class Converter:
     def _emit_attribute(self, attr: dict, parent_local: str | None = None):
         """Emit one owl:DatatypeProperty or owl:ObjectProperty."""
         t       = self.ttl
-        pid     = attr.get("parentid", "")
-        did     = attr.get("domainid", "")
+        pid     = attr.get("parentId", "")
+        did     = attr.get("domainId", "")
         mand    = attr.get("mandatory", False)
-        descr   = _lang(attr.get("description") or attr.get("shortdescr", ""), self.main_lang)
+        descr   = _lang(attr.get("description") or attr.get("shortDescr", ""), self.main_lang)
 
         # parent class local IRI
         if parent_local:
@@ -588,7 +588,7 @@ class Converter:
 
         # range + property type
         dom_obj  = self.domains.get(did, {})
-        dom_type = dom_obj.get("domaintype", "")
+        dom_type = dom_obj.get("domainType", "")
         is_obj   = dom_type in ("LOVDomain", "GroupDomain")
 
         if did in self.domain_local:
@@ -598,11 +598,11 @@ class Converter:
 
         prop_class = "owl:ObjectProperty" if is_obj else "owl:DatatypeProperty"
 
-        attr_name  = _lang(attr.get("name", attr["elementid"]), self.main_lang)
+        attr_name  = _lang(attr.get("name", attr["elementId"]), self.main_lang)
         prop_local = _safe(_prop_name(f"{dom_local}_{attr_name}"))
 
         triples  = [f"a {prop_class}"]
-        triples += self._label_triples(attr.get("name", attr["elementid"]))
+        triples += self._label_triples(attr.get("name", attr["elementId"]))
         triples.append(f"rdfs:domain :{dom_local}")
         triples.append(f"rdfs:range {range_str}")
         if descr:

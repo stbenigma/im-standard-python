@@ -1,0 +1,102 @@
+{#
+  _macros.j2
+  ----------
+  Baustein-Makros für das DMP-Template.
+
+  Design-Entscheidung: Für flache, unstrukturierte Datenblöcke (PCF-Werte,
+  Geography, Checksum, identifiers/regulatory) wird bewusst NICHT Feld für
+  Feld in Jinja nachgebaut, sondern der fertige Python-dict per `| tojson`
+  serialisiert. Das ist bei additionalProperties:false robuster als
+  handgestrickte Kommalogik über dutzende optionale Felder.
+
+  Jinja übernimmt nur die Stellen, an denen echte strukturelle Wiederholung
+  bzw. Rekursion vorliegt:
+    - substance() / mixture(): rekursiv wegen $ref:"#" bei impurities.substance
+      und oneOf substance|mixture bei mixture.constituents
+    - lang_values() / hazard_statement_list(): mehrfach wiederverwendete Muster
+      ("Language dependant value", Hazard-Statement-Objekte)
+#}
+
+{% macro lang_values(items) -%}
+[{% for it in items %}{"text": {{ it.text | tojson }}, "language": {{ it.language | tojson }}}{{ "," if not loop.last }}{% endfor %}]
+{%- endmacro %}
+
+{% macro hazard_statement_list(items) -%}
+[
+{%- for h in items %}
+  {
+    "code": {{ h.code | tojson }}
+    {%- if h.get('texts') %}, "texts": {{ lang_values(h.texts) }}{% endif %}
+    {%- if h.get('hazardClass') %}, "hazardClass": {{ h.hazardClass | tojson }}{% endif %}
+    {%- if h.get('hazardCategoryCode') %}, "hazardCategoryCode": {{ h.hazardCategoryCode | tojson }}{% endif %}
+  }{{ "," if not loop.last }}
+{%- endfor %}
+]
+{%- endmacro %}
+
+{% macro substance(s) -%}
+{
+  {%- if s.get('internationalName') %}"internationalName": {{ s.internationalName | tojson }},{% endif %}
+  "identifiers": {{ s.identifiers | tojson }},
+  "regulatory": {{ s.regulatory | tojson }}
+  {%- if s.get('hazardStatements') %},"hazardStatements": {{ hazard_statement_list(s.hazardStatements) }}{% endif %}
+  {%- if s.get('supplementalHazardClassification') %},"supplementalHazardClassification": {{ s.supplementalHazardClassification | tojson }}{% endif %}
+  {%- if s.get('scip') %},"scip": {{ s.scip | tojson }}{% endif %}
+  {%- if 'reachArt33SvhcAboveThreshold' in s %},"reachArt33SvhcAboveThreshold": {{ s.reachArt33SvhcAboveThreshold | tojson }}{% endif %}
+  {%- if s.get('impurities') %},"impurities": [
+    {%- for imp in s.impurities %}
+    {
+      {%- if imp.get('constituentSubstanceCategory') %}"constituentSubstanceCategory": {{ imp.constituentSubstanceCategory | tojson }},{% endif %}
+      "substance": {{ substance(imp.substance) }},
+      "concentration": {{ imp.concentration | tojson }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ]{% endif %}
+}
+{%- endmacro %}
+
+{% macro mixture(m) -%}
+{
+  "mixtureNames": {{ lang_values(m.mixtureNames) }},
+  {%- if m.get('mixtureTradeNames') %}"mixtureTradeNames": {{ lang_values(m.mixtureTradeNames) }},{% endif %}
+  "asManufactured": {{ m.asManufactured | tojson }}
+  {%- if m.get('euUfiNumbers') %},"euUfiNumbers": {{ m.euUfiNumbers | tojson }}{% endif %}
+  ,"mixtureHazardClassification": {{ hazard_statement_list(m.mixtureHazardClassification) }}
+  {%- if m.get('scip') %},"scip": {{ m.scip | tojson }}{% endif %}
+  {%- if 'reachArt33SvhcAboveThreshold' in m %},"reachArt33SvhcAboveThreshold": {{ m.reachArt33SvhcAboveThreshold | tojson }}{% endif %}
+  ,"constituents": [
+    {%- for c in m.constituents %}
+    {
+      "role": {{ c.role | tojson }}
+      {%- if c.get('constituentSubstanceCategory') %},"constituentSubstanceCategory": {{ c.constituentSubstanceCategory | tojson }}{% endif %}
+      {%- if c.get('substanceMainFunction') %},"substanceMainFunction": {{ c.substanceMainFunction | tojson }}{% endif %}
+      {%- if c.get('substance') %},"substance": {{ substance(c.substance) }}{% endif %}
+      {%- if c.get('mixture') %},"mixture": {{ mixture(c.mixture) }}{% endif %}
+      ,"concentration": {{ c.concentration | tojson }}
+    }{{ "," if not loop.last }}
+    {%- endfor %}
+  ]
+}
+{%- endmacro %}
+
+{% macro material_declaration(md) -%}
+{
+  "materialDeclaration": {
+    "compositionType": {{ md.compositionType | tojson }}
+    {%- if md.compositionType == 'substance' %},"substance": {{ substance(md.substance) }}{% endif %}
+    {%- if md.compositionType == 'mixture' %},"mixture": {{ mixture(md.mixture) }}{% endif %}
+    {%- if md.get('safeUseInformation') %},"safeUseInformation": {{ md.safeUseInformation | tojson }}{% endif %}
+  }
+}
+{%- endmacro %}
+
+{% macro component(c) -%}
+{
+  {%- if c.get('id') %}"id": {{ c.id | tojson }},{% endif %}
+  "type": {{ c.type | tojson }},
+  "granularity": {{ c.granularity | tojson }}
+  {%- if c.get('materialDeclaration') %},"materialDeclaration": {{ material_declaration(c.materialDeclaration) }}{% endif %}
+  {%- if c.get('sustainability') %},"sustainability": {{ c.sustainability | tojson }}{% endif %}
+  {%- if c.get('certificatesOfAnalysis') %},"certificatesOfAnalysis": {{ c.certificatesOfAnalysis | tojson }}{% endif %}
+}
+{%- endmacro %}

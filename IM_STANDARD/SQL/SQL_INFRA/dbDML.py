@@ -1,39 +1,11 @@
 import sqlite3
 
-from IM_STANDARD.SQL.SQL_INFRA import DbDDL,SqliteDb
+from IM_STANDARD.SQL.SQL_INFRA.dbConnect import SqliteDb,dict_factory
+from IM_STANDARD.SQL.SQL_INFRA.dbDDL import DbDDL
 
 class DbDML(DbDDL):
-    class NO_DATA_FOUND(Exception):
-        """Raised when a query returns no rows."""
-        pass
-
-    class TOO_MANY_ROWS(Exception):
-        """Raised when a query returns more rows than expected."""
-        pass
-
-    class UK_VIOLATED(Exception):
-        """Raised when in an update or insert an uk constraint is violated"""
-        pass
-
-    class FK_VIOLATED(Exception):
-        """Raised when in an update or insert an fk constraint is violated"""
-        pass
-
-    class CHECK_VIOLATED(Exception):
-        """Raised when in an update or insert an fk constraint is violated"""
-        pass
-
-    def __init__(self,basedb:SqliteDb=None,
-                 connection: sqlite3.Connection=None):
-        if basedb is not None:
-            self.basedb=basedb
-            locconn=basedb.connection
-        elif connection is not None:
-            self.basedb=None
-            locconn = connection
-        else:
-            assert False
-        super().__init__(connection=locconn)
+    def __init__(self,sqlitedb:SqliteDb):
+        super().__init__(sqlitedb=sqlitedb)
         return
 
     @staticmethod
@@ -41,7 +13,7 @@ class DbDML(DbDDL):
                   subdict:dict=None,
                   sublist:list=None)->str:
         """
-        creates a select part selecting a dictrionary in a groupconcat
+        creates a select part selecting a json dictionary in a groupconcat
         to be used in a subselect
         group_concat('''' ||lang_iso_code2||''':''' ||lgtx_text||'''',',')
         param: keycolname name of the column for the key
@@ -51,7 +23,8 @@ class DbDML(DbDDL):
         :return: string to be used in subselect
                 """
         if valcolname is not None:
-            retval= f"""group_concat('"' ||{keycolname} ||'":"' || REPLACE({valcolname}, '"', '\\"')||'"',',')"""
+#            retval= f"""group_concat('"' ||{keycolname} ||'":"' || REPLACE(REPLACE({valcolname}, '\', '\\'), '"', '\"') || '"',',')"""
+            retval= f"json_group_object({keycolname},{valcolname})"
         elif subdict is not None:
             retval = f"""group_concat('"' ||{keycolname} ||'":"' || {subdict}||'"',',')"""
         elif sublist is not None:
@@ -63,12 +36,13 @@ class DbDML(DbDDL):
     @staticmethod
     def listgroup(colname:str)->str:
         """
-        creates a select part selecting a list in a groupconcat
+        creates a select part selecting a json-list in a groupconcat
         to be used in a subselect
         group_concat('''' ||lang_iso_code2||'''',',')
         :return: string to be used in subselect
                 """
-        return f"""group_concat('"' || REPLACE({colname}, '"', '\\"') || '"', ',')"""
+        #return f"""group_concat('"' || REPLACE(REPLACE({colname}, '\', '\\'), '"', '\"') ||  '"', ',')"""
+        return f"json_group_array({colname})"
 
     def writedbtofile(self, filepath):
         """
@@ -76,8 +50,7 @@ class DbDML(DbDDL):
         :param filepath: filenpath to write the database to
 
         """
-        assert self.basedb is not None,"writetofile exists only for baseddb dml"
-        self.basedb.writedbtofile(filepath=filepath)
+        self.sqlitedb.writedbtofile(filepath=filepath)
         return
 
     def execsql(self,
@@ -88,28 +61,30 @@ class DbDML(DbDDL):
           kwargs is the set of substitution variables ":x" in the sql statement
         """
 
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
         try:
             rows = cursor.execute(sql, kwargs).rowcount
         except sqlite3.Error as e:
             raise sqlite3.Error(f"{e.__class__} '{e.args}' when executing statement '{sql}' with args {kwargs}.")
-        self.connection.commit()
+        self.sqlitedb.connection.commit()
         return rows
 
     def select(self,
                sql: str,
+               aslist=False,
                **kwargs):
         """execute a sql select statement
         kwargs is the dict of substitution variables :x in the sql statement
         returns the resultset of the sql statement
+
         """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=None if aslist else dict_factory)
 
         try:
             cursor.execute(sql, kwargs)
         except sqlite3.Error as e:
             raise Exception(f'Statement failed "{sql}"'+
-                            f'\n{e.sqlite_errorname}: {e.args}') from e
+                            f'\n{e.args}') from e
         result = cursor.fetchall()
         return result
 
@@ -130,9 +105,9 @@ class DbDML(DbDDL):
              """
         rows= self.select(sql=sql,**kwargs)
         if len(rows)==0:
-            raise self.NO_DATA_FOUND(f"{tablename} for {kwargs} ")
+            raise SqliteDb.NO_DATA_FOUND(f"{tablename} for {kwargs} ")
         if len(rows)>1:
-            raise self.TOO_MANY_ROWS(f"{tablename} for {kwargs} ")
+            raise SqliteDb.TOO_MANY_ROWS(f"{tablename} for {kwargs} ")
         return rows[0]
 
     def lookupvalue(self, tablename: str,
@@ -177,7 +152,7 @@ class DbDML(DbDDL):
             number of inserted rows if rec is a list
             id of inserted row if rec is tuple or dict
         """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
 
         try:
             if type(rec) is list:
@@ -192,31 +167,17 @@ class DbDML(DbDDL):
         except sqlite3.IntegrityError as ei:
             # Unique und FK kann für Indexweiterzählen gebraucht werden. Darum keine Fehlermeldung
             if str(ei).startswith("UNIQUE constraint failed"):
-                raise self.UK_VIOLATED(str(ei))
+                raise SqliteDb.UK_VIOLATED(str(ei))
             if str(ei).startswith("FOREIGN KEY constraint failed"):
-                raise self.FK_VIOLATED(str(ei))
+                raise SqliteDb.FK_VIOLATED(str(ei))
             if str(ei).startswith("CHECK constraint failed"):
-                raise self.CHECK_VIOLATED(str(ei))
+                raise SqliteDb.CHECK_VIOLATED(str(ei))
 
             raise ei
         except sqlite3.Error as e:
             raise e
-        self.connection.commit()
+        self.sqlitedb.connection.commit()
         return retval
-
-    # def valuepairs2sqlexpr(**colvalues):
-    #     """changes a pair columnname, -value into a string used as sqlexpression, properly handling NULLs
-    #        input: {colname:colvalue,}
-    #        return "(col-name is NULL or col-name = value)" (depending on colvalue)
-    #                   and concatenated for every colname/-value pair
-    #        if value is not of integer type, enclose it with '' """
-    #     condition = ''
-    #     for key in colvalues:
-    #         if len(condition) > 0:
-    #             condition = condition + ' and '
-    #         condition = condition + '{} = ?'.format(key)
-    #     arguments = list(colvalues.values())
-    #     return f'({condition})', *arguments
 
     def rowcount(self,
                  tablename: str) -> int:

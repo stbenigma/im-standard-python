@@ -1,14 +1,14 @@
 {
   "ModelInfo": {
-    "modelname": "Informationsmodell-modell",
-    "modeltype": "Information model",
-    "mainlanguage": "en",
-    "modelversion": "0.9",
+    "modelName": "Informationsmodell-modell",
+    "modelType": "Information model",
+    "mainLanguage": "en",
+    "modelVersion": "0.9",
     "languages": [
       "de"
     ],
-    "targetenvironment": "Sandbox Stefan",
-    "origintool": "dataspot",
+    "targetEnvironment": "Sandbox Stefan",
+    "originTool": "dataspot",
     "additionalProps": {
       "dc": "2026-01-22T13:08:04",
       "FULLPATH": "Sandbox Stefan:Information model:Informationsmodell-modell",
@@ -20,11 +20,11 @@
   },
   "Categories": [
     {
-      "elementid": "CATG126",
+      "elementId": "CATG126",
       "name": {
         "en": "Generische Wertebereiche"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "description": {
         "en": "Basis Wertebereiche, generisch, d.h. sie k\u00f6nnen f\u00fcr viele Anwendungen genutzt werden und haben keine spezifische fachliche Bedeutung.\n\nWenn sie f\u00fcr ein Attribut verwendet werden, muss das Attribut beschreiben, wie es zu nutzen ist."
       },
@@ -35,11 +35,11 @@
       }
     },
     {
-      "elementid": "CATG127",
+      "elementId": "CATG127",
       "name": {
         "en": "Semantische Wertebereiche"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "description": {
         "en": "Spezifische Wertebereiche, die eine Bedeutung in der Sprache haben, die \u00fcber die reine strukturelle Darstellung (generische Wertebereiche) hinausgeht."
       },
@@ -52,12 +52,12 @@
       }
     },
     {
-      "elementid": "CATG128",
+      "elementId": "CATG128",
       "name": {
         "en": "Allgemeing\u00fcltige Wertebereiche"
       },
-      "categorytype": "DOMAIN",
-      "categoryid": "CATG127",
+      "categoryType": "DOMAIN",
+      "categoryId": "CATG127",
       "description": {
         "en": "Wertebereiche die f\u00fcr viele Attribute in vielen Entit\u00e4ten genutzt werden k\u00f6nnen.\nWie z.B. Name, Anzahl, Datum"
       },
@@ -70,12 +70,12 @@
       }
     },
     {
-      "elementid": "CATG129",
+      "elementId": "CATG129",
       "name": {
         "en": "Spezifische Wertebereiche"
       },
-      "categorytype": "DOMAIN",
-      "categoryid": "CATG127",
+      "categoryType": "DOMAIN",
+      "categoryId": "CATG127",
       "description": {
         "en": "Wertebereiche f\u00fcr einzelne (oder wenige) Attribute.\n\nSie legen eine sehr eingeschr\u00e4nkte Bedeuteung und/oder sehr klare Regeln f\u00fcr die m\u00f6glichen Werte und deren Nutzung fest."
       },
@@ -88,12 +88,12 @@
       }
     },
     {
-      "elementid": "CATG130",
+      "elementId": "CATG130",
       "name": {
         "en": "Standard Wertebereiche"
       },
-      "categorytype": "DOMAIN",
-      "categoryid": "CATG127",
+      "categoryType": "DOMAIN",
+      "categoryId": "CATG127",
       "description": {
         "en": "Wertebereiche, die in einem weit akzeptierten Standards definiert sind.\nz.B: ISO-Code f\u00fcr Land"
       },
@@ -106,11 +106,11 @@
       }
     },
     {
-      "elementid": "CATG131",
+      "elementId": "CATG131",
       "name": {
         "en": "Informationsmodellwertebereiche"
       },
-      "categorytype": "DOMAIN",
+      "categoryType": "DOMAIN",
       "description": {
         "en": "Wertebereiche f\u00fcr das Informationsmodell"
       },
@@ -123,11 +123,11 @@
       }
     },
     {
-      "elementid": "CATG132",
+      "elementId": "CATG132",
       "name": {
         "en": "Erweitertes Modell"
       },
-      "categorytype": "ENTITY",
+      "categoryType": "ENTITY",
       "description": {
         "en": "The core model consists of the basic elements according to relational theory.\n\nTheoretically, an information model can only be formed completely with these elements.\n\nFor practical applications, however, it makes sense to introduce extended elements that offer simplifications for readability and administration. \nBut they can all be clearly mapped to concepts of the core model. In other words, they are additions that do not corrupt the strictness of the core model."
       },
@@ -140,11 +140,11 @@
       }
     },
     {
-      "elementid": "CATG133",
+      "elementId": "CATG133",
       "name": {
         "en": "Kernmodell"
       },
-      "categorytype": "ENTITY",
+      "categoryType": "ENTITY",
       "description": {
         "en": "Das Kernmodell sind die grundlegenden Elemente gem\u00e4ss der relationalen Theorie.\n\nTheoretisch kann ein Informaionsmodell vollst\u00e4ndig nur mit diesen Elementen gebildet werden.\nF\u00fcr praktische Anwendungen macht es aber Sinn erweiterte Elemente einzuf\u00fchren, die Vereinfachungen f\u00fcr die Lesbarkeit und Verwaltung anbieten. \nAber sie sind alle eindeutig auf Konzepte des Kernmodells abbildbar. D.h. es sind Zus\u00e4tze, die die Striktheit des Kernmodells nicht korrumpieren."
       },
@@ -158,12 +158,12 @@
       }
     },
     {
-      "elementid": "CATG134",
+      "elementId": "CATG134",
       "name": {
         "en": "Beziehungen"
       },
-      "categorytype": "ENTITY",
-      "categoryid": "CATG133",
+      "categoryType": "ENTITY",
+      "categoryId": "CATG133",
       "description": {
         "en": "Gruppiere alle Entit\u00e4ten zum Thema Beziehungen"
       },
@@ -176,12 +176,12 @@
       }
     },
     {
-      "elementid": "CATG135",
+      "elementId": "CATG135",
       "name": {
         "en": "Entit\u00e4ten"
       },
-      "categorytype": "ENTITY",
-      "categoryid": "CATG133",
+      "categoryType": "ENTITY",
+      "categoryId": "CATG133",
       "description": {
         "en": "Gruppierung der Elemente rund um die Entit\u00e4t"
       },
@@ -194,12 +194,12 @@
       }
     },
     {
-      "elementid": "CATG136",
+      "elementId": "CATG136",
       "name": {
         "en": "Wertebereiche"
       },
-      "categorytype": "ENTITY",
-      "categoryid": "CATG133",
+      "categoryType": "ENTITY",
+      "categoryId": "CATG133",
       "description": {
         "en": "Gruppiere alle Entit\u00e4ten zum Thema Wertebereiche"
       },
@@ -214,12 +214,12 @@
   ],
   "Domains": [
     {
-      "elementid": "DOMA479",
+      "elementId": "DOMA479",
       "name": {
         "en": "Beschreibung"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG128",
+      "domainType": "TextDomain",
+      "categoryId": "CATG128",
       "description": {
         "en": "Textliche Erl\u00e4uterung eines Elementes. Beliebig lang, m\u00f6glicherweise strukturiert (z.B. markdown)"
       },
@@ -233,12 +233,12 @@
       }
     },
     {
-      "elementid": "DOMA480",
+      "elementId": "DOMA480",
       "name": {
         "en": "ID"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG128",
+      "domainType": "TextDomain",
+      "categoryId": "CATG128",
       "additionalProps": {
         "Label:en": "ID",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/Allgemeing\u00fcltige Wertebereiche/ID",
@@ -247,16 +247,16 @@
       }
     },
     {
-      "elementid": "DOMA481",
+      "elementId": "DOMA481",
       "name": {
         "en": "Kurzbeschreibung"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG128",
+      "domainType": "TextDomain",
+      "categoryId": "CATG128",
       "description": {
         "en": "Kurze textliche Erl\u00e4uterung zur Erkl\u00e4rung eines Elementes"
       },
-      "maxlength": 150,
+      "maxLength": 150,
       "additionalProps": {
         "Description:en": "Short textual explanation to explain an element",
         "Label:en": "Short Description",
@@ -267,16 +267,16 @@
       }
     },
     {
-      "elementid": "DOMA482",
+      "elementId": "DOMA482",
       "name": {
         "en": "Kurzname"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG128",
+      "domainType": "TextDomain",
+      "categoryId": "CATG128",
       "description": {
         "en": "Kurzer Name f\u00fcr ein Element, max. 15 Zeichen lang"
       },
-      "maxlength": 15,
+      "maxLength": 15,
       "additionalProps": {
         "Description:en": "Short name (max 15 chars) for an element",
         "Label:en": "Shortname",
@@ -287,16 +287,16 @@
       }
     },
     {
-      "elementid": "DOMA483",
+      "elementId": "DOMA483",
       "name": {
         "en": "Name"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG128",
+      "domainType": "TextDomain",
+      "categoryId": "CATG128",
       "description": {
         "en": "Zeichenfolge, typischerweise Buchstaben mit einigen Sonderzeichen (Ziffern, Bindestrichte, Leerschl\u00e4ge...), die genutzt wird um etwas zu benennen."
       },
-      "maxlength": 100,
+      "maxLength": 100,
       "additionalProps": {
         "Description:en": "A sequence of characters, typically letters with some special characters (numbers, hyphens, blanks etc.), used to name something.",
         "Label:en": "Name",
@@ -307,12 +307,12 @@
       }
     },
     {
-      "elementid": "DOMA484",
+      "elementId": "DOMA484",
       "name": {
         "en": "Boolean"
       },
-      "domaintype": "BooleanDomain",
-      "categoryid": "CATG126",
+      "domainType": "BooleanDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Wahrheitswert (wahr/falsch bzw. true/false)"
       },
@@ -326,12 +326,12 @@
       }
     },
     {
-      "elementid": "DOMA485",
+      "elementId": "DOMA485",
       "name": {
         "en": "Datum"
       },
-      "domaintype": "DatetimeDomain",
-      "categoryid": "CATG126",
+      "domainType": "DatetimeDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Bezeichnet einen Tag im gregorianischen Kalender.\n\nDer Wertebereich selber kennt keine Darstellung. \nDie Darstellung JJJJ-MM-TT (siehe Muster) orientiert sich an ISO und ist wichtig beim Austausch einer Datumsdarstellung. "
       },
@@ -347,12 +347,12 @@
       }
     },
     {
-      "elementid": "DOMA486",
+      "elementId": "DOMA486",
       "name": {
         "en": "Dezimalzahl"
       },
-      "domaintype": "NumericDomain",
-      "categoryid": "CATG126",
+      "domainType": "NumericDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Zahl mit Kommastellen\n\nOhne Limite. Eine solche muss im Attribut gegeben werden. \nEine Dezimalzahl mit Limite sollte als eigener Wertebereich definiert werden."
       },
@@ -366,12 +366,12 @@
       }
     },
     {
-      "elementid": "DOMA487",
+      "elementId": "DOMA487",
       "name": {
         "en": "Integer"
       },
-      "domaintype": "NumericDomain",
-      "categoryid": "CATG126",
+      "domainType": "NumericDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Nat\u00fcrliche Zahl.\n\nOhne Limite. Eine solche muss im Attribut gegeben werden. Eine Integer mit Limite sollte als eigener Wertebereich definiert werden."
       },
@@ -385,16 +385,16 @@
       }
     },
     {
-      "elementid": "DOMA488",
+      "elementId": "DOMA488",
       "name": {
         "en": "String"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG126",
+      "domainType": "TextDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Eine Zeichenfolge als einzeilige Kurzbeschreibung, Erl\u00e4uterung.\n\nNicht formatiert.\nEine leere Zeichenfolge ist ein erlaubter Wert und ist nicht gleichbedeutend mit nicht existent (*null*)"
       },
-      "maxlength": 2000,
+      "maxLength": 2000,
       "additionalProps": {
         "Description:en": "A string of characters as a one-line brief description or explanation.\n\nnon formatted\nAn empty string is a valid value and is not equivalent to non-existent (*null*).",
         "Label:en": "String",
@@ -406,12 +406,12 @@
       }
     },
     {
-      "elementid": "DOMA489",
+      "elementId": "DOMA489",
       "name": {
         "en": "Text"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG126",
+      "domainType": "TextDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Irgend ein text als Folge von Schriftzeichen\n\nEin leerer Text ist nicht gleichbedeutend mit nicht existierend (*null*)"
       },
@@ -426,12 +426,12 @@
       }
     },
     {
-      "elementid": "DOMA490",
+      "elementId": "DOMA490",
       "name": {
         "en": "Zeitpunkt"
       },
-      "domaintype": "DatetimeDomain",
-      "categoryid": "CATG126",
+      "domainType": "DatetimeDomain",
+      "categoryId": "CATG126",
       "description": {
         "en": "Punkt auf dem Zeitstrahl in einer Granularit\u00e4t Sekunden.\n\nDer Wertebereich kennt selber keine Darstellung. Die ISO Darstellung yyyy-mm-ddThh:mi.ss+hh:mi (siehe Muster) dient nur dem Austausch von Zeitpunkten im Schriftzeichenformat.\n"
       },
@@ -446,13 +446,13 @@
       }
     },
     {
-      "elementid": "DOMA491",
+      "elementId": "DOMA491",
       "name": {
         "en": "ISO language code 3"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG127",
-      "maxlength": 3,
+      "domainType": "TextDomain",
+      "categoryId": "CATG127",
+      "maxLength": 3,
       "additionalProps": {
         "Label:en": "ISO language code 3",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/ISO language code 3",
@@ -462,13 +462,13 @@
       }
     },
     {
-      "elementid": "DOMA492",
+      "elementId": "DOMA492",
       "name": {
         "en": "SI-Unit"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG127",
-      "maxlength": 10,
+      "domainType": "TextDomain",
+      "categoryId": "CATG127",
+      "maxLength": 10,
       "additionalProps": {
         "Label:en": "SI-Unit",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/SI-Unit",
@@ -478,12 +478,12 @@
       }
     },
     {
-      "elementid": "DOMA493",
+      "elementId": "DOMA493",
       "name": {
         "en": "Beispielwert"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG129",
+      "domainType": "TextDomain",
+      "categoryId": "CATG129",
       "additionalProps": {
         "Label:en": "Beispielwert",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/Spezifische Wertebereiche/Beispielwert",
@@ -493,12 +493,12 @@
       }
     },
     {
-      "elementid": "DOMA494",
+      "elementId": "DOMA494",
       "name": {
         "en": "Digits#"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG129",
+      "domainType": "TextDomain",
+      "categoryId": "CATG129",
       "additionalProps": {
         "Label:en": "Digits#",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/Spezifische Wertebereiche/Digits#",
@@ -507,13 +507,13 @@
       }
     },
     {
-      "elementid": "DOMA495",
+      "elementId": "DOMA495",
       "name": {
         "en": "ElementId"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG129",
-      "maxlength": 12,
+      "domainType": "TextDomain",
+      "categoryId": "CATG129",
+      "maxLength": 12,
       "additionalProps": {
         "Label:en": "ElementId",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/Spezifische Wertebereiche/ElementId",
@@ -523,17 +523,17 @@
       }
     },
     {
-      "elementid": "DOMA496",
+      "elementId": "DOMA496",
       "name": {
         "en": "Reihenfolge Nummer"
       },
-      "domaintype": "NumericDomain",
-      "categoryid": "CATG129",
+      "domainType": "NumericDomain",
+      "categoryId": "CATG129",
       "description": {
         "en": "Zahl die eine Reihenfolge f\u00fcr die Sortiereung in einer Liste angibt."
       },
-      "minvalue": 1,
-      "totaldigits": 5,
+      "minValue": 1,
+      "totalDigits": 5,
       "additionalProps": {
         "Description:en": "Number that specifies the order for sorting in a list.",
         "Label:en": "Sequence number",
@@ -544,12 +544,12 @@
       }
     },
     {
-      "elementid": "DOMA497",
+      "elementId": "DOMA497",
       "name": {
         "en": "Text length"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG129",
+      "domainType": "TextDomain",
+      "categoryId": "CATG129",
       "additionalProps": {
         "Label:en": "Text length",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/Spezifische Wertebereiche/Text length",
@@ -558,12 +558,12 @@
       }
     },
     {
-      "elementid": "DOMA498",
+      "elementId": "DOMA498",
       "name": {
         "en": "Value limit"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG129",
+      "domainType": "TextDomain",
+      "categoryId": "CATG129",
       "additionalProps": {
         "Label:en": "Value limit",
         "FULLPATH": "Information Wertebereiche:Semantische Wertebereiche/Spezifische Wertebereiche/Value limit",
@@ -572,17 +572,17 @@
       }
     },
     {
-      "elementid": "DOMA499",
+      "elementId": "DOMA499",
       "name": {
         "en": "Versionsnummer"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG129",
+      "domainType": "TextDomain",
+      "categoryId": "CATG129",
       "description": {
         "en": "Versionsnummer f\u00fcr ein Artefakt, Dokument, Produkt"
       },
-      "maxlength": 15,
-      "syntaxrule": "^\\d{1,2}\\.\\d{1,2}(\\.\\d{1,2})?$",
+      "maxLength": 15,
+      "syntaxRule": "^\\d{1,2}\\.\\d{1,2}(\\.\\d{1,2})?$",
       "additionalProps": {
         "Description:en": "Version number for an artefact, document, product",
         "Label:en": "Version number",
@@ -593,16 +593,16 @@
       }
     },
     {
-      "elementid": "DOMA500",
+      "elementId": "DOMA500",
       "name": {
         "en": "ISO language code 2"
       },
-      "domaintype": "TextDomain",
-      "categoryid": "CATG130",
+      "domainType": "TextDomain",
+      "categoryId": "CATG130",
       "description": {
         "en": "2 Buchstaben ISO-Code gem\u00e4ss ISO 639."
       },
-      "syntaxrule": "[a-z]{2}",
+      "syntaxRule": "[a-z]{2}",
       "additionalProps": {
         "Description:en": "2 letter iso code according to ISO 639",
         "Label:en": "ISO language code 2",
@@ -613,16 +613,16 @@
       }
     },
     {
-      "elementid": "DOMA501",
+      "elementId": "DOMA501",
       "name": {
         "en": "ATTR_TYPE"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "ENTITY",
-          "displayvalue": {
+          "displayValue": {
             "en": "Entity-Attribute"
           },
           "additionalProps": {
@@ -633,7 +633,7 @@
         },
         {
           "value": "GroupDomain",
-          "displayvalue": {
+          "displayValue": {
             "en": "GroupDomain Attribute"
           },
           "additionalProps": {
@@ -651,16 +651,16 @@
       }
     },
     {
-      "elementid": "DOMA502",
+      "elementId": "DOMA502",
       "name": {
         "en": "Boolean"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "FALSE",
-          "displayvalue": {
+          "displayValue": {
             "en": "falsch"
           },
           "additionalProps": {
@@ -671,7 +671,7 @@
         },
         {
           "value": "TRUE",
-          "displayvalue": {
+          "displayValue": {
             "en": "wahr"
           },
           "additionalProps": {
@@ -689,16 +689,16 @@
       }
     },
     {
-      "elementid": "DOMA503",
+      "elementId": "DOMA503",
       "name": {
         "en": "DateTimeGranularity"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "QUARTER",
-          "displayvalue": {
+          "displayValue": {
             "en": "Quartal"
           },
           "additionalProps": {
@@ -709,7 +709,7 @@
         },
         {
           "value": "HOUR",
-          "displayvalue": {
+          "displayValue": {
             "en": "Hour"
           },
           "additionalProps": {
@@ -720,7 +720,7 @@
         },
         {
           "value": "DAY",
-          "displayvalue": {
+          "displayValue": {
             "en": "Day"
           },
           "additionalProps": {
@@ -731,7 +731,7 @@
         },
         {
           "value": "MONTH",
-          "displayvalue": {
+          "displayValue": {
             "en": "Month"
           },
           "additionalProps": {
@@ -742,7 +742,7 @@
         },
         {
           "value": "MILlISECOND",
-          "displayvalue": {
+          "displayValue": {
             "en": "Millisecond"
           },
           "additionalProps": {
@@ -753,7 +753,7 @@
         },
         {
           "value": "SEMESTER",
-          "displayvalue": {
+          "displayValue": {
             "en": "Semestre "
           },
           "additionalProps": {
@@ -764,7 +764,7 @@
         },
         {
           "value": "CENTURY",
-          "displayvalue": {
+          "displayValue": {
             "en": "Century"
           },
           "additionalProps": {
@@ -775,7 +775,7 @@
         },
         {
           "value": "MINUTE",
-          "displayvalue": {
+          "displayValue": {
             "en": "Minute"
           },
           "additionalProps": {
@@ -786,7 +786,7 @@
         },
         {
           "value": "WEEK",
-          "displayvalue": {
+          "displayValue": {
             "en": "Week"
           },
           "additionalProps": {
@@ -797,7 +797,7 @@
         },
         {
           "value": "YEAR",
-          "displayvalue": {
+          "displayValue": {
             "en": "Year"
           },
           "additionalProps": {
@@ -808,7 +808,7 @@
         },
         {
           "value": "SECOND",
-          "displayvalue": {
+          "displayValue": {
             "en": "Second"
           },
           "additionalProps": {
@@ -826,12 +826,12 @@
       }
     },
     {
-      "elementid": "DOMA504",
+      "elementId": "DOMA504",
       "name": {
         "en": "DomainType"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "TextDomain",
@@ -890,16 +890,16 @@
       }
     },
     {
-      "elementid": "DOMA505",
+      "elementId": "DOMA505",
       "name": {
         "en": "DOMA_TYPE"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "DOM",
-          "displayvalue": {
+          "displayValue": {
             "en": "entity Domain"
           },
           "additionalProps": {
@@ -910,7 +910,7 @@
         },
         {
           "value": "DOMA",
-          "displayvalue": {
+          "displayValue": {
             "en": "entity Text domain"
           },
           "additionalProps": {
@@ -928,16 +928,16 @@
       }
     },
     {
-      "elementid": "DOMA506",
+      "elementId": "DOMA506",
       "name": {
         "en": "Relation End Type"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "FORWARD",
-          "displayvalue": {
+          "displayValue": {
             "en": "Forward Relation"
           },
           "additionalProps": {
@@ -948,7 +948,7 @@
         },
         {
           "value": "REVERSE",
-          "displayvalue": {
+          "displayValue": {
             "en": "Reverse Relation"
           },
           "additionalProps": {
@@ -966,16 +966,16 @@
       }
     },
     {
-      "elementid": "DOMA507",
+      "elementId": "DOMA507",
       "name": {
         "en": "Relationptype"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "SUBTYPE",
-          "displayvalue": {
+          "displayValue": {
             "en": "1:1, (exclusive) subtype"
           },
           "additionalProps": {
@@ -986,7 +986,7 @@
         },
         {
           "value": "ROLE",
-          "displayvalue": {
+          "displayValue": {
             "en": "1:1, role"
           },
           "additionalProps": {
@@ -997,7 +997,7 @@
         },
         {
           "value": "1:1",
-          "displayvalue": {
+          "displayValue": {
             "en": "one-to-one"
           },
           "additionalProps": {
@@ -1008,7 +1008,7 @@
         },
         {
           "value": "M:N",
-          "displayvalue": {
+          "displayValue": {
             "en": "many-to-many"
           },
           "additionalProps": {
@@ -1019,7 +1019,7 @@
         },
         {
           "value": "M:1",
-          "displayvalue": {
+          "displayValue": {
             "en": "many-to-one, functional"
           },
           "additionalProps": {
@@ -1037,16 +1037,16 @@
       }
     },
     {
-      "elementid": "DOMA508",
+      "elementId": "DOMA508",
       "name": {
         "en": "Relationship cardinality"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "1",
-          "displayvalue": {
+          "displayValue": {
             "en": "one"
           },
           "additionalProps": {
@@ -1057,7 +1057,7 @@
         },
         {
           "value": "M",
-          "displayvalue": {
+          "displayValue": {
             "en": "many"
           },
           "additionalProps": {
@@ -1075,16 +1075,16 @@
       }
     },
     {
-      "elementid": "DOMA509",
+      "elementId": "DOMA509",
       "name": {
         "en": "RELA_TYPE"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "RELA",
-          "displayvalue": {
+          "displayValue": {
             "en": "entity many-to-many Relation"
           },
           "additionalProps": {
@@ -1102,12 +1102,12 @@
       }
     },
     {
-      "elementid": "DOMA510",
+      "elementId": "DOMA510",
       "name": {
         "en": "Rounding unit"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "1000",
@@ -1198,16 +1198,16 @@
       }
     },
     {
-      "elementid": "DOMA511",
+      "elementId": "DOMA511",
       "name": {
         "en": "Type of content"
       },
-      "domaintype": "LOVDomain",
-      "categoryid": "CATG131",
+      "domainType": "LOVDomain",
+      "categoryId": "CATG131",
       "values": [
         {
           "value": "SOUND",
-          "displayvalue": {
+          "displayValue": {
             "en": "Ton"
           },
           "additionalProps": {
@@ -1218,7 +1218,7 @@
         },
         {
           "value": "DRAWING",
-          "displayvalue": {
+          "displayValue": {
             "en": "Graphik"
           },
           "additionalProps": {
@@ -1229,7 +1229,7 @@
         },
         {
           "value": "IMAGE",
-          "displayvalue": {
+          "displayValue": {
             "en": "Bild"
           },
           "additionalProps": {
@@ -1248,7 +1248,7 @@
         },
         {
           "value": "FILM",
-          "displayvalue": {
+          "displayValue": {
             "en": "Film"
           },
           "additionalProps": {
@@ -1259,7 +1259,7 @@
         },
         {
           "value": "TEXT",
-          "displayvalue": {
+          "displayValue": {
             "en": "Formatierter Text"
           },
           "additionalProps": {
@@ -1279,15 +1279,15 @@
   ],
   "Entities": [
     {
-      "elementid": "ENTI98",
+      "elementId": "ENTI98",
       "name": {
         "en": "Beziehung"
       },
-      "categoryid": "CATG134",
+      "categoryId": "CATG134",
       "description": {
         "en": "Eine Beziehung verbindet immer eine Entit\u00e4t (Startentit\u00e4t) mit genau einer zweiten Entit\u00e4t (End-/Reversentit\u00e4t).  \n\nDie beiden Enden k\u00f6nnen eine Entit\u00e4t mit sich selber verkn\u00fcpfen. Man nennt dies rekursive Beziehung. Sie repr\u00e4sentiert typischerweise eine Hierarchie. Die beiden Enden einer rekursiven Beziehung m\u00fcssen optional sein.\n\nEs werden 3 Typen von Beziehung unterschieden.  *Funktionale Beziehungen*  bilden eine eindeutige Abbildung von der ersten zur zweiten Entit\u00e4t. D.h. von einer Instanz der ersten Entit\u00e4t gibt es eine Beziehung zu maxmal 1 Instanz der 2 Entit\u00e4t. (oder auch keine f\u00fcr optionale Beziehungen).  \n\n*Rollenbeziehung* bilden eine Spezialisierung einer Entit\u00e4t. Rollen einer Entit\u00e4t *sind* die Entit\u00e4t erg\u00e4nzt um zus\u00e4tzliche Beziehungen oder Attribute.  D.h. Rollen erben immer alle Eigenschaften der Entit\u00e4t von der sie eine Rolle sind und erweiteren sie um Eigenschaften, die f\u00fcr ihre Bedeutung oder Nutzung notwendig sind.  \n\n*Viele-zu-viele Beziehungen* Eine Instanz der einen Seite kann mit vielen Instanzen der anderen Seite in Beziehung stehen. Und umgekehrt. Diese Beziehungsart ist im relationalen Modell nicht vorgesehen und muss in der technischen Umsetzung mittels einer zus\u00e4tlichen Entit\u00e4t / Tabelle aufgel\u00f6st werden. Diese Aufl\u00f6sung ist algorithmisch klar definiert, so dass die viele-zu-viele Beziehung die Regeln des relationalen Modells nicht verletzt. F\u00fcr das Informationsmodell macht die Beziehung Sinn, da sie einen Sachverhalt einfacher und damit lesbarer darstellt."
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Verkn\u00fcpfung zweier Entit\u00e4ten"
       },
       "examples": [
@@ -1307,11 +1307,11 @@
       }
     },
     {
-      "elementid": "ENTI99",
+      "elementId": "ENTI99",
       "name": {
         "en": "Beziehungsende"
       },
-      "categoryid": "CATG134",
+      "categoryId": "CATG134",
       "description": {
         "en": "Endpunkt einer Beziehung. Ankn\u00fcpfungspunkt der Relation an eine Entit\u00e4t. Es gibt immer genau 2 Endpunkte in einer Relation. Es gibt eine Richtung der Beziehung: vorw\u00e4rts/r\u00fcckw\u00e4rts Zur Vereinfachung der Verwendung der verschiedenen Arten der Beziehung Rolle, funktional, viele-2-viele verwenden spezifische Beziehung endet als vorw\u00e4rts und r\u00fcckw\u00e4rts.  Die Beziehung ist wie folgt zu lesen: 1 Instanz der Entit\u00e4t <assoziations-text> <optional/zwingend> <1/viele> Instanzen der Entit\u00e4t am anderen Ende der Relation."
       },
@@ -1331,11 +1331,11 @@
       }
     },
     {
-      "elementid": "ENTI100",
+      "elementId": "ENTI100",
       "name": {
         "en": "Exklusivbeziehung"
       },
-      "categoryid": "CATG134",
+      "categoryId": "CATG134",
       "synonyms": [
         "Arc"
       ],
@@ -1355,11 +1355,11 @@
       }
     },
     {
-      "elementid": "ENTI101",
+      "elementId": "ENTI101",
       "name": {
         "en": "Funktionale Beziehung"
       },
-      "categoryid": "CATG134",
+      "categoryId": "CATG134",
       "description": {
         "en": "Eine Many-zu-1-Beziehung. Jede Instanz der ersten Entit\u00e4t ist mit genau einer Instanz der Entit\u00e4t am anderen Ende (reverse/ende-Entit\u00e4t) verbunden. Es handelt sich um eine eindeutige, funktionale Abh\u00e4ngigkeit. Ausgehend von der Instanz der 1. Entit\u00e4t findet man eindeutig die zugewiesene Instanz der anderen Entit\u00e4t. Die Bezeichnung \\\"viele\\\" bedeutet 1 oder mehrere. Falls das Beziehungsende optional ist, bedeutet es 0,1 oder mehrere.  Die Kardinalit\u00e4t ab der ersten (Start-)Entit\u00e4t ist immer \\\"1\\\". Die Kardinalit\u00e4t am anderen Ende kann \\\"1\\\" oder \\\"M\\\" sein. Wir sprechen von einer \u201eM:1\u201c / \u201emany-to-1\u201c respektive von einer 1:1 Beziehung.  F\u00fcr funktionale Beziehungen m\u00fcssen die Assotziationstexte in beide Richtungen angegeben werden. Sie liefern die Bedeutung der funktionalien Abh\u00e4ngigkeit.  Eine 1:1 funktionale Beziehung kann es nur sein, wenn beide Seiten optional oder beide Seiten obligatorisch sind. Im letzteren Fall darf die Beziehung nicht in einem Arc gruppiert sein. Abgrenzung von 1:1 funktionalen Beziehungen zu Rollen/Subentit\u00e4t- Beziehungen:  1:1    1 optional - 1 optional    1 obligatorsich - 1 obligatorisch (ohne arc)   1 obligatorsich - 1 optional Rollen    1 obligatorisch - 1 optional Subentit\u00e4ten    1 obligatorisch - 1 obligatorisch (mit arc)"
       },
@@ -1378,11 +1378,11 @@
       }
     },
     {
-      "elementid": "ENTI102",
+      "elementId": "ENTI102",
       "name": {
         "en": "Attribut"
       },
-      "categoryid": "CATG135",
+      "categoryId": "CATG135",
       "synonyms": [
         "Eigenschaft",
         "Merkmal",
@@ -1392,7 +1392,7 @@
       "description": {
         "en": "Beschreibung des Beh\u00e4lters eines Wertes. \nAuch Eigenschaft oder Merkmal genannt. \n\nDas Attribut bildet zusammen mit den Beziehungen die einzige M\u00f6glichkeit elementare Werte (Aussagen) zu beschreiben.\n\nEin Attribut ist entweder direkt eine Eigenschaft einer Entit\u00e4t (Entit\u00e4tsattribut). Oder es ist als Wertebereichattribut Mitglied in einer Gruppe von Attributen, die zusammen einen Wertebereich vom Typ Gruppenattribut bilden.\n\nUm das Informationsmodell redundanzfrei zu halten, d\u00fcrfen Attributwerte nicht algorithmisch aus anderen Attributwerden abgeleitet werden. Ist ein abgeleitetes Attribut f\u00fcr das Verst\u00e4ndnis oder die Kommunikation notwendig, ist es als spezielle Rolle \"Abgeleitetes Attribut* zu modellieren.\n\nNach der ersten Normalform (1NF) des relationalen Modells macht ein Attributwert *eine* Aussage \u00fcber *einen* Aspekt *einer* Instanz der Entit\u00e4t, f\u00fcr die das Attribut eine Eigenschaft ist. Dies bedeutet, dass mehrwertige Attribute und kombinierte Attributwerte nicht zul\u00e4ssig sind. \nDie Kennzeichen *wiederholt*\u201c *historisiert* und *mehrsprachig* kennzeichnen mehrwertige Attribute f\u00fcr besondere Zwecke. Diese Erweiterungen sind aus Gr\u00fcnden der Benutzerfreundlichkeit definiert und stehen nicht im Widerspruch zu 1NF, da sie algorithmisch in eine 1NFl umgewandelt werden k\u00f6nnen. "
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Beh\u00e4lter f\u00fcr atomaren Wert"
       },
       "examples": [
@@ -1418,11 +1418,11 @@
       ]
     },
     {
-      "elementid": "ENTI103",
+      "elementId": "ENTI103",
       "name": {
         "en": "Entit\u00e4t"
       },
-      "categoryid": "CATG135",
+      "categoryId": "CATG135",
       "synonyms": [
         "Gesch\u00e4ftsobjekt",
         "Business object"
@@ -1447,11 +1447,11 @@
       ]
     },
     {
-      "elementid": "ENTI104",
+      "elementId": "ENTI104",
       "name": {
         "en": "Entit\u00e4tsschl\u00fcssel"
       },
-      "categoryid": "CATG135",
+      "categoryId": "CATG135",
       "synonyms": [
         "Schl\u00fcssel"
       ],
@@ -1479,11 +1479,11 @@
       ]
     },
     {
-      "elementid": "ENTI105",
+      "elementId": "ENTI105",
       "name": {
         "en": "Entit\u00e4tsttribut"
       },
-      "categoryid": "CATG135",
+      "categoryId": "CATG135",
       "synonyms": [
         "Eigenschaft",
         "Merkmal"
@@ -1506,11 +1506,11 @@
       }
     },
     {
-      "elementid": "ENTI106",
+      "elementId": "ENTI106",
       "name": {
         "en": "Schl\u00fcsselelement"
       },
-      "categoryid": "CATG135",
+      "categoryId": "CATG135",
       "description": {
         "en": "Attribut- oder (funktionale) Beziehung, die Teil eines Schl\u00fcssels f\u00fcr die Entit\u00e4t ist.\n\nDie Kombination Entit\u00e4tsschl\u00fcssel und refereziertes Entit\u00e4tsattribut bzw. Funktionalie Beziehung muss eindeutig sein."
       },
@@ -1531,11 +1531,11 @@
       ]
     },
     {
-      "elementid": "ENTI107",
+      "elementId": "ENTI107",
       "name": {
         "en": "Abgeleitetes attribut"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "description": {
         "en": "Attribut, dessen Wert aus anderen Attributen aus diesem Informatiosmodell berechnet werden kann.\n\nSolche Attributwerte sind redundant und sollten immer algorithmisch verarbeitet oder \u00fcberpr\u00fcft werden um die Konsistenz der gesamten Informationen zu gew\u00e4hrleisten.\n\nDa abgeleitete Attribute h\u00e4ufig in Gesch\u00e4ftsprozessen und Benutzerschnittstellen verwendet werden, sollten sie im Informationsmodell beschreibbar sein."
       },
@@ -1553,11 +1553,11 @@
       }
     },
     {
-      "elementid": "ENTI108",
+      "elementId": "ENTI108",
       "name": {
         "en": "Gesch\u00e4ftsregel"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "description": {
         "en": "Eine gesch\u00e4ftliche Regel, die mit den Standardelementen des Informationsmodells nicht beschrieben werden kann. Eine Regel muss mindestens 1 Element betreffen."
       },
@@ -1576,11 +1576,11 @@
       }
     },
     {
-      "elementid": "ENTI109",
+      "elementId": "ENTI109",
       "name": {
         "en": "Kategorie"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "description": {
         "en": "Kategorie, Gruppierung von Wertebereichen, Entit\u00e4ten oder Kategorien f\u00fcr eine einfache Kommunikation, Anzeige oder Suche.\n\nDie Kriterien f\u00fcr eine Gruppierung sind frei w\u00e4hlbar. Es empfiehlt sich einheitliche Apsekte f\u00fcr eine Gruppeneinteilung zu nutzen. Bew\u00e4hrt hat sich eine Einteilung in die Gesch\u00e4ftsf\u00e4higkeiten (Finanzen, Produktion, Marketing, Persona,...) eines Unternehmens."
       },
@@ -1599,11 +1599,11 @@
       }
     },
     {
-      "elementid": "ENTI110",
+      "elementId": "ENTI110",
       "name": {
         "en": "Rollenbeziehung"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "description": {
         "en": "1:1 Beziehung die eine Rolle darstellt. Analogon: Ein:e Schauspieler:in (Person) spielt eine Rolle um eine andere Person (mit anderen Merkmalen) zu repr\u00e4sentieren.  Eine Rolle hat immer eine Grundentit\u00e4t, die sie erweitert.  Ein physikalischer Artikel ist ein Artikel mit Abmessungen und Gewicht. Alle Eigenschaften (Attribute, Beziehungen, Schl\u00fcssel, Regeln,... ) der Grundentit\u00e4t gelten auch f\u00fcr die Rolle. Die Rolle *ist* die Grundentit\u00e4t, erweitert umd eigene Eigenschaften, f\u00fcr spezielle Nutzungen.  Eine spezielle Art von Rolle sind exklusive / \\\"entweder-oder\\\" Rollen sog. Subentit\u00e4ten. Eine Gruppe von exkusiven Rollen wird in einem Arc zusammengefasst. Die Grundentit\u00e4t (in dem Fall genannt Superentit\u00e4t) muss genau eine der Rollen aus der Gruppe annehmen. Bsp: Ein \u00f6ffentliches Verkehrsmittel ist entweder ein Bus oder ein Zug oder ein Schiff.  Bei Rollenbeziehungen sind die Kardinalit\u00e4ten auf beiden Seiten \\\"1\\\". Die Beziehung von der Rolle zur Grundentit\u00e4t ist obligatorisch, von der Grundentit\u00e4t zur Rolle ist optional. Bei Subentit\u00e4ten ist die Beziehung der Subentit\u00e4t zur Grundentit\u00e4t (Superentit\u00e4t) immer obligatorisch, von der Superentit\u00e4t zur Grundentit\u00e4t ist die Beziehunge obligatorisch und in einem  \\\"entweder-oder\\\", d.h. in einem Arc zusammengefasst.  Der Assoziationstext ist immer \\\"ist\\\". Darum w\u00e4re der Text redundant und er kann zu Gunsten der Einfachheit, weggelassen werden."
       },
@@ -1628,11 +1628,11 @@
       }
     },
     {
-      "elementid": "ENTI111",
+      "elementId": "ENTI111",
       "name": {
         "en": "viele-zu-viele Beziehung"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "description": {
         "en": "Die many-to-many Beziehung verkn\u00fcpft in beide Richung 1 Instanz der einen Entit\u00e4t mit 0.. vielen Instanzen der anderen Entit\u00e4t. Die Kardinalit\u00e4t muss bei beiden Enden \\\"M\\\" sein. Assoziationstexte sind in beide Richtungen Pflicht.  Eine many-to-many Beziehung impliziert immer eine weitere Entit\u00e4t, die diese Art der Verkn\u00fcpfung abbildet. Wir verzichten im Informationsmodell dzu Gunsten der einfacheren Darstellung darauf, diese zus\u00e4tzliche Entit\u00e4t (mit je einer Verbindung zu den beiden Entit\u00e4ten) darzustellen. Sobald dieses zus\u00e4tzliche Entit\u00e4t aber Attribute oder Beziehungen hat, muss sie als normale Entit\u00e4t dokumentiert werden."
       },
@@ -1650,11 +1650,11 @@
       }
     },
     {
-      "elementid": "ENTI112",
+      "elementId": "ENTI112",
       "name": {
         "en": "Wertebereichattribut"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "description": {
         "en": "Beschreibung eines Feldes in einer Gruppendom\u00e4ne. Ist einerseits Teil einer Wertebereichgruppe (tr\u00e4gt bei zu) und hat anderer seit selber einen Wertebereich f\u00fcr seine Werte (eingeschr\u00e4nkt durch)."
       },
@@ -1672,11 +1672,11 @@
       }
     },
     {
-      "elementid": "ENTI113",
+      "elementId": "ENTI113",
       "name": {
         "en": "Wertebereichgruppe"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "synonyms": [
         "Gruppenattribut"
       ],
@@ -1699,11 +1699,11 @@
       }
     },
     {
-      "elementid": "ENTI114",
+      "elementId": "ENTI114",
       "name": {
         "en": "Zus\u00e4tzliche Eigenschaft"
       },
-      "categoryid": "CATG132",
+      "categoryId": "CATG132",
       "synonyms": [
         "User defined property"
       ],
@@ -1725,11 +1725,11 @@
       }
     },
     {
-      "elementid": "ENTI115",
+      "elementId": "ENTI115",
       "name": {
         "en": "Informationsmodell"
       },
-      "categoryid": "CATG133",
+      "categoryId": "CATG133",
       "synonyms": [
         "Fachdatenmodell",
         "Konzeptionelles Datenmodell",
@@ -1758,11 +1758,11 @@
       ]
     },
     {
-      "elementid": "ENTI116",
+      "elementId": "ENTI116",
       "name": {
         "en": "Bin\u00e4rer Wertebereich"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Dokumente irgendwelcher Art, die nicht in einem als strukturiert bezeichneten Format (Text, Zahl, Boolean, Zeitpunkt) abgespeichert werden kann.  Als Dokumente im Filesystem (Formate: PDF, PNG, TIFF, XLS, DOC, kynote, etc.) oder als bin\u00e4re Datenbankobjekte verwaltet."
       },
@@ -1776,11 +1776,11 @@
       }
     },
     {
-      "elementid": "ENTI117",
+      "elementId": "ENTI117",
       "name": {
         "en": "Boolean Wertebereich"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Wahrheitswert (Boolean). Es kann es nur einen geben. Die Bedeutung von Wahr (true) und Falsch (false) ist immer dieselbe:  Die Aussage ist wahr oder sie ist falsch. Was wahr und falsch f\u00fcr eine Bedeutung oder Auswirkung hat, wird im Attribut festgelegt."
       },
@@ -1794,11 +1794,11 @@
       }
     },
     {
-      "elementid": "ENTI118",
+      "elementId": "ENTI118",
       "name": {
         "en": "Numerischer Wertebereich"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Beschreibung von Zahlenwerten."
       },
@@ -1812,11 +1812,11 @@
       }
     },
     {
-      "elementid": "ENTI119",
+      "elementId": "ENTI119",
       "name": {
         "en": "Physikalische Einheit"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Physikalische Messeinheit. Siehe dazu z.B. https://de.wikipedia.org/wiki/Liste_physikalischer_Gr\u00f6\u00dfen #SI-Basisgr\u00f6\u00dfen_und_-einheiten"
       },
@@ -1830,11 +1830,11 @@
       }
     },
     {
-      "elementid": "ENTI120",
+      "elementId": "ENTI120",
       "name": {
         "en": "Textlicher Wertebereich"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Textwerte sind Zeichenfolgen.   Die Werteregel ist typischerweise ein regul\u00e4rer Ausdruck, der die erlaubten Zeichen und ihre Anordnung vorgibt."
       },
@@ -1852,11 +1852,11 @@
       }
     },
     {
-      "elementid": "ENTI121",
+      "elementId": "ENTI121",
       "name": {
         "en": "Vorgabewert"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Wert, der f\u00fcr eine Aufz\u00e4hlungs-Werteliste ein g\u00fcltiger Wert ist. Das Attribut \\\"Wert ist der physikalische (sprachunabh\u00e4ngige) Wert, der als eigentlicher Wert im konzeptionellen Modell gilt."
       },
@@ -1876,11 +1876,11 @@
       }
     },
     {
-      "elementid": "ENTI122",
+      "elementId": "ENTI122",
       "name": {
         "en": "Wertebereich"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "synonyms": [
         "Dom\u00e4ne"
       ],
@@ -1905,11 +1905,11 @@
       }
     },
     {
-      "elementid": "ENTI123",
+      "elementId": "ENTI123",
       "name": {
         "en": "Werteliste"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "synonyms": [
         "*LOV",
         "Enumeration"
@@ -1927,11 +1927,11 @@
       }
     },
     {
-      "elementid": "ENTI124",
+      "elementId": "ENTI124",
       "name": {
         "en": "Zeitpunkt Wertebereich"
       },
-      "categoryid": "CATG136",
+      "categoryId": "CATG136",
       "description": {
         "en": "Werte die einen Zeitpunkt beschreiben. Die Genauigkeit des Wertes  wird durch die Granularit\u00e4t festgelegt (Miliosekunde, Sekunde, Minute, Stunde, Tag, Woche, Monat, Quartal, Halbjahr, Jahr, Jahrhundert). Weder die Speicherung noch die textliche Darstellung des Zeitpunkts ist Teil des Informationsmodells. Dies wird in der Datenbank- oder UI-Spezifikation behandelt.  Beispiele:: 2024-06-11 15:65:13.076 Januar, 2025 Isowoche 42 2023"
       },
@@ -1947,11 +1947,11 @@
   ],
   "Relations": [
     {
-      "elementid": "RELA170",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA170",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1959,22 +1959,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI101",
-        "assoctext": {
+        "entityId": "ENTI101",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA171",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA171",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI102",
-        "assoctext": {
+        "entityId": "ENTI102",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -1982,22 +1982,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI105",
-        "assoctext": {
+        "entityId": "ENTI105",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA172",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA172",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2005,22 +2005,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI110",
-        "assoctext": {
+        "entityId": "ENTI110",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA173",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA173",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2028,22 +2028,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI111",
-        "assoctext": {
+        "entityId": "ENTI111",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA174",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA174",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI102",
-        "assoctext": {
+        "entityId": "ENTI102",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2051,22 +2051,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI112",
-        "assoctext": {
+        "entityId": "ENTI112",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA175",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA175",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2074,22 +2074,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI113",
-        "assoctext": {
+        "entityId": "ENTI113",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA176",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA176",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2097,22 +2097,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI116",
-        "assoctext": {
+        "entityId": "ENTI116",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA177",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA177",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2120,22 +2120,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI117",
-        "assoctext": {
+        "entityId": "ENTI117",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA178",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA178",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2143,22 +2143,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI118",
-        "assoctext": {
+        "entityId": "ENTI118",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA179",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA179",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2166,22 +2166,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI120",
-        "assoctext": {
+        "entityId": "ENTI120",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA180",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA180",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2189,22 +2189,22 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI123",
-        "assoctext": {
+        "entityId": "ENTI123",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA181",
-      "relationtype": "SUBTYPE",
+      "elementId": "RELA181",
+      "relationType": "SUBTYPE",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
@@ -2212,32 +2212,32 @@
         "mandatory": true
       },
       "bwd": {
-        "entityid": "ENTI124",
-        "assoctext": {
+        "entityId": "ENTI124",
+        "assocText": {
           "de": "ist",
           "en": "is"
         },
         "cardinality": "1",
         "mandatory": true,
-        "arcnumber": 0
+        "arcNumber": 0
       }
     },
     {
-      "elementid": "RELA140",
-      "relationtype": "M:1",
+      "elementId": "RELA140",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI102",
-        "assoctext": {
+        "entityId": "ENTI102",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -2254,11 +2254,11 @@
       }
     },
     {
-      "elementid": "RELA141",
-      "relationtype": "ROLE",
+      "elementId": "RELA141",
+      "relationType": "ROLE",
       "fwd": {
-        "entityid": "ENTI102",
-        "assoctext": {
+        "entityId": "ENTI102",
+        "assocText": {
           "en": "ist"
         },
         "cardinality": "1",
@@ -2266,8 +2266,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI107",
-        "assoctext": null,
+        "entityId": "ENTI107",
+        "assocText": null,
         "cardinality": "1",
         "mandatory": true
       },
@@ -2280,21 +2280,21 @@
       }
     },
     {
-      "elementid": "RELA142",
-      "relationtype": "M:1",
+      "elementId": "RELA142",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -2311,11 +2311,11 @@
       }
     },
     {
-      "elementid": "RELA143",
-      "relationtype": "ROLE",
+      "elementId": "RELA143",
+      "relationType": "ROLE",
       "fwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "en": "abgeschlossen mit"
         },
         "cardinality": "1",
@@ -2323,8 +2323,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI99",
-        "assoctext": {
+        "entityId": "ENTI99",
+        "assocText": {
           "en": "schliesst ab"
         },
         "cardinality": "1",
@@ -2340,11 +2340,11 @@
       }
     },
     {
-      "elementid": "RELA144",
-      "relationtype": "M:1",
+      "elementId": "RELA144",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "M",
@@ -2352,8 +2352,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI100",
-        "assoctext": {
+        "entityId": "ENTI100",
+        "assocText": {
           "en": "schr\u00e4nkt ein"
         },
         "cardinality": "1",
@@ -2367,11 +2367,11 @@
       }
     },
     {
-      "elementid": "RELA145",
-      "relationtype": "M:1",
+      "elementId": "RELA145",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "M",
@@ -2379,8 +2379,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI104",
-        "assoctext": {
+        "entityId": "ENTI104",
+        "assocText": {
           "en": "sch\u00e4nkt ein"
         },
         "cardinality": "1",
@@ -2394,21 +2394,21 @@
       }
     },
     {
-      "elementid": "RELA146",
-      "relationtype": "M:1",
+      "elementId": "RELA146",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -2425,11 +2425,11 @@
       }
     },
     {
-      "elementid": "RELA147",
-      "relationtype": "M:1",
+      "elementId": "RELA147",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "verkn\u00fcpft mittels"
         },
         "cardinality": "M",
@@ -2437,8 +2437,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI99",
-        "assoctext": {
+        "entityId": "ENTI99",
+        "assocText": {
           "en": "verkn\u00fcpft"
         },
         "cardinality": "1",
@@ -2452,11 +2452,11 @@
       }
     },
     {
-      "elementid": "RELA148",
-      "relationtype": "M:1",
+      "elementId": "RELA148",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "beschrieben durch"
         },
         "cardinality": "M",
@@ -2464,8 +2464,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI105",
-        "assoctext": {
+        "entityId": "ENTI105",
+        "assocText": {
           "en": "beschreibt"
         },
         "cardinality": "1",
@@ -2481,11 +2481,11 @@
       }
     },
     {
-      "elementid": "RELA149",
-      "relationtype": "ROLE",
+      "elementId": "RELA149",
+      "relationType": "ROLE",
       "fwd": {
-        "entityid": "ENTI104",
-        "assoctext": {
+        "entityId": "ENTI104",
+        "assocText": {
           "en": "besteht aus"
         },
         "cardinality": "1",
@@ -2493,8 +2493,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI106",
-        "assoctext": {
+        "entityId": "ENTI106",
+        "assocText": {
           "en": "formt"
         },
         "cardinality": "1",
@@ -2511,11 +2511,11 @@
       }
     },
     {
-      "elementid": "RELA150",
-      "relationtype": "1:1",
+      "elementId": "RELA150",
+      "relationType": "1:1",
       "fwd": {
-        "entityid": "ENTI100",
-        "assoctext": {
+        "entityId": "ENTI100",
+        "assocText": {
           "en": "schr\u00e4nkt ein"
         },
         "cardinality": "1",
@@ -2523,8 +2523,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI99",
-        "assoctext": {
+        "entityId": "ENTI99",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "1",
@@ -2540,11 +2540,11 @@
       }
     },
     {
-      "elementid": "RELA151",
-      "relationtype": "M:N",
+      "elementId": "RELA151",
+      "relationType": "M:N",
       "fwd": {
-        "entityid": "ENTI108",
-        "assoctext": {
+        "entityId": "ENTI108",
+        "assocText": {
           "en": "schr\u00e4nkt ein"
         },
         "cardinality": "M",
@@ -2552,8 +2552,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI102",
-        "assoctext": {
+        "entityId": "ENTI102",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "M",
@@ -2569,21 +2569,21 @@
       }
     },
     {
-      "elementid": "RELA152",
-      "relationtype": "M:1",
+      "elementId": "RELA152",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI108",
-        "assoctext": {
+        "entityId": "ENTI108",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -2600,11 +2600,11 @@
       }
     },
     {
-      "elementid": "RELA153",
-      "relationtype": "M:N",
+      "elementId": "RELA153",
+      "relationType": "M:N",
       "fwd": {
-        "entityid": "ENTI108",
-        "assoctext": {
+        "entityId": "ENTI108",
+        "assocText": {
           "en": "sch\u00e4nkt ein"
         },
         "cardinality": "M",
@@ -2612,8 +2612,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "M",
@@ -2629,11 +2629,11 @@
       }
     },
     {
-      "elementid": "RELA154",
-      "relationtype": "M:N",
+      "elementId": "RELA154",
+      "relationType": "M:N",
       "fwd": {
-        "entityid": "ENTI108",
-        "assoctext": {
+        "entityId": "ENTI108",
+        "assocText": {
           "en": "sch\u00e4nkt ein"
         },
         "cardinality": "M",
@@ -2641,8 +2641,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI98",
-        "assoctext": {
+        "entityId": "ENTI98",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "M",
@@ -2658,11 +2658,11 @@
       }
     },
     {
-      "elementid": "RELA155",
-      "relationtype": "M:1",
+      "elementId": "RELA155",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI115",
-        "assoctext": {
+        "entityId": "ENTI115",
+        "assocText": {
           "en": "definiert"
         },
         "cardinality": "M",
@@ -2670,8 +2670,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI109",
-        "assoctext": {
+        "entityId": "ENTI109",
+        "assocText": {
           "en": "definiert f\u00fcr"
         },
         "cardinality": "1",
@@ -2687,11 +2687,11 @@
       }
     },
     {
-      "elementid": "RELA156",
-      "relationtype": "M:1",
+      "elementId": "RELA156",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI115",
-        "assoctext": {
+        "entityId": "ENTI115",
+        "assocText": {
           "en": "aufgebaut aus"
         },
         "cardinality": "M",
@@ -2699,8 +2699,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "tr\u00e4gt bei zu"
         },
         "cardinality": "1",
@@ -2717,21 +2717,21 @@
       }
     },
     {
-      "elementid": "RELA157",
-      "relationtype": "M:1",
+      "elementId": "RELA157",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI115",
-        "assoctext": {
+        "entityId": "ENTI115",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -2748,11 +2748,11 @@
       }
     },
     {
-      "elementid": "RELA158",
-      "relationtype": "M:1",
+      "elementId": "RELA158",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI115",
-        "assoctext": {
+        "entityId": "ENTI115",
+        "assocText": {
           "en": "aufgebaut aus"
         },
         "cardinality": "M",
@@ -2760,8 +2760,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "en": "tr\u00e4gt bei zu"
         },
         "cardinality": "1",
@@ -2775,11 +2775,11 @@
       }
     },
     {
-      "elementid": "RELA159",
-      "relationtype": "M:1",
+      "elementId": "RELA159",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI109",
-        "assoctext": {
+        "entityId": "ENTI109",
+        "assocText": {
           "en": "gruppiert"
         },
         "cardinality": "M",
@@ -2787,8 +2787,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI109",
-        "assoctext": {
+        "entityId": "ENTI109",
+        "assocText": {
           "en": "gruppiert in"
         },
         "cardinality": "1",
@@ -2804,11 +2804,11 @@
       }
     },
     {
-      "elementid": "RELA160",
-      "relationtype": "M:1",
+      "elementId": "RELA160",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI109",
-        "assoctext": {
+        "entityId": "ENTI109",
+        "assocText": {
           "en": "gruppiert"
         },
         "cardinality": "M",
@@ -2816,8 +2816,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "en": "gruppiert in"
         },
         "cardinality": "1",
@@ -2831,21 +2831,21 @@
       }
     },
     {
-      "elementid": "RELA161",
-      "relationtype": "M:1",
+      "elementId": "RELA161",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI109",
-        "assoctext": {
+        "entityId": "ENTI109",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -2862,11 +2862,11 @@
       }
     },
     {
-      "elementid": "RELA162",
-      "relationtype": "M:1",
+      "elementId": "RELA162",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI109",
-        "assoctext": {
+        "entityId": "ENTI109",
+        "assocText": {
           "en": "gruppiert"
         },
         "cardinality": "M",
@@ -2874,8 +2874,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI103",
-        "assoctext": {
+        "entityId": "ENTI103",
+        "assocText": {
           "en": "gruppiert in"
         },
         "cardinality": "1",
@@ -2891,11 +2891,11 @@
       }
     },
     {
-      "elementid": "RELA163",
-      "relationtype": "M:1",
+      "elementId": "RELA163",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI119",
-        "assoctext": {
+        "entityId": "ENTI119",
+        "assocText": {
           "en": "definiert"
         },
         "cardinality": "M",
@@ -2903,8 +2903,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI118",
-        "assoctext": {
+        "entityId": "ENTI118",
+        "assocText": {
           "en": "gemessen in"
         },
         "cardinality": "1",
@@ -2918,21 +2918,21 @@
       }
     },
     {
-      "elementid": "RELA164",
-      "relationtype": "M:1",
+      "elementId": "RELA164",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI106",
-        "assoctext": {
+        "entityId": "ENTI106",
+        "assocText": {
           "en": "ist"
         },
         "cardinality": "1",
         "mandatory": true,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI101",
-        "assoctext": {
+        "entityId": "ENTI101",
+        "assocText": {
           "en": "dient als"
         },
         "cardinality": "M",
@@ -2950,21 +2950,21 @@
       }
     },
     {
-      "elementid": "RELA165",
-      "relationtype": "M:1",
+      "elementId": "RELA165",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI106",
-        "assoctext": {
+        "entityId": "ENTI106",
+        "assocText": {
           "en": "ist"
         },
         "cardinality": "1",
         "mandatory": true,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI105",
-        "assoctext": {
+        "entityId": "ENTI105",
+        "assocText": {
           "en": "dient als"
         },
         "cardinality": "M",
@@ -2982,21 +2982,21 @@
       }
     },
     {
-      "elementid": "RELA166",
-      "relationtype": "M:1",
+      "elementId": "RELA166",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "en": "erg\u00e4nzt um"
         },
         "cardinality": "M",
         "mandatory": false,
         "historicised": false,
-        "arcnumber": 1
+        "arcNumber": 1
       },
       "bwd": {
-        "entityid": "ENTI114",
-        "assoctext": {
+        "entityId": "ENTI114",
+        "assocText": {
           "en": "erg\u00e4nzt"
         },
         "cardinality": "1",
@@ -3013,11 +3013,11 @@
       }
     },
     {
-      "elementid": "RELA167",
-      "relationtype": "M:1",
+      "elementId": "RELA167",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI122",
-        "assoctext": {
+        "entityId": "ENTI122",
+        "assocText": {
           "en": "schr\u00e4nkt ein"
         },
         "cardinality": "M",
@@ -3025,8 +3025,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI102",
-        "assoctext": {
+        "entityId": "ENTI102",
+        "assocText": {
           "en": "eingeschr\u00e4nkt durch"
         },
         "cardinality": "1",
@@ -3040,11 +3040,11 @@
       }
     },
     {
-      "elementid": "RELA168",
-      "relationtype": "M:1",
+      "elementId": "RELA168",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI113",
-        "assoctext": {
+        "entityId": "ENTI113",
+        "assocText": {
           "en": "umfasst"
         },
         "cardinality": "M",
@@ -3052,8 +3052,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI112",
-        "assoctext": {
+        "entityId": "ENTI112",
+        "assocText": {
           "en": "tr\u00e4gt bei zu"
         },
         "cardinality": "1",
@@ -3067,11 +3067,11 @@
       }
     },
     {
-      "elementid": "RELA169",
-      "relationtype": "M:1",
+      "elementId": "RELA169",
+      "relationType": "M:1",
       "fwd": {
-        "entityid": "ENTI123",
-        "assoctext": {
+        "entityId": "ENTI123",
+        "assocText": {
           "en": "aufgebaut aus"
         },
         "cardinality": "M",
@@ -3079,8 +3079,8 @@
         "historicised": false
       },
       "bwd": {
-        "entityid": "ENTI121",
-        "assoctext": {
+        "entityId": "ENTI121",
+        "assocText": {
           "en": "bildet"
         },
         "cardinality": "1",
@@ -3096,14 +3096,14 @@
   ],
   "Attributes": [
     {
-      "elementid": "ATTR427",
+      "elementId": "ATTR427",
       "name": {
         "en": "Ableitungsformel"
       },
       "mandatory": true,
-      "parentid": "ENTI107",
-      "domainid": "DOMA479",
-      "displayseq": 1,
+      "parentId": "ENTI107",
+      "domainId": "DOMA479",
+      "displaySeq": 1,
       "description": {
         "en": "Beschreibung der Regeln, Formeln die festlegen, wie der Wert dieses Attributs aus anderen Attributen des Informationsmodells gerechnet werden kann.\n\nDie Beschreibung kann informell sein, sollte aber auf die exakten Regeln, Programme, Formeln hinweisen."
       },
@@ -3118,14 +3118,14 @@
       }
     },
     {
-      "elementid": "ATTR428",
+      "elementId": "ATTR428",
       "name": {
         "en": "Anzeigename"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA483",
-      "displayseq": 2,
+      "parentId": "ENTI102",
+      "domainId": "DOMA483",
+      "displaySeq": 2,
       "description": {
         "en": "M\u00f6glicherweise \u00fcbersetzter Name eines Attributs f\u00fcr die Anzeige auf Bildschirmmasken und in umgangssprachlich formulierten Dokumenten.\n\nBedeutung: siehe auch beim Attribut *Name* in dieser Entit\u00e4t.\n\nMuss innerhalb der Entit\u00e4t f\u00fcr jede Sprache eindeutig sein.\n"
       },
@@ -3145,14 +3145,14 @@
       }
     },
     {
-      "elementid": "ATTR429",
+      "elementId": "ATTR429",
       "name": {
         "en": "Anzeigereihenfolge"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA496",
-      "displayseq": 5,
+      "parentId": "ENTI102",
+      "domainId": "DOMA496",
+      "displaySeq": 5,
       "description": {
         "en": "Reihenfolge der Darstellungs dieses Attributs innerhalb der Entit\u00e4t.\nSortiert nach fachlichen Aspekten (Wichtigkeit, Zusammengeh\u00f6rigkeit)"
       },
@@ -3171,14 +3171,14 @@
       }
     },
     {
-      "elementid": "ATTR430",
+      "elementId": "ATTR430",
       "name": {
         "en": "Beispiel"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA493",
-      "displayseq": 12,
+      "parentId": "ENTI102",
+      "domainId": "DOMA493",
+      "displaySeq": 12,
       "description": {
         "en": "Beispielwerte f\u00fcr ein Attribut. In der Regel 1\u20132 Werte als Beispiele aus der realen Welt . \n\nSie helfen dabei, ein Attribut besser zu verstehen und mit bestehendem Wissen zu verkn\u00fcpfen.\n\nBeispielwerte sollten wiederholt  oder \u00fcber mehrere Elemente hinweg verkn\u00fcpft werden (Entit\u00e4t, Attribut, Beziehung usw.). Auf diese Weise lassen sich konkrete *Geschichten* bilden."
       },
@@ -3194,14 +3194,14 @@
       }
     },
     {
-      "elementid": "ATTR431",
+      "elementId": "ATTR431",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA479",
-      "displayseq": 3,
+      "parentId": "ENTI102",
+      "domainId": "DOMA479",
+      "displaySeq": 3,
       "description": {
         "en": "Erl\u00e4uterung der Verwendung, Bedeutung die ein Wert dieses Attributs \u00fcber die Entit\u00e4t macht."
       },
@@ -3217,14 +3217,14 @@
       }
     },
     {
-      "elementid": "ATTR432",
+      "elementId": "ATTR432",
       "name": {
         "en": "ist deskriptiv"
       },
       "mandatory": true,
-      "parentid": "ENTI102",
-      "domainid": "DOMA502",
-      "displayseq": 6,
+      "parentId": "ENTI102",
+      "domainId": "DOMA502",
+      "displaySeq": 6,
       "description": {
         "en": "Das Attribut charakterisiert diese Entit\u00e4t bzw. dieses Gruppenattribut und ist wichtig f\u00fcr deren Verst\u00e4ndnis."
       },
@@ -3240,14 +3240,14 @@
       }
     },
     {
-      "elementid": "ATTR433",
+      "elementId": "ATTR433",
       "name": {
         "en": "ist historisiert"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA502",
-      "displayseq": 8,
+      "parentId": "ENTI102",
+      "domainId": "DOMA502",
+      "displaySeq": 8,
       "description": {
         "en": "Indikator, der angibt, ob Werte dieses Attributs historisiert werden. D.h. ob die \u00c4nderungsgeschichte (alte Werte + Zeitpunkt der \u00c4nderung) aus fachlicher Sicht nachgef\u00fchrt und in der fachlichen Applikation angeboten wird.\n"
       },
@@ -3263,14 +3263,14 @@
       }
     },
     {
-      "elementid": "ATTR434",
+      "elementId": "ATTR434",
       "name": {
         "en": "ist mehrsprachig"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA502",
-      "displayseq": 10,
+      "parentId": "ENTI102",
+      "domainId": "DOMA502",
+      "displaySeq": 10,
       "description": {
         "en": "Indikator, der angibt, ob der Wert des Attributs in mehreren Sprachen verwaltet werden soll.\n\nNur m\u00f6glich f\u00fcr textbasierte Attribute.\n\nSemantisch ist es **ein** Wert. Das bedeutet, auch wenn er in verschiedenen Sprachen ausgedr\u00fcckt werden kann, muss er immer dasselbe bedeuten.\n\nFalls ein ein Schl\u00fcsselattribut mehrsprachig sein kann, muss die Eindeutigkeit f\u00fcr jede Sprache garantiert werden.\n\nWie viele oder welche Sprachen es sind, ist nicht spezifiziert. \n"
       },
@@ -3286,14 +3286,14 @@
       }
     },
     {
-      "elementid": "ATTR435",
+      "elementId": "ATTR435",
       "name": {
         "en": "ist obligatorisch"
       },
       "mandatory": true,
-      "parentid": "ENTI102",
-      "domainid": "DOMA502",
-      "displayseq": 7,
+      "parentId": "ENTI102",
+      "domainId": "DOMA502",
+      "displaySeq": 7,
       "description": {
         "en": "Indikator ob dieses Attribut einen Wert haben muss (*true*) oder ob es leer bleiben kann (\"false*)"
       },
@@ -3308,14 +3308,14 @@
       }
     },
     {
-      "elementid": "ATTR436",
+      "elementId": "ATTR436",
       "name": {
         "en": "ist verschl\u00fcsselt"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA502",
-      "displayseq": 11,
+      "parentId": "ENTI102",
+      "domainId": "DOMA502",
+      "displaySeq": 11,
       "description": {
         "en": "Indikator, der angibt, dass Wert in der Datenspeicherung und in gewissen Kommunikationskan\u00e4len zu verschl\u00fcsseln ist."
       },
@@ -3331,14 +3331,14 @@
       }
     },
     {
-      "elementid": "ATTR437",
+      "elementId": "ATTR437",
       "name": {
         "en": "ist wiederholt"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA502",
-      "displayseq": 9,
+      "parentId": "ENTI102",
+      "domainId": "DOMA502",
+      "displaySeq": 9,
       "description": {
         "en": "Indikator, der angibt, ob das Attribut mehrere Werte annehmen kann. \n\nAlle Werte sind aus dem gleichen Wertebereich. Wiederholte Attributwerte haben keine definierte Reihenfolge. D.h. die Position in der Liste der Wiederholungen macht keine fachliche Aussage."
       },
@@ -3354,14 +3354,14 @@
       }
     },
     {
-      "elementid": "ATTR438",
+      "elementId": "ATTR438",
       "name": {
         "en": "Kurzbeschrieb"
       },
       "mandatory": false,
-      "parentid": "ENTI102",
-      "domainid": "DOMA481",
-      "displayseq": 4,
+      "parentId": "ENTI102",
+      "domainId": "DOMA481",
+      "displaySeq": 4,
       "description": {
         "en": "Kurze Erl\u00e4uterung zur Verwendung, Handhabung und Bedeutung des Attributs, das in Benutzeroberfl\u00e4chen angezeigt werden soll."
       },
@@ -3377,14 +3377,14 @@
       }
     },
     {
-      "elementid": "ATTR439",
+      "elementId": "ATTR439",
       "name": {
         "en": "Name"
       },
       "mandatory": true,
-      "parentid": "ENTI102",
-      "domainid": "DOMA483",
-      "displayseq": 1,
+      "parentId": "ENTI102",
+      "domainId": "DOMA483",
+      "displaySeq": 1,
       "description": {
         "en": "Aussagekr\u00e4ftige Bezeichnung des Attributs in nat\u00fcrlicher Sprache. Sagt etwas aus \u00fcber die Rolle, Verwendung oder Herkunft der Werte die das Attribut beschriebt aussagen. Der Namen sollte in der Wirkgungswelt nicht mehrdeutig belegt sein\n\nEindeutig Innerhalb der Entit\u00e4t. \n\n*Offizieller* Name, der in der verbalen Kommunikation und in allen Dokumenten verwendet werden soll. Typischerweise der Name in der Hauptsprache des Modells.\n"
       },
@@ -3400,14 +3400,14 @@
       }
     },
     {
-      "elementid": "ATTR440",
+      "elementId": "ATTR440",
       "name": {
         "en": "Assoziation"
       },
       "mandatory": false,
-      "parentid": "ENTI99",
-      "domainid": "DOMA481",
-      "displayseq": 2,
+      "parentId": "ENTI99",
+      "domainId": "DOMA481",
+      "displaySeq": 2,
       "examples": [
         "gekauft",
         "liegt auf",
@@ -3425,14 +3425,14 @@
       }
     },
     {
-      "elementid": "ATTR441",
+      "elementId": "ATTR441",
       "name": {
         "en": "Beispiel"
       },
       "mandatory": false,
-      "parentid": "ENTI99",
-      "domainid": "DOMA493",
-      "displayseq": 9,
+      "parentId": "ENTI99",
+      "domainId": "DOMA493",
+      "displaySeq": 9,
       "examples": [
         "Ein Kunde kauft optional mehrere Produkte",
         "Ein Planet umkeist  zwingend einen Stern",
@@ -3450,14 +3450,14 @@
       }
     },
     {
-      "elementid": "ATTR442",
+      "elementId": "ATTR442",
       "name": {
         "en": "ist historisiert"
       },
       "mandatory": false,
-      "parentid": "ENTI99",
-      "domainid": "DOMA502",
-      "displayseq": 5,
+      "parentId": "ENTI99",
+      "domainId": "DOMA502",
+      "displaySeq": 5,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -3469,14 +3469,14 @@
       }
     },
     {
-      "elementid": "ATTR443",
+      "elementId": "ATTR443",
       "name": {
         "en": "ist obligatorisch"
       },
       "mandatory": true,
-      "parentid": "ENTI99",
-      "domainid": "DOMA502",
-      "displayseq": 4,
+      "parentId": "ENTI99",
+      "domainId": "DOMA502",
+      "displaySeq": 4,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -3488,14 +3488,14 @@
       }
     },
     {
-      "elementid": "ATTR444",
+      "elementId": "ATTR444",
       "name": {
         "en": "Kardinalit\u00e4t"
       },
       "mandatory": true,
-      "parentid": "ENTI99",
-      "domainid": "DOMA508",
-      "displayseq": 3,
+      "parentId": "ENTI99",
+      "domainId": "DOMA508",
+      "displaySeq": 3,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -3507,14 +3507,14 @@
       }
     },
     {
-      "elementid": "ATTR445",
+      "elementId": "ATTR445",
       "name": {
         "en": "Relationsendetyp"
       },
       "mandatory": true,
-      "parentid": "ENTI99",
-      "domainid": "DOMA506",
-      "displayseq": 1,
+      "parentId": "ENTI99",
+      "domainId": "DOMA506",
+      "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -3526,18 +3526,18 @@
       }
     },
     {
-      "elementid": "ATTR446",
+      "elementId": "ATTR446",
       "name": {
         "en": "Beispiel"
       },
       "mandatory": false,
-      "parentid": "ENTI103",
-      "domainid": "DOMA493",
-      "displayseq": 6,
+      "parentId": "ENTI103",
+      "domainId": "DOMA493",
+      "displaySeq": 6,
       "description": {
         "en": "Beispielwerte f\u00fcr eine Entit\u00e4t. In der Regel 1\u20132 Werte beschreibender Attribute aus Beispielen aus der realen Welt . \n\nSie helfen dabei, eine Entit\u00e4t besser zu verstehen oder sie schnell in die eigene Erfahrung zu integrieren.\n\nBeispielwerte sollten wiederholt  oder \u00fcber mehrere Elemente hinweg verkn\u00fcpft werden (Entit\u00e4t, Attribut, Beziehung usw.). Auf diese Weise lassen sich konkrete \u201eGeschichten\u201d bilden."
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Exemplarische reale Werte"
       },
       "descriptive": false,
@@ -3553,18 +3553,18 @@
       }
     },
     {
-      "elementid": "ATTR447",
+      "elementId": "ATTR447",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI103",
-      "domainid": "DOMA479",
-      "displayseq": 2,
+      "parentId": "ENTI103",
+      "domainId": "DOMA479",
+      "displaySeq": 2,
       "description": {
         "en": "Definition, Bedeutung, Nutzen, Verwendung der Entit\u00e4t.\n"
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Definition, Bedeutung, Nutzung"
       },
       "descriptive": false,
@@ -3580,14 +3580,14 @@
       }
     },
     {
-      "elementid": "ATTR448",
+      "elementId": "ATTR448",
       "name": {
         "en": "Kurzbeschrieb"
       },
       "mandatory": false,
-      "parentid": "ENTI103",
-      "domainid": "DOMA481",
-      "displayseq": 3,
+      "parentId": "ENTI103",
+      "domainId": "DOMA481",
+      "displaySeq": 3,
       "description": {
         "en": "Kurzer Text, der die Bedeutung und Verwendung erkl\u00e4rt. Wird z. B. als Tooltip in der Benutzeroberfl\u00e4che verwendet."
       },
@@ -3603,18 +3603,18 @@
       }
     },
     {
-      "elementid": "ATTR449",
+      "elementId": "ATTR449",
       "name": {
         "en": "Kurzname"
       },
       "mandatory": false,
-      "parentid": "ENTI103",
-      "domainid": "DOMA482",
-      "displayseq": 5,
+      "parentId": "ENTI103",
+      "domainId": "DOMA482",
+      "displaySeq": 5,
       "description": {
         "en": "Abgek\u00fcrzter Namen f\u00fcr die Entit\u00e4t.\nVerwendet f\u00fcr Erw\u00e4hnungen in Diagrammen, technischen Beschreibungen etc. \n\nEindeutig in diesem Informationsmodell."
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Abk\u00fcrzung"
       },
       "examples": [
@@ -3636,14 +3636,14 @@
       }
     },
     {
-      "elementid": "ATTR450",
+      "elementId": "ATTR450",
       "name": {
         "en": "Name"
       },
       "mandatory": true,
-      "parentid": "ENTI103",
-      "domainid": "DOMA483",
-      "displayseq": 1,
+      "parentId": "ENTI103",
+      "domainId": "DOMA483",
+      "displaySeq": 1,
       "description": {
         "en": "Eindeutige m\u00f6glichst aussagekr\u00e4ftige Bezeichnung eines Dings das diese Entit\u00e4t beschreibt.\n\nEindeutig in diesem Informationsmodell.\n\n*Offizieller* Name, der in der verbalen Kommunikation und in allen Dokumenten verwendet werden soll."
       },
@@ -3665,18 +3665,18 @@
       }
     },
     {
-      "elementid": "ATTR451",
+      "elementId": "ATTR451",
       "name": {
         "en": "Synonym"
       },
       "mandatory": false,
-      "parentid": "ENTI103",
-      "domainid": "DOMA483",
-      "displayseq": 4,
+      "parentId": "ENTI103",
+      "domainId": "DOMA483",
+      "displaySeq": 4,
       "description": {
         "en": "Liste der Synonymnamen f\u00fcr dieses Ding, die in alten Systemen oder aus Gewohnheit verwendet werden. Nicht \u00fcber alle Entit\u00e4ten hinweg eindeutig."
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Alternative Bezeichnungen"
       },
       "descriptive": false,
@@ -3693,14 +3693,14 @@
       }
     },
     {
-      "elementid": "ATTR452",
+      "elementId": "ATTR452",
       "name": {
         "en": "Nummer"
       },
       "mandatory": true,
-      "parentid": "ENTI100",
-      "domainid": "DOMA487",
-      "displayseq": 1,
+      "parentId": "ENTI100",
+      "domainId": "DOMA487",
+      "displaySeq": 1,
       "description": {
         "en": "Nummer zur Unterscheidung mehrerer exklusiver Beziehungsgruppen innerhalb einer Entit\u00e4t.  Sie zu einer exklusiven Beziehungsgruppe machen"
       },
@@ -3715,14 +3715,14 @@
       }
     },
     {
-      "elementid": "ATTR453",
+      "elementId": "ATTR453",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI108",
-      "domainid": "DOMA479",
-      "displayseq": 2,
+      "parentId": "ENTI108",
+      "domainId": "DOMA479",
+      "displaySeq": 2,
       "description": {
         "en": "Begr\u00fcndung, Erl\u00e4uterung, Quellen, Konsequenzen f\u00fcr diese Gesch\u00e4ftsregel."
       },
@@ -3742,14 +3742,14 @@
       }
     },
     {
-      "elementid": "ATTR454",
+      "elementId": "ATTR454",
       "name": {
         "en": "Regel"
       },
       "mandatory": true,
-      "parentid": "ENTI108",
-      "domainid": "DOMA479",
-      "displayseq": 1,
+      "parentId": "ENTI108",
+      "domainId": "DOMA479",
+      "displaySeq": 1,
       "description": {
         "en": "Regel die beschreibt, wie die verkn\u00fcpften Elemente voneinander abh\u00e4ngen."
       },
@@ -3768,14 +3768,14 @@
       }
     },
     {
-      "elementid": "ATTR455",
+      "elementId": "ATTR455",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI115",
-      "domainid": "DOMA479",
-      "displayseq": 4,
+      "parentId": "ENTI115",
+      "domainId": "DOMA479",
+      "displaySeq": 4,
       "description": {
         "en": "Beschreibung des Zwecks, der Verwendung und der Zielgruppe dieses Informationsmodells."
       },
@@ -3790,14 +3790,14 @@
       }
     },
     {
-      "elementid": "ATTR456",
+      "elementId": "ATTR456",
       "name": {
         "en": "Hauptsprache"
       },
       "mandatory": true,
-      "parentid": "ENTI115",
-      "domainid": "DOMA500",
-      "displayseq": 5,
+      "parentId": "ENTI115",
+      "domainId": "DOMA500",
+      "displaySeq": 5,
       "description": {
         "en": "Sprache in der dieses Modell urspr\u00fcnglich beschrieben ist.\n\nIm Zweifelsfall gilt immer die Beschreibung/Definition der Hauptsprache.\n\nDient als Standardsprache in mehrsprachigen Zeichenfolgen, wenn f\u00fcr eine Sprache keine \u00dcbersetzung vorhanden ist.."
       },
@@ -3814,14 +3814,14 @@
       }
     },
     {
-      "elementid": "ATTR457",
+      "elementId": "ATTR457",
       "name": {
         "en": "Name"
       },
       "mandatory": true,
-      "parentid": "ENTI115",
-      "domainid": "DOMA483",
-      "displayseq": 1,
+      "parentId": "ENTI115",
+      "domainId": "DOMA483",
+      "displaySeq": 1,
       "description": {
         "en": "Name des Modells, eindeutig in der Zielumgebung (Firma, Organisation, Fachbereich...)"
       },
@@ -3841,14 +3841,14 @@
       }
     },
     {
-      "elementid": "ATTR458",
+      "elementId": "ATTR458",
       "name": {
         "en": "Sprachen"
       },
       "mandatory": false,
-      "parentid": "ENTI115",
-      "domainid": "DOMA500",
-      "displayseq": 6,
+      "parentId": "ENTI115",
+      "domainId": "DOMA500",
+      "displaySeq": 6,
       "description": {
         "en": "Liste der Sprachen, in die Modelltextelemente \u00fcbersetzt werden k\u00f6nnen. (excl. Hauptsprache)\n\nMussfelder m\u00fcssen mindestens in der Hauptsprache einen Wert haben. Fehlt eine \u00dcbersetzung in eine der Sprachen, gilt als Default-Wert der Wert in der Hauptsprache."
       },
@@ -3864,14 +3864,14 @@
       }
     },
     {
-      "elementid": "ATTR459",
+      "elementId": "ATTR459",
       "name": {
         "en": "Version"
       },
       "mandatory": false,
-      "parentid": "ENTI115",
-      "domainid": "DOMA499",
-      "displayseq": 3,
+      "parentId": "ENTI115",
+      "domainId": "DOMA499",
+      "displaySeq": 3,
       "description": {
         "en": "Versionsnummer des in dieser Dokumentation dokumentierten Informationsmodells."
       },
@@ -3890,18 +3890,18 @@
       }
     },
     {
-      "elementid": "ATTR460",
+      "elementId": "ATTR460",
       "name": {
         "en": "Zielumgebung"
       },
       "mandatory": false,
-      "parentid": "ENTI115",
-      "domainid": "DOMA488",
-      "displayseq": 2,
+      "parentId": "ENTI115",
+      "domainId": "DOMA488",
+      "displaySeq": 2,
       "description": {
         "en": "Die Zielumgebung (auch als Wirkungswelt bezeichnet) ist die Gemeinschaft (Gruppe von Personen), die mithilfe der im Informationsmodell beschriebenen, genau definierten Sprache miteinander kommunizieren und zusammenarbeiten m\u00f6chte, sollte oder muss."
       },
-      "shortdescr": {
+      "shortDescr": {
         "en": "Anwendungsbereich des Informationsmodell"
       },
       "examples": [
@@ -3921,14 +3921,14 @@
       }
     },
     {
-      "elementid": "ATTR461",
+      "elementId": "ATTR461",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI109",
-      "domainid": "DOMA479",
-      "displayseq": 2,
+      "parentId": "ENTI109",
+      "domainId": "DOMA479",
+      "displaySeq": 2,
       "description": {
         "en": "Grund, Gruppierunsaspekt f\u00fcr diese Kategorie."
       },
@@ -3943,14 +3943,14 @@
       }
     },
     {
-      "elementid": "ATTR462",
+      "elementId": "ATTR462",
       "name": {
         "en": "Name"
       },
       "mandatory": true,
-      "parentid": "ENTI109",
-      "domainid": "DOMA483",
-      "displayseq": 1,
+      "parentId": "ENTI109",
+      "domainId": "DOMA483",
+      "displaySeq": 1,
       "description": {
         "en": "Bezeichung der Kategorie, eindeutig innerhalb der Vater-Kategorie."
       },
@@ -3971,14 +3971,14 @@
       }
     },
     {
-      "elementid": "ATTR463",
+      "elementId": "ATTR463",
       "name": {
         "en": "Max Wert"
       },
       "mandatory": false,
-      "parentid": "ENTI118",
-      "domainid": "DOMA498",
-      "displayseq": 4,
+      "parentId": "ENTI118",
+      "domainId": "DOMA498",
+      "displaySeq": 4,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -3990,14 +3990,14 @@
       }
     },
     {
-      "elementid": "ATTR464",
+      "elementId": "ATTR464",
       "name": {
         "en": "Min Wert"
       },
       "mandatory": false,
-      "parentid": "ENTI118",
-      "domainid": "DOMA498",
-      "displayseq": 3,
+      "parentId": "ENTI118",
+      "domainId": "DOMA498",
+      "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4009,14 +4009,14 @@
       }
     },
     {
-      "elementid": "ATTR465",
+      "elementId": "ATTR465",
       "name": {
         "en": "Nachkommastellen"
       },
       "mandatory": false,
-      "parentid": "ENTI118",
-      "domainid": "DOMA494",
-      "displayseq": 2,
+      "parentId": "ENTI118",
+      "domainId": "DOMA494",
+      "displaySeq": 2,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4028,14 +4028,14 @@
       }
     },
     {
-      "elementid": "ATTR466",
+      "elementId": "ATTR466",
       "name": {
         "en": "Rundungseinheit"
       },
       "mandatory": false,
-      "parentid": "ENTI118",
-      "domainid": "DOMA510",
-      "displayseq": 5,
+      "parentId": "ENTI118",
+      "domainId": "DOMA510",
+      "displaySeq": 5,
       "examples": [
         "0.5",
         "0.25",
@@ -4052,14 +4052,14 @@
       }
     },
     {
-      "elementid": "ATTR467",
+      "elementId": "ATTR467",
       "name": {
         "en": "Totalstellen"
       },
       "mandatory": false,
-      "parentid": "ENTI118",
-      "domainid": "DOMA494",
-      "displayseq": 1,
+      "parentId": "ENTI118",
+      "domainId": "DOMA494",
+      "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4071,14 +4071,14 @@
       }
     },
     {
-      "elementid": "ATTR468",
+      "elementId": "ATTR468",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI119",
-      "domainid": "DOMA479",
-      "displayseq": 2,
+      "parentId": "ENTI119",
+      "domainId": "DOMA479",
+      "displaySeq": 2,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4089,14 +4089,14 @@
       }
     },
     {
-      "elementid": "ATTR469",
+      "elementId": "ATTR469",
       "name": {
         "en": "SI-Einheit"
       },
       "mandatory": false,
-      "parentid": "ENTI119",
-      "domainid": "DOMA492",
-      "displayseq": 3,
+      "parentId": "ENTI119",
+      "domainId": "DOMA492",
+      "displaySeq": 3,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4108,14 +4108,14 @@
       }
     },
     {
-      "elementid": "ATTR470",
+      "elementId": "ATTR470",
       "name": {
         "en": "Symbol"
       },
       "mandatory": true,
-      "parentid": "ENTI119",
-      "domainid": "DOMA482",
-      "displayseq": 1,
+      "parentId": "ENTI119",
+      "domainId": "DOMA482",
+      "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4126,14 +4126,14 @@
       }
     },
     {
-      "elementid": "ATTR471",
+      "elementId": "ATTR471",
       "name": {
         "en": "Max L\u00e4nge"
       },
       "mandatory": false,
-      "parentid": "ENTI120",
-      "domainid": "DOMA497",
-      "displayseq": 2,
+      "parentId": "ENTI120",
+      "domainId": "DOMA497",
+      "displaySeq": 2,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4145,14 +4145,14 @@
       }
     },
     {
-      "elementid": "ATTR472",
+      "elementId": "ATTR472",
       "name": {
         "en": "Min L\u00e4nge"
       },
       "mandatory": false,
-      "parentid": "ENTI120",
-      "domainid": "DOMA497",
-      "displayseq": 1,
+      "parentId": "ENTI120",
+      "domainId": "DOMA497",
+      "displaySeq": 1,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4164,14 +4164,14 @@
       }
     },
     {
-      "elementid": "ATTR473",
+      "elementId": "ATTR473",
       "name": {
         "en": "Werteregel"
       },
       "mandatory": false,
-      "parentid": "ENTI120",
-      "domainid": "DOMA479",
-      "displayseq": 3,
+      "parentId": "ENTI120",
+      "domainId": "DOMA479",
+      "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4183,14 +4183,14 @@
       }
     },
     {
-      "elementid": "ATTR474",
+      "elementId": "ATTR474",
       "name": {
         "en": "Anzeigetext"
       },
       "mandatory": true,
-      "parentid": "ENTI121",
-      "domainid": "DOMA479",
-      "displayseq": 2,
+      "parentId": "ENTI121",
+      "domainId": "DOMA479",
+      "displaySeq": 2,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4202,14 +4202,14 @@
       }
     },
     {
-      "elementid": "ATTR475",
+      "elementId": "ATTR475",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI121",
-      "domainid": "DOMA479",
-      "displayseq": 4,
+      "parentId": "ENTI121",
+      "domainId": "DOMA479",
+      "displaySeq": 4,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4221,14 +4221,14 @@
       }
     },
     {
-      "elementid": "ATTR476",
+      "elementId": "ATTR476",
       "name": {
         "en": "Sortierreihenfolge"
       },
       "mandatory": false,
-      "parentid": "ENTI121",
-      "domainid": "DOMA496",
-      "displayseq": 3,
+      "parentId": "ENTI121",
+      "domainId": "DOMA496",
+      "displaySeq": 3,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4240,14 +4240,14 @@
       }
     },
     {
-      "elementid": "ATTR477",
+      "elementId": "ATTR477",
       "name": {
         "en": "Wert"
       },
       "mandatory": true,
-      "parentid": "ENTI121",
-      "domainid": "DOMA479",
-      "displayseq": 1,
+      "parentId": "ENTI121",
+      "domainId": "DOMA479",
+      "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4259,14 +4259,14 @@
       }
     },
     {
-      "elementid": "ATTR478",
+      "elementId": "ATTR478",
       "name": {
         "en": "Beispiel"
       },
       "mandatory": false,
-      "parentid": "ENTI122",
-      "domainid": "DOMA493",
-      "displayseq": 3,
+      "parentId": "ENTI122",
+      "domainId": "DOMA493",
+      "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
       "repeated": true,
@@ -4279,14 +4279,14 @@
       }
     },
     {
-      "elementid": "ATTR479",
+      "elementId": "ATTR479",
       "name": {
         "en": "Beschreibung"
       },
       "mandatory": false,
-      "parentid": "ENTI122",
-      "domainid": "DOMA479",
-      "displayseq": 2,
+      "parentId": "ENTI122",
+      "domainId": "DOMA479",
+      "displaySeq": 2,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4298,14 +4298,14 @@
       }
     },
     {
-      "elementid": "ATTR480",
+      "elementId": "ATTR480",
       "name": {
         "en": "Name"
       },
       "mandatory": true,
-      "parentid": "ENTI122",
-      "domainid": "DOMA483",
-      "displayseq": 1,
+      "parentId": "ENTI122",
+      "domainId": "DOMA483",
+      "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4317,14 +4317,14 @@
       }
     },
     {
-      "elementid": "ATTR481",
+      "elementId": "ATTR481",
       "name": {
         "en": "Granularit\u00e4t"
       },
       "mandatory": true,
-      "parentid": "ENTI124",
-      "domainid": "DOMA503",
-      "displayseq": 1,
+      "parentId": "ENTI124",
+      "domainId": "DOMA503",
+      "displaySeq": 1,
       "descriptive": true,
       "historicised": false,
       "additionalProps": {
@@ -4336,14 +4336,14 @@
       }
     },
     {
-      "elementid": "ATTR482",
+      "elementId": "ATTR482",
       "name": {
         "en": "Max Zeitpunkt"
       },
       "mandatory": false,
-      "parentid": "ENTI124",
-      "domainid": "DOMA490",
-      "displayseq": 3,
+      "parentId": "ENTI124",
+      "domainId": "DOMA490",
+      "displaySeq": 3,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4355,14 +4355,14 @@
       }
     },
     {
-      "elementid": "ATTR483",
+      "elementId": "ATTR483",
       "name": {
         "en": "Min Zeitpunkt"
       },
       "mandatory": false,
-      "parentid": "ENTI124",
-      "domainid": "DOMA490",
-      "displayseq": 2,
+      "parentId": "ENTI124",
+      "domainId": "DOMA490",
+      "displaySeq": 2,
       "descriptive": false,
       "historicised": false,
       "additionalProps": {
@@ -4374,14 +4374,14 @@
       }
     },
     {
-      "elementid": "ATTR484",
+      "elementId": "ATTR484",
       "name": {
         "en": "Name"
       },
       "mandatory": true,
-      "parentid": "ENTI114",
-      "domainid": "DOMA483",
-      "displayseq": 1,
+      "parentId": "ENTI114",
+      "domainId": "DOMA483",
+      "displaySeq": 1,
       "description": {
         "en": "Name of the attribute that is listed as an additional property for the element."
       },
@@ -4400,14 +4400,14 @@
       }
     },
     {
-      "elementid": "ATTR485",
+      "elementId": "ATTR485",
       "name": {
         "en": "Wert"
       },
       "mandatory": false,
-      "parentid": "ENTI114",
-      "domainid": "DOMA488",
-      "displayseq": 2,
+      "parentId": "ENTI114",
+      "domainId": "DOMA488",
+      "displaySeq": 2,
       "description": {
         "en": "Wert, den eine zus\u00e4tzliche Eigenschaft f\u00fcr dieses Element hat.\n\nWerte sind Zeichenfolgen. Datentyp, Einschr\u00e4nkungen usw. sind von den Personen oder Tools zu handhaben, die die Werte verwalten."
       },

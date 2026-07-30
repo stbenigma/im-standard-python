@@ -1,31 +1,9 @@
 # generaladdons.yml
 
 # configuration of dataspot 
+# to be replaced by other configurations
 # author: stb
 # V2025-06
-# Extensions to bring dataspot to a standard information model
-#    Multilingual attributes (business and data)
-#    ARCS in relations
-#    DefaultValue for attributes (business and data)
-#    Units for domains
-#    Derivation types for sources
-
-BusinessAttribute:
-  customProperties:
-    MULTILINGUAL:
-      label: Mehrsprachig
-      labelEn: Multilingual
-      title: Ein mehrsprachiges Attribut ist ein Text, der in der Applikation mehrsprachig verwaltet wird.
-      titleEn: a multilingual attribute is a text, which is managed in several languages in the destination application
-      baseType: BOOLEAN
-      order: 10
-    DefaultValue:
-      label: Vorgabewert
-      labelEn: Default value
-      title: Wert, mit dem das Attribut gefüllt wird, im Falle dass leer angeliefert wird
-      titleEn: Value with which the attribute is filled if it is supplied empty
-      order: 11
-      baseType: STRING      
 
 UmlAttribute:
   customProperties:
@@ -44,47 +22,8 @@ UmlAttribute:
       baseType: STRING
       order: 10
 
-Relationship:
-  customProperties:
-    ARC-12:
-      label: Arc 1->2
-      title: Gruppe exklusiver Beziehungen, ausgehend von der 1. Entität
-      titleEn: Group of exclusive relationships, starting from the first entity
-      order: 5
-      baseType: STRING
-    ARC-21:
-      label: Arc 2->1
-      title: Gruppe exklusiver Beziehungen, ausgehend von der 2. Entität
-      titleEn: Group of exclusive relationships, starting from the second entity
-      order: 6
-      baseType: STRING
+  
 
-DataAttribute:
-  customProperties:
-    MULTILINGUAL:
-      label: Mehrsprachig
-      labelEn: Multilingual
-      title: Ein mehrsprachiges Attribut ist ein Text, der in der Applikation mehrsprachig verwaltet wird.
-      titleEn: a multilingual attribute is a text, which is managed in several languages in the destination application
-      baseType: BOOLEAN
-      order: 10
-    DefaultValue:
-      label: Vorgabewert
-      labelEn: Default value
-      title: Wert, mit dem das Attribut gefüllt wird, im Falle dass leer angeliefert wird
-      titleEn: Value with which the attribute is filled if it is supplied empty
-      order: 11
-      baseType: STRING      
-
-DataDomain:
-  customProperties:
-    Unit:
-      label: phys. Einheit
-      labelEn: Unit of Measure
-      title: phys. Einheit die diesem Wert eine Basis gibt
-      titleEn: phys. Unit giving this value a base
-      baseType: STRING
-      order: 10
     
 #Derivations
 Derivation:

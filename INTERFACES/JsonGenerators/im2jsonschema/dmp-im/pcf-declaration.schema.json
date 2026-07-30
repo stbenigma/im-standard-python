@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chem-x.de/models/mvp-dmp/pcf-declaration.schema.json",
+  "title": "PCF Declaration",
+  "type": "object",
+  "properties": {
+    "pcfProductOrSectorSpecificRules": {
+      "type": "string",
+      "enum": [
+        "Catena-X 2.0",
+        "TfS_V3",
+        "Catena-X 2.2"
+      ],
+      "description": "Beispiel(e): TfS PCF Guideline V3.0",
+      "title": "Product or sector rules"
+    },
+    "referencePeriodStart": {
+      "type": "string",
+      "format": "date",
+      "title": "Reference period start",
+      "description": "Beispiel(e): 2021-11-20T08:30:00.000Z"
+    },
+    "referencePeriodEnd": {
+      "type": "string",
+      "format": "date",
+      "title": "Reference period end",
+      "description": "Beispiel(e): 2022-11-20T08:30:00.000Z"
+    },
+    "gwpTotalInclBioUptake": {
+      "type": "number",
+      "title": "GWP total Incl. bio. uptake",
+      "description": "Beispiel(e): 0.49 kg CO2 e/kg"
+    },
+    "gwpTotalExclBioUptake": {
+      "type": "string",
+      "title": "GWP total excl. bio. uptake",
+      "description": "Beispiel(e): 2.8 kg CO2 e/kg",
+      "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+    },
+    "geographyWithRegionOrSubregion": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Beispiel(e): (Example: “Global”, “Europe”, “Eastern Europe”)",
+      "title": "Geography with region or subregion"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "referencePeriodStart",
+    "referencePeriodEnd",
+    "gwpTotalInclBioUptake",
+    "gwpTotalExclBioUptake",
+    "geographyWithRegionOrSubregion"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chem-x.de/models/mvp-dmp/waterscarcity.schema.json",
+  "title": "WaterScarcity",
+  "type": "object",
+  "properties": {
+    "waterProductOrSectorSpecificRules": {
+      "type": "string",
+      "title": "Product or sector rules",
+      "description": "Beispiel(e): Chem-X Sustainability Metrics Guideline v1.0",
+      "$comment": "Kein domainid im Quellmodell hinterlegt - Fallback auf 'string'."
+    },
+    "waterScarcity": {
+      "type": "number",
+      "title": "Water scarcity",
+      "description": "Beispiel(e): 1.8 m3 world equivalent"
+    },
+    "referencePeriodStart": {
+      "type": "string",
+      "format": "date",
+      "title": "Reference period start"
+    },
+    "referencePeriodEnd": {
+      "type": "string",
+      "format": "date",
+      "title": "Reference period end"
+    },
+    "geographyRegionOrSubregion": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Beispiel(e): (Example: “Global”, “Europe”, “Eastern Europe”)",
+      "title": "Geography with region or subregion"
+    }
+  },
+  "additionalProperties": false
+}

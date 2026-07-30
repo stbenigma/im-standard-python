@@ -1,25 +1,32 @@
 import logging
 import sqlite3
 
-from IM_STANDARD.SQL.SQL_INFRA import dict_factory
-
+from IM_STANDARD.SQL.SQL_INFRA.dbConnect import  SqliteDb,dict_factory
 
 class DbDDL():
 
-    def __init__(self, connection):
-        self.connection: sqlite3.Connection = connection
+    """
+        a collection of metadata functions for a sqlite-database
+    """
+
+    def __init__(self, sqlitedb:SqliteDb):
+        self.sqlitedb:SqliteDb= sqlitedb
         return
 
-    def getcursor(self, factory=dict_factory) -> sqlite3.Cursor:
-        self.connection.row_factory = factory
-        return self.connection.cursor()
+    def getcursor(self, factory=dict_factory) -> sqlite3.Cursor: #
+        """
+        get a cursor for my connection
+        :param factory: transformation factory to change output of cursor
+        :return:
+        """
+        self.sqlitedb.connection.row_factory = factory
+        return self.sqlitedb.connection.cursor()
 
     def execscript(self, sql):
         """
-            execute the sqlstatement in sql
-            in case of error, raise error
+            execute the sqlstatements in sql-script
         """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
         try:
             cursor.executescript(sql)
             cursor.close()
@@ -34,7 +41,7 @@ class DbDDL():
             List of all uk (list of columns) for the table tablename
             return a list of lists of columnnames [[colname,],]
          """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
         cursor.execute(f"PRAGMA index_list('{tablename}')")
         indices = cursor.fetchall()
         """
@@ -58,7 +65,7 @@ class DbDDL():
         """List of all foreign keys (with columns) of table tablename
         return {colname:[fktable,fkcolname]} all names in lowercase
         """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
         cursor.execute(f"PRAGMA foreign_key_list('{tablename}')")
         fks = cursor.fetchall()
         cursor.close()
@@ -114,7 +121,7 @@ class DbDDL():
                 "inpk": boolean
                 }
         """
-        cursor = self.getcursor()
+        cursor = self.getcursor(factory=dict_factory)
         cursor.execute(f"PRAGMA table_info ({tablename})")
         cols = cursor.fetchall()
         colsinfo = {col["name"]:

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chem-x.de/models/mvp-dmp/mvp-dmp.schema.json",
+  "title": "MVP-DMP",
+  "type": "object",
+  "properties": {
+    "pcfDeclaration": {
+      "type": "array",
+      "items": {
+        "$ref": "pcf-declaration.schema.json"
+      }
+    },
+    "waterScarcity": {
+      "type": "array",
+      "items": {
+        "$ref": "waterscarcity.schema.json"
+      }
+    },
+    "ceDeclaration": {
+      "type": "array",
+      "items": {
+        "$ref": "ce-declaration.schema.json"
+      }
+    },
+    "mixtureSubstances": {
+      "$ref": "mixturesubstances.schema.json"
+    }
+  },
+  "additionalProperties": false,
+  "$comment": "pcfDeclaration: Kardinalitaet lt. Relation RELA206 = M:N (bwd cardinality='M') => array. / waterScarcity: Kardinalitaet lt. Relation RELA207 = M:N (bwd cardinality='M') => array. / ceDeclaration: Kardinalitaet lt. Relation RELA208 = M:N (bwd cardinality='M') => array. / mixtureSubstances: Kardinalitaet lt. Relation RELA209 = M:1 (bwd cardinality='1') => single object.",
+  "required": [
+    "pcfDeclaration",
+    "waterScarcity",
+    "ceDeclaration",
+    "mixtureSubstances"
+  ]
+}

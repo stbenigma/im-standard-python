@@ -1,25 +1,26 @@
-from pathlib import Path
-import sqlite3
-from IM_STANDARD.SQL import DbDML
+from IM_STANDARD.SQL.SQL_INFRA import DbDML, SqliteDb
+from IM_STANDARD.jsonvalidation import ImStandardGithub
 
-class StandardSqlModel:
-    SCHEMADEFPATH = Path(__file__).parent.parent.parent.parent.parent / "Information-model-standard" / "im-standard-sql"
-    STANDARD_IM_SQLFILE = SCHEMADEFPATH / "im-standard-ddl-sqlite.sql"
 
-    def __init__(self,connection:sqlite3.Connection):
-        self.mydb:DbDML = DbDML(connection=connection)
+class StandardModelDb(DbDML):
+    """
+        with a SqliteDb,
+        sets up a DbDML connection (db-connection with special functions for the Standard-SQL-MOdel)
+    """
+
+    def __init__(self, sqlitedb: SqliteDb, withsqlmodel: bool = True):
+        super().__init__(sqlitedb=sqlitedb)
+
+        if withsqlmodel:
+            self.createimstandarddb()
         return
 
-    @staticmethod
-    def createimstandarddb(db:DbDML):
-        with open(StandardSqlModel.STANDARD_IM_SQLFILE, "r", encoding="utf-8") as sqlfile:
-            sql = sqlfile.read()
-        db.execscript(sql=sql)
+    def createimstandarddb(self):
+        """
+        ececutes the SQL-script for IM-Standard-SQL database in the open database sqlitedb
+        :return:
+        """
+        sql = ImStandardGithub.getsqlschema()
+        self.execscript(sql=sql)
         return
 
-
-    def getmainlang(self):
-        mainlang = self.dmlconn.lookupvalue(tablename="languages",
-                                            colname="lang_iso_code2",
-                                        lang_is_base_lang='TRUE')
-        return mainlang
