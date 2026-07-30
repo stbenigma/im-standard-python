@@ -4,7 +4,11 @@ from pathlib import Path
 import pytest
 import logging
 
-from IM_STANDARD.SQL.SQL_INFRA import SqliteDb,DbDDL
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+from SQL.SQL_INFRA.dbConnect import SqliteDb
+from SQL.SQL_INFRA.dbDDL import DbDDL
 
 def  createtable(ddldb:DbDDL,withfk=True):
     """creates a test tabel (also used in test_dbDML"""

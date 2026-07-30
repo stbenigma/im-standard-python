@@ -1,6 +1,7 @@
 import sqlite3
 
-from IM_STANDARD.SQL.SQL_INFRA import DbDDL,SqliteDb,dict_factory
+from IM_STANDARD.SQL.SQL_INFRA.dbConnect import SqliteDb,dict_factory
+from IM_STANDARD.SQL.SQL_INFRA.dbDDL import DbDDL
 
 class DbDML(DbDDL):
     def __init__(self,sqlitedb:SqliteDb):

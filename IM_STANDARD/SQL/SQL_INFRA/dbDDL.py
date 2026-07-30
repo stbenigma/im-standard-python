@@ -1,7 +1,7 @@
 import logging
 import sqlite3
 
-from IM_STANDARD.SQL.SQL_INFRA import SqliteDb,dict_factory
+from IM_STANDARD.SQL.SQL_INFRA.dbConnect import  SqliteDb,dict_factory
 
 class DbDDL():
 

@@ -5,7 +5,11 @@ from pathlib import Path
 import pytest
 
 import test_dbDLL
-from IM_STANDARD.SQL.SQL_INFRA import SqliteDb, DbDML
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+from dbConnect import SqliteDb
+from dbDML import DbDML
 
 class MyTestCase(unittest.TestCase):
 

@@ -3,7 +3,8 @@ from pathlib import Path
 import pytest
 import logging
 
-from SQL.SQL_INFRA import SqliteDb,dict_factory
+from pathlib import Path
+from SQL.SQL_INFRA.dbConnect import SqliteDb, dict_factory
 
 
 class MyTestCase(unittest.TestCase):

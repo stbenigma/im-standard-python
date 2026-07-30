@@ -2,8 +2,10 @@ import unittest
 from pathlib import Path
 import pytest
 
-from IM_STANDARD import Standardmodel2SQLdatabase,StandardModelDb,jsonvalidation
-from IM_STANDARD.SQL import SqliteDb
+from IM_STANDARD.imstandard2sql import Standardmodel2SQLdatabase
+from IM_STANDARD.SQL.SQL_STANDARD import StandardModelDb
+from IM_STANDARD.SQL.SQL_INFRA import SqliteDb
+from IM_STANDARD import jsonvalidation
 
 class Test_standard2sql(unittest.TestCase):
     @pytest.fixture(autouse=True)

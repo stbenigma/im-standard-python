@@ -5,7 +5,8 @@ from datetime import datetime
 from pathlib import Path
 
 from IM_STANDARD import nvl, JsonElement, StandardJsonModel,Sql2IMJsonschema,json2timestamp
-from IM_STANDARD.SQL import dbval, SqliteDb, StandardModelDb
+from IM_STANDARD.SQL.SQL_INFRA import dbval, SqliteDb
+from IM_STANDARD.SQL.SQL_STANDARD import StandardModelDb
 from INTERFACES.DATASPOT.imstandard_dataspot import DataspotElements, Dataspot2Jsonbase
 
 

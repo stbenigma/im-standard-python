@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 import pytest
 
-from IM_STANDARD import Sql2IMJsonschema, Sql2IMowlschema,StandardJsonModel,remove_empty_values
+from IM_STANDARD import Sql2IMJsonschema, Sql2IMowlschema,StandardJsonModel,remove_empty_values,jsonvalidation
 from IM_STANDARD.SQL.SQL_INFRA import SqliteDb, DbDML
 
 
@@ -19,18 +19,6 @@ class Test_sql2standard(unittest.TestCase):
         self.mydebugpath = (Path.home() / "Downloads") if (Path.home() / "Downloads").exists() else self.temppath
         return
 
-    def _validate(self, jsonpath):
-        generate = [
-            'invoke',
-            'validateStandard',
-            "--verbose",
-            "--injson",
-            str(jsonpath)
-        ]
-        result = subprocess.run(generate, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(result.stderr, result.stdout, result.returncode)
-        self.assertEqual(0, result.returncode)
-        return
 
     def test_sql2jsonastro(self):
         mydb = DbDML(sqlitedb=SqliteDb(filepath=Path(__file__).parent / "sql-test-files" / "astro_sqldb.db"))
@@ -45,7 +33,7 @@ class Test_sql2standard(unittest.TestCase):
                                        struct=smallbmodel,
                                        verbose=True)
 
-        self._validate(jsonpath=self.mydebugpath / "astrosqljson.json")
+        jsonvalidation.validate_jsonfile_as_schema(self.mydebugpath / "astrosqljson.json")
         return
 
     def test_sql2jsonIM(self):
@@ -57,7 +45,7 @@ class Test_sql2standard(unittest.TestCase):
                                        struct=bmodel,
                                        verbose=True)
 
-        self._validate(jsonpath=self.mydebugpath / "IMsqljson.json")
+        jsonvalidation.validate_jsonfile_as_schema(self.mydebugpath / "IMsqljson.json")
         return
 
     def test_sql2rdf(self):

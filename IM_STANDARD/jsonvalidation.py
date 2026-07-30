@@ -1,6 +1,8 @@
+import io
 import json
 import logging
-from copy import deepcopy
+import tarfile
+import urllib.request
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
@@ -12,33 +14,77 @@ from referencing.jsonschema import DRAFT202012
 from IM_STANDARD import nvl
 
 
-def validate_json_as_schema(schema: dict):
+class ImStandardGithub:
     """
-    Prüft, ob eine gegebene JSON-Datei ein gültiges JSON Schema (Draft 2020-12) ist.
+    Access to the standard definition of the information model on the public repository stbenigma(Information-model-standard)
     """
-    validatorclass = validator_for(schema)
+    #gitHub repository access
+    REPOOWNER="stbenigma"
+    REPONAME="Information-model-standard"
+    BRANCH="main"
+    BRANCH="peer-review" #while reviewing
+    BRANCH="development" #while developping
 
-    try:
-        validatorclass.check_schema(schema)
-    except json.JSONDecodeError as e:
-        logging.error(f"❌ Fehler: Ungültiges JSON-Format in der Datei: {e}")
-        raise e
-    except SchemaError as e:
-        logging.error(f"❌ Interner Fehler: Das Meta-Schema ist selbst ungültig: {e}")
-        raise e
-    except Exception as e:
-        # Dies fängt ValidationErrors ab, wenn das Dokument das Meta-Schema verletzt.
-        logging.error(f"❌  '{schema}' ist KEIN gültiges JSON Schema.")
-        logging.error(f"Validierungsfehler: {e}")
-        raise e
-    return
+    TARBASEURL= f"https://codeload.github.com/{REPOOWNER}/{REPONAME}/tar.gz/refs/heads/{BRANCH}"
+    #URLBASE= "https://raw.githubusercontent.com/stbenigma/Information-model-standard/main/Model/im-standard-schema"
+    CONTENTBASEURL= f"https://raw.githubusercontent.com/{REPOOWNER}/{REPONAME}/{BRANCH}/Model/"
+    IMSCHEMAURL= CONTENTBASEURL  + "im-standard-schema/InformationModel/InformationModel-schema.json"
+    DMSCHEMAURL= CONTENTBASEURL  + "im-standard-schema/DataModel/DataModel-schema.json"
 
+    STDSQLBASE= CONTENTBASEURL + "im-model-model/im-standard-sql/"
+    STDSQLURL= STDSQLBASE + "im-standard-ddl-sqlite.sql"
 
-def validate_jsonfile_as_schema(json_file_path: str):
-    with open(json_file_path, 'r', encoding='utf-8') as f:
-        document_to_validate = json.load(f)
-    validate_json_as_schema(schema=document_to_validate)
-    return
+    _imjson=None
+    _dmjson=None
+    _schemasql=None
+
+    @staticmethod
+    def _getstdjsonschema(githuburl:str,jsoncontent=True):
+        """
+        returns the json file from the standard json-schema of the information model
+        githuburl: url to the public githubrepository containing the Information model standards json-schemata
+        name: path to json file added to githburl
+        """
+        import requests
+        response = requests.get(githuburl)
+        assert response.status_code == 200,f"file could not be read code={response.status_code}, url:{githuburl}"
+
+        return response.json() if jsoncontent else response.text
+
+    @staticmethod
+    def getgithubrepoastar():
+        """
+        returns the schema tree of the standard definition on github as a tar file
+        :return: tarfile
+        """
+        url = ImStandardGithub.TARBASEURL
+        with urllib.request.urlopen(url) as resp:
+            tar_bytes = resp.read()
+        return tar_bytes
+
+    @staticmethod
+    def extracttopath(tar_bytes,outpath:Path):
+        with tarfile.open(fileobj=io.BytesIO(tar_bytes), mode="r:gz") as tar:
+            tar.extractall(outpath)
+        return
+
+    @classmethod
+    def getimstdschema(cls):
+        if cls._imjson is None:
+            cls._imjson = cls._getstdjsonschema(githuburl=cls.IMSCHEMAURL)
+        return cls._imjson
+
+    @classmethod
+    def getsqlschema(cls):
+        if cls._schemasql is None:
+            cls._schemasql = cls._getstdjsonschema(githuburl=cls.STDSQLURL,jsoncontent=False)
+        return cls._schemasql
+
+    @classmethod
+    def getdmstdschema(cls):
+        if cls._dmjson is None:
+            cls._dmjson = cls._getstdjsonschema(githuburl=cls.DMSCHEMAURL)
+        return cls._dmjson
 
 
 class ValidateJsonModel:
@@ -340,7 +386,9 @@ class ValidateJsonModel:
         return errors
 
 
-def validatestruct(struct: dict, basepath: str | Path, startschemafile: str | Path) -> list:
+def validatestruct(struct: dict,
+                   basepath: str | Path,
+                   startschemafile: str | Path) -> list:
     """
     Validates a json structure against all json schemas found in basepath and subdirectories.
 
@@ -427,60 +475,34 @@ def validateschema(instance: dict | Path | str,
 
     return errors
 
-def normalize_booleans(data):
+def validate_json_as_schema(schema: dict):
     """
-    changes the obj with all string values "TRUE" "FALSE" in all cases change to True, False
-    :param obj: json with all boolean
-    :return:
+    Prüft, ob eine gegebene JSON-Datei ein gültiges JSON Schema (Draft 2020-12) ist.
     """
-    if isinstance(data, dict):
-        return {k: normalize_booleans(v) for k, v in data.items()}
-    elif isinstance(data, list):
-        # Recursively apply to list items
-        return [normalize_booleans(item) for item in data]
-    elif isinstance(data, str):
-        # Convert string representations to actual Python booleans
-        if data.upper() == "TRUE":
-            return True
-        elif data.upper() == "FALSE":
-            return False
-    return data
+    validatorclass = validator_for(schema)
 
-def remove_empty_values(obj):
-    """
-    removes all empty values (None,'',[],{}) removed from all elements in a json structure
+    try:
+        validatorclass.check_schema(schema)
+    except json.JSONDecodeError as e:
+        logging.error(f"❌ Fehler: Ungültiges JSON-Format in der Datei: {e}")
+        raise e
+    except SchemaError as e:
+        logging.error(f"❌ Interner Fehler: Das Meta-Schema ist selbst ungültig: {e}")
+        raise e
+    except Exception as e:
+        # Dies fängt ValidationErrors ab, wenn das Dokument das Meta-Schema verletzt.
+        logging.error(f"❌  '{schema}' ist KEIN gültiges JSON Schema.")
+        logging.error(f"Validierungsfehler: {e}")
+        raise e
+    return
 
-    :param obj: json to be cleansed
-    :return: None: passed json object changed
-    """
-    if isinstance(obj, dict):
-        return {
-            key: remove_empty_values(value) for key, value in obj.items() if value not in ('', None, [], {})
-        }
-    elif isinstance(obj, list):
-        return [remove_empty_values(item) for item in obj]
-    else:
-        return obj
 
-def remove_key_from_json(obj, key_to_remove):
-    """
-    returns a copy of obj with  keys from key_to_remove removed from all elements in a json structure
-    the original json structure will not be changed
+def validate_jsonfile_as_schema(json_file_path: str):
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        document_to_validate = json.load(f)
+    validate_json_as_schema(schema=document_to_validate)
+    return
 
-    :param obj: json to be cleansed
-    :param key_to_remove:  name of key to remove
-    :return: json object with removed key
-    """
-    locobj = deepcopy(obj)
-    if isinstance(locobj, dict):
-        return {
-            key: remove_key_from_json(value, key_to_remove)
-            for key, value in locobj.items() if key != key_to_remove
-        }
-    elif isinstance(obj, list):
-        return [remove_key_from_json(item, key_to_remove) for item in locobj]
-    else:
-        return locobj
 
 
 if __name__ == '__main__':
