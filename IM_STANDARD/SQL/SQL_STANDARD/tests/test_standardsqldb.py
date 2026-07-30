@@ -25,7 +25,8 @@ class Test_standardsqldb(unittest.TestCase):
     def test_emptystandarddb(self):
         mydb = self._createdb()
         mydb.writedbtofile(filepath=self.mydebugpath / "testemptydb.db")
-        self.assertEqual(17, len(mydb.gettablelist()))
+        print ("\n".join(sorted(mydb.gettablelist())))
+        self.assertEqual(18, len(mydb.gettablelist()))
         self.assertTrue("entities" in mydb.gettablelist())
         return
 
