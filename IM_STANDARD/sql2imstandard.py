@@ -3,20 +3,28 @@ import logging
 import re
 from datetime import datetime
 
+# for Sql2IMowlschema
 from rdflib import Graph, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, XSD, SKOS, DCTERMS
 
-from IM_STANDARD import nvl,normalize_booleans,remove_empty_values, StandardSchema
+from IM_STANDARD import nvl, normalize_booleans, remove_empty_values
 from IM_STANDARD.SQL.SQL_INFRA import DbDML
 
 
 class Sql2IMJson:
+    """ SQL interface to the sql database of a standard  model
+        contains functions to transfer sql-string results into json structures/elements
+    """
+
+    # fk columns to link detail tables to their parent
+    # used for geneirc reading of lists of details in a master table select.
     FKCOLS = {"synonyms": "syno_enti_id",
               "examples": "expl_mode_id",
               "user_defined_props": "udpv_mode_id",
               "lov_values": "lovv_doma_id"
               }
 
+    # mapping of database LOV-codes to a readable version
     DOMATYPES = {"TXT": "TextDomain",
                  "GRP": "GroupDomain",
                  "LOV": "LOVDomain",
@@ -37,8 +45,11 @@ class Sql2IMJson:
                  'TUPL': 'tuple'
                  }
 
-    RELATYPES = {'1:1': "1:1", 'M:1': 'M:1', 'M:N': 'M:N',
-                 'ROLE': 'role', 'SUBTYPE': 'subtype'
+    RELATYPES = {'1:1': "1:1",
+                 'M:1': 'M:1',
+                 'M:N': 'M:N',
+                 'ROLE': 'role',
+                 'SUBTYPE': 'subtype'
                  }
 
     def __init__(self, mydb: DbDML):
@@ -157,8 +168,8 @@ class Sql2IMJson:
                 where {self.FKCOLS[tablename]}={idcol})"""
 
     def selelementjson(self, sql):
-        elements = self._mydb.select(sql=sql,aslist=True)
-        #liefert eine liste von tupeln von json strings
+        elements = self._mydb.select(sql=sql, aslist=True)
+        # liefert eine liste von tupeln von json strings
         return json.loads(elements[0][0])
 
     def selmodeljson(self):
@@ -461,7 +472,7 @@ class Sql2IMJson:
 
 class Sql2IMJsonschema(Sql2IMJson):
     """
-    extract all elements from the sqldatabase and create a standardjson-schema
+    extracts all elements from the sqldatabase and create a standardjson-schema
     file
     """
 
@@ -562,7 +573,7 @@ class Sql2IMJsonschema(Sql2IMJson):
             self.movetosubentry(elem=elem,
                                 colnames=["uc", "dc", "um", "dm"]
                                 )
-            if elem.get('restricted') in (None,[]):
+            if elem.get('restricted') in (None, []):
                 logging.error(f"Business rules must have at least one element they restrict, {elem.get('name')}")
 
         self._addlist(elements=elements, elementname="BusinessRules")
@@ -595,7 +606,7 @@ class Sql2IMJsonschema(Sql2IMJson):
                 del elem[colname]  # delete anyway
         return
 
-    def generatejson(self, status=None,notnullonly:bool=True):
+    def generatejson(self, status=None, notnullonly: bool = True):
         self.standardjson = dict()
         assert status in ("PUBL", "GTOP", "ALL", None), "status  must be PUBL, GTOP or ALL"
 
@@ -623,9 +634,9 @@ class Sql2IMJsonschema(Sql2IMJson):
         # self.generatetransformations(status=status)
         # self.generatediagrams(status=status)
         # self.generatediagrams(status=status)
-        self.standardjson=normalize_booleans(self.standardjson)
+        self.standardjson = normalize_booleans(self.standardjson)
         if notnullonly:
-            self.standardjson=remove_empty_values(self.standardjson)
+            self.standardjson = remove_empty_values(self.standardjson)
         return self.standardjson
 
 
@@ -779,7 +790,6 @@ class Sql2IMowlschema(Sql2IMJson):
 
         self._addlist(sql=sql, elementname="Attributes")
         return
-
 
     def generaterelations(self):
         """
