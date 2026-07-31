@@ -20,8 +20,8 @@ class MyTestCase(unittest.TestCase):
         else:
             self.downloadpath = tmp_path / "Downloads"
 
-        self.standardtestilfespath = Path(__file__).parent / \
-                                     "json-test-standard-files"
+        self.standardtestilfespath = Path(__file__).parent.parent / \
+                                     "JSON" / "tests"/ "json-test-standard-files"
 
         return
 

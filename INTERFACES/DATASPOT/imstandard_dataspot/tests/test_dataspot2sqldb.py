@@ -3,9 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from IM_STANDARD.SQL import SqliteDb, StandardModelDb
+from IM_STANDARD.SQL.SQL_INFRA import SqliteDb
+from IM_STANDARD.SQL.SQL_STANDARD import StandardModelDb
 from INTERFACES.DATASPOT import Dataspot2SQLdatabase
-from IM_STANDARD import Sql2IMJsonschema, Sql2IMowlschema
 
 
 class Test_dataspot2sql(unittest.TestCase):
@@ -75,8 +75,6 @@ class Test_dataspot2sql(unittest.TestCase):
 
         mydb.writedbtofile(filepath=self.mydebugpath / "IM-standard.db")
         return
-
-
 
 
 if __name__ == '__main__':
