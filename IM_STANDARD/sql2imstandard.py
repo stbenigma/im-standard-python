@@ -105,12 +105,12 @@ class Sql2IMJson:
     @staticmethod
     def _withprefix(val, prefix: str):
         """
-        add prefix, if val is not None, else return Nont
+        add prefix, if val is not None, else return None
         :param val:
         :param prefix:
         :return:
         """
-        return None if val is None else prefix + str(val)
+        return None if val is None else (prefix + str(val))
 
     def _langtextsql(self, colname: str,
                      fkname: str,
