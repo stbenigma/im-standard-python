@@ -9,163 +9,16 @@ from rdflib.namespace import RDF, RDFS, OWL, XSD, SKOS, DCTERMS
 
 from IM_STANDARD import nvl, normalize_booleans, remove_empty_values
 from IM_STANDARD.SQL.SQL_INFRA import DbDML
+from IM_STANDARD.SQL.SQL_STANDARD.standardmodelsql import StandardModelSql as StdIMSql
 
 
 class Sql2IMJson:
     """ SQL interface to the sql database of a standard  model
-        contains functions to transfer sql-string results into json structures/elements
+        contains the select definition to return a standard json structure in one sql-statement
     """
-
-    # fk columns to link detail tables to their parent
-    # used for geneirc reading of lists of details in a master table select.
-    FKCOLS = {"synonyms": "syno_enti_id",
-              "examples": "expl_mode_id",
-              "user_defined_props": "udpv_mode_id",
-              "lov_values": "lovv_doma_id"
-              }
-
-    # mapping of database LOV-codes to a readable version
-    DOMATYPES = {"TXT": "TextDomain",
-                 "GRP": "GroupDomain",
-                 "LOV": "LOVDomain",
-                 "NUM": "NumericDomain",
-                 "DAT": "DatetimeDomain",
-                 "BIN": "BinaryDomain",
-                 "BOO": "BooleanDomain"
-                 }
-    DOMATYPESREV = {val: key for key, val in DOMATYPES.items()}
-
-    BURUTYPES = {'CALC': 'calculation',
-                 'CHECK': 'check',
-                 'TRIGGER': 'trigger'
-                 }
-    BURULEVEL = {'ATTR': 'attribute',
-                 'DB': 'database',
-                 'ENTI': 'entity',
-                 'TUPL': 'tuple'
-                 }
-
-    RELATYPES = {'1:1': "1:1",
-                 'M:1': 'M:1',
-                 'M:N': 'M:N',
-                 'ROLE': 'role',
-                 'SUBTYPE': 'subtype'
-                 }
 
     def __init__(self, mydb: DbDML):
         self._mydb: DbDML = mydb
-
-    @staticmethod
-    def _str2json(values: list):
-        """
-            changes all str entries, enclosed in [] or {} in json elements
-        :return: directly in values
-        """
-        for entry in values:
-            removelist = []
-            for key, val in entry.items():
-                if val is None:
-                    removelist.append(key)
-                if isinstance(val, str) and re.match("^{[^}]*}|\[[^]]*]$", val):
-                    entry[key] = json.loads(val, strict=False)
-                if isinstance(val, str) and val in ('TRUE', 'FALSE'):
-                    entry[key] = val == 'TRUE'
-            for key in removelist:
-                del entry[key]
-
-    @staticmethod
-    def _sqlvalue(val):
-        """
-        adds '' to a value for a select statement
-        if it is string
-        :param val:
-        :return: 'val'
-        """
-        return "'" + val + "'"
-
-    def _listsql(self, tablename: str,
-                 colname: str,
-                 idcol: str) -> str:
-        return f"""(select {self._mydb.listgroup(colname=colname)}  
-               from {tablename}
-                where {Sql2IMJson.FKCOLS[tablename]}={idcol})"""
-
-    @staticmethod
-    def _mapstring(col: str, mapping: dict) -> str:
-        """
-        retruns a sql expression mapping a columnvalue to any of the values in the list
-        :param: col
-        :param mapping:
-        :return: case col when x then y end
-        """
-        maplist = ' '.join(
-            [f" when {Sql2IMJson._sqlvalue(key)} then {Sql2IMJson._sqlvalue(val)}" for key, val in mapping.items()])
-        return f"""case {col} {maplist} end"""
-
-    @staticmethod
-    def _withprefix(val, prefix: str):
-        """
-        add prefix, if val is not None, else return None
-        :param val:
-        :param prefix:
-        :return:
-        """
-        return None if val is None else (prefix + str(val))
-
-    def _langtextsql(self, colname: str,
-                     fkname: str,
-                     keycolname: str = "lang_iso_code2",
-                     valcolname: str = "lgtx_text"):
-        """ return select for language text subquery
-        select select '{'||group_concat('''' ||lang_iso_code2||''':''' ||lgtx_text||'''',',') ||'}'as enti_name
-               from lang_texts
-               join languages on lgtx_lang_id = lang_id
-
-        """
-        defaultsql = f"""(select  {self._dictgroup(keycolname=keycolname,
-                                                   valcolname='defaultvalue')}
-                    from translatedvalues
-                   where lgtx_attrname='{colname}'  
-                   and lgtx_mode_id={fkname})"""
-
-        realsql = f"""(select {self._dictgroup(keycolname=keycolname,
-                                               valcolname=valcolname)} 
-               from lang_texts
-               join languages on lgtx_lang_id = lang_id
-                   where lgtx_attrname='{colname}'  
-                   and lgtx_mode_id={fkname})
-                   """
-
-        return defaultsql
-
-    def _langssql(self):
-        """
-         :return: subselect for list of lang_iso_code2 in model_languages
-        """
-        return f"""(select {self._mydb.listgroup(colname="lang_iso_code2")}  
-               from languages
-               join model_languages on mola_lang_id=lang_id               
-                where mola_modl_id=modl_id)"""
-
-    def _additionalpropssql(self,
-                            idcol: str) -> str:
-        return self._dictsql(tablename="user_defined_props",
-                             keycolname="udpv_name",
-                             valcolname="udpv_value",
-                             idcol=idcol)
-
-    def _dictgroup(self, keycolname: str, valcolname: str):
-        return self._mydb.dictgroup(keycolname=keycolname,
-                                    valcolname=valcolname)
-
-    def _dictsql(self, tablename: str,
-                 keycolname: str,
-                 valcolname: str,
-                 idcol: str) -> str:
-        return f"""(select {self._dictgroup(keycolname=keycolname,
-                                            valcolname=valcolname)} 
-               from {tablename}
-                where {self.FKCOLS[tablename]}={idcol})"""
 
     def selelementjson(self, sql):
         elements = self._mydb.select(sql=sql, aslist=True)
@@ -188,8 +41,8 @@ class Sql2IMJson:
                             mode_dm as dm,
                             lang_iso_code2 as mainlanguage,
                             '0.0' as modelversion,
-                            {self._langssql()} as languages,
-                            {self._additionalpropssql(idcol="modl_id")}  as additionalProps
+                            {StdIMSql._langssql()} as languages,
+                            {StdIMSql._additionalpropssql(idcol="modl_id")}  as additionalProps
                     from models 
                     join modelelements on mode_id=modl_id
                     join model_languages on (mola_modl_id=modl_id
@@ -232,8 +85,8 @@ class Sql2IMJson:
     def selcategoryjson(self):
         sql = f"""select json_group_array(
         json_object('elementId','CATG' ||enca_id,
-            'name',{self._langtextsql(colname="enca_name", fkname="enca_id")},
-            'description',{self._langtextsql(colname="enca_descr",
+            'name',{StdIMSql._langtextsql(colname="enca_name", fkname="enca_id")},
+            'description',{StdIMSql._langtextsql(colname="enca_descr",
                                              fkname="enca_id")},
             'modelId',case when enca_enca_id is null then null
                                     else 'CATG' || enca_enca_id
@@ -243,7 +96,7 @@ class Sql2IMJson:
             'uc',mode_uc ,
             'um',mode_um ,
             'dm',mode_dm,
-            'additionalProps', {self._additionalpropssql(idcol="enca_id")}
+            'additionalProps', {StdIMSql._additionalpropssql(idcol="enca_id")}
             ))as catgs
         from entity_categories
         join modelelements on mode_id=enca_id"""
@@ -253,11 +106,11 @@ class Sql2IMJson:
     def seldomainjson(self):
         sql = f"""select json_group_array(
             json_object('elementId','DOMA' ||doma_id ,
-            'name',{self._langtextsql(colname="doma_name",
+            'name',{StdIMSql._langtextsql(colname="doma_name",
                                       fkname="doma_id")},
-            'description',{self._langtextsql(colname="doma_descr",
+            'description',{StdIMSql._langtextsql(colname="doma_descr",
                                              fkname="doma_id")} ,
-            'domainType',{self._mapstring(col="doma_type", mapping=self.DOMATYPES)} ,
+            'domainType',{StdIMSql._mapstring(col="doma_type", mapping=StdIMSql.DOMATYPES)} ,
             'maxLength',doma_txt_maxlng ,
             'minLength',doma_txt_minlng ,
             'syntaxRule',doma_txt_syntaxrule,
@@ -274,7 +127,7 @@ class Sql2IMJson:
             'roundto',doma_num_round_value ,
             'physunit',doma_num_physunit,
             'granularity',doma_dat_granularity ,
-            'examples',{self._listsql(tablename="examples",
+            'examples',{StdIMSql._listsql(tablename="examples",
                                       colname="expl_value",
                                       idcol="doma_id")} ,
             'modelId','MODL'||mode_modl_id ,                                                                       
@@ -291,7 +144,7 @@ class Sql2IMJson:
                                      where lovv_doma_id = doma_id
                                      order by lovv_sort_order
                                 ) ,
-            'additionalProps',{self._additionalpropssql(idcol="doma_id")}
+            'additionalProps',{StdIMSql._additionalpropssql(idcol="doma_id")}
             )) as domas 
         from domains    
         join modelelements on mode_id=doma_id
@@ -305,18 +158,18 @@ class Sql2IMJson:
         sql = f"""select json_group_array(
         json_object(
         'elementId','ENTI' || enti_id,
-        'name', {self._langtextsql(colname="enti_name",
+        'name', {StdIMSql._langtextsql(colname="enti_name",
                                    fkname="enti_id")} ,
-        'description',{self._langtextsql(colname="enti_descr",
+        'description',{StdIMSql._langtextsql(colname="enti_descr",
                                          fkname="enti_id")} ,
         'shortDescr', enti_tooltip,
         'prefix',enti_prefix,
         'shortName',enti_short_name,                         
         'categoryId', case when enti_enca_id is null then null else 'CATG' || enti_enca_id end ,
-         'synonyms',{self._listsql(tablename="synonyms",
+         'synonyms',{StdIMSql._listsql(tablename="synonyms",
                                    colname="syno_name",
                                    idcol="enti_id")},
-        'examples',{self._listsql(tablename="examples",
+        'examples',{StdIMSql._listsql(tablename="examples",
                                   colname="expl_value",
                                   idcol="enti_id")},
         'keys',(SELECT json_group_array(
@@ -340,7 +193,7 @@ class Sql2IMJson:
         'uc',mode_uc,
         'um',mode_um,
         'dm',mode_dm,
-        'additionalProps',{self._additionalpropssql(idcol="enti_id")} 
+        'additionalProps',{StdIMSql._additionalpropssql(idcol="enti_id")} 
         )) as entis
         from entities    
         join modelelements on mode_id=enti_id
@@ -351,14 +204,14 @@ class Sql2IMJson:
         sql = f"""select json_group_array(
                 json_object('elementId','ATTR' ||attr_id ,
             'name',            attr_tech_name, 
-            'description',        {self._langtextsql(colname="attr_descr",
+            'description',        {StdIMSql._langtextsql(colname="attr_descr",
                                                      fkname="attr_id")} ,
             'domainId',            'DOMA' || attr_doma_id,
             'parentId',         case when attr_enti_id is null 
                             THEN 'DOMA' || attr_doma_group_id
                             else 'ENTI' || attr_enti_id 
                     end ,
-            'displname',        {self._langtextsql(colname="attr_displ_name",
+            'displname',        {StdIMSql._langtextsql(colname="attr_displ_name",
                                                    fkname="attr_id")} ,
         'tooltip',            attr_tooltip,
             'sortOrder',            attr_displ_seq,
@@ -368,14 +221,14 @@ class Sql2IMJson:
             'multilang',            attr_is_translated,
             'repeated',            attr_is_repeated,
             'encrypted',            attr_is_encrypted,
-            'examples',        {self._listsql(tablename="examples",
+            'examples',        {StdIMSql._listsql(tablename="examples",
                                               colname="expl_value",
                                               idcol="attr_id")} ,
             'uc',            mode_uc,
             'um',                            mode_um,
             'dm',                            mode_dm,
             'dc',                            mode_dc,
-            'additionalProps',        {self._additionalpropssql(idcol="attr_id")} 
+            'additionalProps',        {StdIMSql._additionalpropssql(idcol="attr_id")} 
             )) as attrs
         from attributes    
         join modelelements on mode_id=attr_id
@@ -400,9 +253,9 @@ class Sql2IMJson:
         sql = f"""
         select json_group_array(
                 json_object('elementId',        'RELA' || rela_id,
-    'name',    {self._langtextsql(colname="rela_name",
+    'name',    {StdIMSql._langtextsql(colname="rela_name",
                                   fkname="rela_id")},
-    'relationType',    {self._mapstring(col="rela_type", mapping=self.RELATYPES)} ,
+    'relationType',    {StdIMSql._mapstring(col="rela_type", mapping=StdIMSql.RELATYPES)} ,
     'fwd',        '',
     'bwd',        '',
     'entityid_from',        'ENTI' || rela_enti_id_from,
@@ -415,18 +268,18 @@ class Sql2IMJson:
     'mandatory_to',        rela_mandatory_to_from,
     'arcnumber_from',        rela_arc_no_from,
     'arcnumber_to',        rela_arc_no_to,
-    'assoctext_from',    {self._langtextsql(colname="rela_assoc_from_to",
+    'assoctext_from',    {StdIMSql._langtextsql(colname="rela_assoc_from_to",
                                             fkname="rela_id")},
-    'assoctext_to',    {self._langtextsql(colname="rela_assoc_to_from",
+    'assoctext_to',    {StdIMSql._langtextsql(colname="rela_assoc_to_from",
                                           fkname="rela_id")},
-    'examples',    {self._listsql(tablename="examples",
+    'examples',    {StdIMSql._listsql(tablename="examples",
                                   colname="expl_value",
                                   idcol="rela_id")},
     'dc',        mode_dc,
     'uc',        mode_uc,
     'um',        mode_um,
     'dm',        mode_dm,
-    'additionalProps',        {self._additionalpropssql(idcol="rela_id")}
+    'additionalProps',        {StdIMSql._additionalpropssql(idcol="rela_id")}
     )) as relas
         from relations
         join modelelements on mode_id = rela_id
@@ -437,15 +290,15 @@ class Sql2IMJson:
         sql = f"""select json_group_array(
            json_object(
             'elementId','BURU' ||buru_id,
-            'name',        {self._langtextsql(colname="buru_name",
+            'name',        {StdIMSql._langtextsql(colname="buru_name",
                                               fkname="buru_id")} ,
-            'description',        {self._langtextsql(colname="buru_descr",
+            'description',        {StdIMSql._langtextsql(colname="buru_descr",
                                                      fkname="buru_id")},
-            'type',            {self._mapstring(col="buru_type", mapping=self.BURUTYPES)},
-            'level',            {self._mapstring(col="buru_level", mapping=self.BURULEVEL)},
+            'type',            {StdIMSql._mapstring(col="buru_type", mapping=StdIMSql.BURUTYPES)},
+            'level',            {StdIMSql._mapstring(col="buru_level", mapping=StdIMSql.BURULEVEL)},
             'rule',            buru_rule,
             'errormessage',            buru_errormsg,
-            'examples',        {self._listsql(tablename="examples",
+            'examples',        {StdIMSql._listsql(tablename="examples",
                                               colname="expl_value",
                                               idcol="buru_id")}  ,
             'restrictedElements',(select json_group_array(mode_type || bure_mode_id)
@@ -462,7 +315,7 @@ class Sql2IMJson:
             'uc',            mode_uc,
             'um',            mode_um,
             'dm',            mode_dm,
-            'additionalProps',            {self._additionalpropssql(idcol="buru_id")} 
+            'additionalProps',            {StdIMSql._additionalpropssql(idcol="buru_id")} 
         )) as burus
         from main.business_rules    
         join modelelements on mode_id=buru_id
@@ -671,11 +524,11 @@ class Sql2IMowlschema(Sql2IMJson):
 
     def generatedomains(self):
         sql = f"""select 'DOMA' ||doma_id as elementId,
-            {self._langtextsql(colname="doma_name",
+            {StdIMSql._langtextsql(colname="doma_name",
                                fkname="doma_id")} as name,
-            {self._langtextsql(colname="doma_descr",
+            {StdIMSql._langtextsql(colname="doma_descr",
                                fkname="doma_id")} as description,
-            {self._mapstring(col="doma_type", mapping=self.DOMATYPES)} as domaintype,
+            {StdIMSql._mapstring(col="doma_type", mapping=StdIMSql.DOMATYPES)} as domaintype,
             doma_txt_maxlng as maxlength,
             doma_txt_minlng as minlength,
             doma_txt_syntaxrule as syntaxrule,
@@ -692,7 +545,7 @@ class Sql2IMowlschema(Sql2IMJson):
             doma_num_round_value as roundto,
             doma_num_physunit as physunit,
             doma_dat_granularity as granularity,
-            {self._listsql(tablename="examples",
+            {StdIMSql._listsql(tablename="examples",
                            colname="expl_value",
                            idcol="doma_id")} as examples,
             'MODL'||mode_modl_id as modelid,                                                                       
@@ -700,7 +553,7 @@ class Sql2IMowlschema(Sql2IMJson):
             mode_uc as uc,
             mode_um as um,
             mode_dm as dm,
-            {self._additionalpropssql(idcol="doma_id")}  as additionalProps
+            {StdIMSql._additionalpropssql(idcol="doma_id")}  as additionalProps
         from domains    
         join modelelements on mode_id=doma_id
         """
@@ -756,9 +609,9 @@ class Sql2IMowlschema(Sql2IMJson):
 
     def generateattributes(self):
         sql = f"""select 'ATTR' ||attr_id as elementId,
-            {self._langtextsql(colname="attr_tech_name",
+            {StdIMSql._langtextsql(colname="attr_tech_name",
                                fkname="attr_id")} as name,
-            {self._langtextsql(colname="attr_descr",
+            {StdIMSql._langtextsql(colname="attr_descr",
                                fkname="attr_id")} as description,
             'DOMA' || attr_doma_id as domainid,
              case when attr_enti_id is null 
@@ -774,7 +627,7 @@ class Sql2IMowlschema(Sql2IMJson):
             attr_is_translated as multilang,
             attr_is_repeated as repeated,
             attr_is_encrypted as encrypted,
-            {self._listsql(tablename="examples",
+            {StdIMSql._listsql(tablename="examples",
                            colname="expl_value",
                            idcol="attr_id")} as examples,
             'MODL'||mode_modl_id as modelid,                                                                       
@@ -783,7 +636,7 @@ class Sql2IMowlschema(Sql2IMJson):
                             mode_um as um,
                             mode_dm as dm,
 
-            {self._additionalpropssql(idcol="attr_id")}  as additionalProps
+            {StdIMSql._additionalpropssql(idcol="attr_id")}  as additionalProps
         from attributes    
         join modelelements on mode_id=attr_id
         """
@@ -807,9 +660,9 @@ class Sql2IMowlschema(Sql2IMJson):
 
         """
         sql = f"""select 'RELA' ||rela_id as elementId,
-            {self._langtextsql(colname="rela_name",
+            {StdIMSql._langtextsql(colname="rela_name",
                                fkname="rela_id")} as name,
-            {self._mapstring(col="rela_type", mapping=self.RELATYPES)} as relationtype,
+            {StdIMSql._mapstring(col="rela_type", mapping=StdIMSql.RELATYPES)} as relationtype,
             '{{ }}' as fwd  ,          
             '{{ }}' as bwd  ,
              'ENTI'|| rela_enti_id_from as entityid_from,
@@ -822,13 +675,13 @@ class Sql2IMowlschema(Sql2IMJson):
              rela_mandatory_to_from as mandatory_to,
              rela_arc_no_from as arcnumber_from,
              rela_arc_no_to as arcnumber_to,
-             {self._langtextsql(colname="rela_assoc_from_to",
+             {StdIMSql._langtextsql(colname="rela_assoc_from_to",
                                 fkname="rela_id")} 
                     as assoctext_from,                        
-             {self._langtextsql(colname="rela_assoc_to_from",
+             {StdIMSql._langtextsql(colname="rela_assoc_to_from",
                                 fkname="rela_id")} 
                     as assoctext_to,                       
-             {self._listsql(tablename="examples",
+             {StdIMSql._listsql(tablename="examples",
                             colname="expl_value",
                             idcol="rela_id")} as examples,
             'MODL'||mode_modl_id as modelid,                                                                       
@@ -836,7 +689,7 @@ class Sql2IMowlschema(Sql2IMJson):
             mode_uc as uc,
             mode_um as um,
             mode_dm as dm,
-            {self._additionalpropssql(idcol="rela_id")}  as additionalProps
+            {StdIMSql._additionalpropssql(idcol="rela_id")}  as additionalProps
         from relations    
         join modelelements on mode_id=rela_id
         """
@@ -869,15 +722,15 @@ class Sql2IMowlschema(Sql2IMJson):
 
     def generatebusinessrules(self):
         sql = f"""select 'BURU' ||buru_id as elementId,
-            {self._langtextsql(colname="buru_name",
+            {StdIMSql._langtextsql(colname="buru_name",
                                fkname="buru_id")} as name,
-            {self._langtextsql(colname="buru_descr",
+            {StdIMSql._langtextsql(colname="buru_descr",
                                fkname="buru_id")} as description,
-            {self._mapstring(col="buru_type", mapping=self.BURUTYPES)} as type,
-            {self._mapstring(col="buru_level", mapping=self.BURULEVEL)} as level,
+            {StdIMSql._mapstring(col="buru_type", mapping=StdIMSql.BURUTYPES)} as type,
+            {StdIMSql._mapstring(col="buru_level", mapping=StdIMSql.BURULEVEL)} as level,
             buru_rule as rule,
             buru_errormsg as errormessage,
-            {self._listsql(tablename="examples",
+            {StdIMSql._listsql(tablename="examples",
                            colname="expl_value",
                            idcol="buru_id")} as examples,
             'MODL'||mode_modl_id as modelid,                                                                       
@@ -885,7 +738,7 @@ class Sql2IMowlschema(Sql2IMJson):
             mode_uc as uc,
             mode_um as um,
             mode_dm as dm,
-            {self._additionalpropssql(idcol="buru_id")}  as additionalProps
+            {StdIMSql._additionalpropssql(idcol="buru_id")}  as additionalProps
         from main.business_rules    
         join modelelements on mode_id=buru_id
         """
@@ -957,8 +810,8 @@ class Sql2IMowlschema(Sql2IMJson):
                             mode_dm as dm,
                             lang_iso_code2 as mainlanguage,
                             "0.0" as modelversion,
-                            {self._langssql()} as languages,
-                            {self._additionalpropssql(idcol="modl_id")}  as additionalProps
+                            {StdIMSql._langssql()} as languages,
+                            {StdIMSql._additionalpropssql(idcol="modl_id")}  as additionalProps
                     from models 
                     join modelelements on mode_id=modl_id
                     join model_languages on (mola_modl_id=modl_id
