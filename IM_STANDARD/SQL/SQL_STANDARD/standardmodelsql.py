@@ -1,5 +1,5 @@
 from IM_STANDARD.SQL.SQL_INFRA import DbDML, SqliteDb
-from IM_STANDARD.jsonvalidation import ImStandardGithub
+from IM_STANDARD.JSON.jsonvalidation import ImStandardGithub
 
 
 class StandardModelDb(DbDML):

@@ -33,12 +33,12 @@ from pathlib import Path
 IMSTANDARDPATH = Path(__file__).parent.parent.parent / "Information-model-standard"
 
 from IM_STANDARD.SQL import *
-from .jsonelements import JsonElement,model2json
-from .myjsonschema import ElementId,JsonSchema,StandardSchema,json2timestamp
-from .standardmodeljson import StandardJsonModel, IMStandardJsonModel, DMStandardJsonModel, \
+from IM_STANDARD.JSON.jsonelements import JsonElement,model2json
+from IM_STANDARD.JSON.myjsonschema import ElementId,JsonSchema,StandardSchema,json2timestamp
+from IM_STANDARD.JSON.standardmodeljson import StandardJsonModel, IMStandardJsonModel, DMStandardJsonModel, \
         normalize_booleans, remove_empty_values, remove_key_from_json
 
-from .jsonvalidation import ValidateJsonModel, validateschema, validatestruct, ImStandardGithub
+from IM_STANDARD.JSON.jsonvalidation import ValidateJsonModel, validateschema, validatestruct, ImStandardGithub
 from .genjsonschema import generatejsonschema,JsonExample,Json2JsonSchema
 from .sql2imstandard import Sql2IMowlschema,Sql2IMJson,Sql2IMJsonschema
 from .imstandard2sql import Standardmodel2SQLdatabase

@@ -1,6 +1,6 @@
 import unittest
-from datetime import datetime
-from IM_STANDARD import JsonSchema, JsonElement,json2timestamp
+
+from IM_STANDARD import JsonSchema, JsonElement, json2timestamp
 
 
 class MyTestCase(unittest.TestCase):
@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
     def test_jsontimestamp(self):
         json_data = {
             "unix_seconds": 1784982600,
-            "unix_millis":  1784982600000,
+            "unix_millis": 1784982600000,
             "string_unix": "1784930400",
             "iso_8601": "2026-07-25T14:30:00Z",
             "readable_str": "July 25, 2026 2:30 PM",
@@ -19,19 +19,19 @@ class MyTestCase(unittest.TestCase):
             "rfc_2822": "Sat, 25 Jul 2026 14:30:00 GMT"
         }
         print()
-        for name,dv in json_data.items():
-            print (name,dv)
-            dt=json2timestamp(dv)
-            if name =="iso_8601":
+        for name, dv in json_data.items():
+            print(name, dv)
+            dt = json2timestamp(dv)
+            if name == "iso_8601":
                 self.assertEqual("2026-07-25T14:30:00+00:00", dt)
-            elif name=="readable_str":
+            elif name == "readable_str":
                 self.assertEqual("2026-07-25T14:30:00", dt)
-            elif name in("short_date","string_unix"):
+            elif name in ("short_date", "string_unix"):
                 self.assertEqual("2026-07-25T00:00:00", dt)
-            elif name=="rfc_2822":
-                self.assertEqual("2026-07-25T14:30:00+00:00",dt)
+            elif name == "rfc_2822":
+                self.assertEqual("2026-07-25T14:30:00+00:00", dt)
             else:
-                self.assertEqual("2026-07-25T14:30:00",dt)
+                self.assertEqual("2026-07-25T14:30:00", dt)
         return
 
     def test_idschema(self):
@@ -41,17 +41,17 @@ class MyTestCase(unittest.TestCase):
                                                             mainlanguage="en",
                                                             modelversion="1.1",
                                                             targetEnvironment="Testtarget"),
-                                   "Categories":[JsonElement().categoryjson(categorytype="ENTITY",
-                                                                            elementId="CATG12",
-                                                                            name="mycatg",
-                                                                            categoryId="CATG11"),
-                                                 JsonElement().categoryjson(categorytype="ENTITY",
-                                                                            elementId="CATG11",
-                                                                            name="mycatg")
-                                                 ],
-                                   "Entities":[JsonElement().entityjson(elementId="ENTI12",name="myEntity",
-                                                                        categoryId="CATG11")
-        ]
+                                   "Categories": [JsonElement().categoryjson(categorytype="ENTITY",
+                                                                             elementId="CATG12",
+                                                                             name="mycatg",
+                                                                             categoryId="CATG11"),
+                                                  JsonElement().categoryjson(categorytype="ENTITY",
+                                                                             elementId="CATG11",
+                                                                             name="mycatg")
+                                                  ],
+                                   "Entities": [JsonElement().entityjson(elementId="ENTI12", name="myEntity",
+                                                                         categoryId="CATG11")
+                                                ]
                                    # "Domains":
                                    #     [
                                    #         {

@@ -2,7 +2,7 @@ import json
 from copy import deepcopy
 from pathlib import Path
 
-from IM_STANDARD.jsonvalidation import  ImStandardGithub,validate_json_as_schema  # local due to recusrive import
+from IM_STANDARD.JSON.jsonvalidation import  ImStandardGithub,validate_json_as_schema  # local due to recusrive import
 
 def normalize_booleans(data):
     """

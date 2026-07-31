@@ -1,15 +1,13 @@
 import json
-import tempfile
 import unittest
 from pathlib import Path
 
-import openapi_schema_validator as osv
 import pytest
 
 from INTERFACES.SPOD2DS  import JSModel
 from INTERFACES.SPOD2DS import Spod2Jsonschema
-from IM_STANDARD import standardmodeljson as smjs, remove_key_from_json,validateschema,IMStandardJsonModel,model2json
-from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import Json2dataspot, json2dataspot
+from IM_STANDARD import remove_key_from_json,validateschema,IMStandardJsonModel,model2json
+from INTERFACES.DATASPOT.imstandard_dataspot.json2dataspot import json2dataspot
 
 
 class TestModelSchema(unittest.TestCase):

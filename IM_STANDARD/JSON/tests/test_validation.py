@@ -3,8 +3,8 @@ from pathlib import Path
 import unittest
 import pytest
 
-import IM_STANDARD.standardmodeljson
-from IM_STANDARD.jsonvalidation import ImStandardGithub,validateschema,validate_json_as_schema
+import IM_STANDARD.JSON.standardmodeljson
+from IM_STANDARD.JSON.jsonvalidation import ImStandardGithub,validateschema,validate_json_as_schema
 
 
 class MyTestCase(unittest.TestCase):
@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
                                 {"xyz": removekey}]
                         },
                removekey: 1}
-        newobj = IM_STANDARD.standardmodeljson.remove_key_from_json(obj, "abc")
+        newobj = IM_STANDARD.JSON.standardmodeljson.remove_key_from_json(obj, "abc")
         self.assertTrue(removekey not in newobj)
         self.assertTrue(removekey in obj)
         self.assertTrue(removekey in obj["key1"])
@@ -58,7 +58,7 @@ class MyTestCase(unittest.TestCase):
                                        }
                               }
                              )
-        newobj = IM_STANDARD.standardmodeljson.remove_key_from_json(obj, "???")
+        newobj = IM_STANDARD.JSON.standardmodeljson.remove_key_from_json(obj, "???")
         self.assertDictEqual(newobj,obj)
 
         return

@@ -5,7 +5,8 @@ import pytest
 from IM_STANDARD.imstandard2sql import Standardmodel2SQLdatabase
 from IM_STANDARD.SQL.SQL_STANDARD import StandardModelDb
 from IM_STANDARD.SQL.SQL_INFRA import SqliteDb
-from IM_STANDARD import jsonvalidation
+from IM_STANDARD.JSON import jsonvalidation
+
 
 class Test_standard2sql(unittest.TestCase):
     @pytest.fixture(autouse=True)
@@ -241,7 +242,7 @@ class Test_standard2sql(unittest.TestCase):
         testfile=Path(__file__).parent.parent / "tests" / "json-test-standard-files" / "Informationsmodell-modell-standard.json"
         if not testfile.is_file():
             self.skipTest(f"testfile not found: {testfile}")
-        struct=jsonvalidation.ValidateJsonModel.readjsonfromfile(filepath=testfile)
+        struct= jsonvalidation.ValidateJsonModel.readjsonfromfile(filepath=testfile)
         mydb=StandardModelDb(sqlitedb=SqliteDb())
         db=Standardmodel2SQLdatabase(jsonmodel=struct,
                                      mydb=mydb).filldatabase()

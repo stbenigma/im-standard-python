@@ -1,10 +1,9 @@
-
-import subprocess
 import unittest
 from pathlib import Path
 import pytest
 
-from IM_STANDARD import Sql2IMJsonschema, Sql2IMowlschema,StandardJsonModel,remove_empty_values,jsonvalidation
+from IM_STANDARD import Sql2IMJsonschema, Sql2IMowlschema,StandardJsonModel,remove_empty_values
+from IM_STANDARD.JSON import jsonvalidation
 from IM_STANDARD.SQL.SQL_INFRA import SqliteDb, DbDML
 
 

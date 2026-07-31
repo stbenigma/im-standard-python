@@ -4,7 +4,8 @@ from pathlib import Path
 import json
 import pytest
 
-from IM_STANDARD import model2json, jsonvalidation, DMStandardJsonModel
+from IM_STANDARD import model2json, DMStandardJsonModel
+from IM_STANDARD.JSON import jsonvalidation
 from INTERFACES.EXCEL import StandardExcel, StandardDataExcel, StandardSchemaExcel, CreateDataExcel
 
 
@@ -103,8 +104,8 @@ class MyTestCase(unittest.TestCase):
         with open(outfilepath,"w") as outfile:
             json.dump(purejson,outfile,indent=2)
         jsonvalidation.validateschema(instance=purejson,
-                                          schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
-                                          schemaonly=False)
+                                      schemafile=DMStandardJsonModel.DMDEFINITIONFILEPATH,
+                                      schemaonly=False)
 
 
         dataexcel = CreateDataExcel(standardjson=purejson)

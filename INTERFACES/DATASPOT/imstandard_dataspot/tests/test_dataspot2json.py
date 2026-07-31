@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 import tempfile
 
-from IM_STANDARD import JsonSchema,standardmodeljson as smjs
+from IM_STANDARD import JsonSchema
+from IM_STANDARD.JSON import standardmodeljson as smjs
 
 from INTERFACES.DATASPOT.imstandard_dataspot import DataspotElements,ElementId, ds2dmstandard as d2j, json2dataspot as j2d
 

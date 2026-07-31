@@ -1,6 +1,6 @@
 from INTERFACES.DATASPOT.imstandard_dataspot.ds2standardbase import Dataspot2Jsonbase
 from .dslib import custom_split
-from IM_STANDARD.myjsonschema import ElementId, JsonSchema,JsonElement
+from IM_STANDARD.JSON.myjsonschema import ElementId, JsonSchema,JsonElement
 
 
 class Dataspot2DMJsonschema(Dataspot2Jsonbase):

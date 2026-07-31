@@ -1,5 +1,5 @@
 from IM_STANDARD import nvl
-from IM_STANDARD.myjsonschema import ElementId, JsonSchema, JsonElement
+from IM_STANDARD.JSON.myjsonschema import ElementId, JsonSchema, JsonElement
 from .jsbase import JSModel, jsguid2type
 
 
